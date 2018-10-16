@@ -754,7 +754,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.repair.repairService.crud.updateCardStored</process:partner>
+      <process:partner type="literal">this.updateCardStored</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="storedRecord" type="query" value="com.hsapi.repair.data.rps.RpsStoredRecord" valueType="DataObject" pattern="reference">record</process:inputVariable>
       </process:inputVariables>

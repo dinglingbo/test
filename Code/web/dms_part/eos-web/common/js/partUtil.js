@@ -166,8 +166,8 @@ function getAllPartType(callback)
 		url : getAllPartTypeUrl,
 		async: false,
 		success : function(data) {
-			if (data && data.quality && data.brand) {
-				callback && callback(data);
+			if (data && data.partTypes) {
+				callback && callback(data);    
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

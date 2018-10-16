@@ -945,7 +945,7 @@ function addNewRow(check){
     }
 }
 var partInfoUrl = baseUrl
-        + "com.hsapi.part.invoice.query.queryPartStoreStock.biz.ext";
+        + "com.hsapi.part.invoice.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params){
     var part = null;
     nui.ajax({
@@ -957,7 +957,7 @@ function getPartInfo(params){
             token: token
         },
         success : function(data) {
-            var partlist = data.detailList;
+            var partlist = data.partlist;
             if(partlist && partlist.length>0){
                 //如果只返回一条数据，直接添加；否则切换到配件选择界面按输入的条件输出
                 if(partlist.length==1){
@@ -995,9 +995,8 @@ function addInsertRow(value, row) {
         showMsg("请先选择盘点仓库!","W");
         return;
     }
-    var formData=basicInfoForm.getData();
-    var storeId = formData.storeId;
-    var params = {partCode:value,storeId :storeId};
+
+    var params = {partCode:value};
     var part = getPartInfo(params);
     if(part){
         params.partId = part.id;
@@ -1014,31 +1013,31 @@ function addInsertRow(value, row) {
         var stockPrice = stock.stockPrice;
 
         var newRow = {
-            partId : part.partId,
-            comPartCode : part.comPartCode,
-            comPartName : part.comPartName,
-            comPartBrandId : part.partBrandId,
-            comApplyCarModel : part.applyCarModel,
-            comUnit : part.unit,
-            sysQty : stockQty,
-            sysPrice : stockPrice,
-            sysAmt : stockQty*stockPrice,
-            trueQty : stockQty,
-            truePrice : stockPrice,
-            trueAmt : stockQty*stockPrice,
-            dc : 0,
-            exhibitQty : 0,
-            exhibitPrice : 0,
-            exhibitAmt : 0,
-            storeId : storeIdEl.getValue(),
-            comOemCode : part.comOemCode,
-            comSpec : part.spec,
-            partCode : part.partCode,
-            partName : part.partName,
-            fullName : part.fullName,
-            systemUnitId : part.unit,
-            enterUnitId : part.unit
-        };
+                partId : part.id,
+                comPartCode : part.code,
+                comPartName : part.name,
+                comPartBrandId : part.partBrandId,
+                comApplyCarModel : part.applyCarModel,
+                comUnit : part.unit,
+                sysQty : stockQty,
+                sysPrice : stockPrice,
+                sysAmt : stockQty*stockPrice,
+                trueQty : stockQty,
+                truePrice : stockPrice,
+                trueAmt : stockQty*stockPrice,
+                dc : 0,
+                exhibitQty : 0,
+                exhibitPrice : 0,
+                exhibitAmt : 0,
+                storeId : storeIdEl.getValue(),
+                comOemCode : part.oemCode,
+                comSpec : part.spec,
+                partCode : part.code,
+                partName : part.name,
+                fullName : part.fullName,
+                systemUnitId : part.unit,
+                enterUnitId : part.unit
+            };
 
         if(row){
             rightGrid.updateRow(row,newRow);

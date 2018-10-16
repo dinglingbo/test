@@ -615,6 +615,7 @@
     <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign18</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link33" name="link33" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo1</sourceNode>
@@ -645,6 +646,7 @@
     <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign18</sourceNode>
       <targetNode>assign21</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link39" name="link39" displayName="连接线" type="transition">
       <sourceNode>assign18</sourceNode>
@@ -711,6 +713,7 @@
     <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign20</sourceNode>
       <targetNode>assign23</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link42" name="link42" displayName="连接线" type="transition">
       <sourceNode>assign20</sourceNode>
@@ -748,6 +751,7 @@
     <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign21</sourceNode>
       <targetNode>end1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link37" name="link37" displayName="连接线" type="transition">
       <sourceNode>assign21</sourceNode>
@@ -850,12 +854,13 @@
     <sourceConnections xsi:type="process:tLink" id="link44" name="link44" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign25</sourceNode>
       <targetNode>assign27</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link45" name="link45" displayName="连接线" type="transition">
       <sourceNode>assign25</sourceNode>
       <targetNode>assign26</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
+        <process:simpleCondition operator="NE">
           <process:leftOperand type="query">eId</process:leftOperand>
           <process:rightOperand type="query">id</process:rightOperand>
         </process:simpleCondition>

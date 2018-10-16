@@ -293,6 +293,7 @@
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="298" y="225"/>
@@ -311,7 +312,7 @@
       <process:to type="query">cardStored/totalAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
+      <process:from type="query" pattern="reference">storedRecord/useAmt</process:from>
       <process:to type="query">cardStored/useAmt</process:to>
     </process:copy>
     <process:copy>

@@ -737,7 +737,7 @@ function add() {
 		nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 		nui.get("createDate").setValue(new Date());
 		nui.get("orderMan").setValue(orderMan);
-		nui.get("orderMan").setText(currUserName);
+		nui.get("orderMan").setText(orderMan);
 		
 		addNewRow();
 

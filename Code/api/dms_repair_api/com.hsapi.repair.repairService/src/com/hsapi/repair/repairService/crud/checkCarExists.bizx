@@ -315,7 +315,7 @@
       <targetNode>assign17</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -637,7 +637,7 @@
     <figSize height="17" width="32"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign18" name="赋值18" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign18" name="赋值18" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign18</sourceNode>
       <targetNode>assign21</targetNode>
@@ -827,7 +827,7 @@
     <figSize height="17" width="39"/>
     <node>assign23</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign24" name="赋值24" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign24" name="赋值24" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign24</sourceNode>
       <targetNode>assign25</targetNode>

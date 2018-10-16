@@ -154,7 +154,18 @@
                                       <label>采购员：</label>
                                   </td>
                                   <td colspan="1">
-                                      <input class="nui-textbox" id="orderMan" name="orderMan" width="100%">
+<!--                                       <input class="nui-textbox" id="orderMan" name="orderMan" width="100%"> -->
+									       <input class="nui-combobox" 
+	                                      id="orderMan" 
+	                                      name="orderMan" 
+	                                      textField="empName"
+			                              valueField="empName"
+			                              emptyText="请选择..."
+			                              url=""
+			                              required="true"
+			                              allowInput="true"
+			                              valueFromSelect="false"
+	                                      width="100%">
                                   </td>
                                   <td class="title required">
                                       <label>建单日期：</label>
@@ -229,7 +240,7 @@
                      
                   </div>
                 </fieldset>
-                <div class="nui-fit">
+<!--                 <div class="nui-fit"> -->
                 	 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
 	                	<a class="nui-button" plain="true" iconCls="" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
 	                </div> 
@@ -306,7 +317,7 @@
                 </div>
           </div>
               
-      </div>
+<!--       </div> -->
   </div>
 
 

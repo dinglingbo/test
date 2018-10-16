@@ -226,11 +226,17 @@ function setInitData(params){
 function THSave(){
 
 	var rows = repairOutGrid.getSelecteds();
-	var data = mainGrid.getData();
-	for(var i=0;i<data.length;i++){
+	var mainData = mainGrid.getData();
+	for(var i=0;i<mainData.length;i++){
 		for(var j=0;j<rows.length;j++){
-			if(rows[j].mainId==data[i].detailId){
-				rows[j].mId=data[i].id;
+			if(rows[j].mainId==mainData[i].detailId){
+				rows[j].mId=mainData[i].id;
+				var qty=mainData[i].qty;
+	      		var pickQty=mainData[i].pickQty;
+				if(rows[j].outQty2>qty - pickQty || rows[j].outQty2>rows[j].outQty-rows[j].outReturnQty){
+			      	showMsg("归库数量超过可归数量","W");
+			      	return;
+			      }
 			}			
 		}
 	}
@@ -240,6 +246,7 @@ function THSave(){
 				showMsg("归库数量不能为0","W");
 				return;
 			}
+	
 			if(rows[i].returnSign == 0){
 //				memberSelect(rows[i]);
 //				onBlack(rows[i]);
@@ -260,7 +267,7 @@ function  savepartOutRtn(data){
             //var paramsData = nui.clone(data);
             var paramsData = {};
             paramsData.serviceId = data.serviceId;
-//            paramsData.mId=data.mId//待出库-配件信息的ID
+            paramsData.mId=data.mId//待出库-配件信息的ID
             paramsData.id = data.id;
             paramsData.mainId = data.mId;//待出库-配件信息的ID
             paramsData.sourceId = data.id;
@@ -294,10 +301,7 @@ function  savepartOutRtn(data){
             if(!paramsData.partNameId){
             	paramsData.partNameId = "0";
             }
-            if(paramsData.outQty>data.outQty){
-            	showMsg("归库数量超过可归数量","W");
-            	return;
-            }
+      
             paramsDataArr.push(paramsData);
 
 
@@ -356,6 +360,7 @@ function  savepartOutRtn(data){
     		}
     		if(count==data.length){
     			update();
+    			
     		}
     	}
     }
@@ -372,6 +377,7 @@ function  savepartOutRtn(data){
         		var errCode = text.errCode; 
         		if(errCode == "S"){
 //        			showMsg('更新成功!','S');
+        			status=2;
         		}else{
         			showMsg('更新失败!','E');
         		}

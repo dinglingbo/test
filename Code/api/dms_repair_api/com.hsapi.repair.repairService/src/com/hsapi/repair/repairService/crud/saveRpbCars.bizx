@@ -197,6 +197,7 @@
     <location x="630" y="154"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="updList" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
@@ -328,12 +329,13 @@
     <location x="271" y="152"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.checkCarExists</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="carNo" type="query" value="String" valueType="Primitive" pattern="reference">tmp/carNo</process:inputVariable>
         <process:inputVariable id="1" name="editType" type="literal" value="String" valueType="Primitive" pattern="reference">add</process:inputVariable>
         <process:inputVariable id="2" name="id" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="3" name="carVin" type="query" value="String" valueType="Primitive" pattern="reference">tmp/vin</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -407,7 +409,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -426,12 +428,13 @@
     <location x="690" y="152"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.checkCarExists</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="carNo" type="query" value="String" valueType="Primitive" pattern="reference">tmp/carNo</process:inputVariable>
         <process:inputVariable id="1" name="editType" type="literal" value="String" valueType="Primitive" pattern="reference">edit</process:inputVariable>
         <process:inputVariable id="2" name="id" type="query" value="Int" valueType="Primitive" pattern="reference">tmp/id</process:inputVariable>
+        <process:inputVariable id="3" name="carVin" type="query" value="String" valueType="Primitive" pattern="reference">tmp/vin</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

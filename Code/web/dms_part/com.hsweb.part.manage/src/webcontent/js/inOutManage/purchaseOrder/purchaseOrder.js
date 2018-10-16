@@ -283,13 +283,13 @@ function loadMainAndDetailInfo(row) {
 			document.getElementById("fd1").disabled = true;
 
 			setBtnable(false);
-//			setEditable(false);
+			setEditable(false);
 		}
 		if (data.auditSign == 1) {
 			document.getElementById("fd1").disabled = true;
 
 			setBtnable(false);
-//			setEditable(false);
+			setEditable(false);
 		} else {
 			document.getElementById("basicInfoForm").disabled = false;
 			setBtnable(true);
@@ -366,8 +366,15 @@ function setBtnable(flag) {
 function setEditable(flag) {
 	if (flag) {
 		document.getElementById("fd1").disabled = false;
+		nui.get('guestId').enabled=true;
+		nui.get('orderMan').enabled=true;
+		nui.get('settleTypeId').enabled=true;
+
 	} else {
 		document.getElementById("fd1").disabled = true;
+		nui.get('guestId').enabled=false;
+		nui.get('orderMan').enabled=false;
+		nui.get('settleTypeId').enabled=false;
 	}
 }
 function doSearch(params) {

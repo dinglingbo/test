@@ -8,7 +8,7 @@
 -->
 <head>
 <title>移仓单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrder.js?v=1.0.19"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrder.js?v=1.0.30"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -244,6 +244,8 @@
                               <div header="辅助信息" headerAlign="center">
                                   <div property="columns">
                                       <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="缺货数量">
+                                      </div>
+                                         <div field="stockQty" width="50" headerAlign="center" header="库存数量">
                                       </div>
                                       <div field="comOemCode" width="60" headerAlign="center" allowSort="true" header="OEM码"></div>   
                                       <div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                                                        

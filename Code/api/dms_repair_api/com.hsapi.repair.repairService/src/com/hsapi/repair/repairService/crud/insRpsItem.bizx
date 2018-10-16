@@ -584,7 +584,6 @@
     <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>assign0</targetNode>
-      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link36" name="link36" displayName="连接线" type="transition">
       <sourceNode>assign2</sourceNode>
@@ -1223,9 +1222,7 @@
     <node>subprocess5</node>
   </nodes>
   <topRuler/>
-  <leftRuler>
-    <guides position="158" horizontal="true"/>
-  </leftRuler>
+  <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-21 16:54:40" date="2018-03-21Z" description="" name="saveRpsItem" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>

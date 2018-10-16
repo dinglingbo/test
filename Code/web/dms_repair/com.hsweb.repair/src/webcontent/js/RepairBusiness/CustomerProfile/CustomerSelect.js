@@ -19,11 +19,24 @@ $(document).ready(function()
 var grid = null;
 var gridUrl = baseUrl+"com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var queryForm = null;
+var identityTypeHash = {
+	    "060301":"车主",
+	    "060302":"车管",
+	    "060303":"司机",
+	    "060304":"其他"
+};
 function init()
 {
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
     queryForm = new nui.Form("#queryForm");
+    grid.on("drawcell",function(e){
+         switch (e.field) {
+             case "identity":
+            	 e.cellHtml = identityTypeHash[e.value];
+                 break;
+        }
+    });
 
     var keyList = [
         {

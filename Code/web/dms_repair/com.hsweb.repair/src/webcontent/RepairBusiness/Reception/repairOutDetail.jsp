@@ -12,7 +12,7 @@
 <head> 
     <title>出库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.2"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.3"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -246,7 +246,8 @@ allowCellEdit="true"  >
         <div field="sellAmt" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="销售金额"></div>
         <div field="trueUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本单价"></div>
         <div field="trueCost" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本金额"></div>
-
+        
+		<div field="storeId" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="仓库"></div>
         <div field="returnSign" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="是否归库" renderer="onGenderRenderer"></div>
         <div field="pickMan" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料人"></div>
         <div field="pickDate" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料日期" dateFormat="yyyy-MM-dd"></div>

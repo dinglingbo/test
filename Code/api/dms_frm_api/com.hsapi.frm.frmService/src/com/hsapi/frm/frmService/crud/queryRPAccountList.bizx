@@ -308,6 +308,14 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">ct/_and[1]/_expr[13]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">createDate</process:from>
+      <process:to type="query">ct/_orderby[1]/_property</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">desc</process:from>
+      <process:to type="query">ct/_orderby[1]/_sort</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
     <location x="239" y="206"/>

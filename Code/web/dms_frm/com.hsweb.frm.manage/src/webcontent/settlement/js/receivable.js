@@ -84,7 +84,8 @@ function addF(){
 	tableNum++;
 	var str = '<div class="skbox2" id="div'+tableNum+'" name="'+tableNum+'"><table name="'+tableNum+'" width="98%" border="0" align="center" cellpadding="0" cellspacing="0"><tbody><tr><td width="50%" height="&quot;44&quot;"><select name="optaccount'+tableNum+'" id="optaccount'+tableNum+'" onchange="checkField(this.id)"  style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;"></select></td><td><a class="depj" id="'+tableNum+'" data-balloon="删除收款方式" href="javascript:void(0);" onclick="remove(this.id)" style="margin-left: 15px;"></a></td></tr></tbody></table><table name="paytype'+tableNum+'" id="paytype'+tableNum+'" width="96%" border="0" cellpadding="0" cellspacing="0"><tbody></tbody></table></div>';
 	var dataform = document.getElementById("dataform");
-	dataform.innerHTML = dataform.innerHTML+str;
+	//dataform.innerHTML = dataform.innerHTML+str;
+	 $("#csdiv").before(str);
 	addType();
 }
 
@@ -94,7 +95,7 @@ function addType(){
 			type : "post",
 			data : "",
 			success : function(data) {
-				for(var i = 0;i<=tableNum;i++){
+				for(var i = tableNum;i<=tableNum;i++){
 					$("#optaccount"+i).empty();
 					var optaccount = document.getElementById('optaccount'+i);
 					$("<option value=''>—请选择结算账户—</option>").appendTo("#optaccount"+i);
@@ -154,15 +155,20 @@ function settleOK() {
 	var accountTypeList =[];
 	var accountDetail = {};
 	for(var i = 0;i<tableNum+1;i++){
-		var dtype = typeList[i+1].split(".");
 		var  Sel=document.getElementById("optaccount"+i);
 		var index=Sel.selectedIndex ;
 		var selectValue =  Sel.options[index].value;
 		var seletText = Sel.options[index].text;
-		var deductible1 = dtype[1];
-		var TypeCode = dtype[0].substring(1,dtype[0].length);
-		var list={balaTypeCode:TypeCode,charOffAmt:deductible1,settAccountId:selectValue,settAccountName:seletText};
-		accountTypeList.push(list);
+		for(var j =1;j<typeList.length;j++){
+			var dtype = typeList[j].split(".");
+			var typeF = dtype[0].substring(0,1);
+			if(typeF==i){
+				var deductible1 = dtype[1];
+				var TypeCode = dtype[0].substring(1,dtype[0].length);
+				var list={balaTypeCode:TypeCode,charOffAmt:deductible1,settAccountId:selectValue,settAccountName:seletText};
+				accountTypeList.push(list);
+			}
+		}
 	}
 
 	
@@ -220,8 +226,8 @@ function settleOK() {
 
 
 
-			account.rpDc = -1;
-			account.settleType = "应付";
+			account.rpDc = 1;
+			account.settleType = "应收";
 			account.voidAmt = pVoidAmt;
 			account.trueCharOffAmt = pTrueAmt;
 			account.charOffAmt = pVoidAmt + pTrueAmt;
@@ -249,12 +255,7 @@ function settleOK() {
 				nui.unmask(document.body);
 				data = data || {};
 				if (data.errCode == "S") {
-					showMsg("结算成功!", "S");
-
-					settleCancel();
-
-					balanceCancel();
-					rightGrid.reload();
+					CloseWindow("saveSuccess");
 
 				} else {
 					showMsg(data.errMsg || "结算失败!", "w");
@@ -285,4 +286,12 @@ function  scount(){
 	}
 	typeList = type.split(",");
 	return count;
+}
+function CloseWindow(action) {
+	if (action == "close") {
+
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
 }

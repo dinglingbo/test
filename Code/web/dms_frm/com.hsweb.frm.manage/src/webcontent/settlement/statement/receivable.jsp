@@ -12,7 +12,7 @@
 
 <head>
 	<title>Title</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.2.6"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.2.8"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 
@@ -383,7 +383,7 @@
 
 
 
-						<div class="pay_tcbk zffs" style="background: #f8f8f8;">
+						<div class="pay_tcbk zffs" id = "csdiv" style="background: #f8f8f8;">
 							<div class="guazhangbz">
 									<table id="tbaddaccount" width="96%" height="100px" border="0" align="center" cellpadding="0" cellspacing="0">
 											<tbody>

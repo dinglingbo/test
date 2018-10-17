@@ -165,6 +165,10 @@ function settleOK() {
 
 
 		var count = scount();
+		if(count==0){
+			nui.alert("请填写结算账户","提示");
+			return;
+		}
 		var account = {};
 		var accountDetailList = [];
 		var rRPAmt = 0; // 应收金额
@@ -192,6 +196,10 @@ function settleOK() {
 		var rpAmt = guestData[0].rpAmt || 0; // 应结金额
 		var nowAmt = guestData[0].nowAmt || 0;
 		var nowVoidAmt = guestData[0].nowVoidAmt || 0;
+		if(guestData[0].nowAmt!=(count+deductible)){
+			nui.alert("结算金额与应收金额不一致","提示");
+			return;
+		}
 		accountDetail.rpDc = -1;
 		nowAmt = parseFloat(nowAmt);
 		nowVoidAmt = parseFloat(nowVoidAmt);
@@ -261,7 +269,11 @@ function  scount(){
 			}
 		}
 	}
-	typeList = type.split(",");
+	if(type==null||type==""){
+		
+	}else{
+		typeList = type.split(",");
+	}
 	return count;
 }
 function CloseWindow(action) {

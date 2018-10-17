@@ -73,6 +73,8 @@
     <targetConnections>link16</targetConnections>
     <targetConnections>link17</targetConnections>
     <targetConnections>link2</targetConnections>
+    <targetConnections>link21</targetConnections>
+    <targetConnections>link22</targetConnections>
     <location x="525" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
@@ -200,7 +202,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="615" y="150"/>
+    <location x="692" y="141"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -214,7 +216,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="590" y="186"/>
+    <location x="667" y="177"/>
     <figSize height="17" width="73"/>
     <node>invokePojo0</node>
   </nodes>
@@ -292,8 +294,8 @@
       <sourceNode>assign5</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
-    <targetConnections>link6</targetConnections>
-    <location x="612" y="225"/>
+    <targetConnections>link18</targetConnections>
+    <location x="699" y="201"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -348,9 +350,17 @@
       <process:from type="query" pattern="reference">partSubSum</process:from>
       <process:to type="query">maintain/partAmt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">receiveAmt</process:from>
+      <process:to type="query">settlement/otherAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">payAmt</process:from>
+      <process:to type="query">settlement/otherCostAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="610" y="261"/>
+    <location x="697" y="237"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
@@ -453,10 +463,20 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="getRpsCardTimesAmt" displayName="getRpsCardTimesAmt" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
-      <targetNode>assign5</targetNode>
+      <targetNode>subprocess5</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link21" name="link21" displayName="连接线" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link24</targetConnections>
-    <location x="613" y="300"/>
+    <location x="630" y="300"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -472,9 +492,46 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="563" y="335"/>
+    <location x="580" y="335"/>
     <figSize height="17" width="127"/>
     <node>subprocess2</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="getExpense" displayName="getExpense" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess5</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link22" name="link22" displayName="连接线" type="transition">
+      <sourceNode>subprocess5</sourceNode>
+      <targetNode>assign0</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="630" y="201"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess5label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.getExpense</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="receiveAmt" type="query" value="Double" valueType="Primitive">receiveAmt</process:outputVariable>
+        <process:outputVariable id="3" name="payAmt" type="query" value="Double" valueType="Primitive">payAmt</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
+    <location x="609" y="236"/>
+    <figSize height="17" width="68"/>
+    <node>subprocess5</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -493,6 +550,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="pkgSubSum" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="itemSubSum" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partSubSum" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="receiveAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="payAmt" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="String"/>

@@ -250,13 +250,14 @@
 						<tr>
 							<td width="300" height="58">
 								车辆：
-								<a href="" target="_blank" style="color: #578ccd;" id="carNo" name="carNo"></a>
+								
+								<span style="padding-top: 2px;"  id="carNo" name="carNo">></span>
 							</td>
 							<td align="center">
 								客户：
-								<a href="" target="_blank">
+								
 									<span style="padding-top: 2px;" id="guest" name="guest"></span>
-								</a>
+								
 								&nbsp;&nbsp;
 								<span name="mobile" id="mobile"></span>
 							</td>
@@ -430,15 +431,15 @@
 	</div>
 	<div style="background-color: #cfddee;position:fixed; top:90%;width:100%;height: 10%; z-index:900;">
 		<div style="float: left;height: 100%;">
-			<table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
+			<table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;align-content: ">
 				<tr>
-					<td margin-left:10px>
+					<td margin-left:10px width="20%">
 						<dd style="margin-right:60px;">待收金额：
 							<span id="totalAmt1" name="totalAmt1" style="font-size:21px; font-weight:bold; color:#ff3200; line-height:76px;"></span> 元
 						</dd>
 					</td>
 					<td>
-						<dt>
+						<dt style="margin-right:60px;">
 							<label for="settlesendwx">
 								<input type="checkbox" id="settlesendwx" checked="checked">微信通知车主
 							</label>
@@ -448,7 +449,7 @@
 						</dt>
 					</td>
 					<td>
-						<dd style="margin-right:60px;">剩余应收：
+						<dd style="margin-right:160px;">剩余应收：
 							<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200; line-height:76px;"></span> 元
 						</dd>
 					</td>
@@ -464,11 +465,11 @@
 											border-radius: 5px;
 											text-decoration: none;
 											line-height: 40px;
-											margin-bottom: 20%;" href="javascript:void(0)">微信结算</a>
+											margin-bottom: 20%;" href="javascript:void(0)" onclick="settleOK()">微信结算</a>
 						</dd>
 					</td>
-					<td>
-						<dd>
+					<td >
+						<dd >
 							<a id="btnsettle" style="    width: 120px;
 											height: 40px;
 											font-size: 18px;

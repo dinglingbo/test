@@ -576,7 +576,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link31</targetConnections>
-    <location x="1050" y="136"/>
+    <location x="780" y="39"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
     <process:copy>
@@ -641,7 +641,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="1004" y="172"/>
+    <location x="734" y="75"/>
     <figSize height="17" width="121"/>
     <node>assign9</node>
   </nodes>
@@ -698,6 +698,7 @@
         <process:inputVariable id="2" name="payDetail" type="query" value="com.hsapi.repair.data.common.FisRpAccountDetail[]" valueType="DataObject" pattern="reference">fisRpDetail</process:inputVariable>
         <process:inputVariable id="3" name="payTypeDetail" type="query" value="com.hsapi.repair.data.common.FisRpAccountDType[]" valueType="DataObject" pattern="reference">fisRpDetailType</process:inputVariable>
         <process:inputVariable id="4" name="isPay" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
+        <process:inputVariable id="5" name="rpAdd" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">rpAdd</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -751,6 +752,7 @@
       <targetNode>assign24</targetNode>
     </sourceConnections>
     <targetConnections>link75</targetConnections>
+    <targetConnections>link77</targetConnections>
     <location x="964" y="206"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -967,7 +969,11 @@
       <process:to type="query">totalPrefAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">balaAmt-allowanceAmt</process:from>
+      <process:from type="query" pattern="reference">settlement/otherAmt</process:from>
+      <process:to type="query">receiveAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaAmt-allowanceAmt+receiveAmt</process:from>
       <process:to type="query">balaAmt</process:to>
     </process:copy>
     <process:copy>
@@ -1803,7 +1809,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link69</targetConnections>
+    <targetConnections>link67</targetConnections>
     <location x="789" y="206"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess7label</nodeLabel>
@@ -1828,8 +1834,18 @@
   <nodes xsi:type="process:tAssign" description="" id="assign25" name="赋值24" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link67" name="link67" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign25</sourceNode>
-      <targetNode>subprocess8</targetNode>
+      <targetNode>subprocess7</targetNode>
       <process:transitionCondition/>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link31" name="balaAmtC != balaAmt" displayName="连接线" type="transition">
+      <sourceNode>assign25</sourceNode>
+      <targetNode>assign9</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">balaAmt</process:leftOperand>
+          <process:rightOperand type="query">balaAmtC</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
     <targetConnections>link49</targetConnections>
@@ -1845,52 +1861,13 @@
     <figSize height="17" width="39"/>
     <node>assign25</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess8" name="saveExpense" displayName="saveExpense" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link68" name="link68" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>subprocess8</sourceNode>
-      <targetNode>assign27</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link70" name="link70" displayName="连接线" type="transition">
-      <sourceNode>subprocess8</sourceNode>
-      <targetNode>assign26</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NE">
-          <process:leftOperand type="query">errCode</process:leftOperand>
-          <process:rightOperand type="literal">S</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link67</targetConnections>
-    <location x="652" y="135"/>
-    <size height="27" width="27"/>
-    <nodeLabel>subprocess8label</nodeLabel>
-    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.saveExpense</process:partner>
-      <process:inputVariables>
-        <process:inputVariable id="0" name="receiveData" type="query" value="com.hsapi.repair.data.rps.RpsExpense[]" valueType="DataObject" pattern="reference">receiveData</process:inputVariable>
-        <process:inputVariable id="1" name="payData" type="query" value="com.hsapi.repair.data.rps.RpsExpense[]" valueType="DataObject" pattern="reference">payData</process:inputVariable>
-        <process:inputVariable id="2" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject" pattern="reference">maintain</process:inputVariable>
-      </process:inputVariables>
-      <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="receiveAmt" type="query" value="Double" valueType="Primitive">receiveAmt</process:outputVariable>
-        <process:outputVariable id="3" name="payAmt" type="query" value="Double" valueType="Primitive">opayAmt</process:outputVariable>
-      </process:outputVariables>
-    </process:flow>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="subprocess8label" name="label" nodeType="label">
-    <location x="628" y="170"/>
-    <figSize height="17" width="75"/>
-    <node>subprocess8</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign26" name="赋值25" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link71" name="link71" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign26</sourceNode>
       <targetNode>transactionrollback2</targetNode>
     </sourceConnections>
-    <targetConnections>link70</targetConnections>
     <targetConnections>link32</targetConnections>
+    <targetConnections>link78</targetConnections>
     <location x="1050" y="39"/>
     <size height="28" width="28"/>
     <nodeLabel>assign26label</nodeLabel>
@@ -1899,51 +1876,6 @@
     <location x="1045" y="75"/>
     <figSize height="17" width="39"/>
     <node>assign26</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign27" name="赋值26" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link69" name="link69" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign27</sourceNode>
-      <targetNode>subprocess7</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link31" name="balaAmtC != balaAmt" displayName="连接线" type="transition">
-      <sourceNode>assign27</sourceNode>
-      <targetNode>assign9</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NE">
-          <process:leftOperand type="query">balaAmt</process:leftOperand>
-          <process:rightOperand type="query">balaAmtC</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link68</targetConnections>
-    <location x="789" y="135"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign27label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
-      <process:to type="query">balaAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">balaAmt+receiveAmt</process:from>
-      <process:to type="query">balaAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">balaAmt</process:from>
-      <process:to type="query">settlement/balaAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">receiveAmt</process:from>
-      <process:to type="query">settlement/otherAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">payAmt</process:from>
-      <process:to type="query">settlement/otherCostAmt</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign27label" name="label" nodeType="label">
-    <location x="784" y="171"/>
-    <figSize height="17" width="39"/>
-    <node>assign27</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign28" name="赋值27" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link66" name="link66" displayName="连接线" isDefault="true" type="transition">
@@ -1998,6 +1930,16 @@
       <sourceNode>assign30</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link76" name="link76" displayName="连接线" type="transition">
+      <sourceNode>assign30</sourceNode>
+      <targetNode>subprocess8</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="GT">
+          <process:leftOperand type="query">settlement/otherCostAmt</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link64</targetConnections>
     <location x="885" y="206"/>
     <size height="28" width="28"/>
@@ -2035,6 +1977,42 @@
     <location x="880" y="242"/>
     <figSize height="17" width="39"/>
     <node>assign30</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess8" name="generateExpense" displayName="generateExpense" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link77" name="link77" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess8</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link78" name="link78" displayName="连接线" type="transition">
+      <sourceNode>subprocess8</sourceNode>
+      <targetNode>assign26</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link76</targetConnections>
+    <location x="886" y="135"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess8label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.generateExpense</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject" pattern="reference">maintain</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="data" type="query" value="java.util.HashMap[]" valueType="Java">rpAdd</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess8label" name="label" nodeType="label">
+    <location x="849" y="170"/>
+    <figSize height="17" width="101"/>
+    <node>subprocess8</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -2089,6 +2067,7 @@
     <process:variable description="总提成金额" historyStateLocation="client" isArray="false" name="totalDeductAmt" primitiveType="Double"/>
     <process:variable description="配件成本" historyStateLocation="client" isArray="false" name="partCost" primitiveType="Double"/>
     <process:variable description="其它支出" historyStateLocation="client" isArray="false" name="otherCost" primitiveType="Double"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="true" name="rpAdd"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
@@ -2096,8 +2075,6 @@
     <process:input description="储值支付020107" isArray="false" name="cardPayAmt" primitiveType="Double"/>
     <process:input description="支付金额" isArray="false" name="payAmt" primitiveType="Double"/>
     <process:input description="020101现金，020102刷卡，020104微信/支付宝" isArray="false" name="payType" primitiveType="String"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsExpense" name="receiveData"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsExpense" name="payData"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -4,9 +4,9 @@
     <location x="255" y="291"/>
     <size height="100" width="451"/>
   </nodes>
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="草稿是否可以直接完工，还是要施工状态下才可以完工，是否需要全部领料完才可以完工&#xD;&#xA;&#xD;&#xA;确认维修后才可以领工&#xD;&#xA;&#xD;&#xA;完工后，更新套餐对应的工时和配件的业务类型，更新工时对应的配件的业务类型&#xD;&#xA;完工后，如果存在提成来源值为null的，根据业务类型完善通用提成//20181011&#xD;&#xA;不考虑返工后修改业务类型，如果存在业务类型修改，应先删除再添加，这样提成值才不会有问题&#xD;&#xA;" title="Administrator&#x9;18-8-7 下午7:47">
-    <location x="66" y="-105"/>
-    <size height="166" width="571"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="草稿是否可以直接完工，还是要施工状态下才可以完工，是否需要全部领料完才可以完工&#xD;&#xA;&#xD;&#xA;确认维修后才可以领工&#xD;&#xA;&#xD;&#xA;完工后，更新套餐对应的工时和配件的业务类型，更新工时对应的配件的业务类型&#xD;&#xA;完工后，如果存在提成来源值为null的，根据业务类型完善通用提成//20181011&#xD;&#xA;不考虑返工后修改业务类型，如果存在业务类型修改，应先删除再添加，这样提成值才不会有问题&#xD;&#xA;&#xD;&#xA;目前其它收入和费用支出只能在完工前登记,完工时汇总other_amt 和 other_cost_amt&#xD;&#xA;转预结算或是直接结算收款时,如果有费用支出,需要生成应付单" title="Administrator&#x9;18-8-7 下午7:47">
+    <location x="66" y="-150"/>
+    <size height="211" width="571"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">

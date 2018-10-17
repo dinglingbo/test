@@ -57,7 +57,7 @@
 <body>
 
 
-
+<div class="nui-fit">
     <div id="editForm" class="form">
     	<input id="id" name="id" width="100%" class="nui-hidden" >
     	<input id="orgid" name="orgid" width="100%" class="nui-hidden" >
@@ -118,7 +118,7 @@
         <a class="nui-button" iconCls="" plain="true" onclick="add()"><span class="fa fa-plus fa-lg"></span>&nbsp;保存并新增</a>
         <a class="nui-button" iconCls="" plain="true" onclick="save()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
     </div>
-
+</div>
 
 </body>
 </html>

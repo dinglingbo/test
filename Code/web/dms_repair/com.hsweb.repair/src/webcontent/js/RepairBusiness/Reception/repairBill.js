@@ -1416,6 +1416,22 @@ function addItemNewRow(){
     rpsPartGrid.addRow(newRow);
 }*/
 function deletePackRow(row_uid){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","S");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能删除套餐!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("此单已结算,不能删除套餐!","S");
+        return;
+    }
+
     var data = rpsPackageGrid.getData();
     var row = rpsPackageGrid.getRowByUID(row_uid);
     var prdtId = row.prdtId;
@@ -1452,6 +1468,22 @@ function deletePackRow(row_uid){
     });
 }
 function deleteItemRow(row_uid){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","S");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能删除工时!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("此单已结算,不能删除工时!","S");
+        return;
+    }
+
     var data = rpsItemGrid.getData();
     var row = rpsItemGrid.getRowByUID(row_uid);
     var id = row.id;
@@ -1494,6 +1526,22 @@ function deleteItemRow(row_uid){
     });
 }
 function deletePartRow(row_uid){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","S");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能删除配件!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("此单已结算,不能删除配件!","S");
+        return;
+    }
+
     var data = rpsItemGrid.getData();
     var row = rpsItemGrid.getRowByUID(row_uid);
     if(data && data.length==1){
@@ -2020,6 +2068,22 @@ function loadDetail(p1, p2, p3){
 var __workerIds="";
 var __saleManId="";
 function editRpsPackage(row_uid){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","S");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能修改套餐!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("此单已结算,不能修改套餐!","S");
+        return;
+    }
+
     var row = rpsPackageGrid.getRowByUID(row_uid);
     lastPkgSubtotal = row.subtotal;
     lastPkgRate = row.rate;
@@ -2031,6 +2095,22 @@ function editRpsPackage(row_uid){
     }
 }
 function updateRpsPackage(row_uid){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","S");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能修改套餐!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("此单已结算,不能修改套餐!","S");
+        return;
+    }
+
     var rowc = rpsPackageGrid.getRowByUID(row_uid);
     if (rowc) {
         rpsPackageGrid.commitEdit();
@@ -2116,6 +2196,22 @@ function updateRpsPackage(row_uid){
     }
 }
 function editRpsItem(row_uid){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","S");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能修改工时!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("此单已结算,不能修改工时!","S");
+        return;
+    }
+
     var row = rpsItemGrid.getRowByUID(row_uid);
     lastItemQty = row.qty;
     lastItemRate = row.rate;
@@ -2129,6 +2225,22 @@ function editRpsItem(row_uid){
     }
 }
 function updateRpsItem(row_uid){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","S");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能修改工时!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("此单已结算,不能修改工时!","S");
+        return;
+    }
+
     var rowc = rpsItemGrid.getRowByUID(row_uid);
     if (rowc) {
         rpsItemGrid.commitEdit();
@@ -2195,6 +2307,22 @@ function updateRpsItem(row_uid){
 }
 
 function editItemRpsPart(row_uid){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","S");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能修改配件!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("此单已结算,不能修改配件!","S");
+        return;
+    }
+
     var row = rpsItemGrid.getRowByUID(row_uid);
     lastItemQty = row.qty;
     lastItemRate = row.rate;
@@ -2208,6 +2336,22 @@ function editItemRpsPart(row_uid){
     }
 }
 function updateItemRpsPart(row_uid){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","S");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("本工单已完工,不能修改配件!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("此单已结算,不能修改配件!","S");
+        return;
+    }
+
     var rowc = rpsItemGrid.getRowByUID(row_uid);
     if (rowc) {
     	rpsItemGrid.commitEdit();
@@ -2708,14 +2852,19 @@ function pay(){
 function showBasicData(type){
     var maintain = billForm.getData();
     var isSettle = maintain.isSettle||0;
+    var status = maintain.status||0;
     var BasicDataUrl = null;
     var title = null;
     if(!maintain.id){
-        showMsg("请选择保存工单!","S");
+        showMsg("请选择保存工单!","W");
+        return;
+    }
+    if(status==2){
+        showMsg("本单已完工,不能录入!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能录入!","S");
+        showMsg("本单已结算,不能录入!","W");
         return;
     }
     var carVin = billForm.carVin;
@@ -3528,4 +3677,23 @@ function SearchLastCheckMain() {
         }
     });
  
+}
+function updateBillExpense(){
+    var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }
+    var params = {
+        serviceId:data.id||0
+    };
+    doBillExpenseDetail(params, function(data){
+        data = data||{};
+        if(data.action){
+            var action = data.action||"";
+            if(action == 'ok'){
+            }else{
+            }
+        }
+    });
 }

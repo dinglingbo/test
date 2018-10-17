@@ -112,7 +112,7 @@
             <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
             <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss" width="120px" header="入库日期" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true"></div>
             <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
-            <div field="serviceId" align="left" width="100px" headerAlign="center" align="center" allowSort="true" header="入库单号"></div>
+            <div field="serviceCode" align="left" width="120px" headerAlign="center" align="center" allowSort="true" header="入库单号"></div>
             <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
             <div field="partId" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件id"></div> 
             <div field="partNameId" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件nameid"></div>         

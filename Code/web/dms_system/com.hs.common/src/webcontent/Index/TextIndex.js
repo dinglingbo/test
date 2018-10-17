@@ -1,12 +1,48 @@
 /**
 * Created by Administrator on 2018年9月21日19:29:11
 */
-
-var grid1 = null;
+var baseUrl = apiPath + repairApi + "/";
+var webBaseUrl = webPath + contextPath + "/";
+var guestBoardGrid = null;
+var workShopBoard = null;
 var grid2 = null;
+var guestBoardUrl = baseUrl + "com.hsapi.repair.repairService.daydata.queryGuestBoard.biz.ext";
+var todayDataUrl = baseUrl + "com.hsapi.repair.repairService.daydata.queryTodayData.biz.ext";
+var guestCarUrl = baseUrl + "com.hsapi.repair.repairService.daydata.queryGuestCar.biz.ext";
+var statusHash = {
+    "0" : "报价",
+    "1" : "施工",
+    "2" : "完工"
+};
 $(document).ready(function(v) {
 
-    grid1 = nui.get("grid1");
+    guestBoardGrid = nui.get("guestBoardGrid");
+    workShopBoard = nui.get("workShopBoard");
+    guestBoardGrid.setUrl(guestBoardUrl);
+
+    guestBoardGrid.on("drawcell", function (e) {
+        if (e.field == "status") {
+            e.cellHtml = statusHash[e.value];
+        }
+    });
+
+    setTimeout(function(){
+        guestBoardGrid.load({
+            token:token
+        });
+
+        queryTodayData(function(data){
+            setGridTodayData(data);
+        });
+
+        var p = {
+            orgid: currOrgId
+        }
+        queryGuestCarData(p,function(data){
+            setGridGuestCarData(data);
+        });
+    },1000);
+
     grid2 = nui.get("grid2");
 
     var grid1_data =[{business:"采购订单",custom:"长荣行",address:"上海浦东",date:"8:40",status:"已受理"},
@@ -16,9 +52,9 @@ $(document).ready(function(v) {
     {business:"施工的工单",num:"0",cost:"0"},
     {business:"完工未转预结算的工单",num:"1",cost:"72145"},
     {business:"完工待结算的工单",num:"2",cost:"931455"}];
-    grid1.setData(grid1_data);
-    grid1.setShowVGridLines(false);
-    grid1.setShowHGridLines(false);
+    //grid1.setData(grid1_data);
+    //grid1.setShowVGridLines(false);
+    //grid1.setShowHGridLines(false);
 
     grid2.setData(grid2_data);
     grid2.setShowVGridLines(false);
@@ -132,4 +168,117 @@ function toCardList(){
     item.url = webPath + contextPath + "/repair/DataBase/Card/cardList.jsp";
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
+}
+function showGuestBoard(){
+    //document.getElementById("gridGuestBoard").style.display ='block';
+    //document.getElementById("gridWorkShopBoard").style.display ='none';
+    window.open(webBaseUrl+"repair/RepairBusiness/Reception/guestBoard.jsp"); 
+}
+function showWorkShopBoard(){
+    //document.getElementById("gridGuestBoard").style.display ='none';
+    //document.getElementById("gridWorkShopBoard").style.display ='block';
+    window.open(webBaseUrl+"repair/RepairBusiness/Reception/workshopBoard.jsp"); 
+}
+function queryTodayData(callback) {
+    var p = {
+        startDate: getNowStartDate(),
+        endDate: addDate(getNowStartDate(),1)
+    };
+	nui.ajax({
+		url : todayDataUrl,
+		type : "post",
+		data : JSON.stringify({
+            params: p,
+            token:token
+        }),
+		success : function(text) {
+			var data = text.data || {};
+			if (data && data.length>0) {
+                var d = data[0];
+				callback(d);
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+function setGridTodayData(data){
+	$("#newCarQty").text(0);
+	$("#recordBillQty").text(0);
+	$("#settleQty").text(0);
+	$("#serviceBillQty").text(0);
+	$("#bookingBillQty").text(0);
+	$("#receiveAmt").text(0);
+	
+	if(data){
+		var newCarQty = 0, recordBillQty = 0, settleQty = 0, serviceBillQty = 0, bookingBillQty = 0, receiveAmt = 0;
+        newCarQty = data.newCarQty||0;
+        recordBillQty = data.recordBillQty||0;
+        settleQty = data.settleQty||0;
+        serviceBillQty = data.serviceBillQty||0;
+        bookingBillQty = data.bookingBillQty||0;
+        receiveAmt = data.receiveAmt||0;        
+        $("#newCarQty").text(newCarQty);
+        $("#recordBillQty").text(recordBillQty);
+        $("#settleQty").text(settleQty);
+        $("#serviceBillQty").text(serviceBillQty);
+        $("#bookingBillQty").text(bookingBillQty);
+        $("#receiveAmt").text(receiveAmt);
+	}
+
+}
+function queryGuestCarData(p,callback) {
+    p.startDate = getNowStartDate();
+    p.endDate = addDate(getNowStartDate(),1);
+	nui.ajax({
+		url : guestCarUrl,
+		type : "post",
+		data : JSON.stringify({
+            params: p,
+            token:token
+        }),
+		success : function(text) {
+			var data = text.data || {};
+			callback(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+function setGridGuestCarData(data){
+	$("#addGuestQty").text(0);
+	$("#guestQty").text(0);
+	$("#addCarQty").text(0);
+	$("#carQty").text(0);
+	
+	if(data){
+		var addGuestQty = 0, guestQty = 0, addCarQty = 0, carQty = 0;
+        addGuestQty = data.addGuestQty||0;
+        guestQty = data.guestQty||0;
+        addCarQty = data.addCarQty||0;
+        carQty = data.carQty||0;       
+        $("#addGuestQty").text(addGuestQty);
+        $("#guestQty").text(guestQty);
+        $("#addCarQty").text(addCarQty);
+        $("#carQty").text(carQty);
+	}
+
+}
+function showOrgGuestCar(){
+    var p = {
+        orgid: currOrgId
+    }
+    queryGuestCarData(p,function(data){
+        setGridGuestCarData(data);
+    });
+}
+function showTenantGuestCar(){
+    var p = {
+        tenantId: currTenantId
+    }
+    queryGuestCarData(p,function(data){
+        setGridGuestCarData(data);
+    });
 }

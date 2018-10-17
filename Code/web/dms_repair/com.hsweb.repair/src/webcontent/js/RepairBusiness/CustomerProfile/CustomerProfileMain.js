@@ -204,7 +204,7 @@ function addOrEditCustomer(guest)
         title = "修改客户资料";
     }
     nui.open({
-        url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditGuest.flow?token="+token,
         title: title, width: 560, height: 570,
         onload: function () {
             var iframe = this.getIFrameEl();
@@ -228,6 +228,10 @@ function addOrEditCustomer(guest)
 //打开会员卡充值页面
 function toUp(callback){
 	var row=grid.getSelected();
+	if(row==null){
+		nui.alert("请选择一位客户","提示");
+		return;
+	}
 	row.guestMobile = row.mobile;
 	if(row){
 		nui.open({

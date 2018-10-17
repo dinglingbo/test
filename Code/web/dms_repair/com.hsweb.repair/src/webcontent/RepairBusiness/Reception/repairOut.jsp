@@ -77,7 +77,6 @@ a {
         </td>
     </tr>
 </table>
-
 </div>
 
 <div class="nui-fit">
@@ -135,14 +134,15 @@ a {
 
         var fdate1 = nui.get("date1").value;
         var fdate2 = nui.get("date2").value;
-        fdate2.setDate(fdate2.getDate()+1);
+        //fdate2.setDate(fdate2.getDate()+1);
 
         var sdate = nui.formatDate (fdate1,"yyyy-MM-dd");
         var edate = nui.formatDate (fdate2,"yyyy-MM-dd");
+        edate = edate + " 23:59:59";
         var params ={
-           // part :1,
-           carNo:nui.get("carNo").value,
-           name:nui.get("name").value,
+            // part :1,
+            carNo:nui.get("carNo").value,
+            name:nui.get("name").value,
             sRecordDate:sdate,
             eRecordDate:edate,
             status:tstatus.value,
@@ -152,7 +152,6 @@ a {
         };
         mainGrid.load({params:params});
     }
-
 
     mainGrid.on("celldblclick",function(e){
         var field = e.field;

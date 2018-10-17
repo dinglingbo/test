@@ -604,7 +604,14 @@ function onAdvancedSearchOk() {
 	}
 	// 供应商
 	if (searchData.guestId) {
-		searchData.guestId = nui.get("advanceGuestId").getValue();
+//		searchData.guestId = nui.get("advanceGuestId").getValue();
+		if(typeof searchData.guestId !== 'number'){
+        	searchData.guestName= searchData.guestId;
+        	searchData.guestId=null;
+        }
+        else{
+        	searchData.guestId = nui.get("advanceGuestId").getValue();
+        }
 	}
 	// 订单单号
 	if (searchData.serviceIdList) {

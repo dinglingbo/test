@@ -19,6 +19,10 @@ var mainGridUrl =  baseUrl + "com.hsapi.repair.repairService.query.getRpsPartByS
 var repairOutGridUrl =  partUrl + "com.hsapi.part.invoice.partInterface.queryEnbleRtnPart.biz.ext";
 var fserviceId = 0;
 var returnSignData = [{id:0,text:"未归库"},{id:1,text:"已归库"}];
+
+var storehouse = null;
+var storeHash = {};
+var FStoreId = null;
 $(document).ready(function(){
 
 
@@ -53,7 +57,17 @@ $(document).ready(function(){
           servieTypeHash[v.id] = v;
       });
     });
-
+    
+	getStorehouse(function(data) {
+		storehouse = data.storehouse || [];
+		if (storehouse && storehouse.length > 0) {
+			FStoreId = storehouse[0].id;
+			storehouse.forEach(function(v) {
+				storeHash[v.id] = v;
+			});
+		}
+	});
+	
     mainGrid.on("drawcell", function (e) {
         if (e.field == "serviceTypeId") {
             if (servieTypeHash && servieTypeHash[e.value]) {
@@ -61,6 +75,17 @@ $(document).ready(function(){
             }
         }
     });
+    
+    repairOutGrid.on("drawcell", function (e) {
+        if (e.field == "storeId") {
+        	if (storeHash[e.value]) {
+				e.cellHtml = storeHash[e.value].name || "";
+			} else {
+				e.cellHtml = "";
+			}
+        }
+    });
+
 
     searchKeyEl.on("valuechanged",function(e){
       var item = e.selected;

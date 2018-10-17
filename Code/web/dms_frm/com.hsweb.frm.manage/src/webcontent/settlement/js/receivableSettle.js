@@ -1006,18 +1006,17 @@ function doSettle() {
 		var guestName = rows[0].guestName;*/
 		nui.open({
 	        url: webPath + contextPath +"/com.hsweb.frm.manage.receivable.flow?token="+token,
-	         width: "80%", height: "90%", 
+	         width: "100%", height: "100%", 
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
 	            iframe.contentWindow.setData(rows);
 	        },
-	        ondestroy: function (action) {
-				var iframe = this.getIFrameEl();
-				var data = iframe.contentWindow.getRtnData();
-				data = data || {};
-				data.action = action;
-				callback && callback(data);
-	        }
+			ondestroy : function(action) {// 弹出页面关闭前
+				if (action == "saveSuccess") {
+					showMsg("结算成功!", "S");
+					rightGrid.reload();
+				}
+			}
 	    });
 
 

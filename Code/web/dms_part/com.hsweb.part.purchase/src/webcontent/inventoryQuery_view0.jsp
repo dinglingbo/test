@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/queryMgr/inventoryQuery.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/queryMgr/inventoryQuery.js?v=1.0.8"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -32,17 +32,21 @@
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)" id="type0">本日</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)" id="type1">昨日</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)" id="type2">本周</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)" id="type3">上周</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)" id="type4">本月</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)" id="type5">上月</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(10)" id="type10">本年</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(11)" id="type11">上年</a>
+                  <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+	                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+	                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+	                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+	                    <li class="separator"></li>
+	                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+	                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+	                    <li class="separator"></li>
+	                    <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+	                    <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+	                    <li class="separator"></li>
+	                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+	                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+	                </ul>
+                
                 <span class="separator"></span>
                 <!--<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(6)">未审</a>-->
                 <!--<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(7)">已审</a>-->
@@ -99,13 +103,13 @@
                     <div allowSort="true" datatype="float" field="repairEnter" headerAlign="center" header="归库金额" align="right"></div>
                 </div>
             </div>
-            <div header="销售" headerAlign="center">
+            <div header="退货" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" datatype="float" field="sellOut" width="60" headerAlign="center" header="出库金额" align="right"></div>
                     <div allowSort="true" datatype="float" field="sellEnter" headerAlign="center" header="退货金额" align="right"></div>
                 </div>
             </div>
-            <div header="调拨" headerAlign="center">
+            <div header="移仓" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" datatype="float" field="allotEnter" width="60" headerAlign="center" header="入库金额" align="right"></div>
                     <div allowSort="true" datatype="float" field="allotOut" headerAlign="center" header="出库金额" align="right"></div>

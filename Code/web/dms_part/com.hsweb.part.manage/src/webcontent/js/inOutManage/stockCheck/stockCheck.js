@@ -836,7 +836,7 @@ function onCellCommitEdit(e) {
             var exhibitAmt = exhibitQty*truePrice;
 
                                
-            newRow = { trueAmt: trueAmt, exhibitQty: exhibitQty, exhibitAmt: exhibitAmt, dc: dc};
+            newRow = { trueAmt: trueAmt, exhibitPrice:truePrice,exhibitQty: exhibitQty, exhibitAmt: exhibitAmt, dc: dc};
             rightGrid.updateRow(e.row, newRow);
             
             //record.enteramt.cellHtml = enterqty * enterprice;

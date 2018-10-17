@@ -1011,13 +1011,12 @@ function doSettle() {
 	            var iframe = this.getIFrameEl();
 	            iframe.contentWindow.setData(rows);
 	        },
-	        ondestroy: function (action) {
-				var iframe = this.getIFrameEl();
-				var data = iframe.contentWindow.getRtnData();
-				data = data || {};
-				data.action = action;
-				callback && callback(data);
-	        }
+			ondestroy : function(action) {// 弹出页面关闭前
+				if (action == "saveSuccess") {
+					showMsg("结算成功!", "S");
+					rightGrid.reload();
+				}
+			}
 	    });
 
 

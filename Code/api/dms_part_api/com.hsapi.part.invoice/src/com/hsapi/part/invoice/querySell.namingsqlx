@@ -1234,6 +1234,9 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
+                <isNotEmpty prepend="and" property="guestName">  
+                    (B.FULL_NAME like '%$guestName$%' or B.short_name like '%$guestName$%')
+                </isNotEmpty> 
             </dynamic>  
             
     	
@@ -1365,6 +1368,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="guestName">  
+                    (B.FULL_NAME like '%$guestName$%' or B.short_name like '%$guestName$%')
                 </isNotEmpty> 
             </dynamic>  
             

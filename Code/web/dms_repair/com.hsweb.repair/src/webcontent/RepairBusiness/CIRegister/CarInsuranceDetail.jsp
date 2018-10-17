@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>车险登记明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.0.55"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.0.57"></script>
     <style type="text/css">
 
     table {
@@ -200,5 +200,154 @@ pageEncoding="UTF-8" session="false"%>
 
 </div>
 
+
+<div id="advancedCardTimesWin" class="nui-window"
+title="" style="width:450px;height:200px;"
+showModal="false"
+showHeader="false"
+allowResize="false"
+allowDrag="false">
+
+    <div class="nui-fit">
+      <div id="cardTimesGrid" class="nui-datagrid" style="width:100%;height:95%;"
+      selectOnLoad="true"
+      showPager="false"
+      dataField="data"
+      idField="id"
+      allowCellSelect="true"
+      editNextOnEnterKey="true"
+      url="">
+      <div property="columns">
+          <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
+          <div field="prdtType" name="prdtType" width="50" headerAlign="center" header="产品类别"></div>
+          <div field="canUseTimes" name="canUseTimes" width="50" headerAlign="center" header="可使用次数"></div>
+          <div field="doTimes" name="doTimes" width="50" headerAlign="center" header="使用中次数"></div>
+          <div field="balaTimes" name="balaTimes" width="50" headerAlign="center" header="剩余次数"></div>
+          <div field="cardTimesOpt" name="cardTimesOpt" width="50" headerAlign="center"  header="操作"></div>
+      </div>
+  </div>
+</div>
+</div> 
+
+<div id="advancedMemCardWin" class="nui-window"
+title="" style="width:500px;height:200px;"
+showModal="false"
+showHeader="false"
+allowResize="false"
+allowDrag="false">
+<div class="nui-fit">
+  <div id="memCardGrid" class="nui-datagrid" style="width:100%;height:95%;"
+  selectOnLoad="true"
+  showPager="false"
+  dataField="data"
+  onrowdblclick="addSelectPart"
+  allowCellSelect="true"
+  editNextOnEnterKey="true"
+  url="">
+  <div property="columns">
+      <div field="cardName" name="cardName" width="100" headerAlign="center" header="卡名称"></div>
+      <div field="balaAmt" name="balaAmt" width="50" headerAlign="center" header="余额"></div>
+      <div field="modifyDate" name="modifyDate" width="100" headerAlign="center" header="储值日期" dateFormat="yyyy-MM-dd"></div>
+      <div field="periodValidity" name="periodValidity" width="100" headerAlign="center" header="到期日期" dateFormat="yyyy-MM-dd"></div>
+  </div>
+</div>
+</div>
+</div> 
+
+
+<div id="carCheckInfo" class="nui-window"
+title="" style="width:400px;height:200px;"
+showModal="false"
+showHeader="false"
+allowResize="false"
+allowDrag="false">
+<div class="nui-fit" id="show1" >
+    <table style="width: 100%;background-color: #eef1f4">
+        <tr style="height: 40px;">
+            <td class="">
+                <label id="lastCheckInfo1" style="color: #9e9e9e;"></label>
+            </td>
+
+            <td class="">
+                <label id="lastCheckInfo2"></label>
+            </td>
+
+            <td class="">
+                <label id="lastCheckInfo3"></label>
+            </td>
+
+            <td class="">
+                <a class="nui-button  mini-button-info" iconCls="" plain="false" onclick="newCheckMainMore()" id="lastCheckInfo4" style="display: none">查看</a>
+            </td>
+        </tr>
+    </table>
+    <table style="width: 100%;margin-top:20px; "  >
+        <tr>
+            <td class=""> 
+                <label id="checkStatus1" class="showhealthcss">未派工</label>
+            </td>
+
+            <td class="">
+                <label id="checkStatus2" class="showhealthcss">已派工</label>
+            </td>
+
+            <td class="">
+                <label id="checkStatus3" class="showhealthcss">施工中</label>
+            </td>
+
+            <td class="">
+                <label id="checkStatus4" class="showhealthcss">已完工</label>
+            </td>
+        </tr>
+    </table>
+    <div align="center" style="margin-top:20px; " id="checkStatusButton1">
+        <a class="nui-button  mini-button-info" style="height: 30px;font-size: 14px;" iconCls="" plain="false" onclick="MemSelectCancel(2)" id="">
+            <span style="line-height: 30px;">车况派工</span>
+        </a>
+    </div>
+
+    <div align="center" style="margin-top:20px;display: none; " id="checkStatusButton2">
+        <a class="nui-button  mini-button-info" style="height: 30px;font-size: 14px;" iconCls="" plain="false" onclick="newCheckMain()" id="">
+            <span style="line-height: 30px;">车况查看</span>
+        </a>
+    </div>
+</div>
+
+
+<div class="nui-fit" id="show2" style="display: none;">
+
+    <table style="width: 100%;margin-top:20px; " >
+        <tr>
+            <td class="" style="float: right;"> 
+                <label>选择检查人</label>
+            </td>
+
+            <td class="">
+                <input name="checkManId"
+                id="checkManId"
+                style="width:150px;" 
+                class="nui-combobox "
+                textField="empName"
+                valueField="empId"
+                emptyText="请选择..."
+                url=""
+                allowInput="true"
+                required="true"
+                showNullItem="false"
+                valueFromSelect="true"
+                nullItemText="请选择..."/>
+            </td>
+        </tr>
+    </table>
+    <div align="center" style="margin-top:20px; ">
+        <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="MemSelectOk" id="">
+            确定
+        </a>
+
+        <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="MemSelectCancel(1)" id="">
+            取消
+        </a>
+    </div>
+</div>
 </body>
 </html>

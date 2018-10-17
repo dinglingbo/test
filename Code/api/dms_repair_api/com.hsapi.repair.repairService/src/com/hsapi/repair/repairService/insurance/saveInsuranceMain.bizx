@@ -35,7 +35,7 @@
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>loopstart0</targetNode>
     </sourceConnections>
-    <targetConnections>link1</targetConnections>
+    <targetConnections>link3</targetConnections>
     <location x="225" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -56,7 +56,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>invokePojo0</targetNode>
+      <targetNode>subprocess1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">data1/id</process:leftOperand>
@@ -501,7 +501,7 @@
       <targetNode>assign5</targetNode>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
-    <location x="786" y="262"/>
+    <location x="765" y="262"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo7label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -515,7 +515,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo7label" name="label" nodeType="label">
-    <location x="769" y="298"/>
+    <location x="748" y="298"/>
     <figSize height="17" width="56"/>
     <node>invokePojo7</node>
   </nodes>
@@ -535,7 +535,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="list" type="query" value="commonj.sdo.DataObject[]" valueType="Java">temp_list</process:outputVariable>
-        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -544,7 +544,7 @@
     <figSize height="17" width="159"/>
     <node>subprocess0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign6" name="赋值6" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link20" name="link20" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>assign0</targetNode>
@@ -633,6 +633,32 @@
     <location x="703" y="298"/>
     <figSize height="17" width="32"/>
     <node>assign7</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getCompBillNO" displayName="getCompBillNO" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="222" y="69"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess1label</nodeLabel>
+    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.uniq.getCompBillNO</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">BXD</process:inputVariable>
+        <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">main/serviceCode</process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
+    <location x="189" y="104"/>
+    <figSize height="17" width="92"/>
+    <node>subprocess1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

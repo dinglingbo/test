@@ -604,7 +604,14 @@ function onAdvancedSearchOk() {
 	}
 	// 供应商
 	if (searchData.guestId) {
-		searchData.guestId = nui.get("advanceGuestId").getValue();
+//		searchData.guestId = nui.get("advanceGuestId").getValue();
+		if(typeof searchData.guestId !== 'number'){
+        	searchData.guestName= searchData.guestId;
+        	searchData.guestId=null;
+        }
+        else{
+        	searchData.guestId = nui.get("advanceGuestId").getValue();
+        }
 	}
 	// 订单单号
 	if (searchData.serviceIdList) {
@@ -737,7 +744,7 @@ function add() {
 		nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 		nui.get("createDate").setValue(new Date());
 		nui.get("orderMan").setValue(orderMan);
-		nui.get("orderMan").setText(currUserName);
+		nui.get("orderMan").setText(orderMan);
 		
 		addNewRow();
 

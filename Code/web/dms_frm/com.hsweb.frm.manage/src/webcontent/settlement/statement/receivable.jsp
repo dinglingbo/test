@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
 	<%@include file="/common/sysCommon.jsp"%>
-		<%@include file="/common/commonCloudPart.jsp"%>
 			<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -12,7 +11,7 @@
 
 <head>
 	<title>Title</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.2.8"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.2.9"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -85,12 +84,12 @@
 		p {
 			margin: 0;
 			padding: 0;
-			font-family: "微软雅黑", "宋体", "黑体", Arial, simsun, Verdana, Lucida,
-			Helvetica, sans-serif;
+			font-family: "微软雅黑", "宋体", "黑体", Arial, simsun, Verdana, Lucida, Helvetica, sans-serif;
 			font-size: 14px;
 			font-style: normal;
 			font-weight: normal;
 			font-variant: normal;
+			list-style-type: none;
 		}
 
 		.pay_top dl dd {
@@ -276,6 +275,7 @@
 				</table>
 			</div>
 			<div class="pay_list">
+				<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">优惠/抵扣</span></h2>
 				<div class="pay_tcbk">
 					<div id="benefitdeductionbox">
 
@@ -287,12 +287,12 @@
 								<table width="100%" border="0" cellspacing="0" cellpadding="0">
 									<tbody>
 										<tr>
-											<td width="10%">
+											<td width="15%">
 												<span>储值卡余额：</span>
 
 											</td>
 											<td height="40" class="line24">
-												<input class="nui-textbox" id="rechargeBalaAmt" name="rechargeBalaAmt" m="1" cardid="" amount="" style="width: 100px; float: left;">
+												<input class="nui-textbox" id="rechargeBalaAmt" name="rechargeBalaAmt" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;">
 											</td>
 											<td width="10%">
 												<span>抵扣金额：</span>
@@ -355,6 +355,13 @@
 								</table>
 							</div>
 						</div>
+					</div>
+				</div>
+			</div>
+
+
+					<div class="pay_list">
+						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">收款方式</span></h2>
 						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
 							<div id="dataform">
 								<div class="skbox2" id="div0" name="div0">
@@ -362,7 +369,7 @@
 										<tbody>
 											<tr>
 												<td width="50%" height="&quot;44&quot;">
-													<select name="optaccount0" id="optaccount0" onchange="checkField(this.id)" style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;">
+													<select name="optaccount0" id="optaccount0" onchange="checkField(this.id)" style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;border:0;">
 
 
 													</select>
@@ -382,16 +389,13 @@
 									</table>
 								</div>
 							</div>
-
-
-
-							<div class="pay_tcbk zffs" id="csdiv" style="background: #f8f8f8;">
+							<div class="" id="csdiv" style="background: #f8f8f8;">
 								<div class="guazhangbz">
-									<table id="tbaddaccount" width="96%" height="100px" border="0" align="center" cellpadding="0" cellspacing="0">
+									<table id="tbaddaccount" width="96%" height="30px" border="0" align="center" cellpadding="0" cellspacing="0">
 										<tbody>
 											<tr>
 												<td>
-													<div class="pay_tcbk_list" style="padding: 0; margin-top: 8px;">
+													<div class="pay_tcbk_list" style="padding: 0; margin-bottom: 2px;">
 														<ul>
 															<li>
 																<a href="javascript:void(0);" onclick="addF()">
@@ -404,33 +408,99 @@
 											</tr>
 										</tbody>
 									</table>
-									<table width="100%" border="0" cellspacing="0" cellpadding="0">
-										<tbody>
-											<tr>
-												<td width="100">收款时间</td>
-												<td width="220">
-													<input class="mini-datepicker">
-												</td>
-												<td width="120" align="center">收款备注</td>
-												<td>
-													<input class="nui-textbox" id="txtreceiptcomment" name="txtreceiptcomment">
-												</td>
-											</tr>
-										</tbody>
-									</table>
 								</div>
+							</div>
+						</div>
+					</div>
+
+						
+
+					<div class="pay_list">
+						<div class="pay_tcbk zffs" id="csdiv" style="background: #f8f8f8;">
+							<div class="guazhangbz">
+								<table width="100%" border="0" cellspacing="0" cellpadding="10">
+									<tr>
+										<!-- <td width="100">收款时间</td>
+										<td width="220">
+											<input class="mini-datepicker">
+										</td> -->
+										<td width="120" align="center">收款备注</td>
+										<td >
+											<input class="nui-textbox" id="txtreceiptcomment" name="txtreceiptcomment">
+										</td>
+									</tr>
+								</table>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			
 		</div>
 		<div style="height: 10%;">
 
 		</div>
 	</div>
 	<div style="background-color: #cfddee;position:fixed; top:90%;width:100%;height: 10%; z-index:900;">
-		<div style="float: left;height: 100%;">
+		<div style="float:left;height:100%;width:100%;">
+			<table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
+				<tr>
+					<td >
+						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					</td>
+					<td >
+						<label style="font-family:Verdana;">待收金额：</label>
+						<span id="totalAmt1" name="totalAmt1" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
+					</td>
+					<td >
+					</td>
+					<td >
+						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					</td>
+					<td >
+						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					</td>
+					<td >
+						<input type="checkbox" id="settlesendwx" checked="checked">微信通知车主
+					</td>
+					<td >
+						<input type="checkbox" id="settlesenddx">短信通知车主
+					</td>
+					<td >
+						<label style="font-family:Verdana;">剩余应收：</label>
+						<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
+					</td>
+					<td >
+						<a id="wxbtnsettle" style="    width: 120px;
+							height: 40px;
+							font-size: 18px;
+							background: #2ac476;
+							color: #fff;
+							text-align: center;
+							display: block;
+							border-radius: 5px;
+							line-height: 2;
+							text-decoration: none;" 
+							href="javascript:void(0)" onclick="settleOK()">微信结算</a>
+					</td>
+					<td >
+						<a id="btnsettle" style="    width: 120px;
+							height: 40px;
+							font-size: 18px;
+							background: #578ccd;
+							color: #fff;
+							text-align: center;
+							display: block;
+							border-radius: 5px;
+							text-decoration: none;
+							line-height: 2;" 
+							href="javascript:void(0)" onclick="settleOK()">结算</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+			
+		<!-- <div style="float: left;height: 100%;">
 			<table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;align-content: ">
 				<tr>
 					<td margin-left:10px width="20%">
@@ -486,7 +556,7 @@
 
 				</tr>
 			</table>
-		</div>
+		</div> -->
 	</div>
 	<script type="text/javascript">
 

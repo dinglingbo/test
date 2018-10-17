@@ -1006,7 +1006,7 @@ function doSettle() {
 		var guestName = rows[0].guestName;*/
 		nui.open({
 	        url: webPath + contextPath +"/com.hsweb.frm.manage.receivable.flow?token="+token,
-	         width: "80%", height: "90%", 
+	         width: "100%", height: "100%", 
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
 	            iframe.contentWindow.setData(rows);

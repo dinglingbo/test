@@ -38,12 +38,7 @@ $(document).ready(function(){
 	searchNameEl = nui.get("search_name");
 	
 	advancedPartWin=nui.get('advancedPartWin');
-/*	if(actionType == "ll"){
-		mainGrid.load({serviceId:mid});
-	}
-	if(actionType == "th"){
 
-	}*/
 
 	initMember("mtAdvisorId",function(){
 		memList = mtAdvisorIdEl.getData();
@@ -67,8 +62,19 @@ $(document).ready(function(){
                 e.cellHtml = servieTypeHash[e.value].name;
             }
         }
-    });
 
+    });
+    
+    repairOutGrid.on("drawcell", function (e) {
+        if(e.field =="stockQty"){
+        	if(!e.row.outReturnQty){
+        		e.cellHtml=e.row.stockQty-0;
+        	}else{
+        		e.cellHtml=e.row.stockQty-e.row.outReturnQty;
+        	}
+        }
+    });
+    
     searchKeyEl.on("valuechanged",function(e){
       var item = e.selected;
 
@@ -105,13 +111,6 @@ $(document).ready(function(){
         }
     });
 
-
-//    mainGrid.on("celldblclick",function(e){
-//        var field = e.field;
-//        var record = e.record;
-//        var column = e.column;
-//        LLSave();
-//    });
 
     repairOutGrid.on("celldblclick",function(e){
         var field = e.field;
@@ -208,9 +207,6 @@ function setInitData(params){
                         	vaildUpdate();
                         });
                    
-//                        if(status==1){
-//                        	repairOutGrid.load({params:outParams,token:token});                   	
-//                        }
 
                     }else{
                     	showMsg("数据加载失败,请重新打开工单!","W");
@@ -226,61 +222,31 @@ function setInitData(params){
     }
 }
 
-//
-//function LLSave(argument) {
-//	var rows = mainGrid.getSelecteds();
-//	if (rows.length > 0) {
-//		for (var i = 0, l = rows.length; i < l; i++) {
-//			var r = rows[i].partId;
-//			var c = rows[i].partCode;
-//			var recordId = rows[i].id;
-//			if(r){
-//				openPartSelect(r,"Id",recordId,mainRow);
-//			}else if(c){ 
-//				openPartSelect(c,"Code",recordId,mainRow);
-//			}else{
-//				showMsg('部分配件需单独领取!','W');
-//				return;
-//			}
-//		}
-//
-//	}else{
-//		showMsg('请先选择配件!','W');
-//	}
-//}
 
-//function openPartSelect(par,type,id,row){
-//	nui.open({
-//		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow?token="+token,
-//		title:"选择配件",
-//		height:"400px",
-//		width:"900px",
-//		onload:function(){
-//			var iframe = this.getIFrameEl();
-//			iframe.contentWindow.SetData(par,type,id,row);
-//		},
-//		ondestroy:function(action){ 
-//            mainGrid.load({serviceId:mid,token:token});
-//            repairOutGrid.load({params:outParams,token:token});
-//        }
-//
-//    });
-//}
-
-
- 
 function THSave(){
+
 	var rows = repairOutGrid.getSelecteds();
-	var data = mainGrid.getData();
-	for(var i=0;i<data.length;i++){
+	var mainData = mainGrid.getData();
+	for(var i=0;i<mainData.length;i++){
 		for(var j=0;j<rows.length;j++){
-			if(rows[j].mainId==data[i].detailId){
-				rows[j].mId=data[i].id;
+			if(rows[j].mainId==mainData[i].detailId){
+				rows[j].mId=mainData[i].id;
+				var qty=mainData[i].qty;
+	      		var pickQty=mainData[i].pickQty;
+				if(rows[j].outQty2>qty - pickQty || rows[j].outQty2>rows[j].outQty-rows[j].outReturnQty){
+			      	showMsg("归库数量超过可归数量","W");
+			      	return;
+			      }
 			}			
 		}
 	}
 	if (rows.length > 0) {
 		for (var i = 0; i < rows.length; i++) {
+			if(rows[i].outQty2==0 || !rows[i].outQty2){
+				showMsg("归库数量不能为0","W");
+				return;
+			}
+	
 			if(rows[i].returnSign == 0){
 //				memberSelect(rows[i]);
 //				onBlack(rows[i]);
@@ -301,7 +267,7 @@ function  savepartOutRtn(data){
             //var paramsData = nui.clone(data);
             var paramsData = {};
             paramsData.serviceId = data.serviceId;
-//            paramsData.mId=data.mId//待出库-配件信息的ID
+            paramsData.mId=data.mId//待出库-配件信息的ID
             paramsData.id = data.id;
             paramsData.mainId = data.mId;//待出库-配件信息的ID
             paramsData.sourceId = data.id;
@@ -321,8 +287,8 @@ function  savepartOutRtn(data){
             paramsData.billTypeId = '050206';
             paramsData.storeId = data.storeId;
             paramsData.unit = data.unit;
-//            paramsData.returnMan = childdata.returnMan;
-            paramsData.returnRemark = data.returnRemark;
+            paramsData.returnMan = currUserName;
+            paramsData.remark = data.remark;
             paramsData.pickType = "维修出库-领料";
             paramsData.taxUnitPrice = data.taxUnitPrice;
             paramsData.taxAmt = data.taxAmt;
@@ -335,10 +301,7 @@ function  savepartOutRtn(data){
             if(!paramsData.partNameId){
             	paramsData.partNameId = "0";
             }
-            if(paramsData.outQty>data.outQty){
-            	showMsg("归库数量超过可归数量","W");
-            	return;
-            }
+      
             paramsDataArr.push(paramsData);
 
 
@@ -372,57 +335,6 @@ function  savepartOutRtn(data){
         }
     }
 	
-	function onBlack(row) {	
-		nui.open({
-			url : webPath+ partDomain+ "/manage/inOutManage/common/fastPartForConsumableAdd2.jsp?token"+ token,
-			title : "归库",
-			width : 430,
-			height : 230,
-			allowDrag : false,
-			allowResize : false,
-			onload : function() {
-				var iframe = this.getIFrameEl();
-				var params = {
-					data : row
-				};
-	
-				iframe.contentWindow.SetData(params);
-			},
-			ondestroy : function(action) {
-				if (action == 'ok') {
-	
-    				var iframe = this.getIFrameEl();
-    				var childdata = iframe.contentWindow.GetFormData();
-    				savepartOutRtn(row,childdata);
-				}
-			}
-		});
-	
-	}
-
-//    function memberSelect(row){
-//    	nui.open({
-//    		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,
-//    		title:"选择归库人",
-//    		height:"300px",
-//    		width:"600px",
-//    		onload:function(){
-//    			var iframe = this.getIFrameEl();
-//    			iframe.contentWindow.SetData("th");
-//    		},
-//    		ondestroy:function(action){
-//    			if (action == "ok") {
-//    				var iframe = this.getIFrameEl();
-//    				var childdata = iframe.contentWindow.GetFormData();
-//                    //savePartOut();     //如果点击“确定”
-//                    //CloseWindow("close");
-//                }
-//                
-//            }
-//
-//        });
-//
-//    }
 
 
     function onGenderRenderer(e) {
@@ -434,9 +346,6 @@ function  savepartOutRtn(data){
     }
 
 
-//    function tt(t){
-//    	nui.alert(t);
-//    }
     
     //判断mainGrid已归库数量和归库数量一致时改变状态为已归库
     function vaildUpdate(){
@@ -451,6 +360,7 @@ function  savepartOutRtn(data){
     		}
     		if(count==data.length){
     			update();
+    			
     		}
     	}
     }
@@ -466,16 +376,20 @@ function  savepartOutRtn(data){
         	success:function(text){
         		var errCode = text.errCode; 
         		if(errCode == "S"){
-//        			mainGrid.load({serviceId:mid,token:token});
-//        			repairOutGrid.load({params:outParams,token:token});
-        			showMsg('更新成功!','S');
+//        			showMsg('更新成功!','S');
+        			status=2;
         		}else{
         			showMsg('更新失败!','E');
         		}
         	}
         });
     }
-    function open(){
+    function onOut(){
+    	
+    	if(status==2){
+    		showMsg("配件已归库");
+    		return;
+    	}
     	var data=mainGrid.getSelected();
     	outParams={
             	returnSign :0,

@@ -20,6 +20,7 @@ var formJson = null;
 var brandHash = {};
 var brandList = [];
 var storehouse = null;
+var storeHash = {};
 var gsparams = {};
 var sOrderDate = null;
 var eOrderDate = null;
@@ -179,6 +180,10 @@ $(document).ready(function(v) {
 			storehouse = data.storehouse || [];
 			if(storehouse && storehouse.length>0){
 				FStoreId = storehouse[0].id;
+				nui.get('storehouse').setData(storehouse);
+				storehouse.forEach(function(v) {
+					storeHash[v.id] = v;
+				});
 			}else{
 				isNeedSet = true;
 			}
@@ -283,13 +288,13 @@ function loadMainAndDetailInfo(row) {
 			document.getElementById("fd1").disabled = true;
 
 			setBtnable(false);
-//			setEditable(false);
+			setEditable(false);
 		}
 		if (data.auditSign == 1) {
 			document.getElementById("fd1").disabled = true;
 
 			setBtnable(false);
-//			setEditable(false);
+			setEditable(false);
 		} else {
 			document.getElementById("basicInfoForm").disabled = false;
 			setBtnable(true);
@@ -366,8 +371,15 @@ function setBtnable(flag) {
 function setEditable(flag) {
 	if (flag) {
 		document.getElementById("fd1").disabled = false;
+		nui.get('guestId').enabled=true;
+		nui.get('orderMan').enabled=true;
+		nui.get('settleTypeId').enabled=true;
+
 	} else {
 		document.getElementById("fd1").disabled = true;
+		nui.get('guestId').enabled=false;
+		nui.get('orderMan').enabled=false;
+		nui.get('settleTypeId').enabled=false;
 	}
 }
 function doSearch(params) {
@@ -666,6 +678,13 @@ function onRightGridDraw(e) {
 	case "comPartBrandId":
 		if (brandHash[e.value]) {
 			e.cellHtml = brandHash[e.value].name || "";
+		} else {
+			e.cellHtml = "";
+		}
+		break;
+	case "storeId" :
+		if (storeHash[e.value]) {
+			e.cellHtml = storeHash[e.value].name || "";
 		} else {
 			e.cellHtml = "";
 		}
@@ -2012,7 +2031,8 @@ function setInitData(params){
 		nui.get('orderMan').setText(params.orderMan);
 		$('#bServiceId').text("订单号："+params.serviceId);
 		nui.get("guestId").setText(params.guestFullName);
-	
+		nui.get('storehouse').setValue(params.storeId);
+		
 		if(StatusHash)
 	       {
 				var text=StatusHash[params.billStatusId];

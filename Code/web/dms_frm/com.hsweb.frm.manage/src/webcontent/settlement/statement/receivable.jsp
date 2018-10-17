@@ -12,7 +12,7 @@
 
 <head>
 	<title>Title</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.0.8"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.2.6"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 
@@ -82,7 +82,6 @@
 		h4,
 		h5,
 		h6,
-		input,
 		p {
 			margin: 0;
 			padding: 0;
@@ -180,10 +179,7 @@
 			height: 58px;
 		}
 
-		.skbox select,
-		.skbox2 select {
-			border: 0;
-		}
+
 
 		.zffs td {
 			font-size: 16px;
@@ -302,7 +298,7 @@
 		
 													</td>
 										<td height="40" class="line24">
-											<input class="mini-spinner" id="deductible" name="deductible" width="100px" minValue="0" maxValue="1000000" showbutton="false" allowNull="false" onvaluechanged="onChanged" />
+											<input class="mini-spinner" id="deductible" name="deductible"  width="100px" minValue="0" maxValue="1000000" showbutton="false" allowNull="false" onvaluechanged="onChanged" />
 										</td>
 									</tr>
 								</tbody>
@@ -357,80 +353,55 @@
 								</table>
 							</div>
 						</div>
-					<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
-						<div class="skbox2">
-							<table name="account" width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+					<div  class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
+						<div id="dataform" >
+						<div class="skbox2" id="div0" name="div0">
+							<table name="account0" id="account0" width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
 								<tbody>
 									<tr>
 										<td width="50%" height="&quot;44&quot;">
-											<select name="optaccount" id="optaccount"  style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;">
+											<select name="optaccount0" id="optaccount0" onchange="checkField(this.id)" style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;">
 												
 
 											</select>
 										</td>
 										<td>
-											<a class="depj" data-balloon="删除收款方式" data-balloon-pos="down" href="javascript:;" style="margin-left: 15px;"></a>
 										</td>
+										<!-- <td>
+											<a class="depj" data-balloon="删除收款方式" href="javascript:void(0);" onclick="dF()" style="margin-left: 15px;"></a>
+										</td> -->
 									</tr>
 								</tbody>
 							</table>
-							<table name="paytype" width="96%" border="0" cellpadding="0" cellspacing="0">
+							<table name="paytype0" id="paytype0" width="96%" border="0" cellpadding="0" cellspacing="0">
 								<tbody>
-									<tr>
-										<td width="80" height="44" align="center">刷卡</td>
-										<td>
-											<input type="text" name="paytype" typeid="1" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-										<td width="80" height="44" align="center">支票</td>
-										<td>
-											<input type="text" name="paytype" typeid="4" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-										<td width="80" height="44" align="center">银行转账</td>
-										<td>
-											<input type="text" name="paytype" typeid="8" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-										<td width="80" height="44" align="center">支付宝</td>
-										<td>
-											<input type="text" name="paytype" typeid="5" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-									</tr>
-									<tr>
-										<td width="80" height="44" align="center">微信</td>
-										<td>
-											<input type="text" name="paytype" typeid="6" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-										<td width="80" height="44" align="center">其他支付</td>
-										<td>
-											<input type="text" name="paytype" typeid="3" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-										<td width="80" height="44" align="center">收银家</td>
-										<td>
-											<input type="text" name="paytype" typeid="9" accountid="84" class="xcinput" style="width: 100px;">
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<table id="tbaddaccount" width="96%" border="0" align="center" cellpadding="0" cellspacing="0">
-								<tbody>
-									<tr>
-										<td>
-											<div class="pay_tcbk_list" style="padding: 0; margin-top: 8px;">
-												<ul>
-													<li>
-														<a href="javascript:;" id="btnaddaccount" >
-															<font onclick="addF">添加收款方式</font>
-														</a>
-													</li>
-												</ul>
-											</div>
-										</td>
-									</tr>
+
 								</tbody>
 							</table>
 						</div>
+						</div>
+
+
 
 						<div class="pay_tcbk zffs" style="background: #f8f8f8;">
 							<div class="guazhangbz">
+									<table id="tbaddaccount" width="96%" height="100px" border="0" align="center" cellpadding="0" cellspacing="0">
+											<tbody>
+												<tr>
+													<td>
+														<div class="pay_tcbk_list" style="padding: 0; margin-top: 8px;">
+															<ul>
+																<li>
+																	<a href="javascript:void(0);" onclick="addF()" >
+																		<font >添加收款方式</font>
+																	</a>
+																</li>
+															</ul>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
 								<table width="100%" border="0" cellspacing="0" cellpadding="0">
 									<tbody>
 										<tr>
@@ -440,7 +411,7 @@
 											</td>
 											<td width="120" align="center">收款备注</td>
 											<td>
-												<input class="textbox" id="txtreceiptcomment" >
+												<input class="nui-textbox" id="txtreceiptcomment" name="txtreceiptcomment" >
 											</td>
 										</tr>
 									</tbody>
@@ -507,7 +478,7 @@
 											border-radius: 5px;
 											text-decoration: none;
 											line-height: 40px;
-											margin-bottom: 20%;" href="javascript:void(0)">结算</a>
+											margin-bottom: 20%;" href="javascript:void(0)" onclick="settleOK()">结算</a>
 										</dd>
 									</td>
 

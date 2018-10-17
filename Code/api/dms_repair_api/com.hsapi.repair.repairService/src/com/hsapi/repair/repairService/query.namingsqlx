@@ -482,7 +482,7 @@
 			a.print_num AS printNum,
 			a.recorder AS recorder,
 			a.record_date AS recordDate,
-			a.out_qty-a.out_return_qty as stockQty
+			a.out_qty as stockQty
 		FROM
 			pj_repair_out a
 		WHERE 1=1

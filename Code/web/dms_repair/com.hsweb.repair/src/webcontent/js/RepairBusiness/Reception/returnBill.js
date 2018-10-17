@@ -269,15 +269,24 @@ function onShowRowDetail(e) {
         token: token
     });*/
 }
-function onPrint(e){
+var sourceUrl = webBaseUrl+"repair/RepairBusiness/Reception/printReturnBill.jsp?token="+token;
+function onPrint(){
 	var main = billForm.getData();
-	var openUrl = null;
+	main.baseUrl = baseUrl;
+	main.token = token;
 	if(main.id){
-		var params = {
-            source : e,
-            serviceId : main.id
-		};
-        doPrint(params);
+	nui.open({
+        url: sourceUrl,
+        title: "退货单单打印",
+		width: "100%",
+		height: "100%",
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(main);
+        },
+        ondestroy: function (action){
+        }
+    });
 	}else{
         showMsg("请先保存工单,再打印!","W");
         return;
@@ -522,6 +531,7 @@ function save(){
                     data.guestMobile = guest.mobile;
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
+                    data.addr = guest.addr;
 
                     billForm.setData(data);
 

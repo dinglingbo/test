@@ -10,7 +10,7 @@
 -->
 <head>
 <title>退货归库</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellReturnOut.js?v=1.0.37"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellReturnOut.js?v=1.0.0"></script>
 <style type="text/css">
 
 .title {
@@ -54,12 +54,8 @@ a {
             <tr>
                 <td>
                     <label style="font-family:Verdana;">快速查询：</label>
-<!--                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)">草稿</a> -->
                     <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)">待归库</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)">已归库</a>
-<!--                     <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)">待结算</a> -->
-<!--                     <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)">已结算</a> -->
-<!--                 	<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)">全部</a> -->
                     
                     <span class="separator"></span>
                     <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
@@ -69,17 +65,13 @@ a {
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-<!--                     <span class="separator"></span> -->
-<!--                     <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="addBtn" ><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> -->
-<!--                     <a class="nui-button" iconCls="" plain="true" onclick="editSell()" id="editBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a> -->
-<!--                     <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="finish"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a> -->
-<!--                     <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="sellBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;转结算</a> -->
+
                 </td>
             </tr>
         </table>
     </div>
 
-    <div class="nui-fit">
+<!--     <div class="nui-fit"> -->
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
                showPager="true"
@@ -106,7 +98,7 @@ a {
 	              <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
 	              <div field="status" name="status" width="50" headerAlign="center" header="状态"></div>
 	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
-	              <div field="remark" name="carModel" width="100" headerAlign="center" header="备注" ></div>
+	              <div field="remark" name="carModel" width="70" headerAlign="center" header="备注" ></div>
 	              <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
                  </div>
          </div>
@@ -129,7 +121,7 @@ a {
 	       <div field="saleManId" headerAlign="center"  allowSort="false" visible="false" width="80" header="销售员" align="center"></div> 
       </div>
   </div>
-</div>
+<!-- </div> -->
 </div>
 </body>
 </html>

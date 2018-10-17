@@ -73,7 +73,10 @@ $(document).ready(function(v) {
 
 	sCreateDate = nui.get("sCreateDate");
 	eCreateDate = nui.get("eCreateDate");
-
+	
+	initMember("orderMan",function(){
+//      memList = mtAdvisorIdEl.getData();
+  });
 	$("#guestId").bind("keydown", function (e) {
         /*if (e.keyCode == 13) {
             var orderMan = nui.get("orderMan");
@@ -266,12 +269,14 @@ function loadMainAndDetailInfo(row) {
 		basicInfoForm.setData(row);
 		//bottomInfoForm.setData(row);
 		nui.get("guestId").setText(row.guestFullName);
+		nui.get("orderMan").setText(row.orderMan);
 
 		var row = leftGrid.getSelected();
 		if (row.auditSign == 1) {
 			document.getElementById("basicInfoForm").disabled = true;
 			setBtnable(false);
 			setEditable(false);
+
 		} else {
 			document.getElementById("basicInfoForm").disabled = false;
 			setBtnable(true);
@@ -510,8 +515,15 @@ function setBtnable(flag) {
 function setEditable(flag) {
 	if (flag) {
 		document.getElementById("fd1").disabled = false;
+		nui.get('guestId').enabled=true;
+		nui.get('orderMan').enabled=true;
+		nui.get('settleTypeId').enabled=true;
+
 	} else {
 		document.getElementById("fd1").disabled = true;
+		nui.get('guestId').enabled=false;
+		nui.get('orderMan').enabled=false;
+		nui.get('settleTypeId').enabled=false;
 	}
 }
 function doSearch(params) {
@@ -592,7 +604,14 @@ function onAdvancedSearchOk() {
 	}
 	// 供应商
 	if (searchData.guestId) {
-		searchData.guestId = nui.get("advanceGuestId").getValue();
+//		searchData.guestId = nui.get("advanceGuestId").getValue();
+		if(typeof searchData.guestId !== 'number'){
+        	searchData.guestName= searchData.guestId;
+        	searchData.guestId=null;
+        }
+        else{
+        	searchData.guestId = nui.get("advanceGuestId").getValue();
+        }
 	}
 	// 订单单号
 	if (searchData.serviceIdList) {
@@ -685,9 +704,16 @@ function add() {
 				nui.get("serviceId").setValue("新采购入库");
 				nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 				nui.get("createDate").setValue(new Date());
-				nui.get("orderMan").setValue(orderMan);
+//				nui.get("orderMan").setValue(orderMan);
 				nui.get("sourceType").setValue(0);
-
+				
+				if(!orderMan || orderMan==""){
+					nui.get("orderMan").setValue(currUserName);
+					nui.get("orderMan").setText(currUserName);
+				}else{
+					nui.get("orderMan").setValue(orderMan);
+					nui.get("orderMan").setText(orderMan);
+				}
 				addNewRow();
 
 				var guestId = nui.get("guestId");
@@ -718,7 +744,8 @@ function add() {
 		nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 		nui.get("createDate").setValue(new Date());
 		nui.get("orderMan").setValue(orderMan);
-
+		nui.get("orderMan").setText(orderMan);
+		
 		addNewRow();
 
 		var guestId = nui.get("guestId");

@@ -9,12 +9,9 @@ var typeList = {};
 var guestData = null;
 var deductible = 0;
 $(document).ready(function (){
-
 	$("body").on("input  onvaluechanged","input[name='amount']",function(){
 		onChanged();
-
 	});
-
 });
 
 
@@ -28,8 +25,8 @@ function setData(data){
 	document.getElementById('amount').innerHTML = data[0].nowAmt;
 	netInAmt = data[0].nowAmt;
 	var json = {
-			guestId:data[0].guestId,
-			token : token
+		guestId:data[0].guestId,
+		token : token
 	}
 	
 	nui.ajax({
@@ -45,7 +42,6 @@ function setData(data){
 			nui.get("rechargeBalaAmt").setValue("￥"+rechargeBalaAmt); 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
 			console.log(jqXHR.responseText);
 		}
 	});
@@ -105,7 +101,6 @@ function addType(){
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				// nui.alert(jqXHR.responseText);
 				console.log(jqXHR.responseText);
 			}
 		});
@@ -129,7 +124,6 @@ function checkField(id){
 			success : function(data) {
 				for(var i = 0;i<data.list.length;i++){
 					var ss = '<td width="110" height="44" align="right">'+data.list[i].customName+'</td>'+'<td>'+'<input class="nui-textbox" id ='+s1[1]+data.list[i].customId+' name ="amount" onvaluechanged="onChanged" style="width: 100px;">'+'</td>';
-					//var ss = '<td width="110" height="44" align="right">'+data.list[i].customName+'</td>'+'<td>'+'<input class="nui-textbox" id ='+s1[1]+data.list[i].customId+' name ='+s1[1]+data.list[i].customId+' onvaluechanged="onChanged" style="width: 100px;">'+'</td>';
 					if(((i+1)%3)==0){
 						ss=ss+'</tr>'+'<tr>';
 					}
@@ -139,7 +133,6 @@ function checkField(id){
 				document.getElementById('paytype'+s1[1]).innerHTML = str;
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				// nui.alert(jqXHR.responseText);
 				console.log(jqXHR.responseText);
 			}
 		});
@@ -149,8 +142,7 @@ function remove(id){
 	$("#div"+id).empty();
 }
 
-var settleAuditUrl = frmUrl
-+ "com.hsapi.frm.frmService.rpsettle.rpAccountSettle.biz.ext";
+var settleAuditUrl = frmUrl+ "com.hsapi.frm.frmService.rpsettle.rpAccountSettle.biz.ext";
 function settleOK() {
 	var accountTypeList =[];
 	var accountDetail = {};
@@ -171,15 +163,10 @@ function settleOK() {
 		}
 	}
 
-	
-	
-	var count = scount();
 
-
-	var account = {};
-	var accountDetailList = [];
-
-
+		var count = scount();
+		var account = {};
+		var accountDetailList = [];
 		var rRPAmt = 0; // 应收金额
 		var rTrueAmt = 0; // 实收应收
 		var rVoidAmt = 0; // 优惠金额
@@ -193,80 +180,70 @@ function settleOK() {
 		var rAmount = 0;
 		var s1 = 0; // 合计收
 		var s2 = 0; // 合计付
-
-
 		account.guestId = guestData[0].guestId;
 		account.guestName = guestData[0].guestName;
 		account.itemQty = 1;
 		account.remark = nui.get('txtreceiptcomment').getValue();
+		accountDetail.billRpId = guestData[0].id;
+		accountDetail.billMainId = guestData[0].billMainId;
+		accountDetail.billServiceId = guestData[0].billServiceId;
+		accountDetail.billTypeId = guestData[0].billTypeId;
+		var noCharOffAmt = guestData[0].noCharOffAmt || 0; // 已结金额
+		var rpAmt = guestData[0].rpAmt || 0; // 应结金额
+		var nowAmt = guestData[0].nowAmt || 0;
+		var nowVoidAmt = guestData[0].nowVoidAmt || 0;
+		accountDetail.rpDc = -1;
+		nowAmt = parseFloat(nowAmt);
+		nowVoidAmt = parseFloat(nowVoidAmt);
+		pRPAmt += rpAmt;
+		pTrueAmt += nowAmt;
+		pVoidAmt += nowVoidAmt;
+		pNoCharOffAmt += noCharOffAmt;
+		s1 += (nowAmt + nowVoidAmt);
+		accountDetail.charOffAmt = nowAmt;
+		accountDetail.voidAmt = nowVoidAmt;
 
+		accountDetailList.push(accountDetail);
 
-			accountDetail.billRpId = guestData[0].id;
-			accountDetail.billMainId = guestData[0].billMainId;
-			accountDetail.billServiceId = guestData[0].billServiceId;
-			accountDetail.billTypeId = guestData[0].billTypeId;
-
-				var noCharOffAmt = guestData[0].noCharOffAmt || 0; // 已结金额
-				var rpAmt = guestData[0].rpAmt || 0; // 应结金额
-				var nowAmt = guestData[0].nowAmt || 0;
-				var nowVoidAmt = guestData[0].nowVoidAmt || 0;
-				accountDetail.rpDc = -1;
-				nowAmt = parseFloat(nowAmt);
-				nowVoidAmt = parseFloat(nowVoidAmt);
-				pRPAmt += rpAmt;
-				pTrueAmt += nowAmt;
-				pVoidAmt += nowVoidAmt;
-				pNoCharOffAmt += noCharOffAmt;
-				s1 += (nowAmt + nowVoidAmt);
-				accountDetail.charOffAmt = nowAmt;
-				accountDetail.voidAmt = nowVoidAmt;
-			
-
-			accountDetailList.push(accountDetail);
-
-
-
-			account.rpDc = 1;
-			account.settleType = "应收";
-			account.voidAmt = pVoidAmt;
-			account.trueCharOffAmt = pTrueAmt;
-			account.charOffAmt = pVoidAmt + pTrueAmt;
+		account.rpDc = 1;
+		account.settleType = "应收";
+		account.voidAmt = pVoidAmt;
+		account.trueCharOffAmt = pTrueAmt;
+		account.charOffAmt = pVoidAmt + pTrueAmt;
 		
-			var list={balaTypeCode:"020107",charOffAmt:deductible,settAccountId:"274"};
-			accountTypeList.push(list);
+		var list={balaTypeCode:"020107",charOffAmt:deductible,settAccountId:"274"};
+		accountTypeList.push(list);
 
+			nui.mask({
+				el : document.body,
+				cls : 'mini-mask-loading',
+				html : '数据处理中...'
+			});
 
-		nui.mask({
-			el : document.body,
-			cls : 'mini-mask-loading',
-			html : '数据处理中...'
-		});
-
-		nui.ajax({
-			url : settleAuditUrl,
-			type : "post",
-			data : JSON.stringify({
-				account : account,
-				accountDetailList : accountDetailList,
-				accountTypeList : accountTypeList,
-				token : token
-			}),
-			success : function(data) {
-				nui.unmask(document.body);
-				data = data || {};
-				if (data.errCode == "S") {
-					CloseWindow("saveSuccess");
-
-				} else {
-					showMsg(data.errMsg || "结算失败!", "w");
+			nui.ajax({
+				url : settleAuditUrl,
+				type : "post",
+				data : JSON.stringify({
+					account : account,
+					accountDetailList : accountDetailList,
+					accountTypeList : accountTypeList,
+					token : token
+				}),
+				success : function(data) {
+					nui.unmask(document.body);
+					data = data || {};
+					if (data.errCode == "S") {
+						CloseWindow("saveSuccess");
+	
+					} else {
+						showMsg(data.errMsg || "结算失败!", "w");
+					}
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					// nui.alert(jqXHR.responseText);
+					console.log(jqXHR.responseText);
 				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				// nui.alert(jqXHR.responseText);
-				console.log(jqXHR.responseText);
-			}
-		});
-
+			});
 
 }
 

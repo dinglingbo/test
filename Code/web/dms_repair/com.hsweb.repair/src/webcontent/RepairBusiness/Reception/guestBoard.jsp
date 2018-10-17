@@ -9,9 +9,9 @@
   - Description:
 --> 
 <head>   
-<title>维修车间看板</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<style type="text/css">
+<title>客户休息区看板</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+      <style type="text/css">
 
 .mini-grid-border{
    background: #000;
@@ -58,7 +58,7 @@
 	<div style="height: 40px;background-color: #fa8c16">
 		<table style="width: 100%;line-height: 2;">
 			<tr>
-			  <td style="width: 33%;text-align: center;font-size: 16px;font-weight: bold;color: #fff">维修车间看板</td>
+			  <td style="width: 33%;text-align: center;font-size: 16px;font-weight: bold;color: #fff">客户休息区看板</td>
 			  <td style="width: 33%;text-align: center;font-size: 16px;font-weight: bold;color: #fff" id="clock">2018年7月3日20:57:53</td>
 			  <td style="width: 33%;text-align: center;font-size: 16px;font-weight: bold;color: #fff"></td>
 			
@@ -66,16 +66,12 @@
 		</table>
 	</div>
 	<div class="nui-fit" style="background-color: #000">
-	    <div id="workShopBoardGrid" class="nui-datagrid" showPager="false" style="height:100%;width:100%;">
+	    <div id="guestBoardGrid" class="nui-datagrid" dataField="data" showLoading="false" showPager="false" style="height:100%;width:100%;">
 	        <div property="columns">
-	            <div field="no" width="100" headerAlign="center" align="center">车牌号</div>
-	            <div field="" width="100" headerAlign="center" align="center">接车时间</div>
-	            <div field="" width="100" headerAlign="center" align="center">预计完工时间</div>
-	            <div field="" width="100" headerAlign="center" align="center">服务顾问</div>
-	            <div field="" width="100" headerAlign="center" align="center">施工员</div>
-	            <div field="" width="100" headerAlign="center" align="center">项目进度</div>
-	            <div field="" width="100" headerAlign="center" align="center">施工状态</div>
-	
+	            <div field="carNo" width="100" headerAlign="center" align="center">车牌号</div>
+	            <div field="recordDate" dateFormat="yyyy-MM-dd H:mm:ss" width="100" headerAlign="center" align="center">接车时间</div>
+	            <div field="planFinishDate" width="100" dateFormat="yyyy-MM-dd H:mm:ss" headerAlign="center" align="center">预计完工时间</div>
+	            <div field= "status" width="100" headerAlign="center" align="center">施工状态</div>
 	        </div>
 	    </div>
     </div>
@@ -84,8 +80,8 @@
     	nui.parse();      
 		setInterval("showtime('clock');",1000);
 		var baseUrl = apiPath + repairApi + "/";
-		var workShopBoardGrid = null;
-		var gridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
+		var guestBoardGrid = null;
+		var gridUrl = baseUrl + "com.hsapi.repair.repairService.daydata.queryGuestBoard.biz.ext";
 		var statusHash = {
 			"0" : "报价",
 			"1" : "施工",
@@ -93,10 +89,10 @@
 		};
 
 		$(document).ready(function(v) {
-			workShopBoardGrid = nui.get("workShopBoardGrid");
-			workShopBoardGrid.setUrl(gridUrl);
+			guestBoardGrid = nui.get("guestBoardGrid");
+			guestBoardGrid.setUrl(gridUrl);
 
-			workShopBoardGrid.on("drawcell", function (e) {
+			guestBoardGrid.on("drawcell", function (e) {
 				if (e.field == "status") {
 					e.cellHtml = statusHash[e.value];
 				}
@@ -106,18 +102,13 @@
 		});
 
 		function load(){
-			var params = {};
-			params.isSettle = 0;
-			params.isDisabled = 0;
-			params.isCount = -1;
-
 			guestBoardGrid.load({
-				token:token,
-				params: params
+				token:token
 			});
 		}
 
 		setInterval(load,5000);
+
     </script>
 </body>
 </html>

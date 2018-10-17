@@ -12,7 +12,7 @@
 <head>
 <title >应收账款管理</title>
 <script
-	src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.3.7"></script>
+	src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.3.8"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -163,8 +163,8 @@
 							style="width: 100%; height: 100%;" showPager="true"
 							dataField="detailList" idField="detailId" ondrawcell="onDrawCell"
 							sortMode="client" allowCellSelect="true" allowCellEdit="true"
-							url="" multiSelect="true" showModified="false" pageSize="10000"
-							sizeList="[1000,5000,10000]" onshowrowdetail="onShowRowDetail"
+							url="" multiSelect="true" showModified="false" pageSize="100"
+							sizeList="[100,500,1000]" onshowrowdetail="onShowRowDetail"
 							oncellclick="onRGridbeforeselect"
 							onheadercellclick="onRGridheadercellclick"
 							oncellcommitedit="onCellCommitEdit" showSummaryRow="false">
@@ -212,8 +212,8 @@
 						<div id="qRightGrid" class="nui-datagrid"
 							style="width: 100%; height: 100%;" showPager="true"
 							dataField="detailList" idField="detailId" ondrawcell="onDrawCell"
-							sortMode="client" url="" multiSelect="true" pageSize="10000"
-							sizeList="[1000,5000,10000]" onshowrowdetail="onShowRowDetail"
+							sortMode="client" url="" multiSelect="true" pageSize="1000"
+							sizeList="[100,500,1000]" onshowrowdetail="onShowRowDetail"
 							showSummaryRow="false">
 							<div property="columns">
 								<div type="indexcolumn">序号</div>

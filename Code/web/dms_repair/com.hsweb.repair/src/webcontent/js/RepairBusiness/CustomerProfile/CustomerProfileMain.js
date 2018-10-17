@@ -228,6 +228,10 @@ function addOrEditCustomer(guest)
 //打开会员卡充值页面
 function toUp(callback){
 	var row=grid.getSelected();
+	if(row==null){
+		nui.alert("请选择一位客户","提示");
+		return;
+	}
 	row.guestMobile = row.mobile;
 	if(row){
 		nui.open({

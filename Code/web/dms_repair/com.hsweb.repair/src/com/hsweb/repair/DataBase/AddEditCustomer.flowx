@@ -25,7 +25,7 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tView" id="view0" name="AddEditCustomer.jsp" displayName="AddEditCustomer.jsp" type="view" contributionName="com.hsweb.repair" uri="/repair/common/subpage/customerSubpage/AddEditCustomer.jsp">
+  <nodes xsi:type="process:tView" description="" id="view0" name="AddEditCustomer.jsp" displayName="AddEditCustomer.jsp" type="view" contextPath="" contributionName="com.hsweb.repair" method="forward" uri="/repair/common/subpage/customerSubpage/AddEditCustomer.jsp">
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end0</targetNode>
@@ -34,6 +34,8 @@
     <location x="208" y="60"/>
     <size height="28" width="22"/>
     <nodeLabel>view0label</nodeLabel>
+    <process:inputParameters/>
+    <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
     <location x="158" y="96"/>
@@ -43,4 +45,5 @@
   <topRuler/>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-17 16:27:54" date="2018-03-17Z" description="" name="AddEditCustomer" version="7.0.0.0"/>
+  <process:variables/>
 </process:tPageFlow>

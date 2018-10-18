@@ -5,8 +5,8 @@
 
 <html>
 <!-- 
-  - Author(s): Administrator
-  - Date: 2018-01-25 14:17:08  
+  - Author(s): Administrator 
+  - Date: 2018-01-25 14:17:08   
   - Description:   
 --> 
 
@@ -130,6 +130,7 @@
     mainGrid.setUrl(gridUrl);
     var mrecordId = null;//
     var mainRow = null;
+    var selectRow = null;
 
     var storehouse = null;
     var storeHash = {};
@@ -137,11 +138,12 @@
     var brandList = [];
     var billTypeHash = {};
 
-    function SetData(par,type,id,mRow){
+    function SetData(par,type,id,mRow,srow){
         //id= 9522; 
         onSearch(par,type);
         mrecordId = id;
         mainRow = mRow;
+        selectRow = srow;
 
     } 
 
@@ -303,10 +305,10 @@
                 paramsData.noTaxAmt = data[i].noTaxAmt;
                 paramsData.trueUnitPrice = data[i].trueUnitPrice;
                 paramsData.trueCost = data[i].trueCost;
-                paramsData.sellUntiPrice = data[i].sellUntiPrice;
-                paramsData.sellAmt = data[i].sellAmt;
+                paramsData.sellUntiPrice = parseFloat(selectRow.unitPrice);
+                paramsData.sellAmt = parseFloat(selectRow.unitPrice * data[i].outQty);
                 if(!paramsData.partNameId){ 
-                    paramsData.partNameId = "0"; 
+                    paramsData.partNameId = "0";  
                 }
                 paramsDataArr.push(paramsData);
             } 

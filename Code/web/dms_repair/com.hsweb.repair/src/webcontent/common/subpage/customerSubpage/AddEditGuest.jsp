@@ -10,8 +10,8 @@
   - Description:
 -->
 <head>
-<title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.0.4"></script>
+<title>新增客户档案</title>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.0.9"></script>
 <style type="text/css">
 
 table {
@@ -39,15 +39,15 @@ table {
                                 <label>姓名：</label>
                             </td>
                             <td>
-                                <input class="nui-textbox" name="name" width="100%"/>
+                                <input class="nui-textbox" id="name" name="name" width="100%"/>
                             </td>
                             <td class="form_label">
                                 <label>性别：</label>
                             </td>
                             <td>
-                                <input class="nui-combobox" name="sex"
+                                <input class="nui-combobox" id="sex" name="sex"
                                        data="[{id:0,text:'男'},{id:1,text:'女'},{id:2,text:'未知'}]"
-                                       width="100%"/>
+                                       width="100%" value="0"/>
                             </td>
                         </tr>
                         <tr>
@@ -66,7 +66,7 @@ table {
                                        id="identity"
                                        valueField="customid"
                                        textField="name"
-                                       width="100%"/>
+                                       width="100%" value="0"/>
                             </td>
                         </tr>
                         <tr>
@@ -78,7 +78,7 @@ table {
                                        id="source"
                                        valueField="customid"
                                        textField="name"
-                                       width="100%"/>
+                                       width="100%" value="0"/>
                             </td>
                             <td class="form_label">
                                 <label>驾审到期：</label>
@@ -94,7 +94,7 @@ table {
                             <td>
                                 <input class="nui-combobox" name="birthdayType"
                                        data="[{id:0,text:'农历'},{id:1,text:'阳历'}]"
-                                       width="100%"/>
+                                       width="100%" value="0"/>
                             </td>
                             <td class="form_label">
                                 <label>生日：</label>
@@ -128,7 +128,6 @@ table {
                     </td>
                 </tr>
                     </table>
-                    
                 </div>
             </div>
 <div title="车辆信息" class="nui-window" id = "carview" style="width: 100%">
@@ -144,10 +143,7 @@ table {
                     </td>
                     <td colspan="3">
                         <input class="nui-textbox" name="carNo" id="carNo"/>
-                        
-                            <a class="nui-button" iconCls="icon-upgrade" id="preCarBtn" onclick="preCar()" style="margin-right:10px;"></a>
-                            <a class="nui-button" iconCls="icon-downgrade" id="nextCarBtn" onclick="nextCar()" style="margin-right:10px;"></a>
-                            <a class="nui-button" iconCls="icon-add" onclick="addCar()"></a>
+
                     </td>
                 </tr>
                 <tr>
@@ -283,13 +279,12 @@ table {
      handlerSize="0"
      allowResize="false">
     <div size="240" showCollapseButton="false" style="border:0;">
-         <div class="mini-toolbar">
-	     <a class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-	     <a class="nui-button" onclick="onCancel" style="width:60px;"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
-     </div>
-        <div class="nui-panel" showToolbar="true"  showFooter="false"
+               <div class="nui-panel" showToolbar="false" title="客户信息" showFooter="false"
              borderStyle="border:0;"
              style="width:100%;height:100%;">
+
+     
+
                              
             <div class="form" id="basicInfoForm">
                 <input class="nui-hidden" name="id"/>
@@ -299,17 +294,18 @@ table {
                             <label>客户名称：</label>
                         </td>
                         <td >
+                         <input class="nui-hidden" name="id" id="guestId"/>
                             <input class="nui-textbox" id="fullName" name="fullName" width="100%" onvaluechanged="onChanged(this.id)"/>
                         </td>
                         <td class="form_label required">
                             <label>手机号码：</label>
                         </td>
                         <td>
-                            <input class="nui-textbox" id="mobile" name="mobile"  width="100%"/>
+                            <input class="nui-textbox" id="mobile" name="mobile"  width="100%" onvaluechanged="onChanged(this.id)" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="form_label required">
+                        <td class="form_label">
                             <label>性别：</label>
                         </td>
                         <td>
@@ -325,7 +321,7 @@ table {
                         </td>
                     </tr>
                     <tr>
-                        <td class="form_label required">
+                        <td class="form_label">
                             <label>生日类型：</label>
                         </td>
                         <td>
@@ -380,10 +376,19 @@ table {
                             <input class="nui-textbox" name="remark" width="100%"/>
                         </td>
                     </tr>
+                    <tr>
+
+                        <td colspan="6" align="right">
+                             <a class="nui-button" onclick="onOk" style="width:120px;margin-right:20px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存客户信息</a>
+	     						<!-- <a class="nui-button" onclick="onCancel" style="width:60px;"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> -->
+                        </td>
+                    </tr>
+                    	    
                 </table>
+                </div>
             </div>
         </div>
-    </div>
+
     
     <div showCollapseButton="false" style="border:0;">
         <div class="nui-fit">
@@ -410,10 +415,14 @@ table {
                             >
                             <div property="columns">
                       
-                               <!--  <div field="prdtId" class="nui-hidden" allowSort="true"
+                                <div field="id" class="nui-hidden" allowSort="true"
                                     align="left" headerAlign="center" width="" visible="false">
-                                    项目ID <input class="nui-textbox" name="times" property="editor" />
-                                </div> -->
+                                    车辆ID 
+                                </div>
+                                 <div field="guestId" class="nui-hidden" allowSort="true"
+                                    align="left" headerAlign="center" width="" visible="false">
+                                   客户ID 
+                                </div>
                                 <div field="carNo" allowSort="true" align="left" summaryType="count" 
                                     headerAlign="center" width="">车牌号</div>
                                 <div field="vin" allowSort="true" align="left"
@@ -477,15 +486,19 @@ table {
                             <div id="contactdatagrid" class="nui-datagrid" style="width: 100%;height:100%"
                                 showPager="false" sortMode="client" allowCellEdit="true"
                                 allowCellSelect="true" multiSelect="true" showsummaryrow = "true"
-                                editNextOnEnterKey="true"  
+                                editNextOnEnterKey="true"  onDrawCell="onDrawCell"
                                        
                                 >
                                 <div property="columns">
                           
-                                   <!--  <div field="prdtId" class="nui-hidden" allowSort="true"
-                                        align="left" headerAlign="center" width="" visible="false">
-                                        项目ID <input class="nui-textbox" name="times" property="editor" />
-                                    </div> -->
+                                   <div field="id" class="nui-hidden" allowSort="true"
+                                    align="left" headerAlign="center" width="" visible="false">
+                                    联系人ID 
+                                </div>
+                                 <div field="guestId" class="nui-hidden" allowSort="true"
+                                    align="left" headerAlign="center" width="" visible="false">
+                                   客户ID 
+                                </div>
                                     <div field="name" allowSort="true" align="left" summaryType="count" 
                                         headerAlign="center" width="">姓名</div>
                                     <div field="sex" allowSort="true" align="left"

@@ -11,7 +11,7 @@
 
 <head>
 	<title>Title</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.3.0"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.0.1"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -275,88 +275,8 @@
 				</table>
 			</div>
 			<div class="pay_list">
-				<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">优惠/抵扣</span></h2>
-				<div class="pay_tcbk">
-					<div id="benefitdeductionbox">
+				
 
-						<div class="pay_jshj_list">
-							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">储值卡抵扣</a>
-							</div>
-							<div class="pay_js_right">
-								<table width="100%" border="0" cellspacing="0" cellpadding="0">
-									<tbody>
-										<tr>
-											<td width="15%">
-												<span>储值卡余额：</span>
-
-											</td>
-											<td height="40" class="line24">
-												<input class="nui-textbox" id="rechargeBalaAmt" name="rechargeBalaAmt" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;">
-											</td>
-											<td width="10%">
-												<span>抵扣金额：</span>
-
-											</td>
-											<td height="40" class="line24">
-												<input class="mini-spinner" id="deductible" name="deductible" width="100px" minValue="0" maxValue="1000000" showbutton="false"
-												 allowNull="false" onvaluechanged="onChanged" />
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="pay_jshj_list">
-							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">优惠券抵扣</a>
-							</div>
-							<div class="pay_js_right">
-								<table id="tbcouponlist" width="100%" border="0" cellspacing="0" cellpadding="0">
-									<tbody>
-										<tr>
-											<td height="40">没有可用优惠券或者该用户未在微信公众号注册</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="pay_jshj_list">
-							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">积分抵扣</a>
-							</div>
-							<div class="pay_js_right">
-								<table id="tbcommissionlist" width="100%" border="0" cellspacing="0" cellpadding="0">
-									<tbody>
-										<tr>
-											<td height="40">没有可用积分</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="pay_jshj_list">
-							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">优惠金额</a>
-							</div>
-							<div class="pay_js_right">
-								<table width="100%" border="0" cellspacing="0" cellpadding="0">
-									<tbody>
-										<tr>
-											<td width="10%">
-												<span>其他优惠：</span>
-
-											</td>
-											<td height="40" class="line24">
-												<input class="nui-textbox" id="PrefAmt" name="PrefAmt" m="1" cardid="" amount="" style="width: 100px; float: left;" onvaluechanged="onChanged">
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 
 

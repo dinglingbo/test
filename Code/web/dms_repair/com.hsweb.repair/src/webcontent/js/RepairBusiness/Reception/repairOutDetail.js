@@ -241,9 +241,9 @@ function LLSave(argument) {
 			var c = rows[i].partCode;
 			var recordId = rows[i].id;
 			if(r){
-				openPartSelect(r,"Id",recordId,mainRow);
+				openPartSelect(r,"Id",recordId,mainRow,rows[i]);
 			}else if(c){ 
-				openPartSelect(c,"Code",recordId,mainRow);
+				openPartSelect(c,"Code",recordId,mainRow,rows[i]);
 			}else{
 				showMsg('部分配件需单独领取!','W');
 				return;
@@ -255,7 +255,7 @@ function LLSave(argument) {
 	}
 }
 
-function openPartSelect(par,type,id,row){
+function openPartSelect(par,type,id,row,srow){
 	nui.open({
 		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow?token="+token,
 		title:"选择配件",
@@ -263,7 +263,7 @@ function openPartSelect(par,type,id,row){
 		width:"900px",
 		onload:function(){
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.SetData(par,type,id,row);
+			iframe.contentWindow.SetData(par,type,id,row,srow);
 		},
 		ondestroy:function(action){ 
             mainGrid.load({serviceId:mid,token:token});

@@ -162,7 +162,7 @@
       <process:to type="query">pe/def/ds</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.report.purchase.querySupplierEnterForMonth</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.query.purchase.querySupplierEnterForMonth</process:from>
       <process:to type="query">pe/def/url</process:to>
     </process:copy>
     <process:copy>
@@ -186,7 +186,7 @@
       <process:to type="query">pt/def/ds</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.report.purchase.querySupplierEnterRtnForMonth</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.query.purchase.querySupplierEnterRtnForMonth</process:from>
       <process:to type="query">pt/def/url</process:to>
     </process:copy>
     <process:copy>

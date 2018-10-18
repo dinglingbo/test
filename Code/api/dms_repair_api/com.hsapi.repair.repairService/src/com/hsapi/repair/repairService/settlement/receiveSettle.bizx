@@ -388,6 +388,7 @@
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
       <targetNode>assign28</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link9" name="已结算" displayName="连接线" type="transition">
       <sourceNode>assign5</sourceNode>
@@ -531,6 +532,7 @@
     <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>transactionrollback0</sourceNode>
       <targetNode>end1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link25</targetConnections>
     <location x="360" y="375"/>
@@ -1982,6 +1984,7 @@
     <sourceConnections xsi:type="process:tLink" id="link77" name="link77" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess8</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link78" name="link78" displayName="连接线" type="transition">
       <sourceNode>subprocess8</sourceNode>

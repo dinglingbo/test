@@ -3697,3 +3697,38 @@ function updateBillExpense(){
         }
     });
 }
+
+function outCarMainExpense(){
+	var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }
+    var params = {
+        serviceId:data.id||0
+    };
+    doOutCarMainExpenseDetail(params, function(data){
+        data = data||{};
+        if(data.action){
+            var action = data.action||"";
+            if(action == 'ok'){
+            }else{
+            }
+        }
+    });
+}
+
+function doOutCarMainExpenseDetail(params,callback){
+	nui.open({
+        url: webPath + contextPath +"/repair/DataBase/OutCar/OutCarReport.jsp?token="+token,
+        title: "费用登记", width: "50%", height: "60%", 
+        onload: function () {
+           /* var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(params);*/
+        },
+        ondestroy: function (action) {
+			/*var iframe = this.getIFrameEl();
+			callback && callback();*/
+        }
+    });
+}

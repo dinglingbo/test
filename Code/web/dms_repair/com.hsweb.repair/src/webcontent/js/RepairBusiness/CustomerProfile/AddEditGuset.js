@@ -238,6 +238,7 @@ function onOk()
             {
                 showMsg("保存成功");
                 resultGuest = data.retData;
+                nui.get("guestId").setValue(resultGuest.guestId);
                 //CloseWindow("ok");
             }
             else{

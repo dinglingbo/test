@@ -294,6 +294,7 @@ table {
                             <label>客户名称：</label>
                         </td>
                         <td >
+                         <input class="nui-hidden" name="id" id="guestId"/>
                             <input class="nui-textbox" id="fullName" name="fullName" width="100%" onvaluechanged="onChanged(this.id)"/>
                         </td>
                         <td class="form_label required">

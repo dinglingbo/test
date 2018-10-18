@@ -148,9 +148,11 @@ function settleOK() {
 	var accountDetail = {};
 	for(var i = 0;i<tableNum+1;i++){
 		var  Sel=document.getElementById("optaccount"+i);
-		var index=Sel.selectedIndex ;
-		var selectValue =  Sel.options[index].value;
-		var seletText = Sel.options[index].text;
+		if(Sel!=null){
+			var index=Sel.selectedIndex ;
+			var selectValue =  Sel.options[index].value;
+			var seletText = Sel.options[index].text;
+		}
 		for(var j =1;j<typeList.length;j++){
 			var dtype = typeList[j].split(".");
 			var typeF = dtype[0].substring(0,1);

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.0.6"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.0.9"></script>
 <style type="text/css">
 
 table {
@@ -47,7 +47,7 @@ table {
                             <td>
                                 <input class="nui-combobox" id="sex" name="sex"
                                        data="[{id:0,text:'男'},{id:1,text:'女'},{id:2,text:'未知'}]"
-                                       width="100%"/>
+                                       width="100%" value="0"/>
                             </td>
                         </tr>
                         <tr>
@@ -66,7 +66,7 @@ table {
                                        id="identity"
                                        valueField="customid"
                                        textField="name"
-                                       width="100%"/>
+                                       width="100%" value="0"/>
                             </td>
                         </tr>
                         <tr>
@@ -78,7 +78,7 @@ table {
                                        id="source"
                                        valueField="customid"
                                        textField="name"
-                                       width="100%"/>
+                                       width="100%" value="0"/>
                             </td>
                             <td class="form_label">
                                 <label>驾审到期：</label>
@@ -94,7 +94,7 @@ table {
                             <td>
                                 <input class="nui-combobox" name="birthdayType"
                                        data="[{id:0,text:'农历'},{id:1,text:'阳历'}]"
-                                       width="100%"/>
+                                       width="100%" value="0"/>
                             </td>
                             <td class="form_label">
                                 <label>生日：</label>
@@ -414,10 +414,14 @@ table {
                             >
                             <div property="columns">
                       
-                               <!--  <div field="prdtId" class="nui-hidden" allowSort="true"
+                                <div field="id" class="nui-hidden" allowSort="true"
                                     align="left" headerAlign="center" width="" visible="false">
-                                    项目ID <input class="nui-textbox" name="times" property="editor" />
-                                </div> -->
+                                    车辆ID 
+                                </div>
+                                 <div field="guestId" class="nui-hidden" allowSort="true"
+                                    align="left" headerAlign="center" width="" visible="false">
+                                   客户ID 
+                                </div>
                                 <div field="carNo" allowSort="true" align="left" summaryType="count" 
                                     headerAlign="center" width="">车牌号</div>
                                 <div field="vin" allowSort="true" align="left"
@@ -481,15 +485,19 @@ table {
                             <div id="contactdatagrid" class="nui-datagrid" style="width: 100%;height:100%"
                                 showPager="false" sortMode="client" allowCellEdit="true"
                                 allowCellSelect="true" multiSelect="true" showsummaryrow = "true"
-                                editNextOnEnterKey="true"  
+                                editNextOnEnterKey="true"  onDrawCell="onDrawCell"
                                        
                                 >
                                 <div property="columns">
                           
-                                   <!--  <div field="prdtId" class="nui-hidden" allowSort="true"
-                                        align="left" headerAlign="center" width="" visible="false">
-                                        项目ID <input class="nui-textbox" name="times" property="editor" />
-                                    </div> -->
+                                   <div field="id" class="nui-hidden" allowSort="true"
+                                    align="left" headerAlign="center" width="" visible="false">
+                                    联系人ID 
+                                </div>
+                                 <div field="guestId" class="nui-hidden" allowSort="true"
+                                    align="left" headerAlign="center" width="" visible="false">
+                                   客户ID 
+                                </div>
                                     <div field="name" allowSort="true" align="left" summaryType="count" 
                                         headerAlign="center" width="">姓名</div>
                                     <div field="sex" allowSort="true" align="left"

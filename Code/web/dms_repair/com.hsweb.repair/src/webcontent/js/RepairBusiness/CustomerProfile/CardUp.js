@@ -150,7 +150,7 @@ function onCard(text){
 var payurl=baseUrl+"com.hsapi.repair.repairService.settlement.rechargeReceive.biz.ext";
 function pay(){
 	if(payType==0){
-		showMsg("请选择支付方式",W);
+		showMsg("请选择支付方式","W");
 		return;
 	}
 	var stored=[];

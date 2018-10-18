@@ -41,10 +41,10 @@
 		    d.suggest_price suggestPrice, 
 		    datediff(dd, CASE WHEN d.last_enter_date &gt;= isnull(d.last_out_date, d.last_enter_date) 
 		    THEN d.last_enter_date ELSE d.last_out_date END, getdate()) stockAge
-		FROM wb_part..pts_invoicing_detail a  
+		FROM wb_part..pj_invocing a  
 		INNER JOIN (
 		 	SELECT detail_id = MAX(b1.detail_id) 
-		 	FROM wb_part..pts_invoicing_detail b1 
+		 	FROM wb_part..pj_invocing b1 
 		 	WHERE b1.comp_code = #orgCode#
 		    GROUP BY part_id
 		) b ON a.detail_id = b.detail_id  
@@ -64,10 +64,10 @@
 		    d.suggest_price suggestPrice, 
 		    datediff(dd, CASE WHEN d.last_enter_date &gt;= isnull(d.last_out_date, d.last_enter_date) 
 		    THEN d.last_enter_date ELSE d.last_out_date END, getdate()) stockAge
-		FROM wb_part..pts_invoicing_detail a 
+		FROM wb_part..pj_invocing a 
 		INNER JOIN (
 			SELECT detail_id = MAX(b1.detail_id) 
-			FROM wb_part..pts_invoicing_detail b1
+			FROM wb_part..pj_invocing b1
 			group by comp_code, part_id
 		) b ON a.detail_id = b.detail_id 
 		LEFT JOIN wb_part..pts_location_cyc d ON d.part_id = a.part_id and d.comp_code = a.comp_code

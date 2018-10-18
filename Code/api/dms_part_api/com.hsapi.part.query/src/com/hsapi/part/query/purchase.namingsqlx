@@ -493,8 +493,8 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (c.code in ($partCodeList$))
                 </isNotEmpty> 
-                
-			group by c.car_type_id_f, month(a.audit_date) , year(a.audit_date)
+                group by c.car_type_id_f, month(a.audit_date) , year(a.audit_date)
+			
     </select>
     
     <!--直接汇总-->

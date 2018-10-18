@@ -12,6 +12,8 @@ var contactdatagrid = null;
 var contactInfoForm = null;
 var updCarList=[];
 var updContactList = [];
+var fullName = null;
+var mobile = null;
 $(document).ready(function()
 {
 	carview = nui.get("carview");
@@ -72,33 +74,7 @@ function init(callback)
 var carList = [{}];
 var carHash = {};
 var currCarIdx = 0;
-function updateCarBtnState()
-{
-    var car = carList[currCarIdx];
-    carInfoFrom.setData(car);
-    //nui.get("carModelId").setText(car.carModel);
-    if(car.id)
-    {
-        nui.get("carNo").disable();
-    }
-    else{
-        nui.get("carNo").enable();
-    }
-    if(currCarIdx<=0)
-    {
-        nui.get("preCarBtn").disable();
-    }
-    else{
-        nui.get("preCarBtn").enable();
-    }
-    if(currCarIdx>=(carList.length-1))
-    {
-        nui.get("nextCarBtn").disable();
-    }
-    else{
-        nui.get("nextCarBtn").enable();
-    }
-}
+
 function setCarByIdx(idx)
 {
     if(currCarIdx>=0 && currCarIdx<carList.length)
@@ -107,7 +83,6 @@ function setCarByIdx(idx)
         //carList[currCarIdx].carModel = nui.get("carModelId").getText();
         carList[currCarIdx].isChanged = carInfoFrom.isChanged();
         currCarIdx = idx;
-        updateCarBtnState()
     }
 }
 function preCar()
@@ -122,25 +97,7 @@ function nextCar()
 var contactList = [{}];
 var contactHash = {};
 var currContactIdx = 0;
-function updateContactBtnState()
-{
-    contactInfoForm.setData(contactList[currContactIdx]);
-    //nui.get("carModelId").setText(contactList[currContactIdx].carModel);
-    if(currContactIdx<=0)
-    {
-        nui.get("preContactBtn").disable();
-    }
-    else{
-        nui.get("preContactBtn").enable();
-    }
-    if(currContactIdx>=(contactList.length-1))
-    {
-        nui.get("nextContactBtn").disable();
-    }
-    else{
-        nui.get("nextContactBtn").enable();
-    }
-}
+
 function preContact()
 {
     //上一个联系人
@@ -159,7 +116,6 @@ function setContactByIdx(idx)
         contact.isChanged = contactInfoForm.isChanged();
         contactList[currContactIdx] = contact;
         currContactIdx = idx;
-        updateContactBtnState();
     }
 }
 function addContact()
@@ -278,7 +234,7 @@ function onOk()
             {
                 showMsg("保存成功");
                 resultData = data.retData;
-                CloseWindow("ok");
+                //CloseWindow("ok");
             }
             else{
                 showMsg(data.errMsg||"保存失败", "E");
@@ -460,9 +416,16 @@ function setCarModel(data){
 
 function onChanged(id){
 	if(id=="fullName"){
-		var fullName = nui.get("fullName").value;
+		fullName = nui.get("fullName").value;
 		nui.get("shortName").setValue(fullName);
+		
 	}
+	if(id=="mobile"){
+		mobile = nui.get("mobile").value;
+		
+	}
+	
+	
 }
 
 function addCar() {
@@ -471,6 +434,8 @@ function addCar() {
 
 function addContact() {
 	contactview.show();
+	nui.get("name").setValue(fullName);
+	nui.get("mobile2").setValue(mobile);
 }
 
 function addCarList(){

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.0.4"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.0.5"></script>
 <style type="text/css">
 
 table {
@@ -128,7 +128,11 @@ table {
                     </td>
                 </tr>
                     </table>
-                    
+                        <div style="text-align:right;padding:10px;margin-top:0">
+                            <a class="nui-button" iconCls="icon-upgrade" id="preContactBtn" onclick="preContact()" style="margin-right:10px;"></a>
+                            <a class="nui-button" iconCls="icon-downgrade" id="nextContactBtn" onclick="nextContact()" style="margin-right:10px;"></a>
+                            <a class="nui-button" iconCls="icon-add" onclick="addContact()"></a>
+                        </div>
                 </div>
             </div>
 <div title="车辆信息" class="nui-window" id = "carview" style="width: 100%">

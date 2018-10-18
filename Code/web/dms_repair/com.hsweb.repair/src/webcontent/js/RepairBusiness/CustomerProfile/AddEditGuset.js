@@ -27,7 +27,7 @@ $(document).ready(function()
 });
 function init(callback)
 {
-/*	var addEditCustomerPage = nui.get("addEditCustomerPage");
+	var addEditCustomerPage = nui.get("addEditCustomerPage");
     basicInfoForm = new nui.Form("#basicInfoForm");
     contactInfoForm = new nui.Form("#contactInfoForm");
     carInfoFrom = new nui.Form("#carInfoFrom");
@@ -67,7 +67,7 @@ function init(callback)
         checkComplete();
     });
     
-    initProvince("provice");*/
+    initProvince("provice");
 }
 var carList = [{}];
 var carHash = {};

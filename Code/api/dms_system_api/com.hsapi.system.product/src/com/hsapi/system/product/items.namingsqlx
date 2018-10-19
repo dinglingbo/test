@@ -32,7 +32,7 @@
 		WHERE packageId = #packageId#
     </select>
     <!--Stock1-->
-    <select id="getStock1" parameterClass="HashMap" resultClass="HashMap">
+<!--    <select id="getStock1" parameterClass="HashMap" resultClass="HashMap">
 		SELECT  a.comp_code compCode, a.part_id partId, a.part_code partCode, w.part_brand_id partBrandId, 
 			w.apply_car_model applyCarModel, w.car_brand_zh carBrandZh, w.name partName, w.part_type_id partTypeId,
 		    a.bala_qty balaQty, w.unit, a.bala_unit_price balaUnitPrice, a.amt, a.bala_amt balaAmt, 
@@ -41,10 +41,10 @@
 		    d.suggest_price suggestPrice, 
 		    datediff(dd, CASE WHEN d.last_enter_date &gt;= isnull(d.last_out_date, d.last_enter_date) 
 		    THEN d.last_enter_date ELSE d.last_out_date END, getdate()) stockAge
-		FROM wb_part..pts_invoicing_detail a  
+		FROM wb_part..pj_invocing a  
 		INNER JOIN (
 		 	SELECT detail_id = MAX(b1.detail_id) 
-		 	FROM wb_part..pts_invoicing_detail b1 
+		 	FROM wb_part..pj_invocing b1 
 		 	WHERE b1.comp_code = #orgCode#
 		    GROUP BY part_id
 		) b ON a.detail_id = b.detail_id  
@@ -53,9 +53,9 @@
 		WHERE a.bala_qty &gt; 0 
 			AND a.comp_code = #orgCode#
 			AND REPLACE(a.part_code, ' ', '') IN ($partCodes$)
-    </select>
+    </select>-->
     <!--Stock2-->
-    <select id="getStock2" parameterClass="HashMap" resultClass="HashMap">
+<!--    <select id="getStock2" parameterClass="HashMap" resultClass="HashMap">
     	SELECT  a.comp_code compCode, a.part_id partId, a.part_code partCode, w.part_brand_id partBrandId, 
 			w.apply_car_model applyCarModel, w.car_brand_zh carBrandZh, w.name partName, w.part_type_id partTypeId,
 		    a.bala_qty balaQty, w.unit, a.bala_unit_price balaUnitPrice, a.amt, a.bala_amt balaAmt, 
@@ -64,17 +64,17 @@
 		    d.suggest_price suggestPrice, 
 		    datediff(dd, CASE WHEN d.last_enter_date &gt;= isnull(d.last_out_date, d.last_enter_date) 
 		    THEN d.last_enter_date ELSE d.last_out_date END, getdate()) stockAge
-		FROM wb_part..pts_invoicing_detail a 
+		FROM wb_part..pj_invocing a 
 		INNER JOIN (
 			SELECT detail_id = MAX(b1.detail_id) 
-			FROM wb_part..pts_invoicing_detail b1
+			FROM wb_part..pj_invocing b1
 			group by comp_code, part_id
 		) b ON a.detail_id = b.detail_id 
 		LEFT JOIN wb_part..pts_location_cyc d ON d.part_id = a.part_id and d.comp_code = a.comp_code
 		LEFT JOIN wb_part..vw_com_attribute w ON w.id = a.part_id 
 		WHERE a.bala_qty &gt; 0 
 			AND REPLACE(a.part_code, ' ', '') IN ($partCodes$)  
-    </select>
+    </select>-->
     <!--getBrandPart-->
     <select id="getBrandPart" parameterClass="HashMap" resultClass="HashMap">
     	SELECT DISTINCT b.id, b.code, b.name, b.qualityTypeId, b.brandId, b.parentGroupCode, b.parentGroupId, 

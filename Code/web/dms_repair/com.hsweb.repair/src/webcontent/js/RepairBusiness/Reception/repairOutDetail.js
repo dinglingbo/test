@@ -19,6 +19,10 @@ var mainGridUrl =  baseUrl + "com.hsapi.repair.repairService.query.getRpsPartByS
 var repairOutGridUrl =  partUrl + "com.hsapi.part.invoice.partInterface.queryEnbleRtnPart.biz.ext";
 var fserviceId = 0;
 var returnSignData = [{id:0,text:"未归库"},{id:1,text:"已归库"}];
+
+var storehouse = null;
+var storeHash = {};
+var FStoreId = null;
 $(document).ready(function(){
 
 
@@ -53,7 +57,17 @@ $(document).ready(function(){
           servieTypeHash[v.id] = v;
       });
     });
-
+    
+	getStorehouse(function(data) {
+		storehouse = data.storehouse || [];
+		if (storehouse && storehouse.length > 0) {
+			FStoreId = storehouse[0].id;
+			storehouse.forEach(function(v) {
+				storeHash[v.id] = v;
+			});
+		}
+	});
+	
     mainGrid.on("drawcell", function (e) {
         if (e.field == "serviceTypeId") {
             if (servieTypeHash && servieTypeHash[e.value]) {
@@ -61,6 +75,17 @@ $(document).ready(function(){
             }
         }
     });
+    
+    repairOutGrid.on("drawcell", function (e) {
+        if (e.field == "storeId") {
+        	if (storeHash[e.value]) {
+				e.cellHtml = storeHash[e.value].name || "";
+			} else {
+				e.cellHtml = "";
+			}
+        }
+    });
+
 
     searchKeyEl.on("valuechanged",function(e){
       var item = e.selected;
@@ -216,9 +241,9 @@ function LLSave(argument) {
 			var c = rows[i].partCode;
 			var recordId = rows[i].id;
 			if(r){
-				openPartSelect(r,"Id",recordId,mainRow);
+				openPartSelect(r,"Id",recordId,mainRow,rows[i]);
 			}else if(c){ 
-				openPartSelect(c,"Code",recordId,mainRow);
+				openPartSelect(c,"Code",recordId,mainRow,rows[i]);
 			}else{
 				showMsg('部分配件需单独领取!','W');
 				return;
@@ -230,7 +255,7 @@ function LLSave(argument) {
 	}
 }
 
-function openPartSelect(par,type,id,row){
+function openPartSelect(par,type,id,row,srow){
 	nui.open({
 		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow?token="+token,
 		title:"选择配件",
@@ -238,7 +263,7 @@ function openPartSelect(par,type,id,row){
 		width:"900px",
 		onload:function(){
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.SetData(par,type,id,row);
+			iframe.contentWindow.SetData(par,type,id,row,srow);
 		},
 		ondestroy:function(action){ 
             mainGrid.load({serviceId:mid,token:token});

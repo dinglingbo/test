@@ -157,7 +157,6 @@ function getStorehouse(callback) {
 	});
 }
 
-
 var getAllPartTypeUrl=window._rootUrl
 + "com.hsapi.system.dict.dictMgr.queryPartType.biz.ext";
 function getAllPartType(callback)
@@ -166,8 +165,8 @@ function getAllPartType(callback)
 		url : getAllPartTypeUrl,
 		async: false,
 		success : function(data) {
-			if (data && data.quality && data.brand) {
-				callback && callback(data);
+			if (data && data.partTypes) {
+				callback && callback(data);    
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -575,7 +574,46 @@ var tableToExcel = (function() {
 	}
 })()
 
+function getYearMonthList(startDate, endDate){
+	var yearMonthList = [];
+	var diffMonths = getMonths(startDate, endDate);
+	var startYear = (new Date(startDate)).getFullYear();
+	var startMonth = (new Date(startDate)).getMonth() + 1;
+	var yearMonthObj = {year: startYear, month: startMonth};
+	var tempMonth = startMonth;
+	if (tempMonth < 10) {
+		tempMonth = "0" + tempMonth;
+	}
+	yearMonthObj.yearMonth = startYear.toString() + tempMonth.toString();
+	yearMonthList.push(yearMonthObj);
+	
+	var endMonth = (new Date(endDate)).getDate();
+	if(endMonth == 1) {
+		diffMonths-=1;
+	}
+	if(diffMonths > 1){
+		for(var i=0; i<diffMonths-1; i++){
+			var tempObj = {};
+			if(startMonth == 12){
+				startYear+=1;  
+				startMonth = 1; 
+			}else{
+				startMonth+=1;
+			}
 
+			tempMonth = startMonth;
+			tempObj.year = startYear;
+			if (tempMonth < 10) {
+				tempMonth = "0" + tempMonth;
+			}
+			tempObj.month = startMonth;
+			tempObj.yearMonth = startYear.toString() + tempMonth.toString();
+			yearMonthList.push(tempObj);
+		}
+	}
+
+	return yearMonthList;
+}
 
 
 

@@ -167,7 +167,7 @@
       <process:to type="query">pt/def/ds</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.report.sell.queryPartBrandSellRtnForMonth</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.query.sell.queryPartBrandSellRtnForMonth</process:from>
       <process:to type="query">pt/def/url</process:to>
     </process:copy>
     <process:copy>

@@ -635,6 +635,7 @@
     <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>assign10</sourceNode>
       <targetNode>loopend1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link28</targetConnections>
     <location x="262" y="300"/>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+    <!--下次保养-->
+	<select id="getNextCare" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
+		       a.mt_advisor_id as mtAdvisorId, a.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.care_due_date,'%Y-%m-%d') as dueDate
+		from rpb_car_extend a
+		inner join rpb_car b
+		on a.car_id = b.id
+		where TIMESTAMPDIFF(DAY, a.care_due_date, NOW()) = #ln#
+	</select>
+	
+	<!--保养周期-->
+	<select id="getCareCircle" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	</select>
+	
+	<!--年审到期-->
+	<select id="getAnnualVerification" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
+		       a.mt_advisor_id as mtAdvisorId, a.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.annual_verification_due_date,'%Y-%m-%d') as dueDate
+		from rpb_car_extend a
+		inner join rpb_car b
+		on a.car_id = b.id
+		where TIMESTAMPDIFF(DAY, b.annual_verification_due_date, NOW()) = #ln#
+	</select>
+	
+	<!--商业险到期-->
+	<select id="getAnnualInspection" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
+		       a.mt_advisor_id as mtAdvisorId, a.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.annual_inspection_date,'%Y-%m-%d') as dueDate
+		from rpb_car_extend a
+		inner join rpb_car b
+		on a.car_id = b.id
+		where TIMESTAMPDIFF(DAY, b.annual_inspection_date, NOW()) = #ln#
+	</select>
+
+	<!--交强险到期-->
+	<select id="getInsureDueDate" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
+		       a.mt_advisor_id as mtAdvisorId, a.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.insure_due_date,'%Y-%m-%d') as dueDate
+		from rpb_car_extend a
+		inner join rpb_car b
+		on a.car_id = b.id
+		where TIMESTAMPDIFF(DAY, b.insure_due_date, NOW()) = #ln#
+	</select>
+	
+	<!--年检到期-->
+	<select id="getRpsItemCardTimesAmt" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	</select>
+	
+	<!--客户生日-->
+	<select id="getGuestBirthday" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT last_orgid as orgid, id as guestId, full_name as fullName, DATE_FORMAT(birthday,'%m-%d') as dueDate,
+			   mt_advisor_id as mtAdvisorId, mt_advisor_name as mtAdvisorName
+		from rpb_guest
+		where TIMESTAMPDIFF(DAY, birthday, NOW()) = #ln# 
+	</select>
+	
+	<!--订单到货提醒-->
+	<select id="getPchsEnter" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT a.id, a.service_id as serviceId, a.guest_id as guestId, b.short_name as shortName,
+		       a.orgid, a.plan_arrive_date as dueDate, a.order_man_id as orderManId,
+		       a.order_man as orderMan, a.auditor_id as auditorId, a.auditor, a.audit_date as auditDate
+		from pj_pchs_order_main_chk a 
+		inner join wb_common.com_guest b
+		on a.guest_id = b.id
+		where is_finished = 0 
+		and TIMESTAMPDIFF(HOUR, plan_arrive_date, NOW()) = #ln# 
+	</select>
+
+</sqlMap>

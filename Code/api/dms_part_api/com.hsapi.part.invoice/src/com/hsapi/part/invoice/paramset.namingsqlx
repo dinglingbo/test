@@ -46,6 +46,9 @@
                 <isNotEmpty prepend="and" property="partId">  
                     (a.id = #partId#)
                 </isNotEmpty>
+                 <isNotEmpty prepend="and" property="storeId">  
+                    (a.id = #storeId#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="partName">  
                     (a.FULL_NAME like '%$partName$%')
                 </isNotEmpty>

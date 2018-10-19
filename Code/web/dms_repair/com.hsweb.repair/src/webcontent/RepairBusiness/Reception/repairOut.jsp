@@ -7,7 +7,7 @@
   - Author(s): Administrator 
   - Date: 2018-01-25 14:17:08 
   - Description:      
--->
+--> 
 
 <head>
   <title>维修出库</title>  
@@ -68,7 +68,7 @@ a {
             valueFromSelect="true"
             onvaluechanged=""
             nullItemText="请选择..."/>
-            进场日期 从<input id="date1" name="" class="nui-datepicker" value=""/>
+            开单日期 从<input id="date1" name="" class="nui-datepicker" value=""/>
             至 <input id="date2" name="" class="nui-datepicker" value=""/>
             <a class="nui-button" iconCls="" plain="false" onclick="onSearch">
                 <span class="fa fa-search fa-lg"></span>&nbsp;查询
@@ -77,7 +77,6 @@ a {
         </td>
     </tr>
 </table>
-
 </div>
 
 <div class="nui-fit">
@@ -85,13 +84,14 @@ a {
     totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
     onshowrowdetail="onShowRowDetail" url="">
     <div property="columns">
+    	<div type="indexcolumn" width="15">序号</div>
         <div field="id" name="id" visible="false">id</div>
-        <div field="serviceCode" name="serviceCode" width="40" headerAlign="center" align="center">单号</div>
+        <div field="serviceCode" name="serviceCode" width="50" headerAlign="center" align="center">单号</div>
         <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
-        <div field="guestTel" name="guestTel" width="40" headerAlign="center" align="center">手机号码</div>
+        <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
         <div field="carNO" name="carNO" width="40" headerAlign="center" align="center">车牌号</div>
         <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">车型</div>
-        <div field="status" name="status" width="40" headerAlign="center" align="center" renderer="onGenderRenderer">维修进程</div>
+        <div field="status" name="status" width="40" headerAlign="center" align="center" renderer="onGenderRenderer">进程</div>
         <div field="serviceTypeId" name="serviceTypeId" width="40" headerAlign="center" align="center">业务类型</div>
         <div field="isSettle" name="isSettle" width="40" headerAlign="center" align="center" renderer="onIsSettleRenderer">结算状态</div>
         <div field="enterDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">进厂日期</div>
@@ -134,15 +134,17 @@ a {
 
         var fdate1 = nui.get("date1").value;
         var fdate2 = nui.get("date2").value;
+        //fdate2.setDate(fdate2.getDate()+1);
 
         var sdate = nui.formatDate (fdate1,"yyyy-MM-dd");
         var edate = nui.formatDate (fdate2,"yyyy-MM-dd");
+        edate = edate + " 23:59:59";
         var params ={
-           // part :1,
-           carNo:nui.get("carNo").value,
-           name:nui.get("name").value,
-            sEnterDate:sdate,
-            eEnterDate:edate,
+            // part :1,
+            carNo:nui.get("carNo").value,
+            name:nui.get("name").value,
+            sRecordDate:sdate,
+            eRecordDate:edate,
             status:tstatus.value,
             serviceTypeId:nui.get("serviceTypeId").value,
             isSettle:isSettle.value,
@@ -150,7 +152,6 @@ a {
         };
         mainGrid.load({params:params});
     }
-
 
     mainGrid.on("celldblclick",function(e){
         var field = e.field;
@@ -222,7 +223,7 @@ a {
     var ll = '<a  href="javascript:newrepairOut('+"'ll'"+ ')">&nbsp;&nbsp;&nbsp;&nbsp;领料</a>';//class="icon-collapse"
     var th = '<a  href="javascript:newrepairOut('+"'th'"+ ')">&nbsp;&nbsp;&nbsp;&nbsp;退货</a>';//class="icon-addnew"
     if(column.field == "action"){
-        e.cellHtml = ll +"&nbsp;&nbsp;&nbsp;" + th;
+        e.cellHtml = ll +"&nbsp;&nbsp;" + th;
     }
 });
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="genRpsGuestFile.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="rps_guest_file 本店维修客户档案  comp_come_times 本店来店次数&#xD;&#xA;&#xD;&#xA;同一天确认维修多次，算一次" title="Administrator&#x9;18-8-7 下午7:07">
-    <location x="30" y="-75"/>
-    <size height="100" width="406"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="rps_guest_file 本店维修客户档案  comp_come_times 本店来店次数&#xD;&#xA;&#xD;&#xA;同一天确认维修多次，算一次&#xD;&#xA;&#xD;&#xA;rps_guest_file_extend" title="Administrator&#x9;18-8-7 下午7:07">
+    <location x="20" y="-210"/>
+    <size height="136" width="406"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -16,7 +16,7 @@
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link12</targetConnections>
     <targetConnections>link14</targetConnections>
-    <location x="495" y="150"/>
+    <location x="585" y="149"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -31,7 +31,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="497" y="186"/>
+    <location x="587" y="185"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -241,6 +241,16 @@
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign3</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link16" name="tenantId=55" displayName="连接线" type="transition">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>assign6</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">maintain/tenantId</process:leftOperand>
+          <process:rightOperand type="literal">55</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="342" y="61"/>
     <size height="28" width="22"/>
@@ -296,6 +306,7 @@
     </sourceConnections>
     <targetConnections>link10</targetConnections>
     <targetConnections>link11</targetConnections>
+    <targetConnections>link19</targetConnections>
     <location x="339" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
@@ -347,7 +358,8 @@
     </sourceConnections>
     <targetConnections>link7</targetConnections>
     <targetConnections>link8</targetConnections>
-    <location x="495" y="61"/>
+    <targetConnections>link18</targetConnections>
+    <location x="585" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -356,7 +368,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="493" y="97"/>
+    <location x="583" y="96"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
@@ -386,6 +398,101 @@
     <figSize height="17" width="40"/>
     <node>invokePojo4</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="洗美" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>invokePojo5</targetNode>
+    </sourceConnections>
+    <targetConnections>link16</targetConnections>
+    <location x="340" y="-53"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign6label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/orgid</process:from>
+      <process:to type="query">gExtend/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/id</process:from>
+      <process:to type="query">gExtend/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/carId</process:from>
+      <process:to type="query">gExtend/carId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/carNo</process:from>
+      <process:to type="query">gExtend/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/carVin</process:from>
+      <process:to type="query">gExtend/carVin</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/guestId</process:from>
+      <process:to type="query">gExtend/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">gExtend/isNewCar</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/sureMtMan</process:from>
+      <process:to type="query">gExtend/recorder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/sureMtDate</process:from>
+      <process:to type="query">gExtend/recordDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/sureMtMan</process:from>
+      <process:to type="query">gExtend/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/sureMtDate</process:from>
+      <process:to type="query">gExtend/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">dateKey</process:from>
+      <process:to type="query">gExtend/datekey</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">gExtend/isSettle</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
+    <location x="342" y="-17"/>
+    <figSize height="17" width="25"/>
+    <node>assign6</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="insertEntity1" displayName="insertEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>assign3</targetNode>
+    </sourceConnections>
+    <targetConnections>link17</targetConnections>
+    <location x="480" y="-53"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo5label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">gExtend</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
+    <location x="456" y="-17"/>
+    <figSize height="17" width="71"/>
+    <node>invokePojo5</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-26 10:01:09" date="2018-03-26Z" description="" name="genRpsGuestFile" version="7.0.0.0"/>
@@ -395,6 +502,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="tmpInt" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsGuestFile" name="guestFile"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="dateKey" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsGuestFileExtend" name="gExtend"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>

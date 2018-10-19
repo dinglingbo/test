@@ -408,7 +408,7 @@
                             <td width="30" height="35" align="center">序号</td>
                             <td align="center">编号</td>
                             <td align="center">名称</td>
-                            <td align="center"width="40">数量</td>
+                            <td align="center"width="80">已领数量</td>
                             <td align="center"width="40">单位</td>
                             <td align="center"width="40">仓位</td>
                             <td align="center">金额</td>
@@ -485,18 +485,24 @@
 				var tds = '<td align="center">[id]</td>' +
     			"<td align='center'>[partCode]</td>"+
     			"<td align='center'>[partName]</td>"+ 
-    			"<td align='center'>[qty]</td>"+
+    			"<td align='center'>[pickQty]</td>"+
     			"<td align='center'>[unit]</td>"+
     			"<td align='center'></td>"+
     			"<td align='center'>[subtotal]</td>";
-        		var data = text.data;
+        		var partData = text.data;
+        		var data=[];
+        		for(var i=0;i<partData.length;i++){
+        			if(partData[i].pickQty>0){
+        				data.push(partData[i]);
+        			}
+        		}
         		for(var i = 0 , l = data.length ; i < l ; i++){
         			var tr = $("<tr></tr>");
         			tr.append(
 				    				tds.replace("[id]",i +1)
 				    				.replace("[partCode]",data[i].partCode)
 				    				.replace("[partName]",data[i].partName)
-				    				.replace("[qty]",data[i].qty)
+				    				.replace("[pickQty]",data[i].pickQty)
 				    				.replace("[unit]",data[i].unit || "")
 				    				.replace("[subtotal]",data[i].subtotal));
 				    			tBody.append(tr);

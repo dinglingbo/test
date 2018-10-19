@@ -78,7 +78,7 @@ function initFiSettleAccountCfg(){
 	var item={};
 	item.id = "initFiSettleAccountCfg";
 	item.text = "结算账户";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.settleAccoutSet.flow";
+	item.url = webPath + contextPath + "/com.hsweb.frm.arap.settleAccoutSet.flow";
 	item.iconCls = "fa fa-credit-card-alt";
 	window.parent.activeTab(item);
 }

@@ -5,8 +5,8 @@
 
 <html>
 <!-- 
-  - Author(s): Administrator
-  - Date: 2018-01-25 14:17:08  
+  - Author(s): Administrator 
+  - Date: 2018-01-25 14:17:08   
   - Description:   
 --> 
 
@@ -112,7 +112,7 @@
             <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
             <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss" width="120px" header="入库日期" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true"></div>
             <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
-            <div field="serviceId" align="left" width="100px" headerAlign="center" align="center" allowSort="true" header="入库单号"></div>
+            <div field="serviceCode" align="left" width="120px" headerAlign="center" align="center" allowSort="true" header="入库单号"></div>
             <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
             <div field="partId" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件id"></div> 
             <div field="partNameId" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件nameid"></div>         
@@ -130,6 +130,7 @@
     mainGrid.setUrl(gridUrl);
     var mrecordId = null;//
     var mainRow = null;
+    var selectRow = null;
 
     var storehouse = null;
     var storeHash = {};
@@ -137,11 +138,12 @@
     var brandList = [];
     var billTypeHash = {};
 
-    function SetData(par,type,id,mRow){
+    function SetData(par,type,id,mRow,srow){
         //id= 9522; 
         onSearch(par,type);
         mrecordId = id;
         mainRow = mRow;
+        selectRow = srow;
 
     } 
 
@@ -268,7 +270,7 @@
 
 
     function  savePartOut(childdata){
-        var data = mainGrid.getData();
+        var data = mainGrid.getChanges('modified');
         if(data){
             var paramsDataArr = [];
             //var paramsData = nui.clone(data); 
@@ -303,10 +305,10 @@
                 paramsData.noTaxAmt = data[i].noTaxAmt;
                 paramsData.trueUnitPrice = data[i].trueUnitPrice;
                 paramsData.trueCost = data[i].trueCost;
-                paramsData.sellUntiPrice = data[i].sellUntiPrice;
-                paramsData.sellAmt = data[i].sellAmt;
+                paramsData.sellUntiPrice = parseFloat(selectRow.unitPrice);
+                paramsData.sellAmt = parseFloat(selectRow.unitPrice * data[i].outQty);
                 if(!paramsData.partNameId){ 
-                    paramsData.partNameId = "0"; 
+                    paramsData.partNameId = "0";  
                 }
                 paramsDataArr.push(paramsData);
             } 

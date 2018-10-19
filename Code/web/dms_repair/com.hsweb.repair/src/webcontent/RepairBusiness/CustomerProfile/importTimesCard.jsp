@@ -11,7 +11,7 @@
 <title>客户储值卡导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importTimesCard.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importTimesCard.js?v=1.0.2"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -102,8 +102,6 @@
 			style="width:100%;height:100%;">
 			<div property="columns">
 				<div type="indexcolumn">序号</div>
-				<div field="次卡名称" width="60px" summaryType="count" headerAlign="center" allowSort="true">
-					次卡名称<input property="editor" class="nui-textbox"/></div>
 				<div field="车牌号" width="90px" summaryType="count" headerAlign="center" allowSort="true">
 					车牌号<input property="editor" class="nui-textbox"/></div>
 				<div field="工时名称" width="70px" headerAlign="center" allowSort="true">

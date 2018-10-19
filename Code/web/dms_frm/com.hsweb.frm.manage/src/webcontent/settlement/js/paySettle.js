@@ -935,7 +935,7 @@ function checkSettleRow() {
 
 	return msg;
 }
-function doSettle() {
+/*function doSettle() {
 	var msg = checkSettleRow();
 	if (msg) {
 		showMsg(msg, "W");
@@ -1008,7 +1008,7 @@ function doSettle() {
 		showMsg("请选择单据!", "W");
 		return;
 	}
-}
+}*/
 function getSettleAmount(rows) {
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
@@ -1590,4 +1590,80 @@ function doDelete() {
 		 });
 
 	
+}
+
+function doSettle() {
+	var msg = checkSettleRow();
+	if (msg) {
+		showMsg(msg, "W");
+		return;
+	}
+
+	var rightGrid = null;
+	var firstRow = {};
+	var guestId = null;
+	var tab = mainTabs.getActiveTab();
+	var name = tab.name;
+	switch (name) {
+
+
+	case "rRightTab":
+		rightGrid = rRightGrid;
+		break;
+
+	default:
+		break;
+	}
+
+	var rows = pRightGrid.getSelecteds();
+	var s = rows.length;
+	if (s > 0) {
+/*		if (name == "pRightTab") {
+			document.getElementById('rtTr').style.display = "none";
+			document.getElementById('rcTr').style.display = "none";
+			document.getElementById('ptTr').style.display = "";
+			document.getElementById('pcTr').style.display = "";
+		} else if (name == "rRightTab") {
+			document.getElementById('rtTr').style.display = "";
+			document.getElementById('rcTr').style.display = "";
+			document.getElementById('ptTr').style.display = "none";
+			document.getElementById('pcTr').style.display = "none";
+		} else {
+			document.getElementById('rtTr').style.display = "";
+			document.getElementById('rcTr').style.display = "";
+			document.getElementById('ptTr').style.display = "";
+			document.getElementById('pcTr').style.display = "";
+		}
+		if(rows[0].billTypeCode==105||rows[0].billTypeCode==104){
+			document.getElementById('ctTr').style.display = "none";
+			document.getElementById('ccTr').style.display = "none";
+		}
+		var rtn = getSettleAmount(rows);
+		var errCode = rtn.errCode;
+		if (errCode != 'S') {
+			showMsg(rtn.errMsg || "结算数据填写有问题!", "W");
+			return;
+		}		
+		settleWin.show();
+		var guestName = rows[0].guestName;*/
+		nui.open({
+	        url: webPath + contextPath +"/com.hsweb.frm.manage.payable.flow?token="+token,
+	         width: "100%", height: "100%", 
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.setData(rows);
+	        },
+			ondestroy : function(action) {// 弹出页面关闭前
+				if (action == "saveSuccess") {
+					showMsg("结算成功!", "S");
+					pRightGrid.reload();
+				}
+			}
+	    });
+
+
+	} else {
+		showMsg("请选择单据!", "W");
+		return;
+	}
 }

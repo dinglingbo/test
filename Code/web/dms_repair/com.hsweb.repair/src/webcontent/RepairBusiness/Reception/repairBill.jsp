@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.4.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.6.1"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -159,6 +159,8 @@
                 <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 
                 <ul id="popupMenuMore" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="updateBillExpense()" id="billExpense">费用登记</li>
+                    <li iconCls="" onclick="outCarMainExpense()" id="billExpense">出车报告登记</li>
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li>
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">修改报销单</li>
                     <!-- <li iconCls="" onclick="addcardTime()" id="type13">车牌替换/修改</li>
@@ -211,8 +213,6 @@
             <%@include file="/repair/RepairBusiness/Reception/repairPackage.jsp" %>
             <div style="width:100%;height:5px;"></div>
             <%@include file="/repair/RepairBusiness/Reception/repairItem.jsp" %>
-            <%--  <div style="width:100%;height:5px;" ></div>
-            <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp"  %> --%>
          </div>
 
         <!-- <div id="bottomPanel" class="nui-panel" title="其他" iconCls="" style="width:100%;height:100px;" 

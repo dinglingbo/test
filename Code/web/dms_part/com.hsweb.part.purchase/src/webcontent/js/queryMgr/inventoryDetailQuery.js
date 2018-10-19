@@ -102,26 +102,33 @@ function getSearchParams(){
 }
 var currType = 2;
 function quickSearch(type){
-    var params = getSearchParams();
+	var params = getSearchParams();
+    var queryname = "本日";
     switch (type)
     {
         case 0:
             params.today = 1;
+            queryname = "本日";
             break;
         case 1:
             params.yesterday = 1;
+            queryname = "昨日";
             break;
         case 2:
             params.thisWeek = 1;
+            queryname = "本周";
             break;
         case 3:
             params.lastWeek = 1;
+            queryname = "上周";
             break;
         case 4:
             params.thisMonth = 1;
+            queryname = "本月";
             break;
         case 5:
             params.lastMonth = 1;
+            queryname = "上月";
             break;
         case 6:
             params.auditStatus = 0;
@@ -134,14 +141,18 @@ function quickSearch(type){
             break;
         case 10:
             params.thisYear = 1;
+            queryname="本年";
             break;
         case 11:
             params.lastYear = 1;
+            queryname="上年";
             break;
         default:
             break;
     }
     currType = type;
+    var menunamedate = nui.get("menunamedate");
+    menunamedate.setText(queryname);
     if($("a[id*='type']").length>0)
     {
         $("a[id*='type']").css("color","black");

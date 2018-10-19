@@ -11,7 +11,7 @@
 -->
 <head>
 <title>出车报告</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/OutCar/outCarReportMain.js?v=1.0.6"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/OutCar/outCarReportMain.js?v=1.0.7"></script>
 <style type="text/css">
 
 table {
@@ -32,7 +32,7 @@ table {
                 <a class="nui-button" plain="true" iconCls="" id="addBtn" enabled="false" onclick="addReport()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" plain="true" iconCls="" id="editBtn" enabled="false" onclick="editReport()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                 <a class="nui-button" plain="true" iconCls="" id="deleteBtn" enabled="false" onclick="deleteReport()"><span class="fa fa-trash-o"></span>&nbsp;删除</a>
-                <a class="nui-button" plain="true" iconCls="icon-save" id="saveBtn" enabled="false" onclick="save()">保存</a>
+                <a class="nui-button" plain="true" iconCls="" id="saveBtn" enabled="false" onclick="save()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" plain="true" iconCls="" id="cancelBtn" enabled="false" onclick="cancelEdit()"> <span class="fa fa-times-circle"></span>&nbsp;取消</a>
                 <a class="nui-button" plain="true" iconCls="icon-ok" id="selectBtn" visible="false" onclick="onOk()">选择</a>
             </td>

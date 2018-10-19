@@ -8,7 +8,7 @@
 -->
 <head>
 <title>领料</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumable.js?v=1.3.67"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumable.js?v=1.3.68"></script>
 <style type="text/css">                
 .table-label {
 	text-align: right;

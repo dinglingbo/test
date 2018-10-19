@@ -392,6 +392,10 @@
       <process:from type="query" pattern="reference">payDetailHash</process:from>
       <process:to type="query">params/fisRpAccountDetial</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpAdd</process:from>
+      <process:to type="query">params/rpAdd</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
     <location x="516" y="262"/>
@@ -848,6 +852,7 @@
     <process:input description="收款明细表" isArray="true" modelType="com.hsapi.repair.data.common.FisRpAccountDetail" name="payDetail"/>
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.common.FisRpAccountDType" name="payTypeDetail"/>
     <process:input description="是否生成收付款" isArray="false" name="isPay" primitiveType="Int"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="true" name="rpAdd"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

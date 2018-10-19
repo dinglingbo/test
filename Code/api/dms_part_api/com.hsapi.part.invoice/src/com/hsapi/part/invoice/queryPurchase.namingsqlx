@@ -223,7 +223,7 @@
                     (A.AUDIT_SIGN is not null)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                   <isNotEmpty prepend="and" property="serviceId">  
                     (a.service_id like '%$serviceId$%')
@@ -347,7 +347,7 @@
                    (A.AUDIT_SIGN is not null)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceId">  
                     (a.service_id like '%$serviceId$%')
@@ -745,7 +745,7 @@
                     (A.AUDIT_SIGN = #auditSign#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
@@ -850,7 +850,7 @@
                     (A.AUDIT_SIGN = #auditSign#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
@@ -1332,7 +1332,7 @@
                     (A.AUDIT_SIGN = #auditSign#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
             </dynamic>  
         
@@ -1471,14 +1471,14 @@
                     (a.service_id like '%$serviceId$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
             </dynamic>  
-           
-        
+
+                group by a.id
         ORDER BY A.OPERATE_DATE DESC
     </select>
     
@@ -1552,6 +1552,9 @@
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="isFinished"> 
+                    (a.is_finished = #isFinished#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="isDiffOrder"> 
                     (a.is_diff_order = #isDiffOrder#)
                 </isNotEmpty>
@@ -1609,13 +1612,13 @@
                     (A.AUDIT_SIGN = #auditSign#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
-                    (A.ID in ($serviceIdList$))
+                    (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
             </dynamic>  
-           
+           group by a.id
         
         ORDER BY A.OPERATE_DATE DESC
     </select>
@@ -1676,7 +1679,6 @@
                     (A.MAIN_ID = #mainId#)
                 </isNotEmpty>
             </dynamic>  
-           
         
         ORDER BY a.id asc
     </select>

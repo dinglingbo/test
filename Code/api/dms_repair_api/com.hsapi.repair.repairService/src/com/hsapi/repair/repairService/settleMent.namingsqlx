@@ -254,4 +254,12 @@
 		where service_id = #serviceId# and service_type_id > 0 and sales_deduct_origin_value is null
 	</select>
 	
+	<select id="getOtherAmt" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT sum(amt) as otherAmt from rps_expense where dc = 1 and service_id = #serviceId#
+	</select>
+	
+	<select id="getOtherCostAmt" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT sum(amt) as otherCostAmt from rps_expense where dc = -1 and service_id = #serviceId#
+	</select>
+	
 </sqlMap>

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购订单查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderMain.js?v=1.0.35"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderMain.js?v=1.0.38"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -39,8 +39,9 @@
                 <label style="font-family:Verdana;">快速查询：</label>
 
 				<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(12)">草稿</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(13)">待收货</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(14)">已入库</a>
+				<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(13)">待发货</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(14)">待收货</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(15)">已入库</a>
                 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
 
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
@@ -68,7 +69,7 @@
 <!--                 <label style="font-family:Verdana;">配件编码：</label> -->
 <!--                 <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/> -->
                 <!-- <label style="font-family:Verdana;">订单单号：</label> -->
-                <input id="serviceId" width="100px" emptyText="订单单号" class="nui-textbox"/>
+                <input id="serviceId" width="80px" emptyText="订单单号" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">供应商：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."

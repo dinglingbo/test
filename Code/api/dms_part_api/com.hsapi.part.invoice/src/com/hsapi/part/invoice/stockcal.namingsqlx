@@ -125,7 +125,7 @@
 			
 			
 			<isNotNull prepend = "" property = "partCode">
-				AND F.QUERY_CODE like '%$partCode$%'
+				AND F.QUERY_CODE like '%$partCode$%' 
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "partName">

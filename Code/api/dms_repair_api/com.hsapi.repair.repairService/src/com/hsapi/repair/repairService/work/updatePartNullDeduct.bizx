@@ -258,7 +258,7 @@
     <figSize height="17" width="105"/>
     <node>invokePojo2</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign12" name="赋值12" displayName="赋值" collapsed="false" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign12" name="赋值12" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="link26" isDefault="true" type="transition">
       <sourceNode>assign12</sourceNode>
       <targetNode>invokePojo2</targetNode>

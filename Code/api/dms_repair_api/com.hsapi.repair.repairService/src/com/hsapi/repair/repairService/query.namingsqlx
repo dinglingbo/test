@@ -481,7 +481,8 @@
 			a.out_no AS outNo,
 			a.print_num AS printNum,
 			a.recorder AS recorder,
-			a.record_date AS recordDate
+			a.record_date AS recordDate,
+			a.out_qty as stockQty
 		FROM
 			pj_repair_out a
 		WHERE 1=1
@@ -490,8 +491,11 @@
             <isNotEmpty prepend="and" property="orgid">
   				 a.orgid = #orgid#
              </isNotEmpty>
-             <isNotEmpty prepend="and" property="mainIdList">
-  				a.main_id in ($mainIdList$)
+             <isNotEmpty prepend="and" property="mainId">
+  				a.main_id = #mainId#
+             </isNotEmpty>
+             <isNotEmpty prepend="and" property="mainIdStr">
+  				a.main_id in ($mainIdStr$)
              </isNotEmpty>
              <isNotEmpty prepend="and" property="billTypeId">
   				a.bill_type_id = #billTypeId#
@@ -597,6 +601,16 @@
             </isNotEmpty>
             	 order by a.pick_date desc
         </dynamic>  
+	</select>
+	
+	<select id="queryTodayData" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		select * from (
+			(SELECT count(1) as newCarQty from rps_guest_file where comp_come_times = 1 and orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate#) newCarQty,
+			(select count(1) as recordBillQty from rps_maintain where is_disabled = 0 and orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate# ) recordBillQty,
+			(select count(1) as settleQty from rps_maintain where is_settle = 1 and orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate#) settleQty,
+			(select count(1) as serviceBillQty from rps_maintain where is_settle = 0 and orgid = #orgid# and is_disabled = 0 and sure_mt_sign = 1 and record_date &gt;= #startDate# and record_date &lt; #endDate#) serviceBillQty,
+			(SELECT count(1) as bookingBillQty from rps_prebook where orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate# ) bookingBillQty
+		)
 	</select>
 	
 </sqlMap>

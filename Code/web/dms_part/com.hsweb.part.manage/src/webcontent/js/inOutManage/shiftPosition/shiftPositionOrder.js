@@ -628,7 +628,7 @@ function onRightGridDraw(e)
             {
                 e.cellHtml = '<a style="color:red;">' + e.value + '</a>';
             }
-            break;
+            break;;
         case "operateBtn":
             e.cellHtml = //'<span class="icon-remove" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';/*'<span class="icon-add" onClick="javascript:addPart()" title="添加行">&nbsp;&nbsp;&nbsp;&nbsp;</span>' +
                         '<span class="fa fa-plus" onClick="javascript:addNewRow(true)" title="添加行">&nbsp;&nbsp;</span>' +
@@ -894,6 +894,7 @@ var partInfoUrl = baseUrl
         + "com.hsapi.part.invoice.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params){
     var part = null;
+
     nui.ajax({
         url : partInfoUrl,
         type : "post",
@@ -975,7 +976,7 @@ function addInsertRow(value, row) {
     var params = {partCode:value};
     var part = getPartInfo(params);
     if(part){
-        params.partId = part.id;
+    	params.partId = part.id;
         var newRow = {
             partId : part.id,
             comPartCode : part.code,
@@ -1087,7 +1088,7 @@ function addSelectPart(){
     if(row){
         var params = {partCode:row.code};
         params.partId = row.id;
-                    
+        
         var newRow = {
             partId : row.id,
             comPartCode : row.code,

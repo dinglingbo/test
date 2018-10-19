@@ -12,7 +12,7 @@
 <head> 
     <title>归库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.1"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.9"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -208,6 +208,7 @@ allowCellEdit="true" >
    <div headerAlign="center" type="indexcolumn" width="20">序号</div>
    <div type="checkcolumn"></div> 
    <div field="id" name="id" visible="false"  header="recordId"></div>
+   <div field="detailId" name="detailId" visible="false"  ></div>
    <div header="待出库-配件信息">  
     <div property="columns">
         <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
@@ -228,43 +229,67 @@ allowCellEdit="true" >
 </div>
 </div>  
 
-
-<div id="repairOutGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
-dataField="list"  allowCellSelect="true" multiSelect="false" 
-url=""  showModified="false"
-allowCellEdit="true"  >
-<div property="columns">
-   <div headerAlign="center" type="indexcolumn" width="30">序号</div>
-   <div type="checkcolumn" width="30" ></div>
-   <div header="可归库-配件信息">
-    <div property="columns">
-        <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
-        <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="80px" header="配件编码"></div>           
-        <div field="outQty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量"></div>
-        <div field="unit" headerAlign="center" allowSort="false" visible="false" width="80px" header="单位"></div>           
-        <div field="sellUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="销售单价"></div>
-        <div field="sellAmt" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="销售金额"></div>
-        <div field="trueUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本单价"></div>
-        <div field="trueCost" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本金额"></div>
-
-        <div field="returnSign" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="是否归库" renderer="onGenderRenderer"></div>
-        <div field="pickMan" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料人"></div>
-        <div field="pickDate" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料日期" dateFormat="yyyy-MM-dd"></div>
-        <div field="remark" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料备注"></div>
-
-        <div field="returnMan" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="归库人"></div>
-        <div field="returnDate" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="归库日期" dateFormat="yyyy-MM-dd"></div>
-        <div field="returnRemark" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="归库备注"></div>
-
-
-    </div>
-</div>
-</div>
+<div id="advancedPartWin" class="nui-window"
+     title="选择配件" style="width:800px;height:500px;"
+     showModal="true"“
+     allowResize="true"
+     allowDrag="true">
+    <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+		<table class="table" id="table1">
+			<tr> 
+				<td>
+					<a class="nui-button" iconCls="" plain="true" onclick="THSave()">
+						<span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
+					</td>
+				</tr>
+			</table>
+	</div>
+	<div class="nui-fit">
+		<div id="repairOutGrid" class="nui-datagrid" style="width:100%;height:100%;" showPager="false" 
+		dataField="list"  allowCellSelect="true" multiSelect="false" 
+		url=""  showModified="false"
+		allowCellEdit="true"  >
+		<div property="columns">
+		   <div headerAlign="center" type="indexcolumn" width="30">序号</div>
+		   <div type="checkcolumn" width="30" ></div>
+		   <div header="可归库-配件信息">
+		    <div property="columns">
+		        <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
+		        <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="80px" header="配件编码"></div>
+		        <div field="outReturnQty" headerAlign="center" allowSort="false" visible="false" width="60" datatype="int" align="center" header="已归库数量"></div>           
+		        <div field="stockQty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="可归库数量"></div>
+                <div field="outQty2" allowSort="false" datatype="int" width="60"  headerAlign="center" header="归库数量">
+        			<input property="editor"  allowNull="false" maxValue="1000000" decimalPlaces="0" class="mini-spinner" style="width:20%;" minWidth="20" />
+                </div>
+                <div field="remark" allowSort="false" datatype="int" width="60"  headerAlign="center" header="归库备注">
+        			<input property="editor"  class="mini-textbox" style="width:20%;" minWidth="20" />
+                </div>
+		        <div field="unit" headerAlign="center" allowSort="false" visible="false" width="80px" header="单位"></div>           
+		        <div field="sellUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="销售单价"></div>
+		        <div field="sellAmt" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="销售金额"></div>
+		        <div field="trueUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本单价"></div>
+		        <div field="trueCost" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本金额"></div>
+		
+<!-- 		        <div field="returnSign" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="是否归库" renderer="onGenderRenderer"></div> -->
+		        <div field="pickMan" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料人"></div>
+		        <div field="pickDate" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料日期" dateFormat="yyyy-MM-dd"></div>
+		        <div field="remark" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料备注"></div>
+		
+		        <div field="returnMan" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="归库人"></div>
+		        <div field="returnDate" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="归库日期" dateFormat="yyyy-MM-dd"></div>
+<!-- 		        <div field="returnRemark" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="归库备注"></div> -->
+		
+		
+		    </div>
+		</div>
+		</div>
+		</div>
+	</div>
 </div>
 
 <div style="width:100%;margin-top: 10px;">
-<!--     <a class="nui-button" onclick="LLSave()" plain="false">领料</a> -->
-    <a class="nui-button" onclick="THSave()" plain="false">退货</a>
+<!--     <a class="nui-button" onclick="open()" plain="false">领料</a> -->
+    <a class="nui-button" onclick="onOut()()" plain="false">退货</a>
 <!--     <a class="nui-button" onclick="onPrint(5)" plain="false">打印领料单</a> -->
 </div>
 </div>

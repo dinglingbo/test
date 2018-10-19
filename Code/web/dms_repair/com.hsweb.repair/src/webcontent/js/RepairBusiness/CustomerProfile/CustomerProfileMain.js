@@ -198,36 +198,62 @@ function onAdvancedSearchCancel(){
 }
 function addOrEditCustomer(guest)
 {
-    var title = "新增客户资料";
+
     if(guest)
     {
         title = "修改客户资料";
+        nui.open({
+            url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
+            title: title, width: 560, height: 570,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                var params = {};
+                if(guest)
+                {
+                    params.guest = guest;
+                }
+                iframe.contentWindow.setData(params);
+            },
+            ondestroy: function (action)
+            {
+                if("ok" == action)
+                {
+                    grid.reload();
+                }
+            }
+        });
+    }else{
+        var title = "新增客户资料";
+        nui.open({
+            url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditGuest.flow?token="+token,
+            title: title, width: 560, height: 570,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                var params = {};
+                if(guest)
+                {
+                    params.guest = guest;
+                }
+                iframe.contentWindow.setData(params);
+            },
+            ondestroy: function (action)
+            {
+                if("ok" == action)
+                {
+                    grid.reload();
+                }
+            }
+        });
     }
-    nui.open({
-        url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
-        title: title, width: 560, height: 570,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            var params = {};
-            if(guest)
-            {
-                params.guest = guest;
-            }
-            iframe.contentWindow.setData(params);
-        },
-        ondestroy: function (action)
-        {
-            if("ok" == action)
-            {
-                grid.reload();
-            }
-        }
-    });
-}
 
+}
 //打开会员卡充值页面
 function toUp(callback){
 	var row=grid.getSelected();
+	if(row==null){
+		nui.alert("请选择一位客户","提示");
+		return;
+	}
 	row.guestMobile = row.mobile;
 	if(row){
 		nui.open({
@@ -420,10 +446,30 @@ function importGuest(){
     });
 }
 
-function importCard(){
+function importCardByMobile(){
     nui.open({
         targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.RepairBusiness.importCard.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.RepairBusiness.importCardByMobile.flow?token="+token,
+        title: "客户储值卡导入", 
+        width: 930, 
+        height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+
+        },
+        ondestroy: function (action)
+        {
+        	grid.load();
+        }
+    });
+}
+
+function importCardByCarNo(){
+    nui.open({
+        targetWindow: window,
+        url: webPath + contextPath + "/com.hsweb.RepairBusiness.importCardByCarNo.flow?token="+token,
         title: "客户储值卡导入", 
         width: 930, 
         height: 560,

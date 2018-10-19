@@ -64,6 +64,8 @@
     #_sys_tip_msg_ span.small {
         height: auto;
     }
+    
+ 
 </style>
 </head>
 <body>
@@ -364,6 +366,7 @@
        	    if($(this).next().attr("id") == "orgsname"){
        	    	$("#orgsname").empty();
        	    	setOrgList();
+       	    	
        	    }
         
             $(this).parent().addClass("open");
@@ -425,6 +428,10 @@
             success: function(text){
                 var orgList = text.orgList;
                 if(orgList && orgList.length>0){
+                	if(orgList.length>16){
+                        $("#orgsname").attr("style", "position:absolute; height:400px; overflow:auto;");
+                    }
+                    
                     for (var i = 0; i < orgList.length; i++) {
                         var rtoken = '<li><a href="javascript:void(0);" onclick="changeOrgs('
                                 + orgList[i].orgid

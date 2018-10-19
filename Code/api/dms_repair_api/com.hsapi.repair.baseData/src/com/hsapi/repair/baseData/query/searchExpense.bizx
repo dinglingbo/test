@@ -40,7 +40,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.baseData.newdataset.RpsPackageBill</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsPackageBill</process:from>
       <process:to type="query">ct/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -146,7 +146,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.baseData.newdataset.RpsItemBill</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsItemBill</process:from>
       <process:to type="query">ct1/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -174,7 +174,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.baseData.newdataset.RpsPartBill</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsPartBill</process:from>
       <process:to type="query">ct2/_entity</process:to>
     </process:copy>
     <process:copy>

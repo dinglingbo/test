@@ -29,48 +29,16 @@ function setData(data){
 		token : token
 	}
 	
-	nui.ajax({
-		url : apiPath + repairApi + "/com.hsapi.repair.baseData.query.queryMemberByGuestId.biz.ext" ,
-		type : "post",
-		data : json,
-		success : function(data) {
-			if(data.member.length==0){
-				rechargeBalaAmt=0;
-			}else{	
-				rechargeBalaAmt = data.member[0].rechargeBalaAmt;
-			}
-			nui.get("rechargeBalaAmt").setValue("￥"+rechargeBalaAmt); 
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR.responseText);
-		}
-	});
 	addType();
 }
 
 function onChanged() {
 	var count = scount();
-	 deductible = nui.get("deductible").getValue()||0;
-	var PrefAmt = nui.get("PrefAmt").getValue()||0;
-	var memAmt = nui.get("rechargeBalaAmt").getValue()||0;
-	memAmt = (memAmt.split("￥"))[1];
-
-	if(deductible>memAmt){
-		nui.alert("储值抵扣不能大于储值余额","提示");
-		nui.get("deductible").setValue(0);
-		deductible=0;
-		nui.get("PrefAmt").setValue(0);
-		return;
-	}
-	if(parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count) > netInAmt){
+	if(parseFloat(count) > netInAmt){
 		nui.alert("收款大于应收金额，请重新填写","提示");
-		nui.get("deductible").setValue(0);
-		deductible=0;
-		nui.get("PrefAmt").setValue(0);
 		return;
 	}
-	
-	var amount = parseFloat(netInAmt) - parseFloat(deductible) - parseFloat(PrefAmt)-parseFloat(count);
+	var amount = parseFloat(netInAmt)-parseFloat(count);
 	document.getElementById('amount').innerHTML = amount;
 
 }
@@ -198,10 +166,6 @@ function settleOK() {
 		var rpAmt = guestData[0].rpAmt || 0; // 应结金额
 		var nowAmt = guestData[0].nowAmt || 0;
 		var nowVoidAmt = guestData[0].nowVoidAmt || 0;
-		if(guestData[0].nowAmt!=(count+deductible)){
-			nui.alert("结算金额与应收金额不一致","提示");
-			return;
-		}
 		accountDetail.rpDc = -1;
 		nowAmt = parseFloat(nowAmt);
 		nowVoidAmt = parseFloat(nowVoidAmt);
@@ -212,11 +176,15 @@ function settleOK() {
 		s1 += (nowAmt + nowVoidAmt);
 		accountDetail.charOffAmt = nowAmt;
 		accountDetail.voidAmt = nowVoidAmt;
+		if(guestData[0].nowAmt!=(count)){
+			nui.alert("结算金额与应收金额不一致","提示");
+			return;
+		}
 
 		accountDetailList.push(accountDetail);
 
-		account.rpDc = 1;
-		account.settleType = "应收";
+		account.rpDc = -1;
+		account.settleType = "应付";
 		account.voidAmt = pVoidAmt;
 		account.trueCharOffAmt = pTrueAmt;
 		account.charOffAmt = pVoidAmt + pTrueAmt;

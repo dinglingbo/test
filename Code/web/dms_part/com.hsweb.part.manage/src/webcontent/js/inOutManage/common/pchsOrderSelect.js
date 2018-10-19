@@ -49,12 +49,12 @@ var accountSignHash = {
     "1":"已审核"
 };
 var billStatusIdList = [
-    {id:0,name:"草稿"},
-    {id:1,name:"待发货"},
+//    {id:0,name:"草稿"},
+//    {id:1,name:"待发货"},
     {id:2,name:"待收货"},
-    {id:4,name:"已入库"},
-    {id:5,name:"已退回"},
-    {id:6,name:"已关闭"}
+    {id:4,name:"已入库"}
+//    {id:5,name:"已退回"},
+//    {id:6,name:"已关闭"}
 ];
 $(document).ready(function(v)
 {
@@ -308,20 +308,20 @@ function ontopTabChanged(e){
 
     if(name == "pchsOrderTab"){
         billStatusHash = {
-            "0":"草稿",
-            "1":"待发货",
+//            "0":"草稿",
+//            "1":"待发货",
             "2":"待收货",
-            "4":"已入库",
-            "5":"已退回",
-            "6":"已关闭"
+            "4":"已入库"
+//            "5":"已退回",
+//            "6":"已关闭"
         };
         billStatusIdList = [
-            {id:0,name:"草稿"},
-            {id:1,name:"待发货"},
+//            {id:0,name:"草稿"},
+//            {id:1,name:"待发货"},
             {id:2,name:"待收货"},
-            {id:4,name:"已入库"},
-            {id:5,name:"已退回"},
-            {id:6,name:"已关闭"}
+            {id:4,name:"已入库"}
+//            {id:5,name:"已退回"},
+//            {id:6,name:"已关闭"}
         ];
         billStatusIdEl.setData(billStatusIdList);
     }else if(name == "sellOrderTab"){

@@ -10,8 +10,12 @@ var cardatagrid = null;
 var contactview = null;
 var contactdatagrid = null;
 var contactInfoForm = null;
-var updCarList=[];
-var updContactList = [];
+
+var fullName = null;
+var mobile = null;
+var resultGuest = {};
+var resultCar = {};
+var resultContact= {};
 $(document).ready(function()
 {
 	carview = nui.get("carview");
@@ -72,33 +76,7 @@ function init(callback)
 var carList = [{}];
 var carHash = {};
 var currCarIdx = 0;
-function updateCarBtnState()
-{
-    var car = carList[currCarIdx];
-    carInfoFrom.setData(car);
-    //nui.get("carModelId").setText(car.carModel);
-    if(car.id)
-    {
-        nui.get("carNo").disable();
-    }
-    else{
-        nui.get("carNo").enable();
-    }
-    if(currCarIdx<=0)
-    {
-        nui.get("preCarBtn").disable();
-    }
-    else{
-        nui.get("preCarBtn").enable();
-    }
-    if(currCarIdx>=(carList.length-1))
-    {
-        nui.get("nextCarBtn").disable();
-    }
-    else{
-        nui.get("nextCarBtn").enable();
-    }
-}
+
 function setCarByIdx(idx)
 {
     if(currCarIdx>=0 && currCarIdx<carList.length)
@@ -107,7 +85,6 @@ function setCarByIdx(idx)
         //carList[currCarIdx].carModel = nui.get("carModelId").getText();
         carList[currCarIdx].isChanged = carInfoFrom.isChanged();
         currCarIdx = idx;
-        updateCarBtnState()
     }
 }
 function preCar()
@@ -122,25 +99,7 @@ function nextCar()
 var contactList = [{}];
 var contactHash = {};
 var currContactIdx = 0;
-function updateContactBtnState()
-{
-    contactInfoForm.setData(contactList[currContactIdx]);
-    //nui.get("carModelId").setText(contactList[currContactIdx].carModel);
-    if(currContactIdx<=0)
-    {
-        nui.get("preContactBtn").disable();
-    }
-    else{
-        nui.get("preContactBtn").enable();
-    }
-    if(currContactIdx>=(contactList.length-1))
-    {
-        nui.get("nextContactBtn").disable();
-    }
-    else{
-        nui.get("nextContactBtn").enable();
-    }
-}
+
 function preContact()
 {
     //上一个联系人
@@ -159,7 +118,6 @@ function setContactByIdx(idx)
         contact.isChanged = contactInfoForm.isChanged();
         contactList[currContactIdx] = contact;
         currContactIdx = idx;
-        updateContactBtnState();
     }
 }
 function addContact()
@@ -200,7 +158,7 @@ var basicRequiredField = {
     "identity":"联系人身份",
     "source":"联系人来源"
 };*/
-var resultData = {};
+
 var saveUrl = baseUrl+"com.hsapi.repair.repairService.crud.saveCustomerInfo.biz.ext";
 function onOk()
 {
@@ -252,8 +210,10 @@ function onOk()
         }
     });*/
 
-    var insCarList = cardatagrid.getData();
-    var insContactList = contactdatagrid.getData();
+    var insCarList = [];
+    var updCarList = [];
+    var insContactList = [];
+    var updContactList = [];
     nui.mask({
 		el : document.body,
 		cls : 'mini-mask-loading',
@@ -277,8 +237,9 @@ function onOk()
             if(data.errCode == "S")
             {
                 showMsg("保存成功");
-                resultData = data.retData;
-                CloseWindow("ok");
+                resultGuest = data.retData;
+                nui.get("guestId").setValue(resultGuest.guestId);
+                //CloseWindow("ok");
             }
             else{
                 showMsg(data.errMsg||"保存失败", "E");
@@ -460,25 +421,97 @@ function setCarModel(data){
 
 function onChanged(id){
 	if(id=="fullName"){
-		var fullName = nui.get("fullName").value;
+		fullName = nui.get("fullName").value;
 		nui.get("shortName").setValue(fullName);
+		
 	}
+	if(id=="mobile"){
+		mobile = nui.get("mobile").value;
+		
+	}
+	
+	
 }
 
 function addCar() {
+	if(resultGuest.guestId==null){
+		nui.alert("请先保存上面的客户信息","提示");
+		return;
+	}
+	carInfoFrom.setData("");
 	carview.show();
 }
 
 function addContact() {
+	if(resultGuest.guestId==null){
+		nui.alert("请先保存上面的客户信息","提示");
+		return;
+	}
 	contactview.show();
+	nui.get("name").setValue(fullName);
+	nui.get("mobile2").setValue(mobile);
 }
 
 function addCarList(){
+	nui.get("carNo").enable();
+	nui.get("vin").enable();
+	var updCarList=[];
+	var insCarList = [];
+	var insContactList=[];
+	var updContactList = [];
 	var car = carInfoFrom.getData();
 	if(car.carNo==""||car.vin==""){
 		nui.alert("车牌号和车架号(Vin)不能为空","提示");
+		return;
 	}else{
-		var newRow = {
+
+		var guest = basicInfoForm.getData();
+    	guest.id = resultGuest.guestId;
+    for(key in basicRequiredField){
+        if(!nui.get(key).value){
+            showMsg(basicRequiredField[key]+"不能为空", "W");
+            return;
+        }
+    }
+    
+    if(!checkMobile(nui.get("mobile").value)){
+        return;
+    }
+    
+    if(car.id==""||car.id==null){
+    	 insCarList = [car];
+
+    }else{
+    	 updCarList = [car];
+    }
+    
+    nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '保存中...'
+	});
+    
+    $("#btnGroup").hide();
+    doPost({
+        url : saveUrl,
+        data : {
+            guest:guest,
+            insCarList:insCarList,
+            updCarList:updCarList,
+            insContactList:insContactList,
+            updContactList:updContactList
+        },
+        success : function(data)
+        {
+        	nui.unmask(document.body);
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                showMsg("保存成功");
+                resultCar = data.retData;
+               var newRow = {
+            	id : resultCar.carId,
+            	guestId : resultCar.guestId,
 				carNo : car.carNo,
 				vin : car.vin,
 				carModel : car.carModel,
@@ -492,32 +525,117 @@ function addCarList(){
 				produceDate:car.produceDate,	
 				firstRegDate:car.firstRegDate,
 				issuingDate:car.issuingDate
-
 			};
-		cardatagrid.addRow(newRow);
-		carview.hide();
+                cardatagrid.addRow(newRow);
+       			carview.hide();
+                //CloseWindow("ok");
+            }
+            else{
+                showMsg(data.errMsg||"保存失败", "E");
+            }
+            $("#btnGroup").show();
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+        	nui.unmask(document.body);
+            showMsg("网络出错", "E");
+            $("#btnGroup").show();
+        }
+    });  
+		
 	}
 
 }
 
 function addContactList(){
+	var updCarList=[];
+	var insCarList = [];
+	var insContactList=[];
+	var updContactList = [];
 	var contact = contactInfoForm.getData();
+	if(contact.identity==""||contact.source==""){
+		nui.alert("身份和来源不能为空","提示");
+		return;
+	}else{
 
-		var newRow = {
-				name : contact.name,
-				sex : contact.sex,
-				mobile : contact.mobile,
-				identity :contact.identity,
-				source :contact.source,
-				drivingLicenceDueDate:contact.drivingLicenceDueDate,	
-				birthdayType:contact.birthdayType,
-				birthday:contact.birthday,
-				idNo:contact.idNo,
-				remark:contact.remark
+		var guest = basicInfoForm.getData();
+    	guest.id = resultGuest.guestId;
+    for(key in basicRequiredField){
+        if(!nui.get(key).value){
+            showMsg(basicRequiredField[key]+"不能为空", "W");
+            return;
+        }
+    }
+    
+    if(!checkMobile(nui.get("mobile").value)){
+        return;
+    }
+    
+    if(contact.id==""||contact.id==null){
+    	insContactList = [contact];
 
-			};
-		contactdatagrid.addRow(newRow);
-		contactview.hide();
+    }else{
+    	updContactList = [contact];
+    }
+    
+    nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '保存中...'
+	});
+    
+    $("#btnGroup").hide();
+    doPost({
+        url : saveUrl,
+        data : {
+            guest:guest,
+            insCarList:insCarList,
+            updCarList:updCarList,
+            insContactList:insContactList,
+            updContactList:updContactList
+        },
+        success : function(data)
+        {
+        	nui.unmask(document.body);
+            data = data||{};
+            if(data.errCode == "S")
+            {
+                showMsg("保存成功");
+                resultContact = data.retData;
+        		var newRow = {
+        				id:resultContact.contactorId,
+        				guestId:resultContact.guestId,
+        				name : contact.name,
+        				sex : contact.sex,
+        				mobile : contact.mobile,
+        				identity :contact.identity,
+        				source :contact.source,
+        				drivingLicenceDueDate:contact.drivingLicenceDueDate,	
+        				birthdayType:contact.birthdayType,
+        				birthday:contact.birthday,
+        				idNo:contact.idNo,
+        				remark:contact.remark
+
+        			};
+
+        		contactdatagrid.addRow(newRow);
+        		contactview.hide();
+                //CloseWindow("ok");
+            }
+            else{
+                showMsg(data.errMsg||"保存失败", "E");
+            }
+            $("#btnGroup").show();
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+        	nui.unmask(document.body);
+            showMsg("网络出错", "E");
+            $("#btnGroup").show();
+        }
+    });  
+		
+	}
+
+
 }
 
 function remove(){
@@ -527,17 +645,41 @@ function remove(){
 }
 function eaidCar(){
 	var row = cardatagrid.getSelected();
+	if(row==null){
+		nui.alert("请选择车辆","提示");
+		return;
+	}
 	cardatagrid.removeRow(row);
 	carview.show();
 	carInfoFrom.setData(row);
+	nui.get("carNo").disable();
+	nui.get("vin").disable();
 	
 }
 
 function eaidContact(){
 	var row = contactdatagrid.getSelected();
+	if(row==null){
+		nui.alert("请选择联系人","提示");
+		return;
+	}
 	contactdatagrid.removeRow(row);
 	contactview.show();
 	contactInfoForm.setData(row);
-	
+}
+
+function onDrawCell(e) {
+	var sexList = new Array("农历", "阴历");
+	var birthdayTypeList = new Array("男", "女", "未知");
+	switch (e.field) {
+	case "sex":
+		e.cellHtml = sexList[e.value];
+		break;
+	case "birthdayType":
+		e.cellHtml = birthdayTypeList[e.value];
+		break;
+
+
+	}
 }
 

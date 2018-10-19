@@ -93,6 +93,7 @@ function addReport()
     nui.get("saveBtn").enable();
     nui.get("cancelBtn").enable();
     basicInfoForm.setEnabled(true);
+    nui.get("type").disable();
     basicInfoForm.clear();
     var node = leftTree.getSelectedNode();
     var data = {

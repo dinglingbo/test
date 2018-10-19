@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.3.0"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.3.6"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -240,7 +240,8 @@
 		     showModified="false"
 		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true">
     <div property="columns">
-        <div field="orderIndex" name="orderIndex" headerAlign="center" allowSort="false" visible="true" width="20">序号</div>
+    	<div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
+        <div field="orderindex" name="orderindex" headerAlign="center" allowSort="false" visible="true" width="20">序号</div>
         <div header="项目信息">
             <div property="columns">
                 <div field="itemName" name="itemName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称

@@ -129,7 +129,7 @@ $(document).ready(function () {
 		        					subtotal : subtotal,
 		        					pid : pid,
 		        					myId : data[i].id,
-		        					orderIndex : data[i].orderIndex
+		        					orderindex : data[i].orderIndex
 		        			};
 		        			var dataAll = rpsItemGrid.getData();
 		        			rpsItemGrid.addRow(newRow,dataAll.length);
@@ -233,28 +233,9 @@ $(document).ready(function () {
 });
 
 function showBasicData(type){
-    var maintain = billForm.getData();
-    var isSettle = maintain.isSettle||0;
-    var status = maintain.status||0;
     var BasicDataUrl = null;
     var title = null;
-    if(!maintain.id){
-        showMsg("请选择保存工单!","W");
-        return;
-    }
-    if(status==2){
-        showMsg("本单已完工,不能录入!","W");
-        return;
-    }
-    if(isSettle == 1){
-        showMsg("本单已结算,不能录入!","W");
-        return;
-    }
-    var carVin = billForm.carVin;
-    var params = {
-        vin:carVin,
-        serviceId:maintain.id
-    };
+    var maintain = billForm.getData();
     if(type=="pkg"){
     	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";
     	title = "标准套餐查询";
@@ -264,35 +245,45 @@ function showBasicData(type){
     	title = "标准工时查询";
     }
     
-    
+    var carVin = billForm.carVin;
+    var params = {
+        vin:carVin,
+        serviceId:maintain.id,
+        type1 : 1
+    };
     nui.open({
         url: webPath + contextPath +BasicDataUrl+token,
         title: title,width: 900, height: 600,
         onload: function () {
         	var iframe = this.getIFrameEl();
-            //var carVin = maintain.carVin;
-            //var data = {
-            //    vin:carVin
-            //};
-            
-           /* iframe.contentWindow.setData(params,function(data,callback)
-            {
-            	//如果选择的是套餐，没有item属性
-               if(data.item)
-                {
-                    var tmpItem = data.item;
-                    addItem(tmpItem);
-                }
-                else{
-                    addPackage(data,callback);
-                }
-
-            });*/ 
-           iframe.contentWindow.setData(params,callback); 
+            iframe.contentWindow.setData(params,""); 
         },
         ondestroy: function (action)
         {
-        	        	
+        	var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getSelectedRow();
+            var dataAll = rpsItemGrid.getData();
+        	var orderindex = null;
+        	for(var j = 0 , k = dataAll.length ; j < k ; j ++){
+        		if(dataAll[j].pid == 0){
+        			orderindex = dataAll[j].orderindex;
+        		}
+        	}
+        	if(!orderindex){
+        		orderindex = 1;
+        	}else{
+        		orderindex = parseInt(orderindex) + 1;
+        	}
+        	var newRow = {
+        				itemName : data.itemName,
+        				itemTime :0,
+        				unitPrice : data.astandTime,
+        				subtotal : 0,
+        				pid : 0,
+        				orderindex : orderindex
+        				};
+        	var dataAll = rpsItemGrid.getData();
+        	rpsItemGrid.addRow(newRow,dataAll.length);
         }
     });
 }
@@ -300,27 +291,6 @@ function showBasicData(type){
 function showBasicDataPart(){
     var row = FItemRow;//rpsItemGrid.getRowByUID(row_uid);
 	//获取到工时中的ID,不确定是否是这个字段,把工时ID传到添加配件的页面中,考虑能不能直接在本页面把ID传到addToBillPart函数中
-    var itemId = null;
-    if(row){
-   	 itemId = row.id;
-    }else{
-        return;
-    }
-    var main = billForm.getData();
-    var isSettle = main.isSettle||0;
-    if(!main.id){
-        showMsg("请选择保存工单!","S");
-        return;
-    }
-    var status = main.status||0;
-    if(status == 2){
-        showMsg("本工单已完工,不能添加配件!","W");
-        return;
-    }
-    if(isSettle == 1){
-        showMsg("此单已结算,不能添加配件!","S");
-        return;
-    }  
     var BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPart.flow?token=";
     var title = "标准配件查询";
     //添加回调函数，进行显示
@@ -389,12 +359,19 @@ function choosePart(){//配件
         	var num = null;
         	for(var i = 0 , l = data.length ; i < l ; i ++){
         		if(data[i].pid == selectRow.myId){
-        			num = data[i].orderIndex;
+        			num = data[i].orderindex;
         			index = i;
         		}
         	}
-        	num = parseFloat(num)+0.1;
-        	num = num.toFixed(1);
+        	if(num){
+        		num = parseFloat(num)+0.1;
+            	num = num.toFixed(1);
+        	}else{//没有配件 index == 0
+        		num = selectRow.orderindex;
+        		num = parseFloat(num)+0.1;
+            	num = num.toFixed(1);
+            	index = rpsItemGrid.indexOf(selectRow);
+        	}
         	var newRow = {
         			itemName : name,
         			itemTime : 0,
@@ -402,7 +379,7 @@ function choosePart(){//配件
         			rate : 0,
         			subtotal : 0,
         			pid : selectRow.myId,
-        			orderIndex : num
+        			orderindex : num
         	};
         	rpsItemGrid.addRow(newRow,index+1);
 		}
@@ -483,13 +460,26 @@ function chooseItem(){
             	var subtotal = data[i].amt || "";
             	var itemTime = data[i].itemTime || "";
             	var unitPrice = data[i].unitPrice || "";
+            	var dataAll = rpsItemGrid.getData();
+            	var orderindex = null;
+            	for(var j = 0 , k = dataAll.length ; j < k ; j ++){
+            		if(dataAll[j].pid == 0){
+            			orderindex = dataAll[j].orderindex;
+            		}
+            	}
+            	if(!orderindex){
+            		orderindex = 1;
+            	}else{
+            		orderindex = parseInt(orderindex) + 1;
+            	}
             	var newRow = {
             				itemName : itemName,
             				type : type,
             				itemTime :itemTime,
             				unitPrice : unitPrice,
             				subtotal : subtotal,
-            				pid : 0
+            				pid : 0,
+            				orderindex : orderindex
             				};
             	var dataAll = rpsItemGrid.getData();
             	rpsItemGrid.addRow(newRow,dataAll.length);

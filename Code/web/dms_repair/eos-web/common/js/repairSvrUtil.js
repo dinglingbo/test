@@ -564,23 +564,8 @@ function doSelectBasicData(BasicDataUrl,title,params,callback){
         }
     });
 }
-function doBillPay(params,callback){
-	nui.open({
-        url: webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token="+token,
-        title: "工单结算", width: "70%", height: "80%", 
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.setData(params);
-        },
-        ondestroy: function (action) {
-			var iframe = this.getIFrameEl();
-			var data = iframe.contentWindow.getRtnData();
-			data = data || {};
-			data.action = action;
-			callback && callback(data);
-        }
-    });
-}
+
+
 function doSetStyle(status, isSettle){
 	status = status||0;
     isSettle = isSettle||0;
@@ -699,4 +684,20 @@ function doBillExpenseDetail(params,callback){
         }
     });
 }
-
+function doBillPay(params,callback){
+	nui.open({
+        url: webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token="+token,
+        title: "工单结算", width: "100%", height: "100%", 
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action) {
+			var iframe = this.getIFrameEl();
+			var data = iframe.contentWindow.getRtnData();
+			data = data || {};
+			data.action = action;
+			callback && callback(data);
+        }
+    });
+}

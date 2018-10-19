@@ -11,7 +11,7 @@
 
 <head>
 	<title>Title</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.3.0"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.3.1"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {

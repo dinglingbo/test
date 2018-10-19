@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.0.9"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.1"></script>
 <style type="text/css">
 
 table {
@@ -294,6 +294,7 @@ table {
                             <label>客户名称：</label>
                         </td>
                         <td >
+                         <input class="nui-hidden" name="id" id="guestId"/>
                             <input class="nui-textbox" id="fullName" name="fullName" width="100%" onvaluechanged="onChanged(this.id)"/>
                         </td>
                         <td class="form_label required">

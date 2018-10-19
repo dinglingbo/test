@@ -50,7 +50,7 @@ var accountSignHash = {
 };
 var billStatusIdList = [
 //    {id:0,name:"草稿"},
-//    {id:1,name:"待发货"},
+    {id:1,name:"待发货"},
     {id:2,name:"待收货"},
     {id:4,name:"已入库"}
 //    {id:5,name:"已退回"},
@@ -309,7 +309,7 @@ function ontopTabChanged(e){
     if(name == "pchsOrderTab"){
         billStatusHash = {
 //            "0":"草稿",
-//            "1":"待发货",
+            "1":"待发货",
             "2":"待收货",
             "4":"已入库"
 //            "5":"已退回",
@@ -317,7 +317,7 @@ function ontopTabChanged(e){
         };
         billStatusIdList = [
 //            {id:0,name:"草稿"},
-//            {id:1,name:"待发货"},
+            {id:1,name:"待发货"},
             {id:2,name:"待收货"},
             {id:4,name:"已入库"}
 //            {id:5,name:"已退回"},

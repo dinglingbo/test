@@ -509,7 +509,7 @@ function addCarList(){
             {
                 showMsg("保存成功");
                 resultCar = data.retData;
-               var newRow = {
+                var newRow = {
             	id : resultCar.carId,
             	guestId : resultCar.guestId,
 				carNo : car.carNo,
@@ -526,6 +526,12 @@ function addCarList(){
 				firstRegDate:car.firstRegDate,
 				issuingDate:car.issuingDate
 			};
+                var cargrid = cardatagrid.getData();
+                for(var i = 0 ;i<cargrid.length;i++){
+                	if(cargrid[i].id==car.id){
+                		cardatagrid.removeRow(cargrid[i]);
+                	}
+                }
                 cardatagrid.addRow(newRow);
        			carview.hide();
                 //CloseWindow("ok");
@@ -616,7 +622,12 @@ function addContactList(){
         				remark:contact.remark
 
         			};
-
+                var contactid = contactdatagrid.getData();
+                for(var i = 0 ;i<contactid.length;i++){
+                	if(contactid[i].id==contact.id){
+                		contactdatagrid.removeRow(contactid[i]);
+                	}
+                }
         		contactdatagrid.addRow(newRow);
         		contactview.hide();
                 //CloseWindow("ok");
@@ -649,7 +660,7 @@ function eaidCar(){
 		nui.alert("请选择车辆","提示");
 		return;
 	}
-	cardatagrid.removeRow(row);
+	//cardatagrid.removeRow(row);
 	carview.show();
 	carInfoFrom.setData(row);
 	nui.get("carNo").disable();
@@ -663,7 +674,7 @@ function eaidContact(){
 		nui.alert("请选择联系人","提示");
 		return;
 	}
-	contactdatagrid.removeRow(row);
+	//contactdatagrid.removeRow(row);
 	contactview.show();
 	contactInfoForm.setData(row);
 }

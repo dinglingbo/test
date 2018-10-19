@@ -32,7 +32,7 @@
 		WHERE packageId = #packageId#
     </select>
     <!--Stock1-->
-    <select id="getStock1" parameterClass="HashMap" resultClass="HashMap">
+<!--    <select id="getStock1" parameterClass="HashMap" resultClass="HashMap">
 		SELECT  a.comp_code compCode, a.part_id partId, a.part_code partCode, w.part_brand_id partBrandId, 
 			w.apply_car_model applyCarModel, w.car_brand_zh carBrandZh, w.name partName, w.part_type_id partTypeId,
 		    a.bala_qty balaQty, w.unit, a.bala_unit_price balaUnitPrice, a.amt, a.bala_amt balaAmt, 
@@ -53,9 +53,9 @@
 		WHERE a.bala_qty &gt; 0 
 			AND a.comp_code = #orgCode#
 			AND REPLACE(a.part_code, ' ', '') IN ($partCodes$)
-    </select>
+    </select>-->
     <!--Stock2-->
-    <select id="getStock2" parameterClass="HashMap" resultClass="HashMap">
+<!--    <select id="getStock2" parameterClass="HashMap" resultClass="HashMap">
     	SELECT  a.comp_code compCode, a.part_id partId, a.part_code partCode, w.part_brand_id partBrandId, 
 			w.apply_car_model applyCarModel, w.car_brand_zh carBrandZh, w.name partName, w.part_type_id partTypeId,
 		    a.bala_qty balaQty, w.unit, a.bala_unit_price balaUnitPrice, a.amt, a.bala_amt balaAmt, 
@@ -74,7 +74,7 @@
 		LEFT JOIN wb_part..vw_com_attribute w ON w.id = a.part_id 
 		WHERE a.bala_qty &gt; 0 
 			AND REPLACE(a.part_code, ' ', '') IN ($partCodes$)  
-    </select>
+    </select>-->
     <!--getBrandPart-->
     <select id="getBrandPart" parameterClass="HashMap" resultClass="HashMap">
     	SELECT DISTINCT b.id, b.code, b.name, b.qualityTypeId, b.brandId, b.parentGroupCode, b.parentGroupId, 

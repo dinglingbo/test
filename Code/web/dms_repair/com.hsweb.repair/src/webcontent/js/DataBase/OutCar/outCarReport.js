@@ -29,6 +29,9 @@ $(document).ready(function (v) {
             e.cellHtml = typeHash[e.value].name;
         }
      });
+    dataGrid.on("rowdblclick",function(e){
+		onOk();
+	});
 	
 });
 
@@ -47,4 +50,27 @@ function loadDataGridData(type)
     	token:token,
         params:params
     });
+}
+
+var reusltData = {};
+function getData()
+ {
+    return reusltData;
+ }
+function onOk(){
+	var row = dataGrid.getSelected();
+	if(row){
+		reusltData.content = row.content;
+		CloseWindow("ok");
+	}else{
+		nui.alert("请选中一条记录", "提示");
+	}
+}
+
+
+function CloseWindow(action)
+{
+	if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else window.close();
 }

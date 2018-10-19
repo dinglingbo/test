@@ -11,7 +11,7 @@
 -->
 <head>
 <title>出车报告</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/OutCar/outCarReport.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/OutCar/outCarReport.js?v=1.0.1"></script>
 <style type="text/css">
 
 table {
@@ -57,8 +57,7 @@ table {
    <div class="nui-fit">
 		<div id="datagrid1" dataField="outs" class="nui-datagrid"
 		     style="width: 100%; height: 100%;"
-		 showPager="false"
-		         onrowclick="onOutCarDataRowClick"
+		     showPager="false"
 		         selectOnLoad="true"
 		         allowSortColumn="true">
 	        <div property="columns">

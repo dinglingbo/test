@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.3.0"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.3.6"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -240,13 +240,14 @@
 		     showModified="false"
 		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true">
     <div property="columns">
-        <div headerAlign="center" type="indexcolumn" width="20">序号</div>
-        <div header="工时信息">
+    	<div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
+        <div field="orderindex" name="orderindex" headerAlign="center" allowSort="false" visible="true" width="20">序号</div>
+        <div header="项目信息">
             <div property="columns">
-                <div field="itemName" headerAlign="center" allowSort="false" visible="true" width="100">工时名称
+                <div field="itemName" name="itemName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称
                 	<input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时
+                <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时/数量
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
                 <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时单价
@@ -255,7 +256,7 @@
                 <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">工时金额
+                <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额
                 </div>
                  <div field="action" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="操作" align="center"></div>
@@ -267,45 +268,30 @@
     <span id="carHealthEl" >
         <a href="javascript:chooseItem()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择工时</a>
     </span>
-</div>
-                            <div style="width:100%;height:5px;"></div>
-                            <div id="rpsPartGrid"
-     dataField="cc"
-     class="nui-datagrid"
-     style="width: 100%; height:auto;"
-     showPager="false"
-     showModified="false"
-     editNextOnEnterKey="true"
-     allowSortColumn="true" allowCellEdit="true" allowCellSelect="true">
-    <div property="columns" >
-        <div headerAlign="center" type="indexcolumn" width="20">序号</div>
-        <div header="配件信息">
-            <div property="columns">
-                <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称">
-                    <input property="editor" class="nui-textbox" />
-                </div>
-                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量" >
-                    <input property="editor" vtype="float" class="nui-textbox" />
-                </div>
-                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价">
-                    <input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
-                <div  field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率" >
-                    <input property="editor" vtype="float" class="nui-textbox" id="MML"/>
-                </div>
-                <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额">
-                </div>
-                 <div field="action" headerAlign="center"
-                     allowSort="false" visible="true" width="60" header="操作" align="center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="text-align:center;">
+    <span>&nbsp;</span>
     <span id="carHealthEl" >
-        <a href="javascript:choosePart()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择配件</a>
+        <a href="javascript:showBasicData('item')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择标准工时</a>
     </span>
 </div>
+<div id="advancedMorePartWin" class="nui-window"
+     title="" style="height:70px;width:100px;"
+     showModal="false"
+     showHeader="false"
+     allowResize="false"
+     allowDrag="true">
+    <table style="text-align:left;width: 100%; height: 100%;padding-left:6px;">
+        <tr>
+            <td>
+            <a class="nui-button" iconCls="" plain="true" onclick="choosePart()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择配件</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <a class="nui-button" iconCls="" plain="true" onclick="showBasicDataPart()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择标准配件</a>
+            </td>
+        </tr>
+    </table>
+</div> 
                         </div>
                 
                         

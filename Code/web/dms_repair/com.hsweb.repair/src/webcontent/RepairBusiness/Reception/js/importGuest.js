@@ -129,7 +129,10 @@ function sure() {
 }
 
 function clear(){
-	mainGrid.setData([]);
+	var guestList = mainGrid.getData();
+	for(var i = 0 ; i<guestList.length;i++){
+		mainGrid.removeRow(guestList[i]);
+	}
 }
 
 function close(){

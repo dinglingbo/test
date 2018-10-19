@@ -106,7 +106,6 @@
                         <div header="基础信息" headerAlign="center">
                             <div property="columns">
                                 <div type="indexcolumn">序号</div>
-                                <div allowSort="true" field="isDisabled" width="50" headerAlign="center">状态</div>
                                 <div allowSort="true" field="qualityTypeId" width="60" headerAlign="center">品质</div>
                                 <div allowSort="true" field="partBrandId" width="70" headerAlign="center">品牌</div>
                                 <div allowSort="true" field="code" width="80" headerAlign="center" allowSort="true">编码</div>
@@ -146,6 +145,7 @@
                                 <div allowSort="true" field="abcType" width="80" headerAlign="center" allowSort="true">ABC类型</div>
                                 <div allowSort="true" field="produceFactory" width="80" headerAlign="center" allowSort="true">生产厂家</div>
                                 <div allowSort="true" field="nameEn" width="120" headerAlign="center" allowSort="true">英文名称</div>
+                                <div allowSort="true" field="isDisabled" width="50" headerAlign="center">状态</div>
                             </div>
                         </div>
                     </div>

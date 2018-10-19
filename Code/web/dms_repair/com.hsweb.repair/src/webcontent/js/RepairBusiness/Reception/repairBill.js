@@ -3706,9 +3706,8 @@ function outCarMainExpense(){
         showMsg("请先保存工单!","W");
         return;
     }
-    var params = {
-        serviceId:data.id||0
-    };
+    var params = { };
+    params = data;
     doOutCarMainExpenseDetail(params, function(data){
         data = data||{};
         if(data.action){
@@ -3720,13 +3719,14 @@ function outCarMainExpense(){
     });
 }
 
+//repair/DataBase/OutCar/OutCarReport.jsp
 function doOutCarMainExpenseDetail(params,callback){
 	nui.open({
-        url: webPath + contextPath +"/repair/DataBase/OutCar/OutCarReport.jsp?token="+token,
-        title: "费用登记", width: "50%", height: "60%", 
+        url: webPath + contextPath +"/repair/DataBase/OutCar/SelectOutCarReport.jsp?token="+token,
+        title: "出车报告", width: "30%", height: "40%", 
         onload: function () {
-           /* var iframe = this.getIFrameEl();
-            iframe.contentWindow.setData(params);*/
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(params);
         },
         ondestroy: function (action) {
 			/*var iframe = this.getIFrameEl();

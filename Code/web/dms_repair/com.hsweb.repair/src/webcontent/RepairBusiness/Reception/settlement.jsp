@@ -17,11 +17,11 @@
     <link href="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/mian.css" rel="stylesheet" type="text/css" /> 
 </head>
 <style>
-        table, td {
-            font-family: Tahoma,Geneva,sans-serif;
-            font-size: 13px;
-            color: #000;
-        }
+	        table, td {
+	            font-family: Tahoma,Geneva,sans-serif;
+	            font-size: 13px;
+	            color: #000;
+	        }
 
             table.ybk {
                 width: 100%;
@@ -45,11 +45,11 @@
                 border: 1px solid #000;
             }
 
-        .print_btn {
-            text-align: center;
-            width: 100%;
-            padding: 30px 0 20px 0;
-        }
+	        .print_btn {
+	            text-align: center;
+	            width: 100%;
+	            padding: 30px 0 20px 0;
+	        }
 
             .print_btn a {
                 width: 160px;
@@ -64,9 +64,9 @@
                 margin: 0 10px;
             }
 
-                .print_btn a:active, .print_btn a:hover {
-                    background: #df0024;
-                }
+            .print_btn a:active, .print_btn a:hover {
+                background: #df0024;
+            }
 
         .sminput {
             width: 640px;
@@ -251,9 +251,9 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1">
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8"><b></b></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"><b>工时项目</b></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8"><b>项目名称</b></td>
                     <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
-                    <td width="60" align="center" bgcolor="#f8f8f8"><b>数量</b></td>
+                    <td width="60" align="center" bgcolor="#f8f8f8"><b>工时/数量</b></td>
                     <td width="70" align="center" bgcolor="#f8f8f8"><b>优惠率</b></td>
                     <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
                 </tr>
@@ -261,7 +261,7 @@
 				</tbody>
             </table>
             <div style="height: 12px;"></div>
-                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk1">
+                    <!-- <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk1">
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8"><b></b></td>
                     <td height="28" align="center" bgcolor="#f8f8f8"><b>配件项目</b></td>
@@ -273,7 +273,7 @@
                 <tbody id="tbodyId3">
 				</tbody>
             </table>
-            <div style="height: 12px;"></div>
+            <div style="height: 12px;"></div> -->
         <div style="color:#000;height:32px; margin-top:-8px;">
             <span style="font-size: 16px; float:right; font-weight: bold;">价格合计：&yen;<span id="cash"></span>元</span>
             套餐：<span id="prdt">0</span>&nbsp;&nbsp;+&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;+&nbsp;&nbsp;配件：<span id="part">0</span>
@@ -484,7 +484,7 @@
         	if(params.type){
         		url_two = "com.hsapi.repair.repairService.svr.billgetRpsMainItem.biz.ext?serviceId=";
         	}else{
-        		url_two = "com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext?serviceId=";
+        		url_two = "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext?serviceId=";
         	}
         	 $.post(params.baseUrl+url_two+params.serviceId+"&token="+params.token,{},function(text){//工时
 	        	if(text.errCode == "S"){
@@ -499,15 +499,29 @@
     				var data = text.data;
     				for(var i = 0 , l = data.length ; i < l ; i++){
     					document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
-    					document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
     					var rate = data[i].rate;
     					rate = (rate/100).toFixed(1) + "%";
     					var tr = $("<tr></tr>");
+    					var itemTime = null;
+    					var itemName = null;
+    					if(params.type){
+    						 itemTime = data[i].itemTime || "";
+    						 itemName = data[i].itemName || "";
+    					}else{
+    						itemTime = data[i].qty || "";
+    						itemName = data[i].prdtName || "";
+    					}
+    					if(data[i].pid != 0 ){
+    						itemName = "&nbsp;&nbsp;&nbsp;&nbsp;" + itemName;
+    						document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
+    					}else{
+    						document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
+    					}
 				    			tr.append(
-				    				tds.replace("[id]",i + 1)
-				    				.replace("[itemName]",data[i].itemName)
+				    				tds.replace("[id]",data[i].orderIndex)
+				    				.replace("[itemName]",itemName)
 				    				.replace("[unitPrice]",data[i].unitPrice)
-				    				.replace("[itemTime]",data[i].itemTime)
+				    				.replace("[itemTime]",itemTime)
 				    				.replace("[rate]",rate)
 				    				.replace("[subtotal]",data[i].subtotal));
 				    			tBody.append(tr);
@@ -515,12 +529,12 @@
     				}
 	        	}
         	});
-        	if(params.type){
+        	/* if(params.type){
         		url_three = "com.hsapi.repair.repairService.svr.billgetRpsMainPart.biz.ext?serviceId=";
         	}else{
         		url_three = "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext?serviceId=";
-        	}
-	        $.post(params.baseUrl+url_three+params.serviceId+"&token="+params.token,{},function(text){//配件
+        	} */
+	        /* $.post(params.baseUrl+url_three+params.serviceId+"&token="+params.token,{},function(text){//配件
 	        	if(text.errCode == "S"){
 	        		var tBody = $("#tbodyId3");
     				tBody.empty();
@@ -548,7 +562,7 @@
 		    			getSubtotal();
     				}
 	        	}
-	        });
+	        }); */
         }
         
         function box_setup_open() {

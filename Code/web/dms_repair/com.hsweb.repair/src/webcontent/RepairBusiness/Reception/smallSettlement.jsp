@@ -127,7 +127,7 @@
 						</tbody>
                     </table>
                 </div>
-                <div class="peijian">
+                <!-- <div class="peijian">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <thead>
                             <tr>
@@ -138,7 +138,7 @@
                         <tbody id="tbodyId2">
 						</tbody>
                     </table>
-                </div>
+                </div> -->
                 <div class="shishou">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     	<tr>
@@ -266,7 +266,7 @@
             	});
             	//document.getElementById("name").innerHTML = "&nbsp;工时";
             	nui.ajax({
-	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainItem.biz.ext",
+	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext",
 	                type : "post",
 	                data : {
 	                	serviceId : params.serviceId
@@ -278,10 +278,16 @@
 		    			"<td align='center'>[sal]</td>";
 	                   if(text.errCode == "S"){
 	                   		for(var i = 0 , l = data.length ; i < l ; i ++){
-	                   			document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
 	                   			var tr = $("<tr></tr>");
+	                   			var itemName = data[i].prdtName || "";
+	                   			if(data[i].pid != 0 ){
+		    						itemName = "&nbsp;&nbsp;&nbsp;&nbsp;" + itemName;
+		    						document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
+		    					}else{
+		    						document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
+		    					}
 				    			tr.append(
-				    				tds.replace("[name]",data[i].itemName)
+				    				tds.replace("[name]",itemName)
 				    				.replace("[sal]",data[i].amt));
 				    			tBody.append(tr);
 				    			document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].amt);
@@ -294,7 +300,7 @@
 	                }
             	});
             	//document.getElementById("name").innerHTML = "&nbsp;配件";
-            	nui.ajax({
+            	/* nui.ajax({
 	                url: params.baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext",
 	                type : "post",
 	                data : {
@@ -322,7 +328,7 @@
 	                    console.log(jqXHR.responseText);
 	                    showMsg("网络出错", "W");
 	                }
-            	});
+            	}); */
     	}
     </script>
 </body>

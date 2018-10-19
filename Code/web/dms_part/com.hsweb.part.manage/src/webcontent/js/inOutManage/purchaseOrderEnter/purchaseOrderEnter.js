@@ -32,7 +32,7 @@ var oldValue = null;
 var oldRow = null;
 var partShow = 0;
 var autoNew = 0;
-
+var memList=[];
 
 // 单据状态
 var AuditSignList = [ {
@@ -75,7 +75,7 @@ $(document).ready(function(v) {
 	eCreateDate = nui.get("eCreateDate");
 	
 	initMember("orderMan",function(){
-//      memList = mtAdvisorIdEl.getData();
+		memList = nui.get('orderMan').getData();
   });
 	$("#guestId").bind("keydown", function (e) {
         /*if (e.keyCode == 13) {
@@ -266,10 +266,11 @@ function getParentStoreId(){
 }
 function loadMainAndDetailInfo(row) {
 	if (row) {
+		nui.get("orderMan").setText(row.orderMan);
+		row.orderMan=row.orderManId; 
 		basicInfoForm.setData(row);
 		//bottomInfoForm.setData(row);
 		nui.get("guestId").setText(row.guestFullName);
-		nui.get("orderMan").setText(row.orderMan);
 
 		var row = leftGrid.getSelected();
 		if (row.auditSign == 1) {
@@ -679,7 +680,8 @@ function add() {
 
 	var formJsonThis = nui.encode(basicInfoForm.getData());
 	var len = rightGrid.getData().length;
-	var orderMan=basicInfoForm.getData().orderMan;
+	var orderMan=nui.get('orderMan').getText()
+	var orderManId=nui.get('orderMan').getValue();
 
 	if (formJson != formJsonThis && len > 0) {// 
 		nui.confirm("您正在编辑数据,是否要继续?", "友情提示", function(action) {
@@ -708,10 +710,15 @@ function add() {
 				nui.get("sourceType").setValue(0);
 				
 				if(!orderMan || orderMan==""){
-					nui.get("orderMan").setValue(currUserName);
-					nui.get("orderMan").setText(currUserName);
+					for(var i=0;i<memList.length;i++){
+						if(currUserId==memList[i].empId){
+							nui.get("orderMan").setValue(currUserId);
+							nui.get("orderMan").setText(currUserName);
+						}
+					}
+				
 				}else{
-					nui.get("orderMan").setValue(orderMan);
+					nui.get("orderMan").setValue(orderManId);
 					nui.get("orderMan").setText(orderMan);
 				}
 				addNewRow();
@@ -743,8 +750,19 @@ function add() {
 		nui.get("serviceId").setValue("新采购入库");
 		nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 		nui.get("createDate").setValue(new Date());
-		nui.get("orderMan").setValue(orderMan);
-		nui.get("orderMan").setText(orderMan);
+		
+		if(!orderMan || orderMan==""){
+			for(var i=0;i<memList.length;i++){
+				if(currUserId==memList[i].empId){
+					nui.get("orderMan").setValue(currUserId);
+					nui.get("orderMan").setText(currUserName);
+				}
+			}
+		
+		}else{
+			nui.get("orderMan").setValue(orderManId);
+			nui.get("orderMan").setText(orderMan);
+		}
 		
 		addNewRow();
 
@@ -764,6 +782,9 @@ function getMainData() {
 	data.printTimes = 0;
 	data.orderTypeId = 1;
 	data.isDiffOrder = 1;
+	
+	data.orderManId=nui.get('orderMan').getValue();
+	data.orderMan=nui.get('orderMan').getText();
 
 	if (data.operateDate) {
 		data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss')
@@ -2110,7 +2131,10 @@ function setInitExportData(main, detail){
         "<td  colspan='1' align='left'>[orderQty]</td>" +
         "<td  colspan='1' align='left'>[orderPrice]</td>" +
         "<td  colspan='1' align='left'>[orderAmt]</td>" +
-        "<td  colspan='1' align='left'>[remark]</td>";
+        "<td  colspan='1' align='left'>[storeId]</td>"+
+        "<td  colspan='1' align='left'>[storeShelf]</td>"+
+        "<td  colspan='1' align='left'>[comOemCode]</td>"+
+        "<td  colspan='1' align='left'>[comSpec]</td>";
     var tableExportContent = $("#tableExportContent");
     tableExportContent.empty();
     for (var i = 0; i < detail.length; i++) {

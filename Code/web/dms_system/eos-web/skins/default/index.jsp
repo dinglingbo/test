@@ -499,6 +499,9 @@
                 var orgList = text.orgList;
                 if(orgList && orgList.length>0){
                     for (var i = 0; i < orgList.length; i++) {
+	                	if(orgList.length>16){
+	                        $("#orgsname").attr("style", "position:absolute; height:400px; overflow:auto;");
+	                    }
                         var rtoken = '<li><a href="javascript:void(0);" onclick="changeOrgs('
                                 + orgList[i].orgid
                                 + ')" title="'

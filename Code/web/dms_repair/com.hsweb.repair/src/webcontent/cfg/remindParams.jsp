@@ -91,7 +91,7 @@
                     <input class="nui-hidden" name="id"/>
                     <table class="tmargin" width="100%">
                         <tr class="htr">
-                            <td class="tbtext ">距离车辆下次保养日期前后</td>
+                            <td class="tbtext ">距离车辆下次保养日期</td>
                             <td >
                                 <input name="param1" class="nui-spinner" width="50px" format="0" 
                                     id="param1" maxValue="999999" showButton="false"/>天提醒

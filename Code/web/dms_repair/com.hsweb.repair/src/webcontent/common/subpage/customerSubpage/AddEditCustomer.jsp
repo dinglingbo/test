@@ -42,43 +42,52 @@ table {
             <div class="form" id="basicInfoForm">
                 <input class="nui-hidden" name="id"/>
                 <table class="nui-form-table" style="width:99%">
-                    <tr>
+                     <tr>
                         <td class="form_label required">
                             <label>客户名称：</label>
                         </td>
-                        <td colspan="3">
-                            <input class="nui-textbox" id="fullName" name="fullName" width="100%"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="form_label">
-                            <label>客户简称：</label>
-                        </td>
-                        <td>
-                            <input class="nui-textbox" name="shortName" width="100%"/>
+                        <td >
+                         <input class="nui-hidden" name="id" id="guestId"/>
+                            <input class="nui-textbox" id="fullName" name="fullName" width="100%" onvaluechanged="onChanged(this.id)"/>
                         </td>
                         <td class="form_label required">
                             <label>手机号码：</label>
                         </td>
                         <td>
-                            <input class="nui-textbox" id="mobile" name="mobile" onValuechanged="processMobile(this.value)" width="100%"/>
-                        </td>
-                        <!--
-                        <td class="form_label">
-                            <label>会员卡号：</label>
-                        </td>
-                        <td>
-                            <input class="nui-textbox" name="memCarNo" width="100%"/>
+                            <input class="nui-textbox" id="mobile" name="mobile"  width="100%" onvaluechanged="onChanged(this.id)" />
                         </td>
                     </tr>
                     <tr>
                         <td class="form_label">
-                            <label>电话：</label>
+                            <label>性别：</label>
                         </td>
                         <td>
-                            <input class="nui-textbox" name="tel" width="100%"/>
+                            <input class="nui-combobox" data="[{value:'0',text:'男',},{value:'1',text:'按折后价比例'},]"
+						textField="text" valueField="value" name="sex"
+						value="0"  />
                         </td>
-                        -->
+                        <td class="form_label ">
+                            <label>客户简称：</label>
+                        </td>
+                        <td>
+                            <input class="nui-textbox" id="shortName" name="shortName" onValuechanged="processMobile(this.value)" width="100%"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form_label">
+                            <label>生日类型：</label>
+                        </td>
+                        <td>
+                            <input class="nui-combobox" data="[{value:'0',text:'农历',},{value:'1',text:'阳历'},]"
+						textField="text" valueField="value" name="birthdayType"
+						value="0"  />
+                        </td>
+                        <td class="form_label ">
+                            <label>生日日期：</label>
+                        </td>
+                        <td>
+                            <input name="birthday" allowInput="false" class="nui-datepicker" width="100%"/>
+                        </td>
                     </tr>
                     <tr>
                         <td class="form_label">

@@ -180,6 +180,7 @@ function settleOK() {
 		var pRPAmt = 0; // 应付金额
 		var pTrueAmt = 0; // 实付金额
 		var pVoidAmt = 0; // 免付金额
+		pVoidAmt = parseFloat(pVoidAmt);
 		var pNoCharOffAmt = 0; // 未结金额
 		var rpAmt = 0; // 合计金额
 		var pAmount = 0;
@@ -198,7 +199,7 @@ function settleOK() {
 		var rpAmt = guestData[0].rpAmt || 0; // 应结金额
 		var nowAmt = guestData[0].nowAmt || 0;
 		var nowVoidAmt = guestData[0].nowVoidAmt || 0;
-		if(guestData[0].nowAmt!=(count+deductible)){
+		if(guestData[0].nowAmt!=(count+deductible+pVoidAmt)){
 			nui.alert("结算金额与应收金额不一致","提示");
 			return;
 		}

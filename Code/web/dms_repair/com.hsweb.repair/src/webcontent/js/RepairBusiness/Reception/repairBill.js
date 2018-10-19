@@ -2825,6 +2825,8 @@ function pay(){
         var params = {
             serviceId:data.id||0,
             guestId:data.guestId||0,
+            carNo:data.carNo||0,
+            guestName:$("#guestNameEl").text(),
             data:sellData
         };
         doBillPay(params, function(data){

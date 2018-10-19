@@ -11,7 +11,7 @@
 -->
 <head>
 <title>出车报告</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/OutCar/SelectOutCarReport.js?v=1.0.8"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/OutCar/SelectOutCarReport.js?v=1.0.9"></script>
 <style type="text/css">
 
 table {

@@ -74,9 +74,9 @@ function save(){
 		success : function(text) {
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == "S") {
-				showMsg("保存成功","W");
+				showMsg("保存成功","S");
 			} else {
-				showMsg(returnJson.errMsg,"E");
+				showMsg(returnJson.errMsg,"W");
 			}		
 		}
 	});	

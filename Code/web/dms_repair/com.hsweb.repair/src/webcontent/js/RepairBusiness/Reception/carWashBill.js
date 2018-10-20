@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/3/21.
  */ 
  var webBaseUrl = webPath + contextPath + "/";   
- var baseUrl = apiPath + repairApi + "/";      
+ var baseUrl = apiPath + repairApi + "/";       
  var mainGrid = null;  
  var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
  var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
@@ -12,7 +12,7 @@
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
   
  var billForm = null;   
- var xyguest = null; 
+ var xyguest = null;  
  var brandList = []; 
  var brandHash = {};
  var servieTypeList = [];
@@ -20,7 +20,7 @@
  var receTypeIdList = [];
  var receTypeIdHash = {};
  var memList = [];
- var serviceTypeIdEl = null;
+ var serviceTypeIdEl = null; 
  var mtAdvisorIdEl = null;
  var searchNameEl = null;
  var servieIdEl = null;
@@ -3353,10 +3353,11 @@ function newCheckMain() {
     item.iconCls = "fa fa-cog";
     //window.parent.activeTab(item);
     var params = {};
-    params = { 
+    params = {
         id:data.id,
-        actionType:"",
-        row: rdata
+        actionType:"new",
+        row: rdata,
+        isCheckMain:"N"//是否是直接开单
     };
 
     window.parent.activeTabAndInit(item,params);
@@ -3459,6 +3460,10 @@ function SaveCheckMain() {
         serviceId:data.id, 
         carId:data.carId,
         carNo:data.carNo,
+        carVin:data.carVin,
+        guestId:data.guestId,
+        contactorId:data.contactorId,
+        serviceCode:document.getElementById("servieIdEl").innerText.trim(),
         checkStatus:0,
         enterKilometers:data.enterKilometers,
         mtAdvisorId:data.mtAdvisorId,

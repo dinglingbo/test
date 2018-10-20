@@ -3719,19 +3719,4 @@ function outCarMainExpense(){
     });
 }
 
-//repair/DataBase/OutCar/OutCarReport.jsp
-function doOutCarMainExpenseDetail(params,callback){
-	nui.open({
-        url: webPath + contextPath +"/repair/DataBase/OutCar/SelectOutCarReport.jsp?token="+token,
-        title: "出车报告", width: "30%", height: "40%", 
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.setData(params);
-        },
-        ondestroy: function (action) {
-			/*var iframe = this.getIFrameEl();
-			callback && callback();*/
-        }
-    });
-}
 

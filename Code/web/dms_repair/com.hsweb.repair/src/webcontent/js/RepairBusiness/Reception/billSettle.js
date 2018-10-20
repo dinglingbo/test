@@ -134,6 +134,7 @@ function getData(data){
 	onetInAmt  = data.mtAmt;
 }
 function setData(params){
+	var amt = 0;
 	var serviceId = params.serviceId||0;
 	var data = params.data||{};
 	var guestId = params.guestId||0;
@@ -141,9 +142,7 @@ function setData(params){
 	fserviceId = serviceId;
 	document.getElementById('carNo').innerHTML = params.carNo;
 	document.getElementById('guest').innerHTML = params.guestName;
-	document.getElementById('totalAmt').innerHTML = "￥"+params.data.mtAmt;
-	document.getElementById('totalAmt1').innerHTML = params.data.mtAmt;
-	document.getElementById('amount').innerHTML = params.data.mtAmt;
+
 	
 	nui.get('packageSubtotal').setValue("￥"+params.data.packageSubtotal);
 	nui.get('itemSubtotal').setValue("￥"+params.data.itemSubtotal);
@@ -168,17 +167,33 @@ function setData(params){
 			srnum = rs.data;
 			if(srnum.length>0){
 				for(var i = 0;i<rs.data.length;i++){
-					var ss = '<td width="110" height="44" align="right">收入项目</td>'+'<td>'+'<input class="nui-textbox" enabled="false" id ='+i+'typeCode name ="amount" value='+rs.data[i].typeCode+' style="width: 100px;">'+'</td>   <td width="110" height="44" align="right">收入金额</td>'+'<td>'+'<input class="nui-textbox" enabled="false" value='+rs.data[i].amt+' id ='+i+'typeCode name ="amount"  style="width: 100px;">'+'</td> <td width="110" height="44" align="right">备注</td>'+'<td>'+'<input class="nui-textbox" enabled="false" value='+rs.data[i].remark+' id ='+i+'typeCode name ="amount"  style="width: 100px;">'+'</td>';
+					if(rs.data[i].remark==null){
+						rs.data[i].remark="无";
+					}
+					var ss = '<td width="110" height="44" align="right">收入项目</td>'+'<td>'+'<input class="nui-textbox" enabled="false" id ='+i+'stypeCode name ="amount" value='+rs.data[i].typeCode+' style="width: 100px;">'+'</td>   <td width="110" height="44" align="right">收入金额</td>'+'<td>'+'<input class="nui-textbox" enabled="false" value='+rs.data[i].amt+' id ='+i+'sAmt name ="amount"  style="width: 100px;">'+'</td> <td width="110" height="44" align="right">备注</td>'+'<td>'+'<input class="nui-textbox" enabled="false" value='+rs.data[i].remark+' id ='+i+'sremark name ="amount"  style="width: 100px;">'+'</td>';
 						ss=ss+'</tr>'+'<tr>';
 					str = str+ss;
 				}
 				str='<tr>'+str+'</tr>';
 			}else{
-				str='<tr><td ><spand>无</spand></td></tr>';
+				str='<tr><td align="center" ><spand style="color: #ff7800;">无其他收入</spand></td></tr>';
 			}
 
 			document.getElementById('paytype0').innerHTML = str;
-
+			for(var i = 0;i<rs.data.length;i++){
+				//nui.get().enable();
+				document.getElementById(i+"stypeCode").disabled =true;
+				document.getElementById(i+"sAmt").disabled =true;
+				document.getElementById(i+"sremark").disabled =true;
+			}
+			amt = parseFloat(amt);
+			for(var i = 0;i<srnum.length;i++){
+				amt=amt+parseFloat(srnum[i].amt);
+			}
+			params.data.mtAmt = parseFloat(params.data.mtAmt)+amt;
+			document.getElementById('totalAmt').innerHTML = "￥"+params.data.mtAmt;
+			document.getElementById('totalAmt1').innerHTML = params.data.mtAmt;
+			document.getElementById('amount').innerHTML = params.data.mtAmt;
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			// nui.alert(jqXHR.responseText);
@@ -198,14 +213,27 @@ function setData(params){
 		async: false,
 		success : function(rs) {
 			var str = "";
-			for(var i = 0;i<rs.data.length;i++){
-				var ss = '<td width="110" height="44" align="right">费用项目</td>'+'<td>'+'<input class="nui-textbox" id ='+i+'typeCode name ="amount" value='+rs.data[i].typeCode+' style="width: 100px;">'+'</td>   <td width="110" height="44" align="right">支出金额</td>'+'<td>'+'<input class="nui-textbox" value='+rs.data[i].amt+' id ='+i+'typeCode name ="amount"  style="width: 100px;">'+'</td> <td width="110" height="44" align="right">备注</td>'+'<td>'+'<input class="nui-textbox" value='+rs.data[i].remark+' id ='+i+'typeCode name ="amount"  style="width: 100px;">'+'</td>';
-					ss=ss+'</tr>'+'<tr>';
-		
-				str = str+ss;
+			srnum = rs.data;
+			if(srnum.length>0){
+				for(var i = 0;i<rs.data.length;i++){
+					if(rs.data[i].remark==null){
+						rs.data[i].remark="无";
+					}
+					var ss = '<td width="110" height="44" align="right">费用项目</td>'+'<td>'+'<input class="nui-textbox" readonly="readonly" id ='+i+'ztypeCode name ="amount" value='+rs.data[i].typeCode+' style="width: 100px;">'+'</td>   <td width="110" height="44" align="right">支出金额</td>'+'<td>'+'<input class="nui-textbox" readonly="readonly" value='+rs.data[i].amt+' id ='+i+'zAmt name ="amount"  style="width: 100px;">'+'</td> <td width="110" height="44" align="right">备注</td>'+'<td>'+'<input class="nui-textbox" enabled="false" value='+rs.data[i].remark+' id ='+i+'zremark name ="amount"  style="width: 100px;">'+'</td>';
+						ss=ss+'</tr>'+'<tr>';
+					str = str+ss;
+				}
+				str='<tr>'+str+'</tr>';
+			}else{
+				str='<tr><td align="center" ><spand style="color: #ff7800;">无费用支出</spand></td></tr>';
 			}
-			str='<tr>'+str+'</tr>';
 			document.getElementById('paytype1').innerHTML = str;
+			for(var i = 0;i<rs.data.length;i++){
+				//nui.get().enable();
+				document.getElementById(i+"ztypeCode").disabled =true;
+				document.getElementById(i+"zAmt").disabled =true;
+				document.getElementById(i+"zremark").disabled =true;
+			}
 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -358,10 +386,7 @@ function pay(){
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
 	var payType = nui.get("payType").getValue()||0;
 	var amt = $("#amount").text();
-		amt = parseFloat(amt);
-	for(var i = 0;i<srnum.length;i++){
-		amt=amt+parseFloat(srnum[i].amt);
-	}
+
 
 
 	var json = {
@@ -435,4 +460,43 @@ function checkGrid(){
 	}
 
 	return rs;
+}
+
+function doNoPay(serviceId,allowanceAmt){
+	var json = {
+			serviceId:serviceId,
+			allowanceAmt:allowanceAmt,
+			token:token
+	};
+	
+    nui.confirm("确定将此单加入待结算吗？", "友情提示",function(action){
+	       if(action == "ok"){
+			    nui.mask({
+			        el : document.body,
+				    cls : 'mini-mask-loading',
+				    html : '处理中...'
+			    });
+				nui.ajax({
+					url : apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
+					type : "post",
+					data : json,
+					success : function(data) {
+						if(data.errCode=="S"){
+							nui.unmask(document.body);
+							nui.alert("待结算成功","提示");
+						}else{
+							nui.unmask(document.body);
+							nui.alert(data.errMsg,"提示");
+						}
+
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						// nui.alert(jqXHR.responseText);
+						console.log(jqXHR.responseText);
+					}
+				});		
+	     }else {
+				return;
+		 }
+	});
 }

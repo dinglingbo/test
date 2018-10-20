@@ -166,13 +166,17 @@ function setData(params){
 		success : function(rs) {
 			var str = "";
 			srnum = rs.data;
-			for(var i = 0;i<rs.data.length;i++){
-				var ss = '<td width="110" height="44" align="right">收入项目</td>'+'<td>'+'<input class="nui-textbox" id ='+i+'typeCode name ="amount" value='+rs.data[i].typeCode+' style="width: 100px;">'+'</td>   <td width="110" height="44" align="right">收入金额</td>'+'<td>'+'<input class="nui-textbox" value='+rs.data[i].amt+' id ='+i+'typeCode name ="amount"  style="width: 100px;">'+'</td> <td width="110" height="44" align="right">备注</td>'+'<td>'+'<input class="nui-textbox" value='+rs.data[i].remark+' id ='+i+'typeCode name ="amount"  style="width: 100px;">'+'</td>';
-					ss=ss+'</tr>'+'<tr>';
-		
-				str = str+ss;
+			if(srnum.length>0){
+				for(var i = 0;i<rs.data.length;i++){
+					var ss = '<td width="110" height="44" align="right">收入项目</td>'+'<td>'+'<input class="nui-textbox" enabled="false" id ='+i+'typeCode name ="amount" value='+rs.data[i].typeCode+' style="width: 100px;">'+'</td>   <td width="110" height="44" align="right">收入金额</td>'+'<td>'+'<input class="nui-textbox" enabled="false" value='+rs.data[i].amt+' id ='+i+'typeCode name ="amount"  style="width: 100px;">'+'</td> <td width="110" height="44" align="right">备注</td>'+'<td>'+'<input class="nui-textbox" enabled="false" value='+rs.data[i].remark+' id ='+i+'typeCode name ="amount"  style="width: 100px;">'+'</td>';
+						ss=ss+'</tr>'+'<tr>';
+					str = str+ss;
+				}
+				str='<tr>'+str+'</tr>';
+			}else{
+				str='<tr><td ><spand>无</spand></td></tr>';
 			}
-			str='<tr>'+str+'</tr>';
+
 			document.getElementById('paytype0').innerHTML = str;
 
 		},
@@ -342,26 +346,9 @@ function adjustData(data){
 	return rlist;
 }
 function noPay(){
-	var rs = checkGrid();
-	if(rs.rmsg || rs.pmsg){
-		if(rs.rmsg){
-			showMsg(rs.rmsg,"W");
-			return;
-		}
-		if(rs.pmsg){
-			showMsg(rs.pmsg,"W");
-			return;
-		}
-	}
 
-	var receiveData = receiveGrid.getData();
-	var payData = payGrid.getData();
-
-	receiveData = adjustData(receiveData);
-	payData = adjustData(payData);
-
-	var data = sellForm.getData();
-	doNoPay(fserviceId,data.PrefAmt,receiveData,payData);
+	var PrefAmt = nui.get("PrefAmt").getValue()||0;
+	doNoPay(fserviceId,PrefAmt);
 }
 
 function pay(){

@@ -3734,3 +3734,42 @@ function doOutCarMainExpenseDetail(params,callback){
         }
     });
 }
+
+function doNoPay(serviceId,allowanceAmt){
+	var json = {
+			serviceId:serviceId,
+			allowanceAmt:allowanceAmt,
+			token:token
+	};
+	
+    nui.confirm("确定将此单加入待结算", "友情提示",function(action){
+	       if(action == "ok"){
+			    nui.mask({
+			        el : document.body,
+				    cls : 'mini-mask-loading',
+				    html : '处理中...'
+			    });
+				nui.ajax({
+					url : baseUrl + "com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
+					type : "post",
+					data : json,
+					success : function(data) {
+						if(data.errCode=="S"){
+							nui.unmask(document.body);
+							nui.alert("待结算成功","提示");
+						}else{
+							nui.unmask(document.body);
+							nui.alert(data.errMsg,"提示");
+						}
+
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						// nui.alert(jqXHR.responseText);
+						console.log(jqXHR.responseText);
+					}
+				});		
+	     }else {
+				return;
+		 }
+	});
+}

@@ -81,7 +81,9 @@
             </tr>
             <tr class="htr">
                 <td class=" right fwidtha">备注:</td>
-                <td ><input id="remark" name="remark" width="100%" class="nui-textbox" ></td>
+                <td ><input id="remark" name="remark" width="100%" class="nui-textbox"></td>
+                <td width="10%">默认:</td>
+                <td><input type="checkbox" id="setMonth" class="mini-checkbox"  onclick="changed()" ></td>
             </tr>
         </table>
 

@@ -188,7 +188,7 @@
                                   <td class="title required">
                                       <label>票据类型：</label>
                                   </td>
-                                  <td>
+                                  <td style="widrh:7%">
                                       <input name="billTypeId"
                                              id="billTypeId"
                                              class="nui-combobox width1"

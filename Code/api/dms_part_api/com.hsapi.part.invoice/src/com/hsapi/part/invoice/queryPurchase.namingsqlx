@@ -1477,8 +1477,8 @@
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
             </dynamic>  
-           
-        
+
+                group by a.id
         ORDER BY A.OPERATE_DATE DESC
     </select>
     
@@ -1552,6 +1552,9 @@
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="isFinished"> 
+                    (a.is_finished = #isFinished#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="isDiffOrder"> 
                     (a.is_diff_order = #isDiffOrder#)
                 </isNotEmpty>
@@ -1615,7 +1618,7 @@
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
             </dynamic>  
-           
+           group by a.id
         
         ORDER BY A.OPERATE_DATE DESC
     </select>
@@ -1676,7 +1679,6 @@
                     (A.MAIN_ID = #mainId#)
                 </isNotEmpty>
             </dynamic>  
-           
         
         ORDER BY a.id asc
     </select>

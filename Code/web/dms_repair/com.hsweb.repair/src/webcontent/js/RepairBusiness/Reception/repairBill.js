@@ -2825,6 +2825,8 @@ function pay(){
         var params = {
             serviceId:data.id||0,
             guestId:data.guestId||0,
+            carNo:data.carNo||0,
+            guestName:$("#guestNameEl").text(),
             data:sellData
         };
         doBillPay(params, function(data){
@@ -3697,3 +3699,39 @@ function updateBillExpense(){
         }
     });
 }
+
+function outCarMainExpense(){
+	var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }
+    var params = { };
+    params = data;
+    doOutCarMainExpenseDetail(params, function(data){
+        data = data||{};
+        if(data.action){
+            var action = data.action||"";
+            if(action == 'ok'){
+            }else{
+            }
+        }
+    });
+}
+
+//repair/DataBase/OutCar/OutCarReport.jsp
+function doOutCarMainExpenseDetail(params,callback){
+	nui.open({
+        url: webPath + contextPath +"/repair/DataBase/OutCar/SelectOutCarReport.jsp?token="+token,
+        title: "出车报告", width: "30%", height: "40%", 
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action) {
+			/*var iframe = this.getIFrameEl();
+			callback && callback();*/
+        }
+    });
+}
+

@@ -158,7 +158,7 @@
       <process:to type="query">pt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">part</process:from>
+      <process:from type="literal" pattern="reference">DB03_ORA_WB_PART</process:from>
       <process:to type="query">pe/def/ds</process:to>
     </process:copy>
     <process:copy>
@@ -174,7 +174,7 @@
       <process:to type="query">pe/def/sumCols</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">partBrandId</process:from>
+      <process:from type="literal" pattern="reference">carTypeIdF</process:from>
       <process:to type="query">pe/def/groupBy</process:to>
     </process:copy>
     <process:copy>
@@ -182,7 +182,7 @@
       <process:to type="query">pe/def/page</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">part</process:from>
+      <process:from type="literal" pattern="reference">DB03_ORA_WB_PART</process:from>
       <process:to type="query">pt/def/ds</process:to>
     </process:copy>
     <process:copy>
@@ -198,7 +198,7 @@
       <process:to type="query">pt/def/sumCols</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">partBrandId</process:from>
+      <process:from type="literal" pattern="reference">carTypeIdF</process:from>
       <process:to type="query">pt/def/groupBy</process:to>
     </process:copy>
     <process:copy>

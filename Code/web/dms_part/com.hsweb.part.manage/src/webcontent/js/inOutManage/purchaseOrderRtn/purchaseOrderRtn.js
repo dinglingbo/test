@@ -29,6 +29,7 @@ var isNeedSet = false;
 var oldValue = null;
 var oldRow = null;
 var partShow=0;
+var memList=[];
 
 var AuditSignHash = {
   "0":"草稿",
@@ -60,6 +61,10 @@ $(document).ready(function(v)
 
     sOrderDate = nui.get("sOrderDate");
     eOrderDate = nui.get("eOrderDate");
+    
+	initMember("orderMan",function(){
+		memList = nui.get('orderMan').getData();
+  });
 
     var dictDefs ={"rtnReasonId":"DDT20130703000072", "settleTypeId":"DDT20130703000035"};
     initDicts(dictDefs, function(){
@@ -143,7 +148,9 @@ function getParentStoreId(){
 function loadMainAndDetailInfo(row)
 {
     if(row) {    
-       basicInfoForm.setData(row);
+    	nui.get("orderMan").setText(row.orderMan);
+		row.orderMan=row.orderManId; 
+		basicInfoForm.setData(row);
        //bottomInfoForm.setData(row);
        nui.get("guestId").setText(row.guestFullName);
 
@@ -486,6 +493,9 @@ function getMainData()
     data.printTimes = 0;
     data.orderTypeId = 3;
 
+    data.orderManId=nui.get('orderMan').getValue();
+	data.orderMan=nui.get('orderMan').getText();
+	
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
     }
@@ -889,6 +899,8 @@ function add()
 
     var formJsonThis = nui.encode(basicInfoForm.getData());
     var len = rightGrid.getData().length;
+    var orderMan=nui.get('orderMan').getText()
+	var orderManId=nui.get('orderMan').getValue();
 
     if(formJson != formJsonThis && len > 0)
     {
@@ -912,8 +924,19 @@ function add()
                     nui.get("serviceId").setValue("新采购退货");
                     nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
                     nui.get("createDate").setValue(new Date());
-                    nui.get("orderMan").setValue(currUserName);
-                    
+
+                    if(!orderMan || orderMan==""){
+    					for(var i=0;i<memList.length;i++){
+    						if(currUserId==memList[i].empId){
+    							nui.get("orderMan").setValue(currUserId);
+    							nui.get("orderMan").setText(currUserName);
+    						}
+    					}
+    				
+    				}else{
+    					nui.get("orderMan").setValue(orderManId);
+    					nui.get("orderMan").setText(orderMan);
+    				}
                     addNewRow();
 
                     var guestId = nui.get("guestId");
@@ -941,7 +964,19 @@ function add()
         nui.get("serviceId").setValue("新采购退货");
         nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
         nui.get("createDate").setValue(new Date());
-        nui.get("orderMan").setValue(currUserName);
+        
+        if(!orderMan || orderMan==""){
+			for(var i=0;i<memList.length;i++){
+				if(currUserId==memList[i].empId){
+					nui.get("orderMan").setValue(currUserId);
+					nui.get("orderMan").setText(currUserName);
+				}
+			}
+		
+		}else{
+			nui.get("orderMan").setValue(orderManId);
+			nui.get("orderMan").setText(orderMan);
+		}
 
         addNewRow();
         
@@ -1710,7 +1745,7 @@ function addDetail(rows)
             partId : row.partId,
             comPartCode : row.comPartCode,
             comPartName : row.comPartName,
-            comPartBrandId : row.comFullName,
+            comPartBrandId : row.comPartBrandId,
             comApplyCarModel : row.comApplyCarModel,
             comUnit : row.comUnit,
             orderQty : row.orderQty,

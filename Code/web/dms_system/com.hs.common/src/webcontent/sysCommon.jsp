@@ -88,7 +88,8 @@
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
 	}else{
-		IUserObject u = (IUserObject) session.getAttribute("userObject");		
+		IUserObject u = (IUserObject) session.getAttribute("userObject");	
+		System.out.println(u);	
 		if (u != null) {
             orgId = u.getUserOrgId();
             orgName = u.getUserOrgName();
@@ -97,7 +98,6 @@
             userRealName = u.getUserRealName();
             
 			String noOrgId = "N";
-			
             try {
 				attr = u.getAttributes();
 				token = attr.get("token").toString();
@@ -109,6 +109,7 @@
                 compAddress  = attr.get("compAddress").toString();
                 compTel = attr.get("compTel").toString();
 			} catch (Exception e) {
+				e.printStackTrace();
 			}
             
             if(token==null || token.trim().length()==0){

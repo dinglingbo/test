@@ -117,7 +117,7 @@
       <div showCollapseButton="false">
           
           <div class="nui-fit">
-              <fieldset id="fd1" style="width:95%;min-width:800px;height:100px;">
+              <fieldset id="fd1" style="width:97%;min-width:800px;height:100px;">
                   <legend><span>采购入库信息</span></legend>
                   <div class="fieldset-body">
                   
@@ -159,7 +159,7 @@
 	                                      id="orderMan" 
 	                                      name="orderMan" 
 	                                      textField="empName"
-			                              valueField="empName"
+			                              valueField="empId"
 			                              emptyText="请选择..."
 			                              url=""
 			                              required="true"
@@ -188,7 +188,7 @@
                                   <td class="title required">
                                       <label>票据类型：</label>
                                   </td>
-                                  <td>
+                                  <td style="widrh:7%">
                                       <input name="billTypeId"
                                              id="billTypeId"
                                              class="nui-combobox width1"

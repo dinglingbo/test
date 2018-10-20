@@ -198,33 +198,55 @@ function onAdvancedSearchCancel(){
 }
 function addOrEditCustomer(guest)
 {
-    var title = "新增客户资料";
+
     if(guest)
     {
         title = "修改客户资料";
+        nui.open({
+            url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
+            title: title, width: 560, height: 570,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                var params = {};
+                if(guest)
+                {
+                    params.guest = guest;
+                }
+                iframe.contentWindow.setData(params);
+            },
+            ondestroy: function (action)
+            {
+                if("ok" == action)
+                {
+                    grid.reload();
+                }
+            }
+        });
+    }else{
+        var title = "新增客户资料";
+        nui.open({
+            url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditGuest.flow?token="+token,
+            title: title, width: 750, height: 570,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                var params = {};
+                if(guest)
+                {
+                    params.guest = guest;
+                }
+                iframe.contentWindow.setData(params);
+            },
+            ondestroy: function (action)
+            {
+                if("ok" == action)
+                {
+                    grid.reload();
+                }
+            }
+        });
     }
-    nui.open({
-        url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditGuest.flow?token="+token,
-        title: title, width: 560, height: 570,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            var params = {};
-            if(guest)
-            {
-                params.guest = guest;
-            }
-            iframe.contentWindow.setData(params);
-        },
-        ondestroy: function (action)
-        {
-            if("ok" == action)
-            {
-                grid.reload();
-            }
-        }
-    });
-}
 
+}
 //打开会员卡充值页面
 function toUp(callback){
 	var row=grid.getSelected();

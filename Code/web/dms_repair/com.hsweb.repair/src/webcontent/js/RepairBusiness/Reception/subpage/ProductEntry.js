@@ -311,15 +311,25 @@ function doSearchPart(params)
 }
 var callback = null;
 var serviceId = null;
+
+function getSelectedRow(){
+	var row = itemGrid.getSelected();
+	return row;
+}
+
 function setData(data,ck)
 {
     data = data||{};
     callback = ck;
-    var vin = data.vin||"";
-    serviceId = data.serviceId;
-    init();
-    vinEl.setValue(vin);
-    vinEl.doValueChanged();
+    if(data.type1){
+    	nui.get("ExpenseAccount").setValue("1");
+    }else{
+    	var vin = data.vin||"";
+        serviceId = data.serviceId;
+        init();
+        vinEl.setValue(vin);
+        vinEl.doValueChanged();
+    }
 }
 function getItemKind(item_kind)
 {
@@ -331,163 +341,167 @@ var stdItemUrl = baseUrlRe +"com.hsapi.repair.repairService.crud.insStdItem.biz.
 //添加配件时注意传工时Id，这个功能还没做
 var stdPartUrl = baseUrlRe +"com.hsapi.repair.repairService.crud.insStdPart.biz.ext";
 function doSelect(idx)
-{
-    var result = {};
-    var row = null;
-    
-    if(idx == 0)
-    {
-        result.pkg = packageGrid.getSelected();
-        row = result.pkg;
-        if(row.id){
-        	
-        	 nui.mask({
-                 el: document.body,
-                 cls: 'mini-mask-loading',
-                 html: '数据加载中...'
-             });
-        }
-        pkg = {
-        	packageCarmtId:row.id,
-        	serviceId:serviceId
-        }
-    	var json = nui.encode({
-    		"pkg":pkg,
-    		token:token
-    	});
-        var p1 = {
-                interType: "package",
-                data:{
-                    serviceId: serviceId||0
-                }
-            };
-		var p2 = {};
-		var p3 = {};
-    	nui.ajax({
-    		url : stdPkgUrl,
-    		type : 'POST',
-    		data : json,
-    		cache : false,
-    		contentType : 'text/json',
-    		success : function(text) {
-    			var returnJson = nui.decode(text);
-    			if (returnJson.errCode == "S") {
-    				showMsg("套餐添加成功","S");
-    				//执行回调函数，传参数，套餐参数,不知道可不可行
-    				CloseWindow("ok");
-    				callback && callback(p1,p2,p3);
-    			} else {
-    				showMsg(returnJson.errMsg,"W");
-    				nui.unmask(document.body);
-    				}
-    		    }
-    	 });
-    }
-    else if(idx == 1){
-        result.item = itemGrid.getSelected();
-        row = result.item;
-      /*  var item_kind = getItemKind(row.itemKind);
-        row.itemKind = item_kind;*/
-        if(row.itemId){
-        	
-       	 nui.mask({
-                el: document.body,
-                cls: 'mini-mask-loading',
-                html: '数据加载中...'
-            });
-       }
-        insItem = {
-        		itemId:row.itemId,
-            }
-        	var json = nui.encode({
-        		"insItem":insItem,
-        		"serviceId":serviceId,
-        		token:token
-        	});
-            var p1 = { };
-    		var p2 = {
-                    interType: "item",
-                    data:{
-                        serviceId: serviceId || 0
-                    }
-                }
-    		var p3 = {};
-        	nui.ajax({
-        		url : stdItemUrl,
-        		type : 'POST',
-        		data : json,
-        		cache : false,
-        		contentType : 'text/json',
-        		success : function(text) {
-        			var returnJson = nui.decode(text);
-        			if (returnJson.errCode == "S") {
-        				showMsg("工时添加成功","S");
-        				//执行回调函数，传参数，套餐参数,不知道可不可行
-        				CloseWindow("ok");
-        				callback && callback(p1,p2,p3);
-        			} else {
-        				showMsg(returnJson.errMsg,"W");
-        				nui.unmask(document.body);
-        				}
-        		    }
-        	 });
-    }else if(idx == 2){
-    	
-    	
-    	
-  
-    }
-   /* if(!row)
-    {
-        return;
-    }
-    if(result.pkg)
-    {
-        var list = packageDetail.getData();
-        var doCallback = function()
-        {
-            list.forEach(function(v)
-            {
-                if(v.itemKind)
-                {
-                    var item_kind = getItemKind(v.itemKind);
-                    v.itemKind = item_kind;
-                }
-            });
-            var itemList = list.filter(function(v)
-            {
-                return v.type == "工时";
-            });
-            var partList = list.filter(function(v){
-                return v.type == "配件";
-            });
-            result.itemList = itemList;
-            result.partList = partList;
-            callback && callback(result,function(){
-                nui.showTips({
-                    content: "<b>成功</b> <br/>套餐添加成功",
-                    state: "success",
-                    x: "center",
-                    y: "top",
-                    timeout: 3000
-                });
-            });
-        };
-        if(list.length > 0)
-        {
-            doCallback();
-        }
-        else{
-            loadPackageDetailByPkgId(row.id,function()
-            {
-                list = packageDetail.getData();
-                doCallback();
-            });
-        }
-    }
-    else{
-        callback && callback(result);
-    }*/
+{	
+	if(nui.get("ExpenseAccount").value){//别动（ - -！）
+		window.CloseOwnerWindow("ok");
+	}else{
+	    var result = {};
+	    var row = null;
+	    
+	    if(idx == 0)
+	    {
+	        result.pkg = packageGrid.getSelected();
+	        row = result.pkg;
+	        if(row.id){
+	        	
+	        	 nui.mask({
+	                 el: document.body,
+	                 cls: 'mini-mask-loading',
+	                 html: '数据加载中...'
+	             });
+	        }
+	        pkg = {
+	        	packageCarmtId:row.id,
+	        	serviceId:serviceId
+	        }
+	    	var json = nui.encode({
+	    		"pkg":pkg,
+	    		token:token
+	    	});
+	        var p1 = {
+	                interType: "package",
+	                data:{
+	                    serviceId: serviceId||0
+	                }
+	            };
+			var p2 = {};
+			var p3 = {};
+	    	nui.ajax({
+	    		url : stdPkgUrl,
+	    		type : 'POST',
+	    		data : json,
+	    		cache : false,
+	    		contentType : 'text/json',
+	    		success : function(text) {
+	    			var returnJson = nui.decode(text);
+	    			if (returnJson.errCode == "S") {
+	    				showMsg("套餐添加成功","S");
+	    				//执行回调函数，传参数，套餐参数,不知道可不可行
+	    				CloseWindow("ok");
+	    				callback && callback(p1,p2,p3);
+	    			} else {
+	    				showMsg(returnJson.errMsg,"W");
+	    				nui.unmask(document.body);
+	    				}
+	    		    }
+	    	 });
+	    }
+	    else if(idx == 1){
+	        result.item = itemGrid.getSelected();
+	        row = result.item;
+	      /*  var item_kind = getItemKind(row.itemKind);
+	        row.itemKind = item_kind;*/
+	        if(row.itemId){
+	        	
+	       	 nui.mask({
+	                el: document.body,
+	                cls: 'mini-mask-loading',
+	                html: '数据加载中...'
+	            });
+	       }
+	        insItem = {
+	        		itemId:row.itemId,
+	            }
+	        	var json = nui.encode({
+	        		"insItem":insItem,
+	        		"serviceId":serviceId,
+	        		token:token
+	        	});
+	            var p1 = { };
+	    		var p2 = {
+	                    interType: "item",
+	                    data:{
+	                        serviceId: serviceId || 0
+	                    }
+	                }
+	    		var p3 = {};
+	        	nui.ajax({
+	        		url : stdItemUrl,
+	        		type : 'POST',
+	        		data : json,
+	        		cache : false,
+	        		contentType : 'text/json',
+	        		success : function(text) {
+	        			var returnJson = nui.decode(text);
+	        			if (returnJson.errCode == "S") {
+	        				showMsg("工时添加成功","S");
+	        				//执行回调函数，传参数，套餐参数,不知道可不可行
+	        				CloseWindow("ok");
+	        				callback && callback(p1,p2,p3);
+	        			} else {
+	        				showMsg(returnJson.errMsg,"W");
+	        				nui.unmask(document.body);
+	        				}
+	        		    }
+	        	 });
+	    }else if(idx == 2){
+	    	
+	    	
+	    	
+	  
+	    }
+	   /* if(!row)
+	    {
+	        return;
+	    }
+	    if(result.pkg)
+	    {
+	        var list = packageDetail.getData();
+	        var doCallback = function()
+	        {
+	            list.forEach(function(v)
+	            {
+	                if(v.itemKind)
+	                {
+	                    var item_kind = getItemKind(v.itemKind);
+	                    v.itemKind = item_kind;
+	                }
+	            });
+	            var itemList = list.filter(function(v)
+	            {
+	                return v.type == "工时";
+	            });
+	            var partList = list.filter(function(v){
+	                return v.type == "配件";
+	            });
+	            result.itemList = itemList;
+	            result.partList = partList;
+	            callback && callback(result,function(){
+	                nui.showTips({
+	                    content: "<b>成功</b> <br/>套餐添加成功",
+	                    state: "success",
+	                    x: "center",
+	                    y: "top",
+	                    timeout: 3000
+	                });
+	            });
+	        };
+	        if(list.length > 0)
+	        {
+	            doCallback();
+	        }
+	        else{
+	            loadPackageDetailByPkgId(row.id,function()
+	            {
+	                list = packageDetail.getData();
+	                doCallback();
+	            });
+	        }
+	    }
+	    else{
+	        callback && callback(result);
+	    }*/
+	}
 }
 //选择
 function onOk(id)

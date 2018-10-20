@@ -12,11 +12,12 @@ var accountTypeList = null;
 var accountTypeIdEl = null;
 var settleAccountGrid = null;
 var settleList = null;
-
+var isDefault = null;
 $(document).ready(function(v) {
 	mainForm = new nui.Form("#editForm");
 	parentidEl = nui.get("parentid");
 	accountTypeIdEl  = nui.get("accountTypeId");
+	isDefault = nui.get("isDefault");
 
 	accountTypeList = [{ id: 1, name: "现金" },{ id: 2, name: "银行存款" },{ id: 3, name: "积分/卡券" }];
 	accountTypeIdEl.setData(accountTypeList);
@@ -24,11 +25,10 @@ $(document).ready(function(v) {
 	settleAccountGrid = nui.get("settleAccountGrid");
 	settleAccountGrid.setUrl(queryUrl);
 
-	/*getSettleType(function(data) {
+	getSettleType(function(data) {
 		settleList = data.list || [];
 
-	});*/
-
+	});
 });
 var querySettleTypeUrl = baseUrl
 		+ "com.hsapi.frm.setting.querySettleType.biz.ext";
@@ -55,7 +55,9 @@ function SetData(row, newRow){
 	rowT = row;
 	newRowT = newRow;
 	mainForm.setData(rowT);
-
+	if(rowT.isDefault==1){
+		isDefault.setValue(true);
+	}
 	if(row.id == null || row.id == ""){
 		addSettleAccountRow();
 		accountTypeIdEl.setValue(1);
@@ -83,6 +85,7 @@ function saveType(type){
 	
 	var data = mainForm.getData();
 	var settleTypeData = settleAccountGrid.getData();
+	var is = isDefault.getValue();
 	if(settleTypeData){
 		if(settleTypeData.length == 0){
 			nui.alert("请添加账户对应的结算方式!");
@@ -126,7 +129,12 @@ function saveType(type){
 		html : '保存中...'
 	});
 
-	data.isdisabled = 0;
+	if(is=="true"){
+		data.isDefault = 1;
+	}else{
+		data.isDefault = 0;
+	}
+	data.isDisabled = 0;
 	data.isquickwear = 0;
 	data.carbrandid = 'SYS';
 

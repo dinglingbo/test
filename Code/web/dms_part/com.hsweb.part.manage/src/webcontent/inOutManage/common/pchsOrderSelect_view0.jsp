@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购订单选择</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/pchsOrderSelect.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/pchsOrderSelect.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
     width: 90px;

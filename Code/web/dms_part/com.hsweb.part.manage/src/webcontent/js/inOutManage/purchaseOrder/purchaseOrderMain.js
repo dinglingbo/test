@@ -30,6 +30,7 @@ var billStatusHash = {
 
 var StatusHash = {
 		"0" : "草稿",
+		"1" : "待发货",
 		"2" : "待收货",
 		"4" : "已入库",
 	};
@@ -212,13 +213,18 @@ function quickSearch(type){
         	params.billStatusId=0;
         	params.auditSign=0;
         	break;
-        //待收货
+        //待发货
         case 13:
+        	params.billStatusId=1;
+        	params.auditSign=1;
+        	break;
+        //待收货
+        case 14:
         	params.billStatusId=2;
         	params.auditSign=1;
         	break;
         //已入库
-        case 14:
+        case 15:
         	params.billStatusId=4;
         	params.auditSign=1;
         	break;

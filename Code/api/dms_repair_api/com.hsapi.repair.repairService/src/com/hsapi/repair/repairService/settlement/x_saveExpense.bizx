@@ -1058,16 +1058,6 @@
     <figSize height="17" width="39"/>
     <node>assign17</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign18" name="赋值18" displayName="赋值" type="assign">
-    <location x="-44" y="218"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign18label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
-    <location x="-49" y="254"/>
-    <figSize height="17" width="39"/>
-    <node>assign18</node>
-  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-10-08 12:22:47" date="2018-10-08Z" description="保存费用登记内容，费用支出需要生成其它应付单" name="saveExpense" version="7.0.0.0"/>

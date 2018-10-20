@@ -9,7 +9,7 @@
 -->
 <head>
 <title>结算账户修改</title>
-<script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountEdit.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountEdit.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -69,6 +69,7 @@
             <tr class="htr">
                 <td class=" right fwidtha required">账户名称:</td>
                 <td ><input id="name" name="name" width="100%" class="nui-textbox" ></td>
+            
             </tr>
             <tr class="htr">
                 <td class=" right fwidtha required">账户类型:</td>
@@ -81,7 +82,8 @@
             </tr>
             <tr class="htr">
                 <td class=" right fwidtha">备注:</td>
-                <td ><input id="remark" name="remark" width="100%" class="nui-textbox" ></td>
+                <td ><input id="remark" name="remark" width="75%" class="nui-textbox">&nbsp;默认:<input type="checkbox" id="isDefault" class="mini-checkbox"></td>
+                
             </tr>
         </table>
 
@@ -102,7 +104,7 @@
                     <div name="action" width="60" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">#</div>
                     <div field="customId" type="comboboxcolumn" width="100" headerAlign="center" header="结算方式">
                         <input  property="editor" enabled="true" name="settleAccount" data="settleList" dataField="list" class="nui-combobox" valueField="customid" textField="name"  
-                                  url="com.hsapi.cloud.part.baseDataCrud.query.querySettleType.biz.ext?dictId=DDT20130703000031"
+                                  
                                   onvaluechanged="onSettleTypeChanged" emptyText=""  vtype="required"
                                   /> 
                     </div>
@@ -111,7 +113,6 @@
             </div>
         </div>
         
-
     </div>
 
 	<div class="nui-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;text-align:center;">

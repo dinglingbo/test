@@ -10,7 +10,8 @@ var cardatagrid = null;
 var contactview = null;
 var contactdatagrid = null;
 var contactInfoForm = null;
-
+var lyData = [];
+var sfData = [];
 var fullName = null;
 var mobile = null;
 var resultGuest = {};
@@ -66,9 +67,11 @@ function init(callback)
         //kiloType:KILO_TYPE,//里程类别
         source:GUEST_SOURCE,//客户来源
         identity:IDENTITY //客户身份
-    },function(){
+    },function(data){
         hash.initDicts = true;
         checkComplete();
+        lyData  = nui.get("source").data;
+        sfData = nui.get("identity").data;
     });
     
     initProvince("provice");
@@ -680,8 +683,8 @@ function eaidContact(){
 }
 
 function onDrawCell(e) {
-	var sexList = new Array("农历", "阴历");
-	var birthdayTypeList = new Array("男", "女", "未知");
+	var sexList = new Array("男", "女", "未知");
+	var birthdayTypeList = new Array("农历", "阴历");
 	switch (e.field) {
 	case "sex":
 		e.cellHtml = sexList[e.value];
@@ -691,6 +694,20 @@ function onDrawCell(e) {
 		break;
 
 
+	}
+	if(e.field=="source"){
+		for(var i=0;i<lyData.length;i++){
+			if(e.value==lyData[i].customid){
+				e.cellHtml = lyData[i].name;
+			}
+		}
+	}
+	if(e.field=="identity"){
+		for(var i=0;i<sfData.length;i++){
+			if(e.value==sfData[i].customid){
+				e.cellHtml =sfData[i].name;
+			}
+		}
 	}
 }
 

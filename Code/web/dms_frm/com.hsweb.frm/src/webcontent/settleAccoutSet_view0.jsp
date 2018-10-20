@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>结算账户</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountSet.js?v=1.0.1"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountSet.js?v=1.0.4"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -32,8 +32,8 @@ pageEncoding="UTF-8" session="false" %>
         <a class="nui-button" iconCls="" plain="true" onclick="add()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
         <a class="nui-button" iconCls="" plain="true" onclick="edit()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
         <a class="nui-button" iconCls="" plain="true" onclick="deleteType()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
-        <a class="nui-button" id="disable" iconCls="" plain="true" onclick="disable()"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
-        <a class="nui-button" id="undisable" iconCls="" plain="true" onclick="undisable()"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用</a>
+        <a class="nui-button" id="disable" iconCls="" plain="true" onclick="disable()" ><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
+        <a class="nui-button" id="undisable" iconCls="" plain="true" onclick="undisable()" ><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用</a>
         <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-refresh fa-lg"></span>&nbsp;刷新</a>
     </div>
     <div id="mainGrid" class="nui-treegrid" style="width:100%;height:100%;" dataField="settleAccount"  url="" 
@@ -48,6 +48,7 @@ pageEncoding="UTF-8" session="false" %>
             <div field="name" name="name" width="140"  headeralign="center" >账户名称</div>
             <div field="accountTypeId" name="accountTypeId" width="40" renderer="onAccount"  headeralign="center" >账户类型</div>
             <div field="isDisabled" name="isDisabled" width="40" renderer="onRenderer"  headeralign="center" >是否禁用</div>
+            <div field="isDefault" name="isDefault" width="40" renderer="onRenderer"  headeralign="center" >是否默认账户</div>
             <div field="remark" name="remark" width="80"  headeralign="center" >备注</div>
             <div field="modifier" name="modifier" width="60"  headeralign="center" >最近修改人</div>
             <div field="modifyDate" name="modifyDate" width="80" dateFormat="yyyy-MM-dd hh:MM:ss"  headeralign="center" >修改日期</div>

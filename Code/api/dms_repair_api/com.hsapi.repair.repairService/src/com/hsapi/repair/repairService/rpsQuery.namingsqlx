@@ -781,17 +781,17 @@
 				a.record_date AS recordDate,
 				a.modifier AS modifier,
 				a.modify_date AS modifyDate,
-				B.service_code serviceCode,
-				C.mobile guestMobile ,
-				C.full_name  guestFullName,
-				D.car_model carModel
+				 case when B.service_code is null then A.service_code else B.service_code end as serviceCode,
+				 C.mobile guestMobile ,
+				 C.full_name  guestFullName,
+			  D.car_model carModel
 			from rps_check_main A
-			LEFT JOIN rps_maintain B on B.id = A.service_id
-			inner join wb_common.com_guest C on C.id = B.guest_id
-			inner join rpb_car D on D.id = B.car_id
+			 LEFT JOIN rps_maintain B on B.id = A.service_id
+			 inner join wb_common.com_guest C on C.id = A.guest_id
+			 inner join rpb_car D on D.id = A.car_id
 			where 1=1
 			<isNotEmpty prepend="and" property="orgid">  
-			B.orgid = #orgid#
+			A.orgid = #orgid#
 			</isNotEmpty>
 			
 			<isNotEmpty prepend="and" property="carNo">  

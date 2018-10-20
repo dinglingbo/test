@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/3/21.
  */ 
  var webBaseUrl = webPath + contextPath + "/";   
- var baseUrl = apiPath + repairApi + "/";      
+ var baseUrl = apiPath + repairApi + "/";       
  var mainGrid = null;  
  var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
  var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
@@ -12,7 +12,7 @@
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
   
  var billForm = null;   
- var xyguest = null; 
+ var xyguest = null;  
  var brandList = []; 
  var brandHash = {};
  var servieTypeList = [];
@@ -20,7 +20,7 @@
  var receTypeIdList = [];
  var receTypeIdHash = {};
  var memList = [];
- var serviceTypeIdEl = null;
+ var serviceTypeIdEl = null; 
  var mtAdvisorIdEl = null;
  var searchNameEl = null;
  var servieIdEl = null;
@@ -3309,38 +3309,44 @@ function showHealth(){
 }
 
 function pay(){
-    var data = sellForm.getData();
-	if(fserviceId==0||fserviceId==null){
-		nui.alert("请添加客户","提示");
-		return;
-	}
-	var json = {
-			fserviceId:fserviceId,
-			data:data,
-			xyguest:xyguest,
-	}
-	nui.open({
-		url:"com.hsweb.print.carWashBillUp.flow",
-		width:"40%",
-		height:"50%",
-		//加载完之后
-		onload: function(){	
-			var iframe = this.getIFrameEl();
-			iframe.contentWindow.getData(json);
-		},
-	    ondestroy : function(action) {
-            if (action == 'ok') {
-                var iframe = this.getIFrameEl();
-                var data = iframe.contentWindow.getData();
-                supplier = data.supplier;
-                var value = supplier.id;
-                var text = supplier.fullName;
-                var el = nui.get(elId);
-                el.setValue(value);
-                el.setText(text);
-            }
+	
+	var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }else{
+        if(data.status != 2){
+            showMsg("本工单未完工,不能结算!","W");
+            return;
         }
-	});
+        var sellData = sellForm.getData();
+        var params = {
+            serviceId:data.id||0,
+            guestId:data.guestId||0,
+            carNo:data.carNo||0,
+            guestName:$("#guestNameEl").text(),
+            data:sellData
+        };
+        doBillPay(params, function(data){
+            data = data||{};
+            if(data.action){
+                var action = data.action||"";
+                if(action == 'ok'){
+                    billForm.setData([]);
+                    billForm.setData(data);
+                    var status = data.status||0;
+                    var isSettle = data.isSettle||0;
+                    doSetStyle(status, isSettle);
+                    showMsg("完工成功!","S");
+                }else{
+                    if(data.errCode){
+                        showMsg("完工失败!","W");
+                        return;
+                    }
+                }
+            }
+        });
+    }
 }
 
 
@@ -3353,10 +3359,11 @@ function newCheckMain() {
     item.iconCls = "fa fa-cog";
     //window.parent.activeTab(item);
     var params = {};
-    params = { 
+    params = {
         id:data.id,
-        actionType:"",
-        row: rdata
+        actionType:"new",
+        row: rdata,
+        isCheckMain:"N"//是否是直接开单
     };
 
     window.parent.activeTabAndInit(item,params);
@@ -3459,6 +3466,10 @@ function SaveCheckMain() {
         serviceId:data.id, 
         carId:data.carId,
         carNo:data.carNo,
+        carVin:data.carVin,
+        guestId:data.guestId,
+        contactorId:data.contactorId,
+        serviceCode:document.getElementById("servieIdEl").innerText.trim(),
         checkStatus:0,
         enterKilometers:data.enterKilometers,
         mtAdvisorId:data.mtAdvisorId,
@@ -3558,8 +3569,6 @@ function SearchLastCheckMain() {
  
 }
 
-
-
 function newCheckMainMore() {  
     var cNo = nui.get("carNo").value;
     var item={};
@@ -3570,3 +3579,43 @@ function newCheckMainMore() {
     window.parent.activeTab(item);
 
 }  
+
+//费用登记
+function updateBillExpense(){
+    var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }
+    var params = {
+        serviceId:data.id||0
+    };
+    doBillExpenseDetail(params, function(data){
+        data = data||{};
+        if(data.action){
+            var action = data.action||"";
+            if(action == 'ok'){
+            }else{
+            }
+        }
+    });
+}
+//出车报告登记
+function outCarMainExpense(){
+	var data = billForm.getData();
+    if(!data.id){
+        showMsg("请先保存工单!","W");
+        return;
+    }
+    var params = { };
+    params = data;
+    doOutCarMainExpenseDetail(params, function(data){
+        data = data||{};
+        if(data.action){
+            var action = data.action||"";
+            if(action == 'ok'){
+            }else{
+            }
+        }
+    });
+}

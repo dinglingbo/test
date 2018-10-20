@@ -8,7 +8,7 @@
 -->
 <head>
 <title>移仓单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrder.js?v=1.0.38"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrder.js?v=1.0.41"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -108,7 +108,8 @@
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
                         <div field="createDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="移仓日期"></div>
-                        <div field="orderMan" width="60" headerAlign="center" header="业务员"></div><div field="auditSign" width="35" headerAlign="center" header="状态"></div>
+                        <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
+                        <div field="auditSign" width="35" headerAlign="center" header="状态"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="移仓单号"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
@@ -172,7 +173,17 @@
                                           <label>业务员：</label>
                                       </td>
                                       <td colspan="1">
-                                          <input class="nui-textbox" enabled="true" id="orderMan" name="orderMan" width="100%">
+                                          <input class="nui-combobox" 
+		                                      id="orderMan" 
+		                                      name="orderMan" 
+		                                      textField="empName"
+				                              valueField="empId"
+				                              emptyText="请选择..."
+				                              url=""
+				                              required="true"
+				                              allowInput="true"
+				                              valueFromSelect="false"
+		                                      width="100%">
                                       </td>
                                       <td class="title required">
                                           <label>移仓日期：</label>

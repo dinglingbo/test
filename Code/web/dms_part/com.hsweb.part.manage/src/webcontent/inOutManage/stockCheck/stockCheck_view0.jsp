@@ -8,7 +8,7 @@
 -->
 <head>
 <title>盘点单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheck.js?v=1.1.14"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheck.js?v=1.1.15"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -153,7 +153,17 @@
                                           <label>盘点员：</label>
                                       </td>
                                       <td colspan="1">
-                                          <input class="nui-textbox" enabled="true" id="orderMan" name="orderMan" width="100%">
+                                          <input class="nui-combobox" 
+		                                      id="orderMan" 
+		                                      name="orderMan" 
+		                                      textField="empName"
+				                              valueField="empId"
+				                              emptyText="请选择..."
+				                              url=""
+				                              required="true"
+				                              allowInput="true"
+				                              valueFromSelect="false"
+		                                      width="100%">
                                       </td>
                                       <td class="title required">
                                           <label>盘点日期：</label>

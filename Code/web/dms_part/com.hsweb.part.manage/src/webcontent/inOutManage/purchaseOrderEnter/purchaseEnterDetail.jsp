@@ -159,7 +159,7 @@
 	                                      id="orderMan" 
 	                                      name="orderMan" 
 	                                      textField="empName"
-			                              valueField="empName"
+			                              valueField="empId"
 			                              emptyText="请选择..."
 			                              url=""
 			                              required="true"

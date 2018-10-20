@@ -61,7 +61,7 @@ function doSearch() {
 		token : token
 	});
 }
-var queryAccountUrl = baseUrl + "com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext";
+var queryAccountUrl = baseUrl + "com.hsapi.frm.frmService.finance.queryFiSettleAccount.biz.ext";
 function getAccountList(callback) {
     nui.ajax({
         url : queryAccountUrl,

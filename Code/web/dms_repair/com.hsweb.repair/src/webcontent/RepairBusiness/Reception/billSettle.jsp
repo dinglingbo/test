@@ -11,7 +11,7 @@
 
 <head>
 	<title>工单结算</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.0.6"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.0.8"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -510,7 +510,7 @@
 					</div>
 					
 					<div class="pay_list">
-						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">费用支出</span></h2>
+						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">结算方式</span></h2>
 						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
 							<div id="dataform">
 								<div class="skbox2" id="div0" name="div0">
@@ -560,7 +560,7 @@
 			</div>
 			
 		</div>
-		<div style="height: 10%;">
+		<div style="height: 15%;">
 
 		</div>
 	</div>

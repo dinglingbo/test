@@ -26,6 +26,7 @@
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="331" y="150"/>
@@ -158,10 +159,6 @@
     <process:copy>
       <process:from type="query" pattern="reference">mainId</process:from>
       <process:to type="query">enterTmpl/mainId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">main/storeId</process:from>
-      <process:to type="query">enterMain/storeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">

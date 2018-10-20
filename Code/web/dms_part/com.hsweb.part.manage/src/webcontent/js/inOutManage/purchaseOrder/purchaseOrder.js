@@ -486,8 +486,19 @@ function add() {
 		$('#bServiceId').text("订单号: 新采购订单");
 		nui.get("billTypeId").setValue("010103"); // 010101 收据 010102 普票 010103 增票
 		nui.get("createDate").setValue(new Date());
-		nui.get("orderMan").setValue(currUserName);
-		nui.get("orderMan").setText(currUserName);
+		
+		if(!orderMan || orderMan==""){
+			for(var i=0;i<memList.length;i++){
+				if(currUserId==memList[i].empId){
+					nui.get("orderMan").setValue(currUserId);
+					nui.get("orderMan").setText(currUserName);
+				}
+			}
+		
+		}else{
+			nui.get("orderMan").setValue(orderManId);
+			nui.get("orderMan").setText(orderMan);
+		}
 
 		addNewRow();
 

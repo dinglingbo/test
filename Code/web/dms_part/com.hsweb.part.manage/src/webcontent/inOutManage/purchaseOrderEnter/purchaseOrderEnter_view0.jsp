@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购入库</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/purchaseOrderEnter.js?v=1.0.40"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/purchaseOrderEnter.js?v=1.0.5"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -227,6 +227,10 @@ body .mini-grid-row-selected{
             <td colspan="1" align="center">单价</td>
             <td colspan="1" align="center">金额</td>
             <td colspan="1" align="center">备注</td>
+            <td colspan="1" align="center">仓库</td>
+            <td colspan="1" align="center">仓位</td>
+            <td colspan="1" align="center">OEM码</td>
+            <td colspan="1" align="center">规格/方向/颜色</td>   
         </tr>
         <tbody id="tableExportContent">
         </tbody>

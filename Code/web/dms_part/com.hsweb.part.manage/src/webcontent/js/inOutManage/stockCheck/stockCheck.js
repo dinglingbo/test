@@ -32,6 +32,7 @@ var FGuestId = null;
 var partShow = 0;
 
 var storeIdEl = null;
+var memList=[];
 
 var AuditSignHash = {
   "0":"草稿",
@@ -59,6 +60,10 @@ $(document).ready(function(v)
     sOrderDate = nui.get("sOrderDate");
     eOrderDate = nui.get("eOrderDate");
     getGuestId();
+    
+	initMember("orderMan",function(){
+		memList = nui.get('orderMan').getData();
+  });
     getStorehouse(function(data)
     {
         storehouse = data.storehouse||[];
@@ -141,7 +146,9 @@ function getParentStoreId(){
 function loadMainAndDetailInfo(row)
 {
     if(row) {    
-       basicInfoForm.setData(row);
+    	nui.get("orderMan").setText(row.orderMan);
+		row.orderMan=row.orderManId; 
+		basicInfoForm.setData(row);
        //bottomInfoForm.setData(row);
 
        var row = leftGrid.getSelected();
@@ -455,6 +462,9 @@ function getMainData()
     //汇总明细数据到主表
     data.auditSign = 0;
     data.printTimes = 0;
+    
+    data.orderManId=nui.get('orderMan').getValue();
+	data.orderMan=nui.get('orderMan').getText();
 
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
@@ -748,6 +758,8 @@ function add()
 
     var formJsonThis = nui.encode(basicInfoForm.getData());
     var len = rightGrid.getData().length;
+    var orderMan=nui.get('orderMan').getText()
+	var orderManId=nui.get('orderMan').getValue();
 
     if(formJson != formJsonThis && len > 0)
     {
@@ -768,8 +780,19 @@ function add()
                     
                     nui.get("serviceId").setValue("新盘点单");
                     nui.get("createDate").setValue(new Date());
-                    nui.get("orderMan").setValue(currUserName);
                     
+                	if(!orderMan || orderMan==""){
+    					for(var i=0;i<memList.length;i++){
+    						if(currUserId==memList[i].empId){
+    							nui.get("orderMan").setValue(currUserId);
+    							nui.get("orderMan").setText(currUserName);
+    						}
+    					}
+    				
+    				}else{
+    					nui.get("orderMan").setValue(orderManId);
+    					nui.get("orderMan").setText(orderMan);
+    				}
                     addNewRow();
 
                 }else {
@@ -791,8 +814,19 @@ function add()
         
         nui.get("serviceId").setValue("新盘点单");
         nui.get("createDate").setValue(new Date());
-        nui.get("orderMan").setValue(currUserName);
-
+        
+        if(!orderMan || orderMan==""){
+			for(var i=0;i<memList.length;i++){
+				if(currUserId==memList[i].empId){
+					nui.get("orderMan").setValue(currUserId);
+					nui.get("orderMan").setText(currUserName);
+				}
+			}
+		
+		}else{
+			nui.get("orderMan").setValue(orderManId);
+			nui.get("orderMan").setText(orderMan);
+		}
         addNewRow();
         
     }

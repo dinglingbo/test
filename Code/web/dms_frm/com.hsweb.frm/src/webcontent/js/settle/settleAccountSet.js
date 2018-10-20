@@ -7,13 +7,23 @@ var queryUrl = baseUrl
 var mainGrid = null;
 var disableEl = null;
 var undisableEl = null;
-
 $(document).ready(function(v) {
 	mainGrid = nui.get("mainGrid");
 	mainGrid.setUrl(queryUrl);
 	disableEl = nui.get("disable");
 	undisableEl = nui.get("undisable");
-
+	mainGrid.on("drawcell", function (e) {
+        switch (e.field) {
+            case "isDisabled":
+                e.cellHtml = e.value == 1?"是":"否";
+                break;
+            case "isDefault":
+                e.cellHtml = e.value == 1?"是":"否";
+                break;
+        }
+                
+	});
+	
 	doSearch();
 });
 function doSearch() {
@@ -29,7 +39,8 @@ function onAccount(e) {
     }
     return "";
 }
-var disableList = [{ id: 0, text: '否' }, { id: 1, text: '是'}];
+/*var disableList = [{ id: 0, text: '否' }, { id: 1, text: '是'}];
+var isDisabled = [{ id: 0, text: '是' }, { id: 1, text: '否'}]
 function onRenderer(e) {
     for (var i = 0, l = disableList.length; i < l; i++) {
         var g = disableList[i];
@@ -37,6 +48,15 @@ function onRenderer(e) {
     }
     return "";
 }
+
+function onisDisabled(e) {
+    for (var i = 0, l = isDisabled.length; i < l; i++) {
+        var g = isDisabled[i];
+        if (g.id == e.value) return g.text;
+    }
+    return "";
+}*/
+
 function refresh(){
 	doSearch();
 }
@@ -50,7 +70,6 @@ function deleteType(){
 			nui.alert("此记录不能删除!");
 			return;
 		}
-
 		nui.confirm("是否确定删除？", "友情提示",
         	function (action) { 
                 if (action == "ok") {                 
@@ -215,7 +234,7 @@ function undisable(){
 }
 function onGridSelectedChange(e){
 	var row = e.selected;
-	var isdisabled = row.isdisabled;
+	var isdisabled = row.isDisabled;
 	if(isdisabled == 0) {
 		disableEl.setVisible(true);
 		undisableEl.setVisible(false);

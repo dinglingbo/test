@@ -11,7 +11,7 @@
 
 <head>
 	<title>工单结算</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.0.5"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.0.6"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -325,7 +325,7 @@
 											<td width="10%">
 												<span>工时优惠：</span>
 
-											</td>
+											</td >
 											<td height="40" class="line24">
 												<input class="nui-textbox" id="itemPrefAmt" name="itemPrefAmt" enabled="false" width="100px"  showbutton="false"
 												 allowNull="false"  />
@@ -477,23 +477,7 @@
 									</table>
 								</div>
 							</div>
-							<div class="" id="csdiv" style="background: #f8f8f8;">
-								<div class="guazhangbz">
-									<table id="tbaddaccount" width="96%" height="30px" border="0" align="center" cellpadding="0" cellspacing="0">
-										<tbody>
-											<tr>
-												<td>
-													<div class="pay_tcbk_list" style="padding: 0; margin-bottom: 2px;">
-														<ul>
-
-														</ul>
-													</div>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
+					
 						</div>
 					</div>
 
@@ -510,9 +494,7 @@
 												</td>
 												<td>
 												</td>
-												<!-- <td>
-											<a class="depj" data-balloon="删除收款方式" href="javascript:void(0);" onclick="dF()" style="margin-left: 15px;"></a>
-										</td> -->
+									
 											</tr>
 										</tbody>
 									</table>

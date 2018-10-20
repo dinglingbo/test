@@ -220,6 +220,10 @@
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">enterMain/printTimes</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">050104</process:from>
+      <process:to type="query">enterMain/billTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="-34" y="133"/>
@@ -255,6 +259,7 @@
     <location x="195" y="98"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="outDetail" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
@@ -266,6 +271,7 @@
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopend0</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link25</targetConnections>
     <location x="486" y="98"/>
@@ -276,6 +282,7 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link1" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>invokePojo4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="263" y="96"/>
@@ -366,7 +373,7 @@
       <process:to type="query">enterDetailTemp/taxDiff</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">tmp/enterDate</process:from>
+      <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">enterDetailTemp/enterDate</process:to>
     </process:copy>
     <process:copy>
@@ -474,6 +481,7 @@
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>loopstart0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link22</targetConnections>
     <location x="92" y="96"/>
@@ -525,6 +533,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">operateDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">

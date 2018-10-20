@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getEnterOutableDetail" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据情况判断是否必须要传入参数&#xD;&#xA;com.hsapi.cloud.part.invoicing.stockcal.getEnterOutableDetail" title="DLB">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据情况判断是否必须要传入参数&#xD;&#xA;com.hsapi.part.invoice.stockcal.getEnterOutableDetail" title="DLB">
     <location x="45" y="30"/>
     <size height="100" width="391"/>
   </nodes>

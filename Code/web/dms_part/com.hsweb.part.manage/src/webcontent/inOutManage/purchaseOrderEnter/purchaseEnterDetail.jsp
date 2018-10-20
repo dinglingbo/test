@@ -167,7 +167,7 @@
 			                              valueFromSelect="false"
 	                                      width="100%">
                                   </td>
-                                  <td class="title required">
+                                  <td class="title required" style="width:7%">
                                       <label>建单日期：</label>
                                   </td>
                                   <td width="120">
@@ -185,10 +185,10 @@
                                   </td>
                               </tr>
                               <tr>
-                                  <td class="title required">
+                                  <td class="title required"style="width:7%">
                                       <label>票据类型：</label>
                                   </td>
-                                  <td style="widrh:7%">
+                                  <td >
                                       <input name="billTypeId"
                                              id="billTypeId"
                                              class="nui-combobox width1"
@@ -204,7 +204,7 @@
                                              nullItemText="请选择..."
                                              onvalidation="onComboValidation"/>
                                   </td>
-                                  <td class="title required">
+                                  <td class="title required" style="width:7%">
                                       <label>结算方式：</label>
                                   </td>
                                   <td>
@@ -228,7 +228,7 @@
                                   <td colspan="3">
                                       <input class="nui-textbox" width="100%" id="remark" name="remark"/>
                                   </td>
-                                  <td class="title" width="120">
+                                  <td class="title"style="width:7%">
                                       <label>往来单号：</label>
                                   </td>
                                   <td>

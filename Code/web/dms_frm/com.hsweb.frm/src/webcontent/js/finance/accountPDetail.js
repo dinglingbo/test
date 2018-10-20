@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/5/5.
  */
-var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + frmApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var queryUrl = baseUrl + "com.hsapi.frm.frmService.finance.queryRPAccountDetail.biz.ext";
 var mainGrid = null;
 var accountIdEl = null;
@@ -59,7 +59,7 @@ function doSearch() {
 		token : token
 	});
 }
-var queryAccountUrl = baseUrl + "com.hsapi.cloud.part.settle.svr.queryFiSettleAccount.biz.ext";
+var queryAccountUrl = baseUrl + "com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext";
 function getAccountList(callback) {
     nui.ajax({
         url : queryAccountUrl,
@@ -150,7 +150,7 @@ function onDrawCell(e){
     }
 }
 var typeUrl = baseUrl
-        + "com.hsapi.cloud.part.settle.svr.queryFibInComeExpenses.biz.ext";
+        + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
 function getItemType(callback) {
     nui.ajax({
         url : typeUrl,

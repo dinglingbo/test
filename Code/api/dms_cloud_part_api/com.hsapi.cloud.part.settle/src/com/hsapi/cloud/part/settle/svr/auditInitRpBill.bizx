@@ -339,7 +339,9 @@
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="420" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-05-08 00:14:25" date="2018-05-07Z" description="" name="auditInitRpBill" version="7.0.0.0"/>
   <process:variables>

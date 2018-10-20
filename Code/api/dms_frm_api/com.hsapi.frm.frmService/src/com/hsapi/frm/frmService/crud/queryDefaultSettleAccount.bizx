@@ -67,11 +67,11 @@
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">cond/_or[1]/_and[1]/_expr[2]/isSystem</process:to>
+      <process:to type="query">cond/_or[1]/_and[2]/_expr[2]/isSystem</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond/_or[1]/_and[1]/_expr[2]/_op</process:to>
+      <process:to type="query">cond/_or[1]/_and[2]/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>

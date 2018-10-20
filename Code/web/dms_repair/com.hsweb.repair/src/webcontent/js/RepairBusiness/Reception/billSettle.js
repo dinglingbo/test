@@ -13,76 +13,13 @@ var onetInAmt = 0;
 var netInAmt = 0;
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
+var frmUrl = apiPath + frmApi + "/";
 var expenseUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext';
 var srnum = [];
 $(document).ready(function(v) {
-	sellForm = new nui.Form("#sellForm");
-	receiveGrid = nui.get("receiveGrid");
-	payGrid = nui.get("payGrid");
-	mtAmtEl = nui.get("mtAmt");
-	amountEl = nui.get("amount");
 
-	receiveGrid.setUrl(expenseUrl);
-	payGrid.setUrl(expenseUrl);
 
-	//var rparams = {itemTypeId : 1, isMain: 0};
-	//var pparams = {itemTypeId : -1, isMain: 0};
-	var params = {isMain:0};
-	svrInComeExpenses(params,function(data) {
-		var list = data.list||{};
-		for(var i = 0; i<list.length; i++){
-			var obj = list[i];
-			if(obj.itemTypeId==1){
-				rlist.push(obj);
-			}else if(obj.itemTypeId==-1){
-				plist.push(obj);
-			}
-		}
-    });
 
-	
-	receiveGrid.on("cellcommitedit",function(e){
-		var editor = e.editor;
-		var record = e.record;
-		
-		editor.validate();
-		if (editor.isValid() == false) {
-			showMsg("请输入数字!","W");
-			e.cancel = true;
-		}else{
-			var value = e.value;
-			if(value<0){
-				showMsg("金额不能小于0!","W");
-				e.cancel = true;
-			}
-
-			if (e.field == "amt") {
-				var amt = e.value;
-				var newRow = {
-					amt : amt
-				};
-				receiveGrid.updateRow(e.row, newRow);
-				setNetInAmt();
-			}
-		}
-	});
-
-	payGrid.on("cellcommitedit",function(e){
-		var editor = e.editor;
-		var record = e.record;
-		
-		editor.validate();
-		if (editor.isValid() == false) {
-			showMsg("请输入数字!","W");
-			e.cancel = true;
-		}else{
-			var value = e.value;
-			if(value<0){
-				showMsg("金额不能小于0!","W");
-				e.cancel = true;
-			}
-		}
-	});
 });
 function onbillRTypeChange(e){
     var se = e.selected;
@@ -134,6 +71,18 @@ function getData(data){
 	onetInAmt  = data.mtAmt;
 }
 function setData(params){
+	var param = {isMain:0};
+	svrInComeExpenses(param,function(data) {
+		var list = data.list||{};
+		for(var i = 0; i<list.length; i++){
+			var obj = list[i];
+			if(obj.itemTypeId==1){
+				rlist.push(obj);
+			}else if(obj.itemTypeId==-1){
+				plist.push(obj);
+			}
+		}
+    });
 	var amt = 0;
 	var serviceId = params.serviceId||0;
 	var data = params.data||{};
@@ -167,6 +116,11 @@ function setData(params){
 			srnum = rs.data;
 			if(srnum.length>0){
 				for(var i = 0;i<rs.data.length;i++){
+					for(var j =0;j<rlist.length;j++){
+						if(rs.data[i].typeCode==rlist[j].code){
+							rs.data[i].typeCode=rlist[j].name;
+						}
+					}
 					if(rs.data[i].remark==null){
 						rs.data[i].remark="无";
 					}
@@ -216,6 +170,11 @@ function setData(params){
 			srnum = rs.data;
 			if(srnum.length>0){
 				for(var i = 0;i<rs.data.length;i++){
+					for(var j =0;j<plist.length;j++){
+						if(rs.data[i].typeCode==plist[j].code){
+							rs.data[i].typeCode=plist[j].name;
+						}
+					}
 					if(rs.data[i].remark==null){
 						rs.data[i].remark="无";
 					}
@@ -362,17 +321,7 @@ function setNetInAmt(){
 	mtAmtEl.setValue(netInAmt.toFixed(2));
 	amountEl.setValue(amount.toFixed(2));
 }
-function adjustData(data){
-	var rlist = [];
-	for(var i=0; i<data.length; i++){
-		var obj = data[i];
-		if(obj.typeId && obj.amt){
-			rlist.push(obj);
-		}
-	}
 
-	return rlist;
-}
 function noPay(){
 
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
@@ -499,4 +448,27 @@ function doNoPay(serviceId,allowanceAmt){
 				return;
 		 }
 	});
+}
+
+var inComeExpensesUrl = frmUrl + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
+function svrInComeExpenses(params, callback) {
+    //var params = {itemTypeId : 1, isMain: 0};
+    nui.ajax({
+        url : inComeExpensesUrl,
+        data : {
+            params: params,
+            token: token
+        },
+        type : "post",
+        async: false,
+        success : function(data) {
+            if (data && data.list) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
 }

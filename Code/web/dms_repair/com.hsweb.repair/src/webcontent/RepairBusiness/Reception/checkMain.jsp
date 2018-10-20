@@ -7,7 +7,7 @@
   - Author(s): Administrator
   - Date: 2018-01-25 14:17:08
   - Description: 
---> 
+-->   
 
 <head>
   <title>检查开单</title>  
@@ -15,18 +15,18 @@
   .title {
     width: 60px;
     text-align: right;
-  }
+}
 
-  .form_label {
+.form_label {
     width: 72px;
     text-align: right;
-  }
+}
 
-  .required {
+.required { 
     color: red;
-  }
+}
 
-  .rmenu { 
+.rmenu { 
     font-size: 14px;
     /* font-weight: bold; */
     text-align: left;
@@ -38,7 +38,7 @@
     margin-left: 20px;
     margin-top: 20px; 
     background-size: 50%;
-  }
+}
 </style>
 
 </head>
@@ -55,17 +55,20 @@
           <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" />
           <a class="nui-button" iconCls="" plain="true" onclick="onSearch">
             <span class="fa fa-search fa-lg"></span>&nbsp;查询
-          </a>
-          <span class="separator"></span>
+        </a>
+        <span class="separator"></span>
    <!--        <a class="nui-button" iconCls="" plain="true" onclick="newCheckPrecheck" id="">
      <span class="fa fa-plus fa-lg"></span>&nbsp;新建接车预检
-   </a>
-   <a class="nui-button" iconCls="" plain="true" onclick="selectModel" id="">
-     <span class="fa fa-plus fa-lg"></span>&nbsp;新建查车单
-   </a> -->
-   <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="">
+ </a>-->
+ <a class="nui-button" iconCls="" plain="true" onclick="ToCheckDetail(1)" id="save">
+   <span class="fa fa-plus fa-lg"></span>&nbsp;新增
+</a> 
+<a class="nui-button" iconCls="" plain="true" onclick="ToCheckDetail(2)" id="edit">
+    <span class="fa fa-edit fa-lg"></span>&nbsp;修改
+</a>
+<a class="nui-button" iconCls="" plain="true" onclick="ToCheckDetail(3)" id="view">
     <span class="fa fa-file-text-o fa-lg"></span>&nbsp;查看
-  </a>
+</a>
 </td>
 </tr>
 </table> 
@@ -84,7 +87,7 @@
     <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">车型</div>
     <div field="mtAdvisor" name="mtAdvisor" width="40" headerAlign="center" align="center">维修顾问</div>
     <div field="recordDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">查车日期</div>
-  </div>
+</div>
 </div>
 </div>
 
@@ -105,11 +108,11 @@
     mainGrid.load({ 
       params:data,
       token:token
-    });
-  }
+  });
+}
 
-  function selectModel(){
- /*   nui.open({
+/*  function selectModel(){
+    nui.open({
       url:"com.hsweb.repair.DataBase.checkMainSelect.flow",
       title:"选择模板",
       height:"300px",
@@ -121,56 +124,44 @@
 
       } 
 
-    });*/
-  }
+    });
+}*/
 
 
 
 
-  function setInitData(params){
+function setInitData(params){
     var pa={
       carNo:nui.get("cNo").value,
       orgid:currOrgId
-    }; 
-    mainGrid.load({ 
+  }; 
+  mainGrid.load({ 
       params:pa, 
 
       token:token 
-    });
-  }
+  });
+}
 
 
-  function newCheckPrecheck() {
+function newCheckPrecheck() {
     var item={};
     item.id = "checkPrecheckDetail";
     item.text = "接车预检单";
     item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkPrecheckDetail.jsp";
     item.iconCls = "fa fa-cog";
     window.parent.activeTab(item);
-  }
+}
 
-  mainGrid.on("celldblclick",function(e){
+mainGrid.on("celldblclick",function(e){
     var field = e.field;
     var record = e.record;
     var column = e.column;
     var sid = record.id;
-    newCheckMain(record);
-  });
+    ToCheckDetail(3);
+});
 
 
-
-  function edit() {
-    var row = mainGrid.getSelected();
-    if(row){ 
-      newCheckMain(row);
-    }else{
-      nui.alert("请先选择一条记录！");
-    }
-  }
-
-
-
-  function newCheckMain(data) {  
+function openDetai(params) {  
 
     var item={};
     item.id = "checkPrecheckDetail";
@@ -178,13 +169,41 @@
     item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp";
     item.iconCls = "fa fa-cog";
     //window.parent.activeTab(item);
-    var params = {};
-    params = { 
-      id:data.serviceId,
-      actionType:"view"
-    };
     window.parent.activeTabAndInit(item,params);
-  }  
+}  
+
+function ToCheckDetail(e){
+    var params = null;
+    if(e == 1){//新增
+        params={
+            actionType:"new",
+            isCheckMain:"Y"
+        };
+    }else{
+        var row = mainGrid.getSelected();
+        if(row){ 
+            if(e == 2){//修改
+                params={
+                    id:row.id,
+                    actionType:"edit",
+                    isCheckMain:"Y"//是否是直接开单
+                };
+            }
+            if(e == 3){//查看
+                params={
+                    id:row.id,
+                    actionType:"view",
+                    isCheckMain:"Y"
+                };
+            }
+        }else{
+            nui.alert("请先选择一条记录！");
+            return;
+        }
+
+    }
+    openDetai(params);
+}
 
 </script>
 

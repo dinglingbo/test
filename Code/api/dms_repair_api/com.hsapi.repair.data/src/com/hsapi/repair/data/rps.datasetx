@@ -57800,7 +57800,7 @@
     </columnProperty>
   </nodes>
   <nodes xsi:type="model:PEntityNode" id="node21" name="RpsCheckMain" nodeType="table" displayName="RpsCheckMain" author="Administrator" open="true" table="rps_check_main" genStrategy="assigned">
-    <location x="338" y="95"/>
+    <location x="60" y="20346"/>
     <size height="610" width="150"/>
     <figSize height="20" width="150"/>
     <columnProperty id="property57" name="id" displayName="id" columnName="id" nullAble="false" PK="true" columnType="INT" eosDataType="Int" dasType="int" overWriteDefaultColumnType="false" showType="Int" update="true" insert="true">

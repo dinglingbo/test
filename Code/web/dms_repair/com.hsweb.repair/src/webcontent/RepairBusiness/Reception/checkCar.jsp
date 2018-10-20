@@ -442,9 +442,9 @@
 	function SetData(params){
 		// params.baseUrl params.serviceId params.token 
         $.ajaxSettings.async = false;//设置为同步执行
-        $.post(params.baseUrl+"com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id="+params.serviceId+"&token="+params.token,{},function(text){
+        $.post(params.baseUrl+"com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext?id="+params.serviceId+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
-        		var maintain = text.maintain;
+        		var maintain = text.list[0];
         		var carNo = maintain.carNo;
         		var carVin = maintain.carVin;
         		var enterKilometers = maintain.enterKilometers;

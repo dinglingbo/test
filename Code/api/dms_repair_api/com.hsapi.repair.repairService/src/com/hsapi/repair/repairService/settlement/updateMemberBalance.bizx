@@ -348,6 +348,7 @@
     <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>assign7</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link19" name="足够" displayName="连接线" type="transition">
       <sourceNode>assign6</sourceNode>
@@ -372,7 +373,15 @@
       <process:to type="query">cardUse</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">cardTotal-cardUse</process:from>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(cardTotal))</process:from>
+      <process:to type="query">d1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(cardUse))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.subtract(d2).doubleValue()</process:from>
       <process:to type="query">dedAmt</process:to>
     </process:copy>
   </nodes>
@@ -391,7 +400,15 @@
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">cardUse+dedAmt</process:from>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(cardUse))</process:from>
+      <process:to type="query">d1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(dedAmt))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.add(d2).doubleValue()</process:from>
       <process:to type="query">cardUse</process:to>
     </process:copy>
     <process:copy>
@@ -399,7 +416,15 @@
       <process:to type="query">temp/useAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">cardPayAmt-dedAmt</process:from>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(cardPayAmt))</process:from>
+      <process:to type="query">d1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(dedAmt))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.subtract(d2).doubleValue()</process:from>
       <process:to type="query">cardPayAmt</process:to>
     </process:copy>
     <process:copy>
@@ -489,6 +514,7 @@
     <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
       <targetNode>end2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
     <location x="1076" y="255"/>
@@ -832,7 +858,6 @@
     <process:variable description="已消费金额" historyStateLocation="client" isArray="false" name="rechargeUseAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsStoredConsumeRecord" name="consumeRecord"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsCardStored" name="guestCard"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardStored" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsCardStored" name="updateList"/>
     <process:variable description="抵扣金额" historyStateLocation="client" isArray="false" name="dedAmt" primitiveType="Double"/>
@@ -840,6 +865,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="cardUse" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsStoredConsumeRecord" name="consumeRecordList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="restAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsCardStored" name="guestCard"/>
+    <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d1"/>
+    <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d2"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="guestId" primitiveType="Int"/>

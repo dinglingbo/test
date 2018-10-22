@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.1.6"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.1.7"></script>
 <style type="text/css">
 
 table {
@@ -35,7 +35,7 @@ table {
      borderStyle="border:0;"
      handlerSize="0"
      allowResize="false">
-    <div size="163" showCollapseButton="false" style="border:0;">
+    <div size="200" showCollapseButton="false" style="border:0;">
         <div class="nui-panel" showToolbar="false" title="客户信息" showFooter="false"
              borderStyle="border:0;"
              style="width:100%;height:100%;">

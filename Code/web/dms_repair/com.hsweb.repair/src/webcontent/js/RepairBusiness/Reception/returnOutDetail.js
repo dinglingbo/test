@@ -296,7 +296,7 @@ function  savepartOutRtn(data){
             paramsData.noTaxAmt = data.noTaxAmt;
             paramsData.trueUnitPrice = data.trueUnitPrice;
             paramsData.trueCost = data.trueCost;
-            paramsData.sellUntiPrice = data.sellUntiPrice;
+            paramsData.sellUnitPrice = data.sellUntiPrice;
             paramsData.sellAmt = data.sellAmt;
             if(!paramsData.partNameId){
             	paramsData.partNameId = "0";

@@ -164,8 +164,8 @@
 			b.root_enter_detail_id rootEnterDetailId,
 			a.enter_code enterCode
 		FROM
-			pts_enter_main a
-			JOIN pts_enter_detail b ON ( a.id = b.enter_id )
+			pj_enter_main a
+			JOIN pj_enter_detail b ON ( a.id = b.enter_id )
 			LEFT JOIN pj_enter_detail d ON ( d.detail_id = b.root_enter_detail_id )
 			LEFT JOIN pj_enter_main e ON ( e.id = d.enter_id )
 			LEFT JOIN wb_common.com_attribute c ON ( c.id = b.part_id )
@@ -253,41 +253,41 @@
     
     <select id="queryPtsOutMainDetailList" parameterClass="java.util.HashMap" resultClass="com.hsapi.part.data.query.PtsOutMainDetailV">
     	SELECT
-			b.out_id outId,
+			b.main_id outId,
 			a.out_date outDate,
 			a.store_id storeId,
 			a.guest_id guestId,
-			a.guest_full_name guestFullName,
-			a.out_type_id outTypeId,
+	   <!-- a.guest_full_name guestFullName,-->
+			a.enter_type_id outTypeId,
 			a.bill_type_id billTypeId,
-			a.bill_status billStatus,
-			a.back_reason_id backReasonId,
-			a.checker checker,
-			a.seller seller,
-			a.store_keeper storeKeeper,
-			a.audit_status auditStatus,
+			a.bill_status_id billStatus,
+	   <!--	a.back_reason_id backReasonId,-->
+	   <!-- a.checker checker,-->
+	   <!--	a.seller seller,-->
+	   <!-- a.store_keeper storeKeeper,-->
+	   <!-- a.audit_status auditStatus,-->
 			a.auditor auditor,
 			a.audit_date auditDate,
-			a.post_status postStatus,
-			a.post_man postMan,
-			a.post_date postDate,
-			a.recorder,
-			a.record_date recordDate,
-			a.modifier modifier,
-			a.modify_date modifyDate,
-			b.detail_id detailId,
+			<!-- a.post_status postStatus,-->
+			<!-- a.post_man postMan,-->
+			<!-- a.post_date postDate,-->
+			<!--a.recorder,-->
+			<!--a.record_date recordDate,-->
+			<!--a.modifier modifier,-->
+			<!--a.modify_date modifyDate,-->
+			<!--b.detail_id detailId,-->
 			b.part_id partId,
 			b.part_code partCode,
 			b.part_name partName,
-			b.part_name_id partNameId,
-			b.part_full_name partFullName,
-			b.unit unit,
-			b.out_qty outQty,
-			b.out_backable_qty outBackableQty,
+			<!--b.part_name_id partNameId,-->
+			<!--b.part_full_name partFullName,-->
+			<!--b.unit unit,-->
+			<!--b.out_qty outQty,-->
+			<!--b.out_backable_qty outBackableQty,-->
 			b.tax_sign taxSign,
 			b.tax_rate taxRate,
-			b.tax_rate_amt taxRateAmt,
-			b.sell_unit_price sellUnitPrice,
+			b.tax_amt taxRateAmt,
+			b.sell_price sellUnitPrice,
 			b.sell_amt sellAmt,
 			b.discount_rate discountRate,
 			b.discount_amt discountAmt,
@@ -306,8 +306,8 @@
 			a.out_code outCode,
 			c.part_brand_id partBrandId
 		FROM
-			pts_out_main a
-			JOIN pj_out_detail b ON ( a.id = b.out_id )
+			pj_out_main_chk a
+			JOIN pj_out_detail_chk b ON ( a.id = b.main_id )
 			LEFT JOIN wb_common.com_attribute c ON ( b.part_id = c.id ) 
 		WHERE
 			a.audit_status = 1
@@ -420,7 +420,7 @@
 			f.name qualityTypeName,
 			f.name partBrandName
 		FROM
-			pts_cyc_store a
+			pj_cyc_store a
 			LEFT JOIN wb_common.com_attribute b ON ( a.part_id = b.id ) 
 			LEFT JOIN wb_common.com_part_type c on ( b.car_type_id_f = c.id)
 			left join wb_common.com_part_brand f on (b.quality_type_id = f.id)

@@ -48,7 +48,8 @@ function getData(){
 function SetData(params) {
 	params = nui.clone(params);
     if(params.data!=null){
-        form.setData(params.data);        
+        form.setData(params.data);
+        resultData=params.data;
     }
     nui.get('outQty').setValue(1);
     
@@ -69,8 +70,9 @@ function partToOut() {
 	if(onAdvancedAddOk()==false){
 		return;
 	}
-	data.outQty=resultData.outQty ;
-	data.pickMan=resultData.pickMan ;
+	data.outQty=form.getData().outQty;
+	data.pickMan=form.getData().pickMan;
+	data.remark=form.getData().remark;
 
 	var stockQty = data.stockQty;
 	var preOutQty = data.preOutQty || 0;
@@ -81,9 +83,7 @@ function partToOut() {
 	var billTypeId = "050207";
 	var partNameId = '0';
 	var pickType = '0';
-	data.outQty=form.getData().outQty;
-	data.pickMan=form.getData().pickMan;
-	data.remark=form.getData().remark;
+	
 	var sellUnitPrice = data.enterPrice;
 	var sellAmt = data.outQty * sellUnitPrice;
 	if(data.rootId==0){

@@ -8,7 +8,7 @@
   - Description:
 -->
 <head>
-<title>jsp auto create</title>
+<title>采购入库分析</title>
 <script src="<%=webPath + contextPath%>/purchasePart/js/purchaseInbound/purchaseEnterAnalysis.js?v=1.0.2"></script>
 <style type="text/css">
 .title {

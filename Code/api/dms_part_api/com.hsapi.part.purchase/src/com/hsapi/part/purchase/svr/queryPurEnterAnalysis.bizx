@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryPurEnterAnalysis.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.part.purchase.querySql2.queryPurEnterAnalysis" title="Administrator&#x9;18-10-22 上午9:24">
+    <location x="286" y="180"/>
+    <size height="109" width="515"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -19,13 +23,13 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="62" y="96"/>
-    <figSize height="17" width="25"/>
+    <location x="59" y="96"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="352" y="96"/>
-    <figSize height="17" width="25"/>
+    <location x="349" y="96"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="queryByNamedSql" displayName="queryByNamedSql" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -51,8 +55,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="165" y="96"/>
-    <figSize height="17" width="109"/>
+    <location x="151" y="96"/>
+    <figSize height="20" width="136"/>
     <node>invokePojo0</node>
   </nodes>
   <topRuler/>

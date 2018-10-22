@@ -44,7 +44,7 @@
 	 		<td width="200px;">第三次回访日</td>
 	 		</tr>
 	 		<tr>
-	 		<td align="center">工单</td>
+	 		<td align="center">综合单</td>
 	 		<td> 出厂	 
 				 <input name="workScoutDay1" style="width: 12%" class="nui-spinner" format="0"  value="7" minValue="1" maxValue="371" showButton="false"/>
 				 天后 
@@ -62,7 +62,7 @@
 			</td>
 	 		</tr>
 	 		<tr>
-	 		<td align="center">洗车单</td>
+	 		<td align="center">洗美单</td>
 			<td> 出厂	 
 				<input name="washScoutDay1" style="width: 12%" class="nui-spinner" format="0"  value="7" minValue="1" maxValue="371" showButton="false"/>
 				天后 
@@ -80,7 +80,7 @@
 			</td>
 	 		</tr>
 	 		<tr>
-	 		<td align="center">零售单</td>
+	 		<td align="center">销售单</td>
 			<td> 出厂	 
 				<input name="zeroScoutDay1" style="width: 12%" class="nui-spinner" format="0"  value="7" minValue="1" maxValue="371" showButton="false"/>
 				天后 

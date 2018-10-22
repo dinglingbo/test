@@ -121,7 +121,7 @@
             
 
              <div class="nui-fit">
-                  <fieldset id="fd1" style="width:95%;height:60px;">
+                  <fieldset id="fd1" style="width:97%;height:60px;">
                       <legend><span>盘点信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">
@@ -130,7 +130,7 @@
                               <input class="nui-hidden" name="auditSign"/>
                               <table style="width: 100%;">
                                   <tr>
-                                    <td class="title required">
+                                    <td class="title required" style="width:7%">
                                         <label>盘点仓库：</label>
                                     </td>
                                     <td>
@@ -165,7 +165,7 @@
 				                              valueFromSelect="false"
 		                                      width="100%">
                                       </td>
-                                      <td class="title required">
+                                      <td class="title required" style="width:7%">
                                           <label>盘点日期：</label>
                                       </td>
                                       <td width="120">
@@ -176,7 +176,7 @@
                                                  showTime="true"
                                                  class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
                                       </td>
-                                      <td class="title">
+                                      <td class="title" style="width:7%">
                                           <label>盘点单号：</label>
                                       </td>
                                       <td>

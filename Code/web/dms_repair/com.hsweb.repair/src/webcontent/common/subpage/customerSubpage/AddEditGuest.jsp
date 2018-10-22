@@ -263,7 +263,7 @@
                 <div class="nui-fit">
                 <div class="nui-splitter" id="addEditCustomerPage" style="width:100%;height:100%;" vertical="true" borderStyle="border:0;"
                     handlerSize="0" allowResize="false">
-                    <div  showCollapseButton="false" style="border:0;">
+                    <div size="215" showCollapseButton="false" style="border:0;">
                         <div class="nui-panel" showToolbar="false" title="客户信息" showFooter="false" borderStyle="border:0;" style="width:100%;height:100%;">
 
                             <div class="form" id="basicInfoForm">

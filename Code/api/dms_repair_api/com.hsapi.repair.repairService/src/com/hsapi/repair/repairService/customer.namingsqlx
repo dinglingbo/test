@@ -331,7 +331,7 @@
                 (mem_car_no like '%$memCarNo$%')
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="fullName">  
-                (full_name like '%$fullName$%')
+                (a.full_name like '%$fullName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="advantageCarbrandId">  
                 (advantage_carbrand_id like '%$advantageCarbrandId$%')

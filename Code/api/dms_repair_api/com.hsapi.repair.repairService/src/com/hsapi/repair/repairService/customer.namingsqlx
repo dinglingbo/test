@@ -37,7 +37,7 @@
 			wb_common.com_guest b
 		INNER JOIN rpb_car a ON (a.guest_id = b.id)
 		LEFT  JOIN rpb_car_extend c ON a.id=c.car_id
-		LEFT  JOIN rpb_contactor d ON b.id=d.group_id
+		LEFT  JOIN rpb_contactor d ON b.id=d.guest_id
 		WHERE
 			b.guest_type = '01020103'
 		<dynamic>
@@ -356,4 +356,7 @@
             </isNotEmpty>  
         </dynamic>  
     </select>
+    
+    
+    
 </sqlMap>

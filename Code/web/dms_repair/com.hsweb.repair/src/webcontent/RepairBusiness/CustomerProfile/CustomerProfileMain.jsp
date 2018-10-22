@@ -12,7 +12,7 @@
 <head>
 <title>客户档案</title>
 <script
-	src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.4.4"></script>
+	src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.4.6"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -68,6 +68,7 @@ table {
                     <li iconCls="" onclick="importCardByMobile()" id="importCardByMobile">电话号码导入</li>
                     <li iconCls="" onclick="importCardByCarNo()" id="importCardByCarNo">车牌号导入</li>
                 </ul>
+                	<a class="nui-button" iconCls="" id="carChangeBtn"	onclick="carChange()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;车牌车主变更</a>
 					</td>
 			</tr>
 		</table>

@@ -64,9 +64,11 @@ function updateCarBtnState()
     if(car.id)
     {
         nui.get("carNo").disable();
+        nui.get("vin").disable();
     }
     else{
         nui.get("carNo").enable();
+        nui.get("vin").enable();
     }
     if(currCarIdx<=0)
     {

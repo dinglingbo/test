@@ -100,7 +100,12 @@ function getSearchParam(){
     params.serviceId = comServiceId.getValue();
 	params.partCode = comPartCode.getValue();
 	params.partNameAndPY = comPartNameAndPY.getValue();
-	params.guestId = comSearchGuestId.getValue();
+	if(typeof comSearchGuestId.getValue() !== 'number'){
+    	params.guestId=null;
+    	params.guestName = comSearchGuestId.getValue();
+    }else{
+    	params.guestId = comSearchGuestId.getValue();
+    }
 	params.endDate = searchEndDate.getValue();
 	params.startDate = searchBeginDate.getValue();
     return params;
@@ -232,7 +237,14 @@ function onAdvancedSearchOk()
     //供应商
     if(searchData.guestId)
     {
-        searchData.guestId = nui.get("btnEdit2").getValue();
+//        searchData.guestId = nui.get("btnEdit2").getValue();
+    	if(typeof searchData.guestId !== 'number'){
+        	searchData.guestName= searchData.guestId;
+        	searchData.guestId=null;
+        }
+        else{
+        	searchData.guestId = nui.get("btnEdit2").getValue();
+        }
     }
     //订单单号
     if(searchData.serviceIdList)

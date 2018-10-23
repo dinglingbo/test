@@ -382,7 +382,7 @@ function onAdvancedSearchOk(){
 function add(){
     var item={};
     item.id = "3000";
-    item.text = "洗车-工单";
+    item.text = "洗车开单详情";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBill.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
@@ -395,7 +395,7 @@ function edit(){
     if(!row) return;
     var item={};
     item.id = "3000";
-    item.text = "洗车-工单";
+    item.text = "洗车开单详情";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBill.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);

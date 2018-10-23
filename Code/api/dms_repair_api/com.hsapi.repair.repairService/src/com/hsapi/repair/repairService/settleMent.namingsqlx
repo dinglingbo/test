@@ -92,7 +92,7 @@
 		SELECT
 			ifnull(sum(sell_amt),0) materialExp 
 		FROM
-			wb_part.pts_repair_out
+			wb_part.pj_repair_out
 		WHERE
 			service_id = #serviceId#
 			AND pick_type = '050204' 
@@ -148,7 +148,7 @@
 			package_id id,
 			sum( ifnull(true_cost,0) ) costAmt
 		FROM
-			wb_part.pts_repair_out 
+			wb_part.pj_repair_out 
 		WHERE
 			service_id = #serviceId#
 			AND return_sign = 0 

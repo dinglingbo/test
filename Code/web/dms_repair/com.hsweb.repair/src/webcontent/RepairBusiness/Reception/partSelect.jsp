@@ -305,7 +305,7 @@
                 paramsData.noTaxAmt = data[i].noTaxAmt;
                 paramsData.trueUnitPrice = data[i].trueUnitPrice;
                 paramsData.trueCost = data[i].trueCost;
-                paramsData.sellUntiPrice = parseFloat(selectRow.unitPrice);
+                paramsData.sellUnitPrice = parseFloat(selectRow.unitPrice);
                 paramsData.sellAmt = parseFloat(selectRow.unitPrice * data[i].outQty);
                 if(!paramsData.partNameId){ 
                     paramsData.partNameId = "0";  

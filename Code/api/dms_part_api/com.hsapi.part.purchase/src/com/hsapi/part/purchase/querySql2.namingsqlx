@@ -66,20 +66,21 @@
 			<isNotEmpty prepend="" property="groupbyGuestId">
 			<!--按供应商-->
 			a.guest_id CODE,
-			a.guest_full_name NAME
+			g.full_name NAME
 			FROM
-			pts_enter_main a
+			pj_enter_main_chk a
 			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
-			JOIN pts_enter_detail b ON ( a.id = b.enter_id )
+			JOIN pj_enter_detail_chk b ON ( a.id = b.main_id )
+			LEFT JOIN wb_common.com_guest g ON ( a.guest_id = g.id )
 			</isNotEmpty>
 			<isNotEmpty prepend="" property="groupbyPartBrandId">
 			<!--按品牌 -->
 			c.part_brand_id CODE,
 			e.name NAME 
 			FROM
-			pts_enter_main a
+			pj_enter_main_chk a
 			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
-			JOIN pts_enter_detail b ON ( a.id = b.enter_id )
+			JOIN pj_enter_detail_chk b ON ( a.id = b.main_id )
 			LEFT JOIN wb_common.com_attribute c ON ( b.part_id = c.id )
 			LEFT JOIN wb_common.com_part_brand e ON ( c.part_brand_id = e.id )
 			</isNotEmpty>
@@ -88,9 +89,9 @@
 			c.car_type_id_f CODE,
 			e.name NAME 
 			FROM
-			pts_enter_main a
+			pj_enter_main_chk a
 			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
-			JOIN pts_enter_detail b ON ( a.id = b.enter_id ) 
+			JOIN pj_enter_detail_chk b ON ( a.id = b.main_id ) 
 			LEFT JOIN wb_common.com_attribute c ON ( b.part_id = c.id )
 			LEFT JOIN wb_common.com_part_type e ON ( e.id = c.car_type_id_f )
 			</isNotEmpty>
@@ -178,18 +179,18 @@
 			a.guest_id CODE,
 			a.guest_full_name NAME
 			FROM
-			pts_out_main a
+			pj_out_main a
 			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
-			JOIN pts_out_detail b ON ( a.id = b.out_id )
+			JOIN pj_out_detail b ON ( a.id = b.out_id )
 			</isNotEmpty>
 			<isNotEmpty prepend="" property="groupbyPartBrandId">
 			<!--按品牌 -->
 			c.part_brand_id CODE,
 			e.name NAME 
 			FROM
-			pts_out_main a
+			pj_out_main a
 			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
-			JOIN pts_out_detail b ON ( a.id = b.out_id )
+			JOIN pj_out_detail b ON ( a.id = b.out_id )
 			LEFT JOIN wb_common.com_attribute c ON ( b.part_id = c.id )
 			LEFT JOIN wb_common.com_part_brand e ON ( c.part_brand_id = e.id )
 			</isNotEmpty>
@@ -198,9 +199,9 @@
 			a.back_reason_id CODE,
 			c.name NAME 
 			FROM
-			pts_out_main a
+			pj_out_main a
 			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
-			JOIN pts_out_detail b ON ( a.id = b.out_id ) 
+			JOIN pj_out_detail b ON ( a.id = b.out_id ) 
 			LEFT JOIN wb_common.com_dataitems c on (c.customid = a.back_reason_id)
 			</isNotEmpty>
 			<isNotEmpty prepend="" property="groupbyStoreId">
@@ -208,9 +209,9 @@
 			a.store_id CODE,
 			c.name NAME 
 			FROM
-			pts_out_main a
+			pj_out_main a
 			LEFT JOIN dms_system.org_organization d ON ( a.orgid = d.ORGID )
-			JOIN pts_out_detail b ON ( a.id = b.out_id ) 
+			JOIN pj_out_detail b ON ( a.id = b.out_id ) 
 			LEFT JOIN wb_common.com_store c on (c.id = a.store_id)
 			</isNotEmpty>
 		</dynamic>
@@ -870,7 +871,7 @@
 			b.apply_car_model applyCarModel,
 			c.NAME partBrandName 
 		FROM
-			pts_stock_check_detail a
+			pj_stock_check_detail a
 			LEFT JOIN wb_common.com_attribute b ON ( a.part_id = b.id )
 			LEFT JOIN wb_common.com_part_brand c ON ( b.part_brand_id = c.id ) 
 		WHERE

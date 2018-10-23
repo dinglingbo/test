@@ -13,7 +13,6 @@ var servieTypeHash = {};
 var memList = [];
 var serviceTypeIdEl = null;
 var currEmpIdEl = null;
-var searchNameEl = null;
 var servieIdEl = null;
 var searchKeyEl = null;
 

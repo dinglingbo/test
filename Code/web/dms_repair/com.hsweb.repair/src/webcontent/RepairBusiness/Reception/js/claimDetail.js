@@ -2648,7 +2648,8 @@ function addToBillPart(row, callback, unmaskcall){
         serviceId:main.id||0,
         partId:row.id,
         billItemId:row.billItemId,     
-        cardDetailId:0
+        cardDetailId:0,
+        qty:1
     };
     data.insPart = insPart;
     data.serviceId = main.id||0;

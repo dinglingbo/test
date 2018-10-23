@@ -2956,8 +2956,7 @@ function onPkgTypeIdValuechanged(e){
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == "S") {
 				var cardRate = returnJson.cardRate;
-				var packageDiscountRate = cardRate.packageDiscountRate;
-				editor2.setValue(packageDiscountRate);
+                var packageDiscountRate = cardRate.packageDiscountRate;
 				var amt = row.amt||0;
 				var subtotal = 0;
 			    if(amt>0){
@@ -2966,7 +2965,9 @@ function onPkgTypeIdValuechanged(e){
 			    }
 			    editor1.setValue(subtotal);
 			    lastPkgRate = packageDiscountRate;
-			    lastPkgSubtotal = subtotal;
+                lastPkgSubtotal = subtotal;
+                packageDiscountRate = (packageDiscountRate*100).toFixed(2);
+				editor2.setValue(packageDiscountRate);
 				
 			} else {
 				//showMsg("出库失败");
@@ -3216,9 +3217,7 @@ function onValueChangedItemTypeId(e){
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == "S") {
 				var cardRate = returnJson.cardRate;
-				var itemDiscountRate = cardRate.itemDiscountRate*100;
-				setRate.setValue(itemDiscountRate);
-				itemDiscountRate = itemDiscountRate/100;
+				var itemDiscountRate = cardRate.itemDiscountRate;
 				var unitPrice = setUnitPrice.getValue()||0;
 				var itemTime = setItemTime.getValue()||0;
 				var amt = 0;
@@ -3231,6 +3230,8 @@ function onValueChangedItemTypeId(e){
 			    	subtotal = amt - itemDiscountRate*1.0*amt;
 			    	subtotal = subtotal.toFixed(2);
 			    }
+			    itemDiscountRate = (itemDiscountRate*100).toFixed(2);
+			    setRate.setValue(itemDiscountRate);
 			    setSubtotal.setValue(subtotal);
 			    lastItemSubtotal = subtotal;
 			    lastItemRate = itemDiscountRate;

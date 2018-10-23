@@ -3013,6 +3013,8 @@ function onValueChangedComQty(e){
 		   itamt = itamt.toFixed(2);
 		   rowtime.amt = itamt;
 		   subtotal = itamt;
+		}else{
+			rowtime.amt = 0;
 		}
 		//设置小计金额
 		var rate = setRate.getValue()||0;
@@ -3062,6 +3064,8 @@ function onValueChangedItemUnitPrice(e){
 		   itamt = itamt.toFixed(2);
 		   row.amt = itamt;
 		   subtotal = itamt;
+		}else{
+		   row.amt = 0;
 		}
 		//设置小计金额
 		var rate = setRate.getValue()||0;
@@ -3116,6 +3120,8 @@ function onValueChangedItemRate(e){
 		   itamt = itamt.toFixed(2);
 		   row.amt = itamt;
 		   subtotal = itamt;
+		}else{
+			row.amt = 0;
 		}
 		//设置小计金额
 		if(rate>0){
@@ -3129,7 +3135,6 @@ function onValueChangedItemRate(e){
 		
   }	
 }
-
 //修改了小计，只会修改优惠率
 function onValueChangedItemSubtotal(e){	
 	var el = e.sender;
@@ -3211,8 +3216,9 @@ function onValueChangedItemTypeId(e){
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == "S") {
 				var cardRate = returnJson.cardRate;
-				var itemDiscountRate = cardRate.itemDiscountRate;
+				var itemDiscountRate = cardRate.itemDiscountRate*100;
 				setRate.setValue(itemDiscountRate);
+				itemDiscountRate = itemDiscountRate/100;
 				var unitPrice = setUnitPrice.getValue()||0;
 				var itemTime = setItemTime.getValue()||0;
 				var amt = 0;
@@ -3314,19 +3320,25 @@ function onDrawSummaryCellPack(e){
 				  sumPkgAmt  += parseFloat(rows[i].amt);
 			  }
 		  }
-	  } 
-	  if(sumPkgAmt>0 && sumPkgSubtotal>=0)
-	  {   sumPkgPrefAmt = sumPkgAmt - sumPkgSubtotal;
-		  sumPkgSubtotal = sumPkgSubtotal.toFixed(2);
-		  sumPkgPrefAmt = sumPkgPrefAmt.toFixed(2);
 		  
-		  data.packageSubtotal = sumPkgSubtotal;
-		  data.packagePrefAmt = sumPkgPrefAmt;
-		  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
-		  data.mtAmt = mtAmt.toFixed(2);
-		  sellForm.setData(data);
-	  }
-	 
+		  if(sumPkgAmt>0 && sumPkgSubtotal>=0)
+		  {   sumPkgPrefAmt = sumPkgAmt - sumPkgSubtotal;
+			  sumPkgSubtotal = sumPkgSubtotal.toFixed(2);
+			  sumPkgPrefAmt = sumPkgPrefAmt.toFixed(2);
+			  
+			  data.packageSubtotal = sumPkgSubtotal;
+			  data.packagePrefAmt = sumPkgPrefAmt;
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  data.mtAmt = mtAmt.toFixed(2);
+			  sellForm.setData(data);
+		  }else{
+			  data.packageSubtotal = 0;
+			  data.packagePrefAmt = 0;
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  data.mtAmt = mtAmt.toFixed(2);
+			  sellForm.setData(data);
+		  }
+	  } 
 }
 
 
@@ -3353,28 +3365,40 @@ function onDrawSummaryCellItem(e){
 			 }
 			   
 		  }
-	  } 
-	  if( sumItemSubtotal>0 && sumItemAmt>=0  )
-	  {   
-		  sumItemPrefAmt = sumItemAmt - sumItemSubtotal;
-		  sumItemSubtotal = sumItemSubtotal.toFixed(2);
-		  sumItemPrefAmt = sumItemPrefAmt.toFixed(2);
-		  data.itemSubtotal = sumItemSubtotal;
-		  data.itemPrefAmt = sumItemPrefAmt;
-		  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
-		  data.mtAmt = mtAmt.toFixed(2);
-		  sellForm.setData(data);
-	  }
-	  if(sumPartSubtotal>0 && sumPartAmt>=0)
-	  {   
-		  sumPartPrefAmt = sumPartAmt - sumPartSubtotal;
-		  sumPartSubtotal = sumPartSubtotal.toFixed(2);
-		  sumPartPrefAmt = sumPartPrefAmt.toFixed(2);
-		  data.partSubtotal = sumPartSubtotal;
-		  data.partPrefAmt = sumPartPrefAmt;
-		  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
-		  data.mtAmt = mtAmt.toFixed(2);
-		  sellForm.setData(data);
+		  
+		  if( sumItemSubtotal>0 && sumItemAmt>=0  )
+		  {   
+			  sumItemPrefAmt = sumItemAmt - sumItemSubtotal;
+			  sumItemSubtotal = sumItemSubtotal.toFixed(2);
+			  sumItemPrefAmt = sumItemPrefAmt.toFixed(2);
+			  data.itemSubtotal = sumItemSubtotal;
+			  data.itemPrefAmt = sumItemPrefAmt;
+			  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
+			  data.mtAmt = mtAmt.toFixed(2);
+			  sellForm.setData(data);
+		  }else{
+			  data.itemSubtotal = 0;
+			  data.itemPrefAmt = 0;
+			  data.mtAmt = 0;
+			  sellForm.setData(data);
+		  }
+		  if(sumPartSubtotal>0 && sumPartAmt>=0)
+		  {   
+			  sumPartPrefAmt = sumPartAmt - sumPartSubtotal;
+			  sumPartSubtotal = sumPartSubtotal.toFixed(2);
+			  sumPartPrefAmt = sumPartPrefAmt.toFixed(2);
+			  data.partSubtotal = sumPartSubtotal;
+			  data.partPrefAmt = sumPartPrefAmt;
+			  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
+			  data.mtAmt = mtAmt.toFixed(2);
+			  sellForm.setData(data);
+		  }else{
+			  data.partSubtotal = 0;
+			  data.partPrefAmt = 0;
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  data.mtAmt = mtAmt.toFixed(2);
+			  sellForm.setData(data);
+		  }  
 	  }  
 }
 

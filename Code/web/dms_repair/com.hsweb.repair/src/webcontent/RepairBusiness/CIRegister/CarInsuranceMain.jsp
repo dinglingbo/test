@@ -10,8 +10,8 @@ pageEncoding="UTF-8" session="false"%>
   - Description:
 -->
 <head>
-    <title>车险登记</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceMain.js?v=1.0.61"></script>
+    <title>保险开单</title>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceMain.js?v=1.0.62"></script>
     <style type="text/css">
 
     table {
@@ -33,16 +33,16 @@ pageEncoding="UTF-8" session="false"%>
                     <label style="font-family:Verdana;">快速查询：</label>
                 </td>
                 <td>
-                    <a class="nui-menubutton" plain="true" iconCls="icon-date" id="searchByDateBtn" menu="#popupMenu" >本日</a>
+                    <a class="nui-menubutton" plain="true" iconCls="" id="searchByDateBtn" menu="#popupMenu" >本日</a>
                     <ul id="popupMenu" class="nui-menu" style="display:none;">
-                        <li iconCls="icon-date" onclick="quickSearch(0)">本日</li>
-                        <li iconCls="icon-date" onclick="quickSearch(1)">昨日</li>
-                        <li iconCls="icon-date" onclick="quickSearch(2)">本周</li>
-                        <li iconCls="icon-date" onclick="quickSearch(3)">上周</li>
-                        <li iconCls="icon-date" onclick="quickSearch(4)">本月</li>
-                        <li iconCls="icon-date" onclick="quickSearch(5)">上月</li>
-                        <li iconCls="icon-date" onclick="quickSearch(6)">本年</li>
-                        <li iconCls="icon-date" onclick="quickSearch(7)">上年</li>
+                        <li iconCls="" onclick="quickSearch(0)">本日</li>
+                        <li iconCls="" onclick="quickSearch(1)">昨日</li>
+                        <li iconCls="" onclick="quickSearch(2)">本周</li>
+                        <li iconCls="" onclick="quickSearch(3)">上周</li>
+                        <li iconCls="" onclick="quickSearch(4)">本月</li>
+                        <li iconCls="" onclick="quickSearch(5)">上月</li>
+                        <li iconCls="" onclick="quickSearch(6)">本年</li>
+                        <li iconCls="" onclick="quickSearch(7)">上年</li>
                     </ul>
                 </td>
                 <td>
@@ -51,7 +51,7 @@ pageEncoding="UTF-8" session="false"%>
                     <label class="form_label">客户名称：</label>
                     <input class="nui-textbox" name="guestName" id="guestName"/>
                     <a class="nui-button" iconCls="" onclick="onSearch()" plain="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <a class="nui-button" iconCls="" onclick="advancedSearch()" plain="true"><span class="fa fa-binoculars fa-lg"></span>&nbsp;更多</a>
+                    <a class="nui-button" iconCls="" onclick="advancedSearch()" plain="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                 </td>
                 <td>
                         <!-- <input class="nui-hidden" id="cNo" name="cNo" value='<b:write property="cNo"/>'/>
@@ -63,11 +63,11 @@ pageEncoding="UTF-8" session="false"%>
                     </a>-->
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="newInsuranceDetail" id="">
-                       <span class="fa fa-plus fa-lg"></span>&nbsp;新建车险登记
+                       <span class="fa fa-plus fa-lg"></span>&nbsp;新增
                    </a>
 
                    <a class="nui-button" iconCls="" plain="true" onclick="view()" id="">
-                    <span class="fa fa-file-text-o fa-lg"></span>&nbsp;查看
+                    <span class="fa fa-edit fa-lg"></span>&nbsp;查看
                 </a>
             </td>
         </tr>

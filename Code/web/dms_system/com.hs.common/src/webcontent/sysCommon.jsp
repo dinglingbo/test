@@ -89,7 +89,6 @@
 		%>backToLogin();<%
 	}else{
 		IUserObject u = (IUserObject) session.getAttribute("userObject");	
-		System.out.println(u);	
 		if (u != null) {
             orgId = u.getUserOrgId();
             orgName = u.getUserOrgName();

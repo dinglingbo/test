@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>理赔开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.3.8"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.3.9"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">

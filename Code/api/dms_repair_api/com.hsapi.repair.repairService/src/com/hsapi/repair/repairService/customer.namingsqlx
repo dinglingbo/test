@@ -11,9 +11,9 @@
     <select id="queryCustomerList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.id id,
-			a.orgid orgid,
+			b.orgid orgid,
 			a.car_no carNo,
-			a.guest_id guestId,
+			b.id as guestId,
 			a.vin vin,
 			b.full_name guestFullName,
 			a.car_model_id carModelId,

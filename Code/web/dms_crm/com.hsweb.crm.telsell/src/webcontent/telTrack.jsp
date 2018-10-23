@@ -69,13 +69,12 @@
                     class="nui-datepicker width2" 
                     dateFormat="yyyy-MM-dd" 
                     emptyText="请选择日期" alwaysView="true"/>
-                <a class="nui-button" iconCls="icon-find" plain="true" onclick="query()" id="query" enabled="true">查询</a>
-                
-                <li class="separator"></li>
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="add" enabled="true">发送短信</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">预约维修</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">业绩登记</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="newClient()" id="edit" enabled="true">新增客户</a>
+                <a class="nui-button"  plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+
+                <a class="nui-button"  plain="true" onclick="add()" id="add" enabled="true">发送短信</a>
+                <a class="nui-button"  plain="true" onclick="edit()" id="edit" enabled="true">预约维修</a>
+                <a class="nui-button"  plain="true" onclick="edit()" id="edit" enabled="true">业绩登记</a>
+                <a class="nui-button"  plain="true" onclick="newClient()" id="edit" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增客户</a>
             </td>
         </tr>
     </table>
@@ -98,7 +97,7 @@
                         ondrawcell=""
                         onSelect="setScoutForm"
                         dataField="data"
-                        allowcellwrap="true"
+                        
                         virtualColumns="true"
                         idField="id"
                         showSummaryRow="true">

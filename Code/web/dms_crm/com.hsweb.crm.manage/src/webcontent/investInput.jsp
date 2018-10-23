@@ -19,12 +19,12 @@
                     <input id="serviceCode" class="nui-textbox" emptyText="输入查询条件" width="120"/>
                     <span>审核状态:</span>
                     <input id="auditSign" class="nui-combobox" data="gAuditSign" emptyText="输入查询条件" width="120"/>
-                    <a class="nui-button" iconCls="icon-search" plain="true" onclick="search()">查询</a>
-                    <span class="separator"></span>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onAddClick()">新增</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onEditClick()">修改</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onDeleteClick()">删除</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="">查看跟踪明细</a>
+                    <a class="nui-button"  plain="true" onclick="search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    
+                    <a class="nui-button" iconCls="" plain="true" onclick="onAddClick()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onEditClick()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改 </a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onDeleteClick()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick=""><span class="fa fa-search fa-lg"></span>&nbsp;查看跟踪明细</a>
                 </td>
             </tr>
         </table>

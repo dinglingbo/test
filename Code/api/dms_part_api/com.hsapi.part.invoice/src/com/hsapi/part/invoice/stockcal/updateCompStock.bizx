@@ -120,6 +120,10 @@
       <process:from type="query" pattern="reference">f/orderQty</process:from>
       <process:to type="query">orderQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">partStoreStock/operateDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="346" y="373"/>
@@ -130,6 +134,7 @@
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>invokePojo9</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo0</sourceNode>
@@ -260,6 +265,10 @@
       <process:from type="query" pattern="reference">billQty</process:from>
       <process:to type="query">partStoreStock/enterQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">partStoreStock/operateDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="529" y="274"/>
@@ -342,6 +351,10 @@
       <process:from type="query" pattern="reference">billQty</process:from>
       <process:to type="query">partStock/enterQty</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">partStock/operateDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="612" y="274"/>
@@ -412,6 +425,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">billQty</process:from>
       <process:to type="query">partStock/outQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">partStock/operateDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -539,6 +556,7 @@
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link28" name="库存表里面没有信息" displayName="连接线" type="transition">
       <sourceNode>assign8</sourceNode>
@@ -1196,6 +1214,7 @@
     <sourceConnections xsi:type="process:tLink" id="link44" name="link44" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign20</sourceNode>
       <targetNode>invokePojo7</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link42</targetConnections>
     <location x="435" y="410"/>
@@ -1480,15 +1499,9 @@
     <node>assign26</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo9" name="配件分仓订单" displayName="查询库存表" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link60" name="link60" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo9</sourceNode>
-      <targetNode>subprocess0</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"/>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
+      <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="877" y="237"/>
@@ -1529,7 +1542,7 @@
     </sourceConnections>
     <targetConnections>link30</targetConnections>
     <targetConnections>link31</targetConnections>
-    <targetConnections>link13</targetConnections>
+    <targetConnections>link61</targetConnections>
     <location x="1117" y="186"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
@@ -1588,6 +1601,33 @@
     <location x="512" y="323"/>
     <figSize height="20" width="49"/>
     <node>assign28</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="更新库存表" displayName="updateEntityByCriteriaEntity" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link61" name="link61" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>subprocess0</targetNode>
+    </sourceConnections>
+    <targetConnections>link60</targetConnections>
+    <location x="968" y="238"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo1label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntityByCriteriaEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">part</process:inputVariable>
+      <process:inputVariable id="1" name="value" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">partStock</process:inputVariable>
+      <process:inputVariable id="2" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">partStockCd</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
+    <location x="941" y="274"/>
+    <figSize height="20" width="76"/>
+    <node>invokePojo1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

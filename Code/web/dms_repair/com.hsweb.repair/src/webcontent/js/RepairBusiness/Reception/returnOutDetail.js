@@ -289,14 +289,14 @@ function  savepartOutRtn(data){
             paramsData.unit = data.unit;
             paramsData.returnMan = currUserName;
             paramsData.remark = data.remark;
-            paramsData.pickType = "维修出库-领料";
+//            paramsData.pickType = "维修出库-领料";
             paramsData.taxUnitPrice = data.taxUnitPrice;
             paramsData.taxAmt = data.taxAmt;
             paramsData.noTaxUnitPrice = data.noTaxUnitPrice;
             paramsData.noTaxAmt = data.noTaxAmt;
             paramsData.trueUnitPrice = data.trueUnitPrice;
             paramsData.trueCost = data.trueCost;
-            paramsData.sellUnitPrice = data.sellUntiPrice;
+            paramsData.sellUnitPrice = data.sellUnitPrice;
             paramsData.sellAmt = data.sellAmt;
             if(!paramsData.partNameId){
             	paramsData.partNameId = "0";

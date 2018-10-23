@@ -12,7 +12,7 @@
 <head> 
     <title>归库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.11"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.13"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -212,6 +212,7 @@ allowCellEdit="true" >
    <div header="待出库-配件信息">  
     <div property="columns">
         <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
+        <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="100" header="配件编码"></div>
         <div field="serviceTypeId" name="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
         <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="归库数量"></div>
         <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价"></div>

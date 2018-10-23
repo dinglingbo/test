@@ -38,15 +38,15 @@ table {
                          repeatLayout="table"
                          data="[{ id: 0, text: '本店资料 '},{ id: 1, text: '所有资料' }]" value="0">
                     </div>
-                    <a class="nui-button" plain="true" iconCls="icon-search" onclick="onSearch()">查询</a>
-                    <a class="nui-button" plain="true" iconCls="icon-ok" onclick="onOk()">选择</a>
+                    <a class="nui-button" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <a class="nui-button" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <a class="nui-button" plain="true" id="addBtn" iconCls="icon-add" onclick="onAdd()">新增客户</a>
-                    <a class="nui-button" plain="true" id="editBtn" iconCls="icon-edit" onclick="onEdit()">修改客户</a>
-                    <a class="nui-button" plain="true" id="closeBtn" iconCls="icon-no" onclick="onCancel()">关闭</a>
+                    <a class="nui-button" plain="true" id="addBtn" onclick="onAdd()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增客户</a>
+                    <a class="nui-button" plain="true" id="editBtn" onclick="onEdit()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改客户</a>
+                    <a class="nui-button" plain="true" id="closeBtn" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
                 </td>
             </tr>
         </table>

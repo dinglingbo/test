@@ -190,19 +190,29 @@ function setInitData(params){
     					data.contactorName = contactor.name;
     					data.mobile = contactor.mobile;
 
-                        //$("#guestNameEl").html(guest.guestFullName);
-                        //$("#showCarInfoEl").html(data.carNo);
-                        //$("#guestTelEl").html(guest.mobile);
-
-                        //fguestId = data.guestId||0;
-                        //fcarId = data.carId||0;
-
-                       // doSearchCardTimes(fguestId);
-                        //doSearchMemCard(fguestId);
-
                         billForm.setData(data);
-                        //mainGrid.setUrl("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
-                        //mainGrid.load({mainId:params.id});
+//                        nui.ajax({
+//                            url: mainGridUrl,
+//                            type : "post",
+//                            data : {
+//                            	serviceId : params.id,
+//            	                	token : token
+//                            },
+//                            async: false,
+//                            success: function (text) {
+//                               var maintain = nui.decode(text.maintain);
+//                               if(text.errCode == "S"){
+//                               		var data=text.data;
+//                               		mainGrid.load({id:mainIdStr,token:token},function(){
+//                               			vaildUpdate();
+//                               		});
+//                               }
+//                            },
+//                            error: function (jqXHR, textStatus, errorThrown) {
+//                                console.log(jqXHR.responseText);
+//                                showMsg("网络出错", "W");
+//                            }
+//                        });
                         mainGrid.load({serviceId:params.id,token:token},function(){
                         	vaildUpdate();
                         });

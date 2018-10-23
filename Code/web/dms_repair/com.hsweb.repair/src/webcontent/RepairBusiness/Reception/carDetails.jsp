@@ -32,7 +32,7 @@
 <input class="nui-hidden" id="carId"name="carId"/>
 <input class="nui-hidden" id="guestId"name="guestId"/>
 <div id="editForm1" style="width:100%;height:100%;">
-<div class="nui-tabs" activeIndex="0" style="width:100%;height:100%;" id="tabs">
+
     <div title="车辆信息">
         <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;">
             <legend>基本信息</legend>
@@ -90,23 +90,23 @@
                 </table>
             </div>
         </fieldset>
-        <div class="nui-fit">
+      
         <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:20%;">
             <legend>保养</legend>
             <div id="editForm2" style="padding:5px;">
                 
                 <table style="width:100%;" border="0" cellspacing="0" cellpadding="2px">
                     <tr>
-                        <td style="width:80px;" align="right">当前里程(KM)：</td>
-                        <td style="width:150px;">
+                        <td style="width:100px;" align="right">当前里程(KM)：</td>
+                        <td style="width:120px;">
                             <input class="nui-textbox" name="enterKilometers" width="100%" allowInput="false"/>
                         </td>
-                        <td style="width:80px;"align="right">建议保养里程(KM)：</td>
-                        <td style="width:150px;">
+                        <td style="width:120px;"align="right">建议保养里程(KM)：</td>
+                        <td style="width:120px;">
                            <input class="nui-textbox" name="" width="100%" allowInput="false"/>
                         </td>
-                        <td style="width:80px;"align="right">建议保养时间：</td>
-                        <td style="width:150px;">
+                        <td style="width:100px;"align="right">建议保养时间：</td>
+                        <td style="width:120px;">
                             <input class="nui-datepicker" name="" width="100%" allowInput="false"/>
                         </td>
                     </tr>
@@ -168,8 +168,9 @@
             </div>
         </fieldset>
         </div>
-    </div>
-    <div title="客户信息">
+
+    	 <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:50%;">
+    	 <legend>客户信息</legend>
         <div id="editForm4" style="padding:5px;">
         
             <table style="width:100%;" border="0" cellspacing="0" cellpadding="2px">
@@ -243,6 +244,7 @@
                 </tr>
             </table>
         </div>
+        </fieldset>
         <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;">
             <legend>计次卡</legend>
                  <div id="grid1" class="nui-datagrid" style="width:100%;height:190px;" selectOnLoad="true" showPager="true" pageSize="50"
@@ -256,10 +258,10 @@
                     </div>
                 </div>
         </fieldset>
-        <div class="nui-fit">
-        <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;height:88%;">
+
+        <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;height:50%;">
             <legend>储值卡</legend>
-            <div id="grid2" class="nui-datagrid" style="width:100%;height:92%;" selectOnLoad="true" showPager="true" pageSize="50"
+            <div id="grid2" class="nui-datagrid" style="width:100%;height:190px;" selectOnLoad="true" showPager="true" pageSize="50"
                 totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="">
                 <div property="columns">
                     <div field="cardName" name="cardName" width="100" headerAlign="center" header="卡名称"></div>
@@ -269,24 +271,12 @@
                 </div>
             </div>
         </fieldset>
-        </div>
-        <!-- <fieldset style="width:98%;border:solid 1px #aaa;margin-top:8px;position:relative;">
-            <legend>VIP卡</legend>
-            <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
-                totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" url="">
-                <div property="columns">
-                    <div type="indexcolumn" headerAlign="center" align="center">序号</div>
-                    <div field="" name="" headerAlign="center" align="center">卡名称</div>
-                    <div field="" name="" headerAlign="center" align="center">卡类型</div>
-                    <div field="" name="" headerAlign="center" align="center">卡号</div>
-                    <div field="" name="" headerAlign="center" align="center">绑定车牌</div>
-                    <div field="" name="" headerAlign="center" align="center">到期时间</div>
-                </div>
-            </div>
-        </fieldset> -->
-    </div>
-    <div title="服务记录" >
-        <div id="mainGrid1" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
+
+
+
+     <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;height:50%;">
+      <legend>储服务记录卡</legend>
+        <div id="mainGrid1" class="nui-datagrid" style="width:100%;height:190px;" selectOnLoad="true" showPager="true" pageSize="50"
             totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="">
             <div property="columns">
                 	<div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌"></div>
@@ -294,17 +284,18 @@
 	                <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
 	                <div field="contactName" name="contactName" width="65" headerAlign="center" header="送修人姓名"></div>
                   	<div field="contactMobile" name="contactMobile" width="80" headerAlign="center" header="送修人手机"></div>
-                  	<div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" header="服务顾问"></div>
+                  	<div field="mtAdvisor" name="mtAdvisor" width="70" headerAlign="center" header="服务顾问"></div>
 	                <div field="serviceCode" name="serviceCode" width="120" headerAlign="center" header="工单号"></div>
-                    <div field="recordDate" name="recordDate" width="120" headerAlign="center" header="开单日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
-                    <div field="balaAmt" name="balaAmt" width="120" headerAlign="center" header="金额"></div>
+                    <div field="recordDate" name="recordDate" width="110" headerAlign="center" header="开单日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                    <div field="balaAmt" name="balaAmt" width="60" headerAlign="center" header="金额"></div>
                     
             </div>
         </div>
+       </fieldset>
     </div>
-</div>
-</div>
-</div>
+    </div>
+
+
 	<script type="text/javascript">
     	nui.parse();
     </script>

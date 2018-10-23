@@ -505,3 +505,40 @@ function importTimesCard(){
         }
     });
 }
+
+function carChange(){
+    var row = grid.getSelected();
+    if (row)
+    {
+        nui.open({
+            targetWindow: window,
+            url: webPath + contextPath + "/com.hsweb.RepairBusiness.carChange.flow?token="+token,
+            title: "车牌车主变更", 
+            width: 550, 
+            height: 300,
+            allowDrag:true,
+            allowResize:true,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                var params = {};
+                if(row)
+                {
+                    params.guest = row;
+                }
+                iframe.contentWindow.setData(params);
+            },
+            ondestroy: function (action)
+            {
+                if("ok" == action)
+                {
+                	nui.alert("变更信息成功","提示");
+                    grid.reload();
+                    
+                }
+            }
+        });
+    } else {
+        showMsg("请选中一条数据", "W");
+    }
+
+}

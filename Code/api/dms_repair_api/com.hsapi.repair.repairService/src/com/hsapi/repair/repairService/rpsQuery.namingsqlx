@@ -829,7 +829,8 @@
 			a.sale_man saleMan,
 			a.record_date recordDate,
 			a.out_return_qty outReturnQty,
-			a.detail_id detailId
+			a.detail_id detailId,
+			a.pick_qty pickQty
 		FROM
 			rps_part a
 			inner JOIN rps_maintain b ON (a.service_id = b.id )
@@ -837,6 +838,6 @@
 			b.orgid = #orgid#
 			AND b.is_settle = 1
 			AND b.guest_id = #guestId#	
-			AND a.qty &gt; 0
+			AND a.pick_qty &gt; a.out_return_qty
 	</select>
 </sqlMap>

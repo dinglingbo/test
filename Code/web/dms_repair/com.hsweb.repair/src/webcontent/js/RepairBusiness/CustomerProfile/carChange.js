@@ -48,6 +48,13 @@ var requiredField = {
 	};
 
 function onOk(){
+	var car = xCar.getData();
+	for ( var key in requiredField) {
+		if (!car[key] || $.trim(car[key]).length == 0) {
+			showMsg(requiredField[key] + "不能为空!", "W");
+			return;
+		}
+	}
 	if(nui.get('changeType').getValue() == "0"){
 		changeCarNo();
 	}else{

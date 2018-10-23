@@ -377,7 +377,7 @@ function onAdvancedSearchOk(){
 function add(){
     var item={};
     item.id = "4000";
-    item.text = "理赔-工单";
+    item.text = "理赔开单详情";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.claimDetail.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
@@ -390,7 +390,7 @@ function edit(){
     if(!row) return;
     var item={};
     item.id = "4000";
-    item.text = "理赔-工单";
+    item.text = "理赔开单详情";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.claimDetail.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);

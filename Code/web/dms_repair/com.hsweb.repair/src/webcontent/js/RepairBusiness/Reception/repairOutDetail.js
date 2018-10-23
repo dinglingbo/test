@@ -256,9 +256,12 @@ function LLSave(argument) {
 }
 
 function openPartSelect(par,type,id,row,srow){
+	var qty = srow.qty||0;
+	var pickQty = srow.pickQty||0;
+	var restQty = qty - pickQty;
 	nui.open({
 		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow?token="+token,
-		title:"选择配件",
+		title:"选择配件--待领料数量："+restQty,
 		height:"400px",
 		width:"900px",
 		onload:function(){

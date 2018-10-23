@@ -7,12 +7,13 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
+    <!--LEFT  JOIN rpb_contactor d ON b.id=d.guest_id-->
     <select id="queryCustomerList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.id id,
-			a.orgid orgid,
+			b.orgid orgid,
 			a.car_no carNo,
-			a.guest_id guestId,
+			b.id as guestId,
 			a.vin vin,
 			b.full_name guestFullName,
 			a.car_model_id carModelId,
@@ -35,9 +36,8 @@
 			ifnull( DATEDIFF( now( ), c.last_leave_date ), 0 ) leaveDay
 		FROM
 			wb_common.com_guest b
-		INNER JOIN rpb_car a ON (a.guest_id = b.id)
+		left JOIN rpb_car a ON (a.guest_id = b.id)
 		LEFT  JOIN rpb_car_extend c ON a.id=c.car_id
-		LEFT  JOIN rpb_contactor d ON b.id=d.guest_id
 		WHERE
 			b.guest_type = '01020103'
 		<dynamic>

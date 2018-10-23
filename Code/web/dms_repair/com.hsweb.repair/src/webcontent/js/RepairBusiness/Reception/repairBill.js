@@ -3100,8 +3100,7 @@ function onPkgTypeIdValuechanged(e){
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == "S") {
 				var cardRate = returnJson.cardRate;
-				var packageDiscountRate = cardRate.packageDiscountRate;
-				editor2.setValue(packageDiscountRate);
+                var packageDiscountRate = cardRate.packageDiscountRate;
 				var amt = row.amt||0;
 				var subtotal = 0;
 			    if(amt>0){
@@ -3110,7 +3109,10 @@ function onPkgTypeIdValuechanged(e){
 			    }
 			    editor1.setValue(subtotal);
 			    lastPkgRate = packageDiscountRate;
-			    lastPkgSubtotal = subtotal;
+                lastPkgSubtotal = subtotal;
+                
+                packageDiscountRate = (packageDiscountRate*100).toFixed(2);
+				editor2.setValue(packageDiscountRate);
 				
 			} else {
 				//showMsg("出库失败");

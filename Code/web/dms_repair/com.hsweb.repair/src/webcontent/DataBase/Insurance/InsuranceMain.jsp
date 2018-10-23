@@ -11,7 +11,7 @@
 -->
 <head>
 <title>保险公司</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Insurance/InsuranceMain.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Insurance/InsuranceMain.js?v=1.0.3"></script>
 <style type="text/css">
 table {
 	width: 100%;
@@ -39,12 +39,12 @@ table {
 	<table>
 		<tr>
 			<td>
-				<a class="nui-button" iconCls="icon-add" onclick="add()" plain="true">新增</a>
-				<a class="nui-button" iconCls="icon-edit" onclick="edit()" plain="true">修改</a>
-				<a class="nui-button" iconCls="icon-no" onclick="disableComeguest()" id="disableBtn"
-				   plain="true">禁用</a>
-				<a class="nui-button" iconCls="icon-ok" onclick="enableComeguest()" id="enableBtn" plain="true"
-				   visible="false">启用</a>
+				<a class="nui-button" iconCls="" onclick="add()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+				<a class="nui-button" iconCls="" onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+				<a class="nui-button" iconCls="" onclick="disableComeguest()" id="disableBtn"
+				   plain="true"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
+				<a class="nui-button" iconCls="" onclick="enableComeguest()" id="enableBtn" plain="true"
+				   visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;启用</a>
 			</td>
 		</tr>
 	</table>

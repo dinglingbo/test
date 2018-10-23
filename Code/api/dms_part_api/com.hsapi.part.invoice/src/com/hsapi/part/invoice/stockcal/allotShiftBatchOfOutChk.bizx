@@ -162,10 +162,6 @@
       <process:to type="query">mainId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">050204</process:from>
-      <process:to type="query">outmain/billTypeId</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">mainenter/orderManId</process:from>
       <process:to type="query">outmain/orderManId</process:to>
     </process:copy>

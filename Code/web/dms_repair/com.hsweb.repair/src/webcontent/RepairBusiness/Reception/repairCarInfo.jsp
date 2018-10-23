@@ -84,7 +84,7 @@
                       <label>进厂里程：</label>
                   </td>
                   <td >
-                      <input class="nui-Spinner" minValue="0" maxValue="100000000" name="enterKilometers" allowNull="false" showButton="false" width="100%"/>
+                      <input class="nui-Spinner" minValue="0" maxValue="100000000" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" width="100%"/>
                   </td>
                   <td class="title required">
                       <label>进厂日期：</label>

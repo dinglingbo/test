@@ -727,6 +727,7 @@ function isCheckMainN(){
                     searchNameEl.setEnabled(false);
 
                     var temp = SearchCheckMain(mainParams.id);
+                    mainParams.cmId = temp.id;//保存的时候用到
                     data.guestFullName = guest.fullName;
                     data.guestMobile = guest.mobile;
                     data.contactorName = contactor.name;
@@ -823,7 +824,7 @@ function saveDetail(){ //√
     for(var i=0;i<grid_all.length;i++){
         var tem = {};
 
-        tem.serviceId = mainParams.id;
+        tem.serviceId = mainParams.cmId;
         tem.mainId = checkMainId.value;
         tem.checkName = grid_all[i].checkName;
         tem.checkType = grid_all[i].checkType;

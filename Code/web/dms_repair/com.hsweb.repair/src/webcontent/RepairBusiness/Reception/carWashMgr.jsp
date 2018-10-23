@@ -10,7 +10,7 @@
 -->
 <head>
 <title>洗车-工单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/carWashBillMgr.js?v=1.1.9"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/carWashBillMgr.js?v=1.2.0"></script>
 <style type="text/css">
 
 .title {

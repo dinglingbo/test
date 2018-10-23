@@ -45,9 +45,9 @@
 			(a.sell_amt - a.true_cost) grossProfit,
 			a.auditor auditor
 		FROM
-			pts_repair_out a
-			LEFT JOIN pts_enter_detail b ON ( a.source_id = b.detail_id )
-			LEFT JOIN pts_enter_main c ON ( b.enter_id = c.id )
+			pj_repair_out a
+			LEFT JOIN pj_enter_detail b ON ( a.source_id = b.detail_id )
+			LEFT JOIN pj_enter_main c ON ( b.enter_id = c.id )
 			LEFT JOIN wb_common.com_attribute d ON ( a.part_id = d.id )
 			LEFT JOIN wb_common.com_part_brand e ON ( d.part_brand_id = e.id )	
 		WHERE
@@ -89,7 +89,7 @@
         </dynamic> 
     </select>
     
-    <select id="queryRepairOutListByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+  <!-- <select id="queryRepairOutListByServiceId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
 			a.id id,
 			a.source_id sourceId,
@@ -127,8 +127,8 @@
 			a.record_date recordDate,
 			b.stock_location stockLocation 
 		FROM
-			pts_repair_out a
-			LEFT JOIN pts_cyc_org b ON a.part_id = b.part_id 
+			pj_repair_out a
+			LEFT JOIN pj_cyc_org b ON a.part_id = b.part_id 
 		WHERE
 			a.orgid = b.orgid 
 			AND a.service_id = #serviceId#
@@ -138,6 +138,6 @@
                 (a.pick_type = #pickType#)
             </isNotEmpty>
         </dynamic> 
-    </select>
+    </select>-->
     
 </sqlMap>

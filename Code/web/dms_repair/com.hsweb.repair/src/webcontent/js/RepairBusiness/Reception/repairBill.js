@@ -630,6 +630,7 @@ function onApplyClick(){
                 carNoEl.setText(guest.carNo);
                 billForm.setData(maintain);
                 sendGuestForm.setData(maintain);
+                describeForm.setData(maintain);
 
                 fguestId = guest.guestId||0;
                 fcarId = guest.carId||0;
@@ -680,6 +681,7 @@ function doSetMainInfo(car){
 
     billForm.setData(maintain);
     sendGuestForm.setData(maintain);
+    describeForm.setData(maintain);
     xyguest = maintain;
     fguestId = car.guestId||0;
     fcarId = car.id||0;
@@ -786,6 +788,7 @@ function setInitData(params){
                         	nui.get("ExpenseAccount1").setVisible(false);
                         }
                         sendGuestForm.setData(data);
+                        describeForm.setData(data);
 
                         var p1 = {
                             interType: "package",
@@ -843,6 +846,7 @@ function add(){
     rpsItemGrid.clearRows();
     billForm.setData([]);
     sendGuestForm.setData([]);
+    describeForm.setData([]);
     //sendGuestForm.setData([]);
     //insuranceForm.setData([]);
     //describeForm.setData([]);
@@ -967,13 +971,21 @@ function save(){
 }
 var requiredField = {
     carNo : "车牌号",
-    guestId : "客户",
     serviceTypeId : "业务类型",
-    mtAdvisorId : "服务顾问"
+    mtAdvisorId : "服务顾问",
+    guestId : "客户",
+    enterOilMass : "进厂油量",
+    enterKilometers : "进厂里程",
+    enterDate : "进厂日期",
+    planFinishDate : "预计交车"
 };
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function saveMaintain(callback,unmaskcall){
     var data = billForm.getData();
+    var desData = describeForm.getData();
+    for(var v in desData){
+        data[v] = desData[v];
+    }
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
             unmaskcall && unmaskcall();

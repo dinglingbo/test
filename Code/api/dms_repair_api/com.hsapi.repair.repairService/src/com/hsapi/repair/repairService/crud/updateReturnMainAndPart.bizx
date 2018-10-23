@@ -759,6 +759,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="flage" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="yqty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="pickQty" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="Code" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="main"/>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+	<%@include file="/common/sysCommon.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -11,8 +11,8 @@
 <head>
 <title>客户资料</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=webPath + crmDomain%>/telsales/js/clientInfo_edit.js?v=1.0" type="text/javascript"></script>
+    
+    <script src="<%=webPath + contextPath%>/telsell/js/clientInfo_edit.js?v=1.0" type="text/javascript"></script>
     <link href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.0" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -20,9 +20,9 @@
         <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:95%;" plain="false"
              onactivechanged="">
             <!--客户信息-->
-            <%@include file="/telsales/clientInfo_tab1.jsp" %>
+            <%@include file="../telsell/clientInfo_tab1.jsp" %>
             <!--车辆信息-->
-            <%@include file="/telsales/clientInfo_tab2.jsp" %>
+            <%@include file="../telsell/clientInfo_tab2.jsp" %>
         </div>
 
         <div style="text-align:center;padding:10px;">

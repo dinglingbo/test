@@ -1,6 +1,7 @@
 var queryForm; //查询表单
 var dgGrid; //列表
-
+var baseUrl = apiPath + crmApi + "/"; 
+var queryDatumMgrListUrl = baseUrl+"com.hsapi.crm.telsales.crmTelsales.getDatumMgrList.biz.ext";
 var tracker;
 var tree1;
 var tree2;
@@ -17,6 +18,7 @@ $(document).ready(function(v){
     tree1 = nui.get("tree1");
     tree2 = nui.get("tree2");
     dgGrid = nui.get("dgGrid");
+    dgGrid.setUrl(queryDatumMgrListUrl);
     dgGrid.on("beforeload",function(e){
     	e.data.token = token;
     });
@@ -138,7 +140,7 @@ function updateField(field, value){
         params.push(obj);
     }
     
-    var url = _crmApiRoot + "/com.hsapi.crm.telsales.crmTelsales.updateGuest.biz.ext";
+    var url = baseUrl + "com.hsapi.crm.telsales.crmTelsales.updateGuest.biz.ext";
     callAjax(url, {datas: params}, processAjax, reLoadMain, null);
 }
 
@@ -176,7 +178,7 @@ function editGuestInfo(){
 function editWin(title, data){
     data.artType = tree1.getData();
     nui.open({
-        url: _crmWebRoot + "/com.hsweb.crm.telsales.clientInfo_edit.flow",
+        url: webPath + contextPath+ "/com.hsweb.crm.manage.investDetail.flow?token="+ token,
         title: title, width: 520, height: 520,
         onload: function () {
             var iframe = this.getIFrameEl();

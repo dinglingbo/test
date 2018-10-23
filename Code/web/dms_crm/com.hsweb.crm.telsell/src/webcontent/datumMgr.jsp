@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+	<%@include file="/common/sysCommon.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -11,9 +11,7 @@
 <head>
 <title>资料管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=crmDomain%>/common/crmcommon.js?v=1.0" type="text/javascript"></script> 
-    <script src="<%=crmDomain%>/telsales/js/datumMgr.js?v=1.0" type="text/javascript"></script> 
+    <script src="<%=webPath + contextPath%>/telsell/js/datumMgr.js?v=1.0.2"></script>
 </head>
 <body>
 
@@ -159,7 +157,6 @@
                          allowcellwrap="true"
                          idField="id"
                          multiSelect="true"
-                         url="<%=apiPath + crmApi%>/com.hsapi.crm.telsales.crmTelsales.getDatumMgrList.biz.ext"
                          showSummaryRow="true">
                         <div property="columns">
                             <div type="checkcolumn" width="25"></div>
@@ -171,7 +168,7 @@
                                     <div field="carNo" width="70" headerAlign="center" allowSort=false>车牌号</div>
                                     <div field="carBrandId" width="50" headerAlign="center" allowSort=false>品牌</div>
                                     <div field="carModel" width="60" headerAlign="center" allowSort=false>车型</div>
-                                    <div field="underpanNo" width="60" headerAlign="center" allowSort=false>VIN</div>
+                                    <div field="vin" width="60" headerAlign="center" allowSort=false>VIN</div>
                                     <div field="firstRegDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
                                     <div field="annualInspectionDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
                                     <div field="recorder" width="60" headerAlign="center" allowSort=false>建档人</div>

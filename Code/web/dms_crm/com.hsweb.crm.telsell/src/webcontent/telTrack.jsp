@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+	 <%@include file="/common/sysCommon.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -11,8 +11,8 @@
 <head>
 <title>电话跟踪</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=crmDomain%>/telsales/js/telTrack.js?v=1.0" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/telsell/js/telTrack.js?v=1.0.3"></script>
+    <%-- <script src="<%=crmDomain%>/telsales/js/telTrack.js?v=1.0" type="text/javascript"></script> --%>
     <link href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -101,7 +101,6 @@
                         allowcellwrap="true"
                         virtualColumns="true"
                         idField="id"
-                        url="<%=apiPath + crmApi%>/com.hsapi.crm.telsales.crmTelsales.getScoutGuestList.biz.ext"
                         showSummaryRow="true">
                         <div property="columns">
                             <div type="checkcolumn" width="20"></div>
@@ -113,7 +112,7 @@
                                     <div field="carNo" width="50" headerAlign="center" allowSort=false>车牌号</div>
                                     <div field="carBrandId" width="40" headerAlign="center">品牌</div>
                                     <div field="carModel" width="40" headerAlign="center">车型</div>
-                                    <div field="underpanNo" width="70" headerAlign="center" allowSort=false>VIN</div>
+                                    <div field="vin" width="70" headerAlign="center" allowSort=false>VIN</div>
                                     <div field="firstRegDate" width="70" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
                                     <div field="annualInspectionDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
                                     <div field="recorder" width="40" headerAlign="center" allowSort=false>建档人</div>
@@ -149,10 +148,10 @@
             <div class="nui-fit">
                 <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
                      onactivechanged="" >
-                    <!--联系内容-->
-                    <%@include file="/telsales/telTrack_tab1.jsp" %>
+                    <!--联系内容--><%=webPath + contextPath%>/telsell/js/telTrack.js
+                    <%@include file="../telsell/telTrack_tab1.jsp" %>
                     <!--客户资料-->
-                    <%@include file="/telsales/telTrack_tab2.jsp" %>
+                    <%@include file="../telsell/telTrack_tab2.jsp" %>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 var investForm = null;
-
+var baseUrl = apiPath + crmApi + "/";
 $(document).ready(function(){
 	investForm = new nui.Form("#investForm");
 	initMember("visitId",function(){});
@@ -45,10 +45,11 @@ function save(){
     });
 
     nui.ajax({
-        url : "com.hsapi.crm.svr.svr.saveInvest.biz.ext",
+        url : baseUrl+"com.hsapi.crm.svr.svr.saveInvest.biz.ext",
         type : "post",
         data : {
-        	invest:data
+        	invest:data,
+        	token:token
         },
         success : function(data) {
             nui.unmask();
@@ -81,19 +82,28 @@ function carNoChange(){
         html: '正在加载...'
     });
     nui.ajax({
-        url : "com.hsapi.repair.repairService.query.getRecentRepairByCar.biz.ext",
+        url : apiPath + repairApi + "/com.hsapi.repair.repairService.query.getRecentRepairByCar.biz.ext",
         type : "post",
         data : {
-        	carNo:nui.get("carNo").getValue()
+        	carNo:nui.get("carNo").getValue(),
+        	token:token
         },
         success : function(result) {
             nui.unmask();
             result = result || {};
             if (result.errCode == "S") {
-                nui.get("serviceCode").setValue(result.data.serviceCode);
-                nui.get("serviceId").setValue(result.data.id);
-                nui.get("carId").setValue(result.data.carId);
-                nui.get("guestId").setValue(result.data.guestId);
+            	if(result.data.serviceCode==null){
+            		nui.alert("此车牌无记录","提示");
+            		nui.get("ok").disable();
+            		return;
+            	}else{
+                    nui.get("serviceCode").setValue(result.data.serviceCode);
+                    nui.get("serviceId").setValue(result.data.id);
+                    nui.get("carId").setValue(result.data.carId);
+                    nui.get("guestId").setValue(result.data.guestId);
+                    nui.get("ok").enable();
+            	}
+
             } else {
 				nui.alert(result.errMsg || "工单号生成失败!");
             }

@@ -3,7 +3,7 @@ var recorder;//建档人
 var recordDate;//建档日期
 var modifier;//修改人
 var modifyDate;//修改日期
-
+var baseUrl = apiPath + crmApi + "/";
 var carModelInfo;
 
 $(document).ready(function(v){
@@ -47,10 +47,11 @@ function onOk(){
     //$("#save").hide();
     try {
         nui.ajax({
-            url: webPath + crmDomain + "/com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext",
+            url: baseUrl + "/com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext",
             type: 'post',
             data: nui.encode({
-                data: form1.getData()
+                data: form1.getData(),
+                token:token
             }),
             cache: false,
             success: function (data) {

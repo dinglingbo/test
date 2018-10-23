@@ -1,4 +1,6 @@
 var investGrid = null;
+var baseUrl = apiPath + crmApi + "/";
+var queryInvestListUrl = baseUrl+"com.hsapi.crm.svr.svr.queryInvestList.biz.ext";
 var gAuditSign=[{
 	"id":0,
 	"text":"未审核"
@@ -11,7 +13,8 @@ var gAuditSign=[{
 }];
 
 $(document).ready(function(){
-	investGrid = nui.get("investGrid");;
+	investGrid = nui.get("investGrid");
+	investGrid.setUrl(queryInvestListUrl);
 	search();
 });
 
@@ -26,7 +29,7 @@ function search(){
 
 function onAddClick(){
 	nui.open({
-		url: "com.hsweb.crm.manage.investDetail.flow",
+		url:  webPath + contextPath+ "/com.hsweb.crm.manage.investDetail.flow?token="+ token,
 		title: "业绩新增",
 		allowResize:false,
 		width: 400, 
@@ -50,7 +53,7 @@ function onEditClick(){
 		return;
 	}
 	nui.open({
-		url: "com.hsweb.crm.manage.investDetail.flow",
+		url: webPath + contextPath+ "/com.hsweb.crm.manage.investDetail.flow?token="+ token,
 		title: "业绩修改",
 		allowResize:false,
 		width: 400,
@@ -84,10 +87,11 @@ function onDeleteClick(){
     });
 
     nui.ajax({
-        url : "com.hsapi.crm.svr.svr.deleteInvest.biz.ext",
+        url :baseUrl+ "com.hsapi.crm.svr.svr.deleteInvest.biz.ext",
         type : "post",
         data : {
-        	invest:data
+        	invest:data,
+        	token:token
         },
         success : function(data) {
             nui.unmask();
@@ -108,6 +112,7 @@ function onDeleteClick(){
 }
 
 function onDrawcell(e) {
+	var hash = new Array("潜在客户", "回访来厂", "流失回厂");
     if(e.field == "auditSign"){
         for(var i=0;i<gAuditSign.length;i++){
             if(e.value == gAuditSign[i].id){
@@ -115,4 +120,7 @@ function onDrawcell(e) {
             }
         }
     }
+    if (e.field == "carType") {
+        e.cellHtml = hash[e.value-1];
+}
 }

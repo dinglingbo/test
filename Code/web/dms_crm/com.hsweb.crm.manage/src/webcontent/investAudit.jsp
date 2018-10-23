@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+	 <%@include file="/common/sysCommon.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>业绩审核</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon.jsp" %>
-    <script src="manage/js/investAudit.js" type="text/javascript"></script>
+   <script src="<%=webPath + contextPath%>/manage/js/investAudit.js?v=1.0.1"></script>
 </head>
 <body>
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
@@ -43,7 +42,7 @@
                     allowCellSelect="true"
                     ondrawcell="onDrawcell"
                     onrowclick="onRowclick"
-                    url="com.hsapi.crm.svr.svr.queryInvestList.biz.ext">
+                   >
                     <div property="columns">
                         <div type="indexcolumn">序号</div> 
                         <div header="业绩信息" headerAlign="center">
@@ -83,65 +82,65 @@
                     </div>
                 </div>
             </div>
-            <div size="410px" showCollapseButton="false">
+            <div size="450px" showCollapseButton="false">
             	<div id="infoTab" class="nui-tabs" style="height:100%">
             		<div title="基本信息">
             			<table id="basicInfo" style="margin:0 5px;">
             				<tr>
-                				<td style="width:60px;text-align:right;"><span>客户名称:</span></td>
+                				<td style="width:80px;text-align:right;"><span>客户名称:</span></td>
 								<td><input name="guestName" style="width:130px;" class="nui-textbox"/></td>
-								<td style="width:60px;text-align:right;"><span>客户电话:</span></td>
+								<td style="width:80px;text-align:right;"><span>客户电话:</span></td>
 								<td><input name="guestMobile" style="width:130px;" class="nui-textbox"/></td>
             				</tr>
             				<tr>
-                				<td style="width:60px;text-align:right;"><span>联系人:</span></td>
+                				<td style="width:80px;text-align:right;"><span>联系人:</span></td>
 								<td><input name="contactName" style="width:130px;" class="nui-textbox"/></td>
-								<td style="width:60px;text-align:right;"><span>联系电话:</span></td>
+								<td style="width:80px;text-align:right;"><span>联系电话:</span></td>
 								<td><input name="contactMobile" style="width:130px;" class="nui-textbox"/></td>
             				</tr>
             				<tr>
-                				<td style="width:60px;text-align:right;"><span>身份证:</span></td>
+                				<td style="width:80px;text-align:right;"><span>身份证:</span></td>
 								<td><input name="contactIdNo" style="width:130px;" class="nui-textbox"/></td>
-								<td style="width:60px;text-align:right;"><span>来厂次数:</span></td>
+								<td style="width:80px;text-align:right;"><span>来厂次数:</span></td>
 								<td><input name="compComeTimes" style="width:130px;" class="nui-textbox"/></td>
             				</tr>
             				<tr>
-                				<td style="width:60px;text-align:right;"><span>车牌号:</span></td>
+                				<td style="width:80px;text-align:right;"><span>车牌号:</span></td>
 								<td><input name="carNo" style="width:130px;" class="nui-textbox"/></td>
 								<td style="width:60px;text-align:right;"><span>品牌:</span></td>
 								<td><input id="carBrandIdEl" name="carBrandId" style="width:130px;" textField="name" valueField="id" class="nui-combobox" /></td>
             				</tr>
             				<tr>
-                				<td style="width:60px;text-align:right;"><span>车型:</span></td>
+                				<td style="width:80px;text-align:right;"><span>车型:</span></td>
 								<td><input name="carModel" style="width:130px;" class="nui-textbox"/></td>
-								<td style="width:60px;text-align:right;"><span>发动机:</span></td>
+								<td style="width:80px;text-align:right;"><span>发动机:</span></td>
 								<td><input name="engineNo" style="width:130px;" class="nui-textbox"/></td>
             				</tr>
             				<tr>
-                				<td style="width:60px;text-align:right;"><span>底盘号:</span></td>
+                				<td style="width:80px;text-align:right;"><span>底盘号:</span></td>
 								<td><input name="vin" style="width:130px;" class="nui-textbox"/></td>
-								<td style="width:60px;text-align:right;"><span>是否出单:</span></td>
+								<td style="width:80px;text-align:right;"><span>是否出单:</span></td>
 								<td><input name="isOutBill" style="width:130px;" data="gIsOutBill" class="nui-combobox"/></td>
             				</tr>
             				<tr>
                 				<td colspan="4"><hr/></td>
             				</tr>
             				<tr>
-                				<td style="width:60px;text-align:right;"><span>业务类型:</span></td>
+                				<td style="width:80px;text-align:right;"><span>业务类型:</span></td>
 								<td><input id="serviceTypeIdEl" name="serviceTypeId" style="width:130px;" textField="name" valueField="id" class="nui-combobox" /></td>
-								<td style="width:60px;text-align:right;"><span>维修类型:</span></td>
+								<td style="width:80px;text-align:right;"><span>维修类型:</span></td>
 								<td><input name="billTypeId" style="width:130px;" class="nui-textbox"/></td>
             				</tr>
             				<tr>
-                				<td style="width:60px;text-align:right;"><span>维修顾问:</span></td>
+                				<td style="width:80px;text-align:right;"><span>维修顾问:</span></td>
 								<td><input name="mtAdvisor" style="width:130px;" class="nui-textbox"/></td>
-								<td style="width:60px;text-align:right;"><span>里程数:</span></td>
+								<td style="width:80px;text-align:right;"><span>里程数:</span></td>
 								<td><input name="enterKilometers" style="width:130px;" class="nui-textbox"/></td>
             				</tr>
             				<tr>
-                				<td style="width:60px;text-align:right;"><span>进厂日期:</span></td>
+                				<td style="width:80px;text-align:right;"><span>进厂日期:</span></td>
 								<td><input name="enterDate" style="width:130px;" class="nui-datepicker" dateformat="yyyy-MM-dd"/></td>
-								<td style="width:60px;text-align:right;"><span>离场日期:</span></td>
+								<td style="width:80px;text-align:right;"><span>离场日期:</span></td>
 								<td><input name="outDate" style="width:130px;" class="nui-datepicker" dateformat="yyyy-MM-dd"/></td>
             				</tr>
             			</table>

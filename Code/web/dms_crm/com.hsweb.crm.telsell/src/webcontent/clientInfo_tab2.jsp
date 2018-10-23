@@ -6,60 +6,52 @@
         <legend ></legend>
         <div style="padding:5px;">
             <div class="row">
-                <span class="title title-width2 required">保险公司：</span>
+                <span class="title title-width2 ">保险公司：</span>
                 <input name="insureCompCode"
                        id="insureCompCode"
-                       required="true"
                        class="nui-combobox width6"
-                       required="true"
                        textField="fullName"
                        valueField="code"
                        emptyText="请选择..."
                        url=""
                        allowInput="false"
-                       valueFromSelect="true"
                        showNullItem="false"
                        nullItemText="请选择..."/>
             </div>
             <div class="row">
-                <span class="title title-width2 required">商业险到期：</span>
+                <span class="title title-width2 ">商业险到期：</span>
                 <input id="annualInspectionDate" 
                             name="annualInspectionDate" 
                             class="nui-datepicker width2" 
-                            required="true"
                             dateFormat="yyyy-MM-dd" 
                             enabled="true" emptyText="请选择日期" alwaysView="true"/>
-                <span class="title title-width2 required">交强险到期：</span>
+                <span class="title title-width2 ">交强险到期：</span>
                 <input id="insureDueDate" 
                             name="insureDueDate" 
                             class="nui-datepicker width2" 
-                            required="true"
                             dateFormat="yyyy-MM-dd" 
                             enabled="true" emptyText="请选择日期" alwaysView="true"/>
             </div>
             <div class="row">
-                <span class="title title-width2 required">发动机号：</span>
-                <input id="engineNo" name="engineNo" class="nui-textbox width2" required="true"/>
-                <span class="title title-width2 required">保养到期：</span>
+                <span class="title title-width2 ">发动机号：</span>
+                <input id="engineNo" name="engineNo" class="nui-textbox width2" />
+                <span class="title title-width2 ">保养到期：</span>
                 <input id="careDueDate" 
                             name="careDueDate" 
                             class="nui-datepicker width2" 
-                            required="true"
                             dateFormat="yyyy-MM-dd" 
                             enabled="true" emptyText="请选择日期" alwaysView="true"/>
             </div>
             <div class="row">
-                <span class="title title-width2 required">颜色：</span>
+                <span class="title title-width2 ">颜色：</span>
                 <input name="color"
                        id="color"
-                       required="true"
                        class="nui-combobox width2"
                        textField="name"
                        valueField="customid"
                        emptyText="请选择..."
                        url=""
                        allowInput="false"
-                       valueFromSelect="true"
                        showNullItem="false"
                        nullItemText="请选择..."/>
                 <span class="title title-width2">生产日期：</span>

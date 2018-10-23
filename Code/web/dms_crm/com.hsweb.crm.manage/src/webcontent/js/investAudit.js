@@ -1,4 +1,6 @@
 var investGrid = null;
+var baseUrl = apiPath + crmApi + "/"; 
+	var queryInvestListUrl = baseUrl+"com.hsapi.crm.svr.svr.queryInvestList.biz.ext";
 var basicForm = null;
 var gAuditSign=[{
 	"id":0,
@@ -23,6 +25,7 @@ var brandHash={};
 
 $(document).ready(function(){
 	investGrid = nui.get("investGrid");
+	investGrid.setUrl(queryInvestListUrl);
 	basicForm = new nui.Form("#basicInfo");
 	initCarBrand("carBrandIdEl",function(data) {
 		brandList = nui.get("carBrandIdEl").getData();
@@ -60,10 +63,11 @@ function onDeleteClick(){
     });
 
     nui.ajax({
-        url : "com.hsapi.crm.svr.svr.deleteInvest.biz.ext",
+        url : baseUrl+"com.hsapi.crm.svr.svr.deleteInvest.biz.ext",
         type : "post",
         data : {
-        	invest:data
+        	invest:data,
+        	token:token
         },
         success : function(data) {
             nui.unmask();
@@ -85,6 +89,7 @@ function onDeleteClick(){
 }
 
 function onDrawcell(e) {
+		var hash = new Array("潜在客户", "回访来厂", "流失回厂");
     if(e.field == "auditSign"){
         for(var i=0;i<gAuditSign.length;i++){
             if(e.value == gAuditSign[i].id){
@@ -96,6 +101,9 @@ function onDrawcell(e) {
         if (brandHash && brandHash[e.value]) {
             e.cellHtml = brandHash[e.value].name;
         }
+    }
+    if (e.field == "carType") {
+            e.cellHtml = hash[e.value-1];
     }
 }
 
@@ -117,10 +125,11 @@ function onAuditClick(auditSign){
     });
 
     nui.ajax({
-        url : "com.hsapi.crm.svr.svr.aduitInvest.biz.ext",
+        url : baseUrl+"com.hsapi.crm.svr.svr.aduitInvest.biz.ext",
         type : "post",
         data : {
-        	invest:data
+        	invest:data,
+        	token:token
         },
         success : function(data) {
             nui.unmask();
@@ -139,3 +148,4 @@ function onAuditClick(auditSign){
         }
     });
 }
+

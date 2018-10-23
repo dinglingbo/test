@@ -1,11 +1,13 @@
 var queryForm; //查询表单
 var dgGrid; //列表
-
+var baseUrl = apiPath + crmApi + "/"; 
+var queryDatumMgrListUrl = baseUrl+"com.hsapi.crm.telsales.crmTelsales.getDatumMgrList.biz.ext";
 var tracker;
 var tree1;
 var tree2;
 var currType1Node;//品牌
 var currType2Node;//营销员
+var memList = [];
 
 var assignStatus;
 
@@ -13,10 +15,11 @@ $(document).ready(function(v){
     queryForm = new nui.Form("#queryForm");
     assignStatus = nui.get("assignStatus");
     tracker = nui.get("tracker");
-    
+    memList = nui.get("tree2");
     tree1 = nui.get("tree1");
-    tree2 = nui.get("tree2");
+   //tree2 = nui.get("tree2");
     dgGrid = nui.get("dgGrid");
+    dgGrid.setUrl(queryDatumMgrListUrl);
     dgGrid.on("beforeload",function(e){
     	e.data.token = token;
     });
@@ -28,16 +31,22 @@ $(document).ready(function(v){
             e.cellHtml = setColVal('tree1', 'id', 'nameCn', e.value);
         //}else if(field == "carModelId"){//车型
             //e.cellHtml = setColVal('carModelId', 'carModelId', 'carModel', e.value);
-        }else if(field == "visitManId"){//营销员
-            e.cellHtml = setColVal('tracker', 'empId', 'empName', e.value);
-        }else if(field == "visitStatus"){//跟踪状态
+        }/*else if(field == "visitManId"){//营销员
+            e.cellHtml = setColVal('tree2', 'empId', 'empName', e.value);
+        }*/else if(field == "visitStatus"){//跟踪状态
             e.cellHtml = setColVal('visitStatus', 'customid', 'name', e.value);
         }
     });
+    initMember("tree2",function(){
+        memList = memList.getData();
+        nui.get("tree2").setData(memList);
+        query1();
+    });
     
-    tracker.setData(tree2.getData());//设置营销员下拉数据
     init();
     query();
+    
+ 
 });
 
 function init(){
@@ -48,12 +57,9 @@ function init(){
         //isCome: "DDT20150303000004",//来厂状态
         visitStatus: "DDT20130703000081"//跟踪状态
     });
-    initRoleMembers({
-        tree2: "010815",
-        tracker: "010815"
-    })
-}
 
+    
+}
 /*
  *查询
  **/
@@ -66,8 +72,13 @@ function query(){
         //失败;
         nui.alert("数据加载失败！");
     });
+
 }
 
+function query1(){
+
+    tracker.setData(memList);//设置营销员下拉数据
+}
 function clearQueryForm(){
     queryForm.setData({});
     currType1Node = null;//品牌
@@ -138,7 +149,7 @@ function updateField(field, value){
         params.push(obj);
     }
     
-    var url = _crmApiRoot + "/com.hsapi.crm.telsales.crmTelsales.updateGuest.biz.ext";
+    var url = baseUrl + "com.hsapi.crm.telsales.crmTelsales.updateGuest.biz.ext";
     callAjax(url, {datas: params}, processAjax, reLoadMain, null);
 }
 
@@ -176,7 +187,7 @@ function editGuestInfo(){
 function editWin(title, data){
     data.artType = tree1.getData();
     nui.open({
-        url: _crmWebRoot + "/com.hsweb.crm.telsales.clientInfo_edit.flow",
+        url: webPath + contextPath+ "/com.hsweb.crm.manage.investDetail.flow?token="+ token,
         title: title, width: 520, height: 520,
         onload: function () {
             var iframe = this.getIFrameEl();

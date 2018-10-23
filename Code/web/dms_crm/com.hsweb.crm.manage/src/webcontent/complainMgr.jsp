@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+	<%@include file="/common/sysCommon.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>投诉管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon.jsp" %>
-    <script src="manage/js/complainMgr.js" type="text/javascript"></script>
+     <script src="<%=webPath + contextPath%>/manage/js/complainMgr.js?v=1.0.1"></script>
 </head>
 <body>
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">

@@ -432,17 +432,24 @@ function onOrder()
 							}
 						},function(){
 							nui.unmask(document.body);
-						})
+						});
 					}
 				}
 			}else{
 				if(callback){
+					nui.mask({
+						el: document.body,
+						cls: 'mini-mask-loading',
+						html: '处理中...'
+					});
 					callback(row,function(data){
 						if(data){
 							data.check = 1;
 							tempGrid.addRow(data);
 						}
-					})
+					},function(){
+						nui.unmask(document.body);
+					});
 				}
 			}
 			resultData.part = row;

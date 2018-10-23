@@ -28,7 +28,7 @@
 				and the field value 'default' of 'configValue' node stands for an application datasource. 
 			-->
 			<configValue key="default">default</configValue>
-			<configValue key="crm">DB10_ORA_WB_CRM</configValue>
+			<configValue key="crm">DB10_MYSQL_WB_CRM</configValue>
 		</group>
 	</module>
 </contribution>

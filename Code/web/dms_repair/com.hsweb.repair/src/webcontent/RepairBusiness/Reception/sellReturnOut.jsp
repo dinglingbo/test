@@ -10,7 +10,7 @@
 -->
 <head>
 <title>退货归库</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellReturnOut.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellReturnOut.js?v=1.0.1"></script>
 <style type="text/css">
 
 .title {
@@ -71,7 +71,7 @@ a {
         </table>
     </div>
 
-<!--     <div class="nui-fit"> -->
+    <div class="nui-fit">
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
                showPager="true"
@@ -121,7 +121,7 @@ a {
 	       <div field="saleManId" headerAlign="center"  allowSort="false" visible="false" width="80" header="销售员" align="center"></div> 
       </div>
   </div>
-<!-- </div> -->
+</div>
 </div>
 </body>
 </html>

@@ -153,7 +153,7 @@ $(document).ready(function ()
                             }else if(action == "查看"){
                                 var opt={};
                                 opt.iconCls="fa fa-desktop";
-                                opt.id="1104";
+                                opt.id="1112";
                                 opt.text="洗车开单";
                                 opt.url=webPath + contextPath + "/repair/RepairBusiness/Reception/carWashMgr.jsp";
                                 
@@ -187,6 +187,7 @@ $(document).ready(function ()
             
         }
     });
+    document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号/VIN码)");
     searchKeyEl.focus();  
     rpsPartGrid.on("drawcell", function (e) {
         var grid = e.sender;

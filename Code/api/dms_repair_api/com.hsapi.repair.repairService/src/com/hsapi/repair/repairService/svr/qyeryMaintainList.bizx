@@ -8,6 +8,7 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <location x="60" y="60"/>
     <size height="28" width="28"/>
@@ -88,6 +89,7 @@
   </nodes>
   <topRuler>
     <guides position="324" horizontal="true"/>
+    <guides position="711" horizontal="true"/>
   </topRuler>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-21 14:17:46" date="2018-03-21Z" description="" name="qyeryMaintainList" version="7.0.0.0"/>

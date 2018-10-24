@@ -24,6 +24,12 @@ $(document).ready(function ()
     mainGrid.setUrl(mainGridUrl);
     beginDateEl = nui.get("sRecordDate");
     endDateEl = nui.get("eRecordDate");
+    var date = new Date();
+    var sdate = new Date();
+    sdate.setMonth(date.getMonth()-3);
+    endDateEl.setValue(date);
+    beginDateEl.setValue(sdate);
+    
     editFormDetail = document.getElementById("editFormDetail");
     innerPartGrid = nui.get("innerPartGrid");
     innerPartGrid.setUrl(getRpsPartUrl);
@@ -62,9 +68,7 @@ $(document).ready(function ()
                 break;
         }
     });  
-    var statusList = "0,1,2,3";
-    var p = {statusList:statusList};
-    doSearch(p);
+    quickSearch(0);
 });
 var statusHash = {
     "0" : "草稿",
@@ -99,29 +103,36 @@ function onShowRowDetail(e) {
 }
 function quickSearch(type) {
     var params = {};
+    var queryname = "草稿";
     switch (type) {
         case 0:
             params.status = 0;  //制单
+            queryname = "草稿";
             break;
         case 1:
             params.status = 1;  //施工
+            queryname = "待归库";
             break;
         case 2:
             params.status = 2;  //完工
             //document.getElementById("advancedMore").style.display='block';
+            queryname = "已归库";
             break;
         case 3:
             params.status = 2;  //待结算  is_settle
             params.isSettle = 0;
+            queryname = "待结算";
             break;
         case 4:
             params.isSettle = 1;
+            queryname = "已结算";
             //document.getElementById("advancedMore").style.display='block';
             break;
         default:
             break;
     }
-
+    var menunamestatus = nui.get("menunamestatus");
+    menunamestatus.setText(queryname);
     doSearch(params);
 }
 function onSearch()
@@ -133,12 +144,33 @@ function onSearch()
         showMsg("请输入查询条件!","W");
         return;
     }*/
+    var menunamestatus = nui.get("menunamestatus");
+    var title = menunamestatus.getText();
+    switch (title) {
+    case "草稿":
+    	params.status = 0;
+        break;
+    case "待归库":
+        params.status = 1;  //报价
+        break;
+    case "已归库":
+        params.status = 2;  //施工
+        break;
+    case "待结算":
+    	params.isSettle = 0;
+        break;
+    case "已结算":
+        params.status = 2;
+        params.isSettle = 1;
+        break;
+    default:
+        break;
+}
     doSearch(params);
 }
 function doSearch(params) {
     var gsparams = getSearchParam();
     gsparams.status = params.status;
-    gsparams.statusList = params.statusList;
     gsparams.isSettle = params.isSettle;
     //表示退货单
     gsparams.billTypeId = 5;

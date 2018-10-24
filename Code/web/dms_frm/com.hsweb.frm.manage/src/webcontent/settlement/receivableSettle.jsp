@@ -138,17 +138,17 @@
 							class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> <span
 						class="separator"></span> <a class="nui-button" iconCls=""
 						visible="false" plain="true" onclick="doBalance()"><span
-							class="fa fa-check fa-lg"></span>&nbsp;确认对账</a> <a class="nui-button"
-						iconCls="" plain="true" onclick="doDelete()"><span
-							class="fa fa-trash fa-lg"></span>&nbsp;作废</a>
+							class="fa fa-check fa-lg"></span>&nbsp;确认对账</a> 
 <!-- 							<a class="nui-button"
 						iconCls="" plain="true" onclick="doPay()"><span
 							class="fa fa-check fa-lg"></span>&nbsp;结算</a> -->
-							
-							
 							 <a class="nui-button"
 						iconCls="" plain="true" onclick="doSettle()"><span
-							class="fa fa-check fa-lg"></span>&nbsp;结算</a></td>
+							class="fa fa-check fa-lg"></span>&nbsp;结算</a>
+							<a class="nui-button"
+						iconCls="" plain="true" onclick="doDelete()"><span
+							class="fa fa-trash fa-lg"></span>&nbsp;作废</a>
+							</td>
 				</tr>
 			</table>
 		</div>

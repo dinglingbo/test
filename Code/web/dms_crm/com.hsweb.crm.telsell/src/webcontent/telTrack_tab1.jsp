@@ -26,7 +26,7 @@
                                showNullItem="false"
                                nullItemText="请选择..."/>
                                
-                        <span class="title title-width3 required">跟踪方式：</span>
+                        <span class="title title-width3 required">跟踪方式：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <input name="scoutMode"
                                id="scoutMode"
                                required="true"
@@ -40,7 +40,7 @@
                                nullItemText="请选择..."/>
                     </div>
                     <div class="row">
-                        <span class="title title-width3 required">跟踪结果：</span>
+                        <span class="title title-width3 required">跟踪结果：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <input name="scoutResult"
                                id="scoutResult"
                                required="true"
@@ -54,7 +54,7 @@
                                showNullItem="false"
                                nullItemText="请选择..."/>
                                
-                        <span class="title title-width3 required">跟踪状态：</span>
+                        <span class="title title-width3 required">跟踪状态：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <input name="visitStatus"
                                id="visitStatus"
                                required="true"
@@ -111,6 +111,7 @@
                         </textarea>
                     </div>
                 </div>
+                
             </div>
         </fieldset>
         <div style="text-align:center;padding:10px;display:none;" class="saveGroup">

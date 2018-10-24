@@ -22,17 +22,15 @@
                         <input id="tel" name="tel" class="nui-textbox width2" />         
                     </div>
                     <div class="row">            
-                        <span class="title title-width1 required">性别：</span>
+                        <span class="title title-width1 ">性别：</span>
                         <input name="sex"
                             id="sex"
                             class="nui-combobox width2"
-                            required="true"
                             textField="text"
                             valueField="value"
                             emptyText="请选择..."
                             data = "const_gender"
                             allowInput="false"
-                            valueFromSelect="true"
                             showNullItem="false"
                             nullItemText="请选择..."/>
                         <span class="title title-width2">是否黑名单：</span>
@@ -62,34 +60,30 @@
                     <div class="row">            
                         <span class="title title-width1 required">车牌号：</span>
                         <input id="carNo" name="carNo" class="nui-textbox width2" required="true"/>          
-                        <span class="title title-width1 required">品牌：</span>
+                        <span class="title title-width1 ">品牌：</span>
                         <input name="carBrandId"
                             id="carBrandId"
                             class="nui-combobox width2"
-                            required="true"
                             textField="nameCn"
                             valueField="id"
                             emptyText="请选择..."
                             url=""
                             allowInput="false"
-                            valueFromSelect="true"
                             onValuechanged="getCarModel('carModelId', e)"
                             showNullItem="false"
                             nullItemText="请选择..."/>
                     </div>
                     <div class="row">            
-                        <span class="title title-width1 required">车型：</span>
+                        <span class="title title-width1 ">车型：</span>
                         <input class="nui-hidden" id="_carModel" name="carModel"/>
                         <input name="carModelId"
                             id="carModelId"
                             class="nui-combobox width2"
-                            required="true"
                             textField="carModel"
                             valueField="carModelId"
                             emptyText="请选择..."
                             onValuechanged="nui.get('_carModel').setValue(this.text)"
                             allowInput="false"
-                            valueFromSelect="true"
                             showNullItem="false"
                             nullItemText="请选择..."/>       
                         <span class="title title-width1">上牌日期：</span>
@@ -101,11 +95,10 @@
                     </div>
                     <div class="row">            
                         <span class="title title-width1">VIN：</span>
-                        <input id="underpanNo" name="underpanNo" class="nui-textbox width2" required="true"/>
+                        <input id="vin" name="vin" class="nui-textbox width2" required="true"/>
                         <span class="title title-width1">投保公司：</span>
                         <input name="insureCompCode"
                                id="insureCompCode"
-                               required="true"
                                class="nui-combobox width2"
                                textField="fullName"
                                valueField="code"

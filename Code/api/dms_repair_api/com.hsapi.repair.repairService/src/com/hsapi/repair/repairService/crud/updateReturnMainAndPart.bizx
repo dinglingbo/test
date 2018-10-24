@@ -658,11 +658,15 @@
       <process:to type="query">str</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">temp/partCode</process:from>
+      <process:to type="query">Code</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">temp/partName</process:from>
       <process:to type="query">partName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">partName+str</process:from>
+      <process:from type="expression" pattern="reference">partName+Code+str</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -677,7 +681,7 @@
       <targetNode>assign9</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -755,6 +759,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="flage" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="yqty" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="pickQty" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="Code" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="main"/>

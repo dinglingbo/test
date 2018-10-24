@@ -73,9 +73,6 @@ pageEncoding="UTF-8" session="false" %>
 			<div field="sellPrice" name="sellPrice" headerAlign="center" allowSort="true" header="参考售价">
 				<input property="editor" required="true" vtype="float" class="nui-textbox"/>
 			</div>
-			<div field="salesDeductValue" name="sellPrice" headerAlign="center" allowSort="true" header="销售提成">
-				<input  property="editor" required="true" vtype="float;range:0,100;" class="nui-textbox"/>
-			</div>
 			<div  field="salesDeductType"  name="salesDeductType" headerAlign="center" allowSort="true" header="销售提成类型">
 <!-- 				<input  property="editor" vtype="float" class="nui-textbox"/> -->
 				<input required="true" property="editor" name="salesDeductType"
@@ -91,6 +88,9 @@ pageEncoding="UTF-8" session="false" %>
                             valueFromSelect="true"
                             popupHeight="90%"
                           />
+			</div>
+			<div field="salesDeductValue" name="sellPrice" headerAlign="center" allowSort="true" header="销售提成">
+				<input  property="editor" required="true" vtype="float;range:0,100;" class="nui-textbox"/>
 			</div>
 			<div field="modifier" width="60" headerAlign="center" allowSort="true">操作人</div>
 			<div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss">操作日期</div>

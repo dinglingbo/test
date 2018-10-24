@@ -117,11 +117,13 @@ function view() {
         nui.alert("请先选择一条记录！");
     }
 }
-
+function onAdvancedSearchCancel(){
+    advancedSearchWin.hide();
+}
 function editInsuranceDetail(row) {
     var item={};
     item.id = "InsuranceDetail";
-    item.text = "车险详情";
+    item.text = "保险开单详情";
     item.url = webPath + contextPath + "/repair/RepairBusiness/CIRegister/CarInsuranceDetail.jsp";
     item.iconCls = "fa fa-cog";
     var params = {};
@@ -136,7 +138,7 @@ function editInsuranceDetail(row) {
 function newInsuranceDetail() {
     var item={};
     item.id = "InsuranceDetail";
-    item.text = "车险详情";
+    item.text = "保险开单详情";
     item.url = webPath + contextPath + "/repair/RepairBusiness/CIRegister/CarInsuranceDetail.jsp";
     item.iconCls = "fa fa-cog";
     window.parent.activeTab(item);

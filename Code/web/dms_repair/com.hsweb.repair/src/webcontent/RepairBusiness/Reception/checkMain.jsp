@@ -165,7 +165,7 @@ function openDetai(params) {
 
     var item={};
     item.id = "checkPrecheckDetail";
-    item.text = "查车单";
+    item.text = "检查开单详情";
     item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp";
     item.iconCls = "fa fa-cog";
     //window.parent.activeTab(item);

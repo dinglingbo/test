@@ -102,18 +102,27 @@
 		Update rps_part set rate = 0, discount_amt = 0, subtotal = amt where service_id = #serviceId#
 	</update>
 	
-	
+	<!--需要判断是否存在不能优惠的套餐-->
 	<update id="setPkgRateBatch" parameterClass="java.util.HashMap">
-		update rps_package set rate = #rate#, discount_amt = amt * #rate#, subtotal = amt * (1.0 - #rate#)
+		update rps_package a set a.rate = #rate#, a.discount_amt = a.amt * #rate#, a.subtotal = a.amt * (1.0 - #rate#)
 		where service_id = #serviceId# and card_detail_id = 0
+              and exists(select 1 from rpb_package b where a.package_id = b.id and ifnull(b.is_can_rate,0) = 1)
 	</update>
 	<update id="setPkgItemRateBatch" parameterClass="java.util.HashMap">
-		update rps_item set rate = #rate#, discount_amt = amt * #rate#, subtotal = amt * (1.0 - #rate#)
-		where service_id = #serviceId# and bill_package_id > 0 and card_detail_id = 0
+		update rps_item  a
+		inner join rps_package b
+		on a.bill_package_id = b.id
+		set a.rate = #rate#, a.discount_amt = a.amt * #rate#, a.subtotal = a.amt * (1.0 - #rate#)
+		where a.service_id = #serviceId# and a.bill_package_id > 0 and a.card_detail_id = 0
+	          and exists(select 1 from rpb_package c where b.package_id = c.id and ifnull(c.is_can_rate,0) = 1)
 	</update>
 	<update id="setPkgPartRateBatch" parameterClass="java.util.HashMap">
-		update rps_part set rate = #rate#, discount_amt = amt * #rate#, subtotal = amt * (1.0 - #rate#)
-		where service_id = #serviceId# and bill_package_id > 0 and card_detail_id = 0
+		update rps_part   a
+		inner join rps_package b
+		on a.bill_package_id = b.id
+		set a.rate = #rate#, a.discount_amt = a.amt * #rate#, a.subtotal = a.amt * (1.0 - #rate#)
+		where a.service_id = #serviceId# and a.bill_package_id > 0 and a.card_detail_id = 0
+	          and exists(select 1 from rpb_package c where b.package_id = c.id and ifnull(c.is_can_rate,0) = 1)
 	</update>
 	
 	<update id="setItemRateBatch" parameterClass="java.util.HashMap">

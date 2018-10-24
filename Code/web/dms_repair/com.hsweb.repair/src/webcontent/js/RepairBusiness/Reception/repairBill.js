@@ -630,6 +630,7 @@ function onApplyClick(){
                 carNoEl.setText(guest.carNo);
                 billForm.setData(maintain);
                 sendGuestForm.setData(maintain);
+                describeForm.setData(maintain);
 
                 fguestId = guest.guestId||0;
                 fcarId = guest.carId||0;
@@ -680,6 +681,7 @@ function doSetMainInfo(car){
 
     billForm.setData(maintain);
     sendGuestForm.setData(maintain);
+    describeForm.setData(maintain);
     xyguest = maintain;
     fguestId = car.guestId||0;
     fcarId = car.id||0;
@@ -786,6 +788,7 @@ function setInitData(params){
                         	nui.get("ExpenseAccount1").setVisible(false);
                         }
                         sendGuestForm.setData(data);
+                        describeForm.setData(data);
 
                         var p1 = {
                             interType: "package",
@@ -843,6 +846,7 @@ function add(){
     rpsItemGrid.clearRows();
     billForm.setData([]);
     sendGuestForm.setData([]);
+    describeForm.setData([]);
     //sendGuestForm.setData([]);
     //insuranceForm.setData([]);
     //describeForm.setData([]);
@@ -967,16 +971,25 @@ function save(){
 }
 var requiredField = {
     carNo : "车牌号",
-    guestId : "客户",
     serviceTypeId : "业务类型",
-    mtAdvisorId : "服务顾问"
+    mtAdvisorId : "服务顾问",
+    guestId : "客户",
+    enterOilMass : "进厂油量",
+    enterKilometers : "进厂里程",
+    enterDate : "进厂日期",
+    planFinishDate : "预计交车"
 };
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function saveMaintain(callback,unmaskcall){
     var data = billForm.getData();
+    var desData = describeForm.getData();
+    for(var v in desData){
+        data[v] = desData[v];
+    }
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
             unmaskcall && unmaskcall();
+            nui.get(key).focus();
             showMsg(requiredField[key] + "不能为空!","W");
 			return;
 		}
@@ -2704,7 +2717,8 @@ function addToBillPart(row, callback, unmaskcall){
         serviceId:main.id||0,
         partId:row.id,
         billItemId:row.billItemId,     
-        cardDetailId:0
+        cardDetailId:0,
+        qty:1
     };
     data.insPart = insPart;
     data.serviceId = main.id||0;
@@ -3061,6 +3075,7 @@ function onItemRateValuechangedBath(){
 }
 
 
+
 var scTyIdUrl = baseUrl + "com.hsapi.repair.repairService.query.getCardDiscount.biz.ext";
 function onPkgTypeIdValuechanged(e){
    var maintain = billForm.getData();
@@ -3085,8 +3100,7 @@ function onPkgTypeIdValuechanged(e){
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == "S") {
 				var cardRate = returnJson.cardRate;
-				var packageDiscountRate = cardRate.packageDiscountRate;
-				editor2.setValue(packageDiscountRate);
+                var packageDiscountRate = cardRate.packageDiscountRate;
 				var amt = row.amt||0;
 				var subtotal = 0;
 			    if(amt>0){
@@ -3095,7 +3109,9 @@ function onPkgTypeIdValuechanged(e){
 			    }
 			    editor1.setValue(subtotal);
 			    lastPkgRate = packageDiscountRate;
-			    lastPkgSubtotal = subtotal;
+                lastPkgSubtotal = subtotal;
+                packageDiscountRate = (packageDiscountRate*100).toFixed(2);
+				editor2.setValue(packageDiscountRate);
 				
 			} else {
 				//showMsg("出库失败");
@@ -3142,6 +3158,8 @@ function onValueChangedComQty(e){
 		   itamt = itamt.toFixed(2);
 		   rowtime.amt = itamt;
 		   subtotal = itamt;
+		}else{
+			rowtime.amt = 0;
 		}
 		//设置小计金额
 		var rate = setRate.getValue()||0;
@@ -3191,6 +3209,8 @@ function onValueChangedItemUnitPrice(e){
 		   itamt = itamt.toFixed(2);
 		   row.amt = itamt;
 		   subtotal = itamt;
+		}else{
+		   row.amt = 0;
 		}
 		//设置小计金额
 		var rate = setRate.getValue()||0;
@@ -3245,6 +3265,8 @@ function onValueChangedItemRate(e){
 		   itamt = itamt.toFixed(2);
 		   row.amt = itamt;
 		   subtotal = itamt;
+		}else{
+			row.amt = 0;
 		}
 		//设置小计金额
 		if(rate>0){
@@ -3341,7 +3363,6 @@ function onValueChangedItemTypeId(e){
 			if (returnJson.errCode == "S") {
 				var cardRate = returnJson.cardRate;
 				var itemDiscountRate = cardRate.itemDiscountRate;
-				setRate.setValue(itemDiscountRate);
 				var unitPrice = setUnitPrice.getValue()||0;
 				var itemTime = setItemTime.getValue()||0;
 				var amt = 0;
@@ -3354,6 +3375,8 @@ function onValueChangedItemTypeId(e){
 			    	subtotal = amt - itemDiscountRate*1.0*amt;
 			    	subtotal = subtotal.toFixed(2);
 			    }
+			    itemDiscountRate = (itemDiscountRate*100).toFixed(2);
+			    setRate.setValue(itemDiscountRate);
 			    setSubtotal.setValue(subtotal);
 			    lastItemSubtotal = subtotal;
 			    lastItemRate = itemDiscountRate;
@@ -3386,19 +3409,25 @@ function onDrawSummaryCellPack(e){
 				  sumPkgAmt  += parseFloat(rows[i].amt);
 			  }
 		  }
-	  } 
-	  if(sumPkgAmt>0 && sumPkgSubtotal>=0)
-	  {   sumPkgPrefAmt = sumPkgAmt - sumPkgSubtotal;
-		  sumPkgSubtotal = sumPkgSubtotal.toFixed(2);
-		  sumPkgPrefAmt = sumPkgPrefAmt.toFixed(2);
 		  
-		  data.packageSubtotal = sumPkgSubtotal;
-		  data.packagePrefAmt = sumPkgPrefAmt;
-		  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
-		  data.mtAmt = mtAmt.toFixed(2);
-		  sellForm.setData(data);
-	  }
-	 
+		  if(sumPkgAmt>0 && sumPkgSubtotal>=0)
+		  {   sumPkgPrefAmt = sumPkgAmt - sumPkgSubtotal;
+			  sumPkgSubtotal = sumPkgSubtotal.toFixed(2);
+			  sumPkgPrefAmt = sumPkgPrefAmt.toFixed(2);
+			  
+			  data.packageSubtotal = sumPkgSubtotal;
+			  data.packagePrefAmt = sumPkgPrefAmt;
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  data.mtAmt = mtAmt.toFixed(2);
+			  sellForm.setData(data);
+		  }else{
+			  data.packageSubtotal = 0;
+			  data.packagePrefAmt = 0;
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  data.mtAmt = mtAmt.toFixed(2);
+			  sellForm.setData(data);
+		  }
+	  } 
 }
 
 
@@ -3425,28 +3454,41 @@ function onDrawSummaryCellItem(e){
 			 }
 			   
 		  }
-	  } 
-	  if( sumItemSubtotal>0 && sumItemAmt>=0  )
-	  {   
-		  sumItemPrefAmt = sumItemAmt - sumItemSubtotal;
-		  sumItemSubtotal = sumItemSubtotal.toFixed(2);
-		  sumItemPrefAmt = sumItemPrefAmt.toFixed(2);
-		  data.itemSubtotal = sumItemSubtotal;
-		  data.itemPrefAmt = sumItemPrefAmt;
-		  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
-		  data.mtAmt = mtAmt.toFixed(2);
-		  sellForm.setData(data);
-	  }
-	  if(sumPartSubtotal>0 && sumPartAmt>=0)
-	  {   
-		  sumPartPrefAmt = sumPartAmt - sumPartSubtotal;
-		  sumPartSubtotal = sumPartSubtotal.toFixed(2);
-		  sumPartPrefAmt = sumPartPrefAmt.toFixed(2);
-		  data.partSubtotal = sumPartSubtotal;
-		  data.partPrefAmt = sumPartPrefAmt;
-		  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
-		  data.mtAmt = mtAmt.toFixed(2);
-		  sellForm.setData(data);
+		  
+		  if( sumItemSubtotal>0 && sumItemAmt>=0  )
+		  {   
+			  sumItemPrefAmt = sumItemAmt - sumItemSubtotal;
+			  sumItemSubtotal = sumItemSubtotal.toFixed(2);
+			  sumItemPrefAmt = sumItemPrefAmt.toFixed(2);
+			  data.itemSubtotal = sumItemSubtotal;
+			  data.itemPrefAmt = sumItemPrefAmt;
+			  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
+			  data.mtAmt = mtAmt.toFixed(2);
+			  sellForm.setData(data);
+		  }else{
+			  data.itemSubtotal = 0;
+			  data.itemPrefAmt = 0;
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  data.mtAmt = mtAmt.toFixed(2);
+			  sellForm.setData(data);
+		  }
+		  if(sumPartSubtotal>0 && sumPartAmt>=0)
+		  {   
+			  sumPartPrefAmt = sumPartAmt - sumPartSubtotal;
+			  sumPartSubtotal = sumPartSubtotal.toFixed(2);
+			  sumPartPrefAmt = sumPartPrefAmt.toFixed(2);
+			  data.partSubtotal = sumPartSubtotal;
+			  data.partPrefAmt = sumPartPrefAmt;
+			  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
+			  data.mtAmt = mtAmt.toFixed(2);
+			  sellForm.setData(data);
+		  }else{
+			  data.partSubtotal = 0;
+			  data.partPrefAmt = 0;
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  data.mtAmt = mtAmt.toFixed(2);
+			  sellForm.setData(data);
+		  }  
 	  }  
 }
 

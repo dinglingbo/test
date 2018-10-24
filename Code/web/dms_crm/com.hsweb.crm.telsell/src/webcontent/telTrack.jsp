@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+	 <%@include file="/common/sysCommon.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -11,8 +11,8 @@
 <head>
 <title>电话跟踪</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=crmDomain%>/telsales/js/telTrack.js?v=1.0" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/telsell/js/telTrack.js?v=1.0.3"></script>
+    <%-- <script src="<%=crmDomain%>/telsales/js/telTrack.js?v=1.0" type="text/javascript"></script> --%>
     <link href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -69,13 +69,12 @@
                     class="nui-datepicker width2" 
                     dateFormat="yyyy-MM-dd" 
                     emptyText="请选择日期" alwaysView="true"/>
-                <a class="nui-button" iconCls="icon-find" plain="true" onclick="query()" id="query" enabled="true">查询</a>
-                
-                <li class="separator"></li>
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="add" enabled="true">发送短信</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">预约维修</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">业绩登记</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="newClient()" id="edit" enabled="true">新增客户</a>
+                <a class="nui-button"  plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+
+                <a class="nui-button"  plain="true" onclick="add()" id="add" enabled="true">发送短信</a>
+                <a class="nui-button"  plain="true" onclick="edit()" id="edit" enabled="true">预约维修</a>
+                <a class="nui-button"  plain="true" onclick="edit()" id="edit" enabled="true">业绩登记</a>
+                <a class="nui-button"  plain="true" onclick="newClient()" id="edit" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增客户</a>
             </td>
         </tr>
     </table>
@@ -98,10 +97,9 @@
                         ondrawcell=""
                         onSelect="setScoutForm"
                         dataField="data"
-                        allowcellwrap="true"
+                        
                         virtualColumns="true"
                         idField="id"
-                        url="<%=apiPath + crmApi%>/com.hsapi.crm.telsales.crmTelsales.getScoutGuestList.biz.ext"
                         showSummaryRow="true">
                         <div property="columns">
                             <div type="checkcolumn" width="20"></div>
@@ -113,7 +111,7 @@
                                     <div field="carNo" width="50" headerAlign="center" allowSort=false>车牌号</div>
                                     <div field="carBrandId" width="40" headerAlign="center">品牌</div>
                                     <div field="carModel" width="40" headerAlign="center">车型</div>
-                                    <div field="underpanNo" width="70" headerAlign="center" allowSort=false>VIN</div>
+                                    <div field="vin" width="70" headerAlign="center" allowSort=false>VIN</div>
                                     <div field="firstRegDate" width="70" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
                                     <div field="annualInspectionDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
                                     <div field="recorder" width="40" headerAlign="center" allowSort=false>建档人</div>
@@ -149,10 +147,10 @@
             <div class="nui-fit">
                 <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
                      onactivechanged="" >
-                    <!--联系内容-->
-                    <%@include file="/telsales/telTrack_tab1.jsp" %>
+                    <!--联系内容--><%=webPath + contextPath%>/telsell/js/telTrack.js
+                    <%@include file="../telsell/telTrack_tab1.jsp" %>
                     <!--客户资料-->
-                    <%@include file="/telsales/telTrack_tab2.jsp" %>
+                    <%@include file="../telsell/telTrack_tab2.jsp" %>
                 </div>
             </div>
         </div>

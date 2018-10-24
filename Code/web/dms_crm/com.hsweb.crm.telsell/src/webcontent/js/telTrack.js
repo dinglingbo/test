@@ -1,3 +1,5 @@
+var baseUrl = apiPath + crmApi + "/"; 
+var getScoutGuestListUrl = baseUrl+"com.hsapi.crm.telsales.crmTelsales.getScoutGuestList.biz.ext";
 var queryForm;
 var dgGrid;
 var dgScoutDetail;
@@ -10,6 +12,7 @@ $(document).ready(function(v){
     form1 = new nui.Form("#form1");
     form2 = new nui.Form("#form2");
     dgGrid = nui.get("dgGrid");
+    dgGrid.setUrl(getScoutGuestListUrl);
     dgScoutDetail = nui.get("dgScoutDetail");
     dgGrid.on("beforeload",function(e){
     	e.data.token = token;
@@ -77,9 +80,9 @@ function edit(){
 }
 
 function editWin(title, data){
-    data.artType = tree1.getData();
+   // data.artType = tree1.getData();
     mini.open({
-        url: webPath + crmDomain + "/com.hsweb.crm.basic.smsTpl_edit.flow",
+        url: webPath + contextPath + "/com.hsweb.crm.basic.smsTpl_edit.flow?token="+ token,
         title: title, width: 500, height: 420,
         onload: function () {
             var iframe = this.getIFrameEl();
@@ -122,7 +125,7 @@ function clearQueryForm(){
 
 function newClient(){
     mini.open({
-        url: webPath + crmDomain + "/com.hsweb.crm.telsales.clientInfo_edit.flow",
+        url: webPath + contextPath + "/com.hsweb.crm.telsales.clientInfo_edit.flow?token="+ token,
         title: "新增客户", width: 520, height: 520,
         onload: function () {
             var iframe = this.getIFrameEl();
@@ -138,28 +141,31 @@ function newClient(){
 
 //保存跟踪
 function saveScout(){
-    var url = "/com.hsapi.crm.telsales.crmTelsales.saveScout.biz.ext";
+    var url =baseUrl+ "/com.hsapi.crm.telsales.crmTelsales.saveScout.biz.ext";
     doSave(form1, url);
 }
 //保存客户信息
 function saveClientInfo(){
-    var url = "/com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext";
+    var url = baseUrl+"/com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext";
     doSave(form2, url);    
 }
 
 function doSave(tform, url, callBack){
     //验证
-    if(!formValidate(tform)) return false;
+    if(!formValidate(tform)){
+        nui.alert("请完善信息!");
+        return ;
+    }
 
     var paramData = form2.getData();
     if(!paramData.id){
-        nui.alert("未选中客户资料!");
+        nui.alert("未选中客户资料!","提示");
         return false;
     }
     
     try {
         nui.ajax({
-            url: webPath + crmDomain + url,
+            url: url,
             type: 'post',
             data: nui.encode({
                 data: tform.getData()
@@ -197,7 +203,7 @@ function selTalkArt(){
 function colleTalkArt(){
     var data = {action: "new"};
     data.artType = nui.get("artType").getData();
-    data.url = "/com.hsweb.crm.basic.talkArtTpl_edit.flow";
+    data.url = webPath + contextPath +"/com.hsweb.crm.basic.talkArtTpl_edit.flow?token="+token;
     data.width = 480;
     data.height = 420;
     data.content = nui.get("scoutContent").getValue();
@@ -206,7 +212,7 @@ function colleTalkArt(){
 
 function openTalkArt(data, title){
     mini.open({
-        url: webPath + crmDomain + data.url,
+        url: data.url,
         title: title, width: data.width, height: data.height,
         onload: function () {
             var iframe = this.getIFrameEl();

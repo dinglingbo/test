@@ -44,9 +44,11 @@
         <div headerAlign="center" type="indexcolumn" width="20">序号</div>
           <div header="配件信息" headerAlign="center">
             <div property="columns">
+                <div field="serviceCode" headerAlign="serviceCode" allowSort="false" visible="true" width="100" header="所属工单号"></div>
                 <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
                 <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码"></div> 
                 <div field="qty" name="qty" summaryType="sum"  numberFormat="0" width="60" headerAlign="center" header="数量"> </div>
+                <div field="pickQty" name="pickQty" summaryType="sum"  numberFormat="0" width="60" headerAlign="center" header="已领数量"> </div>
                 <div field="unitPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价"></div>
                 <div field="amt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额"></div>
                 <div field="saleMan" headerAlign="center"  allowSort="false" visible="true" width="50" header="销售员" align="center">

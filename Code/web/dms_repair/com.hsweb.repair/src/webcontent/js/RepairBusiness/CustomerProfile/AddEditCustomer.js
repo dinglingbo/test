@@ -1,14 +1,15 @@
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
-$(document).ready(function()
-{
-//    init();
-});
 var contactInfoForm = null;
 var carInfoFrom = null;
 var basicInfoForm = null;
 var provice;
 var cityId;
 var data;
+$(document).ready(function()
+{
+	
+    //init();
+});
 function init(callback)
 {
 	var addEditCustomerPage = nui.get("addEditCustomerPage");
@@ -17,7 +18,6 @@ function init(callback)
     carInfoFrom = new nui.Form("#carInfoFrom");
     provice = nui.get("provice");
     cityId = nui.get("cityId");
-    
     var hash = {};
     addEditCustomerPage.mask({
         html:'数据加载中..'
@@ -386,6 +386,29 @@ function setData(data)
     });
 
 }
+
+function setGuest(data){
+	init(function(){
+	data = data.guest;
+	var guest = {
+		"shortName":data.shortName,
+		"fullName":data.guestFullName,
+		"mobile":data.mobile
+	};
+	var carIn = {
+		"carNo":data.carNo	
+	};
+	var contact = {
+		"name":data.guestFullName,
+		"mobile":data.mobile
+	};
+	basicInfoForm.setData(guest);
+	carInfoFrom.setData(carIn);
+	contactInfoForm.setData(contact);
+	});
+}
+
+
 function onParseUnderpanNo()
 {
     var vin = nui.get("vin").getValue();

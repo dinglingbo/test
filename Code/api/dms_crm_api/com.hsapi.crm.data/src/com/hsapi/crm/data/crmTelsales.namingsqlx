@@ -9,8 +9,8 @@
     </resultMap>
     <sql id="guest_column">
     	SELECT id, orgid, car_no carNo, guest_id guestId, guest_name guestName, address, contacts, sex, mobile, tel,
-    		car_model_id carModelId, car_brand_id carBrandId, car_model carModel, 
-    		produce_date produceDate, engine_no engineNo, underpan_no underpanNo, color, 
+    		car_model_id carModelId, car_brand_id carBrandId, car_model carModel, vin vin,
+    		produce_date produceDate, engine_no engineNo, color, 
     		first_reg_date firstRegDate, care_due_date careDueDate, 
     		care_due_mileage careDueMileage, annual_inspection_date annualInspectionDate, 
     		proceeding_sign proceedingSign, first_come_date firstComeDate, 
@@ -85,8 +85,7 @@
    	</select>
     <!--跟踪明细-->
     <select id="getScoutDetail" parameterClass="HashMap" resultClass="HashMap">
-    	select id, scout_content scoutContent, scout_mode scoutMode, scout_result scoutResult, scout_man scoutMan, 
-        scout_date scoutDate
+    	select id, scout_content scoutContent, scout_mode scoutMode, scout_result scoutResult,visit_man visitMan,visit_date visitDate
         FROM crm_talk_detail
 		WHERE orgid = #orgid# And guest_id = #guestId#            
    	</select>

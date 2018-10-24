@@ -7,6 +7,7 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
+
     <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"><![CDATA[sql statement]]></select>
     <select id="queryPjPchsOrderMainList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT
@@ -149,10 +150,11 @@
             <isNotEmpty prepend="and" property="endDate">(A.AUDIT_DATE &lt; #endDate#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partId">(b.PART_ID = #partId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="guestId">(A.guest_id = #guestId#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="guestName">(d.short_name like '%$guestName$%' or d.full_name like '%$guestName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="orderMan">(A.order_man = #orderMan#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partName">(c.FULL_NAME like '%$partName$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="partNameAndPY">(c.FULL_NAME like '%$partNameAndPY$%' or c.name_py like '%$partNameAndPY$%')</isNotEmpty>
-            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%')</isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">(c.query_code like '%$partCode$%' or c.code LIKE '%$partCode$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceId">(A.service_id like '%$serviceId$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="serviceIdList">(a.service_id in ($serviceIdList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(c.code in ($partCodeList$))</isNotEmpty>
@@ -1732,6 +1734,5 @@
 	            </isNotEmpty> 
             </dynamic> 				
 	</select>
-	
 	
 </sqlMap>

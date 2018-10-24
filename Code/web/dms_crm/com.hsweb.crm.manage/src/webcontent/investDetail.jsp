@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+	<%@include file="/common/sysCommon.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>业绩详情</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/sysCommon.jsp" %>
-    <script src="manage/js/investDetail.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/manage/js/investDetail.js?v=1.0.1"></script>
 </head>
 <body>
     <div class="nui-fit">
@@ -52,7 +51,7 @@
         <table style="left: 160px;">
             <tr>
                 <td>
-                    <a class="nui-button" iconCls="icon-save" plain="true" onclick="save()">保存</a>
+                    <a class="nui-button" iconCls="icon-save" plain="true" id="ok" name = "ok" onclick="save()">保存</a>
                     <a class="nui-button" iconCls="icon-close" plain="true" onclick="onCancel()">关闭</a>
                 </td>
             </tr>

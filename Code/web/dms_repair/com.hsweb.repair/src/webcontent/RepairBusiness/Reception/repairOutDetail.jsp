@@ -12,7 +12,7 @@
 <head> 
     <title>出库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.3"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.7"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -208,17 +208,17 @@ allowCellEdit="true" >
    <div headerAlign="center" type="indexcolumn" width="20">序号</div>
    <div type="checkcolumn"></div> 
    <div field="id" name="id" visible="false"  header="recordId"></div>
-   <div header="领料-配件信息">  
+   <div header="待领料-配件信息">  
     <div property="columns">
         <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
+        <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="80px" header="配件编码"></div> 
         <div field="serviceTypeId" name="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
         <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量"></div>
         <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价"></div>
         <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率"></div>
         <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"></div>
         <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
-        <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>           
-        <div field="partCode" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件编码"></div>           
+        <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>                        
         <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center"></div>
         <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center">
         </div>   
@@ -236,7 +236,7 @@ allowCellEdit="true"  >
 <div property="columns">
    <div headerAlign="center" type="indexcolumn" width="30">序号</div>
    <div type="checkcolumn" width="30" ></div>
-   <div header="退货-配件信息">
+   <div header="已领料-配件信息">
     <div property="columns">
         <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
         <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="80px" header="配件编码"></div>           

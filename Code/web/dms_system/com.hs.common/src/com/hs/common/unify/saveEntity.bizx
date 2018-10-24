@@ -286,7 +286,9 @@
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="227" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Guine" createTime="2018-04-01 09:15:56" date="2018-04-01Z" description="" name="saveTalkArt" version="7.0.0.0"/>
   <process:variables/>

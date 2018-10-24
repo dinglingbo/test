@@ -12,7 +12,7 @@
 <head> 
     <title>归库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.17"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.23"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -247,12 +247,12 @@ allowCellEdit="true" >
 	</div>
 	<div class="nui-fit">
 		<div id="repairOutGrid" class="nui-datagrid" style="width:100%;height:100%;" showPager="false" 
-		dataField="list"  allowCellSelect="true" multiSelect="false" 
+		dataField="list"  allowCellSelect="true" multiSelect="true" 
 		url=""  showModified="false"
 		allowCellEdit="true"  >
 		<div property="columns">
 		   <div headerAlign="center" type="indexcolumn" width="30">序号</div>
-		   <div type="checkcolumn" width="30" ></div>
+<!-- 		   <div type="checkcolumn" width="30" ></div> -->
 		   <div header="可归库-配件信息">
 		    <div property="columns">
 		        <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>

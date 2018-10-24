@@ -235,7 +235,7 @@ function setInitData(params){
 
 function THSave(){
 
-	var rows = repairOutGrid.getSelecteds();
+	var rows = repairOutGrid.getChanges('modified');;
 	var mainData = mainGrid.getData();
 	for(var i=0;i<mainData.length;i++){
 		for(var j=0;j<rows.length;j++){
@@ -260,7 +260,7 @@ function THSave(){
 			if(rows[i].returnSign == 0){
 //				memberSelect(rows[i]);
 //				onBlack(rows[i]);
-				savepartOutRtn(rows[i]);
+				
 			}else{
 				showMsg('该条数据已归库!','W');
 				return;
@@ -269,51 +269,54 @@ function THSave(){
 	}else{
 		showMsg('请先选择需要归库的配件!','W');
 	}
+	
+	savepartOutRtn(rows);
 }
 
 function  savepartOutRtn(data){
 	if(data){
 		var paramsDataArr = [];
             //var paramsData = nui.clone(data);
+		 for (var i = 0; i < data.length; i++) { 
             var paramsData = {};
-            paramsData.serviceId = data.serviceId;
-            paramsData.mId=data.mId//待出库-配件信息的ID
-            paramsData.id = data.id;
-            paramsData.mainId = data.mId;//待出库-配件信息的ID
-            paramsData.sourceId = data.id;
+            paramsData.serviceId = data[i].serviceId;
+//            paramsData.mId=data.mId//待出库-配件信息的ID
+            paramsData.id = data[i].id;
+            paramsData.mainId = data[i].mId;//待出库-配件信息的ID
+            paramsData.sourceId = data[i].id;
             paramsData.serviceId = mainRow.id;
             paramsData.serviceCode = mainRow.serviceCode;
             paramsData.carNo = mainRow.carNO;
             paramsData.vin = mainRow.carVin;
-            paramsData.partId = data.partId;
-            paramsData.partCode = data.partCode;
-            paramsData.oemCode = data.oemCode;
-            paramsData.partName = data.partName;
-            paramsData.partNameId = data.partNameId;
-            paramsData.partFullName = data.partFullName;
-            paramsData.stockQty = data.stockQty;
-            paramsData.outQty = data.outQty2;
-            paramsData.enterPrice = data.enterPrice;
+            paramsData.partId = data[i].partId;
+            paramsData.partCode = data[i].partCode;
+            paramsData.oemCode = data[i].oemCode;
+            paramsData.partName = data[i].partName;
+            paramsData.partNameId = data[i].partNameId;
+            paramsData.partFullName = data[i].partFullName;
+            paramsData.stockQty = data[i].stockQty;
+            paramsData.outQty = data[i].outQty2;
+            paramsData.enterPrice = data[i].enterPrice;
             paramsData.billTypeId = '050206';
-            paramsData.storeId = data.storeId;
-            paramsData.unit = data.unit;
+            paramsData.storeId = data[i].storeId;
+            paramsData.unit = data[i].unit;
             paramsData.returnMan = currUserName;
-            paramsData.remark = data.remark;
+            paramsData.remark = data[i].remark;
 //            paramsData.pickType = "维修出库-领料";
-            paramsData.taxUnitPrice = data.taxUnitPrice;
-            paramsData.taxAmt = data.taxAmt;
-            paramsData.noTaxUnitPrice = data.noTaxUnitPrice;
-            paramsData.noTaxAmt = data.noTaxAmt;
-            paramsData.trueUnitPrice = data.trueUnitPrice;
-            paramsData.trueCost = data.trueCost;
-            paramsData.sellUnitPrice = data.sellUnitPrice;
-            paramsData.sellAmt = data.sellAmt;
+            paramsData.taxUnitPrice = data[i].taxUnitPrice;
+            paramsData.taxAmt = data[i].taxAmt;
+            paramsData.noTaxUnitPrice = data[i].noTaxUnitPrice;
+            paramsData.noTaxAmt = data[i].noTaxAmt;
+            paramsData.trueUnitPrice = data[i].trueUnitPrice;
+            paramsData.trueCost = data[i].trueCost;
+            paramsData.sellUnitPrice = data[i].sellUnitPrice;
+            paramsData.sellAmt = data[i].sellAmt;
             if(!paramsData.partNameId){
             	paramsData.partNameId = "0";
             }
       
             paramsDataArr.push(paramsData);
-
+		 }
 
             //console.log(paramsData);
             //console.log(tdata);
@@ -321,6 +324,7 @@ function  savepartOutRtn(data){
             nui.ajax({
             	url:baseUrl + "com.hsapi.repair.repairService.work.repairOutRtn.biz.ext",
             	type:"post",
+            	async: false,
             	data:{
             		data:paramsDataArr,
             		billTypeId:"050206", 
@@ -396,11 +400,12 @@ function  savepartOutRtn(data){
     }
     function onOut(){
     	
-    	if(status==2){
+    	var data=mainGrid.getSelected();
+    	
+    	if(status==2 ||data.status==2){
     		showMsg("配件已归库");
     		return;
     	}
-    	var data=mainGrid.getSelected();
     	outParams={
             	returnSign :0,
             	mainId :data.detailId	

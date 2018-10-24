@@ -83,8 +83,8 @@
     </style>
 </head>
 <body>
-
-<table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
+<div class="nui-toolbar" style="padding:2px;height:30px">
+    <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
         <tr>            
             <td>
                 <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
@@ -113,7 +113,7 @@
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
                 <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
-            </td>     
+            </td>  
             <td style="text-align:right;">
                 <!-- <span id="carHealthEl" class="" style="font-family:Verdana;color:white;background:#62b900;padding:0px 8px;border-radius:90px;">车况:100</span>
                 <a class="nui-button" iconCls="" plain="false" onclick="" id="addBtn">查看详情</a>

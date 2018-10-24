@@ -10,7 +10,7 @@
 
 <head>
     <title>预约列表</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=2.0.5"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=2.0.7"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -47,8 +47,6 @@
                             <label>快速查询：</label>
                             <a class="nui-menubutton " menu="#popupMenu_date" id="menuBtnDateQuickSearch" name="menuBtnDateQuickSearch" value="0">本日</a>
                             <ul id="popupMenu_date" class="nui-menu" style="display:none;">
-                                <li onclick="quickSearch(menuBtnDateQuickSearch, -1, '所有')">所有</li>
-                                <li class="separator"></li>
                                 <li onclick="quickSearch(menuBtnDateQuickSearch, 0, '本日')">本日</li>
                                 <li onclick="quickSearch(menuBtnDateQuickSearch, 1, '昨日')">昨日</li>
                                 <li class="separator"></li>
@@ -76,9 +74,13 @@
                             <input class="nui-textbox" id="carNo" name="carNo" />
                             <label>手机号：</label>
                             <input class="nui-textbox" id="contactorTel" name="contactorTel" />
-                            <label style=" margin-left: 1%">服务顾问：</label>
+                            <label >服务顾问：</label>
                             <input class="nui-combobox" id="mtAdvisorList" name="mtAdvisorList" showNullItem="true" value="" textField="empName" valueField="empId"
                             />
+                            <label class="form_label">创建日期&nbsp;从：</label>
+	                        <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
+	                        <label class="form_label">至：</label>
+	                        <input format="yyyy-MM-dd" style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
                             <span class="separator"></span>
                             <a class="nui-button" iconCls="" plain="true" onclick="doSearch()">
                                 <span class="fa fa-search fa-lg"></span>&nbsp;查询</a>

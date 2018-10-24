@@ -29,6 +29,7 @@ var isNeedSet = false;
 var oldValue = null;
 var oldRow = null;
 var partShow=0;
+var autoNew = 0;
 var memList=[];
 
 var AuditSignHash = {
@@ -195,6 +196,11 @@ function loadRightGridData(mainId)
     },function(){
 
         var data = rightGrid.getData();
+        
+        if(autoNew == 0){
+			add();
+			autoNew = 1;
+		}
         if(data && data.length <= 0){
             addNewRow(false);
         }else{
@@ -542,6 +548,11 @@ function doSearch(params)
             setBtnable(false);
             setEditable(false);
             
+            if(autoNew == 0){
+				add();
+				autoNew = 1;
+			}
+            
         }else {
             var row = leftGrid.getSelected();
             if(row.auditSign == 1) {
@@ -762,6 +773,9 @@ function audit()
 
                     //保存成功后重新加载数据
                     loadMainAndDetailInfo(leftRow);
+                    
+                    rightGrid.setData([]);
+					add();
                 }
             } else {
                 showMsg(data.errMsg || "退货失败!","W");

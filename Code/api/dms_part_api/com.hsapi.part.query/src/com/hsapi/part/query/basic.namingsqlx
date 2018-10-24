@@ -168,6 +168,9 @@
                 <isNotEmpty prepend="and" property="partId">  
                     (a.PART_ID = #partId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestName">  
+                    (c.short_name like '%$guestName$%' or c.full_name like '%$guestName$%')
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (a.guest_id = #guestId#)
                 </isNotEmpty>

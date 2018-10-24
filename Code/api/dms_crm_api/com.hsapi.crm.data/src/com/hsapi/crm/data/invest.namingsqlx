@@ -65,4 +65,55 @@
         	(a.audit_sign = #auditSign#)
         </isNotEmpty>
 	</select>
+	<select id="queryComplainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.orgid            		 orgid,
+			a.car_id       			 carId,
+			a.car_no          		 carNo,
+			a.guest_id        		 guestId ,
+			a.guest_name         	 guestName,
+			a.mobile        		 mobile,
+			a.service_id          	 serviceId,
+			a.complaint_orgid        complaintOrgid,
+			a.complaint_reason       complaintReason,
+			a.complaint_type         complaintType,
+			a.complaint_level        complaintLevel,
+			a.complaint_date         complaintDate,
+			a.status                 status,
+			a.complaint_reamrk       complaintReamrk,
+			a.inquiry_reamrk         inquiryReamrk,
+			a.duty_dept              dutyDept,
+			a.duty_man               dutyMan,
+			a.process_reamrk         processReamrk,
+			a.solution               solution,
+			a.solution_remark        solutionRemark,
+			a.punish_type            punishType,
+			a.punish_amt             punishAmt,
+			a.prevent_reamrk         preventReamrk,
+			a.recorder               recorder,
+			a.record_date            recordDate,
+			a.modifier               modifier,
+			a.modify_date            modifyDate,
+			a.id                     id
+		FROM
+			crm_complaint a
+		WHERE 1 = 1
+			and a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="status">  
+                (a.status = #status#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">  
+                (a.car_no like '%$carNo$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sEnterDate">  
+                (a.complaint_date &gt;= #sEnterDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">  
+                (a.complaint_date &lt; #eEnterDate#)
+            </isNotEmpty>
+        </dynamic>  
+        order by a.modify_date desc
+	</select>
 </sqlMap>
+

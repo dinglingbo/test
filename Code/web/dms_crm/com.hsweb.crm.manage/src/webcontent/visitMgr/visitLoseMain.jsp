@@ -8,12 +8,12 @@ pageEncoding="UTF-8" session="false" %>
   - Date: 2018-10-22 15:07:42
   - Description: 
 --> 
-<head>  
-    <title>工单回访</title>
+<head> 
+    <title>回访</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.1.3" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitLoseMain.js?v=1.0.0.9" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0; 
@@ -29,8 +29,13 @@ pageEncoding="UTF-8" session="false" %>
 <body>
     <div class="nui-toolbar">
         <label style="font-family:Verdana;">快速查询：</label>
-        <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)">我接待的车辆</a>
-        <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)">所有维修车辆</a>
+        <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">今日计划跟进客户</a>
+        <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+            <li iconCls="" onclick="quickSearch(0)" id="type0">今日计划跟进客户</li>
+            <li iconCls="" onclick="quickSearch(1)" id="type0">新流失客户</li>
+            <li iconCls="" onclick="quickSearch(2)" id="type1">流失超过半年客户</li>
+            <li iconCls="" onclick="quickSearch(3)" id="type2">流失超过一年的客户</li>
+        </ul>
         <label style="font-family:Verdana;">车牌号：</label>
         <input class="nui-textbox" name="tcarNo" id="tcarNo">
         <a class="nui-button" onclick="quickSearch(3)" iconcls="icon-search" plain="false">查询(<u>Q</u>)</a>
@@ -60,11 +65,11 @@ pageEncoding="UTF-8" session="false" %>
                         <div type="indexcolumn">序号</div>
                         <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
                         <div field="mtAdvisor" width="70" headerAlign="center" align="center">维修顾问</div>
-                        <div field="serviceCode" width="70" headerAlign="center" align="center">工单号</div>
+                        <div field="serviceCode" width="70" headerAlign="center" align="center">计划回访日期</div>
                         <div field="leaveDays" width="70" headerAlign="center" align="center">离厂天数</div>
                     </div>
-                </div> 
-            </div> 
+                </div>
+            </div>
         </div>
 
         <div showCollapseButton="true">
@@ -76,7 +81,6 @@ pageEncoding="UTF-8" session="false" %>
                     <input class="nui-hidden" name="carId" id="carId"/>
                     <input class="nui-hidden" name="mainId" id="mainId"/>
                     <input class="nui-hidden" name="serviceId" id="serviceId"/>
-                    <input class="nui-hidden" name="mtAdvisorId" id="mtAdvisorId"/>
                     <input class="nui-hidden" name="guestId" id="guestId"/>
                     <table class="tmargin" style="margin-left:5px;">
                         <tr class="htr">
@@ -130,9 +134,9 @@ pageEncoding="UTF-8" session="false" %>
                             <td >
                                 <input id="" name="" class="nui-textbox textboxWidth">
                             </td>
-                            <td ></td>
+                            <td >是否出库：</td>
                             <td >
-
+                                <input id="" name="" class="nui-combobox textboxWidth">
                             </td>
                         </tr>
                         <tr class="htr">
@@ -140,14 +144,13 @@ pageEncoding="UTF-8" session="false" %>
                             <td >
                                 <input id="billTypeId" name="billTypeId" class="nui-combobox textboxWidth">
                             </td>
-
-                            <td >服务顾问：</td>
+                            <td >维修类型：</td>
                             <td >
-                                <input id="mtAdvisor" name="mtAdvisor" class="nui-combobox textboxWidth" allowInput="true" textField="empName"valueField="empId"emptyText="请选择..."nullItemText="请选择..." onvaluechanged="mtAdvisorChanged">
+                                <input id="" name="" class="nui-combobox textboxWidth">
                             </td>
-                            <td ></td>
+                            <td >维修顾问：</td>
                             <td >
-
+                                <input id="mtAdvisor" name="mtAdvisor" class="nui-combobox textboxWidth">
                             </td>
                         </tr>
                         <tr class="htr">
@@ -170,32 +173,57 @@ pageEncoding="UTF-8" session="false" %>
                         <div id="p1" class="nui-panel" title="请填写回访内容" iconCls="" style="width:100%;height:100%;"buttons="">
                             <input class="nui-hidden" name="visitId" id="visitId"/>
                             <input class="nui-hidden" name="detailId" id="detailId"/>
-                            <table class="tmargin" style="table-layout: fixed;width:100%">
+                            <table class="tmargin" style="width:100%">
                                 <tr class="htr">
-                                    <td  style="width: 60px;">回访方式：</td>
+                                    <td  >回访方式：</td>
+                                    <td >
+                                        <input id="visitMode" name="visitMode" class="nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name">
+                                    </td>
+                                    <td >现在维修厂：</td>
+                                    <td >
+                                        <input id="careDueDate" name="careDueDate" class=" nui-textbox textboxWidth" >
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                    </td>
+                                    <td style="width: "></td>
+                                </tr> 
+                                <tr class="htr">
+                                    <td style="width: 100px;">是否继续跟进：</td>
                                     <td style="width: 135px;">
                                         <input id="visitMode" name="visitMode" class="nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name">
                                     </td>
-                                    <td style="width: 90px;">下次保养日期：</td>
+                                    <td style="width: 100px;">下次跟进日期：</td>
                                     <td style="width: 135px;">
                                         <input id="careDueDate" name="careDueDate" class=" nui-datepicker textboxWidth" >
                                     </td>
-                                    <td style="width: 60px;">保养周期：</td>
+                                    <td style="width: 90px;">计划来厂日期：</td>
                                     <td style="width: 135px;">
-                                        <input id="careDayCycle" name="careDayCycle" class="nui-spinner textboxWidth" minValue="0">
+                                        <input id="careDayCycle" name="careDayCycle" class="nui-datepicker textboxWidth" minValue="0">
+                                    </td>
+                                    <td style="width: "></td>
+                                </tr> 
+                                <tr class="htr">
+                                    <td  >不来厂主要原因：</td>
+                                    <td >
+                                        <input id="visitMode" name="visitMode" class="nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name">
+                                    </td>
+                                    <td >不来厂明细原因：</td>
+                                    <td colspan="3">
+                                        <input id="careDueDate" name="careDueDate" class=" nui-combobox textboxWidth" >
                                     </td>
                                     <td style="width: "></td>
                                 </tr> 
                                 <tr class="htr">
                                     <td >回访内容：</td>
                                     <td  colspan="6">
-                                        <input id="visitContent" name="visitContent" class="nui-textarea textboxWidth" style="width: 100%;height:200px;">
+                                        <input id="visitContent" name="visitContent" class="nui-textarea textboxWidth" style="width: 100%;height:150px;">
                                     </td>
                                 </tr> 
                                 <tr class="htr">
                                     <td >回访员：</td>
                                     <td >
-                                        <input id="visitMan" name="visitMan" class="nui-combobox textboxWidth" allowInput="true" textField="empName" valueField="empName" emptyText="请选择..."nullItemText="请选择..." onvaluechanged="visitManChanged">
+                                        <input id="visitMan" name="visitMan" class="nui-textbox textboxWidth">
                                     </td>
                                     <td >回访时间：</td>
                                     <td >
@@ -222,7 +250,7 @@ pageEncoding="UTF-8" session="false" %>
                                     <div field="subtotal" headerAlign="center" name="pkgSubtotal" allowSort="false" visible="true" width="60" header="套餐金额" align="center">
                                         <input property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged" />
                                     </div>
-                                    <div field="rate" headerAlign="center" name="pkgRate" allowSort="false" visible="true" width="60" header="" align="center">优惠率
+                                    <div field="rate" headerAlign="center" name="pkgRate" allowSort="false" visible="true" width="60" header="" align="center">优惠率<a href="javascript:setPkgRate()" title="批量设置优化率" style="text-decoration:none;">  <span class="fa fa-edit fa-lg"></span></a>
 
                                         <input property="editor" width="60%" vtype="float" class="nui-textbox" onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
                                     </div>
@@ -258,7 +286,7 @@ pageEncoding="UTF-8" session="false" %>
                                     <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
                                         <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemUnitPrice" selectOnFocus="true" />
                                     </div>
-                                    <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">优惠率
+                                    <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">优惠率<a href="javascript:setItemPartRate()" title="批量设置优化率" style="text-decoration:none;">  <span class="fa fa-edit fa-lg"></span></a>
 
                                         <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemRate" selectOnFocus="true"/>
                                     </div>
@@ -280,7 +308,7 @@ pageEncoding="UTF-8" session="false" %>
                         </div>
                     </div>
                 </div>
-                <!-- <div title="维修材料信息" name="tab4">
+                <div title="维修材料信息" name="tab4">
                     <div id="rpsPartGrid" dataField="list" class="nui-datagrid" style="width: 100%; height:auto;" showPager="false" showModified="false" editNextOnEnterKey="true" allowSortColumn="true" allowCellSelect="true" allowCellEdit="true" oncellcommitedit="" ondrawsummarycell="">
                         <div property="columns">
                             <div headerAlign="center" type="indexcolumn" width="20">序号</div>
@@ -306,10 +334,12 @@ pageEncoding="UTF-8" session="false" %>
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
+                <div title="出车报告" name="tab5">
 
-                <div title="描述信息" name="tab5"style="padding:5px;">
-                   <table class="tmargin" style="width: 100%;">
+                </div>
+                <div title="描述信息" name="tab6"style="padding:5px;">
+                 <table class="tmargin" style="width: 100%;">
                     <tr >
                         <td style="width: 60px;">客户描述：</td>
                         <td style="width:calc(100% - 60px)">

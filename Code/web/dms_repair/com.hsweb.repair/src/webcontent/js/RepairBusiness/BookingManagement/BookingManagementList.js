@@ -10,7 +10,8 @@ var carSeriesHash = [];
 var mtAdvisorHash = [];
 var scoutModeHash = [];
 var scoutResutHash = [];
-
+var beginDateEl = null;
+var endDateEl = null;
 var prebookCategoryHash = [{ name: '客户主动预约', id: '0' }, { name: '客户被动预约', id: '1' }];
 var prebookSourceHash = [{ name: '线下预约', id: '0' }, { name: '网络预约', id: '1' }];
 var prebookStatusHash = [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, {name: '已取消' , id: '2' }, { name: '已开单', id: '3' }, { name: '已评价', id: '4' }];
@@ -19,6 +20,9 @@ var upGridUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryPrebookLi
 var downGridUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryBookingTrace.biz.ext";
 
 $(document).ready(function (v) {
+	
+	beginDateEl = nui.get("sRecordDate");
+    endDateEl = nui.get("eRecordDate");
 	//日期
     menuBtnDateQuickSearch = nui.get("menuBtnDateQuickSearch");
     //状态对象
@@ -41,6 +45,8 @@ $(document).ready(function (v) {
     upGrid.on("selectionchanged", function () {
         onupGridSelectionchanged();
     });
+    
+    
 
 });
 
@@ -91,17 +97,56 @@ function init() {
 
 var currType = 0;
 
-//点击快速查找中的某一个选项进来这个函数
+
 function quickSearch(ctlid, value, text) {
     ctlid.setValue(value);
     ctlid.setText(text);
     currType = value;
+    var startDate = null;
+    var endDate = null;
+    var d = menuBtnDateQuickSearch.getValue();
+    if (d == 0) {
+        params.today = 1;
+        startDate = getNowStartDate();
+        endDate = addDate(getNowEndDate(), 1);
+        beginDateEl.setValue(startDate);
+        endDateEl.setValue(endDate);
+    } else if (d == 1) {
+        params.yesterday = 1;
+        startDate = getPrevStartDate();
+        endDate = addDate(getPrevEndDate(), 1);
+        beginDateEl.setValue(startDate);
+        endDateEl.setValue(endDate);
+    } else if (d == 2) {
+        params.thisWeek = 1;
+        startDate = getWeekStartDate();
+        endDate = addDate(getWeekEndDate(), 1);
+        beginDateEl.setValue(startDate);
+        endDateEl.setValue(endDate);
+    } else if (d == 3) {
+        params.lastWeek = 1;
+        startDate = getLastWeekStartDate();
+        endDate = addDate(getLastWeekEndDate(), 1);
+        beginDateEl.setValue(startDate);
+        endDateEl.setValue(endDate);
+    } else if (d == 4) {
+        params.thisMonth = 1;
+        startDate = getMonthStartDate();
+        endDate = addDate(getMonthEndDate(), 1);
+        beginDateEl.setValue(startDate);
+        endDateEl.setValue(endDate);
+    } else if (d == 5) {
+        params.lastMonth = 1;
+        startDate = getLastMonthStartDate();
+        endDate = addDate(getLastMonthEndDate(), 1);
+        beginDateEl.setValue(startDate);
+        endDateEl.setValue(endDate);
+    }
     doSearch();
 }
 
 function doSearch() {
     var params = getSearchParam();
-
     upGrid.load({
         params: params,
         token: token
@@ -116,36 +161,8 @@ function getSearchParam() {
     params.mtAdvisorId = nui.get("mtAdvisorList").getValue();
     params.carNo = nui.get("carNo").getValue();
     params.contactorTel = nui.get("contactorTel").getValue();
-
-    //状态
-    var d = menuBtnDateQuickSearch.getValue();
-
-    if (d == 0) {
-        params.today = 1;
-        params.startDate = getNowStartDate();
-        params.endDate = addDate(getNowEndDate(), 1);
-    } else if (d == 1) {
-        params.yesterday = 1;
-        params.startDate = getPrevStartDate();
-        params.endDate = addDate(getPrevEndDate(), 1);
-    } else if (d == 2) {
-        params.thisWeek = 1;
-        params.startDate = getWeekStartDate();
-        params.endDate = addDate(getWeekEndDate(), 1);
-    } else if (d == 3) {
-        params.lastWeek = 1;
-        params.startDate = getLastWeekStartDate();
-        params.endDate = addDate(getLastWeekEndDate(), 1);
-    } else if (d == 4) {
-        params.thisMonth = 1;
-        params.startDate = getMonthStartDate();
-        params.endDate = addDate(getMonthEndDate(), 1);
-    } else if (d == 5) {
-        params.lastMonth = 1;
-        params.startDate = getLastMonthStartDate();
-        params.endDate = addDate(getLastMonthEndDate(), 1);
-    }
-
+    params.startDate = beginDateEl.getValue();
+    params.endDate = endDateEl.getValue();
     var status = menuBtnStatusQuickSearch.getValue();
     if(status == 0 || status == 1 || status == 2){
         params.status = status;
@@ -154,7 +171,6 @@ function getSearchParam() {
     }else if(status == 4){
         params.isJudge = 1;
     }
-
     return params;
 }
 
@@ -303,59 +319,85 @@ function newBill() {
         showMsg("请选中一条数据","W");
         return;
     }
-    
-    var newRow = {};
-    newRow.id = row.id;
-    //保存的工单
-
-    
-    var maintain = {
-    		"billTypeId":"0",
-    		"guestId":row.guestId,
-    		"carId":row.carId,
-    		"carNo":row.carNo,
-    		"mtAdvisorId":row.mtAdvisorId,
-    		"serviceTypeId":row.serviceTypeId,
-    		"mtAdvisor":row.mtAdvisor,
-    		"contactorId":row.contactorId	
-    };
-    
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '保存中...'
-    });
-    var action = "newBill";
-    var json = nui.encode({
-    	 rpsPrebook: newRow,
-         action: action,
-         maintain:maintain,
-         token: token	
-	});	
-    
-    nui.ajax({
-        url: BookinUrl,
-        type: 'post',
-        data:json,
-        cache : false,
-		contentType : 'text/json',
-        success: function(data) {
-            if (data.errCode == "S") {
+    if(row.guestId>0){
+    	var newRow = {};
+        newRow.id = row.id;
+        //保存的工单  
+        var maintain = {
+        		"billTypeId":"0",
+        		"guestId":row.guestId,
+        		"carId":row.carId,
+        		"carNo":row.carNo,
+        		"mtAdvisorId":row.mtAdvisorId,
+        		"serviceTypeId":row.serviceTypeId,
+        		"mtAdvisor":row.mtAdvisor,
+        		"contactorId":row.contactorId	
+        };
+        
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '保存中...'
+        });
+        var action = "newBill";
+        var json = nui.encode({
+        	 rpsPrebook: newRow,
+             action: action,
+             maintain:maintain,
+             token: token	
+    	});	
+        
+        nui.ajax({
+            url: BookinUrl,
+            type: 'post',
+            data:json,
+            cache : false,
+    		contentType : 'text/json',
+            success: function(data) {
+                if (data.errCode == "S") {
+                    nui.unmask();
+                    showMsg("开单成功","S");     
+                    upGrid.reload();
+                } else {
+                    nui.unmask();
+                    showMsg(data.errMsg || "开单失败","W"); 
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
                 nui.unmask();
-                showMsg("开单成功","S");     
-                upGrid.reload();
-            } else {
-                nui.unmask();
-                showMsg(data.errMsg || "开单失败","W"); 
+                console.log(jqXHR.responseText);
+                showMsg("网络出错，保存失败","W");           
             }
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            nui.unmask();
-            console.log(jqXHR.responseText);
-            showMsg("网络出错，保存失败","W");           
-        }
-    });
-     
+        });
+    }else{
+       var guest = {
+       		"carNo":row.carNo,
+       		"guestFullName":row.contactorName,
+       		"shortName":row.contactorName,
+       		"mobile":row.contactorTel
+       };
+       
+	   var title = "完善客户资料";
+       nui.open({
+    	   url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
+           title: title, width: 560, height: 570,
+           onload: function () {
+             var iframe = this.getIFrameEl();
+             var params = {};
+             if(guest)
+             {
+                 params.guest = guest;
+             }
+             iframe.contentWindow.setGuest(params);
+          },
+          ondestroy: function (action)
+          {
+        	  if("ok" == action){
+                  grid.reload();
+              }
+          }
+     });
+    }
 }
 
 //修改状态时执行的函数

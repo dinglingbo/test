@@ -10,7 +10,7 @@
 -->
 <head>
 <title>销售开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellMain.js?v=1.2.6"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellMain.js?v=1.2.9"></script>
 <style type="text/css">
 
 .title {
@@ -52,13 +52,14 @@
             <tr>
                 <td>
                     <label style="font-family:Verdana;">快速查询：</label>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(0)">草稿</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)">待出库</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)">已出库</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)">待结算</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)">已结算</a>
-                	<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(5)">全部</a>
-                    
+                    <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">草稿</a>
+                    <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                        <li iconCls="" onclick="quickSearch(0)" id="type0">草稿</li>
+                        <li iconCls="" onclick="quickSearch(1)" id="type0">待出库</li>
+                        <li iconCls="" onclick="quickSearch(2)" id="type1">已出库</li>
+                        <li iconCls="" onclick="quickSearch(3)" id="type2">待结算</li>
+                        <li iconCls="" onclick="quickSearch(4)" id="type0">已结算</li>
+                    </ul>
                     <span class="separator"></span>
                     <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>

@@ -79,7 +79,7 @@
       <process:to type="query">enterMain/code</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/orderDate</process:from>
+      <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">enterMain/enterDate</process:to>
     </process:copy>
     <process:copy>
@@ -550,6 +550,7 @@
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
       <targetNode>invokePojo8</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link49" name="link49" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo4</sourceNode>
@@ -1430,7 +1431,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceId</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

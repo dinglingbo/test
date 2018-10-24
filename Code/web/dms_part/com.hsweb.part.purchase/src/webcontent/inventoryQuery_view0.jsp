@@ -105,7 +105,7 @@
             </div>
             <div header="退货" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" field="sellOut" width="60" headerAlign="center" header="出库金额" align="right"></div>
+<!--                     <div allowSort="true" datatype="float" field="sellOut" width="60" headerAlign="center" header="出库金额" align="right"></div> -->
                     <div allowSort="true" datatype="float" field="sellEnter" headerAlign="center" header="退货金额" align="right"></div>
                 </div>
             </div>

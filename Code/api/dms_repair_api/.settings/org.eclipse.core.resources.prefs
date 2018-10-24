@@ -20,5 +20,6 @@ encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/report/queryStoreConsume.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/settlement/PreInsuranceReceiveSettle.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/settlement/preSettleRecharge.bizx.eosdebug=UTF-8
+encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/settlement/querySettlement.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/settlement/rpAccountSettle.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/svr/getRpsItemQuoteByServiceId.bizx.eosdebug=UTF-8

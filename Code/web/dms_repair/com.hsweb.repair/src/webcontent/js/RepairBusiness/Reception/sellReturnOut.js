@@ -199,7 +199,7 @@ function repairOut() {
 //    var partDetail=repairOutGrid.get
     if(row){ 
         var item={};
-        item.id = "checkDetail";
+        item.id = "7000";
         item.text = "归库单";
         item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/returnOutDetail.jsp";
         item.iconCls = "fa fa-cog";

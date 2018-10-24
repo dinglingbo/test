@@ -1496,9 +1496,9 @@ function checkRightData() {
 	if(priceArr && priceArr.length>0){
 		p.pricePartCode = priceArr[0].partCode;
 	}
-	// if (rows && rows.length > 0) {
-	// 	msg = "请完善采购配件的数量，单价，金额，仓库等信息！";
-	// }
+//	 if (rows && rows.length > 0) {
+//	 	msg = "请完善采购配件的数量，单价，金额，仓库等信息！";
+//	 }
 	return p;
 }
 function audit(){
@@ -1535,11 +1535,11 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 	}
 
 	// 审核时，数量，单价，金额，仓库不能为空
-	// var msg = checkRightData();
-	// if (msg) {
-	// 	showMsg(msg,"W");
-	// 	return;
-	// }
+//	 var msg = checkRightData();
+//	 if (msg) {
+//	 	showMsg(msg,"W");
+//	 	return;
+//	 }
 	var p = checkRightData();
 	if (p && p.qtyPartCode) {
 		var partCode = p.qtyPartCode;
@@ -1593,7 +1593,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								leftGrid.updateRow(row, leftRow);
 	
 								// 保存成功后重新加载数据
-								//loadMainAndDetailInfo(leftRow);
+								loadMainAndDetailInfo(leftRow);
 								rightGrid.setData([]);
 								add();
 	
@@ -1657,7 +1657,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								leftGrid.updateRow(row, leftRow);
 	
 								// 保存成功后重新加载数据
-								//loadMainAndDetailInfo(leftRow);
+								loadMainAndDetailInfo(leftRow);
 								rightGrid.setData([]);
 								add();
 	

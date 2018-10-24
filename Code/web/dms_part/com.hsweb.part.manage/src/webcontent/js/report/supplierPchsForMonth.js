@@ -151,7 +151,13 @@ function getSearchParam() {
     params.partBrandId = partBrandIdEl.getValue();
     params.partNameAndPY = partNameEl.getValue();
     params.partCode = partCodeEl.getValue();
-    params.guestId = advanceGuestIdEl.getValue();
+    if(typeof advanceGuestIdEl.getValue() !== 'number'){
+    	params.guestId=null;
+    	params.guestName = advanceGuestIdEl.getValue();
+	}else{
+	params.guestId = advanceGuestIdEl.getValue();
+	}
+//    params.guestId = advanceGuestIdEl.getValue();
 	return params;
 }
 var currType = 2;

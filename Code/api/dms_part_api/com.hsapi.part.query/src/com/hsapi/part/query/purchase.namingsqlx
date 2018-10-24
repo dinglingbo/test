@@ -262,6 +262,7 @@
 			on a.id = b.main_id
 			inner join wb_common.com_attribute c
 			on b.part_id = c.id
+			INNER JOIN wb_common.com_guest d ON a.guest_id = d.id
 			where 1 = 1 and a.audit_sign = 1 and a.order_type_id = 1 and a.is_finished = 1
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
@@ -295,6 +296,9 @@
                 <isNotEmpty prepend="and" property="partId">  
                     (b.PART_ID = #partId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestName">  
+					(d.short_name like '%$guestName$%' or d.full_name like '%$guestName$%')
+				</isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (a.guest_id = #guestId#)
                 </isNotEmpty>
@@ -323,6 +327,7 @@
 			on a.id = b.main_id
 			inner join wb_common.com_attribute c
 			on b.part_id = c.id
+			INNER JOIN wb_common.com_guest d ON a.guest_id = d.id
 			where 1 = 1 and a.audit_sign = 1 and a.is_out = 1 and a.order_type_id = 3
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
@@ -356,6 +361,9 @@
                 <isNotEmpty prepend="and" property="partId">  
                     (b.PART_ID = #partId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestName">  
+					(d.short_name like '%$guestName$%' or d.full_name like '%$guestName$%')
+				</isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (a.guest_id = #guestId#)
                 </isNotEmpty>

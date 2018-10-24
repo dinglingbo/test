@@ -1,7 +1,6 @@
 var complainFrom = null;
 $(document).ready(function(){
 	complainFrom = new nui.Form("#complainFrom");
-	nui.get("ok").disable();
 });
 
 function onOk(){
@@ -39,6 +38,13 @@ function onOk(){
 }
 
 function setData(data){
+	if(data!=null){
+		complainFrom.setData(data);
+		nui.get("ok").enable();
+	}else{
+		nui.get("ok").disable();
+	}
+	
 	nui.get("mobile").disable();
 	nui.get("fullName").disable();
 	nui.get("serviceCode").disable();
@@ -69,6 +75,8 @@ function carNoChange(e){
 	            	nui.get("mtAdvisor").setValue("");
 	            	nui.get("mobile").setValue("");
 	            	nui.get("fullName").setValue("");
+	            	nui.get("carId").setValue("");
+	            	nui.get("guestId").setValue("");
             		return;
             	}else{
             		nui.get("ok").enable();
@@ -87,7 +95,8 @@ function carNoChange(e){
             	            if (data.errCode == "S") {
             	            	nui.get("mobile").setValue(data.guest.mobile);
             	            	nui.get("fullName").setValue(data.guest.fullName);
-
+            	            	nui.get("carId").setValue(data.guest.carId);
+            	            	nui.get("guestId").setValue(data.guest.id);
 
             	            } else {
             					nui.alert(data.errMsg || "信息获取失败!");

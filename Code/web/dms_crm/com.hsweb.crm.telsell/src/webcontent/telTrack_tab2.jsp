@@ -10,7 +10,7 @@
                     <input class="nui-hidden" name="id"/>
                     
                     <div class="row">            
-                        <span class="title title-width1 required">客户名称：</span>
+                        <span class="title title-width1 required">客户：</span>
                         <input id="guestName" name="guestName" class="nui-textbox width2" required="true"/>   
                         <span class="title title-width2 required">联系人：</span>
                         <input id="contacts" name="contacts" class="nui-textbox width2" required="true"/>                        
@@ -58,7 +58,7 @@
                 <div style="padding:5px;">
                     <input class="nui-hidden" name="id"/>
                     <div class="row">            
-                        <span class="title title-width1 required">车牌号：</span>
+                        <span class="title title-width1 required">车牌：</span>
                         <input id="carNo" name="carNo" class="nui-textbox width2" required="true"/>          
                         <span class="title title-width1 ">品牌：</span>
                         <input name="carBrandId"

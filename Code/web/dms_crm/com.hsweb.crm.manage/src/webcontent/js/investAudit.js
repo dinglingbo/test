@@ -2,6 +2,8 @@ var investGrid = null;
 var baseUrl = apiPath + crmApi + "/"; 
 	var queryInvestListUrl = baseUrl+"com.hsapi.crm.svr.svr.queryInvestList.biz.ext";
 var basicForm = null;
+var rpsPackageGrid = null;
+var rpsItemGrid = null;
 var gAuditSign=[{
 	"id":0,
 	"text":"未审核"
@@ -25,6 +27,8 @@ var brandHash={};
 
 $(document).ready(function(){
 	investGrid = nui.get("investGrid");
+	rpsPackageGrid = nui.get("rpsPackageGrid");
+	rpsItemGrid = nui.get("rpsItemGrid");
 	investGrid.setUrl(queryInvestListUrl);
 	basicForm = new nui.Form("#basicInfo");
 	initCarBrand("carBrandIdEl",function(data) {
@@ -109,6 +113,26 @@ function onDrawcell(e) {
 
 function onRowclick(e){
 	basicForm.setData(e.record);
+	var p1 = {
+			interType: "package",
+			data:{
+				serviceId: e.record.serviceId||0
+			}
+		};
+		var p2 = {
+			interType: "item",
+			data:{
+				serviceId: e.record.serviceId||0
+			}
+		};
+		var p3 = {
+			interType: "part",
+			data:{
+				serviceId: e.record.serviceId||0
+			}
+		};
+		loadDetail(p1, p2, p3);
+
 }
 
 function onAuditClick(auditSign){
@@ -148,4 +172,27 @@ function onAuditClick(auditSign){
         }
     });
 }
-
+function loadDetail(p1, p2, p3){
+	if(p1 && p1.interType){
+		getBillDetail(p1, function(text){
+			var errCode = text.errCode;
+			var data = text.data||[];
+			if(errCode == "S"){
+				rpsPackageGrid.clearRows();
+				rpsPackageGrid.addRows(data);
+				rpsPackageGrid.accept();
+			}
+		}, function(){});
+	}
+	if(p2 && p2.interType){
+		getBillDetail(p2, function(text){
+			var errCode = text.errCode;
+			var data = text.data||[];
+			if(errCode == "S"){
+				rpsItemGrid.clearRows();
+				rpsItemGrid.addRows(data);
+				rpsItemGrid.accept();
+			}
+		}, function(){});
+	}
+}

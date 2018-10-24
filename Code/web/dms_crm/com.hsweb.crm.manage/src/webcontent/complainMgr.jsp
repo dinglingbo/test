@@ -6,7 +6,7 @@
 <head>
 <title>投诉管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-     <script src="<%=webPath + contextPath%>/manage/js/complainMgr.js?v=1.0.2"></script>
+     <script src="<%=webPath + contextPath%>/manage/js/complainMgr.js?v=1.0.3"></script>
 </head>
 <body>
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
@@ -25,6 +25,7 @@
                     <input class="nui-combobox"  width="80" allowInput="false"/>
                     <a class="nui-button"  plain="true" onclick="search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button" plain="true" onclick="addComplain()"><span class="fa fa-plus fa-lg"></span>&nbsp;投诉登记</a>
+                    <a class="nui-button" plain="true" onclick="eidComplain()"><span class="fa fa-edit fa-lg"></span>&nbsp;投诉修改</a>
                     <a class="nui-button"  plain="true" onclick="">维修档案</a>
                     <a class="nui-button"  plain="true" onclick=""><span class="fa fa-print fa-lg"></span>打印</a>
                 </td>
@@ -46,6 +47,7 @@
                   <div type="indexcolumn">序号</div>
                   <div header="投诉分店" headerAlign="center">
                   	<div property="columns">
+                  		<div field="id" class="nui-hidden" name="" width="40" headerAlign="center" ></div>
                   		<div field="" name="" width="40" headerAlign="center" header="区号"></div>
                   		<div field="" name="" width="60" headerAlign="center" header="店号"></div>
                   		<div field="complaintOrgid" name="" width="60" headerAlign="center" header="分店"></div>

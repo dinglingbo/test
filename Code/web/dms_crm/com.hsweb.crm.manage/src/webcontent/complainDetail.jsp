@@ -7,7 +7,7 @@
 		<head>
 			<title>投诉管理</title>
 			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-			<script src="<%=webPath + contextPath%>/manage/js/complainDetail.js?v=1.0.3"></script>
+			<script src="<%=webPath + contextPath%>/manage/js/complainDetail.js?v=1.0.6"></script>
 			<link href="<%=webPath + contextPath%>/manage/css/complainDetail.css" rel='stylesheet' type='text/css' />
 		</head>
 

@@ -10,9 +10,9 @@
 -->            
 
 <head> 
-    <title>出库单</title> 
+    <title>维修出库详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.9"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -132,14 +132,22 @@
         <table  style=" left:0;right:0;margin: 0 auto;"> 
 
             <tr>
-                <td class="tbtext">车主:</td>
+                <td class="tbtext">客户名称:</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName" />
                 </td>
-                <td class="tbtext">车主电话:</td>
+                <td class="tbtext">客户手机:</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" />
                 </td>
+	            <td class="tbtext">送修人:</td>
+	            <td class="tbCtrl">
+	                <input class="nui-textbox tabwidth" name="contactorName" id="contactorName"/>
+	            </td>
+	            <td class="tbtext">联系方式:</td>
+	            <td class="tbCtrl">
+	                <input class="nui-textbox tabwidth" " name="mobile" id="mobile" />
+	            </td>
                 <!-- 
                 <td class="tbtext">级别:</td>
                 <td class="tbCtrl">
@@ -150,51 +158,24 @@
                     <input class="nui-textbox tabwidth"  name="cardType" id ="cardType"/>
                 </td>
             -->
-            <td class="tbtext">车型:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="carModel" id="carModel"/>
-            </td>
         </tr> 
         <tr>
-            <td class="tbtext">车牌:</td>
+            <td class="tbtext">车牌号:</td>
             <td class="tbCtrl">
                 <input class="nui-textbox tabwidth" name="carNo" id="carNo"/>
             </td>
-
+            <td class="tbtext">服务顾问:</td>
+            <td class="tbCtrl">
+                <input class="nui-textbox tabwidth" name="mtAdvisor" id="mtAdvisor"/>
+            </td>
             <td class="tbtext">VIN码:</td>
             <td class="tbCtrl">
                 <input class="nui-textbox tabwidth" id="carVin" name="carVin"/>
             </td>
-        </tr>
-        <tr>
-            <td class="tbtext">服务顾问:</td>
+            <td class="tbtext">车型:</td>
             <td class="tbCtrl">
-                <input name="mtAdvisorId"
-                id="mtAdvisorId"
-                class="nui-combobox width1"
-                textField="empName" 
-                valueField="empId"
-                emptyText="请选择..."
-                url=""
-                allowInput="true"
-                showNullItem="false"
-                valueFromSelect="true"
-                nullItemText="请选择..."/>
-
+                <input class="nui-textbox tabwidth" name="carModel" id="carModel"/>
             </td>
-            <td class="tbtext">服务技师:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="sureMtMan" id="sureMtMan"/>
-            </td>
-            <td class="tbtext">送修人:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="contactorName" id="contactorName"/>
-            </td>
-            <td class="tbtext">联系方式:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" " name="mobile" id="mobile" />
-            </td>
-
         </tr>
 
     </table>
@@ -215,7 +196,7 @@ allowCellEdit="true" >
         <div field="serviceTypeId" name="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
         <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量"></div>
         <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价"></div>
-        <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率"></div>
+        <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" align="center"  header="优惠率"></div>
         <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"></div>
         <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
         <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>                        

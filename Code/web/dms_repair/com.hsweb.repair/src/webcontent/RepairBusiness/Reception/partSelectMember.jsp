@@ -70,21 +70,29 @@
     </div> 
     <script type="text/javascript">
         nui.parse();
-        var form = new nui.Form("#table1");
+        var form = null;
         var mtAdvisorIdEl = null;
-        mtAdvisorIdEl = nui.get("mtAdvisorId");
+        $(document).ready(function(v) {
+			form = new nui.Form("#table1");
+			mtAdvisorIdEl = nui.get("mtAdvisorId");
+			
+			initMember("mtAdvisorId",function(){
+	            memList = mtAdvisorIdEl.getData();
+	        });
+	
+			mtAdvisorIdEl.on("valueChanged",function(e){
+	            var text = mtAdvisorIdEl.getText();
+	            nui.get("mtAdvisor").setValue(text);
+	        });
+		});
 
-        initMember("mtAdvisorId",function(){
-            memList = mtAdvisorIdEl.getData();
-        });
-
-        mtAdvisorIdEl.on("valueChanged",function(e){
-            var text = mtAdvisorIdEl.getText();
-            nui.get("mtAdvisor").setValue(text);
-        });
+        
 
         function SetData(ftype){
             nui.get("ftype").setValue(ftype);
+       	    mtAdvisorIdEl.setValue(currEmpId);
+    		mtAdvisorIdEl.setText(currUserName);
+    		nui.get("mtAdvisor").setValue(currUserName);
         }
 
         function onOk(){ 
@@ -93,6 +101,12 @@
                 showMsg("请先选择领料人！","W");
                 return;
             }
+            nui.mask({
+	            el: document.body,
+	            cls: 'mini-mask-loading',
+	            html: '数据处理中...'
+	        });
+        
             closeWindow("ok");
         }
 

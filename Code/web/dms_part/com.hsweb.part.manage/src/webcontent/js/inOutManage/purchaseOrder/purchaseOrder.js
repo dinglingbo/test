@@ -449,8 +449,8 @@ function add() {
 				
 				if(!orderMan || orderMan==""){
 					for(var i=0;i<memList.length;i++){
-						if(currUserId==memList[i].empId){
-							nui.get("orderMan").setValue(currUserId);
+						if(currEmpId==memList[i].empId){
+							nui.get("orderMan").setValue(currEmpId);
 							nui.get("orderMan").setText(currUserName);
 						}
 					}
@@ -472,6 +472,7 @@ function add() {
 	}else{
 		setBtnable(true);
 		setEditable(true);
+		nui.get('guestId').enable();
 
 		basicInfoForm.reset();
 		rightGrid.clearRows();
@@ -489,8 +490,8 @@ function add() {
 		
 		if(!orderMan || orderMan==""){
 			for(var i=0;i<memList.length;i++){
-				if(currUserId==memList[i].empId){
-					nui.get("orderMan").setValue(currUserId);
+				if(currEmpId==memList[i].empId){
+					nui.get("orderMan").setValue(currEmpId);
 					nui.get("orderMan").setText(currUserName);
 				}
 			}
@@ -2081,5 +2082,8 @@ function setInitData(params){
 			document.getElementById("fd1").disabled = true;
 			nui.get("guestId").disable();
 		}
+	}else{
+		formJson = nui.encode(basicInfoForm.getData());
+		add();	
 	}
 }

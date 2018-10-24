@@ -10,7 +10,7 @@
         <tr>
             <td style="width:100%;">
 <!--                 <span class="separator"></span> -->
-				<span  id="bServiceId" style="">订单号：新采购订单</span>
+				<span  id="bServiceId" style="">订单号：新采购订单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <!-- <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn">修改</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
@@ -39,7 +39,7 @@
 
 
           
-<!--           <div class="nui-fit"> -->
+           <div class="nui-fit"> 
               <fieldset id="fd1" style="width:98%;">
                   <legend><span>采购订单信息</span></legend>
                   <div class="fieldset-body">
@@ -172,12 +172,13 @@
                      
                   </div>
                 </fieldset>
-<!--                 <div class="nui-fit">  -->
+                 <div class="nui-fit"> 
 	                <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
 	                	<a class="nui-button" plain="true" iconCls="" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
-	                </div>
+                    </div>
+                    <div class="nui-fit">
                     <div id="rightGrid" class="nui-datagrid" 
-                         style="width:100%;height:79%;"
+                         style="width:100%;height:100%;"
                          selectOnLoad="true"
                          showPager="false"
                          dataField="pjPchsOrderDetailList"
@@ -246,8 +247,9 @@
                             </div>
                         </div>
                     </div>
-<!--                 </div> -->
-<!--           </div> -->
+                    </div>
+                </div> 
+          </div> 
 
 </div>
 

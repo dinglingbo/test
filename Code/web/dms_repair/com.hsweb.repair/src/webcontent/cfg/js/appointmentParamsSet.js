@@ -300,6 +300,7 @@ function saveParams(){
 			nui.unmask(document.body);
 			data = data || {};
 			if (data.errCode == "S") {
+                showMsg("保存成功!","S");
                 var params = data.params;
                 if(params.timeStart){
                     var index = params.timeStart.lastIndexOf(":");

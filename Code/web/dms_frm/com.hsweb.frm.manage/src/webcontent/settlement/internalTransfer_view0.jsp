@@ -44,13 +44,6 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="white-space:nowrap;">
-                            <a class="nui-button" plain="true" iconCls="" onclick="addInternalTransfer()" id="addInternalTransferBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                            <a class="nui-button" plain="true" iconCls="" onclick="deleteGuest()" id="deleteGuestBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
-                            <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                            <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
-
-                            <span class="separator"></span>
-
                             <label style="font-family:Verdana;">创建日期 从：</label>
                             <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                             <label style="font-family:Verdana;">至</label>
@@ -61,7 +54,10 @@
 
                             <span class="separator"></span> 
                             <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-
+                            <a class="nui-button" plain="true" iconCls="" onclick="addInternalTransfer()" id="addInternalTransferBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="deleteGuest()" id="deleteGuestBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                         </td>
                     </tr>
                 </table>

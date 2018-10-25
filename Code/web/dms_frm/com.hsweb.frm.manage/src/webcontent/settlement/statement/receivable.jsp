@@ -10,7 +10,7 @@
 -->
 
 <head>
-	<title>Title</title>
+	<title>应收结算</title>
 	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.3.3"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>

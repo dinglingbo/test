@@ -38,4 +38,15 @@
 			</isNotNull>
 	</update>
 	
+		<update id="updatePchsOrderRtn" parameterClass="java.util.HashMap" >
+		update pj_sell_order_detail_chk 
+			set true_out_qty = order_qty, 
+				true_out_amt = order_amt,
+				not_out_amt = 0, 
+				not_out_qty = 0
+			where 1 = 1
+			<isNotNull prepend = "and" property = "mainId">
+					main_id = #mainId#					
+			</isNotNull>
+	</update>
 </sqlMap>

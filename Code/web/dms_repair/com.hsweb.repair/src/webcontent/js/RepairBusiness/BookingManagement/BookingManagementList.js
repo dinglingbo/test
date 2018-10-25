@@ -319,7 +319,7 @@ function newBill() {
         return;
     }
     if(row.guestId>0){
-    	saveNewBill(row);
+    	saveNewBill(row,"0");
     }else{
        var guest = {
        		"carNo":row.carNo,
@@ -342,21 +342,25 @@ function newBill() {
              iframe.contentWindow.setGuest(params,row);
           },
           ondestroy: function (action){
+        	  var iframe = this.getIFrameEl();
         	  var preBook = iframe.contentWindow.getPreBook();
+        	  var title = "开单类型";
         	  if(action=="ok"){
-        		  nui.open({
-    			    url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
-    	            title: title, width: 560, height: 570,
+       		  nui.open({
+    			    url: webPath + contextPath + "/repair/js/RepairBusiness/BookingManagement/selectBillTypeId.jsp?token="+token,
+    	            title: title, width: 300, height: 160,
     	            onload: function () {
-    	              var iframe = this.getIFrameEl();
-    	              var params = {};
-    	              if(guest){
-    	                 params.guest = guest;
-    	              }
-    	              iframe.contentWindow.setGuest(params,row);
+    	              
     	           },
     	           ondestroy: function (action){
-    	        	   
+    	        	   if(action == "ok"){
+    	        		   var iframe = this.getIFrameEl();
+        	        	   var billTypeId = iframe.contentWindow.getBilltype();
+        	        	   saveNewBill(preBook,billTypeId);
+    	        	   }else{
+    	        		   showMsg("开单已取消","W");
+    	        	   }
+    	               
     	           }
         	    });
             }
@@ -365,13 +369,13 @@ function newBill() {
     }
 }
 
-function saveNewBill(data){
+function saveNewBill(data,billTypeId){
 	var row = data;
 	var newRow = {};
     newRow.id = row.id;
     //保存的工单  
     var maintain = {
-    		"billTypeId":"0",
+    		"billTypeId":billTypeId,
     		"guestId":row.guestId,
     		"carId":row.carId,
     		"carNo":row.carNo,

@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.1.3" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.1.5" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0; 
@@ -35,19 +35,13 @@ pageEncoding="UTF-8" session="false" %>
         <input class="nui-textbox" name="tcarNo" id="tcarNo">
         <a class="nui-button" onclick="quickSearch(3)" iconcls="icon-search" plain="false">查询(<u>Q</u>)</a>
         <span class="separator"></span>
-        <a class="nui-button" iconCls="" plain="false" onclick="save">保存</a>
-        <span class="separator"></span>
         <a class="nui-button" iconCls="" plain="false" onclick="">发送短信</a>
-        <a class="nui-button" iconCls="" plain="false" onclick="">维修历史</a>
+        <a class="nui-button" iconCls="" plain="false" onclick="WindowrepairHistory()">维修历史</a>
         <a class="nui-button" iconCls="" plain="false" onclick="">回访历史</a>
-        <a class="nui-button" iconCls="" plain="false" onclick="">投诉登记</a>
-
+        <a class="nui-button" iconCls="" plain="false" onclick="WindowComplianDetail()">投诉登记</a>
     </div>
-
-
     <div class="nui-fit">
-
-        <div class="nui-splitter" style="width: 100%; height: 100%;">
+        <div class="nui-splitter" style="width: 100%; height: 100%;"> 
             <div size="30%" showCollapseButton="true">
                 <div class="nui-fit">
                     <div id="gridCar" class="nui-datagrid gridborder"
@@ -202,6 +196,9 @@ pageEncoding="UTF-8" session="false" %>
                                         <input id="visitDate" name="visitDate" class="nui-datepicker textboxWidth">
                                     </td>
                                 </tr>
+                                <tr class="htr">
+                                    <td colspan="7"><a class="nui-button" iconCls="" plain="false" onclick="save">保存</a></td>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -308,24 +305,24 @@ pageEncoding="UTF-8" session="false" %>
                     </div>
                 </div> -->
 
-                <div title="描述信息" name="tab5"style="padding:5px;">
-                   <table class="tmargin" style="width: 100%;">
+                <div title="描述信息" name="tab5"style="padding:5px;" id="tab5">
+                 <table class="tmargin" style="width: 100%;" id="table1">
                     <tr >
                         <td style="width: 60px;">客户描述：</td>
                         <td style="width:calc(100% - 60px)">
-                            <input id="" name="" class="nui-textarea textboxWidth" style="height:100px;width:100%">
+                            <input id="guestDesc" name="guestDesc" class="nui-textarea textboxWidth" style="height:100px;width:100%">
                         </td>
                     </tr> 
                     <tr >
                         <td style="width: 60px;">故障现象：</td>
                         <td >
-                            <input id="" name="" class="nui-textarea textboxWidth"style="height:100px;width:100%">
+                            <input id="faultPhen" name="faultPhen" class="nui-textarea textboxWidth"style="height:100px;width:100%">
                         </td>
                     </tr>
                     <tr >
                         <td style="width: 60px;">解决措施：</td>
                         <td >
-                            <input id="" name="" class="nui-textarea textboxWidth"style="height:100px;width:100%">
+                            <input id="solveMethod" name="solveMethod" class="nui-textarea textboxWidth"style="height:100px;width:100%">
                         </td>
                     </tr>
                 </table>

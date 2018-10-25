@@ -8,8 +8,8 @@ pageEncoding="UTF-8" session="false" %>
   - Date: 2018-10-22 15:07:42
   - Description: 
 --> 
-<head> 
-    <title>回访</title>
+<head>  
+    <title>流失回访</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
@@ -48,11 +48,8 @@ pageEncoding="UTF-8" session="false" %>
         <a class="nui-button" iconCls="" plain="false" onclick="">投诉登记</a>
 
     </div>
-
-
     <div class="nui-fit">
-
-        <div class="nui-splitter" style="width: 100%; height: 100%;">
+        <div class="nui-splitter" style="width: 100%; height: 100%;"> 
             <div size="30%" showCollapseButton="true">
                 <div class="nui-fit">
                     <div id="gridCar" class="nui-datagrid gridborder"
@@ -65,11 +62,11 @@ pageEncoding="UTF-8" session="false" %>
                         <div type="indexcolumn">序号</div>
                         <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
                         <div field="mtAdvisor" width="70" headerAlign="center" align="center">维修顾问</div>
-                        <div field="serviceCode" width="70" headerAlign="center" align="center">计划回访日期</div>
+                        <div field="serviceCode" width="70" headerAlign="center" align="center">工单号</div>
                         <div field="leaveDays" width="70" headerAlign="center" align="center">离厂天数</div>
                     </div>
-                </div>
-            </div>
+                </div> 
+            </div> 
         </div>
 
         <div showCollapseButton="true">
@@ -81,6 +78,7 @@ pageEncoding="UTF-8" session="false" %>
                     <input class="nui-hidden" name="carId" id="carId"/>
                     <input class="nui-hidden" name="mainId" id="mainId"/>
                     <input class="nui-hidden" name="serviceId" id="serviceId"/>
+                    <input class="nui-hidden" name="mtAdvisorId" id="mtAdvisorId"/>
                     <input class="nui-hidden" name="guestId" id="guestId"/>
                     <table class="tmargin" style="margin-left:5px;">
                         <tr class="htr">
@@ -134,9 +132,9 @@ pageEncoding="UTF-8" session="false" %>
                             <td >
                                 <input id="" name="" class="nui-textbox textboxWidth">
                             </td>
-                            <td >是否出库：</td>
+                            <td ></td>
                             <td >
-                                <input id="" name="" class="nui-combobox textboxWidth">
+
                             </td>
                         </tr>
                         <tr class="htr">
@@ -144,13 +142,14 @@ pageEncoding="UTF-8" session="false" %>
                             <td >
                                 <input id="billTypeId" name="billTypeId" class="nui-combobox textboxWidth">
                             </td>
-                            <td >维修类型：</td>
+
+                            <td >服务顾问：</td>
                             <td >
-                                <input id="" name="" class="nui-combobox textboxWidth">
+                                <input id="mtAdvisor" name="mtAdvisor" class="nui-combobox textboxWidth" allowInput="true" textField="empName"valueField="empId"emptyText="请选择..."nullItemText="请选择..." onvaluechanged="mtAdvisorChanged">
                             </td>
-                            <td >维修顾问：</td>
+                            <td ></td>
                             <td >
-                                <input id="mtAdvisor" name="mtAdvisor" class="nui-combobox textboxWidth">
+
                             </td>
                         </tr>
                         <tr class="htr">
@@ -250,7 +249,7 @@ pageEncoding="UTF-8" session="false" %>
                                     <div field="subtotal" headerAlign="center" name="pkgSubtotal" allowSort="false" visible="true" width="60" header="套餐金额" align="center">
                                         <input property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged" />
                                     </div>
-                                    <div field="rate" headerAlign="center" name="pkgRate" allowSort="false" visible="true" width="60" header="" align="center">优惠率<a href="javascript:setPkgRate()" title="批量设置优化率" style="text-decoration:none;">  <span class="fa fa-edit fa-lg"></span></a>
+                                    <div field="rate" headerAlign="center" name="pkgRate" allowSort="false" visible="true" width="60" header="" align="center">优惠率
 
                                         <input property="editor" width="60%" vtype="float" class="nui-textbox" onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
                                     </div>
@@ -286,7 +285,7 @@ pageEncoding="UTF-8" session="false" %>
                                     <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
                                         <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemUnitPrice" selectOnFocus="true" />
                                     </div>
-                                    <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">优惠率<a href="javascript:setItemPartRate()" title="批量设置优化率" style="text-decoration:none;">  <span class="fa fa-edit fa-lg"></span></a>
+                                    <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">优惠率
 
                                         <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemRate" selectOnFocus="true"/>
                                     </div>
@@ -308,58 +307,31 @@ pageEncoding="UTF-8" session="false" %>
                         </div>
                     </div>
                 </div>
-                <div title="维修材料信息" name="tab4">
-                    <div id="rpsPartGrid" dataField="list" class="nui-datagrid" style="width: 100%; height:auto;" showPager="false" showModified="false" editNextOnEnterKey="true" allowSortColumn="true" allowCellSelect="true" allowCellEdit="true" oncellcommitedit="" ondrawsummarycell="">
-                        <div property="columns">
-                            <div headerAlign="center" type="indexcolumn" width="20">序号</div>
-                            <div header="配件信息" headerAlign="center">
-                                <div property="columns">
-                                    <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
-                                    <div field="partCode" headerAlign="center" allowSort="false" width="80px" header="配件编码"></div>
-                                    <div field="qty" name="qty" summaryType="sum" numberFormat="0" width="60" headerAlign="center" header="数量">
-                                        <input property="editor" vtype="int" class="nui-textbox" />
-                                    </div>
-                                    <div field="unitPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价">
-                                        <input property="editor" vtype="float" class="nui-textbox" />
-                                    </div>
-                                    <div field="amt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">
-                                        <input property="editor" vtype="float" class="nui-textbox" />
-                                    </div>
-                                    <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center">
-                                        <input property="editor" enabled="true" dataField="memList" class="nui-combobox" valueField="empName" textField="empName" data="memList" url="" onvaluechanged="onpartsalemanChanged" emptyText="" vtype="required" />
-                                    </div>
-                                    <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center"></div>
-                                    <div field="partOptBtn" name="partOptBtn" width="100" headerAlign="center" header="操作" align="center" visible="false"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div title="出车报告" name="tab5">
 
-                </div>
-                <div title="描述信息" name="tab6"style="padding:5px;">
-                 <table class="tmargin" style="width: 100%;">
+
+                <div title="描述信息" name="tab5"style="padding:5px;" id="tab5">
+                 <table class="tmargin" style="width: 100%;" id="table1">
                     <tr >
                         <td style="width: 60px;">客户描述：</td>
                         <td style="width:calc(100% - 60px)">
-                            <input id="" name="" class="nui-textarea textboxWidth" style="height:100px;width:100%">
+                            <input id="guestDesc" name="guestDesc" class="nui-textarea textboxWidth" style="height:100px;width:100%">
                         </td>
                     </tr> 
                     <tr >
                         <td style="width: 60px;">故障现象：</td>
                         <td >
-                            <input id="" name="" class="nui-textarea textboxWidth"style="height:100px;width:100%">
+                            <input id="faultPhen" name="faultPhen" class="nui-textarea textboxWidth"style="height:100px;width:100%">
                         </td>
                     </tr>
                     <tr >
                         <td style="width: 60px;">解决措施：</td>
                         <td >
-                            <input id="" name="" class="nui-textarea textboxWidth"style="height:100px;width:100%">
+                            <input id="solveMethod" name="solveMethod" class="nui-textarea textboxWidth"style="height:100px;width:100%">
                         </td>
                     </tr>
                 </table>
             </div>
+            
         </div>
     </div>
 </div>

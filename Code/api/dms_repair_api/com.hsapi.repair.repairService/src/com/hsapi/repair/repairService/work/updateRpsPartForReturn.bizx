@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updateRpsPartForReturn.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="判断 rpsPart的 pickQty&#xD;&#xA;更新rpsPart的 pickQty，更新状态&#xD;&#xA;&#xD;&#xA;如果是销售开单领料，完成后直接更新status = 2&#xD;&#xA;&#xD;&#xA;list会存在相同ID，但是不同数量的记录，循环完后需要根据ID汇总数量" title="Administrator&#x9;18-9-12 下午1:41">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="退货归库" title="Administrator&#x9;18-9-12 下午1:41">
     <location x="108" y="-85"/>
     <size height="166" width="483"/>
   </nodes>
@@ -318,7 +318,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">领料超数</process:from>
+      <process:from type="literal" pattern="reference">归库超数</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>

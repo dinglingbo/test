@@ -325,7 +325,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.common.PjRepairOut" name="data"/>
     <process:input description="" isArray="false" name="billTypeId" primitiveType="String"/>
-    <process:input description="维修归库标志" isArray="false" name="flag" primitiveType="String"/>
+    <process:input description="0维修归库；1退货归库" isArray="false" name="flag" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -256,7 +256,7 @@
                         var childdata = iframe.contentWindow.GetFormData();
                     savePartOut(childdata);     //如果点击“确定”
                     //window.parent.tt(333);
-                    CloseWindow("ok");
+                    
                 }
 
             }
@@ -282,6 +282,8 @@
                 paramsData.sourceId = data[i].id;
                 paramsData.serviceId = mainRow.id;
                 paramsData.serviceCode = mainRow.serviceCode;
+                paramsData.guestId = mainRow.guestId;
+                paramsData.guestName = mainRow.guestFullName;
                 paramsData.carNo = mainRow.carNO;
                 paramsData.vin = mainRow.carVin;
                 paramsData.partId = data[i].partId;
@@ -330,9 +332,11 @@
                     var errCode = text.errCode;
                     var errMsg = text.errMsg;
                     if(errCode == "S"){
-
+						nui.unmask(document.body);
                         showMsg('领料成功!','S'); 
+                        CloseWindow("ok");
                     }else{ 
+                    	nui.unmask(document.body);
                         showMsg(errMsg,'E'); 
                     }
                 }  

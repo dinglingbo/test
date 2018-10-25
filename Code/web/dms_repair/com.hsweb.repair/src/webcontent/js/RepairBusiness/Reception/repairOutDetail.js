@@ -9,7 +9,7 @@ var mainRow = null;
 
 var servieTypeList = [];
 var servieTypeHash = {};
-var mtAdvisorIdEl = null; 
+//var mtAdvisorIdEl = null; 
 var searchKeyEl = null; 
 var servieIdEl = null; 
 var searchNameEl = null;
@@ -31,7 +31,7 @@ $(document).ready(function(){
 	mainGrid.setUrl(mainGridUrl);
 	repairOutGrid.setUrl(repairOutGridUrl);
 	billForm = new nui.Form("#billForm");
-	mtAdvisorIdEl = nui.get("mtAdvisorId");
+	//mtAdvisorIdEl = nui.get("mtAdvisorId");
 	servieIdEl = nui.get("servieIdEl");
 	searchKeyEl = nui.get("search_key");
 	searchNameEl = nui.get("search_name");
@@ -42,14 +42,14 @@ $(document).ready(function(){
 
 	}*/
 
-	initMember("mtAdvisorId",function(){
-		memList = mtAdvisorIdEl.getData();
-	});
-
-	mtAdvisorIdEl.on("valueChanged",function(e){
-		var text = mtAdvisorIdEl.getText();
-		nui.get("mtAdvisor").setValue(text);
-	});
+//	initMember("mtAdvisorId",function(){
+//		memList = mtAdvisorIdEl.getData();
+//	});
+//
+//	mtAdvisorIdEl.on("valueChanged",function(e){
+//		var text = mtAdvisorIdEl.getText();
+//		nui.get("mtAdvisor").setValue(text);
+//	});
 
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
@@ -69,10 +69,18 @@ $(document).ready(function(){
 	});
 	
     mainGrid.on("drawcell", function (e) {
+    	var value = e.value;
         if (e.field == "serviceTypeId") {
             if (servieTypeHash && servieTypeHash[e.value]) {
                 e.cellHtml = servieTypeHash[e.value].name;
             }
+        }else if(e.field == "rate"){
+        	if(!value){
+        		e.cellHtml = 0;
+        	}else{
+        		value = (value * 100).toFixed(2);
+        		e.cellHtml = value + '%';
+        	}
         }
     });
     

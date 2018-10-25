@@ -4,7 +4,7 @@
 
 <head>
 <title>供应商采购汇总按月排行</title>
-<script src="<%=webPath + contextPath%>/manage/js/report/supplierPchsForMonth.js?v=1.1.2"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/supplierPchsForMonth.js?v=1.1.3"></script>
 </head>
 
 <body>

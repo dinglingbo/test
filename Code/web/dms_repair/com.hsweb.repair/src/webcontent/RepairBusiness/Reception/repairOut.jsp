@@ -82,7 +82,7 @@ a {
 <div class="nui-fit">
     <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
     totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
-    onshowrowdetail="onShowRowDetail" url="">
+    onshowrowdetail="" url="">
     <div property="columns">
     	<div type="indexcolumn" width="15">序号</div>
         <div field="id" name="id" visible="false">id</div>
@@ -91,10 +91,10 @@ a {
         <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
         <div field="carNO" name="carNO" width="40" headerAlign="center" align="center">车牌号</div>
         <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">车型</div>
-        <div field="status" name="status" width="40" headerAlign="center" align="center" renderer="onGenderRenderer">进程</div>
-        <div field="serviceTypeId" name="serviceTypeId" width="40" headerAlign="center" align="center">业务类型</div>
-        <div field="isSettle" name="isSettle" width="40" headerAlign="center" align="center" renderer="onIsSettleRenderer">结算状态</div>
-        <div field="enterDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">进厂日期</div>
+        <div field="status" name="status" width="30" headerAlign="center" align="center">进程</div>
+        <div field="serviceTypeName" name="serviceTypeName" width="40" headerAlign="center" align="center">业务类型</div>
+        <div field="isSettle" name="isSettle" width="30" headerAlign="center" align="center">结算状态</div>
+        <div field="enterDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm:ss">进厂日期</div>
         <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
     </div> 
 </div>
@@ -112,7 +112,6 @@ a {
     var baseUrl = apiPath + repairApi + "/";
     var gridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
     mainGrid.setUrl(gridUrl);
-
 
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
@@ -163,38 +162,36 @@ a {
 
 
     mainGrid.on("drawcell", function (e) {
+        var value = e.value;
         if (e.field == "serviceTypeId") {
             if (servieTypeHash && servieTypeHash[e.value]) {
                 e.cellHtml = servieTypeHash[e.value].name;
             }
+        }else if (e.field == "status") {
+            if (value == 0) {
+                e.cellHtml = "草稿";
+            }else if(value == 1){
+            	e.cellHtml = "施工中";
+            }else if(value == 2){
+            	e.cellHtml = "已完工";
+            }
+        }else if (e.field == "isSettle") {
+            if (value == 0) {
+                e.cellHtml = "未结算";
+            }else if(value == 1){
+            	e.cellHtml = "已结算";
+            }
         }
     });
-
-    function onGenderRenderer(e) {
-        for (var i = 0, l = con_data_status.length; i < l; i++) {
-            var g = con_data_status[i];
-            if (g.id == e.value) return g.text;
-        }
-        return "";
-    }
-
-
-    function onIsSettleRenderer(e) {
-        for (var i = 0, l = con_data_isSettle.length; i < l; i++) {
-            var g = con_data_isSettle[i];
-            if (g.id == e.value) return g.text;
-        }
-        return "";
-    }
 
     function newrepairOut(type) {
         var row = mainGrid.getSelected();
         if(row){ 
             var item={};
             item.id = "checkDetail";
-            item.text = "出库单";
+            item.text = "维修出库详情";
             item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/repairOutDetail.jsp";
-            item.iconCls = "fa fa-cog";
+            item.iconCls = "fa fa-file-text";
             //window.parent.activeTab(item);
             var params = {
                 id:row.id,

@@ -319,55 +319,7 @@ function newBill() {
         return;
     }
     if(row.guestId>0){
-    	var newRow = {};
-        newRow.id = row.id;
-        //保存的工单  
-        var maintain = {
-        		"billTypeId":"0",
-        		"guestId":row.guestId,
-        		"carId":row.carId,
-        		"carNo":row.carNo,
-        		"mtAdvisorId":row.mtAdvisorId,
-        		"serviceTypeId":row.serviceTypeId,
-        		"mtAdvisor":row.mtAdvisor,
-        		"contactorId":row.contactorId	
-        };
-        
-        nui.mask({
-            el: document.body,
-            cls: 'mini-mask-loading',
-            html: '保存中...'
-        });
-        var action = "newBill";
-        var json = nui.encode({
-        	 rpsPrebook: newRow,
-             action: action,
-             maintain:maintain,
-             token: token	
-    	});	
-        
-        nui.ajax({
-            url: BookinUrl,
-            type: 'post',
-            data:json,
-            cache : false,
-    		contentType : 'text/json',
-            success: function(data) {
-                if (data.errCode == "S") {
-                    nui.unmask();
-                    showMsg("开单成功","S");     
-                    upGrid.reload();
-                } else {
-                    nui.unmask();
-                    showMsg(data.errMsg || "开单失败","W"); 
-                }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                nui.unmask();
-                console.log(jqXHR.responseText);
-                showMsg("网络出错，保存失败","W");           
-            }
-        });
+    	saveNewBill(row);
     }else{
        var guest = {
        		"carNo":row.carNo,
@@ -389,12 +341,81 @@ function newBill() {
              }
              iframe.contentWindow.setGuest(params,row);
           },
-          ondestroy: function (action)
-          {
-        	  
+          ondestroy: function (action){
+        	  var preBook = iframe.contentWindow.getPreBook();
+        	  if(action=="ok"){
+        		  nui.open({
+    			    url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
+    	            title: title, width: 560, height: 570,
+    	            onload: function () {
+    	              var iframe = this.getIFrameEl();
+    	              var params = {};
+    	              if(guest){
+    	                 params.guest = guest;
+    	              }
+    	              iframe.contentWindow.setGuest(params,row);
+    	           },
+    	           ondestroy: function (action){
+    	        	   
+    	           }
+        	    });
+            }
           }
      });
     }
+}
+
+function saveNewBill(data){
+	var row = data;
+	var newRow = {};
+    newRow.id = row.id;
+    //保存的工单  
+    var maintain = {
+    		"billTypeId":"0",
+    		"guestId":row.guestId,
+    		"carId":row.carId,
+    		"carNo":row.carNo,
+    		"mtAdvisorId":row.mtAdvisorId,
+    		"serviceTypeId":row.serviceTypeId,
+    		"mtAdvisor":row.mtAdvisor,
+    		"contactorId":row.contactorId	
+    };
+    
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
+    var action = "newBill";
+    var json = nui.encode({
+    	 rpsPrebook: newRow,
+         action: action,
+         maintain:maintain,
+         token: token	
+	});	
+    
+    nui.ajax({
+        url: BookinUrl,
+        type: 'post',
+        data:json,
+        cache : false,
+		contentType : 'text/json',
+        success: function(data) {
+            if (data.errCode == "S") {
+                nui.unmask();
+                showMsg("开单成功","S");     
+                upGrid.reload();
+            } else {
+                nui.unmask();
+                showMsg(data.errMsg || "开单失败","W"); 
+            }
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            nui.unmask();
+            console.log(jqXHR.responseText);
+            showMsg("网络出错，保存失败","W");           
+        }
+    });
 }
 
 //修改状态时执行的函数

@@ -11,7 +11,7 @@
 
 <head>
 	<title>Title</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.0.1"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.0.2"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {

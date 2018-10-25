@@ -144,7 +144,7 @@
 							class="fa fa-check fa-lg"></span>&nbsp;结算</a> -->
 							 <a class="nui-button"
 						iconCls="" plain="true" onclick="doSettle()"><span
-							class="fa fa-check fa-lg"></span>&nbsp;结算</a>
+							class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
 							<a class="nui-button"
 						iconCls="" plain="true" onclick="doDelete()"><span
 							class="fa fa-trash fa-lg"></span>&nbsp;作废</a>

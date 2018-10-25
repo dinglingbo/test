@@ -104,10 +104,12 @@ function checkField(id){
 				console.log(jqXHR.responseText);
 			}
 		});
+		 onChanged();
 }
 
 function remove(id){
 	$("#div"+id).empty();
+	onChanged();
 }
 
 var settleAuditUrl = frmUrl+ "com.hsapi.frm.frmService.rpsettle.rpAccountSettle.biz.ext";

@@ -136,10 +136,12 @@ function checkField(id){
 				console.log(jqXHR.responseText);
 			}
 		});
+		 onChanged();
 }
 
 function remove(id){
 	$("#div"+id).empty();
+	onChanged();
 }
 
 var settleAuditUrl = frmUrl+ "com.hsapi.frm.frmService.rpsettle.rpAccountSettle.biz.ext";
@@ -164,8 +166,6 @@ function settleOK() {
 			}
 		}
 	}
-
-
 		var count = scount();
 		if(count==0){
 			nui.alert("请选择结算账户,并填写结算金额","提示");
@@ -225,36 +225,44 @@ function settleOK() {
 		var list={balaTypeCode:"020107",charOffAmt:deductible,settAccountId:"274"};
 		accountTypeList.push(list);
 
-			nui.mask({
-				el : document.body,
-				cls : 'mini-mask-loading',
-				html : '数据处理中...'
-			});
+		  nui.confirm("确认结算吗？", "友情提示",function(action){
+		       if(action == "ok"){
+					nui.mask({
+						el : document.body,
+						cls : 'mini-mask-loading',
+						html : '数据处理中...'
+					});
 
-			nui.ajax({
-				url : settleAuditUrl,
-				type : "post",
-				data : JSON.stringify({
-					account : account,
-					accountDetailList : accountDetailList,
-					accountTypeList : accountTypeList,
-					token : token
-				}),
-				success : function(data) {
-					nui.unmask(document.body);
-					data = data || {};
-					if (data.errCode == "S") {
-						CloseWindow("saveSuccess");
+					nui.ajax({
+						url : settleAuditUrl,
+						type : "post",
+						data : JSON.stringify({
+							account : account,
+							accountDetailList : accountDetailList,
+							accountTypeList : accountTypeList,
+							token : token
+						}),
+						success : function(data) {
+							nui.unmask(document.body);
+							data = data || {};
+							if (data.errCode == "S") {
+								CloseWindow("saveSuccess");
+			
+							} else {
+								showMsg(data.errMsg || "结算失败!", "w");
+							}
+						},
+						error : function(jqXHR, textStatus, errorThrown) {
+							// nui.alert(jqXHR.responseText);
+							console.log(jqXHR.responseText);
+						}
+					});
 	
-					} else {
-						showMsg(data.errMsg || "结算失败!", "w");
-					}
-				},
-				error : function(jqXHR, textStatus, errorThrown) {
-					// nui.alert(jqXHR.responseText);
-					console.log(jqXHR.responseText);
-				}
-			});
+		     }else {
+					return;
+			 }
+			 }); 
+		
 
 }
 

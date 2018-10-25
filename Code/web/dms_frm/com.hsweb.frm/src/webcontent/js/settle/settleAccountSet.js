@@ -137,7 +137,7 @@ function showEditModal(row, newRow, type){
 		url: "com.hsweb.frm.arap.settleAccountEdit.flow",
 		title: title,
 		width: "500px",
-		height: "300px",
+		height: "285px",
         allowDrag:true,
         allowResize:false,
 		onload: function() {
@@ -188,7 +188,7 @@ function disablePlay(isDisabled){
 		nui.mask({
 			el : document.body,
 			cls : 'mini-mask-loading',
-			html : '禁用中...'
+			html : '修改中...'
 		});
 
 		nui.ajax({
@@ -204,8 +204,7 @@ function disablePlay(isDisabled){
 				data = data || {};
 				if (data.errCode == "S") {
 					nui.alert("操作成功!");
-					var newRow = {isdisabled: isDisabled};
-					mainGrid.updateRow(row, newRow);
+					doSearch();
 
 					if(isDisabled == 0) {
 						disableEl.setVisible(true);

@@ -15,11 +15,22 @@ var rpsItemGrid = null;
 var mainId_ctrl = null;
 var visitMode_ctrl = null;
 var tcarNo_ctrl = null;
+var memList = [];
+var mtAdvisorIdEl = null;
+var mtAdvisorEl = null;
+var visitManEl = null;
+var visitIdEl = null;
+var table1Form = null;
 
 $(document).ready(function(){
 	rpsPackageGrid = nui.get("rpsPackageGrid");
 	rpsItemGrid = nui.get("rpsItemGrid");
+	mtAdvisorEl = nui.get("mtAdvisor");
+	mtAdvisorIdEl = nui.get("mtAdvisorId");
+	visitManEl = nui.get("visitMan");
+	visitIdEl = nui.get("visitId");
 	tabForm = new nui.Form("#tabs");
+	table1Form = new nui.Form("#table1");
 	tcarNo_ctrl = nui.get("tcarNo");
 	visitMode_ctrl = nui.get("visitMode");
 	visitMode_ctrl.setUrl(visitModeCtrlUrl);
@@ -32,8 +43,24 @@ $(document).ready(function(){
 		SetData(record);
 	});
 
+	initMember("mtAdvisor",function(){
+		memList = mtAdvisorEl.getData();
+		nui.get("visitMan").setData(memList); 
+	}); 
+
 });
 
+function mtAdvisorChanged(e){
+	var sel = e.selected;
+	mtAdvisorIdEl.setValue(sel.empId);
+
+}
+
+function visitManChanged(e){
+	var sel = e.selected;
+	visitIdEl.setValue(sel.empId);
+
+}
 
 function SetData(rowData){
 	var params = {
@@ -88,6 +115,8 @@ function SetData(rowData){
 						form.detailId = visitdetaildata.id;
 					}
 					tabForm.setData(form);
+					table1Form.setData(data);
+
 
 					var p1 = {
 						interType: "package",
@@ -129,7 +158,7 @@ function loadDetail(p1, p2, p3){
 				rpsPackageGrid.addRows(data);
 				rpsPackageGrid.accept();
 			}
-		}, function(){});
+		}, function(){}); 
 	}
 	if(p2 && p2.interType){
 		getBillDetail(p2, function(text){
@@ -223,5 +252,52 @@ function quickSearch(e){
 			carNo:tcarNo_ctrl.value
 		};
 	}
-gridCar.load({params:p});
+	gridCar.load({params:p});
+}
+
+function WindowComplianDetail(){
+	nui.open({
+		url: webBaseUrl + "manage/complainDetail.jsp?token="+token,
+		title:"投诉登记",
+		height:"500px",
+		width:"750px",
+		onload:function(){
+			//var iframe = this.getIFrameEl();
+			//iframe.contentWindow.SetData("th");
+		},
+		ondestroy:function(action){
+			if (action == "ok") {
+				//var iframe = this.getIFrameEl();
+				//var childdata = iframe.contentWindow.GetFormData();
+				//savepartOutRtn(row,childdata);
+                //savePartOut();     //如果点击“确定”
+                //CloseWindow("close");
+            }
+        }
+
+    });
+}
+
+
+function WindowrepairHistory(){
+	nui.open({
+		url: webBaseUrl + "manage/visitMgr/repairHistory.jsp?token="+token,
+		title:"维修历史",
+		height:"300px",
+		width:"750px",
+		onload:function(){
+			//var iframe = this.getIFrameEl();
+			//iframe.contentWindow.SetData("th");
+		},
+		ondestroy:function(action){
+			if (action == "ok") {
+				//var iframe = this.getIFrameEl();
+				//var childdata = iframe.contentWindow.GetFormData();
+				//savepartOutRtn(row,childdata);
+                //savePartOut();     //如果点击“确定”
+                //CloseWindow("close");
+            }
+        }
+
+    });
 }

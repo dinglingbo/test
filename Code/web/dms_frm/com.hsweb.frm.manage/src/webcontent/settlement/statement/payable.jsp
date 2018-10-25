@@ -10,8 +10,8 @@
 -->
 
 <head>
-	<title>Title</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.0.1"></script>
+	<title>应付结算</title>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.0.3"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -241,7 +241,7 @@
 	<div style="position: relative;">
 		<div class="fw">
 			<div class="fw_top" style="text-align: center; background: #dcdcdc; font-size: 25px; line-height: 64px;">
-				收款结账
+				付款结账
 			</div>
 			<div class="pay_top">
 				<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -266,7 +266,7 @@
 							</td>
 							<td width="320" valign="top" style="position: relative;">
 								<dl>
-									<dt>待收金额：</dt>
+									<dt>待付金额：</dt>
 									<dd totalmoney="0" totalpaid="0" id="totalAmt" name="totalAmt"></dd>
 								</dl>
 							</td>
@@ -281,7 +281,7 @@
 
 
 					<div class="pay_list">
-						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">收款方式</span></h2>
+						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">付款方式</span></h2>
 						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
 							<div id="dataform">
 								<div class="skbox2" id="div0" name="div0">
@@ -297,7 +297,7 @@
 												<td>
 												</td>
 												<!-- <td>
-											<a class="depj" data-balloon="删除收款方式" href="javascript:void(0);" onclick="dF()" style="margin-left: 15px;"></a>
+											<a class="depj" data-balloon="删除付款方式" href="javascript:void(0);" onclick="dF()" style="margin-left: 15px;"></a>
 										</td> -->
 											</tr>
 										</tbody>
@@ -319,7 +319,7 @@
 														<ul>
 															<li>
 																<a href="javascript:void(0);" onclick="addF()">
-																	<font>添加收款方式</font>
+																	<font>添加付款方式</font>
 																</a>
 															</li>
 														</ul>
@@ -344,7 +344,7 @@
 										<td width="220">
 											<input class="mini-datepicker">
 										</td> -->
-										<td width="120" align="center">收款备注</td>
+										<td width="120" align="center">付款备注</td>
 										<td >
 											<input class="nui-textbox" id="txtreceiptcomment" name="txtreceiptcomment">
 										</td>
@@ -369,7 +369,7 @@
 						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					</td>
 					<td >
-						<label style="font-family:Verdana;">待收金额：</label>
+						<label style="font-family:Verdana;">待付金额：</label>
 						<span id="totalAmt1" name="totalAmt1" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 					</td>
 					<td >
@@ -387,7 +387,7 @@
 						<input type="checkbox" id="settlesenddx">短信通知车主
 					</td>
 					<td >
-						<label style="font-family:Verdana;">剩余应收：</label>
+						<label style="font-family:Verdana;">剩余应付：</label>
 						<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 					</td>
 					<td >

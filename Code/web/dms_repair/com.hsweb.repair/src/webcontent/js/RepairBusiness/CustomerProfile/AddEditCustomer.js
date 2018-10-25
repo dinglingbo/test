@@ -4,6 +4,7 @@ var carInfoFrom = null;
 var basicInfoForm = null;
 var prebookF = null;
 var prebookInfo = {};
+var PreBook = {};
 var provice;
 var cityId;
 var data;
@@ -306,7 +307,8 @@ function onOk()
       				          token: token
       				      }),        
       				      success: function(data) {
-      				          if (data.errCode == "S") {                
+      				          if (data.errCode == "S") {
+      				        	  PreBook = data.rpsPrebook;
       				              window.CloseOwnerWindow("ok");
       				          } else {
       				              nui.unmask();
@@ -320,7 +322,7 @@ function onOk()
       				      }
       				    });
                  }else{
-                	 showMsg("保存成功");
+                	 showMsg("保存成功","S");
                      resultData = data.retData;
                      CloseWindow("ok");
                  }          		
@@ -339,6 +341,9 @@ function onOk()
 }
 function getSaveData(){
 	return resultData;
+}
+function getPreBook(){
+	return PreBook;
 }
 var queryUrl = baseUrl+"com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext";
 function setData(data)

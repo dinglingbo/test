@@ -23,6 +23,11 @@ $(document).ready(function ()
     mainGrid.setUrl(mainGridUrl);
     beginDateEl = nui.get("sRecordDate");
     endDateEl = nui.get("eRecordDate");
+    var date = new Date();
+    var sdate = new Date();
+    sdate.setMonth(date.getMonth()-3);
+    endDateEl.setValue(date);
+    beginDateEl.setValue(sdate);
     editFormDetail = document.getElementById("editFormDetail");
     innerPartGrid = nui.get("innerPartGrid");
     innerPartGrid.setUrl(getRpsPartUrl);

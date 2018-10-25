@@ -2,6 +2,8 @@ var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var contactInfoForm = null;
 var carInfoFrom = null;
 var basicInfoForm = null;
+var prebookF = null;
+var prebookInfo = {};
 var provice;
 var cityId;
 var data;
@@ -290,10 +292,38 @@ function onOk()
         	nui.unmask(document.body);
             data = data||{};
             if(data.errCode == "S")
-            {
-                showMsg("保存成功");
-                resultData = data.retData;
-                CloseWindow("ok");
+            { 
+            	var retData = data.retData;
+            	if(prebookF == "prebookF"){
+            		prebookInfo.guestId = retData.guestId;
+            	    prebookInfo.carId = retData.carId;
+            	    prebookInfo.contactorId = retData.contactorId;
+      				nui.ajax({ 
+      				      url: baseUrl + "com.hsapi.repair.repairService.booking.setBookingGuestId.biz.ext",
+      				      type: 'post',
+      				      data:JSON.stringify({
+      				          rpsPrebook:prebookInfo ,
+      				          token: token
+      				      }),        
+      				      success: function(data) {
+      				          if (data.errCode == "S") {                
+      				              window.CloseOwnerWindow("ok");
+      				          } else {
+      				              nui.unmask();
+      				              nui.alert(data.errMsg || "保存失败");
+      				          }
+      				      },
+      				      error: function(jqXHR, textStatus, errorThrown) {
+      				          nui.unmask();
+      				          console.log(jqXHR.responseText);
+      				          nui.alert("网络出错，保存失败");           
+      				      }
+      				    });
+                 }else{
+                	 showMsg("保存成功");
+                     resultData = data.retData;
+                     CloseWindow("ok");
+                 }          		
             }
             else{
                 showMsg(data.errMsg||"保存失败", "E");
@@ -387,8 +417,10 @@ function setData(data)
 
 }
 
-function setGuest(data){
+function setGuest(data,row){
 	init(function(){
+	prebookF = "prebookF";
+	prebookInfo = row;
 	data = data.guest;
 	var guest = {
 		"shortName":data.shortName,

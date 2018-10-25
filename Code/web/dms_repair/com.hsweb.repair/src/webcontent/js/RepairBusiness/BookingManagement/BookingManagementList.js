@@ -300,7 +300,6 @@ function editRow() {
 
 //点击确认按钮进来这个函数
 function confirmRow() {
-	//不是很懂这种传参
     updateRpspreBookStatus('confirm');
 }
 
@@ -388,13 +387,11 @@ function newBill() {
              {
                  params.guest = guest;
              }
-             iframe.contentWindow.setGuest(params);
+             iframe.contentWindow.setGuest(params,row);
           },
           ondestroy: function (action)
           {
-        	  if("ok" == action){
-                  grid.reload();
-              }
+        	  
           }
      });
     }

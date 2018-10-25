@@ -775,7 +775,7 @@ function audit()
                     loadMainAndDetailInfo(leftRow);
                     
                     rightGrid.setData([]);
-					add();
+//					add();
                 }
             } else {
                 showMsg(data.errMsg || "退货失败!","W");
@@ -970,7 +970,7 @@ function add()
         basicInfoForm.reset();
         rightGrid.clearRows();
         
-        var newRow = { serviceId: '新采购退货', auditSign: 0};
+        var newRow = { serviceId: '新采购退货',orderMan:currUserName, createDate: (new Date()), auditSign: 0};
         leftGrid.addRow(newRow, 0);
         leftGrid.clearSelect(false);
         leftGrid.select(newRow, false);

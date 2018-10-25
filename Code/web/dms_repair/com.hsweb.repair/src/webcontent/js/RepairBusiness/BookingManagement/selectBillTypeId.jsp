@@ -21,7 +21,7 @@
               
                <input type="radio"
 				style="vertical-align: middle; margin-top: -2px; margin-bottom: 1px;"
-				name="billType" id="billType1" value="1" checked="true" >
+				name="billType" id="billType1" value="2" checked="true" >
 				<label for="billType1">洗车开单</label>    
 				
 			  </td>
@@ -40,7 +40,7 @@
               <input
 				type="radio"
 				style="vertical-align: middle; margin-top: -2px; margin-bottom: 1px;"
-				name="billType" id="billType3" value="2">
+				name="billType" id="billType3" value="4">
 				<label for="billType3">理赔开单</label> 
 			</td>
 			</tr>
@@ -52,7 +52,7 @@
 	</div>
 </body>
 <script type="text/javascript">
-    var billType = null;
+    var billType = 2;
     $(function(){
       $('input').click(
          function(){

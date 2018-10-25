@@ -205,7 +205,7 @@ function repairOut() {
     if(row){ 
         var item={};
         item.id = "7000";
-        item.text = "归库单";
+        item.text = "退货归库详情";
         item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/returnOutDetail.jsp";
         item.iconCls = "fa fa-cog";
         //window.parent.activeTab(item);

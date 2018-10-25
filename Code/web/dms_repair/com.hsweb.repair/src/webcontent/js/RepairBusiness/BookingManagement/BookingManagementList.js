@@ -342,10 +342,12 @@ function newBill() {
              iframe.contentWindow.setGuest(params,row);
           },
           ondestroy: function (action){
+        	  var iframe = this.getIFrameEl();
         	  var preBook = iframe.contentWindow.getPreBook();
         	  var title = "开单类型";
         	  if(action=="ok"){
-        		  nui.open({
+        		
+       		  nui.open({
     			    url: webPath + contextPath + "/repair/js/RepairBusiness/BookingManagement/selectBillTypeId.jsp?token="+token,
     	            title: title, width: 200, height: 300,
     	            onload: function () {

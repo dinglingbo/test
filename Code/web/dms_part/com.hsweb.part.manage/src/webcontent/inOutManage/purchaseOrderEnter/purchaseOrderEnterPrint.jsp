@@ -13,7 +13,7 @@
 table{
 	margin-top:10px;
 	font-size:16px;
-
+	word-wrap: break-word; word-break: break-all;
 }
 
 #tbody td{
@@ -94,22 +94,43 @@ table{
     background: #df0024;
 }
 #comPartCode{
-	width:15%;
+	width:13%;
 }
 #comOemCode{
-	width:10%;
+	width:12%;
 }
 #comPartName{
-	width:15%;
+	width:13%;
 }
 #comPartBrandId{
 	width:6%;
 }
 #comApplyCarModel{
-	width: 10%;
+	width:10%;
 }
 #comSpec{
+	width:8%;
+}
+#comUnit{
+	width:4%;
+}
+#orderQty{
+	width:4%;
+}
+#orderPrice{
+	width:4%;
+}
+#orderAmt{
+	width:4%;
+}
+#remark{
+	width:4%;
+}
+#storehouse{
 	width:10%;
+}
+#storeShelf{
+	width:4%;
 }
 </style>
 <title>采购入库打印</title>
@@ -187,7 +208,7 @@ table{
 				    <td id="">收货人：</td>
 				  </tr>
 				  <tr colspan="3" id="border3">
-				    <td id="remark">备注</td>
+				    <td id="remark1">备注</td>
 				    <td></td>
 				    <td></td>
 				  </tr>

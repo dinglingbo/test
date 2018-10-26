@@ -13,7 +13,7 @@
 table{
 	margin-top:10px;
 	font-size:16px;
-
+	word-wrap: break-word; word-break: break-all;
 }
 
 #tbody td{
@@ -43,6 +43,7 @@ table{
 #border1 td{
 	border-bottom: 1px black solid !important;
 	height :35px;
+	
 
 }
 #border2 td{
@@ -94,13 +95,13 @@ table{
     background: #df0024;
 }
 #comPartCode{
-	width:15%;
+	width:13%;
 }
 #comOemCode{
-	width:10%;
+	width:12%;
 }
 #comPartName{
-	width:15%;
+	width:13%;
 }
 #comPartBrandId{
 	width:6%;
@@ -109,7 +110,28 @@ table{
 	width:10%;
 }
 #comSpec{
+	width:8%;
+}
+#comUnit{
+	width:4%;
+}
+#orderQty{
+	width:4%;
+}
+#orderPrice{
+	width:4%;
+}
+#orderAmt{
+	width:4%;
+}
+#remark{
+	width:4%;
+}
+#storehouse{
 	width:10%;
+}
+#storeShelf{
+	width:4%;
 }
 </style>
 <title>采购订单打印</title>
@@ -156,7 +178,7 @@ table{
                         <tr>
                         	<td id="index">序号</td>
 							<td id="comPartCode">配件编码</td>
-							<td id="comOemCode">OEM码</td>
+							<td id="comOemCode" >OEM码</td>
 							<td id="comPartName">配件名称</td>
 							<td id="comPartBrandId">品牌</td>
 							<td id="comApplyCarModel">车型</td>
@@ -187,7 +209,7 @@ table{
 				    <td id="getMan">收货人：</td>
 				  </tr>
 				  <tr colspan="3" id="border3">
-				    <td id="remark">备注</td>
+				    <td id="remark1">备注</td>
 				    <td></td>
 				    <td></td>
 				  </tr>

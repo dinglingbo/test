@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.19"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.20"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -151,7 +151,7 @@ body .mini-grid-row-selected{
                                                  placeholder="请选择供应商"
                                                  selectOnFocus="true" />
                                       </td>
-                                      <td class="title required">
+                                      <td class="title required" >
                                           <label>退货员：</label>
                                       </td>
                                       <td colspan="1">
@@ -167,7 +167,7 @@ body .mini-grid-row-selected{
 			                              valueFromSelect="false"
 	                                      width="100%">
                                       </td>
-                                      <td class="title required">
+                                      <td class="title required" style="width:7%">
                                           <label>退货日期：</label>
                                       </td>
                                       <td width="120">
@@ -178,7 +178,7 @@ body .mini-grid-row-selected{
                                                  showTime="true"
                                                  class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
                                       </td>
-                                      <td class="title">
+                                      <td class="title" style="width:7%">
                                           <label>采退单号：</label>
                                       </td>
                                       <td>
@@ -186,7 +186,7 @@ body .mini-grid-row-selected{
                                       </td>
                                   </tr>
                                   <tr>
-                                      <td class="title required">
+                                      <td class="title required" style="width:7%">
                                       <label>退货原因：</label>
                                   </td>
                                   <td>
@@ -204,7 +204,7 @@ body .mini-grid-row-selected{
                                              onvaluechanged=""
                                              nullItemText="请选择..."/>
                                   </td>
-                                      <td class="title required">
+                                      <td class="title required" style="width:7%">
                                           <label>结算方式：</label>
                                       </td>
                                       <td>

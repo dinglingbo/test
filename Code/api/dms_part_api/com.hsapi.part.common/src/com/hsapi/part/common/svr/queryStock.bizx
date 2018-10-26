@@ -205,7 +205,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.common.stockquery.queryJPStock</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.common.stockquery.queryJPStock</process:from>
       <process:to type="query">namesql</process:to>
     </process:copy>
     <process:copy>

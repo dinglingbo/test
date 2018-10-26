@@ -62,7 +62,7 @@
                                   <td class="title required">
                                       <label>供应商：</label>
                                   </td>
-                                  <td colspan="3" style="width:35%">
+                                  <td colspan="3" style="width:38%">
                                       <input id="guestId"
                                              name="guestId"
                                              class="nui-buttonedit"

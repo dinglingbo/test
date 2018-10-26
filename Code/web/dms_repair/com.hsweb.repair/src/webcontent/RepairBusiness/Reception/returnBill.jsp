@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-销售单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnBill.js?v=1.2.8"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnBill.js?v=1.3.2"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -237,20 +237,20 @@
                 
                 <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码">
                 </div>           
-                <div field="unitPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价">
+                <div field="unitPrice"  width="60" headerAlign="center" header="单价">
                    <!-- <input property="editor" vtype="float" class="nui-textbox"/> -->
                 </div>
-                <div field="amt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额"></div>
+                <div field="amt" summaryType="sum"  width="60" headerAlign="center" header="金额"></div>
                 <div field="saleMan" headerAlign="center"
                      allowSort="false" visible="true" width="50" header="销售员" align="center">
                      <input  enabled="true" dataField="memList" 
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url="" onvaluechanged="onpartsalemanChanged" emptyText=""  vtype="required"/> 
+                             url="" onvaluechanged="onpartsalemanChanged" emptyText=""  vtype="required" property="editor" /> 
                 </div>
                 <div field="saleManId" headerAlign="center"
                      allowSort="false" visible="false" width="80" header="销售员" align="center">
                 </div>  
-                 <div field="qty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="退货数量" >
+                 <div field="qty" summaryType="sum"  width="60" headerAlign="center" header="退货数量" >
                    <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
                 <div field="partOptBtn" name="partOptBtn" width="100" headerAlign="center" header="操作" align="center" align="center"></div>

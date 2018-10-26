@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="selectLoseGuest" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+select 
+ a.id,a.car_no carNo,a.orgid,a.guest_id guestId,a.car_model_id carModelId,a.car_brand_id carBrandId,a.car_model carModel,a.engine_no engineNo,a.vin carVin,
+ b.chain_come_times chainComeTimes,b.last_leave_date lastLeaveDate,b.mt_advisor_id mtAdvisorId,b.mt_advisor_name mtAdvisorName,
+ b.care_last_date careLastDate,b.care_due_date careDueDate,c.contactor,c.contactor_tel contactorTel,b.last_service_id lastServiceId,
+ c.full_name fullName,to_days(now()) - to_days(b.last_leave_date)as leaveDays
+from rpb_car a
+INNER JOIN rpb_car_extend b on b.car_id = a.id
+INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+where  a.orgid = #orgid#
+	        <isNotEmpty prepend="and" property="carNo">  
+	            (a.car_no like '%$carNo$%')
+	        </isNotEmpty>
+
+			<isNotEmpty prepend="and" property="loseDay">  
+	            to_days(now()) - to_days(b.last_leave_date) = #loseDay#
+	        </isNotEmpty>
+    
+    		<isNotEmpty prepend="and" property="sloseDay">  
+	            to_days(now()) - to_days(b.last_leave_date) &gt;= #sloseDay#
+	        </isNotEmpty>
+	        <isNotEmpty prepend="and" property="eloseDay">  
+	            to_days(now()) - to_days(b.last_leave_date) &lt;= #eloseDay#
+	        </isNotEmpty>
+    
+    </select>
+</sqlMap>

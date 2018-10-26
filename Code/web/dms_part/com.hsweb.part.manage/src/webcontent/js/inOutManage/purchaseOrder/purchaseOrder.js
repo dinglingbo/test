@@ -1304,7 +1304,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								var leftRow = pjPchsOrderMainList[0];
 
 								// 保存成功后重新加载数据
-								leftRow.billStatusId=2;
+//								leftRow.billStatusId=2;
 								loadMainAndDetailInfo(leftRow);
 								$('#bServiceId').text("订单号："+leftRow.serviceId);
 
@@ -1368,7 +1368,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 
 //	
 								// 保存成功后重新加载数据
-								leftRow.billStatusId=2;
+//								leftRow.billStatusId=2;
 								loadMainAndDetailInfo(leftRow);
 								$('#bServiceId').text("订单号："+leftRow.serviceId);
 
@@ -1402,7 +1402,7 @@ function orderEnter(mainId) {
 		return;
 	}
 	if(data.billStatusId==1){
-		showMsg("待发货状态才能入库!","W");
+		showMsg("待收货状态才能入库!","W");
 		return;
 	}
 	if (data) {

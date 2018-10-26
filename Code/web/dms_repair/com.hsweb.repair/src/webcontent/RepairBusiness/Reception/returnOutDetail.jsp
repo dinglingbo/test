@@ -216,7 +216,7 @@ allowCellEdit="true" >
         <div field="serviceTypeId" name="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
         <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="归库数量"></div>
         <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价"></div>
-        <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率"></div>
+<!--         <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center"  header="优惠率"></div> -->
         <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"></div>
         <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
         <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已归库数量"></div>           

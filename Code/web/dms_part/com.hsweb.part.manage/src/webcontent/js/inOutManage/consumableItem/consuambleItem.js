@@ -406,6 +406,7 @@ function onAdvancedAddOk() {
 
 function onOut() {
 	var row = enterGrid.getSelected();
+	row.remark=null;
 	var partBrandId=row.partBrandId;
 	for(var i=0;i<brandList.length;i++){
 		if(partBrandId==brandList[i].id){

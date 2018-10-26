@@ -518,7 +518,7 @@ function addPackage(data,callback){
 function doFinishWork(params,callback){
 	nui.open({
         url: webPath + contextPath +"/com.hsweb.RepairBusiness.checkFinish.flow?token="+token,
-        title: "质检&完工", width: 800, height: 270, allowDrag:false, allowResize:false,
+        title: "质检&完工", width: 700, height: 400, allowDrag:false, allowResize:false,
         onload: function () {
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setData(params);

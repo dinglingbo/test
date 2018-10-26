@@ -5,15 +5,17 @@ var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.query.getRpsItemByServiceId.biz.ext";
 var partGridUrl = baseUrl + "com.hsapi.repair.repairService.query.getRpsPartByServiceId.biz.ext";
+var queryUrl = baseUrl + "com.hsapi.repair.repairService.crud.queryOurCartReport.biz.ext";
 var itemGrid = null;
 var partGrid = null;
 var fserviceId = 0;
+var form = null;
 $(document).ready(function (){
     itemGrid = nui.get("itemGrid");
     partGrid = nui.get("partGrid");
     itemGrid.setUrl(itemGridUrl);
     partGrid.setUrl(partGridUrl);
-
+    form = new nui.Form("#basicInfoForm");
     partGrid.on("drawcell",function(e){
         var grid = e.sender;
         var record = e.record;
@@ -42,7 +44,8 @@ function setData(params){
     partGrid.load({
         token:token,
         serviceId:serviceId
-    },function(){
+    }
+    ,function(){
         var rows = partGrid.findRows(function(row){
             var qty = row.qty||0;
             var pickQty = row.pickQty||0;
@@ -57,9 +60,33 @@ function setData(params){
             document.getElementById("checkDescribe").innerHTML = "";
         }
     });
+    getDrawOutReport(serviceId);
 }
+function getDrawOutReport(serviceId){
+	var json = nui.encode({
+		"serviceId":serviceId,
+		token : token
+	});
+  nui.ajax({
+	url : queryUrl,
+	type : 'POST',
+	data : json,
+	cache : false,
+	contentType : 'text/json',
+	success : function(text) {
+		var returnJson = nui.decode(text);
+		var outCar = returnJson.main;
+		if(outCar){
+			var outCarData = {};
+			outCarData.content = outCar.drawOutReport;
+			form.setData(outCarData);
+		}
+	}
+});	
+} 
 var resultData = {};
 function finish(){
+	var drawOutReport = form.getData().content;
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -67,7 +94,8 @@ function finish(){
     });
     var params = {
         data:{
-            id:fserviceId||0
+            id:fserviceId||0,
+            "drawOutReport":drawOutReport
         }
     };
     svrRepairAudit(params, function(data){
@@ -90,6 +118,25 @@ function finish(){
 function getRtnData(){
     return resultData;
 }
+
+function SelectReport(){
+	nui.open({
+        url: webPath + contextPath +"/repair/DataBase/OutCar/OutCarReport.jsp?token="+token,
+        title: "出车报告", width: "50%", height: "60%", 
+        onload: function () {
+           /* var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(params);*/
+        },
+        ondestroy: function (action) {
+			var iframe = this.getIFrameEl();
+			var data = iframe.contentWindow.getData();
+			form.setData(data);
+        }
+    });
+}
+
+
+
 //关闭窗口
 function CloseWindow(action) {
     // if (action == "close" && form.isChanged()) {
@@ -105,3 +152,4 @@ function CloseWindow(action) {
 function onCancel() {
     CloseWindow("cancel");
 }
+

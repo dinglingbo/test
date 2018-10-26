@@ -9,7 +9,7 @@
 -->
 <head>
 <title>应付账款管理</title>
-    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.0.7"></script> 
+    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.0.9"></script> 
     <style type="text/css">
 .title {
     width: 90px;
@@ -434,12 +434,6 @@
                            onbuttonclick="selectSupplier('btnEdit2')"
                            width="100%"
                            selectOnFocus="true" />
-                </td>
-            </tr>
-            <tr>
-                <td class="title">业务单号:</td>
-                <td colspan="3">
-                    <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="billServiceIdList" name="billServiceIdList"></textarea>
                 </td>
             </tr>
             <tr>

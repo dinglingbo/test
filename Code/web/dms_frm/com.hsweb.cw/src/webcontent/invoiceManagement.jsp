@@ -36,10 +36,8 @@
 		            <input class="nui-combobox" data="data" textfield="text" valuefield="id" value="1" id="type"/>
 		           <input id="message"name="message" class="nui-textbox" style="width:18%"  >
 		            <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-		             <a class="nui-button" plain="true" iconCls="" onclick="newBill(1)" ><span class="fa fa-plus fa-lg"></span>&nbsp;添加</a>
+		             <a class="nui-button" plain="true" iconCls="" onclick="newBill(1)" ><span class="fa fa-plus fa-lg"></span>&nbsp;增加</a>
 		             <a class="nui-button" plain="true" iconCls="" onclick="newBill(2)" ><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-
-                        <a class="nui-button" plain="true"  onclick=""><span class="fa fa-level-down fa-lg"></span>&nbsp;导出到XLS</a>
 	            </td>
 		        </tr>
 		    </table>
@@ -48,6 +46,7 @@
         	<div id="grid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
             totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" url="">
                 <div property="columns">
+                <div width="30" type="indexcolumn">序号</div>
                 	<div field="main" name="main" headeralign="center" align="center" width="40"visible="false"></div>
                     <div field="code" name="code" headeralign="center" align="center" width="40">开票单号</div>
                     <div field="serviceCode" name="serviceCode" headeralign="center" align="center"width="55">源单号</div>

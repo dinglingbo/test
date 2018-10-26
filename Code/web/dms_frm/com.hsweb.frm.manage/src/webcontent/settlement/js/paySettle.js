@@ -21,7 +21,7 @@ var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
 var basicInfoForm = null;
-
+var btnEdit2Name = "";
 
 var pRightGrid = null;
 var qRightGrid = null;
@@ -330,6 +330,7 @@ function advancedSearch() {
 	advancedSearchForm.clear();
 	if (advancedSearchFormData) {
 		advancedSearchForm.setData(advancedSearchFormData);
+		nui.get("btnEdit2").setText(btnEdit2Name);
 	}
 }
 function onAdvancedSearchOk() {
@@ -339,6 +340,7 @@ function onAdvancedSearchOk() {
 	for ( var key in searchData) {
 		advancedSearchFormData[key] = searchData[key];
 	}
+	btnEdit2Name = nui.get("btnEdit2").getText();
 	var i;
 	if (searchData.sCreateDate) {
 		searchData.sCreateDate = searchData.sCreateDate.substr(0, 10);

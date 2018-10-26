@@ -102,8 +102,8 @@
             </tr>
         </table>
         <div style="text-align:center;padding:10px;">
-            <a class="nui-button" onclick="advancedDeductCancel" style="width:60px;">取消</a>
             <a class="nui-button" onclick="advancedDeductOk" style="width:60px;margin-right:20px;">确定</a>
+            <a class="nui-button" onclick="advancedDeductCancel" style="width:60px;">取消</a>
         </div>
     </div>
 </div>

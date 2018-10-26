@@ -29,7 +29,7 @@
 					<label class="form_label">类别：</label>
 					<input class="nui-combobox" name="serviceTypeId" id="type-serviceTypeId" valueField="id" textField="name"
 					       allowInput="true" valueFromSelect="true"/>
-					<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search"></span>&nbsp;查询</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 					<input name="type"  id="type" visible="false"
                                              class="nui-combobox width1"
                                              textField="name"

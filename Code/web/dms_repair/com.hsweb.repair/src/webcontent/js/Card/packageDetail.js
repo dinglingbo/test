@@ -17,7 +17,11 @@ function setData(data) {
 	// 跨页面传递的数据对象，克隆后才可以安全使用
 	var json = nui.clone(data);
 	var a = json.row;
-	a.serviceTypeId=json.servieTypeHash[a.serviceTypeId].name;
+	if(a.serviceTypeId!=""){
+		a.serviceTypeId=json.servieTypeHash[a.serviceTypeId].name;
+	}else{
+		a.serviceTypeId="";
+	}
 	form.setData(a);
 	form.setChanged(false);
 	// 计次卡明细查询

@@ -308,7 +308,7 @@ function onOk()
       				      }),        
       				      success: function(data) {
       				          if (data.errCode == "S") {
-      				        	  PreBook = data.prebookInfo;
+      				        	  PreBook = data.rpsPrebook;
       				              window.CloseOwnerWindow("ok");
       				          } else {
       				              nui.unmask();

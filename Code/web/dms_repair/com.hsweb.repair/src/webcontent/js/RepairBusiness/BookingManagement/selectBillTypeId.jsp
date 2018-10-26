@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -12,6 +11,7 @@
 <title>选择开单类型</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=request.getContextPath()%>/common/nui/nui.js" type="text/javascript"></script>
+<%@include file="/common/commonRepair.jsp"%>
 </head>
 <body>
 	<div class="nui-fit" style="width: 100%;">
@@ -21,7 +21,7 @@
               
                <input type="radio"
 				style="vertical-align: middle; margin-top: -2px; margin-bottom: 1px;"
-				name="billType" id="billType1" value="1" checked="true" >
+				name="billType" id="billType1" value="2" checked="true" >
 				<label for="billType1">洗车开单</label>    
 				
 			  </td>
@@ -40,7 +40,7 @@
               <input
 				type="radio"
 				style="vertical-align: middle; margin-top: -2px; margin-bottom: 1px;"
-				name="billType" id="billType3" value="2">
+				name="billType" id="billType3" value="4">
 				<label for="billType3">理赔开单</label> 
 			</td>
 			</tr>
@@ -52,7 +52,7 @@
 	</div>
 </body>
 <script type="text/javascript">
-    var billType = null;
+    var billType = 2;
     $(function(){
       $('input').click(
          function(){

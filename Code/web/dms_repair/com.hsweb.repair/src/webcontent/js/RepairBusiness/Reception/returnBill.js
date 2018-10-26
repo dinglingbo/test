@@ -17,7 +17,7 @@ var servieIdEl = null;
 var searchKeyEl = null;
 
 var rpsPackageGrid = null;//
-var rpsPartGrid = null;
+var rpsPartGrid = null; 
 
 var fserviceId = 0;
 var fguestId = 0;
@@ -231,13 +231,6 @@ $(document).ready(function ()
 	    if((keyCode==83)&&(event.altKey))  {   //保存
 			save();
 	    } 
-	  
-	    // if((keyCode==80)&&(event.altKey))  {   //打印
-		// 	onPrint();
-	    // } 
-	    // if((keyCode==113))  {  
-		// 	addMorePart();
-		// } 
 	 
 	};
 });
@@ -277,7 +270,7 @@ function onPrint(){
 	if(main.id){
 	nui.open({
         url: sourceUrl,
-        title: "退货单单打印",
+        title: "退货单打印",
 		width: "100%",
 		height: "100%",
         onload: function () {
@@ -788,7 +781,8 @@ function addGuest(){
         }
     });
 }
-function onCloseClick(e){
+
+/*function onCloseClick(e){
     var obj = e.sender;
     obj.setText("");
     obj.setValue("");
@@ -796,31 +790,7 @@ function onCloseClick(e){
     var newRow = {workerIds:"",workers:""};
     rpsPackageGrid.updateRow(row, newRow);
 
-}
-function onworkerChanged(e){
-    var obj = e.sender;
-    var rows = e.selecteds;
-    var workerIds = "";
-    var workerIdList = [];
-    if(!rows || rows.length==0){
-        workerIds = "";
-    }else{
-        for(var i=0; i<rows.length; i++){
-            var row = rows[i];
-            var empId = row.empId;
-            workerIdList.push(empId);
-        }
-
-        if(workerIdList&&workerIdList.length>0){
-            workerIds = workerIdList.join(",");
-        }else{
-            workerIds = "";
-        }
-    }
-   // var row = rpsPackageGrid.getSelected();
-    var newRow = {workerIds:workerIds};
-    __workerIds = workerIds;
-}
+}*/
 
 function onpartsalemanChanged(e){
     var obj = e.sender;
@@ -832,9 +802,8 @@ function onpartsalemanChanged(e){
         saleManId = row.empId;
     }
     var row = rpsPartGrid.getSelected();
-    //var newRow = {saleManId:saleManId};
-    //rpsPartGrid.updateRow(row, newRow);
-    __saleManId = saleManId;
+    var newRow = {saleManId:saleManId};
+    rpsPartGrid.updateRow(row, newRow);
 }
 
 
@@ -852,79 +821,6 @@ function loadDetail(p3){
     }
 
 }
-var __workerIds="";
-var __saleManId="";
-function editRpsPart(row_uid){
-    var row = rpsPartGrid.getRowByUID(row_uid);
-    if (row) {
-        __workerIds = "";
-        __saleManId = "";
-        rpsPartGrid.cancelEdit();
-        rpsPartGrid.beginEditRow(row);
-        /*if(!row.rate){
-        	var rate = nui.get("MML");
-        	//rate.setReadOnly(true);
-        	//row.rate.cancel(true);
-        }*/
-    }
-}
-function updateRpsPart(row_uid){
-    var rowc = rpsPartGrid.getRowByUID(row_uid);
-    if (rowc) {
-        rpsPartGrid.commitEdit();
-        var rows = rpsPartGrid.getChanges();
-
-        if(rows && rows.length>0){
-            var row = rows[0];
-            var serviceId = row.serviceId||0;
-            var cardDetailId = row.cardDetailId||0;
-            
-            var updList = [];
-            if(cardDetailId > 0){ //预存的
-                var part = {};
-                part.id = row.id;
-                part.serviceId = row.serviceId;
-                part.serviceTypeId = row.serviceTypeId;
-                updList.push(part);
-            }else{
-                var part = {};
-                part.id = row.id;
-                part.serviceId = row.serviceId;
-                part.qty = row.qty;
-                part.subtotal = row.subtotal;
-                part.serviceTypeId = row.serviceTypeId;
-                if(__saleManId){
-                    part.saleMan = row.saleMan;
-                    part.saleManId = __saleManId;
-                }
-                updList.push(part);
-            }
-            var params = {
-                type:"update",
-                interType:"part",
-                data:{
-                    serviceId: serviceId,
-                    updList : updList
-                }
-            };
-
-            svrCRUD(params,function(text){
-                var errCode = text.errCode||"";
-                var errMsg = text.errMsg||"";
-                if(errCode == 'S'){   
-                    __workerIds = "";
-                    __saleManId = "";
-                    rpsPartGrid.accept();
-                }else{
-                    rpsPartGrid.accept();
-                    showMsg(errMsg||"修改数据失败!","W");
-                    return;
-                }
-            });
-        }
-    }
-}
-
 function checkFromBillPart(data){
     var partId= data.id;
     var rows = rpsPartGrid.findRows(function(row){
@@ -967,6 +863,9 @@ function chooseReturnPart(){
 			var iframe = this.getIFrameEl();
             data = iframe.contentWindow.getData();
             data = data.part;
+            //计算单价
+            var unitPrice = data.subtotal/data.pickQty;
+            unitPrice = unitPrice.toFixed(2);
             var part = {}; 
             //把该传的字段对应好
             part = {
@@ -975,15 +874,21 @@ function chooseReturnPart(){
             	packageId:0,
             	partName:data.partName,
             	partCode:data.partCode,
-            	unitPrice:data.unitPrice,
+            	unitPrice:unitPrice,
             	saleMan:data.saleMan,
             	saleManId:data.saleManId,
             	detailId:data.id,
             	partId:data.partId,
             	outReturnQty:0,
             	qty:1,
-            	amt:data.unitPrice*1,
-            	unit:data.unit
+            	subtotal:unitPrice*1,
+            	amt:unitPrice*1,
+            	unit:data.unit,
+            	rate:0,
+            	partBrandId:data.partBrandId,
+            	partNameId:data.partNameId,
+            	cardDetailId:data.cardDetailId,
+            	sourceId:data.sourceId
             };
             rpsPartGrid.addRow(part);
 			/*var p3 = {
@@ -1079,12 +984,13 @@ function onCellCommitEdit(e) {
 				e.value = 1;
 			}
 			var amt = e.value * unitPrice;
-            amt = amt.toFixed(4);
+            amt = amt.toFixed(2);
 			newRow = {
-				amt : amt
+				amt : amt,
+				subtotal:amt
 			};
 			rpsPartGrid.updateRow(e.row, newRow);
-		} 		
+		} 
 	}
 }
 

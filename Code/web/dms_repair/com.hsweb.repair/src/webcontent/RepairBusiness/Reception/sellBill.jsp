@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-销售单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=1.7.5"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=1.7.6"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -241,22 +241,13 @@
                 
                 <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码">
                 </div>           
-                <!-- <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center"   header="数量">
-                    <input id="qty" property="editor"  class="nui-textbox"  minValue="0"  decimalPlaces="0" dataType="int" maxValue="100000000" onvaluechanged ="onValueChangedQty"/>
-                </div>
-                <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价">
-                    <input id="unitPrice" property="editor" vtype="float" class="nui-spinner"  minValue="0" showbutton="false" onvaluechanged ="onValueChangedUnitPrice"/>
-                </div>
-                
-                <div field="amt" headerAlign="center" allowSort="false"  width="70" datatype="float" align="center" header="金额"></div>
-                 -->
                 <div field="qty" name="qty" summaryType="sum"  numberFormat="0" width="60" headerAlign="center" header="数量">
                    <input property="editor" vtype="int" class="nui-textbox"/>
                 </div>
-                <div field="unitPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价">
+                <div field="unitPrice"  width="60" headerAlign="center" header="单价">
                    <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="amt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">
+                <div field="amt" summaryType="sum"  width="60" headerAlign="center" header="金额">
                    <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
                 <div field="saleMan" headerAlign="center"

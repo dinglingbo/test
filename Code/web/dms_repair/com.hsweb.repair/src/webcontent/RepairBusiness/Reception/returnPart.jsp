@@ -49,8 +49,8 @@
                 <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码"></div> 
                 <div field="qty" name="qty" summaryType="sum"  numberFormat="0" width="60" headerAlign="center" header="数量"> </div>
                 <div field="pickQty" name="pickQty" summaryType="sum"  numberFormat="0" width="60" headerAlign="center" header="已领数量"> </div>
-                <div field="unitPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价"></div>
-                <div field="amt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额"></div>
+                <div field="unitPrice" width="60" headerAlign="center" header="单价"></div>
+                <div field="subtotal" summaryType="sum"  width="60" headerAlign="center" header="金额"></div>
                 <div field="saleMan" headerAlign="center"  allowSort="false" visible="true" width="50" header="销售员" align="center">
                      <input  property="editor" enabled="true" dataField="memList" 
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
@@ -59,7 +59,8 @@
                 <div field="saleManId" headerAlign="center"
                      allowSort="false" visible="false" width="80" header="销售员" align="center">
                 </div> 
-                <div field="recordDate" width="60" headerAlign="center" header="购买日期" dateFormat="yyyy-MM-dd H:mm:ss"> </div>  
+                <div field="recordDate" width="60" headerAlign="center" header="购买日期" dateFormat="yyyy-MM-dd H:mm:ss"> </div>
+                <div field="recordDate" width="60" headerAlign="center" header="购买日期" dateFormat="yyyy-MM-dd H:mm:ss"> </div> 
            </div>
          </div>
        </div>

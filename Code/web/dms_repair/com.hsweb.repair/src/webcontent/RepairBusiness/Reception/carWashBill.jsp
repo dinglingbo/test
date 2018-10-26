@@ -166,7 +166,6 @@
 
                 <ul id="popupMenuMore" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="updateBillExpense()" id="billExpense">费用登记</li>
-                    <li iconCls="" onclick="outCarMainExpense()" id="billExpense">出车报告登记</li>
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li>
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">修改报销单</li>
                     <!-- <li iconCls="" onclick="addcardTime()" id="type13">车牌替换/修改</li>

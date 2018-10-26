@@ -208,20 +208,7 @@ $(document).ready(function ()
                 break;
         }
     });   
-  
-    /*rpsPartGrid.on("cellendedit", function (e) {
-    	var row = rpsPartGrid.getSelected();
-        switch (e.field) {
-            case "qty":
-            	if(row.qty==0){
-            	   e.cellHtml = "KK0";
-            	}  
-                break;
-            default:
-                break;
-        }
-    }); */
-    
+   
     document.onkeyup=function(event){
 	    var e=event||window.event;
 	    var keyCode=e.keyCode||e.which;
@@ -233,14 +220,6 @@ $(document).ready(function ()
 	    if((keyCode==83)&&(event.altKey))  {   //保存
 			save();
 	    } 
-	  
-	    // if((keyCode==80)&&(event.altKey))  {   //打印
-		// 	onPrint();
-	    // } 
-	    // if((keyCode==113))  {  
-		// 	addMorePart();
-		// } 
-	 
 	};
 });
 
@@ -836,33 +815,7 @@ function onCloseClick(e){
     rpsPackageGrid.updateRow(row, newRow);
 
 }
-function onworkerChanged(e){
-    var obj = e.sender;
-    var rows = e.selecteds;
-    var workerIds = "";
-    var workerIdList = [];
-    if(!rows || rows.length==0){
-        workerIds = "";
-    }else{
-        for(var i=0; i<rows.length; i++){
-            var row = rows[i];
-            var empId = row.empId;
-            workerIdList.push(empId);
-        }
-
-        if(workerIdList&&workerIdList.length>0){
-            workerIds = workerIdList.join(",");
-        }else{
-            workerIds = "";
-        }
-    }
-   // var row = rpsPackageGrid.getSelected();
-    var newRow = {workerIds:workerIds};
-    __workerIds = workerIds;
-}
-
 function onpartsalemanChanged(e){
-    var obj = e.sender;
     var row = e.selected;
     var saleManId = 0;
     if(!row){
@@ -871,11 +824,9 @@ function onpartsalemanChanged(e){
         saleManId = row.empId;
     }
     var row = rpsPartGrid.getSelected();
-    //var newRow = {saleManId:saleManId};
-    //rpsPartGrid.updateRow(row, newRow);
-    __saleManId = saleManId;
+    var newRow = {saleManId:saleManId};
+    rpsPartGrid.updateRow(row, newRow);
 }
-
 
 function loadDetail(p3){
     if(p3 && p3.interType){
@@ -890,78 +841,6 @@ function loadDetail(p3){
         }, function(){});
     }
 
-}
-var __workerIds="";
-var __saleManId="";
-function editRpsPart(row_uid){
-    var row = rpsPartGrid.getRowByUID(row_uid);
-    if (row) {
-        __workerIds = "";
-        __saleManId = "";
-        rpsPartGrid.cancelEdit();
-        rpsPartGrid.beginEditRow(row);
-        /*if(!row.rate){
-        	var rate = nui.get("MML");
-        	//rate.setReadOnly(true);
-        	//row.rate.cancel(true);
-        }*/
-    }
-}
-function updateRpsPart(row_uid){
-    var rowc = rpsPartGrid.getRowByUID(row_uid);
-    if (rowc) {
-        rpsPartGrid.commitEdit();
-        var rows = rpsPartGrid.getChanges();
-
-        if(rows && rows.length>0){
-            var row = rows[0];
-            var serviceId = row.serviceId||0;
-            var cardDetailId = row.cardDetailId||0;
-            
-            var updList = [];
-            if(cardDetailId > 0){ //预存的
-                var part = {};
-                part.id = row.id;
-                part.serviceId = row.serviceId;
-                part.serviceTypeId = row.serviceTypeId;
-                updList.push(part);
-            }else{
-                var part = {};
-                part.id = row.id;
-                part.serviceId = row.serviceId;
-                part.qty = row.qty;
-                part.subtotal = row.subtotal;
-                part.serviceTypeId = row.serviceTypeId;
-                if(__saleManId){
-                    part.saleMan = row.saleMan;
-                    part.saleManId = __saleManId;
-                }
-                updList.push(part);
-            }
-            var params = {
-                type:"update",
-                interType:"part",
-                data:{
-                    serviceId: serviceId,
-                    updList : updList
-                }
-            };
-
-            svrCRUD(params,function(text){
-                var errCode = text.errCode||"";
-                var errMsg = text.errMsg||"";
-                if(errCode == 'S'){   
-                    __workerIds = "";
-                    __saleManId = "";
-                    rpsPartGrid.accept();
-                }else{
-                    rpsPartGrid.accept();
-                    showMsg(errMsg||"修改数据失败!","W");
-                    return;
-                }
-            });
-        }
-    }
 }
 
 function checkFromBillPart(data){
@@ -1019,30 +898,23 @@ function choosePart(){
             	partName:data.name,
             	partNameId:data.partNameId,
             	partBrandId:data.partBrandId,
+            	saleMan:data.saleMan,
+            	saleManId:data.saleManId,
+            	detailId:0,
             	qty:1,
             	unitPrice:0,
             	unit:data.unit,
             	amt:0,
+            	subtotal:0,
+            	rate:0,
+            	partBrandId:data.partBrandId,
+            	partNameId:data.partNameId,
+            	partId:data.id,
+            	outReturnQty:0
             }
             rpsPartGrid.addRow(part);
-			/*var p3 = {
-					 interType: "part",
-		        };
-		        loadDetail(p3);*/
 		}
 	});
-    
-    
-    /*doSelectPart(addToBillPart, delFromBillPart, checkFromBillPart, function(text){
-       
-        var p3 = {
-			 interType: "part",
-	         data:{
-	             serviceId: main.id||0
-	         }
-        };
-        loadDetail(p3);
-    });*/
 }
 function addToBillPart(row, callback, unmaskcall){
     var main = billForm.getData();
@@ -1142,7 +1014,8 @@ function onCellCommitEdit(e) {
 			var amt = qty * unitPrice;
 
 			newRow = {
-				amt : amt
+				amt : amt,
+				subtotal:amt
 			};
 			rpsPartGrid.updateRow(e.row, newRow);
 
@@ -1195,7 +1068,7 @@ function onCellCommitEdit(e) {
 /*
  * 修改维修主表的信息
  * */
-var SaveUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.saveAndUpdRpsPart.biz.ext";
+var SaveUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.saveAndUpdReturnRpsPart.biz.ext";
 var saveMaintain = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 
 function saveBatch(){

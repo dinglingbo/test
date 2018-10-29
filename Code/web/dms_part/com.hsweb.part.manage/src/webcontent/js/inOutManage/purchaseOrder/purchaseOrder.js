@@ -877,9 +877,16 @@ function getPartInfo(params){
 
 				showMsg("没有搜索到配件信息!","W");
 				var row = rightGrid.getSelected();
-				rightGrid.removeRow(row);
-				addNewRow(false);
-
+//				rightGrid.removeRow(row);
+//				addNewRow(false);
+				
+				nui.confirm("是否添加配件?", "友情提示", function(action) {
+					if (action == "ok") {
+						addOrEditPart(row);
+					}else{
+						return;
+					}
+					});
 			}
 
 		},
@@ -1724,6 +1731,47 @@ function addMorePart(){
 
 	var fastCodeList = nui.get("fastCodeList");
 	fastCodeList.focus();
+}
+
+function addOrEditPart(row)
+{
+    nui.open({
+        targetWindow: window,
+        url: webPath + contextPath + "/com.hsweb.part.baseData.partDetail.flow?token=" + token,
+        title: "配件资料",
+        width: 740, height: 250,
+        allowDrag:true,
+        allowResize:false,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var params={};
+//            params.qualityTypeIdList=null;
+//            params.partBrandIdList=null;
+//            params.unitList=null;
+//            params.abcTypeList=null;
+//            params.applyCarModelList=null;
+            if(row)
+            {
+                params.comPartCode= row.comPartCode;
+            }
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action)
+        {
+          	var iframe = this.getIFrameEl();
+        	var data = iframe.contentWindow.getData();
+        	console.log(data);
+        	var enterDetail={
+        		comPartCode : data.code
+        	};
+            if(action == "ok")
+            {	
+            	addInsertRow(enterDetail.comPartCode,row);
+            }
+        }
+    });
+
 }
 
 function onAdvancedAddOk(){

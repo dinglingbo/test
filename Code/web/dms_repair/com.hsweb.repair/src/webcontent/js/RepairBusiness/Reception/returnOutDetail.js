@@ -297,7 +297,7 @@ function  savepartOutRtn(data){
             paramsData.stockQty = data[i].stockQty;
             paramsData.outQty = data[i].outQty2;
             paramsData.enterPrice = data[i].enterPrice;
-            paramsData.billTypeId = '050206';
+            paramsData.billTypeId = '050108';
             paramsData.storeId = data[i].storeId;
             paramsData.unit = data[i].unit;
             paramsData.returnMan = currUserName;

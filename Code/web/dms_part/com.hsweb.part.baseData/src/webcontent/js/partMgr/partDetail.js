@@ -95,18 +95,18 @@ $(document).ready(function(v)
 
             });
         });
-        initCarBrand("applyCarbrandId",function(){
-        	applyCarModelList=data.data;
-            initDicts({
-                unit:UNIT,// --单位
-//    	                abcType:ABC_TYPE // --ABC分类
-            },function(){
-                //onSearch();          	
-            });
-        });
+
     });
 
-    
+    initCarBrand("applyCarbrandId",function(){
+    	applyCarModelList=nui.get('applyCarbrandId').getData();
+        initDicts({
+            unit:UNIT,// --单位
+//	                abcType:ABC_TYPE // --ABC分类
+        },function(){
+            //onSearch();          	
+        });
+    });
 
     document.onkeyup=function(event){
         var e=event||window.event;

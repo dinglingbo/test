@@ -25,7 +25,7 @@ table{
 	text-align:left;
 }
 #sumOrderQty{
-	width:290px;
+	width:320px;
 	text-align:right;
 }
 #sumOrderAmt{
@@ -223,8 +223,8 @@ table{
        </div>
 	<script type="text/javascript">
 		var date=new Date();
-		var sumOrderQty=null;
-		var sumOrderAmt=null;
+		var sumOrderQty=0;
+		var sumOrderAmt=0;
     	$(document).ready(function(){
     		$('#currOrgName').text(currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy/MM/dd/HH:mm:ss"));
@@ -277,8 +277,8 @@ table{
 							.replace("[storehouse]",data[i].storehouse ||"")
 							.replace("[storeShelf]",data[i].storeShelf ||""));
 					tBody.append(tr);
-					sumOrderQty +=data[i].orderQty;
-					sumOrderAmt +=data[i].orderAmt;
+					sumOrderQty +=parseFloat(data[i].orderQty);
+					sumOrderAmt +=parseFloat(data[i].orderAmt);
 				}
 				var sum=transform(parseFloat(sumOrderAmt).toFixed(1)+"");
 				$('#sumOrderQty').text("合计:"+parseFloat(sumOrderQty).toFixed(1));

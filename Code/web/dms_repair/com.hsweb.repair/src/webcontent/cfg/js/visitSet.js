@@ -34,7 +34,7 @@ function doSearch()
 				setInitData(list);
 			} else {
 				nui.unmask(document.body);
-				showMsg(data.errMsg || "回访参数获取失败!","W");
+				parent.showMsg(data.errMsg || "回访参数获取失败!","W");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -137,19 +137,19 @@ function returnFormSet(){
 		scoutDisabled3:data.claimScoutDisable3
 	}
 	if(workR.scoutDay1>=workR.scoutDay2||workR.scoutDay2>=workR.scoutDay3){
-		showMsg("工单第一次回访不能大于第二次或者第二次大于第三次，请重新设置!","S");
+		parent.showMsg("工单第一次回访不能大于第二次或者第二次大于第三次，请重新设置!","S");
 		return;
 	}
 	if(washR.scoutDay1>=washR.scoutDay2||washR.scoutDay2>=washR.scoutDay3){
-		showMsg("洗车单第一次回访不能大于第二次或者第二次大于第三次，请重新设置!","S");
+		parent.showMsg("洗车单第一次回访不能大于第二次或者第二次大于第三次，请重新设置!","S");
 		return;
 	}
 	if(zeroR.scoutDay1>=zeroR.scoutDay2||zeroR.scoutDay2>=zeroR.scoutDay3){
-		showMsg("零售第一次回访不能大于第二次或者第二次大于第三次，请重新设置!","S");
+		parent.showMsg("零售第一次回访不能大于第二次或者第二次大于第三次，请重新设置!","S");
 		return;
 	}
 	if(claimR.scoutDay1>=claimR.scoutDay2||claimR.scoutDay2>=claimR.scoutDay3){
-		showMsg("理赔单第一次回访不能大于第二次或者第二次大于第三次，请重新设置!","S");
+		parent.showMsg("理赔单第一次回访不能大于第二次或者第二次大于第三次，请重新设置!","S");
 		return;
 	}
 	if(data.workId){
@@ -193,11 +193,11 @@ function returnFormSet(){
 		success: function (data) {
 			nui.unmask(document.body);
 			if (data.errCode == "S"){
-				showMsg("保存成功!","S");
+				parent.showMsg("保存成功!","S");
 				doSearch();
 			}
 			else{
-				showMsg("保存失败!","W");
+				parent.showMsg("保存失败!","W");
 			}
 	
 		},

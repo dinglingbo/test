@@ -24,6 +24,12 @@ $(document).ready(function() {
     partLoalGrid = nui.get("partLoalGrid");
     partLoalGrid.setUrl(partListUrl);
     mainTabs = nui.get("mainTabs");
+    partLoalGrid.load({
+        params:{
+        	orgid:currOrgId
+        },
+        token:token
+    }); 
     partGrid.on("beforeload",function(e){
         e.data.token = token;
     });

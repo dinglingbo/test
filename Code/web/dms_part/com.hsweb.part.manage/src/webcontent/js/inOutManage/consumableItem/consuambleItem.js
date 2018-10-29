@@ -1,3 +1,4 @@
+
 /**
  * Created by Administrator on 2018/8/8.
  */
@@ -72,7 +73,16 @@ $(document).ready(function(v) {
 		var rowc = nui.clone(row);
 		if (!rowc)
 			return;
-		nui.get("qty").focus();
+		onOut();
+
+	});
+	
+	grid.on("rowdblclick", function(e) {
+		var row = grid.getSelected();
+		var rowc = nui.clone(row);
+		if (!rowc)
+			return;
+		onBlack();
 
 	});
 	enterGrid.on("drawcell", function(e) {

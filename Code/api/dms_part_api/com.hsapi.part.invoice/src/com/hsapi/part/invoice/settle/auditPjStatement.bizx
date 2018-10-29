@@ -1028,7 +1028,7 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="out"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="enterTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.part.data.pts.PjSellOrderMainChk" name="enter"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.data.com.ComGuest" name="guest"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComGuest" name="guest"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeCode" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tmpStro" primitiveType="String"/>

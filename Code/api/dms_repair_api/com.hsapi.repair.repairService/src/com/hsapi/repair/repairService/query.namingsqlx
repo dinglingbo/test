@@ -395,8 +395,8 @@
 			a.record_date as recordDateMain,
 			c.code as code,
 			c.id as main
-			from wb_repair.rps_maintain a
-			left join wb_repair.rps_ticket_detail b
+			from  wb_repair.rps_ticket_detail b
+			left join wb_repair.rps_maintain a
 			on a.id = b.servcie_id
 			left join wb_repair.rps_ticket_main c
 			on b.main_id = c.id
@@ -404,7 +404,7 @@
 			on a.guest_id = d.id
 			inner join rpb_car e
 			on a.car_id = e.id
-			where a.is_settle = 1 and a.orgid = #orgid#
+			where a.is_settle = 1 
 		<isNotEmpty prepend="and" property="carNo">  
 		                (a.car_no like '%$carNo$%')
 		</isNotEmpty>

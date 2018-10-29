@@ -82,7 +82,7 @@ function partToOut() {
 	}
 	var billTypeId = "050207";
 	var partNameId = '0';
-	var pickType = '0';
+	var pickType = '耗材出库-领料';
 	
 	var sellUnitPrice = data.enterPrice;
 	var sellAmt = data.outQty * sellUnitPrice;

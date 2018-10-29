@@ -12,7 +12,7 @@
 <head>
     <title>开票管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoiceManagement.js?v=1" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoiceManagement.js?v=1.0.1" type="text/javascript"></script>
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/date.js" type="text/javascript"></script>
 </head>
 <style type="text/css">
@@ -32,14 +32,12 @@
 		    <table style="width:100%;">
 		        <tr>
 		        <td style="width:100%;">
-		                   单据日期:<input class="nui-datepicker" id="start"onblur="valueChane()"/>-<input class="nui-datepicker" id="end"onblur="valueChane()"/>
-		            <input class="nui-combobox" data="data" textfield="text" valuefield="id" value="1" id="type"onvaluechanged="valueChane()"/>
-		           <input id="message"name="message" class="nui-textbox" style="width:18%"  onblur="valueChane()">
-		        </td>
-		        <td style="white-space:nowrap;"><label style="font-family:Verdana;"></label>
-		           		<a class="nui-button" iconCls="icon-search" onclick="newBill(1)">新建</a>
-		           		<a class="nui-button" iconCls="icon-search" onclick="newBill(2)">编辑</a>
-                        <a class="nui-button" iconCls="icon-search" onclick="">导出到XLS</a>
+		                   单据日期:<input class="nui-datepicker" id="start"onblur="valueChane()"/>-<input class="nui-datepicker" id="end"/>
+		            <input class="nui-combobox" data="data" textfield="text" valuefield="id" value="1" id="type"/>
+		           <input id="message"name="message" class="nui-textbox" style="width:18%"  >
+		            <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+		             <a class="nui-button" plain="true" iconCls="" onclick="newBill(1)" ><span class="fa fa-plus fa-lg"></span>&nbsp;增加</a>
+		             <a class="nui-button" plain="true" iconCls="" onclick="newBill(2)" ><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
 	            </td>
 		        </tr>
 		    </table>
@@ -48,6 +46,7 @@
         	<div id="grid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
             totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" url="">
                 <div property="columns">
+                <div width="30" type="indexcolumn">序号</div>
                 	<div field="main" name="main" headeralign="center" align="center" width="40"visible="false"></div>
                     <div field="code" name="code" headeralign="center" align="center" width="40">开票单号</div>
                     <div field="serviceCode" name="serviceCode" headeralign="center" align="center"width="55">源单号</div>

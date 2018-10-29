@@ -343,7 +343,7 @@
     <figSize height="20" width="40"/>
     <node>assign5</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="add2Array1" displayName="add2Array1" collapsed="false" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="add2Array1" displayName="add2Array" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="link23" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>loopend1</targetNode>
@@ -352,8 +352,8 @@
     <location x="735" y="213"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.add2Array</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
@@ -369,7 +369,7 @@
     <figSize height="20" width="86"/>
     <node>invokePojo2</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="add2Array2" displayName="add2Array2" collapsed="false" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="add2Array2" displayName="add2Array" collapsed="false" grouped="true" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="link24" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>loopend1</targetNode>
@@ -378,8 +378,8 @@
     <location x="735" y="155"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hsapi.cloud.part.common.ArrayUtils.add2Array</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>

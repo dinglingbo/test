@@ -15,7 +15,7 @@ var enterUrl = partApiUrl+ "com.hsapi.part.invoice.stockcal.queryOutableEnterGri
 var morePartCodeEl = null;
 var morePartNameEl = null;
 var moreServiceIdEl = null;
-var showStockEl = null;
+//var showStockEl = null;
 var sortTypeEl = null;
 var tempIdEl = null;
 var brandHash = {};
@@ -45,7 +45,7 @@ $(document).ready(function(v) {
 	morePartCodeEl = nui.get("morePartCode");
 	morePartNameEl = nui.get("morePartName");
 	moreServiceIdEl = nui.get("moreServiceId");
-	showStockEl = nui.get("showStock");
+//	showStockEl = nui.get("showStock");
 	sortTypeEl = nui.get("sortType");
 	sortTypeEl.setData(sortTypeList);
 	tempIdEl = nui.get("tempId");
@@ -309,7 +309,7 @@ function morePartSearch() {
 	var params = {};
 	params.partCode = morePartCodeEl.getValue();
 	params.partName = morePartNameEl.getValue();
-	params.showStock = showStockEl.getValue();
+//	params.showStock = showStockEl.getValue();
 	params.serviceId = moreServiceIdEl.getValue();
 	params.partBrandId = nui.get('partBrandId').getValue();
 	var sortTypeValue = sortTypeEl.getValue();
@@ -406,6 +406,7 @@ function onAdvancedAddOk() {
 
 function onOut() {
 	var row = enterGrid.getSelected();
+	row.remark=null;
 	var partBrandId=row.partBrandId;
 	for(var i=0;i<brandList.length;i++){
 		if(partBrandId==brandList[i].id){

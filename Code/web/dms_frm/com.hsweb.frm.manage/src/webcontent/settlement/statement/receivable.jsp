@@ -10,8 +10,8 @@
 -->
 
 <head>
-	<title>Title</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.3.1"></script>
+	<title>应收结算</title>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.3.3"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -348,7 +348,7 @@
 
 											</td>
 											<td height="40" class="line24">
-												<input class="nui-textbox" id="PrefAmt" name="PrefAmt" m="1" cardid="" amount="" style="width: 100px; float: left;" onvaluechanged="onChanged">
+												<input class="nui-textbox" id="PrefAmt" name="PrefAmt" m="1" cardid="" amount="" style="width: 100px; float: left;" readonly="readonly">
 											</td>
 										</tr>
 									</tbody>

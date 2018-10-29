@@ -10,7 +10,7 @@
 -->
 <head>
 <title>耗材出库</title>
-<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.5"></script>
+<script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.8"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -56,8 +56,8 @@ html,body {
                         <span class="separator"></span>
                         <input id="sortType" class="nui-combobox" width="100px" textField="text" valueField="id" emptyText="排序类型"
                                 value="1"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..."/> 
-                        <input class="nui-checkbox" id="showStock" trueValue="1" falseValue="0" text="库存数量>0"/>
-                        <span class="separator"></span>
+<!--                         <input class="nui-checkbox" id="showStock" trueValue="1" falseValue="0" text="库存数量>0"/> -->
+<!--                         <span class="separator"></span> -->
                         <a class="nui-button" iconCls="" plain="true" onclick="morePartSearch" id="saveBtn"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 <!--                         <a class="nui-button" iconCls="" plain="true" onclick="onOut" id="out"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a> -->
 <!--                         <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a> -->

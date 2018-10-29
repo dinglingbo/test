@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/5/5.
  */
-var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + frmApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var queryUrl = baseUrl
 		+ "com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext";
 

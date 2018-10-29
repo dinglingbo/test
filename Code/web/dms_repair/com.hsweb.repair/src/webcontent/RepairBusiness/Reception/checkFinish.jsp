@@ -10,7 +10,7 @@
 -->
 <head>
 <title>质检&完工</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/checkFinish.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/checkFinish.js?v=1.0.4"></script>
 <style type="text/css">
 
 .title {
@@ -57,7 +57,7 @@
         allowSortColumn="true">
         <div property="columns">
             <div headerAlign="center" type="indexcolumn" width="10">序号</div>
-            <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="100">工时名称</div>
+            <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="60">工时名称</div>
             <div field="workers" headerAlign="center" allowSort="true" visible="true" width="60" datatype="int" align="center">施工员</div>
             <!-- <div field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">是否合格</div>
             <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">备注</div> -->
@@ -73,14 +73,30 @@
         allowSortColumn="true">
         <div property="columns">
             <div headerAlign="center" type="indexcolumn" width="10">序号</div>
-            <div field="partName" headerAlign="center" allowSort="true" visible="true" width="100">配件名称</div>
+            <div field="partName" headerAlign="center" allowSort="true" visible="true" width="60">配件名称</div>
             <div field="qty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="center">数量</div>
             <div field="pickQty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="center">已领取</div>
             <div field="notPickQty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="center">未领取</div>
             
         </div>
     </div>
-
+    <div class="nui-fit">
+     <div class="form" id="basicInfoForm" >
+        <input name="id" class="nui-hidden"/>
+        <table class="nui-form-table" style="width:100%;height: 100%">
+            <tr>
+                <td  style="text-align:left">
+                    <label >质检报告：</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea class="nui-textarea" name="content" style="width: 100%;height: 100%"></textarea>
+                </td>
+            </tr>
+        </table>
+     </div>
+  </div>
     <div style="padding: 0px;" borderStyle="border:0;">
         <table width="100%">
             <tr>
@@ -89,6 +105,7 @@
                     <a class="nui-button"  onclick="finish()" id = "readyPay"> 完工</a> 
                     <!-- <a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >保存</a>  -->
                     <a class="nui-button"  onclick="onCancel()" id = "payOk" >返回</a> 
+                    <a class="nui-button"  onclick="SelectReport()" id = "SelectReport" >质检报告模板</a>
                 </td>
             </tr>
         </table>

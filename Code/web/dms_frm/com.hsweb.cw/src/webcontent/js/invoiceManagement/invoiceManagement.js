@@ -1,6 +1,11 @@
 var grid = null;
 var baseUrl = apiPath + repairApi + "/";
 $(document).ready(function () {
+    searchBeginDate = nui.get("start");
+    searchEndDate = nui.get("end");
+    searchBeginDate.setValue(addDate(getNowEndDate(), -30));
+    searchEndDate.setValue(addDate(getNowEndDate(), 1));
+	
 	grid = nui.get("grid");
 	grid.setUrl(baseUrl+"com.hsapi.repair.repairService.query.selectInvoiceMain.biz.ext");
 	grid.load({token : token});
@@ -23,7 +28,7 @@ $(document).ready(function () {
 
 
 
-function valueChane(){
+function refresh(){
 	var params = {};
 	if(nui.get("type").value == 1){
 		params.invoiceNo = nui.get("message").value;

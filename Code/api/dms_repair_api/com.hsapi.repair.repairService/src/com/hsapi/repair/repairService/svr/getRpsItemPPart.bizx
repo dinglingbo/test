@@ -311,11 +311,11 @@
       <process:to type="query">tempHash/amt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">itemTemp/saleManId</process:from>
       <process:to type="query">tempHash/saleManId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">itemTemp/saleMan</process:from>
       <process:to type="query">tempHash/saleMan</process:to>
     </process:copy>
     <process:copy>
@@ -656,11 +656,11 @@
       <process:to type="query">tempHash/amt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">partTemp/saleManId</process:from>
       <process:to type="query">tempHash/saleManId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">partTemp/saleMan</process:from>
       <process:to type="query">tempHash/saleMan</process:to>
     </process:copy>
     <process:copy>

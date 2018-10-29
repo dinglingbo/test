@@ -1128,7 +1128,7 @@ function unfinish(){
             return;
         }
         if(data.status != 2){
-            showMsg("本工单未未完工,不能返工!!","W");
+            showMsg("本工单未完工,不能返工!!","W");
             return;
         }
         

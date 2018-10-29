@@ -985,6 +985,7 @@ function addNew(){
     searchNameEl.setVisible(false);
     searchNameEl.setEnabled(false);
     searchNameEl.setValue("");
+    $("#servieIdEl").html("");
     var sk = document.getElementById("search_key");
     sk.style.display = "";
     searchKeyEl.focus();

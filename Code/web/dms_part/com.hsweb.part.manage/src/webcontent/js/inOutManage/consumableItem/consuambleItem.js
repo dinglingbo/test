@@ -1,3 +1,4 @@
+
 /**
  * Created by Administrator on 2018/8/8.
  */
@@ -72,7 +73,16 @@ $(document).ready(function(v) {
 		var rowc = nui.clone(row);
 		if (!rowc)
 			return;
-		nui.get("qty").focus();
+		onOut();
+
+	});
+	
+	grid.on("rowdblclick", function(e) {
+		var row = grid.getSelected();
+		var rowc = nui.clone(row);
+		if (!rowc)
+			return;
+		onBlack();
 
 	});
 	enterGrid.on("drawcell", function(e) {
@@ -418,8 +428,8 @@ function onOut() {
 		nui.open({
 			url : webPath+ partDomain+ "/manage/inOutManage/common/fastPartForConsumableAdd.jsp?token"+ token,
 			title : "出库",
-			width : 410,
-			height : 250,
+			width : 430,
+			height : 260,
 			allowDrag : false,
 			allowResize : false,
 			onload : function() {
@@ -449,7 +459,7 @@ function onBlack() {
 		nui.open({
 			url : webPath+ partDomain+ "/manage/inOutManage/common/fastPartForConsumableAdd2.jsp?token"+ token,
 			title : "归库",
-			width : 430,
+			width : 440,
 			height : 230,
 			allowDrag : false,
 			allowResize : false,

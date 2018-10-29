@@ -12,7 +12,7 @@
 <head> 
     <title>归库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.23"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.26"></script>
     <style type="text/css">
     body {
         margin: 0;

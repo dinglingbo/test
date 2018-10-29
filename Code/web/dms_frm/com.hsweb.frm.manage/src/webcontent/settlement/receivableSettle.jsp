@@ -12,7 +12,7 @@
 <head>
 <title >应收账款管理</title>
 <script
-	src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.3.9"></script>
+	src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.4.2"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -476,12 +476,6 @@
 						class="nui-buttonedit" emptyText="请选择供应商..."
 						onbuttonclick="selectSupplier('btnEdit2')" width="100%"
 						selectOnFocus="true" /></td>
-				</tr>
-				<tr>
-					<td class="title">业务单号:</td>
-					<td colspan="3"><textarea class="nui-textarea" emptyText=""
-							width="100%" style="height: 60px;" id="billServiceIdList"
-							name="billServiceIdList"></textarea></td>
 				</tr>
 				<tr>
 					<td class="title">转单日期:</td>

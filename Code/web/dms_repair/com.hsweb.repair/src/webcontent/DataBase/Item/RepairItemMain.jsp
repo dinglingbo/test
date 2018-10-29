@@ -121,7 +121,7 @@
 						<div type="checkcolumn" name="checkcolumn" visible="false"></div>
 						<div header="工时基本信息" headerAlign="center">
 							<div property="columns">
-								<div field="code" headerAlign="center" width="60px">工时编号</div>
+								<div field="code" headerAlign="center" width="60px">工时编码</div>
 								<div field="name" headerAlign="center" allowSort="true" width="150px">工时名称</div>
 								<div field="type" headerAlign="center" allowSort="true" width="100px">工时类型</div>
 								<div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="50px">工时</div>

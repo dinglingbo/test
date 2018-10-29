@@ -1,8 +1,6 @@
 var grid = null;
 var baseUrl = apiPath + repairApi + "/";
 $(document).ready(function () {
-
-
     searchBeginDate = nui.get("start");
     searchEndDate = nui.get("end");
     searchBeginDate.setValue(addDate(getNowEndDate(), -30));

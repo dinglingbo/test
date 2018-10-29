@@ -32,19 +32,19 @@ table {
 				<tr>
 					<td><label style="font-family: Verdana;">快速查询：</label> 
 					<a class="nui-button" plain="true" onclick="quickSearch(0)" id="type0">本日来厂</a> 
-					<a class="nui-button" plain="true"onclick="quickSearch(1)" id="type1">昨日来厂</a> 
+					<a class="nui-button" plain="true" onclick="quickSearch(1)" id="type1">昨日来厂</a> 
 					<a class="nui-button" plain="true" onclick="quickSearch(2)" id="type2">本日新客户</a> 
-					<a class="nui-button" plain="true" onclick="quickSearch(3)"id="type3">本月新客户</a> 
-					<a class="nui-button" plain="true"onclick="quickSearch(4)" id="type4">本月所有来厂客户</a> 
-					<aclass="nui-button" plain="true" onclick="quickSearch(5)"id="type5">本月流失回厂</a> 
-					<a class="nui-button" plain="true"onclick="quickSearch(6)" id="type6">上月流失回厂</a></td>
+					<a class="nui-button" plain="true" onclick="quickSearch(3)" id="type3">本月新客户</a> 
+					<a class="nui-button" plain="true" onclick="quickSearch(4)" id="type4">本月所有来厂客户</a> 
+					<a class="nui-button" plain="true" onclick="quickSearch(5)" id="type5">本月流失回厂</a> 
+					<a class="nui-button" plain="true" onclick="quickSearch(6)" id="type6">上月流失回厂</a></td>
 				</tr>
 				<tr>
 					<td><label>车牌号</label> <input class="nui-textbox" name="carNo" /> 
 					<label>手机号码：</label>
 						<input class="nui-textbox" name="mobile" /> 
 						<a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search"></span>&nbsp;查询</a>
-						<a class="nui-button" plain="true" onclick="advancedSearch()">更多</a>
+						<a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 					</td>
 				</tr>
 			</table>

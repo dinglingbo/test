@@ -295,7 +295,7 @@
       <process:to type="query">straPart/partId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjPartPrice</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjPartPrice</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>

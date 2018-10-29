@@ -410,7 +410,7 @@
                             <td align="center">名称</td>
                             <td align="center"width="80">已领数量</td>
                             <td align="center"width="40">单位</td>
-                            <td align="center"width="40">仓位</td>
+<!--                             <td align="center"width="40">仓位</td> -->
                             <td align="center">金额</td>
                         </tr>
                         <tbody id="tbodyId">
@@ -487,7 +487,7 @@
     			"<td align='center'>[partName]</td>"+ 
     			"<td align='center'>[pickQty]</td>"+
     			"<td align='center'>[unit]</td>"+
-    			"<td align='center'></td>"+
+//     			"<td align='center'></td>"+
     			"<td align='center'>[subtotal]</td>";
         		var partData = text.data;
         		var data=[];

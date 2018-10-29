@@ -325,6 +325,7 @@
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart1</sourceNode>
       <targetNode>assign5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
     <location x="702" y="154"/>
@@ -1235,7 +1236,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.pts.PjSellQtyTempRecord</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.part.data.pts.PjSellQtyTempRecord</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>

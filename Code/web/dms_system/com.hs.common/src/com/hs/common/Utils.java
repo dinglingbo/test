@@ -95,8 +95,7 @@ public class Utils {
 	@Bizlet("")
 	public static HashMap<String, Object> str2Map(String param) {
 		try {
-			HashMap<String, Object> p = JSONObject.parseObject(param,
-					HashMap.class);
+			HashMap<String, Object> p = JSONObject.parseObject(param,HashMap.class);
 			return p;
 		} catch (Exception e) {
 			return new HashMap<String, Object>();

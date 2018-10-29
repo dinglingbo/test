@@ -161,8 +161,7 @@ function save(){
             var temp = rpUpdate[i];
             temp.guestName = temp.guestFullName;
             //如果将应收改成应付，加一个，删除一个
-            if(temp.rptype == 1) {
-
+            if(temp.billDc == 1) {
                 if(temp.ramt) {
                     temp.rpAmt = temp.ramt;
                     temp.rptype = 1;
@@ -181,7 +180,7 @@ function save(){
                 }
                 
 
-            }else if(temp.rptype == -1) {
+            }else if(temp.billDc == -1) {
                 if(temp.pamt) {
                     temp.rpAmt = temp.pamt;
                     temp.rptype = -1;
@@ -207,16 +206,6 @@ function save(){
     if(rpDelete){
         for(var i=0; i<rpDelete.length; i++){
             var temp = rpDelete[i];
-            /*temp.guestName = temp.guestFullName;
-            if(temp.ramt) {
-                temp.rpAmt = temp.ramt;
-                temp.billDc = 1;
-                temp.noCharOffAmt = temp.ramt;
-            }else if(temp.pamt) {
-                temp.rpAmt = temp.ramt;
-                temp.billDc = -1;
-                temp.noCharOffAmt = temp.ramt;
-            }*/
             rpDeleteList.push(temp);
         }
 

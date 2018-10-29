@@ -24,7 +24,7 @@ var advancedSearchFormData = null;
 var basicInfoForm = null;
 var rRightGrid = null;
 var rechargeBalaAmt = 0;
-
+var btnEdit2Name = "";
 var searchBeginDate = null;
 var searchEndDate = null;
 var comPartNameAndPY = null;
@@ -318,6 +318,7 @@ function advancedSearch() {
 	advancedSearchForm.clear();
 	if (advancedSearchFormData) {
 		advancedSearchForm.setData(advancedSearchFormData);
+		nui.get("btnEdit2").setText(btnEdit2Name);
 	}
 }
 function onAdvancedSearchOk() {
@@ -327,6 +328,7 @@ function onAdvancedSearchOk() {
 	for ( var key in searchData) {
 		advancedSearchFormData[key] = searchData[key];
 	}
+	 btnEdit2Name = nui.get("btnEdit2").getText();
 	var i;
 	if (searchData.sCreateDate) {
 		searchData.sCreateDate = searchData.sCreateDate.substr(0, 10);
@@ -362,7 +364,7 @@ function onAdvancedSearchOk() {
 			searchData.balanceSign = null;
 		}
 	}
-
+	
 	advancedSearchWin.hide();
 	doSearch(searchData);
 }

@@ -203,13 +203,14 @@ function loadRightGridData(mainId)
 		}
         if(data && data.length <= 0){
             addNewRow(false);
-        }else{
-            var guestId = nui.get("guestId").getValue();
-            var changeData = rightGrid.getChanges();
-            if(changeData.length == 0 && guestId){
-                addNewRow(false);
-            }
-        }   
+        }
+//        else{
+//            var guestId = nui.get("guestId").getValue();
+//            var changeData = rightGrid.getChanges();
+//            if(changeData.length == 0 && guestId){
+//                addNewRow(false);
+//            }
+//        }   
 
     });
 }

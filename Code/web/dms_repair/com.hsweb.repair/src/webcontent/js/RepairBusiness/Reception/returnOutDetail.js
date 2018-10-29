@@ -112,11 +112,11 @@ $(document).ready(function(){
     });
 
 
-    repairOutGrid.on("celldblclick",function(e){
+    mainGrid.on("celldblclick",function(e){
         var field = e.field;
         var record = e.record;
         var column = e.column;
-        THSave();
+        onOut();
     });
 
 });

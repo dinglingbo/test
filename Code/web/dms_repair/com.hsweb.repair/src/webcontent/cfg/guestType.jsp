@@ -181,8 +181,8 @@
         </div>
     
         <div style="text-align: center;">   
-                <a class="nui-button" iconCls="" plain="false" onclick="onCancel">取消</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="nui-button" iconCls="" plain="false" onclick="onOk">保存</a>
+                <a class="nui-button" iconCls="" plain="false" onclick="onOk">保存</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="nui-button" iconCls="" plain="false" onclick="onCancel">取消</a>
         </div>
             
         

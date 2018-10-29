@@ -17,7 +17,8 @@ var carModelIdHash = {};
 var xs = 0;
 
 $(document).ready(function(v){
-
+	nui.get("mergeBtn").hide();
+	nui.get("splitBtn").hide();
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
     grid.on("drawcell",onDrawCell);

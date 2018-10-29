@@ -125,7 +125,7 @@
     </div>
 </div>
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:220px;"
+     title="高级查询" style="width:420px;height:210px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">

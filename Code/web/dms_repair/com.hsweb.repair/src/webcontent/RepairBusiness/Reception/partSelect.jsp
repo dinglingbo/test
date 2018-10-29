@@ -228,18 +228,26 @@
     });
     function onOk(){
         var sum_out = 0;
-        var data = mainGrid.getData();
+        var data =  mainGrid.getChanges('modified');
         if(data.length > 0){
 
             for (var i = 0; i < data.length; i++) {
                 if(data[i].outQty){
                     sum_out +=parseFloat(data[i].outQty);
+                }if(data[i].outQty==0){
+                    showMsg('领料数量不能为0!','W');
+                    return;
                 }
+                
             }
 
             if(!sum_out){
                 showMsg('请先填写领料数量!','W');
                 return;
+            }
+            if(sum_out>selectRow.qty-selectRow.pickQty){
+            	showMsg('超过可领料数量','W');
+            	 return;
             }
             nui.open({
                 url:webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,

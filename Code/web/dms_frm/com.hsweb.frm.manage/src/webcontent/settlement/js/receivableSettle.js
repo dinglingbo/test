@@ -976,6 +976,10 @@ function doSettle() {
 	}
 
 	var rows = rightGrid.getSelecteds();
+	if(rows[0].nowAmt!=rows[0].rpAmt){
+		showMsg("结算金额和应收金额不一致", "W");
+		return;
+	}
 	var s = rows.length;
 	if (s > 0) {
 /*		if (name == "pRightTab") {

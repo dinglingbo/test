@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="/common/commonRepair.jsp"%>
 <html>
 <!-- 
   - Author(s): localhost
@@ -437,6 +438,7 @@
 
 
 	<script type="text/javascript">
+	var baseUrl=apiPath + repairApi + "/";
 	$(document).ready(function (){
 		$("#print").click(function () {
             $(".print_btn").hide();
@@ -445,7 +447,7 @@
 	});	
 	
 	function SetData(params){
-		$.post("com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+params.serviceId,{},function(text){
+		$.post(baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+params.serviceId,{},function(text){
         		var list = text.list[0];
         		var serviceCode = list.serviceCode;
         		var guestFullName = list.guestFullName;
@@ -479,7 +481,7 @@
         		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate; 
         });
         
-        $.post("com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext.biz.ext?serviceId="+params.serviceId,{},function(text){
+        $.post(baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext.biz.ext?serviceId="+params.serviceId,{},function(text){
             	var tBody = $("#tbodyId");
 				tBody.empty();
 				var tds = '<td align="center">[id]</td>' +

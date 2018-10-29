@@ -164,6 +164,8 @@ $(document).ready(function ()
         saleManIds.setData(memList); 
     }); 
 
+    document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号/VIN码)");
+
 
 });
 

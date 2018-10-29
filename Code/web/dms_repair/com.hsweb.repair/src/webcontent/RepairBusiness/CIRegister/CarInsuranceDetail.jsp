@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>车险登记明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.0.57"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.0.58"></script>
     <style type="text/css">
 
     table {
@@ -30,11 +30,12 @@ pageEncoding="UTF-8" session="false"%>
 <body>
     <div class="nui-toolbar">
         <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
-            <tr>            
-                <td>
-                    <div class="mini-autocomplete" style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
-                    id="search_key" url="" value="carNo" placeholder="车牌号/客户名称/手机号/VIN码"  searchField="key" 
-                    dataField="list" loadingText="数据加载中...">     
+        <tr>            
+            <td>
+                <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
+                    style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
+                    id="search_key" url="" value="carNo"   searchField="key" 
+                    dataField="list" placeholder="请输入...">     
                     <div property="columns">
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
                         <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
@@ -57,7 +58,7 @@ pageEncoding="UTF-8" session="false"%>
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
                 <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
-            </td>     
+            </td>      
             <td style="text-align:right;">
                 <!-- <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="saveData(1)" id="save"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>

@@ -428,7 +428,7 @@ function onOut() {
 		nui.open({
 			url : webPath+ partDomain+ "/manage/inOutManage/common/fastPartForConsumableAdd.jsp?token"+ token,
 			title : "出库",
-			width : 410,
+			width : 430,
 			height : 250,
 			allowDrag : false,
 			allowResize : false,
@@ -459,7 +459,7 @@ function onBlack() {
 		nui.open({
 			url : webPath+ partDomain+ "/manage/inOutManage/common/fastPartForConsumableAdd2.jsp?token"+ token,
 			title : "归库",
-			width : 430,
+			width : 440,
 			height : 230,
 			allowDrag : false,
 			allowResize : false,

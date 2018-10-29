@@ -25,7 +25,7 @@ table{
 	text-align:left;
 }
 #sumOrderQty{
-	width:290px;
+	width:320px;
 	text-align:right;
 }
 #sumOrderAmt{

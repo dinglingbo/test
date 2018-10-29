@@ -141,7 +141,9 @@ function newInsuranceDetail() {
     item.text = "保险开单详情";
     item.url = webPath + contextPath + "/repair/RepairBusiness/CIRegister/CarInsuranceDetail.jsp";
     item.iconCls = "fa fa-cog";
-    window.parent.activeTab(item);
+    var params = {};
+    window.parent.activeTabAndInit(item,params);
+    
     //var params = {};
     //window.parent.activeTabAndInit(item,params);
 }

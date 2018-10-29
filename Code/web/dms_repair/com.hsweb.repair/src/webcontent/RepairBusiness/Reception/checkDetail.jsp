@@ -10,9 +10,9 @@
 -->         
 
 <head> 
-    <title>查车单</title> 
+    <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.957"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.958"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -96,6 +96,7 @@
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
             </td>    
             <td style="text-align:right;">
+               <a class="nui-button" iconCls="" plain="true" onclick="addNew()" id="addNew"> <span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> 
                 <a class="nui-button" onclick="newCheckMainMore()" plain="true" id="history" name="history"><span class="fa fa-list fa-lg"></span>&nbsp;查看历史记录</a>
                 <a class="nui-button" onclick="saveb()" plain="true" id="saveData" name="saveData"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" onclick="tprint()" plain="true" id="onPrint" name="onPrint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
@@ -177,7 +178,7 @@
                     <input class="nui-textbox tabwidth" name="enterKilometers" id="enterKilometers"/>
                 </td>
                 <td class="tbtext">服务顾问:</td>
-                <td class="tbCtrl">
+                <td >
 
                     <input name="mtAdvisorId"
                     id="mtAdvisorId"
@@ -192,7 +193,6 @@
                     nullItemText="请选择..."/>
 
                 </td>
-
                 <td class="tbtext">本次检查得分:</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="checkPoint" id="checkPoint"/>

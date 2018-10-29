@@ -161,7 +161,8 @@ $(document).ready(function ()
 
     initMember("mtAdvisorId",function(){
         var memList = mtAdvisorIdEl.getData();
-        saleManIds.setData(memList); 
+        var memArr = nui.clone(memList);
+        saleManIds.setData(memArr); 
     }); 
 
     document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号/VIN码)");
@@ -254,8 +255,9 @@ function saleManChange(e){
 
 
 function setInitData(params){
+	
     if(!params.id){
-        return;
+    	add();
     }else{
        nui.mask({ 
         el: document.body,
@@ -371,6 +373,45 @@ function setInitData(params){
 }
 }
 
+function add(){
+	
+	searchNameEl.setVisible(false);
+    searchNameEl.setEnabled(false);
+    searchNameEl.setValue("");
+    $("#servieIdEl").html("");
+    var sk = document.getElementById("search_key");
+    sk.style.display = ""; 
+    searchKeyEl.focus();
+    insuranceForm.setData([]);
+    basicInfoForm.setData([]);
+    
+    nui.get("mtAdvisorId").setValue(currEmpId);
+    nui.get("mtAdvisor").setValue(currUserName);
+    
+    fguestId = 0;
+    fcarId = 0;
+    fserviceId = 0;
+    
+    $("#servieIdEl").html("");
+    $("#showCardTimesEl").html("次卡套餐(0)");
+    $("#showCardEl").html("储值卡(0)");
+    $("#showCarInfoEl").html("");
+    $("#guestNameEl").html("");
+    $("#guestTelEl").html("");
+    //detailGrid.setData(detailData);
+    /*var data = detailGrid.getData();
+    for(var i = 0;i<data.length;i++){
+    	data[i].amt = "";
+    	data[i].rtnCompRate = "";
+    	data[i].rtnGuestRate = "";
+    }
+    detailGrid.setData(data);
+    if(data==null){
+    	detailGrid.setData(detailData);
+    }*/
+    detailGrid.setData([]);
+    detailGrid.setData(detailData);
+}
 
 function delDetail(insuranceId)
 {

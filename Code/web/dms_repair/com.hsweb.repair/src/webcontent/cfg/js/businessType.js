@@ -46,20 +46,21 @@ function deleteR(){
 	var row = dgGrid.getSelected();
 	if(row){
 		if(row.orgid == 0){
-			showMsg("此分类不能删除!","W");
+			parent.showMsg("此分类不能删除!","W");
 			return;
 		}
 		if(row.id){
-			showMsg("此分类不能删除,可修改为禁用!","W");
+			parent.showMsg("此分类不能删除,可修改为禁用!","W");
 			return;
 		}
 	}
+	dgGrid.removeRow(row)
 }
 var saveUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.crud.saveBusinessType.biz.ext";
 function save(){
 	var value = checkName();
 	if(!value){
-		showMsg("名称不能为空!","W");
+		parent.showMsg("名称不能为空!","W");
 		return;
 	}
     var addList = dgGrid.getChanges("added");
@@ -85,10 +86,10 @@ function save(){
 			nui.unmask(document.body);
 			data = data || {};
 			if (data.errCode == "S") {
-				showMsg("保存成功!","S");
+				parent.showMsg("保存成功!","S");
 				doSearch();
 			} else {
-				showMsg(data.errMsg || "保存失败!","W");
+				parent.showMsg(data.errMsg || "保存失败!","W");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

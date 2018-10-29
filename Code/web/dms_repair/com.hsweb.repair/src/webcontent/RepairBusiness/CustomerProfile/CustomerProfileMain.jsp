@@ -56,8 +56,8 @@ table {
 			<tr>
 				<td><a class="nui-button" iconCls="" onclick="add()"plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> 
 					<a class="nui-button" iconCls="" id="updateBtn"	onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-					<a class="nui-button" iconCls="icon-date" onclick="amalgamate()" plain="true">资料合并</a> <a
-					class="nui-button" iconCls="icon-date" onclick="split()"
+					<a class="nui-button" iconCls="icon-date" id="mergeBtn" onclick="amalgamate()" plain="true">资料合并</a> <a
+					class="nui-button" iconCls="icon-date" onclick="split()" id="splitBtn"
 					plain="true">资料拆分</a> <a class="nui-button" iconCls="icon-node"
 					onclick="history()" plain="true">维修历史</a>
 					<a class="nui-button" iconCls="" onclick="toUp()" plain="true"><span class="fa fa-credit-card-alt"></span>储值卡充值</a>

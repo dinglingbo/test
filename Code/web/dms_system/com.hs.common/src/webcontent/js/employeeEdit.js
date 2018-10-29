@@ -79,6 +79,7 @@ function save(action) {
         if(!data[key] || data[key].trim().length==0)
         {
             showMsg(requiredField[key] + "不能为空!","W");
+            return;
         }
     }
     form.validate();
@@ -100,17 +101,16 @@ function save(action) {
         {
             nui.unmask();
             data = data||{};
-            showMsg(data.errMsg,"S");
-            
             if (data.errCode == 'S' && action != 'new') {
+                showMsg(data.errMsg,"S");
             	if (window.CloseOwnerWindow){
             		 closeWindow("ok");
                 } else {
                 	 closeWindow("cal");
                 }
             }else{
-                basicInfoForm.setData([]); 
-//                nui.get("name").focus();
+                showMsg(data.errMsg,"W");
+                //basicInfoForm.setData([]); 
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

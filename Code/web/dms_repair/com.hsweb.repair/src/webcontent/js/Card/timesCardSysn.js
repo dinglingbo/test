@@ -18,7 +18,8 @@ $(document).ready(function(v) {
     set = mini.get("setMonth");
     input = mini.get("inputMonth");
     timesCardDetail = nui.get("timesCardDetail");
-    
+    mini.get("sellAmt").disable();
+    mini.get("totalAmt").disable();
 	if(currIsMaster=="1"){
 		$("#isSharex").show();
 		$("#isSharey").show();
@@ -396,6 +397,7 @@ function saveData() {
 		success : function(text) {
 			var returnJson = nui.decode(text);
 			if (returnJson.exception == null) {
+				showMsg("保存成功");
 				CloseWindow("saveSuccess");
 			} else {
 				nui.alert("保存失败", "系统提示", function(action) {

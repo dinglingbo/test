@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.7.1"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.7.4"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -329,7 +329,7 @@
                 <td class="title">
                     <label>工时优惠：</label>
                 </td>
-                <td style="width:80px;">
+                <td style="width:80px;">            	
                     <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="itemPrefAmt" name="itemPrefAmt"/>
                 </td>
             </tr>
@@ -350,6 +350,7 @@
                     <label>应收总计：</label>
                 </td>
                 <td colspan="3" style="width:50px;">
+                	<input class="nui-hidden" inputStyle="color:red;font-weight:bold;font-size:14px;" inputStyle="" enabled="false" width="100%" id="ycAmt" name="ycAmt"/>
                     <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" inputStyle="" enabled="false" width="100%" id="mtAmt" name="mtAmt"/>
                 </td>
             </tr>

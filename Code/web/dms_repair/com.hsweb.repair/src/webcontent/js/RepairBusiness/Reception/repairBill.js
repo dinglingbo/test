@@ -10,7 +10,9 @@ var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServ
 var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
 var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
-
+var ycAmt = 0;
+var tcAmt = 0;
+var gsAmt = 0;
 var billForm = null;
 var sendGuestForm = null;
 var insuranceForm = null;
@@ -2836,6 +2838,8 @@ function pay(){
             return;
         }
         var sellData = sellForm.getData();
+        ycAmt = parseFloat(tcAmt)+parseFloat(gsAmt);
+        sellData.ycAmt = ycAmt;
         var params = {
             serviceId:data.id||0,
             guestId:data.guestId||0,
@@ -3393,7 +3397,7 @@ var sumItemSubtotal = 0;
 var sumItemPrefAmt = 0;
 var sumPartSubtotal = 0;
 var sumPartPrefAmt = 0;
-function onDrawSummaryCellPack(e){ 	  
+function onDrawSummaryCellPack(e){ 	
 	  var data = sellForm.getData();
 	  var rows = e.data;
 	  sumPkgSubtotal = 0;
@@ -3402,8 +3406,12 @@ function onDrawSummaryCellPack(e){
 	  //|| e.field == "amt"
 	  if(e.field == "subtotal") 
 	  {   
+		  tcAmt = 0;
 		  for (var i = 0; i < rows.length; i++)
 		  {
+			  if(rows[i].cardDetailId>0){
+				  tcAmt=tcAmt+rows[i].subtotal;
+			  }
 			  if(rows[i].billPackageId=="0"){
 				  sumPkgSubtotal += parseFloat(rows[i].subtotal);
 				  sumPkgAmt  += parseFloat(rows[i].amt);
@@ -3431,7 +3439,7 @@ function onDrawSummaryCellPack(e){
 }
 
 
-function onDrawSummaryCellItem(e){ 	  
+function onDrawSummaryCellItem(e){
 	  var data = sellForm.getData();
 	  var rows = e.data;
 	  sumItemSubtotal = 0;
@@ -3443,8 +3451,12 @@ function onDrawSummaryCellItem(e){
 	  // || e.field == "amt"
 	  if(e.field == "subtotal") 
 	  {   
+		  gsAmt = 0;
 		  for (var i = 0; i < rows.length; i++)
 		  {
+			  if(rows[i].cardDetailId>0){
+				  gsAmt=gsAmt+rows[i].subtotal;
+			  }
 			 if(rows[i].billItemId=="0"){
 				 sumItemSubtotal += parseFloat(rows[i].subtotal);
 				 sumItemAmt  += parseFloat(rows[i].amt); 

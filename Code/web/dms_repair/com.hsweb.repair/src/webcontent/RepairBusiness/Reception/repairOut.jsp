@@ -149,7 +149,7 @@ a {
             isSettle:isSettle.value,
             token:token
         };
-        mainGrid.load({params:params});
+        mainGrid.load({params:params,token:token});
     }
 
     mainGrid.on("celldblclick",function(e){

@@ -14,7 +14,7 @@ function initComStoreCfg(){
 	var item={};
 	item.id = "initComStoreCfg";
 	item.text = "仓库管理";
-	item.url = webPath + contextPath + "/com.hsweb.part.baseData.storehouseMgr.flow";
+	item.url = webPath + contextPath + "/com.hsweb.part.baseData.storehouseMgrT.flow";
 	item.iconCls = "fa fa-file";
 	window.parent.activeTab(item);
 }
@@ -24,7 +24,7 @@ function initComPartTypeCfg(){
 	var item={};
 	item.id = "initComPartTypeCfg";
 	item.text = "配件分类";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.partTypeSet.flow";
+	item.url = webPath + contextPath + "/com.hsweb.part.manage.partTypeSet.flow";
 	item.iconCls = "fa fa-sitemap";
 	window.parent.activeTab(item);
 }
@@ -33,7 +33,7 @@ function initComPartBrandCfg(){
 	var item={};
 	item.id = "initComPartBrandCfg";
 	item.text = "配件品牌";
-	item.url = webPath + contextPath + "/com.hsweb.part.baseData.partBrandMgr.flow";
+	item.url = webPath + contextPath + "/com.hsweb.part.baseData.partBrandMgrT.flow";
 	item.iconCls = "fa fa-sitemap";
 	window.parent.activeTab(item);
 }
@@ -87,7 +87,7 @@ function initFiSettleAccountBalanceCfg(){
 	var item={};
 	item.id = "initFiSettleAccountBalanceCfg";
 	item.text = "期初现金银行";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.initSettleAccountBala.flow";
+	item.url = webPath + contextPath + "/com.hsweb.frm.manage.initSettleAccountBala.flow";
 	item.iconCls = "fa fa-credit-card-alt";
 	window.parent.activeTab(item);
 }
@@ -96,7 +96,7 @@ function initRPBillCfg(){
 	var item={};
 	item.id = "initRPBillCfg";
 	item.text = "期初应收应付";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.initQCRPBill.flow";
+	item.url = webPath + contextPath + "/com.hsweb.frm.arap.initQCRPBill.flow";
 	item.iconCls = "fa fa-exchange";
 	window.parent.activeTab(item);
 }

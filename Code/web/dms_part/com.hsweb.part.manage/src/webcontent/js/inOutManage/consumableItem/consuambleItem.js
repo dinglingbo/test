@@ -429,7 +429,7 @@ function onOut() {
 			url : webPath+ partDomain+ "/manage/inOutManage/common/fastPartForConsumableAdd.jsp?token"+ token,
 			title : "出库",
 			width : 430,
-			height : 260,
+			height : 280,
 			allowDrag : false,
 			allowResize : false,
 			onload : function() {

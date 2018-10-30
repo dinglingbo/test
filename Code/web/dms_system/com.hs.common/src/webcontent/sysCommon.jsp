@@ -98,15 +98,31 @@
             
 			String noOrgId = "N";
             try {
-				attr = u.getAttributes();
-				token = attr.get("token").toString();
-                noOrgId = session.getAttribute("noOrgId").toString();
-                tenantId = attr.get("tenantId").toString();
-                isMaster = attr.get("isMaster").toString();
-                empId = attr.get("empId").toString();
-                compType = attr.get("compType").toString();
-                compAddress  = attr.get("compAddress").toString();
-                compTel = attr.get("compTel").toString();
+				attr = u.getAttributes();                
+                if(attr.get("token") != null){
+                	token = attr.get("token").toString();
+                }
+                if(attr.get("noOrgId") != null){
+                	noOrgId = attr.get("noOrgId").toString();
+                }
+                if(attr.get("tenantId") != null){
+                	tenantId = attr.get("tenantId").toString();
+                }
+                if(attr.get("isMaster") != null){
+                	isMaster = attr.get("isMaster").toString();
+                }
+                if(attr.get("empId") != null){
+                	empId = attr.get("empId").toString();
+                }
+                if(attr.get("compType") != null){
+                	compType = attr.get("compType").toString();
+                }
+                if(attr.get("compAddress") != null){
+                	compAddress = attr.get("compAddress").toString();
+                }
+                if(attr.get("compTel") != null){
+                	compTel = attr.get("compTel").toString();
+                }
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

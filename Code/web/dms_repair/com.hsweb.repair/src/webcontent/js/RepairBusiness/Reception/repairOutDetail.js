@@ -23,6 +23,7 @@ var returnSignData = [{id:0,text:"未归库"},{id:1,text:"已归库"}];
 var storehouse = null;
 var storeHash = {};
 var FStoreId = null;
+var status=0;
 $(document).ready(function(){
 
 
@@ -153,6 +154,7 @@ function setInitData(params){
 	mid = params.id;
 	//serviceCode = params.row.serviceCode;
 	mainRow = params.row;
+	status=mainRow.status;
 	if(!params.id){
         //add();
     }else{
@@ -242,6 +244,10 @@ function setInitData(params){
 
 
 function LLSave(argument) {
+	if(status==2){
+		showMsg("单据已完工,不能领料","W");
+		return;
+	}
 	var rows = mainGrid.getSelecteds();
 	if (rows.length > 0) {
 		for (var i = 0, l = rows.length; i < l; i++) {
@@ -287,6 +293,10 @@ function openPartSelect(par,type,id,row,srow){
 
 
 function THSave(){
+	if(status==2){
+		showMsg("单据已完工，维修出库不能退货","W");
+		return;
+	}
 	var rows = repairOutGrid.getSelecteds();
 	if (rows.length > 0) {
 		for (var i = 0; i < rows.length; i++) {
@@ -300,6 +310,7 @@ function THSave(){
 	}else{
 		showMsg('请先选择需要归库的配件!','W');
 	}
+
 }
 
 function  savepartOutRtn(data,childdata){

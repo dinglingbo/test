@@ -386,7 +386,7 @@
                     <tr>
                         <td class="left" width="33.3%" id="guestFullName">客户名称：</td>
                         <td class="left" width="33.3%" id="carNo">车牌号：</td>
-                        <td class="left" id="guestTel">联系电话：</td>
+                        <td class="left" id="contactMobile">联系电话：</td>
                     </tr>
                     <tr>
                     	<td class="left"id="mtAdvisor">服务顾问：</td>
@@ -452,7 +452,7 @@
         		var serviceCode = list.serviceCode;
         		var guestFullName = list.guestFullName;
         		var carNo = list.carNO;
-        		var guestTel = list.guestTel;
+        		var contactMobile = list.contactMobile;
         		var mtAdvisor = list.mtAdvisor;
         		var carModel = list.carModel;
         		var enterDate = list.enterDate || "";
@@ -472,7 +472,7 @@
         		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML+ serviceCode;
         		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
         		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
-        		document.getElementById("guestTel").innerHTML = document.getElementById("guestTel").innerHTML + guestTel;
+        		document.getElementById("contactMobile").innerHTML = document.getElementById("contactMobile").innerHTML + contactMobile;
         		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
         		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel;
         		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;

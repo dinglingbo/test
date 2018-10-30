@@ -29,8 +29,8 @@
 			-->
 			<configValue key="default">default</configValue>
 			<configValue key="DB02_ORA_WB_COMMON">DB02_ORA_WB_COMMON</configValue>
-			<configValue key="DB01_MYSQL_WB_SLOG">DB01_MYSQL_WB_SLOG</configValue>
 			<configValue key="DB04_ORA_WB_REPAIR">DB04_ORA_WB_REPAIR</configValue>
+			<configValue key="DB01_MYSQL_WB_SLOG">DB02_ORA_WB_COMMON</configValue>
 		</group>
 	</module>
 </contribution>

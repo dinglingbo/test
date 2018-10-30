@@ -487,10 +487,15 @@ function setEditable(flag)
     if(flag)
     {
         document.getElementById("fd1").disabled = false;
+        nui.get('storeId').enabled=true;
+        nui.get('orderMan').enabled=true;
     }
     else
     {
         document.getElementById("fd1").disabled = true;
+        nui.get('storeId').enabled=false;
+        nui.get('orderMan').enabled=true;
+        
     }
 }
 function doSearch(params) 
@@ -1432,7 +1437,12 @@ function setInitExportData(main, detail){
         "<td  colspan='1' align='left'>[sysQty]</td>"+
         "<td  colspan='1' align='left'>[trueQty]</td>"+
         "<td  colspan='1' align='center' style='color:red'>[dc]</td>" +
-        "<td  colspan='1' align='left'>[exhibitQty]</td>";
+        "<td  colspan='1' align='left'>[exhibitQty]</td>"+
+        "<td  colspan='1' align='left'>[exhibitAmt]</td>"+
+        "<td  colspan='1' align='left'>[sysPrice]</td>"+
+        "<td  colspan='1' align='left'>[stockOutQty]</td>"+
+        "<td  colspan='1' align='left'>[comOemCode]</td>"+
+        "<td  colspan='1' align='left'>[comSpec]</td>";
     var tableExportContent = $("#tableExportContent");
     tableExportContent.empty();
     for (var i = 0; i < detail.length; i++) {
@@ -1454,7 +1464,13 @@ function setInitExportData(main, detail){
                          .replace("[trueQty]", detail[i].trueQty?detail[i].trueQty:"")
                          .replace("[dc]", exhState)
                          .replace("red", color)
-                         .replace("[exhibitQty]", detail[i].exhibitQty?detail[i].exhibitQty:"");
+                         .replace("[exhibitQty]", detail[i].exhibitQty?detail[i].exhibitQty:"")
+                         .replace("[exhibitAmt]", detail[i].exhibitAmt?detail[i].exhibitAmt:"")
+                         .replace("[sysPrice]", detail[i].sysPrice?detail[i].sysPrice:"")
+                         .replace("[remark]", detail[i].remark?detail[i].remark:"")
+                         .replace("[stockOutQty]", detail[i].stockOutQty?detail[i].stockOutQty:0)
+                         .replace("[comOemCode]", detail[i].comOemCode?detail[i].comOemCode:"")
+                         .replace("[comSpec]", detail[i].comSpec?detail[i].comSpec:"");
             }else if(dc==-1){
                 exhState = "盘亏";
                 tdst.replace("[dc]", exhState).replace("red", color);
@@ -1465,7 +1481,13 @@ function setInitExportData(main, detail){
                          .replace("[sysQty]", detail[i].sysQty?detail[i].sysQty:"")
                          .replace("[trueQty]", detail[i].trueQty?detail[i].trueQty:"")
                          .replace("[dc]", exhState)
-                         .replace("[exhibitQty]", detail[i].exhibitQty?detail[i].exhibitQty:"");
+                         .replace("[exhibitQty]", detail[i].exhibitQty?detail[i].exhibitQty:"")
+                         .replace("[exhibitAmt]", detail[i].exhibitAmt?detail[i].exhibitAmt:"")
+                         .replace("[sysPrice]", detail[i].sysPrice?detail[i].sysPrice:"")
+                         .replace("[remark]", detail[i].remark?detail[i].remark:"")
+                         .replace("[stockOutQty]", detail[i].stockOutQty?detail[i].stockOutQty:0)
+                         .replace("[comOemCode]", detail[i].comOemCode?detail[i].comOemCode:"")
+                         .replace("[comSpec]", detail[i].comSpec?detail[i].comSpec:"");
             }else {
                 tdst = tds.replace("[comPartCode]", detail[i].comPartCode?detail[i].comPartCode:"")
                          .replace("[comFullName]", detail[i].comFullName?detail[i].comFullName:"")
@@ -1473,8 +1495,14 @@ function setInitExportData(main, detail){
                          .replace("[comUnit]", detail[i].comUnit?detail[i].comUnit:"")
                          .replace("[sysQty]", detail[i].sysQty?detail[i].sysQty:"")
                          .replace("[trueQty]", detail[i].trueQty?detail[i].trueQty:"")
-                         .replace("[dc]", "")
-                         .replace("[exhibitQty]", detail[i].exhibitQty?detail[i].exhibitQty:"");
+                         .replace("[dc]", "无盈亏")
+                         .replace("[exhibitQty]", detail[i].exhibitQty?detail[i].exhibitQty:0)
+                         .replace("[exhibitAmt]", detail[i].exhibitAmt?detail[i].exhibitAmt:0)
+                         .replace("[sysPrice]", detail[i].sysPrice?detail[i].sysPrice:"")
+                         .replace("[remark]", detail[i].remark?detail[i].remark:"")
+                         .replace("[stockOutQty]", detail[i].stockOutQty?detail[i].stockOutQty:0)
+                         .replace("[comOemCode]", detail[i].comOemCode?detail[i].comOemCode:"")
+                         .replace("[comSpec]", detail[i].comSpec?detail[i].comSpec:"");
             }
             
             tr.append(tdst);

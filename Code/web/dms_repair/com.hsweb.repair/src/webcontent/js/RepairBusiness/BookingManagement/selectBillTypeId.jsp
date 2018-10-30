@@ -46,8 +46,8 @@
 			</tr>
 		</table>
 		<div class="mini-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;text-align:center;">
-			<a class="nui-button" onclick="onOk" style="width: 60px; margin-right: 20px;">确定</a> 
 			<a class="nui-button" onclick="onCancel" style="width: 60px;">取消</a>
+			<a class="nui-button" onclick="onOk" style="width: 60px; margin-right: 20px;">确定</a> 
        </div>
 	</div>
 </body>

@@ -343,7 +343,7 @@ function loadRightGridData(mainId, auditSign) {
 		params : params,
 		token : token
 	},function(){
-
+	
 		var data = rightGrid.getData();
 		if(data && data.length <= 0){
 			addNewRow(false);
@@ -711,7 +711,7 @@ function add() {
 				
 				if(!orderMan || orderMan==""){
 					for(var i=0;i<memList.length;i++){
-						if(currUserId==memList[i].empId){
+						if(currEmpId==memList[i].empId){
 							nui.get("orderMan").setValue(currUserId);
 							nui.get("orderMan").setText(currUserName);
 						}
@@ -753,7 +753,7 @@ function add() {
 		
 		if(!orderMan || orderMan==""){
 			for(var i=0;i<memList.length;i++){
-				if(currUserId==memList[i].empId){
+				if(currEmpId==memList[i].empId){
 					nui.get("orderMan").setValue(currUserId);
 					nui.get("orderMan").setText(currUserName);
 				}
@@ -1593,7 +1593,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								leftGrid.updateRow(row, leftRow);
 	
 								// 保存成功后重新加载数据
-								loadMainAndDetailInfo(leftRow);
+//								loadMainAndDetailInfo(leftRow);
 								rightGrid.setData([]);
 								add();
 	
@@ -1657,7 +1657,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								leftGrid.updateRow(row, leftRow);
 	
 								// 保存成功后重新加载数据
-								loadMainAndDetailInfo(leftRow);
+//								loadMainAndDetailInfo(leftRow);
 								rightGrid.setData([]);
 								add();
 	

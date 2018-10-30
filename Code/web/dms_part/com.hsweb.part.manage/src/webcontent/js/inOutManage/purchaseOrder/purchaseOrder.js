@@ -313,7 +313,7 @@ function loadMainAndDetailInfo(row) {
 			mainId = -1;
 		}
 		var auditSign = data.auditSign||0;
-		loadRightGridData(mainId, auditSign);
+//		loadRightGridData(mainId, auditSign);
 	} else {
 	}
 
@@ -1952,7 +1952,15 @@ function unAudit()
             data = data || {};
             if (data.errCode == "S") {
 				showMsg("返单成功!","S");
-;
+				nui.get('billStatusId').setValue('0');
+				nui.get('auditSign').setValue('0');
+				var text=StatusHash[0];
+				if(StatusHash){
+					nui.get('AbillStatusId').setValue(text);
+			    }
+				document.getElementById("basicInfoForm").disabled = false;
+				setBtnable(true);
+				setEditable(true);
                 
             } else {
 				showMsg(data.errMsg || "审核失败!","W");

@@ -319,7 +319,24 @@ function newBill() {
         return;
     }
     if(row.guestId>0){
-    	saveNewBill(row,"0");
+      var title = "开单类型";
+	   nui.open({
+		    url: webPath + contextPath + "/repair/js/RepairBusiness/BookingManagement/selectBillTypeId.jsp?token="+token,
+            title: title, width: 300, height: 160,
+            onload: function () {
+              
+           },
+           ondestroy: function (action){
+        	   if(action == "ok"){
+        		var iframe = this.getIFrameEl();
+        	   var billTypeId = iframe.contentWindow.getBilltype();
+        	   saveNewBill(row,billTypeId);
+        	   }else{
+        		   showMsg("开单已取消","W");
+        	   }
+               
+           }
+       });
     }else{
        var guest = {
        		"carNo":row.carNo,
@@ -327,8 +344,7 @@ function newBill() {
        		"shortName":row.contactorName,
        		"mobile":row.contactorTel
        };
-       
-	   var title = "完善客户资料";
+       var title = "完善客户资料";
        nui.open({
     	   url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
            title: title, width: 560, height: 570,

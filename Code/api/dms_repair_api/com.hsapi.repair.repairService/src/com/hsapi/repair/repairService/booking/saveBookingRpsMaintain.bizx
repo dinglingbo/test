@@ -319,8 +319,7 @@
     <targetConnections>link29</targetConnections>
     <targetConnections>link30</targetConnections>
     <targetConnections>link33</targetConnections>
-    <targetConnections>link36</targetConnections>
-    <location x="165" y="618"/>
+    <location x="330" y="597"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -330,7 +329,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="163" y="654"/>
+    <location x="328" y="633"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
@@ -505,16 +504,6 @@
       <sourceNode>assign14</sourceNode>
       <targetNode>assign6</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link35" name="业务类型不能为空" displayName="连接线" type="transition">
-      <sourceNode>assign14</sourceNode>
-      <targetNode>assign15</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="LE">
-          <process:leftOperand type="query">serviceTypeId</process:leftOperand>
-          <process:rightOperand type="literal">0</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link41</targetConnections>
     <location x="165" y="387"/>
     <size height="28" width="28"/>
@@ -548,29 +537,6 @@
     <location x="160" y="423"/>
     <figSize height="17" width="39"/>
     <node>assign14</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign15" name="赋值15" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign15</sourceNode>
-      <targetNode>end1</targetNode>
-    </sourceConnections>
-    <targetConnections>link35</targetConnections>
-    <location x="166" y="495"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign15label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">业务类型不能为空</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
-    <location x="161" y="531"/>
-    <figSize height="17" width="39"/>
-    <node>assign15</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign16" name="赋值16" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link38" name="link38" displayName="连接线" isDefault="true" type="transition">

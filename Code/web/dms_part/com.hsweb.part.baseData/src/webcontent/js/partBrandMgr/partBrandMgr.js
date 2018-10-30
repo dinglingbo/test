@@ -101,8 +101,9 @@ function addOrEditPartBrand(brand)
 	var title = "新增品牌";
 	if(brand && brand.id)
     {
-        if(brand.orgid != currOrgid)
+       if(brand.orgid != currOrgid)
         {
+        	nui.alert("不允许修改","提示");
             return;
         }
         title = "品牌编辑";

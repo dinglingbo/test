@@ -144,10 +144,12 @@ function setData(params){
 			for(var i = 0;i<srnum.length;i++){
 				amt=amt+parseFloat(srnum[i].amt);
 			}
+			var amount = params.data.mtAmt-params.data.ycAmt
 			params.data.mtAmt = parseFloat(params.data.mtAmt)+amt;
 			document.getElementById('totalAmt').innerHTML = "￥"+params.data.mtAmt;
 			document.getElementById('totalAmt1').innerHTML = params.data.mtAmt;
-			document.getElementById('amount').innerHTML = params.data.mtAmt;
+			document.getElementById('amount').innerHTML = amount;
+			document.getElementById('ycAmt').innerHTML = params.data.ycAmt||0;
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			// nui.alert(jqXHR.responseText);

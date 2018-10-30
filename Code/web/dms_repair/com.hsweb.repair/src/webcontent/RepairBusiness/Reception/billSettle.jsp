@@ -11,7 +11,7 @@
 
 <head>
 	<title>工单结算</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.1.0"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.1.2"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -588,6 +588,10 @@
 					</td>
 					<td >
 						<input type="checkbox" id="settlesenddx">短信通知车主
+					</td>
+										<td >
+						<label style="font-family:Verdana;">预存金额：</label>
+						<span id="ycAmt" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 					</td>
 					<td >
 						<label style="font-family:Verdana;">实收金额：</label>

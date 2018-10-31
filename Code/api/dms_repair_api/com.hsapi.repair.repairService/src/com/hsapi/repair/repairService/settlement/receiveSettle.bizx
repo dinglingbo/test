@@ -1560,9 +1560,9 @@
         <process:inputVariable id="3" name="userId" type="query" value="String" valueType="Primitive" pattern="reference">maintain/mtAdvisorId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="data" type="query" value="cn.jpush.api.push.PushResult" valueType="Java"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="data" type="query" value="cn.jpush.api.push.PushResult" valueType="Java"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1800,6 +1800,7 @@
     <sourceConnections xsi:type="process:tLink" id="link64" name="link64" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess7</sourceNode>
       <targetNode>assign30</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link65" name="link65" displayName="连接线" type="transition">
       <sourceNode>subprocess7</sourceNode>
@@ -1931,6 +1932,7 @@
     <sourceConnections xsi:type="process:tLink" id="link75" name="link75" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign30</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link76" name="link76" displayName="连接线" type="transition">
       <sourceNode>assign30</sourceNode>
@@ -1947,6 +1949,14 @@
     <size height="28" width="28"/>
     <nodeLabel>assign30label</nodeLabel>
     <process:copy>
+      <process:from type="expression" pattern="reference">netinAmt-allowanceAmt</process:from>
+      <process:to type="query">netinAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">netinAmt+receiveAmt</process:from>
+      <process:to type="query">netinAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">settlement/totalDeductAmt</process:from>
       <process:to type="query">totalDeductAmt</process:to>
     </process:copy>
@@ -1959,11 +1969,11 @@
       <process:to type="query">otherCost</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">balaAmt-totalDeductAmt-partCost-otherCost</process:from>
+      <process:from type="expression" pattern="reference">netinAmt-totalDeductAmt-partCost-otherCost</process:from>
       <process:to type="query">grossProfit</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">balaAmt==0?0:(grossProfit*1.0/balaAmt)</process:from>
+      <process:from type="expression" pattern="reference">netinAmt==0?0:(grossProfit*1.0/netinAmt)</process:from>
       <process:to type="query">grossProfitRate</process:to>
     </process:copy>
     <process:copy>

@@ -113,6 +113,18 @@
       <process:from type="expression" pattern="reference">cardPkgAmt+cardItemAmt+cardPartAmt</process:from>
       <process:to type="query">cardTimesPayAmt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">settlement/netinAmt</process:from>
+      <process:to type="query">netInAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">settlement/otherAmt</process:from>
+      <process:to type="query">otherAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">netInAmt+otherAmt</process:from>
+      <process:to type="query">netInAmt</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
     <location x="282" y="375"/>
@@ -600,11 +612,11 @@
       <process:to type="query">otherCost</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">balaAmt-totalDeductAmt-partCost-otherCost</process:from>
+      <process:from type="expression" pattern="reference">netInAmt-totalDeductAmt-partCost-otherCost</process:from>
       <process:to type="query">grossProfit</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">balaAmt==0?0:(grossProfit*1.0/balaAmt)</process:from>
+      <process:from type="expression" pattern="reference">netInAmt==0?0:(grossProfit*1.0/netInAmt)</process:from>
       <process:to type="query">grossProfitRate</process:to>
     </process:copy>
     <process:copy>
@@ -657,6 +669,8 @@
     <process:variable description="总提成金额" historyStateLocation="client" isArray="false" name="totalDeductAmt" primitiveType="Double"/>
     <process:variable description="配件成本" historyStateLocation="client" isArray="false" name="partCost" primitiveType="Double"/>
     <process:variable description="其它支出" historyStateLocation="client" isArray="false" name="otherCost" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="netInAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="otherAmt" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

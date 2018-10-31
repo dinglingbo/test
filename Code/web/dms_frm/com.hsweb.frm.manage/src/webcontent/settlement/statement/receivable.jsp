@@ -348,7 +348,7 @@
 
 											</td>
 											<td height="40" class="line24">
-												<input class="nui-textbox" id="PrefAmt" name="PrefAmt" m="1" cardid="" amount="" style="width: 100px; float: left;" readonly="readonly">
+												<input class="nui-textbox" id="PrefAmt" name="PrefAmt" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;" readonly="readonly">
 											</td>
 										</tr>
 									</tbody>

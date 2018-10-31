@@ -144,7 +144,13 @@ function setData(params){
 			for(var i = 0;i<srnum.length;i++){
 				amt=amt+parseFloat(srnum[i].amt);
 			}
-			var amount = params.data.mtAmt-params.data.ycAmt
+			var amount = 0;
+			if(params.data.ycAmt==null||params.data.ycAmt==""){
+				amount = params.data.mtAmt;
+			}else{
+				amount = params.data.mtAmt-params.data.ycAmt;
+			}
+			 
 			params.data.mtAmt = parseFloat(params.data.mtAmt)+amt;
 			document.getElementById('totalAmt').innerHTML = "￥"+params.data.mtAmt;
 			document.getElementById('totalAmt1').innerHTML = params.data.mtAmt;

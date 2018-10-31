@@ -154,6 +154,9 @@
             <isNotEmpty prepend="and" property="tel">  
                 (c.tel like '%$tel$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">  
+                (c.mobile like '%$mobile$%')
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
                 (c.full_name like '%$name$%')
             </isNotEmpty>

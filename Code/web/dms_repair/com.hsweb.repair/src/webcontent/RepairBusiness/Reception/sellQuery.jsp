@@ -10,7 +10,7 @@
 -->
 <head>
 <title>销售开单查询</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellQuery.js?v=1.0.14"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellQuery.js?v=1.0.13"></script>
 <style type="text/css">
 
 .title {

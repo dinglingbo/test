@@ -4,6 +4,8 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
 var detailGrid = null;
+
+var mainListUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceList.biz.ext";
 var detailGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceDetailList.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
 var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgid+"&params/isDisabled=0"; 
@@ -11,13 +13,12 @@ var servieIdEl = null;
 var searchNameEl = null;             
 var searchKeyEl = null;    
 var mtAdvisorIdEl = null; 
+var mtAdvisorEl = null; 
 var insuranceComp = null; 
 var insuranceForm = null; 
 var saleManIds = null;
 var fserviceId = 0;
 var fguestId = 0;
-var advancedCardTimesWin = null;
-var advancedMemCardWin = null;
 var carCheckInfo = null;
 var detailData = [{insureTypeId:1,insureTypeName:"交强险"},{insureTypeId:2,insureTypeName:"商业险"},{insureTypeId:3,insureTypeName:"车船税"}];
 $(document).ready(function ()  
@@ -29,17 +30,13 @@ $(document).ready(function ()
     basicInfoForm = new nui.Form("#basicInfoForm");
     insuranceForm = new nui.Form("#insuranceForm");
     mtAdvisorIdEl = nui.get("mtAdvisorId");
+    mtAdvisorEl = nui.get("mtAdvisor");
     saleManIds = nui.get("saleManIds");
     insuranceComp = nui.get("insureCompName");
     searchKeyEl = nui.get("search_key");   
     searchNameEl = nui.get("search_name"); 
     searchKeyEl = nui.get("search_key");
-    //advancedMorePartWin = nui.get("advancedMorePartWin");
-    advancedCardTimesWin = nui.get("advancedCardTimesWin");
-    //advancedPkgRateSetWin = nui.get("advancedPkgRateSetWin");
-    //advancedItemPartRateSetWin = nui.get("advancedItemPartRateSetWin");
-    advancedMemCardWin = nui.get("advancedMemCardWin");
-        carCheckInfo = nui.get("carCheckInfo");
+
 
     searchKeyEl.setUrl(guestInfoUrl);
     insuranceComp.setUrl(insuranceInfoUrl);  
@@ -82,15 +79,15 @@ $(document).ready(function ()
 
                 data.params = params;
                 e.data =data;
-                return;
-            }
-        }
-    });
+                return; 
+            } 
+        } 
+    }); 
     searchKeyEl.on("valuechanged",function(e){
         var item = e.selected;
         if(fserviceId){
             return;
-        }
+        } 
         if (item) { 
 
             var carNo = item.carNo||"";
@@ -169,6 +166,12 @@ $(document).ready(function ()
 
 
 });
+
+function ManChanged(e){
+    var sel = e.selected;
+    mtAdvisorEl.setValue(sel.empName);
+
+}
 
 
 function drawSummaryCell(e){
@@ -259,107 +262,120 @@ function setInitData(params){
     if(!params.id){
     	add();
     }else{
-       nui.mask({ 
+     nui.mask({ 
         el: document.body,
         cls: 'mini-mask-loading',
         html: '数据加载中...'
     });
-
-       var p = {
-        data:{
-            guestId: params.data.guestId||0,
-            contactorId: params.data.contactorId||0
-        }
+     var pid ={
+        id:params.id
     };
-    getGuestContactorCar(p, function(text){
-        var errCode = text.errCode||"";
-        var guest = text.guest||{};
-        var contactor = text.contactor||{};
-        if(errCode == 'S'){
-            $("#servieIdEl").html(params.data.serviceCode);
-            var carNo = params.data.carNo||"";
-            var tel = guest.mobile||"";
-            var guestName = guest.fullName||"";
-            var carVin = params.data.carVin||"";
-            fguestId = params.data.guestId;
-            if(tel){
-                tel = "/"+tel;
-            }
-            if(guestName){
-                guestName = "/"+guestName; 
-            }
-            if(carVin){
-                carVin = "/"+carVin;
-            }
-            var t = carNo + tel + guestName + carVin;
 
-            var sk = document.getElementById("search_key");
-            sk.style.display = "none";
-            searchNameEl.setVisible(true);
-
-            searchNameEl.setValue(t);
-            searchNameEl.setEnabled(false);
-
-            $("#guestNameEl").html(params.data.guestName);
-            $("#showCarInfoEl").html(params.data.carNo);
-            $("#guestTelEl").html(params.data.mobile);
-            var p1 = {
-                interType: "package",
+    nui.ajax({
+        url:mainListUrl,
+        type:"post",
+        data:{params:pid},
+        success:function(text){
+            var list = text.list;
+            if (list.length == 1) {
+                var ldata = list[0];
+             var p = {
                 data:{
-                    serviceId: params.id||0
+                    guestId: ldata.guestId||0,
+                    contactorId: ldata.contactorId||0
                 }
             };
-            var p2 = {
-                interType: "item",
-                data:{
-                    serviceId: params.id||0
-                }
-            };
-            var p3 = {
-                interType: "part",
-                data:{
-                    serviceId: params.id||0
-                }
-            };
+            getGuestContactorCar(p, function(text){
+                var errCode = text.errCode||"";
+                var guest = text.guest||{};
+                var contactor = text.contactor||{};
+                if(errCode == 'S'){
+                    $("#servieIdEl").html(ldata.serviceCode);
+                    var carNo = ldata.carNo||"";
+                    var tel = guest.mobile||"";
+                    var guestName = guest.fullName||"";
+                    var carVin = ldata.carVin||"";
+                    fguestId = ldata.guestId;
+                    if(tel){
+                        tel = "/"+tel;
+                    }
+                    if(guestName){
+                        guestName = "/"+guestName; 
+                    }
+                    if(carVin){
+                        carVin = "/"+carVin;
+                    }
+                    var t = carNo + tel + guestName + carVin;
+
+                    var sk = document.getElementById("search_key");
+                    sk.style.display = "none";
+                    searchNameEl.setVisible(true);
+
+                    searchNameEl.setValue(t);
+                    searchNameEl.setEnabled(false);
+
+                    $("#guestNameEl").html(ldata.guestName);
+                    $("#guestCarEl").html(ldata.carNo);
+                    $("#guestTelEl").html(ldata.mobile);
+                    var p1 = {
+                        interType: "package",
+                        data:{
+                            serviceId: params.id||0
+                        }
+                    };
+                    var p2 = {
+                        interType: "item",
+                        data:{
+                            serviceId: params.id||0
+                        }
+                    };
+                    var p3 = {
+                        interType: "part",
+                        data:{
+                            serviceId: params.id||0
+                        }
+                    };
             //loadDetail(p1, p2, p3);
             var sdata = {
-                id:params.data.id,
-                carNo:params.data.carNo,
-                carVin:params.data.carVin,
-                carId:params.data.carId,
-                guestMobile:params.data.mobile,
+                id:ldata.id,
+                carNo:ldata.carNo,
+                carVin:ldata.carVin,
+                carId:ldata.carId,
+                guestMobile:ldata.mobile,
                 //contactName:item.contactName,
-                contactorId:params.data.contactorId,
-                guestId:params.data.guestId,
-                enterKilometers:params.data.enterKilometers,
-                guestFullName:params.data.guestName,
-                recordDate:params.data.recordDate,
+                contactorId:ldata.contactorId,
+                guestId:ldata.guestId,
+                enterKilometers:ldata.enterKilometers,
+                guestFullName:ldata.guestName,
+                recordDate:ldata.recordDate,
                 mtAdvisorId:"",
-                insureCompId:params.data.insureCompId,
-                insureCompName:params.data.insureCompName,
-                saleMans:params.data.saleMans,
-                saleManIds:params.data.saleManIds,
-                date1:params.data.beginDate,
-                date2:params.data.endDate
+                insureCompId:ldata.insureCompId,
+                insureCompName:ldata.insureCompName,
+                saleMans:ldata.saleMans,
+                saleManIds:ldata.saleManIds,
+                date1:ldata.beginDate,
+                date2:ldata.endDate,
+                mtAdvisorId:ldata.mtAdvisorId,
+                mtAdvisor:ldata.mtAdvisor
             };
 
             basicInfoForm.setData(sdata);
             insuranceForm.setData(sdata);
             detailGrid.load({serviceId:params.id,token:token});
 
-            if(params.data.status != 0 ){
+            if(ldata.status != 0 ){
                 $("#addBtn").hide();
                 $("#save").hide();
                 $("#pay").hide();
                 searchNameEl.setWidth("200px");
             }
-            if(params.data.settleTypeId == 1){
+            if(ldata.settleTypeId == 1){
                 $("#radio1").attr("checked", "checked"); 
             }
-            if(params.data.settleTypeId == 2){
+            if(ldata.settleTypeId == 2){
                 $("#radio2").attr("checked", "checked"); 
             }
-            if(params.data.settleTypeId == 3){
+            if(ldata.settleTypeId == 3){
                 $("#radio3").attr("checked", "checked"); 
             }
 
@@ -370,6 +386,14 @@ function setInitData(params){
     }, function(){
         nui.unmask(document.body);
     });
+
+
+        }
+
+    }
+});
+
+
 }
 }
 
@@ -393,9 +417,6 @@ function add(){
     fserviceId = 0;
     
     $("#servieIdEl").html("");
-    $("#showCardTimesEl").html("次卡套餐(0)");
-    $("#showCardEl").html("储值卡(0)");
-    $("#showCarInfoEl").html("");
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
     //detailGrid.setData(detailData);
@@ -484,56 +505,6 @@ function addGuest(){
 }
 
 
-function showCardTimes(){
-    if(!fguestId || advancedCardTimesWin.visible) {
-        advancedCardTimesWin.hide();
-        
-        cardTimesGrid.clearRows();
-        return;
-    }
-
-    var atEl = document.getElementById("cardPackageEl");  
-    advancedCardTimesWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
-    advancedMemCardWin.hide();
-    carCheckInfo.hide();
-    memCardGrid.clearRows();
-
-    doSearchCardTimes(fguestId);
-}
-function showCard(){
-    if(!fguestId || advancedMemCardWin.visible) {
-        advancedMemCardWin.hide();
-        
-        memCardGrid.clearRows();
-        return;
-    }
-
-    var atEl = document.getElementById("clubCardEl");  
-    advancedMemCardWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
-    advancedCardTimesWin.hide();
-    carCheckInfo.hide();
-    cardTimesGrid.clearRows();
-
-    doSearchMemCard(fguestId);
-}
-
-function showCarCheckInfo(){
-    if(!fguestId || carCheckInfo.visible) {
-        advancedMemCardWin.hide();
-        carCheckInfo.hide();
-        advancedCardTimesWin.hide();
-        return;
-    }
-
-    MemSelectCancel(1);
-    SearchCheckMain(changeCheckInfoTab);
-    advancedCardTimesWin.hide();
-    advancedMemCardWin.hide();
-}
-
-/*function showHealth(){
-    window.open("http://www.baidu.com?backurl="+window.location.href); 
-}*/
 function doSearchCardTimes(guestId)
 {
     cardTimesGrid.clearRows();
@@ -550,7 +521,6 @@ function doSearchCardTimes(guestId)
     },function(){
         var data = cardTimesGrid.getData();
         var len = data.length||0;
-        $("#showCardTimesEl").html("次卡套餐("+len+")");
         document.getElementById("formIframe").contentWindow.doSetCardTimes(data);
     });
 }
@@ -565,7 +535,6 @@ function doSearchMemCard(guestId)
     },function(){
         var data = memCardGrid.getData();
         var len = data.length||0;
-        $("#showCardEl").html("储值卡("+len+")");
     });
 }
 
@@ -658,7 +627,7 @@ function pay() {
             iframe.contentWindow.SetData(params);
         },
         ondestroy:function(action){ 
-         if(action == "ok"){
+           if(action == "ok"){
             $("#addBtn").hide();
             $("#save").hide();
             $("#pay").hide();
@@ -696,57 +665,10 @@ function onPrint(argument) {
     });
 }
 
-function showCardTimes(){
-    if(!fguestId || advancedCardTimesWin.visible) {
-        advancedCardTimesWin.hide();
-        
-        cardTimesGrid.clearRows();
-        return;
-    }
-
-    var atEl = document.getElementById("cardPackageEl");  
-    advancedCardTimesWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
-    advancedMemCardWin.hide();
-    carCheckInfo.hide();
-    memCardGrid.clearRows();
-
-    doSearchCardTimes(fguestId);
-}
-function showCard(){
-    if(!fguestId || advancedMemCardWin.visible) {
-        advancedMemCardWin.hide();
-        
-        memCardGrid.clearRows();
-        return;
-    }
-
-    var atEl = document.getElementById("clubCardEl");  
-    advancedMemCardWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
-    advancedCardTimesWin.hide();
-    carCheckInfo.hide();
-    cardTimesGrid.clearRows();
-
-    doSearchMemCard(fguestId);
-}
 
 
-function showCarCheckInfo(){
-    if(!fguestId || carCheckInfo.visible) {
-        advancedMemCardWin.hide();
-        carCheckInfo.hide();
-        advancedCardTimesWin.hide();
-        return;
-    }
 
-    MemSelectCancel(1);
-    SearchCheckMain(changeCheckInfoTab);
-    advancedCardTimesWin.hide();
-    advancedMemCardWin.hide();
-}
 
-/*function showHealth(){
-    window.open("http://www.baidu.com?backurl="+window.location.href); 
-}*/
 function doSearchCardTimes(guestId)
 {
     cardTimesGrid.clearRows();
@@ -763,10 +685,10 @@ function doSearchCardTimes(guestId)
     },function(){
         var data = cardTimesGrid.getData();
         var len = data.length||0;
-        $("#showCardTimesEl").html("次卡套餐("+len+")");
         document.getElementById("formIframe").contentWindow.doSetCardTimes(data);
     });
 }
+
 function doSearchMemCard(guestId)
 {
     memCardGrid.clearRows();
@@ -778,7 +700,6 @@ function doSearchMemCard(guestId)
     },function(){
         var data = memCardGrid.getData();
         var len = data.length||0;
-        $("#showCardEl").html("储值卡("+len+")");
     });
 }
 function addGuest(){
@@ -813,60 +734,7 @@ function addGuest(){
     });
 
 }
-/*function loadDetail(p1, p2, p3){
-    if(p1 && p1.interType){
-        getBillDetail(p1, function(text){
-            var errCode = text.errCode;
-            var data = text.data||[];
-            if(errCode == "S"){
-                rpsPackageGrid.clearRows();
-                rpsPackageGrid.addRows(data);
-                rpsPackageGrid.accept();
-            }
-        }, function(){});
-    }
-    if(p2 && p2.interType){
-        getBillDetail(p2, function(text){
-            var errCode = text.errCode;
-            var data = text.data||[];
-            if(errCode == "S"){
-                rpsItemGrid.clearRows();
-                rpsItemGrid.addRows(data);
-                rpsItemGrid.accept();
-            }
-        }, function(){});
-    }
-}
-*/
-function newCheckMain() {  
-    var data = basicInfoForm.getData();
-    var item={};
-    item.id = "checkPrecheckDetail";
-    item.text = "查车单";
-    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp";
-    item.iconCls = "fa fa-cog";
-    //window.parent.activeTab(item);
-    var params = {};
-    params = { 
-        id:data.id,
-        actionType:"",
-        row: rdata
-    };
 
-    window.parent.activeTabAndInit(item,params);
-    carCheckInfo.hide();
-}  
-
-
-function MemSelectOk(){ 
-    var form = new nui.Form("#show2");
-            form.validate();
-            if (form.isValid() == false) {
-                showMsg("请先选择被派工人！","W");
-                return;
-            }
-    SaveCheckMain();
-}
 
 function SearchCheckMain(callback) {
     var data = basicInfoForm.getData();
@@ -891,164 +759,11 @@ function SearchCheckMain(callback) {
 
 }
 
-
-function changeCheckInfoTab(resultdata) {
-
-    var data = basicInfoForm.getData();
-    if(!data.id){
-        showMsg("请先保存工单!","E");
-        return;
-    }
-    var atEl = document.getElementById("carHealthEl");  
-    carCheckInfo.showAtEl(atEl, {xAlign:"left",yAlign:"below"});
-    SearchLastCheckMain();
-
-    $("#checkStatus1").css("color","#9e9e9e");
-    $("#checkStatus2").css("color","#9e9e9e");
-    $("#checkStatus3").css("color","#9e9e9e");
-    $("#checkStatus4").css("color","#9e9e9e");
-    
-    if(resultdata.list.length > 0){
-        var detailList =  resultdata.list[0];
-        rdata= detailList;
-    }
-
-    //detailList.checkMan  =1;
-    //detailList.checkStatus = 0;
-
-    if(resultdata.list.length < 1){
-        $("#checkStatus1").css("color","#32b400");
-        $("#checkStatusButton1").show();
-        $("#checkStatusButton2").hide();
-    }else{
-        if((detailList.checkMan || detailList.checkManId)&& detailList.checkStatus == 0){
-            $("#checkStatus2").css("color","#32b400");
-            $("#checkStatusButton1").hide(); 
-            $("#checkStatusButton2").show();
-
-        }
-        if((detailList.checkMan || detailList.checkManId) && detailList.checkStatus == 1){
-            $("#checkStatus3").css("color","#32b400");
-            $("#checkStatusButton1").hide();
-            $("#checkStatusButton2").show();
-        }
-        if((detailList.checkMan || detailList.checkManId) && detailList.checkStatus == 2){ 
-            $("#checkStatus4").css("color","#32b400");   
-            $("#checkStatusButton1").hide();
-            $("#checkStatusButton2").show(); 
-        }
-    }
+function CloseWindow(action) {
+    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+    else window.close();
 }
 
-function SaveCheckMain() {
-    var data = basicInfoForm.getData();
-    if(!data.id){
-        showMsg("请先保存工单!","E");
-        return;
-    }
-    if(isRecord == "0"){
-    var temp ={
-        serviceId:data.id, 
-        carId:data.carId,
-        carNo:data.carNo,
-        checkStatus:0,
-        enterKilometers:data.enterKilometers,
-        mtAdvisorId:data.mtAdvisorId,
-        mtAdvisor:data.mtAdvisor,
-        checkManId:nui.get("checkManId").value,
-        checkMan:nui.get("checkManId").text
-    };
-    var mtemp = {
-        id:data.id
-    } ;
-
-    nui.ajax({
-        url:baseUrl + "com.hsapi.repair.repairService.repairInterface.saveCheckMain.biz.ext",
-        type:"post",
-        async: false,
-        data:{ 
-            data:temp,
-            rpsMain:mtemp,
-            token:token   
-        },   
-        success:function(text){   
-            var errCode = text.errCode;
-            if(errCode == "S"){
-                rdata  = text.mainData;
-                //newCheckMain();
-                //CloseWindow('close');
-                carCheckInfo.hide();
-                showMsg('派工成功!','S'); 
-            }else{
-                //showMsg('保存失败!','E'); 
-            }
-        }  
-    }); 
-    }else{
-        newCheckMain();
-        carCheckInfo.hide();
-}
-}
-
-
-function MemSelectCancel(e) {
-    if(e == 1){
-        $("#show1").show();
-        $("#show2").hide();
-    }
-
-    if(e == 2){
-        $("#show1").hide();
-        $("#show2").show();
-    }
-}
-
-
-    function CloseWindow(action) {
-        if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
-        else window.close();
-    }
-
-
-function SearchLastCheckMain() { 
-
-    $("#lastCheckInfo1").html('');
-    $("#lastCheckInfo2").html('');
-    $("#lastCheckInfo3").html("");
-    $("#lastCheckInfo4").hide();
-
-    var  tempParams = {
-        carNo:nui.get("carNo").value,
-        endDate:nui.get("recordDate").text
-    };
-    nui.ajax({
-        url: baseUrl + "com.hsapi.repair.repairService.repairInterface.QueryLastCheckMain.biz.ext",
-        type:"post",
-        //async: false,
-        data:{ 
-            params:tempParams
-        },
-        cache: false,
-        success: function (text) {  
-            
-            var isRec = text.isRecord;
-            if(isRec == "1"){
-                var ldata = text.list[0];
-                var score = ldata.check_point || 0;
-                var rdate = nui.formatDate(nui.parseDate(ldata.record_date),"yyyy-MM-dd HH:mm:ss")
-
-                $("#lastCheckInfo1").html('上次检查');
-                $("#lastCheckInfo2").html(score+"分");
-                $("#lastCheckInfo3").html(rdate);
-                $("#lastCheckInfo4").show();
-            }else{
-                $("#lastCheckInfo1").html('暂无相关历史检查数据！');
-            }
-
-        }
-    });
- 
-}
 
 function newCheckMainMore() {  
     var cNo = nui.get("carNo").value;
@@ -1061,21 +776,6 @@ function newCheckMainMore() {
 
 }  
 
-function showHealth(){
-    showCarCheckInfo();
-    //window.open(webBaseUrl+"repair/RepairBusiness/Reception/checkDetail.jsp")
-    /*nui.open({
-        url: webBaseUrl+"repair/RepairBusiness/Reception/checkDetail.jsp",
-        width: "800",
-        height: "1000",
-        showMaxButton: false,
-        allowResize: false,
-        showHeader: true,
-        onload: function() {
-            var iframe = this.getIFrameEl();
-        },
-    });*/
-}
 
 function showBillInfo(){
     var main = basicInfoForm.getData();

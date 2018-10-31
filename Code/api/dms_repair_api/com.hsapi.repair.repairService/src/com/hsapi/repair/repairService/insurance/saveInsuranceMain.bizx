@@ -105,6 +105,14 @@
       <process:to type="query">main/carVin</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">data1/mtAdvisor</process:from>
+      <process:to type="query">main/mtAdvisor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">data1/mtAdvisorId</process:from>
+      <process:to type="query">main/mtAdvisorId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">data2/insureCompId</process:from>
       <process:to type="query">main/insureCompId</process:to>
     </process:copy>
@@ -236,6 +244,7 @@
     <location x="309" y="264"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="detailData" iterableElement="detail"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
@@ -628,6 +637,14 @@
       <process:from type="query" pattern="reference">data1/enterKilometers</process:from>
       <process:to type="query">main/enterKilometers</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">data1/mtAdvisor</process:from>
+      <process:to type="query">main/mtAdvisor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">data1/mtAdvisorId</process:from>
+      <process:to type="query">main/mtAdvisorId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
     <location x="703" y="298"/>
@@ -651,7 +668,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">main/serviceCode</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

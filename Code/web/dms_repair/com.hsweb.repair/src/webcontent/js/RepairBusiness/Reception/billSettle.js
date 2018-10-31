@@ -149,6 +149,7 @@ function setData(params){
 				amount = params.data.mtAmt;
 			}else{
 				amount = params.data.mtAmt-params.data.ycAmt;
+				amount = amount.toFixed(2)
 			}
 			netInAmt = amount;
 			params.data.mtAmt = parseFloat(params.data.mtAmt)+amt;

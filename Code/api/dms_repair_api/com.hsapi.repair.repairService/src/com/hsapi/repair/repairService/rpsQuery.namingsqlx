@@ -909,6 +909,7 @@
 			d.package_subtotal AS packageSubtotal,
 			d.item_subtotal AS itemSubtotal,
 			d.part_subtotal AS partSubtotal,
+			d.card_times_amt AS cardTimesAmt,
 			d.total_pref_amt AS totalPrefAmt,
 			d.bala_amt AS balaAmt,
 			d.other_amt AS otherAmt,

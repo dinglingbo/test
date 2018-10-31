@@ -53,8 +53,13 @@
           <input class="nui-textbox" id="guestName" name="guestName" emptyText="输入客户姓名" width="120" />
           <input class="nui-textbox" id="serviceCode" name="serviceCode" emptyText="请输入单号" width="120" />
           <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" />
+          <label class="form_label">开单日期&nbsp;从：</label>
+          <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
+          <label class="form_label">至：</label>
+          <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
+        
           <a class="nui-button" iconCls="" plain="true" onclick="onSearch">
-            <span class="fa fa-search fa-lg"></span>&nbsp;查询
+           <span class="fa fa-search fa-lg"></span>&nbsp;查询
         </a>
         <span class="separator"></span>
    <!--        <a class="nui-button" iconCls="" plain="true" onclick="newCheckPrecheck" id="">
@@ -99,12 +104,21 @@
   var gridUrl = baseUrl + "com.hsapi.repair.repairService.repairInterface.QueryCheckMainList.biz.ext";
   var mainGrid = nui.get("mainGrid"); 
   mainGrid.setUrl(gridUrl);
+  beginDateEl = nui.get("sRecordDate");
+  endDateEl = nui.get("eRecordDate");
+  var date = new Date();
+  var sdate = new Date();
+  sdate.setMonth(date.getMonth()-3);
+  endDateEl.setValue(date);
+  beginDateEl.setValue(sdate);
 
   onSearch();
 
   function onSearch(){
     var data = form.getData();
     data.orgid = currOrgId;
+    data.sRecordDate = beginDateEl.getValue();
+    data.eRecordDate = endDateEl.getValue();
     mainGrid.load({ 
       params:data,
       token:token

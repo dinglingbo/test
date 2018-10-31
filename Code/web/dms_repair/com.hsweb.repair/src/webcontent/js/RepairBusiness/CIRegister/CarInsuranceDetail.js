@@ -15,10 +15,10 @@ var insuranceComp = null;
 var insuranceForm = null; 
 var saleManIds = null;
 var fserviceId = 0;
- var fguestId = 0;
-  var advancedCardTimesWin = null;
-  var advancedMemCardWin = null;
-  var carCheckInfo = null;
+var fguestId = 0;
+var advancedCardTimesWin = null;
+var advancedMemCardWin = null;
+var carCheckInfo = null;
 var detailData = [{insureTypeId:1,insureTypeName:"交强险"},{insureTypeId:2,insureTypeName:"商业险"},{insureTypeId:3,insureTypeName:"车船税"}];
 $(document).ready(function ()  
 { 
@@ -575,7 +575,7 @@ function saveData(e){
     var gridData = detailGrid.getData();
 
     nui.ajax({
-        url:"com.hsapi.repair.repairService.insurance.saveInsuranceMain.biz.ext",
+        url:baseUrl +"com.hsapi.repair.repairService.insurance.saveInsuranceMain.biz.ext",
         type:"post",
         async: false,
         data:{

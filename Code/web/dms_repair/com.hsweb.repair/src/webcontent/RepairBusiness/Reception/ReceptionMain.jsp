@@ -101,7 +101,7 @@
                   <div type="indexcolumn">序号</div>
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
                   <div field="status" name="status" width="40" headerAlign="center" header="进程"></div>
-                  <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌"></div>
+                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌"></div>
                   <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div>
                   <div field="carModel" name="carModel" width="160" headerAlign="center" header="车型"></div>
                   <div field="carVin" name="carVin" width="120" headerAlign="center" header="VIN码"></div>

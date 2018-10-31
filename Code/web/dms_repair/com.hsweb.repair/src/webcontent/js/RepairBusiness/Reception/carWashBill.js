@@ -410,24 +410,25 @@ $(document).ready(function ()
         //获取到配件ID
     	var pid = record.pid||0;
         switch (e.field) {
-            case "prdtName":
-                var cardDetailId = record.cardDetailId||0;
-                if(cardDetailId>0){
-                    e.cellHtml = e.value + "<font color='red'>(预存)</font>";
-                }
-                if(pid == 0){
-                    //e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' +'<a href="javascript:showBasicDataPart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;标准配件</a>'+ e.value;
-                
-                    e.cellHtml = '<a href="javascript:showMorePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value;	
-                    			 //'<ul class="add_ul" style="z-index: 99; display: none;">' +
+	       case "prdtName":
+	           var cardDetailId = record.cardDetailId||0;
+	           var s = "";
+	           if(cardDetailId>0){
+	               s = "<font color='red'>(预存)</font>";
+	           }
+	           if(pid == 0){
+	                //e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' +'<a href="javascript:showBasicDataPart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;标准配件</a>'+ e.value;
+	            
+	               e.cellHtml = '<a href="javascript:showMorePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value + s;	
+	                			 //'<ul class="add_ul" style="z-index: 99; display: none;">' +
 			            		 //'<li>< a href="javascript:choosePart(\'' + uid + '\')">添加配件</ a></li>' +
 			            		 //'<li>< a href="javascript:showBasicDataPart(\'' + uid + '\')" class="xzpj">选择配件</ a></li>' +
-			            		 //'</ul>';
-                
-                }else{
-                	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
-                }
-                break;
+	                             //'</ul>';
+	            
+	           }else{
+	              e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
+	           }
+	            break;
             case "itemOptBtn":
             	if(pid == 0){
             	    var s = '<a class="optbtn" href="javascript:editRpsItem(\'' + uid + '\')">修改</a>'

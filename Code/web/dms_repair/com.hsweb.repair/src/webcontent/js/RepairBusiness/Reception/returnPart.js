@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/1/23.
  */
-var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + repairApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var partGridUrl = baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainPartList.biz.ext";
 var isChooseClose = 1;//默认选择后就关闭窗体
 

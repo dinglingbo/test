@@ -95,7 +95,7 @@
 	                  <div property="columns" >
 		                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
 		                 
-		                  <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌"></div>
+		                  <div field="carNo" name="carNO" width="80" headerAlign="center" header="车牌"></div>
 		                  <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div>
 		                  <div field="carModel" name="carModel" width="160" headerAlign="center" header="车型"></div>
 		                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="VIN码"></div>

@@ -17,7 +17,7 @@
 			c.short_name AS guestShortName,
 			b.car_model AS carModel,
 			a.car_vin AS carVin,
-			a.car_no AS carNO,
+			a.car_no AS carNo,
 			c.tel AS guestTel,
 			c.mobile AS guestMobile,
 			b.car_brand_id AS carBrandId,

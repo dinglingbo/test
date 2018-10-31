@@ -356,7 +356,7 @@ function setBtnable(flag)
 var requiredField = {
     storeId : "移出仓库",
     receiveStoreId : "移入仓库",
-    orderMan : "退货员",
+    orderMan : "业务员",
     createDate : "退货日期"
 };
 var saveUrl = baseUrl + "com.hsapi.part.invoice.crud.savePjShiftOrder.biz.ext";
@@ -496,10 +496,16 @@ function setEditable(flag)
     if(flag)
     {
         document.getElementById("fd1").disabled = false;
+        nui.get('orderMan').enabled=true;
+        nui.get('receiveStoreId').enabled=true;
+        nui.get('storeId').enabled=true;
     }
     else
     {
         document.getElementById("fd1").disabled = true;
+        nui.get('orderMan').enabled=false;
+        nui.get('receiveStoreId').enabled=false;
+        nui.get('storeId').enabled=false;
     }
 }
 function doSearch(params) 
@@ -1334,7 +1340,11 @@ function setInitExportData(main, detail){
         "<td  colspan='1' align='left'>[comFullName]</td>" +
         "<td  colspan='1' align='left'>[comApplyCarModel]</td>" +
         "<td  colspan='1' align='left'>[comUnit]</td>" +
-        "<td  colspan='1' align='left'>[orderQty]</td>";
+        "<td  colspan='1' align='left'>[orderQty]</td>"+
+        "<td  colspan='1' align='left'>[stockOutQty]</td>"+
+        "<td  colspan='1' align='left'>[comOemCode]</td>"+
+        "<td  colspan='1' align='left'>[comSpec]</td>";
+    
     var tableExportContent = $("#tableExportContent");
     tableExportContent.empty();
     for (var i = 0; i < detail.length; i++) {
@@ -1345,7 +1355,10 @@ function setInitExportData(main, detail){
                          .replace("[comFullName]", detail[i].comFullName?detail[i].comFullName:"")
                          .replace("[comApplyCarModel]", detail[i].comApplyCarModel?detail[i].comApplyCarModel:"")
                          .replace("[comUnit]", detail[i].comUnit?detail[i].comUnit:"")
-                         .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:""));
+                         .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
+                         .replace("[stockOutQty]", detail[i].stockOutQty?detail[i].stockOutQty:0)
+                         .replace("[comOemCode]", detail[i].comOemCode?detail[i].comOemCode:"")
+                         .replace("[comSpec]", detail[i].comSpec?detail[i].comSpec:""));
             tableExportContent.append(tr);
         }
         

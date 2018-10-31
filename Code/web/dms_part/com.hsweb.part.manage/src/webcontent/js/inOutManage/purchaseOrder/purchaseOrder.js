@@ -2065,10 +2065,17 @@ function onExport(){
           return;  
         }
 	}
-
-
-
+	
 	var detail = rightGrid.getData();
+	
+	for(var i=0;i<detail.length;i++){
+		for(var j=0;j<storehouse.length;j++){
+			if(detail[i].storeId==storehouse[j].id){
+				detail[i].storeId=storehouse[j].name;
+			}
+		}
+	}
+	
 	if(detail && detail.length > 0){
 		setInitExportData(main, detail);
 	}
@@ -2084,7 +2091,12 @@ function setInitExportData(main, detail){
         "<td  colspan='1' align='left'>[orderQty]</td>" +
         "<td  colspan='1' align='left'>[orderPrice]</td>" +
         "<td  colspan='1' align='left'>[orderAmt]</td>" +
-        "<td  colspan='1' align='left'>[remark]</td>";
+        "<td  colspan='1' align='left'>[remark]</td>"+
+        "<td  colspan='1' align='left'>[storeId]</td>"+
+        "<td  colspan='1' align='left'>[storeShelf]</td>"+
+        "<td  colspan='1' align='left'>[comOemCode]</td>"+
+        "<td  colspan='1' align='left'>[comSpec]</td>";
+        
     var tableExportContent = $("#tableExportContent");
     tableExportContent.empty();
     for (var i = 0; i < detail.length; i++) {
@@ -2098,7 +2110,11 @@ function setInitExportData(main, detail){
                          .replace("[orderQty]", detail[i].orderQty?detail[i].orderQty:"")
                          .replace("[orderPrice]", detail[i].orderPrice?detail[i].orderPrice:"")
                          .replace("[orderAmt]", detail[i].orderAmt?detail[i].orderAmt:"")
-                         .replace("[remark]", detail[i].remark?detail[i].remark:""));
+                         .replace("[remark]", detail[i].remark?detail[i].remark:"")
+                         .replace("[storeId]", detail[i].storeId?detail[i].storeId:"")
+                         .replace("[storeShelf]", detail[i].storeShelf?detail[i].storeShelf:"")
+                         .replace("[comOemCode]", detail[i].comOemCode?detail[i].comOemCode:"")
+                         .replace("[comSpec]", detail[i].comSpec?detail[i].comSpec:""));
             tableExportContent.append(tr);
         }
     }

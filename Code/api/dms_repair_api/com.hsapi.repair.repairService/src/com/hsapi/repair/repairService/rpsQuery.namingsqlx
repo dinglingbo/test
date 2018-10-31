@@ -17,7 +17,7 @@
 			c.short_name AS guestShortName,
 			b.car_model AS carModel,
 			a.car_vin AS carVin,
-			a.car_no AS carNO,
+			a.car_no AS carNo,
 			c.tel AS guestTel,
 			c.mobile AS guestMobile,
 			b.car_brand_id AS carBrandId,
@@ -781,11 +781,11 @@
 				a.record_date AS recordDate,
 				a.modifier AS modifier,
 				a.modify_date AS modifyDate,
-				 case when B.service_code is null then A.service_code else B.service_code end as serviceCode,
-				 C.mobile guestMobile ,
-				 C.full_name  guestFullName,
+				case when B.service_code is null then A.service_code else B.service_code end as serviceCode,
+				C.mobile guestMobile ,
+				C.full_name  guestFullName,
 			  D.car_model carModel
-			from rps_check_main A
+			 from rps_check_main A
 			 LEFT JOIN rps_maintain B on B.id = A.service_id
 			 inner join wb_common.com_guest C on C.id = A.guest_id
 			 inner join rpb_car D on D.id = A.car_id
@@ -805,7 +805,12 @@
 			<isNotEmpty prepend="and" property="serviceCode">  
 			B.service_code like '%$serviceCode$%'
 			</isNotEmpty>
-			
+			<isNotEmpty prepend="and" property="sRecordDate"> 
+                (date_format(A.record_date,'%Y-%m-%d') &gt;= #sRecordDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">
+                (date_format(A.record_date,'%Y-%m-%d') &lt;= #eRecordDate#)
+            </isNotEmpty>
 			ORDER BY A.record_date desc
       </select>
       <select id="getRpsPartByMaintainGuestId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

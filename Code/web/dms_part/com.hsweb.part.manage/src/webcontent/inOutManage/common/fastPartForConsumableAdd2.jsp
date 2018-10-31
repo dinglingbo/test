@@ -78,8 +78,8 @@
 			</tr id="return">
 			<tr  id="return"align="center">
 				<td  colspan="2">
-				<a class="nui-button" iconCls="" plain="false" onclick="onOk()">归库</a>
 				<a class="nui-button" iconCls="" plain="false" onclick="CloseWindow('cancle')">关闭</a>
+				<a class="nui-button" iconCls="" plain="false" onclick="onOk()">归库</a>
 				</td>
 			</tr>
 			

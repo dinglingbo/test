@@ -8,7 +8,7 @@
 -->
 <head>
 <title>盘点单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheck.js?v=1.1.15"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheck.js?v=1.0.4"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -418,6 +418,11 @@
             <td colspan="1" align="center">实盘数量</td>
             <td colspan="1" align="center">盈亏状态</td>
             <td colspan="1" align="center">盈亏数量</td>
+            <td colspan="1" align="center">盈亏金额</td>
+            <td colspan="1" align="center">系统成本</td>
+            <td colspan="1" align="center">缺货数量</td>
+            <td colspan="1" align="center">OEM码</td>
+            <td colspan="1" align="center">规格/方向/颜色</td>
         </tr>
         <tbody id="tableExportContent">
         </tbody>

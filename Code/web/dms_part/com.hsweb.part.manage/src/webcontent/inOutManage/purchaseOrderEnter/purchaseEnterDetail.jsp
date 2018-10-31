@@ -68,7 +68,7 @@
 				
 				 
                 <!-- <a class="nui-button" iconCls="" plain="true" onclick="addPchsOrder()" id="auditBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入单据</a> -->
-                <span class="separator"></span>
+<!--                 <span class="separator"></span> -->
                  <a  class="nui-button "plain="true" onclick="addPchsOrder('order')" menu="#popupMenuPrint" id="addImp1"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入采购订单</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>

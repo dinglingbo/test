@@ -10,7 +10,7 @@
 -->
 <head>
 <title>销售开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnMain.js?v=1.0.9"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnMain.js?v=1.2.1"></script>
 <style type="text/css">
 
 .title {
@@ -79,7 +79,7 @@
                     <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="addBtn" ><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="editSell()" id="editBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="finish"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="sellBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;转结算</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="sellBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
                 </td>
             </tr>
         </table>
@@ -104,7 +104,7 @@
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
                   <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>
                   <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
-                  <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌" visible="false"></div>           
+                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌" visible="false"></div>           
                   <div field="carModel" name="carModel" width="180" headerAlign="center" header="车型" visible="false"></div>
                   <div field="partAmt" name="partAmt" width="40" headerAlign="center" header="金额"></div>
                   <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div>

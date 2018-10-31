@@ -8,7 +8,7 @@
 -->
 <head>
 <title>移仓单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrder.js?v=1.0.41"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrder.js?v=1.0.47"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -429,6 +429,9 @@
             <td colspan="1" align="center">车型</td>
             <td colspan="1" align="center">单位</td>
             <td colspan="1" align="center">数量</td>
+            <td colspan="1" align="center">缺货数量</td>
+            <td colspan="1" align="center">OEM码</td>
+            <td colspan="1" align="center">规格/方向/颜色</td>
         </tr>
         <tbody id="tableExportContent">
         </tbody>

@@ -1116,11 +1116,18 @@ function saveBatch(){
 			success : function(text) {
 				var returnJson = nui.decode(text);
 				if (returnJson.errCode == "S") {
-					showMsg("保存成功");
+					var p3 = {
+                            interType: "part",
+                            data:{
+                                serviceId: maintain.id||0
+                            }
+                        }
+                        loadDetail(p3);
+					showMsg("保存成功","S");
 													
 				} else {
 					//rpsPartGrid.reject();
-					showMsg(returnJson.errMsg,"w");
+					showMsg(returnJson.errMsg,"W");
 				}
 			}
 		});
@@ -1140,15 +1147,15 @@ function finish(){
 	}*/
     var isSettle = main.isSettle||0;
      if(!main.id){
-        showMsg("请选择保存工单!","S");
+        showMsg("请选择保存工单!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能审核!","S");
+        showMsg("此单已结算,不能审核!","W");
         return;
     }
 	if(main.status==1 || b == 1){
-		showMsg("此单已审核,不能重复审核!","S");
+		showMsg("此单已审核,不能重复审核!","W");
         return;
 	} 
 	var maintain = billForm.getData();
@@ -1179,7 +1186,14 @@ function finish(){
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == "S") {
 				b = 1;
-				showMsg("审核成功");
+				var p3 = {
+                        interType: "part",
+                        data:{
+                            serviceId: maintain.id||0
+                        }
+                    }
+                loadDetail(p3);
+				showMsg("审核成功","S");
 				
 			} else {
 				showMsg(returnJson.errMsg);

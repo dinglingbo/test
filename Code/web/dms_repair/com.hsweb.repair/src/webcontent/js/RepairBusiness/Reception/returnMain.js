@@ -290,7 +290,7 @@ function out(){
 	}
 }
 //转结算
-payUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/partBillPay.jsp?token="+token;
+payUrl = webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token="+token;
 function pay(){	
 	var row = mainGrid.getSelected();
 	if(row)
@@ -305,24 +305,42 @@ function pay(){
 		}
 		nui.open({
 			url:payUrl,
-			width:"40%",
-			height:"50%",
+			width:"100%",
+			height:"100%",
 			//加载完之后
 			onload: function(){	
-			//把值传递到支付页面
-		    var iframe = this.getIFrameEl();
-		    iframe.contentWindow.getData(row);			
+				//把值传递到支付页面
+			    var iframe = this.getIFrameEl();
+			    var data = {
+			    	"itemPrefAmt":0,
+			    	"itemSubtotal":0,
+			    	"packagePrefAmt":0,
+			    	"packageSubtotal":0,
+			    	"partPrefAmt":row.partAmt,
+			    	"partSubtotal":row.partAmt,
+			    	"mtAmt":row.partAmt,
+			    	"ycAmt":0
+			    };
+			    var params = {
+			    	"carNo":row.carNo,
+			    	"guestId":row.guestId,
+			    	"guestName":row.guestFullName,
+			    	"serviceId":row.id,
+			    	"data":data
+			    };
+			    iframe.contentWindow.setData(params);			
 			},
 		   ondestroy : function(action) {
 			if (action == 'ok') {
-				var iframe = this.getIFrameEl();
+				quickSearch(4);
+				/*var iframe = this.getIFrameEl();
 				var data = iframe.contentWindow.getData();
 				supplier = data.supplier;
 				var value = supplier.id;
 				var text = supplier.fullName;
 				var el = nui.get(elId);
 				el.setValue(value);
-				el.setText(text);
+				el.setText(text);*/
 			}
 		}
 		});		

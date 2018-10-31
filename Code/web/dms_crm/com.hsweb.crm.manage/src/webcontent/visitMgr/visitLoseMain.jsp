@@ -40,11 +40,10 @@ pageEncoding="UTF-8" session="false" %>
         <input class="nui-textbox" name="tcarNo" id="tcarNo">
         <a class="nui-button" onclick="quickSearch(0)" iconcls="icon-search" plain="false">查询(<u>Q</u>)</a>
         <span class="separator"></span>
-
         <a class="nui-button" iconCls="" plain="false" onclick="">发送短信</a>
-        <a class="nui-button" iconCls="" plain="false" onclick="">维修历史</a>
+        <a class="nui-button" iconCls="" plain="false" onclick="WindowrepairHistory()">维修历史</a>
         <a class="nui-button" iconCls="" plain="false" onclick="">回访历史</a>
-        <a class="nui-button" iconCls="" plain="false" onclick="">投诉登记</a>
+        <a class="nui-button" iconCls="" plain="false" onclick="WindowComplianDetail()">投诉登记</a>
 
     </div>
     <div class="nui-fit">
@@ -169,7 +168,7 @@ pageEncoding="UTF-8" session="false" %>
                     </table>
                     <div style="height: 10px;width: 100%;"></div>
                     <div class="nui-fit">
-                        <div id="p1" class="nui-panel" title="请填写回访内容" iconCls="" style="width:100%;height:100%;"buttons="">
+                        <div id="visitCon" class="nui-panel" title="请填写回访内容" iconCls="" style="width:100%;height:100%;"buttons="">
                             <input class="nui-hidden" name="detailId" id="detailId"/>
                             <table class="tmargin" style="width:100%">
                                 <tr class="htr">

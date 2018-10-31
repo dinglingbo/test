@@ -26,6 +26,7 @@ var mtAdvisorEl = null;
 var visitManEl = null;
 var visitIdEl = null;
 var table1Form = null;
+var visitConForm = null;
 
 $(document).ready(function(){
 
@@ -37,6 +38,9 @@ $(document).ready(function(){
 	visitIdEl = nui.get("visitId");
 	tabForm = new nui.Form("#tabs");
 	table1Form = new nui.Form("#table1");
+	visitConForm = new nui.Form("#visitCon");
+	tabForm.setEnabled(false);
+	visitConForm.setEnabled(true);
 	tcarNo_ctrl = nui.get("tcarNo");
 	loseParam_ctrl = nui.get("loseParam");
 	setLoseParams();
@@ -298,10 +302,10 @@ function quickSearch(e){
 			url: webBaseUrl + "manage/complainDetail.jsp?token="+token,
 			title:"投诉登记",
 			height:"500px",
-			width:"750px",
+			width:"650px",
 			onload:function(){
-			//var iframe = this.getIFrameEl();
-			//iframe.contentWindow.SetData("th");
+			//var iframe = this.getIFrameEl(); 
+			//iframe.contentWindow.SetData("th"); 
 		},
 		ondestroy:function(action){
 			if (action == "ok") {

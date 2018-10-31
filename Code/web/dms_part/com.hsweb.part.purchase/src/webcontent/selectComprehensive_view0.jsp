@@ -91,37 +91,43 @@
               <div property="columns">
                   <div type="indexcolumn">序号</div>
                   <div type="checkcolumn" name="checkcolumn" visible="false"></div>
-                  <div header="业务信息" headerAlign="center">
+                  <div header="客户信息" headerAlign="center">
 	                  <div property="columns" >
-		                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-		                 
+		                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>  
 		                  <div field="carNo" name="carNO" width="80" headerAlign="center" header="车牌"></div>
-		                  <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div>
-		                  <div field="carModel" name="carModel" width="160" headerAlign="center" header="车型"></div>
-		                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="VIN码"></div>
 		                  <div field="guestFullName" name="guestFullName" width="60" headerAlign="center" header="客户姓名"></div>
 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div>
 		                  <div field="mtAdvisor" name="mtAdvisor" width="60" headerAlign="center" header="服务顾问"></div>
 		                  <div field="serviceTypeName" name="serviceTypeName" width="60" headerAlign="center" header="业务类型"></div> 
 		                  <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
-		                  <div field="sureMtDate" name="sureMtDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="维修日期"></div>
-		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="完工日期"></div>
-		                  <div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="结算日期"></div>
 	                  </div>
                   </div>
+               
                   
                   <div header="结算信息" headerAlign="center">
 	                  <div property="columns" >	                  
 		                  <div field="packageSubtotal" name="status" width="60" headerAlign="center" header="套餐小计"></div>
 		                  <div field="itemSubtotal" name="carNO" width="60" headerAlign="center" header="工时小计"></div>
 		                  <div field="partSubtotal" name="carBrandId" width="60" headerAlign="center" header="配件小计"></div>
-		                  <div field="carModel" name="carModel" width="60" headerAlign="center" header="预存抵扣"></div>
+		                  <div field="cardTimesAmt" name="cardTimesAmt" width="60" headerAlign="center" header="预存抵扣"></div>
 		                  <div field="totalPrefAmt" name="carVin" width="60" headerAlign="center" header="优惠金额"></div>
 		                  <div field="otherAmt" name="guestFullName" width="60" headerAlign="center" header="其他收入"></div>
 		                  <div field="otherCostAmt" name="guestMobile" width="60" headerAlign="center" header="其他支出"></div>
 		                  <div field="balaAmt" name="contactName" width="60" headerAlign="center" header="结算金额"></div>
 	                  </div>
                   </div>
+                  
+                   <div header="其他" headerAlign="center">
+	                  <div property="columns" >
+		                  <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div>
+		                  <div field="carModel" name="carModel" width="160" headerAlign="center" header="车型"></div>
+		                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="VIN码"></div>
+		                  <div field="sureMtDate" name="sureMtDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="维修日期"></div>
+		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="完工日期"></div>
+		                  <div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="结算日期"></div>
+	                  </div>
+                  </div>
+                  
               </div>
           </div>
     </div>

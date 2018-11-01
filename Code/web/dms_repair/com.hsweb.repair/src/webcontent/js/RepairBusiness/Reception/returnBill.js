@@ -1116,11 +1116,18 @@ function saveBatch(){
 			success : function(text) {
 				var returnJson = nui.decode(text);
 				if (returnJson.errCode == "S") {
-					showMsg("保存成功");
+					var p3 = {
+                            interType: "part",
+                            data:{
+                                serviceId: maintain.id||0
+                            }
+                        }
+                        loadDetail(p3);
+					showMsg("保存成功","S");
 													
 				} else {
 					//rpsPartGrid.reject();
-					showMsg(returnJson.errMsg,"w");
+					showMsg(returnJson.errMsg,"W");
 				}
 			}
 		});
@@ -1140,15 +1147,15 @@ function finish(){
 	}*/
     var isSettle = main.isSettle||0;
      if(!main.id){
-        showMsg("请选择保存工单!","S");
+        showMsg("请选择保存工单!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能审核!","S");
+        showMsg("此单已结算,不能审核!","W");
         return;
     }
 	if(main.status==1 || b == 1){
-		showMsg("此单已审核,不能重复审核!","S");
+		showMsg("此单已审核,不能重复审核!","W");
         return;
 	} 
 	var maintain = billForm.getData();
@@ -1179,7 +1186,14 @@ function finish(){
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == "S") {
 				b = 1;
-				showMsg("审核成功");
+				var p3 = {
+                        interType: "part",
+                        data:{
+                            serviceId: maintain.id||0
+                        }
+                    }
+                loadDetail(p3);
+				showMsg("审核成功","S");
 				
 			} else {
 				showMsg(returnJson.errMsg);
@@ -1189,43 +1203,6 @@ function finish(){
 	});
 }
 
-
-//转结算(可能有问题)
-payUrl = webPath + contextPath + "/repair/RepairBusiness/Reception/partBillPay.jsp?token="+token;
-function pay(){	
-	var row = billForm.getData();
-	if(row.isSettle == 1){
-        showMsg("此单已结算!","W");
-        return;
-    }
-	if(row.status != 2){
-		 showMsg("此单未归库，不能结算!","W");
-	     return;
-	}
-	nui.open({
-		url:payUrl,
-		width:"40%",
-		height:"50%",
-		//加载完之后
-		onload: function(){	
-		//把值传递到支付页面
-	    var iframe = this.getIFrameEl();
-	    iframe.contentWindow.getData(row);			
-		},
-	   ondestroy : function(action) {
-		if (action == 'ok') {
-			var iframe = this.getIFrameEl();
-			var data = iframe.contentWindow.getData();
-			supplier = data.supplier;
-			var value = supplier.id;
-			var text = supplier.fullName;
-			var el = nui.get(elId);
-			el.setValue(value);
-			el.setText(text);
-		}
-	}
-	});
-}
 var total = null;
 function onDrawSummaryCell(e){	
 	  var rows = e.data;
@@ -1239,3 +1216,52 @@ function onDrawSummaryCell(e){
 		  }
 	  } 
 }
+//转结算(可能有问题)
+//转结算
+payUrl = webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token="+token;
+function pay(){	
+	var main = billForm.getData();
+	if(main.isSettle == 1){
+        showMsg("此单已结算!","W");
+        return;
+    }
+	if(main.status != 2){
+		 showMsg("此单未归库，不能结算!","W");
+	     return;
+	}
+	nui.open({
+		url:payUrl,
+		width:"100%",
+		height:"100%",
+		//加载完之后
+		onload: function(){	
+			//把值传递到支付页面
+		    var iframe = this.getIFrameEl();
+		    var data = {
+		    	"itemPrefAmt":0,
+		    	"itemSubtotal":0,
+		    	"packagePrefAmt":0,
+		    	"packageSubtotal":0,
+		    	"partPrefAmt":total,
+		    	"partSubtotal":total,
+		    	"mtAmt":total,
+		    	"ycAmt":0
+		    };
+		    var params = {
+		    	"carNo":main.carNo,
+		    	"guestId":main.guestId,
+		    	"guestName":main.guestFullName,
+		    	"serviceId":main.id,
+		    	"data":data
+		    };
+		    iframe.contentWindow.setData(params);			
+		},
+	   ondestroy : function(action) {
+		/*if (action == 'ok') {
+			
+		}*/
+	}
+	});		
+}
+
+

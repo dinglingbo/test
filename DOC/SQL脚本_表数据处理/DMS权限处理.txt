@@ -75,3 +75,26 @@ where c. funcgroupname in ('预约', '工单', '采购', '库存',
 '客户','财务','报表','系统'))n
 on m.funcgroupid = n.funcgroupid
 
+
+
+
+【应用功能】
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

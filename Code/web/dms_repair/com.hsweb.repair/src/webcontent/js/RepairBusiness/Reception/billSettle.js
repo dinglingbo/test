@@ -67,7 +67,7 @@ function getData(data){
 		}
 	});
 	nui.get("rechargeBalaAmt").setValue("￥"+data.rechargeBalaAmt); 
-	netInAmt = data.mtAmt;
+	
 	onetInAmt  = data.mtAmt;
 }
 function setData(params){
@@ -149,8 +149,9 @@ function setData(params){
 				amount = params.data.mtAmt;
 			}else{
 				amount = params.data.mtAmt-params.data.ycAmt;
+				amount = amount.toFixed(2)
 			}
-			 
+			netInAmt = amount;
 			params.data.mtAmt = parseFloat(params.data.mtAmt)+amt;
 			document.getElementById('totalAmt').innerHTML = "￥"+params.data.mtAmt;
 			document.getElementById('totalAmt1').innerHTML = params.data.mtAmt;
@@ -295,12 +296,14 @@ function onChanged() {
 		nui.alert("储值抵扣不能大于储值余额","提示");
 		nui.get("deductible").setValue(0);
 		nui.get("PrefAmt").setValue(0);
+		document.getElementById('amount').innerHTML=netInAmt;
 		return;
 	}
 	if(parseFloat(deductible) + parseFloat(PrefAmt) > netInAmt){
 		nui.alert("储值抵扣加上优惠金额不能大于应收金额","提示");
 		nui.get("deductible").setValue(0);
 		nui.get("PrefAmt").setValue(0);
+		document.getElementById('amount').innerHTML=netInAmt;
 		return;
 	}
 	

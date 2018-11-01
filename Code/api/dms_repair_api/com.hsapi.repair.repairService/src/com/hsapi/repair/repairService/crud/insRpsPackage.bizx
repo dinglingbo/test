@@ -177,9 +177,10 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link32</targetConnections>
     <targetConnections>link38</targetConnections>
-    <location x="-491" y="151"/>
+    <targetConnections>link51</targetConnections>
+    <targetConnections>link53</targetConnections>
+    <location x="-456" y="151"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -192,7 +193,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="-522" y="187"/>
+    <location x="-487" y="187"/>
     <figSize height="17" width="85"/>
     <node>invokePojo1</node>
   </nodes>
@@ -634,7 +635,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link35</targetConnections>
-    <location x="-493" y="233"/>
+    <location x="-458" y="233"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
@@ -647,14 +648,14 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="-495" y="269"/>
+    <location x="-460" y="269"/>
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
-      <targetNode>invokePojo1</targetNode>
+      <targetNode>assign18</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link34" name="link34" displayName="连接线" type="transition">
@@ -725,18 +726,18 @@
     <targetConnections>link36</targetConnections>
     <targetConnections>link55</targetConnections>
     <targetConnections>link70</targetConnections>
-    <location x="-571" y="325"/>
+    <location x="-457" y="325"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="-573" y="361"/>
+    <location x="-459" y="361"/>
     <figSize height="17" width="32"/>
     <node>assign9</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link37</targetConnections>
-    <location x="-494" y="325"/>
+    <location x="-380" y="325"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -746,7 +747,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="-496" y="361"/>
+    <location x="-382" y="361"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
@@ -1519,7 +1520,7 @@
       <targetNode>assign9</targetNode>
     </sourceConnections>
     <targetConnections>link69</targetConnections>
-    <location x="-421" y="233"/>
+    <location x="-386" y="233"/>
     <size height="28" width="28"/>
     <nodeLabel>assign28label</nodeLabel>
     <process:copy>
@@ -1532,7 +1533,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign28label" name="label" nodeType="label">
-    <location x="-426" y="269"/>
+    <location x="-391" y="269"/>
     <figSize height="17" width="39"/>
     <node>assign28</node>
   </nodes>
@@ -1588,6 +1589,50 @@
     <location x="927" y="268"/>
     <figSize height="17" width="118"/>
     <node>subprocess6</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign18" name="赋值18" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link51" name="link51" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign18</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link52" name="link52" displayName="连接线" type="transition">
+      <sourceNode>assign18</sourceNode>
+      <targetNode>assign29</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">pkg/serviceTypeId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link32</targetConnections>
+    <location x="-522" y="151"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign18label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
+    <location x="-527" y="187"/>
+    <figSize height="17" width="39"/>
+    <node>assign18</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign29" name="赋值29" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link53" name="link53" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign29</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <targetConnections>link52</targetConnections>
+    <location x="-523" y="84"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign29label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/serviceTypeId</process:from>
+      <process:to type="query">pkg/serviceTypeId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign29label" name="label" nodeType="label">
+    <location x="-528" y="120"/>
+    <figSize height="17" width="39"/>
+    <node>assign29</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

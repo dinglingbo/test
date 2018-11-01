@@ -437,6 +437,10 @@ function save()
     var rightItemGridData = rightItemGrid.getData();
     var rightPartGridData = rightPartGrid.getData();
 	var data = basicInfoForm.getData();
+	if(data.serviceTypeId==""||data.serviceTypeId==null){
+		showMsg("套餐类型不能为空!",'W');
+		return;
+	}
 	var data1 = basicInfoForm1.getData();
 	data.advisorDeductType=data1.advisorDeductType;
 	data.advisorDeductValue=data1.advisorDeductValue;

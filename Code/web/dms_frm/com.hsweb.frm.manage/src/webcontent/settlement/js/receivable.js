@@ -60,6 +60,7 @@ function onChanged() {
 		nui.get("deductible").setValue(0);
 		deductible=0;
 		nui.get("PrefAmt").setValue(0);
+		document.getElementById('amount').innerHTML=netInAmt;
 		return;
 	}
 	if(parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count) > netInAmt){
@@ -67,10 +68,12 @@ function onChanged() {
 		nui.get("deductible").setValue(0);
 		deductible=0;
 		nui.get("PrefAmt").setValue(0);
+		document.getElementById('amount').innerHTML=netInAmt;
 		return;
 	}
 	
 	var amount = parseFloat(netInAmt) - parseFloat(deductible) - parseFloat(PrefAmt)-parseFloat(count);
+		amount = amount.toFixed(2)
 	document.getElementById('amount').innerHTML = amount;
 
 }

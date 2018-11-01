@@ -8,16 +8,37 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
     <select id="queryRpsInsuranceList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-    	SELECT
-a.id,a.orgid,a.service_code serviceCode,a.guest_id guestId,a.contactor_id contactorId,a.car_id carId,a.car_no carNo,a.mt_advisor_id mtAdvisorId,
-a.enter_kilometers enterKilometers,a.insure_comp_id insureCompId ,a.insure_comp_name insureCompName,a.mt_advisor mtAdvisor,
-a.sale_man_ids saleManIds, a.sale_mans saleMans,a.status,a.begin_date beginDate,a.end_date endDate,a.settle_type_id settleTypeId,
-a.amt,a.rtn_comp_amt rtnCompAmt,a.rtn_guest_amt rtnGuestAmt,a.record_date recordDate,b.car_model carModel,b.vin carVin,
-c.full_name guestName,c.mobile,b.engine_no engineNo,b.car_brand_id carBrandId
+   	 	SELECT
+			a.id,
+			a.orgid,
+			a.service_code serviceCode,
+			a.guest_id guestId,
+			a.contactor_id contactorId,
+			a.car_id carId,
+			a.car_no carNo,
+			a.enter_kilometers enterKilometers,
+			a.insure_comp_id insureCompId,
+			a.insure_comp_name insureCompName,
+			a.sale_man_ids saleManIds,
+			a.sale_mans saleMans,
+			a. STATUS,
+			a.begin_date beginDate,
+			a.end_date endDate,
+			a.settle_type_id settleTypeId,
+			a.amt,
+			a.rtn_comp_amt rtnCompAmt,
+			a.rtn_guest_amt rtnGuestAmt,
+			a.record_date recordDate,
+			b.car_model carModel,
+			b.vin carVin,
+			c.full_name guestName,
+			c.mobile,
+			b.engine_no engineNo,
+			b.car_brand_id carBrandId
 		FROM
 			rps_insurance_main a
-			inner join rpb_car b on (a.car_id = b.id)
-INNER JOIN wb_common.com_guest c on (a.guest_id = c.id)
+		INNER JOIN rpb_car b ON (a.car_id = b.id)
+		INNER JOIN wb_common.com_guest c ON (a.guest_id = c.id)
 		where a.orgid = #orgid#
 		<dynamic>
 		
@@ -34,7 +55,11 @@ INNER JOIN wb_common.com_guest c on (a.guest_id = c.id)
 	        <isNotEmpty prepend="and" property="carNoList">  
 	            (b.car_no in ($carNoList$))
 	        </isNotEmpty>
-
+			
+			<isNotEmpty prepend="and" property="isSettle">  
+	            (a.is_settle = #isSettle#)
+	        </isNotEmpty>
+	        
 			<isNotEmpty prepend="and" property="startDate">  
 	            (date_format(a.record_date,'%Y-%m-%d') &gt;= #startDate#)
 	        </isNotEmpty>

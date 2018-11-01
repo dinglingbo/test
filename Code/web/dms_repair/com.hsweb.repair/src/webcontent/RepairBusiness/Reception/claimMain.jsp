@@ -98,7 +98,7 @@
                   <div type="indexcolumn">序号</div>
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
                   <div field="status" name="status" width="40" headerAlign="center" header="进程"></div>
-                  <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌"></div>
+                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌"></div>
                   <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>
                   <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
                   <div field="serviceTypeId" name="serviceTypeId" width="55" headerAlign="center" header="业务类型"></div>

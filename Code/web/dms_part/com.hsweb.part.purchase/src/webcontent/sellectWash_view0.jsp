@@ -9,8 +9,8 @@
   - Description:
 -->
 <head>
-<title>综合开单查询</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.2"></script>
+<title>洗车开单查询</title>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectWash.js?v=1.0.0"></script>
 <style type="text/css">
 
 .title {
@@ -88,7 +88,7 @@
                editNextOnEnterKey="true"
                onshowrowdetail="onShowRowDetail"
                url="">
-              <div property="columns">
+               <div property="columns">
                   <div type="indexcolumn">序号</div>
                   <div type="checkcolumn" name="checkcolumn" visible="false"></div>
                   <div header="客户信息" headerAlign="center">
@@ -127,7 +127,6 @@
 		                  <div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="结算日期"></div>
 	                  </div>
                   </div>
-                  
               </div>
           </div>
     </div>

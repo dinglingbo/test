@@ -988,12 +988,7 @@
             <isNotEmpty prepend="and" property="isCheck">  
                 (a.is_check= #isCheck#)
             </isNotEmpty>
-            <isNotEmpty prepend="and" property="serviceTypeIdList">  
-                exists(
-					select 1 from rps_service_type g 
-					where a.id = g.service_id and (g.service_type_id in ($serviceTypeIdList$))
-				)
-            </isNotEmpty>
+
             <isNotEmpty prepend="and" property="vin">  
                 (a.car_vin like '%$vin$%')
             </isNotEmpty>

@@ -160,7 +160,7 @@
       <targetNode>assign6</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -188,8 +188,8 @@
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">cond/_expr[1]/orgid</process:to>
+      <process:from type="literal" pattern="reference">01020103</process:from>
+      <process:to type="query">cond/_expr[1]/guestType</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -235,8 +235,8 @@
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">cond/_expr[1]/orgid</process:to>
+      <process:from type="literal" pattern="reference">01020103</process:from>
+      <process:to type="query">cond/_expr[1]/guestType</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
@@ -251,16 +251,16 @@
       <process:to type="query">cond/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">S</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
       <process:to type="query">cond/_expr[3]/tenantId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[3]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">

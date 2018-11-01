@@ -64,7 +64,7 @@
 			a.is_out_bill as isOutBill,
 			a.mt_advisor_id as mtAdvisorId,
 			a.is_disabled as isDisabled,
-			(select GROUP_CONCAT(name) from rps_service_type e 
+			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
 	       where e.service_id = a.id) as serviceTypeName
 		FROM
@@ -144,7 +144,7 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeIdList">  
                 exists(
-					select 1 from rps_service_type g 
+					select 1 from wb_repair.rps_service_type g 
 					where a.id = g.service_id and (g.service_type_id in ($serviceTypeIdList$))
 				)
             </isNotEmpty>
@@ -917,9 +917,9 @@
 			d.total_pref_amt AS totalPrefAmt,
 			d.bala_amt AS balaAmt,
 			d.other_amt AS otherAmt,
-			d.other_cost_amt AS otherCostAmt,
+			d.other_cost_amt AS otherCostAmt
 
-			(select GROUP_CONCAT(name) from rps_service_type e 
+			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
 	       where e.service_id = a.id) as serviceTypeName
 		FROM
@@ -929,7 +929,7 @@
 			inner join rps_settlement d on (a.id =  d.service_id)
 		WHERE 1 = 1
 			and a.orgid = #orgid#
-		<dynamic>
+<dynamic>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
             </isNotEmpty>
@@ -945,8 +945,17 @@
             <isNotEmpty prepend="and" property="mtAuditor">
                 (a.mt_advisor = #mtAuditor#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="status">  
+                (a.status = #status#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="isSettle">  
                 (a.is_settle = #isSettle#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="balaAuditSign">  
+                (a.bala_audit_sign = #balaAuditSign#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="statusList">  
+                (a.status in ($statusList$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carNoEqual">  
                 (a.car_no = #carNoEqual#)
@@ -988,17 +997,25 @@
             <isNotEmpty prepend="and" property="isCheck">  
                 (a.is_check= #isCheck#)
             </isNotEmpty>
-
+            <isNotEmpty prepend="and" property="serviceTypeIdList">  
+                exists(
+					select 1 from wb_repair.rps_service_type g 
+					where a.id = g.service_id and (g.service_type_id in ($serviceTypeIdList$))
+				)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="vin">  
                 (a.car_vin like '%$vin$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="tel">  
                 (c.tel like '%$tel$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">  
+                (c.mobile like '%$mobile$%')
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
                 (c.full_name like '%$name$%')
             </isNotEmpty>
-        </dynamic>  
+        </dynamic> 
         order by a.modify_date desc
 	</select>
 	

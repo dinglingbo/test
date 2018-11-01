@@ -154,6 +154,9 @@
             <isNotEmpty prepend="and" property="tel">  
                 (c.tel like '%$tel$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">  
+                (c.mobile like '%$mobile$%')
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
                 (c.full_name like '%$name$%')
             </isNotEmpty>
@@ -626,6 +629,7 @@
 			a.modify_date as modifyDate, 
 			a.recorder as recorder, 
 			a.record_date as recordDate,
+			a.out_date as outDate,
 			a.plan_finish_date as planFinishDate,
 			b.insure_comp_name as insureCompName,
 			a.package_amt as packageAmt,

@@ -2055,17 +2055,21 @@ function addImportRtnList(partList,msg){
 function onExport(){
 	
 	var main=basicInfoForm.getData();
-	var changes = rightGrid.getChanges();
-	if(changes.length>0){
-        var len = changes.length;
-        var row = changes[0];
-        if(len == 1 && !row.partId){
-        }else{
-		  showMsg("请先保存数据！!","W");
-          return;  
-        }
-	}
+//	var changes = rightGrid.getChanges();
+//	if(changes.length>0){
+//        var len = changes.length;
+//        var row = changes[0];
+//        if(len == 1 && !row.partId){
+//        }else{
+//		  showMsg("请先保存数据！!","W");
+//          return;  
+//        }
+//	}
 	
+	if(main.auditSign==0){
+		showMsg("清先保存数据!","W");
+		return;
+	}
 	var detail = rightGrid.getData();
 	
 	for(var i=0;i<detail.length;i++){

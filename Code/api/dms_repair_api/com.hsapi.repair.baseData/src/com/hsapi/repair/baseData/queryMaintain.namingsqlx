@@ -16,7 +16,7 @@
 			c.short_name as guestShortName,
 			b.car_model as carModel,
 			a.car_vin as carVin,
-			a.car_no as carNO,
+			a.car_no as carNo,
 			c.mobile as guestTel,
 			b.car_brand_id as carBrandId,
 			a.guest_id as guestId,
@@ -83,6 +83,9 @@
             <isNotEmpty prepend="and" property="tel">  
                 (c.tel like '%$tel$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">  
+                (c.moblie like '%$mobile$%')
+            </isNotEmpty
             <isNotEmpty prepend="and" property="name">  
                 (c.full_name like '%$name$%')
             </isNotEmpty>
@@ -103,7 +106,7 @@
 			c.short_name as guestShortName,
 			b.car_model as carModel,
 			a.car_vin as carVin,
-			a.car_no as carNO,
+			a.car_no as carNo,
 			c.mobile as guestTel,
 			b.car_brand_id as carBrandId,
 			a.guest_id as guestId,

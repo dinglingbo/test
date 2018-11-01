@@ -9,8 +9,8 @@
   - Description:
 -->
 <head>
-<title>销售开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnMain.js?v=1.2.1"></script>
+<title>退货开单查询</title>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnQuery.js?v=1.0.2"></script>
 <style type="text/css">
 
 .title {
@@ -58,14 +58,20 @@
                     <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)">待结算</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)">已结算</a> -->
                 	
-                    <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">草稿</a>
-                    <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
-                        <li iconCls="" onclick="quickSearch(0)" id="type0">草稿</li>
-                        <li iconCls="" onclick="quickSearch(1)" id="type0">待归库</li>
-                        <li iconCls="" onclick="quickSearch(2)" id="type1">已归库</li>
-                        <li iconCls="" onclick="quickSearch(3)" id="type2">待结算</li>
-                        <li iconCls="" onclick="quickSearch(4)" id="type0">已结算</li>
-                    </ul>
+                   <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+		                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+		                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+		                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+		                    <li class="separator"></li>
+		                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+		                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+		                    <li class="separator"></li>
+		                    <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+		                    <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+		                    <li class="separator"></li>
+		                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+		                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+		                </ul>
                     
                     <span class="separator"></span>
                     <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
@@ -75,11 +81,11 @@
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <span class="separator"></span>
-                    <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="addBtn" ><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="editSell()" id="editBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="finish"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="sellBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
+<!--                     <span class="separator"></span> -->
+<!--                     <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="addBtn" ><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> -->
+<!--                     <a class="nui-button" iconCls="" plain="true" onclick="editSell()" id="editBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a> -->
+<!--                     <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="finish"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a> -->
+<!--                     <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="sellBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;转结算</a> -->
                 </td>
             </tr>
         </table>
@@ -104,15 +110,15 @@
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
                   <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>
                   <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
-                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌" visible="false"></div>           
+                  <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌" visible="false"></div>           
                   <div field="carModel" name="carModel" width="180" headerAlign="center" header="车型" visible="false"></div>
                   <div field="partAmt" name="partAmt" width="40" headerAlign="center" header="金额"></div>
-                  <!-- <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div> -->
+<!--                   <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div> -->
                   <div field="recorder" name="recorder" width="50" headerAlign="center" header="销售员"></div>
 	              <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
-	              <!-- <div field="status" name="status" width="50" headerAlign="center" header="状态"></div> -->
+<!-- 	              <div field="status" name="status" width="50" headerAlign="center" header="状态"></div> -->
 	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
-	              <div field="outDate" name="outDate" width="100" headerAlign="center" header="离店日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+	               <div field="outDate" name="outDate" width="100" headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
 	              <div field="remark" name="carModel" width="100" headerAlign="center" header="备注" ></div>
                  </div>
          </div>

@@ -204,8 +204,8 @@ function addOrEditCustomer(guest)
     {
         title = "修改客户资料";
         nui.open({
-            url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
-            title: title, width: 560, height: 570,
+            url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditGuest.flow?token="+token,
+            title: title, width: 750, height: 570,
             onload: function () {
                 var iframe = this.getIFrameEl();
                 var params = {};

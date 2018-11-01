@@ -296,6 +296,7 @@ function WindowrepairHistory(){
 				//savepartOutRtn(row,childdata);
                 //savePartOut();     //如果点击“确定”
                 //CloseWindow("close");
+                
             }
         }
 

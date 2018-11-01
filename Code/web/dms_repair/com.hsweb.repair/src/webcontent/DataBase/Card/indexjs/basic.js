@@ -1715,11 +1715,11 @@ $(function() {
 	getWxCarBrandList();
 	var CAR_brand = JSON.parse(sessionStorage.getItem("WxCarBrandList"));
 
-	for (let key in CAR_brand) {
+	/*for (let key in CAR_brand) {
 		if (CAR_brand[key].pycode) {
 			CAR_BRAND[CAR_brand[key].pycode]  =  CAR_brand[key].namecn;
 		}
-	}
+	}*/
 	
 });
 

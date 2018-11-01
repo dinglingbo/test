@@ -262,10 +262,10 @@ function getSaveData(){
 var queryUrl = baseUrl+"com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext";
 function setData(data)
 {
-	
 	var carNo = null;
 	var guestFullName = null;
 	if(data.guest){
+		resultGuest.guestId=data.guest.guestId;
 		carNo =data.guest.carNo;
 	    guestFullName =data.guest.guestFullName;
 	}
@@ -288,39 +288,9 @@ function setData(data)
                         basicInfoForm.setData(data.guest);
                         contactList = data.contactList||[{}];
                         carList = data.carList||[{}];
-                        var i;
-                        for(i=0;i<carList.length;i++)
-                        {
-                        	if(carNo==carList[i].carNo){
-                        		
-                        		carInfoFrom.setData(carList[i]);
-                        	}
-                            //nui.get("carModelId").setText(carList[0].carModel);
-                            carList[i] = carInfoFrom.getData();
-                            //carList[i].carModel = nui.get("carModelId").getText();
-                            carHash[carList[i].id] = JSON.stringify(carList[i]);
-                        }
-                        //nui.get("carModelId").setText(carList[0].carModel);
-                        contactInfoForm.setData(contactList[0]);
-                        for(i=0;i<contactList.length;i++)
-                        {
-                        	if(guestFullName==contactList[i].name){
-                        		contactInfoForm.setData(contactList[i]);
-                        		count = 1;
-                        	}
-                        	
-                            contactList[i] = contactInfoForm.getData();
-                            contactHash[contactList[i].id] = JSON.stringify(contactList[i]);
-                        }
-                        if(count==0){
-                        	
-                        	contactInfoForm.setData(contactList[0]);
-                        }
-                        setCarByIdx(0);
-                        setContactByIdx(0);
-                        
-                        provice.doValueChanged();
-                        cityId.doValueChanged();
+                        cardatagrid.addRows(carList);
+                        contactdatagrid.addRows(contactList);
+
                     }
                     else{
                         showMsg("获取客户信息失败", "E");
@@ -437,7 +407,8 @@ function onChanged(id){
 }
 
 function addCar() {
-	if(resultGuest.guestId==null){
+	var id = basicInfoForm.getData().id;
+	if(id==""||id==null){
 		nui.alert("请先保存上面的客户信息","提示");
 		return;
 	}
@@ -446,7 +417,8 @@ function addCar() {
 }
 
 function addContact() {
-	if(resultGuest.guestId==null){
+	var id = basicInfoForm.getData().id;
+	if(id==""||id==null){
 		nui.alert("请先保存上面的客户信息","提示");
 		return;
 	}
@@ -456,6 +428,7 @@ function addContact() {
 }
 
 function addCarList(){
+	var guest = {};
 	nui.get("carNo").enable();
 	nui.get("vin").enable();
 	var updCarList=[];
@@ -468,7 +441,7 @@ function addCarList(){
 		return;
 	}else{
 
-		var guest = basicInfoForm.getData();
+		 guest = basicInfoForm.getData();
     	guest.id = resultGuest.guestId;
     for(key in basicRequiredField){
         if(!nui.get(key).value){

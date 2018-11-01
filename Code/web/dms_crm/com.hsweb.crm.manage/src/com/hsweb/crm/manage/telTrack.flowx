@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="telTrack.flowx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="电话销售" title="Administrator&#x9;18-11-1 下午4:02">
+    <location x="80" y="20"/>
+    <size height="100" width="197"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tActionLink" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0">
       <sourceNode>start0</sourceNode>

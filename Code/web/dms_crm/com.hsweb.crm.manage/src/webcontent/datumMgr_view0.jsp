@@ -11,7 +11,7 @@
 <head>
 <title>资料管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.2"></script>
 </head>
 <body>
 
@@ -76,7 +76,7 @@
                 <a class="nui-button"  plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button"  plain="true" onclick="updateField('visitStatus', '060701')" id="add" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;设为继续跟踪</a>
                 <a class="nui-button"  plain="true" onclick="updateField('visitStatus', '060702')" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;设为结束跟踪</a>
-                <a class="nui-button"  plain="true" onclick="editGuestInfo()" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;资料修改</a>
+                
                 
                 <li class="separator"></li>
                 <label style="font-family:Verdana;">分配给：</label>

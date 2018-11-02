@@ -272,11 +272,12 @@ function out(){
 					b = 1;
 					showMsg("出库成功");
 					//表示退货单
-				    gsparams.billTypeId = 5;
+				    /*gsparams.billTypeId = 5;
 				    mainGrid.load({
 				        token:token,
 				        params: gsparams
-				    });
+				    });*/
+					quickSearch(2);
 				} else {
 					showMsg("出库失败","W");
 				}
@@ -383,11 +384,12 @@ function finish(){
 			if (returnJson.errCode == "S") {
 				showMsg("审核成功");
 				var gsparams = {};
-				gsparams.billTypeId = 5;
+				/*gsparams.billTypeId = 5;
 			    mainGrid.load({
 			        token:token,
 			        params: gsparams
-			    });
+			    });*/
+				quickSearch(1);
 				
 			} else {
 				showMsg(returnJson.errMsg,"W");

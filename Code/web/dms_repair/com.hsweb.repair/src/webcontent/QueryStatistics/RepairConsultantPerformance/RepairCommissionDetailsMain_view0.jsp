@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>综合开单查询</title>
+<title>维修提成明细</title>
 <script src="<%=webPath + contextPath%>/repair/js/RepairConsultantPerformance/RepairCommissionDetailsMain.js?v=1.0.0"></script>
 <style type="text/css">
 
@@ -66,7 +66,16 @@
                            showOkButton="false"
                            showClearButton="false"/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                   
+                   <input name="carBrandId"
+			                id="carBrandId" visible="false"
+			                class="nui-combobox"
+			                textField="name"
+			                valueField="id"/>
+                   <input name="serviceTypeId"
+			                id="serviceTypeId" visible="false"
+			                class="nui-combobox"
+			                textField="name"
+			                valueField="id"/>
                 </td>
             </tr>
         </table>
@@ -99,7 +108,7 @@
 		                  <div field="guestFullName" name="guestFullName" width="60" headerAlign="center" header="客户姓名"></div>
 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div>
 		                  <div field="mtAdvisor" name="mtAdvisor" width="60" headerAlign="center" header="服务顾问"></div>
-		                  <div field="serviceTypeName" name="serviceTypeName" width="60" headerAlign="center" header="业务类型"></div> 
+		                  <div field="serviceTypeId" name="serviceTypeId" width="60" headerAlign="center" header="业务类型"></div> 
 		                  <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
 		                  <div field="sureMtDate" name="sureMtDate" width="60" headerAlign="center" header="维修日期" dateFormat="yyyy-MM-dd"></div>
 		                  <div field="outDate" name="outDate" width="60" headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd"></div>

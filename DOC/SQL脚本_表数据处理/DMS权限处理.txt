@@ -75,3 +75,38 @@ where c. funcgroupname in ('预约', '工单', '采购', '库存',
 '客户','财务','报表','系统'))n
 on m.funcgroupid = n.funcgroupid
 
+
+
+
+【应用功能】
+
+
+1、查询应用功能菜单结构
+
+SELECT * from app_funcgroup
+
+
+2、查询应用功能客户下的菜单结构
+
+SELECT * 
+from app_funcgroup a
+inner join app_funcgroup b 
+on a.parentgroup = b.funcgroupid
+where ifnull(a.parentgroup,'') != '' and b.funcgroupname = '客户'
+
+3、删除正式环境下的客户下的菜单结构，按测试环境的结构新增
+
+4、
+
+
+
+
+
+
+
+
+
+
+
+
+

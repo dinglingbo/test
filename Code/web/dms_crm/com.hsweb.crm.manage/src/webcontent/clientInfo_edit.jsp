@@ -20,9 +20,9 @@
         <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:95%;" plain="false"
              onactivechanged="">
             <!--客户信息-->
-            <%@include file="../telsell/clientInfo_tab1.jsp" %>
+            <%@include file="../manage/clientInfo_tab1.jsp" %>
             <!--车辆信息-->
-            <%@include file="../telsell/clientInfo_tab2.jsp" %>
+            <%@include file="../manage/clientInfo_tab2.jsp" %>
         </div>
 
         <div style="text-align:center;padding:10px;">

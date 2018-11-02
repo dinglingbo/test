@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="selectCompensation.flowx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
+<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="visitMain" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tActionLink" id="link0" name="link0" lineType="reference" isDefault="true" type="action" actionName="action0">
       <sourceNode>start0</sourceNode>
@@ -25,24 +25,24 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="selectCompensation_view0.jsp" type="view" contextPath="" method="forward" uri="/purchasePart/selectCompensation_view0.jsp">
+  <nodes xsi:type="process:tView" description="" id="view0" name="visitMain" displayName="visitMain.jsp" type="view" contextPath="" contributionName="com.hsweb.crm.manage" method="forward" uri="/manage/visitMgr/visitMain.jsp">
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="257" y="150"/>
+    <location x="255" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>view0label</nodeLabel>
     <process:inputParameters/>
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
-    <location x="256" y="186"/>
-    <figSize height="17" width="25"/>
+    <location x="240" y="186"/>
+    <figSize height="17" width="52"/>
     <node>view0</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
-  <process:info author="Administrator" createTime="2018-10-31 18:45:44" date="2018-10-31Z" description="" name="selectCompensation" version="7.0.0.0"/>
+  <process:info author="Administrator" createTime="2018-10-10 14:45:03" date="2018-10-10Z" description="" name="investAudit" version="7.0.0.0"/>
 </process:tPageFlow>

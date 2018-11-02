@@ -419,17 +419,6 @@ function add(){
     $("#servieIdEl").html("");
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
-    //detailGrid.setData(detailData);
-    /*var data = detailGrid.getData();
-    for(var i = 0;i<data.length;i++){
-    	data[i].amt = "";
-    	data[i].rtnCompRate = "";
-    	data[i].rtnGuestRate = "";
-    }
-    detailGrid.setData(data);
-    if(data==null){
-    	detailGrid.setData(detailData);
-    }*/
     detailGrid.setData([]);
     detailGrid.setData(detailData);
 }

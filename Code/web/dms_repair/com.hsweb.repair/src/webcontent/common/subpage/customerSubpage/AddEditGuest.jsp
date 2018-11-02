@@ -12,7 +12,7 @@
 
             <head>
                 <title>新增客户档案</title>
-                <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.2"></script>
+                <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.5"></script>
                 <style type="text/css">
                     table {
                         font-size: 12px;
@@ -32,8 +32,8 @@
             <body>
                 <div title="联系人信息" class="nui-window" id="contactview" style="width: 100%">
                     <div class="form" id="contactInfoForm">
-                        <input class="nui-hidden" name="id" />
-                        <input class="nui-hidden" name="guestId" />
+                        <input class="nui-hidden" name="id" id="id" />
+                        <input class="nui-hidden" name="guestId" id="guestId"/>
                         <table class="nui-form-table" style="width:100%;">
                             <tr>
                                 <td class="form_label required">

@@ -282,8 +282,8 @@
       <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">cond/_expr[2]/orgid</process:to>
+      <process:from type="literal" pattern="reference">01020103</process:from>
+      <process:to type="query">cond/_expr[2]/guestType</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>

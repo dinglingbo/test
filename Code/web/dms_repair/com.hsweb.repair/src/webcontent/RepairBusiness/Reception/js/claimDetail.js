@@ -3433,6 +3433,8 @@ function newCheckMain() {
     var params = {};
     params = { 
         id:data.id,
+        actionType:"new",
+        isCheckMain:"N",//是否是直接开单
         row: rdata
     };
 

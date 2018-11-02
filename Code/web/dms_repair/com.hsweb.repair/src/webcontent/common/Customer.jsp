@@ -58,7 +58,7 @@ table {
          style="width:100%;height:100%"
          pageSize="20"
          dataField="list"
-         allowSortColumn="true">
+         allowSortColumn="true" totalField="page.count">
         <div property="columns">
             <div type="indexcolumn" width="30">序号</div>
             <div header="联系人" headerAlign="center">

@@ -155,7 +155,7 @@ function OnrpMainGridCellBeginEdit(e){
 
     if (column.field == "balaTypeCode") {
         var str = "accountId="+row.balaAccountId;
-        var url = "com.hsapi.frm.setting.queryAccountSettleType.biz.ext?" + str;
+        var url = baseUrl+"com.hsapi.frm.setting.queryAccountSettleType.biz.ext?" + str;
         editor.setUrl(url);
     }
 }

@@ -58,6 +58,8 @@
             <isNotEmpty prepend="and" property="carNo">  
                 (a.car_no like '%$carNo$%')
             </isNotEmpty>
+            
+            
             <!--进厂日期 -->
             <isNotEmpty prepend="and" property="sEnterDate">  
                 (a.enter_date &gt;= #sEnterDate#)
@@ -85,7 +87,7 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="mobile">  
                 (c.moblie like '%$mobile$%')
-            </isNotEmpty
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="name">  
                 (c.full_name like '%$name$%')
             </isNotEmpty>

@@ -1276,7 +1276,16 @@
 		 </isNotEmpty>  	
 			
     </select>
-    
+    <select id="queryPopulation" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+    	    a.member_group_id memberGroupId,
+			count(*) population
+		FROM
+			wb_common.com_member a
+         where 1=1
+         GROUP BY a.member_group_id	
+			
+    </select>
     
     
 </sqlMap>

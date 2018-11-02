@@ -163,7 +163,7 @@
 							style="width: 100%; height: 100%;" showPager="true"
 							dataField="detailList" idField="detailId" ondrawcell="onDrawCell"
 							sortMode="client" allowCellSelect="true" allowCellEdit="true"
-							url="" multiSelect="true" showModified="false" pageSize="100"
+							url="" multiSelect="false" showModified="false" pageSize="100"
 							sizeList="[100,500,1000]" onshowrowdetail="onShowRowDetail"
 							oncellclick="onRGridbeforeselect"
 							onheadercellclick="onRGridheadercellclick"

@@ -71,38 +71,41 @@
                             <input class="nui-textbox" id="contactorId" name="contactorId" visible="false" />                          
                         </td>
                         <td class="form_label">
-                            <label>品牌：</label>
-                        </td>
-                        <td>
-                            <input class="nui-combobox" id="carBrandId" name="carBrandId" allowInput="true" valueField="id" textField="name" onvaluechanged="onCarBrandChange" required="true"
-                            />
-                        </td>
-                        <td class="form_label">
-                            <label>车系：</label>
-                        </td>
-                        <td>
-                            <input class="nui-combobox" id="carSeriesId" name="carSeriesId" allowInput="true" textField="name" valueField="id" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="form_label">
-                            <label>客户名称：</label>
+                            <label><font color="red">客户名称：</font></label>
                         </td>
                         <td>
                             <input class="nui-textbox" id="contactorName" name="contactorName" required="true"/>
                         </td>
                         <td class="form_label">
-                            <label>联系电话：</label>
+                            <label><font color="red">联系电话：</font></label>
                         </td>
                         <td>
                             <input class="nui-textbox" name="contactorTel" id="contactorTel" required="true"/>
                         </td>
+
+                    </tr>
+                    <tr>
+                        <td  class="form_label">
+                            <label><font color="red">预计来厂：</font></label>
+                        </td>
+                        <td>
+                            <input class="nui-combobox" id="timeStart" name="timeStart" textField="name"  ondrawdate="onDrawDate"
+                                valueField="id" allowInput="false"  onValuechanged="setTimeChange" >
+                        </td>
+
                         <td class="form_label">
-                            <label>业务类型：</label>
+                            <label><font color="red">业务类型：</font></label>
                         </td>
                         <td>
                             <input class="nui-combobox" id="serviceTypeId" name="serviceTypeId" textField="name" valueField="id" required="true"/>
 
+                        </td>
+                        <td class="form_label">
+                            <label><font color="red">服务顾问：</font></label>
+                        </td>
+                        <td>
+                            <input class="nui-combobox" id="mtAdvisorId" name="mtAdvisorId" value="" textField="empName" valueField="empId" onvaluechanged="onMTAdvisorIdChange" required="true"/>
+                            <input class="nui-textbox" id="mtAdvisor" name="mtAdvisor" visible="false" />
                         </td>
                     </tr>
                     <tr>
@@ -112,28 +115,25 @@
                         <td>
                             <input class="nui-combobox" name="prebookCategory" id="prebookCategory" textField="name" valueField="id" required="true"/>
                         </td>
-                        <td class="form_label">
-                            <label>服务顾问：</label>
+
+                                                <td class="form_label">
+                            <label>品牌：</label>
                         </td>
                         <td>
-                            <input class="nui-combobox" id="mtAdvisorId" name="mtAdvisorId" value="" textField="empName" valueField="empId" onvaluechanged="onMTAdvisorIdChange" required="true"/>
-                            <input class="nui-textbox" id="mtAdvisor" name="mtAdvisor" visible="false" />
+                            <input class="nui-combobox" id="carBrandId" name="carBrandId" allowInput="true" valueField="id" textField="name" onvaluechanged="onCarBrandChange" required="true" />
+                        </td>
+                        <td class="form_label">
+                            <label>车系：</label>
+                        </td>
+                        <td>
+                            <input class="nui-combobox" id="carSeriesId" name="carSeriesId" allowInput="true" textField="name" valueField="id" />
                         </td>
                         <td>
                             <input class="nui-textbox" name="id" id="id" visible="false" />
                         </td>
                     </tr>
                     <tr>
-                        <td  class="form_label">
-                            <label>预计来厂：</label>
-                        </td>
-                        <td>
-                            <!-- <input id="predictComeDate"  name="predictComeDate" width="150px" class="nui-datepicker" format="yyyy-MM-dd H:mm" timeFormat="H:mm" showTime="true" 
-                                allowInput="false" showTodayButton="false" ondrawdate="onDrawDate" viewDate="new Date()" nullValue="null" showOkButton="true"
-                                showClearButton="false" required="true"/> -->
-                            <input class="nui-combobox" id="timeStart" name="timeStart" textField="name"  ondrawdate="onDrawDate"
-                                valueField="id" allowInput="false"  onValuechanged="setTimeChange" >
-                        </td>
+
                     </tr>
                     <tr>
                         <td  class="form_label">
@@ -149,7 +149,7 @@
                             <label>客户描述：</label>
                         </td>
                         <td colspan="5">
-                            <textarea class="nui-textarea" width="100%" height="180px" id="faultDesc" name="faultDesc"></textarea>
+                            <textarea class="nui-textarea" width="100%" height="130px" id="faultDesc" name="faultDesc"></textarea>
                         </td>
                     </tr>
                 </table>

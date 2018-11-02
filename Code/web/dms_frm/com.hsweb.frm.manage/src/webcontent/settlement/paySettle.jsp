@@ -150,7 +150,7 @@
                      allowCellSelect="true"
                      allowCellEdit="true"
                      url=""
-                     multiSelect="true"
+                     multiSelect="false"
                      showModified="false"
                      pageSize="10000"
                      sizeList="[1000,5000,10000]"

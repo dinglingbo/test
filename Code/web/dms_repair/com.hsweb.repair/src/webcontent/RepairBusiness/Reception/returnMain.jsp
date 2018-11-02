@@ -107,10 +107,9 @@
                   <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌" visible="false"></div>           
                   <div field="carModel" name="carModel" width="180" headerAlign="center" header="车型" visible="false"></div>
                   <div field="partAmt" name="partAmt" width="40" headerAlign="center" header="金额"></div>
-                  <!-- <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div> -->
                   <div field="recorder" name="recorder" width="50" headerAlign="center" header="销售员"></div>
 	              <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
-	              <!-- <div field="status" name="status" width="50" headerAlign="center" header="状态"></div> -->
+	              <div field="status" name="status" width="50" headerAlign="center" header="状态"></div> 
 	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
 	              <div field="outDate" name="outDate" width="100" headerAlign="center" header="离店日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
 	              <div field="remark" name="carModel" width="100" headerAlign="center" header="备注" ></div>

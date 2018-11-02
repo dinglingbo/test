@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修顾问业绩报表</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairConsultantPerformance/RepairConsultantPerformanceMain.js?v=1.0.1"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairConsultantPerformance/RepairConsultantPerformanceMainF.js?v=1.0.2"></script>
 <style type="text/css">
 .form_label {
 	width: 72px;
@@ -32,34 +32,46 @@
 			<tr>
 				<td>
 					<label style="font-family:Verdana;">快速查询：</label>
-					<a class="nui-menubutton" plain="true" iconCls="icon-date" id="searchByDateBtn" menu="#popupMenu" >本日</a>
-					<ul id="popupMenu" class="nui-menu" style="display:none;">
-						<li iconCls="icon-date" onclick="quickSearch(0)">本日</li>
-						<li iconCls="icon-date" onclick="quickSearch(1)">昨日</li>
-						<li iconCls="icon-date" onclick="quickSearch(2)">本周</li>
-						<li iconCls="icon-date" onclick="quickSearch(3)">上周</li>
-						<li iconCls="icon-date" onclick="quickSearch(4)">本月</li>
-						<li iconCls="icon-date" onclick="quickSearch(5)">上月</li>
-						<li iconCls="icon-date" onclick="quickSearch(6)">本年</li>
-						<li iconCls="icon-date" onclick="quickSearch(7)">上年</li>
-					</ul>
+	                <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">本日</a>
+	                <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+	                   <li iconCls="" onclick="quickSearch(0)">本日</li>
+						<li iconCls="" onclick="quickSearch(1)">昨日</li>
+						<li iconCls="" onclick="quickSearch(2)">本周</li>
+						<li iconCls="" onclick="quickSearch(3)">上周</li>
+						<li iconCls="" onclick="quickSearch(4)">本月</li>
+						<li iconCls="" onclick="quickSearch(5)">上月</li>
+						<!-- <li iconCls="" onclick="quickSearch(6)">本年</li>
+						<li iconCls="" onclick="quickSearch(7)">上年</li> -->
+	                </ul>
 					<span class="separator"></span>
-					<a class="nui-button" onclick="advancedSearch()" plain="true">更多</a>
+					 <!-- <a class="nui-button" onclick="advancedSearch()" plain="true">更多</a>  -->
+                  <label>服务顾问：</label>
+                  <input name="mtAdvisorId"
+                         id="mtAdvisorId"
+                         class="nui-combobox width1"
+                         textField="empName"
+                         valueField="empId"
+                         emptyText="请选择..."
+                         url=""
+                         allowInput="true"
+                         showNullItem="false"
+                        
+                         valueFromSelect="true"
+                         nullItemText="请选择..."/>
+                         
+					<!-- <label class="form_label" >业务类型</label> -->
+					<input  property="editor" enabled="true" dataField="servieTypeList" 
+                     class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
+                     url=""  emptyText=""  vtype="required" id = "serviceTypeId" visible="false"/>
+				  
+				    <label class="form_label">结算日期&nbsp;从：</label>
+	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
+	                <label class="form_label">至：</label>
+	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
+                    <a class="nui-button" iconCls="" plain="true" onclick="query"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 					<span class="separator"></span>
-					<label style="font-family:Verdana;">快速分析：</label>
-					<a class="nui-menubutton" plain="true" iconCls="icon-date" id="analysisByDateBtn" menu="#popupMenu1" >按维修顾问</a>
-					<ul id="popupMenu1" class="nui-menu" style="display:none;">
-						<li iconCls="icon-date" onclick="quickSearch1(1)">按维修顾问</li>
-						<li iconCls="icon-date" onclick="quickSearch1(0)">按分店</li>
-						<li iconCls="icon-date" onclick="quickSearch1(2)">按品牌</li>
-						<li iconCls="icon-date" onclick="quickSearch1(3)">按客户来源</li>
-						<li iconCls="icon-date" onclick="quickSearch1(4)">按业务类型</li>
-						<li iconCls="icon-date" onclick="quickSearch1(5)">按维修类型</li>
-						<li iconCls="icon-date" onclick="quickSearch1(6)">按来厂次数</li>
-					</ul>
-					<span class="separator"></span>
-					<a class="nui-button" plain="true" iconCls="icon-print" onclick="print()">打印</a>
-					<a class="nui-button" plain="true" iconCls="icon-expand" onclick="export()">导出</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="print()"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="export()"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</span>
 				</td>
 			</tr>
 		</table>
@@ -69,7 +81,7 @@
 	<div id="datagrid1" class="nui-datagrid" style="width: 100%; height: 100%;"
 		 dataField="list"
 		 pageSize="20"
-		 showPager="false"
+		 showPager="true"
 		 totalCount="page.count" allowSortColumn="true" virtualScroll="true" virtualColumns="true"
 		 frozenStartColumn="0" >
 		<div property="columns">
@@ -82,23 +94,23 @@
 			
 			<div header="基本信息" headerAlign="center">
 				<div property="columns">
-				    <div field="settlementGeust" headerAlign="center" allowSort="true" visible="true" width="90px" align="right">服务顾问</div>
-					<div field="settlementGeust" headerAlign="center" allowSort="true" visible="true" width="70px" align="right">首次到店车辆数</div>
-					<div field="settlementGeust" headerAlign="center" allowSort="true" visible="true" width="70px" align="right">结算车次</div>
+				    <div field="mtAdvisor" headerAlign="center" allowSort="true" visible="true" width="90px" align="right">服务顾问</div>
+					<div field="compTimes" headerAlign="center" allowSort="true" visible="true" width="70px" align="right">首次到店车辆数</div>
+					<div field="times" headerAlign="center" allowSort="true" visible="true" width="70px" align="right">结算车次</div>
 				</div>
 			</div>
 			<div header="维修金额信息" headerAlign="center">
 				<div property="columns">
-					<div field="itemTotalAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">套餐小计</div>
-					<div field="itemFreeAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">工时小计</div>
-					<div field="itemAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">配件小计</div>
-					<div field="itemSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">实营金额</div>
+					<div field="packageSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">套餐小计</div>
+					<div field="itemSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">工时小计</div>
+					<div field="partSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">配件小计</div>
+					<div field="itemSubtot" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">实营金额</div>
 				</div>
 			</div>
 			<div header="配件成本信息" headerAlign="center">
 				<div property="columns">
-					<div field="partTotalAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">销售金额</div>
-					<div field="partFreeAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">配件成本</div>
+					<div field="partSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">销售金额</div>
+					<div field="partTrueCost" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">配件成本</div>
 					<div field="partAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">配件销售加点</div>
 				</div>
 			</div>
@@ -117,8 +129,8 @@
 			<div header="其他信息" headerAlign="center">
 				<div property="columns">
 					<div field="mtAmt" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">整单优惠率</div>
-					<div field="partManageExp" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">单车产值</div>
-				    <div field="partManageExp" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">预存抵扣</div>
+					<div field="partManageExp" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">单客值</div>
+				    <div field="cardTimesAmt" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">预存抵扣</div>
 				</div>
 			</div>
 		</div>
@@ -153,26 +165,46 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="form_label">业务类型:</td>
+				<!-- <td class="form_label">业务类型:</td>
 				<td colspan="1">
 					<input class="nui-combobox" name="serviceTypeId"
 						   valueField="customid" textField="name"
 						   id="serviceTypeId"/>
+				    <input  property="editor" enabled="true" dataField="servieTypeList" 
+                     class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
+                     url="" onvaluechanged="onValueChangedItemTypeId" emptyText=""  vtype="required" id = "serviceTypeId"/> 
 				</td>
 				<td class="form_label">维修顾问:</td>
 				<td colspan="1">
 					<input class="nui-combobox" emptyText="请选择..." id="mtAdvisorId-ad" name="mtAdvisorId" valueField="empId" textField="empName"/>
 				</td>
-			</tr>
-			<tr>
-				<td class="form_label">客户:</td>
+				<td class="title required">
+                      <label>服务顾问：</label>
+                  </td>
+                  <td>
+                      <input name="mtAdvisorId"
+                             id="mtAdvisorId"
+                             class="nui-combobox width1"
+                             textField="empName"
+                             valueField="empId"
+                             emptyText="请选择..."
+                             url=""
+                             allowInput="true"
+                             showNullItem="false"
+                             width="100%"
+                             valueFromSelect="true"
+                             nullItemText="请选择..."/>
+                </td>
+			</tr> -->
+			<!-- <tr>
+				<td class="form_label" >客户:</td>
 				<td colspan="3">
 					<input class="nui-buttonedit" emptyText="请输入..."
 						   style="width: 100%"
 						   showClose="false" onbuttonclick="selectCustomer('guestId-ad')" id="guestId-ad" name="guestId"
 						   allowInput="false"/>
 				</td>
-			</tr>
+			</tr>  -->
 			<tr>
 				<td class="form_label">工单号:</td>
 				<td colspan="3">

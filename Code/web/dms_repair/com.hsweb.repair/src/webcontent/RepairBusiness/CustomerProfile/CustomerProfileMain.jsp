@@ -12,7 +12,7 @@
 <head>
 <title>客户档案</title>
 <script
-	src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.4.6"></script>
+	src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.4.8"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -40,7 +40,7 @@ table {
 					<a class="nui-button" plain="true" onclick="quickSearch(6)" id="type6">上月流失回厂</a></td>
 				</tr>
 				<tr>
-					<td><label>车牌号</label> <input class="nui-textbox" name="carNo" /> 
+					<td><label>车牌号:</label> <input class="nui-textbox" name="carNo" /> 
 					<label>手机号码：</label>
 						<input class="nui-textbox" name="mobile" /> 
 						<a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search"></span>&nbsp;查询</a>

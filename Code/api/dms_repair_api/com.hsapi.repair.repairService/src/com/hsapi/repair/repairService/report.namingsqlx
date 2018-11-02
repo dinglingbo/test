@@ -1233,4 +1233,50 @@
 
     </select>
     
+     <select id="queryMtAduisorIdList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			 A.mtAdvisorId  mtAdvisorId,
+			 A.mtAdvisor mtAdvisor,
+			 A.times times,
+			 A.compTimes compTimes,
+			 A.packageSubtotal packageSubtotal,
+			 A.itemSubtotal itemSubtotal,
+			 A.partSubtotal partSubtotal,
+			 A.partTrueCost partTrueCost,
+			 A.cardTimesAmt cardTimesAmt
+		FROM
+			(
+		  SELECT 
+		    a.orgid orgid,
+		    a.mt_advisor_id mtAdvisorId,
+		    a.mt_advisor mtAdvisor,
+		    a.out_date outDate,
+            COUNT(*) times,
+            SUM(
+             CASE WHEN comp_come_times = 1 THEN 1 ELSE 0 end
+             ) compTimes,
+           SUM(b.package_subtotal) packageSubtotal,
+           SUM(b.item_subtotal) itemSubtotal,
+           SUM(b.part_subtotal) partSubtotal,
+           SUM(b.part_true_cost) partTrueCost,
+           SUM(b.card_times_amt) cardTimesAmt
+           FROM rps_maintain a  LEFT JOIN  rps_settlement b ON a.id = b.service_id
+           WHERE a.is_settle = 1 
+            GROUP BY a.mt_advisor_id
+         ) A
+         where 1=1
+         <isNotEmpty prepend="and" property="mtAdvisorId"> 
+		      A.mtAdvisorId = #mtAdvisorId#
+		 </isNotEmpty>
+		 <isNotEmpty prepend="and" property="startDate"> 
+		      A.outDate &gt;= #startDate#
+		 </isNotEmpty>
+		 <isNotEmpty prepend="and" property="endDate"> 
+		      A.outDate &lt;= #endDate#
+		 </isNotEmpty>  	
+			
+    </select>
+    
+    
+    
 </sqlMap>

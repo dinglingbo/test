@@ -125,7 +125,7 @@ function clearQueryForm(){
 
 function newClient(){
     mini.open({
-        url: webPath + contextPath + "/com.hsweb.crm.telsales.clientInfo_edit.flow?token="+ token,
+        url: webPath + contextPath + "/com.hsweb.crm.manage.clientInfo_edit.flow?token="+ token,
         title: "新增客户", width: 520, height: 520,
         onload: function () {
             var iframe = this.getIFrameEl();

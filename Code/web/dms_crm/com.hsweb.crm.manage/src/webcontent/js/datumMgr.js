@@ -188,7 +188,7 @@ function editWin(title, data){
     data.artType = tree1.getData();
     nui.open({
         url: webPath + contextPath+ "/com.hsweb.crm.manage.investDetail.flow?token="+ token,
-        title: title, width: 520, height: 520,
+        title: title, width: 400, height: 300,
         onload: function () {
             var iframe = this.getIFrameEl();
             //var data = { action: "edit", id: row.id };

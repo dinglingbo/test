@@ -66,7 +66,6 @@ pageEncoding="UTF-8" session="false" %>
                 </div> 
             </div> 
         </div>
-
         <div showCollapseButton="true">
             <div class="nui-fit">
                 <div id="tabs" name="tabs" class="nui-tabs" activeIndex="0"
@@ -148,7 +147,6 @@ pageEncoding="UTF-8" session="false" %>
                             </td>
                             <td ></td>
                             <td >
-
                             </td>
                         </tr>
                         <tr class="htr">
@@ -172,7 +170,7 @@ pageEncoding="UTF-8" session="false" %>
                             <input class="nui-hidden" name="detailId" id="detailId"/>
                             <table class="tmargin" style="width:100%">
                                 <tr class="htr">
-                                    <td  >回访方式：</td>
+                                    <td >回访方式：</td>
                                     <td >
                                         <input id="mode" name="mode" class="nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name">
                                     </td>
@@ -184,7 +182,7 @@ pageEncoding="UTF-8" session="false" %>
                                     <td>
                                     </td>
                                     <td style="width: "></td>
-                                </tr> 
+                                </tr>
                                 <tr class="htr">
                                     <td style="width: 100px;">是否继续跟进：</td>
                                     <td style="width: 135px;">
@@ -207,7 +205,7 @@ pageEncoding="UTF-8" session="false" %>
                                     </td>
                                     <td >不来厂明细原因：</td>
                                     <td colspan="3">
-                                        <input id="subReason" name="subReason" class=" nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name" popupWidth="350px">
+                                        <input id="subReason" name="subReason" class=" nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name" popupWidth="350px" style="width: 358px;">
                                     </td>
                                     <td style="width: "></td>
                                 </tr> 
@@ -338,7 +336,6 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 </div>
 </div>
-
 <script type="text/javascript">
     nui.parse();
 </script>

@@ -917,7 +917,7 @@
 			d.total_pref_amt AS totalPrefAmt,
 			d.bala_amt AS balaAmt,
 			d.other_amt AS otherAmt,
-			d.other_cost_amt AS otherCostAmt
+			d.other_cost_amt AS otherCostAmt,
 
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id

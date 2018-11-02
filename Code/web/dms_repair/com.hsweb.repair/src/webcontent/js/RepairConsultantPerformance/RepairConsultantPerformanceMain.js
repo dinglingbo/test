@@ -7,7 +7,10 @@ var gridUrl = baseUrl + "com.hsapi.repair.repairService.report.queryRepairAnayls
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
-var serviceTypeIdHash = {};
+var servieTypeList = [];
+var servieTypeHash = {};
+var memList = [];
+var mtAdvisorIdEl = null;
 var mtTypeHash = {};
 var guestSourceHash = {};
 var orgHash = {};
@@ -20,82 +23,18 @@ $(document).ready(function (v)
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
-    grid.on("drawcell",function(e)
-    {
-        var field = e.field;
-        var row = e.record;
-        if(field == "groupName")
-        {
-            switch(currAnayType)
-            {
-                case 0:
-                    e.field = "orgid";
-                    break;
-                case 2://按品牌
-                    e.field = "carBrandId";
-                    break;
-                case 3://按客户来源
-                    e.field = "guestSource";
-                    break;
-                case 4://按业务类型
-                    e.field = "serviceTypeId";
-                    break;
-                case 5://按维修类型
-                    e.field = "mtType";
-                    break;
-                case 7://按投保公司
-                    e.field = "insureCompCode";
-                    break;
-            }
-            onDrawCell(e);
-        }
-    });
-    var hash = {};
-    nui.mask({
-        html: '数据加载中..'
-    });
-    var checkComplete = function () {
-        var keyList = ['initRoleMembers', 'getDatadictionaries','initComp','initCarBrand',"initInsureComp"];
-        for (var i = 0; i < keyList.length; i++) {
-            if (!hash[keyList[i]]) {
-                return;
-            }
-        }
-        nui.unmask();
-        quickSearch(0);
-    };
-    initRoleMembers({
-        "mtAdvisorId-ad":"010802"
-    },function(){
-        hash.initRoleMembers = true;
-        checkComplete();
-    });
-    var pId = "DDT20130703000055";//业务类型
-    getDatadictionaries(pId, function (data) {
-        data = data || {};
-        var list = data.list || [];
-        nui.get("serviceTypeId").setData(list);
-        initDicts({
-            mtType1: "DDT20130705000002",//维修类型，普通
-            mtType2: "DDT20130705000003",//维修类型，事故
-            guestSource:"DDT20130703000075"//客户来源
-        },function(){
-            hash.getDatadictionaries = true;
-            checkComplete();
+    mtAdvisorIdEl = nui.get("mtAdvisorId");
+    var date = new Date();
+    nui.get("eRecordDate").setValue(date);
+    initServiceType("serviceTypeId",function(data) {
+        servieTypeList = nui.get("serviceTypeId").getData();
+        servieTypeList.forEach(function(v) {
+            servieTypeHash[v.id] = v;
         });
     });
-    initComp("orgId",function(){
-        hash.initComp = true;
-        checkComplete();
-    });
-    initInsureComp("insureComp",function(){
-        hash.initInsureComp = true;
-        checkComplete();
-    });
-    initCarBrand("carBrand",function()
-    {
-        hash.initCarBrand = true;
-        checkComplete();
+    initMember("mtAdvisorId",function(){
+        memList = mtAdvisorIdEl.getData();
+        //nui.get("checkManId").setData(memList);
     });
 });
 function advancedSearch()
@@ -141,7 +80,7 @@ function quickSearch(type) {
     var params = {};
     currType = type;
 
-    var btn = nui.get("searchByDateBtn");
+    var btn = nui.get("menunamestatus");
     if(btn)
     {
         var text = searchByDateBtnTextHash[type];
@@ -231,6 +170,44 @@ function getSearchParams()
 function onSearch()
 {
     var params = getSearchParams();
+    var d = currType;
+    if (d == 0) {
+        params.today = 1;
+        params.startDate = getNowStartDate();
+        params.endDate = addDate(getNowEndDate(), 1);
+    } else if (d == 1) {
+        params.yesterday = 1;
+        params.startDate = getPrevStartDate();
+        params.endDate = addDate(getPrevEndDate(), 1);
+        
+    } else if (d == 2) {
+        params.thisWeek = 1;
+        params.startDate = getWeekStartDate();
+        params.endDate = addDate(getWeekEndDate(), 1);
+        
+    } else if (d == 3) {
+        params.lastWeek = 1;
+        params.startDate = getLastWeekStartDate();
+        params.endDate = addDate(getLastWeekEndDate(), 1);
+        
+    } else if (d == 4) {
+        params.thisMonth = 1;
+        params.startDate = getMonthStartDate();
+        params.endDate = addDate(getMonthEndDate(), 1);
+        
+    } else if (d == 5) {
+        params.lastMonth = 1;
+        params.startDate = getLastMonthStartDate();
+        params.endDate = addDate(getLastMonthEndDate(), 1);
+    }else if (d == 6) {
+        params.lastMonth = 1;
+        params.startDate = getYearStartDate();
+         params.endDate = getYearEndDate();
+    }else if (d == 7) {
+        params.lastMonth = 1;
+        params.startDate = getPrevYearStartDate();
+        params.endDate = getPrevYearEndDate();
+    }
     doSearch(params);
 }
 function doSearch(params) {
@@ -239,6 +216,14 @@ function doSearch(params) {
         token:token,
         params: params
     });
+}
+function query(){
+	var params = {};
+	params.mtAdvisorId = nui.get("mtAdvisorId").value;
+	params.serviceTypeId = nui.get("serviceTypeId").value;	
+	params.startDate  = nui.get("sRecordDate").value;
+	params.endDate = nui.get("eRecordDate").value;
+	doSearch(params);
 }
 function history()
 {
@@ -249,7 +234,7 @@ function history()
     }
     nui.open({
         url: "com.hsweb.repair.common.repairHistory.flow",
-        title: "维修历史", width: 850, height: 640,
+        title: "维修历史", width: 850, height: 600,
         onload: function () {
             var iframe = this.getIFrameEl();
             var params = {

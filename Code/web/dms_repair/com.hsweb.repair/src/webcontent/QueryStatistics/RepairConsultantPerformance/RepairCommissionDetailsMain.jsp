@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-
+<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -11,7 +11,6 @@
 <head>
 <title>综合开单查询</title>
 <script src="<%=webPath + contextPath%>/repair/js/RepairConsultantPerformance/RepairCommissionDetailsMain.js?v=1.0.0"></script>
-<%@include file="/common/commonRepair.jsp"%>
 <style type="text/css">
 
 .title {
@@ -100,7 +99,7 @@
 		                  <div field="guestFullName" name="guestFullName" width="60" headerAlign="center" header="客户姓名"></div>
 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div>
 		                  <div field="mtAdvisor" name="mtAdvisor" width="60" headerAlign="center" header="服务顾问"></div>
-		                  <div field="serviceTypeId" name="serviceTypeId" width="60" headerAlign="center" header="业务类型"></div> 
+		                  <div field="serviceTypeName" name="serviceTypeName" width="60" headerAlign="center" header="业务类型"></div> 
 		                  <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
 		                  <div field="sureMtDate" name="sureMtDate" width="60" headerAlign="center" header="维修日期"></div>
 		                  <div field="outDate" name="outDate" width="60" headerAlign="center" header="结算日期"></div>

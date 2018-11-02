@@ -1287,8 +1287,6 @@
 			
     </select>
     
-   
-
 	 <select id="queryRepairCommission" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
 			a.id AS id,
@@ -1349,7 +1347,10 @@
 			d.sales_deduct_value salesDeductValue,
 			d.tech_deduct_value techDeductValue,
 			d.advisor_deduct_value advisorDeductValue,
-			d.total_deduct_amt totalDeductAmt
+			d.total_deduct_amt totalDeductAmt,
+			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = a.id) as serviceTypeName
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )

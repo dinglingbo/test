@@ -35,7 +35,7 @@ $(document).ready(function ()
     serviceTypeIdEl = nui.get("serviceTypeId");
     serviceTypeIds = nui.get("serviceTypeIds");
     
-   
+    onSearch();
     initMember("mtAdvisorId",function(){     
         initServiceType("serviceTypeId",function(data) {
             servieTypeList = nui.get("serviceTypeId").getData();
@@ -51,13 +51,9 @@ $(document).ready(function ()
                 });
 
             });
-
-
         });
 
     });
-
-
     mainGrid.on("drawcell", function (e) {
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
@@ -77,7 +73,7 @@ $(document).ready(function ()
             }
         }
     });
-    onSearch();
+    
 });
 var statusHash = {
     "0" : "报价",

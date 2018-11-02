@@ -66,7 +66,7 @@
                            showOkButton="false"
                            showClearButton="false"/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <span class="separator"></span>
+                   
                 </td>
             </tr>
         </table>
@@ -101,8 +101,8 @@
 		                  <div field="mtAdvisor" name="mtAdvisor" width="60" headerAlign="center" header="服务顾问"></div>
 		                  <div field="serviceTypeName" name="serviceTypeName" width="60" headerAlign="center" header="业务类型"></div> 
 		                  <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
-		                  <div field="sureMtDate" name="sureMtDate" width="60" headerAlign="center" header="维修日期"></div>
-		                  <div field="outDate" name="outDate" width="60" headerAlign="center" header="结算日期"></div>
+		                  <div field="sureMtDate" name="sureMtDate" width="60" headerAlign="center" header="维修日期" dateFormat="yyyy-MM-dd"></div>
+		                  <div field="outDate" name="outDate" width="60" headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd"></div>
 	                  </div>
                   </div>
                   <div header="提成信息" headerAlign="center">

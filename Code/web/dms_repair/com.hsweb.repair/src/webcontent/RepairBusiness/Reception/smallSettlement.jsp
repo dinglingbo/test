@@ -90,7 +90,7 @@
                             <td height="20" id="guestId">客户：</td>
                         </tr>
                         <tr>
-                             <td height="20" id="tel">电话：</td>
+                             <td height="20" id="mobile">电话：</td>
                         </tr>
                         <tr>
                             <td height="20" id="mtAdvisor">顾问：</td>
@@ -99,7 +99,7 @@
                             <td height="20" id="carNo">车辆：</td>
                         </tr>
                         <tr>
-                            <td height="20" id="enterDate">开始时间：</td>
+                            <td height="20" id="enterDate">进厂时间：</td>
                         </tr>
                     </table>
                 </div>
@@ -191,14 +191,14 @@
                 success: function (text) {
                    var maintain = nui.decode(text.maintain);
                    if(text.errCode == "S"){
-                   		var mtAdvisor = maintain.mtAdvisor;
-                   		var guestId = maintain.guestId;
-                   		var carNo = maintain.carNo;
-                   		var enterDate = maintain.enterDate;
+                   		var mtAdvisor = maintain.mtAdvisor || "";
+                   		var guestId = maintain.guestId || "";
+                   		var carNo = maintain.carNo || "";
+                   		var enterDate = maintain.enterDate || "";
                    		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML+ mtAdvisor;
                    		document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML+ guestId;
                    		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML+ carNo;
-                   		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML+ formatDate(new Date(enterDate));
+                   		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML+ enterDate;
                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -206,12 +206,13 @@
                     showMsg("网络出错", "W");
                 }
             });
-            var guestId = document.getElementById("guestId").innerHTML;
+            var guestName = document.getElementById("guestId").innerHTML;
+            var guestId = guestName.replace(/[^0-9]/ig, "");
             nui.ajax({
                 url: params.baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext",
                 type : "post",
                 data : {
-                	guestId : params.guestId,
+                	guestId : guestId,
 	                	token : params.token
                 },
                 async: false,
@@ -219,9 +220,9 @@
                 	var guest = nui.decode(text.guest);
                    if(text.errCode == "S"){
                    		var fullName = guest.fullName || "";
-                   		var tel = guest.tel || "";
-                   		document.getElementById("guestId").innerHTML =  guestId.replace(/[0-9]/ig,"") + fullName;
-                   		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
+                   		var mobile = guest.mobile || "";
+                   		document.getElementById("guestId").innerHTML =  guestName.replace(/[0-9]/ig,"") + fullName;
+                   		document.getElementById("mobile").innerHTML = document.getElementById("mobile").innerHTML+ mobile;
                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -288,9 +289,9 @@
 		    					}
 				    			tr.append(
 				    				tds.replace("[name]",itemName)
-				    				.replace("[sal]",data[i].amt));
+				    				.replace("[sal]",data[i].subtotal));
 				    			tBody.append(tr);
-				    			document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].amt);
+				    			document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].subtotal);
 	                   		}
 	                   }
 	                },

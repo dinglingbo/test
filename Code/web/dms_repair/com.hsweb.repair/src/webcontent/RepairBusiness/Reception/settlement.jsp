@@ -223,7 +223,7 @@
                     <td width="33%" id="mtAdvisor">&nbsp;接待人员：</td>
                 </tr>
                 <tr>
-                    <td height="24" id="carNO">&nbsp;车牌：</td>
+                    <td height="24" id="carNo">&nbsp;车牌：</td>
                     <td id="carModel">&nbsp;车辆型号： </td>
                     <td id="carVin">&nbsp;车架号：</td>
                 </tr>
@@ -300,7 +300,7 @@
 
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;">
+                    <td height="50" valign="top" style="padding: 8px;" id="drawOutReport">
                         出车报告：
 
 
@@ -363,9 +363,10 @@
 	        $.post(params.baseUrl+url+params.serviceId+"&token="+params.token,{},function(text){
 	        	if(text.list.length > 0){
 	        		var list = text.list[0];
-	        		var carNo = list.carNO || "";
+	        		var carNo = list.carNo || "";
 	        		var carVin = list.carVin || "";
 	        		var enterDate = list.enterDate || "";
+	        		var drawOutReport = list.drawOutReport || "";
 	        		if(enterDate){
 	        			enterDate = enterDate.replace(/-/g,"/");
 	        			enterDate = new Date(enterDate);
@@ -394,8 +395,9 @@
 	        			contactName = list.contactorName || "";
 	        			mtAdvisor = list.mtAdvisor || "";
 	        		}
+	        		document.getElementById("drawOutReport").innerHTML = document.getElementById("drawOutReport").innerHTML + drawOutReport;
 	        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
-	        		document.getElementById("carNO").innerHTML = document.getElementById("carNO").innerHTML + carNo;
+	        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
 	        		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
@@ -434,7 +436,7 @@
     					}
     					var orderIndex = data[i].orderIndex;
     					var rate = data[i].rate;
-    					rate = (rate/100).toFixed(1) + "%";
+    					rate = rate + "%";
     					if(data[i].billPackageId != 0){
     						prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;"+prdtName;
     						orderIndex = "";
@@ -500,7 +502,7 @@
     				for(var i = 0 , l = data.length ; i < l ; i++){
     					document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
     					var rate = data[i].rate;
-    					rate = (rate/100).toFixed(1) + "%";
+    					rate = rate + "%";
     					var tr = $("<tr></tr>");
     					var itemTime = null;
     					var itemName = null;

@@ -2888,10 +2888,11 @@ function showBasicData(type){
         showMsg("本单已结算,不能录入!","W");
         return;
     }
-    var carVin = billForm.carVin;
+    var carVin = maintain.carVin;
     var params = {
         vin:carVin,
-        serviceId:maintain.id
+        serviceId:maintain.id,
+        carNo:maintain.carNo
     };
     if(type=="pkg"){
     	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";

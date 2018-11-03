@@ -172,8 +172,8 @@ function doSearch(params) {
     gsparams.status = params.status;
     gsparams.isSettle = params.isSettle;
    
-    //洗美
-    //gsparams.billTypeId = 2;
+    //销售
+    gsparams.billTypeId = 3;
     
     mainGrid.load({
         token:token,
@@ -332,8 +332,6 @@ function pay(){
 	}
 }
 
-
-
 var updUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.updateMainStatus.biz.ext";
 function finish(){
 
@@ -365,9 +363,7 @@ function finish(){
 			if (returnJson.errCode == "S") {
 				
 				showMsg("审核成功");
-				 mainGrid.load({
-				        token:token
-				    });
+				quickSearch(1);
 				
 			} else {
 				showMsg(returnJson.errMsg,"W");
@@ -377,4 +373,64 @@ function finish(){
 	});
 }
 
+//转结算
+payUrl = webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token="+token;
+function pay(){	
+	var row = mainGrid.getSelected();
+	if(row)
+	{
+		if(row.isSettle == 1){
+	        showMsg("此单已结算!","W");
+	        return;
+	    }
+		if(row.status != 2){
+			 showMsg("此单未出库，不能结算!","W");
+		     return;
+		}
+		nui.open({
+			url:payUrl,
+			width:"100%",
+			height:"100%",
+			//加载完之后
+			onload: function(){	
+				//把值传递到支付页面
+			    var iframe = this.getIFrameEl();
+			    var data = {
+			    	"itemPrefAmt":0,
+			    	"itemSubtotal":0,
+			    	"packagePrefAmt":0,
+			    	"packageSubtotal":0,
+			    	"partPrefAmt":row.partAmt,
+			    	"partSubtotal":row.partAmt,
+			    	"mtAmt":row.partAmt,
+			    	"ycAmt":0
+			    };
+			    var params = {
+			    	"carNo":row.carNo,
+			    	"guestId":row.guestId,
+			    	"guestName":row.guestFullName,
+			    	"serviceId":row.id,
+			    	"data":data
+			    };
+			    iframe.contentWindow.setData(params);			
+			},
+		   ondestroy : function(action) {
+			if (action == 'ok') {
+				quickSearch(4);
+				/*var iframe = this.getIFrameEl();
+				var data = iframe.contentWindow.getData();
+				supplier = data.supplier;
+				var value = supplier.id;
+				var text = supplier.fullName;
+				var el = nui.get(elId);
+				el.setValue(value);
+				el.setText(text);*/
+			}
+		}
+		});		
+	}
+	else{
+		showMsg("请选择单据", "W");
+	}
+}
 

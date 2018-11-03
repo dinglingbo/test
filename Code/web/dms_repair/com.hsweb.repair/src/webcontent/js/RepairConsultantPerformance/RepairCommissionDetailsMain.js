@@ -42,7 +42,7 @@ $(document).ready(function ()
             servieTypeList.forEach(function(v) {
                 servieTypeHash[v.id] = v;
             });
-            serviceTypeIds.setData(servieTypeList);
+            //serviceTypeIds.setData(servieTypeList);
 
             initCarBrand("carBrandId",function(data) {
                 brandList = nui.get("carBrandId").getData();

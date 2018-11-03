@@ -7,7 +7,7 @@ var grid2 = null;
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid2 = null;
 $(document).ready(function () {
-    tabs = nui.get("tabs");
+    tabs = nui.get("editForm1");
     mainGrid1 = nui.get("mainGrid1");
     form = new nui.Form("#editForm1");
     grid1 = nui.get("grid1");
@@ -25,7 +25,7 @@ $(document).ready(function () {
     		var index = e.index;
             if(index == 0){
                 nui.ajax({
-                    url: "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext",
+                    url: baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext",
                     type : "post",
                     data : {
                     	params : params
@@ -42,7 +42,7 @@ $(document).ready(function () {
             }
             if (index == 1) {
                 nui.ajax({
-                    url: "com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext",
+                    url: baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext",
                     type : "post",
                     data : {
                     	guestId : nui.get("guestId").value

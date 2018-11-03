@@ -11,7 +11,7 @@
 <head>
 <title>车辆详情</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?version=8" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.0.1" type="text/javascript"></script>
 </head>
 <style type="text/css">
         body { 
@@ -42,37 +42,37 @@
                     <tr>
                         <td style="width:80px;" align="right">车牌号：</td>
                         <td style="width:150px;">
-                            <input class="nui-textbox" name="carNO" width="100%" allowInput="false"/>                   
+                            <input class="nui-textbox" id="carNo" name="carNo" width="100%" allowInput="false"/>                   
                         </td>
                         <td style="width:80px;"align="right">VIN码：</td>
                         <td style="width:150px;">
-                            <input class="nui-textbox" name="carVin" width="100%" allowInput="false"/>                      
+                            <input class="nui-textbox" id="carVin" name="carVin" width="100%" allowInput="false"/>                      
                         </td>
                     </tr>
                     <tr>
                         <td style="width:80px;"align="right">品牌：</td>
                         <td style="width:150px;">
-                            <input class="nui-textbox" name="carBrandId" width="100%" allowInput="false"/>                    
+                            <input class="nui-textbox" id="carBrandId" name="carBrandId" width="100%" allowInput="false"/>                    
                         </td>
                         <td style="width:80px;"align="right">车型：</td>
                         <td style="width:150px;">
-                            <input class="nui-textbox" name="carModel" width="100%" allowInput="false"/>        
+                            <input class="nui-textbox" id="carModel" name="carModel" width="100%" allowInput="false"/>        
                         </td>
                     </tr>
                     <tr>
                         <td style="width:80px;"align="right">车系：</td>
                         <td style="width:150px;">
-                            <input class="nui-textbox" name="carBrandId" width="100%" allowInput="false"/>     
+                            <input class="nui-textbox" id="carBrandId" name="carBrandId" width="100%" allowInput="false"/>     
                         </td>
                         <td style="width:80px;"align="right">发动机号：</td>
                         <td style="width:150px;">
-                            <input class="nui-textbox" name="engineNo" width="100%" allowInput="false"/>
+                            <input class="nui-textbox" id="engineNo" name="engineNo" width="100%" allowInput="false"/>
                         </td>
                     </tr>
                     <tr>
                         <td style="width:80px;"align="right">车辆颜色：</td>
                         <td style="width:150px;">
-                            <input class="nui-textbox" name="color" width="100%" allowInput="false"/>
+                            <input class="nui-textbox" id="color" name="color" width="100%" allowInput="false"/>
                         </td>
                         <td></td>
                         <td></td>
@@ -80,11 +80,11 @@
                     <tr>
                         <td style="width:80px;"align="right">注册时间：</td>
                         <td style="width:150px;">
-                            <input class="nui-datepicker" name="firstRegDate" width="100%" allowInput="false" id="firstRegDate"/>
+                            <input class="nui-datepicker" id="firstRegDate" name="firstRegDate" width="100%" allowInput="false" id="firstRegDate"/>
                         </td>
                         <td style="width:80px;"align="right">年审到期：</td>
                         <td style="width:150px;">
-                            <input class="nui-datepicker" name="annualVerificationDueDate" width="100%" allowInput="false"/>
+                            <input class="nui-datepicker" id="annualVerificationDueDate" name="annualVerificationDueDate" width="100%" allowInput="false"/>
                         </td>
                     </tr>
                 </table>

@@ -25,17 +25,18 @@
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                              url="" onvaluechanged="onPkgTypeIdValuechanged" emptyText=""  vtype="required" /> 
                 </div>
-                <div field="subtotal" headerAlign="center" name="pkgSubtotal"
-                     allowSort="false" visible="true" width="60" header="套餐金额" align="center" >
-                     <input  property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged"/>
+                <div field="amt" headerAlign="center" name="pkgAmt"
+                     allowSort="false" visible="true" width="60" header="原价" align="center">
                 </div>
+
                 <div field="rate" headerAlign="center" name="pkgRate"
                      allowSort="false" visible="true" width="60" header="" align="center">
                            优惠率<a href="javascript:setPkgRate()" title="批量设置优化率" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                      <input property="editor"  width="60%" vtype="float"  class="nui-textbox"  onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
                 </div>
-                <div field="amt" headerAlign="center" name="pkgAmt"
-                     allowSort="false" visible="true" width="60" header="原价" align="center">
+                 <div field="subtotal" headerAlign="center" name="pkgSubtotal"
+                     allowSort="false" visible="true" width="60" header="套餐金额" align="center" >
+                     <input  property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged"/>
                 </div>
                 <div field="workers" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="施工员" align="center" name="workers">

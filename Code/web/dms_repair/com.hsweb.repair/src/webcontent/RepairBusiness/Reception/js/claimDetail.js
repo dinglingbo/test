@@ -28,6 +28,9 @@ var searchNameEl = null;
 var servieIdEl = null;
 var searchKeyEl = null;
 var carCheckInfo = null;
+var ycAmt = 0;
+var tcAmt = 0;
+var gsAmt = 0;
 
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
@@ -2768,6 +2771,8 @@ function pay(){
             return;
         }
         var sellData = sellForm.getData();
+        ycAmt = parseFloat(tcAmt)+parseFloat(gsAmt);
+        sellData.ycAmt = ycAmt;
         var params = {
             serviceId:data.id||0,
             guestId:data.guestId||0,
@@ -3315,8 +3320,12 @@ function onDrawSummaryCellPack(e){
 	  //|| e.field == "amt"
 	  if(e.field == "subtotal") 
 	  {   
+		  tcAmt = 0;
 		  for (var i = 0; i < rows.length; i++)
 		  {
+			  if(rows[i].cardDetailId>0){
+				  tcAmt=tcAmt+rows[i].subtotal;
+			  }
 			  if(rows[i].billPackageId=="0"){
 				  sumPkgSubtotal += parseFloat(rows[i].subtotal);
 				  sumPkgAmt  += parseFloat(rows[i].amt);
@@ -3356,8 +3365,12 @@ function onDrawSummaryCellItem(e){
 	  // || e.field == "amt"
 	  if(e.field == "subtotal") 
 	  {   
+		  gsAmt = 0;
 		  for (var i = 0; i < rows.length; i++)
 		  {
+			  if(rows[i].cardDetailId>0){
+				  gsAmt=gsAmt+rows[i].subtotal;
+			  }
 			 if(rows[i].billItemId=="0"){
 				 sumItemSubtotal += parseFloat(rows[i].subtotal);
 				 sumItemAmt  += parseFloat(rows[i].amt); 

@@ -11,7 +11,7 @@
 <head>
 <title>车辆详情</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.0.1" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.0.6" type="text/javascript"></script>
 </head>
 <style type="text/css">
         body { 
@@ -177,7 +177,7 @@
                 <tr>
                     <td style="width:80px;"align="right">姓名：</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="fullName" width="100%"allowInput="false"/>
+                        <input class="nui-textbox" name="guestFullName" width="100%"allowInput="false"/>
                     </td>
                     <td style="width:80px;"align="right">性别：</td>
                     <td style="width:150px;">
@@ -191,7 +191,7 @@
                 <tr>
                     <td style="width:80px;"align="right">手机号：</td>
                     <td style="width:150px;">
-                        <input class="nui-textbox" name="tel" width="100%"allowInput="false"/>
+                        <input class="nui-textbox" name="guestMobile" width="100%"allowInput="false"/>
                     </td>
                     <td style="width:80px;"align="right">生日：</td>
                     <td style="width:150px;">
@@ -267,7 +267,6 @@
                     <div field="cardName" name="cardName" width="100" headerAlign="center" header="卡名称"></div>
                     <div field="balaAmt" name="balaAmt" width="50" headerAlign="center" header="余额"></div>
                     <div field="modifyDate" name="modifyDate" width="100" headerAlign="center" header="储值日期" dateFormat="yyyy-MM-dd"></div>
-                    <div field="periodValidity" name="periodValidity" width="100" headerAlign="center" header="到期日期" dateFormat="yyyy-MM-dd"></div>
                 </div>
             </div>
         </fieldset>
@@ -275,7 +274,7 @@
 
 
      <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;height:50%;">
-      <legend>储服务记录卡</legend>
+      <legend>服务记录</legend>
         <div id="mainGrid1" class="nui-datagrid" style="width:100%;height:190px;" selectOnLoad="true" showPager="true" pageSize="50"
             totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="">
             <div property="columns">

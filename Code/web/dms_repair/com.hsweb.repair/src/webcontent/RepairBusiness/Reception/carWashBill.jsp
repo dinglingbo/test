@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.5"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.7"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -137,7 +137,7 @@
                 <span class="separator"></span> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="sureMT()" id="addBtn"><span class="fa fa-car fa-lg"></span>&nbsp;确定维修</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="sureMT()" id="addBtn"><span class="fa fa-car fa-lg"></span>&nbsp;确定开单</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="unfinish()" id="addBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返工</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="addBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
@@ -192,10 +192,10 @@
         <input class="nui-hidden" name="billTypeId"/>
         <input class="nui-hidden" name="status"/>
         <input class="nui-hidden" name="isSettle"/>
-        <table  style=" left:0;right:0;margin: 0 auto;"> 
+        <table   style="width: 100%;border-spacing: 0px 5px;"> 
             <tr>   
                 <td class="title required">车牌号:</td> 
-                <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false"/></td>
+                <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
                 <td class="title required">
                     <label>业务类型:</label>
                 </td>
@@ -210,7 +210,7 @@
                     allowInput="true"
                     showNullItem="false"
                     valueFromSelect="true"
-                    nullItemText="请选择..."/>
+                    nullItemText="请选择..." width="100%"/>
                 </td>
                 <td class="title required">
                     <label>服务顾问：</label>
@@ -226,28 +226,28 @@
                     allowInput="true"
                     showNullItem="false"
                     valueFromSelect="true"
-                    nullItemText="请选择..."/>
+                    nullItemText="请选择..." width="100%"/>
                 </td>
                 <td class="title">进厂里程:</td> 
-                <td class=""><input  class="nui-textbox" name="enterKilometers"/></td>
+                <td class=""><input  class="nui-textbox" name="enterKilometers" width="100%"/></td>
                 <td class="title">备注:</td> 
-                <td class="" colspan=""><input  class="nui-textbox" name="remark"/></td>
+                <td class="" colspan=""><input  class="nui-textbox" name="remark" width="100%"/></td>
             </tr>
             <tr>   
                 <td class="title required">客户名称:</td> 
-                <td class=""><input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false"/></td>
+                <td class=""><input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="100%"/></td>
                 <td class="title required">客户手机:</td> 
-                <td class=""><input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false"/></td>
+                <td class=""><input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="100%"/></td>
                 <td class="title required">送修人名称:</td> 
-                <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false"/></td>
+                <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false" width="100%"/></td>
                 <td class="title required">送修人手机:</td> 
-                <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false"/></td>
+                <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false" width="100%"/></td>
                 <td class="title">开单时间:</td> 
                 <td class="">
                     <input id="recordDate"
                     name="recordDate"
                     allowInput="false" format="yyyy-MM-dd H:mm:ss"
-                    class="nui-datepicker" enabled="false"/>
+                    class="nui-datepicker" enabled="false" width="100%"/>
                 </td>
             </tr>
         </table>

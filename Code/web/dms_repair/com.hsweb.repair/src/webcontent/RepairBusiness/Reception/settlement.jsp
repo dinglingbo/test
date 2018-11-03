@@ -300,7 +300,7 @@
 
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;">
+                    <td height="50" valign="top" style="padding: 8px;" id="drawOutReport">
                         出车报告：
 
 
@@ -366,6 +366,7 @@
 	        		var carNo = list.carNo || "";
 	        		var carVin = list.carVin || "";
 	        		var enterDate = list.enterDate || "";
+	        		var drawOutReport = list.drawOutReport || "";
 	        		if(enterDate){
 	        			enterDate = enterDate.replace(/-/g,"/");
 	        			enterDate = new Date(enterDate);
@@ -394,6 +395,7 @@
 	        			contactName = list.contactorName || "";
 	        			mtAdvisor = list.mtAdvisor || "";
 	        		}
+	        		document.getElementById("drawOutReport").innerHTML = document.getElementById("drawOutReport").innerHTML + drawOutReport;
 	        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
 	        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;

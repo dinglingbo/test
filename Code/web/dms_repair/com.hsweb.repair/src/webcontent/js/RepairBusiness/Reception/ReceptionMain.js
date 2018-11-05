@@ -207,7 +207,10 @@ $(document).ready(function ()
                 break;
         }
     });
-
+    
+    mainGrid.on("rowdblclick",function(e){
+		edit();
+	});
     
 });
 var statusHash = {

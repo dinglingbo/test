@@ -110,9 +110,9 @@
                   <div field="contactName" name="contactName" width="60" headerAlign="center" header="联系人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="70" headerAlign="center" header="联系人手机"></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="60" headerAlign="center" header="服务顾问"></div>
-                  <div field="serviceTypeName" name="serviceTypeName" width="60" headerAlign="center" header="业务类型"></div>
+                  <div field="serviceTypeId" name="serviceTypeId" width="60" headerAlign="center" header="业务类型"></div>
                   <div field="isSettle" name="isSettle" width="60" headerAlign="center" header="结算状态"></div>
-                  <div field="sureMtDate" name="sureMtDate" width="90" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="维修日期"></div>
+                  <div field="recordDate" name="recordDate" width="90" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="开单日期"></div>
                   <div field="planFinishDate" name="planFinishDate" width="90" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="预计完工日期"></div>
                   <div field="serviceCode" name="serviceCode" width="120" headerAlign="center" header="工单号"></div>
               </div>
@@ -188,7 +188,7 @@
                 textField="name"
                 valueField="id"/>
             <tr>
-                <td class="title" width="800px">创建日期:</td>
+                <td class="title" width="800px">开单日期:</td>
                 <td>
                     <input id="sRecordDate"
                            name="sRecordDate"

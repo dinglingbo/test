@@ -110,7 +110,7 @@
       </div>
 
     </div>
-    <div title="送修人信息" name="contactorTab">
+    <div title="联系人信息" name="contactorTab">
           <div id="sendGuestForm" class="form">
               <table style="width: 100%;    border-spacing: 0px 5px;">
                   <input class="nui-hidden" name="id"/>

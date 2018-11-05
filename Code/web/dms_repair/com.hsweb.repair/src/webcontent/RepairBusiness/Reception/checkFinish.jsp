@@ -47,8 +47,21 @@
 <body style="height:100%;width:100%">
 
 <div class="nui-fit">
-   
-   
+   <div class="mini-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;text-align:center;">
+    <div style="padding: 0px;" borderStyle="border:0;">
+        <table width="100%">
+            <tr>
+                <td style="text-align:right;padding-left: 50px;" >
+                    <a class="nui-button"  onclick="finish()" id = "readyPay" style="margin-right:245px"><span class="fa fa-check fa-lg" ></span>&nbsp;完工</a>
+                    <!-- <a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >保存</a>  -->
+                    <a class="nui-button"  onclick="onCancel()" id = "payOk" align="left"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> 
+                    <a class="nui-button"  onclick="SelectReport()" id = "SelectReport" align="left"><span class="fa fa-plus fa-lg"></span>&nbsp;质检报告模板</a>
+                </td>
+                <td style="padding-right: 50px;"><span id="checkDescribe" style="color:red;"></span></td>
+            </tr>
+        </table>
+	</div>
+  </div>
     <div id="itemGrid"
         dataField="data"
         class="nui-datagrid"
@@ -97,19 +110,7 @@
         </table>
      </div>
   </div>
-    <div style="padding: 0px;" borderStyle="border:0;">
-        <table width="100%">
-            <tr>
-                <td style="padding-left: 50px;"><span id="checkDescribe" style="color:red;"></span></td>
-                <td style="text-align:right;padding-right: 50px;" >
-                    <a class="nui-button"  onclick="finish()" id = "readyPay"> 完工</a> 
-                    <!-- <a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >保存</a>  -->
-                    <a class="nui-button"  onclick="onCancel()" id = "payOk" >返回</a> 
-                    <a class="nui-button"  onclick="SelectReport()" id = "SelectReport" >质检报告模板</a>
-                </td>
-            </tr>
-        </table>
-	</div>
+   
 </div>
 </body>
 </html>

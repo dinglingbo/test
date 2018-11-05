@@ -54,7 +54,7 @@
     .function-item {
         margin-left: 5px;
         margin-right: 5px;
-    } 
+    }
 </style>
 </head>
 
@@ -208,7 +208,6 @@ allowCellEdit="true" >
 </div> 
 </div>
 </div>  
-
 
 <div id="repairOutGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
 dataField="data"  allowCellSelect="true" multiSelect="false" 

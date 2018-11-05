@@ -31,6 +31,15 @@
 
             <body>
                 <div title="联系人信息" class="nui-window" id="contactview" style="width: 100%">
+                		<div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+			                <table style="width:100%;">
+			                    <tr>
+			                        <td style="width:100%;">
+			                            <a class="nui-button" onclick="addContactList()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+			                        </td>
+			                    </tr>
+			                </table>
+			            </div>
                     <div class="form" id="contactInfoForm">
                         <input class="nui-hidden" name="id" id="id" />
                         <input class="nui-hidden" name="guestId" id="guestId"/>
@@ -110,17 +119,19 @@
                                     <input class="nui-textbox" name="remark" width="100%" />
                                 </td>
                             </tr>
-                            <tr>
-                                <td align="center" colspan="4" style="margin:20;padding:20;width:auto;">
-
-                                    <a class="nui-button" onclick="addContactList()">
-                                        <span class="fa fa-save fa-lg"></span>&nbsp;保存联系人 </a>
-                                </td>
-                            </tr>
                         </table>
                     </div>
                 </div>
                 <div title="车辆信息" class="nui-window" id="carview" style="width: 100%">
+			            <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+			                <table style="width:100%;">
+			                    <tr>
+			                        <td style="width:100%;">
+			                            <a class="nui-button" onclick="addCarList()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+			                        </td>
+			                    </tr>
+			                </table>
+			            </div>
                     <div class="form" id="carInfoFrom">
                         <input class="nui-hidden" name="id" />
                         <input class="nui-hidden" name="guestId" />
@@ -156,16 +167,7 @@
                                     <textarea class="nui-textarea" id="carModel" name="carModel" width="100%"></textarea>
                                 </td>
                             </tr>
-                            <!--
-                <tr>
-                    <td class="form_label">
-                        <label>车型：</label>
-                    </td>
-                    <td colspan="3">
-                        <input class="nui-buttonedit" name="carModelId" id="carModelId" onclick="selectCarModel('carModelId','carBrandId')" width="100%"/>
-                    </td>
-                </tr>
-                -->
+
                             <tr>
                                 <td class="form_label">
                                     <label>发动机号：</label>
@@ -240,22 +242,6 @@
                                     <input id="issuingDate" name="issuingDate" allowInput="false" class="nui-datepicker" width="100%" />
                                 </td>
 
-                                <!--   <td class="form_label" >
-                        <label>公司内部车：</label>
-                    </td>
-                    <td>
-                        <input name="isCompanyInside"
-                               data="[{id:1,text:'是'},{id:0,text:'否'}]"
-                               class="nui-combobox" width="100%"/>
-                    </td> -->
-
-                            </tr>
-                            <tr>
-                                <td align="center" colspan="4" style="margin:20;padding:20;width:auto;">
-
-                                    <a class="nui-button" onclick="addCarList()">
-                                        <span class="fa fa-save fa-lg"></span>&nbsp;保存车辆 </a>
-                                </td>
                             </tr>
                         </table>
                     </div>
@@ -374,7 +360,7 @@
                                     </div>
                                     <div class="nui-fit">
                                         <div id="cardatagrid" class="nui-datagrid" style="width: 100%;height:100%" showPager="false" sortMode="client" allowCellEdit="true"
-                                            allowCellSelect="true" multiSelect="true" showsummaryrow="true" editNextOnEnterKey="true">
+                                            allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true">
                                             <div property="columns">
 
                                                 <div field="id" class="nui-hidden" allowSort="true" align="left" headerAlign="center" width="" visible="false">
@@ -436,7 +422,7 @@
                                     </div>
                                     <div class="nui-fit">
                                         <div id="contactdatagrid" class="nui-datagrid" style="width: 100%;height:100%" showPager="false" sortMode="client" allowCellEdit="true"
-                                            allowCellSelect="true" multiSelect="true" showsummaryrow="true" editNextOnEnterKey="true"
+                                            allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true"
                                             onDrawCell="onDrawCell">
                                             <div property="columns">
 

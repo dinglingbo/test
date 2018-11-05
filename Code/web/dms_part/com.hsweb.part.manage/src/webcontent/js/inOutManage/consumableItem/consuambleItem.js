@@ -184,6 +184,7 @@ $(document).ready(function(v) {
 		if ((keyCode == 120)) { // F9
 			morePartCodeEl.focus();
 		}
+		
 
 		if ((keyCode == 121)) { // F10
 			morePartNameEl.focus();
@@ -427,9 +428,9 @@ function onOut() {
 	if (row) {
 		nui.open({
 			url : webPath+ partDomain+ "/manage/inOutManage/common/fastPartForConsumableAdd.jsp?token"+ token,
-			title : "出库",
-			width : 430,
-			height : 280,
+			title : "领料",
+			width : 450,
+			height : 300,
 			allowDrag : false,
 			allowResize : false,
 			onload : function() {
@@ -460,7 +461,7 @@ function onBlack() {
 			url : webPath+ partDomain+ "/manage/inOutManage/common/fastPartForConsumableAdd2.jsp?token"+ token,
 			title : "归库",
 			width : 440,
-			height : 230,
+			height : 300,
 			allowDrag : false,
 			allowResize : false,
 			onload : function() {
@@ -484,3 +485,5 @@ function onBlack() {
 		showMsg("请选择一条记录", "W");
 	}
 }
+
+

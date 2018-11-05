@@ -10,9 +10,13 @@ var timeData = [];
 var todayDate = "";
 
 var listUrl= baseUrl + "com.hsapi.repair.repairService.booking.queryBookingList.biz.ext";
-      
+
 $(document).ready(function(v){
     init();
+   /* $("#carNo").click(function(event){
+        alert("hello");
+    });*/
+  
 });
 
 function init() {
@@ -51,6 +55,10 @@ function init() {
     
     //预约类型
     nui.get("prebookCategory").setData(prebookCategoryHash);
+
+}
+
+function onenterSelect(){
 
 }
 function initTimeData(){
@@ -221,11 +229,14 @@ function selectCustomer() {
     });
 }
 
-function openCustomerWindow(callback) {
+function openCustomerWindow(carNo,callback) {
     nui.open({
         url: "com.hsweb.RepairBusiness.Customer.flow",
         title: "客户选择", width: 800, height: 450,
         onload: function () {
+        	if(carNo){
+        		
+        	}
         },
         ondestroy: function (action) {
             if ("ok" == action) {
@@ -303,7 +314,7 @@ function setTimeChange(){
                     var timeStr = pt.timeStr;
                     var s = "";
                     if(ms<=jm && isToday == 1){
-                        s = "<a href='javascript:;' itemid='"+timeStr+"' class='hui'>"+timeStr+"(已满)</a>";
+                        s = "<a href='javascript:;' itemid='"+timeStr+"' class='hui'>"+timeStr+"</a>";
                     }else{
                         s = "<a href='javascript:;' name='date' itemid='"+timeStr+"'>"+timeStr+"</a>";
                     }

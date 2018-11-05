@@ -124,7 +124,7 @@ function editInsuranceDetail(row) {
     var item={};
     item.id = "InsuranceDetail";
     item.text = "保险开单详情";
-    item.url = webPath + contextPath + "/repair/RepairBusiness/CIRegister/CarInsuranceDetail.jsp";
+    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CarInsuranceDetail.flow?token="+token;
     item.iconCls = "fa fa-cog";
     var params = {};
     params = { 
@@ -139,7 +139,7 @@ function newInsuranceDetail() {
     var item={};
     item.id = "InsuranceDetail";
     item.text = "保险开单详情";
-    item.url = webPath + contextPath + "/repair/RepairBusiness/CIRegister/CarInsuranceDetail.jsp";
+    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CarInsuranceDetail.flow?token="+token;
     item.iconCls = "fa fa-cog";
     var params = {};
     window.parent.activeTabAndInit(item,params);

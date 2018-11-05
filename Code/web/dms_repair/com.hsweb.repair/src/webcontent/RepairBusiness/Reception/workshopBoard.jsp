@@ -52,7 +52,7 @@
 }
 </style>
 </head>
-<body>
+<body >
 
 <div class="nui-fit" style="background-color: #000">
 	<div style="height: 40px;background-color: #fa8c16">
@@ -66,15 +66,15 @@
 		</table>
 	</div>
 	<div class="nui-fit" style="background-color: #000">
-	    <div id="workShopBoardGrid" class="nui-datagrid" showPager="false" style="height:100%;width:100%;">
+	    <div id="workShopBoardGrid" class="nui-datagrid" dataField="list" showPager="false" style="height:100%;width:100%;">
 	        <div property="columns">
-	            <div field="no" width="100" headerAlign="center" align="center">车牌号</div>
-	            <div field="" width="100" headerAlign="center" align="center">接车时间</div>
-	            <div field="" width="100" headerAlign="center" align="center">预计完工时间</div>
-	            <div field="" width="100" headerAlign="center" align="center">服务顾问</div>
-	            <div field="" width="100" headerAlign="center" align="center">施工员</div>
-	            <div field="" width="100" headerAlign="center" align="center">项目进度</div>
-	            <div field="" width="100" headerAlign="center" align="center">施工状态</div>
+	            <div field="carNo" width="100" headerAlign="center" align="center">车牌号</div>
+	            <div field="enterDate" width="100" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" align="center">接车时间</div>
+	            <div field="planFinishDate" width="100" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" align="center">预计完工时间</div>
+	            <div field="mtAdvisor" width="100" headerAlign="center" align="center">服务顾问</div>
+	            <div field="sureMtMan" width="100" headerAlign="center" align="center">施工员</div>
+	            <div field="" width="100" headerAlign="center" align="center">维修项目</div>
+	            <div field="status" width="100" headerAlign="center" align="center">施工状态</div>
 	
 	        </div>
 	    </div>
@@ -87,15 +87,14 @@
 		var workShopBoardGrid = null;
 		var gridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
 		var statusHash = {
-			"0" : "报价",
-			"1" : "施工",
-			"2" : "完工"
+			"0" : "在报价",
+			"1" : "施工中",
+			"2" : "已完工"
 		};
 
 		$(document).ready(function(v) {
 			workShopBoardGrid = nui.get("workShopBoardGrid");
 			workShopBoardGrid.setUrl(gridUrl);
-
 			workShopBoardGrid.on("drawcell", function (e) {
 				if (e.field == "status") {
 					e.cellHtml = statusHash[e.value];
@@ -103,6 +102,8 @@
 			});
 
 			load();
+
+
 		});
 
 		function load(){
@@ -111,13 +112,21 @@
 			params.isDisabled = 0;
 			params.isCount = -1;
 
-			guestBoardGrid.load({
+			workShopBoardGrid.load({
 				token:token,
 				params: params
 			});
+	if (this.name!='FullWnd'){                            
+          window.open(location.href,'FullWnd','fullscreen,scrollbars=no');      
+        this.parent.opener=null;    
+        this.parent.close();    
+      } 
 		}
+		
+		
 
-		setInterval(load,5000);
+		setInterval(load,50000);
+
     </script>
 </body>
 </html>

@@ -7,7 +7,6 @@ var grid2 = null;
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid2 = null;
 $(document).ready(function () {
-    tabs = nui.get("tabs");
     mainGrid1 = nui.get("mainGrid1");
     form = new nui.Form("#editForm1");
     grid1 = nui.get("grid1");
@@ -16,33 +15,8 @@ $(document).ready(function () {
     grid2.setUrl(baseUrl+"com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext");
     mainGrid1.setUrl(baseUrl+"com.hsapi.repair.repairService.query.querySettleList.biz.ext");
     mainGrid2 = nui.get("mainGrid2");
-    //form.setReadOnly(true);
-    tabs.on("activechanged",function(e){
-    	if(nui.get("carId").value != ""){
-    		params = {
-    				carId : nui.get("carId").value
-    	    };
-    		var index = e.index;
-            if(index == 0){
                 nui.ajax({
-                    url: "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext",
-                    type : "post",
-                    data : {
-                    	params : params
-                    },
-                    success: function (text) {
-                        var list = nui.decode(text.list);
-                        form.setData(list[0]);
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log(jqXHR.responseText);
-                        showMsg("网络出错", "W");
-                    }
-                });
-            }
-            if (index == 1) {
-                nui.ajax({
-                    url: "com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext",
+                    url: baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext",
                     type : "post",
                     data : {
                     	guestId : nui.get("guestId").value
@@ -58,34 +32,28 @@ $(document).ready(function () {
                     }
                 });
                 
-                var p = {
-                		guestId : nui.get("guestId").value
-                };
-                grid1.load({p : p});
-                grid2.load({p : p});
-            }
-            if(index == 2){
-            	params = {
-            			carId : nui.get("carId").value,
-            			guestId : nui.get("guestId").value
-            	};
-            	mainGrid1.load({params : params});
-            }
-    	}
-    });
+
+                grid2.on("load",function(e){
+                	var data = e.data;
+                	for(var i = 0;i<data.length;i++){
+                		data[i].balaAmt=data[i].totalAmt-data[i].useAmt;
+                		grid2.updateRow(data[i],i);
+                	}
+                });
 });
 
 function SetData(params){
 	nui.get("carId").setValue(params.carId);
 	nui.get("guestId").setValue(params.guestId);
-	params = {
+	var json = {
 			carId : nui.get("carId").value
     };
 	nui.ajax({
-        url: "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext",
+        url: baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext",
         type : "post",
         data : {
-        	params : params
+        	params:json,
+        	token:token
         },
         success: function (text) {
             var list = nui.decode(text.list);
@@ -96,4 +64,12 @@ function SetData(params){
             showMsg("网络出错", "W");
         }
     });
+    var pa = {
+    		guestId:params.guestId,
+    		token:token
+    };
+    grid1.load({p:pa});
+
+    grid2.load({guestId:params.guestId});
+
 }

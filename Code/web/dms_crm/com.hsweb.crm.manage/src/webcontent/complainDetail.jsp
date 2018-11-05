@@ -141,12 +141,12 @@ pageEncoding="UTF-8" session="false" %>
 				</table>
 			</div>
 		</div>
-		<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+		<div style="padding:2px;border-bottom:0;">
 			<table align="center">
 				<tr>
 					<td>
-						<a class="nui-button" iconCls="icon-save" plain="true" id="ok" name = "ok" onclick="onOk()">保存</a>
-						<a class="nui-button" iconCls="icon-close" plain="true" onclick="onCancel()">关闭</a>
+						<a class="nui-button"  plain="true" id="ok" name = "ok" onclick="onOk()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+						<a class="nui-button"  plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
 					</td>
 				</tr>
 			</table>

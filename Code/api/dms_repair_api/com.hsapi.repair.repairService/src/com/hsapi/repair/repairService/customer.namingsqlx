@@ -43,10 +43,7 @@
 		<dynamic>
             <isNotEmpty prepend="and" property="tenantId">  
                 (b.tenant_id = #tenantId#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="orgid">  
-                (a.orgid = #orgid#)
-            </isNotEmpty>         
+            </isNotEmpty>        
              <isNotEmpty prepend="and" property="recordStart">  
                 (date_format(a.record_date,'%Y-%m-%d') &gt;= #recordStart#)
             </isNotEmpty>
@@ -171,9 +168,6 @@
 		<dynamic>
             <isNotEmpty prepend="and" property="tenantId">  
                 (b.tenant_id = #tenantId#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="orgid">  
-                (a.orgid = #orgid#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestId">  
                 (b.id = #guestId#)

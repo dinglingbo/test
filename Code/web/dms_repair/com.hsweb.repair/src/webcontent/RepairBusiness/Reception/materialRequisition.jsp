@@ -451,7 +451,7 @@
         		var list = text.list[0];
         		var serviceCode = list.serviceCode;
         		var guestFullName = list.guestFullName;
-        		var carNo = list.carNO;
+        		var carNo = list.carNo;
         		var contactMobile = list.contactMobile;
         		var mtAdvisor = list.mtAdvisor;
         		var carModel = list.carModel;

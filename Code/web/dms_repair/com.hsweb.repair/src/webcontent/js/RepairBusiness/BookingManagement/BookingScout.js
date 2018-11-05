@@ -1,4 +1,4 @@
-var baseUrl = apiPath + sysApi + "/";;
+var baseUrl = apiPath + repairApi + "/";;
 var scoutModeHash = [];
 var scoutResutHash = [];
 var saveUrl = baseUrl + "com.hsapi.repair.repairService.booking.queryBookingList.biz.ext";

@@ -199,15 +199,15 @@ function onSearch()
         params.lastMonth = 1;
         params.startDate = getLastMonthStartDate();
         params.endDate = addDate(getLastMonthEndDate(), 1);
-    }/*else if (d == 6) {
+    }else if (d == 6) {
         params.lastMonth = 1;
-        params.startDate = getYearEndDate()-12;
-        params.endDate = getYearEndDate();
+        params.startDate = getYearStartDate();
+         params.endDate = getYearEndDate();
     }else if (d == 7) {
         params.lastMonth = 1;
-        params.startDate = getLastYearStartDate();
-        params.endDate = addDate(getLastMonthEndDate(), 1);
-    }*/
+        params.startDate = getPrevYearStartDate();
+        params.endDate = getPrevYearEndDate();
+    }
     doSearch(params);
 }
 function doSearch(params) {

@@ -207,7 +207,10 @@ $(document).ready(function ()
                 break;
         }
     });
-
+    
+    mainGrid.on("rowdblclick",function(e){
+		edit();
+	});
     
 });
 var statusHash = {
@@ -465,8 +468,8 @@ function getSearchParam() {
     if(advancedSearchWin.visible){//document.getElementById("advancedMore").style.display=='block'
         params.sRecordDate = beginDateEl.getValue();
         params.eRecordDate = endDateEl.getValue();
-        params.sOutDate = nui.get("sOutDate").getValue();
-        params.eOutDate = nui.get("eOutDate").getValue();
+        params.sPlanFinishDate = nui.get("sPlanFinishDate").getValue();
+        params.ePlanFinishDate = nui.get("ePlanFinishDate").getValue();
         params.serviceTypeIdList = serviceTypeIds.getValue();
     }
     
@@ -480,7 +483,7 @@ function getSearchParam() {
     }else if(type==2){
         params.name = typeValue;
     }else if(type==3){
-        params.tel = typeValue;
+        params.mobile = typeValue;
     }
     return params;
 }

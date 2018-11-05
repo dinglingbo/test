@@ -9,6 +9,7 @@ $(document).ready(function(v) {
 	nui.get("mobile").disable();
 	nui.get("vin").disable();
 	nui.get("xmobile").disable();
+	nui.get("xvin").disable();
 	
 });
 
@@ -18,20 +19,19 @@ function setData(data)
 	guest= data.guest;
 	yCar.setData(guest);
 	xCar.setData(guest);
+	nui.get("xGuestId").setValue(guest.guestId);
 	updateType();
 }
 function updateType()
 {
 		if (nui.get('changeType').getValue() == "0"){
 			nui.get("xcarNo").enable();
-			nui.get("xvin").enable();
 			nui.get("xguestFullName").disable();
 			nui.get("xguestFullName").setValue(guest.guestFullName);
 			nui.get("xguestFullName").setText(guest.guestFullName);
 		} else {
 			$('#xcarNo').attr("disabled",false);
 			nui.get("xcarNo").disable();
-			nui.get("xvin").disable();
 			nui.get("xguestFullName").enable();
 			nui.get("xguestFullName").setText("请选择...");
 		}
@@ -39,16 +39,18 @@ function updateType()
 }
 
 var requiredField = {
-		GuestId : "请选择客户",
+		xGuestId : "请选择客户",
 		carNo : "车牌号",
 		vin : "车架号(VIN)",
 		guestFullName : "客户名称",
-		mobile : "电话号码"
+		mobile : "电话号码",
+		remark : "变更原因"
 		
 	};
 
 function onOk(){
 	var car = xCar.getData();
+	    car.remark = nui.get("remark").getValue();
 	for ( var key in requiredField) {
 		if (!car[key] || $.trim(car[key]).length == 0) {
 			showMsg(requiredField[key] + "不能为空!", "W");
@@ -66,12 +68,13 @@ var changeCarNoUrl = apiPath + repairApi+ "/com.hsapi.repair.repairService.crud.
 function changeCarNo()
 {
 	var car = xCar.getData();
+	 car.remark = nui.get("remark").getValue();
 	var data = {
 			carId:car.id,
 			carNo:guest.carNo,
 			carVin:car.vin,
-			newCarNo:car.carNo
-
+			newCarNo:car.carNo,
+			remark:car.remark
 	}
 	var json = {
 			data:data,
@@ -99,6 +102,7 @@ var changeCarGuestUrl = apiPath + repairApi+ "/com.hsapi.repair.repairService.cr
 function changeCarGuest()
 {
 	var car = xCar.getData();
+	 car.remark = nui.get("remark").getValue();
 	var data = {
 			carId:car.id,
 			carNo:guest.carNo,
@@ -106,7 +110,8 @@ function changeCarGuest()
 			guestId:guest.guestId,
 			guestName:guest.guestFullName,
 			newGuestId:car.xGuestId,
-			newGuestName:car.guestFullName
+			newGuestName:car.guestFullName,
+			remark:car.remark
 	}
 	var json = {
 			data:data,
@@ -161,4 +166,8 @@ function CloseWindow(action) {
 		return window.CloseOwnerWindow(action);
 	else
 		return window.close();
+}
+
+function onClose(){
+	window.CloseOwnerWindow();	
 }

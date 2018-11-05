@@ -25,6 +25,9 @@
  var searchNameEl = null;
  var servieIdEl = null;
  var searchKeyEl = null;
+ var ycAmt = 0;
+ var tcAmt = 0;
+ var gsAmt = 0;
 
  var rpsPackageGrid = null;
  var rpsItemGrid = null;
@@ -1021,18 +1024,18 @@ svrSaveMaintain(params, function(text){
     // });
 }
 function sureMT(){
-    var data = billForm.getData();
-    if(!data.id){
+    var dataForm = billForm.getData();
+    if(!dataForm.id){
         showMsg("请先保存工单!","W");
         return;
     }else{
-        if(data.status != 0){
+        if(dataForm.status != 0){
             showMsg("本工单已经确定维修!","W");
             return;
         }
         var params = {
             data:{
-                id:data.id||0
+                id:dataForm.id||0
             }
         };
         nui.mask({
@@ -1046,14 +1049,18 @@ function sureMT(){
             var errMsg = data.errMsg||"";
             if(errCode == 'S'){
                 var main = data.maintain||{};
+                main.contactorName = dataForm.contactorName;
+                main.guestMobile = dataForm.guestMobile;
+                main.guestFullName = dataForm.guestFullName;
+                main.mobile = dataForm.mobile;
                 billForm.setData([]);
                 billForm.setData(main);
                 var status = main.status||0;
                 var isSettle = main.isSettle||0;
                 doSetStyle(status, isSettle);
-                showMsg("确定维修成功!","S");
+                showMsg("确定开单成功!","S");
             }else{
-                showMsg(errMsg||"确定维修失败!","W");
+                showMsg(errMsg||"确定开单失败!","W");
                 nui.unmask(document.body);
             }
         }, function(){
@@ -1062,22 +1069,26 @@ function sureMT(){
     }
 }
 function finish(){
-    var data = billForm.getData();
-    if(!data.id){
+    var dataForm = billForm.getData();
+    if(!dataForm.id){
         showMsg("请先保存工单!","W");
         return;
     }else{
-        if(data.status == 2){
+        if(dataForm.status == 2){
             showMsg("本工单已经完工!","W");
             return;
         }
         var params = {
-            serviceId:data.id||0
+            serviceId:dataForm.id||0
         };
         doFinishWork(params, function(data){
-            data = data||{};data = data||{};
+            data = data||{};
             if(data.action){
                 var action = data.action||"";
+                data.contactorName = dataForm.contactorName;
+                data.guestMobile = dataForm.guestMobile;
+                data.guestFullName = dataForm.guestFullName;
+                data.mobile = dataForm.mobile;
                 if(action == 'ok'){
                     billForm.setData([]);
                     billForm.setData(data);
@@ -3214,8 +3225,12 @@ function onDrawSummaryCellPack(e){
 	  //|| e.field == "amt"
 	  if(e.field == "subtotal") 
 	  {   
+		  tcAmt = 0;
 		  for (var i = 0; i < rows.length; i++)
 		  {
+			  if(rows[i].cardDetailId>0){
+				  tcAmt=tcAmt+rows[i].subtotal;
+			  }
 			  if(rows[i].billPackageId=="0"){
 				  sumPkgSubtotal += parseFloat(rows[i].subtotal);
 				  sumPkgAmt  += parseFloat(rows[i].amt);
@@ -3255,8 +3270,12 @@ function onDrawSummaryCellItem(e){
 	  // || e.field == "amt"
 	  if(e.field == "subtotal") 
 	  {   
+		  gsAmt = 0;
 		  for (var i = 0; i < rows.length; i++)
 		  {
+			  if(rows[i].cardDetailId>0){
+				  gsAmt=gsAmt+rows[i].subtotal;
+			  }
 			 if(rows[i].billItemId=="0"){
 				 sumItemSubtotal += parseFloat(rows[i].subtotal);
 				 sumItemAmt  += parseFloat(rows[i].amt); 
@@ -3349,6 +3368,8 @@ function pay(){
             return;
         }
         var sellData = sellForm.getData();
+        ycAmt = parseFloat(tcAmt)+parseFloat(gsAmt);
+        sellData.ycAmt = ycAmt;
         var params = {
             serviceId:data.id||0,
             guestId:data.guestId||0,

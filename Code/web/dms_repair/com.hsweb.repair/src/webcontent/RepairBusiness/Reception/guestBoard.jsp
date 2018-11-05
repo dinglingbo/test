@@ -52,7 +52,7 @@
 }
 </style>
 </head>
-<body>
+<body >
 
 <div class="nui-fit" style="background-color: #000">
 	<div style="height: 40px;background-color: #fa8c16">
@@ -69,9 +69,11 @@
 	    <div id="guestBoardGrid" class="nui-datagrid" dataField="data" showLoading="false" showPager="false" style="height:100%;width:100%;">
 	        <div property="columns">
 	            <div field="carNo" width="100" headerAlign="center" align="center">车牌号</div>
-	            <div field="recordDate" dateFormat="yyyy-MM-dd H:mm:ss" width="100" headerAlign="center" align="center">接车时间</div>
-	            <div field="planFinishDate" width="100" dateFormat="yyyy-MM-dd H:mm:ss" headerAlign="center" align="center">预计完工时间</div>
-	            <div field= "status" width="100" headerAlign="center" align="center">施工状态</div>
+	            <div field="recordDate" dateFormat="MM-dd H:mm" width="100" headerAlign="center" align="center">接车时间</div>
+	            <div field="planFinishDate" width="100" dateFormat="MM-dd H:mm" headerAlign="center" align="center">预计完工时间</div>
+	            <div field= "status" width="100" headerAlign="center" align="center">服务进程</div>
+	            <div field= "mtAdvisor" width="100" headerAlign="center" align="center">服务顾问</div>
+<!-- 	            <div field= "status" width="100" headerAlign="center" align="center">服务顾问电话</div> -->
 	        </div>
 	    </div>
     </div>
@@ -83,9 +85,9 @@
 		var guestBoardGrid = null;
 		var gridUrl = baseUrl + "com.hsapi.repair.repairService.daydata.queryGuestBoard.biz.ext";
 		var statusHash = {
-			"0" : "报价",
-			"1" : "施工",
-			"2" : "完工"
+			"0" : "在报价",
+			"1" : "施工中",
+			"2" : "已完工"
 		};
 
 		$(document).ready(function(v) {
@@ -108,6 +110,7 @@
 		}
 
 		setInterval(load,5000);
+	
 
     </script>
 </body>

@@ -94,7 +94,7 @@ a {
         <div field="status" name="status" width="30" headerAlign="center" align="center">进程</div>
         <div field="serviceTypeName" name="serviceTypeName" width="40" headerAlign="center" align="center">业务类型</div>
         <div field="isSettle" name="isSettle" width="30" headerAlign="center" align="center">结算状态</div>
-        <div field="enterDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH">进厂日期</div>
+        <div field="enterDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">进厂日期</div>
         <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
     </div> 
 </div>

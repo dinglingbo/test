@@ -117,10 +117,10 @@ table{
 	width:4%;
 }
 #orderPrice{
-	width:4%;
+	width:5%;
 }
 #orderAmt{
-	width:4%;
+	width:7%;
 }
 #remark{
 	width:4%;

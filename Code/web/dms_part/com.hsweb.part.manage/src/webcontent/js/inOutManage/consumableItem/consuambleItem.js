@@ -184,7 +184,10 @@ $(document).ready(function(v) {
 		if ((keyCode == 120)) { // F9
 			morePartCodeEl.focus();
 		}
-		
+//		
+//		if ((keyCode == 27)) { // F9
+//			onPartClose();
+//		}
 
 		if ((keyCode == 121)) { // F10
 			morePartNameEl.focus();

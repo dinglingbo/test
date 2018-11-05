@@ -156,7 +156,7 @@
                                      width="100%"/>
                               <table style="width: 100%;">
                                   <tr>
-                                      <td class="title required">
+                                      <td class="title required" style="width:62px;">
                                           <label>往来单位：</label>
                                       </td>
                                       <td colspan="3">
@@ -176,7 +176,7 @@
                                       <td colspan="1">
                                           <input class="nui-textbox" id="stateMan" name="stateMan" width="100%">
                                       </td>
-                                      <td class="title required">
+                                      <td class="title required" style="width:72px">
                                           <label>对账日期：</label>
                                       </td>
                                       <td width="120">
@@ -187,7 +187,7 @@
                                                  showTime="true"
                                                  class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
                                       </td>
-                                      <td class="title">
+                                      <td class="title" style="width:72px">
                                           <label>对账单号：</label>
                                       </td>
                                       <td colspan="1">
@@ -195,19 +195,19 @@
                                       </td>
                                   </tr>
                                   <tr>
-                                      <td class="title required">
+                                      <td class="title required" >
                                           <label>对账金额：</label>
                                       </td>
                                       <td colspan="1">
                                           <input class="nui-textbox" id="rpAmt" name="rpAmt" width="100%" enabled="false">
                                       </td>
-                                      <td class="title required">
+                                      <td class="title required" style="width:72px">
                                           <label>优惠金额：</label>
                                       </td>
                                       <td colspan="1">
                                           <input class="nui-textbox" id="voidAmt" name="voidAmt" width="100%" vtype="float" selectOnFocus="true">
                                       </td>
-                                      <td class="title required">
+                                      <td class="title required" style="width:72px">
                                           <label>应结金额：</label>
                                       </td>
                                       <td colspan="1">

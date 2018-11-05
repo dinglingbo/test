@@ -248,6 +248,10 @@ function LLSave(argument) {
 		showMsg("单据已完工,不能领料","W");
 		return;
 	}
+	if(status==0){
+		showMsg("草稿状态下的单据不能领料","W");
+		return;
+	}
 	var rows = mainGrid.getSelecteds();
 	if (rows.length > 0) {
 		for (var i = 0, l = rows.length; i < l; i++) {
@@ -295,6 +299,10 @@ function openPartSelect(par,type,id,row,srow){
 function THSave(){
 	if(status==2){
 		showMsg("单据已完工，维修出库不能退货","W");
+		return;
+	}
+	if(status==0){
+		showMsg("草稿状态下的单据不能领料","W");
 		return;
 	}
 	var rows = repairOutGrid.getSelecteds();

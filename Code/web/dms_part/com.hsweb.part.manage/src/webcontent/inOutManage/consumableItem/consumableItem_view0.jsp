@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>耗材出库</title>
-    <script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.28"></script>
+    <script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.30"></script>
     <style type="text/css">
     html,body {
        margin: 0;
@@ -93,7 +93,7 @@ pageEncoding="UTF-8" session="false"%>
                    <div type="indexcolumn">序号</div>
                    <div field="partCode" name="partCode" width="90" headerAlign="center" header="配件编码"></div>
                    <div field="oemCode" name="oemCode" width="90" headerAlign="center" header="OEM码"></div>
-                   <div field="partName" partName="name" width="80" headerAlign="center" header="配件名称"></div>
+                   <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
                    <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" headerAlign="center" header="库存数量"></div>
                    <div allowSort="true" visible="false"  datatype="int" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
                    <div allowSort="true" visible="false"  datatype="float" width="60" field="outQty" headerAlign="center" header="出库数量">
@@ -101,7 +101,7 @@ pageEncoding="UTF-8" session="false"%>
                    </div>
                    <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
                    <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
-                   <div field="storeId" name="storeId"  id="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
+                   <div field="storeId" name="storeId"  id="storeId" width="100" headerAlign="center" allowSort="true" header="仓库"></div>
                    <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
                    <div field="partBrandId" name="partBrandId" width="70" headerAlign="center" header="品牌"></div>
                    <div field="applyCarModel" name="applyCarModel" width="200" headerAlign="center" header="车型"></div>

@@ -139,7 +139,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="sureMT()" id="addBtn"><span class="fa fa-car fa-lg"></span>&nbsp;确定开单</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="unfinish()" id="addBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返工</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="unfinish()" id="addBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="addBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
                 <!-- <a class="nui-button" iconCls="" plain="true" onclick="del()" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a> -->
                 <span class="separator"></span>
@@ -150,7 +150,7 @@
                     <li iconCls="" onclick="onPrint(1)" id="type11">打印报价单</li>
                     <li iconCls="" onclick="onPrint(2)" id="type11">打印派工单</li>
                     <li iconCls="" onclick="onPrint(3)" id="type11">打印结算单</li>
-                    <li iconCls="" onclick="onPrint(4)" id="type11">打印小票</li>
+                    <li iconCls="" onclick="onPrint(4)" id="type11">打印结算单（小票）</li>
                     <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
                 </ul>
 
@@ -238,9 +238,9 @@
                 <td class=""><input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="100%"/></td>
                 <td class="title required">客户手机:</td> 
                 <td class=""><input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="100%"/></td>
-                <td class="title required">送修人名称:</td> 
+                <td class="title required">联系人名称:</td> 
                 <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false" width="100%"/></td>
-                <td class="title required">送修人手机:</td> 
+                <td class="title required">联系人手机:</td> 
                 <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false" width="100%"/></td>
                 <td class="title">开单时间:</td> 
                 <td class="">

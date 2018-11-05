@@ -393,7 +393,7 @@
                         <td class="left"id="mtAdvisor">服务顾问：</td>
                     </tr>
                     <tr>
-                        <td class="left" id ="carVin">VIN：</td>
+                        <td class="left" id ="carVin">车架号(VIN)：</td>
                         <td class="left">进厂时间：<span class="left" style="width: 33.33%" id="enterDate"></span></td>
                         <td class="left" id="planFinishDate">预计完工时间：</td>
                     </tr>

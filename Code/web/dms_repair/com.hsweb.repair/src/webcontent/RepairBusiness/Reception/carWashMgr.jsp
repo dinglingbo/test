@@ -181,7 +181,7 @@
                 textField="name"
                 valueField="id"/>
             <tr>
-                <td class="title">创建日期:</td>
+                <td class="title">开单日期:</td>
                 <td>
                     <input id="sRecordDate"
                            name="sRecordDate"
@@ -201,7 +201,7 @@
                            showClearButton="false"/>
                 </td>
             </tr>
-            <tr>
+            <!-- <tr >
                 <td class="title">预计完工日期:</td>
                 <td>
                     <input id="sPlanFinishDate"
@@ -221,7 +221,7 @@
                            width="100%"
                            showClearButton="false"/>
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <td class="title">业务类型:</td>
                 <td colspan="3">

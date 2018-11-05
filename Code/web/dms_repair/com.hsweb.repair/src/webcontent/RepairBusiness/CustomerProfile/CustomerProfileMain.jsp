@@ -31,64 +31,54 @@ table {
 			<table class="table">
 				<tr>
 					<td><label style="font-family: Verdana;">快速查询：</label> 
-					<a class="nui-button" plain="true" onclick="quickSearch(0)" id="type0">本日来厂</a> 
-					<a class="nui-button" plain="true" onclick="quickSearch(1)" id="type1">昨日来厂</a> 
-					<a class="nui-button" plain="true" onclick="quickSearch(2)" id="type2">本日新客户</a> 
-					<a class="nui-button" plain="true" onclick="quickSearch(3)" id="type3">本月新客户</a> 
-					<a class="nui-button" plain="true" onclick="quickSearch(4)" id="type4">本月所有来厂客户</a> 
-					<a class="nui-button" plain="true" onclick="quickSearch(5)" id="type5">本月流失回厂</a> 
-					<a class="nui-button" plain="true" onclick="quickSearch(6)" id="type6">上月流失回厂</a></td>
-				</tr>
-				<tr>
+					<a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">所有</a>
+                    <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                        <li iconCls="" onclick="quickSearch(0)" id="type0">本日来厂</li>
+                        <li iconCls="" onclick="quickSearch(1)" id="type1">昨日来厂</li>
+                        <li iconCls="" onclick="quickSearch(2)" id="type2">本日新客户</li>
+                        <li iconCls="" onclick="quickSearch(3)" id="type3">本月新客户</li>
+                        <li iconCls="" onclick="quickSearch(4)" id="type4">本月所有来厂客户</li>
+                        <li iconCls="" onclick="quickSearch(5)" id="type5">本月流失回厂</li>
+                        <li iconCls="" onclick="quickSearch(6)" id="type6">上月流失回厂</li>
+                    </ul>
 					<td><label>车牌号:</label> <input class="nui-textbox" name="carNo" /> 
 					<label>手机号码：</label>
 						<input class="nui-textbox" name="mobile" /> 
 						<a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search"></span>&nbsp;查询</a>
 						<a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-
-	<div class="nui-toolbar" style="border-bottom: 0;">
-		<table>
-			<tr>
 				<td><a class="nui-button" iconCls="" onclick="add()"plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> 
 					<a class="nui-button" iconCls="" id="updateBtn"	onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
 					<a class="nui-button" iconCls="icon-date" id="mergeBtn" onclick="amalgamate()" plain="true">资料合并</a> <a
 					class="nui-button" iconCls="icon-date" onclick="split()" id="splitBtn"
-					plain="true">资料拆分</a> <a class="nui-button" iconCls="icon-node"
-					onclick="history()" plain="true">维修历史</a>
-					<a class="nui-button" iconCls="" onclick="toUp()" plain="true"><span class="fa fa-credit-card-alt"></span>储值卡充值</a>
-					<a class="nui-button" plain="true" iconCls="" onclick="importGuest()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;客户导入</a>
-				 <a class="nui-button" plain="true" iconCls="" onclick="importTimesCard()" id="importTimesCardBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;客户计次卡导入</a>
-				 <a class="nui-menubutton" plain="true" menu="#popupMenuQT" id="menuQT"  ><span class="fa fa-level-down fa-lg"></span>&nbsp;客户储值卡导入</a>
-                <ul id="popupMenuQT" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="importCardByMobile()" id="importCardByMobile">电话号码导入</li>
-                    <li iconCls="" onclick="importCardByCarNo()" id="importCardByCarNo">车牌号导入</li>
-                </ul>
-                	<a class="nui-button" iconCls="" id="carChangeBtn"	onclick="carChange()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;车牌车主变更</a>
+					plain="true">资料拆分</a> 
+<!-- 					<a class="nui-button" plain="true" iconCls="" onclick="importGuest()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;客户导入</a>
+					<a class="nui-button" plain="true" iconCls="" onclick="importTimesCard()" id="importTimesCardBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;客户计次卡导入</a>
+					<a class="nui-menubutton" plain="true" menu="#popupMenuQT" id="menuQT"  ><span class="fa fa-level-down fa-lg"></span>&nbsp;客户储值卡导入</a>
+                    <ul id="popupMenuQT" class="nui-menu" style="display:none;">
+                    	<li iconCls="" onclick="importCardByMobile()" id="importCardByMobile">电话号码导入</li>
+                    	<li iconCls="" onclick="importCardByCarNo()" id="importCardByCarNo">车牌号导入</li>
+                    </ul> -->
+                	<a class="nui-button" iconCls="" id="carChangeBtn"	onclick="carChange()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;车辆变更</a>
 					</td>
 			</tr>
-		</table>
+			</table>
+		</div>
 	</div>
+
 	<div class="nui-fit">
-		<div id="datagrid1" dataField="list" class="nui-datagrid"
-			style="width: 100%; height: 100%;" pageSize="20" onselectionchanged="selectionChanged"
-			allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="7" totalCount="page.count" virtualScroll="true" virtualColumns="true">
+		<div id="datagrid1" dataField="list" class="nui-datagrid" align="center"
+			style="width: 100%; height: 100%;" pageSize="20"  allowcellwrap="true" onselectionchanged="selectionChanged"
+			allowSortColumn="true" frozenStartColumn="0" frozenEndColumn="6" totalCount="page.count" virtualColumns="true">
 			<div property="columns">
 				<div width="30" type="indexcolumn">序号</div>
 				<div header="车辆信息" headerAlign="center">
 					<div property="columns">
 						<div field="carNo" headerAlign="center" allowSort="true"
 							visible="true" width="80">车牌号</div>
-						<div field="carBrandId" headerAlign="center" allowSort="true"
-							visible="true" width="80">品牌</div>
-						<div field="carModel" headerAlign="center" allowSort="true"
-							visible="true" width="80px">车型</div>
+						<div field="carModel" headerAlign="center"  width="120px">车型</div>
 						<div field="vin" headerAlign="center" allowSort="true"
-							visible="true" width="120px">VIN</div>
+							visible="true" width="130px">车架号（VIN）</div>
 						<div field="annualInspectionDate" headerAlign="center"
 							dateFormat="yyyy-MM-dd" allowSort="true" visible="true"
 							width="80px">保险到期</div>
@@ -101,8 +91,6 @@ table {
 				</div>
 				<div header="客户信息" headerAlign="center">
 					<div property="columns">
-						<div name="type" field="type" headerAlign="center"
-							allowSort="true" visible="true" width="60px">档案号</div>
 						<div name="guestFullName" field="guestFullName"
 							headerAlign="center" allowSort="true" visible="true"
 							width="100px">客户名称</div>
@@ -120,7 +108,7 @@ table {
 						<div name="isDisabled" field="isDisabled" headerAlign="center"
 							allowSort="true" visible="true" width="50px">营销员</div>
 						<div name="recorder" field="recorder" headerAlign="center"
-							allowSort="true" visible="true" width="50px">建档人</div>
+							allowSort="true" visible="true" width="60px">建档人</div>
 						<div name="recordDate" field="recordDate" dateFormat="yyyy-MM-dd"
 							headerAlign="center" allowSort="true" visible="true" width="100">建档日期
 						</div>

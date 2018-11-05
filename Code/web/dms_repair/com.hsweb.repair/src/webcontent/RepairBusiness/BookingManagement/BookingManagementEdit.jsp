@@ -10,7 +10,7 @@
 
 <head>
     <title>预约管理</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=1.7"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=1.8"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -50,8 +50,8 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="width:100%;">
-                            <a class="nui-button" onclick="onOk" style="width: 60px;">保存</a>
-                            <a class="nui-button" onclick="onClose" style="width: 60px;">关闭</a>
+                            <a class="nui-button" onclick="onOk" plain="true" style="width: 70px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存 </a>
+                            <a class="nui-button" onclick="onClose" plain="true" style="width: 70px;"><span class="fa fa-close fa-lg"></span>&nbsp;关闭 </ a>
                         </td>
                     </tr>
                 </table>
@@ -65,7 +65,7 @@
                             <label>车牌号：</label>
                         </td>
                         <td>
-                            <input class="nui-buttonedit" id="carNo" name="carNo" textname="carNo" emptyText="请输入或选择..." onbuttonclick="selectCustomer" selectOnFocus="true" required="true"/>
+                            <input class="nui-buttonedit" id="carNo" name="carNo" textname="carNo" emptyText="请输入或选择..." onbuttonclick="selectCustomer" selectOnFocus="true" required="true" onenter="onenterSelect()"/>
                             <input class="nui-textbox" id="carId" name="carId" visible="false" />
                             <input class="nui-textbox" id="guestId" name="guestId" visible="false" /> 
                             <input class="nui-textbox" id="contactorId" name="contactorId" visible="false" />                          
@@ -136,6 +136,14 @@
 
                     </tr>
                     <tr>
+                        <td class="form_label">
+                            <label>客户描述：</label>
+                        </td>
+                        <td colspan="5">
+                            <textarea class="nui-textarea" width="100%" height="50px" id="faultDesc" name="faultDesc"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
                         <td  class="form_label">
                         </td>
                         <td colspan="5">
@@ -144,14 +152,7 @@
                         </td>
                     </tr>
 
-                    <tr>
-                        <td class="form_label">
-                            <label>客户描述：</label>
-                        </td>
-                        <td colspan="5">
-                            <textarea class="nui-textarea" width="100%" height="130px" id="faultDesc" name="faultDesc"></textarea>
-                        </td>
-                    </tr>
+                    
                 </table>
             </div>
 

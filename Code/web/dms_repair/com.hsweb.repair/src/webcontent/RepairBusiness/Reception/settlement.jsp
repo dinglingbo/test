@@ -299,27 +299,20 @@
 
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="drawOutReport">
-                        出车报告：
-
-
-
-
+                    <td height="50" valign="top" style="padding: 8px;" id="guestDesc">
+                                                       客户描述：
+                    </td>
+                      <td height="50" valign="top" style="padding: 8px;" id="faultPhen">
+                                                       故障现象：
+                    </td>
+                     <td height="50" valign="top" style="padding: 8px;" id="solveMethod">
+                                                       解决措施：
                     </td>
                 </tr>
-            <tr>
-                <td height="30" style="padding: 8px;">
-                    <div style="font-size: 15px;">
-                        <span id="spremark">
-                            
-                        </span>
-
-
-                        
-                    </div>
+                <tr>
+                   <td height="30" style="padding: 8px;" colspan="3">
                     <ul class="renyuan">
-                        <li>服务顾问：<span id="name"></span></li>
-                        <li>收银员：</li>
+                        <li>尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准</li>
                         <li>客户签名：</li>
                     </ul>
                 </td>
@@ -345,7 +338,6 @@
     		money = transform(money+"");
     		document.getElementById("money").innerHTML = money;
         }
-        
         function SetData(params){
 	        var date = new Date();
 	        if(params.name){
@@ -360,9 +352,11 @@
 	        }else{
 	        	url = "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid=";
 	        }
-	         $.post(params.baseUrl+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext"+"&token="+params.token,{},function(text){
+	        var dictids= ['DDT20130703000051'];
+	        
+	         $.post(params.sysUrl+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictids="+dictids+"&token="+params.token,{},function(text){
     		    if(text.data){
-    		      data = text.data; 
+    		      data = text.data;
     		    }
 	         });
 	        $.post(params.baseUrl+url+params.serviceId+"&token="+params.token,{},function(text){
@@ -395,10 +389,10 @@
 	        			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm:ss");
 	        		}
 	        		var serviceCode = list.serviceCode || "";
-	        		//var guestMobile = list.guestMobile || "";
+	        		var guestDesc = list.guestDesc || "";
 	        		var carModel = list.carModel || "";
-	        		//var contactMobile = list.contactMobile || "";
-	        		//var contactName = list.contactName || "";
+	        		var faultPhen = list.faultPhen || "";
+	        		var solveMethod = list.solveMethod || "";
 	        		var guestAddr = list.guestAddr || "";
 	        		if(params.type){
 	        			guestFullName = list.guestName || "";
@@ -408,7 +402,6 @@
 	        			//contactName = list.contactorName || "";
 	        			mtAdvisor = list.mtAdvisor || "";
 	        		}
-	        		document.getElementById("drawOutReport").innerHTML = document.getElementById("drawOutReport").innerHTML + drawOutReport;
 	        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
 	        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
@@ -416,12 +409,12 @@
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
 	        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
-	        		//document.getElementById("guestMobile").innerHTML = document.getElementById("guestMobile").innerHTML + guestMobile; 
+	        		document.getElementById("guestDesc").innerHTML = document.getElementById("guestDesc").innerHTML + guestDesc; 
 	        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
-	        		//document.getElementById("contactMobile").innerHTML = document.getElementById("contactMobile").innerHTML + contactMobile; 
-	        		//document.getElementById("contactName").innerHTML = document.getElementById("contactName").innerHTML + contactName; 
+	        		document.getElementById("faultPhen").innerHTML = document.getElementById("faultPhen").innerHTML + faultPhen; 
+	        		document.getElementById("solveMethod").innerHTML = document.getElementById("solveMethod").innerHTML + solveMethod; 
 	        		document.getElementById("guestAddr").innerHTML = document.getElementById("guestAddr").innerHTML + guestAddr;
-	        		document.getElementById("name").innerHTML = document.getElementById("name").innerHTML + mtAdvisor; 
+	        		//document.getElementById("name").innerHTML = document.getElementById("name").innerHTML + mtAdvisor; 
 	        	}
         	});
         	if(params.type){

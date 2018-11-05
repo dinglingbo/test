@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单查询</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.3"></script>
 <style type="text/css">
 
 .title {
@@ -102,6 +102,7 @@
 		                  <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
 	                  </div>
                   </div>
+               
                
                   
                   <div header="结算信息" headerAlign="center">

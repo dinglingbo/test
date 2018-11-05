@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-销售单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=1.7.6"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=1.7.7"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -121,6 +121,7 @@
                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="add"> <span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> 
                 <a class="nui-button" iconCls="" plain="true" onclick="saveBatch()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                <!--  <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="finishBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a> -->
+                <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="sellBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
                 <span class="separator"></span>
 
                 <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint" onclick="onPrint()" ><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>

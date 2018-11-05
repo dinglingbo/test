@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修顾问业绩报表</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairConsultantPerformance/RepairConsultantPerformanceMainF.js?v=1.0.2"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairConsultantPerformance/RepairConsultantPerformanceMain.js?v=1.0.3"></script>
 <style type="text/css">
 .form_label {
 	width: 72px;
@@ -40,8 +40,8 @@
 						<li iconCls="" onclick="quickSearch(3)">上周</li>
 						<li iconCls="" onclick="quickSearch(4)">本月</li>
 						<li iconCls="" onclick="quickSearch(5)">上月</li>
-						<!-- <li iconCls="" onclick="quickSearch(6)">本年</li>
-						<li iconCls="" onclick="quickSearch(7)">上年</li> -->
+						<li iconCls="" onclick="quickSearch(6)">本年</li>
+						<li iconCls="" onclick="quickSearch(7)">上年</li> 
 	                </ul>
 					<span class="separator"></span>
 					 <!-- <a class="nui-button" onclick="advancedSearch()" plain="true">更多</a>  -->

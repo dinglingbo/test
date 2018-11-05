@@ -35,6 +35,13 @@ var prdtTypeHash = {
 };
 $(document).ready(function ()
 {
+    beginDateEl = nui.get("sOutDate");
+	endDateEl = nui.get("eOutDate");
+    var date = new Date();
+    var sdate = new Date();
+    sdate.setMonth(date.getMonth()-3);
+    endDateEl.setValue(date);
+	beginDateEl.setValue(sdate);
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
     beginDateEl = nui.get("sRecordDate");

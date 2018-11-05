@@ -459,7 +459,6 @@ function add(){
     sk.style.display = "";
     searchKeyEl.focus();
 
-
     rpsPartGrid.clearRows();
     billForm.setData([]);
  
@@ -1035,7 +1034,8 @@ function onCellCommitEdit(e) {
 			var amt = qty * unitPrice;
 
 			newRow = {
-				amt : amt
+				amt : amt,
+				subtotal:amt
 			};
 			rpsPartGrid.updateRow(e.row, newRow);		
 
@@ -1057,7 +1057,8 @@ function onCellCommitEdit(e) {
 
 			if (qty) {
 				newRow = {
-					unitPrice : unitPrice
+					unitPrice : unitPrice,
+					subtotal:amt
 				};
 				rpsPartGrid.updateRow(e.row, newRow);
 			}
@@ -1091,7 +1092,7 @@ function saveBatch(){
 				return;
 			}
 	    }
-	    data.billTypeId = 2;
+	    data.billTypeId = 3;
 	    data.serviceTypeId = 1 ;
 	    data.mtAdvisorId = currUserId;
 	    data.mtAdvisor = currUserName;
@@ -1189,6 +1190,14 @@ function saveBatch(){
 			success : function(text) {
 				var returnJson = nui.decode(text);
 				if (returnJson.errCode == "S") {
+					
+					var p3 = {
+	                        interType: "part",
+	                        data:{
+	                            serviceId: maintain.id||0
+	                        }
+	                    }
+	                loadDetail(p3);
 					showMsg("保存成功");
 													
 				} else {
@@ -1197,8 +1206,6 @@ function saveBatch(){
 				}
 			}
 		});
-
-		
 	}
 }
 
@@ -1263,3 +1270,54 @@ function onDrawSummaryCell(e){
 		  }
 	  } 
 }
+
+//转结算
+payUrl = webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token="+token;
+function pay(){	
+	var main = billForm.getData();
+	if(main.isSettle == 1){
+        showMsg("此单已结算!","W");
+        return;
+    }
+	if(main.status != 2){
+		 showMsg("此单未出库，不能结算!","W");
+	     return;
+	}
+	nui.open({
+		url:payUrl,
+		width:"100%",
+		height:"100%",
+		//加载完之后
+		onload: function(){	
+			//把值传递到支付页面
+		    var iframe = this.getIFrameEl();
+		    var data = {
+		    	"itemPrefAmt":0,
+		    	"itemSubtotal":0,
+		    	"packagePrefAmt":0,
+		    	"packageSubtotal":0,
+		    	"partPrefAmt":total,
+		    	"partSubtotal":total,
+		    	"mtAmt":total,
+		    	"ycAmt":0
+		    };
+		    var params = {
+		    	"carNo":main.carNo,
+		    	"guestId":main.guestId,
+		    	"guestName":main.guestFullName,
+		    	"serviceId":main.id,
+		    	"data":data
+		    };
+		    iframe.contentWindow.setData(params);			
+		},
+	   ondestroy : function(action) {
+		/*if (action == 'ok') {
+			
+		}*/
+	}
+	});		
+}
+
+
+
+

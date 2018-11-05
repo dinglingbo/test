@@ -219,18 +219,17 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
                     <td height="24" width="33%" id="guestFullName">&nbsp;客户名称：</td>
-                        <td id="guestMobile">&nbsp;联系电话：</td>
-                    <td width="33%" id="mtAdvisor">&nbsp;接待人员：</td>
+                    <td width="33%" id="mtAdvisor">&nbsp;服务顾问：</td>
+                    <td id="enterKilometers">&nbsp;进厂油量/里程：</td>
                 </tr>
                 <tr>
                     <td height="24" id="carNo">&nbsp;车牌：</td>
-                    <td id="carModel">&nbsp;车辆型号： </td>
+                    <td id="carModel">&nbsp;品牌车型： </td>
                     <td id="carVin">&nbsp;车架号：</td>
                 </tr>
                 <tr>
-                    <td height="24" id="contactName">&nbsp;送修人：</td>
-                    <td id="contactMobile">&nbsp;送修人电话：</td>
-                    <td id="enterKilometers">&nbsp;行驶里程：</td>
+                    
+                    
                 </tr>
             </table>
         </div>
@@ -331,6 +330,7 @@
 		var url_one = null;
 		var url_two = null;
 		var url_three = null;
+		var data = [];
 		$(document).ready(function (){
 			$("#print").click(function () {
 	            $(".print_btn").hide();
@@ -360,6 +360,11 @@
 	        }else{
 	        	url = "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid=";
 	        }
+	         $.post(params.baseUrl+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext"+"&token="+params.token,{},function(text){
+    		    if(text.data){
+    		      data = text.data; 
+    		    }
+	         });
 	        $.post(params.baseUrl+url+params.serviceId+"&token="+params.token,{},function(text){
 	        	if(text.list.length > 0){
 	        		var list = text.list[0];
@@ -373,7 +378,15 @@
 	        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm:ss");
 	        		}
 	        		var guestFullName = list.guestFullName || "";
-	        		var enterKilometers = list.enterKilometers || "";
+	        		var enterOilMass = list.enterOilMass || "0";
+	        		var name = "0";
+	        		//查找油量http://127.0.0.1:8080/default/
+	        		for(var i = 0;i<data.length;i++){
+	        		        if(data[i].customid == enterOilMass){
+	        		           name = data[i].name;
+	        		        }
+	        		}
+	        		var enterKilometers = name+"/"+ list.enterKilometers || "0";
 	        		var mtAdvisor = list.mtAdvisor || "";
 	        		var planFinishDate = list.planFinishDate || "";
 	        		if(planFinishDate){
@@ -382,17 +395,17 @@
 	        			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm:ss");
 	        		}
 	        		var serviceCode = list.serviceCode || "";
-	        		var guestMobile = list.guestMobile || "";
+	        		//var guestMobile = list.guestMobile || "";
 	        		var carModel = list.carModel || "";
-	        		var contactMobile = list.contactMobile || "";
-	        		var contactName = list.contactName || "";
+	        		//var contactMobile = list.contactMobile || "";
+	        		//var contactName = list.contactName || "";
 	        		var guestAddr = list.guestAddr || "";
 	        		if(params.type){
 	        			guestFullName = list.guestName || "";
-	        			guestMobile = list.guestTel || "";
-	        			contactMobile = list.contactorTel || "";
+	        			//guestMobile = list.guestTel || "";
+	        			//contactMobile = list.contactorTel || "";
 	        			carNo = list.carNo || "";
-	        			contactName = list.contactorName || "";
+	        			//contactName = list.contactorName || "";
 	        			mtAdvisor = list.mtAdvisor || "";
 	        		}
 	        		document.getElementById("drawOutReport").innerHTML = document.getElementById("drawOutReport").innerHTML + drawOutReport;
@@ -403,10 +416,10 @@
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
 	        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
-	        		document.getElementById("guestMobile").innerHTML = document.getElementById("guestMobile").innerHTML + guestMobile; 
+	        		//document.getElementById("guestMobile").innerHTML = document.getElementById("guestMobile").innerHTML + guestMobile; 
 	        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
-	        		document.getElementById("contactMobile").innerHTML = document.getElementById("contactMobile").innerHTML + contactMobile; 
-	        		document.getElementById("contactName").innerHTML = document.getElementById("contactName").innerHTML + contactName; 
+	        		//document.getElementById("contactMobile").innerHTML = document.getElementById("contactMobile").innerHTML + contactMobile; 
+	        		//document.getElementById("contactName").innerHTML = document.getElementById("contactName").innerHTML + contactName; 
 	        		document.getElementById("guestAddr").innerHTML = document.getElementById("guestAddr").innerHTML + guestAddr;
 	        		document.getElementById("name").innerHTML = document.getElementById("name").innerHTML + mtAdvisor; 
 	        	}

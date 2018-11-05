@@ -51,13 +51,13 @@
     <div style="padding: 0px;" borderStyle="border:0;">
         <table width="100%">
             <tr>
-                <td style="text-align:right;padding-left: 50px;" >
-                    <a class="nui-button"  onclick="finish()" id = "readyPay" style="margin-right:245px"><span class="fa fa-check fa-lg" ></span>&nbsp;完工</a>
+                <td  >
+                    <a class="nui-button"  onclick="finish()" id = "readyPay" plain="true"><span class="fa fa-check fa-lg" ></span>&nbsp;完工</a>
                     <!-- <a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >保存</a>  -->
-                    <a class="nui-button"  onclick="onCancel()" id = "payOk" align="left"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> 
-                    <a class="nui-button"  onclick="SelectReport()" id = "SelectReport" align="left"><span class="fa fa-plus fa-lg"></span>&nbsp;质检报告模板</a>
+                    <a class="nui-button"  onclick="onCancel()" id = "payOk" plain="true"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> 
+                    <a class="nui-button"  onclick="SelectReport()" id = "SelectReport" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;质检报告模板</a>
                 </td>
-                <td style="padding-right: 50px;"><span id="checkDescribe" style="color:red;"></span></td>
+                <td align="left"><span id="checkDescribe" style="color:red;"></span></td>
             </tr>
         </table>
 	</div>

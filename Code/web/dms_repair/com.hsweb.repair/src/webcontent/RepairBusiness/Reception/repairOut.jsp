@@ -89,12 +89,12 @@ a {
         <div field="serviceCode" name="serviceCode" width="50" headerAlign="center" align="center">单号</div>
         <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
         <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
-        <div field="carNO" name="carNO" width="40" headerAlign="center" align="center">车牌号</div>
-        <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">车型</div>
+        <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
+        <div field="carModel" name="carModel" width="110" headerAlign="center" align="center">品牌/车型</div>
         <div field="status" name="status" width="30" headerAlign="center" align="center">进程</div>
         <div field="serviceTypeName" name="serviceTypeName" width="40" headerAlign="center" align="center">业务类型</div>
         <div field="isSettle" name="isSettle" width="30" headerAlign="center" align="center">结算状态</div>
-        <div field="enterDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm:ss">进厂日期</div>
+        <div field="enterDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH">进厂日期</div>
         <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
     </div> 
 </div>
@@ -151,6 +151,23 @@ a {
         };
         mainGrid.load({params:params,token:token});
     }
+	
+	document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		
+		if ((keyCode == 13)) { // Enter
+			onSearch();
+		}
+
+	}
+	$("#name").bind("keydown", function(e) {
+		if (e.keyCode == 13) {
+			var carNo = nui.get("carNo");
+			carNo.focus();
+			onSearch();
+		}
+	});
 
     mainGrid.on("celldblclick",function(e){
         var field = e.field;

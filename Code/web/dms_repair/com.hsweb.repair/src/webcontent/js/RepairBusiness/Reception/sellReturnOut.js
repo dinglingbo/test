@@ -51,7 +51,25 @@ $(document).ready(function ()
         }
         
     });
+    
+    mainGrid.on("celldblclick",function(e){
+        var field = e.field;
+        var record = e.record;
+        var column = e.column;  
+        var sid = record.id;
+        repairOut(); 
+    });
+    
+	document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		
+		if ((keyCode == 13)) { // Enter
+			onSearch();
+		}
 
+	}
+	
     innerPartGrid.on("drawcell", function (e) {
         var record = e.record;
         switch (e.field) {
@@ -172,7 +190,7 @@ function getSearchParam() {
     }else if(type==2){
         params.name = typeValue;
     }else if(type==3){
-        params.tel = typeValue;
+        params.mobile = typeValue;
     }
     
     return params;

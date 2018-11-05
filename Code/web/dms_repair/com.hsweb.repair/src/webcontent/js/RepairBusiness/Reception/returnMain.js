@@ -48,6 +48,7 @@ $(document).ready(function ()
             }
         }
     });
+     
 
     innerPartGrid.on("drawcell", function (e) {
         var record = e.record;

@@ -132,6 +132,13 @@
             <isNotEmpty prepend="and" property="eOutDate">  
                 (a.out_date &lt; #eOutDate#)
             </isNotEmpty>
+            <!--预计完工日期 -->
+            <isNotEmpty prepend="and" property="sPlanFinishDate">  
+                (a.plan_finish_date &gt;= #sPlanFinishDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="ePlanFinishDate">  
+                (a.plan_finish_date &lt; #ePlanFinishDate#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="billTypeId">  
                 (a.bill_type_id = #billTypeId#)
             </isNotEmpty>

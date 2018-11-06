@@ -233,3 +233,7 @@ function setData(data)
 
 }
 
+function setInitData(params){
+	setStely();
+}
+

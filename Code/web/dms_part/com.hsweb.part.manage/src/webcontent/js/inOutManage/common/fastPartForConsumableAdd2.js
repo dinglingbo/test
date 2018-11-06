@@ -3,15 +3,17 @@ var resultData = {};
 var mtAdvisorIdEl = null;
 var mtAdvisorIdEl2=null;
 var data={};
+var returnRemark=null;
 var repairApiUrl = apiPath + repairApi + "/";
 $(document).ready(function(){
 	form=new nui.Form('#form');
 	nui.get('outQty').enabled=false;
     mtAdvisorIdEl = nui.get("mtAdvisorId");
- 
-    mtAdvisorIdEl.focus();
+    returnRemark=nui.get('returnRemark');
+    
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
+        returnRemark.focus();
     });
 
 

@@ -13,10 +13,9 @@ $(document).ready(function(){
 
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
+        mtAdvisorIdEl.focus();
     });
     
-    mtAdvisorIdEl.focus();
-
     mtAdvisorIdEl.on("valueChanged",function(e){
         var text = mtAdvisorIdEl.getText();
 

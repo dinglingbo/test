@@ -42,7 +42,7 @@ function selectCustomer() {
 
 function openCustomerWindow(callback) {
     nui.open({
-        url: "com.hsweb.RepairBusiness.Customer.flow",
+        url: webPath + contextPath + "/com.hsweb.RepairBusiness.Customer.flow?token="+token,
         title: "客户选择", width: 800, height: 450,
         onload: function () {
         },

@@ -22,6 +22,7 @@ var id=null;
 var periodValidity = -1;
 
 $(document).ready(function(){
+	basicInfoForm = new nui.Form("#basicInfoForm");
 	var accountTypeIdEl = null;
 	accountTypeIdEl=nui.get('radio');
 	accountTypeList=[{id:1,name:"现金"},{id:2,name:"刷卡"},{id:3,name:"微信/支付宝"}];
@@ -36,7 +37,6 @@ $(document).ready(function(){
 //}
 
 function SetData(params) {
-    basicInfoForm = new nui.Form("#basicInfoForm");
     var params = nui.clone(params);
     if(params.data!=null){
         guestId=params.data.guestId;
@@ -312,4 +312,35 @@ function CloseWindow(action) {
 		return window.CloseOwnerWindow(action);
 	else
 		return window.close();
+}
+
+function selectCustomer() {
+    openCustomerWindow(function (v) {
+       var main = {};
+        main.guestId = v.guestId;
+        main.guestFullName = v.guestFullName;
+        main.mobile = v.guestMobile;
+        mini.get("guestFullName").setText(v.guestFullName);
+        guestId=v.guestId;
+        guestName=v.guestFullName;
+        basicInfoForm.setData(main);
+    });
+}
+
+function openCustomerWindow(callback) {
+    nui.open({
+        url: webPath + contextPath + "/com.hsweb.RepairBusiness.Customer.flow?token="+token,
+        title: "客户选择", width: 800, height: 450,
+        onload: function () {
+        },
+        ondestroy: function (action) {
+            if ("ok" == action) {
+                var iframe = this.getIFrameEl();
+                //调用子界面的方法，返回子界面的数据
+                var data = iframe.contentWindow.getData();
+                var guest = data.guest;
+                callback && callback(guest);
+            }
+        }
+    });
 }

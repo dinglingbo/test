@@ -107,9 +107,9 @@ pageEncoding="UTF-8" session="false"%>
                    <div field="applyCarModel" name="applyCarModel" width="200" headerAlign="center" header="车型"></div>
                    <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
                    <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd H:mm" width="120px" header="入库日期" format="yyyy-MM-dd H:mm" headerAlign="center" allowSort="true"></div>
-                   <div field="guestName" width="180px" headerAlign="center" allowSort="true" header="供应商"></div>  
+                   <div field="guestName" width="280px" headerAlign="center" allowSort="true" header="供应商"></div>  
 
-                   <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
+                   <div field="fullName" name="fullName" width="300" headerAlign="center" header="配件全称"></div> 
                 <div field="pickMan" visible="false"  name="pickMan" width="50" headerAlign="center" header="领料人">
                    <input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                </div>

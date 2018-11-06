@@ -1038,11 +1038,13 @@
 			a.`status` AS `status`,
 			a.plan_finish_date AS planFinishDate,
 			a.sure_mt_man as sureMtMan,
-			b.item_name as itemName
+		(select GROUP_CONCAT(item_name) from wb_repair.rps_item b
+	       where b.service_id = a.id) itemName,
+	    (select GROUP_CONCAT(package_name) from wb_repair.rps_package c
+	       where c.service_id = a.id) packageName
 
 		FROM
 			rps_maintain a
-			inner JOIN rps_item b ON ( a.id = b.service_id )
 		WHERE 1 = 1
 			and a.orgid = #orgid#
 		<dynamic>
@@ -1056,31 +1058,5 @@
         order by a.plan_finish_date desc
 	</select>
 	
-		  <select id="queryWorkPackage" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-    	SELECT
-			a.id AS id,
-			a.enter_date AS enterDate,
-			a.car_no AS carNo,
-			a.mt_advisor AS mtAdvisor,
-			a.`status` AS `status`,
-			a.plan_finish_date AS planFinishDate,
-			a.sure_mt_man as sureMtMan,
-			c.package_name as packageName
-
-		FROM
-			rps_maintain a
-		  	inner JOIN rps_package c on (a.id = c.service_id)
-		WHERE 1 = 1
-			and a.orgid = #orgid#
-		<dynamic>
-            <isNotEmpty prepend="and" property="isDisabled">
-                (a.is_disabled = #isDisabled#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="isSettle">  
-                (a.is_settle = #isSettle#)
-            </isNotEmpty>
-        </dynamic>  
-        order by a.plan_finish_date desc
-	</select>
 	
 </sqlMap>

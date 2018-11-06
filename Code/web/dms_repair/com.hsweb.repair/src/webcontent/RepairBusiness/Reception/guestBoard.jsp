@@ -12,7 +12,9 @@
 <title>客户休息区看板</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
       <style type="text/css">
-
+.select-row{
+   background:#89c3d6;
+}
 .mini-grid-border{
    background: #000;
 }
@@ -60,7 +62,10 @@
 			<tr>
 			  <td style="width: 33%;text-align: center;font-size: 16px;font-weight: bold;color: #fff">客户休息区看板</td>
 			  <td style="width: 33%;text-align: center;font-size: 16px;font-weight: bold;color: #fff" id="clock">2018年7月3日20:57:53</td>
-			  <td style="width: 33%;text-align: center;font-size: 16px;font-weight: bold;color: #fff"></td>
+			  <td style="width: 33%;text-align: right;font-size: 16px;font-weight: bold;color: #fff">
+			  	  <a class="nui-button" id="full" onclick="fullScreen()" > <span class="fa fa-arrows-alt fa-lg"></span></a>
+				  <a class="nui-button" id="exit" onclick="exitScreen()" ><span class="fa fa-compress fa-lg"></span></a>
+			  </td>
 			
 			</tr>
 		</table>
@@ -73,7 +78,7 @@
 	            <div field="planFinishDate" width="100" dateFormat="MM-dd H:mm" headerAlign="center" align="center">预计完工时间</div>
 	            <div field= "status" width="100" headerAlign="center" align="center">服务进程</div>
 	            <div field= "mtAdvisor" width="100" headerAlign="center" align="center">服务顾问</div>
-<!-- 	            <div field= "status" width="100" headerAlign="center" align="center">服务顾问电话</div> -->
+		        <div field= "status" width="100" headerAlign="center" align="center">服务顾问电话</div>
 	        </div>
 	    </div>
     </div>
@@ -89,14 +94,29 @@
 			"1" : "施工中",
 			"2" : "已完工"
 		};
+		var count = 25;
+		var dataLength = 0;
+		var full = null;
+		var exit = null;
 
 		$(document).ready(function(v) {
+		
+					full = nui.get("full");
+			
+			exit = nui.get("exit");
+			exit.setVisible(false);
 			guestBoardGrid = nui.get("guestBoardGrid");
 			guestBoardGrid.setUrl(gridUrl);
 
 			guestBoardGrid.on("drawcell", function (e) {
 				if (e.field == "status") {
 					e.cellHtml = statusHash[e.value];
+				}
+				if(e.field == "carNo"){
+				var carNo = e.row.carNo;
+				carNo = replacePos(carNo,3,"*"); 
+				carNo = replacePos(carNo,4,"*"); 
+				e.cellHtml = carNo;
 				}
 			});
 
@@ -107,11 +127,73 @@
 			guestBoardGrid.load({
 				token:token
 			});
-		}
-
-		setInterval(load,5000);
 	
+		}
+		
+		function replacePos(strObj,pos,replacetext){
+			var str = strObj.substr(0, pos-1);	
+			str += replacetext;	
+			str += strObj.substring(pos,strObj.length);	
+			return str;	
+		}
+		
+				//全屏
+        function fullScreen(){
+            var el = document.documentElement;
+            var rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;      
+                if(typeof rfs != "undefined" && rfs) {
+                    rfs.call(el);
+                };
+                full.setVisible(false);
+                exit.setVisible(true);
+              return;
+        }
+		
+        //退出全屏
+        function exitScreen(){
+            if (document.exitFullscreen) {  
+                document.exitFullscreen();  
+            }  
+            else if (document.mozCancelFullScreen) {  
+                document.mozCancelFullScreen();  
+            }  
+            else if (document.webkitCancelFullScreen) {  
+                document.webkitCancelFullScreen();  
+            }  
+            else if (document.msExitFullscreen) {  
+                document.msExitFullscreen();  
+            } 
+            if(typeof cfs != "undefined" && cfs) {
+                cfs.call(el);
+            }
+               	full.setVisible(true);
+                exit.setVisible(false);
+        }
+		
 
+/* 		function rolling(){
+			dataLength = guestBoardGrid.getData().length;
+			var i = Math.floor(dataLength/20);
+			var j = dataLength%20
+			for(var i = 0;i<Math.floor(dataLength/20);i++){
+				setInterval(rolling2,3000);
+			}
+			guestBoardGrid.scrollIntoView(parseFloat(count)+parseFloat(j));
+			count=20;
+			rolling();
+		}
+		
+	function rolling2(){
+			var row = guestBoardGrid.getRow(count);
+			guestBoardGrid.scrollIntoView(count);
+			count=count+20;
+	}
+ */
+ 	function rolling(){
+			guestBoardGrid.scrollIntoView(count);
+			count=count+20;
+		}
+ 	setInterval(rolling,6000);
     </script>
 </body>
 </html>

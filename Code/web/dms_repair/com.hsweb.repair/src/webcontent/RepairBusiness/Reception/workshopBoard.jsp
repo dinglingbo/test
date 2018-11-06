@@ -69,14 +69,14 @@
 		</table>
 	</div>
 	<div class="nui-fit" style="background-color: #000">
-	    <div id="workShopBoardGrid" class="nui-datagrid" dataField="list" showPager="false" style="height:100%;width:100%;">
+	    <div id="workShopBoardGrid" class="nui-datagrid" dataField="list" allowCellWrap="true" showPager="false" style="height:100%;width:100%;">
 	        <div property="columns">
 	            <div field="carNo" width="100" headerAlign="center" align="center">车牌号</div>
 	            <div field="enterDate" width="100" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" align="center">接车时间</div>
 	            <div field="planFinishDate" width="100" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" align="center">预计完工时间</div>
 	            <div field="mtAdvisor" width="100" headerAlign="center" align="center">服务顾问</div>
 	            <div field="sureMtMan" width="100" headerAlign="center" align="center">施工员</div>
-	            <div field="" width="100" headerAlign="center" align="center">维修项目</div>
+	            <div field="name" width="120" headerAlign="center" align="center">维修项目</div>
 	            <div field="status" width="100" headerAlign="center" align="center">施工状态</div>
 	
 	        </div>
@@ -106,6 +106,10 @@
 			workShopBoardGrid.on("drawcell", function (e) {
 				if (e.field == "status") {
 					e.cellHtml = statusHash[e.value];
+				}
+				if (e.field == "name") {
+					var name = e.row.packageName+e.row.itemName;
+					e.cellHtml = name;
 				}
 			});
 

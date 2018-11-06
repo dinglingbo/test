@@ -329,6 +329,7 @@
 	            $(".print_btn").hide();
 	            window.print();
 	        }); 
+	        
         });
         //com.hsapi.repair.repairService.svr.billqyeryMaintainList
         function getSubtotal(){//更新套餐工时配件合计金额

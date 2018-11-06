@@ -143,7 +143,7 @@
                 </div>
                 <div size="30%" showCollapseButton="true">
                     <div class="nui-fit">
-                        <div id="downGrid" class="nui-datagrid" dataField="rs" style="width: 100%; height: 100%;" showPager="false" allowSortColumn="true">
+                        <div id="downGrid" class="nui-datagrid" dataField="rs" style="width: 100%; height: 100%;" showPager="false" allowSortColumn="true" allowCellWrap=true>
                             <div property="columns">
                                 <div type="indexcolumn" headerAlign="center" allowSort="true" width="30">序号</div>
                                 <div field="scoutManId" headerAlign="center" allowSort="true" visible="true" width="100">跟进人 </div>

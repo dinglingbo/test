@@ -12,7 +12,7 @@
 
 <head>
 <title>客户选择</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerSelect.js?v=1.0.4"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerSelect.js?v=1.0.6"></script>
 <style type="text/css">
 table {
 	font-size: 12px;

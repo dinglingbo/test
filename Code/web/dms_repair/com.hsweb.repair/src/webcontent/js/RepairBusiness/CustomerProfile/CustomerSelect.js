@@ -15,6 +15,7 @@ $(document).ready(function()
         }
      
     }
+    nui.get("key").focus();
     grid.on("rowdblclick",function(e){
     	onOk();
 	});

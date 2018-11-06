@@ -6,6 +6,7 @@ var carBrandHash = [];
 var carSeriesHash = [];
 var mtAdvisorHash = [];
 var timeStartEl = null;
+var carNoEl = null;
 var timeData = [];
 var todayDate = "";
 
@@ -13,9 +14,17 @@ var listUrl= baseUrl + "com.hsapi.repair.repairService.booking.queryBookingList.
 
 $(document).ready(function(v){
     init();
-   /* $("#carNo").click(function(event){
-        alert("hello");
-    });*/
+    carNoEl = nui.get("carNo");
+    carNoEl.focus();
+    document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		
+
+		if ((keyCode == 27)) { // ESC
+			CloseWindow('cancle');
+		}
+	}
   
 });
 
@@ -123,7 +132,7 @@ function SetData(params) {
     timeStartEl = nui.get("timeStart");
     initTimeData();
 
-    basicInfoForm = new nui.Form("#basicInfoForm");	
+    basicInfoForm = new nui.Form("#basicInfoForm");
     basicInfoForm.setData(params.data);
 
     if(params.data.carBrandId){
@@ -256,8 +265,9 @@ function openCustomerWindow(carNo,callback) {
         	}
         },
         ondestroy: function (action) {
+        	carNoEl.focus();
             if ("ok" == action) {
-                var iframe = this.getIFrameEl();
+              var iframe = this.getIFrameEl();
                 //調用字界面的方法，返回子頁面的數據
                 var data = iframe.contentWindow.getData();
                 var guest = data.guest;
@@ -372,4 +382,12 @@ function selectclick() {
         $(this).siblings().removeClass("xz");
         $(this).toggleClass("xz");
     });
+}
+
+function CloseWindow(action)
+{
+	if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		window.close();
 }

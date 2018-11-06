@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
   <title>首页</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.19"></script>
+    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.24"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css" rel="stylesheet" type="text/css" />
@@ -37,13 +37,13 @@ pageEncoding="UTF-8" session="false" %>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="toCarWashBill()">
-                            <i class="fa fa-car fa-4x  fa-inverse"></i> 
+                            <i class="fa fa-wrench fa-4x  fa-inverse"></i> 
                             <p>洗车开单</p> 
                         </a>
                     </div> 
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="toSellBill()">
-                            <i class="fa fa-calendar-plus-o fa-4x  fa-inverse"></i>
+                            <i class="fa fa-cart-plus fa-4x  fa-inverse"></i>
                             <p>销售开单</p> 
                         </a> 
 
@@ -51,14 +51,14 @@ pageEncoding="UTF-8" session="false" %>
  
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="toCarInsuranceDetail()">
-                            <i class="fa fa-cart-plus fa-4x  fa-inverse"></i>
+                            <i class="fa fa-unlock-alt fa-4x  fa-inverse"></i>
                             <p>保险开单</p> 
                         </a>
                     </div>
 
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="toRepairOut()">
-                            <i class="fa fa-user-plus fa-4x  fa-inverse"></i>
+                            <i class="fa fa-arrow-up fa-4x  fa-inverse"></i>
                             <p>维修出库</p> 
                         </a>
                     </div>
@@ -66,20 +66,20 @@ pageEncoding="UTF-8" session="false" %>
 
                 <div  id="menu2" class="demo"  style="margin-top:20px;">
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="toReceivableSettle()">
-                            <i class="fa fa-arrow-down fa-4x  fa-inverse"></i>
+                        <a onclick="toTimesCardList()">
+                            <i class="fa fa-gift fa-4x  fa-inverse"></i>
                             <p>计次卡销售</p> 
                         </a> 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="toPaySettle()">
-                            <i class="fa fa-arrow-up fa-4x  fa-inverse"></i>
+                        <a onclick="toCardList()">
+                            <i class="fa fa-user-o fa-4x  fa-inverse"></i>
                             <p>储值卡充值</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="toOthersReceive()">
-                            <i class="fa fa-exchange fa-4x  fa-inverse"></i>
+                        <a onclick="toVisitMain()">
+                            <i class="fa fa-handshake-o fa-4x  fa-inverse"></i>
                             <p>工单回访</p> 
                         </a>
                     </div>
@@ -92,7 +92,7 @@ pageEncoding="UTF-8" session="false" %>
 
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="toCustomerProfileMain()">
-                            <i class="fa fa-credit-card fa-4x  fa-inverse"></i>
+                            <i class="fa fa-car fa-4x  fa-inverse"></i>
                             <p>车辆新建</p> 
                         </a>
                     </div>

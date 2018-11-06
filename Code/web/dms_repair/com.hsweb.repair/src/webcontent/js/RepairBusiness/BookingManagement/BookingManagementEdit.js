@@ -6,6 +6,7 @@ var carBrandHash = [];
 var carSeriesHash = [];
 var mtAdvisorHash = [];
 var timeStartEl = null;
+var carNoEl = null;
 var timeData = [];
 var todayDate = "";
 
@@ -13,9 +14,17 @@ var listUrl= baseUrl + "com.hsapi.repair.repairService.booking.queryBookingList.
 
 $(document).ready(function(v){
     init();
-   /* $("#carNo").click(function(event){
-        alert("hello");
-    });*/
+    carNoEl = nui.get("carNo");
+    carNoEl.focus();
+    document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		
+
+		if ((keyCode == 27)) { // ESC
+			CloseWindow('cancle');
+		}
+	}
   
 });
 
@@ -58,8 +67,24 @@ function init() {
 
 }
 
-function onenterSelect(){
-
+function onenterSelect(e){
+	 var carNo = e;
+	 openCustomerWindow(carNo,function (v) {
+	        basicInfoForm = new nui.Form("#basicInfoForm");	
+	        var main = basicInfoForm.getData();
+	        main.guestId = v.guestId;
+	        main.contactorName = v.guestFullName;
+	        main.carId = v.carId;
+	        main.carNo = v.carNo;
+	        /*main.carVin = v.vin;*/
+	        main.carBrandId = v.carBrandId;
+	        main.carSeriesId = v.carSeriesId;
+	        main.contactorId = v.contactorId;
+	        main.contactorTel = v.mobile;
+	        var params = {};
+	        params.data = main;
+	        SetData(params);
+	    });
 }
 function initTimeData(){
     nui.ajax({
@@ -107,7 +132,7 @@ function SetData(params) {
     timeStartEl = nui.get("timeStart");
     initTimeData();
 
-    basicInfoForm = new nui.Form("#basicInfoForm");	
+    basicInfoForm = new nui.Form("#basicInfoForm");
     basicInfoForm.setData(params.data);
 
     if(params.data.carBrandId){
@@ -211,7 +236,7 @@ function onClose() {
 }
 	
 function selectCustomer() {
-    openCustomerWindow(function (v) {
+    openCustomerWindow(null,function (v) {
         basicInfoForm = new nui.Form("#basicInfoForm");	
         var main = basicInfoForm.getData();
         main.guestId = v.guestId;
@@ -235,12 +260,14 @@ function openCustomerWindow(carNo,callback) {
         title: "客户选择", width: 800, height: 450,
         onload: function () {
         	if(carNo){
-        		
+        	  var iframe = this.getIFrameEl();
+        	  iframe.contentWindow.setCarNo(carNo);
         	}
         },
         ondestroy: function (action) {
+        	carNoEl.focus();
             if ("ok" == action) {
-                var iframe = this.getIFrameEl();
+              var iframe = this.getIFrameEl();
                 //調用字界面的方法，返回子頁面的數據
                 var data = iframe.contentWindow.getData();
                 var guest = data.guest;
@@ -355,4 +382,12 @@ function selectclick() {
         $(this).siblings().removeClass("xz");
         $(this).toggleClass("xz");
     });
+}
+
+function CloseWindow(action)
+{
+	if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		window.close();
 }

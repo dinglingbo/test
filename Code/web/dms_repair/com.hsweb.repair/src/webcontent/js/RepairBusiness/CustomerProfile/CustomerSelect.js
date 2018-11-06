@@ -15,6 +15,10 @@ $(document).ready(function()
         }
      
     }
+    nui.get("key").focus();
+    grid.on("rowdblclick",function(e){
+    	onOk();
+	});
 });
 var grid = null;
 var gridUrl = baseUrl+"com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
@@ -61,6 +65,10 @@ function init()
         }
     ];
     nui.get("key").setData(keyList);
+}
+function setCarNo(carNo){
+	mini.get("setValue").setValue(carNo);
+	onSearch();
 }
 function getSearchParams()
 {

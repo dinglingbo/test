@@ -12,7 +12,7 @@
 
 <head>
 <title>客户选择</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerSelect.js?v=1.0.2"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerSelect.js?v=1.0.6"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -28,7 +28,7 @@ table {
                     <label>查询选项：</label>
                     <input class="nui-combobox" valueFromSelect="true" id="key" name="key" value="carNo"/>
                     <label>查询值：</label>
-                    <input class="nui-textbox" name="value"/>
+                    <input class="nui-textbox" name="value" id = "setValue"/>
                     <div class="nui-radiobuttonlist"
                          name="searchArea"
                          style="display: inline-block;position: relative;top:5px;"
@@ -58,15 +58,25 @@ table {
          style="width:100%;height:100%"
          pageSize="20"
          dataField="list"
-         allowSortColumn="true" totalField="page.count">
+         allowSortColumn="true" totalField="page.count" allowcellwrap="true">
         <div property="columns">
             <div type="indexcolumn" width="30">序号</div>
+            <div header="客户信息" headerAlign="center">
+                <div property="columns">
+                    <div field="guestFullName" width="60" headerAlign="center" allowSort="true">
+                        客户名称
+                    </div>
+                    <div field="guestMobile" width="80" headerAlign="center" allowSort="true">
+                        客户手机
+                    </div>
+                </div>
+            </div>
             <div header="联系人" headerAlign="center">
                 <div property="columns">
-                    <div field="contactName" width="100" headerAlign="center" allowSort="true">
+                    <div field="contactName" width="50" headerAlign="center" allowSort="true">
                         姓名
                     </div>
-                    <div field="identity" width="50" headerAlign="center" allowSort="true">
+                    <div field="identity" width="40" headerAlign="center" allowSort="true">
                         身份
                     </div>
                      <div field="sex" width="0" style="display:none;" headerAlign="center" allowSort="true">
@@ -76,40 +86,21 @@ table {
             </div>
             <div header="车辆信息" headerAlign="center">
                 <div property="columns">
-                    <div field="carNo" width="60" headerAlign="center" allowSort="true">
+                    <div field="carNo" width="65" headerAlign="center" allowSort="true">
                         车牌号
                     </div>
-                    <div field="carBrandId" width="50" headerAlign="center" allowSort="true">
-                        品牌
+                    <div field="carModel" width="115" headerAlign="center" allowSort="true">
+                        品牌/ 车型
                     </div>
-                    <div field="carModel" width="60" headerAlign="center" allowSort="true">
-                        车型
-                    </div>
-                    <div field="" width="30" headerAlign="center" allowSort="true">
-                        状态
-                    </div>
-                    <div field="chainComeTimes" width="80" headerAlign="center" allowSort="true">
+                    <div field="chainComeTimes" width="65" headerAlign="center" allowSort="true">
                         来厂次数
-                    </div>
-                </div>
-            </div>
-            <div header="客户信息" headerAlign="center">
-                <div property="columns">
-                    <div field="guestFullName" width="90" headerAlign="center" allowSort="true">
-                        客户名称
-                    </div>
-                    <div field="mobile" width="80" headerAlign="center" allowSort="true">
-                        联系人手机
-                    </div>
-                    <div field="tel" width="80" headerAlign="center" allowSort="true">
-                        联系人电话
                     </div>
                 </div>
             </div>
             <div header="辅助信息" headerAlign="center">
                 <div property="columns">
-                    <div field="vin" width="100" headerAlign="center" allowSort="true">
-                        VIN号
+                    <div field="vin" width="120" headerAlign="center" allowSort="true">
+                        车架号(VIN)
                     </div>
                     <div field="engineNo" width="80" headerAlign="center" allowSort="true">
                         发动机号

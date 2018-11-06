@@ -78,6 +78,15 @@ $(document).ready(function(v)
     },function(){
         grid.load();
     });
+    provinceEl.focus();
+    document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		if ((keyCode == 27)) { // ESC
+			CloseWindow('cancle');
+		}
+
+	}
 });
 var cityList = [];
 var provinceEl = null;

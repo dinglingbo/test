@@ -299,6 +299,9 @@ function onOk()
             		prebookInfo.guestId = retData.guestId;
             	    prebookInfo.carId = retData.carId;
             	    prebookInfo.contactorId = retData.contactorId;
+            	    prebookInfo.contactorName = retData.contactName;
+            	    prebookInfo.contactorTel = retData.mobile;
+            	    prebookInfo.carNo = retData.carNo;
       				nui.ajax({ 
       				      url: baseUrl + "com.hsapi.repair.repairService.booking.setBookingGuestId.biz.ext",
       				      type: 'post',

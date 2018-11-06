@@ -1,8 +1,5 @@
 var baseUrl = apiPath + repairApi + "/";
-//var clientGridUrl = baseUrl + "com.hsapi.part.query.report.querySellClient.biz.ext";
-//var partGridUrl = baseUrl + "com.hsapi.part.query.report.querySellPart.biz.ext";
-//var partBrandGridUrl = baseUrl + "com.hsapi.part.query.report.querySellPartBrand.biz.ext";
-//var partTypeGridUrl = baseUrl + "com.hsapi.part.query.report.querySellPartType.biz.ext";
+
 var gridUrl=baseUrl+"com.hsapi.repair.repairService.report.queryRetailStatistics.biz.ext";
 	
 var partBrandList = [];

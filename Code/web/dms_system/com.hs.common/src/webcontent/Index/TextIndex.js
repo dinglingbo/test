@@ -151,18 +151,38 @@ function toStockCheck(){
     var item={};
     item.id = "1985";
     item.text = "盘点单";
-    item.url = webPath + contextPath + "/com.hsweb.part.manage.stockCheck.flow";
+    item.url = webPath + contextPath + "/com.hsweb.part.manage.stockCheck.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
 }
+function toTimesCardList(){
+    var item={};
+    item.id = "1862";
+    item.text = "计次卡销售";
+    item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.timesCardList.flow?token="+token;
+    item.iconCls = "fa fa-file-text";
+    var params = {};
+    window.parent.activeTabAndInit(item,params);
+}
+
 function toCardList(){
     var item={};
     item.id = "1861";
-    item.text = "储值卡定义";
-    item.url = webPath + contextPath + "/repair/DataBase/Card/cardList.jsp";
+    item.text = "储值卡充值";
+    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CardUp.flow?token="+token
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
 }
+
+function toVisitMain(){
+    var item={};
+    item.id = "1863";
+    item.text = "工单回访";
+    item.url = webPath + contextPath + "/com.hsweb.crm.manage.visitMain.flow?token="+token
+    item.iconCls = "fa fa-file-text";
+    window.parent.activeTab(item);
+}
+
 function showGuestBoard(){
     //document.getElementById("gridGuestBoard").style.display ='block';
     //document.getElementById("gridWorkShopBoard").style.display ='none';
@@ -171,7 +191,7 @@ function showGuestBoard(){
 function showWorkShopBoard(){
     //document.getElementById("gridGuestBoard").style.display ='none';
     //document.getElementById("gridWorkShopBoard").style.display ='block';
-    window.open(webBaseUrl+"repair/RepairBusiness/Reception/workshopBoard_view.jsp"); 
+    window.open(webBaseUrl+"repair/RepairBusiness/Reception/workshopBoard.jsp"); 
 }
 function queryTodayData(callback) {
     var p = {

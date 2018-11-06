@@ -60,7 +60,10 @@
 			<tr>
 			  <td style="width: 33%;text-align: center;font-size: 16px;font-weight: bold;color: #fff">维修车间看板</td>
 			  <td style="width: 33%;text-align: center;font-size: 16px;font-weight: bold;color: #fff" id="clock">2018年7月3日20:57:53</td>
-			  <td style="width: 33%;text-align: center;font-size: 16px;font-weight: bold;color: #fff"></td>
+			  <td style="width: 33%;text-align: right;font-size: 16px;font-weight: bold;color: #fff">
+			  <a class="nui-button" id="full" onclick="fullScreen()" > <span class="fa fa-arrows-alt fa-lg"></span></a>
+			  <a class="nui-button" id="exit" onclick="exitScreen()" ><span class="fa fa-compress fa-lg"></span></a>
+			  </td>
 			
 			</tr>
 		</table>
@@ -85,14 +88,19 @@
 		setInterval("showtime('clock');",1000);
 		var baseUrl = apiPath + repairApi + "/";
 		var workShopBoardGrid = null;
-		var gridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
+		var gridUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryWorkShop.biz.ext";
 		var statusHash = {
 			"0" : "在报价",
 			"1" : "施工中",
 			"2" : "已完工"
 		};
-
+		var full = null;
+		var exit = null;
 		$(document).ready(function(v) {
+			full = nui.get("full");
+			
+			exit = nui.get("exit");
+			exit.setVisible(false);
 			workShopBoardGrid = nui.get("workShopBoardGrid");
 			workShopBoardGrid.setUrl(gridUrl);
 			workShopBoardGrid.on("drawcell", function (e) {
@@ -102,7 +110,6 @@
 			});
 
 			load();
-
 
 		});
 
@@ -116,13 +123,41 @@
 				token:token,
 				params: params
 			});
-	if (this.name!='FullWnd'){                            
-          window.open(location.href,'FullWnd','fullscreen,scrollbars=no');      
-        this.parent.opener=null;    
-        this.parent.close();    
-      } 
+
 		}
 		
+		//全屏
+        function fullScreen(){
+            var el = document.documentElement;
+            var rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;      
+                if(typeof rfs != "undefined" && rfs) {
+                    rfs.call(el);
+                };
+                full.setVisible(false);
+                exit.setVisible(true);
+              return;
+        }
+		
+        //退出全屏
+        function exitScreen(){
+            if (document.exitFullscreen) {  
+                document.exitFullscreen();  
+            }  
+            else if (document.mozCancelFullScreen) {  
+                document.mozCancelFullScreen();  
+            }  
+            else if (document.webkitCancelFullScreen) {  
+                document.webkitCancelFullScreen();  
+            }  
+            else if (document.msExitFullscreen) {  
+                document.msExitFullscreen();  
+            } 
+            if(typeof cfs != "undefined" && cfs) {
+                cfs.call(el);
+            }
+               	full.setVisible(true);
+                exit.setVisible(false);
+        }
 		
 
 		setInterval(load,50000);

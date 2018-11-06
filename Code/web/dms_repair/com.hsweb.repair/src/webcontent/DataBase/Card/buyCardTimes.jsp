@@ -12,7 +12,7 @@
 <head>
 <title>计次卡购买</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.1.5"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.1.6"></script>
 </head>
 <body>
 <div class="nui-fit">

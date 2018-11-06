@@ -390,11 +390,11 @@
                     </tr>
                     <tr>
                     	<td class="left"id="mtAdvisor">服务顾问：</td>
-                        <td class="left"id="carModel">车型：</td>
+                        <td class="left"id="carModel">车型/品牌：</td>
                         <td class="left">进厂时间：<span class="left" style="width: 33.33%" id="enterDate"></span></td>
                     </tr>
                     <tr>
-                        <td class="left" id ="carVin">VIN：</td>
+                        <td class="left" id ="carVin">车架号(VIN)：</td>
                         <td class="left" id ="engineNo">发动机号：</td>
                         <td class="left" id="planFinishDate">预计完工时间：</td>
                     </tr>
@@ -459,7 +459,7 @@
         		if(enterDate){
         			enterDate = enterDate.replace(/-/g,"/");
         			enterDate = new Date(enterDate);
-        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm:ss");
+        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm");
         		}
         		var carVin = list.carVin;
         		var engineNo = list.engineNo;
@@ -467,7 +467,7 @@
         		if(planFinishDate){
         			planFinishDate = planFinishDate.replace(/-/g,"/");
         			planFinishDate = new Date(planFinishDate);
-        			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm:ss");
+        			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm");
         		}
         		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML+ serviceCode;
         		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
@@ -481,7 +481,7 @@
         		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate; 
         });
         
-        $.post(baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext.biz.ext?serviceId="+params.serviceId,{},function(text){
+        $.post(baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainAllPart.biz.ext.biz.ext?serviceId="+params.serviceId,{},function(text){
             	var tBody = $("#tbodyId");
 				tBody.empty();
 				var tds = '<td align="center">[id]</td>' +

@@ -276,7 +276,7 @@
         <div style="color:#000;height:32px; margin-top:-8px;">
             <span style="font-size: 16px; float:right; font-weight: bold;">价格合计：&yen;<span id="cash"></span>元</span>
             套餐：<span id="prdt">0</span>&nbsp;&nbsp;+&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;+&nbsp;&nbsp;配件：<span id="part">0</span>
-            <span style="margin-left: 300px;">优惠金额：<span id="yh">0</span>元</span>
+            <span style="margin-left: 150px;">优惠金额：<span id="yh">0</span>元</span>
         </div>
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
             <tr>
@@ -311,11 +311,10 @@
                 </tr>
                 <tr>
                    <td height="30" style="padding: 8px;" colspan="3">
-                    <ul class="renyuan">
-                        <li>尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准</li>
-                        <li>客户签名：</li>
-                    </ul>
-                </td>
+                      <span style = "margin-left: 0px;" id = "show">尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准</span>
+                      <span style = "margin-left: 500px;">客户签名：</span>
+                  </td>
+                 
             </tr>
         </table>
     </div>
@@ -343,6 +342,10 @@
 	        var date = new Date();
 	        if(params.name){
 	        	document.getElementById("spstorename").innerHTML = params.name;
+	        	//维修结算单没有这段话
+	        	if(params.name == "维修结算单"){
+	        	   document.getElementById("show").innerHTML = "";
+	        	}
 	        }
 	        document.getElementById("comp").innerHTML = params.comp;
 	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm:ss");

@@ -12,6 +12,8 @@
 <title>Title</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>  
+    
 </head>
     <style>
         body, p, div, td, html {
@@ -96,7 +98,7 @@
                             <td height="20" id="mtAdvisor">顾问：</td>
                         </tr>
                         <tr>
-                            <td height="20" id="carNo">车辆：</td>
+                            <td height="20" id="carNo">车牌：</td>
                         </tr>
                         <tr>
                             <td height="20" id="enterDate">进厂时间：</td>
@@ -195,6 +197,9 @@
                    		var guestId = maintain.guestId || "";
                    		var carNo = maintain.carNo || "";
                    		var enterDate = maintain.enterDate || "";
+                   		if(enterDate){
+	        			   enterDate = format(enterDate, "yyyy-MM-dd HH:mm");
+	        		    }
                    		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML+ mtAdvisor;
                    		document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML+ guestId;
                    		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML+ carNo;

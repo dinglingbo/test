@@ -124,7 +124,8 @@ function SetData(params) {
     initTimeData();
 
     basicInfoForm = new nui.Form("#basicInfoForm");	
-    basicInfoForm.setData(params.data);
+    var data = params.data;
+    basicInfoForm.setData(data);
 
     if(params.data.carBrandId){
         initCarSeries("carSeriesId", params.data.carBrandId, function () {

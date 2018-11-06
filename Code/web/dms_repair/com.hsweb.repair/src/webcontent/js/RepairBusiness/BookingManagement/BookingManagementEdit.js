@@ -58,8 +58,24 @@ function init() {
 
 }
 
-function onenterSelect(){
-
+function onenterSelect(e){
+	 var carNo = e;
+	 openCustomerWindow(carNo,function (v) {
+	        basicInfoForm = new nui.Form("#basicInfoForm");	
+	        var main = basicInfoForm.getData();
+	        main.guestId = v.guestId;
+	        main.contactorName = v.guestFullName;
+	        main.carId = v.carId;
+	        main.carNo = v.carNo;
+	        /*main.carVin = v.vin;*/
+	        main.carBrandId = v.carBrandId;
+	        main.carSeriesId = v.carSeriesId;
+	        main.contactorId = v.contactorId;
+	        main.contactorTel = v.mobile;
+	        var params = {};
+	        params.data = main;
+	        SetData(params);
+	    });
 }
 function initTimeData(){
     nui.ajax({
@@ -211,7 +227,7 @@ function onClose() {
 }
 	
 function selectCustomer() {
-    openCustomerWindow(function (v) {
+    openCustomerWindow(null,function (v) {
         basicInfoForm = new nui.Form("#basicInfoForm");	
         var main = basicInfoForm.getData();
         main.guestId = v.guestId;
@@ -235,7 +251,8 @@ function openCustomerWindow(carNo,callback) {
         title: "客户选择", width: 800, height: 450,
         onload: function () {
         	if(carNo){
-        		
+        	  var iframe = this.getIFrameEl();
+        	  iframe.contentWindow.setCarNo(carNo);
         	}
         },
         ondestroy: function (action) {

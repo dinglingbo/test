@@ -491,7 +491,7 @@
         	if(text.errCode == "S"){
         		var guest = text.guest;
         		var fullName = guest.fullName;
-           		var tel = guest.tel;
+           		var tel = guest.mobile;
            		document.getElementById("guestId").innerHTML =  guestId.replace(/[0-9]/ig,"") + fullName;
            		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
         	}

@@ -4,6 +4,10 @@ var mainGrid = null;
 var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
 var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
 var beginDateEl = null;
+var StatusHash = {
+		"0" : "待归库",
+		"1" : "已归库",
+	};
 var endDateEl = null;
 var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"VIN码"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
 var brandList = [];
@@ -124,31 +128,96 @@ function onShowRowDetail(e) {
         token: token
     });
 }
-function quickSearch(type) {
-    var params = {};
-    switch (type) {
+var currType = 2;
+function quickSearch(type){
+    var params = getSearchParam();
+    var querysign = 1;
+    var queryname = "本日";
+    var querystatusname = "草稿";
+    switch (type)
+    {
         case 0:
-            params.status = 0;  //制单
+            params.today = 1;
+            params.sRecordDate = getNowStartDate();
+            params.eRecordDate = addDate(getNowEndDate(), 1);
+            querysign = 1;
+            queryname = "本日";
             break;
         case 1:
-            params.status = 1;  //施工
+            params.yesterday = 1;
+            params.sRecordDate = getPrevStartDate();
+            params.eRecordDate = addDate(getPrevEndDate(), 1);
+            querysign = 1;
+            queryname = "昨日";
             break;
         case 2:
-            params.status = 2;  //完工
-            //document.getElementById("advancedMore").style.display='block';
+            params.thisWeek = 1;
+            params.sRecordDate = getWeekStartDate();
+            params.eRecordDate = addDate(getWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "本周";
             break;
         case 3:
-            params.status = 2;  //待结算  is_settle
-            params.isSettle = 0;
+            params.lastWeek = 1;
+            params.sRecordDate = getLastWeekStartDate();
+            params.eRecordDate = addDate(getLastWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "上周";
             break;
         case 4:
-            params.isSettle = 1;
-            //document.getElementById("advancedMore").style.display='block';
+            params.thisMonth = 1;
+            params.sRecordDate = getMonthStartDate();
+            params.eRecordDate = addDate(getMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "本月";
             break;
+        case 5:
+            params.lastMonth = 1;
+            params.sRecordDate = getLastMonthStartDate();
+            params.eRecordDate = addDate(getLastMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "上月";
+            break;
+        case 10:
+            params.thisYear = 1;
+            params.sRecordDate = getYearStartDate();
+            params.eRecordDate = getYearEndDate();
+            querysign = 1;
+            queryname = "本年";
+            break;
+        case 11:
+            params.lastYear = 1;
+            params.sRecordDate = getPrevYearStartDate();
+            params.eRecordDate = getPrevYearEndDate();
+            querysign = 1;
+            queryname = "上年";
+            break;
+        //待归库
+        case 12:
+        	params.status=1;
+        	querysign = 2;
+        	querystatusname = "待归库";
+        	break;
+        //已归库
+        case 13:
+        	params.status=2;
+        	querysign = 2;
+        	querystatusname = "已归库";
+        	break;
         default:
             break;
     }
-
+    beginDateEl.setValue(params.sRecordDate);
+    endDateEl.setValue(params.eRecordDate);
+    currType = type;
+    if(querysign == 1){
+    	var menunamedate = nui.get("menunamedate");
+    	menunamedate.setText(queryname); 	
+    }
+    else if(querysign == 2){
+    	var menubillstatus = nui.get("menubillstatus");
+		menubillstatus.setText(querystatusname);
+    }
     doSearch(params);
 }
 function onSearch()

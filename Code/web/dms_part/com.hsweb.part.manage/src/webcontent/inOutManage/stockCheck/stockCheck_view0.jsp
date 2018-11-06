@@ -107,12 +107,12 @@
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
-                        <div field="createDate" width="110" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="盘点日期"></div>
+                        <div field="createDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="盘点日期"></div>
                         <div field="orderMan" width="60" headerAlign="center" header="盘点员"></div><div field="auditSign" width="50" headerAlign="center" header="状态"></div>
                         <div field="serviceId" headerAlign="center" width="120" header="盘点单号"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                        <div field="auditDate" width="110" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="审核日期"></div>
+                        <div field="auditDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="审核日期"></div>
                     </div>
                 </div>
             </div>

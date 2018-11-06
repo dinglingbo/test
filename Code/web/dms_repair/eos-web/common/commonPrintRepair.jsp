@@ -59,4 +59,5 @@
 	//console.log(window._rootUrl);
 </script>
 <script src="<%=webPath + contextPath%>/common/js/repairUtil.js?v=1.1.0" type="text/javascript"></script>
-<script src="<%=webPath + contextPath%>/common/js/repairSvrUtil.js?v=3.0.13" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/repairUtil.js?v=1.1.3" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/repairSvrUtil.js?v=3.0.17" type="text/javascript"></script>

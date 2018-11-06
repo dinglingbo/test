@@ -7,7 +7,7 @@
  */
 function doPost(opt) {
 	var url = opt.url;
-	var data = opt.data;
+	var data = opt.data||{}; 
 	var success = opt.success || function() {
 	};
 	var error = opt.error || function() {
@@ -438,4 +438,23 @@ nui.ajax({
         console.log(jqXHR.responseText);
     }
 });
+}
+
+var getAllPartTypeUrl=window._rootUrl
++ "com.hsapi.system.dict.dictMgr.queryPartType.biz.ext";
+function getAllPartType(callback)
+{
+	doPost({		
+		url : getAllPartTypeUrl,
+		async: false,
+		success : function(data) {
+			if (data && data.partTypes) {
+				callback && callback(data);    
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			//  nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
 }

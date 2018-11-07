@@ -67,6 +67,9 @@ $(document).ready(function ()
                 break;
         }
     });  
+    mainGrid.on("rowdblclick",function(e){
+    	editSell();
+	});
     quickSearch(0);
 });
 var statusHash = {
@@ -202,7 +205,7 @@ function getSearchParam() {
 function addSell(){
     var part={};
     part.id = "5000";
-    part.text = "销售-工单";
+    part.text = "销售开单详情";
     part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.sellBill.flow?token="+token;
     part.iconCls = "fa fa-file-text";
     var params = {};
@@ -214,7 +217,7 @@ function editSell(){
     if(!row) return;
     var part={};
     part.id = "5000";
-    part.text = "销售-工单";
+    part.text = "销售开单详情";
     part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.sellBill.flow?token="+token;
     part.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);

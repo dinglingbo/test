@@ -250,7 +250,7 @@ function onShowRowDetail(e) {
         token: token
     });*/
 }
-var sourceUrl = webBaseUrl+"repair/RepairBusiness/Reception/printSellBill.jsp?token="+token;
+var sourceUrl = webBaseUrl+"com.hsweb.RepairBusiness.printSellBill.flow?token="+token;
 function onPrint(){
 	var main = billForm.getData();
 	main.baseUrl = baseUrl;
@@ -1147,7 +1147,7 @@ function saveBatch(){
 			                    data.contactorName = contactor.name;
 			                    data.mobile = contactor.mobile;
 			                    data.addr = guest.addr;
-
+                                
 			                    billForm.setData(data);
 
 			                }else{
@@ -1190,7 +1190,6 @@ function saveBatch(){
 			success : function(text) {
 				var returnJson = nui.decode(text);
 				if (returnJson.errCode == "S") {
-					
 					var p3 = {
 	                        interType: "part",
 	                        data:{
@@ -1231,12 +1230,18 @@ function finish(){
 		showMsg("此单已审核,不能重复审核!","S");
         return;
 	} 
-	
+	var sellPartAdd = rpsPartGrid.getChanges("added");
+	var sellPartUpdate = rpsPartGrid.getChanges("modified");
+	var sellPartDelete = rpsPartGrid.getChanges("removed");
+	main.partAmt = total;
+	total = null;
 	var json = nui.encode({
 		"main" : main,
+		"sellPartAdd" : sellPartAdd,
+		"sellPartUpdate" : sellPartUpdate,
+		"sellPartDelete" : sellPartDelete,
 		token : token
-	});
-	
+	});	
 	nui.ajax({
 		url : updUrl,
 		type : 'POST',
@@ -1247,10 +1252,17 @@ function finish(){
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == "S") {
 				b = 1;
-				showMsg("审核成功");
+				var p3 = {
+                        interType: "part",
+                        data:{
+                            serviceId: main.id||0
+                        }
+                    };
+                loadDetail(p3);
+				showMsg("审核成功","S");
 				
 			} else {
-				showMsg(returnJson.errMsg);
+				showMsg(returnJson.errMsg,"E");
 			}
 				
 		}

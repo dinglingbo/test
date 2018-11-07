@@ -65,15 +65,15 @@
    <!--        <a class="nui-button" iconCls="" plain="true" onclick="newCheckPrecheck" id="">
      <span class="fa fa-plus fa-lg"></span>&nbsp;新建接车预检
  </a>-->
- <a class="nui-button" iconCls="" plain="true" onclick="ToCheckDetail(1)" id="save">
+ <a class="nui-button" iconCls="" plain="true" onclick="add()" id="save">
    <span class="fa fa-plus fa-lg"></span>&nbsp;新增
 </a> 
-<a class="nui-button" iconCls="" plain="true" onclick="ToCheckDetail(2)" id="edit">
+<a class="nui-button" iconCls="" plain="true" onclick="edit()" id="edit">
     <span class="fa fa-edit fa-lg"></span>&nbsp;修改
 </a>
-<a class="nui-button" iconCls="" plain="true" onclick="ToCheckDetail(3)" id="view">
+<!-- <a class="nui-button" iconCls="" plain="true" onclick="ToCheckDetail(3)" id="view">
     <span class="fa fa-file-text-o fa-lg"></span>&nbsp;查看
-</a>
+</a> -->
 </td>
 </tr>
 </table> 
@@ -141,9 +141,6 @@
     });
 }*/
 
-
-
-
 function setInitData(params){
     var pa={
       carNo:nui.get("cNo").value,
@@ -167,57 +164,34 @@ function newCheckPrecheck() {
 }
 
 mainGrid.on("celldblclick",function(e){
-    var field = e.field;
-    var record = e.record;
-    var column = e.column;
-    var sid = record.id;
-    ToCheckDetail(3);
+    edit();
 });
 
+function add(){
+    var part={};
+    part.id = "checkPrecheckDetail";
+    part.text = "检查开单详情";
+    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkDetail.flow?token="+token;
+    part.iconCls = "fa fa-file-text";
+    var params = {};
+    window.parent.activeTabAndInit(part,params);
 
-function openDetai(params) {  
-
-    var item={};
-    item.id = "checkPrecheckDetail";
-    item.text = "检查开单详情";
-    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp";
-    item.iconCls = "fa fa-cog";
-    //window.parent.activeTab(item);
-    window.parent.activeTabAndInit(item,params);
-}  
-
-function ToCheckDetail(e){
-    var params = null;
-    if(e == 1){//新增
-        params={
-            actionType:"new",
-            isCheckMain:"Y"
-        };
-    }else{
-        var row = mainGrid.getSelected();
-        if(row){ 
-            if(e == 2){//修改
-                params={
-                    id:row.id,
-                    actionType:"edit",
-                    isCheckMain:"Y"//是否是直接开单
-                };
-            }
-            if(e == 3){//查看
-                params={
-                    id:row.id,
-                    actionType:"view",
-                    isCheckMain:"Y"
-                };
-            }
-        }else{
-            nui.alert("请先选择一条记录！");
-            return;
-        }
-
-    }
-    openDetai(params);
 }
+function edit(){
+    var row = mainGrid.getSelected();
+    if(!row) return;
+    var part={};
+    part.id = "checkPrecheckDetail";
+    part.text = "检查开单详情";
+    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkDetail.flow?token="+token;
+    part.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    var params = {
+        id: row.id
+    };
+    window.parent.activeTabAndInit(part,params);
+}
+
 
 </script>
 

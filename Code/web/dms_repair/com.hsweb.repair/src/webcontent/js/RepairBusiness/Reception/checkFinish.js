@@ -10,6 +10,7 @@ var itemGrid = null;
 var partGrid = null;
 var fserviceId = 0;
 var form = null;
+var statusHash = {"0":"草稿","1":"施工中","2":"已完工"};
 $(document).ready(function (){
     itemGrid = nui.get("itemGrid");
     partGrid = nui.get("partGrid");
@@ -26,6 +27,17 @@ $(document).ready(function (){
                 var pickQty = record.pickQty||0;
                 var notPickQty = qty - pickQty;
                 e.cellHtml = notPickQty;
+                break;
+            default:
+                break;
+        }
+    });
+    itemGrid.on("drawcell",function(e){
+        var grid = e.sender;
+        var record = e.record;
+        switch (e.field) {
+            case "status":
+                e.cellHtml = statusHash[e.value];
                 break;
             default:
                 break;

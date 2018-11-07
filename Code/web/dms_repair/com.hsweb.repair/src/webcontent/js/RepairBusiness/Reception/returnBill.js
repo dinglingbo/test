@@ -233,6 +233,7 @@ $(document).ready(function ()
 	    } 
 	 
 	};
+	
 });
 
 var statusHash = {
@@ -1191,12 +1192,12 @@ function finish(){
                         data:{
                             serviceId: maintain.id||0
                         }
-                    }
+                    };
                 loadDetail(p3);
 				showMsg("审核成功","S");
 				
 			} else {
-				showMsg(returnJson.errMsg);
+				showMsg(returnJson.errMsg,"E");
 			}
 				
 		}

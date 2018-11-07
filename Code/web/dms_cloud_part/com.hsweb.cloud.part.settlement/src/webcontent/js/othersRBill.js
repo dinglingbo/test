@@ -207,10 +207,10 @@ function save(){
         for(var i=0; i<rpAdd.length; i++){
             var temp = rpAdd[i];
             if(temp.createDate) {
-                temp.createDate = format(temp.createDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.createDate = format(temp.createDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             if(temp.operateDate) {
-                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             rpAddList.push(temp);
         }
@@ -221,10 +221,10 @@ function save(){
         for(var i=0; i<rpUpdate.length; i++){
             var temp = rpUpdate[i];
             if(temp.createDate) {
-                temp.createDate = format(temp.createDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.createDate = format(temp.createDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             if(temp.operateDate) {
-                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             rpUpdateList.push(temp);
 
@@ -291,10 +291,10 @@ function audit(){
         for(var i=0; i<data.length; i++){
             var temp = data[i];
             if(temp.createDate) {
-                temp.createDate = format(temp.createDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.createDate = format(temp.createDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             if(temp.operateDate) {
-                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             dataList.push(temp);
         }

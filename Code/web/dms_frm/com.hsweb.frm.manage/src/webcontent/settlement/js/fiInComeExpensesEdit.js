@@ -78,8 +78,7 @@ function saveType(type){
 
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
-			nui.alert(requiredField[key] + "不能为空!");
-
+			showMsg(requiredField[key] + "不能为空!","W");
 			return;
 		}
 	}
@@ -102,10 +101,10 @@ function saveType(type){
 			nui.unmask(document.body);
 			data = data || {};
 			if (data.errCode == "S") {
-				nui.alert("保存成功!");
+				showMsg("保存成功!","S");
 				
 			} else {
-				nui.alert(data.errMsg || "保存失败!");
+				showMsg(data.errMsg || "保存失败!","S");
 			}
 
 			if(type == 'next') {
@@ -125,4 +124,16 @@ function saveType(type){
 		}
 	});
 	
+}
+
+function CloseWindow(action) {
+	if (action == "close") {
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
+}
+
+function onClose(){
+	window.CloseOwnerWindow();	
 }

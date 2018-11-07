@@ -833,9 +833,9 @@ function getMainData() {
 	data.isDiffOrder = 0;
 
 	if (data.operateDate) {
-		data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss')
+		data.operateDate = format(data.operateDate, 'yyyy-MM-dd hh:MM')
 				+ '.0';// 用于后台判断数据是否在其他地方已修改
-		// data.versionNo = format(data.versionNo, 'yyyy-MM-dd HH:mm:ss');
+		// data.versionNo = format(data.versionNo, 'yyyy-MM-dd hh:MM');
 	}
 
 	rightGrid.findRow(function(row){

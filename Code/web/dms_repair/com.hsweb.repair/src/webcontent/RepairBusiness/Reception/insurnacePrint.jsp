@@ -526,7 +526,7 @@ pageEncoding="UTF-8" session="false" %>
                 var insuranceDate = null;
                 if(recordDate){
                     recordDate = new Date(recordDate);
-                    recordDate = format(recordDate, "yyyy-MM-dd HH:mm:ss");
+                    recordDate = format(recordDate, "yyyy-MM-dd hh:MM");
                 }
                 if(beginDate){
                     beginDate = new Date(recordDate);

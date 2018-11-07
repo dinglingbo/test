@@ -72,9 +72,9 @@
 				 <!-- <div field="id" headerAlign="center" allowSort="true">
 					剩余次数
 				</div>  -->
-				<div field="recordData" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">
+				<div field="recordData" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd hh:MM">
 					创建时间</div>
-				<div field="pastDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss">
+				<div field="pastDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd hh:MM">
 					到期时间</div>
 				<div field="sellAmt" headerAlign="center" allowSort="true">
 					销售金额</div>

@@ -85,15 +85,15 @@
                 <div field="manager" width="80" headerAlign="center" align="center">管理员</div>
                 <div field="mobile" width="80" headerAlign="center" align="center">联系电话</div>
                 <div field="address" width="80" headerAlign="center" align="center">联系地址</div>
-                <div field="recordDate" width="80" headerAlign="center" align="center"dateFormat="yyyy-MM-dd H:mm:ss" >注册时间</div>
-                <div field="auditDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd H:mm:ss" >审核时间</div>
-                <div field="startDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd H:mm:ss" >开通时间</div>
-                <div field="endDate" width="80" headerAlign="center" align="center"dateFormat="yyyy-MM-dd H:mm:ss" >结束时间</div>
+                <div field="recordDate" width="80" headerAlign="center" align="center"dateFormat="yyyy-MM-dd hh:MM" >注册时间</div>
+                <div field="auditDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd hh:MM" >审核时间</div>
+                <div field="startDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd hh:MM" >开通时间</div>
+                <div field="endDate" width="80" headerAlign="center" align="center"dateFormat="yyyy-MM-dd hh:MM" >结束时间</div>
                 <div field="auditMan" width="80" headerAlign="center" align="center">审核人</div>
                 <div field="salesManId" width="80" headerAlign="center" align="center">业务员</div>
                 <div field="referee" width="80" headerAlign="center" align="center">推荐人</div>
                 <div field="InvitationNumber" width="80" headerAlign="center" align="center">邀请号</div>
-                <div field="nextRenewDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd H:mm:ss">下次续费时间</div>
+                <div field="nextRenewDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd hh:MM">下次续费时间</div>
                 <div field="nextRenewAmt" width="80" headerAlign="center" align="center">下次续费金额</div>
             </div>
         </div>

@@ -197,8 +197,8 @@
 												<b:write iterateId="view" property="versionSign"/>
 												</a>
 											</td>
-											<td><b:write iterateId="view" property="createTime" formatPattern="yyyy-MM-dd HH:mm:ss"/></td>
-											<td><b:write iterateId="view" property="updateTime" formatPattern="yyyy-MM-dd HH:mm:ss"/></td>
+											<td><b:write iterateId="view" property="createTime" formatPattern="yyyy-MM-dd hh:MM"/></td>
+											<td><b:write iterateId="view" property="updateTime" formatPattern="yyyy-MM-dd hh:MM"/></td>
 											<td align="center">
 												<!--  <b:write iterateId="view" property="currentState"/> -->
 												<l:equal iterateId="view" property="currentState" targetValue="1">

@@ -48,7 +48,7 @@
 	             过期日期:
 	            </td>
 	            <td colspan="1"  >
-	              <input format="yyyy-MM-dd HH:mm:ss"  style="width:160px"  class="mini-datepicker"   name="pastDate"  readonly="readonly" />
+	              <input format="yyyy-MM-dd hh:MM"  style="width:160px"  class="mini-datepicker"   name="pastDate"  readonly="readonly" />
 	            </td>
             </tr>
             <tr>

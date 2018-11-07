@@ -48,10 +48,13 @@ $(document).ready(function(v) {
     var grid1_data =[{business:"采购订单",custom:"长荣行",address:"上海浦东",date:"8:40",status:"已受理"},
     {business:"配件订单",custom:"李莉莉",address:"广东广州",date:"10:50",status:"已完成"}];
 
-    var grid2_data =[{business:"报价的工单",num:"2",cost:"5454342"},
-    {business:"施工的工单",num:"0",cost:"0"},
-    {business:"完工未转预结算的工单",num:"1",cost:"72145"},
-    {business:"完工待结算的工单",num:"2",cost:"931455"}];
+ /*   var grid2_data =[
+    {business:"保养提醒",num:"2",cost:"5454342"},
+    {business:"保险提醒",num:"0",cost:"0"},
+    {business:"年检提醒",num:"1",cost:"72145"},
+    {business:"年审提醒",num:"2",cost:"931455"},
+    {business:"客户生日",num:"2",cost:"931455"},
+    {business:"员工生日",num:"2",cost:"931455"}];*/
     //grid1.setData(grid1_data);
     //grid1.setShowVGridLines(false);
     //grid1.setShowHGridLines(false);
@@ -186,12 +189,12 @@ function toVisitMain(){
 function showGuestBoard(){
     //document.getElementById("gridGuestBoard").style.display ='block';
     //document.getElementById("gridWorkShopBoard").style.display ='none';
-    window.open(webBaseUrl+"repair/RepairBusiness/Reception/guestBoard.jsp"); 
+    window.open(webBaseUrl+"com.hsweb.RepairBusiness.guestBoard.flow?token="+token); 
 }
 function showWorkShopBoard(){
     //document.getElementById("gridGuestBoard").style.display ='none';
     //document.getElementById("gridWorkShopBoard").style.display ='block';
-    window.open(webBaseUrl+"repair/RepairBusiness/Reception/workshopBoard.jsp"); 
+    window.open(webBaseUrl+"com.hsweb.RepairBusiness.workshopBoard.flow?token="+token); 
 }
 function queryTodayData(callback) {
     var p = {

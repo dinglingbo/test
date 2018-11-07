@@ -112,11 +112,11 @@
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
                         <div field="guestName" width="80" headerAlign="center" header="往来单位"></div>
-                        <div field="createDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="对账日期"></div>
+                        <div field="createDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="对账日期"></div>
                         <div field="stateMan" width="60" headerAlign="center" header="对账员"></div><div field="auditSign" width="35" headerAlign="center" header="状态"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="对账单号"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                        <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="审核日期"></div>
+                        <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="审核日期"></div>
                     </div>
                 </div>
             </div>
@@ -185,7 +185,7 @@
                                                  width="100%"
                                                  enabled="false"
                                                  showTime="true"
-                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
+                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd hh:MM"/>
                                       </td>
                                       <td class="title">
                                           <label>对账单号：</label>
@@ -288,7 +288,7 @@
                               <div field="typeCode" width="60" headerAlign="center" header="业务类型"></div>
                               <div field="billAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
                               <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
-                              <div allowSort="true" field="billDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                              <div allowSort="true" field="billDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd hh:MM"></div>
                               <div field="remark" width="120" headerAlign="center" header="备注"></div>
                               <div allowSort="true" summaryType="count" field="billServiceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
                           </div>

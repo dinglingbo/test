@@ -57,7 +57,7 @@ function onCellCommitEdit(e) {
     
     editor.validate();
     if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
+    	showMsg("请输入数字！","W");
         e.cancel = true;
     }
 }
@@ -141,12 +141,12 @@ function save(){
             temp.guestName = temp.guestFullName;
             
             if(temp.ramt) {
-            	nui.alert(temp.ramt);
+            	showMsg(temp.ramt,"W");
                 temp.rpAmt = temp.ramt;
                 temp.rptype = 1;
                 temp.rpAmtNo = temp.ramt;
             }else if(temp.pamt) {
-            	nui.alert(temp.pamt);
+            	showMsg(temp.ramt,"W");
             	temp.rpAmt = temp.pamt;
                 temp.rptype = -1;
                 temp.rpAmtNo = temp.pamt;
@@ -229,11 +229,10 @@ function save(){
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("保存成功!");
-                
+                showMsg("保存成功!","S");
                 doSearch();
             } else {
-                nui.alert(data.errMsg || "保存失败!");
+            	 showMsg(data.errMsg || "保存失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -248,19 +247,19 @@ var auditUrl = baseUrl
 function audit(){
     var rpAdd = mainGrid.getChanges("added");
     if(rpAdd && rpAdd.length > 0){
-        nui.alert("请先保存数据再审核!");
+    	 showMsg("请先保存数据再审核!","W");
         return;
     }
 
     var rpUpdate = mainGrid.getChanges("modified");
     if(rpUpdate && rpUpdate.length > 0){
-        nui.alert("请先保存数据再审核!");
+        showMsg("请先保存数据再审核!","W");
         return;
     }
 
     var rpDelete = mainGrid.getChanges("removed");
     if(rpDelete && rpDelete.length > 0){
-        nui.alert("请先保存数据再审核!");
+        showMsg("请先保存数据再审核!","W");
         return;
     }
 
@@ -282,11 +281,11 @@ function audit(){
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    nui.alert("审核成功!");
+                    showMsg("审核成功!","S");
                     
                     doSearch();
                 } else {
-                    nui.alert(data.errMsg || "审核失败!");
+                    showMsg(data.errMsg || "审核失败!","E");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {
@@ -297,24 +296,25 @@ function audit(){
 }
 function refresh(){
     doSearch();
+    showMsg("刷新成功!","S");
 }
 function importGuest(){
 
     var rpAdd = mainGrid.getChanges("added");
     if(rpAdd && rpAdd.length > 0){
-        nui.alert("请先保存数据再审核!");
+        showMsg("请先保存数据再审核!","W");
         return;
     }
 
     var rpUpdate = mainGrid.getChanges("modified");
     if(rpUpdate && rpUpdate.length > 0){
-        nui.alert("请先保存数据再审核!");
+        showMsg("请先保存数据再审核!","W");
         return;
     }
 
     var rpDelete = mainGrid.getChanges("removed");
     if(rpDelete && rpDelete.length > 0){
-        nui.alert("请先保存数据再审核!");
+    	showMsg("请先保存数据再审核!","W");
         return;
     }
     

@@ -42,7 +42,7 @@
             <div type="indexcolumn">序号</div>
             <div field="serviceId" align="left" width="120px" headerAlign="center" allowSort="true" header="单号"></div>
             <div field="guestShortName" width="120px" headerAlign="center" allowSort="true" header="供应商"></div>  
-            <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss" width="120px" header="入库日期" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true"></div>
+            <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd hh:MM" width="120px" header="入库日期" format="yyyy-MM-dd hh:MM" headerAlign="center" allowSort="true"></div>
             <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
             <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" datatype="float" width="60" field="orderQty" name="orderQty" headerAlign="center" header="采购数量"></div>

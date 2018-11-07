@@ -13,6 +13,9 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <style type="text/css">
 
+.select-row{
+   background:#8c8c8c;
+}
 .mini-grid-border{
    background: #000;
 }
@@ -69,7 +72,7 @@
 		</table>
 	</div>
 	<div class="nui-fit" style="background-color: #000">
-	    <div id="workShopBoardGrid" class="nui-datagrid" dataField="list" allowCellWrap="true" showPager="false" style="height:100%;width:100%;">
+	    <div id="workShopBoardGrid" class="nui-datagrid" showLoading="false" dataField="list" enableHotTrack="false" allowCellWrap="true" showPager="false" style="height:100%;width:100%;">
 	        <div property="columns">
 	            <div field="carNo" width="100" headerAlign="center" align="center">车牌号</div>
 	            <div field="enterDate" width="100" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" align="center">接车时间</div>
@@ -94,6 +97,10 @@
 			"1" : "施工中",
 			"2" : "已完工"
 		};
+		var full = null;
+		var exit = null;
+		var count = 1;
+		var dataLength = 0;
 		var full = null;
 		var exit = null;
 		$(document).ready(function(v) {
@@ -164,7 +171,21 @@
         }
 		
 
-		setInterval(load,50000);
+		 	function rolling(){
+	 			dataLength = workShopBoardGrid.getData().length;
+		 			var row = workShopBoardGrid.getRow(count-1);
+		 			var row1 = workShopBoardGrid.getRow(count);
+					workShopBoardGrid.removeRowCls(row, "select-row");
+					workShopBoardGrid.addRowCls(row1, "select-row");
+					workShopBoardGrid.scrollIntoView(count);
+					count++;
+					if(count==dataLength){
+						load();
+						count=1;
+					} 		
+			 
+		}
+ 	setInterval(rolling,2000);
 
     </script>
 </body>

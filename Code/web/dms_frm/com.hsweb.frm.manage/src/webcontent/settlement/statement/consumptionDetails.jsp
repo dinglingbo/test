@@ -11,7 +11,7 @@
 <head>
 <title>储值卡消费记录</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.0.4"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.0.6"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -29,7 +29,6 @@ html,body {
 </style>
 </head>
 <body>
-
 	<div class="nui-splitter" vertical="true"
 		style="width: 100%; height: 100%;" allowResize="true">
 		<!-- 上 -->
@@ -38,18 +37,15 @@ html,body {
 				<div class="nui-toolbar" style="padding: 2px; height: 30px">
 					<table id="table1">
 						<tr>
-							<td>客户姓名: <input class="nui-textbox" id="guestName" />
-								客户电话: <input class="nui-textbox" id="guestTelephone" /> 会员卡名称:
-								<input class="nui-textbox" id="cardName" /> 办卡日期: <input
-								id="startDate" class="mini-datepicker" required="true" />—至—<input
-								id="endDate" class="mini-datepicker" required="true" /> <a
-								class="nui-button" onclick="search()" plain="true"> <span
-									class="fa fa-search fa-lg"></span>&nbsp; 查询
-							</a>
+							<td>
+								   <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
+	                   			   <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="search()" />
+									办卡日期: <input id="startDate" class="mini-datepicker" required="true" />—至—
+									         <input id="endDate" class="mini-datepicker" required="true" /> 
+									<a class="nui-button" onclick="search()" plain="true"> <span class="fa fa-search fa-lg"></span>&nbsp; 查询</a>
 							</td>
 						</tr>
 					</table>
-
 				</div>
 				<div class="nui-fit">
 					<div id="datagrid1" dataField="data" class="nui-datagrid"

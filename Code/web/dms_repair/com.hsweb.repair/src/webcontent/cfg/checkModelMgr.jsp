@@ -80,7 +80,7 @@
                                 class="nui-combobox" valueField="id" textField="name" data="dataList" /> 
                         </div>
                         <div field="modifier" width="60" headerAlign="center" header="修改人"></div>
-                        <div field="modifyDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="修改日期"></div>
+                        <div field="modifyDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="修改日期"></div>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
                        <div field="isDisabled" width="80" headerAlign="center" allowSort="true">所需配件</div> -->
                        <div allowSort="true" width="50" field="isDisabled" headerAlign="center" header="状态"></div>
                        <div field="modifier" width="60" allowSort="true" headerAlign="center">修改人</div>
-                       <div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss">修改时间</div>
+                       <div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd hh:MM">修改时间</div>
                    </div>
                </div>
            </div>

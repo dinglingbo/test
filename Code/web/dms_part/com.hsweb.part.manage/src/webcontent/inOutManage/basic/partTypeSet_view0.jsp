@@ -49,7 +49,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="name" name="name" width="140"  headeralign="center" >分类名称</div>
                 <div field="isdisabled" name="isdisabled" width="40" renderer="onRenderer"  headeralign="center" >是否禁用</div>
                 <div field="modifier" name="modifier" width="60"  headeralign="center" >最近修改人</div>
-                <div field="modifyDate" name="modifyDate" width="80" dateFormat="yyyy-MM-dd hh:MM:ss"  headeralign="center" >修改日期</div>
+                <div field="modifyDate" name="modifyDate" width="80" dateFormat="yyyy-MM-dd hh:MM"  headeralign="center" >修改日期</div>
            
             </div>
         </div>

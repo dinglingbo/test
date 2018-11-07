@@ -176,7 +176,7 @@
                                              id="createDate"
                                              width="100%"
                                              showTime="true"
-                                             class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
+                                             class="nui-datepicker" enabled="false" format="yyyy-MM-dd hh:MM"/>
                                   </td>
                                   <td class="title" width="120">
                                       <label>入库单号：</label>

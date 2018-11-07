@@ -26,11 +26,12 @@ $(document).ready(function () {
             		var list = nui.decode(text.list);
             		document.getElementById("rate").value = list[0].rate;
             		form.setData(list[0]);
+            		showMsg("保存成功！", "S");
             	}
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR.responseText);
-                showMsg("网络出错", "W");
+                showMsg("网络出错！", "W");
             }
     	});
 	}else{
@@ -40,8 +41,8 @@ $(document).ready(function () {
 	grid.on("drawcell",function(e){
 		var field = e.field,
 		value = e.value;
-		if(field == "action"){
-			e.cellHtml = '<a class="optbtn" href="javascript:addRow()">新增</a>&nbsp;&nbsp;&nbsp;<a class="optbtn" href="javascript:remove()">删除</a>';
+		if(field == "action"){ 
+			e.cellHtml ='<a class="optbtn" href="javascript:addRow()">增加</a> '+ '<a class="optbtn" href="javascript:remove()">删除</a> ';
 		}
 		if(field == "rate"){
 			if(value){
@@ -212,9 +213,6 @@ function onClose(){
 
 function onDrawSummaryCell(e) { //汇总
 	//客户端汇总计算
-	if (e.field == "rate") {
-		e.cellHtml = '<div align="center" >合计：' + e.cellHtml + '</div>';
-	}
 	if (e.field == "invoiceAmt") {
 		e.cellHtml = '<div align="center" >合计：' + e.cellHtml + '</div>';
 	}

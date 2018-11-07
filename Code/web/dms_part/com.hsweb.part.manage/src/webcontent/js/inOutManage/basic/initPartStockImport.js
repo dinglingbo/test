@@ -141,7 +141,7 @@ function saveEnterPart(partList){
 	    });
 
 	    if (enterMain.operateDate) {
-			enterMain.operateDate = format(enterMain.operateDate, 'yyyy-MM-dd HH:mm:ss');
+			enterMain.operateDate = format(enterMain.operateDate, 'yyyy-MM-dd hh:MM');
 		}
 
 	    nui.ajax({

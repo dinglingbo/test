@@ -182,7 +182,7 @@
                                                    id="orderDate"
                                                    width="100%"
                                                    showTime="true"
-                                                   class="nui-datepicker" enabled="true" format="yyyy-MM-dd H:mm:ss"/>
+                                                   class="nui-datepicker" enabled="true" format="yyyy-MM-dd hh:MM"/>
                                         </td>
                                         <td class="title wide">
                                             <label>预计到货日期：</label>
@@ -192,7 +192,7 @@
                                                    id="planArriveDate"
                                                    width="100%"
                                                    showTime="true"
-                                                   class="nui-datepicker" enabled="true" format="yyyy-MM-dd H:mm:ss"/>
+                                                   class="nui-datepicker" enabled="true" format="yyyy-MM-dd hh:MM"/>
                                         </td>
                                         <td class="title">
                                             <label>手工单号：</label>
@@ -375,7 +375,7 @@
                                     <input name="createDate"
                                            width="100%"
                                            showTime="true" enabled="false"
-                                           class="nui-datepicker" enabled="true" format="yyyy-MM-dd H:mm:ss"/>
+                                           class="nui-datepicker" enabled="true" format="yyyy-MM-dd hh:MM"/>
                                 </td>
                                 
                                 <td class="title">
@@ -392,7 +392,7 @@
                                     <input name="auditDate"
                                            width="100%"
                                            showTime="true" enabled="false"
-                                           class="nui-datepicker" enabled="true" format="yyyy-MM-dd H:mm:ss"/>
+                                           class="nui-datepicker" enabled="true" format="yyyy-MM-dd hh:MM"/>
                                 </td>
                             </tr>
                         </table>

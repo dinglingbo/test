@@ -31,8 +31,8 @@
 	                                       <h:hidden  iterateId="list1" name="AgentTo/typeCode" property="typeCode" indexed="true"/>
 	                                       <h:hidden  iterateId="list1" name="AgentTo/name" property="name" indexed="true"/>
 	                                </l:iterate>
-	                                <input type="hidden" name="StartTime" value='<b:write  property="StartTime" formatPattern="yyyy-MM-dd HH:mm:ss"/>'>
-	                                <input type="hidden" name="EndTime" value='<b:write  property="EndTime" formatPattern="yyyy-MM-dd HH:mm:ss"/>'>
+	                                <input type="hidden" name="StartTime" value='<b:write  property="StartTime" formatPattern="yyyy-MM-dd hh:MM"/>'>
+	                                <input type="hidden" name="EndTime" value='<b:write  property="EndTime" formatPattern="yyyy-MM-dd hh:MM"/>'>
 	                                <l:iterate id="list2" property="process">
 					               			<h:hidden iterateId="list2" name="process/id"   property="id"   indexed="true"/>
 								   			<h:hidden iterateId="list2" name="process/type" property="type" indexed="true"/>
@@ -52,8 +52,8 @@
 	                                       <h:hidden  iterateId="list4" name="AgentTo/typeCode" property="typeCode" indexed="true"/>
 	                                       <h:hidden  iterateId="list4" name="AgentTo/name" property="name" indexed="true"/>
 	                                </l:iterate>
-	                                <input type="hidden" name="StartTime" value='<b:write  property="StartTime" formatPattern="yyyy-MM-dd HH:mm:ss"/>'>
-	                                <input type="hidden" name="EndTime" value='<b:write  property="EndTime" formatPattern="yyyy-MM-dd HH:mm:ss"/>'>
+	                                <input type="hidden" name="StartTime" value='<b:write  property="StartTime" formatPattern="yyyy-MM-dd hh:MM"/>'>
+	                                <input type="hidden" name="EndTime" value='<b:write  property="EndTime" formatPattern="yyyy-MM-dd hh:MM"/>'>
 	                                <l:iterate id="list5" property="proAct">
 					               			<h:hidden iterateId="list5" name="proAct/id"   property="id"   indexed="true"/>
 								   			<h:hidden iterateId="list5" name="proAct/type" property="type" indexed="true"/>
@@ -71,8 +71,8 @@
 	                                <h:hidden   name="AgentTo/id"       property="AgentTo/id" />
                                     <h:hidden   name="AgentTo/typeCode" property="AgentTo/typeCode" />
                                     <h:hidden   name="AgentTo/name"     property="AgentTo/name" />
-	                                <input type="hidden" name="StartTime" value='<b:write  property="StartTime" formatPattern="yyyy-MM-dd HH:mm:ss"/>'>
-	                                <input type="hidden" name="EndTime" value='<b:write  property="EndTime" formatPattern="yyyy-MM-dd HH:mm:ss"/>'>
+	                                <input type="hidden" name="StartTime" value='<b:write  property="StartTime" formatPattern="yyyy-MM-dd hh:MM"/>'>
+	                                <input type="hidden" name="EndTime" value='<b:write  property="EndTime" formatPattern="yyyy-MM-dd hh:MM"/>'>
 	                                <l:iterate id="list7" property="process">
 					               			<h:hidden iterateId="list7" name="process/id"   property="id"   indexed="true"/>
 								   			<h:hidden iterateId="list7" name="process/type" property="type" indexed="true"/>
@@ -91,8 +91,8 @@
 	                                <h:hidden   name="AgentTo/id"       property="AgentTo/id" />
                                     <h:hidden   name="AgentTo/typeCode" property="AgentTo/typeCode" />
                                     <h:hidden   name="AgentTo/name"     property="AgentTo/name" />
-	                                <input type="hidden" name="StartTime" value='<b:write  property="StartTime" formatPattern="yyyy-MM-dd HH:mm:ss"/>'>
-	                                <input type="hidden" name="EndTime" value='<b:write  property="EndTime" formatPattern="yyyy-MM-dd HH:mm:ss"/>'>
+	                                <input type="hidden" name="StartTime" value='<b:write  property="StartTime" formatPattern="yyyy-MM-dd hh:MM"/>'>
+	                                <input type="hidden" name="EndTime" value='<b:write  property="EndTime" formatPattern="yyyy-MM-dd hh:MM"/>'>
 	                                <l:iterate id="list9" property="proAct">
 					               			<h:hidden iterateId="list9" name="proAct/id"   property="id"   indexed="true"/>
 								   			<h:hidden iterateId="list9" name="proAct/type" property="type" indexed="true"/>

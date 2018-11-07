@@ -1,4 +1,5 @@
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" session="false" %>
 <%@include file="/common/sysCommon.jsp"%>
 <%@include file="/common/commonCloudPart.jsp"%>
 <html>
@@ -9,7 +10,7 @@
 -->
 <head>
 <title>新增项目</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/fiInComeExpensesEdit.js?v=2.0.2"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/fiInComeExpensesEdit.js?v=2.0.4"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -61,6 +62,17 @@
 	    <div id="editForm" class="form">
 	    	<input id="id" name="id" width="100%" class="nui-hidden" >
 	    	<input id="orgid" name="orgid" width="100%" class="nui-hidden" >
+	    		
+	     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                            <a class="nui-button" onclick="save()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+                            <a class="nui-button" onclick="onClose()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 	        <table class="tmargin">
 	            <tr class="htr">
 	                <td class=" right fwidtha required">项目编码:</td>
@@ -94,10 +106,6 @@
 	            </tr>
 	        </table>
 	
-	    </div>
-		<div class="nui-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;text-align:center;">
-	        <a class="nui-button" iconCls="" plain="true" onclick="add()"><span class="fa fa-plus fa-lg"></span>&nbsp;保存并新增</a>
-	        <a class="nui-button" iconCls="" plain="true" onclick="save()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
 	    </div>
 	</div>
 </body>

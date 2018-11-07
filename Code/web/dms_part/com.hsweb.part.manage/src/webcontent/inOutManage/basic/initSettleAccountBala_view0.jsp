@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>期初现金银行</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/initSettleAccountBala.js?v=2.0.1"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/initSettleAccountBala.js?v=2.0.3"></script>
                                           
     <style type="text/css">                
     body {
@@ -52,7 +52,7 @@ pageEncoding="UTF-8" session="false" %>
             <div field="isInit" name="isInit" width="40" renderer="onRenderer"  headeralign="center" >是否审核</div>
             <div field="remark" name="remark" width="80"  headeralign="center" >备注</div>
             <div field="modifier" name="modifier" width="60"  headeralign="center" >最近修改人</div>
-            <div field="modifyDate" name="modifyDate" width="80" dateFormat="yyyy-MM-dd hh:MM:ss"  headeralign="center" >修改日期</div>
+            <div field="modifyDate" name="modifyDate" width="80" dateFormat="yyyy-MM-dd hh:MM"  headeralign="center" >修改日期</div>
        
         </div>
     </div>

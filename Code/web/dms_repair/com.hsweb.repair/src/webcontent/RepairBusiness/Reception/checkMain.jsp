@@ -82,16 +82,16 @@
 <div class="nui-fit">
   <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
   totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
-  onshowrowdetail="onShowRowDetail" url="">
+  onshowrowdetail="onShowRowDetail" url="" allowCellWrap=true>
   <div property="columns">
     <div field="id" name="id" visible="false">id</div>
     <div field="serviceCode" name="serviceCode" width="40" headerAlign="center" align="center">单号</div>
     <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
     <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
     <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
-    <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">车型</div>
+    <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">品牌/车型</div>
     <div field="mtAdvisor" name="mtAdvisor" width="40" headerAlign="center" align="center">维修顾问</div>
-    <div field="recordDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">查车日期</div>
+    <div field="recordDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">查车日期</div>
 </div>
 </div>
 </div>

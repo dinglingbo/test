@@ -128,7 +128,7 @@ pageEncoding="UTF-8" session="false"%>
                 nullItemText="请选择..."/>
             </td>
 
-            <td class="title required">车辆品牌:</td> 
+            <td class="title required">车辆/品牌:</td> 
             <td class=""><input  class="nui-textbox" name="carBrand" id="carBrand" enabled="false"/></td>
 
         </tr>

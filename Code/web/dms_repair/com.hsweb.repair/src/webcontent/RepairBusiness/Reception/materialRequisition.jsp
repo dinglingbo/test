@@ -450,11 +450,13 @@
 	});	
 	
 	function SetData(params){
+	    $.ajaxSettings.async = false;
 	    $.post(params.partApiUrl+"com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext?"+"&token="+params.token,{},function(text){
     		    if(text.storehouse){
     		      storeHouse = text.storehouse || "";
     		    }
 	         });
+	         
 		$.post(baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+params.serviceId,{},function(text){
         		var list = text.list[0];
         		var serviceCode = list.serviceCode;

@@ -35,6 +35,9 @@
         }
     });
 
+    leftGrid.on("rowdblclick",function(e){
+    	view();
+	});
 }); 
 
  var searchByDateBtnTextHash = ["本日","昨日","本周","上周","本月","上月","本年","上年"];

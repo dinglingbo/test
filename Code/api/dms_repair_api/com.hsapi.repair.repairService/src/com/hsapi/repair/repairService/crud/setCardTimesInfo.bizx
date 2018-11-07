@@ -46,6 +46,7 @@
         <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rps.RpsCardTimesDetail[]" valueType="DataObject">data</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="3" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

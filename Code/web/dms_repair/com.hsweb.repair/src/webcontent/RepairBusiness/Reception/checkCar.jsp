@@ -386,8 +386,8 @@
                 <tbody>
                     <tr>
                         <td class="left" width="33.3%" id="carNo">车牌号：</td>
-                        <td class="left" width="33.3%" id="carNo">车型：</td>
-                            <td class="left" id="carVin">VIN：</td>
+                        <td class="left" width="33.3%" id="carNo">品牌/车型：</td>
+                            <td class="left" id="carVin">车架号(VIN)：</td>
                     </tr>
                     <tr>
                         <td class="left"id="enterKilometers">当前里程：</td>
@@ -482,7 +482,7 @@
         	if(text.errCode == "S"){
         		var guest = text.guest;
         		var fullName = guest.fullName;
-           		var tel = guest.tel;
+           		var tel = guest.mobile;
            		document.getElementById("guestId").innerHTML =  guestId.replace(/[0-9]/ig,"") + fullName;
            		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
         	}

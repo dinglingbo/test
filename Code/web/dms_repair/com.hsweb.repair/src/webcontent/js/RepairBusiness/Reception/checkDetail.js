@@ -284,167 +284,6 @@ function doSetMainInfo(car){
 
 }
 
-
-
-/*
-function save(){
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '保存中...'
-    });
-    saveMaintain(function(data){
-
-        if(data.id){
-            showMsg("保存成功!","S");
-
-            var params = {
-                data:{
-                    guestId: data.guestId||0,
-                    contactorId: data.contactorId||0
-                }
-            };
-
-            getGuestContactorCar(params, function(text){
-                var errCode = text.errCode||"";
-                var guest = text.guest||{};
-                var contactor = text.contactor||{};
-                if(errCode == 'S'){
-                    $("#servieIdEl").html(data.serviceCode);
-                    var carNo = data.carNo||"";
-                    var tel = guest.mobile||"";
-                    var guestName = guest.fullName||"";
-                    var carVin = data.carVin||"";
-                    if(tel){
-                        tel = "/"+tel;
-                    }
-                    if(guestName){
-                        guestName = "/"+guestName;
-                    }
-                    if(carVin){
-                        carVin = "/"+carVin;
-                    }
-                    var t = carNo + tel + guestName + carVin;
-
-                    var sk = document.getElementById("search_key");
-                    sk.style.display = "none";
-                    searchNameEl.setVisible(true);
-
-
-                    searchNameEl.setValue(t);
-                    searchNameEl.setEnabled(false);
-
-                    data.guestFullName = guest.fullName;
-                    data.guestMobile = guest.mobile;
-                    data.contactorName = contactor.name;
-                    data.mobile = contactor.mobile;
-
-                    billForm.setData(data);
-                }else{
-                    showMsg("数据加载失败,请重新打开工单!","W");
-                }
-
-            }, function(){});
-
-
-
-        }
-
-    },function(){
-        nui.unmask(document.body);
-    });
-}
-*/
-
-
-
-
-
-
-
-/*
-var requiredField = {
-    carNo : "车牌号",
-    guestId : "客户",
-    serviceTypeId : "业务类型",
-    mtAdvisorId : "服务顾问"
-};
-*/
-
-/*
-var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
-//var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveCheckDetail.biz.ext";
-function saveMaintain(callback,unmaskcall){
-    var data = billForm.getData();
-
-
-    data.billTypeId = 1;
-
-    data.status = 0;
-
-    var params = {
-        data:{
-            maintain:data
-        }
-    };
-    svrSaveMaintain(params, function(text){
-        var errCode = text.errCode||"";
-        var mtain = text.data;
-
-        if(errCode == "S") {
-
-            unmaskcall && unmaskcall();
-            var main = text.data||{};
-            fserviceId = main.id||0;
-            saveDetail(mtain,function(data){
-                actionType = 'edit';
-                var rid = data.data.id;
-                nui.get("id").setValue(rid);
-                $("#servieIdEl").html(data.data.serviceCode);
-                mainGrid.setUrl(baseUrl + "com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
-                mainGrid.load({mainId:rid,token:token});
-                nui.unmask(document.body);
-            });
-            showMsg("保存成功！","S");
-        } else {
-            unmaskcall && unmaskcall();
-            showMsg(data.errMsg || "保存单据失败","W");
-        }
-    }, function(){
-        unmaskcall && unmaskcall();
-    });
-
-
-}
-
-*/
-
-
-/*
-function setAllData(){
-
-    nui.ajax({
-        url: baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext",
-        type:"post",
-        data:{
-            id:mid
-        },
-        cache: false,
-        success: function (text) {
-            if(text.list){
-                var list = text.list[0];
-                billForm.setData(list);
-
-            }else{
-                showMsg("数据加载失败,请重新打开工单!","W");
-            }
-        }
-    });
-
-    mainGrid.setUrl(baseUrl + "com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
-    mainGrid.load({mainId:mid,token:token});
-}
-*/
 function setInitDataB(params){
     //s$("#saveData").hide();
     mainParams = nui.clone(params);
@@ -539,8 +378,6 @@ function setInitDataB(params){
                         nui.get("guestFullName").setEnabled(false);
                         nui.get("guestMobile").setEnabled(false);
                         nui.get("carNo").setEnabled(false);
-
-
                     }else{
                         showMsg("数据加载失败,请重新打开工单!","W");
                     }
@@ -599,7 +436,7 @@ function tprint(){
 ////////////////////////////////////////////////////////////////////////////////////
 
 function setInitData(params){
-    //s$("#saveData").hide();
+    /*//s$("#saveData").hide();
     mainParams = nui.clone(params);
     if(!mainParams.actionType){
         showMsg("操作类型丢失!","E");
@@ -609,9 +446,60 @@ function setInitData(params){
         isCheckMainY();
     }else{
         isCheckMainN();
-    }
-}
+    }*/
+    
+    if(!params.id){
+    	addNew();
+    }else{
+    	 var temp = SearchCheckMain(params.id);
+         var p = {
+             data:{
+                 guestId: temp.guestId||0,
+                 contactorId: temp.contactorId||0
+             }
+         };
 
+         getGuestContactorCar(p, function(text){
+             var errCode = text.errCode||"";
+             var guest = text.guest||{};
+             var contactor = text.contactor||{};
+             if(errCode == 'S'){
+                 $("#servieIdEl").html(temp.serviceCode);
+                 var carNo = temp.carNo||"";
+                 var tel = guest.mobile||"";
+                 var guestName = guest.fullName||"";
+                 var carVin = temp.carVin||"";
+                 if(tel){
+                     tel = "/"+tel;
+                 }
+                 if(guestName){
+                     guestName = "/"+guestName;
+                 }
+                 if(carVin){
+                     carVin = "/"+carVin;
+                 }
+                 var t = carNo + tel + guestName + carVin;
+
+                 var sk = document.getElementById("search_key");
+                 sk.style.display = "none";
+                 searchNameEl.setVisible(true);
+
+                 searchNameEl.setValue(t);
+                 searchNameEl.setEnabled(false);
+
+                 temp.guestFullName = guest.fullName;
+                 temp.guestMobile = guest.mobile;
+                 temp.contactorName = contactor.name;
+                 temp.mobile = contactor.mobile;
+                 billForm.setData(temp);
+                 nui.get("checkMainId").setText(temp.checkMainName);
+                 checkMainId.setEnabled(false);
+                 mainGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
+                 mainGrid.load({mainId:mainParams.id,token:token});
+           }
+        });
+    };
+}
 
 function isCheckMainY(){
     if(mainParams.actionType == "new"){

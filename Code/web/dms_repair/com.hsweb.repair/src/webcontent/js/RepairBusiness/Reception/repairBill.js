@@ -902,8 +902,7 @@ function save(){
                     guestId: data.guestId||0,
                     contactorId: data.contactorId||0
                 }
-            }
-
+            };
             getGuestContactorCar(params, function(text){
                 var errCode = text.errCode||"";
                 var guest = text.guest||{};

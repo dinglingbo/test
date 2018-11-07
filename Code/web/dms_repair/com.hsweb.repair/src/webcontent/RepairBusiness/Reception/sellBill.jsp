@@ -184,11 +184,11 @@
                 <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false" width="100%"/></td>
                 <td class="title ">联系人手机:</td> 
                 <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false" width="100%"/></td>
-                <td class="title">开单时间:</td> 
+                <td class="title">开单日期:</td> 
                 <td class="">
                     <input id="recordDate"
                     name="recordDate"
-                    allowInput="false" format="yyyy-MM-dd H:mm:ss"
+                    allowInput="false" format="yyyy-MM-dd hh:MM"
                     class="nui-datepicker" enabled="false" width="100%"/>
                 </td>
                 

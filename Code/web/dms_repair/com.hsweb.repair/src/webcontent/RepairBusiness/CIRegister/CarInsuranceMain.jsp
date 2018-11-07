@@ -67,7 +67,7 @@ pageEncoding="UTF-8" session="false"%>
                    </a>
 
                    <a class="nui-button" iconCls="" plain="true" onclick="view()" id="">
-                    <span class="fa fa-edit fa-lg"></span>&nbsp;查看
+                    <span class="fa fa-edit fa-lg"></span>&nbsp;修改
                 </a>
             </td>
         </tr>
@@ -87,7 +87,7 @@ pageEncoding="UTF-8" session="false"%>
         <div field="status" headeralign="center" allowsort="true" visible="true" width="40px">状态</div>
         <div field="guestName" headeralign="center" allowsort="true" visible="true" width="80px">姓名</div>
         <div field="carNo" headeralign="center" allowsort="true" visible="true" width="60px">车牌号</div>
-        <div field="carModel" headeralign="center" allowsort="true" visible="true" width="180px">车型</div>
+        <div field="carModel" headeralign="center" allowsort="true" visible="true" width="180px">品牌/车型</div>
         <div field="insureCompName" headeralign="center" allowsort="true" visible="true" width="100px">保险公司</div>
 
     </div>

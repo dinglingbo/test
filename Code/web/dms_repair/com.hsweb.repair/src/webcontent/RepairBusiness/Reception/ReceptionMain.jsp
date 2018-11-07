@@ -101,20 +101,20 @@
               <div property="columns">
                   <div type="indexcolumn">序号</div>
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-                  <div field="status" name="status" width="40" headerAlign="center" header="进程"></div>
-                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌"></div>
-                  <div field="carModel" name="carModel" width="200" headerAlign="center"  header="品牌/车型"></div>
-                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="车架号(VIN)"></div>
-                  <div field="guestFullName" name="guestFullName" width="60" headerAlign="center" header="客户姓名"></div>
-                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div>
-                  <div field="contactName" name="contactName" width="60" headerAlign="center" header="联系人姓名"></div>
-                  <div field="contactMobile" name="contactMobile" width="90" headerAlign="center" header="联系人手机"></div>
-                  <div field="mtAdvisor" name="mtAdvisor" width="60" headerAlign="center" header="服务顾问"></div>
-                  <div field="serviceTypeId" name="serviceTypeId" width="60" headerAlign="center" header="业务类型"></div>
-                  <div field="isSettle" name="isSettle" width="60" headerAlign="center" header="结算状态"></div>
-                  <div field="recordDate" name="recordDate" width="110" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="开单日期"></div>
-                  <div field="planFinishDate" name="planFinishDate" width="110" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="预计完工日期"></div>
-                  <div field="serviceCode" name="serviceCode" width="120" headerAlign="center" header="工单号"></div>
+                  <div field="status" name="status" width="40px" headerAlign="center" header="进程"></div>
+                  <div field="carNo" name="carNo" width="80px" headerAlign="center" header="车牌"></div>
+                  <div field="carModel" name="carModel" width="200px" headerAlign="center"  header="品牌/车型"></div>
+                  <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
+                  <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>
+                  <div field="guestMobile" name="guestMobile" width="100px" headerAlign="center" header="客户手机"></div>
+                  <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
+                  <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
+                  <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
+                  <div field="serviceTypeId" name="serviceTypeId" width="60px" headerAlign="center" header="业务类型"></div>
+                  <div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div>
+                  <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="开单日期"></div>
+                  <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="预计完工日期"></div>
+                  <div field="serviceCode" name="serviceCode" width="120px" headerAlign="center" header="工单号"></div>
               </div>
           </div>
     </div>

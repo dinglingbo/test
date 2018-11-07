@@ -12,9 +12,22 @@
 <head>
 	<title>开票单</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoice.js?v=4" type="text/javascript"></script>
+	<script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoice.js?v=6" type="text/javascript"></script>
 </head>
 <style type="text/css">
+        a.optbtn {
+            width: 44px;
+            /* height: 26px; */
+            border: 1px #d2d2d2 solid;
+            background: #f2f6f9;
+            text-align: center;
+            display: inline-block;
+            /* line-height: 26px; */
+            margin: 0 4px;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 5px;
+        }
 	body {
 		margin: 0;
 		padding: 0;
@@ -41,9 +54,16 @@
 			<input class="nui-hidden"id="state" value='<b:write property="state"/>'  name="state"/>  
 			<input class="nui-hidden"id="serviceCode" value='<b:write property="serviceCode"/>'  name="serviceCode"/> 
 			<input class="nui-hidden"id="main" value='<b:write property="main"/>'  name="main"/> 
-			<div align="right">
-				<a class="nui-button" iconcls="" id="" name="" onclick="saveData()">开票</a>
-			</div>
+			<div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                            <a class="nui-button" onclick="saveData()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+                            <a class="nui-button" onclick="onClose()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 			<form id="form">
 				<table> 
             <tr>   
@@ -58,26 +78,30 @@
 	                        url=""
 	                        allowInput="true"
 	                        nullItemText="请选择..."
-	                        valuechanged="change"/>
+	                        valuechanged="change"
+	                        width="150px"
+	                        />
                 </td>
                 <td class="title required">
                     <label>税率:</label>
                 </td>
                 <td class="">
-                    <input type="text" style="width:70%" name="rate" id="rate" oninput="checkValue()">%
+                    <input class="nui-textbox" width="150px" name="rate" id="rate" oninput="checkValue()">%
                 </td>
+                </tr>
+                <tr>
                 <td class="title required">
                     <label>发票号：</label>
                 </td>
                 <td>
-                   <input class="nui-textbox" style="width:80%"name="invoiceNo">
+                   <input class="nui-textbox" width="150px" name="invoiceNo">
                 </td>
                 <td class="title">发票抬头:</td> 
-                <td class=""><input class="nui-textbox" style="width:70%"name="invoiceName"></td>
+                <td class=""><input class="nui-textbox" width="150px" name="invoiceName"></td>
             </tr>
             <tr>   
                 <td class="title required" >开票备注:</td> 
-                <td class=""colspan="5"><input class="nui-textarea" style="width:100%" name="remark"></td>
+                <td class=""colspan="5"><input class="nui-textarea" width="360px" name="remark"></td>
             </tr>
         </table>
 			</form>

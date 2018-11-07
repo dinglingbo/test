@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>收支项目</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/settlement/js/fiInComeExpensesSet.js?v=2.0.6"></script>
+    <script src="<%=webPath + contextPath%>/manage/settlement/js/fiInComeExpensesSet.js?v=2.1.0"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -36,7 +36,7 @@ pageEncoding="UTF-8" session="false" %>
         <a class="nui-button" id="undisable" iconCls="" plain="true" onclick="undisable()"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用</a> -->
         <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-refresh fa-lg"></span>&nbsp;刷新</a>
     </div>
-    <div id="mainGrid" class="nui-treegrid" style="width:100%;height:100%;" dataField="list"  url="" 
+    <div id="mainGrid" class="nui-treegrid" style="width:100%;height:100%;" dataField="list"  url="" onrowdblclick="edit()"
                     showTreeIcon="true"  treeColumn="name" expandOnLoad="true" showModified="false"
                     selectOnLoad="true"
                     idField="id" parentField="parentId" resultAsTree="false">
@@ -49,7 +49,7 @@ pageEncoding="UTF-8" session="false" %>
             <div field="itemTypeId" name="itemTypeId" width="40" renderer="onIEType"  headeralign="center" >项目类型</div>
             <div field="isPrimaryBusiness" name="isPrimaryBusiness" width="40" renderer="onRenderer"  headeralign="center" >主营业务</div>
             <div field="operator" name="operator" width="60"  headeralign="center" >最近修改人</div>
-            <div field="operateDate" name="operateDate" width="80" dateFormat="yyyy-MM-dd hh:MM:ss"  headeralign="center" >修改日期</div>
+            <div field="operateDate" name="operateDate" width="80" dateFormat="yyyy-MM-dd hh:MM"  headeralign="center" >修改日期</div>
             <div field="remark" name="remark" width="100"  headeralign="center" >备注</div> 
         </div>
     </div>

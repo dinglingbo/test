@@ -135,10 +135,10 @@ String inefficient = ResourcesMessageUtil.getI18nResourceMessage("mgr_agent_jsp.
 		                          
 		                      </td>
 		                      <td>
-		                          <b:write iterateId="list" property="startTime" formatPattern="yyyy-MM-dd HH:mm:ss"/>
+		                          <b:write iterateId="list" property="startTime" formatPattern="yyyy-MM-dd hh:MM"/>
 		                      </td>
 		                      <td>
-		                          <b:write iterateId="list" property="endTime" formatPattern="yyyy-MM-dd HH:mm:ss"/>
+		                          <b:write iterateId="list" property="endTime" formatPattern="yyyy-MM-dd hh:MM"/>
                               </td>	
                               <td>
                                  <l:greaterThan     property="startTime"   targetValue="@CurrentTime" compareType="date" iterateId="list"><b:message key="mgr_agent_jsp.inefficient"/></l:greaterThan><%-- 不生效 --%>

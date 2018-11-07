@@ -46,7 +46,7 @@
 						<input property="editor" vtype="int;range:1,100;" class="nui-textbox" />
 					</div>
 					<div allowSort="true" field="recordDate" summaryType="count"
-						dateFormat="yyyy-MM-dd" format="yyyy-MM-dd H:mm:ss"
+						dateFormat="yyyy-MM-dd" format="yyyy-MM-dd hh:MM"
 						headerAlign="center" header="添加时间">
 						<input property="editor" class="nui-datepicker" />
 					</div>

@@ -81,40 +81,40 @@
 				<div width="30" type="indexcolumn">序号</div>
 				<div header="车辆信息" headerAlign="center">
 					<div property="columns">
-						<div field="carNo" headerAlign="center"  align="center" visible="true" width="80">车牌号</div>
-						<div field="carModel" headerAlign="center" align="center" width="200px">品牌/车型</div>
-						<div field="vin" headerAlign="center" align="center"  visible="true" width="130px">车架号（VIN）</div>
-						<div field="annualInspectionDate" align="center" headerAlign="center" dateFormat="yyyy-MM-dd"  visible="true"
+						<div field="carNo" headerAlign="center"   visible="true" width="80">车牌号</div>
+						<div field="carModel" headerAlign="center"  width="200px">品牌/车型</div>
+						<div field="vin" headerAlign="center"   visible="true" width="130px">车架号（VIN）</div>
+						<div field="annualInspectionDate"  headerAlign="center" dateFormat="yyyy-MM-dd"  visible="true"
 						 width="80px">保险到期</div>
-						<div field="annualVerificationDueDate" align="center" headerAlign="center" dateFormat="yyyy-MM-dd"  visible="true"
+						<div field="annualVerificationDueDate"  headerAlign="center" dateFormat="yyyy-MM-dd"  visible="true"
 						 width="80px">年审日期</div>
-						<div field="insureCompName" align="center" headerAlign="center"  visible="true" width="80px">保险公司</div>
+						<div field="insureCompName"  headerAlign="center"  visible="true" width="80px">保险公司</div>
 					</div>
 				</div>
 				<div header="客户信息" headerAlign="center">
 					<div property="columns">
-						<div name="guestFullName" align="center" field="guestFullName" headerAlign="center"  visible="true" width="70px">客户名称</div>
-						<div name="mobile" field="mobile" align="center" headerAlign="center"  visible="true" width="100px">客户电话</div>
-						<div name="addr" field="addr" align="center" headerAlign="center"  visible="true" width="200px">地址</div>
-						<div name="lastComeDate" field="lastComeDate" align="center" dateFormat="yyyy-MM-dd" headerAlign="center" 
+						<div name="guestFullName"  field="guestFullName" headerAlign="center"  visible="true" width="70px">客户名称</div>
+						<div name="mobile" field="mobile"  headerAlign="center"  visible="true" width="100px">客户电话</div>
+						<div name="addr" field="addr"  headerAlign="center"  visible="true" width="200px">地址</div>
+						<div name="lastComeDate" field="lastComeDate"  dateFormat="yyyy-MM-dd" headerAlign="center" 
 						 visible="true" width="100px">最后来厂日期</div>
-						<div name="lastLeaveDate" field="lastLeaveDate" align="center" dateFormat="yyyy-MM-dd" headerAlign="center" 
+						<div name="lastLeaveDate" field="lastLeaveDate"  dateFormat="yyyy-MM-dd" headerAlign="center" 
 						 visible="true" width="100px">最后离厂日期</div>
-						<div name="isDisabled" field="isDisabled" headerAlign="center" align="center"  visible="true" width="70px">营销员</div>
-						<div name="recorder" field="recorder" headerAlign="center" align="center"  visible="true" width="70px">建档人</div>
-						<div name="recordDate" field="recordDate" dateFormat="yyyy-MM-dd" align="center" headerAlign="center"  visible="true"
+						<div name="isDisabled" field="isDisabled" headerAlign="center"   visible="true" width="70px">营销员</div>
+						<div name="recorder" field="recorder" headerAlign="center"   visible="true" width="70px">建档人</div>
+						<div name="recordDate" field="recordDate" dateFormat="yyyy-MM-dd"  headerAlign="center"  visible="true"
 						 width="100">建档日期
 						</div>
-						<div field="chainComeTimes" headerAlign="center" align="center"  visible="true" width="70px">来厂次数</div>
-						<div name="leaveDay" field="leaveDay" headerAlign="center" align="center"  visible="true" width="70px">离厂天数</div>
+						<div field="chainComeTimes" headerAlign="center"   visible="true" width="70px">来厂次数</div>
+						<div name="leaveDay" field="leaveDay" headerAlign="center"   visible="true" width="70px">离厂天数</div>
 					</div>
 				</div>
 				<div header="其他信息" headerAlign="center">
 					<div property="columns">
-						<div name="engineNo" field="engineNo" headerAlign="center" align="center"  visible="true" width="120px">发动机号</div>
-						<div name="produceDate" field="produceDate" align="center" dateFormat="yyyy-MM-dd" headerAlign="center" 
+						<div name="engineNo" field="engineNo" headerAlign="center"   visible="true" width="120px">发动机号</div>
+						<div name="produceDate" field="produceDate"  dateFormat="yyyy-MM-dd" headerAlign="center" 
 						 visible="true" width="80px">生产年份</div>
-						<div name="color" field="color" headerAlign="center" align="center"  visible="true" width="50px">颜色</div>
+						<div name="color" field="color" headerAlign="center"   visible="true" width="50px">颜色</div>
 					</div>
 				</div>
 

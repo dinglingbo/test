@@ -114,7 +114,7 @@
                                     <div field="firstRegDate" width="70" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
                                     <div field="annualInspectionDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
                                     <div field="recorder" width="40" headerAlign="center" allowSort=false>建档人</div>
-                                    <div field="recordDate" width="70" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort=false>建档日期</div>
+                                    <div field="recordDate" width="70" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>建档日期</div>
                                 </div>
                             </div>
                             <div headerAlign="center"><strong>客户信息</strong>
@@ -133,8 +133,8 @@
                                 <div property="columns">
                                     <div field="visitManId" width="40" headerAlign="center" summaryType="" allowSort=false>营销员</div>
                                     <div field="visitStatus" width="60" headerAlign="center">跟踪状态</div>
-                                    <div field="priorScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort=false>上次联系时间</div>
-                                    <div field="nextScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" allowSort=false>下次联系时间</div>
+                                    <div field="priorScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>上次联系时间</div>
+                                    <div field="nextScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>下次联系时间</div>
                                 </div>
                             </div>
                         </div>

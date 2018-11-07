@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
   <title>首页</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.24"></script>
+    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.27"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css" rel="stylesheet" type="text/css" />
@@ -37,7 +37,7 @@ pageEncoding="UTF-8" session="false" %>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="toCarWashBill()">
-                            <i class="fa fa-wrench fa-4x  fa-inverse"></i> 
+                            <i class="fa fa-shower fa-4x  fa-inverse"></i> 
                             <p>洗车开单</p> 
                         </a>
                     </div> 
@@ -149,16 +149,35 @@ pageEncoding="UTF-8" session="false" %>
                 <div class="vpanel_heading" ><i class="fa fa-th-list fa-lg-custom fa-fw"></i> <span >消息提醒</span><i class="fa fa-refresh fa-lg-custom fa-fw" style="float:right;margin-right:10px;"></i></div>
                 <div class="nui-fit">
                     <div class="nui-fit">
+						<div style="padding:10px 10px 10px 10px;">
+                            <table id="table1" style="margin-left:0px;">
+                                <tr>  
+                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>保养提醒：</td>
+                                    <td class="tablenum"><span id="newCarQty">0</span></td>
+                                    <td style="width:0.05%;"></td>
+                                   <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>保险提醒：</td>
+                                   <td class="tablenum"><span id="recordBillQty">0</span></td>
+                                </tr>
 
-                        <div id="grid2" class="nui-datagrid" style="width: 100%; height: 100%;font-weight: 600;" borderstyle="border:0;" showColumns="false" showpager="false" > 
-                            <div property="columns">
-                                <div field="id" name="id" visible="false" ></div>
-                                <div field="business" name="business" width="80px" headeralign="center" ><strong>订单</strong></div>
-                                <div field="num" name="num" width="80px" headeralign="center" ><strong>数量</strong></div>
-                                <div field="cost" name="cost" width="80px" headeralign="center" numberFormat="￥#,0"><strong>金额</strong></div>
-                            </div>
-                        </div>
+                                <tr>
+                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>年检提醒：</td>
+                                    <td class="tablenum"><span id="settleQty">0</span></td>
+                                   <td ></td>
+                                   <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>年审提醒：</td>
+                                   <td class="tablenum"><span id="serviceBillQty">0</span></td>
+                               </tr>
 
+
+                               <tr>
+                                <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>客户生日：</td>
+                                <td class="tablenum"><span id="bookingBillQty">0</span></td>
+                                <td ></td>
+                                <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>员工生日：</td>
+                                <td class="tablenum"><span id="receiveAmt">0</span></td>
+                              </tr>
+
+                          </table>
+                      </div>
 
                     </div>
                 </div>

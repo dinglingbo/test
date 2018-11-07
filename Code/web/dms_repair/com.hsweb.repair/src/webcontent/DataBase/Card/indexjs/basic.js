@@ -190,7 +190,7 @@ Date.prototype.formatDateTime = function() {
 };
 
 Date.prototype.formatFull = function() {
-	return this.format('yyyy-MM-dd HH:mm:ss');
+	return this.format('yyyy-MM-dd hh:MM');
 };
 
 

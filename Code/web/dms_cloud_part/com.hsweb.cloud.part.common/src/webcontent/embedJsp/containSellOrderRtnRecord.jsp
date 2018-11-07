@@ -47,7 +47,7 @@
             <div type="indexcolumn">序号</div>
             <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="采购单号"></div>
             <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
-            <div allowSort="true" field="enterDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+            <div allowSort="true" field="enterDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd hh:MM"></div>
             <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
             <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>-->
             <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
@@ -68,7 +68,7 @@
             <div field="noTaxAmt" width="60" headerAlign="center" summaryType="sum" header="不含税金额"></div>
             <div allowSort="true" field="manualCode" width="150" headerAlign="center" header="手工单号"></div>
             <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-            <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+            <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd hh:MM"></div>
         </div>
     </div>
 </div>

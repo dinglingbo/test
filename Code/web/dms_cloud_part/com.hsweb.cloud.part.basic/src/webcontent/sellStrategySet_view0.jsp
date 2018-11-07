@@ -112,7 +112,7 @@
                                         <div field="fullName" name="fullName" headerAlign="center" allowSort="true">客户全称</div>
                                         <div field="shortName" name="shortName" headerAlign="center" allowSort="true">客户简称</div>
                                         <div field="operator" width="60" headerAlign="center" allowSort="true">操作人</div>
-                                        <div field="operateDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss">操作日期</div>
+                                        <div field="operateDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd hh:MM">操作日期</div>
                                     </div>
                                 </div>
                             </div>
@@ -161,7 +161,7 @@
                                             <input property="editor" vtype="float" class="nui-textbox"/>
                                         </div>
                                         <div field="operator" width="60" headerAlign="center" allowSort="true">操作人</div>
-                                        <div field="operateDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss">操作日期</div>
+                                        <div field="operateDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd hh:MM">操作日期</div>
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +222,7 @@
                           <input property="editor" vtype="float" class="nui-textbox"/>
                       </div>
                       <div field="operator" width="60" headerAlign="center" allowSort="true">操作人</div>
-                      <div field="operateDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss">操作日期</div>
+                      <div field="operateDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd hh:MM">操作日期</div>
                   </div>
               </div>
           </div>

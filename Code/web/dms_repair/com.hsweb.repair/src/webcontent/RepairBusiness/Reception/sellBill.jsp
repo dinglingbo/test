@@ -190,7 +190,7 @@
                 <td class="">
                     <input id="recordDate"
                     name="recordDate"
-                    allowInput="false" format="yyyy-MM-dd H:mm:ss"
+                    allowInput="false" format="yyyy-MM-dd hh:MM"
                     class="nui-datepicker" enabled="false"/>
                 </td>
                 

@@ -281,7 +281,7 @@ function enableButton(){
                   <td width="15%" class="EOS_table_row"><b:message key="activityinst_detail_jsp.activity_inst_id"/></td><%-- 活动实例ID: --%>
                   <td width="35%"><b:write property="activityInst/activityInstID"/></td>
                   <td width="15%" class="EOS_table_row"><b:message key="activityinst_detail_jsp.end_time"/></td><%-- 结束时间: --%>
-                  <td width="35%" ><b:write property="activityInst/endTime"  formatPattern="yyyy-MM-dd HH:mm:ss" srcFormatPattern="yyyyMMddHHmmss" ignore="true"/>
+                  <td width="35%" ><b:write property="activityInst/endTime"  formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss" ignore="true"/>
                   </td>
                 </tr>
                 <tr>
@@ -304,10 +304,10 @@ function enableButton(){
                 </tr>
                 <tr>
                   <td class="EOS_table_row"><b:message key="activityinst_detail_jsp.create_time"/></td><%-- 创建时间: --%>
-                  <td><b:write property="activityInst/createTime" formatPattern="yyyy-MM-dd HH:mm:ss"  srcFormatPattern="yyyyMMddHHmmss"/>
+                  <td><b:write property="activityInst/createTime" formatPattern="yyyy-MM-dd hh:MM"  srcFormatPattern="yyyyMMddHHmmss"/>
                   </td>
                   <td class="EOS_table_row"><b:message key="activityinst_detail_jsp.start_time"/></td><%-- 启动时间: --%>
-                  <td><b:write property="activityInst/startTime" formatPattern="yyyy-MM-dd HH:mm:ss" srcFormatPattern="yyyyMMddHHmmss"/>
+                  <td><b:write property="activityInst/startTime" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/>
                  &nbsp;</td>
                 </tr>
                 <tr>

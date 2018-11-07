@@ -13,7 +13,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
       <style type="text/css">
 .select-row{
-   background:#89c3d6;
+   background:#8c8c8c;
 }
 .mini-grid-border{
    background: #000;
@@ -71,10 +71,10 @@
 		</table>
 	</div>
 	<div class="nui-fit" style="background-color: #000">
-	    <div id="guestBoardGrid" class="nui-datagrid" dataField="data" showLoading="false" showPager="false" style="height:100%;width:100%;">
+	    <div id="guestBoardGrid" class="nui-datagrid" dataField="data" showLoading="false" enableHotTrack="false"  showPager="false" style="height:100%;width:100%;">
 	        <div property="columns">
 	            <div field="carNo" width="100" headerAlign="center" align="center">车牌号</div>
-	            <div field="recordDate" dateFormat="MM-dd H:mm" width="100" headerAlign="center" align="center">接车时间</div>
+	            <div field="recordDate" dateFormat="yyyy-MM-dd H:mm" width="100" headerAlign="center" align="center">接车时间</div>
 	            <div field="planFinishDate" width="100" dateFormat="MM-dd H:mm" headerAlign="center" align="center">预计完工时间</div>
 	            <div field= "status" width="100" headerAlign="center" align="center">服务进程</div>
 	            <div field= "mtAdvisor" width="100" headerAlign="center" align="center">服务顾问</div>
@@ -94,15 +94,14 @@
 			"1" : "施工中",
 			"2" : "已完工"
 		};
-		var count = 25;
+		var count = 1;
 		var dataLength = 0;
 		var full = null;
 		var exit = null;
 
 		$(document).ready(function(v) {
 		
-					full = nui.get("full");
-			
+			full = nui.get("full");	
 			exit = nui.get("exit");
 			exit.setVisible(false);
 			guestBoardGrid = nui.get("guestBoardGrid");
@@ -171,29 +170,39 @@
         }
 		
 
-/* 		function rolling(){
-			dataLength = guestBoardGrid.getData().length;
-			var i = Math.floor(dataLength/20);
-			var j = dataLength%20
-			for(var i = 0;i<Math.floor(dataLength/20);i++){
-				setInterval(rolling2,3000);
-			}
-			guestBoardGrid.scrollIntoView(parseFloat(count)+parseFloat(j));
-			count=20;
-			rolling();
-		}
+/*  	function rolling(){
+ 			dataLength = guestBoardGrid.getData().length;
+ 			if(dataLength>25){
+	 			var row = guestBoardGrid.getRow(count-1);
+	 			var row1 = guestBoardGrid.getRow(count);
+				guestBoardGrid.addRowCls(row1, "select-row");
+				guestBoardGrid.removeRowCls(row, "select-row");
+				guestBoardGrid.scrollIntoView(count);
+				count++;
+				if(count==dataLength){
+					load();
+					count=1;
+				}
+ 			}else{
+					load();
+				}
+		} */
+		function rolling(){
+ 			dataLength = guestBoardGrid.getData().length;
+	 			var row = guestBoardGrid.getRow(count-1);
+	 			var row1 = guestBoardGrid.getRow(count);
+				guestBoardGrid.addRowCls(row1, "select-row");
+				guestBoardGrid.removeRowCls(row, "select-row");
+				guestBoardGrid.scrollIntoView(count);
+				count++;
+				if(count==dataLength){
+					load();
+					count=1;
+				}
+ 			}
 		
-	function rolling2(){
-			var row = guestBoardGrid.getRow(count);
-			guestBoardGrid.scrollIntoView(count);
-			count=count+20;
-	}
- */
- 	function rolling(){
-			guestBoardGrid.scrollIntoView(count);
-			count=count+20;
-		}
- 	setInterval(rolling,6000);
+		
+ 	setInterval(rolling,2000);
     </script>
 </body>
 </html>

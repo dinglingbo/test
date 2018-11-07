@@ -75,7 +75,7 @@
                   <div property="columns">
                     <div type="indexcolumn">序号</div>
                       <div field="guestFullName" width="80" headerAlign="center" header="客户"></div>
-                      <div field="createDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="退货日期"></div>
+                      <div field="createDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="退货日期"></div>
                       <div field="auditSign" width="35" headerAlign="center" header="状态"></div>
                       <div field="orderMan" width="60" headerAlign="center" header="退货员"></div>
                       <div field="serviceId" headerAlign="center" width="150" header="退货单号"></div>
@@ -83,7 +83,7 @@
                       <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
                       <div field="creator" width="60" headerAlign="center" header="建单人"></div>
                       <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                      <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="审核日期"></div>
+                      <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="审核日期"></div>
                   </div>
               </div>
           </div>
@@ -137,7 +137,7 @@
                                              id="createDate"
                                              width="100%"
                                              showTime="true"
-                                             class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
+                                             class="nui-datepicker" enabled="false" format="yyyy-MM-dd hh:MM"/>
                                   </td>
                                   <td class="title">
                                       <label>往来单号：</label>

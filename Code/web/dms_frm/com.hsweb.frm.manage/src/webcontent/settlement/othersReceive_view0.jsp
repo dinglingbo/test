@@ -9,7 +9,7 @@
 -->
 <head>
 <title>其他收入单</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/othersReceive.js?v=2.0.2"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/othersReceive.js?v=2.0.3"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -109,9 +109,9 @@
                         </div>
                         <div field="auditSign" width="30" headerAlign="center" header="是否审核"></div>
                         <div field="auditor" width="30" headerAlign="center" header="审核人"></div>
-                        <div allowSort="true" field="auditDate" width="60" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                        <div allowSort="true" field="auditDate" width="60" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd hh:MM"></div>
                         <div field="rpAccountId" width="60" headerAlign="center" header="单号"></div>
-                        <div allowSort="true" field="createDate" width="60" headerAlign="center" visible="false" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                        <div allowSort="true" field="createDate" width="60" headerAlign="center" visible="false" dateFormat="yyyy-MM-dd hh:MM"></div>
                             
                     </div>  
                   

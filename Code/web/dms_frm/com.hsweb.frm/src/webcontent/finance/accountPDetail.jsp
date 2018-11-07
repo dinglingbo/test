@@ -57,7 +57,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="shortName" name="name" width="100"  headeralign="center" >供应商简称</div>
                 <div field="charOffAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" >付款金额</div>
                 <div field="auditor" name="auditor" width="60"  headeralign="center" >付款人</div>
-                <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd H:mm:ss" headeralign="center" >付款日期</div>
+                <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd hh:MM" headeralign="center" >付款日期</div>
                 <div field="fullName" name="name" width="120"  headeralign="center" >供应商全称</div>
            
             </div>

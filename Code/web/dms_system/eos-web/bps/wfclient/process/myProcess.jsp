@@ -20,8 +20,8 @@
         	 <div field="processInstDesc" width="88" headerAlign="center"  align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.process.ProcessInsDes") %></div> 
        	 	 <div field="creator" width="95" headerAlign="center" align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.process.Creator") %></div>
        	 	 <div field="currentState" width="70" headerAlign="center"   align="center" renderer="doChangeState"><%=I18nUtil.getMessage(request, "bps.wfclient.process.Status") %></div>
-           	 <div field="startTime"  width="160" headerAlign="center"  dateFormat="yyyy-MM-dd HH:mm:ss" align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.process.STime") %></div>
-      		 <div field="endTime" name="endTime" width="160" headerAlign="center"  dateFormat="yyyy-MM-dd HH:mm:ss" align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.process.EndTime") %></div>
+           	 <div field="startTime"  width="160" headerAlign="center"  dateFormat="yyyy-MM-dd hh:MM" align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.process.STime") %></div>
+      		 <div field="endTime" name="endTime" width="160" headerAlign="center"  dateFormat="yyyy-MM-dd hh:MM" align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.process.EndTime") %></div>
          </div>
     </div>
     <!-- for integration coframe

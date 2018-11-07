@@ -27,7 +27,7 @@
 		            <div field="processDefName" width="150" headerAlign="center" align="center" ><%=I18nUtil.getMessage(request, "bps.wfclient.process.ProcName") %></div>
 		            <div field="versionSign" width="60" headerAlign="center" align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.process.VersionNumber") %></div> 
 		            <div field="processDefOwner" width="80" headerAlign="center" align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.process.VersionOwner") %></div> 
-		            <div field="updateTime" width="135" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm:ss"><%=I18nUtil.getMessage(request, "bps.wfclient.process.LastModified") %></div>
+		            <div field="updateTime" width="135" headerAlign="center" align="center" dateFormat="yyyy-MM-dd hh:MM"><%=I18nUtil.getMessage(request, "bps.wfclient.process.LastModified") %></div>
 	        	</div>
         	</div>
         	<!-- for integration coframe

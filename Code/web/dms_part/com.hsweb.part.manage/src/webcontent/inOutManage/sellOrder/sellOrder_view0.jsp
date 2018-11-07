@@ -257,7 +257,7 @@ body .mini-grid-row-selected{
                     <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true">
                                 仓位
                                 </div>
-                                <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss" width="120px" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true">
+                                <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd hh:MM" width="120px" format="yyyy-MM-dd hh:MM" headerAlign="center" allowSort="true">
                                 入库日期
                                 </div>
                                 <div field="guestName" width="150px" headerAlign="center" allowSort="true">

@@ -81,9 +81,9 @@
                             <div property="columns">
                                 <div allowSort="true" field="isdisabled" width="50" headerAlign="center" header="状态"></div>
                                 <div allowSort="true" field="creator" width="60" headerAlign="center" header="建档人"></div>
-                                <div allowSort="true" field="createdate" width="60" headerAlign="center" allowSort="true" header="建档日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                                <div allowSort="true" field="createdate" width="60" headerAlign="center" allowSort="true" header="建档日期" dateFormat="yyyy-MM-dd hh:MM"></div>
                                 <div allowSort="true" field="operator" width="70" headerAlign="center" header="修改人"></div>
-                                <div allowSort="true" field="operatedate" width="80" headerAlign="center" allowSort="true" header="修改日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                                <div allowSort="true" field="operatedate" width="80" headerAlign="center" allowSort="true" header="修改日期" dateFormat="yyyy-MM-dd hh:MM"></div>
                             </div>
                         </div> -->
                     </div>

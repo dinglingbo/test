@@ -45,10 +45,10 @@
             <div field="fullName" width="150" headerAlign="center" header="供应商名称"></div>
             <div allowSort="true" summaryType="count" field="serviceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
             <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
-            <div allowSort="true" field="createDate" headerAlign="center" header="制单日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+            <div allowSort="true" field="createDate" headerAlign="center" header="制单日期" dateFormat="yyyy-MM-dd hh:MM"></div>
             <div field="auditSign" width="60" headerAlign="center" header="审核状态"></div>
             <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-            <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+            <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd hh:MM"></div>
             <div field="remark" width="120" headerAlign="center" header="备注"></div>
 
         </div>

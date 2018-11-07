@@ -52,7 +52,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="trueCharOffAmt" name="trueCharOffAmt" summaryType="sum" width="60"  headeralign="center" >已收金额</div>
                 <div field="noCharOffAmt" name="noCharOffAmt" summaryType="sum" width="60"  headeralign="center" >未收金额</div>
                 <div field="settleStatus" name="settleStatus" width="100" headeralign="center" >结算状态</div>
-                <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd H:mm:ss" headeralign="center" >单据日期</div>
+                <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd hh:MM" headeralign="center" >单据日期</div>
                 <div field="fullName" name="name" width="120"  headeralign="center" >客户全称</div>
            
             </div>

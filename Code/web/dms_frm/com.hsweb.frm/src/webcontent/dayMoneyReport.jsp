@@ -143,7 +143,7 @@
 								width="70">冲减余额</div>
 							<div field="checkOffMan" allowSort="true" headerAlign="center"
 								width="70">冲减人</div>
-							<div field="checkOffDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss"
+							<div field="checkOffDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM"
 								width="70">冲减日期</div>
 							<div field="reamrk" allowSort="true" headerAlign="center"
 								width="70">备注</div>

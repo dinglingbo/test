@@ -94,10 +94,10 @@
               <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
               <div field="enterTypeId" width="60" headerAlign="center" header="业务类型"></div>
               <div field="billAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
-              <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+              <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd hh:MM"></div>
               <div field="accountSign" width="60" headerAlign="center" header="对账状态"></div>
               <!-- <div field="accountor" width="60" headerAlign="center" header="对账人"></div>
-              <div allowSort="true" field="accountDate" headerAlign="center" header="对账日期" dateFormat="yyyy-MM-dd H:mm:ss"></div> -->
+              <div allowSort="true" field="accountDate" headerAlign="center" header="对账日期" dateFormat="yyyy-MM-dd hh:MM"></div> -->
               <div field="remark" width="120" headerAlign="center" header="备注"></div>
               <div allowSort="true" summaryType="count" field="serviceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
 

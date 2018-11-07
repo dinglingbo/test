@@ -90,7 +90,7 @@
                         <input id="firstRegDate" 
                                 name="firstRegDate" 
                                 class="nui-datepicker width2" 
-                                dateFormat="yyyy-MM-dd HH:mm:ss" 
+                                dateFormat="yyyy-MM-dd hh:MM" 
                                 emptyText="请选择日期" alwaysView="true"/>          
                     </div>
                     <div class="row">            

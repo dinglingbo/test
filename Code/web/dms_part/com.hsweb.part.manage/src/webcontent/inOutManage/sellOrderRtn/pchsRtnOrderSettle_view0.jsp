@@ -96,7 +96,7 @@
               <div field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
               <div field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
               <!-- <div field="orderAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div> -->
-              <div allowSort="true" field="auditDate" headerAlign="center" header="订单日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+              <div allowSort="true" field="auditDate" headerAlign="center" header="订单日期" dateFormat="yyyy-MM-dd hh:MM"></div>
               <div field="remark" width="120" headerAlign="center" header="备注"></div>
               <div allowSort="true" summaryType="count" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单号"></div>
 

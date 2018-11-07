@@ -1016,7 +1016,7 @@ function getMainData()
     data.isDiffOrder = 1;
 
     if(data.operateDate) {
-        data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+        data.operateDate = format(data.operateDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
     }
 
     rightGrid.findRow(function(row){

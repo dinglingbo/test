@@ -72,7 +72,7 @@ String select = ResourcesMessageUtil.getI18nResourceMessage("mgr_agent_jsp.selec
                               <font style="color:red">*</font></td>
                               <td class="EOS_table_row"><b:message key="detail_full_agent_jsp.efficient_time"/></td><%-- 生效时间: --%>
                               <td>
-                                <w:date format="yyyy-MM-dd HH:mm:ss" name="StartTime" size="32" property="StartTime"  readonly="true" defaultNull="true"/>
+                                <w:date format="yyyy-MM-dd hh:MM" name="StartTime" size="32" property="StartTime"  readonly="true" defaultNull="true"/>
                               <font style="color:red">*</font></td>
                             </tr>
 							<tr>
@@ -82,7 +82,7 @@ String select = ResourcesMessageUtil.getI18nResourceMessage("mgr_agent_jsp.selec
 							  </td>
                               <td class="EOS_table_row"><b:message key="detail_full_agent_jsp.end_time"/></td><%-- 终止时间: --%>
                               <td>
-							    <w:date format="yyyy-MM-dd HH:mm:ss" name="EndTime" size="32" property="EndTime"  readonly="true" defaultNull="true"/>
+							    <w:date format="yyyy-MM-dd hh:MM" name="EndTime" size="32" property="EndTime"  readonly="true" defaultNull="true"/>
                               <font style="color:red">*</font></td>
                             </tr>
 							<tr>

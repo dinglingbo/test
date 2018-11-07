@@ -195,7 +195,7 @@
                                                  width="100%"
                                                  enabled="false"
                                                  showTime="true"
-                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
+                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd hh:MM"/>
                                       </td>
                                       <td class="title" style="width:7%">
                                           <label>移仓单号：</label>

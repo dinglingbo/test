@@ -54,7 +54,7 @@
                     <div field="remark" width="120" headerAlign="center" allowSort="true">备注</div>
                     <div field="enterAmt" width="80" headerAlign="center" allowSort="true">总金额</div>
                     <div field="creator" width="80" headerAlign="center" allowSort="true">制单人</div>
-                    <div field="createDate" dateFormat="yyyy-MM-dd H:mm:ss" width="120px" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true">
+                    <div field="createDate" dateFormat="yyyy-MM-dd hh:MM" width="120px" format="yyyy-MM-dd hh:MM" headerAlign="center" allowSort="true">
                     制单日期
                     </div>
                     

@@ -262,10 +262,10 @@ function setInitExportData(detail){
             var lastEnterDate = "";
             var lastOutDate = "";
             if(detail[i].lastEnterDate){
-                lastEnterDate = format(detail[i].lastEnterDate, 'yyyy-MM-dd HH:MM:ss');
+                lastEnterDate = format(detail[i].lastEnterDate, 'yyyy-MM-dd hh:MM');
             }
             if(detail[i].lastOutDate){
-                lastOutDate = format(detail[i].lastOutDate, 'yyyy-MM-dd HH:MM:ss');
+                lastOutDate = format(detail[i].lastOutDate, 'yyyy-MM-dd hh:MM');
             }
             tr.append(tds.replace("[comPartCode]", detail[i].comPartCode?detail[i].comPartCode:"")
                          .replace("[comPartName]", detail[i].comPartName?detail[i].comPartName:"")
@@ -288,5 +288,5 @@ function setInitExportData(detail){
             tableExportContent.append(tr);
         }
     }
-    method5('tableExcel',"库存查询"+(format((new Date()), 'yyyy-MM-dd HH:MM:ss')),'tableExportA');
+    method5('tableExcel',"库存查询"+(format((new Date()), 'yyyy-MM-dd hh:MM')),'tableExportA');
 }

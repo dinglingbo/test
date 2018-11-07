@@ -9,7 +9,7 @@
 -->
 <head>
 <title>其他应收单</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/othersRBill.js?v=2.0.2"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/othersRBill.js?v=2.0.3"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -55,7 +55,7 @@
                             <span class="separator"></span> 
                             <input id="searchGuestId" class="nui-buttonedit"
                                    emptyText="请选择往来单位..."
-                                   onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
+                                   onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" allowInput="false" />
                             <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             <a class="nui-button" plain="true" iconCls="" onclick="addGuest()" id="addGuestBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;添加应收单</a>
                             <a class="nui-button" plain="true" iconCls="" onclick="deleteGuest()" id="deleteGuestBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
@@ -101,10 +101,10 @@
                         </div>
                         <div field="auditSign" width="30" headerAlign="center" header="是否审核"></div>
                         <div field="auditor" width="30" headerAlign="center" header="审核人"></div>
-                        <div allowSort="true" field="auditDate" width="60" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                        <div allowSort="true" field="auditDate" width="60" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd hh:MM"></div>
                         <div field="settleStatus" width="30" headerAlign="center" header="结算状态"></div>
                         <div field="rpBillId" width="60" headerAlign="center" header="应付单单号"></div>
-                        <div allowSort="true" field="createDate" width="60" headerAlign="center" visible="false" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                        <div allowSort="true" field="createDate" width="60" headerAlign="center" visible="false" dateFormat="yyyy-MM-dd hh:MM"></div>
                             
                     </div>  
                   

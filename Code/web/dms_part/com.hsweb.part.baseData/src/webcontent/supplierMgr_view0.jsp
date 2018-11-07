@@ -116,7 +116,7 @@
             <div header="操作信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="modifier" width="70" headerAlign="center">最后操作人</div>
-                    <div allowSort="true" field="modifyDate" width="135" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss">最后操作时间</div>
+                    <div allowSort="true" field="modifyDate" width="135" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM">最后操作时间</div>
                     <div allowSort="true" field="isDisabled" width="30" headerAlign="center" align="center">禁用</div>
                     <div allowSort="true" field="code" width="120" headerAlign="center">供应商编码</div>
                 </div>

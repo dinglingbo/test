@@ -59,6 +59,7 @@ function onisDisabled(e) {
 
 function refresh(){
 	doSearch();
+	showMsg("刷新成功","S");
 }
 var deleteUrl = baseUrl
 		+ "com.hsapi.frm.setting.deleteFiSettleAccountById.biz.ext";
@@ -67,7 +68,7 @@ function deleteType(){
 	if(row && row.id){
 		var orgid = row.orgid;
 		if(currOrgId != "0" && orgid == 0) {
-			nui.alert("此记录不能删除!");
+			showMsg("此记录不能删除!","W");
 			return;
 		}
 		nui.confirm("是否确定删除？", "友情提示",
@@ -89,11 +90,10 @@ function deleteType(){
 							nui.unmask(document.body);
 							data = data || {};
 							if (data.errCode == "S") {
-								nui.alert("删除成功!");
-								
+								showMsg("删除成功!","S");
 								doSearch();
 							} else {
-								nui.alert(data.errMsg || "删除失败!");
+								showMsg(data.errMsg || "删除失败!","E");
 							}
 						},
 						error : function(jqXHR, textStatus, errorThrown) {
@@ -106,7 +106,7 @@ function deleteType(){
 
 		
 	}else{
-		nui.alert("请选择记录！");
+		showMsg("请选择记录!","W");
 	}
 }
 
@@ -167,7 +167,7 @@ function edit(){
 
 	var orgid = row.orgid;
 	if(currOrgId != "0" && orgid == 0) {
-		nui.alert("此记录不能修改!");
+		showMsg("此记录不能修改!","W");
 		return;
 	}
 
@@ -181,7 +181,7 @@ function disablePlay(isDisabled){
 	if(row && row.id){
 		var orgid = row.orgid;
 		if(currOrgId != "0" && orgid == 0) {
-			nui.alert("不能进行此操作!");
+			showMsg("不能进行此操作!","W");
 			return;
 		}
 
@@ -203,7 +203,7 @@ function disablePlay(isDisabled){
 				nui.unmask(document.body);
 				data = data || {};
 				if (data.errCode == "S") {
-					nui.alert("操作成功!");
+					showMsg("操作成功!","S");
 					doSearch();
 
 					if(isDisabled == 0) {
@@ -214,7 +214,7 @@ function disablePlay(isDisabled){
 						undisableEl.setVisible(true);
 					}
 				} else {
-					nui.alert(data.errMsg || "操作失败!");
+					showMsg(data.errMsg || "操作失败!","E");
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -222,7 +222,7 @@ function disablePlay(isDisabled){
 			}
 		});
 	}else{
-		nui.alert("请选择记录！");
+		showMsg("请选择记录!","W");
 	}
 }
 function disable(){

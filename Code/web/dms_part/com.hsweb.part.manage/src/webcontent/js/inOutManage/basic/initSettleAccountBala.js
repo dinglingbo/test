@@ -40,6 +40,7 @@ function onRenderer(e) {
 }
 function refresh(){
 	doSearch();
+	showMsg("刷新成功","S");
 }
 
 var saveUrl = baseUrl
@@ -51,7 +52,7 @@ function save(){
 		for(var i=0; i<data.length; i++){
 			var temp = data[i];
 			if(temp.modifyDate) {
-		        temp.modifyDate = format(temp.modifyDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+		        temp.modifyDate = format(temp.modifyDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
 		    }
 		    settleAccount.push(temp);
 		}
@@ -101,7 +102,7 @@ function audit(){
 			var initBalance = temp.initBalance||0;
 			if(temp.isInit == 0 && initBalance != 0){
 				if(temp.modifyDate) {
-			        temp.modifyDate = format(temp.modifyDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+			        temp.modifyDate = format(temp.modifyDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
 			    }
 			    settleAccount.push(temp);
 			}

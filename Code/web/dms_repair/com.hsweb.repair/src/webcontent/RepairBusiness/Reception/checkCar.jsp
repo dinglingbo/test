@@ -453,14 +453,14 @@
         		if(enterDate){
         			enterDate = enterDate.replace(/-/g,"/");
         			enterDate = new Date(enterDate);
-        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm:ss");
+        			enterDate = format(enterDate, "yyyy-MM-dd hh:MM");
         		}
         		var mtAdvisor = maintain.mtAdvisor;
         		var planFinishDate = maintain.planFinishDate || "";
         		if(planFinishDate){
         			planFinishDate = planFinishDate.replace(/-/g,"/");
         			planFinishDate = new Date(planFinishDate);
-        			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm:ss");
+        			planFinishDate = format(planFinishDate, "yyyy-MM-dd hh:MM");
         		}
         		var faultPhen = maintain.faultPhen;
         		var serviceCode = maintain.serviceCode;

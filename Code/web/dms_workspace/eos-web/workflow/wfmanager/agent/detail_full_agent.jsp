@@ -28,9 +28,9 @@
                             </tr>
                             <tr>
                               <td class="EOS_table_row"><b:message key="detail_full_agent_jsp.efficient_time"/></td><%-- 生效时间: --%>
-                              <td><b:write  property="AgentDetail/startTime" formatPattern="yyyy-MM-dd HH:mm:ss"/></td>
+                              <td><b:write  property="AgentDetail/startTime" formatPattern="yyyy-MM-dd hh:MM"/></td>
                               <td class="EOS_table_row"><b:message key="detail_full_agent_jsp.end_time"/></td><%-- 终止时间: --%>
-                              <td><b:write  property="AgentDetail/endTime" formatPattern="yyyy-MM-dd HH:mm:ss"/></td>
+                              <td><b:write  property="AgentDetail/endTime" formatPattern="yyyy-MM-dd hh:MM"/></td>
                             </tr>
 							<tr>
 							  <td class="EOS_table_row"><b:message key="detail_full_agent_jsp.agent_style"/></td><%-- 代理方式: --%>

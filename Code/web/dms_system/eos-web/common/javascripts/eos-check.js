@@ -221,7 +221,7 @@ function isDate(str,format)
 
 	}
 	else
-	if(format=="yyyy-MM-dd hh:mm:ss")
+	if(format=="yyyy-MM-dd hh:MM")
 	{
 	datePat = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/;
         if(!datePat.test(date))	return false;

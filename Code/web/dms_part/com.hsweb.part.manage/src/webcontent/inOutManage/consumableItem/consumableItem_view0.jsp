@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>耗材出库</title>
-    <script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.30"></script>
+    <script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.39"></script>
     <style type="text/css">
     html,body {
        margin: 0;
@@ -30,12 +30,12 @@ pageEncoding="UTF-8" session="false"%>
 </head>
 <body>
 
-    <div  class="nui-splitter" vertical="true" style="width:100%;height:100%;" allowResize="true">
+    <div  class="nui-splitter"  vertical="true" style="width:100%;height:100%;" allowResize="true">
         <!-- 上 -->
         <div size="50%" showCollapseButton="false">
          <div class="nui-fit">
-            <div class="nui-toolbar" style="padding:2px;border-bottom:1;">
-                <table style="width:100%;">
+            <div  class="nui-toolbar" style="padding:2px;border-bottom:1;">
+                <table id="top"style="width:100%;">
                     <tr>
                         <td style="width:100%;">
                             <input class="nui-textbox" width="100px" id="morePartCode" name="morePartCode" selectOnFocus="true" enabled="true" emptyText="编码"/>
@@ -146,7 +146,17 @@ pageEncoding="UTF-8" session="false"%>
                         <td>
                            <td class="form_label">领料人: </td>
                            <td>
-                               <input class="nui-textbox" name="pickMan1"id="pickMan1" allowInput="true" width="" showTime="false" showOkButton="false" showClearButton="false" />
+                           		<input class="nui-combobox" 
+					                  id="pickMan1" 
+					                  name="pickMan1" 
+					                  textField="empName"
+					                  valueField="empId"
+					          
+					                  url=""
+					                  allowInput="true"
+					                  valueFromSelect="false"
+					                  width="100px">
+<!--                                <input class="nui-textbox" name="pickMan1"id="pickMan1" allowInput="true" width="" showTime="false" showOkButton="false" showClearButton="false" /> -->
                            </td>
                        </td>
 

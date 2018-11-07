@@ -24,9 +24,6 @@ var storeHash = {};
 var gsparams = {};
 var sOrderDate = null;
 var eOrderDate = null;
-
-
-
 var fastPartEntryEl = null;
 var dataList = null;
 var morePartGrid = null;

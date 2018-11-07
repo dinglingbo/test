@@ -181,6 +181,7 @@ $(document).ready(function(v) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下
 		
+
 		if ((keyCode == 120)) { // F9
 			morePartCodeEl.focus();
 		}
@@ -194,6 +195,10 @@ $(document).ready(function(v) {
 		}
 
 	}
+	
+    initMember("pickMan1",function(){
+    	
+    });
 
 	var dictDefs = {
 		"billTypeId" : "DDT20130703000008"
@@ -230,7 +235,7 @@ function getSearchParams() {
 	params.billTypeId='050207';
 	params.sCreateDate = nui.get("sCreateDate").getValue().substr(0, 10);
 	params.eCreateDate = nui.get("eCreateDate").getValue().substr(0, 10);
-	params.pickMan = nui.get('pickMan1').getValue();
+	params.pickMan = nui.get('pickMan1').getText();
 	return params;
 }
 function onSearch() {

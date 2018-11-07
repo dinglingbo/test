@@ -90,8 +90,8 @@
                       <label>进厂日期：</label>
                   </td>
                   <td>
-                      <input id="enterDate" name="enterDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd  HH:mm:ss" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
-                      <input id="recordDate" name="recordDate" class="nui-datepicker" visible="false" value="" nullValue="null" format="yyyy-MM-dd  HH:mm:ss" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
+                      <input id="enterDate" name="enterDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd hh:MM" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
+                      <input id="recordDate" name="recordDate" class="nui-datepicker" visible="false" value="" nullValue="null" format="yyyy-MM-dd hh:MM" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
                   </td>
                   <td class="title required">
                       <label>预计交车：</label>

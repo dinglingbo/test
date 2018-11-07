@@ -30,7 +30,7 @@ var cityHash = {};
 var cityList = [];
 var provinceEl = null;
 var cityEl = null;
-function onProvinceSelected(cityId) {
+function onProvinceSelected(cityId) { 
 	if (provinceEl) {
 		cityEl = nui.get(cityId);
 		var id = provinceEl.getValue();

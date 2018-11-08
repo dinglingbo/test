@@ -40,6 +40,7 @@ function onRenderer(e) {
 }
 function refresh(){
 	doSearch();
+	showMsg("刷新成功!","S ");
 }
 function onDrawCell(e){
 	//nui.alert(1);
@@ -70,7 +71,7 @@ function showEditModal(row, newRow, type){
 	nui.open({
 		url: webPath+contextPath+"/com.hsweb.part.manage.partTypeEdit.flow?token="+token,
 		title: title,
-		width: "500px",
+		width: "300px",
 		height: "200px",
         allowDrag:true,
         allowResize:false,

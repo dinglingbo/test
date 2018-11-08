@@ -7,7 +7,7 @@ var partGrid = null;
 var partLoalGrid = null;
 var tree = null;
 var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
-
+var statusList = [{id:"0",name:"编码"},{id:"1",name:"名称"},{id:"2",name:"车型"},{id:"3",name:"拼音"}];
 var qualityList = [];
 var qualityHash = {};
 var brandHash = {};
@@ -151,7 +151,7 @@ $(document).ready(function() {
         });
     });
 
-    $("#search-code").bind("keydown", function (e) {
+/*    $("#search-code").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             onSearch();
         }
@@ -170,7 +170,7 @@ $(document).ready(function() {
         if (e.keyCode == 13) {
             onSearch();
         }
-    });
+    });*/
     $("#applyCarBrandId").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             onSearch();
@@ -232,6 +232,17 @@ function reloadData()
 function getSearchParams()
 {
     var params = queryForm.getData();
+    var type = nui.get("search-type").getValue();
+    var typeValue = nui.get("carNo-search").getValue();
+    if(type==0){
+    	params.code = typeValue;
+    }else if(type==1){
+    	params.name = typeValue;
+    }else if(type==2){
+    	params.applyCarModel = typeValue;
+    }else if(type==3){
+    	params.namePy = typeValue;
+    }
     if(params.showDisabled == 0)
     {
         params.isDisabled = 0;
@@ -294,7 +305,7 @@ function addOrEditPart(row)
         targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.baseData.partDetail.flow?token=" + token,
         title: "配件资料",
-        width: 740, height: 250,
+        width: 500, height: 300,
         allowDrag:true,
         allowResize:false,
         onload: function ()

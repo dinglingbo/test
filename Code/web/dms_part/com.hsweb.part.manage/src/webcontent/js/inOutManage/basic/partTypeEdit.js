@@ -134,3 +134,15 @@ function saveType(type){
 	});
 	
 }
+
+function CloseWindow(action) {
+	if (action == "close") {
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
+}
+
+function onClose(){
+	window.CloseOwnerWindow();	
+}

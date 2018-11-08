@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.24"></script>
+<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.25"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -96,7 +96,7 @@
                      url=""
                      idField="id"
                      totalField="page.count"
-                     onrowdblclick=""
+                     onrowdblclick="onOk()"
                      selectOnLoad="true"
                      pageSize="50"
                      sortMode="client"
@@ -106,12 +106,14 @@
                         <div header="基础信息" headerAlign="center">
                             <div property="columns">
                                 <div type="indexcolumn">序号</div>
+                                 <div allowSort="true" field="name" width="80" headerAlign="center" allowSort="true">名称</div>
+                                <div allowSort="true" field="fullName" width="100" headerAlign="center" allowSort="true">全称</div>
                                 <div allowSort="true" field="qualityTypeId" width="60" headerAlign="center">品质</div>
                                 <div allowSort="true" field="partBrandId" width="70" headerAlign="center">品牌</div>
                                 <div allowSort="true" field="code" width="80" headerAlign="center" allowSort="true">编码</div>
-                                <div allowSort="true" field="name" width="80" headerAlign="center" allowSort="true">名称</div>
+       
                                  <div allowSort="true" field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
-                                <div allowSort="true" field="fullName" width="200" headerAlign="center" allowSort="true">全称</div>
+                                
                                 <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryTimesCard.biz.ext";
-var sysnUrl = webPath + contextPath + "/repair/DataBase/Card/timesCardSysn.jsp?token"+token;
+var sysnUrl = webPath + contextPath + "/com.hsweb.repair.DataBase.timesCardSysn.flow?token"+token;
 var grid = null;
 var xyguest = null;
 var xs = 0;
@@ -20,6 +20,15 @@ $(document).ready(function(v) {
 		nui.get('addBtn').setVisible(false);
 		nui.get('updateBtn').setVisible(false);
 	}*/
+	nui.get('cardName').focus();
+	document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;//38向上 40向下
+
+        if((keyCode==27))  {  //ESC
+            onCancel();
+        }
+	 };
 	
 });
 
@@ -236,4 +245,7 @@ function setData(data)
 function setInitData(params){
 	setStely();
 }
-
+//取消
+function onCancel() {
+	CloseWindow("cancel");
+}

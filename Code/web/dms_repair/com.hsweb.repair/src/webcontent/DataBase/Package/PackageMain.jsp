@@ -23,12 +23,12 @@
 				<td>
 					<label style="font-family:Verdana;">快速查询：</label>
 					<label class="form_label">名称：</label>
-					<input class="nui-textbox" name="name" id="name-search"/>
+					<input class="nui-textbox" name="name" id="name-search" onenter="onSearch()"/>
 					<label class="form_label">品牌：</label>
-					<input class="nui-combobox" name="carBrandId" id="carBrandId-search" valueField="id" textField="nameCn"/>
+					<input class="nui-combobox" name="carBrandId" id="carBrandId-search" valueField="id" textField="nameCn" onenter="onSearch()"/>
 					<label class="form_label">类别：</label>
-					<input class="nui-combobox" name="serviceTypeId" id="type-serviceTypeId" valueField="id" textField="name"
-					       allowInput="true" valueFromSelect="true"/>
+					<input class="nui-combobox" name="serviceTypeId" id="type-serviceTypeId" valueField="id" textField="name" onenter="onSearch()"
+					   valueFromSelect="true"/>
 					<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 					<input name="type"  id="type" visible="false"
                                              class="nui-combobox width1"
@@ -69,10 +69,10 @@
 					<div property="columns">
 						<div header="套餐信息" headerAlign="center">
 							<div property="columns">
-								<div field="name" headerAlign="center" width="80" visible="true">套餐名称</div>
-								<div field="serviceTypeId" headerAlign="center" width="60" visible="true">套餐类别</div>
-								<div field="amount" headerAlign="center" width="70" visible="true">套餐金额</div>
-								<div field="orgid" headerAlign="center" width="70" visible="true">所属</div>
+								<div field="name" headerAlign="center" width="120px" visible="true">套餐名称</div>
+								<div field="serviceTypeId" headerAlign="center" width="50px" visible="true">套餐类别</div>
+								<div field="amount" headerAlign="center" width="55px" visible="true">套餐金额</div>
+								<div field="orgid" headerAlign="center" width="40px" visible="true">所属</div>
 							</div>
 						</div>
 					</div>

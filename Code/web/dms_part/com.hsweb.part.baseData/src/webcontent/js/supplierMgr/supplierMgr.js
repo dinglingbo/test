@@ -20,6 +20,8 @@ var tgradeList = [ {
 	"customid" : 2,
 	"name" : "低"
 } ];
+
+var statusList = [{id:"0",name:"供应商全称"},{id:"1",name:"优势品牌/产品"},{id:"2",name:"联系人电话"}];
 var tgradeHash = {
 	0 : tgradeList[0],
 	1 : tgradeList[1],
@@ -85,13 +87,17 @@ function search() {
 	doSearch(param);
 }
 function getSearchParam() {
-
-	var params = {
-		fullName : nui.get("fullName").getValue(),
-		advantageCarbrandId : nui.get("advantageCarbrandId").getValue(),
-		mobile : nui.get("mobile").getValue(),
-		supplierType : nui.get("supplierType").getValue()
-	};
+	var params = {};
+    var type = nui.get("search-type").getValue();
+    var typeValue = nui.get("carNo-search").getValue();
+    if(type==0){
+    	params.fullName = typeValue;
+    }else if(type==1){
+    	params.advantageCarbrandId = typeValue;
+    }else if(type==2){
+    	params.mobile = typeValue;
+    }
+    params.supplierType= nui.get("supplierType").getValue()
 
 	return params;
 

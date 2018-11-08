@@ -12,7 +12,7 @@
 <head>
 <title>储值卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.3.9"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.4.0"></script>
 </head>
 <body>
 	<div id="queryform" class="nui-form">
@@ -22,7 +22,7 @@
 			<table id="table1">
 				<tr>
 					<td>储值卡名称: <input class="nui-textbox"
-						name="criteria/_expr[1]/name" /> <input class="nui-hidden"
+						name="criteria/_expr[1]/name" onenter="search()" /> <input class="nui-hidden"
 						name="criteria/_expr[1]/_op" value="like"> <input
 						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
 						<a class="nui-button" onclick="search()" plain="true"> <span
@@ -39,7 +39,7 @@
 		</div>
 	</div>
 	<div class="nui-fit">
-		<div id="datagrid1" dataField="card" class="nui-datagrid"
+		<div id="datagrid1" dataField="card" class="nui-datagrid" onrowdblclick="edit()"
 			pageSize="50" onDrawCell="onDrawCell" onselectionchanged="selectionChanged"
 			onrowclick="" allowSortColumn="true"
 			style="width: 100%; height: 100%;">

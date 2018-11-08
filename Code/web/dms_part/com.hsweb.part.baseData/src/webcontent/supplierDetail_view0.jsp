@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierDetail.js?v=1.1.0"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierDetail.js?v=1.1.1"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -77,6 +77,16 @@
 <body>
 
 <div style="text-align: right;">
+		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                            <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+                            <a class="nui-button" onclick="onCancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
     <div id="isInternal" class="nui-checkbox" name="isInternal" visible="false"  text="" onvaluechanged="" trueValue="1" falseValue="0"></div>
     <span>客户</span>
     <div id="isClient" name="isClient" class="nui-checkbox" text="" enabled="true" trueValue="1" falseValue="0"></div>
@@ -262,9 +272,7 @@
                   <div class="vpanel_body vpanel_bodyww">
 
                       <table class="tmargin">
-                          <tr class="htr">
-                              <td class=" left fwidthb">财务信息</td>
-                          </tr>
+
                           <tr class="htr">
                               <td class=" right fwidthb">银行帐号:</td>
                               <td colspan="3"><input id="accountBankNo" name="accountBankNo" width="100%" class="nui-textbox" ></td>
@@ -317,11 +325,6 @@
         </div>
 </div>
 </div>
-<div style="text-align:center;padding:10px;">
-    <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
-    <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
-</div>
-
 
 </body>
 </html>

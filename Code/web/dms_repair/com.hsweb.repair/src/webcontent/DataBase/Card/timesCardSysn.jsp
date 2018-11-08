@@ -12,19 +12,19 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.1.1"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.1.3"></script>
 </head>
 <body>
-   <div class="nui-toolbar" style="padding: 0px;" borderStyle="border:0;">
-			<table width="100%">
-				<tr >
-					<td style="text-align: left; width:20px" colspan="4" ><a
-						class="nui-button"  onclick="onOk()" id = "save"><span class="fa fa-save fa-lg"></span>&nbsp; 保存 </a> 
-				     
-				</tr>
-			</table>
-	</div>
-	
+		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                            <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+                            <a class="nui-button" onclick="onClose()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 	<fieldset
 		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
 		<legend> 计次卡 </legend>

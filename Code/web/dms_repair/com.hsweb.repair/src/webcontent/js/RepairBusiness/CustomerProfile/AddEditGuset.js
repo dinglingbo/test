@@ -409,7 +409,7 @@ function onChanged(id){
 function addCar() {
 	var id = basicInfoForm.getData().id;
 	if(id==""||id==null){
-		nui.alert("请先保存上面的客户信息","提示");
+		showMsg("请先保存上面的客户信息!","W");
 		return;
 	}
 	carInfoFrom.setData("");
@@ -419,7 +419,7 @@ function addCar() {
 function addContact() {
 	var id = basicInfoForm.getData().id;
 	if(id==""||id==null){
-		nui.alert("请先保存上面的客户信息","提示");
+		showMsg("请先保存上面的客户信息!","W");
 		return;
 	}
 	contactview.show();
@@ -437,7 +437,7 @@ function addCarList(){
 	var updContactList = [];
 	var car = carInfoFrom.getData();
 	if(car.carNo==""||car.vin==""){
-		nui.alert("车牌号和车架号(Vin)不能为空","提示");
+		showMsg("车牌号和车架号(Vin)不能为空!","W");
 		return;
 	}else{
 
@@ -535,7 +535,7 @@ function addContactList(){
 	var updContactList = [];
 	var contact = contactInfoForm.getData();
 	if(contact.identity==""||contact.source==""){
-		nui.alert("身份和来源不能为空","提示");
+		showMsg("身份和来源不能为空!","W");
 		return;
 	}else{
 
@@ -633,7 +633,7 @@ function remove(){
 function eaidCar(){
 	var row = cardatagrid.getSelected();
 	if(row==null){
-		nui.alert("请选择车辆","提示");
+		showMsg("请选择车辆!","W");
 		return;
 	}
 	//cardatagrid.removeRow(row);
@@ -647,7 +647,7 @@ function eaidCar(){
 function eaidContact(){
 	var row = contactdatagrid.getSelected();
 	if(row==null){
-		nui.alert("请选择联系人","提示");
+		showMsg("请选择联系人!","W");
 		return;
 	}
 	//contactdatagrid.removeRow(row);
@@ -684,3 +684,10 @@ function onDrawCell(e) {
 	}
 }
 
+function onClose(e){
+	if(e==1){		
+		contactview.hide();
+	}else{	
+		carview.hide();
+	}
+}

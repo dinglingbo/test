@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商管理</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.1.0"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.1.2"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -26,8 +26,10 @@
         <tr>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
-                <label style="font-family:Verdana;">供应商全称：</label>
-                <input class="nui-textbox" width="100" id="fullName"/>
+                 <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
+	             <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch()" />
+<!--                 <label style="font-family:Verdana;">供应商全称：</label>
+                <input class="nui-textbox" width="100" id="fullName"/> -->
                 <label style="font-family:Verdana;">供应商类型：</label>
                 <input id="supplierType"
                        name="supplierType"
@@ -40,10 +42,10 @@
                        allowInput="false"
                        showNullItem="true"
                        nullItemText="请选择..."/>
-                <label style="font-family:Verdana;">优势品牌/产品：</label>
+<!--                 <label style="font-family:Verdana;">优势品牌/产品：</label>
                 <input class="nui-textbox" width="100" id="advantageCarbrandId"/>
                 <label style="font-family:Verdana;">联系人电话：</label>
-                <input class="nui-textbox" width="100" id="mobile"/>
+                <input class="nui-textbox" width="100" id="mobile"/> -->
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>

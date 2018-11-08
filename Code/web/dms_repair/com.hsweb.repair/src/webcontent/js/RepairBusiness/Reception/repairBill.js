@@ -678,6 +678,11 @@ function doSetMainInfo(car){
     maintain.mtAdvisor = currUserName;
     maintain.recordDate = now;
     maintain.sex = car.sex;
+    maintain.idNo = car.idNo;
+    maintain.remark = car.remark;
+    maintain.insuranceName = car.insuranceName;
+    maintain.insureNo = car.insureNo;
+    maintain.insureDueDate = car.insureDueDate;
     mpackageRate = 0;
     mitemRate = 0;
     mpartRate = 0;
@@ -685,6 +690,7 @@ function doSetMainInfo(car){
     billForm.setData(maintain);
     sendGuestForm.setData(maintain);
     describeForm.setData(maintain);
+    insuranceForm.setData(maintain);
     xyguest = maintain;
     fguestId = car.guestId||0;
     fcarId = car.id||0;
@@ -1622,7 +1628,7 @@ function showCard(){
 /*function showHealth(){
     window.open("http://www.baidu.com?backurl="+window.location.href); 
 }*/
-function doSearchCardTimes(guestId)
+/*function doSearchCardTimes(guestId)
 {
     cardTimesGrid.clearRows();
     if(!guestId) return;
@@ -1637,6 +1643,30 @@ function doSearchCardTimes(guestId)
         p:p
     });
 }
+*/
+function doSearchCardTimes(guestId)
+{
+    cardTimesGrid.clearRows();
+    if(!guestId) return;
+
+    var p = {};
+    p.detailFinish = 0;  
+    p.guestId = guestId;
+    p.notPast = 1; 
+    p.status = 2; 
+    cardTimesGrid.load({
+    	token:token,
+        p:p
+    },function(){
+        var data = cardTimesGrid.getData();
+        var len = data.length||0;
+        $("#showCardTimesEl").html("次卡套餐("+len+")");
+       // document.getElementById("formIframe").contentWindow.doSetCardTimes(data);
+    });
+}
+
+
+
 function doSearchMemCard(guestId)
 {
     memCardGrid.clearRows();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updateCardTimesInfo" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="判断预存套餐是否超数，&#xD;&#xA;更新预存套餐的可使用次数，已使用次数&#xD;&#xA;&#xD;&#xA;工单中用到预存数据的很少，不考虑用多表关联查询，&#xD;&#xA;先查询预存的套餐，工时，配件，然后再循环判断有没有超数，并且更新数量&#xD;&#xA;&#xD;&#xA;判断套餐，工时，配件预存，更新套餐，工时，配件预存；&#xD;&#xA;最后更新客户对应的预存信息主表状态；&#xD;&#xA;&#xD;&#xA;不用判断次卡次数够不够，因为添加时已经做过判断 judgeCardTimesInfo&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.repairService.updateSql.updateCardTimesFinish" title="Administrator&#x9;18-8-11 下午4:40">
-    <location x="64" y="-240"/>
+    <location x="71" y="-240"/>
     <size height="259" width="481"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
@@ -218,6 +218,7 @@
     <location x="405" y="153"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="pkgList" iterableElement="pkgTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -321,7 +322,7 @@
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">cardTemp/balaTimes</process:leftOperand>
+          <process:leftOperand type="query">resTimes</process:leftOperand>
           <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -365,6 +366,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">cardPkgAmt+pkgTempAmt</process:from>
       <process:to type="query">cardPkgAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaTimes-1</process:from>
+      <process:to type="query">resTimes</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cardTemp/isFinish</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -483,6 +492,7 @@
     <location x="840" y="153"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="itemList" iterableElement="itemTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
@@ -535,13 +545,14 @@
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="link14" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>invokePojo5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="link15" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>assign8</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">cardTemp/balaTimes</process:leftOperand>
+          <process:leftOperand type="query">resTimes</process:leftOperand>
           <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -585,6 +596,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">cardItemAmt+itemTempAmt</process:from>
       <process:to type="query">cardItemAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaTimes-1</process:from>
+      <process:to type="query">resTimes</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cardTemp/isFinish</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
@@ -722,7 +741,7 @@
       <targetNode>assign11</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">cardTemp/balaTimes</process:leftOperand>
+          <process:leftOperand type="query">resTimes</process:leftOperand>
           <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -766,6 +785,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">cardPartAmt+partTempAmt</process:from>
       <process:to type="query">cardPartAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">balaTimes-1</process:from>
+      <process:to type="query">resTimes</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cardTemp/isFinish</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
@@ -1007,6 +1034,7 @@
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" lineType="inheritance" type="break">
       <sourceNode>subprocess0</sourceNode>
@@ -1043,6 +1071,7 @@
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign7</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link26" name="link26" displayName="连接线" lineType="inheritance" type="break">
       <sourceNode>subprocess1</sourceNode>
@@ -1135,6 +1164,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="pkgTempAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="itemTempAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="partTempAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="resTimes" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

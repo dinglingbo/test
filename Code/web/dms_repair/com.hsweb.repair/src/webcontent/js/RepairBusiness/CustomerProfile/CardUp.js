@@ -27,9 +27,17 @@ $(document).ready(function(){
 	accountTypeIdEl=nui.get('radio');
 	accountTypeList=[{id:1,name:"现金"},{id:2,name:"刷卡"},{id:3,name:"微信/支付宝"}];
 	accountTypeIdEl.setData(accountTypeList);
-
-
 	getCard();
+	nui.get('guestFullName').focus();
+	document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;//38向上 40向下
+
+        if((keyCode==27))  {  //ESC
+            onCancel();
+        }
+	 };
+	 
 	
 });
 //function onCard(){
@@ -343,4 +351,9 @@ function openCustomerWindow(callback) {
             }
         }
     });
+}
+
+//取消
+function onCancel() {
+	CloseWindow("cancel");
 }

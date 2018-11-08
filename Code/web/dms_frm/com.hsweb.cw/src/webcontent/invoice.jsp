@@ -58,8 +58,7 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="width:100%;">
-                            <a class="nui-button" onclick="saveData()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
-                            <a class="nui-button" onclick="onClose()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                            <a class="nui-button" onclick="saveData()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存 </a>
                         </td>
                     </tr>
                 </table>
@@ -139,7 +138,7 @@
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                    <a class="nui-button" iconCls="" plain="true" onclick="addSelect()" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="addSelect()" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onClose()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
@@ -159,7 +158,7 @@
 				<div field="guestFullName" name="guestFullName" headeralign="center">客户名称</div>
 				<div field="carNo" name="carNo" headeralign="center" align="center">车牌号</div>
 				<div field="contactMobile" name="contactMobile" headeralign="center" align="center">手机号</div>
-				<div field="recordDate" name="recordDate" headeralign="center" align="center">源单日期</div>
+				<div field="recordDate" name="recordDate" headeralign="center" dateFormat="yyyy-MM-dd"  align="center">源单日期</div>
 				<div field="carId" name="carId" headeralign="center" align="center" visible="false"></div>
 				<div field="guestId" name="guestId" headeralign="center" align="center" visible="false"></div>
               </div>

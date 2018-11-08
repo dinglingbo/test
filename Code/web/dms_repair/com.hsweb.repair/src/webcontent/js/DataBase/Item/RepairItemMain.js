@@ -66,9 +66,6 @@ $(document).ready(function()
 				break;
 		}
 	});
-    rightGrid.on("rowdblclick",function(e){
-		onOk();
-	});
 	tempGrid.on("cellclick",function(e){ 
 		var field=e.field;
 		var row = e.row;
@@ -113,7 +110,7 @@ function addOrEdit(item){
 		url:webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemDetail.flow?token="+token,
 		title:"维修工时",
 		width:550,
-		height:360,
+		height:400,
 		allowResize:false,
 		onload: function()
 		{
@@ -326,7 +323,6 @@ function onAdvancedAddOk(){
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
 			console.log(jqXHR.responseText);
 		}
 	});

@@ -224,7 +224,6 @@ function onOk()
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
-            //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
         }
     });

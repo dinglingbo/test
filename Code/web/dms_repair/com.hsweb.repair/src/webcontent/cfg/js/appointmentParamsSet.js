@@ -106,7 +106,6 @@ function loadParams(){
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
 			console.log(jqXHR.responseText);
 		}
 	});
@@ -394,13 +393,13 @@ function saveStation(){
 			nui.unmask(document.body);
 			data = data || {};
 			if (data.errCode == "S") {
+				showMsg("保存成功!","S");
                 queryStation();
 			} else {
 				showMsg(data.errMsg || "保存失败!","W");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
 			console.log(jqXHR.responseText);
 		}
 	});

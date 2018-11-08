@@ -33,6 +33,10 @@
 </head>
 <body>
 
+     <div class="mini-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;">
+        <a class="nui-button" onclick="noPay()" style="width: 95px;" plain="true"><span class="fa fa-save fa-lg"></span>&nbsp;转预结算 </a>
+		<a class="nui-button" onclick="pay()" style="width: 70px;" plain="true"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
+    </div>
     <div class="nui-fit" style=" width: 100%; ">
         <div style="border:0;width:580px;margin:0 auto " >
  
@@ -47,12 +51,12 @@
                             emptyText="请选择..." onbuttonclick="selectCustomer"  allowInput="false"
                             selectOnFocus="true" required="true" />
                         </td>
-                        <td > 客户电话：
+                        <td  style=" width:50%;padding-left:30px;"> 客户电话：
                              <input class="nui-textbox" id="mobile" name="mobile" allowInput="false" valueField=""  />
                         </td> 
                         </tr>
                     <tr>
-                        <td  colspan="2" style=" text-align:center;">
+                        <td  colspan="2" style="padding-left:90px;">
                         	储值卡类型选择:       
                         </td>
                     </tr>
@@ -65,13 +69,13 @@
                 </table>
                 <div class="nui-form" id="form1">
                 <table id="table" style="border-collapse:separate; border-spacing:0px 10px; height: 120px">
-                	<tr style="text-align: center;width:10%">
-                		<td  >充值金额(元)：<span style="width:10px"></span>&nbsp;&nbsp;&nbsp;
+                	<tr >
+                		<td  style="padding-left:90px;;width:10%" >充值金额(元)：<span style="width:10px"></span>&nbsp;&nbsp;&nbsp;
                 		<input id="rechargeAmt" name="rechargeAmt" class="nui-textbox" width="40%" allowInput="true" vtype="float;range:0,1000000"/>
                 		</td>
 					</tr>
-					<tr style="text-align: center;width:10%">
-                		<td  >赠送金额(元)：&nbsp;&nbsp;&nbsp;
+					<tr >
+                		<td  style="padding-left:90px;;width:10%">赠送金额(元)：&nbsp;&nbsp;&nbsp;
                 		<input id="giveAmt" name="giveAmt" class="nui-textbox" width="40%" vtype="float;range:0,100000" />
                 		</td>
 					</tr>
@@ -91,22 +95,22 @@
 <!-- 						</td> -->
 <!-- 					</tr> -->
 					<tr >
-						<td style="text-align: center;width:10%">到账金额(元)：&nbsp;&nbsp;&nbsp;
+						<td style="padding-left:90px;;width:10%">到账金额(元)：&nbsp;&nbsp;&nbsp;
 						<input id="totalAmt" name="totalAmt"class="nui-textbox" width="40%"  allowInput="false" />
 						</td>
 					</tr>
 					</table>
 					<table style="width:100%;">
 					<tr >
-						<td align="right"  width="36%">支付方式：</td>
+						<td style="padding-left:90px;;width:32%">支付方式：</td>
 						<td  id="radio"  class="nui-radiobuttonlist" textField="name" valueField="id" ></td>
 					</tr>
-					<tr align="center" height="40px">
+					<!-- <tr align="center" height="40px">
 						<td colspan="2">
 							<a class="nui-button"onclick="noPay()">保存</a>
 							<a class="nui-button"onclick="pay()">确认支付</a>
 						</td>
-					</tr>          
+					</tr>    -->       
                 </table>
                 </div>
          </div> 

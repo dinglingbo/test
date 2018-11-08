@@ -14,15 +14,18 @@
 <%@include file="/common/commonRepair.jsp"%>
 </head>
 <body>
+    <div class="mini-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;">
+        <a class="nui-button" onclick="onOk" style="width: 60px;" plain="true"><span class="fa fa-save fa-lg"></span>&nbsp;保存 </a>
+		<a class="nui-button" onclick="onCancel" style="width: 60px;" plain="true"><span class="fa fa-close fa-lg"></span>&nbsp;关闭 </a>
+    </div>
 	<div class="nui-fit" style="width: 100%;">
 		<table align="center">
 		   <tr style ="height:30px">
 			  <td>
-              
                <input type="radio"
 				style="vertical-align: middle; margin-top: -2px; margin-bottom: 1px;"
 				name="billType" id="billType1" value="2" checked="true" >
-				<label for="billType1">洗车开单</label>    
+				<label for="billType1" >洗车开单</label>    
 				
 			  </td>
 			</tr>
@@ -45,13 +48,24 @@
 			</td>
 			</tr>
 		</table>
-		<div class="mini-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;text-align:center;">
-			<a class="nui-button" onclick="onCancel" style="width: 60px;">取消</a>
-			<a class="nui-button" onclick="onOk" style="width: 60px; margin-right: 20px;">确定</a> 
-       </div>
+		
 	</div>
 </body>
 <script type="text/javascript">
+    $(document).ready(function (){
+	    
+	    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;//38向上 40向下
+
+        if((keyCode==27))  {  //ESC
+            onCancel();
+        }
+      }
+    });
+    /*  $("#billType1").mouseenter(function(){
+ 	    alert("111");
+     }); */
     var billType = 2;
     $(function(){
       $('input').click(

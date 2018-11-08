@@ -47,8 +47,21 @@
 <body style="height:100%;width:100%">
 
 <div class="nui-fit">
-   
-   
+   <div class="mini-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;text-align:center;">
+    <div style="padding: 0px;" borderStyle="border:0;">
+        <table width="100%">
+            <tr>
+                <td  >
+                    <a class="nui-button"  onclick="finish()" id = "readyPay" plain="true"><span class="fa fa-check fa-lg" ></span>&nbsp;完工</a>
+                    <!-- <a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >保存</a>  -->
+                    <a class="nui-button"  onclick="onCancel()" id = "payOk" plain="true"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> 
+                    <a class="nui-button"  onclick="SelectReport()" id = "SelectReport" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;质检报告模板</a>
+                </td>
+                <td align="left"><span id="checkDescribe" style="color:red;"></span></td>
+            </tr>
+        </table>
+	</div>
+  </div>
     <div id="itemGrid"
         dataField="data"
         class="nui-datagrid"
@@ -59,6 +72,7 @@
             <div headerAlign="center" type="indexcolumn" width="10">序号</div>
             <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="60">工时名称</div>
             <div field="workers" headerAlign="center" allowSort="true" visible="true" width="60" datatype="int" align="center">施工员</div>
+            <div field="status" headerAlign="center" allowSort="true" visible="true" width="60" datatype="int" align="center">是否完工</div>
             <!-- <div field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">是否合格</div>
             <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">备注</div> -->
         </div>
@@ -97,19 +111,7 @@
         </table>
      </div>
   </div>
-    <div style="padding: 0px;" borderStyle="border:0;">
-        <table width="100%">
-            <tr>
-                <td style="padding-left: 50px;"><span id="checkDescribe" style="color:red;"></span></td>
-                <td style="text-align:right;padding-right: 50px;" >
-                    <a class="nui-button"  onclick="finish()" id = "readyPay"> 完工</a> 
-                    <!-- <a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >保存</a>  -->
-                    <a class="nui-button"  onclick="onCancel()" id = "payOk" >返回</a> 
-                    <a class="nui-button"  onclick="SelectReport()" id = "SelectReport" >质检报告模板</a>
-                </td>
-            </tr>
-        </table>
-	</div>
+   
 </div>
 </body>
 </html>

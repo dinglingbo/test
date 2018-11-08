@@ -483,12 +483,13 @@
         });
 	});	
 function SetData(params){
+
        var sumAmt = 0;
        var date = new Date();
        var data = [];
        $("#guestName").html(params.guestFullName);
        $("#guestAdd").html(params.addr);
-       $("#recordDate").html(params.recordDate);
+       $("#recordDate").html(format(params.recordDate, "yyyy-MM-dd HH:mm"));
        $("#phone").html(params.guestMobile); 
        $("#shippingAdd").html(params.addr); 
        $("#serviceCode").html(params.serviceCode);
@@ -521,10 +522,10 @@ function SetData(params){
       $("#amt").html(sumAmt);
       $("#Damt").html(transform(sumAmt+""));  
    });
-   $("#date").html(format(date, "yyyy-MM-dd HH:mm:ss"));
+   $("#date").html(format(date, "yyyy-MM-dd HH:mm"));
    $("#currUserName").html(currUserName);
    $("#currCompAddress").html(currCompAddress || "");
-   $("#currComptel").html(currComptel);
+   $("#currComptel").html(currCompTel  || "");
    
  }
 </script>

@@ -95,8 +95,8 @@
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
                         <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
                         <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
-                        <div header="送修人名称" field="contactName" width="30" headerAlign="center"></div>
-                        <div header="送修人手机" field="mobile" width="60" headerAlign="center"></div>
+                        <div header="联系人名称" field="contactName" width="30" headerAlign="center"></div>
+                        <div header="联系人手机" field="mobile" width="60" headerAlign="center"></div>
                         <div header="VIN" field="vin" width="70" headerAlign="center"></div>
                     </div>
                 </div>
@@ -119,9 +119,9 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="saveBatch()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="finish"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="sellBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
-                <span class="separator"></span>
-
-                <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint" onclick="onPrint(5)"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                
+ 
+                <a class="nui-button" plain="true" id="menuprint" onclick="onPrint(5)"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                  <!-- <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
                 </ul>  -->
@@ -148,16 +148,16 @@
         <input class="nui-hidden" name="isSettle"/>
         <input class="nui-hidden" name="addr" />
         <input class="nui-hidden" name="serviceCode" />
-        <table  style=" left:0;right:0;margin: 0 auto;"> 
+        <table  style="width: 100%;border-spacing: 0px 5px;"> 
             <tr>   
                 <td class="title required">客户名称:</td> 
-                <td class=""><input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false"/></td>
+                <td class=""><input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="100%"/></td>
                 <td class="title required">客户手机:</td> 
-                <td class=""><input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false"/></td>
+                <td class=""><input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="100%"/></td>
                 <td class="title ">车牌号:</td> 
-                <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false"/></td>
+                <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
                   <td class="title">备注:</td> 
-                <td class="" colspan=""><input  class="nui-textbox" name="remark"/></td>
+                <td class="" colspan=""><input  class="nui-textbox" name="remark" width="100%"/></td>
             </tr>
             <tr> 
                  <td class="title required">
@@ -174,19 +174,19 @@
                             allowInput="true"
                             showNullItem="false"
                             valueFromSelect="true"
-                            nullItemText="请选择..."/>
+                            nullItemText="请选择..." width="100%"/>
                 </td>            
 <!--                 <td class=""><input  class="nui-textbox" name="recorder" id="recorder" enabled="false"/></td> -->
-                 <td class="title ">送修人名称:</td> 
-                <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false"/></td>
-                <td class="title ">送修人手机:</td> 
-                <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false"/></td>
-                <td class="title">退货时间:</td> 
+                 <td class="title ">联系人名称:</td> 
+                <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false" width="100%"/></td>
+                <td class="title ">联系人手机:</td> 
+                <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false" width="100%"/></td>
+                <td class="title">退货日期:</td> 
                 <td class="">
                     <input id="recordDate"
                     name="recordDate"
-                    allowInput="false" format="yyyy-MM-dd H:mm:ss"
-                    class="nui-datepicker" enabled="false"/>
+                    allowInput="false" format="yyyy-MM-dd hh:MM"
+                    class="nui-datepicker" enabled="false" width="100%"/>
                 </td>
                 
                 <td class="">
@@ -200,7 +200,7 @@
                         allowInput="true"
                         showNullItem="false"
                         valueFromSelect="true"
-                        nullItemText="请选择..." visible="false"/>
+                        nullItemText="请选择..." visible="false" width="100%"/>
                 </td>
             </tr>
         </table>
@@ -243,7 +243,7 @@
                 </div>
                 <div field="amt" summaryType="sum"  width="60" headerAlign="center" header="金额"></div>
                 <div field="saleMan" headerAlign="center"
-                     allowSort="false" visible="true" width="50" header="销售员" align="center">
+                     allowSort="false" visible="true" width="50" header="退货员" align="center">
                      <input  enabled="true" dataField="memList" 
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
                              url="" onvaluechanged="onpartsalemanChanged" emptyText=""  vtype="required" property="editor" /> 

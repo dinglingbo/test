@@ -386,7 +386,7 @@ pageEncoding="UTF-8" session="false" %>
                 <tr>
                     <td class="left" width="33.3%" id="carNo">车牌号：</td>
                     <td class="left" width="33.3%" id="guest">客户名称：</td>
-                    <td class="left" id="carBrand">车辆品牌：</td>
+                    <td class="left" id="carBrand">车辆/品牌：</td>
                 </tr>
                 <tr>
                     <td class="left" id="tel">手机号：</td>
@@ -394,7 +394,7 @@ pageEncoding="UTF-8" session="false" %>
                     <td class="left"id="recordDate">单据时间：</td>
                 </tr>
                 <tr>
-                    <td class="left" id="carVin">VIN：</td>
+                    <td class="left" id="carVin">车架号(VIN)：</td>
                     <td class="left"id="engineNo">发动机号：</td>
                     <td class="left"id="enterKilometers">里程数：</td>
                 </tr>
@@ -526,7 +526,7 @@ pageEncoding="UTF-8" session="false" %>
                 var insuranceDate = null;
                 if(recordDate){
                     recordDate = new Date(recordDate);
-                    recordDate = format(recordDate, "yyyy-MM-dd HH:mm:ss");
+                    recordDate = format(recordDate, "yyyy-MM-dd hh:MM");
                 }
                 if(beginDate){
                     beginDate = new Date(recordDate);

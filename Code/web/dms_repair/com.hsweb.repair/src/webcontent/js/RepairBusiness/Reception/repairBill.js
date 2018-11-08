@@ -902,8 +902,7 @@ function save(){
                     guestId: data.guestId||0,
                     contactorId: data.contactorId||0
                 }
-            }
-
+            };
             getGuestContactorCar(params, function(text){
                 var errCode = text.errCode||"";
                 var guest = text.guest||{};
@@ -3724,7 +3723,7 @@ function SearchLastCheckMain() {
             if(isRec == "1"){
                 var ldata = text.list[0];
                 var score = ldata.check_point || 0;
-                var rdate = nui.formatDate(nui.parseDate(ldata.record_date),"yyyy-MM-dd HH:mm:ss")
+                var rdate = nui.formatDate(nui.parseDate(ldata.record_date),"yyyy-MM-dd hh:MM")
 
                 $("#lastCheckInfo1").html('上次检查');
                 $("#lastCheckInfo2").html(score+"分");

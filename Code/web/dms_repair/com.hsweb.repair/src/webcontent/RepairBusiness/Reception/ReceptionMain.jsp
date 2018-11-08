@@ -10,11 +10,11 @@
 -->
 <head>
 <title>综合开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.3.10"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.4.1"></script>
 <style type="text/css">
 
 .title {
-  width: 60px;
+  width: 80px;
   text-align: right;
 }
 
@@ -70,9 +70,9 @@
                     <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="unfinish()" id="addBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返工</a>
+                     <!--<a class="nui-button" iconCls="" plain="true" onclick="unfinish()" id="addBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返工</a>-->
                     <!-- <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="addBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a> -->
                     <a class="nui-button" iconCls="" plain="true" onclick="del()" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
 
@@ -96,26 +96,25 @@
                allowCellSelect="true"
                editNextOnEnterKey="true"
                onshowrowdetail="onShowRowDetail"
+               allowCellWrap = "true"
                url="">
               <div property="columns">
                   <div type="indexcolumn">序号</div>
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-                  <div field="status" name="status" width="40" headerAlign="center" header="进程"></div>
-                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌"></div>
-                  <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div>
-                  <div field="carModel" name="carModel" width="160" headerAlign="center" header="车型"></div>
-                  <div field="carVin" name="carVin" width="120" headerAlign="center" header="VIN码"></div>
-                  <div field="guestFullName" name="guestFullName" width="60" headerAlign="center" header="客户姓名"></div>
-                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div>
-                  <div field="contactName" name="contactName" width="60" headerAlign="center" header="送修人姓名"></div>
-                  <div field="contactMobile" name="contactMobile" width="90" headerAlign="center" header="送修人手机"></div>
-                  <div field="mtAdvisor" name="mtAdvisor" width="60" headerAlign="center" header="服务顾问"></div>
-                  <div field="serviceTypeName" name="serviceTypeName" width="100" headerAlign="center" header="业务类型"></div>
-                  <div field="isSettle" name="isSettle" width="60" headerAlign="center" header="结算状态"></div>
-                  <div field="serviceCode" name="serviceCode" width="120" headerAlign="center" header="工单号"></div>
-                  <div field="sureMtDate" name="sureMtDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="维修日期"></div>
-                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="完工日期"></div>
-                  <div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="结算日期"></div>
+                  <div field="status" name="status" width="40px" headerAlign="center" header="进程"></div>
+                  <div field="carNo" name="carNo" width="80px" headerAlign="center" header="车牌"></div>
+                  <div field="carModel" name="carModel" width="200px" headerAlign="center"  header="品牌/车型"></div>
+                  <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
+                  <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>
+                  <div field="guestMobile" name="guestMobile" width="100px" headerAlign="center" header="客户手机"></div>
+                  <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
+                  <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
+                  <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
+                  <div field="serviceTypeId" name="serviceTypeId" width="60px" headerAlign="center" header="业务类型"></div>
+                  <div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div>
+                  <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="开单日期"></div>
+                  <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="预计完工日期"></div>
+                  <div field="serviceCode" name="serviceCode" width="120px" headerAlign="center" header="工单号"></div>
               </div>
           </div>
     </div>
@@ -171,7 +170,7 @@
 
 
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:220px;"
+     title="高级查询" style="width:420px;height:220px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
@@ -189,7 +188,7 @@
                 textField="name"
                 valueField="id"/>
             <tr>
-                <td class="title">创建日期:</td>
+                <td class="title" width="800px">开单日期:</td>
                 <td>
                     <input id="sRecordDate"
                            name="sRecordDate"
@@ -210,17 +209,17 @@
                 </td>
             </tr>
             <tr>
-                <td class="title">结算日期:</td>
+                <td class="title">预计完工日期:</td>
                 <td>
-                    <input id="sOutDate"
-                           name="sOutDate"
+                    <input id="sPlanFinishDate"
+                           name="sPlanFinishDate"
                            width="100%"
                            class="nui-datepicker"/>
                 </td>
                 <td class="">至:</td>
                 <td>
-                    <input id="eOutDate"
-                           name="eOutDate"
+                    <input id="ePlanFinishDate"
+                           name="ePlanFinishDate"
                            class="nui-datepicker"
                            format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"

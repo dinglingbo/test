@@ -12,7 +12,7 @@
 <head>
     <title>开票管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoiceManagement.js?v=1.0.1" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoiceManagement.js?v=1.0.2" type="text/javascript"></script>
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/date.js" type="text/javascript"></script>
 </head>
 <style type="text/css">
@@ -72,23 +72,6 @@
     	  { id: 4, text: '客户姓名查询' }, { id: 5, text: '手机号码查询' }, { id: 2, text: '车牌号查询' }];
         nui.parse();
 		
-        function newBill(e) {
-            var item={};
-            item.id = "TicketOpeningMgr";
-            item.text = "开票单";
-            var url = null;
-            if(e == 1){
-            	url = "/cw/invoice.jsp";
-            }else{
-            	row = grid.getSelected();
-            	if(row){
-            		url = "/cw/invoice.jsp?state=1&serviceCode="+row.serviceCode+"&main="+row.main;
-            	}
-            }
-            item.url = webPath + contextPath + url;
-            item.iconCls = "fa fa-cog";
-            window.parent.activeTab(item);
-        }
         
     </script>
 </body>

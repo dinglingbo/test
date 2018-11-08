@@ -73,7 +73,7 @@
                         <input id="recordDate" 
                             name="recordDate" 
                             class="nui-datepicker width2" 
-                            dateFormat="yyyy-MM-dd HH:mm:ss" 
+                            dateFormat="yyyy-MM-dd hh:MM" 
                             enabled="false" emptyText="请选择日期" alwaysView="true"/>
                     </div>
                     <div class="row">
@@ -83,7 +83,7 @@
                         <input id="modifyDate" 
                             name="modifyDate" 
                             class="nui-datepicker width2" 
-                            dateFormat="yyyy-MM-dd HH:mm:ss" 
+                            dateFormat="yyyy-MM-dd hh:MM" 
                             enabled="false" emptyText="请选择日期" alwaysView="true"/>
                     </div>
                 </div>

@@ -38,7 +38,7 @@
             <div type="indexcolumn">序号</div>
             <div allowSort="true" field="serviceId" width="120" summaryType="count" headerAlign="center" header="单号"></div>
             <div field="guestShortName" width="120" headerAlign="center" header="客户"></div>
-            <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss" width="120px" header="出库日期" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true"></div>
+            <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd hh:MM" width="120px" header="出库日期" format="yyyy-MM-dd hh:MM" headerAlign="center" allowSort="true"></div>
             <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
             <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" datatype="float" width="60" field="orderQty" name="orderQty" headerAlign="center" header="销售数量"></div>

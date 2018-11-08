@@ -9,7 +9,7 @@
 -->
 <head>
 <title>内部转账单</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/internalTransfer.js?v=2.1.3"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/internalTransfer.js?v=2.1.4"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -111,9 +111,9 @@
                         </div>
                         <div field="auditSign" width="30" headerAlign="center" header="是否审核"></div>
                         <div field="auditor" width="30" headerAlign="center" header="审核人"></div>
-                        <div allowSort="true" field="auditDate" width="60" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                        <div allowSort="true" field="auditDate" width="60" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd hh:MM"></div>
                         <div field="serviceId" width="60" headerAlign="center" header="单号"></div>
-                        <div allowSort="true" field="createDate" width="60" headerAlign="center" visible="false" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                        <div allowSort="true" field="createDate" width="60" headerAlign="center" visible="false" dateFormat="yyyy-MM-dd hh:MM"></div>
                             
                     </div>  
                   

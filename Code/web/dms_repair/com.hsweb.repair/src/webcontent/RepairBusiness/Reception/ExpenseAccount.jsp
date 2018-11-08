@@ -129,7 +129,7 @@
         <input class="nui-hidden" name="serviceCode"/>
         <input class="nui-hidden" name="sourceServiceId"/>
         <input class="nui-hidden" name="isSettle"/>
-        <input id="enterDate" name="enterDate" class="nui-datepicker"visible="false"nullValue="null" format="yyyy-MM-dd  HH:mm:ss" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
+        <input id="enterDate" name="enterDate" class="nui-datepicker"visible="false"nullValue="null" format="yyyy-MM-dd hh:MM" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
         <table  style=" left:0;right:0;margin: 0 auto;"> 
             <tr>   
                 <td class="title required">车牌号:</td> 

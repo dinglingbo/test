@@ -76,6 +76,7 @@ function onSearch()
 var currType = 0;
 function quickSearch(type)
 {
+	var queryname = "所有";
     currType = type;
     if($("a[id*='type']").length>0)
     {
@@ -90,28 +91,37 @@ function quickSearch(type)
     {
         case 0:
             params.todayEnter = 1;
+            queryname = "本日来厂";
             break;
         case 1:
             params.yesterdayEnter = 1;
+            queryname = "昨日来厂";
             break;
         case 2:
             params.todayNew = 1;
+            queryname = "本日新客户";
             break;
         case 3:
             params.thisMonthNew = 1;
+            queryname = "本月新客户";
             break;
         case 4:
             params.thisMonthEnter = 1;
+            queryname = "本月所有来厂客户";
             break;
         case 5:
             params.thisMonthLoss = 1;
+            queryname = "本月流失回厂";
             break;
         case 6:
             params.lastMonthLoss = 1;
+            queryname = "上月流失回厂";
             break;
         default:
             break;
     }
+    var menunamestatus = nui.get("menunamestatus");
+    menunamestatus.setText(queryname);
     doSearch(params);
 }
 function doSearch(params)
@@ -388,38 +398,10 @@ function selectCustomer(guestId)
     });
 }
 
-//当选择列时
-/*function selectionChanged() {
-	var rows = grid.getSelecteds();
-	if(currIsMaster!="1"){
-		if(rows[0].isShare=="1"){
-			nui.get('updateBtn').setVisible(false);
-		}else{
-			nui.get('updateBtn').setVisible(true);
-		}
-		
-	}else{
-		if(rows[0].isShare=="1"){
-			nui.get('updateBtn').setVisible(true);
-		}else{
-			nui.get('updateBtn').setVisible(false);
-		}
-	}
-	if(xs==1){
-		mini.get("updateBtn").setVisible(false);
-		mini.get("addBtn").setVisible(false);
-		mini.get("onBuy").setVisible(true);
-	}
-}*/
 
 
 function selectionChanged() {
 	var rows = grid.getSelecteds();
-	if(currOrgId==rows[0].orgid){
-			nui.get('updateBtn').setVisible(true);	
-	}else{
-			nui.get('updateBtn').setVisible(false);
-	}
 	if(xs==1){
 		mini.get("updateBtn").setVisible(false);
 		mini.get("addBtn").setVisible(false);

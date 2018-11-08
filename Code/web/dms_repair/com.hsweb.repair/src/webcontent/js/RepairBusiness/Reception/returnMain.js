@@ -48,6 +48,7 @@ $(document).ready(function ()
             }
         }
     });
+     
 
     innerPartGrid.on("drawcell", function (e) {
         var record = e.record;
@@ -69,6 +70,9 @@ $(document).ready(function ()
         }
     });  
     quickSearch(0);
+    mainGrid.on("rowdblclick",function(e){
+    	editSell();
+	});
 });
 var statusHash = {
     "0" : "草稿",
@@ -201,8 +205,8 @@ function getSearchParam() {
 function addSell(){
     var part={};
     part.id = "5200";
-    part.text = "退货-工单";
-    part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/returnBill.jsp?token="+token;
+    part.text = "退货开单详情";
+    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.returnBill.flow?token="+token;
     part.iconCls = "fa fa-file-text";
     var params = {};
     window.parent.activeTabAndInit(part,params);
@@ -213,8 +217,8 @@ function editSell(){
     if(!row) return;
     var part={};
     part.id = "5200";
-    part.text = "退货-工单";
-    part.url = webPath + contextPath + "/repair/RepairBusiness/Reception/returnBill.jsp?token="+token;
+    part.text = "退货开单详情";
+    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.returnBill.flow?token="+token;
     part.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {

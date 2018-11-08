@@ -11,7 +11,7 @@
 -->
 <head>
 <title>会员卡充值</title>
-    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.1.9"></script>
+    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.2.4"></script>
 	<style type="text/css">
 	
 	table {
@@ -33,18 +33,19 @@
 </head>
 <body>
 
-    <div class="nui-fit" style=" width: 100%;  ">
-        <div showCollapseButton="false" style="border:0; ">
-            <div class="nui-toolbar" style="padding:0px;border-bottom:0;">   
-            </div>
-            <div class="nui-form" id="basicInfoForm">
+    <div class="nui-fit" style=" width: 100%; ">
+        <div style="border:0;width:580px;margin:0 auto " >
+ 
+            <div class="nui-form" id="basicInfoForm" >
                 <table style="border-collapse:separate; border-spacing:0px 10px;">
                     <tr >
-                   <td  style="display:none;"> 客户姓名：
+                   <td  style="display:none;"> 
 						 <input class="nui-textbox" id="guestId" name="guestId" visible="true"  allowInput="false"/>         
                         </td>
                         <td  style=" width:50%;padding-left:90px;">客户姓名：
-						 <input class="nui-textbox" id="guestFullName" name="guestFullName" visible="true"  allowInput="false"/> 
+                            <input class="nui-buttonedit" id="guestFullName" name="guestFullName" textname="guestFullName" 
+                            emptyText="请选择..." onbuttonclick="selectCustomer"  allowInput="false"
+                            selectOnFocus="true" required="true" />
                         </td>
                         <td > 客户电话：
                              <input class="nui-textbox" id="mobile" name="mobile" allowInput="false" valueField=""  />

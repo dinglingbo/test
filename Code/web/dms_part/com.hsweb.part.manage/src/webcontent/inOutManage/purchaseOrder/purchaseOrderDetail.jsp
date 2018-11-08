@@ -97,7 +97,7 @@
                                              id="createDate"
                                              width="100%"
                                              showTime="true"
-                                             class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
+                                             class="nui-datepicker" enabled="false" format="yyyy-MM-dd hh:MM"/>
                                   </td>
                                   <td class="title wide">
                                       <label>预计到货日期：</label>

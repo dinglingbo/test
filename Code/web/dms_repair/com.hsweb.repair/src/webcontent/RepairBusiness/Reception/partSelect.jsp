@@ -110,7 +110,7 @@
             <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div>
             <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
             <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
-            <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss" width="120px" header="入库日期" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true"></div>
+            <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd hh:MM" width="120px" header="入库日期" format="yyyy-MM-dd hh:MM" headerAlign="center" allowSort="true"></div>
             <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
             <div field="serviceCode" align="left" width="120px" headerAlign="center" align="center" allowSort="true" header="入库单号"></div>
             <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 

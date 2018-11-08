@@ -115,13 +115,51 @@ table{
 	width:4%;
 }
 #orderQty{
+	width:5%;
+}
+#orderPrice{
+	width:5%;
+}
+#orderAmt{
+	width:7%;
+}
+#remark{
+	width:4%;
+}
+#storehouse{
+	width:10%;
+}
+#storeShelf{
+	width:4%;
+}#comPartCode{
+	width:13%;
+}
+#comOemCode{
+	width:12%;
+}
+#comPartName{
+	width:13%;
+}
+#comPartBrandId{
+	width:6%;
+}
+#comApplyCarModel{
+	width:10%;
+}
+#comSpec{
+	width:8%;
+}
+#comUnit{
+	width:4%;
+}
+#orderQty{
 	width:4%;
 }
 #orderPrice{
-	width:4%;
+	width:5%;
 }
 #orderAmt{
-	width:4%;
+	width:7%;
 }
 #remark{
 	width:4%;

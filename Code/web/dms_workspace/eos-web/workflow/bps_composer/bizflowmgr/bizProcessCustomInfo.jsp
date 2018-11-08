@@ -96,7 +96,7 @@ if("0".equals(modify)){
 		</tr>
 		<tr>
 			<td class="form_label" width="20%"><b:message key="biz_process_custom_info_jsp.last_edited"/></td>
-			<td><b:write property="wfbizprocess/updateTime" formatPattern="yyyy-MM-dd HH:mm:ss"/></td>
+			<td><b:write property="wfbizprocess/updateTime" formatPattern="yyyy-MM-dd hh:MM"/></td>
 		</tr>			
 			</table>
 		</td>
@@ -196,7 +196,7 @@ if("0".equals(modify)){
         var processDefCHName = '<b:write property="wfbizprocess/processDefCHName" />';
         var operator = '<b:write property="wfbizprocess/operator" />';
         var nowDate = new Date();
-        var showDate = dateToString(nowDate, 'yyyy-MM-dd HH:mm:ss');
+        var showDate = dateToString(nowDate, 'yyyy-MM-dd hh:MM');
         var versionDesc = '-------['+operator+']-------\n====='+showDate+'=====';
         var pathName = '<b:write property="pathName" />';
         var strUrl="com.primeton.bps.web.composer.bizflowmgr.bizProcessCustomSubmit.flow?_eosFlowAction=submit&tempProcessDefID="+tempProcessDefID+"&processDefName=" + processDefName + "&processDefCHName="+processDefCHName+ "&versionDesc=" + versionDesc + "&pathName=" + pathName;

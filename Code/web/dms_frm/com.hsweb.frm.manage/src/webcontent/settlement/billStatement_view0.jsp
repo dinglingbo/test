@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.0.6"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -112,11 +112,11 @@
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
                         <div field="guestName" width="80" headerAlign="center" header="往来单位"></div>
-                        <div field="createDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="对账日期"></div>
+                        <div field="createDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="对账日期"></div>
                         <div field="stateMan" width="60" headerAlign="center" header="对账员"></div><div field="auditSign" width="35" headerAlign="center" header="状态"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="对账单号"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                        <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd H:mm:ss" header="审核日期"></div>
+                        <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="审核日期"></div>
                     </div>
                 </div>
             </div>
@@ -156,7 +156,7 @@
                                      width="100%"/>
                               <table style="width: 100%;">
                                   <tr>
-                                      <td class="title required">
+                                      <td class="title required" style="width:62px;">
                                           <label>往来单位：</label>
                                       </td>
                                       <td colspan="3">
@@ -176,7 +176,7 @@
                                       <td colspan="1">
                                           <input class="nui-textbox" id="stateMan" name="stateMan" width="100%">
                                       </td>
-                                      <td class="title required">
+                                      <td class="title required" style="width:72px">
                                           <label>对账日期：</label>
                                       </td>
                                       <td width="120">
@@ -185,9 +185,9 @@
                                                  width="100%"
                                                  enabled="false"
                                                  showTime="true"
-                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd H:mm:ss"/>
+                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd hh:MM"/>
                                       </td>
-                                      <td class="title">
+                                      <td class="title" style="width:72px">
                                           <label>对账单号：</label>
                                       </td>
                                       <td colspan="1">
@@ -195,19 +195,19 @@
                                       </td>
                                   </tr>
                                   <tr>
-                                      <td class="title required">
+                                      <td class="title required" >
                                           <label>对账金额：</label>
                                       </td>
                                       <td colspan="1">
                                           <input class="nui-textbox" id="rpAmt" name="rpAmt" width="100%" enabled="false">
                                       </td>
-                                      <td class="title required">
+                                      <td class="title required" style="width:72px">
                                           <label>优惠金额：</label>
                                       </td>
                                       <td colspan="1">
                                           <input class="nui-textbox" id="voidAmt" name="voidAmt" width="100%" vtype="float" selectOnFocus="true">
                                       </td>
-                                      <td class="title required">
+                                      <td class="title required" style="width:72px">
                                           <label>应结金额：</label>
                                       </td>
                                       <td colspan="1">
@@ -288,7 +288,7 @@
                               <div field="typeCode" width="60" headerAlign="center" header="业务类型"></div>
                               <div field="billAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
                               <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
-                              <div allowSort="true" field="billDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                              <div allowSort="true" field="billDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd hh:MM"></div>
                               <div field="remark" width="120" headerAlign="center" header="备注"></div>
                               <div allowSort="true" summaryType="count" field="billServiceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
                           </div>

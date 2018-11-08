@@ -78,15 +78,15 @@ String select = ResourcesMessageUtil.getI18nResourceMessage("query_exception_act
 						<table border="0" cellpadding="0" cellspacing="0" style='border:0px;background-color:transparent'>
 						<tr style='border:0px;background-color:transparent'> 
 						<td style='border:0px;background-color:transparent'>
-						<w:date  allowNull="true"  defaultNull="true" format="yyyy-MM-dd HH:mm:ss" name="startTime_min" size="20" readonly="true"/>
+						<w:date  allowNull="true"  defaultNull="true" format="yyyy-MM-dd hh:MM" name="startTime_min" size="20" readonly="true"/>
 						</td><td style='border:0px;background-color:transparent'>&nbsp;-&nbsp;</td>
 						<td style='border:0px;background-color:transparent'>
-						<w:date  allowNull="true" defaultNull="true" format="yyyy-MM-dd HH:mm:ss" name="startTime_max" size="20" readonly="true" />
+						<w:date  allowNull="true" defaultNull="true" format="yyyy-MM-dd hh:MM" name="startTime_max" size="20" readonly="true" />
 						</td></tr></table>
 						<input type="hidden" name="queryCondition/_expr[7]/startTime">
 						<input type="hidden" name="queryCondition/_expr[8]/startTime">
-						<input type="hidden" name="queryCondition/_expr[7]/_pattern" value="yyyy-MM-dd HH:mm:ss"> 
-						<input type="hidden" name="queryCondition/_expr[8]/_pattern" value="yyyy-MM-dd HH:mm:ss"> 
+						<input type="hidden" name="queryCondition/_expr[7]/_pattern" value="yyyy-MM-dd hh:MM"> 
+						<input type="hidden" name="queryCondition/_expr[8]/_pattern" value="yyyy-MM-dd hh:MM"> 
 						<input type="hidden" name="queryCondition/_expr[7]/_op" value=">=">
 						<input type="hidden" name="queryCondition/_expr[8]/_op" value="<=">
 						</td>

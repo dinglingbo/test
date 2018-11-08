@@ -51,3 +51,22 @@ function refresh(){
 	}
 	grid.load({token : token,params : params});
 }
+
+function newBill(e) {
+    var item={};
+    item.id = "TicketOpeningMgr";
+    item.text = "开票单";
+    var url = null;
+    if(e == 1){
+    	url = "/cwY.invoice.flow?token="+token;
+    }else{
+    	row = grid.getSelected();
+    	if(row){
+    		url = "/cwY.invoice.flow?state=1&serviceCode="+row.serviceCode+"&main="+row.main;
+    	}
+    }
+    item.url = webPath + contextPath + url;
+    item.iconCls = "fa fa-cog";
+    window.parent.activeTab(item);
+}
+

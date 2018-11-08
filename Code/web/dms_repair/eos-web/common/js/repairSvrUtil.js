@@ -631,7 +631,9 @@ function doPrint(params){
 	var p = {
 		serviceId : serviceId,
 		comp : currOrgName,
+		partApiUrl:apiPath + partApi + "/",
 		baseUrl: apiPath + repairApi + "/",
+		sysUrl: apiPath + sysApi + "/",
 		token : token
 	};
 	if(source == 1){  //打印报价单

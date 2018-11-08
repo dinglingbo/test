@@ -75,21 +75,21 @@ String idCondition = ResourcesMessageUtil.getI18nResourceMessage("query_auditlog
 										style='border:0px;background-color:transparent'>
 										<tr style='border:0px;background-color:transparent'>
 											<td style='border:0px;background-color:transparent'>
-											<w:date  allowNull="true"  defaultNull="true" format="yyyy-MM-dd HH:mm:ss"
+											<w:date  allowNull="true"  defaultNull="true" format="yyyy-MM-dd hh:MM"
 												name="createTime_min" size="20" readonly="true" /></td>
 											<td style='border:0px;background-color:transparent'>&nbsp;-&nbsp;</td>
 											<td style='border:0px;background-color:transparent'><w:date
-												 allowNull="true"  defaultNull="true" format="yyyy-MM-dd HH:mm:ss"
+												 allowNull="true"  defaultNull="true" format="yyyy-MM-dd hh:MM"
 												name="createTime_max" size="20" readonly="true" /></td>
 										</tr>
 									</table>
 									<input type="hidden" name="queryCondition/_expr[6]/createTime">
 									<input type="hidden" name="queryCondition/_expr[6]/_pattern"
-										value="yyyy-MM-dd HH:mm:ss"> <input type="hidden"
+										value="yyyy-MM-dd hh:MM"> <input type="hidden"
 										name="queryCondition/_expr[6]/_op" value=">="> <input
 										type="hidden" name="queryCondition/_expr[7]/createTime">
 									<input type="hidden" name="queryCondition/_expr[7]/_pattern"
-										value="yyyy-MM-dd HH:mm:ss"> <input type="hidden"
+										value="yyyy-MM-dd hh:MM"> <input type="hidden"
 										name="queryCondition/_expr[7]/_op" value="<="></td>
 								</tr>
 								<tr>

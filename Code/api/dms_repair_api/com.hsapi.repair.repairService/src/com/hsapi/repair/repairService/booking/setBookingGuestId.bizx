@@ -56,6 +56,18 @@
       <process:from type="query" pattern="reference">rpsPrebook/contactorId</process:from>
       <process:to type="query">contactorId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPrebook/contactorName</process:from>
+      <process:to type="query">contactorName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPrebook/contactorTel</process:from>
+      <process:to type="query">contactorTel</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPrebook/carNo</process:from>
+      <process:to type="query">carNo</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="182" y="186"/>
@@ -138,6 +150,18 @@
     <process:copy>
       <process:from type="query" pattern="reference">contactorId</process:from>
       <process:to type="query">rpsPrebook/contactorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">contactorName</process:from>
+      <process:to type="query">rpsPrebook/contactorName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">contactorTel</process:from>
+      <process:to type="query">rpsPrebook/contactorTel</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">carNo</process:from>
+      <process:to type="query">rpsPrebook/carNo</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -241,6 +265,9 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="guestId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="contactorId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="carId" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="contactorName" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="contactorTel" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="carNo" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPrebook" name="rpsPrebook"/>

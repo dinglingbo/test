@@ -51,6 +51,24 @@ a {
     <table class="table" id="table1">
       <tr>
         <td>
+    	 <label style="font-family:Verdana;">快速查询：</label>
+                    
+                    <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+
+                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+                <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+                <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+                <li class="separator"></li>
+                <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+                <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+                <li class="separator"></li>
+                <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+                <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+                <li class="separator"></li>
+                <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+                <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+            </ul>
+                
             <input class="nui-textbox" id="name" name="name" emptyText="输入客户姓名" width="120" />
             <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" />
             <input class="nui-combobox" id="status" name="status" emptyText="选择维修进程" data="con_data_status" valueField="id" textField="text" showNullItem="true" nullItemText="全部"/>
@@ -82,7 +100,7 @@ a {
 <div class="nui-fit">
     <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
     totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
-    onshowrowdetail="" url="">
+    onshowrowdetail=""  allowCellWrap = true url="">
     <div property="columns">
     	<div type="indexcolumn" width="15">序号</div>
         <div field="id" name="id" visible="false">id</div>
@@ -90,11 +108,11 @@ a {
         <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
         <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
         <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
-        <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">车型</div>
+        <div field="carModel" name="carModel" width="130" headerAlign="center" align="center">品牌/车型</div>
         <div field="status" name="status" width="30" headerAlign="center" align="center">进程</div>
         <div field="serviceTypeName" name="serviceTypeName" width="40" headerAlign="center" align="center">业务类型</div>
         <div field="isSettle" name="isSettle" width="30" headerAlign="center" align="center">结算状态</div>
-        <div field="enterDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm:ss">进厂日期</div>
+        <div field="enterDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">进厂日期</div>
         <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
     </div> 
 </div>
@@ -112,6 +130,9 @@ a {
     var baseUrl = apiPath + repairApi + "/";
     var gridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
     mainGrid.setUrl(gridUrl);
+    
+    beginDateEl = nui.get("date1");
+    endDateEl = nui.get("date2");
 
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
@@ -128,7 +149,85 @@ a {
     var db = yy + "-" + mm + "-" + dd; //本月月
     nui.get("date1").setValue(da);
     nui.get("date2").setValue(db);
-    onSearch();
+    quickSearch(4);
+    
+    var currType = 2;
+	function quickSearch(type){
+	    var params = {};
+	    var querysign = 1;
+	    var queryname = "本日";
+	    var querystatusname = "草稿";
+	    switch (type)
+	    {
+	        case 0:
+	            params.today = 1;
+	            params.sRecordDate = getNowStartDate();
+	            params.eRecordDate = addDate(getNowEndDate(), 1);
+	            querysign = 1;
+	            queryname = "本日";
+	            break;
+	        case 1:
+	            params.yesterday = 1;
+	            params.sRecordDate = getPrevStartDate();
+	            params.eRecordDate = addDate(getPrevEndDate(), 1);
+	            querysign = 1;
+	            queryname = "昨日";
+	            break;
+	        case 2:
+	            params.thisWeek = 1;
+	            params.sRecordDate = getWeekStartDate();
+	            params.eRecordDate = addDate(getWeekEndDate(), 1);
+	            querysign = 1;
+	            queryname = "本周";
+	            break;
+	        case 3:
+	            params.lastWeek = 1;
+	            params.sRecordDate = getLastWeekStartDate();
+	            params.eRecordDate = addDate(getLastWeekEndDate(), 1);
+	            querysign = 1;
+	            queryname = "上周";
+	            break;
+	        case 4:
+	            params.thisMonth = 1;
+	            params.sRecordDate = getMonthStartDate();
+	            params.eRecordDate = addDate(getMonthEndDate(), 1);
+	            querysign = 1;
+	            queryname = "本月";
+	            break;
+	        case 5:
+	            params.lastMonth = 1;
+	            params.sRecordDate = getLastMonthStartDate();
+	            params.eRecordDate = addDate(getLastMonthEndDate(), 1);
+	            querysign = 1;
+	            queryname = "上月";
+	            break;
+	        case 10:
+	            params.thisYear = 1;
+	            params.sRecordDate = getYearStartDate();
+	            params.eRecordDate = getYearEndDate();
+	            querysign = 1;
+	            queryname = "本年";
+	            break;
+	        case 11:
+	            params.lastYear = 1;
+	            params.sRecordDate = getPrevYearStartDate();
+	            params.eRecordDate = getPrevYearEndDate();
+	            querysign = 1;
+	            queryname = "上年";
+	            break;
+	        default:
+	            break;
+	    }
+	    beginDateEl.setValue(params.sRecordDate);
+	    endDateEl.setValue(params.eRecordDate);
+	    currType = type;
+	    if(querysign == 1){
+	    	var menunamedate = nui.get("menunamedate");
+	    	menunamedate.setText(queryname); 	
+	    }
+	    
+	    onSearch();
+	}
     function onSearch(){
 
         var fdate1 = nui.get("date1").value;
@@ -151,6 +250,23 @@ a {
         };
         mainGrid.load({params:params,token:token});
     }
+	
+	document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		
+		if ((keyCode == 13)) { // Enter
+			onSearch();
+		}
+
+	}
+	$("#name").bind("keydown", function(e) {
+		if (e.keyCode == 13) {
+			var carNo = nui.get("carNo");
+			carNo.focus();
+			onSearch();
+		}
+	});
 
     mainGrid.on("celldblclick",function(e){
         var field = e.field;

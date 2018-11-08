@@ -93,7 +93,7 @@ pageEncoding="UTF-8" session="false" %>
 				<input  property="editor" required="true" vtype="float;range:0,100;" class="nui-textbox"/>
 			</div>
 			<div field="modifier" width="60" headerAlign="center" allowSort="true">操作人</div>
-			<div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss">操作日期</div>
+			<div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd hh:MM">操作日期</div>
 		</div>
 	</div>
 </div>

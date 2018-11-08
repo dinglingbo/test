@@ -64,6 +64,9 @@
 			a.is_out_bill as isOutBill,
 			a.mt_advisor_id as mtAdvisorId,
 			a.is_disabled as isDisabled,
+			a.guest_desc guestDesc,
+			a.fault_phen faultPhen,
+			a.solve_method solveMethod,
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
 	       where e.service_id = a.id) as serviceTypeName
@@ -131,6 +134,13 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="eOutDate">  
                 (a.out_date &lt; #eOutDate#)
+            </isNotEmpty>
+            <!--预计完工日期 -->
+            <isNotEmpty prepend="and" property="sPlanFinishDate">  
+                (a.plan_finish_date &gt;= #sPlanFinishDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="ePlanFinishDate">  
+                (a.plan_finish_date &lt; #ePlanFinishDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="billTypeId">  
                 (a.bill_type_id = #billTypeId#)
@@ -1018,5 +1028,35 @@
         </dynamic> 
         order by a.modify_date desc
 	</select>
+	
+	  <select id="queryWorkShopItem" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.enter_date AS enterDate,
+			a.car_no AS carNo,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.plan_finish_date AS planFinishDate,
+			a.sure_mt_man as sureMtMan,
+		(select GROUP_CONCAT(item_name) from wb_repair.rps_item b
+	       where b.service_id = a.id) itemName,
+	    (select GROUP_CONCAT(package_name) from wb_repair.rps_package c
+	       where c.service_id = a.id) packageName
+
+		FROM
+			rps_maintain a
+		WHERE 1 = 1
+			and a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="isDisabled">
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isSettle">  
+                (a.is_settle = #isSettle#)
+            </isNotEmpty>
+        </dynamic>  
+        order by a.plan_finish_date desc
+	</select>
+	
 	
 </sqlMap>

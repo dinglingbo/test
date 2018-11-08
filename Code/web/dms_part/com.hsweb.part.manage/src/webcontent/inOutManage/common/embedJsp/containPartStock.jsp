@@ -50,8 +50,8 @@
                     <div allowSort="true" datatype="float" field="occupyQty" summaryType="sum" width="60" headerAlign="center" header="占用数量"></div> -->
                     <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
                     <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
-                    <div allowSort="true" field="lastEnterDate" headerAlign="center" header="最近入库日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
-                    <div allowSort="true" field="lastOutDate" headerAlign="center" header="最近出库日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                    <div allowSort="true" field="lastEnterDate" headerAlign="center" header="最近入库日期" dateFormat="yyyy-MM-dd hh:MM"></div>
+                    <div allowSort="true" field="lastOutDate" headerAlign="center" header="最近出库日期" dateFormat="yyyy-MM-dd hh:MM"></div>
                     <div allowSort="true" field="upLimit" width="60" headerAlign="center" header="库存上限"></div>
                     <div allowSort="true" field="downLimit" width="60" headerAlign="center" header="库存下限"></div>
                     <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
@@ -94,7 +94,7 @@
                             <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
                             <div field="comOemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
                             <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
-                            <div field="enterDate" allowSort="true" dateFormat="yyyy-MM-dd H:mm:ss" width="120px" header="入库日期" format="yyyy-MM-dd H:mm:ss" headerAlign="center" allowSort="true"></div>
+                            <div field="enterDate" allowSort="true" dateFormat="yyyy-MM-dd hh:MM" width="120px" header="入库日期" format="yyyy-MM-dd hh:MM" headerAlign="center" allowSort="true"></div>
                             <div field="guestFullName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
                             <div field="serviceId" align="left" width="100px" headerAlign="center" allowSort="true" header="单号"></div>
                             <div field="comPartFullName" name="comPartFullName" width="200" headerAlign="center" header="配件全称"></div> 

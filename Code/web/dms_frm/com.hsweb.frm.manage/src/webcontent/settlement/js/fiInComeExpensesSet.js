@@ -39,7 +39,8 @@ function onIEType(e) {
     return "";
 }
 function refresh(){
-	doSearch()
+	doSearch();
+	showMsg("刷新成功！","S");
 }
 var deleteUrl = baseUrl
 		+ "com.hsapi.frm.frmService.crud.deleteFibInComeExpenses.biz.ext";
@@ -48,7 +49,7 @@ function deleteType(){
 	if(row && row.id){
 		var orgid = row.orgid;
 		if(currOrgId != "0" && orgid == 0) {
-			nui.alert("此记录不能删除!");
+			showMsg("此记录不能删除！","W");
 			return;
 		}
 
@@ -72,11 +73,10 @@ function deleteType(){
 							nui.unmask(document.body);
 							data = data || {};
 							if (data.errCode == "S") {
-								nui.alert("删除成功!");
-								
+								showMsg("删除成功！","S");	
 								doSearch();
 							} else {
-								nui.alert(data.errMsg || "删除失败!");
+								showMsg(data.errMsg || "删除失败!","E");
 							}
 						},
 						error : function(jqXHR, textStatus, errorThrown) {
@@ -89,7 +89,7 @@ function deleteType(){
 
 		
 	}else{
-		nui.alert("请选择记录！");
+		showMsg("请选择记录！","W");	
 	}
 }
 
@@ -131,6 +131,7 @@ function showEditModal(row, newRow, type){
 			doSearch();
 		}
 	});
+
 }
 function add(){
 	var row = mainGrid.getSelected();
@@ -140,7 +141,6 @@ function add(){
 	}
 
 	showEditModal(newRow, newRow, 'add');
-
 	
 }
 function edit(){
@@ -150,12 +150,11 @@ function edit(){
 
 	var orgid = row.orgid;
 	if(currOrgId != "0" && orgid == 0) {
-		nui.alert("此记录不能修改!");
+		showMsg("此项目不可更改！","W");
 		return;
 	}
 
 	showEditModal(row, newRow, 'edit');
-
 }
 /*
 var disableUrl = baseUrl

@@ -308,10 +308,10 @@
 								<b:write iterateId="list" property="partiName" />
 							</td>
 							<td nowrap="nowrap">
-								<b:write iterateId="list" property="createTime" formatPattern="yyyy-MM-dd HH:mm:ss" srcFormatPattern="yyyyMMddHHmmss"/>
+								<b:write iterateId="list" property="createTime" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/>
 							</td>
 							<td nowrap="nowrap">
-								<b:write iterateId="list" property="endTime"  formatPattern="yyyy-MM-dd HH:mm:ss" srcFormatPattern="yyyyMMddHHmmss"/>
+								<b:write iterateId="list" property="endTime"  formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/>
 							</td> 
 						</tr>  
 					</l:iterate></l:present>

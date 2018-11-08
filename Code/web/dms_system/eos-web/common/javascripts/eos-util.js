@@ -309,7 +309,7 @@ function formatSupport(dateString,fmt){
 		if(dateString.length==14){
 			dateString = dateString.substring(0,8);
 		}
-	}else if(fmt=="yyyy-MM-dd HH:mm:ss"){
+	}else if(fmt=="yyyy-MM-dd hh:MM"){
 		if(dateString.length==10){
 			dateString = dateString + " 00:00:00";
 		}

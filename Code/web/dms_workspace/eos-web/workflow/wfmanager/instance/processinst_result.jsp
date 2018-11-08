@@ -410,9 +410,9 @@
 							<d:write iterateId="list" dictTypeId="WFDICT_YN" property="isTimeOut" /></td>
 						<td nowrap="nowrap"><b:write iterateId="list" property="creator" /></td>
 						<td nowrap="nowrap">
-							<b:write iterateId="list" property="startTime" formatPattern="yyyy-MM-dd HH:mm:ss" srcFormatPattern="yyyyMMddHHmmss" /></td>
+							<b:write iterateId="list" property="startTime" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss" /></td>
 						<td nowrap="nowrap">
-							<b:write iterateId="list" property="endTime" formatPattern="yyyy-MM-dd HH:mm:ss" srcFormatPattern="yyyyMMddHHmmss" /></td>
+							<b:write iterateId="list" property="endTime" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss" /></td>
 					</tr>
 				</l:iterate>
 			</l:present>

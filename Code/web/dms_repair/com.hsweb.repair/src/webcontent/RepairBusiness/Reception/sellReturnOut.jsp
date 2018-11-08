@@ -10,7 +10,7 @@
 -->
 <head>
 <title>退货归库</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellReturnOut.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellReturnOut.js?v=1.0.12"></script>
 <style type="text/css">
 
 .title {
@@ -54,8 +54,29 @@ a {
             <tr>
                 <td>
                     <label style="font-family:Verdana;">快速查询：</label>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(1)">待归库</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)">已归库</a>
+                    
+                    <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+
+                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+                    <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+                </ul>
+                
+				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">待归库</a>
+
+                <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="quickSearch(12)" id="type12">待归库</li>
+                    <li iconCls="" onclick="quickSearch(13)" id="type13">已归库</li>
+                </ul>
                     
                     <span class="separator"></span>
                     <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
@@ -97,7 +118,7 @@ a {
                   <div field="recorder" name="recorder" width="50" headerAlign="center" header="销售员"></div>
 	              <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
 	              <div field="status" name="status" width="50" headerAlign="center" header="状态"></div>
-	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:mm"></div>
 	              <div field="remark" name="carModel" width="70" headerAlign="center" header="备注" ></div>
 	              <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
                  </div>

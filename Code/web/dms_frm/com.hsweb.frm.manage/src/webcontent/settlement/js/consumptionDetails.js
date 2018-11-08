@@ -8,6 +8,7 @@ var queryCardUr2 = baseUrl
 +"com.hsapi.repair.baseData.query.queryStoreConsume.biz.ext";
 var grid = null;
 var grid2 = null;
+var statusList = [{id:"0",name:"客户名称"},{id:"1",name:"客户电话"},{id:"2",name:"会员卡名称"}];
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid2 = nui.get("datagrid2");
@@ -32,11 +33,20 @@ $(document).ready(function(v) {
 });
 
 function search(){
-	var guestName =  nui.get("guestName").getValue();
-	var guestTelephone = nui.get("guestTelephone").getValue();
-	var cardName = nui.get("cardName").getValue();
+	var guestName =  null;
+	var guestTelephone = null;
+	var cardName = null;
 	var startDate = nui.get("startDate").getValue();
 	var endDate = nui.get("endDate").getValue();
+    var type = nui.get("search-type").getValue();
+    var typeValue = nui.get("carNo-search").getValue();
+    if(type==0){
+    	guestName = typeValue;
+    }else if(type==1){
+    	guestTelephone = typeValue;
+    }else if(type==2){
+    	cardName = typeValue;
+    }
 	var params = {
 			guestName:guestName,
 			guestTelephone:guestTelephone,

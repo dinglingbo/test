@@ -8,7 +8,7 @@
   - Description:
 -->
 <head>
-<title>jsp auto create</title>
+<title>进销存报表</title>
 <script src="<%=webPath + contextPath%>/manage/js/report/inventoryQuery.js?v=1.0.0"></script>
 <style type="text/css">
 .title {

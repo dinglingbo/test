@@ -87,9 +87,9 @@
         <div field="isRecommend" width="80" headerAlign="center" align="center" id="isRecommend">是否推荐</div>
         <div field="salesPrice1" width="80" headerAlign="center" align="center" id="salesPrice1">原价</div>
         <div field="salesPrice2" width="80" headerAlign="center" align="center" id="salesPrice2">活动价</div>
-        <div field="recordDate" width="80" headerAlign="center" align="center" id="recordDate" dateFormat="yyyy-MM-dd H:mm:ss">建档时间</div>
+        <div field="recordDate" width="80" headerAlign="center" align="center" id="recordDate" dateFormat="yyyy-MM-dd hh:MM">建档时间</div>
         <div field="recorder" width="80" headerAlign="center" align="center" id="recorder">建档人</div>
-        <div field="modifyDate" width="80" headerAlign="center" align="center" id="modifyDate" dateFormat="yyyy-MM-dd H:mm:ss">修改时间</div>
+        <div field="modifyDate" width="80" headerAlign="center" align="center" id="modifyDate" dateFormat="yyyy-MM-dd hh:MM">修改时间</div>
         <div field="modifyDate" width="80" headerAlign="center" align="center" id="modifier">修改人</div>
     </div>
 </div>

@@ -34,8 +34,8 @@
 			<div field="agentTo"  headerAlign="center" width="90" align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.agent.Agents") %></div>
 			<div field="agentToType"  headerAlign="center" width="70" align="center" renderer="doChangeAgentToType"><%=I18nUtil.getMessage(request, "bps.wfclient.agent.AgentType") %></div>
 			<div field="agentType"  headerAlign="center" width="70" renderer="doChangeAgentType" align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.agent.AgentMode") %></div>
-			<div field="startTime" headerAlign="center" width="140" dateFormat="yyyy-MM-dd HH:mm:ss"  align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.agent.EffTime") %></div>
-			<div field="endTime" headerAlign="center" width="140" dateFormat="yyyy-MM-dd HH:mm:ss"  align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.agent.EndTime") %></div>
+			<div field="startTime" headerAlign="center" width="140" dateFormat="yyyy-MM-dd hh:MM"  align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.agent.EffTime") %></div>
+			<div field="endTime" headerAlign="center" width="140" dateFormat="yyyy-MM-dd hh:MM"  align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.agent.EndTime") %></div>
 			<div field="state"  headerAlign="center" width="70" renderer="doJudgeState" align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.agent.Status") %> </div>
 			<div field="agentReason" headerAlign="center" width="100" align="center"><%=I18nUtil.getMessage(request, "bps.wfclient.agent.AgentReason") %></div>
 		</div>

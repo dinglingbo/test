@@ -65,15 +65,15 @@
    <!--        <a class="nui-button" iconCls="" plain="true" onclick="newCheckPrecheck" id="">
      <span class="fa fa-plus fa-lg"></span>&nbsp;新建接车预检
  </a>-->
- <a class="nui-button" iconCls="" plain="true" onclick="ToCheckDetail(1)" id="save">
+ <a class="nui-button" iconCls="" plain="true" onclick="add()" id="save">
    <span class="fa fa-plus fa-lg"></span>&nbsp;新增
 </a> 
-<a class="nui-button" iconCls="" plain="true" onclick="ToCheckDetail(2)" id="edit">
+<a class="nui-button" iconCls="" plain="true" onclick="edit()" id="edit">
     <span class="fa fa-edit fa-lg"></span>&nbsp;修改
 </a>
-<a class="nui-button" iconCls="" plain="true" onclick="ToCheckDetail(3)" id="view">
+<!-- <a class="nui-button" iconCls="" plain="true" onclick="ToCheckDetail(3)" id="view">
     <span class="fa fa-file-text-o fa-lg"></span>&nbsp;查看
-</a>
+</a> -->
 </td>
 </tr>
 </table> 
@@ -82,16 +82,16 @@
 <div class="nui-fit">
   <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
   totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
-  onshowrowdetail="onShowRowDetail" url="">
+  onshowrowdetail="onShowRowDetail" url="" allowCellWrap=true>
   <div property="columns">
     <div field="id" name="id" visible="false">id</div>
     <div field="serviceCode" name="serviceCode" width="40" headerAlign="center" align="center">单号</div>
     <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
     <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
     <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
-    <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">车型</div>
+    <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">品牌/车型</div>
     <div field="mtAdvisor" name="mtAdvisor" width="40" headerAlign="center" align="center">维修顾问</div>
-    <div field="recordDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">查车日期</div>
+    <div field="recordDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">查车日期</div>
 </div>
 </div>
 </div>
@@ -141,9 +141,6 @@
     });
 }*/
 
-
-
-
 function setInitData(params){
     var pa={
       carNo:nui.get("cNo").value,
@@ -167,57 +164,34 @@ function newCheckPrecheck() {
 }
 
 mainGrid.on("celldblclick",function(e){
-    var field = e.field;
-    var record = e.record;
-    var column = e.column;
-    var sid = record.id;
-    ToCheckDetail(3);
+    edit();
 });
 
+function add(){
+    var part={};
+    part.id = "checkPrecheckDetail";
+    part.text = "检查开单详情";
+    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkDetail.flow?token="+token;
+    part.iconCls = "fa fa-file-text";
+    var params = {};
+    window.parent.activeTabAndInit(part,params);
 
-function openDetai(params) {  
-
-    var item={};
-    item.id = "checkPrecheckDetail";
-    item.text = "检查开单详情";
-    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp";
-    item.iconCls = "fa fa-cog";
-    //window.parent.activeTab(item);
-    window.parent.activeTabAndInit(item,params);
-}  
-
-function ToCheckDetail(e){
-    var params = null;
-    if(e == 1){//新增
-        params={
-            actionType:"new",
-            isCheckMain:"Y"
-        };
-    }else{
-        var row = mainGrid.getSelected();
-        if(row){ 
-            if(e == 2){//修改
-                params={
-                    id:row.id,
-                    actionType:"edit",
-                    isCheckMain:"Y"//是否是直接开单
-                };
-            }
-            if(e == 3){//查看
-                params={
-                    id:row.id,
-                    actionType:"view",
-                    isCheckMain:"Y"
-                };
-            }
-        }else{
-            nui.alert("请先选择一条记录！");
-            return;
-        }
-
-    }
-    openDetai(params);
 }
+function edit(){
+    var row = mainGrid.getSelected();
+    if(!row) return;
+    var part={};
+    part.id = "checkPrecheckDetail";
+    part.text = "检查开单详情";
+    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkDetail.flow?token="+token;
+    part.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    var params = {
+        id: row.id
+    };
+    window.parent.activeTabAndInit(part,params);
+}
+
 
 </script>
 

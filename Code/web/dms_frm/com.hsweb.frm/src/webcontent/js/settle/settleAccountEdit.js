@@ -88,7 +88,7 @@ function saveType(type){
 	var is = isDefault.getValue();
 	if(settleTypeData){
 		if(settleTypeData.length == 0){
-			nui.alert("请添加账户对应的结算方式!");
+			showMsg("请添加账户对应的结算方式!","W");
 			if(settleTypeData && settleTypeData.length == 0){
 				addSettleAccountRow();
 			}
@@ -96,7 +96,7 @@ function saveType(type){
 		}else if(settleTypeData.length == 1){
 			var r = settleTypeData[0];
 			if(!r.customId){
-				nui.alert("请添加账户对应的结算方式!");
+				showMsg("请添加账户对应的结算方式!","W");
 				if(settleTypeData && settleTypeData.length == 0){
 					addSettleAccountRow();
 				}
@@ -104,7 +104,7 @@ function saveType(type){
 			}
 		}
 	}else{
-		nui.alert("请添加账户对应的结算方式!");
+		showMsg("请添加账户对应的结算方式!","W");
 		if(settleTypeData && settleTypeData.length == 0){
 			addSettleAccountRow();
 		}
@@ -113,8 +113,7 @@ function saveType(type){
 
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
-			nui.alert(requiredField[key] + "不能为空!");
-
+			showMsg(requiredField[key] + "不能为空!","W");
 			return;
 		}
 	}
@@ -151,10 +150,10 @@ function saveType(type){
 			nui.unmask(document.body);
 			data = data || {};
 			if (data.errCode == "S") {
-				nui.alert("保存成功!");
+				showMsg("保存成功!","S");
 				
 			} else {
-				nui.alert(data.errMsg || "保存失败!");
+				showMsg(data.errMsg || "保存失败!","E");
 			}
 
 			if(type == 'next') {
@@ -184,8 +183,8 @@ function onActionRenderer(e) {
     var uid = record._uid;
     var rowIndex = e.rowIndex;
 
-    var s = '<a class="" href="javascript:addSettleAccountRow()">新增</a> '
-            + '<a class="" href="javascript:delRow(\'' + uid + '\')">删除</a> ';
+    var s = '<a class="optbtn" href="javascript:addSettleAccountRow()">增加</a> '
+            + '<a class="optbtn" href="javascript:delRow(\'' + uid + '\')">删除</a> ';
                
     return s;
 }
@@ -206,4 +205,16 @@ function onSettleTypeChanged(e){
 		var newRow = {customName:row.name};
 		settleAccountGrid.updateRow(r,newRow);
 	}
+}
+
+function CloseWindow(action) {
+	if (action == "close") {
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
+}
+
+function onClose(){
+	window.CloseOwnerWindow();	
 }

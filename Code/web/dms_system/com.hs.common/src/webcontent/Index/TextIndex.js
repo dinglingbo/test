@@ -48,10 +48,13 @@ $(document).ready(function(v) {
     var grid1_data =[{business:"采购订单",custom:"长荣行",address:"上海浦东",date:"8:40",status:"已受理"},
     {business:"配件订单",custom:"李莉莉",address:"广东广州",date:"10:50",status:"已完成"}];
 
-    var grid2_data =[{business:"报价的工单",num:"2",cost:"5454342"},
-    {business:"施工的工单",num:"0",cost:"0"},
-    {business:"完工未转预结算的工单",num:"1",cost:"72145"},
-    {business:"完工待结算的工单",num:"2",cost:"931455"}];
+ /*   var grid2_data =[
+    {business:"保养提醒",num:"2",cost:"5454342"},
+    {business:"保险提醒",num:"0",cost:"0"},
+    {business:"年检提醒",num:"1",cost:"72145"},
+    {business:"年审提醒",num:"2",cost:"931455"},
+    {business:"客户生日",num:"2",cost:"931455"},
+    {business:"员工生日",num:"2",cost:"931455"}];*/
     //grid1.setData(grid1_data);
     //grid1.setShowVGridLines(false);
     //grid1.setShowHGridLines(false);
@@ -75,45 +78,39 @@ $(document).ready(function(v) {
 
 });
 
-function toReceptionMain(){
+function toRepairBill(){
     var item={};
     item.id = "1036";
     item.text = "综合开单";
-    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.ReceptionMain.flow";
+    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
 }
-function toSellBill(){//1
+function toCarWashBill(){//1
     var item={};
     item.id = "4000";
-    item.text = "销售-工单";
-    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/sellBill.jsp";
+    item.text = "洗车开单";
+    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBill.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
 }
-function toCarWashMgr(){
+function toSellBill(){
     var item={};
     item.id = "1104";
-    item.text = "洗车开单";
-    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/carWashMgr.jsp";
+    item.text = "销售开单";
+    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.sellBill.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
 }
-function toPurchaseOrder(){
+function toCarInsuranceDetail(){
     var item={};
     item.id = "1184";
-    item.text = "采购订单";
-    item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrder.flow";
+    item.text = "保险开单";
+    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CarInsuranceDetail.flow?token="+token;
     item.iconCls = "fa fa-car";
     window.parent.activeTab(item);
 }
 function addCustomer(){
-/*    var item={};
-    item.id = "1561";
-    item.text = "车辆新建";
-    item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.packOut.flow";
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);*/
     var title = "新增客户资料";
     nui.open({
         url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
@@ -128,28 +125,28 @@ function addCustomer(){
     });
 }
 
-function toReceivableSettle(){
+function toRepairOut(){
     var item={};
     item.id = "1481";
-    item.text = "应收款管理";
-    item.url = webPath + contextPath + "/manage/settlement/receivableSettle.jsp";
+    item.text = "维修出库";
+    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairOut.flow?token="+token,
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
 }
-function toPaySettle(){
+function toPurchaseOrderMain(){
     var item={};
     item.id = "1482";
-    item.text = "应付款管理";
-    item.url = webPath + contextPath + "/manage/settlement/paySettle.jsp";
+    item.text = "采购订单";
+    item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrderMain.flow?token="+token,
     item.iconCls = "fa fa-exchange";
     window.parent.activeTab(item);
 }
 
-function toOthersReceive(){
+function toCustomerProfileMain(){
     var item={};
     item.id = "1221";
-    item.text = "其他收支";
-    item.url = webPath + contextPath + "/manage/settlement/othersReceive_view0.jsp";
+    item.text = "车辆新建";
+    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CustomerProfileMain.flow?token="+token
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
 }
@@ -157,27 +154,47 @@ function toStockCheck(){
     var item={};
     item.id = "1985";
     item.text = "盘点单";
-    item.url = webPath + contextPath + "/com.hsweb.part.manage.stockCheck.flow";
+    item.url = webPath + contextPath + "/com.hsweb.part.manage.stockCheck.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
 }
+function toTimesCardList(){
+    var item={};
+    item.id = "1862";
+    item.text = "计次卡销售";
+    item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.timesCardList.flow?token="+token;
+    item.iconCls = "fa fa-file-text";
+    var params = {};
+    window.parent.activeTabAndInit(item,params);
+}
+
 function toCardList(){
     var item={};
     item.id = "1861";
-    item.text = "储值卡定义";
-    item.url = webPath + contextPath + "/repair/DataBase/Card/cardList.jsp";
+    item.text = "储值卡充值";
+    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CardUp.flow?token="+token
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
 }
+
+function toVisitMain(){
+    var item={};
+    item.id = "1863";
+    item.text = "工单回访";
+    item.url = webPath + contextPath + "/com.hsweb.crm.manage.visitMain.flow?token="+token
+    item.iconCls = "fa fa-file-text";
+    window.parent.activeTab(item);
+}
+
 function showGuestBoard(){
     //document.getElementById("gridGuestBoard").style.display ='block';
     //document.getElementById("gridWorkShopBoard").style.display ='none';
-    window.open(webBaseUrl+"repair/RepairBusiness/Reception/guestBoard.jsp"); 
+    window.open(webBaseUrl+"com.hsweb.RepairBusiness.guestBoard.flow?token="+token); 
 }
 function showWorkShopBoard(){
     //document.getElementById("gridGuestBoard").style.display ='none';
     //document.getElementById("gridWorkShopBoard").style.display ='block';
-    window.open(webBaseUrl+"repair/RepairBusiness/Reception/workshopBoard.jsp"); 
+    window.open(webBaseUrl+"com.hsweb.RepairBusiness.workshopBoard.flow?token="+token); 
 }
 function queryTodayData(callback) {
     var p = {

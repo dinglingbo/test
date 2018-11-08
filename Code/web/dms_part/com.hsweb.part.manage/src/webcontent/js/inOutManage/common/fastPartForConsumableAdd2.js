@@ -3,15 +3,17 @@ var resultData = {};
 var mtAdvisorIdEl = null;
 var mtAdvisorIdEl2=null;
 var data={};
+var returnRemark=null;
 var repairApiUrl = apiPath + repairApi + "/";
 $(document).ready(function(){
 	form=new nui.Form('#form');
 	nui.get('outQty').enabled=false;
     mtAdvisorIdEl = nui.get("mtAdvisorId");
- 
+    returnRemark=nui.get('returnRemark');
     
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
+        returnRemark.focus();
     });
 
 
@@ -20,6 +22,16 @@ $(document).ready(function(){
 //        nui.get("mtAdvisor").setValue(text);
     });
    
+    document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		
+
+		if ((keyCode == 27)) { // ESC
+			CloseWindow('cancle');
+		}
+
+	}
 });
 
 

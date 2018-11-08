@@ -103,7 +103,7 @@
 	                <span id="currUserName">当前登录人:</span><i class="fa fa-angle-down"></i>
 	            </a>
                 <ul class="dropdown-menu pull-right">
-                    <li id="orgName"><a href="#">所属：</a></li>
+                    <li id="orgName" ><a href="#">所属：</a></li>
                     <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li>
                     <!-- <li><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li> -->
                     <li><a href="<%=request.getContextPath()%>/coframe/auth/wlogin/logout.jsp"><i class="fa fa-user"></i> 退出登录</a></li>

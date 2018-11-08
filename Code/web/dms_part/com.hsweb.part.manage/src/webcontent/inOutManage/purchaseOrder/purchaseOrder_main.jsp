@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购订单查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderMain.js?v=1.0.41"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderMain.js?v=1.0.43"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -38,10 +38,10 @@
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
 
-				<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(12)">草稿</a>
-				<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(13)">待发货</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(14)">待收货</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(15)">已入库</a>
+<!-- 				<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(12)">草稿</a> -->
+<!-- 				<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(13)">待发货</a> -->
+<!--                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(14)">待收货</a> -->
+<!--                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(15)">已入库</a> -->
                 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
 
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
@@ -56,6 +56,15 @@
                     <li class="separator"></li>
                     <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+                </ul>
+                
+				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">草稿</a>
+
+                <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="quickSearch(12)" id="type12">草稿</li>
+                    <li iconCls="" onclick="quickSearch(13)" id="type13">待发货</li>
+                    <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li>
+                    <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li>
                 </ul>
 
 
@@ -82,7 +91,7 @@
                 <span class="separator"></span>
 <!--                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
 
             </td>
         </tr>
@@ -100,19 +109,20 @@
          sizeList="[1000,5000,10000]"
          selectOnLoad="true"
          onshowrowdetail="onShowRowDetail"
+         allowCellWrap = true
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
             <div header="订单信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
+                    <div allowSort="true" field="serviceId" width="100" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div field="billStatusId" width="60" headerAlign="center" header="状态"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="createDate" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                    <div allowSort="true" field="createDate" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd H:mm"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
                     <div allowSort="true" field="settType" width="60" headerAlign="center" header="结算方式"></div>
@@ -158,7 +168,7 @@
                     <div allowSort="true" datatype="float" summaryType="sum" field="notEnterQty" width="60" headerAlign="center" header="未入库数量"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="adjustQty" width="60" headerAlign="center" header="调整数量"></div> -->
                     <div field="creator" width="60" headerAlign="center" header="创建人"></div>
-                    <div allowSort="true" field="createDate" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd H:mm:ss"></div> 
+                    <div allowSort="true" field="createDate" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd H:mm"></div> 
                 </div>
             </div>
         </div>
@@ -170,6 +180,7 @@
 
    <div id="innerPartGrid"
        dataField="pjPchsOrderDetailList"
+       allowCellWrap = true
        class="nui-datagrid"
        style="width: 100%; height: 100px;"
        showPager="false"
@@ -179,7 +190,7 @@
            <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
 	       <div field="comPartName" headerAlign="center" header="配件名称"></div>
 	       <div field="comPartBrandId" id="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-	       <div field="comApplyCarModel" id="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+	       <div field="comApplyCarModel" id="comApplyCarModel" width="140" headerAlign="center" header="车型"></div>
 	       <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
 	       <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量"></div>
 	       <div field="orderPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价"></div>

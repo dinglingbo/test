@@ -386,8 +386,8 @@
                 <tbody>
                     <tr>
                         <td class="left" width="33.3%" id="carNo">车牌号：</td>
-                        <td class="left" width="33.3%" id="carNo">车型：</td>
-                            <td class="left" id="carVin">VIN：</td>
+                        <td class="left" width="33.3%" id="carNo">品牌/车型：</td>
+                            <td class="left" id="carVin">车架号(VIN)：</td>
                     </tr>
                     <tr>
                         <td class="left"id="enterKilometers">当前里程：</td>
@@ -453,14 +453,14 @@
         		if(enterDate){
         			enterDate = enterDate.replace(/-/g,"/");
         			enterDate = new Date(enterDate);
-        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm:ss");
+        			enterDate = format(enterDate, "yyyy-MM-dd hh:MM");
         		}
         		var mtAdvisor = maintain.mtAdvisor;
         		var planFinishDate = maintain.planFinishDate || "";
         		if(planFinishDate){
         			planFinishDate = planFinishDate.replace(/-/g,"/");
         			planFinishDate = new Date(planFinishDate);
-        			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm:ss");
+        			planFinishDate = format(planFinishDate, "yyyy-MM-dd hh:MM");
         		}
         		var faultPhen = maintain.faultPhen;
         		var serviceCode = maintain.serviceCode;
@@ -482,7 +482,7 @@
         	if(text.errCode == "S"){
         		var guest = text.guest;
         		var fullName = guest.fullName;
-           		var tel = guest.tel;
+           		var tel = guest.mobile;
            		document.getElementById("guestId").innerHTML =  guestId.replace(/[0-9]/ig,"") + fullName;
            		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
         	}

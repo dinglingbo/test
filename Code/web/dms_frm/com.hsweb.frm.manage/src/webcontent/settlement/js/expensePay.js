@@ -71,7 +71,6 @@ function getSettleType(callback) {
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
-            //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
         }
     });
@@ -92,7 +91,6 @@ function getInComeExpenses(callback) {
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
-            //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
         }
     });
@@ -111,7 +109,6 @@ function getAccountList(callback) {
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
-            //  nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
         }
     });
@@ -139,7 +136,7 @@ function onCellCommitEdit(e) {
     
     editor.validate();
     if (editor.isValid() == false) {
-        nui.alert("请输入数字！");
+        showMsg("请输入数字!","W");
         e.cancel = true;
     }
 }
@@ -237,7 +234,7 @@ function save(){
     });
 
     if(rows) {
-        nui.alert("请选择结算账户后再保存!");
+        showMsg("请选择结算账户后再保存!","W");
         return;
     }
 
@@ -251,7 +248,7 @@ function save(){
     });
 
     if(rows) {
-        nui.alert("请选择结算账户对应的结算方式后再保存!");
+        showMsg("请选择结算账户对应的结算方式后再保存!","W");
         return;
     }
 
@@ -265,7 +262,7 @@ function save(){
     });
 
     if(rows) {
-        nui.alert("请选择费用科目后再保存!");
+        showMsg("请选择费用科目后再保存!","W");
         return;
     }
 
@@ -278,10 +275,10 @@ function save(){
         for(var i=0; i<accountAdd.length; i++){
             var temp = accountAdd[i];
             if(temp.createDate) {
-                temp.createDate = format(temp.createDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.createDate = format(temp.createDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             if(temp.operateDate) {
-                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             accountAddList.push(temp);
         }
@@ -292,10 +289,10 @@ function save(){
         for(var i=0; i<accountUpdate.length; i++){
             var temp = accountUpdate[i];
             if(temp.createDate) {
-                temp.createDate = format(temp.createDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.createDate = format(temp.createDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             if(temp.operateDate) {
-                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             accountUpdateList.push(temp);
 
@@ -321,11 +318,11 @@ function save(){
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                nui.alert("保存成功!");
+                showMsg("保存成功!","S");
                 
                 doSearch();
             } else {
-                nui.alert(data.errMsg || "保存失败!");
+                showMsg(data.errMsg || "保存失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -340,19 +337,19 @@ var auditUrl = baseUrl
 function audit(){
     var rpAdd = mainGrid.getChanges("added");
     if(rpAdd && rpAdd.length > 0){
-        nui.alert("请先保存数据再审核!");
+        showMsg("请先保存数据再审核!","W");
         return;
     }
 
     var rpUpdate = mainGrid.getChanges("modified");
     if(rpUpdate && rpUpdate.length > 0){
-        nui.alert("请先保存数据再审核!");
+        showMsg("请先保存数据再审核!","W");
         return;
     }
 
     var rpDelete = mainGrid.getChanges("removed");
     if(rpDelete && rpDelete.length > 0){
-        nui.alert("请先保存数据再审核!");
+        showMsg("请先保存数据再审核!","W");
         return;
     }
 
@@ -362,10 +359,10 @@ function audit(){
         for(var i=0; i<data.length; i++){
             var temp = data[i];
             if(temp.createDate) {
-                temp.createDate = format(temp.createDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.createDate = format(temp.createDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             if(temp.operateDate) {
-                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             dataList.push(temp);
         }
@@ -389,11 +386,11 @@ function audit(){
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    nui.alert("审核成功!");
+                    showMsg("审核成功!","S");
                     
                     doSearch();
                 } else {
-                    nui.alert(data.errMsg || "审核失败!");
+                    showMsg(data.errMsg || "审核失败!","E");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {

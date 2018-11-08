@@ -13,14 +13,24 @@ $(document).ready(function(){
 
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
+        mtAdvisorIdEl.focus();
     });
-
-
+    
     mtAdvisorIdEl.on("valueChanged",function(e){
         var text = mtAdvisorIdEl.getText();
 
     });
+ 
+    document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		
 
+		if ((keyCode == 27)) { // ESC
+			CloseWindow('cancle');
+		}
+
+	}
 
 
 });
@@ -59,8 +69,10 @@ function SetData(params) {
 
 function CloseWindow(action)
 {
-    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
-    else window.close();
+	if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		window.close();
 }
 
 //出库

@@ -219,18 +219,17 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
                     <td height="24" width="33%" id="guestFullName">&nbsp;客户名称：</td>
-                        <td id="guestMobile">&nbsp;联系电话：</td>
-                    <td width="33%" id="mtAdvisor">&nbsp;接待人员：</td>
+                    <td width="33%" id="mtAdvisor">&nbsp;服务顾问：</td>
+                    <td id="enterKilometers">&nbsp;进厂油量/里程：</td>
                 </tr>
                 <tr>
                     <td height="24" id="carNo">&nbsp;车牌：</td>
-                    <td id="carModel">&nbsp;车辆型号： </td>
+                    <td id="carModel">&nbsp;品牌车型： </td>
                     <td id="carVin">&nbsp;车架号：</td>
                 </tr>
                 <tr>
-                    <td height="24" id="contactName">&nbsp;送修人：</td>
-                    <td id="contactMobile">&nbsp;送修人电话：</td>
-                    <td id="enterKilometers">&nbsp;行驶里程：</td>
+                    
+                    
                 </tr>
             </table>
         </div>
@@ -277,7 +276,7 @@
         <div style="color:#000;height:32px; margin-top:-8px;">
             <span style="font-size: 16px; float:right; font-weight: bold;">价格合计：&yen;<span id="cash"></span>元</span>
             套餐：<span id="prdt">0</span>&nbsp;&nbsp;+&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;+&nbsp;&nbsp;配件：<span id="part">0</span>
-            <span style="margin-left: 300px;">优惠金额：<span id="yh">0</span>元</span>
+            <span style="margin-left: 150px;">优惠金额：<span id="yh">0</span>元</span>
         </div>
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
             <tr>
@@ -300,30 +299,22 @@
 
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
                 <tr>
-                    <td height="50" valign="top" style="padding: 8px;" id="drawOutReport">
-                        出车报告：
-
-
-
-
+                    <td height="50" valign="top" style="padding: 8px;" id="guestDesc">
+                                                       客户描述：
+                    </td>
+                      <td height="50" valign="top" style="padding: 8px;" id="faultPhen">
+                                                       故障现象：
+                    </td>
+                     <td height="50" valign="top" style="padding: 8px;" id="solveMethod">
+                                                       解决措施：
                     </td>
                 </tr>
-            <tr>
-                <td height="30" style="padding: 8px;">
-                    <div style="font-size: 15px;">
-                        <span id="spremark">
-                            
-                        </span>
-
-
-                        
-                    </div>
-                    <ul class="renyuan">
-                        <li>服务顾问：<span id="name"></span></li>
-                        <li>收银员：</li>
-                        <li>客户签名：</li>
-                    </ul>
-                </td>
+                <tr>
+                   <td height="30" style="padding: 8px;" colspan="3">
+                      <span style = "margin-left: 0px;" id = "show">尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准</span>
+                      <span style = "margin-left: 500px;">客户签名：</span>
+                  </td>
+                 
             </tr>
         </table>
     </div>
@@ -331,11 +322,13 @@
 		var url_one = null;
 		var url_two = null;
 		var url_three = null;
+		var data = [];
 		$(document).ready(function (){
 			$("#print").click(function () {
 	            $(".print_btn").hide();
 	            window.print();
 	        }); 
+	        
         });
         //com.hsapi.repair.repairService.svr.billqyeryMaintainList
         function getSubtotal(){//更新套餐工时配件合计金额
@@ -345,14 +338,17 @@
     		money = transform(money+"");
     		document.getElementById("money").innerHTML = money;
         }
-        
         function SetData(params){
 	        var date = new Date();
 	        if(params.name){
 	        	document.getElementById("spstorename").innerHTML = params.name;
+	        	//维修结算单没有这段话
+	        	if(params.name == "维修结算单"){
+	        	   document.getElementById("show").innerHTML = "";
+	        	}
 	        }
 	        document.getElementById("comp").innerHTML = params.comp;
-	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm:ss");
+	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd hh:MM");
 	        $.ajaxSettings.async = false;//设置为同步执行
 	        var url = null;
 	        if(params.type){
@@ -360,6 +356,13 @@
 	        }else{
 	        	url = "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid=";
 	        }
+	        var dictids= ['DDT20130703000051'];
+	        
+	         $.post(params.sysUrl+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictids="+dictids+"&token="+params.token,{},function(text){
+    		    if(text.data){
+    		      data = text.data;
+    		    }
+	         });
 	        $.post(params.baseUrl+url+params.serviceId+"&token="+params.token,{},function(text){
 	        	if(text.list.length > 0){
 	        		var list = text.list[0];
@@ -370,32 +373,39 @@
 	        		if(enterDate){
 	        			enterDate = enterDate.replace(/-/g,"/");
 	        			enterDate = new Date(enterDate);
-	        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm:ss");
+	        			enterDate = format(enterDate, "yyyy-MM-dd hh:MM");
 	        		}
 	        		var guestFullName = list.guestFullName || "";
-	        		var enterKilometers = list.enterKilometers || "";
+	        		var enterOilMass = list.enterOilMass || "0";
+	        		var name = "0";
+	        		//查找油量http://127.0.0.1:8080/default/
+	        		for(var i = 0;i<data.length;i++){
+	        		        if(data[i].customid == enterOilMass){
+	        		           name = data[i].name;
+	        		        }
+	        		}
+	        		var enterKilometers = name+"/"+ list.enterKilometers || "0";
 	        		var mtAdvisor = list.mtAdvisor || "";
 	        		var planFinishDate = list.planFinishDate || "";
 	        		if(planFinishDate){
 	        			planFinishDate = planFinishDate.replace(/-/g,"/");
 	        			planFinishDate = new Date(planFinishDate);
-	        			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm:ss");
+	        			planFinishDate = format(planFinishDate, "yyyy-MM-dd hh:MM");
 	        		}
 	        		var serviceCode = list.serviceCode || "";
-	        		var guestMobile = list.guestMobile || "";
+	        		var guestDesc = list.guestDesc || "";
 	        		var carModel = list.carModel || "";
-	        		var contactMobile = list.contactMobile || "";
-	        		var contactName = list.contactName || "";
+	        		var faultPhen = list.faultPhen || "";
+	        		var solveMethod = list.solveMethod || "";
 	        		var guestAddr = list.guestAddr || "";
 	        		if(params.type){
 	        			guestFullName = list.guestName || "";
-	        			guestMobile = list.guestTel || "";
-	        			contactMobile = list.contactorTel || "";
+	        			//guestMobile = list.guestTel || "";
+	        			//contactMobile = list.contactorTel || "";
 	        			carNo = list.carNo || "";
-	        			contactName = list.contactorName || "";
+	        			//contactName = list.contactorName || "";
 	        			mtAdvisor = list.mtAdvisor || "";
 	        		}
-	        		document.getElementById("drawOutReport").innerHTML = document.getElementById("drawOutReport").innerHTML + drawOutReport;
 	        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
 	        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
@@ -403,12 +413,12 @@
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
 	        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
-	        		document.getElementById("guestMobile").innerHTML = document.getElementById("guestMobile").innerHTML + guestMobile; 
+	        		document.getElementById("guestDesc").innerHTML = document.getElementById("guestDesc").innerHTML + guestDesc; 
 	        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
-	        		document.getElementById("contactMobile").innerHTML = document.getElementById("contactMobile").innerHTML + contactMobile; 
-	        		document.getElementById("contactName").innerHTML = document.getElementById("contactName").innerHTML + contactName; 
+	        		document.getElementById("faultPhen").innerHTML = document.getElementById("faultPhen").innerHTML + faultPhen; 
+	        		document.getElementById("solveMethod").innerHTML = document.getElementById("solveMethod").innerHTML + solveMethod; 
 	        		document.getElementById("guestAddr").innerHTML = document.getElementById("guestAddr").innerHTML + guestAddr;
-	        		document.getElementById("name").innerHTML = document.getElementById("name").innerHTML + mtAdvisor; 
+	        		//document.getElementById("name").innerHTML = document.getElementById("name").innerHTML + mtAdvisor; 
 	        	}
         	});
         	if(params.type){

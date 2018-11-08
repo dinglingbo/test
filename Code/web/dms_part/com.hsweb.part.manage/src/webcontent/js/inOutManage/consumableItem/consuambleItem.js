@@ -181,15 +181,24 @@ $(document).ready(function(v) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下
 		
+
 		if ((keyCode == 120)) { // F9
 			morePartCodeEl.focus();
 		}
+//		
+//		if ((keyCode == 27)) { // F9
+//			onPartClose();
+//		}
 
 		if ((keyCode == 121)) { // F10
 			morePartNameEl.focus();
 		}
 
 	}
+	
+    initMember("pickMan1",function(){
+    	
+    });
 
 	var dictDefs = {
 		"billTypeId" : "DDT20130703000008"
@@ -226,7 +235,7 @@ function getSearchParams() {
 	params.billTypeId='050207';
 	params.sCreateDate = nui.get("sCreateDate").getValue().substr(0, 10);
 	params.eCreateDate = nui.get("eCreateDate").getValue().substr(0, 10);
-	params.pickMan = nui.get('pickMan1').getValue();
+	params.pickMan = nui.get('pickMan1').getText();
 	return params;
 }
 function onSearch() {
@@ -427,9 +436,9 @@ function onOut() {
 	if (row) {
 		nui.open({
 			url : webPath+ partDomain+ "/manage/inOutManage/common/fastPartForConsumableAdd.jsp?token"+ token,
-			title : "出库",
-			width : 430,
-			height : 280,
+			title : "领料",
+			width : 450,
+			height : 300,
 			allowDrag : false,
 			allowResize : false,
 			onload : function() {
@@ -460,7 +469,7 @@ function onBlack() {
 			url : webPath+ partDomain+ "/manage/inOutManage/common/fastPartForConsumableAdd2.jsp?token"+ token,
 			title : "归库",
 			width : 440,
-			height : 230,
+			height : 300,
 			allowDrag : false,
 			allowResize : false,
 			onload : function() {
@@ -484,3 +493,5 @@ function onBlack() {
 		showMsg("请选择一条记录", "W");
 	}
 }
+
+

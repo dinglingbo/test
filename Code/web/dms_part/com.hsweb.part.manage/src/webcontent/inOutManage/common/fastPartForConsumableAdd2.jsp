@@ -11,7 +11,7 @@
 <head>
 <title>领料归库</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd2.js?v=1.1.34"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd2.js?v=1.0.6"></script>
     <style type="text/css">
 
    	#returnRemark.mini-textbox{
@@ -37,6 +37,16 @@
 </head>
 <body>
 <div class="nui-fit">
+	<div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:80%;">
+                    <tr>
+                        <td style="width:80%;">
+							<a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;归库</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="CloseWindow('cancle')"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 	<div style="margin-bottom:8px;" class="nui-form" id="form" style="width:100%; height:100%;">
 		<input id="mId" name="mId" class="nui-hidden" >
 		<table>
@@ -76,12 +86,12 @@
 			<tr id="return">
 				<td style="padding-left: 13px;" colspan="2">归库原因:<input required="true"  class="nui-textarea" id="returnRemark" name="returnRemark" type="text" ></td>
 			</tr id="return">
-			<tr  id="return"align="center">
-				<td  colspan="2">
-				<a class="nui-button" iconCls="" plain="false" onclick="CloseWindow('cancle')">关闭</a>
-				<a class="nui-button" iconCls="" plain="false" onclick="onOk()">归库</a>
-				</td>
-			</tr>
+<!-- 			<tr  id="return"align="center"> -->
+<!-- 				<td  colspan="2"> -->
+<!-- 				<a class="nui-button" iconCls="" plain="false" onclick="CloseWindow('cancle')">关闭</a> -->
+<!-- 				<a class="nui-button" iconCls="" plain="false" onclick="onOk()">归库</a> -->
+<!-- 				</td> -->
+<!-- 			</tr> -->
 			
 		</table>
 	</div>

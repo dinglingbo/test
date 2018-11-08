@@ -9,7 +9,7 @@
 -->
 <head>
 <title>其他应付单</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/othersPBill.js?v=2.0.6"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/othersPBill.js?v=2.0.7"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -100,10 +100,10 @@
                         </div>
                         <div field="auditSign" width="30" headerAlign="center" header="是否审核"></div>
                         <div field="auditor" width="30" headerAlign="center" header="审核人"></div>
-                        <div allowSort="true" field="auditDate" width="60" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                        <div allowSort="true" field="auditDate" width="60" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd hh:MM"></div>
                         <div field="settleStatus" width="30" headerAlign="center" header="结算状态"></div>
                         <div field="rpBillId" width="60" headerAlign="center" header="应付单单号"></div>
-                        <div allowSort="true" field="createDate" width="60" headerAlign="center" visible="false" dateFormat="yyyy-MM-dd H:mm:ss"></div>
+                        <div allowSort="true" field="createDate" width="60" headerAlign="center" visible="false" dateFormat="yyyy-MM-dd hh:MM"></div>
                             
                     </div>  
                   

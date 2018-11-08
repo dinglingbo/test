@@ -390,11 +390,11 @@
                     </tr>
                     <tr>
                     	<td class="left"id="mtAdvisor">服务顾问：</td>
-                        <td class="left"id="carModel">车型：</td>
+                        <td class="left"id="carModel">车型/品牌：</td>
                         <td class="left">进厂时间：<span class="left" style="width: 33.33%" id="enterDate"></span></td>
                     </tr>
                     <tr>
-                        <td class="left" id ="carVin">VIN：</td>
+                        <td class="left" id ="carVin">车架号(VIN)：</td>
                         <td class="left" id ="engineNo">发动机号：</td>
                         <td class="left" id="planFinishDate">预计完工时间：</td>
                     </tr>
@@ -407,11 +407,12 @@
                     <tbody>
                         <tr>
                             <td width="30" height="35" align="center">序号</td>
-                            <td align="center">编号</td>
-                            <td align="center">名称</td>
-                            <td align="center"width="80">已领数量</td>
-                            <td align="center"width="40">单位</td>
-<!--                             <td align="center"width="40">仓位</td> -->
+                            <td align="center" >配件编号</td>
+                            <td align="center" >配件名称</td>
+                            <td align="center">已领数量</td>
+                            <td align="center">单位</td>
+                            <td align="center">领料仓库</td>
+                            <td align="center">领料人</td>
                             <td align="center">金额</td>
                         </tr>
                         <tbody id="tbodyId">
@@ -422,13 +423,14 @@
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader" style="margin-top: 15px;">
                 <tbody>
                     <tr>
-                        <td width="30%" height="30" class="left" style="font-size: 14px;">领料仓库：</td>
-                        <td class="left" width="30%" style="font-size: 14px;">领料人：</td>
-                        <td class="right" width="30%" style="font-size: 14px;">费用合计：<span id="money">0</span>元</td>
+                       <!--  <td width="30%" height="30" class="left" style="font-size: 14px;">领料仓库：</td>
+                        <td class="left" width="30%" style="font-size: 14px;">领料人：</td> -->
+                        <td class="right" width="80%" style="font-size: 14px;">费用合计：<span id="money">0</span>元</td>
                     </tr>
                     <tr>
-                        <td width="30%" height="30" class="left" style="font-size: 14px;">出库人：</td>
-                        <td class="left" width="30%" style="font-size: 14px;">复核：</td>
+                       <!--  <td width="30%" height="30" class="left" style="font-size: 14px;">出库人：</td> -->
+                        <td class="left" width="30%" style="font-size: 14px;"></td> 
+                       
                         <td class="left" width="30%" style="font-size: 14px;">领料人签字：</td>
                     </tr>
                 </tbody>
@@ -439,6 +441,7 @@
 
 	<script type="text/javascript">
 	var baseUrl=apiPath + repairApi + "/";
+	var storeHouse = null;
 	$(document).ready(function (){
 		$("#print").click(function () {
             $(".print_btn").hide();
@@ -447,6 +450,13 @@
 	});	
 	
 	function SetData(params){
+	    $.ajaxSettings.async = false;
+	    $.post(params.partApiUrl+"com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext?"+"&token="+params.token,{},function(text){
+    		    if(text.storehouse){
+    		      storeHouse = text.storehouse || "";
+    		    }
+	         });
+	         
 		$.post(baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+params.serviceId,{},function(text){
         		var list = text.list[0];
         		var serviceCode = list.serviceCode;
@@ -459,7 +469,7 @@
         		if(enterDate){
         			enterDate = enterDate.replace(/-/g,"/");
         			enterDate = new Date(enterDate);
-        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm:ss");
+        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm");
         		}
         		var carVin = list.carVin;
         		var engineNo = list.engineNo;
@@ -467,7 +477,7 @@
         		if(planFinishDate){
         			planFinishDate = planFinishDate.replace(/-/g,"/");
         			planFinishDate = new Date(planFinishDate);
-        			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm:ss");
+        			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm");
         		}
         		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML+ serviceCode;
         		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
@@ -479,36 +489,44 @@
         		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
         		document.getElementById("engineNo").innerHTML = document.getElementById("engineNo").innerHTML + engineNo;
         		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate; 
-        });
-        
-        $.post(baseUrl+"com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext.biz.ext?serviceId="+params.serviceId,{},function(text){
+        });//http://127.0.0.1:8080/default/
+       
+        $.post(baseUrl+"com.hsapi.repair.repairService.query.queryRepairOutPart.biz.ext?serviceId="+params.serviceId,{},function(text){
             	var tBody = $("#tbodyId");
 				tBody.empty();
 				var tds = '<td align="center">[id]</td>' +
     			"<td align='center'>[partCode]</td>"+
-    			"<td align='center'>[partName]</td>"+ 
-    			"<td align='center'>[pickQty]</td>"+
+    			"<td align='center'>[partFullName]</td>"+ 
+    			"<td align='center'>[outQty]</td>"+
     			"<td align='center'>[unit]</td>"+
-//     			"<td align='center'></td>"+
-    			"<td align='center'>[subtotal]</td>";
-        		var partData = text.data;
-        		var data=[];
-        		for(var i=0;i<partData.length;i++){
-        			if(partData[i].pickQty>0){
-        				data.push(partData[i]);
-        			}
+                "<td align='center'>[storeHouseName]</td>"+
+                "<td align='center'>[pickMan]</td>"+
+    			"<td align='center'>[sellAmt]</td>";
+        		var data = text.data;
+        		if(storeHouse != ""){
+	        		for(var i=0;i<data.length;i++){
+	        		      for(var n=0;n<storeHouse.length;n++){
+	        		        if(data[i].storeId == storeHouse[n].id) {
+	        				   data[i].storeHouseName = storeHouse[n].name;
+	        			    }
+	        		    }
+	        		   }
+        		}else{
+        		    data[i].storeHouseName = "";
         		}
         		for(var i = 0 , l = data.length ; i < l ; i++){
         			var tr = $("<tr></tr>");
         			tr.append(
 				    				tds.replace("[id]",i +1)
 				    				.replace("[partCode]",data[i].partCode)
-				    				.replace("[partName]",data[i].partName)
-				    				.replace("[pickQty]",data[i].pickQty)
+				    				.replace("[partFullName]",data[i].partFullName)
+				    				.replace("[outQty]",data[i].outQty)
 				    				.replace("[unit]",data[i].unit || "")
-				    				.replace("[subtotal]",data[i].subtotal));
+				    				.replace("[storeHouseName]",data[i].storeHouseName || "")
+				    				.replace("[pickMan]",data[i].pickMan || "")
+				    				.replace("[sellAmt]",data[i].sellAmt));
 				    			tBody.append(tr);
-				    			document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].subtotal);
+				    			document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].sellAmt);
         		}
         });
 	}

@@ -212,7 +212,6 @@ function getItemType(callback) {
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
 			console.log(jqXHR.responseText);
 		}
 	});
@@ -769,7 +768,6 @@ function balanceOK() {
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				// nui.alert(jqXHR.responseText);
 				console.log(jqXHR.responseText);
 			}
 		});
@@ -832,7 +830,6 @@ function doUnBalance() {
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				// nui.alert(jqXHR.responseText);
 				console.log(jqXHR.responseText);
 			}
 		});
@@ -910,7 +907,7 @@ function checkSettleRow() {
 function doDelete() {
 	var rows = rRightGrid.getSelecteds();
 	if (!rows) {
-		nui.alert("请选择一条记录","提示");
+		showMsg("请选择一条记录!","W");
 		return;
 	}
 	json = {
@@ -931,15 +928,14 @@ function doDelete() {
 					success : function(data) {
 						 nui.unmask(document.body);
 						if(data.errCode=="S"){
-							nui.alert(data.errMsg,"提示");
+							showMsg(data.errMsg,"W");
 							rRightGrid.load;
 						}else{
-							nui.alert(data.errMsg,"提示");
+							showMsg(data.errMsg,"W");
 							rRightGrid.load;
 						}
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
-						// nui.alert(jqXHR.responseText);
 						console.log(jqXHR.responseText);
 					}
 				});
@@ -1386,7 +1382,6 @@ function settleOK() {
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
-				// nui.alert(jqXHR.responseText);
 				console.log(jqXHR.responseText);
 			}
 		});
@@ -1540,7 +1535,7 @@ function onChanged() {
 	var rtn = getSettleAmount(rows);
 	var dk = nui.get("dk").getValue();
 	if(dk>rechargeBalaAmt){
-		nui.alert("抵扣金额不能大于储值卡余额","提示");
+		showMsg("抵扣金额不能大于储值卡余额!","W");
 		nui.get("dk").setValue(0);
 		return;
 	}

@@ -123,7 +123,7 @@ function AutoFormCalendar(beginYear, endYear, lang, dateFormatStyle) {
 this.beginYear = 1950; 
 this.endYear = 2050; 
 this.lang = 0; //0(中文) | 1(英文) 
-this.dateFormatStyle = "yyyy-MM-dd hh:mm:ss"; 
+this.dateFormatStyle = "yyyy-MM-dd hh:MM"; 
 
 if (beginYear != null && endYear != null){ 
 this.beginYear = beginYear; 
@@ -755,7 +755,7 @@ function AutoFormCalendar(beginYear, endYear, lang, dateFormatStyle) {
 this.beginYear = 1950;
 this.endYear = 2050;
 this.lang = 0; //0(中文) | 1(英文)
-this.dateFormatStyle = "yyyy-MM-dd hh:mm:ss";
+this.dateFormatStyle = "yyyy-MM-dd hh:MM";
 
 if (beginYear != null && endYear != null){
 this.beginYear = beginYear;

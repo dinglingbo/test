@@ -9,8 +9,21 @@
 -->
 <head>
 <title>结算账户修改</title>
-<script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountEdit.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountEdit.js?v=1.1.0"></script>
 <style type="text/css">
+        a.optbtn {
+            width: 44px;
+            /* height: 26px; */
+            border: 1px #d2d2d2 solid;
+            background: #f2f6f9;
+            text-align: center;
+            display: inline-block;
+            /* line-height: 26px; */
+            margin: 0 4px;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 5px;
+        }
 .title {
     width: 90px;
     text-align: right;
@@ -61,6 +74,16 @@
     <div id="editForm" class="form">
     	<input id="id" name="id" width="100%" class="nui-hidden" >
     	<input id="orgid" name="orgid" width="100%" class="nui-hidden" >
+    		<div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                            <a class="nui-button" onclick="save()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                            <a class="nui-button" onclick="onClose()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         <table class="tmargin">
             <tr class="htr">
                 <td class=" right fwidtha required">账户编码:</td>
@@ -101,7 +124,7 @@
                  multiSelect="true"
                  showSummaryRow="false">
                 <div property="columns">
-                    <div name="action" width="60" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">#</div>
+                    <div name="action" width="60" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">操作</div>
                     <div field="customId" type="comboboxcolumn" width="100" headerAlign="center" header="结算方式">
                         <input  property="editor" enabled="true" name="settleAccount" data="settleList" dataField="list" class="nui-combobox" valueField="customid" textField="name"  
                                   
@@ -115,10 +138,6 @@
         
     </div>
 
-	<div class="nui-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;text-align:center;">
-        <a class="nui-button" iconCls="" plain="true" onclick="add()"><span class="fa fa-plus fa-lg"></span>&nbsp;保存并新增</a>
-        <a class="nui-button" iconCls="" plain="true" onclick="save()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-    </div>
 </div>
 
 </body>

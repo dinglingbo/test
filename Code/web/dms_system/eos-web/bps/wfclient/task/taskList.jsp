@@ -37,7 +37,7 @@
 	        <div field="processInstName" headerAlign="center" align="center" width="100px"><%=I18nUtil.getMessage(request, "bps.wfclient.myTask.ProcessInstName")%></div>                                
 	        <div headerAlign="center" align="center" renderer="onCurrentStateRenderer" width="50px"><%=I18nUtil.getMessage(request, "bps.wfclient.myTask.Status")%></div>
 	        <div name="assistantName" field="assistantName" headerAlign="center" align="center" width="70px"><%=I18nUtil.getMessage(request, "bps.wfclient.myTask.Assignee")%></div>
-	        <div field="createTime" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm:ss" width="130px"><%=I18nUtil.getMessage(request, "bps.wfclient.myTask.StartTime")%></div> 
+	        <div field="createTime" headerAlign="center" align="center" dateFormat="yyyy-MM-dd hh:MM" width="130px"><%=I18nUtil.getMessage(request, "bps.wfclient.myTask.StartTime")%></div> 
 	        <div headerAlign="center" align="center" renderer="onTimeoutRenderer" width="40"><%=I18nUtil.getMessage(request, "bps.wfclient.myTask.IsTimeOut")%></div>                 
 	    </div>
 	</div>

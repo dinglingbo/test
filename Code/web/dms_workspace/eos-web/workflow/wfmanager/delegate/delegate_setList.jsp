@@ -35,7 +35,7 @@
 	                      <td><b:write property="processDefName" iterateId="workitem"/></td>
 	                      <td><b:write property="processInstName" iterateId="workitem" maxLength="50"/></td>
 	                      <td><d:write dictTypeId="WFDICT_WorkItemState" property="currentState" iterateId="workitem"/></td>
-	                      <td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd HH:mm:ss" srcFormatPattern="yyyy-MM-dd HH:mm:ss.0"/></td>
+	                      <td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyy-MM-dd hh:MM.0"/></td>
 	                      <td><b:write property="limitNumDesc" iterateId="workitem"/></td>
 	                    </tr>
 	                    </l:iterate>

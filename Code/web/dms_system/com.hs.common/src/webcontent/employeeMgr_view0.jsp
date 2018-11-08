@@ -21,9 +21,9 @@
 			<tr>
 				<td style="white-space:nowrap;">
 					<label style="font-family:Verdana;">姓名：</label>
-					<input class="nui-textbox" id="name" name="meberName" onenter="" />
+					<input class="nui-textbox" id="name" name="meberName" onenter="search()"/>
 					<label style="font-family:Verdana;">电话：</label>
-					<input class="nui-textbox" id="mobile" name="mobile" onenter="" />
+					<input class="nui-textbox" id="mobile" name="mobile" onenter="search()" />
 					<a class="nui-button"  iconCls="" onclick="search()" plain="true"><span class="fa fa-search"></span>&nbsp;查询</a>
 				</td>
 			</tr>
@@ -51,7 +51,7 @@
 			class="nui-datagrid"
 			style="width: 100%; height: 100%;"
 			url=""
-			showModified="false"
+			showModified="false" onrowdblclick="edit('edit')"
 			pageSize="50" showPageInfo="true" multiSelect="false"
 			showReloadButton="true" showPagerButtonIcon="true"
 			totalField="page.count" onselectionchanged="changebutton" 

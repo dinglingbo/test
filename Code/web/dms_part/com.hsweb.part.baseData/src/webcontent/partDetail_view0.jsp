@@ -37,9 +37,7 @@
 .htr{
     height: 20px;
 }
-.mainwidth{
-    width: 700px;
-}
+
 .tmargin{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -62,10 +60,7 @@
     font-size:8px;
     font-weight:normal;
 }
-.vpanel_bodyww{
-    padding : 10 10 10 10px !important
 
-}
 
 .required {
     color: red;
@@ -76,14 +71,23 @@
 <body>
 
 <div class="nui-fit" id= "basicInfoForm">
-	<div class="vpanel mainwidth" style="height:auto;">
       <!-- <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>基本信息</span></div> -->
       <div class="vpanel_body vpanel_bodyww">
-  			    <input id="orgid" name="orgid" width="100%" class="nui-hidden" >
+      		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                            <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+                            <a class="nui-button" onclick="onCancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+  			    <input id="orgid" name="orgid" width="150px" class="nui-hidden" >
   			    <input class="nui-hidden" name="id"/>
   			    <input class="nui-hidden" name="isEdit"/>
-            <input id="modifier" name="modifier" width="100%" class="nui-hidden" >
-            <input id="modifyDate" name="modifyDate" width="100%" class="nui-hidden" >
+            <input id="modifier" name="modifier" width="150px" class="nui-hidden" >
+            <input id="modifyDate" name="modifyDate" width="150px" class="nui-hidden" >
             <table class="tmargin">
                 <tr class="htr">
                     <td class=" right fwidtha required">配件品质:</td>
@@ -96,7 +100,7 @@
                        valueFromSelect="true"
                        emptyText="请选择..."
                        url=""
-                       width="100%"
+                       width="150px"
                        allowInput="true"
                        showNullItem="false"
                        popupHeight="100%"
@@ -113,19 +117,21 @@
                        emptyText="请选择..."
                        url=""
                        valueFromSelect="true"
-                       width="100%"
+                       width="150px"
                        allowInput="true"
                        showNullItem="false"
                        popupHeight="100%"
                        nullItemText="请选择..."/>
                     </td>
+                    </tr>
+                    <tr>
                     <td class=" right fwidthb required">编码:</td>
-                    <td ><input name="code" class="nui-textbox" width="100%" id="code"/></td>
+                    <td ><input name="code" class="nui-textbox" width="150px" id="code"/></td>
                     <td class=" right fwidthb required">名称:</td>
                     <td >
                         <input name="partNameId" id="partNameId"
                         class="nui-buttonedit" emptyText=""
-                        allowInput="false" width="100%"
+                        allowInput="false" width="150px"
                         onbuttonclick="onButtonEdit" selectOnFocus="true" />
                     </td>
                 </tr>
@@ -139,7 +145,7 @@
                         valueField="name"
                         emptyText="请选择..."
                         url=""
-                        width="100%"
+                        width="150px"
                         allowInput="true"
                         popupHeight="100%"
                         showNullItem="false"
@@ -155,17 +161,19 @@
                         emptyText="请选择..."
                         url=""
                         valueFromSelect="true"
-                        width="100%"
+                        width="150px"
                         allowInput="true"
                         showNullItem="false"
                         nullItemText="请选择..."/>
                     </td> -->
                     <td class=" right fwidthb">OEM码:</td>
-                    <td ><input name="oemCode" class="nui-textbox" width="100%"/></td>
+                    <td ><input name="oemCode" class="nui-textbox" width="150px"/></td>
+                    </tr>
+                    <tr>
                     <td class=" right fwidthb">规格:</td>
-                    <td ><input name="spec" class="nui-textbox" width="100%"/></td>
+                    <td ><input name="spec" class="nui-textbox" width="150px"/></td>
                     <td class=" right fwidthb">型号:</td>
-                    <td ><input name="model" class="nui-textbox" width="100%"/></td>
+                    <td ><input name="model" class="nui-textbox" width="150px"/></td>
                 </tr>
                 <tr class="htr">
                     <td class=" right fwidthb">适用车型:</td>
@@ -177,40 +185,38 @@
                        valueField="id"
                        emptyText="请选择..."
                        url=""
-                       width="100%"
+                       
                        allowInput="true"
                        showNullItem="false"
                        popupHeight="100%"
                        nullItemText="请选择..."/>
                      </td>
                      <td colspan="6">
-                      <input name="applyCarModel" id="applyCarModel" width="100%" class="nui-textbox"/>
+                      <input name="applyCarModel" id="applyCarModel" width="215px" class="nui-textbox"/>
                      </td>
                 </tr>
                 <tr class="htr">
                     <td class=" right fwidthb">通用编码:</td>
-                    <td colspan="3"><input name="commonCode" class="nui-textbox" width="100%"/></td>
+                    <td ><input name="commonCode" class="nui-textbox" width="150px"/></td>
                     <td class=" right fwidthb">生产厂家:</td>
-                    <td colspan="3"><input name="produceFactory" class="nui-textbox" width="100%"/></td>
+                    <td ><input name="produceFactory" class="nui-textbox" width="150px"/></td>
+                </tr>
+                <tr>
+                    <td class=" right fwidthb">配件全称:</td>
+                    <td colspan="3"><input name="fullName" class="nui-textbox" width="370px" enabled="false"/></td>
                 </tr>
                 <tr class="htr">
                     <td class=" right fwidthb">是否禁用:</td>
-                    <td ><input name="isDisabled" class="nui-checkbox" width="100%" trueValue="1" falseValue="0"/><!-- </td><td class=" right fwidthb">统一售价:</td>
-                    <td ><input name="isUniform" class="nui-checkbox" width="100%" trueValue="1" falseValue="0"/></td> -->
+                    <td ><input name="isDisabled" class="nui-checkbox" width="150px" trueValue="1" falseValue="0"/><!-- </td><td class=" right fwidthb">统一售价:</td>
+                    <td ><input name="isUniform" class="nui-checkbox" width="150px" trueValue="1" falseValue="0"/></td> -->
                     <td class=" right fwidthb">备注:</td>
-                    <td ><input name="remark" class="nui-textbox" width="100%" enabled="true"/></td>
-                    <td class=" right fwidthb">配件全称:</td>
-                    <td colspan="3"><input name="fullName" class="nui-textbox" width="100%" enabled="false"/></td>
+                    <td ><input name="remark" class="nui-textbox" width="150px" enabled="true"/></td>
                 </tr>
-            </table>
 
-        </div>
+            </table>
     </div>
 </div>
-<div style="text-align:center;padding:10px;">
-        <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
-        <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
-</div>
+
 
 
 </body>

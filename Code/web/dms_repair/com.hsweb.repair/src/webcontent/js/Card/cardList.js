@@ -3,7 +3,7 @@
  */
 var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryCard.biz.ext";
-var sysnUrl = webPath + contextPath + "/repair/DataBase/Card/cardSync.jsp?token="+token;
+var sysnUrl = webPath + contextPath + "/com.hsweb.repair.DataBase.cardSync.flow?token="+token;
 var grid = null;
 var xs = 0;
 $(document).ready(function(v) {

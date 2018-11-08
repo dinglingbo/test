@@ -103,7 +103,7 @@ function addOrEditPartBrand(brand)
     {
        if(brand.orgid != currOrgid)
         {
-        	nui.alert("不允许修改","提示");
+        	showMsg("不允许修改!","W");
             return;
         }
         title = "品牌编辑";

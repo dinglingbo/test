@@ -12,7 +12,7 @@
 <head>
 <title>计次卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.2.11">
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.2.12">
 	</script>
 </head>
 <body>
@@ -29,7 +29,7 @@
              
 			<table style="width: 100%;" id="table1">
 				<tr>
-					<td style="width: 100%;">计次卡名称: <input class="nui-textbox"
+					<td style="width: 100%;">计次卡名称: <input class="nui-textbox" onenter="search()"
 						name="criteria/_expr[1]/name" /> <input class="nui-hidden"
 						name="criteria/_expr[1]/_op" value="like"> <input
 						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
@@ -49,7 +49,7 @@
 		</div>
 	</div>
 	<div class="nui-fit">
-		<div id="datagrid1" dataField="timesCard" class="nui-datagrid" 
+		<div id="datagrid1" dataField="timesCard" class="nui-datagrid"  onrowdblclick="edit()"
 			style="width: 100%; height: 100%;" pageSize="20" showPageInfo="true"
 			onDrawCell="onDrawCell" onselectionchanged="selectionChanged"
 			allowSortColumn="false">

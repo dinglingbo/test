@@ -6,6 +6,7 @@ var rightUnifyGrid = null;
 
 var rightUnifyGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryRpbPart.biz.ext";
 var typeList = [{id:"1",text:"按原价比例"},{id:"2",text:"按折后价比例"},{id:"3",text:"按产值比例"},{id:"4",text:"固定金额"}];
+var statusList = [{id:"0",name:"编码"},{id:"1",name:"拼音"},{id:"2",name:"名称"}];
 var salesDeductTypeList=[{id:"1",text:"原价"},{id:"2",text:"折后价"},{id:"3",text:"产值"}];
 var salesDeductTypeEl= null;
 
@@ -20,7 +21,7 @@ $(document).ready(function(v)
     rightUnifyGrid.setUrl(rightUnifyGridUrl);
     advancedDecuetSetWin=nui.get('advancedDecuetSetWin');
 
-    $("#partName").bind("keydown", function (e) {
+    /*$("#partName").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
             onPartSearch();
@@ -40,7 +41,7 @@ $(document).ready(function(v)
             onUnifySearch();
         }
         
-    });
+    });*/
     $("#partNameSearch").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
@@ -81,11 +82,16 @@ $(document).ready(function(v)
 
 function onUnifySearch() {
     var params = {};
-    params.partCode = nui.get("partCodeSearch").getValue();
-    params.namePy = nui.get("namePySearch").getValue();
-    params.partName = nui.get("partNameSearch").getValue();
+    var type = nui.get("search-type").getValue();
+    var typeValue = nui.get("carNo-search").getValue();
+    if(type==0){
+    	params.partCode = typeValue;
+    }else if(type==1){
+    	params.namePy = typeValue;
+    }else if(type==2){
+    	params.partName = typeValue;
+    }
     rightUnifyGrid.load({params:params,token:token});
- 
 }
 
 
@@ -208,7 +214,7 @@ function saveUnifyPart(){
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-//                showMsg("保存成功!","S");
+              showMsg("保存成功!","S");
                 rightUnifyGrid.reload();
                 
             } else {
@@ -216,7 +222,6 @@ function saveUnifyPart(){
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
-            // nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
         }
     });

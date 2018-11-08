@@ -11,7 +11,7 @@
 -->
 <head>
     <title>新增客户档案</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.1"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.3"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -30,6 +30,16 @@
 
 <body>
     <div title="联系人信息" class="nui-window" id="contactview" style="width: 100%">
+    	     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                            <a class="nui-button" onclick="addContactList()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+                            <a class="nui-button" onclick="onClose(1)" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         <div class="form" id="contactInfoForm">
             <input class="nui-hidden" name="id" />
             <input class="nui-hidden" name="guestId" />
@@ -41,40 +51,41 @@
                     <td>
                         <input class="nui-textbox" id="name" name="name" width="100%" />
                     </td>
-                    <td class="form_label">
-                        <label>性别：</label>
-                    </td>
-                    <td>
-                        <input class="nui-combobox" id="sex" name="sex" data="[{id:0,text:'男'},{id:1,text:'女'},{id:2,text:'未知'}]" width="100%" value="0"
-                        />
-                    </td>
-                </tr>
-                <tr>
                     <td class="form_label required">
                         <label>手机：</label>
                     </td>
                     <td>
                         <input class="nui-textbox" id="mobile2" name="mobile" width="100%" />
                     </td>
+                </tr>
+                <tr>
+
                     <td class="form_label required">
                         <label>身份：</label>
                     </td>
                     <td>
                         <input class="nui-combobox" name="identity" id="identity" valueField="customid" textField="name" width="100%" value="0" />
                     </td>
-                </tr>
-                <tr>
                     <td class="form_label required">
                         <label>来源：</label>
                     </td>
                     <td>
                         <input class="nui-combobox" name="source" id="source" valueField="customid" textField="name" width="100%" value="0" />
                     </td>
-                    <td class="form_label">
-                        <label>驾审到期：</label>
+                </tr>
+                <tr>
+                     <td class="form_label">
+                        <label>性别：</label>
                     </td>
                     <td>
-                        <input name="drivingLicenceDueDate" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input class="nui-combobox" id="sex" name="sex" data="[{id:0,text:'男'},{id:1,text:'女'},{id:2,text:'未知'}]" width="100%" value="0"
+                        />
+                    </td>
+					<td class="form_label">
+                        <label>身份证号码：</label>
+                    </td>
+                    <td>
+                        <input class="nui-textbox" name="idNo" width="100%" />
                     </td>
                 </tr>
                 <tr>
@@ -93,33 +104,27 @@
                 </tr>
                 <tr>
                     <td class="form_label">
-                        <label>身份证号码：</label>
-                    </td>
-                    <td>
-                        <input class="nui-textbox" name="idNo" width="100%" />
-                    </td>
-                </tr>
-
-                </tr>
-                <tr>
-                    <td class="form_label">
                         <label>备注：</label>
                     </td>
                     <td colspan="3">
                         <input class="nui-textbox" name="remark" width="100%" />
                     </td>
                 </tr>
-                <tr>
-                    <td align="center" colspan="4" style="margin:20;padding:20;width:auto;">
-
-                        <a class="nui-button" onclick="addContactList()">
-                            <span class="fa fa-save fa-lg"></span>&nbsp;保存联系人 </a>
-                    </td>
-                </tr>
             </table>
         </div>
     </div>
     <div title="车辆信息" class="nui-window" id="carview" style="width: 100%">
+    	  <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                            <a class="nui-button" onclick="addCarList()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+                            <a class="nui-button" onclick="onClose(2)" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+  	
         <div class="form" id="carInfoFrom">
             <input class="nui-hidden" name="id" />
             <input class="nui-hidden" name="guestId" />
@@ -248,13 +253,6 @@
                                class="nui-combobox" width="100%"/>
                     </td> -->
 
-                </tr>
-                <tr>
-                    <td align="center" colspan="4" style="margin:20;padding:20;width:auto;">
-
-                        <a class="nui-button" onclick="addCarList()">
-                            <span class="fa fa-save fa-lg"></span>&nbsp;保存车辆 </a>
-                    </td>
                 </tr>
             </table>
         </div>
@@ -453,9 +451,6 @@
                                     <div field="identity" allowSort="true" align="left" headerAlign="center" width="">身份</div>
                                     <div field="source" allowSort="true" align="left" headerAlign="center" width="">
                                         来源
-                                    </div>
-                                    <div field="drivingLicenceDueDate" allowSort="true" align="left" headerAlign="center" width="">
-                                        驾审到期
                                     </div>
                                     <div field="birthdayType" allowSort="true" align="left" headerAlign="center" width="">
                                         生日类型

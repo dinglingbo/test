@@ -262,7 +262,7 @@ function addOrEditCustomer(guest)
 function toUp(callback){
 	var row=grid.getSelected();
 	if(row==null){
-		nui.alert("请选择一位客户","提示");
+		showMsg("请选择一位客户!","W");
 		return;
 	}
 	row.guestMobile = row.mobile;
@@ -514,7 +514,7 @@ function carChange(){
             {
                 if("ok" == action)
                 {
-                	nui.alert("变更信息成功","提示");
+                	showMsg("变更信息成功!","S");
                     grid.reload();
                     
                 }

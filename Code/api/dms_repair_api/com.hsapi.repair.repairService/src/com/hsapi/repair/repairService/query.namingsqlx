@@ -253,7 +253,7 @@
 		inner join rpb_contactor c
 		on a.contactor_id = c.id
 		INNER JOIN wb_common.com_guest d on a.guest_id = d.id
-		where a.is_settle = 1
+		where a.is_settle = 1 and  a.orgid = #orgid#
 		<dynamic>              
 		      <isNotEmpty prepend="and" property="recordStartDate"> 
                 (a.record_date &gt;= #recordStartDate#)

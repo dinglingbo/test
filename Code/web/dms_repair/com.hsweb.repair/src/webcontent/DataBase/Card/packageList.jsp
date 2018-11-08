@@ -27,7 +27,7 @@
 				value="com.hsapi.repair.data.rpb.RpbCardStored">
 			<table id="table1">
 				<tr>
-					<td>套餐名称: <input class="nui-textbox"
+					<td>套餐名称: <input class="nui-textbox" onenter="search()" 
 						name="criteria/_expr[1]/name" /> <input class="nui-hidden"
 						name="criteria/_expr[1]/_op" value="like"> <input
 						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">

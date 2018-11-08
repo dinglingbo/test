@@ -62,7 +62,7 @@
             </div>
 	<div id="mainTabs" class="nui-tabs" name="mainTabs"
 		activeIndex="0" 
-		style="width:100%; height:100%;" 
+		style="width:100%; height:80%;" 
 		plain="false" >
 		
 		<div title="工时设置" id="itemTab" name="itemTab" >
@@ -183,42 +183,7 @@
 									onvaluechanged="calc('amt')"	changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
 								</td>
 							</tr>
-							<!--
-							<tr>
-								<td class="form_label">
-									<label>提成金额：</label>
-								</td>
-								<td colspan="1">
-									<input class="nui-spinner" name="deductAmt" format="0.00" value=" " maxValue="1000000000"
-											changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
-								</td>
-							</tr>
-							-->
 						</table>
-					<!-- </div>
-					<div class="nui-panel" showToolbar="false" title="成本设置" showFooter="false"
-							style="width:calc(100% - 20px);">
-						<table class="nui-form-table" border=0>			
-							<tr>
-								<td class="form_label">
-									<label>成本分类：</label>
-								</td>
-								<td colspan="1">
-									<input class="nui-combobox" name="costType" id="costType"
-												valueField="customid"
-												textField="name"
-												width="100%"/>
-								</td>
-								<td class="form_label">
-									<label>成本参数：</label>
-								</td>
-								<td colspan="1">
-									<input class="nui-spinner" id="costParam" name="costParam" format="0.00" value="0" maxValue="1000000000"
-											changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
-								</td>
-							</tr>
-						</table>
-					</div> -->
 				</div>
 			</div>
 		</div>

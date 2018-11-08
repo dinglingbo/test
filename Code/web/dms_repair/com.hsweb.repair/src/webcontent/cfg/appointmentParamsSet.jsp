@@ -9,7 +9,7 @@
 -->
 <head>
 <title>预约设置</title>
-<script src="<%=webPath + contextPath%>/repair/cfg/js/appointmentParamsSet.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/appointmentParamsSet.js?v=1.0.3"></script>
 <link href="<%=webPath + contextPath%>/repair/cfg/css/appoint.css" rel="stylesheet"	type="text/css" />
 <style type="text/css">
 .table-label {

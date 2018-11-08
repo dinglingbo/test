@@ -60,7 +60,7 @@ body .mini-grid-row-selected{
                                 <span class="separator"></span>
                                 <a class="nui-button" iconCls="" plain="true" onclick="morePartSearch" id="saveBtn"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                                 <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
-                                <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+                                <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                             
                                 <input id="billTypeId" visible="false" class="nui-combobox" textField="name" valueField="customid" />
                                 <input id="tempId" visible="false" class="nui-textbox" name="tempId" />

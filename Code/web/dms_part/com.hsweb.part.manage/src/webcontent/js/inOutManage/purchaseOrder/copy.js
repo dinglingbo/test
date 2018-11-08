@@ -739,9 +739,9 @@ function getMainData() {
 	data.taxDiff = data.taxAmt - data.noTaxAmt;
 
 	if (data.operateDate) {
-		data.operateDate = format(data.operateDate, 'yyyy-MM-dd hh:MM')
+		data.operateDate = format(data.operateDate, ' yyyy-MM-dd HH:mm:ss')
 				+ '.0';// 用于后台判断数据是否在其他地方已修改
-		// data.versionNo = format(data.versionNo, 'yyyy-MM-dd hh:MM');
+		// data.versionNo = format(data.versionNo, ' yyyy-MM-dd HH:mm:ss');
 	}
 
 	return data;

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	<%@include file="/common/sysCommon.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	<%@include file="/common/sysCommon.jsp" %>
 <html>
 <!-- 
   - Author(s): Guine
@@ -11,7 +11,7 @@
 <head>
 <title>资料管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.2"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.12"></script>
 </head>
 <body>
 
@@ -154,6 +154,7 @@
                          sortMode="client"
                          idField="id"
                          multiSelect="true"
+                         allowCellWrap = true
                          showSummaryRow="true">
                         <div property="columns">
                             <div type="checkcolumn" width="25"></div>
@@ -161,22 +162,22 @@
                             <div headerAlign="center"><strong>车辆信息</strong>
                                 <div property="columns">
                                     <div field="id" visible=false>ID</div>
-                                    <div field="orgid" width="60" headerAlign="center" allowSort=false>所在分店</div>
-                                    <div field="carNo" width="70" headerAlign="center" allowSort=false>车牌号</div>
-                                    <div field="carBrandId" width="50" headerAlign="center" allowSort=false>品牌</div>
-                                    <div field="carModel" width="60" headerAlign="center" allowSort=false>车型</div>
-                                    <div field="vin" width="60" headerAlign="center" allowSort=false>VIN</div>
+                                    <div field="orgid" width="120" headerAlign="center" allowSort=false>所在分店</div>
+                                    <div field="carNo" width="90" headerAlign="center" allowSort=false>车牌号</div>
+                                    <div field="carBrandId" width="100" headerAlign="center" allowSort=false>品牌</div>
+                                    <div field="carModel" width="250" headerAlign="center" allowSort=false>车型</div>
+                                    <div field="vin" width="160" headerAlign="center" allowSort=false>车架号(VIN)</div>
                                     <div field="firstRegDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
-                                    <div field="annualInspectionDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
-                                    <div field="recorder" width="60" headerAlign="center" allowSort=false>建档人</div>
-                                    <div field="recordDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>建档日期</div>
+                                    <div field="annualInspectionDate" width="100" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
+                                    <div field="recorder" width="80" headerAlign="center" allowSort=false>建档人</div>
+                                    <div field="recordDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>建档日期</div>
                                 </div>
                             </div>
                             <div headerAlign="center"><strong>客户信息</strong>
                                 <div property="columns">
                                     <div field="guestId" visible=false>客户ID</div>
                                     <div field="guestName" width="80" headerAlign="center" summaryType="" allowSort=false>客户名称</div>
-                                    <div field="address" width="50" headerAlign="center" summaryType="" allowSort=false>地址</div>
+                                    <div field="address" width="150" headerAlign="center" summaryType="" allowSort=false>地址</div>
                                     <!--
                                     <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>客户等级</div>
                                     <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>来厂次数</div>
@@ -186,10 +187,10 @@
                             </div>
                             <div headerAlign="center"><strong>联系状态</strong>
                                 <div property="columns">
-                                    <div field="visitManId" width="60" headerAlign="center" summaryType="" allowSort=false>营销员</div>
-                                    <div field="visitStatus" width="70" headerAlign="center" summaryType="" allowSort=false>跟踪状态</div>
-                                    <div field="priorScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>上次联系时间</div>
-                                    <div field="nextScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>下次联系时间</div>
+                                    <div field="visitManId" id="visitManId" name="visitManId" width="60" headerAlign="center" summaryType="" allowSort=false>营销员</div>
+                                    <div field="visitStatus" width="100" headerAlign="center" summaryType="" allowSort=false>跟踪状态</div>
+                                    <div field="priorScoutDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>上次联系时间</div>
+                                    <div field="nextScoutDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>下次联系时间</div>
                                 </div>
                             </div>
                         </div>

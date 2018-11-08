@@ -1,7 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
  
-<div title="联系内容" name="tab1" visible="true">    
+<div title="联系内容" name="tab1" visible="true"> 
+	    <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+            <table style="width:80%;">
+                <tr>
+                    <td style="width:80%;">
+                       <a id="saveScout" plain="true" class="mini-button" onclick="saveScout" ><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+			            <a id="selTalkArt" plain="true" class="mini-button" onclick="selTalkArt"><span class="fa fa-check fa-lg"></span>&nbsp;选择话术</a>
+			            <a id="colleTalkArt" plain="true" class="mini-button" onclick="colleTalkArt"><span class="fa fa-star fa-lg"></span>&nbsp;收藏话术</a>
+                    </td>
+                </tr>
+            </table>
+        </div>   
     <form id="form1" method="post">
         <fieldset style="border:solid 1px #aaa;padding:3px;">
             <legend >基本信息</legend>
@@ -114,11 +125,11 @@
                 
             </div>
         </fieldset>
-        <div style="text-align:center;padding:10px;display:none;" class="saveGroup">
-            <a id="saveScout" class="mini-button" onclick="saveScout" style="width:60px;margin-right:20px;">保存</a>
-            <a id="selTalkArt" class="mini-button" onclick="selTalkArt" style="width:70px;margin-right:20px;">选择话术</a>
-            <a id="colleTalkArt" class="mini-button" onclick="colleTalkArt" style="width:70px;margin-right:20px;">收藏话术</a>
-        </div>
+<!--         <div style="text-align:center;padding:10px;display:none;" class="saveGroup"> -->
+<!--             <a id="saveScout" class="mini-button" onclick="saveScout" style="width:60px;margin-right:20px;">保存</a> -->
+<!--             <a id="selTalkArt" class="mini-button" onclick="selTalkArt" style="width:70px;margin-right:20px;">选择话术</a> -->
+<!--             <a id="colleTalkArt" class="mini-button" onclick="colleTalkArt" style="width:70px;margin-right:20px;">收藏话术</a> -->
+<!--         </div> -->
     </form>
     
     <div class="nui-fit">   
@@ -133,7 +144,7 @@
              totalField="page.count">                
             <div property="columns">                                              
                 <div field="visitMan" headerAlign="center" width="50px" align="center">跟踪员</div>
-                <div field="visitDate" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" width="50px" align="center">跟踪日期</div>
+                <div field="visitDate" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" width="80px" align="center">跟踪日期</div>
                 <div field="scoutResult" headerAlign="center" width="50px" align="center">跟踪结果</div>
                 
                 <div field="scoutMode" headerAlign="center" width="50px" align="center">跟踪方式</div>

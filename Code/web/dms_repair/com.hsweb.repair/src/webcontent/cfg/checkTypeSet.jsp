@@ -9,7 +9,7 @@
 -->
 <head>
 <title>检查项目类型设置</title>
-<script src="<%=webPath + contextPath%>/repair/cfg/js/checkTypeSet.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/checkTypeSet.js?v=1.0.1"></script>
 <link href="<%=webPath + contextPath %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 .title {
@@ -78,6 +78,16 @@
 <body>
 
 <div class="nui-fit" id= "basicInfoForm">
+  	        <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                            <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 	<div class="vpanel mainwidth" style="height:auto;">
       <!-- <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>基本信息</span></div> -->
       <div class="vpanel_body vpanel_bodyww">
@@ -107,10 +117,10 @@
             </table>
 
         </div>
-        <div style="text-align:center;padding-top:5px;">
-            <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">保存</a>
-            <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
-        </div>
+<!--         <div style="text-align:center;padding-top:5px;"> -->
+<!--             <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">保存</a> -->
+<!--             <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a> -->
+<!--         </div> -->
     </div>
 </div>
 

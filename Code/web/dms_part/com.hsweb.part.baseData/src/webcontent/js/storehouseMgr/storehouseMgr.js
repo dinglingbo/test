@@ -10,10 +10,11 @@ $(document).ready(function(v)
 {
 	tree = nui.get("tree1");
     tree.setUrl(treeUrl);
-    tree.on("beforeload",function(e){
-        e.data.token = token;
-    });
-
+//    tree.on("beforeload",function(e){
+//        e.data.token = token;
+//    });
+    
+    tree.load({token:token});
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     rightGrid.on("beforeload",function(e){
@@ -23,6 +24,7 @@ $(document).ready(function(v)
     rightGrid.on("load",function(){
         onRowClick({});
     });
+    
 });
 function onRowClick(e)
 {

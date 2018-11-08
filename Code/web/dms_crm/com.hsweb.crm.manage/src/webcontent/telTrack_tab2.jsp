@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
  
-<div title="客户资料" name="tab2" visible="true">    
+<div title="客户资料" name="tab2" visible="true">  
+	    <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+            <table style="width:80%;">
+                <tr>
+                    <td style="width:80%;">
+                        <a class="nui-button" iconCls="" plain="true" onclick="saveClientInfo()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                    </td>
+                </tr>
+            </table>
+        </div>  
     <form id="form2" method="post">
         <div id="basicInfoForm" class="form">
             <fieldset style="border:solid 1px #aaa;padding:3px;">
@@ -112,8 +121,8 @@
                 </div>    
             </fieldset>
         </div>
-        <div style="text-align:center;padding:10px;display:none;" class="saveGroup">
-            <a id="save" class="mini-button" onclick="saveClientInfo" style="width:60px;margin-right:20px;">保存</a>
-        </div>
+<!--         <div style="text-align:center;padding:10px;display:none;" class="saveGroup"> -->
+<!--             <a id="save" class="mini-button" onclick="saveClientInfo" style="width:60px;margin-right:20px;">保存</a> -->
+<!--         </div> -->
     </form>
 </div>

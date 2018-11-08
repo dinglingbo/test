@@ -1,6 +1,7 @@
-<%@include file="/common/sysCommon.jsp"%>
+
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="/common/sysCommon.jsp"%>
 <html>
 <!-- 
   - Author(s): chenziming
@@ -10,7 +11,7 @@
 <head> 
 <title>查车单模版管理</title>
 
-<script src="<%=webPath + contextPath%>/repair/cfg/js/checkModelMgr.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/checkModelMgr.js?v=1.0.7"></script>
 <link href="<%=webPath + contextPath %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 .title {
@@ -68,11 +69,12 @@
                         totalField="page.count"
                         pageSize="20"
                         sizeList="[50,100,200]"
+                        allowCellWrap = true
                         showSummaryRow="false">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div field="id" name="id" visible="false">id</div>
-                        <div allowSort="true" field="name" width="150" headerAlign="center" header="模板名称">
+                        <div allowSort="true" field="name" width="120" headerAlign="center" header="模板名称">
                                 <input property="editor" class="nui-textbox" />
                         </div>
                         <div allowSort="true" field="isDisabled" headerAlign="center" header="状态">
@@ -80,7 +82,7 @@
                                 class="nui-combobox" valueField="id" textField="name" data="dataList" /> 
                         </div>
                         <div field="modifier" width="60" headerAlign="center" header="修改人"></div>
-                        <div field="modifyDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="修改日期"></div>
+                        <div field="modifyDate" width="130" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="修改日期"></div>
                     </div>
                 </div>
             </div>
@@ -106,6 +108,7 @@
                     idField="id"
                     selectOnLoad="true"
                     sortMode="client"
+                    allowCellWrap = true
                     url="">
                    <div property="columns">
                        <div type="indexcolumn">序号</div>
@@ -114,13 +117,13 @@
                        <div field="checkName" name="checkName" width="120" headerAlign="center" allowSort="true">项目名称</div>
                        <div field="checkType" width="120" headerAlign="center" allowSort="true">检查类型</div>
                        <div field="orderIndex" width="50" headerAlign="center" allowSort="true">排序值</div>
-                       <div field="itemName" width="80" headerAlign="center" allowSort="true">工时</div>
-                       <div field="partName" width="80" headerAlign="center" allowSort="true">项目</div>
+                       <div field="itemName" width="100" headerAlign="center" allowSort="true">工时</div>
+                       <div field="partName" width="140" headerAlign="center" allowSort="true">项目</div>
                        <!-- <div field="isDisabled" width="80" headerAlign="center" allowSort="true">所需工时</div>
                        <div field="isDisabled" width="80" headerAlign="center" allowSort="true">所需配件</div> -->
                        <div allowSort="true" width="50" field="isDisabled" headerAlign="center" header="状态"></div>
                        <div field="modifier" width="60" allowSort="true" headerAlign="center">修改人</div>
-                       <div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd hh:MM">修改时间</div>
+                       <div field="modifyDate" width="120" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd hh:MM">修改时间</div>
                    </div>
                </div>
            </div>

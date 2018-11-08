@@ -13,12 +13,22 @@ var parentidEl = null;
 $(document).ready(function(v) {
 	mainForm = new nui.Form("#editForm");
 	parentidEl = nui.get("parentId");
-
+	nui.get('code').focus();
 	getComPartType(function(data) {
 		partTypeHash = data.type || [];
 		parentidEl.setData(partTypeHash);
 
 	});
+	
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
+        if ((keyCode == 27)) { // ESC
+            CloseWindow('cancle');
+        }
+
+    }
 });
 function SetData(row, newRow){
 	rowT = row;
@@ -54,6 +64,14 @@ var requiredField = {
 	code : "分类编码",
 	name : "分类名称"
 };
+
+function CloseWindow(action)
+{
+	if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		window.close();
+}
 
 var saveUrl = baseUrl
 		+ "com.hsapi.part.baseDataCrud.crud.saveComPartType.biz.ext";

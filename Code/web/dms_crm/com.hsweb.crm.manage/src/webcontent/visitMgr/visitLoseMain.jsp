@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitLoseMain.js?v=1.0.1.6" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitLoseMain.js?v=1.0.1" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0; 
@@ -38,12 +38,12 @@ pageEncoding="UTF-8" session="false" %>
         </ul>
         <label style="font-family:Verdana;">车牌号：</label>
         <input class="nui-textbox" name="tcarNo" id="tcarNo">
-        <a class="nui-button" onclick="quickSearch(0)" iconcls="icon-search" plain="false">查询(<u>Q</u>)</a>
+        <a class="nui-button" plain="true" onclick="quickSearch(0)" iconcls="" ><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
-        <a class="nui-button" iconCls="" plain="false" onclick="">发送短信</a>
-        <a class="nui-button" iconCls="" plain="false" onclick="WindowrepairHistory()">维修历史</a>
-        <a class="nui-button" iconCls="" plain="false" onclick="">回访历史</a>
-        <a class="nui-button" iconCls="" plain="false" onclick="WindowComplianDetail()">投诉登记</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="">发送短信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()">维修历史</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="">回访历史</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowComplianDetail()">投诉登记</a>
 
     </div>
     <div class="nui-fit">
@@ -52,7 +52,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div class="nui-fit">
                     <div id="gridCar" class="nui-datagrid gridborder"
                     style="width: 100%; height: 100%;"
-                    url=""
+                    url="" allowCellWrap = true
                     dataField="data" idField="id" sizeList="[20,30,50,100]"
                     pageSize="20" totalField="page.count" showPager="true">
 
@@ -167,6 +167,16 @@ pageEncoding="UTF-8" session="false" %>
                     <div style="height: 10px;width: 100%;"></div>
                     <div class="nui-fit">
                         <div id="visitCon" class="nui-panel" title="请填写回访内容" iconCls="" style="width:100%;height:100%;"buttons="">
+                             <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+					            <table style="width:80%;">
+					                <tr>
+					                    <td style="width:80%;">
+					                        <a class="nui-button" iconCls="" plain="true" onclick="save"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+					                     
+					                    </td>
+					                </tr>
+					            </table>
+					        </div>
                             <input class="nui-hidden" name="detailId" id="detailId"/>
                             <table class="tmargin" style="width:100%">
                                 <tr class="htr">
@@ -225,9 +235,9 @@ pageEncoding="UTF-8" session="false" %>
                                         <input id="scoutDate" name="scoutDate" class="nui-datepicker textboxWidth">
                                     </td>
                                 </tr>
-                                                                <tr class="htr">
-                                    <td colspan="7"><a class="nui-button" iconCls="" plain="false" onclick="save">保存</a></td>
-                                </tr>
+<!--                             	<tr class="htr"> -->
+<!--                                     <td colspan="7"><a class="nui-button" iconCls="" plain="false" onclick="save">保存</a></td> -->
+<!--                                 </tr> -->
                             </table>
                         </div>
                     </div>

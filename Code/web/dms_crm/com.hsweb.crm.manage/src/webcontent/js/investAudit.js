@@ -36,6 +36,17 @@ $(document).ready(function(){
 		brandList.forEach(function(v) {brandHash[v.id] = v;});
 	});
 	initServiceType("serviceTypeIdEl",null);
+	
+	document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
+
+        if ((keyCode == 13)) { // ESC
+        	search();
+        }
+
+    }
 	search();
 	basicForm.setEnabled(false);
 });

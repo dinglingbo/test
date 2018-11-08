@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购入库</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/purchaseOrderEnter.js?v=1.0.15"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/purchaseOrderEnter.js?v=1.0.16"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -148,7 +148,7 @@ body .mini-grid-row-selected{
             <tr>
                 <td style="width:100%;">
                     <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
         </table>

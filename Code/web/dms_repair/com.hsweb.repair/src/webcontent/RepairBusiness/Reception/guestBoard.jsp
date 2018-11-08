@@ -74,7 +74,7 @@
 	    <div id="guestBoardGrid" class="nui-datagrid" dataField="data" showLoading="false" enableHotTrack="false"  showPager="false" style="height:100%;width:100%;">
 	        <div property="columns">
 	            <div field="carNo" width="100" headerAlign="center" align="center">车牌号</div>
-	            <div field="recordDate" dateFormat="yyyy-MM-dd H:mm" width="100" headerAlign="center" align="center">接车时间</div>
+	            <div field="recordDate" dateFormat="  yyyy-MM-dd HH:mm" width="100" headerAlign="center" align="center">接车时间</div>
 	            <div field="planFinishDate" width="100" dateFormat="MM-dd H:mm" headerAlign="center" align="center">预计完工时间</div>
 	            <div field= "status" width="100" headerAlign="center" align="center">服务进程</div>
 	            <div field= "mtAdvisor" width="100" headerAlign="center" align="center">服务顾问</div>

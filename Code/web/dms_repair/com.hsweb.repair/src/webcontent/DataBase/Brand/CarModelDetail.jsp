@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增车型</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Brand/CarModelDetail.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Brand/CarModelDetail.js?v=1.0.1"></script>
 <style type="text/css">
 
 table {
@@ -26,6 +26,16 @@ table {
 </style>
 </head>
 <body>
+        <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+            <table style="width:80%;">
+                <tr>
+                    <td style="width:80%;">
+                        <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
 <fieldset style="width: 94.8%; height: 67%; border: solid 1px #aaa; position: relative; margin: 5px 5px;">
 	<div id="dataform1" class="form">
 		<input name="id" class="nui-hidden"/>
@@ -34,7 +44,7 @@ table {
 			<tr>
 				<td class="form_label"><span>品牌：</span></td>
 				<td colspan="1">
-					<input class="nui-textbox" name="carBrandName" width="100%" enabled="false"/>
+					<input class="nui-textbox" name="carBrandName" id="carBrandName" width="100%" enabled="false"/>
 				</td>
 			</tr>
 			<tr>
@@ -42,7 +52,7 @@ table {
 					<span>厂商：</span>
 				</td>
 				<td colspan="1">
-					<input class="nui-textbox" name="carFactoryName"  width="100%"/>
+					<input class="nui-textbox" name="carFactoryName" id="carFactoryName" width="100%"/>
 				</td>
 			</tr>
 			<tr>
@@ -64,10 +74,10 @@ table {
 		</table>
 	</div>
 </fieldset>
-<div style="text-align: right; padding: 10px;">
-	<a class="nui-button" onclick="onOk" style="margin-right: 20px;">保存（S）</a>
-	<a class="nui-button" onclick="onCancel">取消（C）</a>
-</div>
+<!-- <div style="text-align: right; padding: 10px;"> -->
+<!-- 	<a class="nui-button" onclick="onOk" style="margin-right: 20px;">保存（S）</a> -->
+<!-- 	<a class="nui-button" onclick="onCancel">取消（C）</a> -->
+<!-- </div> -->
 
 
 </body>

@@ -15,6 +15,25 @@ var gAuditSign=[{
 $(document).ready(function(){
 	investGrid = nui.get("investGrid");
 	investGrid.setUrl(queryInvestListUrl);
+	
+	investGrid.on("rowdblclick", function(e) {
+		var row = investGrid.getSelected();
+		var rowc = nui.clone(row);
+		if (!rowc)
+			return;
+		onEditClick();
+
+	});
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
+
+        if ((keyCode == 13)) { // Enter
+        	search();
+        }
+
+    }
 	search();
 });
 
@@ -49,7 +68,7 @@ function onAddClick(){
 function onEditClick(){
 	var data = investGrid.getSelected();
 	if(data == null){
-		nui.alert("请先选择一条数据");
+		showMsg("请先选择一条数据","W");
 		return;
 	}
 	nui.open({
@@ -73,11 +92,11 @@ function onEditClick(){
 function onDeleteClick(){
 	var data = investGrid.getSelected();
 	if(data == null){
-		nui.alert("请先选择一条数据");
+		showMsg("请先选择一条数据","W");
 		return;
 	}
 	if(data.auditSign == 1){
-		nui.alert("已审核通过，无法删除");
+		showMsg("已审核通过，无法删除","W");
 		return;
 	}
 	nui.mask({
@@ -98,10 +117,10 @@ function onDeleteClick(){
             data = data || {};
             if (data.errCode == "S") {
                 var errMsg = data.errMsg;
-                nui.alert(errMsg);
+                showMsg(errMsg,"S");
                 search();
             } else {
-            	nui.alert(data.errMsg || "删除失败!");
+            	showMsg(data.errMsg || "删除失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {

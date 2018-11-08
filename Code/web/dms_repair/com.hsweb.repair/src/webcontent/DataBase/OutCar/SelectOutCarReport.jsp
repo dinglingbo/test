@@ -30,7 +30,7 @@ table {
         <tr>
             <td>
               <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-              <a class="nui-button" plain="true" iconCls="" id="deleteBtn"  onclick="close()"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+              <a class="nui-button" plain="true" iconCls="" id="deleteBtn"  onclick="close()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
               <a class="nui-button" plain="true" iconCls="" id="SelectReport"  onclick="SelectReport()"><span class="fa fa-check fa-lg"></span>&nbsp;选择出车报告</a>
             </td>
         </tr>

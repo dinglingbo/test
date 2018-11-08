@@ -8,6 +8,7 @@ var tree2;
 var currType1Node;//品牌
 var currType2Node;//营销员
 var memList = [];
+var memHash={};
 
 var assignStatus;
 
@@ -20,9 +21,10 @@ $(document).ready(function(v){
    //tree2 = nui.get("tree2");
     dgGrid = nui.get("dgGrid");
     dgGrid.setUrl(queryDatumMgrListUrl);
-    dgGrid.on("beforeload",function(e){
-    	e.data.token = token;
-    });
+//    dgGrid.on("beforeload",function(e){
+//    	e.data.token = token;
+//    });
+    dgGrid.load({token :token});
     dgGrid.on("drawcell", function (e) { //表格绘制
         var field = e.field;
         if(field == "orgid"){
@@ -31,14 +33,20 @@ $(document).ready(function(v){
             e.cellHtml = setColVal('tree1', 'id', 'nameCn', e.value);
         //}else if(field == "carModelId"){//车型
             //e.cellHtml = setColVal('carModelId', 'carModelId', 'carModel', e.value);
-        }/*else if(field == "visitManId"){//营销员
-            e.cellHtml = setColVal('tree2', 'empId', 'empName', e.value);
-        }*/else if(field == "visitStatus"){//跟踪状态
+        }else if(field == "visitManId"){//营销员
+            if(memHash[e.value]){
+            	e.cellHtml = memHash[e.value].empName || "";
+            }
+        }else if(field == "visitStatus"){//跟踪状态
             e.cellHtml = setColVal('visitStatus', 'customid', 'name', e.value);
         }
+
     });
     initMember("tree2",function(){
         memList = memList.getData();
+        memList.forEach(function(v) {
+			memHash[v.empId] = v;
+		});
         nui.get("tree2").setData(memList);
         query1();
     });
@@ -46,6 +54,15 @@ $(document).ready(function(v){
     init();
     query();
     
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
+
+        if ((keyCode == 13)) { // F9
+        	query();
+        }
+    }
  
 });
 
@@ -68,10 +85,11 @@ function query(){
     var params = {};
     params.p = data;
 
-    dgGrid.load(params,null,function(){
-        //失败;
-        nui.alert("数据加载失败！");
-    });
+//    dgGrid.load(params,null,function(){
+//        //失败;
+//        showMsg("数据加载失败！");
+//    });
+    dgGrid.load({p:params.p,token:token});
 
 }
 
@@ -139,7 +157,7 @@ function onType2DbClick(e){
 function updateField(field, value){
     var rows = dgGrid.getSelecteds();
     if(rows.length==0){
-        nui.alert("请选择记录数据！");
+        showMsg("请选择记录数据！","W");
         return;
     }
     var params = [];
@@ -157,7 +175,7 @@ function updateField(field, value){
 function assignTracker(){
     var value = tracker.getValue();
     if(!value){
-        nui.alert("请选择营销员！");
+        showMsg("请选择营销员！","W");
         return false;
     }
     updateField("visitManId", value);
@@ -165,7 +183,7 @@ function assignTracker(){
 
 function reLoadMain(data, json){
     if(json.errCode == "S"){
-        nui.alert("设置成功！");
+        showMsg("设置成功！","S");
         dgGrid.reload();
     }
 }
@@ -180,7 +198,7 @@ function editGuestInfo(){
     if (row) {
         editWin("修改模板", row);
     } else {
-        alert("请选中一条记录");
+    	showMsg("请选中一条记录","W");
     }
 }
 

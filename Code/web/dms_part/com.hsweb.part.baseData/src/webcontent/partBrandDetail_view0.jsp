@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/partBrandMgr/partBrandDetail.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/partBrandMgr/partBrandDetail.js?v=1.0.6"></script>
 <style type="text/css">
 
 body {
@@ -41,11 +41,21 @@ body {
 <body>
 
 <div id="basicInfoForm" class="form">
+	<div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+        <table style="width:80%;">
+            <tr>
+                <td style="width:80%;">
+                    <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
     <input class="nui-hidden" name="id"/>
     <input class="nui-hidden" name="parentId"/>
     <div class="row">
         <span class="title title-width1 required">品牌编码：</span>
-        <input name="code" class="nui-textbox width1"/>
+        <input name="code" id="code" class="nui-textbox width1"/>
     </div>
     <div class="row">
         <span class="title title-width1 required">品牌名称：</span>
@@ -60,10 +70,10 @@ body {
         <input name="remark" class="nui-textbox width1"/>
     </div>
 </div>
-<div style="text-align:center;padding:10px;">
-    <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
-    <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
-</div>
+<!-- <div style="text-align:center;padding:10px;"> -->
+<!--     <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a> -->
+<!--     <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a> -->
+<!-- </div> -->
 
 </body>
 </html>

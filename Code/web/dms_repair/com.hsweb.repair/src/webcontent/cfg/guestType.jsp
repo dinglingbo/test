@@ -9,7 +9,7 @@
 -->
 <head>
 <title>客户级别</title>
-<script src="<%=webPath + contextPath%>/repair/cfg/js/guestType.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/guestType.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -84,6 +84,16 @@
 
         <div>
             <div id="editForm" class="form">
+            		<div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+			            <table style="width:80%;">
+			                <tr>
+			                    <td style="width:80%;">
+			                        <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+			                        <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+			                    </td>
+			                </tr>
+			            </table>
+			        </div>
                     <input id="orgid" name="orgid" width="100%" class="nui-hidden" >
                     <input class="nui-hidden" name="id"/>
                     <table class="tmargin" width="100%">
@@ -180,10 +190,10 @@
               </div>
         </div>
     
-        <div style="text-align: center;">   
-                <a class="nui-button" iconCls="" plain="false" onclick="onOk">保存</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a class="nui-button" iconCls="" plain="false" onclick="onCancel">取消</a>
-        </div>
+<!--         <div style="text-align: center;">    -->
+<!--                 <a class="nui-button" iconCls="" plain="false" onclick="onOk">保存</a>&nbsp;&nbsp;&nbsp;&nbsp; -->
+<!--                 <a class="nui-button" iconCls="" plain="false" onclick="onCancel">取消</a> -->
+<!--         </div> -->
             
         
  

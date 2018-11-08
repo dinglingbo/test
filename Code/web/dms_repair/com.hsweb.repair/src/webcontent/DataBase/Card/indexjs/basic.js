@@ -147,7 +147,7 @@ Array.prototype.last = function() {
 
 Date.prototype.format = function(pattern) {
 	if (!pattern) {
-		pattern = 'yyyy-MM-dd HH:mm';
+		pattern = ' yyyy-MM-dd HH:mm:ss';
 	}
 	var o = {
 		'M+': this.getMonth() + 1,
@@ -190,7 +190,7 @@ Date.prototype.formatDateTime = function() {
 };
 
 Date.prototype.formatFull = function() {
-	return this.format('yyyy-MM-dd hh:MM');
+	return this.format(' yyyy-MM-dd HH:mm:ss');
 };
 
 

@@ -34,7 +34,16 @@
 </style>
 </head>
 <body>
-
+   <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+        <table style="width:80%;">
+            <tr>
+                <td style="width:80%;">
+                    <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
 <div title="" class="nui-panel" style="width:calc(100% - 20px);height:110px;margin: 10px;"
      showHeader="false"
      onbuttonclick="onbuttonclick">
@@ -44,7 +53,7 @@
             <span class="title title-width2">仓库编码：</span>
             <input name="id" class="nui-textbox width1" enabled="false"/>
             <span class="title title-width2 required">仓库名称：</span>
-            <input name="name" class="nui-textbox width1"/>
+            <input name="name" id="name" class="nui-textbox width1"/>
         </div>
         <div class="row">
             <span class="title title-width2 required">仓库管理员：</span>
@@ -60,10 +69,10 @@
         </div>
     </div>
 </div>
-<div style="text-align:center;padding:10px;">
-    <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
-    <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
-</div>
+<!-- <div style="text-align:center;padding:10px;"> -->
+<!--     <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a> -->
+<!--     <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a> -->
+<!-- </div> -->
 
 
 </body>

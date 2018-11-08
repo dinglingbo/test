@@ -9,7 +9,7 @@
 -->
 <head>
 <title>检查项目设置</title>
-<script src="<%=webPath + contextPath%>/repair/cfg/js/checkDetailSet.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/checkDetailSet.js?v=1.0.4"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -80,6 +80,16 @@
 
         <div>
             <div id="editForm" class="form">
+                    <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                        <table style="width:100%;">
+                            <tr>
+                                <td style="width:100%;">
+                                    <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                                    <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                     <input id="orgid" name="orgid" width="100%" class="nui-hidden" >
                     <input class="nui-hidden" name="id"/>
                     <input class="nui-hidden" name="mainId"/>
@@ -166,10 +176,10 @@
                 </div>
             </div>
         </div>
-        <div class="nui-toolbar" style="height:40px;text-align:center;">
-            <a class="nui-button" iconCls="" plain="true" onclick="onOk">保存</a>
-            <a class="nui-button" iconCls="" plain="true" onclick="onCancel">取消</a>
-        </div>
+<!--         <div class="nui-toolbar" style="height:40px;text-align:center;"> -->
+<!--             <a class="nui-button" iconCls="" plain="true" onclick="onOk">保存</a> -->
+<!--             <a class="nui-button" iconCls="" plain="true" onclick="onCancel">取消</a> -->
+<!--         </div> -->
  
 </body>
 </html>

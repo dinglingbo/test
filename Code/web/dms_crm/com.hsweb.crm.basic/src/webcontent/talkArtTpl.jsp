@@ -12,7 +12,7 @@
 <title>话术模板</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=crmDomain%>/basic/js/talkArtTpl.js?v=1.1" type="text/javascript"></script> 
+    <script src="<%=webPath + contextPath%>/basic/js/talkArtTpl.js?v=1.0.1" type="text/javascript"></script> 
 </head>
 <body>
 
@@ -27,7 +27,7 @@
                 <input class="nui-textbox" name="topic" id="topic" enabled="true"/>
                 <label style="font-family:Verdana;">创建人：</label>
                 <input class="nui-textbox" name="recorder" id="recorder" enabled="true"/>
-                <a class="nui-button" iconCls="icon-find" plain="true" onclick="query()" id="query" enabled="true">查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="editgroup">
                     <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="add" enabled="true">新增话术</a>
                     <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">修改话术</a>

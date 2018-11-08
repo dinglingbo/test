@@ -11,6 +11,20 @@ $(document).ready(function(v){
     dgGrid.on("beforeload",function(e){
     	e.data.token = token;
     });
+    nui.get('recorder').focus();
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
+        if ((keyCode == 13)) { // Enter
+            query();
+        }
+        
+        if ((keyCode == 27)) { // ESC
+            CloseWindow('cancle');
+        }
+
+    }
     initDicts({
         tree1: "DDT20130725000001"//话术类型
     });
@@ -28,10 +42,11 @@ function query(){
         params.p.typeId = currTypeNode.customid;
     }
     //param.token = token;
-    dgGrid.load(params,null,function(){
-        //失败;
-        nui.alert("数据加载失败！");
-    });
+//    dgGrid.load(params,null,function(){
+//        //失败;
+//        showMsg("数据加载失败！");
+//    });
+    dgGrid.load({p:params.p,token:token});
 }
 
 function onNodeDbClick(e){
@@ -68,7 +83,7 @@ function doSelect(){
         currRow = row;
         closeWindow("ok");
     } else {
-        alert("请选中一条记录");
+        showMsg("请选中一条记录","W");
     }
 }
 
@@ -81,7 +96,7 @@ function edit(){
     if (row) {
         editWin("修改话术", row);
     } else {
-        alert("请选中一条记录");
+        showMsg("请选中一条记录","W");
     }
 }
 
@@ -100,4 +115,11 @@ function editWin(title, data){
             dgGrid.reload();
         }
     });
+}
+
+function CloseWindow(action){
+    if (window.CloseOwnerWindow) 
+    	return window.CloseOwnerWindow(action);
+    else 
+    	window.close();
 }

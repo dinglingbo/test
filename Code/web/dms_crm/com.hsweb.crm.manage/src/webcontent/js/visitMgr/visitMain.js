@@ -42,6 +42,17 @@ $(document).ready(function(){
 		var record = e.record;
 		SetData(record);
 	});
+	
+	document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
+
+        if ((keyCode == 13)) { // Enter
+            quickSearch(3);
+        }
+
+    }
 
 	initMember("mtAdvisor",function(){
 		memList = mtAdvisorEl.getData();
@@ -252,7 +263,7 @@ function quickSearch(e){
 			carNo:tcarNo_ctrl.value
 		};
 	}
-	gridCar.load({params:p});
+	gridCar.load({params:p,token:token});
 }
 
 function WindowComplianDetail(){

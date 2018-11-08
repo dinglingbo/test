@@ -42,7 +42,7 @@ function initBeginPeriodStockCfg(){
 	var item={};
 	item.id = "initBeginPeriodStockCfg";
 	item.text = "期初库存";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.initPartStock.flow";
+	item.url = webPath + contextPath + "/com.hsweb.part.manage.initPartStock.flow";
 	item.iconCls = "fa fa-cube";
 	window.parent.activeTab(item);
 }

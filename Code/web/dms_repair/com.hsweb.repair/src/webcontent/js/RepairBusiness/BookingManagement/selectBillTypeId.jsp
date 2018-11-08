@@ -16,7 +16,7 @@
 <body>
     <div class="mini-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;">
         <a class="nui-button" onclick="onOk" style="width: 60px;" plain="true"><span class="fa fa-save fa-lg"></span>&nbsp;保存 </a>
-		<a class="nui-button" onclick="onCancel" style="width: 60px;" plain="true"><span class="fa fa-close fa-lg"></span>&nbsp;关闭 </a>
+		<a class="nui-button" onclick="onCancel" style="width: 60px;" plain="true"><span class="fa fa-close fa-lg"></span>&nbsp;取消 </a>
     </div>
 	<div class="nui-fit" style="width: 100%;">
 		<table align="center">

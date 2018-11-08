@@ -6,7 +6,7 @@
 <head>
 <title>业绩审核</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-   <script src="<%=webPath + contextPath%>/manage/js/investAudit.js?v=1.0.2"></script>
+   <script src="<%=webPath + contextPath%>/manage/js/investAudit.js?v=1.0.3"></script>
 </head>
 <body>
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
@@ -41,28 +41,29 @@
                     allowCellSelect="true"
                     ondrawcell="onDrawcell"
                     onrowclick="onRowclick"
+                    allowCellWrap = true
                    >
                     <div property="columns">
                         <div type="indexcolumn">序号</div> 
                         <div header="业绩信息" headerAlign="center">
                             <div property="columns">
                                 <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号"></div>
-                                <div field="serviceCode" name="serviceCode" width="80" headerAlign="center" header="工单号"></div>
+                                <div field="serviceCode" name="serviceCode" width="130" headerAlign="center" header="工单号"></div>
                                 <div field="visitMan" name="visitMan" width="80" headerAlign="center" header="营销员"></div>
                                 <div field="carType" name="carType" width="80" headerAlign="center" header="来厂类型"></div>
                                 <div field="auditSign" name="auditSign" width="80" headerAlign="center" header="审核状态"></div>
-                                <div field="auditDate" name="auditDate" width="80" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd"></div>
-                                <div field="auditOpinion" name="auditOpinion" width="80" headerAlign="center" header="审核备注"></div>
-                                <div field="remark" name="remark" width="80" headerAlign="center" header="业绩备注"></div>
+                                <div field="auditDate" name="auditDate" width="130" headerAlign="center" header="审核日期" dateFormat="  yyyy-MM-dd HH:mm"></div>
+                                <div field="auditOpinion" name="auditOpinion" width="100" headerAlign="center" header="审核备注"></div>
+                                <div field="remark" name="remark" width="100" headerAlign="center" header="业绩备注"></div>
                                 <div field="recorder" name="recorder" width="80" headerAlign="center" header="登记人"></div>
-                                <div field="recordDate" name="recordDate" width="80" headerAlign="center" header="登记日期" dateFormat="yyyy-MM-dd"></div>
+                                <div field="recordDate" name="recordDate" width="130" headerAlign="center" header="登记日期" dateFormat="  yyyy-MM-dd HH:mm"></div>
                                 <div field="modifier" name="modifier" width="80" headerAlign="center" header="最后修改人"></div>
-                                <div field="modifyDate" name="modifyDate" width="80" headerAlign="center" header="最后修改日期" dateFormat="yyyy-MM-dd"></div>
+                                <div field="modifyDate" name="modifyDate" width="130" headerAlign="center" header="最后修改日期" dateFormat="  yyyy-MM-dd HH:mm"></div>
                             </div>
                         </div>
                         <div header="维修信息" headerAlign="center">
                             <div property="columns">
-                                <div field="serviceTypeId" name="serviceTypeId" width="80" headerAlign="center" header="业务类型 "></div>
+                                <div field="serviceTypeId" name="serviceTypeId" width="130" headerAlign="center" header="业务类型 "></div>
                                 <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" header="维修顾问 "></div>
                                 <div field="partTotalAmt" name="partTotalAmt" width="80" headerAlign="center" header="材料金额 "></div>
                                 <div field="itemTotalAmt" name="itemTotalAmt" width="80" headerAlign="center" header="项目金额 "></div>  
@@ -73,9 +74,9 @@
                                 <div field="compComeTimes" name="compComeTimes" width="80" headerAlign="center" header="分店来厂次数"></div>
                                 <div field="chainComeTimes" name="chainComeTimes" width="80" headerAlign="center" header="连锁来厂次数"></div>
                                 <div field="carBrandId" name="carBrandId" width="80" headerAlign="center" header="品牌"></div>
-                                <div field="carModel" name="carModel" width="80" headerAlign="center" header="车型"></div>
-                                <div field="engineNo" name="engineNo" width="80" headerAlign="center" header="发动机号"></div>
-                                <div field="vin" name="vin" width="80" headerAlign="center" header="底盘"></div>
+                                <div field="carModel" name="carModel" width="280" headerAlign="center" header="车型"></div>
+                                <div field="engineNo" name="engineNo" width="130" headerAlign="center" header="发动机号"></div>
+                                <div field="vin" name="vin" width="180" headerAlign="center" header="车架号(VIN)"></div>
                             </div>
                         </div>
                     </div>

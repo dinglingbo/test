@@ -146,7 +146,7 @@ pageEncoding="UTF-8" session="false" %>
 				<tr>
 					<td>
 						<a class="nui-button"  plain="true" id="ok" name = "ok" onclick="onOk()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-						<a class="nui-button"  plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+						<a class="nui-button"  plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
 					</td>
 				</tr>
 			</table>

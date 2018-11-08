@@ -8,7 +8,7 @@
 -->
 <head>
 <title>新增分类</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partTypeEdit.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partTypeEdit.js?v=2.0.1"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -58,6 +58,16 @@
 
 <div class="nui-fit">
     <div class="nui-fit">
+    	    <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:80%;">
+                    <tr>
+                        <td style="width:80%;">
+                            <a class="nui-button" iconCls="" plain="true" onclick="add()"><span class="fa fa-plus fa-lg"></span>&nbsp;保存并新增</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="save"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         <div id="editForm" class="form">
         	<input id="id" name="id" width="100%" class="nui-hidden" >
         	<input id="orgid" name="orgid" width="100%" class="nui-hidden" >
@@ -78,10 +88,10 @@
 
         </div>
     </div>
-	<div class="nui-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;text-align:center;">
-        <a class="nui-button" iconCls="" plain="true" onclick="add()"><span class="fa fa-plus fa-lg"></span>&nbsp;保存并新增</a>
-        <a class="nui-button" iconCls="" plain="true" onclick="save()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-    </div>
+<!-- 	<div class="nui-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;text-align:center;"> -->
+<!--         <a class="nui-button" iconCls="" plain="true" onclick="add()"><span class="fa fa-plus fa-lg"></span>&nbsp;保存并新增</a> -->
+<!--         <a class="nui-button" iconCls="" plain="true" onclick="save()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a> -->
+<!--     </div> -->
 </div>
 
 

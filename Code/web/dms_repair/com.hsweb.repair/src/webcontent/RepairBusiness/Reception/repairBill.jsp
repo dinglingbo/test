@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.7.6"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.7.8"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -105,8 +105,8 @@
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
                         <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
                         <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
-                        <div header="送修人名称" field="contactName" width="30" headerAlign="center"></div>
-                        <div header="送修人手机" field="mobile" width="60" headerAlign="center"></div>
+                        <div header="联系人名称" field="contactName" width="30" headerAlign="center"></div>
+                        <div header="联系人手机" field="mobile" width="60" headerAlign="center"></div>
                         <div header="VIN" field="vin" width="70" headerAlign="center"></div>
                     </div>
                 </div>

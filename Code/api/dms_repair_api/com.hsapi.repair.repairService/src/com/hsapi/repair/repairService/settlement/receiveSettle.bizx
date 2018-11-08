@@ -51,7 +51,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
-    <location x="-162" y="206"/>
+    <location x="-162" y="136"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -68,7 +68,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="-196" y="241"/>
+    <location x="-196" y="171"/>
     <figSize height="17" width="95"/>
     <node>subprocess0</node>
   </nodes>
@@ -519,12 +519,12 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="360" y="286"/>
+    <location x="360" y="309"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="358" y="322"/>
+    <location x="358" y="345"/>
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>

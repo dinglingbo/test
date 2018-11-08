@@ -285,6 +285,7 @@
     <location x="720" y="150"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="guestCard" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -361,7 +362,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
-    <location x="778" y="148"/>
+    <location x="778" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
     <process:copy>
@@ -386,7 +387,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="776" y="184"/>
+    <location x="776" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
@@ -416,16 +417,12 @@
       <process:to type="query">temp/useAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(cardPayAmt))</process:from>
-      <process:to type="query">d1</process:to>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">temp/modifier</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(dedAmt))</process:from>
-      <process:to type="query">d2</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">d1.subtract(d2).doubleValue()</process:from>
-      <process:to type="query">cardPayAmt</process:to>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">temp/modifyDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">orgid</process:from>
@@ -460,7 +457,7 @@
       <process:to type="query">consumeRecord/cardAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">cardPayAmt</process:from>
+      <process:from type="query" pattern="reference">dedAmt</process:from>
       <process:to type="query">consumeRecord/consumeAmt</process:to>
     </process:copy>
     <process:copy>
@@ -478,6 +475,18 @@
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">consumeRecord/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(cardPayAmt))</process:from>
+      <process:to type="query">d1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(dedAmt))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.subtract(d2).doubleValue()</process:from>
+      <process:to type="query">cardPayAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
@@ -544,18 +553,6 @@
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">cardUse+cardPayAmt</process:from>
-      <process:to type="query">cardUse</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">cardUse</process:from>
-      <process:to type="query">temp/useAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">cardPayAmt</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">consumeRecord/orgid</process:to>
     </process:copy>
@@ -606,6 +603,34 @@
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">consumeRecord/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(cardUse))</process:from>
+      <process:to type="query">d1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(cardPayAmt))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.add(d2).doubleValue()</process:from>
+      <process:to type="query">cardUse</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardUse</process:from>
+      <process:to type="query">temp/useAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">temp/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">temp/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cardPayAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
@@ -702,6 +727,7 @@
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
       <targetNode>invokePojo9</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link27" name="link27" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo5</sourceNode>

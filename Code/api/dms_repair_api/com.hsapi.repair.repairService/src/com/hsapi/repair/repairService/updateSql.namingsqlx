@@ -59,17 +59,11 @@
 	</update>
 	
 	<update id="updateCardTimesFinish" parameterClass="java.util.HashMap">
-		update rps_card_times m
-		inner join (
-		select a.id, count(1) t from rps_card_times a
-		inner join rps_card_times_detail b
-		on a.id = b.card_id
-		where b.is_finish = 0 and a.car_id = #carId# 
-		group by a.id
-		HAVING count(1) &lt;= 0) n
-		on m.id = n.id
-		set m.is_finish = 1 , modifier = #modifier#, modify_date = SYSDATE()
-		where m.car_id = #carId#  and n.id is null and m.is_finish = 0
+		
+		update rps_card_times set is_finish = 1 , modifier = #modifier#, modify_date = SYSDATE()
+		where car_id = #carId#   and is_finish = 0
+        and not exists(select 1 from rps_card_times_detail a 
+        where rps_card_times.id = a.main_id and a.is_finish = 0 and rps_card_times.car_id = #carId#  )
 	</update>
 	
 	<delete id="deleteRepairRecord" parameterClass="java.util.HashMap">

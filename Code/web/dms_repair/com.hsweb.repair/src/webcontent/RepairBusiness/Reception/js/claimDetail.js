@@ -666,7 +666,12 @@ function doSetMainInfo(car){
     maintain.mtAdvisorId = currEmpId;
     maintain.mtAdvisor = currUserName;
     maintain.recordDate = now;
-
+    maintain.sex = car.sex;
+    maintain.idNo = car.idNo;
+    maintain.remark = car.remark;
+    maintain.insuranceName = car.insuranceName;
+    maintain.insureNo = car.insureNo;
+    maintain.insureDueDate = car.insureDueDate;
     mpackageRate = 0;
     mitemRate = 0;
     mpartRate = 0;
@@ -674,6 +679,7 @@ function doSetMainInfo(car){
     billForm.setData(maintain);
     sendGuestForm.setData(maintain);
     describeForm.setData(maintain);
+    insuranceForm.setData(maintain);
     xyguest = maintain;
     fguestId = car.guestId||0;
     fcarId = car.id||0;

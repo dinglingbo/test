@@ -209,7 +209,8 @@ function quickSearch(type) {
 function doSearch(params) {
     params.orgid = currOrgid;
     leftGrid.load({
-        params: params
+        params: params,
+        token :token
     });
 }
 
@@ -225,7 +226,8 @@ function onSearch2(type) {
 function doSearch2(params) {
     params.orgid = currOrgid;
     rightGrid.load({
-        params: params
+        params: params,
+        token : token
     });
 }
 function reloadLeftGrid() {

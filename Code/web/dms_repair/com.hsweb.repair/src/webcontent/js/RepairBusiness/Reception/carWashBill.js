@@ -2230,6 +2230,7 @@ function updateRpsItem(row_uid){
                 item.serviceId = row.serviceId;
                 item.itemTime = row.qty;
                 item.subtotal = row.subtotal;
+                item.amt = row.amt;
                 item.serviceTypeId = row.serviceTypeId;
                 if(__workerIds){
                     item.workerIds = __workerIds;

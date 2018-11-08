@@ -4,6 +4,17 @@ var sellAmt = null;
 $(document).ready(function(v) {
 	form2 = new nui.Form("#dataform2");
 	sellAmt = nui.get("sellAmt");
+	nui.get('carNo').focus();
+	document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;//38向上 40向下
+
+        if((keyCode==27))  {  //ESC
+            onCancel();
+        }
+	 };
+	
+	
 });
 
 var rpbCardTimes = null;
@@ -212,4 +223,7 @@ function CloseWindow(action) {
 	else
 		return window.close();
 }
-
+//取消
+function onCancel() {
+	CloseWindow("cancel");
+}

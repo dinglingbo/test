@@ -334,8 +334,6 @@ function newBill() {
         		var iframe = this.getIFrameEl();
         	   var billTypeId = iframe.contentWindow.getBilltype();
         	   saveNewBill(row,billTypeId);
-        	   }else{
-        		   showMsg("开单已取消","W");
         	   }
                
            }
@@ -376,10 +374,7 @@ function newBill() {
     	        		   var iframe = this.getIFrameEl();
         	        	   var billTypeId = iframe.contentWindow.getBilltype();
         	        	   saveNewBill(preBook,billTypeId);
-    	        	   }else{
-    	        		   showMsg("开单已取消","W");
     	        	   }
-    	               
     	           }
         	    });
             }

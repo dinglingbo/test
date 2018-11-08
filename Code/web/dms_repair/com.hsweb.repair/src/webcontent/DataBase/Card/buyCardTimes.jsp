@@ -12,10 +12,14 @@
 <head>
 <title>计次卡购买</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.1.6"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.1.7"></script>
 </head>
 <body>
 <div class="nui-fit">
+     <div class="mini-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;">
+        <a class="nui-button" onclick="noPayOk()" style="width: 85px;" plain="true"><span class="fa fa-save fa-lg"></span>&nbsp;转预结算 </a>
+		<a class="nui-button" onclick="payOk()" style="width: 55px;" plain="true"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
+    </div>
 	<fieldset style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
 		<legend> 选择客户 </legend>
 		<div id="dataform2" style="padding-top: 5px;" >	
@@ -63,18 +67,6 @@
 					</td>	
                  </tr>
           </table>	
-		</div>
-		<div style="padding: 0px;" borderStyle="border:0;">
-			<table width="100%">
-				<tr >
-				<td style="text-align:center;" colspan="1"  >
-					<!-- <a	class="nui-button" iconCls="icon-save" onclick="readyPay()" id = "readyPay"> 转预结算 </a> 
-					<spand>&nbsp;&nbsp;&nbsp;</spand> -->
-					<a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >保存</a> 
-					<a class="nui-button"  onclick="payOk()" id = "payOk" >结算收款</a> 
-				</td>
-				</tr>
-			</table>
 		</div>
 		</fieldset>
 	</div>

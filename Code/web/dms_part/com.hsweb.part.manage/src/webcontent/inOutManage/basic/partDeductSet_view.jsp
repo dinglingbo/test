@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false" %>
 -->
 <head>
 	<title>配件提成设置</title>
-	<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partDeductSet.js?v=1.0.1"></script>
+	<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partDeductSet.js?v=1.0.2"></script>
 
 	<style type="text/css">
 	.table-label {
@@ -34,9 +34,11 @@ pageEncoding="UTF-8" session="false" %>
 		<table style="width:100%;">
 			<tr>
 				<td style="white-space:nowrap;">
-					<input id="partCodeSearch" name="queryCodeSearch" width="120px" emptyText="编码" class="nui-textbox"/>
+				    <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
+	                <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch()" />
+	<!-- 				<input id="partCodeSearch" name="queryCodeSearch" width="120px" emptyText="编码" class="nui-textbox"/>
 					<input id="namePySearch" name="namePySearch" width="120px" emptyText="拼音" class="nui-textbox"/>
-					<input id="partNameSearch" name="fullNameSearch" width="120px" emptyText="名称" class="nui-textbox"/>
+					<input id="partNameSearch" name="fullNameSearch" width="120px" emptyText="名称" class="nui-textbox"/> -->
 					<a class="nui-button" plain="true" iconCls="" onclick="onUnifySearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 					<span class="separator"></span>
 					<a class="nui-button" plain="true" iconCls="" onclick="addUnifyPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>

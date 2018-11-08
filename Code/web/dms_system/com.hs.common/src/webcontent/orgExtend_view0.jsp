@@ -11,7 +11,7 @@
 <head>
 	<title>门店管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<script src="<%=webPath + contextPath%>/common/js/orgExtendQuery.js?v=1.9.1" type="text/javascript"></script>
+	<script src="<%=webPath + contextPath%>/common/js/orgExtendQuery.js?v=1.9.5" type="text/javascript"></script>
 	<style type="text/css">
 		body {
 			margin: 0;
@@ -48,24 +48,24 @@
 			<div class="nui-toolbar">
 				<input class="nui-combobox" id="provinceId" visible="false" textField="name" url="" valueField="code" />
 				<input class="nui-combobox" id="cityId" visible="false" textField="name" url="" valueField="code" />
-				<input id="name" name="name" class="mini-textbox" emptytext="输入公司名称查询" width="200" />
+				<input id="name" name="name" class="mini-textbox" emptytext="输入公司名称查询" width="200" onenter="search()"/>
 				<a class="nui-button" onclick="search()" plain="true" enabled="">
 					<span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 				<a class="nui-button "  margin-right: 10px;" iconcls="" plain="true" onclick="edit('new')">
 					<span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+				<a class="nui-button "  margin-right: 10px;" iconcls="" plain="true" onclick="edit('edit')">
+					<span class="fa fa-pencil fa-lg"></span>&nbsp;修改</a>
 				<a class="nui-button "  iconcls="" plain="true" onclick="stoporstart('1')"
 				 id="jy" name="jy">
 					<span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
 				<a class="nui-button "  iconcls="" plain="true" onclick="stoporstart('2')"
 				 visible="false" id="qy" name="qy">
-					<i></i>&nbsp;启用</a>
-				<a class="nui-button "  margin-right: 10px;" iconcls="" plain="true" onclick="edit('edit')">
-					<span class="fa fa-pencil fa-lg"></span>&nbsp;修改</a>
+					<span class="fa fa-check fa-lg"></span>&nbsp;启用</a>
 			</div>
 
 			<div class="nui-fit">
-				<div id="datagrid1" class="nui-datagrid gridborder" style="width: 100%; height: 100%;" url="" idField="id" allowResize="true"
-				 dataField="rs" onselectionchanged="changebutton" sizeList="[20,30,50,100]" pageSize="20">
+				<div id="datagrid1" class="nui-datagrid gridborder" style="width: 100%; height: 100%;" url="" idField="id" allowResize="true" onrowdblclick="edit('edit')"
+				 dataField="rs" onselectionchanged="changebutton" sizeList="[20,30,50,100]" pageSize="20" allowCellWrap="true">
 					<div property="columns">
 						<div type="checkcolumn">选择</div>
 						<div field="orgid" width="120" headerAlign="center" align="center" visible="false">企业ID</div>

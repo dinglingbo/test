@@ -499,7 +499,7 @@ function selectPackage() {
 	nui.open({
 		targetWindow : window,
 		url : webPath + contextPath
-				+ "/repair/DataBase/Card/packageList.jsp?token=" + token,
+				+ "/com.hsweb.repair.DataBase.packageList.flow?token=" + token,
 		title : "本店套餐",
 		width : 1000,
 		height : 600,
@@ -649,6 +649,17 @@ function disableHtml(){
 	}
 }
 
+function CloseWindow(action) {
+	if (action == "close") {
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
+}
+
+function onClose(){
+	window.CloseOwnerWindow();	
+}
 
 //点击发生
 /*rpsPartGrid.on("cellclick",function(e){

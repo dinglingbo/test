@@ -1,6 +1,6 @@
 var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryTimesCard.biz.ext";
-var sysnUrl = webPath + contextPath + "/repair/DataBase/Card/timesCardSysn.jsp?token"+token;
+var sysnUrl = webPath + contextPath + "/com.hsweb.repair.DataBase.timesCardSysn.flow?token"+token;
 var grid = null;
 var xyguest = null;
 var xs = 0;

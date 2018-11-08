@@ -17,6 +17,16 @@
 </head>
 <body>
     <div class="nui-fit"> 
+    	     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                            <a class="nui-button" onclick="save('edit')" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+                            <a class="nui-button" onclick="Oncancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         <div class="form" style="width:90%;height:90%;left:0;right:0;margin: 0 auto;" id="basicInfoForm">
             <input class="mini-hidden" id="empid" name="empid" />
             <fieldset id="fd1" style="width:600px;">
@@ -100,12 +110,7 @@
             </tr>
         </table>
     </fieldset>
-    <div style="text-align: center;margin-top: 10px;margin-bottom: 20px;">
-        <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="javascript:save('new')" id="newand" name="newand"><i class="fa fa-plus"></i>&nbsp;保存并继续</a>
-        <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="javascript:save('edit')" ><i class="fa fa-save"></i>&nbsp;保存退出</a>
-        <a class="nui-button " style="margin-right:10px;" iconcls="" plain="false" onclick="Oncancel()"><i class="fa fa-sign-out"></i>&nbsp;退出</a>
 
-    </div>
 </div>
 </div>
 <script type="text/javascript">

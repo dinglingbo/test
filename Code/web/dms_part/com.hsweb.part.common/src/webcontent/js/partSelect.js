@@ -141,9 +141,6 @@ $(document).ready(function(v)
         }
     });
     
-    partGrid.on("rowdblclick",function(e){
-		onOk();
-	});
 	tempGrid.on("cellclick",function(e){ 
 		var field=e.field;
 		var row = e.row;

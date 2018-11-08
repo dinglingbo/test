@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修工时</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.1" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.6" type="text/javascript"></script>
 
 </head>
 <body>
@@ -53,9 +53,9 @@
 						   textField="name"
 						   valueField="customid"/> -->
 				<label style="font-family: Verdana;;font-size: 12px;">工时编码：</label>
-					<input class="nui-textbox" id="search-code" name="code"/>
+					<input class="nui-textbox" id="search-code" name="code" onenter="onSearch()"/>
 					<label style="font-family: Verdana;;font-size: 12px;">工时名称：</label>
-					<input class="nui-textbox" id="search-name" name="name" />
+					<input class="nui-textbox" id="search-name" name="name" onenter="onSearch()" />
 					<span class="separator"></span>
 					<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="onClear()"><span class="fa fa-trash-o"></span>&nbsp;清空</a>
@@ -108,20 +108,19 @@
 					 pageSize="50"
 					 totalField="page.count"
 					 sortMode="client"
-					 multiSelect="true"
+					 onrowdblclick="edit()"
 					 showPageSize="true"  onselectionchanged="selectionChanged"
 					 allowSortColumn="true"
 					 selectOnLoad="true"
 					 allowCellSelect="true"
 					 onDrawCell="onDrawCell"
-					 showFilterRow="false"
-					 multiSelect="true" >
+					 showFilterRow="false">
 					<div property="columns" >
 						<div type="indexcolumn">序号</div>
 						<div type="checkcolumn" name="checkcolumn" visible="false"></div>
 						<div header="工时基本信息" headerAlign="center">
 							<div property="columns">
-								<div field="code" headerAlign="center" width="60px">工时编码</div>
+								<div field="code" headerAlign="center" width="100px">工时编码</div>
 								<div field="name" headerAlign="center" allowSort="true" width="150px">工时名称</div>
 								<div field="type" headerAlign="center" allowSort="true" width="100px">工时类型</div>
 								<div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="50px">工时</div>
@@ -131,7 +130,7 @@
 						</div>
 						<div header="其他" headerAlign="center">
 							<div property="columns">
-								<div field="isDisabled" headerAlign="center" allowSort="true" width="70px">是否禁用</div>
+								<div field="isDisabled" headerAlign="center" allowSort="true" width="50px">是否禁用</div>
 								<div field="isShare" headerAlign="center" allowSort="true" width="50px">是否共享</div>
 							</div>
 						</div>
@@ -144,7 +143,6 @@
 					pageSize="1000"
 					selectOnLoad="true"
 					showModified="false"
-					onrowdblclick=""
 					multiSelect="true"
 					dataField="parts"
 					url="">

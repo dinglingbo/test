@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修工时</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.6" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.7" type="text/javascript"></script>
 
 </head>
 <body>
@@ -109,7 +109,7 @@
 					 totalField="page.count"
 					 sortMode="client"
 					 onrowdblclick="edit()"
-					 showPageSize="true"  onselectionchanged="selectionChanged"
+					 showPageSize="true"  
 					 allowSortColumn="true"
 					 selectOnLoad="true"
 					 allowCellSelect="true"

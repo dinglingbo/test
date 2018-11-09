@@ -144,7 +144,7 @@
                     <li iconCls="" onclick="onPrint(1)" id="type11">打印报价单</li>
                     <li iconCls="" onclick="onPrint(2)" id="type11">打印派工单</li>
                     <li iconCls="" onclick="onPrint(3)" id="type11">打印结算单</li>
-                    <li iconCls="" onclick="onPrint(4)" id="type11">打印结算单（小票）</li>
+                    <li iconCls="" onclick="onPrint(4)" id="type11">打印结算单(小票)</li>
                     <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
                 </ul>
 

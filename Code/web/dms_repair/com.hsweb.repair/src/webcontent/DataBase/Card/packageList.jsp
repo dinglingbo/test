@@ -12,7 +12,7 @@
 <head>
 <title>套餐操作</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.3.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.3.6"></script>
 
 </head>
 
@@ -28,7 +28,7 @@
 			<table id="table1">
 				<tr>
 					<td>套餐名称: <input class="nui-textbox" onenter="search()" 
-						name="criteria/_expr[1]/name" /> <input class="nui-hidden"
+						name="criteria/_expr[1]/name" id="pkgName"/> <input class="nui-hidden"
 						name="criteria/_expr[1]/_op" value="like"> <input
 						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
 						<a class="nui-button" onclick="search()" plain="true"> <span

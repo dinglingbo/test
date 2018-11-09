@@ -235,7 +235,7 @@ table{
     	});
     	
     	function SetData(mainParams,detailParms,formParms){
-       		$('#guestFullName').text("供应商:"+mainParams.guestFullName);
+       		$('#guestFullName').text("供应商:"+formParms.guestFullName);
        		$('#createDate').text("退货日期："+format(formParms.createDate,"yyyy/MM/dd/HH:mm:ss"));
        		$('#serviceId').text("No:"+formParms.serviceId);
      

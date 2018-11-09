@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	 <%@include file="/common/sysCommon.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	 <%@include file="/common/sysCommon.jsp" %>
 <html>
 <!-- 
   - Author(s): Guine
@@ -11,8 +11,8 @@
 <head>
 <title>电话跟踪</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/telTrack.js?v=1.0.0"></script>
-    <link href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/manage/js/telTrack.js?v=1.0.4"></script>
+    <link href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.4" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -56,6 +56,16 @@
                     valueFromSelect="true"
                     showNullItem="false"
                     nullItemText="请选择..."/>
+                <input class="nui-combobox" 
+	                  id="member" 
+	                  name="member" 
+	                  textField="empName"
+	                  valueField="empId"
+	          		  visible="false"
+	                  url=""
+	                  allowInput="true"
+	                  valueFromSelect="false"
+	                  width="100px">
                 <label style="font-family:Verdana;">车牌号：</label>
                 <input class="nui-textbox" name="carNo" id="query_carno" enabled="true"/>
                 
@@ -82,7 +92,7 @@
 <div class="nui-fit">
     <!-- splitter 1 -->
     <div class="nui-splitter" vertical="false" style="width:100%;height:100%;" style="border:0;" handlerSize=0>
-        <div size="61%" showCollapseButton="false" style="border:0;">
+        <div size="58%" showCollapseButton="false" style="border:0;">
             <div class="nui-fit">
                 <div title="" class="nui-panel"
                      showHeader="false"
@@ -96,7 +106,7 @@
                         ondrawcell=""
                         onSelect="setScoutForm"
                         dataField="data"
-                        
+                        allowCellWrap = true
                         virtualColumns="true"
                         idField="id"
                         showSummaryRow="true">
@@ -106,22 +116,22 @@
                             <div headerAlign="center"><strong>车辆信息</strong>
                                 <div property="columns">
                                     <div field="id" visible=false>ID</div>
-                                    <div field="orgid" width="70" headerAlign="center" allowSort=false>所在分店</div>
-                                    <div field="carNo" width="50" headerAlign="center" allowSort=false>车牌号</div>
-                                    <div field="carBrandId" width="40" headerAlign="center">品牌</div>
-                                    <div field="carModel" width="40" headerAlign="center">车型</div>
-                                    <div field="vin" width="70" headerAlign="center" allowSort=false>VIN</div>
-                                    <div field="firstRegDate" width="70" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
-                                    <div field="annualInspectionDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
-                                    <div field="recorder" width="40" headerAlign="center" allowSort=false>建档人</div>
-                                    <div field="recordDate" width="70" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>建档日期</div>
+                                    <div field="orgid" width="100" headerAlign="center" allowSort=false>所在分店</div>
+                                    <div field="carNo" width="80" headerAlign="center" allowSort=false>车牌号</div>
+                                    <div field="carBrandId" width="100" headerAlign="center">品牌</div>
+                                    <div field="carModel" width="250" headerAlign="center">车型</div>
+                                    <div field="vin" width="150" headerAlign="center" allowSort=false>车架号(VIN)</div>
+                                    <div field="firstRegDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
+                                    <div field="annualInspectionDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
+                                    <div field="recorder" width="80" headerAlign="center" allowSort=false>建档人</div>
+                                    <div field="recordDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>建档日期</div>
                                 </div>
                             </div>
                             <div headerAlign="center"><strong>客户信息</strong>
                                 <div property="columns">
                                     <div field="guestId" visible=false>客户ID</div>
                                     <div field="guestName" width="80" headerAlign="center" summaryType="" allowSort=false>客户名称</div>
-                                    <div field="address" width="100" headerAlign="center" summaryType="" allowSort=false>地址</div>
+                                    <div field="address" width="150" headerAlign="center" summaryType="" allowSort=false>地址</div>
                                     <!--
                                     <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>客户等级</div>
                                     <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>来厂次数</div>
@@ -131,10 +141,10 @@
                             </div>
                             <div headerAlign="center"><strong>联系状态</strong>
                                 <div property="columns">
-                                    <div field="visitManId" width="40" headerAlign="center" summaryType="" allowSort=false>营销员</div>
-                                    <div field="visitStatus" width="60" headerAlign="center">跟踪状态</div>
-                                    <div field="priorScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>上次联系时间</div>
-                                    <div field="nextScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>下次联系时间</div>
+                                    <div field="visitManId" width="60" headerAlign="center" summaryType="" allowSort=false>营销员</div>
+                                    <div field="visitStatus" width="100" headerAlign="center">跟踪状态</div>
+                                    <div field="priorScoutDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>上次联系时间</div>
+                                    <div field="nextScoutDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>下次联系时间</div>
                                 </div>
                             </div>
                         </div>

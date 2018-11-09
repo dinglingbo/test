@@ -80,7 +80,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 
                 <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;关闭 </a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消 </a>
 
                 <input id="billTypeId" width="60px" emptyText="票据类型" textField="name" valueField="customid" class="nui-combobox" visible="false"/>
                 <input id="settleTypeId" width="60px" emptyText="结算方式" textField="name" valueField="customid" class="nui-combobox" visible="false"/>

@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 -->
 <head>
     <title>编辑保险公司</title>
-    <script src="<%= request.getContextPath() %>/repair/js/DataBase/Insurance/InsuranceDetail.js?v=1.0.5"></script>
+    <script src="<%= request.getContextPath() %>/repair/js/DataBase/Insurance/InsuranceDetail.js?v=1.0.6"></script>
     <style type="text/css">
     table {
 /*      table-layout: fixed;
@@ -31,6 +31,16 @@ pageEncoding="UTF-8" session="false" %>
 </style>
 </head>
 <body>
+      <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+        <table style="width:80%;">
+            <tr>
+                <td style="width:80%;">
+                    <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
     <div id="basicInfoForm" class="nui-form" style="padding-top:5px;">
         <input name="id" class="nui-hidden">
         <table class="nui-form-table" style=" left:0;right:0;margin: 0 auto;">
@@ -40,7 +50,7 @@ pageEncoding="UTF-8" session="false" %>
                         <label>保险公司代码：</label>
                     </td>
                     <td style="width: 150px">
-                        <input class="nui-textbox" name="code" >
+                        <input class="nui-textbox" name="code" id="code" >
                     </td>
                     <td style="width:50px;"></td>
                     <td class="form_label required">
@@ -171,9 +181,9 @@ pageEncoding="UTF-8" session="false" %>
             </tbody>
             </table>
         </div>
-        <div style="text-align:center;padding:10px;">   
-            <a class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
-            <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a>
-        </div>
+<!--         <div style="text-align:center;padding:10px;">    -->
+<!--             <a class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a> -->
+<!--             <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a> -->
+<!--         </div> -->
     </body>
     </html>

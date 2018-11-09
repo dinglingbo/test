@@ -38,7 +38,7 @@ function SetInitData(data) {
         data.softopenDate = format(data.softopenDate, 'yyyy-MM-dd');
     }
     if (data.recordDate) {
-        data.recordDate = format(data.recordDate, 'yyyy-MM-dd hh:MM');
+        data.recordDate = format(data.recordDate, ' yyyy-MM-dd HH:mm:ss');
     }
     if (data.modifyDate) {
         data.modifyDate = format(data.modifyDate, 'yyyy-MM-dd');

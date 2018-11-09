@@ -8,7 +8,7 @@
 -->
 <head>
 <title>期初库存</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/initPartStock.js?v=2.0.2"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/initPartStock.js?v=2.0.3"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -63,7 +63,7 @@
                             <input class="nui-hidden" id="enterTypeId" name="enterTypeId"/>
                             <table style="width: 100%;">
                                 <tr>
-                                    <td class="title required">
+                                    <td class="title required" style="width:6%">
                                         <label>默认仓库：</label>
                                     </td>
                                     <td>
@@ -85,7 +85,7 @@
                                     <td colspan="1">
                                         <input class="nui-textbox" id="orderMan" name="orderMan" width="100%">
                                     </td>
-                                    <td class="title">
+                                    <td class="title" style="width:6%">
                                         <label>入库单号：</label>
                                     </td>
                                     <td>

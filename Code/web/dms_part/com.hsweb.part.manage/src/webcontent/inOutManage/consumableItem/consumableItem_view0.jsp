@@ -60,7 +60,7 @@ pageEncoding="UTF-8" session="false"%>
                             <!--                         <span class="separator"></span> -->
                             <a class="nui-button" iconCls="" plain="true" onclick="morePartSearch" id="saveBtn"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             <!--                         <a class="nui-button" iconCls="" plain="true" onclick="onOut" id="out"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a> -->
-                            <!--                         <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a> -->
+                            <!--                         <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> -->
                             
                             <input id="billTypeId" visible="false" class="nui-combobox" textField="name" valueField="customid" />
                             <input id="tempId" visible="false" class="nui-textbox" name="tempId" />
@@ -106,7 +106,7 @@ pageEncoding="UTF-8" session="false"%>
                    <div field="partBrandId" name="partBrandId" width="70" headerAlign="center" header="品牌"></div>
                    <div field="applyCarModel" name="applyCarModel" width="200" headerAlign="center" header="车型"></div>
                    <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
-                   <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd H:mm" width="120px" header="入库日期" format="yyyy-MM-dd H:mm" headerAlign="center" allowSort="true"></div>
+                   <div field="auditDate" allowSort="true" dateFormat="  yyyy-MM-dd HH:mm" width="120px" header="入库日期" format="  yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
                    <div field="guestName" width="280px" headerAlign="center" allowSort="true" header="供应商"></div>  
 
                    <div field="fullName" name="fullName" width="300" headerAlign="center" header="配件全称"></div> 
@@ -186,7 +186,7 @@ pageEncoding="UTF-8" session="false"%>
             <div field="sellUnitPrice" headerAlign="center" allowSort="true" visible="true" width="">单价</div>
             <div field="sellAmt" headerAlign="center" allowSort="true" visible="true" width="">金额</div>
             <div field="remark" id="remark" headerAlign="center" allowSort="true" visible="true" width="">备注</div>
-            <div field="pickDate" headerAlign="center" allowSort="true" visible="true" width="" format="yyyy-MM-dd" dateFormat="yyyy-MM-dd H:mm">出库日期</div>  
+            <div field="pickDate" headerAlign="center" allowSort="true" visible="true" width="" format="yyyy-MM-dd" dateFormat="  yyyy-MM-dd HH:mm">出库日期</div>  
             <div field="pickMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
             <div field="returnReasonId" id="returnReasonId" headerAlign="center" allowSort="true" visible="false" width="">归库原因ID
                <input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />

@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.1.5" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.1.6" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0; 
@@ -33,12 +33,12 @@ pageEncoding="UTF-8" session="false" %>
         <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(2)">所有维修车辆</a>
         <label style="font-family:Verdana;">车牌号：</label>
         <input class="nui-textbox" name="tcarNo" id="tcarNo">
-        <a class="nui-button" onclick="quickSearch(3)" iconcls="icon-search" plain="false">查询(<u>Q</u>)</a>
+        <a class="nui-button" plain="true" onclick="quickSearch(3)" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
-        <a class="nui-button" iconCls="" plain="false" onclick="">发送短信</a>
-        <a class="nui-button" iconCls="" plain="false" onclick="WindowrepairHistory()">维修历史</a>
-        <a class="nui-button" iconCls="" plain="false" onclick="">回访历史</a>
-        <a class="nui-button" iconCls="" plain="false" onclick="WindowComplianDetail()">投诉登记</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="">发送短信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()">维修历史</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="">回访历史</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowComplianDetail()">投诉登记</a>
     </div>
     <div class="nui-fit">
         <div class="nui-splitter" style="width: 100%; height: 100%;"> 
@@ -54,7 +54,7 @@ pageEncoding="UTF-8" session="false" %>
                         <div type="indexcolumn">序号</div>
                         <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
                         <div field="mtAdvisor" width="70" headerAlign="center" align="center">维修顾问</div>
-                        <div field="serviceCode" width="70" headerAlign="center" align="center">工单号</div>
+                        <div field="serviceCode" width="130" headerAlign="center" align="center">工单号</div>
                         <div field="leaveDays" width="70" headerAlign="center" align="center">离厂天数</div>
                     </div>
                 </div> 
@@ -74,15 +74,15 @@ pageEncoding="UTF-8" session="false" %>
                     <input class="nui-hidden" name="guestId" id="guestId"/>
                     <table class="tmargin" style="margin-left:5px;">
                         <tr class="htr">
-                            <td style="width: 60px;">客户名称：</td>
+                            <td style="width: 70px;">客户名称：</td>
                             <td style="width: 140px;">
                                 <input id="guest" name="guest" class="nui-textbox textboxWidth">
                             </td>
-                            <td style="width: 60px;">客户电话：</td>
+                            <td style="width: 70px;">客户电话：</td>
                             <td style="width: 140px;">
                                 <input id="mobile" name="mobile" class="nui-textbox textboxWidth">
                             </td>
-                            <td style="width: 60px;">来厂次数：</td>
+                            <td style="width: 70px;">来厂次数：</td>
                             <td style="width: 140px;">
                                 <input id="" name="" class="nui-textbox textboxWidth">
                             </td>
@@ -162,11 +162,21 @@ pageEncoding="UTF-8" session="false" %>
                     <div style="height: 10px;width: 100%;"></div>
                     <div class="nui-fit">
                         <div id="p1" class="nui-panel" title="请填写回访内容" iconCls="" style="width:100%;height:100%;"buttons="">
+						    <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+					            <table style="width:80%;">
+					                <tr>
+					                    <td style="width:80%;">
+					                        <a class="nui-button" iconCls="" plain="true" onclick="save"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+					                 
+					                    </td>
+					                </tr>
+					            </table>
+					        </div>
                             <input class="nui-hidden" name="visitId" id="visitId"/>
                             <input class="nui-hidden" name="detailId" id="detailId"/>
                             <table class="tmargin" style="table-layout: fixed;width:100%">
                                 <tr class="htr">
-                                    <td  style="width: 60px;">回访方式：</td>
+                                    <td  style="width: 70px;">回访方式：</td>
                                     <td style="width: 135px;">
                                         <input id="visitMode" name="visitMode" class="nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name">
                                     </td>
@@ -174,7 +184,7 @@ pageEncoding="UTF-8" session="false" %>
                                     <td style="width: 135px;">
                                         <input id="careDueDate" name="careDueDate" class=" nui-datepicker textboxWidth" >
                                     </td>
-                                    <td style="width: 60px;">保养周期：</td>
+                                    <td style="width: 70px;">保养周期：</td>
                                     <td style="width: 135px;">
                                         <input id="careDayCycle" name="careDayCycle" class="nui-spinner textboxWidth" minValue="0">
                                     </td>
@@ -196,9 +206,9 @@ pageEncoding="UTF-8" session="false" %>
                                         <input id="visitDate" name="visitDate" class="nui-datepicker textboxWidth">
                                     </td>
                                 </tr>
-                                <tr class="htr">
-                                    <td colspan="7"><a class="nui-button" iconCls="" plain="false" onclick="save">保存</a></td>
-                                </tr>
+<!--                                 <tr class="htr"> -->
+<!--                                     <td colspan="7"><a class="nui-button" iconCls="" plain="false" onclick="save">保存</a></td> -->
+<!--                                 </tr> -->
                             </table>
                         </div>
                     </div>

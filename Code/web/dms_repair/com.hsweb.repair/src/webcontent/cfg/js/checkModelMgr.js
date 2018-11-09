@@ -30,7 +30,8 @@ $(document).ready(function(v)
     isDisabledEl = nui.get("isDisabled");
 
     isDisabledEl.setData(statusList);
-
+    
+    
     leftGrid.on("drawcell",function(e){
         switch (e.field)
         {
@@ -63,6 +64,15 @@ $(document).ready(function(v)
         var mainId = row.id;
 
 	    loadCheckDetail(mainId);
+    });
+    
+    rightGrid.on("rowdblclick", function(e) {
+        var row = rightGrid.getSelected();
+        var rowc = nui.clone(row);
+        if (!rowc)
+            return;
+        editCheckDetail();
+
     });
     rightGrid.on("drawcell",function(e){
         switch (e.field)
@@ -106,7 +116,16 @@ $(document).ready(function(v)
             typeHash[v.customid] = v;
         });
     });
+    
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
 
+        if ((keyCode == 13)) { // Enter
+        	onSearch();
+        }
+
+    }
     onSearch();
 });
 function getSearchParam(){

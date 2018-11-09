@@ -57,10 +57,10 @@ function onOk(){
             success: function (data) {
                 $("#save").show();
                 if (data.errCode == "S"){
-                    nui.alert("保存成功！");
+                    showMsg("保存成功！","S");
                     closeWindow();
                 }else {
-                    nui.alert(data.errMsg);
+                    showMsg(data.errMsg,"E");
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {

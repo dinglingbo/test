@@ -21,6 +21,8 @@ $(document).ready(function(v){
             });
         }
     });
+    
+
     leftBrandGrid.on("rowclick",function(e)
     {
         onLeftBrandGridRowClick(e);
@@ -45,6 +47,33 @@ $(document).ready(function(v){
     rightModelGrid.on("rowclick",function(e)
     {
         onRightModelGridRowClick(e);
+    });
+    
+    leftBrandGrid.on("rowdblclick", function(e) {
+        var row = leftBrandGrid.getSelected();
+        var rowc = nui.clone(row);
+        if (!rowc)
+            return;
+        editBrand();
+
+    });
+    
+    leftSeriesGrid.on("rowdblclick", function(e) {
+        var row = leftSeriesGrid.getSelected();
+        var rowc = nui.clone(row);
+        if (!rowc)
+            return;
+        editSeries();
+
+    });
+    
+    rightModelGrid.on("rowdblclick", function(e) {
+        var row = rightModelGrid.getSelected();
+        var rowc = nui.clone(row);
+        if (!rowc)
+            return;
+       editModel();
+
     });
 	onSearch(currType);
 });

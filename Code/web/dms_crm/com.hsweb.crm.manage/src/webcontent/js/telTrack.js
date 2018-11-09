@@ -6,6 +6,8 @@ var dgScoutDetail;
 var form1;
 var form2;
 var currGuest;
+var memList = [];
+var memHash={};
 
 $(document).ready(function(v){
     queryForm = new nui.Form("#queryForm");
@@ -27,6 +29,10 @@ $(document).ready(function(v){
             e.cellHtml = setColVal('carModelId', 'carModelId', 'carModel', e.value);
         }else if(field == "visitStatus"){//跟踪状态
             e.cellHtml = setColVal('visitStatus', 'customid', 'name', e.value);
+        }else if(field == "visitManId"){//营销员
+            if(memHash[e.value]){
+            	e.cellHtml = memHash[e.value].empName || "";
+            }
         }
     });
     dgScoutDetail.on("drawcell", function (e) { //表格绘制
@@ -36,6 +42,24 @@ $(document).ready(function(v){
         }else if(field == "scoutMode"){//跟踪方式
             e.cellHtml = setColVal('scoutMode', 'customid', 'name', e.value);
         }
+    });
+    
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
+
+        if ((keyCode == 13)) { // F9
+            query();
+        }
+    }
+    
+    initMember("member",function(){
+        memList = nui.get('member').getData();
+        memList.forEach(function(v) {
+			memHash[v.empId] = v;
+		});
+
     });
     init();
     query();
@@ -62,7 +86,7 @@ function query(){
     params.p = data;
     dgGrid.load(params,null,function(){
         //失败;
-        nui.alert("数据加载失败！");
+        showMsg("数据加载失败！","E");
     });
 }
 
@@ -75,7 +99,7 @@ function edit(){
     if (row) {
         editWin("修改模板", row);
     } else {
-        alert("请选中一条记录");
+        showMsg("请选中一条记录","W");
     }
 }
 
@@ -153,13 +177,13 @@ function saveClientInfo(){
 function doSave(tform, url, callBack){
     //验证
     if(!formValidate(tform)){
-        nui.alert("请完善信息!");
+        showMsg("请完善信息!","W");
         return ;
     }
 
     var paramData = form2.getData();
     if(!paramData.id){
-        nui.alert("未选中客户资料!","提示");
+        showMsg("未选中客户资料!","W");
         return false;
     }
     
@@ -173,18 +197,18 @@ function doSave(tform, url, callBack){
             cache: false,
             success: function (data) {
                 if (data.errCode == "S"){
-                    nui.alert("保存成功！");
+                    showMsg("保存成功！","S");
                     if(callBack){
                         callBack();
                     }
                     //tform.setData(currGuest);
                     dgGrid.reload();
                 }else {
-                    nui.alert(data.errMsg);
+                    showMsg(data.errMsg,"E");
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                nui.alert(jqXHR.responseText);
+                showMsg(jqXHR.responseText);
             }
 		});
     }
@@ -194,7 +218,7 @@ function doSave(tform, url, callBack){
 //选择话术
 function selTalkArt(){
    var data = {action: "sel"};
-   data.url = "/basic/talkArtTpl.jsp";
+   data.url = webPath + contextPath+"/basic/talkArtTpl.jsp";
    data.width = 680;
    data.height = 520;
    openTalkArt(data, "选择话术")

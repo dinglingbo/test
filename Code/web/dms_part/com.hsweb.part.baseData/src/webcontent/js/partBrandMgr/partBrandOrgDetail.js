@@ -9,6 +9,17 @@ $(document).ready(function(v)
 {
     brandGrid = nui.get("brandGrid");
     brandGrid.setUrl(brandUrl);
+    
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
+
+        if ((keyCode == 27)) { // ESC
+            CloseWindow('cancle');
+        }
+
+    }
 
     brandGrid.on("drawcell",function(e){
         switch (e.field)
@@ -99,4 +110,17 @@ function save()
             console.log(jqXHR.responseText);
         }
     });
+}
+
+function CloseWindow(action) {
+    //if (action == "close" && form.isChanged()) {
+    //    if (confirm("数据被修改了，是否先保存？")) {
+    //        return false;
+    //    }
+    //}
+    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+    else window.close();
+}
+function onCancel(e) {
+    CloseWindow("cancel");
 }

@@ -3,8 +3,8 @@
 <sqlMap>
     <!--话术模板-->
     <select id="getTalkArtList" parameterClass="HashMap" resultClass="com.hsapi.crm.data.crmBasic.CrmTalkArt">
-        SELECT id, orgcode, type_id typeId, topic, source, content, recorder, 
-            record_date recordDate, modifier, modify_date modifyDate, orgid
+        SELECT id, orgid, type_id typeId, topic, source, content, recorder, 
+            record_date recordDate, modifier, modify_date modifyDate
         FROM crm_talk_art
         WHERE orgid = #orgid#
         <isNotNull property="typeId">

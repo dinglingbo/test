@@ -107,12 +107,12 @@
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
-                        <div field="createDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="盘点日期"></div>
+                        <div field="createDate" width="150" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="盘点日期"></div>
                         <div field="orderMan" width="60" headerAlign="center" header="盘点员"></div><div field="auditSign" width="50" headerAlign="center" header="状态"></div>
                         <div field="serviceId" headerAlign="center" width="120" header="盘点单号"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                        <div field="auditDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="审核日期"></div>
+                        <div field="auditDate" width="150" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="审核日期"></div>
                     </div>
                 </div>
             </div>
@@ -347,7 +347,7 @@
             <tr>
                 <td style="width:100%;">
                     <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
         </table>

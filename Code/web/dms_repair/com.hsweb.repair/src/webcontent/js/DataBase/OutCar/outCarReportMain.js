@@ -51,6 +51,7 @@ $(document).ready(function (v) {
     });
     basicInfoForm = new nui.Form("#basicInfoForm");
     basicInfoForm.setEnabled(false);
+    
 });
 function onOutCarRowClick(e)
 {

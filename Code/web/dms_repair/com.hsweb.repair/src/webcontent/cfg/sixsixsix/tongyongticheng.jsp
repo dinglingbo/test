@@ -28,7 +28,7 @@ body {
 			<div>
 				<strong><span>工时提成：</span></strong>
 				<span style="color: red">如果一个工时提成没有设置，则会使用通用提成。若需关闭通用提成，请清空设置即可。</span>
-				<a class="nui-button" iconcls="icon-save" onclick="saveAll()">保存</a>
+				<a class="nui-button" iconcls="" onclick="saveAll()">保存</a>
 				<input style="display :none;" id="serviceTypeId" name="serviceTypeId" class="nui-combobox" valueField="id" textFiled="name" required="true"allowInput="true">
 			</div>
 			<div id="form">
@@ -80,7 +80,7 @@ body {
 			<div>
 				<strong><span>配件提成：</span></strong>
 				<span style="color: red">如果一个配件提成没有设置，则会使用通用提成。若需关闭通用提成，请清空设置即可。</span>
-				<a class="nui-button" iconcls="icon-save" onclick="savePart()">保存</a>
+				<a class="nui-button" iconcls="" onclick="savePart()">保存</a>
 			</div>
 			<div id="form2">
 				<table style="width:100%">

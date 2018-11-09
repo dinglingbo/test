@@ -11,7 +11,7 @@
 -->
 <head>
 <title>品牌车型</title>
-<script src="<%=request.getContextPath()%>/repair/js/DataBase/Brand/BrandMain.js?v=1.0.5"></script>
+<script src="<%=request.getContextPath()%>/repair/js/DataBase/Brand/BrandMain.js?v=1.0.8"></script>
 <style type="text/css">
 table {
 	table-layout: fixed;
@@ -54,10 +54,10 @@ table {
                         <table>
                             <tr>
                                 <td>
-                                    <a class="nui-button" id="addBrand" iconCls="icon-add" onclick="addBrand()" plain="true">新增品牌</a>
-                                    <a class="nui-button" id="updateBrand" iconCls="icon-edit" onclick="editBrand()" plain="true">修改品牌</a>
-                                    <a class="nui-button" id="disableBrand" iconCls="icon-no" onclick="disableBrand()" plain="true">禁用品牌</a>
-                                    <a class="nui-button" plain="true" iconCls="icon-ok" onclick="enableBrand()" id="enableBrand" visible="false">启用品牌</a>
+                                    <a class="nui-button" id="addBrand" iconCls="" onclick="addBrand()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增品牌</a>
+                                    <a class="nui-button" id="updateBrand" iconCls="" onclick="editBrand()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改品牌</a>
+                                    <a class="nui-button" id="disableBrand" iconCls="" onclick="disableBrand()" plain="true"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用品牌</a>
+                                    <a class="nui-button" plain="true" iconCls="" onclick="enableBrand()" id="enableBrand" visible="false"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用品牌</a>
                                 </td>
                             </tr>
                         </table>
@@ -88,8 +88,8 @@ table {
                         <table>
                             <tr>
                                 <td>
-                                    <a class="nui-button" id="add" iconCls="icon-add" onclick="addSeries()" plain="true">新增车系</a>
-                                    <a class="nui-button" id="update" iconCls="icon-edit" onclick="editSeries()" plain="true">修改车系</a>
+                                    <a class="nui-button" id="add" iconCls="" onclick="addSeries()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增车系</a>
+                                    <a class="nui-button" id="update" iconCls="" onclick="editSeries()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改车系</a>
                                 </td>
                             </tr>
                         </table>
@@ -125,10 +125,10 @@ table {
                 <table>
                     <tr>
                         <td >
-                            <a class="nui-button" iconCls="icon-add" onclick="addModel()" plain="true">新增车型</a>
-                            <a class="nui-button" iconCls="icon-edit" onclick="editModel()" plain="true">修改车型</a>
-                            <a class="nui-button" iconCls="icon-no" onclick="disableModel()" plain="true" id="disableModel">禁用车型</a>
-                            <a class="nui-button" plain="true" iconCls="icon-ok" onclick="enableModel()" id="enableModel" visible="false">启用车型</a>
+                            <a class="nui-button" iconCls="" onclick="addModel()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增车型</a>
+                            <a class="nui-button" iconCls="" onclick="editModel()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改车型</a>
+                            <a class="nui-button" iconCls="" onclick="disableModel()" plain="true" id="disableModel"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用车型</a>
+                            <a class="nui-button" plain="true" iconCls="" onclick="enableModel()" id="enableModel" visible="false"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用车型</a>
                         </td>
                     </tr>
                 </table>

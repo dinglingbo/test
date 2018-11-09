@@ -290,10 +290,10 @@ function save() {
         for(var i=0; i<accountAdd.length; i++){
             var temp = accountAdd[i];
             if(temp.createDate) {
-                temp.createDate = format(temp.createDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.createDate = format(temp.createDate, ' yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             if(temp.operateDate) {
-                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.operateDate = format(temp.operateDate, ' yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             accountAddList.push(temp);
         }
@@ -304,10 +304,10 @@ function save() {
         for(var i=0; i<accountUpdate.length; i++){
             var temp = accountUpdate[i];
             if(temp.createDate) {
-                temp.createDate = format(temp.createDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.createDate = format(temp.createDate, ' yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             if(temp.operateDate) {
-                temp.operateDate = format(temp.operateDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
+                temp.operateDate = format(temp.operateDate, ' yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
             }
             accountUpdateList.push(temp);
 
@@ -373,12 +373,12 @@ function audit() {
 		for (var i = 0; i < data.length; i++) {
 			var temp = data[i];
 			if (temp.createDate) {
-				temp.createDate = format(temp.createDate, 'yyyy-MM-dd hh:MM')
+				temp.createDate = format(temp.createDate, ' yyyy-MM-dd HH:mm:ss')
 						+ '.0';// 用于后台判断数据是否在其他地方已修改
 			}
 			if (temp.operateDate) {
 				temp.operateDate = format(temp.operateDate,
-						'yyyy-MM-dd hh:MM')
+						' yyyy-MM-dd HH:mm:ss')
 						+ '.0';// 用于后台判断数据是否在其他地方已修改
 			}
 			dataList.push(temp);

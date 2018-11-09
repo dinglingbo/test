@@ -185,7 +185,7 @@
         </table>
     </div>
 <div style="text-align:center;padding:10px;">
-    <a class="mini-button" id="cancelBtn" onclick="onCancel" style="width:60px;"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>&nbsp;&nbsp;
+    <a class="mini-button" id="cancelBtn" onclick="onCancel" style="width:60px;"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>&nbsp;&nbsp;
     <a class="mini-button" id="chooseBtn" onclick="onOk" style="width:60px;margin-right:20px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
     
     

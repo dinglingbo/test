@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购订单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrder.js?v=1.0.35"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrder.js?v=1.0.39"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -62,7 +62,7 @@ body .mini-grid-row-selected{
             <tr>
                 <td style="width:100%;">
                     <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
         </table>
@@ -101,6 +101,16 @@ body .mini-grid-row-selected{
      showModal="true"
      allowResize="false"
      allowDrag="true">
+<!--          <div class="nui-toolbar" style="padding:0px;border-bottom:0;"> -->
+<!--             <table style="width:80%;"> -->
+<!--                 <tr> -->
+<!--                     <td style="width:80%;"> -->
+<!--                         <a class="nui-button" iconCls="" plain="true" onclick="onAdvancedAddOk()"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a> -->
+<!--                         <a class="nui-button" iconCls="" plain="true" onclick="onAdvancedAddCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> -->
+<!--                     </td> -->
+<!--                 </tr> -->
+<!--             </table> -->
+<!--         </div> -->
     <div id="advancedAddForm" class="form">
         <table style="width:100%;">
           

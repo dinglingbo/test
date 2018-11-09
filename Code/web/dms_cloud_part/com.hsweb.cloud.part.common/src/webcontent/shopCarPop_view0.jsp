@@ -38,7 +38,7 @@
         <tr>
             <td style="width:100%;">
                 <a class="nui-button" iconCls="" plain="true" onclick="onOk" id="chooseBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="onCancel" id="cancelBtn"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onCancel" id="cancelBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
             </td>
         </tr>
     </table>

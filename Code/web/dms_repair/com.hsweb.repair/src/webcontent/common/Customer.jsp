@@ -46,7 +46,7 @@ table {
                 <td>
                     <a class="nui-button" plain="true" id="addBtn" onclick="onAdd()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增客户</a>
                     <a class="nui-button" plain="true" id="editBtn" onclick="onEdit()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改客户</a>
-                    <a class="nui-button" plain="true" id="closeBtn" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+                    <a class="nui-button" plain="true" id="closeBtn" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
         </table>

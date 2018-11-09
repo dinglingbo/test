@@ -11,7 +11,7 @@
 -->
 <head>
 <title>保险公司</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Insurance/InsuranceMain.js?v=1.0.3"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Insurance/InsuranceMain.js?v=1.0.5"></script>
 <style type="text/css">
 table {
 	width: 100%;

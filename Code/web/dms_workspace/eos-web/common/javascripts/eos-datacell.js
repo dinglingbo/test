@@ -4,7 +4,7 @@ var DATACELL_STYLE_ROW2 = "ROW_STYLE2_NOCSS";// 交替行的样式，经邵斐�
 
 var DATE_FORMAT = "yyyy-MM-dd";
 var TIME_FORMAT = "HH:mm:ss";
-var DATETIME_FORMAT = "yyyy-MM-dd hh:MM";
+var DATETIME_FORMAT = " yyyy-MM-dd HH:mm:ss";
 
 var PICTURE_BLANK = PICTURE_BLANK || '';
 /**

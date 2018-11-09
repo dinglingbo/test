@@ -6,10 +6,20 @@
 <head>
 <title>业绩详情</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/manage/js/investDetail.js?v=1.0.1"></script>
+    <script src="<%=request.getContextPath()%>/manage/js/investDetail.js?v=1.0.3"></script>
 </head>
 <body>
     <div class="nui-fit">
+    	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+	        <table >
+	            <tr>
+	                <td>
+	                    <a class="nui-button" iconCls="" plain="true" id="ok" name = "ok" onclick="save()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+	                    <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+	                </td>
+	            </tr>
+	        </table>
+	    </div>
     	<table id="investForm">
     		<tr>
     		
@@ -47,15 +57,6 @@
             </tr>
     	</table>
     </div>
-    <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-        <table style="left: 160px;">
-            <tr>
-                <td>
-                    <a class="nui-button" iconCls="icon-save" plain="true" id="ok" name = "ok" onclick="save()">保存</a>
-                    <a class="nui-button" iconCls="icon-close" plain="true" onclick="onCancel()">关闭</a>
-                </td>
-            </tr>
-        </table>
-    </div>
+
 </body>
 </html>

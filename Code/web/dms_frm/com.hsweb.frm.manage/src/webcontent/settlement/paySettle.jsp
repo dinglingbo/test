@@ -175,12 +175,12 @@
                         <div field="nowVoidAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" visible="false" header="免付金额">
                             <input property="editor" vtype="float" class="nui-textbox"/>
                         </div>
-                        <div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd H:mm"></div>
+                        <div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="  yyyy-MM-dd HH:mm"></div>
                         <div field="settleStatus" width="60" headerAlign="center" header="结算状态"></div>
                         <div field="charOffAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="已结金额"></div>
                         <!-- <div field="balanceSign" type="checkboxcolumn" trueValue="1" falseValue="0" width="60" headerAlign="center" header="是否对账"></div>
                         <div field="balancer" width="60" headerAlign="center" header="对账人"></div>
-                        <div allowSort="true" field="balanceDate" headerAlign="center" header="对账日期" dateFormat="yyyy-MM-dd H:mm"></div> -->
+                        <div allowSort="true" field="balanceDate" headerAlign="center" header="对账日期" dateFormat="  yyyy-MM-dd HH:mm"></div> -->
 
                     </div>
                 </div>

@@ -77,7 +77,7 @@
                             <label>下次跟进：</label>
                         </td>
                         <td>
-                            <input id="nextScoutDate"  name="nextScoutDate" width="150px" class="nui-datepicker" format="yyyy-MM-dd H:mm" timeFormat="H:mm" showTime="true" 
+                            <input id="nextScoutDate"  name="nextScoutDate" width="150px" class="nui-datepicker" format="  yyyy-MM-dd HH:mm" timeFormat="H:mm" showTime="true" 
                                 allowInput="false" showTodayButton="false" ondrawdate="onDrawDate" viewDate="new Date()" nullValue="null" showOkButton="true"
                                 showClearButton="false" required="true"/>
                         </td>                        

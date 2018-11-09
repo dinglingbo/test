@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增品牌</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Brand/CarBrandDetail.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Brand/CarBrandDetail.js?v=1.0.2"></script>
 <style type="text/css">
 
 table {
@@ -21,6 +21,16 @@ table {
 </style>
 </head>
 <body>
+        <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:80%;">
+                    <tr>
+                        <td style="width:80%;">
+                            <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 	<fieldset style="width: 92.5%; height: 55%; border: solid 1px #aaa; position: relative; margin: 5px 5px;">
 		<div id="dataform1"  class="form">
 			<input name="id" class="nui-hidden" />
@@ -29,7 +39,7 @@ table {
 					<td class="form_label" width="100px"><span
 						style="color: #FF0000; margin-left: 20px;">品牌英文名：</span></td>
 					<td colspan="1"><input class="nui-textbox"
-						name="carBrandEn" width="230px" /></td>
+						name="carBrandEn"id="carBrandEn" width="230px" /></td>
 				</tr>
 				<tr style="display: block; margin: 10px 0">
 					<td class="form_label" width="100px"><span
@@ -40,9 +50,9 @@ table {
 			</table>
 		</div>
 	</fieldset>
-	<div style="text-align: center;">
-		<a class="nui-button" onclick="onOk" style="margin-right: 20px;">保存</a>
-		<a class="nui-button" onclick="onCancel">取消</a>
-	</div>
+<!-- 	<div style="text-align: center;"> -->
+<!-- 		<a class="nui-button" onclick="onOk" style="margin-right: 20px;">保存</a> -->
+<!-- 		<a class="nui-button" onclick="onCancel">取消</a> -->
+<!-- 	</div> -->
 </body>
 </html>

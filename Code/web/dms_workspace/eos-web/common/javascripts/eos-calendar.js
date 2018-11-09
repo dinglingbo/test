@@ -17,9 +17,9 @@ function Calendar(id,format)
 	this.format=isDateFormat(format)?format:"yyyy-MM-dd";
 	if(isTimeFormat(this.format)){
 		this.showTime=true;
-		this.__privateFormat="yyyy-MM-dd hh:MM";
-		this.maxValue=dateFormat("2500-12-31 23:59:59","yyyy-MM-dd hh:MM",this.format);
-		this.minValue=dateFormat("1700-01-01 00:00:00","yyyy-MM-dd hh:MM",this.format);
+		this.__privateFormat=" yyyy-MM-dd HH:mm:ss";
+		this.maxValue=dateFormat("2500-12-31 23:59:59"," yyyy-MM-dd HH:mm:ss",this.format);
+		this.minValue=dateFormat("1700-01-01 00:00:00"," yyyy-MM-dd HH:mm:ss",this.format);
 	}else {
 		this.showTime=false;
 		this.__privateFormat="yyyy-MM-dd";
@@ -344,8 +344,8 @@ Calendar.prototype.setValue=function (value){
 			this.refreshDisplayValue();
   		    this.refreshHiddenValue();
 		}
-		if(isDate(value,"yyyy-MM-dd hh:MM.S")||isDate(value,"yyyy-MM-dd hh:MM")){
-			this.value = dateFormat(value,"yyyy-MM-dd hh:MM",this.__privateFormat);
+		if(isDate(value," yyyy-MM-dd HH:mm:ss.S")||isDate(value," yyyy-MM-dd HH:mm:ss")){
+			this.value = dateFormat(value," yyyy-MM-dd HH:mm:ss",this.__privateFormat);
 			this.refreshDisplayValue();
   		    this.refreshHiddenValue();
 		}
@@ -475,11 +475,11 @@ Calendar.prototype.getDisplayValue = function(value){
 		if(isDate(value,"yyyy-MM-dd")){
 			return dateFormat(value,"yyyy-MM-dd",this.format);
 		}
-		if(isDate(value,"yyyy-MM-dd hh:MM")){
-			return dateFormat(value,"yyyy-MM-dd hh:MM",this.format);
+		if(isDate(value," yyyy-MM-dd HH:mm:ss")){
+			return dateFormat(value," yyyy-MM-dd HH:mm:ss",this.format);
 		}
-		if(isDate(value,"yyyy-MM-dd hh:MM.S")){
-			return dateFormat(value,"yyyy-MM-dd hh:MM",this.format);
+		if(isDate(value," yyyy-MM-dd HH:mm:ss.S")){
+			return dateFormat(value," yyyy-MM-dd HH:mm:ss",this.format);
 		}
 
 		return value;

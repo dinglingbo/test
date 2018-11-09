@@ -13,7 +13,15 @@ $(document).ready(function(v) {
 	mainGrid.setUrl(queryUrl);
 	disableEl = nui.get("disable");
 	undisableEl = nui.get("undisable");
+	
+	mainGrid.on("rowdblclick", function(e) {
+	        var row = mainGrid.getSelected();
+	        var rowc = nui.clone(row);
+	        if (!rowc)
+	            return;
+	        edit();
 
+	    });
 	doSearch();
 });
 function doSearch() {

@@ -32,6 +32,7 @@ var isNeedSet = false;
 var oldValue = null;
 var oldRow = null;
 var partShow = 0;
+var quickAddShow=0;
 var provinceList = [];
 var cityList = [];
 var advancedTipWin = null;
@@ -158,6 +159,9 @@ $(document).ready(function(v) {
         if((keyCode==27))  {  //ESC
             if(partShow == 1){
                 onPartClose();
+            }
+            if(quickAddShow==1){
+            	onAdvancedAddCancel();
             }
         }
 	 
@@ -521,9 +525,9 @@ function getMainData() {
 	data.orderMan=nui.get('orderMan').getText();
 
 	if (data.operateDate) {
-		data.operateDate = format(data.operateDate, 'yyyy-MM-dd hh:MM')
+		data.operateDate = format(data.operateDate, ' yyyy-MM-dd HH:mm:ss')
 				+ '.0';// 用于后台判断数据是否在其他地方已修改
-		// data.versionNo = format(data.versionNo, 'yyyy-MM-dd hh:MM');
+		// data.versionNo = format(data.versionNo, ' yyyy-MM-dd HH:mm:ss');
 	}
 
 	rightGrid.findRow(function(row){
@@ -1725,6 +1729,7 @@ function addMorePart(){
 	}
 	advancedAddForm.setData([]);
 	advancedAddWin.show();
+	quickAddShow=1;
 
 	var fastCodeList = nui.get("fastCodeList");
 	fastCodeList.focus();

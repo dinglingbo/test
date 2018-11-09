@@ -118,7 +118,7 @@ a {
                   <div field="recorder" name="recorder" width="50" headerAlign="center" header="销售员"></div>
 	              <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
 	              <div field="status" name="status" width="50" headerAlign="center" header="状态"></div>
-	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd H:mm"></div>
+	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="退货日期" dateFormat="  yyyy-MM-dd HH:mm"></div>
 	              <div field="remark" name="carModel" width="70" headerAlign="center" header="备注" ></div>
 	              <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
                  </div>

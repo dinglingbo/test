@@ -107,8 +107,8 @@
                   <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
                   <div field="serviceTypeName" name="serviceTypeName" width="60px" headerAlign="center" header="业务类型"></div>
                   <div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div>
-                  <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="开单日期"></div>
-                  <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="yyyy-MM-dd H:mm" header="预计完工日期"></div>
+                  <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="开单日期"></div>
+                  <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计完工日期"></div>
                   <div field="serviceCode" name="serviceCode" width="120px" headerAlign="center" header="工单号"></div>
               </div>
           </div>

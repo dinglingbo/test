@@ -60,7 +60,17 @@ $(document).ready(function(){
 		var record = e.record;
 		SetData(record);
 	});
+	
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
 
+        if ((keyCode == 13)) { // ESC
+        	quickSearch(0);
+        }
+
+    }
 	initMember("mtAdvisor",function(){
 		memList = mtAdvisorEl.getData();
 		nui.get("scoutMan").setData(memList); 
@@ -294,7 +304,7 @@ function quickSearch(e){
 				sloseDay:365
 			};
 		}
-		gridCar.load({params:p});
+		gridCar.load({params:p,token:token});
 	}
 
 	function WindowComplianDetail(){

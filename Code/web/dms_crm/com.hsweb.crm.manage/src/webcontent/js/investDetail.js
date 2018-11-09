@@ -2,7 +2,20 @@ var investForm = null;
 var baseUrl = apiPath + crmApi + "/";
 $(document).ready(function(){
 	investForm = new nui.Form("#investForm");
-	initMember("visitId",function(){});
+	
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
+
+        if ((keyCode == 27)) { // ESC
+            CloseWindow('cancle');
+        }
+
+    }
+	initMember("visitId",function(){
+		nui.get("visitId").focus();
+	});
 });
 
 function setData(data){
@@ -57,11 +70,11 @@ function save(){
             if (data.errCode == "S") {
                 var errMsg = data.errMsg;
                 if(errMsg){
-                	nui.alert(errMsg);
+                	showMsg(errMsg,"S");
                 }
                 CloseWindow("ok");
             } else {
-            	nui.alert(data.errMsg || "保存失败!");
+            	showMsg(data.errMsg || "保存失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -93,7 +106,7 @@ function carNoChange(){
             result = result || {};
             if (result.errCode == "S") {
             	if(result.data.serviceCode==null){
-            		nui.alert("此车牌无记录","提示");
+            		showMsg("此车牌无记录","E");
             		nui.get("ok").disable();
             		return;
             	}else{
@@ -105,7 +118,7 @@ function carNoChange(){
             	}
 
             } else {
-				nui.alert(result.errMsg || "工单号生成失败!");
+				showMsg(result.errMsg || "工单号生成失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {

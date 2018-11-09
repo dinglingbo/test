@@ -641,7 +641,7 @@ function getMainData()
     data.taxDiff = data.taxAmt - data.noTaxAmt;
 
     if(data.operateDate) {
-        data.operateDate = format(data.operateDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
+        data.operateDate = format(data.operateDate, ' yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
     }
 
     return data;
@@ -908,7 +908,7 @@ function addSellOutDetail(part)
                 outDetail.enterPrice = data.enterPrice;
                 outDetail.enterAmt = data.qty * data.enterPrice;
                 outDetail.taxDiff = outDetail.taxAmt - outDetail.noTaxAmt;
-                outDetail.enterDate = format(data.enterDate, 'yyyy-MM-dd hh:MM');
+                outDetail.enterDate = format(data.enterDate, ' yyyy-MM-dd HH:mm:ss');
                 outDetail.originId = data.originId;
                 outDetail.originGuestId = data.originGuestId;
                 outDetail.receiveStoreId = data.receiveStoreId;

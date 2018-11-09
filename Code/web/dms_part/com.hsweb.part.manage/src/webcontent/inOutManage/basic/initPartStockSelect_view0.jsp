@@ -8,7 +8,7 @@
 -->
 <head>
 <title>期初入库选择</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/initPartStockSelect.js?v=2.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/initPartStockSelect.js?v=2.0.1"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -20,7 +20,7 @@
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;">
         <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
-        <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+        <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
     </div>
 </div>
     

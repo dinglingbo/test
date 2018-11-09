@@ -85,7 +85,7 @@
             <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;">
                 <a class="nui-button" iconCls="" plain="true" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;关闭</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
             </div>
             <div class="nui-fit" >
                 <div id="partGrid" class="nui-datagrid" style="float:left; width:100%;height:100%;"

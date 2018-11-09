@@ -711,7 +711,7 @@ function formatDetailDate(added) {
     
        for(var j=0; j<added.length; j++) {
             if(added[i].billDate) {
-                added[i].billDate = format(added[i].billDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
+                added[i].billDate = format(added[i].billDate, ' yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
             }
         }
     }
@@ -724,7 +724,7 @@ function getMainData()
     //汇总明细数据到主表
 
     if(data.operateDate) {
-        data.operateDate = format(data.operateDate, 'yyyy-MM-dd hh:MM') + '.0';//用于后台判断数据是否在其他地方已修改
+        data.operateDate = format(data.operateDate, ' yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
     }
 
     return data;

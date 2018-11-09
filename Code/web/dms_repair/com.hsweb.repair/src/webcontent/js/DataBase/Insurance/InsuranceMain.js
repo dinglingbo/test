@@ -12,6 +12,15 @@ $(document).ready(function (v)
     dataGrid.on("load",function(){
         onRowClick({});
     });
+    
+    dataGrid.on("rowdblclick", function(e) {
+        var row = dataGrid.getSelected();
+        var rowc = nui.clone(row);
+        if (!rowc)
+            return;
+        edit();
+
+    });
     onSearch(2);
 });
 function onRowClick(e)

@@ -43,7 +43,7 @@ $(document).ready(function(v) {
         });
     },1000);
 
-    grid2 = nui.get("grid2");
+   //grid2 = nui.get("grid2");
 
     var grid1_data =[{business:"采购订单",custom:"长荣行",address:"上海浦东",date:"8:40",status:"已受理"},
     {business:"配件订单",custom:"李莉莉",address:"广东广州",date:"10:50",status:"已完成"}];
@@ -59,7 +59,7 @@ $(document).ready(function(v) {
     //grid1.setShowVGridLines(false);
     //grid1.setShowHGridLines(false);
 
-    grid2.setData(grid2_data);
+/*    grid2.setData(grid2_data);
     grid2.setShowVGridLines(false);
     grid2.setShowHGridLines(false);
     
@@ -74,7 +74,7 @@ $(document).ready(function(v) {
                 e.cellStyle = "color:#4d7496";
             }
         }
-    });
+    });*/
 
 });
 

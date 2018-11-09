@@ -52,13 +52,13 @@
                   		<div field="visitMan" name="visitMan" width="80" headerAlign="center" header="营销员"></div>
                   		<div field="carType" name="carType" width="80" headerAlign="center" header="来厂类型"></div>
                   		<div field="auditSign" name="auditSign" width="80" headerAlign="center" header="审核状态"></div>
-                  		<div field="auditDate" name="auditDate" width="130" headerAlign="center" header="审核日期" dateFormat="  yyyy-MM-dd HH:mm"></div>
+                  		<div field="auditDate" name="auditDate" width="130" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                   		<div field="auditOpinion" name="auditOpinion" width="80" headerAlign="center" header="审核备注"></div>
                   		<div field="remark" name="remark" width="80" headerAlign="center" header="业绩备注"></div>
                   		<div field="recorder" name="recorder" width="130" headerAlign="center" header="登记人"></div>
-                  		<div field="recordDate" name="recordDate" width="130" headerAlign="center" header="登记日期" dateFormat="  yyyy-MM-dd HH:mm"></div>
+                  		<div field="recordDate" name="recordDate" width="130" headerAlign="center" header="登记日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                   		<div field="modifier" name="modifier" width="80" headerAlign="center" header="最后修改人"></div>
-                  		<div field="modifyDate" name="modifyDate" width="130" headerAlign="center" header="最后修改日期" dateFormat="  yyyy-MM-dd HH:mm"></div>
+                  		<div field="modifyDate" name="modifyDate" width="130" headerAlign="center" header="最后修改日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                   	</div>
                   </div>
                   <div header="维修信息" headerAlign="center">

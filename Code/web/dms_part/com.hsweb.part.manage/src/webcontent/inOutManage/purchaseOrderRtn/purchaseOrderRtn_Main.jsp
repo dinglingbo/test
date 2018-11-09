@@ -7,8 +7,8 @@
   - Description:
 -->
 <head>
-<title>采购订单查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderMain.js?v=1.0.58"></script>
+<title>采购退货主界面</title>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnMain.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -58,14 +58,13 @@
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul>
                 
-				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">全部</a>
+				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">草稿</a>
 
                 <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
-                	<li iconCls="" onclick="quickSearch()" id="type">全部</li>
                     <li iconCls="" onclick="quickSearch(12)" id="type12">草稿</li>
-                    <li iconCls="" onclick="quickSearch(13)" id="type13">待发货</li>
-                    <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li>
-                    <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li>
+                    <li iconCls="" onclick="quickSearch(13)" id="type13">已退货</li>
+<!--                     <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li> -->
+<!--                     <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li> -->
                 </ul>
 
 
@@ -100,10 +99,10 @@
 </div>
 <div class="nui-fit">
 	<input class="nui-hidden" name="auditSign" id="auditSign"/>
-	<input class="nui-hidden" name="billStatusId" id="billStatusId"/>
+<!-- 	<input class="nui-hidden" name="billStatusId" id="billStatusId"/> -->
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="true"
-         dataField="pjPchsOrderMainList"
+         dataField="pjSellOrderMainList"
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
@@ -122,7 +121,7 @@
                     <div allowSort="true" field="serviceId" width="100" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" width="190" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
-                    <div field="billStatusId" width="60" headerAlign="center" header="状态"></div>
+                    <div field="auditSign" width="60" headerAlign="center" header="状态"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="createDate" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
@@ -130,7 +129,7 @@
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
                     <div allowSort="true" field="settType" width="60" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div> -->
-                    <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div>
+<!--                     <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div> -->
                 </div>
             </div>
 <!--             <div header="配件信息" headerAlign="center"> -->
@@ -182,7 +181,7 @@
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
 
    <div id="innerPartGrid"
-       dataField="pjPchsOrderDetailList"
+       dataField="pjSellOrderDetailList"
        allowCellWrap = true
        class="nui-datagrid"
        style="width: 100%; height: 100px;"

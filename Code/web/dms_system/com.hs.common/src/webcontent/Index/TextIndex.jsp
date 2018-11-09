@@ -116,16 +116,16 @@ pageEncoding="UTF-8" session="false" %>
                         <div id="guestBoardGrid" dataField="data" class="nui-datagrid" style="width:100%;height:100%;" borderstyle="border:0;" showColumns="true" showpager="false" > 
                             <div property="columns">
                                 <div field="carNo" name="business" width="80px" headeralign="center" align="center"><strong>车牌号</strong></div>
-                                <div field="recordDate" name="recordDate" width="120px" dateFormat="  yyyy-MM-dd HH:mm" headeralign="center" align="center"><strong>接车时间</strong></div>
-                                <div field="planFinishDate" name="planFinishDate" width="120px" dateFormat="  yyyy-MM-dd HH:mm" headeralign="center" align="center"><strong>预计完工时间</strong></div>
+                                <div field="recordDate" name="recordDate" width="120px" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" align="center"><strong>接车时间</strong></div>
+                                <div field="planFinishDate" name="planFinishDate" width="120px" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" align="center"><strong>预计完工时间</strong></div>
                                 <div field="status" name="status" width="80px" headeralign="center" align="center"><strong>施工状态</strong></div>
                             </div>
                         </div>
                         <div id="workShopBoardGrid" class="nui-datagrid" style="width:100%;height:100%;display: none;" borderstyle="border:0;" showColumns="true" showpager="false" > 
                             <div property="columns">
                                 <div field="business" name="business" width="80px" headeralign="center" align="center"><strong>车牌号</strong></div>
-                                <div field="custom" name="custom" width="120px" dateFormat="  yyyy-MM-dd HH:mm" headeralign="center" align="center"><strong>接车时间</strong></div>
-                                <div field="address" name="address" width="120px" dateFormat="  yyyy-MM-dd HH:mm" headeralign="center" align="center"><strong>预计完工时间</strong></div>
+                                <div field="custom" name="custom" width="120px" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" align="center"><strong>接车时间</strong></div>
+                                <div field="address" name="address" width="120px" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" align="center"><strong>预计完工时间</strong></div>
                                 <div field="business" name="business" width="80px" headeralign="center" align="center"><strong>服务顾问</strong></div>
                                 <div field="business" name="business" width="80px" headeralign="center" align="center"><strong>施工员</strong></div>
                                 <div field="status" name="status" width="80px" headeralign="center" align="center"><strong>项目进度</strong></div>

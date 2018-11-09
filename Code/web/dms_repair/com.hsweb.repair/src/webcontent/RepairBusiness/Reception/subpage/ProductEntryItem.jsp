@@ -11,7 +11,7 @@
 -->
 <head>
 <title>标准化产品查询</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.0.3"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.2.0"></script>
 <style type="text/css">
 
 table {
@@ -50,7 +50,7 @@ table {
 		<table class="nui-form-table">
 			<tr>
 				<td>
-					<label>车架号（VIN）：</label>
+					<label>车架号(VIN)：</label>
 				</td>
 				<td>
 					<input class="nui-textbox" name="vin" id="vin" width="150px"/>

@@ -150,7 +150,7 @@
                     <li iconCls="" onclick="onPrint(1)" id="type11">打印报价单</li>
                     <li iconCls="" onclick="onPrint(2)" id="type11">打印派工单</li>
                     <li iconCls="" onclick="onPrint(3)" id="type11">打印结算单</li>
-                    <li iconCls="" onclick="onPrint(4)" id="type11">打印结算单（小票）</li>
+                    <li iconCls="" onclick="onPrint(4)" id="type11">打印结算单(小票)</li>
                     <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
                 </ul>
 
@@ -227,6 +227,7 @@
                     showNullItem="false"
                     valueFromSelect="true"
                     nullItemText="请选择..." width="100%"/>
+               
                 </td>
                 <td class="title">进厂里程:</td> 
                 <td class=""><input  class="nui-textbox" name="enterKilometers" width="100%"/></td>

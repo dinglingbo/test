@@ -11,7 +11,7 @@
 -->
 <head>
 <title>标准化产品查询</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.1.9"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.2.0"></script>
 <style type="text/css">
 
 table {
@@ -44,12 +44,13 @@ table {
 <body>
 <div  class="nui-panel" showToolbar="false" title="车型信息" showFooter="false" style="width:100%;">
 	<div id="carInfoForm">
+		<input class="nui-hidden" id="ExpenseAccount" name="ExpenseAccount"/>
 		<input class="nui-hidden" name="carLevelId"/>
 		<input class="nui-hidden" name="carLineId"/>
 		<table class="nui-form-table">
 			<tr>
 				<td>
-					<label>车架号（VIN）：</label>
+					<label>车架号(VIN)：</label>
 				</td>
 				<td>
 					<input class="nui-textbox" name="vin" id="vin" width="150px"/>

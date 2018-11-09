@@ -76,19 +76,40 @@
  
 	</select>
 	
-<select id="queryCardTimesDe" parameterClass="java.lang.String" resultClass="java.util.HashMap">
-	
-	select 
-       b.main_id mainId,
-       b.prdt_id prdtId,
-       b.prdt_name prdtName,
-       b.bala_times balaTimes,
-       b.total_times totalTimes,
-       b.can_use_times canUseTimes,
-       b.is_finish Isfinish
-    FROM  rps_card_times_detail b WHERE b.main_id = #Id#
-  
- 
-</select>
-
+	 <select id="queryCardTimesDe" parameterClass="java.lang.String" resultClass="java.util.HashMap">
+		
+		select 
+	       b.main_id mainId,
+	       b.prdt_id prdtId,
+	       b.prdt_name prdtName,
+	       b.bala_times balaTimes,
+	       b.total_times totalTimes,
+	       b.can_use_times canUseTimes,
+	       b.is_finish Isfinish
+	    FROM  rps_card_times_detail b WHERE b.main_id = #Id#
+	  </select>
+	  
+      <select id="queryConsumeCardStoredList" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
+       SELECT
+         a.id id,
+         a.card_amt cardAmt,
+         a.consume_amt consumeAmt,
+         a.recorder recorder,
+         a.record_date recordDate,
+         b.service_code serviceCode,
+         b.service_type_id serviceTypeId,
+         b.mt_advisor_id mtAdvisorId,
+         b.mt_advisor mtAdvisor,
+         c.car_model  carModel,
+         c.vin  carVin,
+         c.car_no  carNo,
+         (select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = b.id) as serviceTypeName
+         FROM rps_stored_consume_record a 
+         INNER JOIN rps_maintain b ON(a.service_id = b.id) 
+         inner JOIN rpb_car c ON ( b.car_id = c.id )
+         WHERE  a.orgid = #orgid# 
+         AND a.guest_stored_id = #id#
+	</select>
 </sqlMap>

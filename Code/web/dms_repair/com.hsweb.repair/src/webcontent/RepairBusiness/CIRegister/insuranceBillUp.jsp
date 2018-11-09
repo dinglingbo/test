@@ -29,6 +29,10 @@ pageEncoding="UTF-8" session="false"%>
 </style>
 </head>
 <body>
+	<div class="nui-toolbar" id="toolbar1" >
+	<a class="nui-button" onclick="noPay()" id="noPay"><span class="fa fa-dollar fa-lg"></span>&nbsp;转入预结算</a> 
+				<a class="nui-button" onclick="pay()" id="pay"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算收款</a>
+	</div>
 
 	<div id="detailGridshow" datafield="list" class="nui-datagrid" style="width: 100%; height:118px;"
 	showpager="false" sortmode="client" allowcelledit="true" allowcellselect="true"
@@ -71,13 +75,6 @@ pageEncoding="UTF-8" session="false"%>
 				value="020101" ></div>
 			</td>
   
-		</tr>
-		<tr>
-			<td  colspan="1"> 
-				<a class="nui-button" onclick="noPay()" id="noPay">转入预结算</a> 
-				<a class="nui-button" onclick="pay()" id="pay">结算收款</a>
-			</td>
-
 		</tr>
 	</table>
 </div>
@@ -183,7 +180,7 @@ pageEncoding="UTF-8" session="false"%>
 				if(text.errCode =="S"){
 					showMsg("结算成功！","S");
 				}else{
-					showMsg("text.errMsg","E");
+					showMsg(text.errMsg,"E");
 				}
 				CloseWindow("ok");
 

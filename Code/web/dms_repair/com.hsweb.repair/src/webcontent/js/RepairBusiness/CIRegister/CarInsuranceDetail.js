@@ -213,39 +213,6 @@ function drawSummaryCell(e){
     }
 }
 
-/*function getMaintainById(id)
-{
-    var url = baseUrl+"com.hsapi.repair.repairService.insurance.getRpsInsuranceMainById.biz.ext";
-    doPost({
-        url : url,
-        data : {
-            params:{
-                id:id,
-                token:token
-            }
-        },
-        success : function(data)
-        {
-            data = data||{};
-            var main = data.main;
-            basicInfoForm.setData(main);
-            nui.get("guestId").setText(main.guestFullName);
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-            // nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-            nui.alert("网络出错，获取数据失败");
-        }
-    });
-}*/
-
-/*function loadDetailGridData(serviceId)
-{
-    detailGrid.load({
-        serviceId:serviceId,
-        token:token
-    });
-}*/
 
 function insuranceChange(e){
     var selected = e.selected;
@@ -365,12 +332,6 @@ function setInitData(params){
             insuranceForm.setData(sdata);
             detailGrid.load({serviceId:params.id,token:token});
 
-            //if(ldata.status != 0 ){
-                //$("#addBtn").hide();
-                //$("#save").hide();
-                //$("#pay").hide();
-                //searchNameEl.setWidth("200px");
-            //}
             if(ldata.settleTypeId == 1){
                 $("#radio1").attr("checked", "checked");
             }
@@ -425,43 +386,6 @@ function add(){
     detailGrid.setData(detailData);
 }
 
-/*function delDetail(insuranceId)
-{
-    var main = basicInfoForm.getData();
-    if(main.status != 0)
-    {
-        return;
-    }
-    var row = detailGrid.findRow(function(v){
-        return v.insuranceId == insuranceId;
-    });
-    if(row)
-    {
-        detailGrid.removeRow(row);
-    }
-}*/
-
-/*function addDetail(customid)
-{
-    var main = basicInfoForm.getData();
-    if(main.status != 0)
-    {
-        return;
-    }
-    var old = detailGrid.findRow(function(v){
-        return v.insuranceId == customid;
-    });
-    if(old)
-    {
-        return;
-    }
-    var row = {
-        insuranceId:customid,
-        dutyAmt:0,
-        premium:0
-    };
-    detailGrid.addRow(row);
-}*/
 
 function addGuest(){
     doApplyCustomer({},function(adction){
@@ -496,40 +420,6 @@ function addGuest(){
 }
 
 
-/*function doSearchCardTimes(guestId)
-{
-    cardTimesGrid.clearRows();
-    if(!guestId) return;
-
-    var p = {};
-    p.detailFinish = 0;
-    p.guestId = guestId;
-    p.notPast = 1;
-    p.status = 2;
-    cardTimesGrid.load({
-        token:token,
-        p:p
-    },function(){
-        var data = cardTimesGrid.getData();
-        var len = data.length||0;
-        document.getElementById("formIframe").contentWindow.doSetCardTimes(data);
-    });
-}*/
-
-/*function doSearchMemCard(guestId)
-{
-    memCardGrid.clearRows();
-    if(!guestId) return;
-
-    memCardGrid.load({
-        token:token,
-        guestId:guestId
-    },function(){
-        var data = memCardGrid.getData();
-        var len = data.length||0;
-    });
-}
-*/
 function saveData(e){
     var tid = nui.get("id").value;
     if(tid){
@@ -667,124 +557,3 @@ function onPrint(argument) {
 }
 
 
-
-
-
-/*function doSearchCardTimes(guestId)
-{
-    cardTimesGrid.clearRows();
-    if(!guestId) return;
-
-    var p = {};
-    p.detailFinish = 0;
-    p.guestId = guestId;
-    p.notPast = 1;
-    p.status = 2;
-    cardTimesGrid.load({
-        token:token,
-        p:p
-    },function(){
-        var data = cardTimesGrid.getData();
-        var len = data.length||0;
-        document.getElementById("formIframe").contentWindow.doSetCardTimes(data);
-    });
-}
-*/
-/*function doSearchMemCard(guestId)
-{
-    memCardGrid.clearRows();
-    if(!guestId) return;
-
-    memCardGrid.load({
-        token:token,
-        guestId:guestId
-    },function(){
-        var data = memCardGrid.getData();
-        var len = data.length||0;
-    });
-}*/
-/*function addGuest(){
-    doApplyCustomer({},function(adction){
-        if("ok" == action)
-        {
-            var iframe = this.getIFrameEl();
-            var data = iframe.contentWindow.getSaveData();
-            var carNo = data.carNo||"";
-            var mobile = data.mobile||"";
-            var guestName = data.guestFullName||"";
-            if(carNo){
-                searchKeyEl.setValue(carNo);
-                searchKeyEl.setText(carNo);
-                searchKeyEl.doQuery();
-                return;
-            }
-            if(mobile){
-                searchKeyEl.setValue(mobile);
-                searchKeyEl.setText(mobile);
-                searchKeyEl.doQuery();
-                return;
-            }
-            if(guestName){
-                searchKeyEl.setValue(guestName);
-                searchKeyEl.setText(guestName);
-                searchKeyEl.doQuery();
-                return;
-            }
-
-        }
-    });
-
-}
-*/
-
-/*function SearchCheckMain(callback) {
-    var data = basicInfoForm.getData();
-    var  t = null;
-    var ydata = {
-        serviceId:data.id
-    };
-    nui.ajax({
-        url: baseUrl + "com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext",
-        type:"post",
-        async: false,
-        data:{
-            params:ydata
-        },
-        cache: false,
-        success: function (text) {
-            callback && callback(text);
-            checkMainData = text;
-            isRecord = text.isRecord;
-        }
-    });
-
-}
-*/
-/*function CloseWindow(action) {
-    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
-    else window.close();
-}
-*/
-/*
-function newCheckMainMore() {
-    var cNo = nui.get("carNo").value;
-    var item={};
-    item.id = "1103";
-    item.text = "查车单";
-    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkMain.jsp?cNo="+cNo;
-    item.iconCls = "fa fa-cog";
-    window.parent.activeTab(item);
-
-}
-
-
-function showBillInfo(){
-    var main = basicInfoForm.getData();
-    var params = {
-        carId : main.carId,
-        guestId : main.guestId
-    };
-    if(main.id){
-        doShowCarInfo(params);
-    }
-}*/

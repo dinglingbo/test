@@ -7,8 +7,8 @@
   - Description:
 -->
 <head>
-<title>采购订单查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderMain.js?v=1.0.58"></script>
+<title>采购退货主界面</title>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnMain.js?v=1.0.11"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -61,11 +61,11 @@
 				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">全部</a>
 
                 <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
-                	<li iconCls="" onclick="quickSearch()" id="type">全部</li>
+                	<li iconCls="" onclick="quickSearch(14)" id="type14">全部</li>
                     <li iconCls="" onclick="quickSearch(12)" id="type12">草稿</li>
-                    <li iconCls="" onclick="quickSearch(13)" id="type13">待发货</li>
-                    <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li>
-                    <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li>
+                    <li iconCls="" onclick="quickSearch(13)" id="type13">已退货</li>
+<!--                     <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li> -->
+<!--                     <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li> -->
                 </ul>
 
 
@@ -79,7 +79,7 @@
 <!--                 <label style="font-family:Verdana;">配件编码：</label> -->
 <!--                 <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/> -->
                 <!-- <label style="font-family:Verdana;">订单单号：</label> -->
-                <input id="serviceId" width="80px" emptyText="订单单号" class="nui-textbox"/>
+                <input id="serviceId" width="180px" emptyText="订单单号" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">供应商：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."
@@ -100,10 +100,10 @@
 </div>
 <div class="nui-fit">
 	<input class="nui-hidden" name="auditSign" id="auditSign"/>
-	<input class="nui-hidden" name="billStatusId" id="billStatusId"/>
+<!-- 	<input class="nui-hidden" name="billStatusId" id="billStatusId"/> -->
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="true"
-         dataField="pjPchsOrderMainList"
+         dataField="pjSellOrderMainList"
          idField="detailId"
          ondrawcell="onDrawCell"
          sortMode="client"
@@ -122,7 +122,7 @@
                     <div allowSort="true" field="serviceId" width="100" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" width="190" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
-                    <div field="billStatusId" width="60" headerAlign="center" header="状态"></div>
+                    <div field="auditSign" width="60" headerAlign="center" header="状态"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="createDate" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
@@ -130,7 +130,7 @@
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
                     <div allowSort="true" field="settType" width="60" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div> -->
-                    <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div>
+<!--                     <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div> -->
                 </div>
             </div>
 <!--             <div header="配件信息" headerAlign="center"> -->
@@ -182,25 +182,25 @@
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
 
    <div id="innerPartGrid"
-       dataField="pjPchsOrderDetailList"
+       dataField="pjSellOrderDetailList"
        allowCellWrap = true
        class="nui-datagrid"
        style="width: 100%; height: 100px;"
        showPager="false"
        allowSortColumn="true">
       <div property="columns">
-           <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+           <div headerAlign="center" type="indexcolumn" width="30">序号</div>
            <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
 	       <div field="comPartName" headerAlign="center" header="配件名称"></div>
-	       <div field="comPartBrandId" id="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
+	       <div field="comPartBrandId" id="comPartBrandId" width="80" headerAlign="center" header="品牌"></div>
 	       <div field="comApplyCarModel" id="comApplyCarModel" width="140" headerAlign="center" header="车型"></div>
 	       <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
 	       <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量"></div>
-	       <div field="orderPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价"></div>
-	       <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center"header="金额" ></div>
+	       <div field="orderPrice" numberFormat="0.00" width="60" headerAlign="center" header="单价"></div>
+	       <div field="orderAmt" summaryType="sum" numberFormat="0.00" width="70" headerAlign="center"header="金额" ></div>
 		   <div field="remark" width="100" headerAlign="center" allowSort="true" header="备注"></div>
 		   <div field="storeId" width="100" headerAlign="center" allowSort="true" header="仓库"></div>
-		   <div field="storeShelf" width="100" headerAlign="center" allowSort="true" header="仓位"></div>
+		   <div field="storeShelf" width="60" headerAlign="center" allowSort="true" header="仓位"></div>
 		   <div field="comOemCode" width="100" headerAlign="center" allowSort="true" header="OEM码"></div>
 		   <div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>
       </div>

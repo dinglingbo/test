@@ -2,8 +2,8 @@
  * Created by Administrator on 2018/2/1.
  */
 var partApiUrl  = apiPath + partApi + "/";
-var rightGridUrl = partApiUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderMainList.biz.ext";
-var getDetailPartUrl=partApiUrl+"com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
+var rightGridUrl = partApiUrl+"com.hsapi.part.invoice.svr.queryPjShiftOrderMainList.biz.ext";
+var getDetailPartUrl=partApiUrl+"com.hsapi.part.invoice.svr.queryPjShiftOrderDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;

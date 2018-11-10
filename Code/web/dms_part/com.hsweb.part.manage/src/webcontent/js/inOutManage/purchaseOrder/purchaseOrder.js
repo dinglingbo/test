@@ -1313,7 +1313,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 
 								// 保存成功后重新加载数据
 //								leftRow.billStatusId=2;
-								loadMainAndDetailInfo(leftRow);
+								ainAndDetailInfo(leftRow);
 								$('#bServiceId').text("订单号："+leftRow.serviceId);
 
 
@@ -2068,7 +2068,7 @@ function onExport(){
 //        }
 //	}
 	
-	if(main.auditSign==0){
+	if(main.billStatusId===""){
 		showMsg("清先保存数据!","W");
 		return;
 	}

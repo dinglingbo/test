@@ -21,6 +21,7 @@ var eOutDate = null;
 var mainTabs = null;
 var billmainTab = null;
 
+
 //单据状态
 var AuditSignList = [
   {
@@ -100,6 +101,8 @@ $(document).ready(function(v)
         if((keyCode==80)&&(event.altKey))  {   //打印
             onPrint();
         } 
+        
+   
      
     }
     
@@ -964,12 +967,12 @@ function checkPartIDExists(partid){
 var editPartHash = {
 };
 function deletePart(){
-    var row = leftGrid.getSelected();
-    if(row){
-        if(row.auditSign == 1) {
-            return;
-        } 
-    }
+	var data = basicInfoForm.getData();
+	if (data) {
+		if (data.auditSign == 1) {
+			return;
+		}
+	}
 
     var part = rightGrid.getSelected();
     if(!part)

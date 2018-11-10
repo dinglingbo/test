@@ -186,11 +186,17 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="auditSign">  
                 <!--审核状态-->
-                    (A.AUDIT_SIGN = #auditSign#)
+                   <!-- (A.AUDIT_SIGN = #auditSign#)-->
+                   (A.AUDIT_SIGN is not null)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
                     (A.service_id in ($serviceIdList$))
                 </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.service_id like '%$serviceId$%')
+                </isNotEmpty>
+                
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
@@ -290,7 +296,12 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="auditSign">  
                 <!--审核状态-->
-                    (A.AUDIT_SIGN = #auditSign#)
+                    <!--(A.AUDIT_SIGN = #auditSign#)-->
+                    (A.AUDIT_SIGN is not null)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="serviceId">  
+                    (a.service_id like '%$serviceId$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
                     (A.service_id in ($serviceIdList$))

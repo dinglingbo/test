@@ -283,6 +283,45 @@
 				
 				ORDER BY a.id , a.service_ids 
 	</select>
-          
+    <select id="querySettlementrAmt" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				a.bala_type_code as code,
+				sum(a.char_off_amt) as rAmt
+			FROM
+				fis_rp_account_d_type a
+				 INNER JOIN fis_rp_account as b on(a.main_id=b.id)
+			
+			WHERE 
+				a.rp_dc=1
+
+            <isNotEmpty prepend="and" property="startDate">  
+                (b.create_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (b.create_date &lt; #endDate#)
+            </isNotEmpty>
+            			GROUP BY
+				a.bala_type_code
+    </select>
+    <select id="querySettlementcAmt" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				a.bala_type_code as code,
+				sum(a.char_off_amt) as cAmt
+			FROM
+				fis_rp_account_d_type a
+				 INNER JOIN fis_rp_account as b on(a.main_id=b.id)
+			
+			WHERE 
+				a.rp_dc=-1
+
+            <isNotEmpty prepend="and" property="startDate">  
+                (b.create_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (b.create_date &lt; #endDate#)
+            </isNotEmpty>
+            			GROUP BY
+				a.bala_type_code
+    </select>
     
     </sqlMap>

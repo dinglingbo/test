@@ -33,7 +33,8 @@
 }
 .tmargin{
     margin-top: 10px;
-    margin-left: 50px;
+    margin-left: 5px;
+    margin-right: 5px;
     margin-bottom: 10px;
 }
 .htr{
@@ -42,9 +43,7 @@
 .right{
     text-align: right;
 }  
-.fwidtha{
-    width: 120px;
-}
+
 .fwidthb{
     width: 120px;
 }

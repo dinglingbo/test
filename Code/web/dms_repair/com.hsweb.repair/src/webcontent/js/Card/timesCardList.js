@@ -4,6 +4,7 @@ var sysnUrl = webPath + contextPath + "/com.hsweb.repair.DataBase.timesCardSysn.
 var grid = null;
 var xyguest = null;
 var xs = 0;
+var assistant = 0;
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
@@ -20,15 +21,14 @@ $(document).ready(function(v) {
 		nui.get('addBtn').setVisible(false);
 		nui.get('updateBtn').setVisible(false);
 	}*/
-	nui.get('cardName').focus();
-	document.onkeyup=function(event){
-        var e=event||window.event;
-        var keyCode=e.keyCode||e.which;//38向上 40向下
+	grid.on("rowdblclick",function(e){
+		if(assistant==1){
+			onBuy();
+		}else{
+			edit();
+		}
 
-        if((keyCode==27))  {  //ESC
-            onCancel();
-        }
-	 };
+	});
 	
 });
 
@@ -239,11 +239,16 @@ function CloseWindow(action) {
 function setData(data)
 {
 	xyguest= data;
-
+	assistant = 1;//判断是主页面还是open页面。用于双击触发事件
 }
 
 function setInitData(params){
-	setStely();
+	if(params.id==1862){
+		setStely();
+		params=null;
+		assistant=1;
+	}
+	
 }
 //取消
 function onCancel() {

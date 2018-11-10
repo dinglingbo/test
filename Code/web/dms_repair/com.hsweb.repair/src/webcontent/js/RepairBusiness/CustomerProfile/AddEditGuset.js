@@ -28,6 +28,15 @@ $(document).ready(function()
 	carInfoFrom = new nui.Form("#carInfoFrom");
 	contactInfoForm = new nui.Form("#contactInfoForm");
 	basicInfoForm = new nui.Form("#basicInfoForm");
+	nui.get("name").focus();
+	document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;//38向上 40向下
+
+        if((keyCode==27))  {  //ESC
+            onCancel();
+        }
+      };
 	
 });
 function init(callback)

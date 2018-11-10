@@ -413,7 +413,7 @@ function addLocalBrand()
     nui.open({
         targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.baseData.partBrandOrgDetail.flow?token=" + token,
-        title: "新增关注品牌", width: 500, height: 350,
+        title: "新增关注品牌", width: 600, height: 350,
         allowDrag:true,
         allowResize:true,
         onload: function ()

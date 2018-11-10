@@ -12,7 +12,7 @@
         <head>
             <title>门店信息</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/common/js/orgExtendEdit.js?v=1.9.6" type="text/javascript"></script>
+            <script src="<%=webPath + contextPath%>/common/js/orgExtendEdit.js?v=1.9.8" type="text/javascript"></script>
 
             <style type="text/css">
             

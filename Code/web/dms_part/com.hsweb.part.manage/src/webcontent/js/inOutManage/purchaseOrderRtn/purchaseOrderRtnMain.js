@@ -159,6 +159,9 @@ function getSearchParam(){
      
     
     params.auditSign=nui.get('auditSign').getValue();
+    if(params.auditSign===""){
+    	params.auditSign=-1;
+    }
 
 //	params.partCode = comPartCode.getValue();
 //	params.partNameAndPY = comPartNameAndPY.getValue();
@@ -174,7 +177,7 @@ function quickSearch(type){
     var params = getSearchParam();
     var querysign = 1;
     var queryname = "本日";
-    var querystatusname = "草稿";
+    var querystatusname = "全部";
     switch (type)
     {
         case 0:
@@ -246,6 +249,12 @@ function quickSearch(type){
         	params.auditSign=1;
         	querysign = 2;
         	querystatusname = "已退货";
+        	break;
+        //全部
+        case 14:
+        	params.auditSign=-1;
+        	querysign = 2;
+        	querystatusname = "全部";
         	break;
 //        //待收货
 //        case 14:

@@ -14,13 +14,25 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/echarts.js" type="text/javascript"></script>
-    <script src="<%= request.getContextPath() %>/repair/js/Card/settlementStatement.js?v=1.1.6" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/repair/js/Card/settlementStatement.js?v=1.2.1" type="text/javascript"></script>
     <style type="text/css">
-		a {
+		.m{
 				width: 120px;
 				height: 40px;
 				font-size: 18px;
 				background: #578ccd;
+				color: #fff;
+				text-align: center;
+				display: block;
+				border-radius: 5px;
+				text-decoration: none;
+				line-height: 2;
+			}
+		.n{
+				width: 120px;
+				height: 40px;
+				font-size: 18px;
+				background: #2ac476;
 				color: #fff;
 				text-align: center;
 				display: block;
@@ -35,19 +47,19 @@
 			<table>
 				<tr>
 					<td>
-						<a id="today"   onclick="settleOK(1)">今天</a>
+						<a id="today"  class="m" onclick="settleOK(1)">今天</a>
 					</td>
 					<td>
-						<a id="thisWeek"   onclick="settleOK(2)">本周</a>
+						<a id="thisWeek" class="m"  onclick="settleOK(2)">本周</a>
 					</td>
 					<td>
-						<a id="thisMonth"   onclick="settleOK(3)">本月</a>
+						<a id="thisMonth"  class="m" onclick="settleOK(3)">本月</a>
 					</td>
 					<td>
-						<a id="thisQuarter"   onclick="settleOK(4)">本季度</a>
+						<a id="thisQuarter" class="m"  onclick="settleOK(4)">本季度</a>
 					</td>
 					<td>
-						<a id="thisYear"   onclick="settleOK(5)">本年</a>
+						<a id="thisYear" class="n"  onclick="settleOK(5)">本年</a>
 					</td>
 				</tr>
 			</table>

@@ -2068,7 +2068,7 @@ function onExport(){
 //        }
 //	}
 	
-	if(main.auditSign==0){
+	if(main.billStatusId===""){
 		showMsg("清先保存数据!","W");
 		return;
 	}

@@ -429,7 +429,7 @@ function save() {
 
                     //保存成功后重新加载数据
                     loadMainAndDetailInfo(leftRow);
-                    $('#bServiceId').text("订单号："+leftRow.serviceId);
+                    $('#bServiceId').text("移仓单号："+leftRow.serviceId);
 
                     
                 }
@@ -744,7 +744,7 @@ function audit()
 
                     //保存成功后重新加载数据
                     loadMainAndDetailInfo(leftRow);
-                    $('#bServiceId').text("订单号："+leftRow.serviceId);
+                    $('#bServiceId').text("移仓单号："+leftRow.serviceId);
                 }
             } else {
                 showMsg(data.errMsg || "审核失败!","W");
@@ -792,9 +792,9 @@ function add()
 //                    leftGrid.select(newRow, false);
                     
 //                    nui.get("serviceId").setValue("新移仓单");
-                    $('#bServiceId').text("订单号: 新移仓单");
+                    $('#bServiceId').text("移仓单号: 新移仓单");
                     nui.get("createDate").setValue(new Date());
-                    nui.get("orderMan").setValue(currUserName);
+//                    nui.get("orderMan").setValue(currUserName);
                     
                 	if(!orderMan || orderMan==""){
     					for(var i=0;i<memList.length;i++){
@@ -828,7 +828,7 @@ function add()
 //        leftGrid.select(newRow, false);
 //        
 //        nui.get("serviceId").setValue("新移仓单");
-        $('#bServiceId').text("订单号: 新采购订单");
+        $('#bServiceId').text("移仓单号: 新移仓单");
         nui.get("createDate").setValue(new Date());
         
         if(!orderMan || orderMan==""){
@@ -1324,6 +1324,14 @@ function onExport(){
 //        showMsg("请先保存数据!","W");
 //        return;
 //    }
+
+	 var main = basicInfoForm.getData();
+	 if(!main) return;
+	 if(main.auditSign===""){
+		 showMsg("请先保存数据!","W");
+		 return;
+	 }
+	 
     var changes = rightGrid.getChanges();
     if(changes.length>0){
         var len = changes.length;
@@ -1334,9 +1342,7 @@ function onExport(){
             return;  
         }
     }
-
-    var main = basicInfoForm.getData();
-    if(!main) return;
+  
 
     var detail = rightGrid.getData();
     if(detail && detail.length > 0){
@@ -1438,7 +1444,7 @@ function setInitData(params){
 		basicInfoForm.setData(params);
 		nui.get('orderMan').setText(params.orderMan);
 		nui.get('orderMan').setValue(params.orderManId);
-		$('#bServiceId').text("订单号："+params.serviceId);
+		$('#bServiceId').text("移仓单号："+params.serviceId);
 		
 		if(AuditSignHash)
 	       {

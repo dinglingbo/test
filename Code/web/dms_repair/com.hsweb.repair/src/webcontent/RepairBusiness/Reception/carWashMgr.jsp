@@ -78,9 +78,7 @@
             </tr>
         </table>
     </div>
-
-
-    <div class="nui-fit">
+   <div class="nui-fit">
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
                showPager="true"
@@ -88,14 +86,16 @@
                totalField="page.count"
                sizeList=[20,50,100,200]
                dataField="list"
-               onrowdblclick=""
                showModified="false"
+               onrowdblclick=""
                allowCellSelect="true"
                editNextOnEnterKey="true"
                onshowrowdetail="onShowRowDetail"
                allowCellWrap = "true"
                url="">
               <div property="columns">
+                  <div type="indexcolumn">序号</div>
+                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
                   <div field="status" name="status" width="40px" headerAlign="center" header="进程"></div>
                   <div field="carNo" name="carNo" width="80px" headerAlign="center" header="车牌"></div>
                   <div field="carModel" name="carModel" width="200px" headerAlign="center"  header="品牌/车型"></div>
@@ -113,6 +113,9 @@
           </div>
     </div>
 </div>
+
+
+
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
   <div  id="innerpackGrid" class="nui-datagrid"
 	    style="width:100%;height:100px;"

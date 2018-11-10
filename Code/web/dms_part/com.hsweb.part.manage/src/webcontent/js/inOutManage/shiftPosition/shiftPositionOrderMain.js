@@ -231,6 +231,12 @@ function quickSearch(type){
         	querysign = 2;
         	querystatusname = "已审";
         	break;
+        //全部
+        case 14:
+        	params.auditSign="";
+        	querysign = 2;
+        	querystatusname = "全部";
+        	break;
         default:
             break;
     }
@@ -256,10 +262,10 @@ function onSearch(){
 }
 function doSearch(params)
 {
-	params.sortField = "audit_date";
-    params.sortOrder = "desc";
-    params.orderTypeId = 1;
-    params.isFinished = 0;
+//	params.sortField = "audit_date";
+//    params.sortOrder = "desc";
+//    params.orderTypeId = 1;
+//    params.isFinished = 0;
     rightGrid.load({
         params:params,
         token:token

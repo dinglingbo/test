@@ -106,7 +106,7 @@ pageEncoding="UTF-8" session="false"%>
                    <div field="partBrandId" name="partBrandId" width="70" headerAlign="center" header="品牌"></div>
                    <div field="applyCarModel" name="applyCarModel" width="200" headerAlign="center" header="车型"></div>
                    <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
-                   <div field="auditDate" allowSort="true" dateFormat="  yyyy-MM-dd HH:mm" width="120px" header="入库日期" format="  yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
+                   <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
                    <div field="guestName" width="280px" headerAlign="center" allowSort="true" header="供应商"></div>  
 
                    <div field="fullName" name="fullName" width="300" headerAlign="center" header="配件全称"></div> 
@@ -186,7 +186,7 @@ pageEncoding="UTF-8" session="false"%>
             <div field="sellUnitPrice" headerAlign="center" allowSort="true" visible="true" width="">单价</div>
             <div field="sellAmt" headerAlign="center" allowSort="true" visible="true" width="">金额</div>
             <div field="remark" id="remark" headerAlign="center" allowSort="true" visible="true" width="">备注</div>
-            <div field="pickDate" headerAlign="center" allowSort="true" visible="true" width="" format="yyyy-MM-dd" dateFormat="  yyyy-MM-dd HH:mm">出库日期</div>  
+            <div field="pickDate" headerAlign="center" allowSort="true" visible="true" width="" format="yyyy-MM-dd" dateFormat="yyyy-MM-dd HH:mm">出库日期</div>  
             <div field="pickMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
             <div field="returnReasonId" id="returnReasonId" headerAlign="center" allowSort="true" visible="false" width="">归库原因ID
                <input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />

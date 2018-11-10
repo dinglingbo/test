@@ -16,7 +16,7 @@ pageEncoding="UTF-8" session="false"%>
 
     table {
        font-size: 12px;
-   }
+   } 
 
    .form_label {
        width: 84px;

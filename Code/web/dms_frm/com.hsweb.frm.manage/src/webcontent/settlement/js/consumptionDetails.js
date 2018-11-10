@@ -8,6 +8,8 @@ var queryCardUr2 = baseUrl
 +"com.hsapi.repair.baseData.query.queryStoreConsume.biz.ext";
 var grid = null;
 var grid2 = null;
+var servieTypeList = [];
+var servieTypeHash = {};
 var statusList = [{id:"0",name:"客户名称"},{id:"1",name:"客户电话"},{id:"2",name:"会员卡名称"}];
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
@@ -29,7 +31,23 @@ $(document).ready(function(v) {
     	query:query,
     	token : token
     });
-
+    
+    initServiceType("serviceTypeId",function(data) {
+        servieTypeList = nui.get("serviceTypeId").getData();
+        servieTypeList.forEach(function(v) {
+            servieTypeHash[v.id] = v;
+        });
+    });
+   
+    grid2.on("drawcell", function (e) {
+        switch (e.field) {
+            case "serviceTypeId":
+            	e.cellHtml = servieTypeHash[e.value].name;
+                break;
+            default:
+                break;
+        }
+    });
 });
 
 function search(){
@@ -137,9 +155,12 @@ function selectionChanged() {
         html: '数据加载中...'
     });
 	var rows = grid.getSelecteds();
+	var id = rows[0].id;
+	var params = {};
+	params.id = id;
 	var json1 = {
-			id:	rows[0].id
-	}
+			params:	params
+	};
 	nui.ajax({
 		url : queryCardUr2,
 		type : 'POST',
@@ -148,10 +169,7 @@ function selectionChanged() {
 		contentType : 'text/json',
 		success : function(text) {
 			nui.unmask(document.body);
-			grid2.setData(text.storeConsume);
-			
-			
-			
+			grid2.setData(text.data);
 		}
 	});
 }

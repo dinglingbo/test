@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.20"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.49"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -40,40 +40,40 @@ body .mini-grid-row-selected{
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
-            <td style="white-space:nowrap;">
-                <label style="font-family:Verdana;">快速查询：</label>
+<!--             <td style="white-space:nowrap;"> -->
+<!--                 <label style="font-family:Verdana;">快速查询：</label> -->
                 
-                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+<!--                 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a> -->
 
-                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
-                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
-                    <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
-                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
-                    <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
-                    <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
-                </ul>
+<!--                 <ul id="popupMenuDate" class="nui-menu" style="display:none;"> -->
+<!--                     <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li> -->
+<!--                     <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li> -->
+<!--                     <li class="separator"></li> -->
+<!--                     <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li> -->
+<!--                     <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li> -->
+<!--                     <li class="separator"></li> -->
+<!--                     <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li> -->
+<!--                     <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li> -->
+<!--                 </ul> -->
 
-                <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">草稿</a>
+<!--                 <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">草稿</a> -->
 
-                <ul id="popupMenuType" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
-                    <li iconCls="" onclick="quickSearch(8)" id="type7">已退货</li>
-                </ul>
-                <input id="searchGuestId" class="nui-buttonedit"
-                       emptyText="请选择客户..." visible="false"
-                       onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
-                <span class="separator"></span>
+<!--                 <ul id="popupMenuType" class="nui-menu" style="display:none;"> -->
+<!--                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li> -->
+<!--                     <li iconCls="" onclick="quickSearch(8)" id="type7">已退货</li> -->
+<!--                 </ul> -->
+<!--                 <input id="searchGuestId" class="nui-buttonedit" -->
+<!--                        emptyText="请选择客户..." visible="false" -->
+<!--                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" /> -->
+<!--                 <span class="separator"></span> -->
                 
-                <a class="nui-button" iconCls="" visible="false" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
-                <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
-            </td>
+<!--                 <a class="nui-button" iconCls="" visible="false" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a> -->
+<!--                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
+<!--                 <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
+<!--                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> --> 
+<!--             </td> -->
             <td style="width:100%;">
-                <span class="separator"></span>
+				<span  id="bServiceId" style="">订单号：新采退退货</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;退货</a>
@@ -89,43 +89,43 @@ body .mini-grid-row-selected{
 
 
 <div class="nui-fit">
-    <div class="nui-splitter"
-         id="splitter"
-         allowResize="true"
-         handlerSize="6"
-         style="width:100%;height:100%;">
-        <div size="220" showCollapseButton="true">
-          <div title="采购退货列表" class="nui-panel"
-                 showFooter="true"
-                 style="width:100%;height:100%;border: 0;">
-                <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
-                     showPager="true"
-                     pageSize="50"
-                     sizeList=[20,50,100,200]
-                     selectOnLoad="true"
-                     showModified="false"
-                     ondrawcell="onLeftGridDrawCell"
-                     onrowdblclick=""
-                     onselectionchanged="onLeftGridSelectionChanged"
-                     onbeforedeselect=""
-                     dataField="pjSellOrderMainList"
-                     allowCellWrap = true
-                     url="">
-                    <div property="columns">
-                      <div type="indexcolumn">序号</div>
-                        <div field="guestFullName" width="120" headerAlign="center" header="供应商"></div>
-                        <div field="createDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="退货日期"></div>
-                        <div field="orderMan" width="60" headerAlign="center" header="退货员"></div>
-                        <div field="auditSign" width="50" headerAlign="center" header="状态"></div>
-                        <div field="serviceId" headerAlign="center" width="150" header="采退单号"></div>
-                        <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
-                        <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                        <div field="auditDate" width="150" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="审核日期"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div showCollapseButton="false">
+<!--     <div class="nui-splitter" -->
+<!--          id="splitter" -->
+<!--          allowResize="true" -->
+<!--          handlerSize="6" -->
+<!--          style="width:100%;height:100%;"> -->
+<!--         <div size="220" showCollapseButton="true"> -->
+<!--           <div title="采购退货列表" class="nui-panel" -->
+<!--                  showFooter="true" -->
+<!--                  style="width:100%;height:100%;border: 0;"> -->
+<!--                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;" -->
+<!--                      showPager="true" -->
+<!--                      pageSize="50" -->
+<!--                      sizeList=[20,50,100,200] -->
+<!--                      selectOnLoad="true" -->
+<!--                      showModified="false" -->
+<!--                      ondrawcell="onLeftGridDrawCell" -->
+<!--                      onrowdblclick="" -->
+<!--                      onselectionchanged="onLeftGridSelectionChanged" -->
+<!--                      onbeforedeselect="" -->
+<!--                      dataField="pjSellOrderMainList" -->
+<!--                      allowCellWrap = true -->
+<!--                      url=""> -->
+<!--                     <div property="columns"> -->
+<!--                       <div type="indexcolumn">序号</div> -->
+<!--                         <div field="guestFullName" width="120" headerAlign="center" header="供应商"></div> -->
+<!--                         <div field="createDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="退货日期"></div> -->
+<!--                         <div field="orderMan" width="60" headerAlign="center" header="退货员"></div> -->
+<!--                         <div field="auditSign" width="50" headerAlign="center" header="状态"></div> -->
+<!--                         <div field="serviceId" headerAlign="center" width="150" header="采退单号"></div> -->
+<!--                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div> -->
+<!--                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div> -->
+<!--                         <div field="auditDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="审核日期"></div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </div> -->
+<!--         </div> -->
+<!--         <div showCollapseButton="false"> -->
             
 
              <div class="nui-fit">
@@ -135,7 +135,15 @@ body .mini-grid-row-selected{
                           <div id="basicInfoForm" class="form" contenteditable="false">
                               <input class="nui-hidden" name="id"/>
                               <input class="nui-hidden" name="operateDate"/>
-                              <input class="nui-hidden" name="auditSign" id="auditSign"/>
+							 <input class="nui-hidden" name="versionNo"/>
+	                          <input class="nui-hidden" name="storeId" id="storeId"/>
+	                          <input class="nui-hidden" name="taxRate" id="taxRate"/>
+	                          <input class="nui-hidden" name="taxSign" id="taxSign"/>
+	                          <input class="nui-hidden" name="orderAmt" id="orderAmt"/>
+	                          <input class="nui-hidden" name="auditSign" id="auditSign"/>
+<!-- 	                      	  <input class="nui-hidden" name="billStatusId" id="billStatusId"/> -->
+	                      	  <input class="nui-hidden" name="guestFullName" id="guestFullName"/>
+	                      	  <input class="nui-hidden" name="serviceId" id="serviceId"/>
                               <table style="width: 100%;">
                                   <tr>
                                       <td class="title required">
@@ -225,6 +233,13 @@ body .mini-grid-row-selected{
                                                  width="100%"
                                                  nullItemText="请选择..."/>
                                       </td>
+                                      
+                                      <td class="title">
+	                                      <label>状态：</label>
+	                                  </td>
+	                                  <td>
+	                                      <input class="nui-textbox" width="100%" id="AuditSign" name="AuditSign"/>
+	                                  </td>
                                       <td class="title">
                                           <label>备注：</label>
                                       </td>

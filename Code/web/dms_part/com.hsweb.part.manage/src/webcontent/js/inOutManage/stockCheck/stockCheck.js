@@ -30,6 +30,7 @@ var oldValue = null;
 var oldRow = null;
 var FGuestId = null;
 var partShow = 0;
+var moreSearchShow=0;
 
 var storeIdEl = null;
 var memList=[];
@@ -114,6 +115,9 @@ $(document).ready(function(v)
         if((keyCode==27))  {  //ESC
             if(partShow == 1){
                 onPartClose();
+            }
+            if(moreSearchShow==1){
+                onAdvancedSearchCancel();
             }
         }
 	 
@@ -532,6 +536,7 @@ function doSearch(params)
 function advancedSearch()
 {
     advancedSearchWin.show();
+    moreSearchShow=1;
 //    advancedSearchForm.clear();
     if(advancedSearchFormData)
     {

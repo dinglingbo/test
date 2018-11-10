@@ -20,8 +20,8 @@
        <table class="table" id="table1">
         <tr>
            <td>
-           <a class="nui-button" iconCls="" plain="true" onclick="onOk">
-                  <span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
+           <a class="nui-button" iconCls="" plain="true" onclick="onOk" id="onOk">
+                  <span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
             </td>
          </tr>
        </table>

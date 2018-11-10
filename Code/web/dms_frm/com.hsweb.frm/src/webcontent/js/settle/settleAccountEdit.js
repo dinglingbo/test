@@ -50,6 +50,7 @@ function getSettleType(callback) {
 			token: token
 		},
 		type : "post",
+		async:false,
 		success : function(data) {
 			if (data && data.list) {
 				callback && callback(data);

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>结算账户修改</title>
-<script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountEdit.js?v=1.1.3"></script>
+<script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountEdit.js?v=1.1.1"></script>
 <style type="text/css">
         a.optbtn {
             width: 44px;
@@ -126,7 +126,7 @@
                 <div property="columns">
                     <div name="action" width="60" headerAlign="center" align="center" renderer="onActionRenderer" cellStyle="padding:0;">操作</div>
                     <div field="customId" type="comboboxcolumn" width="100" headerAlign="center" header="结算方式">
-                        <input  property="editor" enabled="true" id="settleAccount" name="settleAccount" data="settleList" dataField="list" class="nui-combobox" valueField="customid" textField="name"  
+                        <input  property="editor" enabled="true" name="settleAccount" data="settleList" dataField="list" class="nui-combobox" valueField="customid" textField="name"  
                                   
                                   onvaluechanged="onSettleTypeChanged" emptyText=""  vtype="required"
                                   /> 

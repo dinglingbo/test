@@ -21,6 +21,7 @@ var eOutDate = null;
 var mainTabs = null;
 var billmainTab = null;
 
+
 //单据状态
 var AuditSignList = [
   {
@@ -100,6 +101,8 @@ $(document).ready(function(v)
         if((keyCode==80)&&(event.altKey))  {   //打印
             onPrint();
         } 
+        
+   
      
     }
     

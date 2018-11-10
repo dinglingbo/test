@@ -31,6 +31,7 @@ var isNeedSet = false;
 var oldValue = null;
 var oldRow = null;
 var partShow = 0;
+var qucikAddShow=0;
 var autoNew = 0;
 var memList=[];
 
@@ -161,6 +162,9 @@ $(document).ready(function(v) {
         if((keyCode==27))  {  //ESC
             if(partShow == 1){
                 onPartClose();
+            }
+            if(quickAddShow ==1){
+            	onAdvancedAddCancel();
             }
         }
 	}
@@ -1948,6 +1952,7 @@ function addMorePart(){
 	}
 	advancedAddForm.setData([]);
 	advancedAddWin.show();
+	quickAddShow=1;
 	partShow = 1;
 
 	var fastCodeList = nui.get("fastCodeList");

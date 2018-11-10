@@ -2,8 +2,8 @@
  * Created by Administrator on 2018/2/1.
  */
 var partApiUrl  = apiPath + partApi + "/";
-var rightGridUrl = partApiUrl+"com.hsapi.part.invoice.svr.queryPjShiftOrderMainList.biz.ext";
-var getDetailPartUrl=partApiUrl+"com.hsapi.part.invoice.svr.queryPjShiftOrderDetailList.biz.ext";
+var rightGridUrl = partApiUrl+"com.hsapi.part.invoice.svr.queryPjStockCheckMainList.biz.ext";
+var getDetailPartUrl=partApiUrl+"com.hsapi.part.invoice.svr.queryPjStockCheckDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -27,6 +27,11 @@ var auditSignHash = {
 		"1" : "已审",
 
 	};
+var dcHash={
+		"-1" : "盘亏",
+		"0"  : "无盈亏",
+		"1"  : "盘盈",
+};
 var innerPartGrid=null;
 var editFormDetail = null;
 $(document).ready(function(v)
@@ -75,6 +80,11 @@ $(document).ready(function(v)
             		e.cellHtml = partBrandIdHash[e.value].name;
             	}
             	break;
+            case "dc":
+            	if(dcHash && dcHash[e.value]){
+            		e.cellHtml = dcHash[e.value];
+            	}
+            	break;
             default:
                 break;
         }
@@ -101,7 +111,7 @@ $(document).ready(function(v)
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
-     //   nui.get("storeId").setData(storehouse);
+        nui.get("storeId").setData(storehouse);
         storehouse.forEach(function(v)
         {
             if(v && v.id)
@@ -151,6 +161,7 @@ function getSearchParam(){
     var params = {};
     params.serviceId = comServiceId.getValue();
     params.auditSign=nui.get('auditSign').getValue();
+    params.storeId=nui.get('storeId').getValue();
 	params.endDate = searchEndDate.getValue();
 	params.startDate = searchBeginDate.getValue();
     return params;
@@ -231,7 +242,6 @@ function quickSearch(type){
         	querysign = 2;
         	querystatusname = "已审";
         	break;
-        //全部
         case 14:
         	params.auditSign="";
         	querysign = 2;
@@ -264,8 +274,6 @@ function doSearch(params)
 {
 //	params.sortField = "audit_date";
 //    params.sortOrder = "desc";
-//    params.orderTypeId = 1;
-//    params.isFinished = 0;
     rightGrid.load({
         params:params,
         token:token
@@ -458,9 +466,9 @@ function onShowRowDetail(e) {
 
 function add(){
     var item={};
-    item.id = "6300";
-    item.text = "移仓单详情";
-    item.url = webPath + contextPath + "/com.hsweb.part.manage.shiftPosition.flow";
+    item.id = "6400";
+    item.text = "盘点单详情";
+    item.url = webPath + contextPath + "/com.hsweb.part.manage.stockCheck.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};
@@ -472,9 +480,9 @@ function edit(){
     var row = rightGrid.getSelected();
     if(!row) return; 
     var item={};
-    item.id = "6310";
-    item.text = "移仓单详情";
-    item.url = webPath + contextPath + "/com.hsweb.part.manage.shiftPosition.flow";
+    item.id = "6410";
+    item.text = "盘点单详情";
+    item.url = webPath + contextPath + "/com.hsweb.part.manage.stockCheck.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = row; 

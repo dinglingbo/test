@@ -109,19 +109,19 @@
                 <div summaryType="sum" allowSort="true" datatype="float" field="purchaseOutAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
             </div>
         </div>
-        <div header="维修入库" headerAlign="center">
+        <div header="工单归库" headerAlign="center">
             <div property="columns">
                 <div summaryType="sum" allowSort="true" datatype="float" field="repairEnterQty" width="60" headerAlign="center" header="数量" dataType="float" align="right"></div>
                 <div  summaryType="sum" allowSort="true" datatype="float" field="repairEnterAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
             </div>
         </div>
-        <div header="维修归库" headerAlign="center">
+        <div header="工单出库" headerAlign="center">
             <div property="columns">
                 <div summaryType="sum" allowSort="true" datatype="float" field="repairOutQty" width="60" headerAlign="center" header="数量" dataType="float" align="right"></div>
                 <div summaryType="sum" allowSort="true" datatype="float" field="repairOutAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
             </div>
         </div>
-        <div header="退货" headerAlign="center">
+        <div header="工单退货" headerAlign="center">
             <div property="columns">
                 <div summaryType="sum" allowSort="true" datatype="float" field="returnOutQty" headerAlign="center" header="数量" dataType="float" align="right"></div>
                 <div summaryType="sum" allowSort="true" datatype="float" field="returnOutAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>

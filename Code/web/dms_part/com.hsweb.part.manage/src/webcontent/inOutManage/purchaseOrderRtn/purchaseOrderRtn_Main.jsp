@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购退货主界面</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnMain.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnMain.js?v=1.0.11"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -58,9 +58,10 @@
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul>
                 
-				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">草稿</a>
+				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">全部</a>
 
                 <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                	<li iconCls="" onclick="quickSearch(14)" id="type14">全部</li>
                     <li iconCls="" onclick="quickSearch(12)" id="type12">草稿</li>
                     <li iconCls="" onclick="quickSearch(13)" id="type13">已退货</li>
 <!--                     <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li> -->
@@ -78,7 +79,7 @@
 <!--                 <label style="font-family:Verdana;">配件编码：</label> -->
 <!--                 <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/> -->
                 <!-- <label style="font-family:Verdana;">订单单号：</label> -->
-                <input id="serviceId" width="80px" emptyText="订单单号" class="nui-textbox"/>
+                <input id="serviceId" width="180px" emptyText="订单单号" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">供应商：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."
@@ -188,18 +189,18 @@
        showPager="false"
        allowSortColumn="true">
       <div property="columns">
-           <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+           <div headerAlign="center" type="indexcolumn" width="30">序号</div>
            <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
 	       <div field="comPartName" headerAlign="center" header="配件名称"></div>
-	       <div field="comPartBrandId" id="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
+	       <div field="comPartBrandId" id="comPartBrandId" width="80" headerAlign="center" header="品牌"></div>
 	       <div field="comApplyCarModel" id="comApplyCarModel" width="140" headerAlign="center" header="车型"></div>
 	       <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
 	       <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量"></div>
-	       <div field="orderPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价"></div>
-	       <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center"header="金额" ></div>
+	       <div field="orderPrice" numberFormat="0.00" width="60" headerAlign="center" header="单价"></div>
+	       <div field="orderAmt" summaryType="sum" numberFormat="0.00" width="70" headerAlign="center"header="金额" ></div>
 		   <div field="remark" width="100" headerAlign="center" allowSort="true" header="备注"></div>
 		   <div field="storeId" width="100" headerAlign="center" allowSort="true" header="仓库"></div>
-		   <div field="storeShelf" width="100" headerAlign="center" allowSort="true" header="仓位"></div>
+		   <div field="storeShelf" width="60" headerAlign="center" allowSort="true" header="仓位"></div>
 		   <div field="comOemCode" width="100" headerAlign="center" allowSort="true" header="OEM码"></div>
 		   <div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>
       </div>

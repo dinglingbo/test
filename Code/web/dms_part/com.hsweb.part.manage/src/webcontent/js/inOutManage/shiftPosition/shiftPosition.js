@@ -967,12 +967,12 @@ function checkPartIDExists(partid){
 var editPartHash = {
 };
 function deletePart(){
-    var row = leftGrid.getSelected();
-    if(row){
-        if(row.auditSign == 1) {
-            return;
-        } 
-    }
+	var data = basicInfoForm.getData();
+	if (data) {
+		if (data.auditSign == 1) {
+			return;
+		}
+	}
 
     var part = rightGrid.getSelected();
     if(!part)

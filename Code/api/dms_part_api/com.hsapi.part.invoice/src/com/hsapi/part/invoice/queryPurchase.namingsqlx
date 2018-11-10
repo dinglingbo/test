@@ -362,6 +362,7 @@
         )M
     	
         
+        group by M.id
         ORDER BY M.operateDate DESC
     </select>
     

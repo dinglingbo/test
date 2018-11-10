@@ -27,11 +27,11 @@ $(document).ready(function ()
     mainGrid.setUrl(mainGridUrl);
     beginDateEl = nui.get("sRecordDate");
     endDateEl = nui.get("eRecordDate");
-    var date = new Date();
-    var sdate = new Date();
-    sdate.setMonth(date.getMonth()-3);
-    endDateEl.setValue(date);
-    beginDateEl.setValue(sdate);
+//    var date = new Date();
+//    var sdate = new Date();
+//    sdate.setMonth(date.getMonth()-3);
+//    endDateEl.setValue(date);
+//    beginDateEl.setValue(sdate);
     editFormDetail = document.getElementById("editFormDetail");
     innerPartGrid = nui.get("innerPartGrid");
     innerPartGrid.setUrl(getRpsPartUrl);
@@ -93,9 +93,10 @@ $(document).ready(function ()
                 break;
         }
     });  
-    var statusList = "1,2";
-    var p = {statusList:statusList};
-    doSearch(p);
+//    var statusList = "1,2";
+//    var p = {statusList:statusList};
+//    doSearch(p);
+    quickSearch(4);
 });
 var statusHash = {
     "0" : "草稿",
@@ -133,7 +134,7 @@ function quickSearch(type){
     var params = getSearchParam();
     var querysign = 1;
     var queryname = "本日";
-    var querystatusname = "草稿";
+    var querystatusname = "全部";
     switch (type)
     {
         case 0:
@@ -204,11 +205,19 @@ function quickSearch(type){
         	querysign = 2;
         	querystatusname = "已归库";
         	break;
+       //全部
+        case 14:
+        	params.status=null;
+        	params.statusList = "1,2";
+        	querysign = 2;
+        	querystatusname = "全部";
+        	break;
         default:
             break;
     }
     beginDateEl.setValue(params.sRecordDate);
     endDateEl.setValue(params.eRecordDate);
+    nui.get('status').setValue(params.status);
     currType = type;
     if(querysign == 1){
     	var menunamedate = nui.get("menunamedate");
@@ -223,9 +232,9 @@ function quickSearch(type){
 function onSearch()
 {
     var params = {};
-    var statusList = "1,2";
-    var p = {statusList:statusList};
-    params = p;
+//    var statusList = "1,2";
+//    var p = {statusList:statusList};
+//    params = p;
    // var value = nui.get("carNo-search").getValue()||"";
     //value = value.replace(/\s+/g, "");
    /* if(!value){
@@ -235,21 +244,25 @@ function onSearch()
     doSearch(params);
 }
 function doSearch(params) {
-    var gsparams = getSearchParam();
-    gsparams.status = params.status;
-    gsparams.statusList = params.statusList;
-    gsparams.isSettle = params.isSettle;
+    var params = getSearchParam();
+//    gsparams.status = params.status;
+//    gsparams.statusList = params.statusList;
+//    gsparams.isSettle = params.isSettle;
     //表示退货单
-    gsparams.billTypeId = 5;
+    params.billTypeId = 5;
     mainGrid.load({
         token:token,
-        params: gsparams
+        params: params
     });
 }
 function getSearchParam() {
     var params = {};
     params.sRecordDate = beginDateEl.getValue();
     params.eRecordDate = endDateEl.getValue();
+    params.status=nui.get('status').getValue();
+    if(params.status===""){
+    	params.statusList = "1,2";
+    }
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){

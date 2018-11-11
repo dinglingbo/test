@@ -141,7 +141,7 @@ function onOk()
 
 
     if (data.modifyDate) {
-        data.modifyDate = format(data.modifyDate, ' yyyy-MM-dd HH:mm:ss');
+        data.modifyDate = format(data.modifyDate, 'yyyy-MM-dd HH:mm:ss');
     }
 
     nui.mask({

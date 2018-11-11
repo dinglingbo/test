@@ -14,7 +14,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/echarts.js" type="text/javascript"></script>
-    <script src="<%= request.getContextPath() %>/repair/js/Card/settlementStatement.js?v=1.2.1" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/settlement/js/settlementStatement.js?v=1.0.0" type="text/javascript"></script>
     <style type="text/css">
 		.m{
 				width: 120px;

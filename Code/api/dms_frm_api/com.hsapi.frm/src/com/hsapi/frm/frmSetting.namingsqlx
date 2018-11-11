@@ -324,4 +324,102 @@
 				a.bala_type_code
     </select>
     
+    <select id="queryOtherIncomeAndExpenditure" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+			SELECT
+				a.guest_name AS guestName,
+				a.bill_type_id AS billTypeId,
+				a.bill_dc AS billDc,
+				a.rp_amt AS rpAmt,
+				a.char_off_amt AS charOffAmt,
+				a.auditor,
+				a.audit_sign AS auditSign,
+				a.audit_date AS auditDate,
+				a.settle_status AS settleStatus,
+				a.remark AS remark,
+				a.rp_bill_id AS rpBillId,
+				a.create_date AS createDate
+			FROM
+				wb_frm.fis_rp_bill a
+			WHERE
+				rp_type_id = 2
+			and a.orgid = #orgid#
+		<dynamic>
+            <isNotEmpty prepend="and" property="isSettle">  
+                (a.is_settle = #isSettle#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="balaAuditSign">  
+                (a.bala_audit_sign = #balaAuditSign#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="statusList">  
+                (a.status in ($statusList$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNoEqual">  
+                (a.car_no = #carNoEqual#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">  
+                (a.car_no like '%$carNo$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceCode">  
+                (a.service_code like '%$serviceCode$%')
+            </isNotEmpty>
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">  
+                (a.enter_date &gt;= #sEnterDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">  
+                (a.enter_date &lt; #eEnterDate#)
+            </isNotEmpty>
+            <!--开单日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">  
+                (a.record_date &gt;= #sRecordDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">  
+                (a.record_date &lt; #eRecordDate#)
+            </isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="sOutDate">  
+                (a.out_date &gt;= #sOutDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eOutDate">  
+                (a.out_date &lt; #eOutDate#)
+            </isNotEmpty>
+            <!--预计完工日期 -->
+            <isNotEmpty prepend="and" property="sPlanFinishDate">  
+                (a.plan_finish_date &gt;= #sPlanFinishDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="ePlanFinishDate">  
+                (a.plan_finish_date &lt; #ePlanFinishDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeId">  
+                (a.bill_type_id = #billTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">  
+                (a.service_type_id = #serviceTypeId#)
+            </isNotEmpty>
+              <!--是否出库-->
+            <isNotEmpty prepend="and" property="isCheck">  
+                (a.is_check= #isCheck#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeIdList">  
+                exists(
+					select 1 from wb_repair.rps_service_type g 
+					where a.id = g.service_id and (g.service_type_id in ($serviceTypeIdList$))
+				)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="vin">  
+                (a.car_vin like '%$vin$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="tel">  
+                (c.tel like '%$tel$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">  
+                (c.mobile like '%$mobile$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (c.full_name like '%$name$%')
+            </isNotEmpty>
+        </dynamic>  
+        order by a.create_date
+	</select>
+    
     </sqlMap>

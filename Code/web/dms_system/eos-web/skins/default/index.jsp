@@ -208,6 +208,8 @@
 	    if(loadingV){
     		if(obj){
     			doInitTab(obj);
+    			obj = {};
+    			loadingV = false;
     		}
     	}
 	}

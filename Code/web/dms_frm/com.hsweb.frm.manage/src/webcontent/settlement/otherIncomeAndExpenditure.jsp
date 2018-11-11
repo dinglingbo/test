@@ -12,7 +12,7 @@
 <head>
 <title>计次卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.3.5">
+	src="<%=request.getContextPath()%>/manage/settlement/js/otherIncomeAndExpenditure.js?v=1.0.0">
 	</script>
 </head>
 <body>

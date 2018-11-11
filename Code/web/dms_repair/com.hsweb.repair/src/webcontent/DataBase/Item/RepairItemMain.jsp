@@ -170,6 +170,16 @@
      showModal="true"
      allowResize="false"
      allowDrag="true">
+       <div class="nui-toolbar" style="">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                            <a class="nui-button" onclick="onAdvancedAddOk()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+                            <a class="nui-button" onclick="onAdvancedAddCancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
     <div id="advancedAddForm" class="form">
         <input id="id" name="id" width="100%" class="nui-hidden" >
     	<input id="orgid" name="orgid" width="100%" class="nui-hidden" >
@@ -183,10 +193,6 @@
                 <td ><input id="dictid" name="dictid" width="100%" class="nui-combobox" textField="name" valueField="id"     dataField="" url="" valueFromSelect="true" allowinput="true"></td>
             </tr>
         </table>
-        <div style="text-align:center;padding:10px;">
-            <a class="nui-button" onclick="onAdvancedAddOk" style="width:60px;margin-right:20px;">确定</a>
-            <a class="nui-button" onclick="onAdvancedAddCancel" style="width:60px;">取消</a>
-        </div>
     </div>
 </div>
 </body>

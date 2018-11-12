@@ -48,4 +48,52 @@
             </isNotEmpty>  
         </dynamic>  
 	</select>
+	
+	    <select id="queryCard" parameterClass="commonj.sdo.DataObject" resultClass="java.util.HashMap">
+		SELECT
+				a.name AS name,
+				a.id AS id,
+				COUNT(*) AS num,
+				SUM(a.recharge_amt) AS amt
+			FROM
+				wb_repair.rpb_card_stored a
+			INNER JOIN wb_repair.rps_card_stored b ON a.id = b.card_id
+			WHERE
+				(a.orgid =#orgid# OR a.is_share = 1)
+				AND a.tenant_id = #tenantId#
+				AND a.STATUS = 0
+
+		<dynamic>
+			<isNotEmpty prepend="and" property="startDate">  
+                (b.record_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (b.record_date &lt; #endDate#)
+            </isNotEmpty>  
+        </dynamic> 
+        GROUP BY a. NAME 
+	</select>
+	
+	<select id="querytimesCard" parameterClass="commonj.sdo.DataObject" resultClass="java.util.HashMap">
+		SELECT
+				a. NAME AS NAME,
+				COUNT(*) AS num,
+				a.id AS id,
+				SUM(a.sell_amt) AS amt
+			FROM
+				wb_repair.rpb_card_times a
+			INNER JOIN wb_repair.rps_card_times b ON a.id = b.card_id
+			WHERE
+				(a.orgid = #orgid# OR a.is_share = 1)AND a.tenant_id = #tenantId#
+			AND a.STATUS = 0
+		<dynamic>
+			<isNotEmpty prepend="and" property="startDate">  
+                (b.record_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (b.record_date &lt; #endDate#)
+            </isNotEmpty>  
+        </dynamic> 
+        GROUP BY a. NAME 
+	</select>
 </sqlMap>

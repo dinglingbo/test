@@ -1,131 +1,73 @@
 var baseUrl = apiPath + frmApi + "/";
-var settleType = {};
-var settleTypeOpen =[]
-var cSettleTypeAmt = [];
-var rSettleTypeAmt = [];
-var color = "thisYear";//日，周，季，年按钮变色
-$(document).ready(function(v) {
-	setData();
+var datagrid1 = null;
+var queryOtherIncomeAndExpenditureUrl = baseUrl
++ "com.hsapi.frm.setting.queryOtherIncomeAndExpenditure.biz.ext";
+var statusList = [{id:"0",name:"全部"},{id:"1",name:"未结算"},{id:"2",name:"部分结算"},{id:"3",name:"全部结算"}];
+var statusList1 = [{id:"0",name:"全部"},{id:"1",name:"已审批"},{id:"2",name:"未审批"}];
+var statusList2 = [{id:"0",name:"发生日期"},{id:"1",name:"审核日期"}];
 
+var auditSignHash = {
+	    "0" : "未审核",
+	    "1" : "已审核"
+	};
+var settleStatusHash = {
+	    "0" : "未结算",
+	    "1" : "部分结算",
+	    "2" : "全部结算"
+	};
+
+
+$(document).ready(function(v) {
+	datagrid1 = nui.get("datagrid1");
+	datagrid1.setUrl(queryOtherIncomeAndExpenditureUrl);
+    search();
+    datagrid1.on("drawcell", function (e) {
+        if (e.field == "status") {
+            e.cellHtml = statusHash[e.value];
+        }else if (e.field == "auditSign") {
+            if (auditSignHash && auditSignHash[e.value]) {
+                e.cellHtml = auditSignHash[e.value];
+            }
+        }else if (e.field == "settleStatus") {
+            if (settleStatusHash && settleStatusHash[e.value]) {
+                e.cellHtml = settleStatusHash[e.value];
+            }
+        }else if(e.field == "billDc"){
+            if(e.value == 1){
+                e.cellHtml = "应收";
+            }else{
+                e.cellHtml = "应付";
+            }
+        }
+    });
 });
 
 
-var querySettleTypeUrl = baseUrl
-+ "com.hsapi.frm.setting.querySettleType.biz.ext";
-function setData(){
-	nui.ajax({
-		url : querySettleTypeUrl,
-		data : {
-			dictId: 'DDT20130703000031',
-			token: token
-		},
-		type : "post",
-		success : function(data) {
-			if (data && data.list) {
-				settleType=data.list;
-				for(var i =0;i<settleType.length;i++){
-					settleType[i].cAmt=0;
-					settleType[i].rAmt=0;
 
-				}
-				queryAmt(getYearStartDate(),getYearEndDate());
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR.responseText);
-		}
-	});
-	
+function search() {
+    var params = {};
+    params.guestName = nui.get("guestName").getValue();
+    if(nui.get("auditSign").getValue()==0){
+    	
+    }else{
+    	params.auditSign=nui.get("auditSign").getValue();
+    }
+    if(nui.get("settleStatus").getValue()==0){
+    	
+    }else{
+    	params.settleStatus=nui.get("settleStatus").getValue();
+    }
+    
+    var type = nui.get("search-date").getValue();
+    if(type==0){
+    	params.screateDate = nui.get("sDate").getValue();
+    	params.ecreateDate = nui.get("eDate").getValue();
+    }else if(type==1){
+    	params.sauditDate = nui.get("sDate").getValue();
+    	params.eauditDate = nui.get("eDate").getValue();
+    }
+    datagrid1.load({params:params,token:token});
 }
 
-function settleOK(e){
-	if(e==1){
-		queryAmt(getNowStartDate(),getNowStartDate());
-		document.getElementById(color).setAttribute("class", "m");
-		color = "today";
-		document.getElementById("today").setAttribute("class", "n");
-		
-	}else if(e==2){
-		queryAmt(getWeekStartDate(),getWeekEndDate());
-		document.getElementById(color).setAttribute("class", "m");
-		color = "thisWeek";
-		document.getElementById("thisWeek").setAttribute("class", "n");
-		
-	}else if(e==3){
-		queryAmt(getMonthStartDate(),getMonthStartDate());
-		document.getElementById(color).setAttribute("class", "m");
-		color = "thisMonth";
-		document.getElementById("thisMonth").setAttribute("class", "n");
-		
-	}else if(e==4){
-		queryAmt(getQuarterStartDate(),getQuarterEndDate());
-		document.getElementById(color).setAttribute("class", "m");
-		color = "thisQuarter";
-		document.getElementById("thisQuarter").setAttribute("class", "n");
-		
-	}else if(e==5){
-		queryAmt(getYearStartDate(),getYearEndDate());
-		document.getElementById(color).setAttribute("class", "m");
-		color = "thisYear";
-		document.getElementById("thisYear").setAttribute("class", "n");
-		
-	}
-}
-
-var querySettleTypeAmtUrl = baseUrl
-+ "com.hsapi.frm.setting.querySettlementAmt.biz.ext";
-
-function queryAmt(startDate,endData){
-	nui.ajax({
-		url : querySettleTypeAmtUrl,
-		data : {
-			p:{
-					startDate:startDate,
-					endData:endData,
-					token: token
-				},
-			token: token
-		},
-		type : "post",
-		success : function(data) {
-			if (data && data.rlist) {
-				if(data.rlist.length==0){
-					for(var i = 0;i<settleType.length;i++){
-						settleType[i].rAmt =0;
-					}
-				}else{
-					for(var i = 0;i<settleType.length;i++){
-						for(var j = 0;j<data.rlist.length;j++){
-							if(settleType[i].customid==data.rlist[j].code){
-								settleType[i].rAmt=data.rlist[j].rAmt;
-							}
-						}
-
-					}
-				}
-			if(data.clist.length==0){
-				for(var i = 0;i<settleType.length;i++){
-					settleType[i].cAmt =0;
-				}
-			}else{
-				for(var i = 0;i<settleType.length;i++){
-					for(var j = 0;j<data.clist.length;j++){
-						if(settleType[i].customid==data.clist[j].code){
-							settleType[i].cAmt=data.clist[j].cAmt;
-						}
-					}
-
-				}
-			}
-				
-			}
-			open(settleType);
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR.responseText);
-		}
-	});
-
-}
 
 	

@@ -10,9 +10,9 @@
 - Description:
   --%>
 <head>
-<title>计次卡定义</title>
+<title>其他收支明细</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/otherIncomeAndExpenditure.js?v=1.0.0">
+	src="<%=request.getContextPath()%>/manage/settlement/js/otherIncomeAndExpenditure.js?v=1.0.2">
 	</script>
 </head>
 <body>
@@ -21,59 +21,49 @@
 
 
 	<div class="nui-toolbar" style="border-bottom: 0; padding: 0px;">
-		<div id="queryform" class="nui-form" align="center">
-			<!-- 数据实体的名称 -->
-			<input class="nui-hidden" name="criteria/_entity"
-				value="com.hsapi.repair.data.rpb.RpbCardTimes">
-			<!-- 排序字段 -->
-             
+		<div id="queryform" class="nui-form" align="center">             
 			<table style="width: 100%;" id="table1">
-				<tr>
-					<td style="width: 100%;">计次卡名称: <input class="nui-textbox"
-						name="criteria/_expr[1]/name" id="cardName"/> <input class="nui-hidden"
-						name="criteria/_expr[1]/_op" value="like"> <input
-						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
-						<a class="nui-button" onclick="search()" plain="true">
+				<tr> 
+				<td style="width: 100%;">
+					往来单位名称：<input class="nui-textbox" id="guestName" emptyText="请输入查询单位名称" width="120"/>	
+					审核状态；<input class="nui-combobox" id="auditSign" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+						结算状态：<input class="nui-combobox" id="settleStatus" width="80" textField="name" valueField="id" value="0" data="statusList1" allowInput="false"/>
+						<input class="nui-combobox" id="search-date" width="80" textField="name" valueField="id" value="0" data="statusList2" allowInput="false"/>
+							 从<input id="sDate" name="" class="nui-datepicker" value=""/>
+         					   至 <input id="eDate" name="" class="nui-datepicker" value=""/>
+
+				<a class="nui-button" onclick="search()" plain="true">
 						<span class="fa fa-search fa-lg"></span> 查询 </a> 
-						<a  class="nui-button"  onclick="add()" id="addBtn"
-						plain="true"> <span class="fa fa-plus fa-lg"></span>增加 </a> 
-						<a  class="nui-button" id="updateBtn"
-						 onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span> 修改 </a>				
-						<a class="nui-button" iconCls="" plain="true" onclick="onBuy()" id = "onBuy" visible = "false"><span class="fa fa-check fa-lg"></span>&nbsp;购买</a>
-							<a class="nui-button" onclick="lookCardTimes()" plain="true"> <span
-							class="fa fa-search fa-lg"></span>&nbsp; 查看详情
-					</a>
+					
 					</td>
 				</tr>
 			</table>
 		</div>
 	</div>
 	<div class="nui-fit">
-		<div id="datagrid1" dataField="timesCard" class="nui-datagrid" 
-			style="width: 100%; height: 100%;" pageSize="20" showPageInfo="true"
+		<div id="datagrid1" dataField="list" class="nui-datagrid" 
+			style="width: 100%; height: 100%;" pageSize="20" showPageInfo="true" totalField="page.count" allowCellWrap="true"
 			onDrawCell="onDrawCell" onselectionchanged="selectionChanged"
 			allowSortColumn="false">
 			<div property="columns">
 				<div type="indexcolumn" header="序号" width="20px"></div>
-				<div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
-				<div field="id" headerAlign="center" allowSort="true"
-					visible="false">计次卡ID</div>
-				<div field="name" headerAlign="center" allowSort="true" width="100px">计次卡名称</div>
-				<div field="periodValidity" headerAlign="center" allowSort="true" width="50px">
-					有效期(月)</div>
-				<div field="sellAmt" headerAlign="center" allowSort="true" width="50px">
-					销售价格</div>
-				<div field="totalAmt" headerAlign="center" allowSort="true" width="50px">
-					总价值</div>
-				<div field="isShare" headerAlign="center" allowSort="true" width="50px">
-					是否可修改</div>
-				<!-- <div field="salesDeductType" headerAlign="center" allowSort="true">销售提成方式</div>
-				<div field="salesDeductValue" headerAlign="center" allowSort="true">
-					销售提成值</div> -->
-				<div field="status" headerAlign="center" allowSort="true" width="40px">状态</div>
-				<div field="useRemark" headerAlign="center" allowSort="true" width="120px">
-					使用说明</div>
-				<div field="remark" headerAlign="center" allowSort="true" width="120px">卡说明</div>
+				<div field="guestName" headerAlign="center" allowSort="true" width="120px">往来单位名称</div>
+				<div field="billTypeId" headerAlign="center" allowSort="true" width="80px">
+					收支项目</div>
+				<div field="charOffAmt" headerAlign="center" allowSort="true" width="40px">
+					金额</div>
+				<div field="remark" headerAlign="center" allowSort="true" width="140px">
+					备注</div>
+				<div field="billDc" headerAlign="center" allowSort="true" width="40px">
+					交易类型</div>
+
+				<div field="createDate" headerAlign="center" allowSort="true" width="80px" dateFormat="yyyy-MM-dd HH:mm">发生日期</div>
+				<div field="rpBillId" headerAlign="center" allowSort="true" width="120px">
+					收支单号</div>
+				<div field="auditor" headerAlign="center" allowSort="true" width="50px">审核人</div>
+				<div field="auditDate" headerAlign="center" allowSort="true" width="80px" dateFormat="yyyy-MM-dd HH:mm">审核日期</div>
+				<div field="auditSign" headerAlign="center" allowSort="true" width="40px">审核状态</div>
+				<div field="settleStatus" headerAlign="center" allowSort="true" width="40px">结算状态</div>
 			</div>
 		</div>
 	</div>

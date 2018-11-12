@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购订单查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderMain.js?v=1.0.58"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderMain.js?v=1.0.61"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -119,13 +119,13 @@
             <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
             <div header="订单信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="serviceId" width="100" summaryType="count" headerAlign="center" header="订单单号"></div>
+                    <div allowSort="true" field="serviceId" width="130" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" width="190" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div field="billStatusId" width="60" headerAlign="center" header="状态"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="createDate" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" field="createDate" width="130" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
                     <div allowSort="true" field="settType" width="60" headerAlign="center" header="结算方式"></div>
@@ -171,7 +171,8 @@
                     <div allowSort="true" datatype="float" summaryType="sum" field="notEnterQty" width="60" headerAlign="center" header="未入库数量"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="adjustQty" width="60" headerAlign="center" header="调整数量"></div> -->
                     <div field="creator" width="60" headerAlign="center" header="创建人"></div>
-                    <div allowSort="true" field="createDate" width="130" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm" ></div> 
+                    <div allowSort="true" field="createDate" width="130" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm" ></div>
+                    <div allowSort="true" field="operateDate" width="130" headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm" ></div>  
                 </div>
             </div>
         </div>

@@ -593,9 +593,9 @@ function getMainData() {
     data.orderTypeId = 4;
 
     if (data.operateDate) {
-        data.operateDate = format(data.operateDate, ' yyyy-MM-dd HH:mm:ss')
+        data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss')
                 + '.0';// 用于后台判断数据是否在其他地方已修改
-        // data.versionNo = format(data.versionNo, ' yyyy-MM-dd HH:mm:ss');
+        // data.versionNo = format(data.versionNo, 'yyyy-MM-dd HH:mm:ss');
     }
 
     if(!data.billTypeId){

@@ -487,7 +487,7 @@ function getMainData()
 	data.orderMan=nui.get('orderMan').getText();
 
     if(data.operateDate) {
-        data.operateDate = format(data.operateDate, ' yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
+        data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
     }
 
     data.guestId = FGuestId;

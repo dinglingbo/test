@@ -8,13 +8,13 @@
 function doPost(opt) {
 	var url = opt.url;
 	var data = opt.data||{}; 
-	var success = opt.success || function() {
+	var success = opt.success || function() { 
 	};
 	var error = opt.error || function() {
 	};
 	data.userId = currUserId;
 	data.orgid = currOrgId;
-	data.userName = currUserName;
+	data.userName = currUserName; 
 	data.token = token;
 	nui.ajax({
 		url : url,

@@ -8,7 +8,7 @@
   - Description:
 -->
 <head>
-    <title>退货归库查询</title>
+    <title>销售出库查询</title>
     <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnOutQty.js?v=1.0.28"></script>
     <style type="text/css">
     .title {
@@ -87,7 +87,7 @@
                   valueFromSelect="false"
                   width="120px">
                 
-               <td class="form_label" style="width:6%; text-align:center;">退货日期 从:</td>
+               <td class="form_label" style="width:6%; text-align:center;">出库日期 从:</td>
                <td style="width:4%;">
                  <input class="nui-datepicker" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
              </td>
@@ -128,7 +128,7 @@
                 <div allowSort="true" field="oemCode" width="100" headerAlign="center" header="OEM码"></div>
    				<div allowSort="true" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
    				<div allowSort="true" field="applyCarModel" width="200" headerAlign="center" header="车型"></div>
-                <div allowSort="true" field="unit" width="50" headerAlign="center" header="单位"></div>
+                <div allowSort="true" field="unit" width="100" headerAlign="center" header="单位"></div>
                 <div allowSort="true" field="carTypeIdF" width="100" headerAlign="center" header="配件分类一级"></div>
                 <div allowSort="true" field="carTypeIdS" width="100" headerAlign="center" header="配件分类二级"></div>
                 <div allowSort="true" field="carTypeIdT" width="100" headerAlign="center" header="配件分类三级"></div>
@@ -136,13 +136,6 @@
             </div>
         </div>
         
-         <div header="领料信息" headerAlign="center">
-            <div property="columns">
-                <div  allowSort="true"  field="pickDate"dateFormat="yyyy-MM-dd hh:MM" width="130" headerAlign="center" header="领料日期" dataType="float" align="left"></div>
-                <div allowSort="true" datatype="float" field="pickMan"  width="60" headerAlign="center" header="领料人" dataType="float" align="left"></div>
-            </div>
-        </div>
-   
         <div header="成本信息" headerAlign="center">
             <div property="columns">
                  <div summaryType="sum" field="trueUnitPrice" width="60" headerAlign="center" header="成本单价" dataType="float" align="left"></div>
@@ -163,11 +156,10 @@
                 <div allowSort="true" summaryType="sum" field="costRate" headerAlign="center" header="成本率" dataType="float" align="left"></div>
             </div>
         </div>
-        <div header="退货信息" headerAlign="center">
+        <div header="出库信息" headerAlign="center">
             <div property="columns">
-                <div allowSort="true"  field=outReturnSign width="60" headerAlign="center" header="退货标志" dataType="float" align="left"></div>
-                <div allowSort="true"  field=pickMan width="60" headerAlign="center" header="退货人" dataType="float" align="left"></div>
-                <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd hh:MM" field="outDate" headerAlign="center" header="退货日期" dataType="float" align="left"></div>
+                <div allowSort="true"  field=pickMan width="60" headerAlign="center" header="出库人" dataType="float" align="left"></div>
+                <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd hh:MM" field="outDate" headerAlign="center" header="出库日期" dataType="float" align="left"></div>
             </div>
         </div>
     </div>

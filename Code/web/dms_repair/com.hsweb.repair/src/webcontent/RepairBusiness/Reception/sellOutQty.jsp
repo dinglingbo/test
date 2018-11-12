@@ -122,7 +122,7 @@
             <div property="columns">
             	<div allowSort="true" field="serviceCode" width="130" headerAlign="center" header="业务单号"></div>
             	<div allowSort="true" field="carNo" width="100" headerAlign="center" header="车牌号"></div>
-            	<div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+            	<div allowSort="true" field="storeId" width="100" headerAlign="center" header="仓库"></div>
                 <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
                 <div allowSort="true" field="partName" width="150" headerAlign="center" header="配件名称"></div>
                 <div allowSort="true" field="oemCode" width="100" headerAlign="center" header="OEM码"></div>

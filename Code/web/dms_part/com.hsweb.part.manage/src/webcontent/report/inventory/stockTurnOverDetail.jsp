@@ -9,7 +9,7 @@
 -->
 <head>
     <title>库存周转明细查询</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/stockTurnOverDeatail.js?v=1.0.15"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/report/stockTurnOverDeatail.js?v=1.0.16"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -29,7 +29,7 @@
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
-            <td style=" width:40%;">
+            <td style=" width:36%;">
                 <label style="font-family:Verdana;">快速查询：</label>
                 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">最近7天</a>
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
@@ -44,23 +44,11 @@
 <!--                 <input class="nui-textbox" width="100px" id="morePartId" emptyText="内码"  selectOnFocus="true" name="morePartID"/> -->
 <!--                 <input class="nui-textbox" width="100px" id="guestName" emptyText="客户/供应商"  selectOnFocus="true" name="guestName"/> -->
                 
+         
                 <input id="partBrandId"
 	                name="partBrandId"
 	                class="nui-combobox"
-	                width="150px"
-	                textField="name"
-	                valueField="id"
-	                dataField="brandList"
-	                valueFromSelect="true"
-	                emptyText="品牌"
-	                url=""
-	                allowInput="true"
-	                showNullItem="false"
-	                nullItemText="品牌"/>
-                <input id="partBrandId"
-	                name="partBrandId"
-	                class="nui-combobox"
-	                width="150px"
+	                width="120px"
 	                textField="name"
 	                valueField="id"
 	                dataField="brandList"
@@ -81,9 +69,9 @@
                   url=""
                   allowInput="true"
                   valueFromSelect="false"
-                  width="150px">
+                  width="120px">
                 
-               <td class="form_label" style="width:6%; text-align:left;">日期 从:</td>
+               <td class="form_label" style="width:6%; text-align:center;">日期 从:</td>
                <td style="width:4%;">
                  <input class="nui-datepicker" id="startDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
              </td>
@@ -114,9 +102,9 @@
     frozenEndColumn="0">
             <div property="columns">
         		<div type="indexcolumn">序号</div>
-                <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
+                <div allowSort="true" field="partCode" width="130" headerAlign="center" header="配件编码"></div>
                 <div allowSort="true" field="partName" width="150" headerAlign="center" header="配件名称"></div>
-                <div allowSort="true" field="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+                <div allowSort="true" field="oemCode" width="150" headerAlign="center" header="OEM码"></div>
    				<div allowSort="true" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
    				<div allowSort="true" field="applyCarModel" width="200" headerAlign="center" header="车型"></div>
                 <div allowSort="true" field="unit" width="100" headerAlign="center" header="单位"></div>

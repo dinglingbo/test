@@ -79,6 +79,7 @@ $(document).ready(function(v)
 });
 function getSearchParams(){
     var params = {};
+    params.partCodeOrName=nui.get('partCodeOrName').getValue();
     params.partBrandId=nui.get('partBrandId').getValue();
     params.partTypeId=nui.get('partTypeId').getValue();
     params.startDate=nui.get("startDate").getValue().substr(0, 10);

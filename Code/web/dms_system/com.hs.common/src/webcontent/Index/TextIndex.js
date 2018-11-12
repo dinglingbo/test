@@ -164,7 +164,7 @@ function toTimesCardList(){
     item.text = "计次卡销售";
     item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.timesCardList.flow?token="+token;
     item.iconCls = "fa fa-file-text";
-    var params = {};
+    var params = {id:1862};
     window.parent.activeTabAndInit(item,params);
 }
 

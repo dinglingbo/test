@@ -26,6 +26,15 @@ $(document).ready(function(){
 		document.getElementById("isDisabledTd").style.display= "none"; 
 		nui.get("isShare").setVisible(false);
 	}*/
+	nui.get("type").focus();
+	document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;//38向上 40向下
+
+        if((keyCode==27))  {  //ESC
+            onCancel();
+        }
+      };
 });
 function onInputFocus(e)
 {

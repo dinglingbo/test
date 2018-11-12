@@ -53,6 +53,8 @@ $(document).ready(function(v) {
     grid.on("drawcell", function (e){
     	onDrawCell(e);
     });
+    
+
 });
 
 
@@ -317,6 +319,4 @@ function stoporstart(i){
 	}
 
 
-	
-	
 	

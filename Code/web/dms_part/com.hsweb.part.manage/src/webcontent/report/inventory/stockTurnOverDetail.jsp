@@ -43,6 +43,20 @@
              	<input class="nui-textbox" width="100px" id="partCodeOrName" name="partCodeOrNmae" selectOnFocus="true" enabled="true" emptyText="配件编码/名称"/>
 <!--                 <input class="nui-textbox" width="100px" id="morePartId" emptyText="内码"  selectOnFocus="true" name="morePartID"/> -->
 <!--                 <input class="nui-textbox" width="100px" id="guestName" emptyText="客户/供应商"  selectOnFocus="true" name="guestName"/> -->
+                
+                <input id="partBrandId"
+	                name="partBrandId"
+	                class="nui-combobox"
+	                width="150px"
+	                textField="name"
+	                valueField="id"
+	                dataField="brandList"
+	                valueFromSelect="true"
+	                emptyText="品牌"
+	                url=""
+	                allowInput="true"
+	                showNullItem="false"
+	                nullItemText="品牌"/>
                 <input id="partBrandId"
 	                name="partBrandId"
 	                class="nui-combobox"

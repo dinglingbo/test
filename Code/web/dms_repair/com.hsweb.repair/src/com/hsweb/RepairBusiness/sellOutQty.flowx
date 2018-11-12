@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="selllOutQty.flowx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
+<process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="sellOutQty" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="销售出库查询" title="Administrator&#x9;18-11-12 下午2:26">
+    <location x="207" y="261"/>
+    <size height="100" width="247"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" displayName="link1" lineType="reference" isDefault="true" type="action" actionName="action0">
       <sourceNode>start0</sourceNode>
@@ -25,7 +29,7 @@
     <figSize height="20" width="40"/>
     <node>end1</node>
   </nodes>
-  <nodes xsi:type="process:tView" description="" id="view0" name="sellQuery" displayName="sellQuery.jsp" collapsed="false" type="view" contextPath="" contributionName="com.hsweb.repair" method="forward" uri="/repair/RepairBusiness/Reception/sellQuery.jsp">
+  <nodes xsi:type="process:tView" description="" id="view0" name="sellOutQty" displayName="sellOutQty.jsp" collapsed="false" type="view" contextPath="" contributionName="com.hsweb.repair" method="forward" uri="/repair/RepairBusiness/Reception/sellOutQty.jsp">
     <sourceConnections xsi:type="process:tActionLink" id="link0" name="link0" displayName="link0" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end1</targetNode>
@@ -38,8 +42,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
-    <location x="245" y="156"/>
-    <figSize height="20" width="69"/>
+    <location x="240" y="156"/>
+    <figSize height="20" width="78"/>
     <node>view0</node>
   </nodes>
   <topRuler/>

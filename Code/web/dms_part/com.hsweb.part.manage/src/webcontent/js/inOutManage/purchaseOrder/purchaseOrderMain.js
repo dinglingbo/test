@@ -514,7 +514,7 @@ function edit(){
     var row = rightGrid.getSelected();
     if(!row) return; 
     var item={};
-    item.id = "6100";
+    item.id = "6000";
     item.text = "采购订单详情";
     item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrder.flow";
     item.iconCls = "fa fa-file-text";

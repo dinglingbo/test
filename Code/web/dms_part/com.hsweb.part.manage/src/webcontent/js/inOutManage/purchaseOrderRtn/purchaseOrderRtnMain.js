@@ -510,7 +510,7 @@ function edit(){
     var row = rightGrid.getSelected();
     if(!row) return; 
     var item={};
-    item.id = "6210";
+    item.id = "6200";
     item.text = "采购退货详情";
     item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrderRtn.flow";
     item.iconCls = "fa fa-file-text";

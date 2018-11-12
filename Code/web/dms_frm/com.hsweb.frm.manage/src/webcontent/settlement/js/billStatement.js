@@ -16,7 +16,7 @@ var comPartNameAndPY = null;
 var comPartCode = null;
 var comServiceId = null;
 var comSearchGuestId = null;
-
+var gsparams = {};
 var storehouseHash = {};
 var billTypeIdHash = {};
 var settTypeIdHash = {};
@@ -193,26 +193,22 @@ $(document).ready(function(v)
 });
 function getSearchParam(){
 	 var params = {};
-	    /*var outableQtyGreaterThanZero = nui.get("outableQtyGreaterThanZero").getValue();
-	    if(outableQtyGreaterThanZero == 1)
-	    {
-	        params.outableQtyGreaterThanZero = 1;
-	    }*/
-	    params.serviceId = comServiceId.getValue();
-	     
-	    params.auditSign=nui.get('auditSign').getValue();
-	    params.billStatusId=nui.get('billStatusId').getValue();
-	    if(params.auditSign=="" || ! params.auditSign){
-	    	params.auditSign=-1;
-	    }
-//		params.partCode = comPartCode.getValue();
-//		params.partNameAndPY = comPartNameAndPY.getValue();
-//		params.guestId = comSearchGuestId.getValue();
-		params.guestName=comSearchGuestId.getValue();
-		params.endDate = searchEndDate.getValue();
-		params.startDate = searchBeginDate.getValue();
-		params.isDiffOrder = 0;
-	    return params;
+	 params.auditSign=nui.get('auditSign').getValue();
+	// params.billStatusId=nui.get('billStatusId').getValue();
+	 if(params.auditSign=="" || ! params.auditSign){
+	    params.auditSign=0;
+	  }
+	 params.serviceId = comServiceId.getValue(); 
+ 	 params.guestName=comSearchGuestId.getValue();
+	 params.endDate = searchEndDate.getValue();
+	 params.startDate = searchBeginDate.getValue();
+	// params.isDiffOrder = 0;
+	 
+	/* gsparams.guestName=comSearchGuestId.getValue();
+	 gsparams.serviceId = comServiceId.getValue();     
+	 gsparams.endDate = searchEndDate.getValue();
+	 gsparams.startDate = searchBeginDate.getValue();*/
+	 return params;
 }
 var currType = 0;
 function quickSearch(type){
@@ -283,28 +279,22 @@ function quickSearch(type){
             break;
         //草稿
         case 12:
-        	params.billStatusId=0;
         	params.auditSign=0;
         	querysign = 2;
         	querystatusname = "未审";
         	break;
         //待发货
         case 13:
-        	params.billStatusId=1;
         	params.auditSign=1;
         	querysign = 2;
         	querystatusname = "已审";
         	break;
         default:
-        	querysign = 2;
-    	    querystatusname = "全部";
-    	    params.auditSign=1;
             break;
     }
     searchBeginDate.setValue(params.startDate);
     searchEndDate.setValue(params.endDate);
     nui.get('auditSign').setValue(params.auditSign);
-    nui.get('billStatusId').setValue(params.billStatusId);
     currType = type;
     if(querysign == 1){
     	var menunamedate = nui.get("menunamedate");

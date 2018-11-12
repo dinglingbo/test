@@ -2,8 +2,8 @@ var baseUrl = apiPath + frmApi + "/";
 var datagrid1 = null;
 var queryOtherIncomeAndExpenditureUrl = baseUrl
 + "com.hsapi.frm.setting.queryOtherIncomeAndExpenditure.biz.ext";
-var statusList = [{id:"0",name:"全部"},{id:"1",name:"未结算"},{id:"2",name:"部分结算"},{id:"3",name:"全部结算"}];
-var statusList1 = [{id:"0",name:"全部"},{id:"1",name:"已审批"},{id:"2",name:"未审批"}];
+var statusList = [{id:"4",name:"全部"},{id:"0",name:"未结算"},{id:"1",name:"部分结算"},{id:"2",name:"全部结算"}];
+var statusList1 = [{id:"4",name:"全部"},{id:"1",name:"已审核"},{id:"0",name:"未审核"}];
 var statusList2 = [{id:"0",name:"发生日期"},{id:"1",name:"审核日期"}];
 
 var auditSignHash = {
@@ -47,12 +47,12 @@ $(document).ready(function(v) {
 function search() {
     var params = {};
     params.guestName = nui.get("guestName").getValue();
-    if(nui.get("auditSign").getValue()==0){
+    if(nui.get("auditSign").getValue()==4){
     	
     }else{
     	params.auditSign=nui.get("auditSign").getValue();
     }
-    if(nui.get("settleStatus").getValue()==0){
+    if(nui.get("settleStatus").getValue()==4){
     	
     }else{
     	params.settleStatus=nui.get("settleStatus").getValue();

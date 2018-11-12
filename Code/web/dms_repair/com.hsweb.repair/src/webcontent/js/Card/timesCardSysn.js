@@ -315,36 +315,37 @@ function setData(data) {
 		}
 		form.setData(json);
 		form.setChanged(false);
+		// 计次卡明细查询
+		var json1 = nui.encode({
+			id : json.id,
+			token:token
+		});
+		nui.ajax({
+			url : gridUrl,
+			type : 'POST',
+			data : json1,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				var returnJson = nui.decode(text);
+				if (returnJson.exception == null) {
+					g = nui.get("#timesCardDetail");
+					g.setData(returnJson.timesCardDetail);
+				} else {
+					nui.alert("获取明细失败", "系统提示", function(action) {
+						if (action == "ok" || action == "close") {
+							// CloseWindow("saveFailed");
+							
+						}
+					});
+				}
+			}
+		});
 	}
 	if(json && json.type){
 		type = json.type;
 	}
-	// 计次卡明细查询
-	var json1 = nui.encode({
-		"timesCard" : json,
-		token:token
-	});
-	nui.ajax({
-		url : gridUrl,
-		type : 'POST',
-		data : json1,
-		cache : false,
-		contentType : 'text/json',
-		success : function(text) {
-			var returnJson = nui.decode(text);
-			if (returnJson.exception == null) {
-				g = nui.get("#timesCardDetail");
-				g.setData(returnJson.timesCardDetail);
-			} else {
-				nui.alert("获取明细失败", "系统提示", function(action) {
-					if (action == "ok" || action == "close") {
-						// CloseWindow("saveFailed");
-						
-					}
-				});
-			}
-		}
-	});
+
 
 }
 

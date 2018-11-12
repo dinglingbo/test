@@ -6,16 +6,6 @@
       <targetNode>assign0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" type="transition">
-      <sourceNode>start0</sourceNode>
-      <targetNode>assign2</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="ISNULL">
-          <process:leftOperand type="query">timesCard/id</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <location x="100" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
@@ -45,7 +35,6 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <targetConnections>link6</targetConnections>
     <location x="345" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -85,7 +74,7 @@
       <process:to type="query">criteria/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">timesCard/id</process:from>
+      <process:from type="query" pattern="reference">id</process:from>
       <process:to type="query">criteria/_expr[1]/_value</process:to>
     </process:copy>
     <process:copy>
@@ -110,49 +99,6 @@
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign2</sourceNode>
-      <targetNode>invokePojo0</targetNode>
-    </sourceConnections>
-    <targetConnections>link5</targetConnections>
-    <location x="185" y="45"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign2label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbCardTimesDetail</process:from>
-      <process:to type="query">criteria/_entity</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">criteria/_expr[1]/_op</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">criteria/_expr[1]/_value</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">cardId</process:from>
-      <process:to type="query">criteria/_expr[1]/_property</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">criteria/_expr[2]/_op</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">criteria/_expr[2]/_value</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">orgid</process:from>
-      <process:to type="query">criteria/_expr[2]/_property</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="183" y="81"/>
-    <figSize height="17" width="32"/>
-    <node>assign2</node>
-  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-08 14:58:11" date="2018-08-08Z" description="" name="queryTimesCardDetail" version="7.0.0.0"/>
@@ -160,7 +106,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="criteria"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCardTimes" name="timesCard"/>
+    <process:input description="" isArray="false" name="id" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardTimesDetail" name="timesCardDetail"/>

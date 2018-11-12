@@ -56,6 +56,14 @@ $(document).ready(function()
 	rightGrid.setUrl(rightGridUrl);
 	rightGrid.on("drawcell",onDrawCell);
 	onSearch();
+	rightGrid.on("rowdblclick",function(e){
+		if(isOpenWin==1){
+			onOk();
+		}else{
+			
+			edit();
+		}	
+	});
     rightGrid.on("drawcell",function(e){
 		switch (e.field){
 			case "type":

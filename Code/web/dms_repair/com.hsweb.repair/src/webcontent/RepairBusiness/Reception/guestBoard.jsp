@@ -75,8 +75,8 @@
 	   	  allowRowSelect="false" showPager="false" style="height:100%;width:100%;">
 	        <div property="columns">
 	            <div field="carNo" width="100" headerAlign="center" align="center">车牌号</div>
-	            <div field="recordDate" dateFormat="  yyyy-MM-dd HH:mm" width="100" headerAlign="center" align="center">接车时间</div>
-	            <div field="planFinishDate" width="100" dateFormat="MM-dd H:mm" headerAlign="center" align="center">预计完工时间</div>
+	            <div field="recordDate"  width="100" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" align="center">接车时间</div>
+	            <div field="planFinishDate" width="100"  headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" align="center">预计完工时间</div>
 	            <div field= "status" width="100" headerAlign="center" align="center">服务进程</div>
 	            <div field= "mtAdvisor" width="100" headerAlign="center" align="center">服务顾问</div>
 		        <!-- <div field= "status" width="100" headerAlign="center" align="center">服务顾问电话</div> -->
@@ -103,15 +103,29 @@
 
 		$(document).ready(function(v) {
 		
-			full = nui.get("full");	
+/* 			full = nui.get("full");	
 			exit = nui.get("exit");
-			exit.setVisible(false);
+			exit.setVisible(false); */
 			guestBoardGrid = nui.get("guestBoardGrid");
 			guestBoardGrid.setUrl(gridUrl);
 
 			guestBoardGrid.on("drawcell", function (e) {
 				if (e.field == "status") {
 					e.cellHtml = statusHash[e.value];
+				}
+				if (e.field == "recordDate") {
+				var str =e.cellHtml.split(" "); 
+				var qian = str[0].split("-");
+				var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
+					e.cellHtml = time;
+				}
+				if (e.field == "planFinishDate") {
+					if(e.cellHtml!=""&&e.cellHtml!=null){
+						var str =e.cellHtml.split(" "); 
+						var qian = str[0].split("-");
+						var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
+						e.cellHtml = time;
+					}
 				}
 				if(e.field == "carNo"){
 				var carNo = e.row.carNo;
@@ -120,7 +134,14 @@
 				e.cellHtml = carNo;
 				}
 			});
-
+			$(function(){
+				$(window).keydown(function (event) {
+					if (event.keyCode == 27) {
+						               	full.setVisible(true);
+                exit.setVisible(false);
+					}
+				});
+			});
 			load();
 		});
 
@@ -145,8 +166,8 @@
                 if(typeof rfs != "undefined" && rfs) {
                     rfs.call(el);
                 };
-                full.setVisible(false);
-                exit.setVisible(true);
+/*                 full.setVisible(false);
+                exit.setVisible(true); */
               return;
         }
 		
@@ -167,8 +188,8 @@
             if(typeof cfs != "undefined" && cfs) {
                 cfs.call(el);
             }
-               	full.setVisible(true);
-                exit.setVisible(false);
+/*                	full.setVisible(true);
+                exit.setVisible(false); */
         }
 		
 
@@ -202,7 +223,6 @@
 					count=1;
 				}
  			}
-		
 		
  	setInterval(rolling,2000);
     </script>

@@ -1038,10 +1038,10 @@
 			a.`status` AS `status`,
 			a.plan_finish_date AS planFinishDate,
 			a.sure_mt_man as sureMtMan,
-		(select GROUP_CONCAT(item_name) from wb_repair.rps_item b
-	       where b.service_id = a.id) itemName,
-	    (select GROUP_CONCAT(package_name) from wb_repair.rps_package c
-	       where c.service_id = a.id) packageName
+		ifnull((select GROUP_CONCAT(item_name) from wb_repair.rps_item b
+	       where b.service_id = a.id),"") as itemName,
+	    ifnull((select GROUP_CONCAT(package_name) from wb_repair.rps_package c
+	       where c.service_id = a.id),"" )as packageName
 
 		FROM
 			rps_maintain a

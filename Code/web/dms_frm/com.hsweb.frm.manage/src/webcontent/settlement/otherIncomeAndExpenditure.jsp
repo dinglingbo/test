@@ -12,7 +12,7 @@
 <head>
 <title>其他收支明细</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/otherIncomeAndExpenditure.js?v=1.0.2">
+	src="<%=request.getContextPath()%>/manage/settlement/js/otherIncomeAndExpenditure.js?v=1.0.3">
 	</script>
 </head>
 <body>
@@ -26,8 +26,8 @@
 				<tr> 
 				<td style="width: 100%;">
 					往来单位名称：<input class="nui-textbox" id="guestName" emptyText="请输入查询单位名称" width="120"/>	
-					审核状态；<input class="nui-combobox" id="auditSign" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
-						结算状态：<input class="nui-combobox" id="settleStatus" width="80" textField="name" valueField="id" value="0" data="statusList1" allowInput="false"/>
+					审核状态；<input class="nui-combobox" id="auditSign" width="80" textField="name" valueField="id" value="0" data="statusList1" allowInput="false"/>
+						结算状态：<input class="nui-combobox" id="settleStatus" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
 						<input class="nui-combobox" id="search-date" width="80" textField="name" valueField="id" value="0" data="statusList2" allowInput="false"/>
 							 从<input id="sDate" name="" class="nui-datepicker" value=""/>
          					   至 <input id="eDate" name="" class="nui-datepicker" value=""/>

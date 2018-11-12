@@ -11,7 +11,7 @@
 <head>
 <title>储值卡消费记录</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.1.9"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.2.0"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -72,14 +72,8 @@ html,body {
 								allowSort="true">总金额</div>
 							<div field="useAmt" headerAlign="center" align="center"
 								allowSort="true">已使用金额</div>
-							<div field="packageRate" headerAlign="center" align="center"
-								allowSort="true">套餐优惠率</div>
-							<div field="itemRate" headerAlign="center" align="center"
-								allowSort="true">工时优惠率</div>
-							<div field="partRate" headerAlign="center" align="center"
-								allowSort="true">配件优惠率</div>
-							<div field="recordDate" renderer="onstatus" align="center"
-								headerAlign="center" dateFormat="yyyy-MM-dd" allowSort="true">充值日期</div>
+							<div field="recordDate"  align="center"
+								headerAlign="center" dateFormat="yyyy-MM-dd HH:ss" allowSort="true">充值日期</div>
 							<div field="recorder" headerAlign="center" align="center"
 								allowSort="true">操作人</div>
 						</div>
@@ -98,19 +92,18 @@ html,body {
 					allowSortColumn="true" showPager="false" allowCellWrap=true>
 					<div property="columns">
 						<div type="indexcolumn" headerAlign="center" width="30">序号</div>
-						<div field="carNo" headerAlign="center" allowSort="true" width="80px">车牌</div>
-						<div field="carModel" headerAlign="center" allowSort="true" width="200px">品牌/车型</div>
-						<div field="carVin" headerAlign="center" allowSort="true" width="130px">车架号(VIN)</div>
-						<div field="serviceTypeName" name = "serviceTypeName" headerAlign="center" allowSort="true" width="80px">业务类型</div>
-						<div field="mtAdvisor" headerAlign="center" allowSort="true" width="80px">服务顾问</div>
+						<div field="carNo" headerAlign="center" allowSort="true" width="70px">车牌</div>
+						<div field="carModel" headerAlign="center" allowSort="true" width="220px">品牌/车型</div>
+						<div field="carVin" headerAlign="center" allowSort="true" width="120px">车架号(VIN)</div>
+						<div field="serviceTypeName" name = "serviceTypeName" headerAlign="center" allowSort="true" width="60px">业务类型</div>
+						<div field="mtAdvisor" headerAlign="center" allowSort="true" width="60px">服务顾问</div>
 						<div field="serviceCode" headerAlign="center" allowSort="true" width="120px">工单号</div>
-						<div field="consumeAmt" headerAlign="center" allowSort="true" width="80px">本次消费金额</div>
-						<div field="cardAmt" headerAlign="center" allowSort="true" width="80px">储值卡余额
+						<div field="consumeAmt" headerAlign="center" allowSort="true" width="60px">本次消费金额</div>
+						<div field="cardAmt" headerAlign="center" allowSort="true" width="60px">储值卡余额
 						</div>
 						<div field="recorder" headerAlign="center" allowSort="true" width="80px">操作人
 						</div>
-						<div field="recordDate" headerAlign="center" allowSort="true"
-							dateFormat="yyyy-MM-dd" width="110px">消费日期</div>							
+						<div field="recordDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:ss" width="110px">消费日期</div>							
 					</div>
 				</div>
 			</div>

@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
   <title>首页</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.31"></script>
+    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.44"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css" rel="stylesheet" type="text/css" />
@@ -151,29 +151,38 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="nui-fit">
 						<div style="padding:10px 10px 10px 10px;">
                             <table id="table1" style="margin-left:0px;">
+                            
+                            
+                            
+                            
+                            
                                 <tr>  
-                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>保养提醒：</td>
-                                    <td class="tablenum"><span id="newCarQty">0</span></td>
+                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>保养到期提醒：</td>
+                                    <td class="tablenum"><a id="queryMaintain" href="javascript:toMaintain()"><span></span></a></td>
                                     <td style="width:0.05%;"></td>
-                                   <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>保险提醒：</td>
-                                   <td class="tablenum"><span id="recordBillQty">0</span></td>
+                                   <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>保险到期提醒：</td>
+                                   <td class="tablenum"><a id="queryInsurance" href="javascript:squeryInsurance()"></a></td>
                                 </tr>
 
                                 <tr>
-                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>年检提醒：</td>
+                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>驾照年审提醒：</td>
                                     <td class="tablenum"><span id="settleQty">0</span></td>
                                    <td ></td>
-                                   <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>年审提醒：</td>
+                                   <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>车辆年检提醒：</td>
                                    <td class="tablenum"><span id="serviceBillQty">0</span></td>
                                </tr>
-
-
                                <tr>
-                                <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>客户生日：</td>
+                                <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>客户生日提醒：</td>
                                 <td class="tablenum"><span id="bookingBillQty">0</span></td>
                                 <td ></td>
-                                <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>员工生日：</td>
+                                <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>员工生成提醒：</td>
                                 <td class="tablenum"><span id="receiveAmt">0</span></td>
+                              </tr>
+
+                               <tr>
+                                <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>交强险到期提醒：</td>
+                                <td class="tablenum"><span id="bookingBillQty">0</span></td>
+                                <td ></td>
                               </tr>
 
                           </table>

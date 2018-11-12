@@ -351,7 +351,35 @@
               <isNotEmpty prepend="and" property="recordEndDate"> 
                 (record_date &lt; #recordEndDate#)
               </isNotEmpty>
-              
+            <isNotEmpty prepend="and" property="userId">  
+                (reader_target_id = #userId#)
+            </isNotEmpty>
+        </dynamic>  
+        order by id desc
+	</select>
+	
+	<select id="queryRemind" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT id as id, orgid as orgid, msg_title as msgTitle, msg_sub_title as msgSubTitle,
+		       msg_content as msgContent, msg_type as msgType, send_sign as sendSign, read_sign as readSign,
+		       record_date as recordDate
+		from com_message
+		where 1 = 1 and orgid = #orgid#
+		<dynamic>              
+		      <isNotEmpty prepend="and" property="recordStartDate"> 
+                (record_date &gt;= #recordStartDate#)
+              </isNotEmpty>
+              <isNotEmpty prepend="and" property="recordEndDate"> 
+                (record_date &lt; #recordEndDate#)
+              </isNotEmpty>
+            <isNotEmpty prepend="and" property="msgType">  
+                (msg_type = #msgType#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="readSign">  
+                (read_sign = #readSign#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="readerTargetId ">  
+                (reader_target_id  = #readerTargetId #)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="userId">  
                 (reader_target_id = #userId#)
             </isNotEmpty>

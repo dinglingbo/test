@@ -115,7 +115,7 @@ function quickSearch(type)
             break;
         case 6:
             params.lastMonthLoss = 1;
-            queryname = "上月流失回厂";
+            queryname = "所有";
             break;
         default:
             break;

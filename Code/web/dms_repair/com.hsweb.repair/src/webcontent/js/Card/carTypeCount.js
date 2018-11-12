@@ -192,7 +192,9 @@ function open(cardType){
 			xAxis : [
 			    {
 			        type : 'category',
-			        data : cardTypeOpen
+			        data : cardTypeOpen,
+			        barGap: '10px',            // 柱间距离，默认为柱形宽度的30%，可设固定值
+			        barCategoryGap : '50px',   // 类目间柱形距离，默认为类目间距的20%，可设固定值
 			    }
 			],
 			yAxis : [

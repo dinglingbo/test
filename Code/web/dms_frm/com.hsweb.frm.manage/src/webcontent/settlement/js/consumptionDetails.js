@@ -44,6 +44,11 @@ $(document).ready(function(v) {
             case "serviceTypeId":
             	e.cellHtml = servieTypeHash[e.value].name;
                 break;
+            case "recordDate":
+            	if(e.value.indexOf(".") > -1){
+            		e.cellHtml = e.value.substring(0, e.value.indexOf(".")-3);
+            	}
+                break;
             default:
                 break;
         }

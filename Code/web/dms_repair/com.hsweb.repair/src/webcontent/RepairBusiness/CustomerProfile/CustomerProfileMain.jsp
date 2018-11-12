@@ -11,7 +11,7 @@
 -->
 <head>
 	<title>客户档案</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.4.9"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.0"></script>
 	<style type="text/css">
 		table {
 			font-size: 12px;
@@ -94,7 +94,7 @@
 				<div header="客户信息" headerAlign="center">
 					<div property="columns">
 						<div name="guestFullName"  field="guestFullName" headerAlign="center"  visible="true" width="70px">客户名称</div>
-						<div name="mobile" field="mobile"  headerAlign="center"  visible="true" width="100px">客户电话</div>
+<!-- 						<div name="mobile" field="mobile"  headerAlign="center"  visible="true" width="100px">客户电话</div> -->
 						<div name="addr" field="addr"  headerAlign="center"  visible="true" width="200px">地址</div>
 						<div name="lastComeDate" field="lastComeDate"  dateFormat="yyyy-MM-dd" headerAlign="center" 
 						 visible="true" width="100px">最后来厂日期</div>

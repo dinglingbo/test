@@ -29,7 +29,7 @@
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
-            <td style=" width:17%;">
+            <td style=" width:19%;">
                 <label style="font-family:Verdana;">快速查询：</label>
                 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">最近7天</a>
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
@@ -54,7 +54,7 @@
                      textField="text" valueField="id" value="1" data="[{id:1,text:'汇总'},{id:2,text:'分仓'}]">
                 </div>
                 
-               <td class="form_label" style="width:6%; text-align:left;">日期 从:</td>
+               <td class="form_label" style="width:6%; text-align:center;">日期 从:</td>
                <td style="width:4%;">
                  <input class="nui-datepicker" id="startDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
              </td>

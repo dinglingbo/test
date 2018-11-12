@@ -106,7 +106,7 @@
                     </table>
                 </div>
                 <div class="peijian">
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" id="showPkg">
                         <thead>
                             <tr>
 			                    <td  width="240" bgcolor="#f8f8f8"><b>套餐项目(包含工时和配件)</b></td>
@@ -118,7 +118,7 @@
                     </table>
                 </div>
                 <div class="peijian">
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" id="showItem">
                         <thead>
                             <tr>
 			                    <td  width="240" bgcolor="#f8f8f8"><b>工时项目</b></td>
@@ -145,7 +145,7 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     	<tr>
                     		<td>
-                    			套餐：<span id="prdt">0</span>&nbsp;&nbsp;+&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;+&nbsp;&nbsp;配件：<span id="part">0</span>
+                    			套餐：<span id="prdt">0</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0</span>
                     		</td>
                     	</tr>
                         <tr>
@@ -249,7 +249,8 @@
 	    				var tds = '<td align="left">[name]</td>' +
 		    			"<td align='center'>[sal]</td>";
 	                   if(text.errCode == "S"){
-	                   		for(var i = 0 , l = data.length ; i < l ; i ++){
+	                     if(data.length>0){
+	                         for(var i = 0 , l = data.length ; i < l ; i ++){
 	                   			var prdtName = data[i].prdtName;
 	                   			if(data[i].billPackageId == 0){
 	                   				document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].subtotal);
@@ -263,6 +264,12 @@
 				    				.replace("[sal]",data[i].subtotal));
 				    			tBody.append(tr);
 	                   		}
+	                   		document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML).toFixed(2);
+    				        document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML).toFixed(2);
+	                     }else{
+	                         $("#showPkg").hide();
+	                     }
+	                   		
 	                   }
 	                },
 	                error: function (jqXHR, textStatus, errorThrown) {
@@ -283,7 +290,8 @@
 	    				var tds = '<td align="left">[name]</td>' +
 		    			"<td align='center'>[sal]</td>";
 	                   if(text.errCode == "S"){
-	                   		for(var i = 0 , l = data.length ; i < l ; i ++){
+	                         if(data.length>0){
+	                            for(var i = 0 , l = data.length ; i < l ; i ++){
 	                   			var tr = $("<tr></tr>");
 	                   			var itemName = data[i].prdtName || "";
 	                   			if(data[i].pid != 0 ){
@@ -298,6 +306,11 @@
 				    			tBody.append(tr);
 				    			document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].subtotal);
 	                   		}
+    				          document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML).toFixed(2);
+	    				      document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML).toFixed(2);
+	                         }else{
+	                           $("#showItem").hide();
+	                         }
 	                   }
 	                },
 	                error: function (jqXHR, textStatus, errorThrown) {

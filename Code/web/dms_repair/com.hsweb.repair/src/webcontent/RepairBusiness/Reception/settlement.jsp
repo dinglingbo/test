@@ -220,7 +220,7 @@
                 <tr>
                     <td height="24" width="33%" id="guestFullName">&nbsp;客户名称：</td>
                     <td width="33%" id="mtAdvisor">&nbsp;服务顾问：</td>
-                    <td id="enterKilometers">&nbsp;进厂油量/里程：</td>
+                    <td >&nbsp;进厂里程：<span id="enterKilometers"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;油量：<span id="enterOilMass"></span></td>
                 </tr>
                 <tr>
                     <td height="24" id="carNo">&nbsp;车牌：</td>
@@ -234,32 +234,35 @@
             </table>
         </div>
         <div style="height: 12px;"></div>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPkg">
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8"><b></b></td>
                     <td height="28" align="center" bgcolor="#f8f8f8"><b>套餐项目(含工时/配件)</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
                     <td width="60" align="center" bgcolor="#f8f8f8"><b>数量</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>优惠率</b></td>
+                    <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
                     <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
+                    <td width="70" align="center" bgcolor="#f8f8f8"><b>优惠率</b></td>
+                    <td width="80" align="center" bgcolor="#f8f8f8"><b>小计</b></td>
+                    
                 </tr>
                 <tbody id="tbodyId">
 				</tbody>
             </table>
-        <div style="height: 12px;"></div>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1">
+        <div style="height: 12px;" id="space1"></div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showItem">
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8"><b></b></td>
                     <td height="28" align="center" bgcolor="#f8f8f8"><b>项目名称</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
                     <td width="60" align="center" bgcolor="#f8f8f8"><b>工时/数量</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>优惠率</b></td>
+                    <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
                     <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
+                    <td width="70" align="center" bgcolor="#f8f8f8"><b>优惠率</b></td>
+                    <td width="80" align="center" bgcolor="#f8f8f8"><b>小计</b></td>
                 </tr>
                 <tbody id="tbodyId2">
 				</tbody>
             </table>
-            <div style="height: 12px;"></div>
+         <!--  <div style="height: 12px;" id="space2"></div>  -->
                     <!-- <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk1">
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8"><b></b></td>
@@ -273,17 +276,46 @@
 				</tbody>
             </table>
             <div style="height: 12px;"></div> -->
-        <div style="color:#000;height:32px; margin-top:-8px;">
-            <span style="font-size: 16px; float:right; font-weight: bold;">价格合计：&yen;<span id="cash"></span>元</span>
-            套餐：<span id="prdt">0</span>&nbsp;&nbsp;+&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;+&nbsp;&nbsp;配件：<span id="part">0</span>
-            <span style="margin-left: 150px;">优惠金额：<span id="yh">0</span>元</span>
-        </div>
-        <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
+            
+        <!-- <div style="color:#000;height:42px; margin-top:-8px;">
+             <span style="font-size: 16px; float:right; font-weight: bold;">价格合计：&yen;<span id="cash"></span>元</span>
+                      套餐：<span id="prdt">0</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0</span>
+            
+            <span style="margin-left: 200px;">优惠金额：<span id="yh">0</span>元</span>
+            
+            <span style="margin-left: 400px;">
+                <b style="font-size: 16px;">小计</b>：
+                <font style="font-size: 15px; font-weight: bold;">
+                    <span id="cash1"></span>
+                </font>元&nbsp;&nbsp;&nbsp;
+            </span>
+            
+            <span style="margin-right: 100px;">
+               <b style="font-size: 16px;">大写</b>：
+               <font style="font-size: 15px; font-weight: bold;">
+                  <span id="money"></span>
+               </font>
+            </span>
+        </div> -->
+        <table width="100%" border="0"  cellpadding="0" cellspacing="0" class="ybk">
             <tr>
-                <td height="36" colspan="6" bgcolor="#f0f0f0">
-                    <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
+                <td height="36" colspan="1" style="border:0px solid #DDD; " rowspan="1" colspan="1" >
+                   <!--  <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
+                                                             
+                    </div> -->
+                      套餐：<span id="prdt">0</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0</span>
+            
+                </td>
+                <td height="36" colspan="1" style="border:0px" >
+                    <!-- <div style="float: center; color: #000; margin-right: 12px; line-height: 36px;">
+                        <span style="margin-left: 200px;">优惠金额：<span id="yh">0</span>元</span>
+                    </div> -->
+                     <span style="margin-left: 0px;">优惠金额：<span id="yh">0</span>元</span>
+                </td>
+                <td height="36" colspan="2" style="border:0px">
+                    <div style="float: left; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
-                            <b style="font-size: 16px;">合计</b>：
+                            <b style="font-size: 16px;">小计</b>：
                             <font style="font-size: 15px; font-weight: bold;">
                                 <span id="cash1"></span>
                             </font>元
@@ -294,8 +326,9 @@
                         </font>
                     </div>
                 </td>
+                
             </tr>
-        </table>
+        </table> 
 
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
                 <tr>
@@ -333,7 +366,7 @@
         //com.hsapi.repair.repairService.svr.billqyeryMaintainList
         function getSubtotal(){//更新套餐工时配件合计金额
         	var money = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(document.getElementById("item").innerHTML) + parseFloat(document.getElementById("part").innerHTML);
-        	document.getElementById("cash").innerHTML = money;
+        	//document.getElementById("cash").innerHTML = money;
         	document.getElementById("cash1").innerHTML = money;
     		money = transform(money+"");
     		document.getElementById("money").innerHTML = money;
@@ -382,9 +415,10 @@
 	        		for(var i = 0;i<data.length;i++){
 	        		        if(data[i].customid == enterOilMass){
 	        		           name = data[i].name;
+	        		           break;
 	        		        }
 	        		}
-	        		var enterKilometers = name+"/"+ list.enterKilometers || "0";
+	        		var enterKilometers = list.enterKilometers || "0";
 	        		var mtAdvisor = list.mtAdvisor || "";
 	        		var planFinishDate = list.planFinishDate || "";
 	        		if(planFinishDate){
@@ -412,6 +446,7 @@
 	        		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
+	        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;
 	        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
 	        		document.getElementById("guestDesc").innerHTML = document.getElementById("guestDesc").innerHTML + guestDesc; 
 	        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
@@ -428,70 +463,84 @@
         	}
         	$.post(params.baseUrl+url_one+params.serviceId+"&token="+params.token,{},function(text){//套餐
 	        	if(text.errCode == "S"){
-	        		var tBody = $("#tbodyId");
-    				tBody.empty();
-    				var tds = '<td align="center">[orderIndex]</td>' +
-					    			"<td>[prdtName]</td>"+
-					    			"<td align='center'>[amt]</td>"+ 
-					    			"<td align='center'>[num]</td>"+
-					    			"<td align='center'>[rate]</td>"+
-					    			"<td align='center'>[subtotal]</td>";
-    				var data = text.data;
-    				var j = 0;
-    				for(var i = 0 , l = data.length ; i < l ; i++){
-    					document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
-    					var prdtName = data[i].prdtName;
-    					if(params.type){
-    						prdtName = data[i].packageName || "";
-    					}
-    					var orderIndex = data[i].orderIndex;
-    					var rate = data[i].rate;
-    					rate = rate + "%";
-    					if(data[i].billPackageId != 0){
-    						prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;"+prdtName;
-    						orderIndex = "";
-    					}else{
-    						if(params.type){
-    							j++;
-    							orderIndex = j;
-    						}
-    						document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(data[i].subtotal);
-    					}
-    					if(data[i].billPackageId == 0){
-    						if(i != 0){
-    							var tr = $("<tr class='ybk2'></tr>");
-	    						tr.append(
-				    				tds.replace("[orderIndex]","<hr style= 'border:1px dashed #000' />")
-				    				.replace("[prdtName]","<hr style= 'border:1px dashed #000' />")
-				    				.replace("[amt]","<hr style= 'border:1px dashed #000' />")
-				    				.replace("[num]","<hr style= 'border:1px dashed #000' />")
-				    				.replace("[rate]","<hr style= 'border:1px dashed #000' />")
-				    				.replace("[subtotal]","<hr style= 'border:1px dashed #000' />"));
-	    						tBody.append(tr);
-    						}
-    						var tr = $("<tr style = 'height : 2px'></tr>");
-				    			tr.append(
-				    				tds.replace("[orderIndex]",orderIndex)
-				    				.replace("[prdtName]",prdtName)
-				    				.replace("[amt]",data[i].amt)
-				    				.replace("[num]",1)
-				    				.replace("[rate]",rate)
-				    				.replace("[subtotal]",data[i].subtotal));
-				    			tBody.append(tr); 
-    					}else{
-    						var tr = $("<tr></tr>");
-				    			tr.append(
-				    				tds.replace("[orderIndex]",orderIndex)
-				    				.replace("[prdtName]",prdtName)
-				    				.replace("[amt]",data[i].amt)
-				    				.replace("[num]",1)
-				    				.replace("[rate]",rate)
-				    				.replace("[subtotal]",data[i].subtotal));
-				    			tBody.append(tr); 
-    					}
-		    			getSubtotal();
-    				}
-	        	}
+	        	    var data = text.data;
+	        	    if(data.length>0){
+		        		var tBody = $("#tbodyId");
+	    				tBody.empty();
+	    				var tds = '<td align="center">[orderIndex]</td>' +
+						    			"<td>[prdtName]</td>"+
+						    			"<td align='center'>[qty]</td>"+
+						    			"<td align='center'>[uintPrice]</td>"+ 
+						    			"<td align='center'>[amt]</td>"+ 
+						    			"<td align='center'>[rate]</td>"+
+						    			"<td align='center'>[subtotal]</td>";
+	    				
+	    				var j = 0;
+	    				var discountAmt = 0;
+	    				for(var i = 0 , l = data.length ; i < l ; i++){
+	    					document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
+	    					var prdtName = data[i].prdtName;
+	    					if(params.type){
+	    						prdtName = data[i].packageName || "";
+	    					}
+	    					var orderIndex = data[i].orderIndex;
+	    					var rate = data[i].rate;
+	    					rate = rate + "%";
+	    					if(data[i].billPackageId != 0){
+	    						prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;"+prdtName;
+	    						orderIndex = "";
+	    					}else{
+	    						if(params.type){
+	    							j++;
+	    							orderIndex = j;
+	    						}
+	    						document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(data[i].subtotal);
+	    					}
+	    					if(data[i].billPackageId == 0){
+	    						if(i != 0){
+	    							var tr = $("<tr class='ybk2'></tr>");
+		    						tr.append(
+					    				tds.replace("[orderIndex]","<hr style= 'border:1px dashed #000' />")
+					    				.replace("[prdtName]","<hr style= 'border:1px dashed #000' />")
+					    				.replace("[qty]","<hr style= 'border:1px dashed #000' />")
+					    				.replace("[uintPrice]","<hr style= 'border:1px dashed #000' />")
+					    				.replace("[amt]","<hr style= 'border:1px dashed #000' />")
+					    				.replace("[rate]","<hr style= 'border:1px dashed #000' />")
+					    				.replace("[subtotal]","<hr style= 'border:1px dashed #000' />"));
+		    						tBody.append(tr);
+	    						}
+	    						var tr = $("<tr style = 'height : 2px'></tr>");
+					    			tr.append(
+					    				tds.replace("[orderIndex]",orderIndex)
+					    				.replace("[prdtName]",prdtName)
+					    				.replace("[qty]",data[i].qty || 1)
+					    				.replace("[uintPrice]",data[i].amt)
+					    				.replace("[amt]",data[i].amt)
+					    				.replace("[rate]",rate)
+					    				.replace("[subtotal]",data[i].subtotal));
+					    			tBody.append(tr); 
+	    					}else{
+	    						var tr = $("<tr></tr>");
+					    			tr.append(
+					    				tds.replace("[orderIndex]",orderIndex)
+					    				.replace("[prdtName]",prdtName)
+					    				.replace("[qty]",data[i].qty || 1)
+					    				.replace("[uintPrice]",data[i].uintPrice || "")
+					    				.replace("[amt]",data[i].amt)
+					    				.replace("[rate]",rate)
+					    				.replace("[subtotal]",data[i].subtotal));
+					    			tBody.append(tr); 
+	    					}
+			    			getSubtotal();
+	    				}
+	    				document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML).toFixed(2);
+	    				document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML).toFixed(2);
+	    				
+		        	}else{
+	                  $("#showPkg").hide();
+	                  $("#space1").hide();
+	                }
+	          }
         	});
         	if(params.type){
         		url_two = "com.hsapi.repair.repairService.svr.billgetRpsMainItem.biz.ext?serviceId=";
@@ -500,15 +549,18 @@
         	}
         	 $.post(params.baseUrl+url_two+params.serviceId+"&token="+params.token,{},function(text){//工时
 	        	if(text.errCode == "S"){
-	        		var tBody = $("#tbodyId2");
+	        	    var data = text.data;
+	        	    if(data.length>0){
+	        	        var tBody = $("#tbodyId2");
     				tBody.empty();
     				var tds = '<td align="center">[id]</td>' +
-					    			"<td>[itemName]</td>"+
+					    			"<td>[prdtName]</td>"+
+					    			"<td align='center'>[qty]</td>"+
 					    			"<td align='center'>[unitPrice]</td>"+ 
-					    			"<td align='center'>[itemTime]</td>"+
+					    			"<td align='center'>[amt]</td>"+ 
 					    			"<td align='center'>[rate]</td>"+
 					    			"<td align='center'>[subtotal]</td>";
-    				var data = text.data;
+    				
     				for(var i = 0 , l = data.length ; i < l ; i++){
     					document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
     					var rate = data[i].rate;
@@ -531,14 +583,21 @@
     					}
 				    			tr.append(
 				    				tds.replace("[id]",data[i].orderIndex)
-				    				.replace("[itemName]",itemName)
+				    				.replace("[prdtName]",itemName)
+				    				.replace("[qty]",itemTime)
 				    				.replace("[unitPrice]",data[i].unitPrice)
-				    				.replace("[itemTime]",itemTime)
+				    				.replace("[amt]",data[i].amt)
 				    				.replace("[rate]",rate)
 				    				.replace("[subtotal]",data[i].subtotal));
 				    			tBody.append(tr);
 				    	getSubtotal();		
     				}
+    				    document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML).toFixed(2);
+    				    document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML).toFixed(2);
+	    				document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML).toFixed(2);
+	        	    }else{
+                        $("#showItem").hide();	        	      
+	        	    }
 	        	}
         	});
         	/* if(params.type){

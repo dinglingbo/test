@@ -480,7 +480,7 @@ function edit(){
     var row = rightGrid.getSelected();
     if(!row) return; 
     var item={};
-    item.id = "6410";
+    item.id = "6400";
     item.text = "盘点单详情";
     item.url = webPath + contextPath + "/com.hsweb.part.manage.stockCheck.flow";
     item.iconCls = "fa fa-file-text";

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -63,7 +63,6 @@
                 <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="quickSearch(12)" id="type12">未审</li>
                     <li iconCls="" onclick="quickSearch(13)" id="type13">已审</li>
-                    <li iconCls="" onclick="quickSearch(14)" id="type14">全部</li>
                     <!-- <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li> -->
                 </ul>
 
@@ -98,6 +97,8 @@
     </table>
 </div>
 <div class="nui-fit">
+    <input class="nui-hidden" name="auditSign" id="auditSign"/>
+	<input class="nui-hidden" name="billStatusId" id="billStatusId"/>
     <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
          showPager="true"
          dataField="list"

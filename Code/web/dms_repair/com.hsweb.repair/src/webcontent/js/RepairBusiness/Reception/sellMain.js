@@ -233,7 +233,8 @@ function setInitData(params){
     if(type=='view' && carNo != ""){
         var p = {
             carNoEqual: carNo,
-            isSettle: 0
+            isSettle: 0,
+            billTypeId :3
         };
         mainGrid.load({
             token:token,

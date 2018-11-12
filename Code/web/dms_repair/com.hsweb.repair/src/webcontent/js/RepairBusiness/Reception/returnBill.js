@@ -150,17 +150,39 @@ $(document).ready(function ()
                                 searchNameEl.setValue(t);
                                 doSetMainInfo(item);
                             }else if(action == "查看"){
-                                var opt={};
+                            	var list = data[0];
+                            	var opt={};
                                 opt.iconCls="fa fa-desktop";
-                                opt.id="1110";
-                                opt.text="洗车开单";
-                                opt.url=webPath + contextPath + "/repair/RepairBusiness/Reception/carWashMgr.jsp";
-                                
-                                var params = {
-                                    type: 'view',
-                                    carNo: carNo
-                                };
-                                window.parent.activeTabAndInit(opt,params);
+                            	if(list.billTypeId == "0"){
+                                    opt.id="2082";
+                                    opt.text="综合开单";
+                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.ReceptionMain.flow";
+                            	}
+                            	if(list.billTypeId == "2"){
+                                    opt.id="2083";
+                                    opt.text="洗车开单";
+                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBillMgr.flow";
+                            	}
+                            	if(list.billTypeId == "4"){
+                                    opt.id="2084";
+                                    opt.text="理赔开单";
+                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.claimMain.flow";
+                            	}
+                            	if(list.billTypeId == "3"){
+                                    opt.id="2087";
+                                    opt.text="销售开单";
+                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.sellMain.flow";
+                            	}
+                            	if(list.billTypeId == "5"){
+                                    opt.id="2088";
+                                    opt.text="退货开单";
+                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.sellReturn.flow";
+                            	}
+                            	var params = {
+                                        type: 'view',
+                                        carNo: carNo
+                                    };
+                               window.parent.activeTabAndInit(opt,params);
                             }
                         }
                     });

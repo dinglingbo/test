@@ -210,6 +210,13 @@ $(document).ready(function ()
     mainGrid.on("rowdblclick",function(e){
 		edit();
 	});
+    document.onkeyup=function(event){
+	    var e=event||window.event;
+	    var keyCode=e.keyCode||e.which;
+        if((keyCode==27))  {  //ESC
+        	advancedSearchWin.hide();
+	   };
+     };
    /* var statusList = "0,1,2,3";
     var p = {statusList:statusList};
     doSearch(p);*/
@@ -409,7 +416,8 @@ function setInitData(params){
     if(type=='view' && carNo != ""){
         var p = {
             carNoEqual: carNo,
-            isSettle: 0
+            isSettle: 0,
+            billTypeId :4
         };
         mainGrid.load({
             token:token,

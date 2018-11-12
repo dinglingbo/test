@@ -208,6 +208,8 @@ function setInitData(params){
             html: '数据加载中...'
         });
         basicInfoForm.setData(params);
+        
+        nui.get("guestId").disable();
         $('#bServiceId').text("订单号："+params.serviceId);
         loadMainAndDetailInfo(params);
         nui.unmask(document.body);
@@ -266,6 +268,7 @@ function add()
         showMsg("请先保存数据!","W");
         return;
     }*/
+	nui.get("guestId").enable();
     var formJsonThis = nui.encode(basicInfoForm.getData());
     var len = rightGrid.getData().length;
 
@@ -367,10 +370,12 @@ function save() {
             if(list && list.length>0) {
                 var leftRow = list[0];
               basicInfoForm.setData(leftRow);
+              nui.get("guestId").disable();
                 //保存成功后重新加载数据
                loadMainAndDetailInfo(leftRow);
+               $('#bServiceId').text("订单号："+leftRow.serviceId);
             }
-            $('#bServiceId').text("订单号："+row.serviceId);
+            
                 //onLeftGridRowDblClick({});
                 
             } else {
@@ -637,8 +642,11 @@ function audit()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                row.auditSign = 1;
-                basicInfoForm.setData(row);
+            	var stateMain = data.stateMain;
+                //row.auditSign = 1;
+                basicInfoForm.setData(stateMain);
+                $('#bServiceId').text("订单号："+stateMain.serviceId);
+                nui.get("guestId").disable();
                 showMsg("审核成功!","S");
             } else {
                 showMsg(data.errMsg || "审核失败!","E");
@@ -686,9 +694,7 @@ function onShowRowDetail(e) {
             break;
     }
 }
-//============
 
-//====
 function checkNew() 
 {
     /*var rows = leftGrid.findRows(function(row){
@@ -917,7 +923,7 @@ function onLeftGridBeforeDeselect(e)
     }
 }
 //导出
-function onExport(){
+/*function onExport(){
 	if (checkNew()) {
 		showMsg("请先保存数据!","W");
 		return;
@@ -941,6 +947,34 @@ function onExport(){
 		setInitExportData(main, detail);
 	}
 }
+*/
+
+function onExport(){
+	
+	var main=basicInfoForm.getData();
+	/*if(main.auditSign==0){
+		showMsg("清先保存数据!","W");
+		return;
+	}*/
+	var detail = rightGrid.getData();
+	
+	/*for(var i=0;i<detail.length;i++){
+		for(var j=0;j<storehouse.length;j++){
+			if(detail[i].storeId==storehouse[j].id){
+				detail[i].storeId=storehouse[j].name;
+			}
+		}
+	}
+	*/
+	if(detail && detail.length > 0){
+		setInitExportData(main, detail);
+	}else{
+		showMsg("请添加对账明细!","W");
+	}
+}
+
+
+
 function setInitExportData(main, detail){
 	document.getElementById("eServiceId").innerHTML = main.serviceId?main.serviceId:"";
 	document.getElementById("eGuestName").innerHTML = main.guestName?main.guestName:"";
@@ -955,16 +989,16 @@ function setInitExportData(main, detail){
     tableExportContent.empty();
     for (var i = 0; i < detail.length; i++) {
         var row = detail[i];
-        if(row.id){
-            var tr = $("<tr></tr>");
-            tr.append(tds.replace("[typeCode]", detail[i].typeCode?detail[i].typeCode:"")
-                         .replace("[billAmt]", detail[i].billAmt?detail[i].billAmt:"")
-                         .replace("[orderMan]", detail[i].orderMan?detail[i].orderMan:"")
-                         .replace("[billDate]", detail[i].billDate?detail[i].billDate:"")
-                         .replace("[remark]", detail[i].remark?detail[i].remark:"")
-                         .replace("[billServiceId]", detail[i].billServiceId?detail[i].billServiceId:""));
-            tableExportContent.append(tr);
-        }
+        
+        var tr = $("<tr></tr>");
+        tr.append(tds.replace("[typeCode]", detail[i].typeCode?detail[i].typeCode:"")
+                     .replace("[billAmt]", detail[i].billAmt?detail[i].billAmt:"")
+                     .replace("[orderMan]", detail[i].orderMan?detail[i].orderMan:"")
+                     .replace("[billDate]", detail[i].billDate?detail[i].billDate:"")
+                     .replace("[remark]", detail[i].remark?detail[i].remark:"")
+                     .replace("[billServiceId]", detail[i].billServiceId?detail[i].billServiceId:""));
+        tableExportContent.append(tr);
+    
     }
 
     var serviceId = main.serviceId?main.serviceId:"";

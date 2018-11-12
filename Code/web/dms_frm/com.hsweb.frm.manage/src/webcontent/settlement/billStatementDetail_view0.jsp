@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatementDetail.js?v=1.1.1"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatementDetail.js?v=1.1.6"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -58,6 +58,7 @@
                <input class="nui-hidden" name="auditSign"/>
               <input class="nui-hidden" name="settleTypeId"/>
               <input class="nui-hidden" name="operateDate"/>
+              <input class="nui-hidden" name="guestName" id="guestName"/>
               <input name="billTypeId" visible="false"
                      id="billTypeId"
                      class="nui-combobox width1"

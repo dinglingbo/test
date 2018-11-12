@@ -10,7 +10,7 @@
 -->
 <head>
 <title>理赔-工单</title>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/claimMain.js?v=1.1.2"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/claimMain.js?v=1.1.4"></script>
 <style type="text/css">
 
 .title {
@@ -92,6 +92,7 @@
                allowCellSelect="true"
                editNextOnEnterKey="true"
                onshowrowdetail="onShowRowDetail"
+               allowCellWrap=true
                url="">
               <div property="columns">
                   <div type="indexcolumn">序号</div>

@@ -192,24 +192,29 @@ $(document).ready(function(v)
     });
 });
 function getSearchParam(){
-    var params = {};
-    /*var outableQtyGreaterThanZero = nui.get("outableQtyGreaterThanZero").getValue();
-    if(outableQtyGreaterThanZero == 1)
-    {
-        params.outableQtyGreaterThanZero = 1;
-    }*/
-    params.serviceId = comServiceId.getValue();
-    params.auditSign=0; 
-//	params.partCode = comPartCode.getValue();
-//	params.partNameAndPY = comPartNameAndPY.getValue();
-//	params.guestId = comSearchGuestId.getValue();
-	params.guestName=comSearchGuestId.getValue();
-	params.endDate = searchEndDate.getValue();
-	params.startDate = searchBeginDate.getValue();
-	params.isDiffOrder = 0;
-    return params;
+	 var params = {};
+	    /*var outableQtyGreaterThanZero = nui.get("outableQtyGreaterThanZero").getValue();
+	    if(outableQtyGreaterThanZero == 1)
+	    {
+	        params.outableQtyGreaterThanZero = 1;
+	    }*/
+	    params.serviceId = comServiceId.getValue();
+	     
+	    params.auditSign=nui.get('auditSign').getValue();
+	    params.billStatusId=nui.get('billStatusId').getValue();
+	    if(params.auditSign=="" || ! params.auditSign){
+	    	params.auditSign=-1;
+	    }
+//		params.partCode = comPartCode.getValue();
+//		params.partNameAndPY = comPartNameAndPY.getValue();
+//		params.guestId = comSearchGuestId.getValue();
+		params.guestName=comSearchGuestId.getValue();
+		params.endDate = searchEndDate.getValue();
+		params.startDate = searchBeginDate.getValue();
+		params.isDiffOrder = 0;
+	    return params;
 }
-var currType = 2;
+var currType = 0;
 function quickSearch(type){
     var params = getSearchParam();
     
@@ -290,26 +295,16 @@ function quickSearch(type){
         	querysign = 2;
         	querystatusname = "已审";
         	break;
-        //待收货
-        case 14:
-        	params.billStatusId=2;
-        	params.auditSign=1;
-        	params.postStatus = 1;
-        	querysign = 2;
-        	querystatusname = "全部";
-        	break;
-        //已入库
-        case 15:
-        	params.billStatusId=4;
-        	params.auditSign=1;
-        	querysign = 2;
-        	querystatusname = "已入库";
-        	break;
         default:
+        	querysign = 2;
+    	    querystatusname = "全部";
+    	    params.auditSign=1;
             break;
     }
     searchBeginDate.setValue(params.startDate);
     searchEndDate.setValue(params.endDate);
+    nui.get('auditSign').setValue(params.auditSign);
+    nui.get('billStatusId').setValue(params.billStatusId);
     currType = type;
     if(querysign == 1){
     	var menunamedate = nui.get("menunamedate");
@@ -530,7 +525,7 @@ function onShowRowDetail(e) {
 
 function add(){
     var item={};
-    item.id = "6100";
+    item.id = "6200";
     item.text = "月对账详情";
     item.url = webPath + contextPath + "/manage/settlement/billStatementDetail_view0.jsp";
     item.iconCls = "fa fa-file-text";
@@ -544,7 +539,7 @@ function edit(){
     var row = rightGrid.getSelected();
     if(!row) return; 
     var item={};
-    item.id = "6100";
+    item.id = "6200";
     item.text = "月对账详情";
     item.url = webPath + contextPath + "/manage/settlement/billStatementDetail_view0.jsp";
     item.iconCls = "fa fa-file-text";

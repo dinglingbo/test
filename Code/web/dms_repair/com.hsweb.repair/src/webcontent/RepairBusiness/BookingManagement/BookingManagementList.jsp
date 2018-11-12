@@ -106,7 +106,8 @@
                             <span class="fa fa-times-circle"></span>&nbsp;取消</a>
                         <a class="nui-button" plain="true" id="btnCall" iconCls="" onclick="callBill()">
                             <span class="fa fa-comment-o fa-lg"></span>&nbsp;跟进</a>
-                        <a class="nui-button" plain="true" id="btnshowhistory" iconCls="" onclick="showhistory()" visible="false">
+                         <a class="nui-button" plain="true" id="btnCall" iconCls="" onclick=""><span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp;发送微信</a>
+                        <a class="nui-button" plain="true" id="btnshowhistory" iconCls="" onclick="showhistory()" visib le="false">
                             <span class="fa fa-shopping-bag fa-lg"></span>&nbsp;服务履历</a>
                     </td>
                 </tr>

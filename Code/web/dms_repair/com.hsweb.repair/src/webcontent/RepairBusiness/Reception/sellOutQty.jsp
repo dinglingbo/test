@@ -29,7 +29,7 @@
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
     <table style="width:100%;">
         <tr>
-            <td style=" width:48%;">
+            <td style=" width:51%;">
                 <label style="font-family:Verdana;">快速查询：</label>
                 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">

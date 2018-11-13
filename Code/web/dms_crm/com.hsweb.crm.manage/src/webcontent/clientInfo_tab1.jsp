@@ -74,7 +74,7 @@
                        emptyText="请选择..."
                        url=""
                        allowInput="false"
-                       onValuechanged="getCarModel('carModelId', e)"
+                       onValuechanged="onCarBrandChange"
                        showNullItem="false"
                        nullItemText="请选择..."/>
             </div>

@@ -147,6 +147,9 @@
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderTypeId"> 
+                    (a.order_type_id = #orderTypeId#)
+                </isNotEmpty>
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sOrderDate">  
                     A.ORDER_DATE &gt;= #sOrderDate#
@@ -181,6 +184,9 @@
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestName">  
+                    (B.FULL_NAME like '%$guestName$%' or B.SHORT_NAME like '%$guestName$%')
+                </isNotEmpty>                
                 <isNotEmpty prepend="and" property="partName">  
                     (D.FULL_NAME like '%$partName$%')
                 </isNotEmpty>
@@ -257,6 +263,9 @@
                 <isNotEmpty prepend="and" property="id">  
                     (a.id = #id#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderTypeId"> 
+                    (a.order_type_id = #orderTypeId#)
+                </isNotEmpty>
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sOrderDate">  
                     (A.ORDER_DATE &gt;= #sOrderDate#)
@@ -290,6 +299,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestName">  
+                    (B.FULL_NAME like '%$guestName$%' or B.SHORT_NAME like '%$guestName$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partName">  
                     (D.FULL_NAME like '%$partName$%')
@@ -1229,6 +1241,9 @@
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestName">  
+                    (B.FULL_NAME like '%$guestName$%' or B.SHORT_NAME like '%$guestName$%')
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="partName">  
                     (D.FULL_NAME like '%$partName$%')
                 </isNotEmpty>
@@ -1363,6 +1378,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="guestId">  
                     (A.guest_id = #guestId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestName">  
+                    (B.FULL_NAME like '%$guestName$%' or B.SHORT_NAME like '%$guestName$%')
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="partName">  
                     (D.FULL_NAME like '%$partName$%')

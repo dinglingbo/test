@@ -20,7 +20,7 @@
         <tr>
             <td ><!--style="white-space:nowrap;"-->
                 <label style="font-family:Verdana;" title="点击清空条件"><span onclick="clearQueryForm()">快速查询：</span></label>
-                <a class="nui-menubutton " iconCls="icon-tip" menu="#popupMenu1" value="-1" id="assignStatus">所有</a>
+                <a class="nui-menubutton " iconCls="" menu="#popupMenu1" value="-1" id="assignStatus">所有</a>
                 <ul id="popupMenu1" class="nui-menu" style="display:none;">
                     <li  onclick="setMenu1(this, assignStatus, -1)" id="typeAll">所有</li>
                     <li  onclick="setMenu1(this, assignStatus, 0)" id="type0">未分配</li>

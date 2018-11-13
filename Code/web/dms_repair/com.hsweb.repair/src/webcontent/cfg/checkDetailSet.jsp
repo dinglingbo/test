@@ -120,6 +120,10 @@
                                 <td class=" right fwidthb required">项目名称:</td>
                                 <td ><input name="checkName" class="nui-textbox" width="100%" id="checkName"/></td>
                             </tr>
+                      	<tr class="htr">
+                            <td class=" right fwidthb required">说明:</td>
+                            <td ><input name="remark" class="nui-textbox" width="100%" id="remark"/></td>
+                        </tr>
                         <tr class="htr">
                             <td class=" right fwidthb">工时:</td>
                             <td >

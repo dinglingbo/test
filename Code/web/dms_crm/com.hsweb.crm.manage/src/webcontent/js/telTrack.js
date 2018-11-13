@@ -8,6 +8,7 @@ var form2;
 var currGuest;
 var memList = [];
 var memHash={};
+var carModelHash = [];
 
 $(document).ready(function(v){
     queryForm = new nui.Form("#queryForm");
@@ -74,6 +75,16 @@ function init(){
         visitStatus: "DDT20130703000081",//跟踪状态
         query_visitStatus: "DDT20130703000081",//跟踪状态
         artType: "DDT20130725000001"//话术类型        
+    });
+
+}
+
+function onCarBrandChange(e){     
+	initCarModel("carModelId", e.value,"", function () {
+        var data = nui.get("carModelId").getData();
+        data.forEach(function (v) {
+        	carModelHash[v.id] = v;
+        });
     });
 }
 

@@ -4,9 +4,7 @@
 var partApiUrl  = apiPath + partApi + "/";
 var rightGridUrl = partApiUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderMainList.biz.ext";
 var getDetailPartUrl=partApiUrl+"com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
-var advancedSearchWin = null;
-var advancedSearchForm = null;
-var advancedSearchFormData = null;
+
 var basicInfoForm = null;
 var rightGrid = null;
 var searchBeginDate = null;
@@ -43,7 +41,7 @@ $(document).ready(function(v)
 	comPartCode = nui.get("partCode");
 	comServiceId = nui.get("serviceId");
 	comSearchGuestId = nui.get("searchGuestId");
-    advancedSearchWin = nui.get("advancedSearchWin");
+
     innerPartGrid = nui.get("innerPartGrid");
     innerPartGrid.setUrl(getDetailPartUrl);
     editFormDetail = document.getElementById("editFormDetail");
@@ -166,7 +164,12 @@ function getSearchParam(){
 //	params.partCode = comPartCode.getValue();
 //	params.partNameAndPY = comPartNameAndPY.getValue();
 //	params.guestId = comSearchGuestId.getValue();
-	params.guestName=comSearchGuestId.getValue();
+	if(typeof comSearchGuestId.getValue() !== 'number'){
+    	params.guestId=null;
+    	params.guestName = comSearchGuestId.getValue();
+    }else{
+    	params.guestId = comSearchGuestId.getValue();
+    }
 	params.endDate = searchEndDate.getValue();
 	params.startDate = searchBeginDate.getValue();
 //	params.isDiffOrder = 0;
@@ -177,7 +180,7 @@ function quickSearch(type){
     var params = getSearchParam();
     var querysign = 1;
     var queryname = "本日";
-    var querystatusname = "全部";
+    var querystatusname = "所有";
     switch (type)
     {
         case 0:
@@ -305,85 +308,7 @@ function doSearch(params)
         rightGrid.mergeColumns(["serviceId"]);
     });
 }
-function advancedSearch()
-{
-    advancedSearchWin.show();
-    advancedSearchForm.clear();
-    if(advancedSearchFormData)
-    {
-        advancedSearchForm.setData(advancedSearchFormData);
-    }else{
-        nui.get("sCreateDate").setValue(getWeekStartDate());
-        nui.get("eCreateDate").setValue(addDate(getWeekEndDate(), 1));
-    }
-}
-//function onAdvancedSearchOk()
-//{
-//	var searchData = advancedSearchForm.getData();
-//    advancedSearchFormData = {};
-//    for(var key in searchData)
-//    {
-//        advancedSearchFormData[key] = searchData[key];
-//    }
-//    var i;
-//    if(searchData.sOrderDate)
-//    {
-//        searchData.sOrderDate = searchData.sOrderDate.substr(0,10);
-//    }
-//    if(searchData.eOrderDate)
-//    {
-//        var date = searchData.eOrderDate;
-//        searchData.eOrderDate = addDate(date, 1);
-//        searchData.eOrderDate = searchData.eOrderDate.substr(0,10);
-//    }
-//    //创建日期
-//    if(searchData.sCreateDate)
-//    {
-//        searchData.sCreateDate = searchData.sCreateDate.substr(0,10);
-//    }
-//    if(searchData.eCreateDate)
-//    {
-//        var date = searchData.eCreateDate;
-//        searchData.eCreateDate = addDate(date, 1);
-//        searchData.eCreateDate = searchData.eCreateDate.substr(0,10);
-//    }
-//    //供应商
-//    if(searchData.guestId)
-//    {
-//        searchData.guestId = nui.get("btnEdit2").getValue();
-//    }
-//    //订单单号
-//    if(searchData.serviceIdList)
-//    {
-//        var tmpList = searchData.serviceIdList.split("\n");
-//        for(i=0;i<tmpList.length;i++)
-//        {
-//            tmpList[i] = "'"+tmpList[i]+"'";
-//        }
-//        searchData.serviceIdList = tmpList.join(",");
-//     
-//    }
-//    //配件编码
-//    if(searchData.partCodeList)
-//    {
-//        var tmpList = searchData.partCodeList.split("\n");
-//        for(i=0;i<tmpList.length;i++)
-//        {
-//            tmpList[i] = "'"+tmpList[i]+"'";
-//        }
-//        searchData.partCodeList = tmpList.join(",");
-//    }
-//    /*if(searchData.outableQtyGreaterThanZero == 0)
-//    {
-//        delete searchData.outableQtyGreaterThanZero;
-//    }*/
-//    advancedSearchWin.hide();
-//    doSearch(searchData);
-//}
-function onAdvancedSearchCancel(){
-    advancedSearchForm.clear();
-    advancedSearchWin.hide();
-}
+
 var supplier = null;
 function selectSupplier(elId)
 {

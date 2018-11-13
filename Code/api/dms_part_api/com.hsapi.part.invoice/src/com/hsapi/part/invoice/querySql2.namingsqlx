@@ -1179,7 +1179,7 @@
 			 c.car_type_id_f AS carTypeIdF,
 			 c.car_type_id_s AS carTypeIdS,
 			 c.car_type_id_t AS carTypeIdT,
-			 c.spec AS spce,
+			 c.spec AS spec,
 			 sum(b.qc_qty) AS qcQty,
 			 sum(b.qc_amt) AS qcAmt,
 			 sum(b.bala_qty) AS balaQty,

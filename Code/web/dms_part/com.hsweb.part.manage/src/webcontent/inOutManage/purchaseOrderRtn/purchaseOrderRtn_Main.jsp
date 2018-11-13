@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购退货主界面</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnMain.js?v=1.0.12"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnMain.js?v=1.0.14"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -58,14 +58,13 @@
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul>
                 
-				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">全部</a>
+				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
 
                 <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
-                	<li iconCls="" onclick="quickSearch(14)" id="type14">全部</li>
+                	<li iconCls="" onclick="quickSearch(14)" id="type14">所有</li>
                     <li iconCls="" onclick="quickSearch(12)" id="type12">草稿</li>
                     <li iconCls="" onclick="quickSearch(13)" id="type13">已退货</li>
-<!--                     <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li> -->
-<!--                     <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li> -->
+
                 </ul>
 
 
@@ -75,19 +74,13 @@
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <span class="separator"></span> 
 
-<!--                 <input id="partNameAndPY" width="100px" emptyText="配件名称/拼音" class="nui-textbox"/> -->
-<!--                 <label style="font-family:Verdana;">配件编码：</label> -->
-<!--                 <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/> -->
-                <!-- <label style="font-family:Verdana;">订单单号：</label> -->
-                <input id="serviceId" width="180px" emptyText="订单单号" class="nui-textbox"/>
-                <!-- <label style="font-family:Verdana;">供应商：</label> -->
+
+                <input id="serviceId" width="120px" emptyText="订单单号" class="nui-textbox"/>
+
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
-                <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-                <span class="separator"></span>
-
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
+    
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
 <!--                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->

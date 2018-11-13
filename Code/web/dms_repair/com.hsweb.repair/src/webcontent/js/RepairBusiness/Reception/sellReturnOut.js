@@ -104,7 +104,7 @@ var statusHash = {
     "2" : "已归库",
     "3" : "待结算",
     "4" : "已结算",
-    "5" : "全部"
+    "5" : "所有"
     
 };
 
@@ -134,7 +134,7 @@ function quickSearch(type){
     var params = getSearchParam();
     var querysign = 1;
     var queryname = "本日";
-    var querystatusname = "全部";
+    var querystatusname = "所有";
     switch (type)
     {
         case 0:
@@ -205,12 +205,12 @@ function quickSearch(type){
         	querysign = 2;
         	querystatusname = "已归库";
         	break;
-       //全部
+       //所有
         case 14:
         	params.status=null;
         	params.statusList = "1,2";
         	querysign = 2;
-        	querystatusname = "全部";
+        	querystatusname = "所有";
         	break;
         default:
             break;

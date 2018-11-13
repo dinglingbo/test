@@ -14,6 +14,17 @@ $(document).ready(function(v){
     recordDate = nui.get("recordDate");
     modifier = nui.get("modifier");
     modifyDate = nui.get("modifyDate");
+    nui.get('typeId').focus();
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
+
+        if ((keyCode == 27)) { // ESC
+            CloseWindow('cancle');
+        }
+
+    }
 });
 
 function setData(data){
@@ -65,4 +76,10 @@ function setCharCount(){
     var charCount = nui.get("charCount");
     var txt = content.getInputText() || "";
     charCount.setValue(txt.length);
+}
+
+function CloseWindow(action)
+{
+    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+    else window.close();
 }

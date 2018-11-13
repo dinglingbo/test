@@ -5,6 +5,7 @@ var modifier;//修改人
 var modifyDate;//修改日期
 var baseUrl = apiPath + crmApi + "/";
 var carModelInfo;
+var carModelHash = [];
 
 $(document).ready(function(v){
     form1 = new nui.Form("#form1");
@@ -35,7 +36,14 @@ function init(){
     nui.get('guestName').focus();
 }
 
-
+function onCarBrandChange(e){     
+	initCarModel("carModelId", e.value,"", function () {
+        var data = nui.get("carModelId").getData();
+        data.forEach(function (v) {
+        	carModelHash[v.id] = v;
+        });
+    });
+}
 
 function setData(data){
     var tmpUser = modifier.getValue();

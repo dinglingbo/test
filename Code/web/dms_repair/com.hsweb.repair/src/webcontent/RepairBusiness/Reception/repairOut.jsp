@@ -71,8 +71,8 @@ a {
                 
             <input class="nui-textbox" id="name" name="name" emptyText="输入客户姓名" width="120" />
             <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" />
-            <input class="nui-combobox" id="status" name="status" emptyText="选择维修进程" data="con_data_status" valueField="id" textField="text" showNullItem="true" nullItemText="全部"/>
-            <input class="nui-combobox" id="isSettle" name="isSettle" emptyText="选择结算状态"  data="con_data_isSettle" valueField="id" textField="text" showNullItem="true" nullItemText="全部"/>
+            <input class="nui-combobox" id="status" name="status" emptyText="选择维修进程" data="con_data_status" valueField="id" textField="text" showNullItem="true" nullItemText="所有"/>
+            <input class="nui-combobox" id="isSettle" name="isSettle" emptyText="选择结算状态"  data="con_data_isSettle" valueField="id" textField="text" showNullItem="true" nullItemText="所有"/>
             <input name="serviceTypeId"
             id="serviceTypeId"
             class="nui-combobox width1"

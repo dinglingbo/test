@@ -11,7 +11,7 @@
 
 <head>
     <title>初始化导航</title>
-    <script src="<%= request.getContextPath() %>/config/js/dmsSysInitGuide.js?v=1.1.9"></script>
+    <script src="<%= request.getContextPath() %>/config/js/dmsSysInitGuide.js?v=1.2.0"></script>
     <style>
         .container {
             padding: 10px;

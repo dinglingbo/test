@@ -10,7 +10,7 @@ function initSysParamsCfg(){
 }
 function initImport(){
 	var item={};
-	item.id = "initSysParamsCfg";
+	item.id = "initImport";
 	item.text = "导入功能";
 	item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.import.flow?token="+token;
 	item.iconCls = "fa fa-cog";

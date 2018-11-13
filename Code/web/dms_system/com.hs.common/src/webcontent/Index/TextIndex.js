@@ -75,7 +75,7 @@ $(document).ready(function(v) {
             }
         }
     });*/
-    queryMaintain();
+    query();
 });
 
 function toRepairBill(){
@@ -299,45 +299,82 @@ function showTenantGuestCar(){
         setGridGuestCarData(data);
     });
 }
-function toMaintain(){
+function toMaintain(e){
     var item={};
     item.id = "maintain";
-    item.text = "保养提醒";
+    item.text = "首页提醒";
     item.url = webPath + contextPath + "/stat.maintain.flow?token="+token;
     item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
+    var params = {id:e};
+    window.parent.activeTabAndInit(item,params);
 }
-function queryMaintain (){
+
+//查询消息提醒，msg_Type消息类型
+function queryRemind (list){
+	var queryMaintain = 0;//11保养
+	var queryBusiness = 0;//13商业险
+	var queryCompulsoryInsurance = 0;//16交强险
+	var queryDrivingLicense = 0;//14驾照年审
+	var queryCar = 0;//15车辆年检
+	var queryAppointment = 0;//6预约到店
+	var queryGuestBirthday = 0;//17客户生日
+	var queryEmployeeBirthday = 0;//18员工生日
+	
+	for(var i =0;i<list.length;i++){
+		if(list[i].msgType==11){
+			queryMaintain++;
+		}else if(list[i].msgType==13){
+			queryBusiness++;
+		}else if(list[i].msgType==16){
+			queryCompulsoryInsurance++;
+		}else if(list[i].msgType==14){
+			queryDrivingLicense++;
+		}else if(list[i].msgType==15){
+			queryCar++;
+		}else if(list[i].msgType==6){
+			queryAppointment++;
+		}else if(list[i].msgType==17){
+			queryGuestBirthday++;
+		}else if(list[i].msgType==18){
+			queryEmployeeBirthday++;
+		}
+	}
+	$("#queryMaintain span").text(queryMaintain);
+	$("#queryBusiness span").text(queryBusiness);
+	$("#queryCompulsoryInsurance span").text(queryCompulsoryInsurance);
+	$("#queryDrivingLicense span").text(queryDrivingLicense);
+	$("#queryCar span").text(queryCar);
+	$("#queryAppointment span").text(queryAppointment);
+	$("#queryGuestBirthday span").text(queryGuestBirthday);
+	$("#queryEmployeeBirthday span").text(queryEmployeeBirthday);
+}
+
+//判断对象是否为{}
+function isEmptyObject (obj){
+	for(var key in obj ){
+		return false;
+	}
+	return true;
+}
+function query (){
 	var queryMaintainUrl = baseUrl+"com.hsapi.repair.repairService.query.queryRemind.biz.ext";
 	nui.ajax({
 		url : queryMaintainUrl,
 		type : "post",
+		cache : false,
 		data : JSON.stringify({
-			params: {
-            	msgType : 15, 
+			params: { 
             	readSign : 1,
             	readerTargetId : currEmpId
             },
             token:token
         }),
 		success : function(text) {
-			var list = text.data;
-			if(isEmptyObject(list)){
-				$("#queryMaintain span").text(0);
-			}else{
-				
-				$("#queryMaintain span").text(list.length);
-			}
+			var list = text.data||0;
+			queryRemind(list); 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);
 		}
 	});
-}
-
-function isEmptyObject (obj){
-	for(var key in obj ){
-		return false;
-	}
-	return true;
 }

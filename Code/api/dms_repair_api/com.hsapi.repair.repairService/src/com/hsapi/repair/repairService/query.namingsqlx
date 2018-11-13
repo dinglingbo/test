@@ -359,9 +359,11 @@
 	</select>
 	
 	<select id="queryRemind" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-		SELECT id as id, orgid as orgid, msg_title as msgTitle, msg_sub_title as msgSubTitle,
+		SELECT 
+			id as id, orgid as orgid, msg_title as msgTitle, msg_sub_title as msgSubTitle,
 		       msg_content as msgContent, msg_type as msgType, send_sign as sendSign, read_sign as readSign,
-		       record_date as recordDate
+		       record_date as recordDate,
+			msg_params as msgParams
 		from com_message
 		where 1 = 1 and orgid = #orgid#
 		<dynamic>              
@@ -640,5 +642,60 @@
 			(SELECT count(1) as bookingBillQty from rps_prebook where orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate# ) bookingBillQty
 		)
 	</select>
-	
+	<select id="appointmentQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				count(1) as  appointmentQuantity
+			FROM
+				wb_repair.rps_prebook a
+			WHERE
+				a.STATUS = 0
+			AND a.orgid = #orgid#
+			AND a.mt_advisor_id = #mtAdvisorId#
+	</select>
+		<select id="offerQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				count(1) as  offerQuantity
+			FROM
+				wb_repair.rps_maintain a
+			WHERE
+				a.STATUS = 0
+			AND a.is_disabled = 0
+			AND a.orgid = #orgid#
+			AND a.mt_advisor_id = #mtAdvisorId#
+	</select>
+		<select id="constructionQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				count(1) as  constructionQuantity
+			FROM
+				wb_repair.rps_maintain a
+			WHERE
+				a.STATUS = 1
+			AND a.is_disabled = 0
+			AND a.orgid = #orgid#
+			AND a.mt_advisor_id = #mtAdvisorId#
+	</select>
+		<select id="throughQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+
+			SELECT 
+				count(1) as throughQuantity
+			FROM 
+				wb_repair.rps_maintain a
+			where
+				EXISTS(select 1 from wb_repair.rps_item b where a.id = b.service_id and ifnull(b.status,0)=0)
+			and a.orgid = #orgid# 
+			and a.status = 1
+			AND a.mt_advisor_id = #mtAdvisorId#
+	</select>
+		<select id="settleQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				count(1) as  settleQuantity
+			FROM
+				wb_repair.rps_maintain a
+			WHERE
+				a.is_settle = 1
+			AND a.STATUS = 2	
+			AND a.is_disabled = 0
+			AND a.orgid = #orgid#
+			AND a.mt_advisor_id = #mtAdvisorId#
+	</select>
 </sqlMap>

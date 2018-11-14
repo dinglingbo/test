@@ -12,7 +12,7 @@
 <head>
 <title>检查类型列表</title>
 <%@include file="/common/sysCommon.jsp"%>
-<script src="<%= request.getContextPath() %>/config/js/checkType.js?v=1.0.8"></script>
+<script src="<%= request.getContextPath() %>/config/js/checkType.js?v=1.0.10"></script>
 
 </head>
 <body>

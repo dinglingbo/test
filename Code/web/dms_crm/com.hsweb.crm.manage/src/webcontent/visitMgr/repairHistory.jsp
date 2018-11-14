@@ -47,6 +47,27 @@
 
 	<script type="text/javascript">
     	nui.parse();
+    	$(document).ready(function(){
+		    document.onkeyup = function(event) {
+		        var e = event || window.event;
+		        var keyCode = e.keyCode || e.which;// 38向上 40向下
+		        
+		
+		        if ((keyCode == 27)) { // ESC
+		            CloseWindow('cancle');
+		        }
+		
+		    }
+		});
+    	
+    	function CloseWindow(action) {
+			if (action == "close") {
+		
+			} else if (window.CloseOwnerWindow)
+				return window.CloseOwnerWindow(action);
+			else
+				return window.close();
+		}
     </script>
 </body>
 </html>

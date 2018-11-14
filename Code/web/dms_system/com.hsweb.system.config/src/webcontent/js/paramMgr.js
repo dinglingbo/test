@@ -53,9 +53,9 @@ function showTabInfo(){
             }
             
             break;
-        case "carSetTab":
+        case "checkTypeTab":
             if(!url){
-                mainTabs.loadTab(webPath + contextPath + "/common/embedJsp/containSellOrderRecord.jsp?token="+token, tab);
+                mainTabs.loadTab(webPath + contextPath + "/config/checkType.jsp?token="+token, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
             }

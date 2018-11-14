@@ -20,7 +20,8 @@ var checkMainName = null;
 var mainParams = null;
 var isShowSave = null;
 var checkTypeList=[];
-
+var  fguestId =null;
+var lastUrl=baseUrl+"com.hsapi.repair.baseData.query.queryLastCheckModel.biz.ext";
 $(document).ready(function ()
 {
 
@@ -206,7 +207,7 @@ $(document).ready(function ()
         var field = e.field;
         var record = e.record;
         var column = e.column;
-        var row2={status:1,settleType:1};
+        var row2={settleType:1};
         var row3={nostatus:1};
         var row4={nosettleType:1}
         if(actionType == "new"){
@@ -217,7 +218,7 @@ $(document).ready(function ()
             var row=mainGrid.findRow(function(row){
                 if(row.status == 0){
 
-                    mainGrid.updateRow(row,row3);
+//                    mainGrid.updateRow(row,row3);
                 }
                 if(row.settleType == 0){
 
@@ -311,6 +312,7 @@ function doSetMainInfo(car){
 
     fguestId = car.guestId||0;
     fcarId = car.id||0;
+    lastCheckModel();
 
 }
 
@@ -408,6 +410,9 @@ function setInitDataB(params){
                         nui.get("guestFullName").setEnabled(false);
                         nui.get("guestMobile").setEnabled(false);
                         nui.get("carNo").setEnabled(false);
+                    	nui.get('lastChekDate').setEnabled(false);
+                    	nui.get('lastKilometers').setEnabled(false);
+                    	nui.get('lastPoint').setEnabled(false);
                     }else{
                         showMsg("数据加载失败,请重新打开工单!","W");
                     }
@@ -574,7 +579,12 @@ function isCheckMainY(){
                 temp.contactorName = contactor.name;
                 temp.mobile = contactor.mobile;
                 billForm.setData(temp);
-
+                fguestId=temp.guestId;
+                if(!temp.lastKilometers ||!temp.lastPoint){
+                	
+                	lastCheckModel();
+                }
+                
                 if(mainParams.actionType == "view"){
                     billForm.setEnabled(false);
                     $("#saveData").hide();
@@ -656,7 +666,7 @@ function isCheckMainN(){
                     data.checkMan = temp.checkMan;
                     data.checkPoint = temp.checkPoint;
                     billForm.setData(data);
-
+                    
                     if(actionType == "view"){
                         billForm.setEnabled(false);
                         $("#saveData").hide();
@@ -930,4 +940,33 @@ function addNew(){
     fserviceId = 0;
     actionType = 'new';
 
+}
+
+function lastCheckModel(){
+	var fromData=billForm.getData();
+	var params={};
+	params.guestId=fguestId;
+
+    nui.ajax({
+        url : lastUrl,
+        type : "post",
+        async: false,
+        data : {
+            params: params,
+            token: token
+        },
+        success : function(data) {
+            var data = data.data;
+            fromData.lastChekDate=data[0].checkDate;
+            fromData.lastKilometers=data[0].enterKilometers;
+            fromData.lastPoint=data[0].checkPoint;
+            billForm.setData(fromData);
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+
+	
 }

@@ -224,7 +224,7 @@
 			height: "200px"
 		});
     }
-    function updatePassWord(){
+    function updateEmployee(){
 	var queryEmployeeUrl = baseUrl+"com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
 	nui.ajax({
 		url : queryEmployeeUrl,
@@ -232,7 +232,7 @@
 		cache : false,
 		data : JSON.stringify({
 			params: { 
-            	readSign : 1,
+            	orgid : currOrgId,
             	readerTargetId : currEmpId
             },
             token:token

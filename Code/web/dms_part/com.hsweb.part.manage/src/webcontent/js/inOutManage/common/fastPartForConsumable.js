@@ -449,7 +449,7 @@ function getGuestId() {
 //    var orderTypeId = 5;
 //    var isDiffOrder = 1;
 //    var date=new Date();
-//    var operateDate = format(date, ' yyyy-MM-dd HH:mm:ss') + '.0';
+//    var operateDate = format(date, 'yyyy-MM-dd HH:mm:ss') + '.0';
 //    var data = {
 //    	guestId		: FGuestId,
 //    	isFinished	: isFinished,
@@ -684,7 +684,7 @@ function partToOut()
     data.partNameId='0';
     data.pickType='耗材出库-领料';
     var date=new Date();
-    var operateDate = format(date, ' yyyy-MM-dd HH:mm:ss') + '.0';
+    var operateDate = format(date, 'yyyy-MM-dd HH:mm:ss') + '.0';
     data.operateDate=operateDate;
     var list=[];
     list.push(data);

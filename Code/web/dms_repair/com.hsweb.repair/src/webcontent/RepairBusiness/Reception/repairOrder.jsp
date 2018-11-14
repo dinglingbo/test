@@ -382,7 +382,7 @@
             <hr />
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
                 <tbody>
-                    <tr>
+                    <!-- <tr>
                         <td class="left" width="33.3%" id="guestId">客户名称：</td>
                         <td class="left" width="33.3%" id="carNo">车牌号：</td>
                         <td class="left" id="tel">联系电话：</td>
@@ -396,6 +396,23 @@
                         <td class="left" id ="carVin">车架号(VIN)：</td>
                         <td class="left">进厂时间：<span class="left" style="width: 33.33%" id="enterDate"></span></td>
                         <td class="left" id="planFinishDate">预计完工时间：</td>
+                    </tr> -->
+                    <tr>
+                        <td class="left" id="carNo" style="margin-left: 0px;">车牌号：</td>
+                        <td class="left" id="carModel" >车型/品牌：</td>
+                    </tr>
+                    <tr>
+                        <td class="left"id="mtAdvisor" width="100px">服务顾问：</td>
+                        <td class="left" id ="carVin" width="200px">车架号(VIN)：</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="left" id ="engineNo">发动机号：</td>
+                        <td class="left">进厂时间：<span class="left"  id="enterDate"></span></td>
+                     </tr>
+                     <tr>
+                        <td class="left" id="planFinishDate">预计完工时间：</td>
+                        <td >&nbsp;进厂里程：<span id="enterKilometers"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;油量：<span id="enterOilMass"></span></td>
                     </tr>
                 </tbody>
             </table>
@@ -459,7 +476,7 @@
         		if(enterDate){
         			enterDate = enterDate.replace(/-/g,"/");
         			enterDate = new Date(enterDate);
-        			enterDate = format(enterDate, "yyyy-MM-dd hh:MM");
+        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm");
         		}
         		var guestId = maintain.guestId;
         		var enterKilometers = maintain.enterKilometers;
@@ -468,7 +485,7 @@
         		if(planFinishDate){
         			planFinishDate = planFinishDate.replace(/-/g,"/");
         			planFinishDate = new Date(planFinishDate);
-        			planFinishDate = format(planFinishDate, "yyyy-MM-dd hh:MM");
+        			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:MM");
         		}
         		var faultPhen = maintain.faultPhen;
         		var serviceCode = maintain.serviceCode;

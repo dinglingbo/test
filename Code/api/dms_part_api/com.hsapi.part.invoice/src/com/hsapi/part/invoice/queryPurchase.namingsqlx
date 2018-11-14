@@ -177,6 +177,11 @@
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
                 </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="orderTypeId"> 
+                    (a.order_type_id = #orderTypeId#)
+                </isNotEmpty>
+                
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sOrderDate">  
                     A.ORDER_DATE &gt;= #sOrderDate#
@@ -301,6 +306,10 @@
                 <isNotEmpty prepend="and" property="id">  
                     (a.id = #id#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orderTypeId"> 
+                    (a.order_type_id = #orderTypeId#)
+                </isNotEmpty>
+                   
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sOrderDate">  
                     (A.ORDER_DATE &gt;= #sOrderDate#)
@@ -362,6 +371,7 @@
         )M
     	
         
+        group by M.id
         ORDER BY M.operateDate DESC
     </select>
     

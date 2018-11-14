@@ -3,9 +3,9 @@ var settleType = {};
 var settleTypeOpen =[]
 var cSettleTypeAmt = [];
 var rSettleTypeAmt = [];
+var color = "thisYear";//日，周，季，年按钮变色
 $(document).ready(function(v) {
 	setData();
-
 
 });
 
@@ -23,28 +23,52 @@ function setData(){
 		success : function(data) {
 			if (data && data.list) {
 				settleType=data.list;
+				for(var i =0;i<settleType.length;i++){
+					settleType[i].cAmt=0;
+					settleType[i].rAmt=0;
+
+				}
+				queryAmt(getYearStartDate(),getYearEndDate());
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);
 		}
 	});
-
 	
-
 }
 
 function settleOK(e){
 	if(e==1){
 		queryAmt(getNowStartDate(),getNowStartDate());
+		document.getElementById(color).setAttribute("class", "m");
+		color = "today";
+		document.getElementById("today").setAttribute("class", "n");
+		
 	}else if(e==2){
 		queryAmt(getWeekStartDate(),getWeekEndDate());
+		document.getElementById(color).setAttribute("class", "m");
+		color = "thisWeek";
+		document.getElementById("thisWeek").setAttribute("class", "n");
+		
 	}else if(e==3){
 		queryAmt(getMonthStartDate(),getMonthStartDate());
+		document.getElementById(color).setAttribute("class", "m");
+		color = "thisMonth";
+		document.getElementById("thisMonth").setAttribute("class", "n");
+		
 	}else if(e==4){
 		queryAmt(getQuarterStartDate(),getQuarterEndDate());
+		document.getElementById(color).setAttribute("class", "m");
+		color = "thisQuarter";
+		document.getElementById("thisQuarter").setAttribute("class", "n");
+		
 	}else if(e==5){
 		queryAmt(getYearStartDate(),getYearEndDate());
+		document.getElementById(color).setAttribute("class", "m");
+		color = "thisYear";
+		document.getElementById("thisYear").setAttribute("class", "n");
+		
 	}
 }
 
@@ -74,8 +98,6 @@ function queryAmt(startDate,endData){
 						for(var j = 0;j<data.rlist.length;j++){
 							if(settleType[i].customid==data.rlist[j].code){
 								settleType[i].rAmt=data.rlist[j].rAmt;
-							}else{
-								settleType[i].rAmt =0;
 							}
 						}
 
@@ -90,8 +112,6 @@ function queryAmt(startDate,endData){
 					for(var j = 0;j<data.clist.length;j++){
 						if(settleType[i].customid==data.clist[j].code){
 							settleType[i].cAmt=data.clist[j].cAmt;
-						}else{
-							settleType[i].cAmt =0;
 						}
 					}
 
@@ -151,7 +171,7 @@ function open(settleType){
 			],
 			series : [
 			    {
-			        name:'蒸发量',
+			        name:'经营收入',
 			        type:'bar',
 			        data:rSettleTypeAmt,
 			        markPoint : {
@@ -167,7 +187,7 @@ function open(settleType){
 			        }
 			    },
 			    {
-			        name:'降水量',
+			        name:'经营支出',
 			        type:'bar',
 			        data:cSettleTypeAmt,
 			        markPoint : {

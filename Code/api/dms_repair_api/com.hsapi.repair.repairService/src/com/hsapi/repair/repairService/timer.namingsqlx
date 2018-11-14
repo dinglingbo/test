@@ -11,7 +11,7 @@
     <!--下次保养-->
 	<select id="getNextCare" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
-		       a.mt_advisor_id as mtAdvisorId, a.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.care_due_date,'%Y-%m-%d') as dueDate
+		       b.mt_advisor_id as mtAdvisorId, b.mt_advisor_name as mtAdvisorName, DATE_FORMAT(a.care_due_date,'%Y-%m-%d') as dueDate 
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
@@ -25,7 +25,7 @@
 	<!--年审到期-->
 	<select id="getAnnualVerification" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
-		       a.mt_advisor_id as mtAdvisorId, a.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.annual_verification_due_date,'%Y-%m-%d') as dueDate
+		       b.mt_advisor_id as mtAdvisorId, b.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.annual_verification_due_date,'%Y-%m-%d') as dueDate
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
@@ -35,7 +35,7 @@
 	<!--商业险到期-->
 	<select id="getAnnualInspection" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
-		       a.mt_advisor_id as mtAdvisorId, a.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.annual_inspection_date,'%Y-%m-%d') as dueDate
+		       b.mt_advisor_id as mtAdvisorId, b.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.annual_inspection_date,'%Y-%m-%d') as dueDate
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
@@ -45,7 +45,7 @@
 	<!--交强险到期-->
 	<select id="getInsureDueDate" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT a.last_orgid as orgid, b.guest_id as guestId, a.car_id as carId, b.car_no as carNo, b.vin as carVin, 
-		       a.mt_advisor_id as mtAdvisorId, a.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.insure_due_date,'%Y-%m-%d') as dueDate
+		       b.mt_advisor_id as mtAdvisorId, b.mt_advisor_name as mtAdvisorName, DATE_FORMAT(b.insure_due_date,'%Y-%m-%d') as dueDate
 		from rpb_car_extend a
 		inner join rpb_car b
 		on a.car_id = b.id
@@ -59,7 +59,7 @@
 	<!--客户生日-->
 	<select id="getGuestBirthday" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT last_orgid as orgid, id as guestId, full_name as fullName, DATE_FORMAT(birthday,'%m-%d') as dueDate,
-			   mt_advisor_id as mtAdvisorId, mt_advisor_name as mtAdvisorName
+			   b.mt_advisor_id as mtAdvisorId, b.mt_advisor_name as mtAdvisorName
 		from rpb_guest
 		where TIMESTAMPDIFF(DAY, birthday, NOW()) = #ln# 
 	</select>

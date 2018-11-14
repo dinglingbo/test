@@ -384,57 +384,74 @@
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
                 <tbody>
                     <tr>
-                        <td class="left" width="33.3%" id="guestFullName">客户名称：</td>
+                        <!-- <td class="left" width="33.3%" id="guestFullName">客户名称：</td>
                         <td class="left" width="33.3%" id="carNo">车牌号：</td>
-                        <td class="left" id="contactMobile">联系电话：</td>
+                        <td class="left" id="contactMobile">联系电话：</td> -->
+                        
+                        <td class="left" id="carNo" style="margin-left: 0px;">车牌号：</td>
+                        <td class="left" id="carModel" >车型/品牌：</td>
                     </tr>
                     <tr>
+                        <!-- <td class="left" width="33.3%" id="guestFullName">客户名称：</td>
+                        <td class="left" width="33.3%" id="carNo">车牌号：</td>
+                        <td class="left" id="contactMobile">联系电话：</td> -->
+                        
+                        <td class="left"id="mtAdvisor" width="100px">服务顾问：</td>
+                        <td class="left" id ="carVin" width="200px">车架号(VIN)：</td>
+                    </tr>
+                   <!--  <tr>
                     	<td class="left"id="mtAdvisor">服务顾问：</td>
-                        <td class="left"id="carModel">车型/品牌：</td>
+                        <td class="left" id="carModel">车型/品牌：</td>
                         <td class="left">进厂时间：<span class="left" style="width: 33.33%" id="enterDate"></span></td>
-                    </tr>
+                    </tr> -->
                     <tr>
-                        <td class="left" id ="carVin">车架号(VIN)：</td>
                         <td class="left" id ="engineNo">发动机号：</td>
+                        <td class="left">进厂时间：<span class="left"  id="enterDate"></span></td>
+                     </tr>
+                     <tr>
                         <td class="left" id="planFinishDate">预计完工时间：</td>
+                        <td >&nbsp;进厂里程：<span id="enterKilometers"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;油量：<span id="enterOilMass"></span></td>
                     </tr>
+                   
                 </tbody>
             </table>
             <hr />
-            <h5 style="padding-top: 20px;">施工项目</h5>
+           <!--  <h5 style="padding-top: 20px;">施工项目</h5> -->
             <div style="padding: 10px 0">
                 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table tlist mt10" style="table-layout: fixed;">
                     <tbody>
                         <tr>
                             <td width="30" height="35" align="center">序号</td>
+                            <td align="center">仓库</td>
                             <td align="center" >配件编号</td>
-                            <td align="center" >配件名称</td>
-                            <td align="center">已领数量</td>
+                            <td align="center" width = "200px">配件名称</td>
+                            <td align="center">数量</td>
                             <td align="center">单位</td>
-                            <td align="center">领料仓库</td>
+                            <td align="center" width = "100px">领料日期</td>
                             <td align="center">领料人</td>
-                            <td align="center">金额</td>
+                            <td align="center">备注</td>
+                            <td align="center">签字</td>
                         </tr>
                         <tbody id="tbodyId">
 						</tbody>
                     </tbody>
                 </table>
             </div>
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader" style="margin-top: 15px;">
+           <!--  <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader" style="margin-top: 15px;">
                 <tbody>
                     <tr>
-                       <!--  <td width="30%" height="30" class="left" style="font-size: 14px;">领料仓库：</td>
-                        <td class="left" width="30%" style="font-size: 14px;">领料人：</td> -->
+                        <td width="30%" height="30" class="left" style="font-size: 14px;">领料仓库：</td>
+                        <td class="left" width="30%" style="font-size: 14px;">领料人：</td>
                         <td class="right" width="80%" style="font-size: 14px;">费用合计：<span id="money">0</span>元</td>
                     </tr>
                     <tr>
-                       <!--  <td width="30%" height="30" class="left" style="font-size: 14px;">出库人：</td> -->
+                        <td width="30%" height="30" class="left" style="font-size: 14px;">出库人：</td>
                         <td class="left" width="30%" style="font-size: 14px;"></td> 
                        
                         <td class="left" width="30%" style="font-size: 14px;">领料人签字：</td>
                     </tr>
                 </tbody>
-            </table>
+            </table> -->
         </div>
     </div>
 
@@ -442,6 +459,7 @@
 	<script type="text/javascript">
 	var baseUrl=apiPath + repairApi + "/";
 	var storeHouse = null;
+	var data = [];
 	$(document).ready(function (){
 		$("#print").click(function () {
             $(".print_btn").hide();
@@ -456,23 +474,38 @@
     		      storeHouse = text.storehouse || "";
     		    }
 	         });
-	         
+	    var dictids= ['DDT20130703000051'];
+	    $.post(params.sysUrl+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictids="+dictids+"&token="+params.token,{},function(text){
+    		    if(text.data){
+    		      data = text.data;
+    		    }
+	         });
 		$.post(baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+params.serviceId,{},function(text){
         		var list = text.list[0];
-        		var serviceCode = list.serviceCode;
-        		var guestFullName = list.guestFullName;
-        		var carNo = list.carNo;
-        		var contactMobile = list.contactMobile;
-        		var mtAdvisor = list.mtAdvisor;
-        		var carModel = list.carModel;
+        		var serviceCode = list.serviceCode  || "";
+        		var guestFullName = list.guestFullName || "";
+        		var carNo = list.carNo || "";
+        		var contactMobile = list.contactMobile || "";
+        		var mtAdvisor = list.mtAdvisor || "";
+        		var carModel = list.carModel || "";
         		var enterDate = list.enterDate || "";
         		if(enterDate){
         			enterDate = enterDate.replace(/-/g,"/");
         			enterDate = new Date(enterDate);
         			enterDate = format(enterDate, "yyyy-MM-dd HH:mm");
         		}
-        		var carVin = list.carVin;
-        		var engineNo = list.engineNo;
+        		var carVin = list.carVin || "";
+        		var engineNo = list.engineNo || "";
+        		var enterOilMass = list.enterOilMass || "0";
+	        		var name = "0";
+	        		//查找油量http://127.0.0.1:8080/default/
+	        		for(var i = 0;i<data.length;i++){
+	        		        if(data[i].customid == enterOilMass){
+	        		           name = data[i].name;
+	        		           break;
+	        		        }
+	        		}
+	            var enterKilometers = list.enterKilometers || "0";
         		var planFinishDate = list.planFinishDate || "";
         		if(planFinishDate){
         			planFinishDate = planFinishDate.replace(/-/g,"/");
@@ -480,11 +513,13 @@
         			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm");
         		}
         		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML+ serviceCode;
-        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
+        		//document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
         		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
-        		document.getElementById("contactMobile").innerHTML = document.getElementById("contactMobile").innerHTML + contactMobile;
+        		//document.getElementById("contactMobile").innerHTML = document.getElementById("contactMobile").innerHTML + contactMobile;
         		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
         		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel;
+        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
+        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;
         		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
         		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
         		document.getElementById("engineNo").innerHTML = document.getElementById("engineNo").innerHTML + engineNo;
@@ -495,13 +530,15 @@
             	var tBody = $("#tbodyId");
 				tBody.empty();
 				var tds = '<td align="center">[id]</td>' +
+				"<td align='center'>[storeHouseName]</td>"+
     			"<td align='center'>[partCode]</td>"+
     			"<td align='center'>[partFullName]</td>"+ 
     			"<td align='center'>[outQty]</td>"+
     			"<td align='center'>[unit]</td>"+
-                "<td align='center'>[storeHouseName]</td>"+
+                "<td align='center'>[pickDate]</td>"+
                 "<td align='center'>[pickMan]</td>"+
-    			"<td align='center'>[sellAmt]</td>";
+    			"<td align='center'>[remark]</td>"+
+    			"<td align='center'>[sign]</td>";
         		var data = text.data;
         		if(storeHouse != ""){
 	        		for(var i=0;i<data.length;i++){
@@ -518,15 +555,18 @@
         			var tr = $("<tr></tr>");
         			tr.append(
 				    				tds.replace("[id]",i +1)
+				    				.replace("[storeHouseName]",data[i].storeHouseName || "")
 				    				.replace("[partCode]",data[i].partCode)
 				    				.replace("[partFullName]",data[i].partFullName)
 				    				.replace("[outQty]",data[i].outQty)
 				    				.replace("[unit]",data[i].unit || "")
-				    				.replace("[storeHouseName]",data[i].storeHouseName || "")
+				    				.replace("[pickDate]",format(data[i].pickDate, "yyyy-MM-dd HH:mm") || "")
 				    				.replace("[pickMan]",data[i].pickMan || "")
-				    				.replace("[sellAmt]",data[i].sellAmt));
+				    				.replace("[remark]",data[i].remark || "")
+				    				.replace("[sign]","")
+				    				);
 				    			tBody.append(tr);
-				    			document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].sellAmt);
+				    		//	document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].sellAmt);
         		}
         });
 	}

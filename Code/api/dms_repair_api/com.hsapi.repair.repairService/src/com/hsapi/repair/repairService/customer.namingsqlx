@@ -354,6 +354,42 @@
         </dynamic>  
     </select>
     
-    
-    
+    <select id="queryMyCustomerWithContactList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			a.id carId,
+			a.car_no carNo,
+			b.id guestId,
+			b.full_name name,
+			b.mobile,
+			a.vin vin,
+			a.car_model_id carModelId,
+			a.car_model carModel,
+			b.addr addr,
+			b.sex sex,
+			c.mt_advisor_id mtAdvisorId,
+			c.mt_advisor_name mtAdvisorName
+		FROM
+			rpb_car a
+			inner join wb_common.com_guest b on (a.guest_id = b.id)
+			inner join rpb_guest c on b.id = c.id
+			
+		WHERE
+			b.guest_type = '01020103'
+			and c.mt_advisor_id = #mtAdvisorId#
+		<dynamic>
+            <isNotEmpty prepend="and" property="tenantId">  
+                (b.tenant_id = #tenantId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">  
+                (a.car_no = #carNo#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">  
+                (b.mobile like '%$mobile$%' )
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (b.full_name like '%$name$%')
+            </isNotEmpty>
+        </dynamic>
+        order by b.modify_date desc
+	</select>
 </sqlMap>

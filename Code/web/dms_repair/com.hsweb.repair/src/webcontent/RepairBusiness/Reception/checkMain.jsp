@@ -187,7 +187,8 @@ function edit(){
     part.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {
-        id: row.id
+        id: row.id,
+        isCheckMain:"Y"
     };
     window.parent.activeTabAndInit(part,params);
 }

@@ -215,17 +215,39 @@ $(document).ready(function ()
                     
                                 doSetMainInfo(item);
                             }else if(action == "查看"){
-                                var opt={};
+                            	var list = data[0];
+                            	var opt={};
                                 opt.iconCls="fa fa-desktop";
-                                opt.id="1106";
-                                opt.text="理赔开单";
-                                opt.url=webPath + contextPath + "/repair/RepairBusiness/Reception/claimMain.jsp";
-                                
-                                var params = {
-                                    type: 'view',
-                                    carNo: carNo
-                                };
-                                window.parent.activeTabAndInit(opt,params);
+                            	if(list.billTypeId == "0"){
+                                    opt.id="2082";
+                                    opt.text="综合开单";
+                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.ReceptionMain.flow";
+                            	}
+                            	if(list.billTypeId == "2"){
+                                    opt.id="2083";
+                                    opt.text="洗车开单";
+                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBillMgr.flow";
+                            	}
+                            	if(list.billTypeId == "4"){
+                                    opt.id="2084";
+                                    opt.text="理赔开单";
+                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.claimMain.flow";
+                            	}
+                            	if(list.billTypeId == "3"){
+                                    opt.id="2087";
+                                    opt.text="销售开单";
+                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.sellMain.flow";
+                            	}
+                            	if(list.billTypeId == "5"){
+                                    opt.id="2088";
+                                    opt.text="退货开单";
+                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.sellReturn.flow";
+                            	}
+                            	var params = {
+                                        type: 'view',
+                                        carNo: carNo
+                                    };
+                               window.parent.activeTabAndInit(opt,params);
                             }
                         }
                     });
@@ -3640,7 +3662,7 @@ function SearchLastCheckMain() {
             if(isRec == "1"){
                 var ldata = text.list[0];
                 var score = ldata.check_point || 0;
-                var rdate = nui.formatDate(nui.parseDate(ldata.record_date)," yyyy-MM-dd HH:mm:ss")
+                var rdate = nui.formatDate(nui.parseDate(ldata.record_date),"yyyy-MM-dd HH:mm:ss")
 
                 $("#lastCheckInfo1").html('上次检查');
                 $("#lastCheckInfo2").html(score+"分");

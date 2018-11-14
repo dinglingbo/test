@@ -8,7 +8,7 @@
 -->
 <head>
     <title>移仓单主界面</title>
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrderMain.js?v=1.1.2"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrderMain.js?v=1.1.13"></script>
     <style type="text/css">
     .title {
         width: 90px;
@@ -53,9 +53,10 @@
                         <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                     </ul>
                     
-                    <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">草稿</a>
+                    <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
 
                     <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                     	<li iconCls="" onclick="quickSearch(14)" id="type14">所有</li>
                         <li iconCls="" onclick="quickSearch(12)" id="type12">草稿</li>
                         <li iconCls="" onclick="quickSearch(13)" id="type13">已审</li>
                     </ul>
@@ -68,13 +69,39 @@
                     <span class="separator"></span> 
 
 
-                    <!-- <label style="font-family:Verdana;">订单单号：</label> -->
-                    <input id="serviceId" width="180px" emptyText="移仓单号" class="nui-textbox"/>
-                    <!-- <label style="font-family:Verdana;">供应商：</label> -->
-                <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
-                <span class="separator"></span>
+                    <input id="serviceId" width="130px" emptyText="移仓单号" class="nui-textbox"/>
+                    <input id="storeId"
+                       name="storeId"
+                       class="nui-combobox"
+                       textField="name"
+                       valueField="id"
+                       emptyText="请选择移出仓库"
+                       url=""
+                       dataField="storehouse"
+                       valuefromselect="true"
+                       allowInput="true"
+                       selectOnFocus="true"
+                       showNullItem="false"
+                       width="8%"
+                       nullItemText="请选择..."
+                       />
+        			
+        			<input id="receiveStoreId"
+                       name="receiveStoreId"
+                       class="nui-combobox"
+                       textField="name"
+                       valueField="id"
+                       emptyText="请选择移入仓库"
+                       url=""
+                       dataField="storehouse"
+                       valuefromselect="true"
+                       allowInput="true"
+                       selectOnFocus="true"
+                       showNullItem="false"
+                       width="8%"
+                       nullItemText="请选择..."
+                       />
 
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
                 <!--                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
@@ -103,8 +130,8 @@
     showSummaryRow="true">
     <div property="columns">
         <!--             <div header="订单信息" headerAlign="center"> -->
-            <div type="indexcolumn">序号</div>
-            <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
+            <div type="indexcolumn" width="20">序号</div>
+            <div type="expandcolumn" width="15" ><span class="fa fa-plus fa-lg"></span></div>
 
             <div allowSort="true" field="serviceId" width="100" summaryType="count" headerAlign="center" header="订单单号"></div>
             <div allowSort="true" field="storeId" width="90" headerAlign="center" header="移出仓库"></div>

@@ -72,7 +72,7 @@
 		</table>
 	</div>
 	<div class="nui-fit" style="background-color: #000">
-	    <div id="workShopBoardGrid" class="nui-datagrid" showLoading="false" dataField="list" enableHotTrack="false" allowCellWrap="true" showPager="false" style="height:100%;width:100%;">
+	    <div id="workShopBoardGrid" class="nui-datagrid" allowRowSelect="false" showLoading="false" dataField="list" enableHotTrack="false" allowCellWrap="true" showPager="false" style="height:100%;width:100%;">
 	        <div property="columns">
 	            <div field="carNo" width="100" headerAlign="center" align="center">车牌号</div>
 	            <div field="enterDate" width="100" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" align="center">接车时间</div>
@@ -104,18 +104,40 @@
 		var full = null;
 		var exit = null;
 		$(document).ready(function(v) {
-			full = nui.get("full");
+/* 			full = nui.get("full");
 			
 			exit = nui.get("exit");
-			exit.setVisible(false);
+			exit.setVisible(false); */
 			workShopBoardGrid = nui.get("workShopBoardGrid");
 			workShopBoardGrid.setUrl(gridUrl);
 			workShopBoardGrid.on("drawcell", function (e) {
 				if (e.field == "status") {
 					e.cellHtml = statusHash[e.value];
 				}
+				if (e.field == "enterDate") {
+				var str =e.cellHtml.split(" "); 
+				var qian = str[0].split("-");
+				var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
+					e.cellHtml = time;
+				}
+				if (e.field == "planFinishDate") {
+					if(e.cellHtml!=""&&e.cellHtml!=null){
+						var str =e.cellHtml.split(" "); 
+						var qian = str[0].split("-");
+						var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
+						e.cellHtml = time;
+					}
+				}
 				if (e.field == "name") {
-					var name = e.row.packageName+e.row.itemName;
+					var name ="";
+					if(e.row.itemName==""){
+						name = e.row.packageName;
+					}else if(e.row.packageName==""){
+						name = e.row.itemName;
+					}else{
+						name = e.row.packageName+","+e.row.itemName;
+					}
+
 					e.cellHtml = name;
 				}
 			});
@@ -144,8 +166,8 @@
                 if(typeof rfs != "undefined" && rfs) {
                     rfs.call(el);
                 };
-                full.setVisible(false);
-                exit.setVisible(true);
+/*                 full.setVisible(false);
+                exit.setVisible(true); */
               return;
         }
 		
@@ -166,8 +188,8 @@
             if(typeof cfs != "undefined" && cfs) {
                 cfs.call(el);
             }
-               	full.setVisible(true);
-                exit.setVisible(false);
+/*                	full.setVisible(true);
+                exit.setVisible(false); */
         }
 		
 

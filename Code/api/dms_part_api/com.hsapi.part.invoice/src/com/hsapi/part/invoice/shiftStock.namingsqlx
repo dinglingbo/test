@@ -42,6 +42,12 @@
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="storeId"> 
+                    (a.store_id = #storeId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="receiveStoreId"> 
+                    (a.receive_store_id = #receiveStoreId#)
+                </isNotEmpty>
                 <!--创建日期 -->
                 <isNotEmpty prepend="and" property="sCreateDate">  
                     (A.CREATE_DATE &gt;= #sCreateDate#)

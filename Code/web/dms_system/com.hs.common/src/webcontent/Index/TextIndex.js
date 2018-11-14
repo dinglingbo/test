@@ -75,12 +75,12 @@ $(document).ready(function(v) {
             }
         }
     });*/
-
+    query();
 });
 
 function toRepairBill(){
     var item={};
-    item.id = "1036";
+    item.id = "2000";
     item.text = "综合开单";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow?token="+token;
     item.iconCls = "fa fa-file-text";
@@ -88,7 +88,7 @@ function toRepairBill(){
 }
 function toCarWashBill(){//1
     var item={};
-    item.id = "4000";
+    item.id = "3000";
     item.text = "洗车开单";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBill.flow?token="+token;
     item.iconCls = "fa fa-file-text";
@@ -96,7 +96,7 @@ function toCarWashBill(){//1
 }
 function toSellBill(){
     var item={};
-    item.id = "1104";
+    item.id = "5000";
     item.text = "销售开单";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.sellBill.flow?token="+token;
     item.iconCls = "fa fa-file-text";
@@ -104,7 +104,7 @@ function toSellBill(){
 }
 function toCarInsuranceDetail(){
     var item={};
-    item.id = "1184";
+    item.id = "InsuranceDetail";
     item.text = "保险开单";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CarInsuranceDetail.flow?token="+token;
     item.iconCls = "fa fa-car";
@@ -127,7 +127,7 @@ function addCustomer(){
 
 function toRepairOut(){
     var item={};
-    item.id = "1481";
+    item.id = "2091";
     item.text = "维修出库";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairOut.flow?token="+token,
     item.iconCls = "fa fa-file-text";
@@ -135,7 +135,7 @@ function toRepairOut(){
 }
 function toPurchaseOrderMain(){
     var item={};
-    item.id = "1482";
+    item.id = "2089";
     item.text = "采购订单";
     item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrderMain.flow?token="+token,
     item.iconCls = "fa fa-exchange";
@@ -144,7 +144,7 @@ function toPurchaseOrderMain(){
 
 function toCustomerProfileMain(){
     var item={};
-    item.id = "1221";
+    item.id = "2101";
     item.text = "车辆新建";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CustomerProfileMain.flow?token="+token
     item.iconCls = "fa fa-file-text";
@@ -160,17 +160,17 @@ function toStockCheck(){
 }
 function toTimesCardList(){
     var item={};
-    item.id = "1862";
+    item.id = "2107";
     item.text = "计次卡销售";
     item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.timesCardList.flow?token="+token;
     item.iconCls = "fa fa-file-text";
-    var params = {};
+    var params = {id:1862};
     window.parent.activeTabAndInit(item,params);
 }
 
 function toCardList(){
     var item={};
-    item.id = "1861";
+    item.id = "";
     item.text = "储值卡充值";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CardUp.flow?token="+token
     item.iconCls = "fa fa-file-text";
@@ -179,7 +179,7 @@ function toCardList(){
 
 function toVisitMain(){
     var item={};
-    item.id = "1863";
+    item.id = "2187";
     item.text = "工单回访";
     item.url = webPath + contextPath + "/com.hsweb.crm.manage.visitMain.flow?token="+token
     item.iconCls = "fa fa-file-text";
@@ -298,4 +298,83 @@ function showTenantGuestCar(){
     queryGuestCarData(p,function(data){
         setGridGuestCarData(data);
     });
+}
+function toMaintain(e){
+    var item={};
+    item.id = "maintain";
+    item.text = "首页提醒";
+    item.url = webPath + contextPath + "/stat.maintain.flow?token="+token;
+    item.iconCls = "fa fa-file-text";
+    var params = {id:e};
+    window.parent.activeTabAndInit(item,params);
+}
+
+//查询消息提醒，msg_Type消息类型
+function queryRemind (list){
+	var queryMaintain = 0;//11保养
+	var queryBusiness = 0;//13商业险
+	var queryCompulsoryInsurance = 0;//16交强险
+	var queryDrivingLicense = 0;//14驾照年审
+	var queryCar = 0;//15车辆年检
+	var queryAppointment = 0;//6预约到店
+	var queryGuestBirthday = 0;//17客户生日
+	var queryEmployeeBirthday = 0;//18员工生日
+	
+	for(var i =0;i<list.length;i++){
+		if(list[i].msgType==11){
+			queryMaintain++;
+		}else if(list[i].msgType==13){
+			queryBusiness++;
+		}else if(list[i].msgType==16){
+			queryCompulsoryInsurance++;
+		}else if(list[i].msgType==14){
+			queryDrivingLicense++;
+		}else if(list[i].msgType==15){
+			queryCar++;
+		}else if(list[i].msgType==6){
+			queryAppointment++;
+		}else if(list[i].msgType==17){
+			queryGuestBirthday++;
+		}else if(list[i].msgType==18){
+			queryEmployeeBirthday++;
+		}
+	}
+	$("#queryMaintain span").text(queryMaintain);
+	$("#queryBusiness span").text(queryBusiness);
+	$("#queryCompulsoryInsurance span").text(queryCompulsoryInsurance);
+	$("#queryDrivingLicense span").text(queryDrivingLicense);
+	$("#queryCar span").text(queryCar);
+	$("#queryAppointment span").text(queryAppointment);
+	$("#queryGuestBirthday span").text(queryGuestBirthday);
+	$("#queryEmployeeBirthday span").text(queryEmployeeBirthday);
+}
+
+//判断对象是否为{}
+function isEmptyObject (obj){
+	for(var key in obj ){
+		return false;
+	}
+	return true;
+}
+function query (){
+	var queryMaintainUrl = baseUrl+"com.hsapi.repair.repairService.query.queryRemind.biz.ext";
+	nui.ajax({
+		url : queryMaintainUrl,
+		type : "post",
+		cache : false,
+		data : JSON.stringify({
+			params: { 
+            	readSign : 1,
+            	readerTargetId : currEmpId
+            },
+            token:token
+        }),
+		success : function(text) {
+			var list = text.data||0;
+			queryRemind(list); 
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
 }

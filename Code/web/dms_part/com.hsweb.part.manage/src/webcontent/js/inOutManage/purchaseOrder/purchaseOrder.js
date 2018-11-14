@@ -525,9 +525,9 @@ function getMainData() {
 	data.orderMan=nui.get('orderMan').getText();
 
 	if (data.operateDate) {
-		data.operateDate = format(data.operateDate, ' yyyy-MM-dd HH:mm:ss')
+		data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss')
 				+ '.0';// 用于后台判断数据是否在其他地方已修改
-		// data.versionNo = format(data.versionNo, ' yyyy-MM-dd HH:mm:ss');
+		// data.versionNo = format(data.versionNo, 'yyyy-MM-dd HH:mm:ss');
 	}
 
 	rightGrid.findRow(function(row){
@@ -1457,7 +1457,7 @@ function orderEnter(mainId) {
 						}
 						loadMainAndDetailInfo(leftRow);
 					
-						$('#bServiceId').text("订单号："+leftRow.serviceId);
+//						$('#bServiceId').text("订单号："+leftRow.serviceId);
 					}
 
 					} else {
@@ -2068,7 +2068,7 @@ function onExport(){
 //        }
 //	}
 	
-	if(main.auditSign==0){
+	if(main.billStatusId===""){
 		showMsg("清先保存数据!","W");
 		return;
 	}

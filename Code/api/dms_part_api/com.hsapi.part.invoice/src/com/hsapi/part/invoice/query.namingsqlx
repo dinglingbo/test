@@ -1728,7 +1728,9 @@
                 <isNotEmpty prepend="and" property="auditSign">  
                     (a.audit_sign = #auditSign#)
                 </isNotEmpty>
-                
+                <isNotEmpty prepend="and" property="postStatus">  
+                    (a.audit_sign = 1 or a.audit_sign = 2)
+                </isNotEmpty>
 	            <isNotEmpty prepend="order by" property="sortField">  
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 

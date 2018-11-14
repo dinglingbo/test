@@ -1165,8 +1165,282 @@
 		</dynamic>
 		
     </select>
+    <!--库存周转明细表查询-->
     
+    <select id="queryTurnOverDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+    	
+			 b.part_code AS partCode,
+			 b.part_name AS partName,
+			 c.oem_code AS oemCode,
+			 c.part_brand_id AS partBrandId,
+			 c.apply_car_model AS applyCarModel,
+			 c.unit AS unit,
+			 c.car_type_id_f AS carTypeIdF,
+			 c.car_type_id_s AS carTypeIdS,
+			 c.car_type_id_t AS carTypeIdT,
+			 c.spec AS spec,
+			 sum(b.qc_qty) AS qcQty,
+			 sum(b.qc_amt) AS qcAmt,
+			 sum(b.bala_qty) AS balaQty,
+			 sum(b.bala_amt) AS balaAmt,
+			 <!--销售数量-->
+			 (sum(repairOutQty)-sum(repairEnterQty)-sum(returnOutQty)+sum(inventoryLossQty)
+			-sum(inventoryProfitQty)+sum(consumableOutQty)-sum(consumableEnterQty))as sellQty,
+			<!--销售总成本-->
+			(sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))as sellAmt,
+			<!-- 平均库存余额-->
+			((sum(b.qc_amt)+sum(b.bala_amt))/2) as AvgAmt,
+			<!--库存周转率=销售总成本/平均库存余额-->
+			((sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))
+			/((sum(b.qc_amt)+sum(b.bala_amt))/2)) as turnOverRate,
+			<!--库存周转天数=计算期天数/库存周转率 -->
+			(dateDiff (#endDate#,#startDate#)/((sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))
+			/((sum(b.qc_amt)+sum(b.bala_amt))/2))) as turnOverDay
+		FROM
+			(
+				SELECT
+					a.part_id ,
+					a.part_name,
+					a.part_code,
+					a.qc_qty ,
+					a.qc_amt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.qty END ), 0 ) purchaseEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.amt END ), 0 ) purchaseEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.qty END ), 0 ) purchaseOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.amt END ), 0 ) purchaseOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050206' and a.dc='1') THEN a.qty END ), 0 ) repairEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050206' and a.dc='1') THEN a.amt END ), 0 ) repairEnterAmt,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.qty END ), 0 ) repairOutQty,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.amt END ), 0 ) repairOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.qty END ), 0 ) returnOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) returnOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.qty END ), 0 ) shiftEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.amt END ), 0 ) shiftEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.qty END ), 0 ) shiftOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.amt END ), 0 ) shiftOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='1') THEN a.qty END ), 0 ) consumableEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='1') THEN a.amt END ), 0 ) consumableEnterAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.qty END ), 0 ) consumableOutQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.amt END ), 0 ) consumableOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.qty END ), 0 ) inventoryProfitQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.amt END ), 0 ) inventoryProfitAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.qty END ), 0 ) inventoryLossQty, 
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.amt END ), 0 ) inventoryLossAmt, 
+					a.bala_qty,
+					a.bala_amt
+		FROM pj_invocing a
+			WHERE 1=1
+			<dynamic>
+				<isNotEmpty prepend="and" property="orgid">  
+					a.orgid= #orgid#
+				</isNotEmpty>
+				
+				<isNotEmpty prepend="and" property="partCodeOrName">  
+				a.part_code like '%$partCodeOrName$%'or a.part_name like '%$partCodeOrName$%'
+				</isNotEmpty>
+				
+				<isNotEmpty prepend="and" property="partId">  
+					a.part_id like '%$partId$%'
+				</isNotEmpty>
+				
+				<isNotEmpty prepend="and" property="serviceId">  
+					a.service_id like '%$serviceId$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="guestId">  
+	                (a.guest_id = #guestId#)
+	            </isNotEmpty>
+	                        
+	            <isNotEmpty prepend="and" property="operatorId">  
+	                (a.operator_id = #operatorId#)
+	            </isNotEmpty>
+				
+				<isNotEmpty prepend="and" property="operator">  
+	                (a.operator= #operator#)
+	            </isNotEmpty>
+	            
+				 <isNotEmpty prepend="and" property="startDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&gt;=#startDate#)
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="endDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&lt;=#endDate#)
+				</isNotEmpty>
+			
+			</dynamic>
+		)b INNER JOIN wb_common.com_attribute  c on b.part_id=c.id
+		 where 1=1
+		 <dynamic>				
+				<isNotEmpty prepend="and" property="partBrandId">  
+					c.part_brand_id = #partBrandId#
+				</isNotEmpty>
+				
+				<isNotEmpty prepend="and" property="partTypeId">  
+					c.car_type_id_f = #partTypeId# or c.car_type_id_s = #partTypeId# or c.car_type_id_t = #partTypeId#
+				</isNotEmpty>
+				
+			
+			</dynamic>
+		GROUP BY
+			b.part_id,
+			b.part_name,
+			b.part_code
+
+    </select>
     
+    <!--库存周转汇总-查总-->
+    <select id="queryTurnOverCount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT    	
+			 sum(b.qc_qty) AS qcQty,
+			 sum(b.qc_amt) AS qcAmt,
+			 sum(b.bala_qty) AS balaQty,
+			 sum(b.bala_amt) AS balaAmt,
+			 <!--销售数量-->
+			 (sum(repairOutQty)-sum(repairEnterQty)-sum(returnOutQty)+sum(inventoryLossQty)
+			-sum(inventoryProfitQty)+sum(consumableOutQty)-sum(consumableEnterQty))as sellQty,
+			<!--销售总成本-->
+			(sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))as sellAmt,
+			<!-- 平均库存余额-->
+			((sum(b.qc_amt)+sum(b.bala_amt))/2) as AvgAmt,
+			<!--库存周转率=销售总成本/平均库存余额-->
+			((sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))
+			/((sum(b.qc_amt)+sum(b.bala_amt))/2)) as turnOverRate,
+			<!--库存周转天数=计算期天数/库存周转率 -->
+			(dateDiff (#endDate#,#startDate#)/((sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))
+			/((sum(b.qc_amt)+sum(b.bala_amt))/2))) as turnOverDay
+		FROM
+			(
+				SELECT
+					a.part_id ,
+					a.part_name,
+					a.part_code,
+					a.qc_qty ,
+					a.qc_amt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.qty END ), 0 ) purchaseEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.amt END ), 0 ) purchaseEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.qty END ), 0 ) purchaseOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.amt END ), 0 ) purchaseOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050206' and a.dc='1') THEN a.qty END ), 0 ) repairEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050206' and a.dc='1') THEN a.amt END ), 0 ) repairEnterAmt,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.qty END ), 0 ) repairOutQty,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.amt END ), 0 ) repairOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.qty END ), 0 ) returnOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) returnOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.qty END ), 0 ) shiftEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.amt END ), 0 ) shiftEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.qty END ), 0 ) shiftOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.amt END ), 0 ) shiftOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='1') THEN a.qty END ), 0 ) consumableEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='1') THEN a.amt END ), 0 ) consumableEnterAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.qty END ), 0 ) consumableOutQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.amt END ), 0 ) consumableOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.qty END ), 0 ) inventoryProfitQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.amt END ), 0 ) inventoryProfitAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.qty END ), 0 ) inventoryLossQty, 
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.amt END ), 0 ) inventoryLossAmt, 
+					a.bala_qty,
+					a.bala_amt
+		FROM pj_invocing a
+			WHERE 1=1
+			<dynamic>
+				<isNotEmpty prepend="and" property="orgid">  
+					a.orgid= #orgid#
+				</isNotEmpty>
+				
+				 <isNotEmpty prepend="and" property="startDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&gt;=#startDate#)
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="endDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&lt;=#endDate#)
+				</isNotEmpty>
+			
+			</dynamic>
+		)b 
+		 
+
+    </select>
+    <!--库存周转汇总-查分仓-->
+    <select id="queryTurnOverStoreCount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT
+    		 b.store_id as storeId,
+			 sum(b.qc_qty) AS qcQty,
+			 sum(b.qc_amt) AS qcAmt,
+			 sum(b.bala_qty) AS balaQty,
+			 sum(b.bala_amt) AS balaAmt,
+			 <!--销售数量-->
+			 (sum(repairOutQty)-sum(repairEnterQty)-sum(returnOutQty)+sum(inventoryLossQty)
+			-sum(inventoryProfitQty)+sum(consumableOutQty)-sum(consumableEnterQty))as sellQty,
+			<!--销售总成本-->
+			(sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))as sellAmt,
+			<!-- 平均库存余额-->
+			((sum(b.qc_amt)+sum(b.bala_amt))/2) as AvgAmt,
+			<!--库存周转率=销售总成本/平均库存余额-->
+			((sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))
+			/((sum(b.qc_amt)+sum(b.bala_amt))/2)) as turnOverRate,
+			<!--库存周转天数=计算期天数/库存周转率 -->
+			(dateDiff (#endDate#,#startDate#)/((sum(repairOutAmt)-sum(repairEnterAmt)-sum(returnOutAmt)+sum(inventoryLossAmt)
+			-sum(inventoryProfitAmt)+sum(consumableOutAmt)-sum(consumableEnterAmt))
+			/((sum(b.qc_amt)+sum(b.bala_amt))/2))) as turnOverDay
+		FROM
+			(
+				SELECT
+					a.store_id,
+					a.part_id ,
+					a.part_name,
+					a.part_code,
+					a.qc_qty ,
+					a.qc_amt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.qty END ), 0 ) purchaseEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.amt END ), 0 ) purchaseEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.qty END ), 0 ) purchaseOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.amt END ), 0 ) purchaseOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050206' and a.dc='1') THEN a.qty END ), 0 ) repairEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050206' and a.dc='1') THEN a.amt END ), 0 ) repairEnterAmt,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.qty END ), 0 ) repairOutQty,
+		IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.amt END ), 0 ) repairOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.qty END ), 0 ) returnOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) returnOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.qty END ), 0 ) shiftEnterQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.amt END ), 0 ) shiftEnterAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.qty END ), 0 ) shiftOutQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.amt END ), 0 ) shiftOutAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='1') THEN a.qty END ), 0 ) consumableEnterQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='1') THEN a.amt END ), 0 ) consumableEnterAmt,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.qty END ), 0 ) consumableOutQty,
+		IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.amt END ), 0 ) consumableOutAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.qty END ), 0 ) inventoryProfitQty,
+		IFNULL( ( CASE a.bill_type_id WHEN '050103' THEN a.amt END ), 0 ) inventoryProfitAmt,
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.qty END ), 0 ) inventoryLossQty, 
+		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.amt END ), 0 ) inventoryLossAmt, 
+					a.bala_qty,
+					a.bala_amt
+		FROM pj_store_invocing a
+			WHERE 1=1
+			<dynamic>
+				<isNotEmpty prepend="and" property="orgid">  
+					a.orgid= #orgid#
+				</isNotEmpty>
+				
+				 <isNotEmpty prepend="and" property="startDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&gt;=#startDate#)
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="endDate">  
+					(date_format(a.create_date,'%Y-%m-%d')&lt;=#endDate#)
+				</isNotEmpty>
+			
+			</dynamic>
+			
+		)b 
+		group by b.store_id
+
+    </select>
 <!--    <select id="getStockListByLocIdList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
 			a.part_id partId,

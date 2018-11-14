@@ -42,7 +42,7 @@
             <tr>
                 <td style="width:70px;text-align:right;"><span>营销员:</span></td>
 				<td>
-					<input id="visitId" name="visitId" style="width:300px;" textField="empName" valueField="empId"  
+					<input id="visitId" name="visitId" style="width:300px;" textField="empName" valueField="empId"   popupHeight="100%"
 					emptyText="请选择..." class="nui-combobox" allowInput="false" onvaluechanged="visitChange" required="true"/>
 					<input id="visitMan" name="visitMan" class="nui-hidden"/>
 				</td>

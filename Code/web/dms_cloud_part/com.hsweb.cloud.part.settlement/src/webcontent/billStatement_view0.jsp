@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.0"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.1"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -88,6 +88,8 @@
 
 
 <div class="nui-fit">
+    <input class="nui-hidden" name="auditSign" id="auditSign"/>
+	<input class="nui-hidden" name="billStatusId" id="billStatusId"/>
     <div class="nui-splitter"
          id="splitter"
          allowResize="true"
@@ -122,8 +124,6 @@
             </div>
         </div>
         <div showCollapseButton="false">
-            
-
              <div class="nui-fit">
                   <fieldset id="fd1" style="width:95%;height:90px;">
                       <legend><span>对账单信息</span></legend>
@@ -295,11 +295,6 @@
                       </div>
                 </div>
               </div>
-
-
-
-                
-
         </div>
     </div>
 </div>

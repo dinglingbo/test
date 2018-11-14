@@ -324,4 +324,50 @@
 				a.bala_type_code
     </select>
     
+    <select id="queryOtherIncomeAndExpenditure" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				a.guest_name AS guestName,
+				b.name    AS billTypeId,
+				a.bill_dc AS billDc,
+				a.rp_amt AS rpAmt,
+				a.char_off_amt AS charOffAmt,
+				a.auditor,
+				a.audit_sign AS auditSign,
+				a.audit_date AS auditDate,
+				a.settle_status AS settleStatus,
+				a.remark AS remark,
+				a.rp_bill_id AS rpBillId,
+				a.create_date AS createDate
+			FROM
+				wb_frm.fis_rp_bill a
+				LEFT JOIN wb_frm.fib_income_expenses b on (b.id=a.bill_type_id)
+			WHERE
+				rp_type_id = 2
+		<dynamic>
+            <isNotEmpty prepend="and" property="guestName">  
+                (a.guest_name  like '%$guestName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="settleStatus">  
+                (a.settle_status = #settleStatus#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="auditSign">  
+                (a.audit_sign = #auditSign#)
+            </isNotEmpty>
+
+            <isNotEmpty prepend="and" property="screateDate">  
+                (a.create_date &gt;= #screateDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="ecreateDate">  
+                (a.create_date &lt; #ecreateDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sauditDate">  
+                (a.audit_date  &gt;= #sauditDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eauditDate">  
+                (a.audit_date  &lt; #eauditDate#)
+            </isNotEmpty>
+        </dynamic>  
+        order by a.create_date
+	</select>
+    
     </sqlMap>

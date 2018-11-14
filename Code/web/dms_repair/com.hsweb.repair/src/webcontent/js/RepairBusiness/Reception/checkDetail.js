@@ -599,6 +599,8 @@ function isCheckMainY(){
                     checkMainId.setEnabled(false);
                     mainGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
                     mainGrid.load({mainId:mainParams.id,token:token});
+                  
+                    
                 }
             }
         });
@@ -607,7 +609,7 @@ function isCheckMainY(){
 
 
 function isCheckMainN(){
-    nui.get("checkMan").disable();
+//    nui.get("checkMan").disable();
     $("#addBtn").hide();
     $("#history").show();
     //$("#onPrint").hide();
@@ -752,7 +754,7 @@ function saveDetail(){ //√
     for(var i=0;i<grid_all.length;i++){
         var tem = {};
 
-        tem.serviceId = mainParams.cmId;
+        tem.serviceId = mainParams.id;
         tem.mainId = checkMainId.value;
         tem.checkName = grid_all[i].checkName;
         tem.checkType = grid_all[i].checkType;

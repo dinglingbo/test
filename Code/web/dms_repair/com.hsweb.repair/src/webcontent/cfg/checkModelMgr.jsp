@@ -2,6 +2,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/sysCommon.jsp"%>
+<%@include file="/common/commonPart.jsp"%>
 <html>
 <!-- 
   - Author(s): chenziming
@@ -11,7 +12,7 @@
 <head> 
 <title>查车单模版管理</title>
 
-<script src="<%=webPath + contextPath%>/repair/cfg/js/checkModelMgr.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/checkModelMgr.js?v=1.0.8"></script>
 <link href="<%=webPath + contextPath %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 .title {
@@ -97,6 +98,7 @@
                            <a class="nui-button" plain="true" iconCls="" onclick="editCheckDetail()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改检查项目</a>
                            <span class="separator"></span>
                            <a class="nui-button" plain="true" iconCls="" onclick="addCheckType()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增检查类型</a>
+                           <a class="nui-button" plain="true" iconCls="" onclick="editCheckType()"><span class="fa fa-edit fa-lg"></span>&nbsp;检查类型维护</a>
                        </td>
                    </tr>
                </table>

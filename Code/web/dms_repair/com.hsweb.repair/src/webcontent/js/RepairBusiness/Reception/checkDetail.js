@@ -467,15 +467,17 @@ function tprint(){
 
 function setInitData(params){
 	mainParams = nui.clone(params);
-    if(mainParams.isCheckMain == "Y"){
-        isCheckMainY();
-    }else{
-        isCheckMainN();
-    }
-    
-   /* if(!params.id){
+	if(!params.id){
     	addNew();
     }else{
+	    if(mainParams.isCheckMain == "Y"){
+	        isCheckMainY();
+	    }else{
+	        isCheckMainN();
+	    }
+    }
+    
+   /* 
     	 var temp = SearchCheckMain(params.id);
          var p = {
              data:{

@@ -286,3 +286,15 @@ function editCheckDetail(){
         parent.showMsg("请选择一条记录!","W");
     }
 }
+
+function editCheckType(){
+    var item={};
+    item.id = "7100";
+    item.text = "检查类型维护";
+    item.url = webPath + contextPath + "/com.hsweb.system.config.checkType.flow";
+    item.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    var params = {};
+    window.parent.activeTabAndInit(item,params)
+
+}

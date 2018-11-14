@@ -172,7 +172,7 @@ pageEncoding="UTF-8" session="false" %>
 					                <tr>
 					                    <td style="width:80%;">
 					                        <a class="nui-button" iconCls="" plain="true" onclick="save"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-					                     
+
 					                    </td>
 					                </tr>
 					            </table>

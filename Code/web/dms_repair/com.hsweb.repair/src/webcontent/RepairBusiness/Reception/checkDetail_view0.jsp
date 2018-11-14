@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.958"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.19"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -122,6 +122,8 @@
         <input class="nui-hidden" name="status"/>
         <input class="nui-hidden" name="isSettle"/>
         <input class="nui-hidden" name="serviceTypeId"/>
+        <input  class="nui-combobox" style="display:none; width:100%;" name="checkTypeA" id="checkTypeA"
+	            textfield="name" valuefield="customid" dataFile="data"  allowInput="true"/>  
         <table style=" left:0;right:0;margin: 0 auto;">
 
             <tr>
@@ -210,15 +212,30 @@
     <div property="columns">
         <div type="indexcolumn" align="center" headerAlign="center" width="10px"><strong>序号</strong></div>
         <div field="id" name="id" visible="false">id</div>
+        <div type="comboboxcolumn" field="checkType" name="checkType" width="30" headerAlign="center" align="center"><strong>检查类型</strong>
+	        <input property="editor" class="nui-combobox" style="width:100%;" name="checkType" id="checkType"
+	            textfield="name" valuefield="customid" dataFile="checkTypeList" data="checkTypeList" allowInput="true"/>  
+        </div>
         <div field="checkName" name="checkName" width="30" headerAlign="center" align="center"><strong>检查项目</strong></div>
         <div field="checkCode" name="checkCode" width="30" headerAlign="center" align="center" visible="false"><strong>检查项目</strong></div>
         <div field="checkId" name="checkId" width="30" headerAlign="center" align="center" visible="false"><strong>配件名称id</strong></div>
         <div type="checkboxcolumn" field="status" name="status" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center" value="1"><strong>正常</strong></div>
         <div type="checkboxcolumn" field="nostatus" name="nostatus" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center"><strong>异常</strong></div>
-        <div field="remark" name="remark" width="90" headerAlign="center" align="center"><strong>备注</strong>
+        <div field="checkRemark" name="checkRemark" width="30" headerAlign="center" align="center"><strong>检查说明</strong>
+        	 <input property="editor" class="nui-textbox" style="width:100%;" allowInput="true"/>  
+        </div>
+       	<div field="remark" name="remark" width="90" headerAlign="center" align="center"><strong>备注</strong>
             <input property="editor" class="nui-combobox" style="width:100%;" 
             textfield="content" valuefield="content"  dataField="list" allowInput="true"/>  
 
+        </div>
+        <div type="checkboxcolumn" field="settleType" name="settleType" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center" value="1"><strong>下次</strong></div>
+        <div type="checkboxcolumn" field="nosettleType" name="nosettleType" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center"><strong>本次</strong></div>
+        <div field="careDueMileage" name="careDueMileage" width="30" headerAlign="center" align="center"><strong>下次保养里程</strong>
+        	<input property="editor" class="nui-textbox" style="width:100%;" allowInput="true"/>  
+        </div>
+        <div field="careDueDate" name="careDueDate" width="30" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm""><strong>下次保养时间</strong>
+        	<input property="editor" class="nui-datepicker tabwidth" name="" id="" dateFormat="yyyy-MM-dd HH:mm"" format="yyyy-MM-dd HH:mm"/>
         </div>
     </div>
 </div>

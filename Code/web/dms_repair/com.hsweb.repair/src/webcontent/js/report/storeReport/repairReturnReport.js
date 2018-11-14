@@ -1,8 +1,9 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.part.invoice.svr.queryPjStoreInvoing.biz.ext";
+//var baseUrl = apiPath + repairApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
+var rightGridUrl = baseUrl+"com.hsapi.repair.repairService.report.queryReturnOutList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -10,6 +11,8 @@ var basicInfoForm = null;
 var rightGrid = null;
 var brandHash = {};
 var brandList = [];
+partTypeList=[];
+partTypeHash={};
 var storehouse = null;
 var storeHash = {};
 var billTypeIdHash = {};
@@ -19,28 +22,36 @@ $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
-    startDateEl =nui.get('startDate');
-    endDateEl = nui.get('endDate');
+    sOutDateEl =nui.get('sOutDate');
+    eOutDateEl = nui.get('eOutDate');
+    
+
     
 	getAllPartBrand(function(data) {
 		brandList = data.brand;
+		nui.get('partBrandId').setData(brandList);
 		brandList.forEach(function(v) {
 			brandHash[v.id] = v;
 		});
 	});
+	
 	getStorehouse(function(data) {
 		storehouse = data.storehouse || [];
 		if(storehouse && storehouse.length>0){
-			nui.get('storehouse').setData(storehouse);
-			nui.get('storehouse').setValue(storehouse[0].id);
-			nui.get('storehouse').setText(storehouse[0].name);
+			nui.get('storeId').setData(storehouse);
+	
 			storehouse.forEach(function(v) {
 				storeHash[v.id] = v;
 			});
 		}
 	});
+
+	
 	rightGrid.on("drawcell",function(e){
 		switch (e.field) {
+		case "outReturnSign":
+				e.cellHtml="已归库";
+			break;
 		case "partBrandId":
 			if (brandHash[e.value]) {
 				e.cellHtml = brandHash[e.value].name || "";
@@ -48,6 +59,26 @@ $(document).ready(function(v)
 				e.cellHtml = "";
 			}
 			break;
+		 case "carTypeIdF":
+		 case "carTypeIdS":
+		 case "carTypeIdT":
+            if(partTypeHash[e.value])
+            {
+                e.cellHtml = partTypeHash[e.value].name||"";
+            }
+            else{
+                e.cellHtml = "";
+            }
+            break;
+		 case "storeId" :
+		     if(storeHash[e.value])
+	            {
+	                e.cellHtml = storeHash[e.value].name||"";
+	            }
+	            else{
+	                e.cellHtml = "";
+	            }
+			 break;
 		default:
 			break;
 		}
@@ -64,13 +95,22 @@ $(document).ready(function(v)
 	}
     quickSearch(4);
 
-
+	getAllPartType(function(data){
+		partTypeList=data.partTypes;
+		nui.get('partTypeId').setData(partTypeList);
+		partTypeList.forEach(function(v){
+			partTypeHash[v.id]=v;
+		});
+	});
 });
 function getSearchParams(){
     var params = {};
-    params.storeId=nui.get('storehouse').getValue(); 
-    params.startDate=nui.get("startDate").getValue().substr(0, 10);
-    params.endDate=nui.get("endDate").getValue().substr(0, 10);
+    params.partCode=nui.get("partCode").getValue();
+    params.partName=nui.get("partName").getValue();
+    params.partBrandId=nui.get("partBrandId").getValue();
+    params.storeId=nui.get("storeId").getValue();
+    params.sOutDate=nui.get("sOutDate").getValue().substr(0, 10);
+    params.eOutDate=nui.get("eOutDate").getValue().substr(0, 10);
     return params;
 }
 var currType = 2;
@@ -81,59 +121,59 @@ function quickSearch(type){
     {
         case 0:
             params.today = 1;
-            params.startDate = getNowStartDate();
-            params.endDate = addDate(getNowEndDate(), 1);
+            params.sOutDate = getNowStartDate();
+            params.eOutDate = addDate(getNowEndDate(), 1);
             queryname = "本日";
             break;
         case 1:
             params.yesterday = 1;
-            params.startDate = getPrevStartDate();
-            params.endDate = addDate(getPrevEndDate(), 1);
+            params.sOutDate = getPrevStartDate();
+            params.eOutDate = addDate(getPrevEndDate(), 1);
             queryname = "昨日";
             break;
         case 2:
             params.thisWeek = 1;
-            params.startDate = getWeekStartDate();
-            params.endDate = addDate(getWeekEndDate(), 1);
+            params.sOutDate = getWeekStartDate();
+            params.eOutDate = addDate(getWeekEndDate(), 1);
             queryname = "本周";
             break;
         case 3:
             params.lastWeek = 1;
-            params.startDate = getLastWeekStartDate();
-            params.endDate = addDate(getLastWeekEndDate(), 1);
+            params.sOutDate = getLastWeekStartDate();
+            params.eOutDate = addDate(getLastWeekEndDate(), 1);
             queryname = "上周";
             break;
         case 4:
             params.thisMonth = 1;
-            params.startDate = getMonthStartDate();
-            params.endDate = addDate(getMonthEndDate(), 1);
+            params.sOutDate = getMonthStartDate();
+            params.eOutDate = addDate(getMonthEndDate(), 1);
             queryname = "本月";
             break;
         case 5:
             params.lastMonth = 1;
-            params.startDate = getLastMonthStartDate();
-            params.endDate = addDate(getLastMonthEndDate(), 1);
+            params.sOutDate = getLastMonthStartDate();
+            params.eOutDate = addDate(getLastMonthEndDate(), 1);
             queryname = "上月";
             break;
 
         case 10:
             params.thisYear = 1;
-            params.startDate = getYearStartDate();
-            params.endDate = getYearEndDate();
+            params.sOutDate = getYearStartDate();
+            params.eOutDate = getYearEndDate();
             queryname="本年";
             break;
         case 11:
             params.lastYear = 1;
-            params.startDate = getPrevYearStartDate();
-            params.endDate = getPrevYearEndDate();
+            params.sOutDate = getPrevYearStartDate();
+            params.eOutDate = getPrevYearEndDate();
             queryname="上年";
             break;
         default:
             break;
     }
     currType = type;
-    startDateEl.setValue(params.startDate);
-    endDateEl.setValue(params.endDate);
+    sOutDateEl.setValue(params.sOutDate);
+    eOutDateEl.setValue(params.eOutDate);
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
     doSearch(params);

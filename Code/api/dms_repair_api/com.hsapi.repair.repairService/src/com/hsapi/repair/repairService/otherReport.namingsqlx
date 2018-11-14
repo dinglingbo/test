@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+   
+       <select id="selectItemTotalreportA" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    
+    
+    SELECT
+    <isEqual  prepend="" property="groupByType"  compareValue="0">
+     b.datekey as groupName, 
+     </isEqual>
+         <isEqual  prepend="" property="groupByType"   compareValue="1">
+      a.service_type_id as groupName,
+     </isEqual>
+              <isEqual  prepend="" property="groupByType"   compareValue="2">
+     a.item_name as groupName, 
+     </isEqual>
+     count(DISTINCT b.id) as tc, sum(a.item_time) as itemTime,
+       sum(a.subtotal) as subtotal, sum(total_deduct_amt) as costAmt
+from wb_repair.rps_item a
+inner join wb_repair.rps_maintain b
+on a.service_id = b.id
+where b.is_settle = 1
+and b.orgid =#orgid#
+		     <dynamic>
+			<isNotEmpty prepend="and" property="startDate"> 
+                b.out_date &gt;= #startDate#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="endDate">
+               b.out_date &lt;= #endDate#
+            </isNotEmpty>   
+    </dynamic>  
+
+    <isEqual  prepend="" property="groupByType"   compareValue="0">
+GROUP BY b.datekey
+  </isEqual>
+      <isEqual  prepend="" property="groupByType"   compareValue="1">
+     GROUP BY a.service_type_id
+     </isEqual>
+           <isEqual  prepend="" property="groupByType"   compareValue="2">
+     GROUP BY a.item_name
+     </isEqual>
+order by tc
+    
+    
+    </select>
+    
+        <select id="selectItemTotalreportB" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    
+    SELECT
+      <isEqual  prepend=""  property="groupByType"   compareValue="0">
+     b.datekey as groupName,
+         </isEqual>
+         
+                  <isEqual  prepend="" property="groupByType"    compareValue="1">
+      a.service_type_id as groupName,
+     </isEqual>
+     
+                   <isEqual  prepend="" property="groupByType"   compareValue="2">
+     a.item_name as groupName, 
+     </isEqual>
+      count(DISTINCT b.id) as retc
+from wb_repair.rps_item a
+inner join wb_repair.rps_maintain b
+on a.service_id = b.id
+where b.is_settle = 1 
+and ifnull(a.is_back,0) = 1
+and b.orgid =#orgid#
+		     <dynamic>
+			<isNotEmpty prepend="and" property="startDate"> 
+                b.out_date &gt;= #startDate#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="endDate">
+               b.out_date &lt;= #endDate#
+            </isNotEmpty>   
+    </dynamic>  
+
+
+    <isEqual  prepend="" property="groupByType"   compareValue="0">
+GROUP BY b.datekey
+  </isEqual>
+      <isEqual  prepend=""  property="groupByType"   compareValue="1">
+     GROUP BY a.service_type_id
+     </isEqual>
+                <isEqual  prepend="" property="groupByType"   compareValue="2">
+     GROUP BY a.item_name
+     </isEqual>
+order by retc
+    
+    
+    </select>
+   
+     <select id="selectItemTotalreportDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+     SELECT 
+			 a.service_type_id as serviceTypeId, a.item_name as itemName, b.car_no as carNo, c.car_model as carModel,
+       d.full_name as guestName, b.car_vin as carVin, a.item_time as itemTime, a.unit_price as unitPrice,
+       a.amt as amt, a.rate as rate, a.subtotal as subtotal, a.workers as workers, a.status, a.is_back as isBack,
+       a.finish_date as finishDate, b.mt_advisor as mtAdvisor, b.service_code as serviceCode, b.out_date as outDate,
+       b.enter_date as enterDate
+		from wb_repair.rps_item a
+		inner join wb_repair.rps_maintain b
+		on a.service_id = b.id
+		inner join wb_repair.rpb_car c
+		on b.car_id = c.id
+		inner join wb_common.com_guest d
+		on b.guest_id = d.id
+		where b.is_settle = 1
+				and b.orgid =#orgid#
+		     <dynamic>
+			<isNotEmpty prepend="and" property="startDate"> 
+                b.out_date &gt;= #startDate#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="endDate">
+               b.out_date &lt;= #endDate#
+            </isNotEmpty>   
+
+            <isNotEmpty prepend="and" property="workers">  
+                a.workers in  #workers#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="mtAdvisor">  
+                b.mt_advisor =  #mtAdvisor#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="serviceCode">  
+                b.service_code =   #serviceCode#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="carNo">  
+                b.car_no =  #carNo#
+            </isNotEmpty>
+
+            <isNotEmpty prepend="and" property="itemName">  
+                a.item_name like   '%$itemName$%'
+            </isNotEmpty>
+
+           order by b.out_date desc
+            
+    </dynamic>    
+     </select>
+   
+   
+        <select id="selectProductUnsold" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+select a.part_code as partCode, a.part_name as partName, c.oem_code as oemCode, c.part_brand_id as partBrandId, 
+       c.apply_car_model as applyCarModel, a.enter_unit_id as enterUnitId, 
+       c.car_type_id_f as carTypeIdF, c.car_type_id_s as carTypeIdS, c.car_type_id_t as carTypeIdT, c.spec as spec, 
+       a.store_id as storeId, a.outable_qty as outableQty,
+       a.enter_price as enterPrice, a.outable_qty * a.enter_price as enterAmt, a.enter_date as enterDate,a.branch_stock_age branchStockAge
+from wb_part.pj_enter_detail_chk a
+inner join wb_part.pj_enter_main_chk b on a.main_id = b.id
+inner join wb_common.com_attribute c on a.part_id = c.id
+where b.orgid =#orgid#
+	and b.audit_sign = 1 
+	and a.outable_qty > 0
+<dynamic>
+			<isNotEmpty prepend="and" property="startDate"> 
+                a.enter_date &gt;= #startDate#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="endDate">
+               a.enter_date &lt;= #endDate#
+            </isNotEmpty>   
+            
+            <isNotEmpty prepend="and" property="partCode">  
+                a.part_code like  #partCode#
+            </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="serviceId">  
+               b.service_id  =  #serviceId#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="partName">  
+               a.part_name like  #partName#
+            </isNotEmpty>         
+            
+            <isNotEmpty prepend="and" property="storeId">  
+               a.store_id =  #storeId#
+            </isNotEmpty>        
+            
+            <isNotEmpty prepend="and" property="enterTypeId">  
+               b.enter_type_id =  #enterTypeId#
+            </isNotEmpty>        
+            
+            <isNotEmpty prepend="and" property="branchStockAge">  
+               a.branch_stock_age =  #branchStockAge#
+            </isNotEmpty>    
+            order by a.branch_stock_age desc,a.outable_qty desc
+            
+    </dynamic>    
+     </select>
+   
+           <select id="selectRepairOutReport" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+   
+			   SELECT 
+			a.id,a.bill_type_id billTypeId,a.service_type_id serviceTypeId,a.service_code serviceCode,
+			a.car_no carNo,a.car_vin carVin,a.mt_advisor mtAdvisor,a.status status,b.part_code partCode,b.part_name partName,
+			b.part_full_name partFullName,b.unit ,b.out_qty outQty,b.pick_man pickMan,b.pick_date pickDate,b.recorder,
+			b.true_unit_price trueUnitPrice, b.true_cost trueCost,b.return_sign returnSign,b.return_man returnMan,
+			b.return_date returnDate,c.part_brand_id partBrandId,c.apply_car_model applyCarModel,
+			c.car_type_id_f carTypeIdF,c.car_type_id_s carTypeIdS,c.car_type_id_t carTypeIdT,
+			c.spec,c.direction,c.model,c.part_type_id partTypeId,d.guest_name guestName
+			d.enter_date enterDate,
+			from wb_repair.rps_maintain a 
+			INNER JOIN pj_repair_out b on b.service_code = a.service_code
+			inner join wb_common.com_attribute c on b.part_id = c.id
+			LEFT JOIN pj_enter_detail_chk d on d.id =b.source_id 
+			where a.orgid =#orgid#
+			and b.return_sign &lt;&gt; 1
+<dynamic>
+<!-- 领料日期 -->
+			<isNotEmpty prepend="and" property="startDate"> 
+                b.pick_date &gt;= #startDate#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="endDate">
+               b.pick_date &lt;= #endDate#
+            </isNotEmpty>   
+            
+            <isNotEmpty prepend="and" property="wStartDate"> 
+                b.pick_date &gt;= #startDate#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="wEndDate">
+               b.pick_date &lt;= #endDate#
+            </isNotEmpty>   
+            
+            <isNotEmpty prepend="and" property="partCode">  
+                b.part_code like  #partCode#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="carNo">  
+                a.car_no  like '%$carNo$%'
+            </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="serviceId">  
+               a.service_id  =  #serviceId#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="partName">  
+               b.part_name like  #partName#
+            </isNotEmpty>         
+
+            order by b.record_date desc
+            
+    </dynamic>    
+        </select>
+        
+        <!-- 维修归库报表 -->
+          <select id="selectRepairReturnReport" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+   
+			   SELECT 
+			a.id,a.bill_type_id billTypeId,a.service_type_id serviceTypeId,a.service_code serviceCode,
+			a.car_no carNo,a.car_vin carVin,a.mt_advisor mtAdvisor,a.status status,b.part_code partCode,b.part_name partName,
+			b.part_full_name partFullName,b.unit ,b.out_qty outQty,b.pick_man pickMan,b.pick_date pickDate,b.recorder,
+			b.true_unit_price trueUnitPrice, b.true_cost trueCost,b.return_sign returnSign,b.return_man returnMan,
+			b.return_date returnDate,c.part_brand_id partBrandId,c.apply_car_model applyCarModel,
+			c.car_type_id_f carTypeIdF,c.car_type_id_s carTypeIdS,c.car_type_id_t carTypeIdT,
+			c.spec,c.direction,c.model,c.part_type_id partTypeId
+			from wb_repair.rps_maintain a 
+			INNER JOIN pj_repair_out b on b.service_code = a.service_code
+			inner join wb_common.com_attribute c on b.part_id = c.id
+
+			where a.orgid =#orgid# 
+			and b.return_sign = 1
+<dynamic>
+<!-- 归库日期 -->
+			<isNotEmpty prepend="and" property="startDate"> 
+                b.pick_date &gt;= #startDate#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="endDate">
+               b.pick_date &lt;= #endDate#
+            </isNotEmpty>   
+            
+            <isNotEmpty prepend="and" property="partCode">  
+                b.part_code like  #partCode#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="carNo">  
+                a.car_no  like '%$carNo$%'
+            </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="serviceId">  
+               a.service_id  =  #serviceId#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="partName">  
+               b.part_name like  #partName#
+            </isNotEmpty>         
+
+            order by b.record_date desc
+            
+    </dynamic>    
+        </select>
+        
+</sqlMap>

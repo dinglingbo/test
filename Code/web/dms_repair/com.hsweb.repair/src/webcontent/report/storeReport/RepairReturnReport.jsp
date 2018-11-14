@@ -9,7 +9,7 @@
 -->
 <head>
     <title>退货归库查询</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnOutQty.js?v=1.0.29"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairReturnReport.js?v=1.0.30"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -27,9 +27,7 @@
 </style>
 </head>
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-    <table style="width:100%;">
-        <tr>
-            <td style=" width:51%;">
+
                 <label style="font-family:Verdana;">快速查询：</label>
                 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
@@ -86,20 +84,11 @@
                   allowInput="true"
                   valueFromSelect="false"
                   width="120px">
-                
-               <td class="form_label" style="width:6%; text-align:center;">退货日期 从:</td>
-               <td style="width:4%;">
+               退货日期 从:
                  <input class="nui-datepicker" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
-             </td>
-             <td class="" style="width:1%;">至:</td>
-             <td  style="width:50px;">
+             至:
                 <input class="nui-datepicker" id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-            </td>
-            
-        </td>
-    </tr>
-</table>
 </div>
 
 <div class="nui-fit">
@@ -167,7 +156,7 @@
             <div property="columns">
                 <div allowSort="true"  field=outReturnSign width="60" headerAlign="center" header="退货标志" dataType="float" align="left"></div>
                 <div allowSort="true"  field=pickMan width="60" headerAlign="center" header="退货人" dataType="float" align="left"></div>
-                <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd hh:MM" field="outDate" headerAlign="center" header="退货日期" dataType="float" align="left"></div>
+                <div allowSort="true"  field="outDate" width="130"  dateFormat="yyyy-MM-dd hh:MM"  headerAlign="center" header="退货日期" dataType="float" align="left"></div>
             </div>
         </div>
     </div>

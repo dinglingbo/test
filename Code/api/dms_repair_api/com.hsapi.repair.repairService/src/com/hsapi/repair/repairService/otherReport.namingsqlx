@@ -207,10 +207,12 @@ where b.orgid =#orgid#
 			b.true_unit_price trueUnitPrice, b.true_cost trueCost,b.return_sign returnSign,b.return_man returnMan,
 			b.return_date returnDate,c.part_brand_id partBrandId,c.apply_car_model applyCarModel,
 			c.car_type_id_f carTypeIdF,c.car_type_id_s carTypeIdS,c.car_type_id_t carTypeIdT,
-			c.spec,c.direction,c.model,c.part_type_id partTypeId
+			c.spec,c.direction,c.model,c.part_type_id partTypeId,d.guest_name guestName
+			d.enter_date enterDate,
 			from wb_repair.rps_maintain a 
 			INNER JOIN pj_repair_out b on b.service_code = a.service_code
 			inner join wb_common.com_attribute c on b.part_id = c.id
+			LEFT JOIN pj_enter_detail_chk d on d.id =b.source_id 
 			where a.orgid =#orgid#
 			and b.return_sign &lt;&gt; 1
 <dynamic>
@@ -251,4 +253,53 @@ where b.orgid =#orgid#
             
     </dynamic>    
         </select>
+        
+        <!-- 维修归库报表 -->
+          <select id="selectRepairReturnReport" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+   
+			   SELECT 
+			a.id,a.bill_type_id billTypeId,a.service_type_id serviceTypeId,a.service_code serviceCode,
+			a.car_no carNo,a.car_vin carVin,a.mt_advisor mtAdvisor,a.status status,b.part_code partCode,b.part_name partName,
+			b.part_full_name partFullName,b.unit ,b.out_qty outQty,b.pick_man pickMan,b.pick_date pickDate,b.recorder,
+			b.true_unit_price trueUnitPrice, b.true_cost trueCost,b.return_sign returnSign,b.return_man returnMan,
+			b.return_date returnDate,c.part_brand_id partBrandId,c.apply_car_model applyCarModel,
+			c.car_type_id_f carTypeIdF,c.car_type_id_s carTypeIdS,c.car_type_id_t carTypeIdT,
+			c.spec,c.direction,c.model,c.part_type_id partTypeId
+			from wb_repair.rps_maintain a 
+			INNER JOIN pj_repair_out b on b.service_code = a.service_code
+			inner join wb_common.com_attribute c on b.part_id = c.id
+
+			where a.orgid =#orgid# 
+			and b.return_sign = 1
+<dynamic>
+<!-- 归库日期 -->
+			<isNotEmpty prepend="and" property="startDate"> 
+                b.pick_date &gt;= #startDate#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="endDate">
+               b.pick_date &lt;= #endDate#
+            </isNotEmpty>   
+            
+            <isNotEmpty prepend="and" property="partCode">  
+                b.part_code like  #partCode#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="carNo">  
+                a.car_no  like '%$carNo$%'
+            </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="serviceId">  
+               a.service_id  =  #serviceId#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="partName">  
+               b.part_name like  #partName#
+            </isNotEmpty>         
+
+            order by b.record_date desc
+            
+    </dynamic>    
+        </select>
+        
 </sqlMap>

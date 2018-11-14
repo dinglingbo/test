@@ -3468,7 +3468,7 @@ function newCheckMain() {
     var item={};
     item.id = "checkPrecheckDetail";
     item.text = "查车单";
-    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkDetail.jsp";
+    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkDetail.flow";
     item.iconCls = "fa fa-cog";
     //window.parent.activeTab(item);
     var params = {};

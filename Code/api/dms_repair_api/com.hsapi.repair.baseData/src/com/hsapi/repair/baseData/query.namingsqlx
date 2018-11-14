@@ -96,4 +96,25 @@
         </dynamic> 
         GROUP BY a. NAME 
 	</select>
+	
+	<select id="queryLastCheckModel" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			check_date as checkDate,
+			check_point as checkPoint,
+			enter_kilometers as enterKilometers
+		FROM
+			rps_check_main
+		WHERE 1=1
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">  
+                (orgid=#orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">  
+                (guest_id = #guestId#)
+            </isNotEmpty>  
+        </dynamic> 			
+		ORDER BY
+			check_date DESC
+		LIMIT 0,1
+	</select>
 </sqlMap>

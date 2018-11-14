@@ -58,22 +58,30 @@ function deleteR(){
 	}
 	dgGrid.removeRow(row)
 }
-var saveUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.saveDict.biz.ext";
+
+function checkName(){
+	var rows = dgGrid.findRows(function(row) {
+		if (row.name == null || row.name == "" || row.name == undefined)
+			return true;
+	});
+	if(rows && rows.length>0){
+		return false;
+	}
+
+	return true;
+}
+var saveUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.saveDictList.biz.ext";
 function save(){
 	
-	var data=dgGrid.getSelected();
-	if(!data){
-		showMsg("清先选择一条记录","W");
+	var value = checkName();
+	if(!value){
+		parent.showMsg("名称不能为空!","W");
+		return;
 	}
-	if(!data.name){
-        showMsg("名称为空","W");
-        return;
-    }
+	
+	var addList = dgGrid.getChanges("added");
+	var updateList = dgGrid.getChanges("modified");
 
-    if(!data.id){
-        data.customid = (new Date()).getTime();
-        data.dictid = '10081';
-    }
     nui.mask({
 		el : document.body,
 		cls : 'mini-mask-loading',
@@ -84,7 +92,9 @@ function save(){
 		url : saveUrl,
 		type : "post",
 		data : JSON.stringify({
-			data : data,
+			addList : addList,
+			updateList : updateList,
+			dictid : '10081',
 			token: token
 		}),
 		success : function(data) {
@@ -105,10 +115,7 @@ function save(){
 }
 function doSearch()
 {
-    dgGrid.load({token:token});
+	dgGrid.load({dictids:dictids,token:token});
 }
 
-function setInitData(params){
-	doSeach();
-}
 

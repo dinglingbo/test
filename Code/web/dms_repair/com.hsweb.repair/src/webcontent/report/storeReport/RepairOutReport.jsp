@@ -3,7 +3,7 @@
 <!-- 
   - Author(s): chenziming
   - Date: 2018-02-01 17:11:06
-  - Description:
+  - Description: 
 -->
 <head>
     <title>维修出库报表</title>
@@ -157,8 +157,8 @@
         <div header="其他信息" headerAlign="center">
             <div property="columns">
               <div allowSort="true" field="status" width="100" headerAlign="center" header="结算状态"></div>
-              <div allowSort="true" field="" width="100" headerAlign="center" header="供应商" ></div>
-              <div allowSort="true" field="" width="100" headerAlign="center" header="采购日期"dateFormat="yyyy-MM-dd"></div>
+              <div allowSort="true" field="guestName" width="100" headerAlign="center" header="供应商" ></div>
+              <div allowSort="true" field="enterDate" width="100" headerAlign="center" header="采购日期"dateFormat="yyyy-MM-dd"></div>
               <div allowSort="true" field="" width="100" headerAlign="center" header="维修日期"dateFormat="yyyy-MM-dd"></div>
           </div>
       </div>

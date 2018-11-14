@@ -9,11 +9,21 @@ pageEncoding="UTF-8" session="false" %>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
 	<%@include file="/common/sysCommon.jsp" %>
-	<script src="<%=webPath + contextPath%>/manage/js/complainDetail.js?v=1.0.6"></script>
+	<script src="<%=webPath + contextPath%>/manage/js/complainDetail.js?v=1.0.7"></script>
 	<link href="<%=webPath + contextPath%>/manage/css/complainDetail.css" rel='stylesheet' type='text/css' />
 </head>
 
 <body>
+<div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+            <table style="width:80%;">
+                <tr>
+                    <td style="width:80%;">
+                        <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
 	<div id="complainFrom" class="nui-fit">
 		<div style="width:100%;height:220px;">
 			<div class="nui-panel" title="客户信息" style="width:100%;height:100%;">
@@ -141,16 +151,16 @@ pageEncoding="UTF-8" session="false" %>
 				</table>
 			</div>
 		</div>
-		<div style="padding:2px;border-bottom:0;">
-			<table align="center">
-				<tr>
-					<td>
-						<a class="nui-button"  plain="true" id="ok" name = "ok" onclick="onOk()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-						<a class="nui-button"  plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
-					</td>
-				</tr>
-			</table>
-		</div>
+<!-- 		<div style="padding:2px;border-bottom:0;"> -->
+<!-- 			<table align="center"> -->
+<!-- 				<tr> -->
+<!-- 					<td> -->
+<!-- 						<a class="nui-button"  plain="true" id="ok" name = "ok" onclick="onOk()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a> -->
+<!-- 						<a class="nui-button"  plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> -->
+<!-- 					</td> -->
+<!-- 				</tr> -->
+<!-- 			</table> -->
+<!-- 		</div> -->
 	</div>
 
 </body>

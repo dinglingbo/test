@@ -58,8 +58,9 @@
             <isNotEmpty prepend="and" property="carNo">  
                 (a.car_no like '%$carNo$%')
             </isNotEmpty>
-            
-            
+            <isNotEmpty prepend="and" property="billTypeId">  
+                (a.bill_type_id = #billTypeId#)
+            </isNotEmpty>
             <!--进厂日期 -->
             <isNotEmpty prepend="and" property="sEnterDate">  
                 (a.enter_date &gt;= #sEnterDate#)

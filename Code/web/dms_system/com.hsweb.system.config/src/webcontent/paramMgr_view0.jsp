@@ -6,7 +6,7 @@
 
 <head>
 <title>参数设置</title>
-<script src="<%=webPath + contextPath%>/config/js/paramMgr.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/config/js/paramMgr.js?v=1.0.3"></script>
 </head>
 <body>
 	<div class="nui-fit">
@@ -24,7 +24,7 @@
 			</div>   
 			<div title="回访设置" name="visitTab" url="" >
 			</div>  
-			<div title="汽车电子健康档案上传设置" name="carSetTab" url="" >
+			<div title="检查类型设置" name="checkTypeTab" url="" >
 			</div> 
 			<div title="查车模板设置" name="carCheckModelTab" url="" >
 			</div> 

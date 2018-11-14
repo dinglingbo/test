@@ -108,3 +108,7 @@ function doSearch()
     dgGrid.load({token:token});
 }
 
+function setInitData(params){
+	doSeach();
+}
+

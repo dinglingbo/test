@@ -286,3 +286,4 @@ function editCheckDetail(){
         parent.showMsg("请选择一条记录!","W");
     }
 }
+

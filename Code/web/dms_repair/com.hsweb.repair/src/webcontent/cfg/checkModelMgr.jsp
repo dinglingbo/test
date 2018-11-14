@@ -2,6 +2,7 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/sysCommon.jsp"%>
+
 <html>
 <!-- 
   - Author(s): chenziming
@@ -11,7 +12,7 @@
 <head> 
 <title>查车单模版管理</title>
 
-<script src="<%=webPath + contextPath%>/repair/cfg/js/checkModelMgr.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/checkModelMgr.js?v=1.0.8"></script>
 <link href="<%=webPath + contextPath %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
 .title {

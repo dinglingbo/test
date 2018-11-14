@@ -64,12 +64,12 @@
 						<div id="name" field="name" headerAlign="center" allowSort="true" visible="true" width="40px">姓名</div>
 						<div id="compShortName" field="compShortName" headerAlign="center" allowSort="true" visible="true" width="60px">所属机构</div>
 						<div id="sex" field="sex" headerAlign="center" allowSort="true" visible="true" width="20px">性别</div>
-						<div id="idcardno" field="idcardno" headerAlign="center" allowSort="true" visible="true" >身份证</div>
+						<div id="idcardno" field="idcardno" headerAlign="center" allowSort="true" visible="true" width="80px">身份证</div>
 						<div id="birthday" field="birthday" headerAlign="center" allowSort="true" visible="true" dateFormat="yyyy-MM-dd" width="60px">生日</div>
-						<div id="tel" field="tel" headerAlign="center" allowSort="true" visible="true" width="40px">电话</div>
-						<div id="isDimission" field="isDimission" headerAlign="center" allowSort="true" visible="true" width="60px">是否离职</div>
-						<div id="isOpenAccount" field="isOpenAccount" headerAlign="center" allowSort="true" visible="true" width="60px">是否开通系统</div>
-						<div id="systemAccount" field="systemAccount" headerAlign="center" allowSort="true" visible="true" width="60px">登陆账号</div>
+						<div id="tel" field="tel" headerAlign="center" allowSort="true" visible="true" width="60px">电话</div>
+						<div id="isDimission" field="isDimission" headerAlign="center" allowSort="true" visible="true" width="40px">是否离职</div>
+						<div id="isOpenAccount" field="isOpenAccount" headerAlign="center" allowSort="true" visible="true" width="50px">是否开通系统</div>
+						<div id="systemAccount" field="systemAccount" headerAlign="center" allowSort="true" visible="true" width="50px">登陆账号</div>
 						<div id="recorder" field="recorder" headerAlign="center" allowSort="true" visible="true" width="60px">建档人</div>
 						<div id="recordDate" field="recordDate" headerAlign="center" allowSort="true" visible="true" width="60px" dateFormat="yyyy-MM-dd hh:MM">建档日期</div>
 		

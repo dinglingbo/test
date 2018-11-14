@@ -213,7 +213,7 @@ pageEncoding="UTF-8" session="false" %>
                             <table id="table1" style="margin-left:0px;">
                                 <tr>  
                                     <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>首修车辆：</td>
-                                    <td class="tablenum"><span id="newCarQty">0</span></td>
+                                    <td class="tablenum"><span id="newCarQty"> 0</span></td>
                                     <td style="width:0.05%;"></td>
                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>进店车辆：</td>
                                    <td class="tablenum"><span id="recordBillQty">0</span></td>

@@ -13,7 +13,10 @@ pageEncoding="UTF-8" session="false"%>
     <title>车险登记明细</title>
     <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.0.69"></script>
     <style type="text/css">
-
+   .title {
+        width: 80px;
+        text-align: right; 
+    }
     table {
        font-size: 12px;
    } 
@@ -84,31 +87,31 @@ pageEncoding="UTF-8" session="false"%>
     <input class="nui-hidden" name="billTypeId"/>
     <input class="nui-hidden" name="status"/>
     <input class="nui-hidden" name="isSettle"/>
-    <table  style=" left:0;right:0;margin: 0 auto;"> 
+    <table  style="width: 100%;border-spacing: 0px 5px;"> 
         <tr>
             <td class="title required">车牌号:</td> 
-            <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false"/></td>
+            <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
 
             <td class="title required">手机号:</td> 
-            <td class=""><input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false"/></td>
+            <td class=""><input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="100%"/></td>
 
             <td class="title required">本次里程:</td> 
-            <td class=""><input  class="nui-textbox" name="enterKilometers" id="enterKilometers" enabled="true"/></td>
+            <td class=""><input  class="nui-textbox" name="enterKilometers" id="enterKilometers" enabled="true" width="100%"/></td>
 
             <td class="title">开单时间:</td> 
             <td class="">
                 <input id="recordDate"
                 name="recordDate"
                 allowInput="false" format="yyyy-MM-dd "
-                class="nui-datepicker" enabled="false"/>
+                class="nui-datepicker" enabled="false" width="100%"/>
             </td>
 
         </tr>
         <tr>   
             <td class="title required">客户名称:</td> 
-            <td class=""><input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false"/></td>
+            <td class=""><input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="100%"/></td>
             <td class="title required">客户单位:</td> 
-            <td class=""><input  class="nui-textbox" name="" id="" enabled="false"/></td>
+            <td class=""><input  class="nui-textbox" name="" id="" enabled="false" width="100%"/></td>
 
             <td class="title required">
                 <label>服务顾问：</label>
@@ -125,11 +128,11 @@ pageEncoding="UTF-8" session="false"%>
                 showNullItem="false"
                 valueFromSelect="true"
                 onvaluechanged="ManChanged"
-                nullItemText="请选择..."/>
+                nullItemText="请选择..." width="100%"/>
             </td>
 
             <td class="title required">车辆/品牌:</td> 
-            <td class=""><input  class="nui-textbox" name="carBrand" id="carBrand" enabled="false"/></td>
+            <td class=""><input  class="nui-textbox" name="carBrand" id="carBrand" enabled="false" width="100%"/></td>
 
         </tr>
     </table>

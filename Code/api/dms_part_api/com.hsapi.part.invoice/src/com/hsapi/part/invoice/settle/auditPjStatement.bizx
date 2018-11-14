@@ -485,22 +485,6 @@
     <figSize height="17" width="72"/>
     <node>invokePojo2</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
-    <targetConnections>link27</targetConnections>
-    <location x="-197" y="347"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end2label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.cloud.part.data.pts.PjStatementMain[]" name="list" type="query" valueType="DataObject">list</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
-    <location x="-199" y="383"/>
-    <figSize height="17" width="32"/>
-    <node>end2</node>
-  </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="getPJStatementDetailById" displayName="getPJStatementDetailById" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess3</sourceNode>
@@ -890,26 +874,10 @@
     <figSize height="17" width="39"/>
     <node>assign13</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
-    <targetConnections>link63</targetConnections>
-    <location x="1139" y="415"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end1label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.cloud.part.data.pts.PjStatementMain[]" name="list" type="query" valueType="DataObject">list</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="1137" y="451"/>
-    <figSize height="17" width="32"/>
-    <node>end1</node>
-  </nodes>
   <nodes xsi:type="process:tTransactionRollback" id="transactionrollback0" name="事务回滚" displayName="事务回滚" type="transactionrollback">
     <sourceConnections xsi:type="process:tLink" id="link63" name="link63" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>transactionrollback0</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end3</targetNode>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
     <targetConnections>link62</targetConnections>
@@ -942,7 +910,7 @@
   <nodes xsi:type="process:tTransactionRollback" id="transactionrollback1" name="事务回滚1" displayName="事务回滚" type="transactionrollback">
     <sourceConnections xsi:type="process:tLink" id="link27" name="link27" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>transactionrollback1</sourceNode>
-      <targetNode>end2</targetNode>
+      <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link26</targetConnections>
     <location x="-300" y="347"/>
@@ -1012,6 +980,40 @@
     <location x="1568" y="320"/>
     <figSize height="17" width="39"/>
     <node>assign14</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end3" name="结束3" displayName="结束" type="end">
+    <targetConnections>link63</targetConnections>
+    <location x="1139" y="422"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end3label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="com.hsapi.part.data.pts.PjStatementMain[]" name="list" type="query" valueType="DataObject">list</process:return>
+      <process:return id="3" language="com.hsapi.part.data.pts.PjStatementMain" name="stateMain" type="query" valueType="DataObject">stateMain</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end3label" name="label" nodeType="label">
+    <location x="1137" y="458"/>
+    <figSize height="17" width="32"/>
+    <node>end3</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
+    <targetConnections>link27</targetConnections>
+    <location x="-195" y="347"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end1label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="com.hsapi.part.data.pts.PjStatementMain[]" name="list" type="query" valueType="DataObject">list</process:return>
+      <process:return id="3" language="com.hsapi.part.data.pts.PjStatementMain" name="stateMain" type="query" valueType="DataObject">stateMain</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
+    <location x="-197" y="383"/>
+    <figSize height="17" width="32"/>
+    <node>end1</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

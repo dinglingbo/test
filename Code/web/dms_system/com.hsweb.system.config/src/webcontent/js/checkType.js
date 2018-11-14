@@ -115,7 +115,7 @@ function save(){
 }
 function doSearch()
 {
-    dgGrid.load({token:token});
+	dgGrid.load({dictids:dictids,token:token});
 }
 
 

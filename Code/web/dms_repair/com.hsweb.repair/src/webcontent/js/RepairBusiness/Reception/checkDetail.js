@@ -19,7 +19,7 @@ var checkMainId = null;
 var checkMainName = null;
 var mainParams = null;
 var isShowSave = null;
-
+var checkTypeList=[];
 
 $(document).ready(function ()
 {
@@ -80,6 +80,12 @@ $(document).ready(function ()
                 return;
             }
         }
+    });
+    
+    var dictDefs ={"checkTypeA":"10081"};
+    initDicts(dictDefs, function(e){
+    	checkTypeList=nui.get('checkTypeA').getData(); 
+//    	nui.get('checkType').setData(checkTypeList);
     });
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
@@ -158,6 +164,11 @@ $(document).ready(function ()
         var nrow={nostatus:0};
         var row2={status:1};
         var nrow2={nostatus:1};
+        
+        var row3={settleType:0};
+        var nrow3 ={nosettleType :0};
+        var row4={settleType:1};
+        var nrow4 ={nosettleType :1};
         if(field == "status"){
             if(record.status == 1){
                 mainGrid.updateRow(record,nrow);
@@ -172,6 +183,21 @@ $(document).ready(function ()
                 mainGrid.updateRow(record,row2);
             }
         }
+        if(field == "settleType"){
+            if(record.settleType == 1){
+                mainGrid.updateRow(record,nrow3);
+            }else{
+                mainGrid.updateRow(record,nrow4);
+            }
+        }
+        
+        if(field == "nosettleType"){
+            if(record.nosettleType == 1){
+                mainGrid.updateRow(record,row3);
+            }else{
+                mainGrid.updateRow(record,row4);
+            }
+        }
 
 
     });
@@ -180,9 +206,9 @@ $(document).ready(function ()
         var field = e.field;
         var record = e.record;
         var column = e.column;
-        var row2={status:1};
+        var row2={status:1,settleType:1};
         var row3={nostatus:1};
-
+        var row4={nosettleType:1}
         if(actionType == "new"){
             var row=mainGrid.findRow(function(row){
                 mainGrid.updateRow(row,row2);
@@ -192,6 +218,10 @@ $(document).ready(function ()
                 if(row.status == 0){
 
                     mainGrid.updateRow(row,row3);
+                }
+                if(row.settleType == 0){
+
+                    mainGrid.updateRow(row,row4);
                 }
             });
         }
@@ -436,19 +466,14 @@ function tprint(){
 ////////////////////////////////////////////////////////////////////////////////////
 
 function setInitData(params){
-    /*//s$("#saveData").hide();
-    mainParams = nui.clone(params);
-    if(!mainParams.actionType){
-        showMsg("操作类型丢失!","E");
-        return;
-    }
+	mainParams = nui.clone(params);
     if(mainParams.isCheckMain == "Y"){
         isCheckMainY();
     }else{
         isCheckMainN();
-    }*/
+    }
     
-    if(!params.id){
+   /* if(!params.id){
     	addNew();
     }else{
     	 var temp = SearchCheckMain(params.id);
@@ -498,7 +523,7 @@ function setInitData(params){
                  mainGrid.load({mainId:mainParams.id,token:token});
            }
         });
-    };
+    };*/
 }
 
 function isCheckMainY(){
@@ -799,6 +824,19 @@ function updateCheckMain(mData){
 
 
 function saveCheckMain(){
+	var gridData=mainGrid.getData();
+	for(var i=0;i<gridData.length;i++){
+		if(gridData[i].settleType==0){
+			if(!gridData[i].careDueMileage){
+				showMsg("项目 "+gridData[i].checkName+" 请填写下次保养里程","W");
+				return;
+			}
+			if(!gridData[i].careDueDate){
+				showMsg("项目 "+gridData[i].checkName+" 请填写下次保养时间","W");
+				return;
+			}
+		}
+	}
     var mdata = billForm.getData();
     nui.ajax({
         url : baseUrl + "com.hsapi.repair.repairService.repairInterface.saveCheckMainA.biz.ext",
@@ -834,8 +872,12 @@ function saveDetailB(){
         tem.mainId = checkMainId.value;
         tem.checkName = grid_all[i].checkName;
         tem.checkType = grid_all[i].checkType;
+        tem.checkRemark=grid_all[i].checkRemark;
         tem.status = grid_all[i].status;
+        tem.settleType=grid_all[i].settleType;
         tem.remark = grid_all[i].remark;
+        tem.careDueMileage=grid_all[i].careDueMileage;
+        tem.careDueDate=grid_all[i].careDueDate;
 
         if(actionType == "new"){
             tem.checkId = grid_all[i].id;
@@ -879,7 +921,8 @@ function addNew(){
     searchKeyEl.focus();
 
     billForm.setData([]);
-
+    mainGrid.setData([]);
+    nui.get('checkMainId').setEnabled(true);
     fguestId = 0;
     fcarId = 0;
     fserviceId = 0;

@@ -4,9 +4,9 @@
 var partApiUrl  = apiPath + partApi + "/";
 var rightGridUrl = partApiUrl+"com.hsapi.part.invoice.svr.queryPjShiftOrderMainList.biz.ext";
 var getDetailPartUrl=partApiUrl+"com.hsapi.part.invoice.svr.queryPjShiftOrderDetailList.biz.ext";
-var advancedSearchWin = null;
-var advancedSearchForm = null;
-var advancedSearchFormData = null;
+//var advancedSearchWin = null;
+//var advancedSearchForm = null;
+//var advancedSearchFormData = null;
 var basicInfoForm = null;
 var rightGrid = null;
 var searchBeginDate = null;
@@ -49,7 +49,7 @@ $(document).ready(function(v)
 	comPartCode = nui.get("partCode");
 	comServiceId = nui.get("serviceId");
 	comSearchGuestId = nui.get("searchGuestId");
-    advancedSearchWin = nui.get("advancedSearchWin");
+//    advancedSearchWin = nui.get("advancedSearchWin");
     innerPartGrid = nui.get("innerPartGrid");
     innerPartGrid.setUrl(getDetailPartUrl);
     editFormDetail = document.getElementById("editFormDetail");
@@ -108,7 +108,8 @@ $(document).ready(function(v)
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
-     //   nui.get("storeId").setData(storehouse);
+        nui.get("storeId").setData(storehouse);
+        nui.get("receiveStoreId").setData(storehouse);
         storehouse.forEach(function(v)
         {
             if(v && v.id)
@@ -169,13 +170,15 @@ function getSearchParam(){
     if(params.auditSign=="" || ! params.auditSign){
     	params.auditSign=-1;
     }
+    params.storeId=nui.get('storeId').getValue();
+    params.receiveStoreId=nui.get('receiveStoreId').getValue();
 //	params.partCode = comPartCode.getValue();
 //	params.partNameAndPY = comPartNameAndPY.getValue();
 //	params.guestId = comSearchGuestId.getValue();
-	params.guestName=comSearchGuestId.getValue();
+//	params.guestName=comSearchGuestId.getValue();
 	params.endDate = searchEndDate.getValue();
 	params.startDate = searchBeginDate.getValue();
-	params.isDiffOrder = 0;
+//	params.isDiffOrder = 0;
     return params;
 }
 var currType = 2;
@@ -298,10 +301,10 @@ function onSearch(){
 }
 function doSearch(params)
 {
-	params.sortField = "audit_date";
-    params.sortOrder = "desc";
-    params.orderTypeId = 1;
-    params.isFinished = 0;
+//	params.sortField = "audit_date";
+//    params.sortOrder = "desc";
+//    params.orderTypeId = 1;
+//    params.isFinished = 0;
     rightGrid.load({
         params:params,
         token:token
@@ -309,18 +312,18 @@ function doSearch(params)
         rightGrid.mergeColumns(["serviceId"]);
     });
 }
-function advancedSearch()
-{
-    advancedSearchWin.show();
-    advancedSearchForm.clear();
-    if(advancedSearchFormData)
-    {
-        advancedSearchForm.setData(advancedSearchFormData);
-    }else{
-        nui.get("sCreateDate").setValue(getWeekStartDate());
-        nui.get("eCreateDate").setValue(addDate(getWeekEndDate(), 1));
-    }
-}
+//function advancedSearch()
+//{
+//    advancedSearchWin.show();
+//    advancedSearchForm.clear();
+//    if(advancedSearchFormData)
+//    {
+//        advancedSearchForm.setData(advancedSearchFormData);
+//    }else{
+//        nui.get("sCreateDate").setValue(getWeekStartDate());
+//        nui.get("eCreateDate").setValue(addDate(getWeekEndDate(), 1));
+//    }
+//}
 //function onAdvancedSearchOk()
 //{
 //	var searchData = advancedSearchForm.getData();
@@ -384,45 +387,45 @@ function advancedSearch()
 //    advancedSearchWin.hide();
 //    doSearch(searchData);
 //}
-function onAdvancedSearchCancel(){
-    advancedSearchForm.clear();
-    advancedSearchWin.hide();
-}
-var supplier = null;
-function selectSupplier(elId)
-{
-    supplier = null;
-    nui.open({
-        targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
-        title: "供应商资料", width: 980, height: 560,
-        allowDrag:true,
-        allowResize:true,
-        onload: function ()
-        {
-            var iframe = this.getIFrameEl();
-            var params = {
-                isSupplier: 1,
-                guestType:'01020202'
-            };
-            iframe.contentWindow.setGuestData(params);
-        },
-        ondestroy: function (action)
-        {
-            if(action == 'ok')
-            {
-                var iframe = this.getIFrameEl();
-                var data = iframe.contentWindow.getData();
-                supplier = data.supplier;
-                var value = supplier.id;
-                var text = supplier.fullName;
-                var el = nui.get(elId);
-                el.setValue(text);
-                el.setText(text);
-            }
-        }
-    });
-}
+//function onAdvancedSearchCancel(){
+//    advancedSearchForm.clear();
+//    advancedSearchWin.hide();
+//}
+//var supplier = null;
+//function selectSupplier(elId)
+//{
+//    supplier = null;
+//    nui.open({
+//        targetWindow: window,
+//        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+//        title: "供应商资料", width: 980, height: 560,
+//        allowDrag:true,
+//        allowResize:true,
+//        onload: function ()
+//        {
+//            var iframe = this.getIFrameEl();
+//            var params = {
+//                isSupplier: 1,
+//                guestType:'01020202'
+//            };
+//            iframe.contentWindow.setGuestData(params);
+//        },
+//        ondestroy: function (action)
+//        {
+//            if(action == 'ok')
+//            {
+//                var iframe = this.getIFrameEl();
+//                var data = iframe.contentWindow.getData();
+//                supplier = data.supplier;
+//                var value = supplier.id;
+//                var text = supplier.fullName;
+//                var el = nui.get(elId);
+//                el.setValue(text);
+//                el.setText(text);
+//            }
+//        }
+//    });
+//}
 
 function onDrawCell(e)
 {

@@ -8,7 +8,14 @@ function initSysParamsCfg(){
 	item.iconCls = "fa fa-cog";
 	window.parent.activeTab(item);
 }
-
+function initImport(){
+	var item={};
+	item.id = "initImport";
+	item.text = "导入功能";
+	item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.import.flow?token="+token;
+	item.iconCls = "fa fa-cog";
+	window.parent.activeTab(item);
+}
 
 function initComStoreCfg(){
 	var item={};

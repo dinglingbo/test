@@ -26,7 +26,7 @@
 			</div>  
 			<div title="汽车电子健康档案上传设置" name="carSetTab" url="" >
 			</div> 
-			<div title="检测模板设置" name="carCheckModelTab" url="" >
+			<div title="查车模板设置" name="carCheckModelTab" url="" >
 			</div> 
 			<div title="库存设置" name="stockTab" url="" >
 			</div>  

@@ -11,7 +11,7 @@
 <head>
 <title>电话跟踪</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/telTrack.js?v=1.0.4"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/telTrack.js?v=1.0.10"></script>
     <link href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.4" rel="stylesheet" type="text/css" />
 </head>
 <body>

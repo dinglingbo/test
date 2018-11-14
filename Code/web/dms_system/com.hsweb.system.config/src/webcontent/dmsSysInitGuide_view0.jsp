@@ -11,7 +11,7 @@
 
 <head>
     <title>初始化导航</title>
-    <script src="<%= request.getContextPath() %>/config/js/dmsSysInitGuide.js?v=1.1.8"></script>
+    <script src="<%= request.getContextPath() %>/config/js/dmsSysInitGuide.js?v=1.2.0"></script>
     <style>
         .container {
             padding: 10px;
@@ -111,6 +111,16 @@
                         <br />
                         <div align="center">
                             <a class="mini-button mini-button-success" onclick="initCheckReportCfg()">设置出车报告</a>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="mini-panel mini-panel-warning" title="导入" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />导入客户车辆，储值卡，计次卡
+                        <br />
+                        <br />
+                        <div align="center">
+                            <a class="mini-button mini-button-success" onclick="initImport()">导入功能</a>
                         </div>
                     </div>
                 </td>

@@ -104,7 +104,7 @@
 	            </a>
                 <ul class="dropdown-menu pull-right">
                    <!--  <li id="orgName" ><a href="#">所属：</a></li> -->
-                     <li><a href="javascript:;"><i class="fa fa-comments-o"></i> 我的消息</a></li>
+                     <li><a href="javascript:myMessage();"><i class="fa fa-comments-o"></i> 我的消息</a></li>
                      <li><a href="javascript:updateEmployee();"><i class="fa fa-pencil-square-o"></i> 个人设置</a></li> 
                      <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li>
                     <!-- <li><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li> -->
@@ -141,6 +141,7 @@
 
 <script>
     var defDomin = "<%=request.getContextPath()%>";
+    var baseUrl = apiPath + repairApi + "/";
     var mainTabs = mini.get("mainTabs");
     var loadingV = false;
     var obj = {};
@@ -216,6 +217,15 @@
         tabs.loadTab(tab.url, tab);
     }
     
+    function myMessage(){
+    	nui.open({
+			url: defDomin + "/stat.myMessage.flow?token="+token,
+			title:"我的消息",
+			width: "570px",
+			height: "400px"
+		});
+    }
+    
     function updatePassWord(){
     	nui.open({
 			url: defDomin + "/coframe/rights/user/update_password.jsp",
@@ -233,13 +243,32 @@
 		data : JSON.stringify({
 			params: { 
             	orgid : currOrgId,
-            	readerTargetId : currEmpId
+            	empid : currEmpId
             },
             token:token
         }),
 		success : function(text) {
-			var list = text.data||0;
-			queryRemind(list); 
+			var list = text.rs||{};
+			if(list.length==0){
+				showMsg("此用户无法修改","W");
+			}else{
+				    nui.open({
+				        url: webPath + contextPath + "/common/employeeEdit.jsp?token="+token,
+				        width: 680,         //宽度
+				        height: 430,        //高度
+				        title: "员工信息",      //标题 组织编码选择
+				        allowResize:true,
+				        onload: function () {
+				            var iframe = this.getIFrameEl();
+				            iframe.contentWindow.SetInitData(list[0]);
+				        },
+				        ondestroy: function (action) {  //弹出页面关闭前
+				            if (action == "ok") {       //如果点击“确定”
+				                search();
+				            }
+				        }
+				    });	
+			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);
@@ -247,9 +276,11 @@
 	});
     }
     
+
     function toMax(){
         launchFullscreen(document.documentElement);
     }
+
 
     // 判断各种浏览器，找到正确的方法
     function launchFullscreen(element) {

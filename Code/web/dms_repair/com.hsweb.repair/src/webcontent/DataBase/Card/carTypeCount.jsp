@@ -14,7 +14,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/echarts.js" type="text/javascript"></script>
-    <script src="<%= request.getContextPath() %>/repair/js/Card/carTypeCount.js?v=1.0.6" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/repair/js/Card/carTypeCount.js?v=1.1.7" type="text/javascript"></script>
     <style type="text/css">
 		.m{
 				width: 120px;
@@ -40,11 +40,18 @@
 				text-decoration: none;
 				line-height: 2;
 			}
+			#container {
+				width: 90%;
+				overflow:auto; 
+				margin: 0 auto;
+				}
 			  
     </style>
 </head>
-<body >
-<div height="100%;";>
+
+
+<body id = "container">
+<div style="position: relative;auto">
 			<table>
 				<tr>
 					<td>
@@ -65,9 +72,9 @@
 				</tr>
 			</table>
                    
-<div style="height:500px;width:900px" id="card"></div>
+<div style="height:500px;" id="card"></div>
 
-<div style="height:300px;width:900px" id="timesCard"></div>
+<div style="height:500px;" id="timesCard"></div>
 </div>
 </body>
 

@@ -68,7 +68,7 @@
                 (b.record_date &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (b.record_date &lt; #endDate#)
+                (b.record_date &lt;= #endDate#)
             </isNotEmpty>  
         </dynamic> 
         GROUP BY a. NAME 
@@ -91,7 +91,7 @@
                 (b.record_date &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (b.record_date &lt; #endDate#)
+                (b.record_date &lt;= #endDate#)
             </isNotEmpty>  
         </dynamic> 
         GROUP BY a. NAME 

@@ -1113,5 +1113,16 @@
         order by a.plan_finish_date desc
 	</select>
 	
-	
+	 <select id="queryAccount" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			sum(b.bala_amt) as accountAmt
+		FROM
+			rps_maintain a
+			inner join rps_settlement b on (a.id =  b.service_id)
+		WHERE 
+		    a.bala_audit_sign = 0
+		    and a.is_settle = 0
+		    and a.status = 2
+			and a.guest_id = #guestId#	
+	</select>
 </sqlMap>

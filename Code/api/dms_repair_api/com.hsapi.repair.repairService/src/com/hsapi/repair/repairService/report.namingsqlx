@@ -1813,4 +1813,75 @@
         </dynamic>  
 	</select>
 	
+	<!--客户服务-点评管理-->
+	
+	<select id="queryBillCommnt" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">   
+		SELECT
+			a.service_code as serviceCode,
+			b.car_no as carNo,
+			c.car_model as carModel,
+			d.chain_come_times as chainComeTimes,
+			a.recorder as recorder,
+			a.record_date as recordDate,
+			a.modify_date as modifyDate,
+			b.service_type_id as serviceTypeId,
+			a.polite as polite,
+			a.repair_quality as repairQuality,
+			a.interpretation as interpretation,
+			a.out_factory_speed as outFactorySpeed,
+			a.environmental as environmental,
+			a.sum_point as sumPoint,
+			a.avg_point as avgPoint,
+			a.is_next_come as isNextCome,
+			a.suggestion as suggestion,
+			b.mt_advisor as mtAdvisor,
+			e.mobile as mobile
+		FROM
+			rps_bill_comment a
+		INNER JOIN rps_maintain b ON a.service_id = b.id
+		INNER JOIN rpb_car c on b.car_id=c.id
+		LEFT JOIN rpb_car_extend d on b.car_id=d.car_id
+		INNER JOIN wb_common.com_guest e on e.id=b.guest_id
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            
+            <!--建档日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">  
+                (a.record_date &gt;= #sRecordDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">  
+                (a.record_date &lt; #eRecordDate#)
+            </isNotEmpty>
+ 
+            <isNotEmpty prepend="and" property="billTypeId">  
+                (b.bill_type_id = #billTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">  
+                (b.service_type_id = #serviceTypeId#)
+            </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="carNo">  
+                (b.car_no like '%$carNo$%' )
+            </isNotEmpty>
+  			
+  			 <isNotEmpty prepend="and" property="mobile">  
+                (e.mobile like  '%$mobile$%')
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="good">  
+                (a.sum_point = 100)
+            </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="nice">  
+                (a.sum_point &gt;= 60 and a.sum_point &lt; 100)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="bad">  
+                (a.sum_point &lt; 60)
+            </isNotEmpty>
+            
+        </dynamic>  
+	</select>
 </sqlMap>

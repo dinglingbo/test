@@ -155,4 +155,17 @@
 		      and a.bill_package_id = 0
 	</update>
 	
+	<update id="updateItemFinish" parameterClass="java.util.HashMap">
+		update rps_item set `status` = 1, finish_date = SYSDATE(),
+                    		modifier = #modifier#, modify_date = SYSDATE()
+        where id = #detailId# and service_id = #serviceId# and `status` = 0
+	</update>
+	
+	<update id="updateItemBack" parameterClass="java.util.HashMap">
+		update rps_item set `status` = 0, finish_date = null, is_back = 1, back_times = ifnull(back_times,0) + 1,
+		                    modifier = #modifier#, modify_date = SYSDATE()
+		where id = #detailId# and service_id = #serviceId# and `status` = 1
+	</update>
+	
+	
 </sqlMap>

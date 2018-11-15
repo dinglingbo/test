@@ -280,7 +280,7 @@
 			a.default_logistics AS defaultLogistics,
 			f.chain_consume_amt AS chainConsumeAmt,
       		g.card_type as cardType,
-			g.recharge_bala_amt as rechargeBalaAmt,
+			g.recharge_bala_amt as rechargeBalaAmt
 		FROM
 			wb_common.com_guest a
 		    LEFT JOIN wb_repair.rpb_guest f ON a.id = f.id

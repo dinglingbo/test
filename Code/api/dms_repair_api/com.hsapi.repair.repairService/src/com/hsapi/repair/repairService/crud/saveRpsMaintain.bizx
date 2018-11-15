@@ -621,7 +621,7 @@
     <figSize height="17" width="39"/>
     <node>assign10</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign12" name="赋值12" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign12" name="赋值12" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link31" name="link31" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign12</sourceNode>
       <targetNode>assign5</targetNode>
@@ -673,6 +673,7 @@
     <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign14</sourceNode>
       <targetNode>assign6</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link35" name="业务类型不能为空" displayName="连接线" type="transition">
       <sourceNode>assign14</sourceNode>

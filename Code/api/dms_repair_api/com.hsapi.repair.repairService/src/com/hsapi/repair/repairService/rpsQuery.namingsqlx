@@ -827,6 +827,61 @@
             </isNotEmpty>
 			ORDER BY A.record_date desc
       </select>
+      
+       <select id="queryRpsPickMain" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+   		   	select 
+				a.id as id,
+				a.datekey as datekey,
+				a.service_code as serviceCode,
+				a.service_id as serviceId,
+				a.guest_id as guestId,
+				a.contactor_id as contactorId,
+				a.car_id as carId,
+				a.car_no as carNo,
+				a.car_vin as carVin,
+				a.enter_kilometers as enterKilometers,
+				a.enter_oil_mass as enterOilMass,
+				a.mt_advisor_id as mtAdvisorId,
+				a.mt_advisor as mtAdvisor,
+				a.`status` as `status`,
+				a.fault_phen as faultPhen,
+				a.goods as goods,
+				a.remark as remark,
+				a.recorder as recorder,
+				a.record_date as recordDate,
+				a.modifier as modifier,
+				C.mobile guestMobile ,
+				C.full_name  guestFullName,
+			  	D.car_model carModel
+			 from rps_pick_main A
+			 LEFT JOIN rps_maintain B on B.id = A.service_id
+			 inner join wb_common.com_guest C on C.id = A.guest_id
+			 inner join rpb_car D on D.id = A.car_id
+			where 1=1
+			<isNotEmpty prepend="and" property="orgid">  
+			A.orgid = #orgid#
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="carNo">  
+			A. car_no like '%$carNo$%'
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="guestName">  
+			C.full_name like '%$guestName$%'
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="serviceCode">  
+			B.service_code like '%$serviceCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="sRecordDate"> 
+                (date_format(A.record_date,'%Y-%m-%d') &gt;= #sRecordDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">
+                (date_format(A.record_date,'%Y-%m-%d') &lt;= #eRecordDate#)
+            </isNotEmpty>
+			ORDER BY A.record_date desc
+      </select>
+      
       <select id="getRpsPartByMaintainGuestId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
     	    a.id id,

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generateRemindData.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="SELECT record_date, TIMESTAMPDIFF(DAY, record_date, NOW()) from rpb_car_extend where TIMESTAMPDIFF(DAY, record_date, NOW()) = 1&#xD;&#xA;下次保养  rpb_car_extend  care_due_date  保养到期提醒&#xD;&#xA;保养周期  rpb_car_extend  care_cycle&#xD;&#xA;年审到期  rpb_car  annual_verification_due_date&#xD;&#xA;商业险到期日期  rpb_car    annual_inspection_date&#xD;&#xA;交强险到期日期  rpb_car   insure_due_date&#xD;&#xA;年检到期   &#xD;&#xA;客户生日   com_guest   birthday&#xD;&#xA;员工生日                 ======================每天晚上执行===============================&#xD;&#xA;采购订单到货           ======================间隔1小时执行=============================" title="Administrator&#x9;18-10-18 下午5:49">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="SELECT record_date, TIMESTAMPDIFF(DAY, record_date, NOW()) from rpb_car_extend where TIMESTAMPDIFF(DAY, record_date, NOW()) = 1&#xD;&#xA;下次保养  rpb_car_extend  care_due_date  保养到期提醒&#xD;&#xA;&lt;!--保养周期  rpb_car_extend  care_cycle   20181105 去掉 -->&#xD;&#xA;驾照年审到期  rpb_car  annual_verification_due_date&#xD;&#xA;商业险到期日期  rpb_car    annual_inspection_date&#xD;&#xA;交强险到期日期  rpb_car   insure_due_date&#xD;&#xA;年检到期   rpb_car  annual_verification_due_date&#xD;&#xA;客户生日   com_guest   birthday&#xD;&#xA;员工生日                 ======================每天晚上执行===============================&#xD;&#xA;采购订单到货           ======================间隔1小时执行=============================" title="Administrator&#x9;18-10-18 下午5:49">
     <location x="105" y="-195"/>
     <size height="256" width="856"/>
   </nodes>
@@ -19,7 +19,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link11</targetConnections>
-    <location x="1081" y="148"/>
+    <location x="1245" y="148"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns/>
@@ -30,7 +30,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="1083" y="184"/>
+    <location x="1247" y="184"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -100,28 +100,30 @@
       <sourceNode>loopend0</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link10</targetConnections>
-    <location x="996" y="149"/>
+    <targetConnections>link12</targetConnections>
+    <location x="1146" y="149"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
-    <location x="984" y="181"/>
+    <location x="1134" y="181"/>
     <figSize height="17" width="49"/>
     <node>loopend0</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
     <location x="441" y="83"/>
-    <size height="173" width="580"/>
+    <size height="173" width="730"/>
     <chidren>loopend0</chidren>
     <chidren>loopstart0</chidren>
     <chidren>assign1</chidren>
     <chidren>subprocess0</chidren>
+    <chidren>subprocess5</chidren>
     <chidren>subprocess1</chidren>
     <chidren>subprocess2</chidren>
     <chidren>subprocess3</chidren>
     <chidren>subprocess4</chidren>
-    <chidren>subprocess5</chidren>
+    <chidren>subprocess6</chidren>
+    <chidren>subprocess7</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
@@ -172,6 +174,10 @@
       <process:from type="query" pattern="reference">temp/param10</process:from>
       <process:to type="query">param10</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/param11</process:from>
+      <process:to type="query">param11</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="493" y="184"/>
@@ -181,10 +187,10 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="保养到期" displayName="generateNextCareRemind" grouped="true" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
-      <targetNode>subprocess5</targetNode>
+      <targetNode>subprocess1</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="555" y="148"/>
+    <location x="544" y="147"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -199,17 +205,17 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="544" y="183"/>
+    <location x="533" y="182"/>
     <figSize height="17" width="49"/>
     <node>subprocess0</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="保险到期" displayName="generateAnnualInspectionRemind" grouped="true" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="商业险到期" displayName="generateAnnualInspectionRemind" grouped="true" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
-      <targetNode>subprocess2</targetNode>
+      <targetNode>subprocess5</targetNode>
     </sourceConnections>
-    <targetConnections>link6</targetConnections>
-    <location x="686" y="148"/>
+    <targetConnections>link5</targetConnections>
+    <location x="615" y="147"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -224,8 +230,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="675" y="183"/>
-    <figSize height="17" width="49"/>
+    <location x="598" y="182"/>
+    <figSize height="17" width="61"/>
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="车辆年检" displayName="generateCarAnnualRemind" grouped="true" type="subprocess">
@@ -233,17 +239,8 @@
       <sourceNode>subprocess2</sourceNode>
       <targetNode>subprocess3</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="连接线" type="transition">
-      <sourceNode>subprocess2</sourceNode>
-      <targetNode>subprocess4</targetNode>
-      <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>1==1</process:code>
-        </process:complexCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link7</targetConnections>
-    <location x="799" y="148"/>
+    <targetConnections>link6</targetConnections>
+    <location x="780" y="147"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -252,13 +249,13 @@
         <process:inputVariable id="0" name="ln" type="query" value="Int" valueType="Primitive" pattern="reference">param5</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="788" y="183"/>
+    <location x="769" y="182"/>
     <figSize height="17" width="49"/>
     <node>subprocess2</node>
   </nodes>
@@ -268,13 +265,13 @@
       <targetNode>subprocess4</targetNode>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
-    <location x="855" y="90"/>
+    <location x="855" y="147"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.generateInsureDueRemind</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="ln" type="query" value="Int" valueType="Primitive" pattern="reference">param1</process:inputVariable>
+        <process:inputVariable id="0" name="ln" type="query" value="Int" valueType="Primitive" pattern="reference">param11</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
@@ -283,18 +280,31 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
-    <location x="838" y="125"/>
+    <location x="838" y="182"/>
     <figSize height="17" width="61"/>
     <node>subprocess3</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="客户生日" displayName="generateGuestBirthdayRemind" grouped="true" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link10" name="link10" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>subprocess4</sourceNode>
-      <targetNode>loopend0</targetNode>
+      <targetNode>subprocess7</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>subprocess6</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code></process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
-    <targetConnections>link12</targetConnections>
-    <location x="915" y="148"/>
+    <location x="945" y="147"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -309,23 +319,23 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="904" y="183"/>
+    <location x="934" y="182"/>
     <figSize height="17" width="49"/>
     <node>subprocess4</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="保存周期" displayName="generateCareCircleRemind" grouped="true" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="驾照年审" displayName="generateCareCircleRemind" grouped="true" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess5</sourceNode>
-      <targetNode>subprocess1</targetNode>
+      <targetNode>subprocess2</targetNode>
     </sourceConnections>
-    <targetConnections>link5</targetConnections>
-    <location x="626" y="148"/>
+    <targetConnections>link7</targetConnections>
+    <location x="705" y="147"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess5label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.generateCareCircleRemind</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="ln" type="query" value="Int" valueType="Primitive" pattern="reference">param2</process:inputVariable>
+        <process:inputVariable id="0" name="ln" type="query" value="Int" valueType="Primitive" pattern="reference">param4</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
@@ -334,9 +344,60 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="615" y="183"/>
+    <location x="694" y="182"/>
     <figSize height="17" width="49"/>
     <node>subprocess5</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess6" name="员工生日" displayName="generateGuestBirthdayRemind" collapsed="false" grouped="true" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess6</sourceNode>
+      <targetNode>subprocess7</targetNode>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <location x="1020" y="105"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess6label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.generateGuestBirthdayRemind</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="ln" type="query" value="Int" valueType="Primitive" pattern="reference">param7</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess6label" name="label" nodeType="label">
+    <location x="1009" y="140"/>
+    <figSize height="17" width="49"/>
+    <node>subprocess6</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess7" name="交强险" displayName="generateGuestBirthdayRemind" collapsed="false" grouped="true" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess7</sourceNode>
+      <targetNode>loopend0</targetNode>
+    </sourceConnections>
+    <targetConnections>link10</targetConnections>
+    <targetConnections>link14</targetConnections>
+    <location x="1080" y="147"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess7label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.generateGuestBirthdayRemind</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="ln" type="query" value="Int" valueType="Primitive" pattern="reference">param7</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess7label" name="label" nodeType="label">
+    <location x="1075" y="182"/>
+    <figSize height="17" width="37"/>
+    <node>subprocess7</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -347,7 +408,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbRemindParam" name="temp"/>
     <process:variable description="距离车辆下次保养日期前后多少天提醒" historyStateLocation="client" isArray="false" name="param1" primitiveType="Int"/>
     <process:variable description="车辆保养周期月提醒" historyStateLocation="client" isArray="false" name="param2" primitiveType="Int"/>
-    <process:variable description="距离车辆保险到期日期天提醒" historyStateLocation="client" isArray="false" name="param3" primitiveType="Int"/>
+    <process:variable description="距离车辆商业险到期日期天提醒" historyStateLocation="client" isArray="false" name="param3" primitiveType="Int"/>
     <process:variable description="距离驾照年审日期天提醒" historyStateLocation="client" isArray="false" name="param4" primitiveType="Int"/>
     <process:variable description="距离车辆年检日期天提醒" historyStateLocation="client" isArray="false" name="param5" primitiveType="Int"/>
     <process:variable description="距离卡到期天提醒" historyStateLocation="client" isArray="false" name="param6" primitiveType="Int"/>
@@ -355,6 +416,7 @@
     <process:variable description="距离员工生日日期天提醒" historyStateLocation="client" isArray="false" name="param8" primitiveType="Int"/>
     <process:variable description="当客户连续天未到店服务则视为流失客户" historyStateLocation="client" isArray="false" name="param9" primitiveType="Int"/>
     <process:variable description="距离采购订单到货时间小时提醒" historyStateLocation="client" isArray="false" name="param10" primitiveType="Int"/>
+    <process:variable description="距离车辆交强险到期日期天提醒" historyStateLocation="client" isArray="false" name="param11" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false"/>
   <process:outputs/>

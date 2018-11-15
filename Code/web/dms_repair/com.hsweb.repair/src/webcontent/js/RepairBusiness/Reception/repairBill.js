@@ -10,6 +10,7 @@ var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServ
 var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
 var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
+var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
 var ycAmt = 0;
 var tcAmt = 0;
 var gsAmt = 0;
@@ -745,23 +746,49 @@ function setInitData(params){
             cls: 'mini-mask-loading',
             html: '数据加载中...'
         });
-
         var params = {
             data: {
                 id: params.id
             }
-        }
+        };
         getMaintain(params, function(text){
             var errCode = text.errCode||"";
             var data = text.maintain||{};
             if(errCode == 'S'){
             	xyguest = data;
+            	//挂账
+            	if(data.guestId){
+                	var accAmt = {};
+                	accAmt.guestId = data.guestId;
+                	nui.ajax({
+                        url : getAccountUrl,
+                        type : "post",
+                        data : JSON.stringify({
+                            params : accAmt,
+                            token : token
+                        }),
+                        success : function(data) {
+                        	data = data || {};
+                            if (data.errCode == "S") {
+                                var account = data.account[0];
+                                var Amt = account.accountAmt || 0;
+                                $("#creditEl").html("挂账:"+Amt);
+                            } else {
+                                showMsg(data.errMsg || "获取挂账信息失败","W");
+                            }
+                        },
+                        error : function(jqXHR, textStatus, errorThrown) {
+                            unmaskcall && unmaskcall();
+                            console.log(jqXHR.responseText);
+                        }
+                    });
+                }
                 var p = {
                     data:{
                         guestId: data.guestId||0,
                         contactorId: data.contactorId||0
                     }
-                }
+                };
                 getGuestContactorCar(p, function(text){
                     var errCode = text.errCode||"";
                     var guest = text.guest||{};
@@ -904,6 +931,7 @@ function add(){
     $("#servieIdEl").html("");
     $("#showCardTimesEl").html("次卡套餐(0)");
     $("#showCardEl").html("储值卡(0)");
+    $("#creditEl").html("挂账:0");
     $("#showCarInfoEl").html("");
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
@@ -920,11 +948,36 @@ function save(){
         html: '保存中...'
     });
     saveMaintain(function(data){
- 
         if(data.id){
             fserviceId = data.id;
             showMsg("保存成功!","S");
-
+            //查询挂账
+            if(data.guestId){
+            	var params = {};
+                params.guestId = data.guestId;
+            	nui.ajax({
+                    url : getAccountUrl,
+                    type : "post",
+                    data : JSON.stringify({
+                        params : params,
+                        token : token
+                    }),
+                    success : function(data) {
+                    	data = data || {};
+                        if (data.errCode == "S") {
+                            var account = data.account[0];
+                            var Amt = account.accountAmt || 0;
+                            $("#creditEl").html("挂账:"+Amt);
+                        } else {
+                            showMsg(data.errMsg || "获取挂账信息失败","W");
+                        }
+                    },
+                    error : function(jqXHR, textStatus, errorThrown) {
+                        unmaskcall && unmaskcall();
+                        console.log(jqXHR.responseText);
+                    }
+                });
+            }
             var params = {
                 data:{
                     guestId: data.guestId||0,
@@ -1686,8 +1739,6 @@ function doSearchCardTimes(guestId)
        // document.getElementById("formIframe").contentWindow.doSetCardTimes(data);
     });
 }
-
-
 
 function doSearchMemCard(guestId)
 {

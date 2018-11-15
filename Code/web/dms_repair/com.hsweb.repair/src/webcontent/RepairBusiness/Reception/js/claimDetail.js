@@ -9,6 +9,7 @@ var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServ
 var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
 var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
+var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
 
 var billForm = null;
 var sendGuestForm = null;
@@ -744,6 +745,34 @@ function setInitData(params){
             var errCode = text.errCode||"";
             var data = text.maintain||{};
             if(errCode == 'S'){
+            	//挂账
+            	if(data.guestId){
+                	var accAmt = {};
+                	accAmt.guestId = data.guestId;
+                	nui.ajax({
+                        url : getAccountUrl,
+                        type : "post",
+                        data : JSON.stringify({
+                            params : accAmt,
+                            token : token
+                        }),
+                        success : function(data) {
+                        	data = data || {};
+                            if (data.errCode == "S") {
+                                var account = data.account[0];
+                                var Amt = account.accountAmt || 0;
+                                $("#creditEl").html("挂账:"+Amt);
+                            } else {
+                                showMsg(data.errMsg || "获取挂账信息失败","W");
+                            }
+                        },
+                        error : function(jqXHR, textStatus, errorThrown) {
+                            unmaskcall && unmaskcall();
+                            console.log(jqXHR.responseText);
+                        }
+                    });
+                }
+            	
                 var p = {
                     data:{
                         guestId: data.guestId||0,
@@ -898,6 +927,7 @@ function add(){
     $("#servieIdEl").html("");
     $("#showCardTimesEl").html("次卡套餐(0)");
     $("#showCardEl").html("储值卡(0)");
+    $("#creditEl").html("挂账:0");
     $("#showCarInfoEl").html("");
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
@@ -916,7 +946,33 @@ function save(){
  
         if(data.id){
             showMsg("保存成功!","S");
-
+            //查询挂账
+            if(data.guestId){
+            	var params = {};
+                params.guestId = data.guestId;
+            	nui.ajax({
+                    url : getAccountUrl,
+                    type : "post",
+                    data : JSON.stringify({
+                        params : params,
+                        token : token
+                    }),
+                    success : function(data) {
+                    	data = data || {};
+                        if (data.errCode == "S") {
+                            var account = data.account[0];
+                            var Amt = account.accountAmt || 0;
+                            $("#creditEl").html("挂账:"+Amt);
+                        } else {
+                            showMsg(data.errMsg || "获取挂账信息失败","W");
+                        }
+                    },
+                    error : function(jqXHR, textStatus, errorThrown) {
+                        unmaskcall && unmaskcall();
+                        console.log(jqXHR.responseText);
+                    }
+                });
+            }
             var params = {
                 data:{
                     guestId: data.guestId||0,

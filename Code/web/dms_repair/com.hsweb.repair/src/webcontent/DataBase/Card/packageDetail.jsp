@@ -88,11 +88,11 @@
 								headerAlign="center" width="">工时名称</div>
 							<div field="itemTime" allowSort="true" align="left"
 								headerAlign="center" width="">工时</div>
-							<div field="qty" allowSort="true" align="left"
+							<div field="truePrice" allowSort="true" align="left"
 								headerAlign="unit_price" width="" headerAlign="center">
 								工时单价 
 							</div>
-							<div field="amt" allowSort="true" align="left"
+							<div field="trueAmt" allowSort="true" align="left"
 								headerAlign="center" width="" summaryType="sum">
 								金额 
 							</div>
@@ -119,7 +119,7 @@
 								headerAlign="center" width="">配件名称</div>
 							<div field="qty" allowSort="true" align="left"
 								headerAlign="center" width="">数量</div>
-							<div field="unitPrice" allowSort="true" align="left"
+							<div field="trueAmt" allowSort="true" align="left"
 								headerAlign="center" width="">
 								单价 
 							</div>
@@ -127,7 +127,7 @@
 								headerAlign="center" width="">
 								单位 
 							</div>
-							<div field="amt" allowSort="true" align="left"
+							<div field="truePrice" allowSort="true" align="left"
 								headerAlign="center" width="" summaryType="sum">
 								金额
 							</div>

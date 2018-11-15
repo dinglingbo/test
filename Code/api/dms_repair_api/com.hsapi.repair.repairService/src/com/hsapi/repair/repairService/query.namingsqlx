@@ -686,7 +686,7 @@
 			and a.status = 1
 			AND a.mt_advisor_id = #mtAdvisorId#
 	</select>
-		<select id="settleQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	<select id="settleQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 			SELECT
 				count(1) as  settleQuantity
 			FROM
@@ -697,5 +697,11 @@
 			AND a.is_disabled = 0
 			AND a.orgid = #orgid#
 			AND a.mt_advisor_id = #mtAdvisorId#
+	</select>
+	
+	<select id="getPickItems" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT count(1) as  qty 
+			FROM wb_repair.rps_pick_detail
+			WHERE main_id = #mainId# and IFNULL(fault_code,'') != ''
 	</select>
 </sqlMap>

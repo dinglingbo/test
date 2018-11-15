@@ -22,6 +22,10 @@ function setData(){
 	nui.ajax({
 		url : querycardTypeUrl,
 		data : {
+			pageSize:500,
+			page:{
+				length:500
+			},
 			token: token
 		},
 		type : "post",
@@ -107,7 +111,7 @@ function queryC(startDate,endDate){
 		data : {
 			params:{
 					startDate:startDate,
-					endDate:endDate
+					endDate:endDate+"23:59:59"
 				},
 			token: token
 		},
@@ -149,7 +153,7 @@ function queryC(startDate,endDate){
 				
 			}
 			open(cardType);
-			open(timesCardType);
+			open2(timesCardType);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);
@@ -165,7 +169,10 @@ function open(cardType){
 
 	}
 
-	
+
+
+
+
 	option = {
 			title : {
 			    text: '储值卡统计表',
@@ -194,6 +201,7 @@ function open(cardType){
 			        type : 'category',
 			        data : cardTypeOpen,
 			        barGap: '10px',            // 柱间距离，默认为柱形宽度的30%，可设固定值
+			        barWidth: '30%',
 			        barCategoryGap : '50px',   // 类目间柱形距离，默认为类目间距的20%，可设固定值
 			    }
 			],
@@ -223,12 +231,7 @@ function open(cardType){
 			        name:'金额',
 			        type:'bar',
 			        data:cardAmt,
-			        markPoint : {
-			            data : [
-			                {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:18},
-			                {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
-			            ]
-			        },
+	
 			        markLine : {
 			            data : [
 			                {type : 'average', name : '平均值'}
@@ -289,7 +292,8 @@ function open2(timesCardType){
 			    {
 			        name:'数量',
 			        type:'bar',
-			        data:timesCardAmt,
+			        data:timesCardNum,
+			        barWidth: '30%',
 			        markPoint : {
 			            data : [
 			                {type : 'max', name: '最大值'},
@@ -305,7 +309,7 @@ function open2(timesCardType){
 			    {
 			        name:'金额',
 			        type:'bar',
-			        data:timesCardNum,
+			        data:timesCardAmt,
 			        markPoint : {
 			            data : [
 			                {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183, symbolSize:18},

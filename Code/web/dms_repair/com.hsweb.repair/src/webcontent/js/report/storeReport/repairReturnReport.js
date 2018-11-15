@@ -7,6 +7,7 @@ var rightGridUrl = baseUrl+"com.hsapi.repair.repairService.report.queryReturnOut
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
+var advancedSearchFormData = null;
 var basicInfoForm = null;
 var rightGrid = null;
 var brandHash = {};

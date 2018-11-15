@@ -2,6 +2,7 @@
  * Created by Administrator on 2018/2/1.
  */
 var baseUrl = apiPath + repairApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.repair.repairService.report.querySellOutList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;

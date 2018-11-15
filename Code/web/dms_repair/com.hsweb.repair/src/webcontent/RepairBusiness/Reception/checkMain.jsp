@@ -84,6 +84,7 @@
   totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
   onshowrowdetail="onShowRowDetail" url="" allowCellWrap=true>
   <div property="columns">
+	<div width="10" type="indexcolumn">序号</div>
     <div field="id" name="id" visible="false">id</div>
     <div field="serviceCode" name="serviceCode" width="40" headerAlign="center" align="center">单号</div>
     <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>

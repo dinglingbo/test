@@ -159,8 +159,8 @@ $(document).ready(function ()
         var field = e.field;
         var record = e.record;
         var column = e.column;
-        var row={status:0};
-        var nrow={nostatus:0};
+        var row={status:-1};
+        var nrow={nostatus:-1};
         var row2={status:1};
         var nrow2={nostatus:1};
         
@@ -207,16 +207,16 @@ $(document).ready(function ()
         var column = e.column;
         var row2={settleType:1};
         var row3={nostatus:1};
-        var row4={nosettleType:1}
+        var row4={nosettleType:1};
         if(actionType == "new"){
             var row=mainGrid.findRow(function(row){
                 mainGrid.updateRow(row,row2);
             });
         }else{
             var row=mainGrid.findRow(function(row){
-                if(row.status == 0){
+                if(row.status == -1){
 
-//                    mainGrid.updateRow(row,row3);
+                   mainGrid.updateRow(row,row3);
                 }
                 if(row.settleType == 0){
 
@@ -331,7 +331,7 @@ function newCheckMainMore(){
     item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkMain.jsp?cNo="+cNo;
     item.iconCls = "fa fa-cog";
     window.parent.activeTab(item);
-}
+} 
 
 function tprint(){
 
@@ -583,7 +583,7 @@ function saveb(){
 }
 
 
-function saveDetail(){ //√
+function saveDetail(){ //√  isCheckMain == "N"
     //var mainGrid = nui.get("mainGrid");
     var mdata = billForm.getData();
     mainGrid.commitEdit();
@@ -676,7 +676,7 @@ function updateCheckMain(mData){
 }
 
 
-function saveCheckMain(){
+function saveCheckMain(){//isCheckMain == "Y"
 	var gridData=mainGrid.getData();
 	for(var i=0;i<gridData.length;i++){
 		if(gridData[i].settleType==0){

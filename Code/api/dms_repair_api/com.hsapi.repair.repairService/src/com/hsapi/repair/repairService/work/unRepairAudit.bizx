@@ -36,7 +36,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">当前工单未完工,不能返工</process:from>
+      <process:from type="literal" pattern="reference">当前工单未完工,不能返单</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -120,7 +120,7 @@
       <process:to type="query">userName</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">返工成功</process:from>
+      <process:from type="literal" pattern="reference">返单成功</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>
@@ -147,7 +147,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">找不到对应记录，返工失败</process:from>
+      <process:from type="literal" pattern="reference">找不到对应记录，返单失败</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -410,7 +410,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">当前工单已结算,不能返工</process:from>
+      <process:from type="literal" pattern="reference">当前工单已结算,不能返单</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>

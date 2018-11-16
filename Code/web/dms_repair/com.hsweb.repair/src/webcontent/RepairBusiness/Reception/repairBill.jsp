@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.8.6"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.8.8"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -31,7 +31,7 @@
             line-height:40px;
         }
         .title {
-            width: 60px;
+            width: 80px;
             text-align: right;
         }
         .required {
@@ -290,7 +290,6 @@
 					      <label style="font-family:Verdana;"><span id="settleStatus" name="statusvi" class="nvstatusview">结算</span></label>
     					</td>
     				</tr>
-    			</tr>
     		</tbody>
     	</table>
     </div>
@@ -300,15 +299,11 @@
     			<tr>
     				<td  style='height: 100%'>
 			        <label>总金额：</label>
-			                            <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalAmt" name="totalAmt"/>
-			        
-<!-- 			       	<input class="nui-textbox" style="color:red;font-weight:bold;font-size:14px; width:80px;border-radius: 4px;margin-right: 30px" enabled="false" id="totalAmt" name="totalAmt"/>
- -->			        <label>优惠金额：</label>
+			            <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalAmt" name="totalAmt"/>
+			        <label>优惠金额：</label>
  			          <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalPrefAmt" name="totalPrefAmt"/>        
-<!-- 			   <input class="nui-textbox" style="color:red;font-weight:bold;font-size:14px; width:80px;border-radius: 4px;margin-right: 30px" enabled="false" id="totalPrefAmt" name="totalPrefAmt"/>
- --> 			        <label>小计金额(含计次卡金额)：</label>
-<!-- 			        <input class="nui-textbox" style="color:red;font-weight:bold;font-size:14px; width:80px;border-radius: 4px" enabled="false" id="totalSubtotal" name="totalSubtotal" />
- -->			       <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalSubtotal" name="totalSubtotal"/>
+ 			        <label>小计金额：</label>
+ 			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalSubtotal" name="totalSubtotal"/>
  
                       <div style='display: none'>
 			          <input class="nui-hidden" enabled="false" id="packageSubtotal" name="packageSubtotal"/>
@@ -319,7 +314,6 @@
 			          <input class="nui-hidden" enabled="false" id="partPrefAmt" name="partPrefAmt"/>
 			          <input class="nui-hidden" enabled="false" id="ycAmt" name="ycAmt"/>
 			        </div>
-    					
     				</td>
     			</tr>
     		</tbody>

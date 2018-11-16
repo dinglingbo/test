@@ -61,7 +61,13 @@
                              valueFromSelect="true"
                              nullItemText="请选择..."/>
                   </td>
-                  <td class="title required">
+                   <td class="title required" style="width:5%;">
+                      <label>车架号(VIN)：</label>
+                  </td>
+                      <td class=""><input  class="nui-textbox" name="carVin" id="carVin" enabled="false" width="100%"/></td>
+              </tr>
+              <tr>
+                 <td class="title required">
                       <label>进厂油量：</label>
                   </td>
                   <td>
@@ -74,17 +80,17 @@
                              url=""
                              allowInput="true"
                              showNullItem="false"
-                             width="100%"
+                             width="40%"
                              valueFromSelect="true"
                              nullItemText="请选择..."/>
+                             <label>进厂里程：</label>
+                             <input class="nui-Spinner" minValue="0" maxValue="100000000" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" width="40%"/>
                   </td>
-              </tr>
-              <tr>
                   <td class="title required">
-                      <label>进厂里程：</label>
+                      
                   </td>
                   <td >
-                      <input class="nui-Spinner" minValue="0" maxValue="100000000" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" width="100%"/>
+                      
                   </td>
                   <td class="title required">
                       <label>进厂日期：</label>

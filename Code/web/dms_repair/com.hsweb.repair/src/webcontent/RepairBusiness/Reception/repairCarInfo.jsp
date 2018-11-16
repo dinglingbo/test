@@ -26,7 +26,7 @@
                   <td class="title required">
                       <label>车牌号：</label>
                   </td>
-                  <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
+                  <td class="" width="24%"><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
                   <td class="title required">
                       <label>业务类型：</label>
                   </td>
@@ -61,7 +61,13 @@
                              valueFromSelect="true"
                              nullItemText="请选择..."/>
                   </td>
-                  <td class="title required">
+                   <td class="title required" >
+                      <label>品牌/车型：</label>
+                  </td>
+                      <td class=""><input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/></td>
+              </tr>
+              <tr>
+                 <td class="title required">
                       <label>进厂油量：</label>
                   </td>
                   <td>
@@ -72,19 +78,13 @@
                              valueField="customid"
                              emptyText="请选择..."
                              url=""
+                             width="40%"
                              allowInput="true"
                              showNullItem="false"
-                             width="100%"
                              valueFromSelect="true"
                              nullItemText="请选择..."/>
-                  </td>
-              </tr>
-              <tr>
-                  <td class="title required">
-                      <label>进厂里程：</label>
-                  </td>
-                  <td >
-                      <input class="nui-Spinner" minValue="0" maxValue="100000000" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" width="100%"/>
+                       <label class="title required">进厂里程：</label>
+                       <input class="nui-Spinner" minValue="0" maxValue="100000000" width="43%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
                   </td>
                   <td class="title required">
                       <label>进厂日期：</label>

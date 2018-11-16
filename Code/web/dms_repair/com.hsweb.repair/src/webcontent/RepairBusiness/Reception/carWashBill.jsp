@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.6"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.8"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -194,12 +194,12 @@
         <input class="nui-hidden" name="isSettle"/>
         <table   style="width: 100%;border-spacing: 0px 5px;"> 
             <tr>   
-                <td class="title required">车牌号:</td> 
+                <td class="title required">车牌号：</td> 
                 <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
-                <td class="title required">
-                    <label>业务类型:</label>
+                <td class="title required" >
+                    <label>业务类型：</label>
                 </td>
-                <td class="">
+                <td class="" width="20%">
                     <input name="serviceTypeId"
                     id="serviceTypeId"
                     class="nui-combobox width1"
@@ -229,21 +229,32 @@
                     nullItemText="请选择..." width="100%"/>
                
                 </td>
-                <td class="title">进厂里程:</td> 
+                <td class="title">进厂里程：</td> 
                 <td class=""><input  class="nui-textbox" name="enterKilometers" width="100%"/></td>
-                <td class="title">备注:</td> 
+                <td class="title">备注：</td> 
                 <td class="" colspan=""><input  class="nui-textbox" name="remark" width="100%"/></td>
             </tr>
             <tr>   
-                <td class="title required">客户名称:</td> 
-                <td class=""><input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="100%"/></td>
-                <td class="title required">客户手机:</td> 
-                <td class=""><input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="100%"/></td>
-                <td class="title required">联系人名称:</td> 
+                <td class="title required" >
+                      <label>品牌/车型：</label>
+                  </td>
+                 <td class=""><input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/></td>
+    
+                <td class="title required">客户名称：</td> 
+                <td class="">
+               
+                <input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="32%"/>
+                <label class="title required">客户手机：</label>
+                <input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="47%"/>
+               
+                </td>
+                
+                
+                <td class="title required">联系人名称：</td> 
                 <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false" width="100%"/></td>
-                <td class="title required">联系人手机:</td> 
+                <td class="title required">联系人手机：</td> 
                 <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false" width="100%"/></td>
-                <td class="title">开单时间:</td> 
+                <td class="title">开单时间：</td> 
                 <td class="">
                     <input id="recordDate"
                     name="recordDate"
@@ -377,86 +388,50 @@
 </div>
 
 <div style="background-color: #cfddee;position:absolute; top:90%;width:100%;height: 10%; z-index:900;">
-    
-    <div style="float: left;height: 100%;">
-        <table id="statustable" style="width:100%;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
-            <tr>
-                <td >
-                    <label style="font-family:Verdana;">服务进度:</label>
-                </td>
-                <td >
-                    <label style="font-family:Verdana;"><span id="addStatus" name="statusvi" class="nvstatusview">报价</span></label>
-                </td>
-                <td >
-                    <label style="font-family:Verdana;">&nbsp;>&nbsp;</label>
-                </td>
-                <td >
-                    <label style="font-family:Verdana;"><span id="repairStatus" name="statusvi" class="nvstatusview">施工</span></label>
-                </td>
-                <td >
-                    <label style="font-family:Verdana;">&nbsp;>&nbsp;</label>
-                </td>
-                <td >
-                    <label style="font-family:Verdana;"><span id="finishStatus" name="statusvi" class="nvstatusview">完工</span></label>
-                </td>
-                <td >
-                    <label style="font-family:Verdana;">&nbsp;>&nbsp;</label>
-                </td>
-                <td >
-                    <label style="font-family:Verdana;"><span id="settleStatus" name="statusvi" class="nvstatusview">结算</span></label>
-                </td>
-            </tr>
-        </table>
+    <div id="statustable" style="float: left;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
+    	<table  style='height: 100%'>
+    		<tbody>
+    			<tr>
+    				<tr>
+    					<td  style='height: 100%;font-size:18px'>
+					      <label style="font-family:Verdana;">服务进度:</label>
+					      <label style="font-family:Verdana;"><span id="addStatus" name="statusvi" class="nvstatusview">开单</span></label>
+					      <label style="font-family:Verdana;">&nbsp;>&nbsp;</label>
+					      <label style="font-family:Verdana;"><span id="repairStatus" name="statusvi" class="nvstatusview">施工</span></label>
+					      <label style="font-family:Verdana;">&nbsp;>&nbsp;</label>
+					      <label style="font-family:Verdana;"><span id="finishStatus" name="statusvi" class="nvstatusview">完工</span></label>
+					      <label style="font-family:Verdana;">&nbsp;>&nbsp;</label>
+					      <label style="font-family:Verdana;"><span id="settleStatus" name="statusvi" class="nvstatusview">结算</span></label>
+    					</td>
+    				</tr>
+    		</tbody>
+    	</table>
     </div>
-    <div id="sellForm" class="form">
-        <table style="width: 50%;float: right;">
-            <tr>
-                <td class="title">
-                    <label>套餐金额：</label>
-                </td>
-                <td style="width:80px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="packageSubtotal" name="packageSubtotal"/>
-                </td>
-                <td class="title">
-                    <label>套餐优惠：</label>
-                </td>
-                <td style="width:80px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="packagePrefAmt" name="packagePrefAmt"/>
-                </td>
-                <td class="title">
-                    <label>工时金额：</label>
-                </td>
-                <td style="width:80px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="itemSubtotal" name="itemSubtotal"/>
-                </td>
-                <td class="title">
-                    <label>工时优惠：</label>
-                </td>
-                <td style="width:80px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="itemPrefAmt" name="itemPrefAmt"/>
-                </td>
-            </tr>
-            <tr>
-                <td class="title">
-                    <label>配件金额：</label>
-                </td>
-                <td style="width:80px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="partSubtotal" name="partSubtotal"/>
-                </td>
-                <td class="title">
-                    <label>配件优惠：</label>
-                </td>
-                <td style="width:80px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="partPrefAmt" name="partPrefAmt"/>
-                </td>
-                <td class="title required">
-                    <label>应收总计：</label>
-                </td>
-                <td colspan="3" style="width:80px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" inputStyle="" enabled="false" width="100%" id="mtAmt" name="mtAmt"/>
-                </td>
-            </tr>
-        </table>
+    <div id="sellForm" class="form"  style="float:right;height: 100%;padding-right: 20px;">
+    	<table style='height: 100%'>
+    		<tbody>
+    			<tr>
+    				<td  style='height: 100%'>
+			        <label>总金额：</label>
+			            <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalAmt" name="totalAmt"/>
+			        <label>优惠金额：</label>
+ 			          <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalPrefAmt" name="totalPrefAmt"/>        
+ 			        <label>小计金额：</label>
+ 			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalSubtotal" name="totalSubtotal"/>
+ 
+                      <div style='display: none'>
+			          <input class="nui-hidden" enabled="false" id="packageSubtotal" name="packageSubtotal"/>
+			          <input class="nui-hidden" enabled="false" id="packagePrefAmt" name="packagePrefAmt"/>
+			          <input class="nui-hidden" enabled="false" id="itemSubtotal" name="itemSubtotal"/>
+			          <input class="nui-hidden" enabled="false" id="itemPrefAmt" name="itemPrefAmt"/>
+			          <input class="nui-hidden" enabled="false" id="partSubtotal" name="partSubtotal"/>
+			          <input class="nui-hidden" enabled="false" id="partPrefAmt" name="partPrefAmt"/>
+			          <input class="nui-hidden" enabled="false" id="ycAmt" name="ycAmt"/>
+			        </div>
+    				</td>
+    			</tr>
+    		</tbody>
+    	</table>
     </div>
 </div>
 

@@ -2,26 +2,44 @@ var forgetPass;
 $(function () {
 
 	//显示登录框
-	$("#login").click(openLogin)
+	$("#login").click(openLogin);
 	//显示注册框
-	$("#register").click(openRegister)
+	$("#register").click(openRegister);
 	
 	//登录
-	$("#loginJump").click(loginTest)
+	$("#loginJump").click(loginTest);
 	
 	//发送验证码
-	$("#sentCode").click(sentCode)
+	$("#sentCode").click(sentCode);
+	
+	//放大APP二维码
+	$(".imgbox").mousemove(maxImg).mouseout(function (){
+		$(".max_img").hide();
+	});
+	$(".weixinbox").mousemove(function() {
+		$(".weixin_max_img").show();
+	}).mouseout(function (){
+		$(".weixin_max_img").hide();
+	});
 
 });
 //显示登录框
 function openLogin() {
-	$("#registerBox").hide()
-	$("#loginBox").show()
+	$("#registerBox").hide();
+	$("#loginBox").show();
 }
 //显示注册框
 function openRegister() {
-	$("#registerBox").show()
-	$("#loginBox").hide()
+	$("#registerBox").show();
+	$("#loginBox").hide();
+}
+function maxImg() {
+	console.log(2314);
+	$(".max_img").show();
+}
+function weixiMmaxImg() {
+	console.log(2314);
+	$(".weixin_max_img").show();
 }
 
 //登录验证
@@ -48,6 +66,7 @@ function loginTest() {
 		$(".password_val").focus();
 		return false;
 	}
+
 	
 	document.loginForm.submit();
 	

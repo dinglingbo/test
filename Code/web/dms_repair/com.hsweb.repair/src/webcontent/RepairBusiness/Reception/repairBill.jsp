@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.8.5"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.8.6"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -31,7 +31,7 @@
             line-height:40px;
         }
         .title {
-            width: 80px;
+            width: 60px;
             text-align: right;
         }
         .required {
@@ -305,36 +305,40 @@
             </tr>
         </table>
     </div>
-    <div id="sellForm" class="form">
-        <table style="width: 50%;float: right;">
-            <tr>
+    <div id="sellForm" class="form"  style=" line-height:75px;">
+        <table style="width: 50%;float: right;" >
+            <tr>               
                 <td class="title">
-                    <label>套餐金额：</label>
+                    <label>总金额：</label>
                 </td>
                 <td style="width:80px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="packageSubtotal" name="packageSubtotal"/>
+                
+                    <input class="nui-hidden" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="packageSubtotal" name="packageSubtotal"/>
+                    <input class="nui-hidden" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="packagePrefAmt" name="packagePrefAmt"/>
+                    <input class="nui-hidden" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="itemSubtotal" name="itemSubtotal"/>
+                    <input class="nui-hidden" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="itemPrefAmt" name="itemPrefAmt"/>
+                    <input class="nui-hidden" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="partSubtotal" name="partSubtotal"/>
+                    <input class="nui-hidden" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="partPrefAmt" name="partPrefAmt"/>
+                    <input class="nui-hidden" inputStyle="color:red;font-weight:bold;font-size:14px;" inputStyle="" enabled="false" width="100%" id="ycAmt" name="ycAmt"/>
+                    
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="totalAmt" name="totalAmt"/>
                 </td>
                 <td class="title">
-                    <label>套餐优惠：</label>
+                    <label>优惠金额：</label>
                 </td>
                 <td style="width:80px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="packagePrefAmt" name="packagePrefAmt"/>
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="totalPrefAmt" name="totalPrefAmt"/>
                 </td>
-                <td class="title">
-                    <label>工时金额：</label>
-                </td>
-                <td style="width:80px;">
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="itemSubtotal" name="itemSubtotal"/>
-                </td>
-                <td class="title">
-                    <label>工时优惠：</label>
+                <td class="title" style="width: 90px;">
+                    <label>小计金额(含计次卡金额)：</label>
                 </td>
                 <td style="width:80px;">            	
-                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="itemPrefAmt" name="itemPrefAmt"/>
+                    <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="totalSubtotal" name="totalSubtotal"/>
                 </td>
             </tr>
-            <tr>
-                <td class="title">
+           <tr>
+           
+              <!--    <td class="title">
                     <label>配件金额：</label>
                 </td>
                 <td style="width:80px;">
@@ -353,12 +357,11 @@
                 	<input class="nui-hidden" inputStyle="color:red;font-weight:bold;font-size:14px;" inputStyle="" enabled="false" width="100%" id="ycAmt" name="ycAmt"/>
                     <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" inputStyle="" enabled="false" width="100%" id="mtAmt" name="mtAmt"/>
                 </td>
-            </tr>
+            </tr> 
+            -->
         </table>
     </div>
 </div>
-
-
 <div id="advancedCardTimesWin" class="nui-window"
      title="" style="width:450px;height:200px;"
      showModal="false"

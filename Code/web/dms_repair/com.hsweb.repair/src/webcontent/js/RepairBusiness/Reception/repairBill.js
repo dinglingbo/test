@@ -735,7 +735,10 @@ function setInitData(params){
 			itemPrefAmt:0,
 			partSubtotal:0,
 			partPrefAmt:0,
-			mtAmt:0
+			totalAmt:0,
+			totalPrefAmt:0,
+			totalSubtotal:0,
+			ycAmt:0
 	};
 	sellForm.setData(data);
     if(!params.id){
@@ -786,12 +789,14 @@ function setInitData(params){
                 var p = {
                     data:{
                         guestId: data.guestId||0,
-                        contactorId: data.contactorId||0
+                        contactorId: data.contactorId||0,
+                        carId:data.carId || 0
                     }
                 };
                 getGuestContactorCar(p, function(text){
                     var errCode = text.errCode||"";
                     var guest = text.guest||{};
+                    var car = text.car || {};
                     var contactor = text.contactor||{};
                     if(errCode == 'S'){
                         $("#servieIdEl").html(data.serviceCode);
@@ -822,6 +827,7 @@ function setInitData(params){
                         data.contactorName = contactor.name;
                         data.sex = contactor.sex;
                         data.mobile = contactor.mobile;
+                        data.carModel = car.carModel;
 
                         $("#guestNameEl").html(guest.fullName);
                         $("#showCarInfoEl").html(data.carNo);
@@ -915,8 +921,11 @@ function add(){
 			itemPrefAmt:0,
 			partSubtotal:0,
 			partPrefAmt:0,
-			mtAmt:0
-	};  
+			totalAmt:0,
+			totalPrefAmt:0,
+			totalSubtotal:0,
+			ycAmt:0
+	}; 
     sellForm.setData(data);
     nui.get("mtAdvisorId").setValue(currEmpId);
     nui.get("mtAdvisor").setValue(currUserName);
@@ -981,12 +990,14 @@ function save(){
             var params = {
                 data:{
                     guestId: data.guestId||0,
-                    contactorId: data.contactorId||0
+                    contactorId: data.contactorId||0,
+                    carId:data.carId || 0
                 }
             };
             getGuestContactorCar(params, function(text){
                 var errCode = text.errCode||"";
                 var guest = text.guest||{};
+                var car = text.car || {};
                 var contactor = text.contactor||{};
                 if(errCode == 'S'){
                     $("#servieIdEl").html(data.serviceCode);
@@ -1011,7 +1022,7 @@ function save(){
                     data.guestMobile = guest.mobile;
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
-
+                    data.carModel = car.carModel;
                     billForm.setData(data);
 
                     var status = data.status||0;
@@ -1023,19 +1034,19 @@ function save(){
                         data:{
                             serviceId: data.id||0
                         }
-                    }
+                    };
                     var p2 = {
                         interType: "item",
                         data:{
                             serviceId: data.id||0
                         }
-                    }
+                    };
                     var p3 = {
                         interType: "part",
                         data:{
                             serviceId: data.id||0
                         }
-                    }
+                    };
                     loadDetail(p1, p2, p3);
 
                 }else{
@@ -1043,9 +1054,6 @@ function save(){
                 }
 
             }, function(){});
-
-            
-            
         }
         
     },function(){ 

@@ -63891,7 +63891,7 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node46" name="RpsCareRecord" nodeType="table" displayName="RpsCareRecord" author="Administrator" instanceClass="" table="rps_care_record" genStrategy="native">
+  <nodes xsi:type="model:PEntityNode" id="node46" name="RpsCareRecord" nodeType="table" displayName="RpsCareRecord" author="Administrator" allUseViewModel="true" instanceClass="" table="rps_care_record" genStrategy="native">
     <location x="60" y="22362"/>
     <size height="210" width="150"/>
     <figSize height="20" width="150"/>
@@ -64485,7 +64485,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property1018" name="visitDate" displayName="visitDate" columnName="visit_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="date" overWriteDefaultColumnType="false" showType="Date" update="true" insert="true">
+    <columnProperty id="property1018" name="visitDate" displayName="visitDate" columnName="visit_date" nullAble="true" PK="false" columnType="DATETIME" eosDataType="Date" dasType="timestamp" overWriteDefaultColumnType="false" showType="TimeStamp" update="true" insert="true">
       <comment>提醒日期</comment>
       <viewField dict="false" dictTypeId="" displayName="visitDate" entityField="visitDate" id="visitDate" label="visitDate" name="visitDate" userDefined="true">
         <fieldView showAllAttr="false">

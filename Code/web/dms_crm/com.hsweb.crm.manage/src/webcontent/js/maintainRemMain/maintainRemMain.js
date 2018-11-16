@@ -3,33 +3,27 @@
 */
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
-var gridCarUrl = baseUrl+"com.hsapi.crm.svr.visit.queryLoseGuestByDay.biz.ext";
+var gridCarUrl = baseUrl+"com.hsapi.repair.repairService.query.queryMainRemind.biz.ext";
 var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
 var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
 var visitModeCtrlUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130703000021&fromDb=true";
-var mainReasonUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130705000008&fromDb=true";
-var detailReasonUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130705000009&fromDb=true";
 
 var gridCar = null;
-var tabForm = null; 
+var tabForm = null;
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
 var mainId_ctrl = null;
 var visitMode_ctrl = null;
-var mainReason_ctrl = null;
-var subReason_ctrl = null;
 var tcarNo_ctrl = null;
-var loseParam_ctrl = null;
 var memList = [];
 var mtAdvisorIdEl = null;
 var mtAdvisorEl = null;
 var visitManEl = null;
 var visitIdEl = null;
 var table1Form = null;
-var visitConForm = null;
+var tmobileEl=null;
 
 $(document).ready(function(){
-
 	rpsPackageGrid = nui.get("rpsPackageGrid");
 	rpsItemGrid = nui.get("rpsItemGrid");
 	mtAdvisorEl = nui.get("mtAdvisor");
@@ -38,43 +32,30 @@ $(document).ready(function(){
 	visitIdEl = nui.get("visitId");
 	tabForm = new nui.Form("#tabs");
 	table1Form = new nui.Form("#table1");
-	visitConForm = new nui.Form("#visitCon");
-	tabForm.setEnabled(false);
-	visitConForm.setEnabled(true);
 	tcarNo_ctrl = nui.get("tcarNo");
-	loseParam_ctrl = nui.get("loseParam");
-	setLoseParams();
-	visitMode_ctrl = nui.get("mode");
+	tmobileEl=nui.get('tmobile');
+	visitMode_ctrl = nui.get("visitMode");
 	visitMode_ctrl.setUrl(visitModeCtrlUrl);
-
-	mainReason_ctrl = nui.get("mainReason");
-	mainReason_ctrl.setUrl(mainReasonUrl);
-	subReason_ctrl = nui.get("subReason");
-	subReason_ctrl.setUrl(detailReasonUrl);
-	
 	gridCar = nui.get("gridCar");
 	gridCar.setUrl(gridCarUrl);
-	gridCar.load();
+
 
 	gridCar.on("rowclick",function(e){
 		var record = e.record;
 		SetData(record);
 	});
 	
-    document.onkeyup = function(event) {
+	document.onkeyup = function(event) {
         var e = event || window.event;
         var keyCode = e.keyCode || e.which;// 38向上 40向下
         
 
-        if ((keyCode == 13)) { // ESC
-        	quickSearch(0);
+        if ((keyCode == 13)) { // Enter
+        	onSearch();
         }
 
     }
-	initMember("mtAdvisor",function(){
-		memList = mtAdvisorEl.getData();
-		nui.get("scoutMan").setData(memList); 
-	}); 
+	onSearch();
 
 });
 
@@ -91,17 +72,9 @@ function visitManChanged(e){
 }
 
 function SetData(rowData){
-	if(!rowData.lastServiceId){
-		showMsg("找不到对应的工单！","E");
-		tabForm.setData([]);
-		table1Form.setData([]);
-		rpsPackageGrid.setData([]);
-		rpsItemGrid.setData([]);
-		return;
-	}
 	var params = {
 		data: {
-			id: rowData.lastServiceId
+			id: rowData.serviceId
 		}
 	};
 	getMaintain(params, function(text){
@@ -120,6 +93,7 @@ function SetData(rowData){
 				var contactor = text.contactor||{};
 				if(errCode == 'S'){
 					
+
 					var form ={
 						mainId:rowData.id,
 						guest:guest.fullName,
@@ -138,20 +112,16 @@ function SetData(rowData){
 						enterDate:data.enterDate, 
 						outDate:data.outDate
 					}; 
-					var visitdetaildata = searchVisitDetail(rowData.guestId);
+					var visitdetaildata = searchVisitDetail(rowData.id);
 					if(visitdetaildata){
-						form.mode = visitdetaildata.mode;
-						form.scoutMan = visitdetaildata.scoutMan;
-						form.scoutDate = visitdetaildata.scoutDate;
-						form.content = visitdetaildata.content;
-						form.nextScoutDate = visitdetaildata.nextScoutDate;
-						form.predComeDate = visitdetaildata.predComeDate;
-						form.mainReason = visitdetaildata.mainReason;
-						form.subReason = visitdetaildata.subReason;
-						form.isContinueScout = visitdetaildata.isContinueScout;
-						form.nowMtComp = visitdetaildata.nowMtComp;
+						form.visitMode = visitdetaildata.visitMode;
+						form.visitId = visitdetaildata.visitId;
+						form.visitMan = visitdetaildata.visitMan;
+						form.visitDate = visitdetaildata.visitDate;
+						form.visitContent = visitdetaildata.visitContent;
+						form.careDueDate = visitdetaildata.careDueDate;
+						form.careDayCycle = visitdetaildata.careDayCycle;
 						form.detailId = visitdetaildata.id;
-
 					}
 					tabForm.setData(form);
 					table1Form.setData(data);
@@ -176,6 +146,10 @@ function SetData(rowData){
 						}
 					};
 					loadDetail(p1, p2, p3);
+
+
+
+
 				}
 			});
 		}
@@ -211,47 +185,44 @@ function loadDetail(p1, p2, p3){
 
 function save(){
 	var data = tabForm.getData();
+	var row=gridCar.getSelected();
 	var record = {
-		id:data.detailId,
-		mode:data.mode,
-		scoutMan:data.scoutMan,
-		scoutDate:data.scoutDate,
-		content:data.content,
-		nextScoutDate:data.nextScoutDate,
-		predComeDate:data.predComeDate,
-		mainReason:data.mainReason,
-		subReason:data.subReason,
-		isContinueScout:data.isContinueScout,
-		nowMtComp:data.nowMtComp,
+		id:data.id,
+		orgid: currOrgId,
+		careType:1,
+		guestId:data.guestId,
 		carId:data.carId,
-		guestId:data.guestId
+		visitMode : data.visitMode,
+		visitContent:data.visitContent,
+		visitId:currUserId,
+		visitMan:currUserName,
+		visitDate:data.visitDate
 	};
 	nui.ajax({
-		url:baseUrl + "com.hsapi.crm.svr.visit.saveVisitLoseDetail.biz.ext",
+		url:baseUrl + "com.hsapi.repair.repairService.crud.saveCareRecord.biz.ext",
 		type:"post",
 		data:{
-			detail:record
+			data:record
 		},
 		success:function(text){
 			if(text.errCode == "S"){
-				var detailData = text.detailData;
-				showMsg("保存成功！","S");
-				nui.get("detailId").setValue(detailData.id);
+				var detailData = text.list;
+//				showMsg("保存成功！","S");
+				nui.get("id").setValue(detailData.id);
+				gridCar.removeRow (row, true);
 			}
 
 		}
 	});
 }
 
-function searchVisitDetail(gid){
+function searchVisitDetail(mid){
 	var ret = null;
 	var p ={
-		id:"",
-		guestId:gid,
-		carId:""
+		mainId:mid
 	};
 	nui.ajax({
-		url:baseUrl + "com.hsapi.crm.svr.visit.QueryCrmVisitLoseDetail.biz.ext",
+		url:baseUrl + "com.hsapi.crm.svr.visit.queryCrmVisitRecord.biz.ext",
 		type:"post",
 		async: false,
 		data:{
@@ -275,57 +246,36 @@ function searchVisitDetail(gid){
 
 
 function quickSearch(e){
-	var lparam = loseParam_ctrl.value;
 	var  p = null;
-	if(e == 0){//车牌号
+	if(e == 1){//我接待的车
+		p ={
+			mtAdvisorId:currUserId
+		};
+	}
+	if(e == 2){//所有车辆
+
+	}
+	if(e == 3){
 		p = {
 			carNo:tcarNo_ctrl.value,
-			sloseDay:120,
+			mobile :tmobileEl.value
 		};
 	}
-	if(e == 1){//今日计划跟进客户
-		p ={
-			loseDay:120
-		};
-	}
-	if(e == 2){//新流失客户
-		p ={
-			sloseDay:120,
-			eloseDay:180
-		};
-	}
-	if(e == 3){//流失超过半年客户
-		p = {
-			sloseDay:182
-		};
-	}
-		if(e == 4){//流失超过一年的客户
-			p = {
-				sloseDay:365
-			};
-		}
-		gridCar.load({params:p,token:token});
-	}
+	gridCar.load({params:p,token:token});
+}
 
-
-	function setLoseParams(){
-		nui.ajax({
-			url:baseUrl + "com.hsapi.crm.svr.visit.queryRemindParams.biz.ext",
-			type:"post",
-			async: false,
-			data:{
-				token:token
-			},
-			success:function(text){
-				if(text.errCode == "S"){
-					var tdata = text.data;
-					if(tdata.length == 1){
-						loseParam_ctrl.setValue(tdata[0].param9);
-					}else if(tdata.length > 1 ){
-						showMsg("未设置流失客户相关参数！","W");
-					}else{}
-				}
-
-			}
-		});
+function onSearch(){
+	var params={}
+	if(tcarNo_ctrl.value ||tmobileEl.value ){
+		quickSearch(3);
 	}
+	else{		
+		doSearch(params);
+	}
+}
+
+function doSearch(params){
+	params.isNeedRemind=1;
+	params.remindStatus=0;
+	gridCar.load({params:params,token:token});
+}

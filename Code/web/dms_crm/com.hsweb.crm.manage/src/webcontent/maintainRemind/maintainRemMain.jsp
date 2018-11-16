@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.17" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/maintainRemMain.js?v=1.0.40" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0; 
@@ -31,7 +31,9 @@ pageEncoding="UTF-8" session="false" %>
         <label style="font-family:Verdana;">快速查询：</label>
         <label style="font-family:Verdana;">车牌号：</label>
         <input class="nui-textbox" name="tcarNo" id="tcarNo">
-        <a class="nui-button" plain="true" onclick="quickSearch(3)" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+        <label style="font-family:Verdana;">手机号：</label>
+        <input class="nui-textbox" name="tmobile" id="tmobile">
+        <a class="nui-button" plain="true" onclick="onSearch()" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
 
     </div>
@@ -46,11 +48,18 @@ pageEncoding="UTF-8" session="false" %>
                     pageSize="20" totalField="page.count" showPager="true">
 
                     <div property="columns">
-                        <div type="indexcolumn" width="15">序号</div>
+                        <div type="indexcolumn" width="25">序号</div>
                         <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
-                        <div field="mtAdvisor" width="70" headerAlign="center" align="center">维修顾问</div>
-                        <div field="serviceCode" width="130" headerAlign="center" align="center">工单号</div>
-                        <div field="leaveDays" width="70" headerAlign="center" align="center">离厂天数</div>
+                        <div field="carModel" width="170" headerAlign="center"align="center">车型</div>
+                        <div field="guestName" width="70" headerAlign="center"align="center">客户名称</div>
+                        <div field="leaveDays" width="70" headerAlign="center"align="center">离厂天数</div>
+                        <div field="finalRemindDay" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后提醒时间</div>
+                        <div field="chainComeTimes" width="70" headerAlign="center"align="center">连锁次数</div>
+                        <div field="lastComeDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后进厂时间</div>
+                        <div field="firstComeDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">首次来厂时间</div>
+                        <div field="lastLeaveDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后离厂时间</div>
+                        <div field="careDueDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center" align="center">保养到期时间</div>
+                        <div field="preAdvisorName" width="70" headerAlign="center" align="center">营销员</div>
                     </div>
                 </div> 
             </div> 
@@ -168,7 +177,7 @@ pageEncoding="UTF-8" session="false" %>
 					            </table>
 					        </div>
                             <input class="nui-hidden" name="visitId" id="visitId"/>
-                            <input class="nui-hidden" name="detailId" id="detailId"/>
+                            <input class="nui-hidden" name="id" id="id"/>
                             <table class="tmargin" style="table-layout: fixed;width:100%">
                                 <tr class="htr">
                                     <td  style="width: 70px;">提醒方式：</td>

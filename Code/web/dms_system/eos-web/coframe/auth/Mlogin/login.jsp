@@ -3,11 +3,11 @@
 <%@page pageEncoding="UTF-8"%>
 <%@page import="com.primeton.cap.AppUserManager"%>
 <%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env"%>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
 <head>
+
 <title>汽修达人管理平台</title>
-<script  src="<%= request.getContextPath() %>/coframe/auth/Mlogin/js/jquery-1.9.1.min.js"></script>
-<script  src="<%= request.getContextPath() %>/coframe/auth/Mlogin/js/login.js?v=1.0.0"></script>
 <meta charset="utf-8">
 <meta name="keywords" content="汽修达人管理平台"/>
 <meta name="description" content="汽修达人管理平台"/>
@@ -20,11 +20,11 @@
 <meta name="format-detection" content="telephone=no, address=no, email=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
-<%-- <%
+ <%
    String contextPath=request.getContextPath();
    String url = null;
    String loginUrl = "org.gocom.components.coframe.auth.login.login.flow";
-   loginUrl = "com.hsapi.system.auth.login.login.flow";
+   loginUrl = "com.hsapi.system.auth.login.mlogin.flow";
    String regUrl = "com.hsapi.system.auth.login.register.flow";
    
    HttpSecurityConfig securityConfig = new HttpSecurityConfig();
@@ -47,7 +47,7 @@
 	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
 	String sysApi = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
 	String sendUrl = apiPath + sysApi + "/com.hsapi.system.tenant.register.sendMsg.biz.ext";
- %> --%>
+ %> 
 <style type="text/css">
 body { 
 	min-width: 1200px;
@@ -228,10 +228,10 @@ body {
 	<div class="login" id="registerBox">
 		<div class="title">注册</div>
 		<label>
-			<input type="text" id="userName" value="" placeholder="请输入帐号名" maxlength="11" />
+			<input type="text" id="userId" name="userId" value="" placeholder="请输入帐号名" maxlength="11" />
 		</label>
 		<label>
-			<input type="password" id="password" value="" placeholder="请设置密码" maxlength="20" />
+			<input type="password" id="password" name="password" value="" placeholder="请设置密码" maxlength="20" />
 		</label>
 		<label>
 			<input type="text" class="number" id="senderTel" value="" placeholder="手机号" maxlength="11" />
@@ -253,7 +253,7 @@ body {
 		</label>
 		<div class="you">已经有帐号？  <span class="blue" id="login">登录</span></div>
 	</div>
-	
+<form method="post"	name="loginForm" onsubmit="return login();" action="<%=url%>">	
 	<div class="login" id="loginBox">
 		<div class="loginTitle">
 			<div class="log">
@@ -268,10 +268,11 @@ body {
 			</div>		
 		</div>
 		<label>
-			<input type="text" id="loginUserName" value="" class="accountNo" placeholder="用户名" maxlength="11" />
+		<p  class="errorC"><span id="error" style="font-size:25px;color:red"></span></p>
+			<input type="text" id="userId" name="userId" value="" class="accountNo" placeholder="用户名" maxlength="11" />
 		</label>
 		<label>
-			<input type="password" id="loginPassword" value="" class="password_val" placeholder="密码" maxlength="20" />
+			<input type="password" d="password" name="password" value="" class="password_val" placeholder="密码" maxlength="20" />
 		</label>
 		<label>
 			<div class="button" id="loginJump">登录</div>
@@ -291,12 +292,14 @@ body {
 				</div>
 			</div>
 			<div class="you">还没帐号？  <span class="blue" id="register">立即注册</span></div>
-		</div>
-		
+		</div>	
 	</div>
+</form>
 </div>
+<script src="jquery-1.9.1.min.js?ver=1.01"></script>
+<script src="login.js?ver=1.02"></script>
 <script type="text/javascript">
-	    <%--  <% 
+	   <% 
 	     	Object result = request.getAttribute("result");
 	     	String userName = (String)request.getAttribute("userId");
 	     	if (userName==null)userName="";
@@ -330,13 +333,12 @@ body {
 	      	 if(msg){
 		      	//$("#error").addClass("errorC");
 		      	//$("#error").html(msg);
-		      	openLogin();
 		      	Dialog.popup(msg);
 	      	 }else{
 	      	 	//$("#error").addClass("error");
 		      	//$("#error").html("");
 	      	 }
-	      } --%>
+	      } 
 
 </script>
 

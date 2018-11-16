@@ -59,6 +59,7 @@ function loginTest() {
 	if (!loginData.loginName) {
 		//Dialog.popup('请输入帐号！');
 		$("#error").html('请输入帐号！');
+		showError('请输入帐号！');
 		$(".accountNo").focus();
 		return false;
 	}

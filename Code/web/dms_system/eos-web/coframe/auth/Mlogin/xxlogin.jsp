@@ -3,6 +3,7 @@
 <%@page pageEncoding="UTF-8"%>
 <%@page import="com.primeton.cap.AppUserManager"%>
 <%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env"%>
+
 <!doctype html>
 <head>
 <title>汽修达人管理平台</title>
@@ -17,17 +18,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="format-detection" content="telephone=no, address=no, email=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <script src="<%=request.getContextPath()%>/coframe/auth/Xlogin/Xlogin.js?v=1.0.3">
-	</script>
-    
-    <link rel="stylesheet" type="text/css" href="/css/reset.css" />
 
-	<%
+<%-- <%
    String contextPath=request.getContextPath();
    String url = null;
    String loginUrl = "org.gocom.components.coframe.auth.login.login.flow";
-   loginUrl = "com.hsapi.system.auth.login.wlogin.flow";
+   loginUrl = "com.hsapi.system.auth.login.login.flow";
    String regUrl = "com.hsapi.system.auth.login.register.flow";
    
    HttpSecurityConfig securityConfig = new HttpSecurityConfig();
@@ -50,8 +46,10 @@
 	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
 	String sysApi = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
 	String sendUrl = apiPath + sysApi + "/com.hsapi.system.tenant.register.sendMsg.biz.ext";
- %>
-    <style>
+ %> --%>
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+ <script type="text/javascript" src="js/login.js?v=1.0.0"></script> 
+<style type="text/css">
 body { 
 	min-width: 1200px;
 	background-color: #0B57AB;
@@ -75,15 +73,36 @@ body {
 	background-color: #FFF;
 	top: 150px;
 	right: 140px;
-	padding: 0 33px 30px;
+	padding-bottom: 20px;
+	
 }
 .login_box .login .title {
 	padding: 20px 0 15px;
 	font-size: 18px;
 	text-align: center;
+	height: 70px;
+}
+.login_box .login .loginTitle {
+	height: 70px;
+	padding-left: 30px;
+}
+.login_box .login .loginTitle .log {
+	float: left;
+	font-size: 18px;
+	text-align: left;
+	padding-top: 20px;
+}
+.login_box .login .loginTitle .log span {
+	display: block;
+	font-size: 10px;
+	color: #A5A5A5;
+}
+.login_box .login .loginTitle .weixinbox {
+	float: right;
 }
 .login_box .login label {
-	width: 100%;
+	padding: 0 30px;
+	width: 80%;
 	margin: 0;
 	float: left;
 }
@@ -104,6 +123,35 @@ body {
 	border-radius: 0;
 	height: 34px;
 }
+.login_box .login .app {
+	float: left;
+	display: block;
+	margin-top: 10px;
+	width: 80%;
+	padding: 0 30px;
+}
+.imgbox{
+	float: left;
+	position: relative;
+	cursor: pointer;
+}
+.imgbox .max_img{
+	display: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 250px;
+	height: 250px;
+}
+.imgbox .max_img img{ 
+	width: 100%;
+	height: 100%;
+}
+
+.login_box .login .app > .you{
+	float: right;
+	color: #A5A5A5;
+}
 .login_box .login input.min { width: initial;}
 .login_box .login .button {
 	background-color: #95B93D;
@@ -112,12 +160,32 @@ body {
 	text-align: center;
 	color: #FFF;
 }
-.blue { color: #0050FB; cursor: pointer;}
-.you {
+.login_box .blue { color: #0050FB;cursor: pointer;}
+.login_box .you {
 	text-align: center;	
 	margin-top: 20px;
 }
-#registerBox {display: none;}
+#registerBox{display: none;
+}
+.weixin_img {
+	display: block;
+	width: 45px;
+	height: 47px;
+	position: absolute;
+	top: 0;
+	right: -33px;
+	cursor: pointer;
+}
+.weixin_max_img {
+	z-index: 9999;
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0px;
+	width: 350px;
+	height: 320px;
+}
+.weixin_max_img img {width: 100%; height: 100%;}
 .checkbox_box {
 	display: inline-block;
 	position: relative;
@@ -136,7 +204,7 @@ body {
     position: absolute;
     top: 4px;
     left: 0;
-    width: 16px ;
+    width: 16px;
     height: 16px;
     border-radius: 2px;
     border: 1px solid #E5E5E5;
@@ -154,7 +222,7 @@ body {
       transform: rotate(45deg);
 }
 </style>
-    
+
 </head>
 <body>
 <div class="login_box">
@@ -186,34 +254,50 @@ body {
 		</label>
 		<div class="you">已经有帐号？  <span class="blue" id="login">登录</span></div>
 	</div>
-	<form method="post"	name="loginForm" onsubmit="return login();" action="<%=url%>">
+	
 	<div class="login" id="loginBox">
-		<div class="title">登录</div>
+		<div class="loginTitle">
+			<div class="log">
+				欢迎登录车道商户版
+				<span>为了保障您顺畅的使用，建议使用谷歌/火孤/360浏览器</span>
+			</div>
+			<div class="weixinbox">
+				<img src="images/weixin-min-img.png"  />
+				<div class="weixin_max_img">
+					<img src="images/app-min-img.png"  />
+				</div>
+			</div>		
+		</div>
 		<label>
-			<input type="text" id="loginUserName" value="" class="accountNo" placeholder="请输入账号" maxlength="11" />
+			<input type="text" id="loginUserName" value="" class="accountNo" placeholder="用户名" maxlength="11" />
 		</label>
 		<label>
-			<input type="password" id="loginPassword" class="password_val" value="" placeholder="请输入密码" maxlength="20" />
+			<input type="password" id="loginPassword" value="" class="password_val" placeholder="密码" maxlength="20" />
+		</label>
+		<label>
+			<div class="button" id="loginJump">登录</div>
 		</label>
 		<label>
 			<div class="checkbox_box">
 				<input type="checkbox" id="memory" checked="checked" /><div class="show-box"></div>
 			</div>
-			<span>记住密码</span>
+			登录即同意 <span class="blue">隐私政策/用户协议</span>
 		</label>
-		<label>
-			<div class="button" id="loginJump" type="submit">登录</div>
-		</label>
-		<div class="you">暂无帐号？  <span class="blue" id="register">注册</span></div>
+
+		<div class="app">
+			<div class="imgbox">
+				<img src="images/app-min-img.png"  />
+				<div class="max_img">
+					<img src="images/app-min-img.png"  />
+				</div>
+			</div>
+			<div class="you">还没帐号？  <span class="blue" id="register">立即注册</span></div>
+		</div>
+		
 	</div>
-	</form>
 </div>
-<script type="text/javascript" src="<%= request.getContextPath() %>/coframe/auth/login/js/jquery-1.9.1.min.js"></script>
-<!-- <script src="/basis_js/jquery.js?ver=1.01"></script>
-<script src="/basis_js/plugin.js?ver=1.01"></script>
-<script src="/basis_js/basic.js?ver=1.01"></script> -->
 <script type="text/javascript">
-	     <% 
+	    <%--  <% 
 	     	Object result = request.getAttribute("result");
 	     	String userName = (String)request.getAttribute("userId");
 	     	if (userName==null)userName="";
@@ -253,7 +337,7 @@ body {
 	      	 	//$("#error").addClass("error");
 		      	//$("#error").html("");
 	      	 }
-	      }
+	      } --%>
 
 </script>
 

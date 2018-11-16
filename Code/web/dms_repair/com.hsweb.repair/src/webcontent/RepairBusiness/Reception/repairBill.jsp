@@ -329,7 +329,7 @@
                 <td style="width:80px;">
                     <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="totalPrefAmt" name="totalPrefAmt"/>
                 </td>
-                <td class="title" style="width: 90px;">
+                <td class="title" style="width:20%;">
                     <label>小计金额(含计次卡金额)：</label>
                 </td>
                 <td style="width:80px;">            	

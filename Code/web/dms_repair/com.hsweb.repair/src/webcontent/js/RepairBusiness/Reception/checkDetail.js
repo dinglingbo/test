@@ -16,7 +16,7 @@ var fserviceId = 0;
 var actionType = 'new';
 var checkMainId = null;
 var checkMainName = null;
-var mainParams = null;
+var mainParams = {};
 var isShowSave = null;
 var checkTypeList=[];
 var  fguestId =null;
@@ -24,7 +24,7 @@ var lastUrl=baseUrl+"com.hsapi.repair.baseData.query.queryLastCheckModel.biz.ext
 $(document).ready(function ()
 {
 
-
+	mainParams.isCheckMain ="Y";
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
     billForm = new nui.Form("#billForm");
@@ -449,7 +449,7 @@ function isCheckMainY(){
 
 function isCheckMainN(){
 //    nui.get("checkMan").disable();
-    $("#addBtn").hide();
+    //$("#addBtn").hide();
     $("#history").show();
     //$("#onPrint").hide();
     var mparams = {
@@ -520,6 +520,9 @@ function isCheckMainN(){
                         checkMainId.setEnabled(false);
                         mainGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
                         mainGrid.load({mainId:mainParams.row.id,token:token});
+                    }else{
+                    	checkMainId.setEnabled(true);
+                    	mainGrid.setData(null);
                     }
                 }
 
@@ -564,20 +567,28 @@ function SearchCheckMain(sId) {
 
 
 function saveb(){
+	
+	if(!(nui.get('guestFullName').value) && !(nui.get('search_name').value)){
+		showMsg("请先添加客户","W");
+		return;
+	}
+	
     if(!(nui.get("checkMainId").value||nui.get("checkMainId").text)){
-        showMsg("请先选择模板!","E");
+        showMsg("请先选择模板!","W");
         return;
     }
-
+    
     if(mainParams.isCheckMain == "Y"){
         saveCheckMain();
-    }else{
+    }else if(mainParams.isCheckMain == "N"){
         nui.mask({
             el: document.body,
             cls: 'mini-mask-loading',
             html: '保存中...'
         });
         saveDetail();
+    }else{
+    	saveCheckMain();
     }
 
 }
@@ -691,6 +702,7 @@ function saveCheckMain(){//isCheckMain == "Y"
 		}
 	}
     var mdata = billForm.getData();
+    mdata.checkPoint=100;
     nui.ajax({
         url : baseUrl + "com.hsapi.repair.repairService.repairInterface.saveCheckMainA.biz.ext",
         type : "post",

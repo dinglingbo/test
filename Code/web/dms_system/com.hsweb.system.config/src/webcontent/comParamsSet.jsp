@@ -9,7 +9,7 @@
 -->
 <head>
   <title>工单设置</title>
-  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.0"></script>
+  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.1"></script>
   <style type="text/css">
 
     .title {
@@ -52,7 +52,7 @@
 
     <div id="basicInfoForm" class="form" contenteditable="false" >
         <table class="table" id="table1"> 
-            <tr>
+            <!-- <tr>
                 <td class="tbtext">综合服务单流程控制：</td>
                 <td class="tbCtrl" >
                     <div id="repairBillControlFlag" name="repairBillControlFlag" 
@@ -60,7 +60,7 @@
                          repeatDirection="" repeatLayout="table" 
                          textField="text" valueField="id" ></div>
                 </td>      
-            </tr>
+            </tr> -->
             <tr>
                 <td class="tbtext">完工、结算配件必须出库：</td>
                 <td class="tbCtrl" >
@@ -97,7 +97,7 @@
                         textField="text" valueField="id" ></div>
                 </td>      
             </tr>
-            <tr>
+            <!--<tr>
                 <td class="tbtext">是否隐藏手机号：</td>
                 <td class="tbCtrl" >
                     <div id="repairBillMobileFlag" name="repairBillMobileFlag" 
@@ -105,7 +105,7 @@
                         repeatDirection="" repeatLayout="table" 
                         textField="text" valueField="id" ></div>
                 </td>      
-            </tr>
+            </tr>-->
             <tr>
                 <td class="tbtext">哪些类别工时开单不能改价：</td>
                 <td class="tbCtrl" >

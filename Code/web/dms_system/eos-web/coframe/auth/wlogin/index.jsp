@@ -106,7 +106,7 @@
                    <!--  <li id="orgName" ><a href="#">所属：</a></li> -->
                      <li><a href="javascript:myMessage();"><i class="fa fa-comments-o"></i> 我的消息</a></li>
                      <li><a href="javascript:updateEmployee();"><i class="fa fa-pencil-square-o"></i> 个人设置</a></li> 
-                     <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li>
+                    <!--  <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
                     <!-- <li><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li> -->
                     <li><a href="<%=request.getContextPath()%>/coframe/auth/wlogin/logout.jsp"><i class="fa fa-user"></i> 退出登录</a></li>
                 </ul>
@@ -253,9 +253,9 @@
 				showMsg("此用户无法修改","W");
 			}else{
 				    nui.open({
-				        url: webPath + contextPath + "/common/employeeEdit.jsp?token="+token,
+				        url: webPath + contextPath + "/com.hs.common.homePageEmployeeEdit.flow?token="+token,
 				        width: 680,         //宽度
-				        height: 430,        //高度
+				        height: 230,        //高度
 				        title: "员工信息",      //标题 组织编码选择
 				        allowResize:true,
 				        onload: function () {

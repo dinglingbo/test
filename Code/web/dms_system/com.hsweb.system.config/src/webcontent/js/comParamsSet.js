@@ -14,23 +14,23 @@ var openToGuestQrcode = null;
  
 $(document).ready(function(v) {
     basicInfoForm = new nui.Form("#basicInfoForm");
-    repairBillControlFlag = nui.get("repairBillControlFlag");
+    //repairBillControlFlag = nui.get("repairBillControlFlag");
     repairBillPartFlag = nui.get("repairBillPartFlag");
     repairBillQrcodeFlag = nui.get("repairBillQrcodeFlag");
     repairBillQrSettleFlag = nui.get("repairBillQrSettleFlag");
     repairBillCmodelFlag = nui.get("repairBillCmodelFlag");
-    repairBillMobileFlag = nui.get("repairBillMobileFlag");
+    //repairBillMobileFlag = nui.get("repairBillMobileFlag");
     editParice = nui.get("editParice");
     rate = nui.get("rate");
     openToArchives = nui.get("openToArchives");
     openToGuestQrcode = nui.get("openToGuestQrcode");
     
-    repairBillControlFlag.setData(radioList);
+    //repairBillControlFlag.setData(radioList);
     repairBillPartFlag.setData(radioList);
     repairBillQrcodeFlag.setData(radioList);
     repairBillQrSettleFlag.setData(radioList);
     repairBillCmodelFlag.setData(radioList);
-    repairBillMobileFlag.setData(radioList);
+    //repairBillMobileFlag.setData(radioList);
     openToArchives.setData(typeList);
     openToGuestQrcode.setData(typeList);
 

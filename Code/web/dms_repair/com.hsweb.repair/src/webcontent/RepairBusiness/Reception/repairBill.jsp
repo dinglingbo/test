@@ -305,7 +305,7 @@
             </tr>
         </table>
     </div>
-    <div id="sellForm" class="form"  style=" line-height:75px;">
+    <div id="sellForm" class="form"  style=" line-height:50px;">
         <table style="width: 50%;float: right;" >
             <tr>               
                 <td class="title">
@@ -329,7 +329,7 @@
                 <td style="width:80px;">
                     <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false" width="100%" id="totalPrefAmt" name="totalPrefAmt"/>
                 </td>
-                <td class="title" style="width:20%;">
+                <td class="title" style="width:30%;">
                     <label>小计金额(含计次卡金额)：</label>
                 </td>
                 <td style="width:80px;">            	

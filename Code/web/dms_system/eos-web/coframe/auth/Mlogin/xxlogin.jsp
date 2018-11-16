@@ -4,11 +4,10 @@
 <%@page import="com.primeton.cap.AppUserManager"%>
 <%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env"%>
 
-<!doctype html>
 <head>
 <title>汽修达人管理平台</title>
-
- <script type="text/javascript" src="../Mlogin/js/login.js?v=1.0.0" ></script> 
+<script  src="<%= request.getContextPath() %>/coframe/auth/Mlogin/js/jquery-1.9.1.min.js"></script>
+<script  src="<%= request.getContextPath() %>/coframe/auth/Mlogin/js/login.js?v=1.0.0"></script>
 <meta charset="utf-8">
 <meta name="keywords" content="汽修达人管理平台"/>
 <meta name="description" content="汽修达人管理平台"/>
@@ -49,8 +48,6 @@
 	String sysApi = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
 	String sendUrl = apiPath + sysApi + "/com.hsapi.system.tenant.register.sendMsg.biz.ext";
  %> --%>
-<script type="text/javascript" src="Mlogin/js/jquery-1.9.1.min.js"></script>
- <script type="text/javascript" src="../Mlogin/js/login.js?v=1.0.0" ></script> 
 <style type="text/css">
 body { 
 	min-width: 1200px;

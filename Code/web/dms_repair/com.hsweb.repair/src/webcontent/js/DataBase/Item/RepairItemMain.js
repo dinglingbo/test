@@ -10,7 +10,8 @@ var isOpenWin = 0;
 var tempGrid = null;
 var xs = 0;
 var isChooseClose = 1;//默认选择后就关闭窗体
-
+var servieTypeList = [];
+var servieTypeHash = {};
 $(document).ready(function()
 {
 	queryForm = new nui.Form("#queryForm");
@@ -87,6 +88,21 @@ $(document).ready(function()
 			tempGrid.removeRow(row);
         }
     });
+	 initServiceType("serviceTypeId",function(data) {
+	        servieTypeList = nui.get("serviceTypeId").getData();
+	        servieTypeList.forEach(function(v) {
+	            servieTypeHash[v.id] = v;
+	        });
+	 });
+	/* rightGrid.on("drawcell", function (e) {
+        switch (e.field) {
+            case "serviceTypeId":
+                e.cellHtml = servieTypeHash[e.value].name;
+                break;
+            default:
+                break;
+        }
+	 });*/
 	nui.get("search-name").focus();
 	document.onkeyup=function(event){
         var e=event||window.event;

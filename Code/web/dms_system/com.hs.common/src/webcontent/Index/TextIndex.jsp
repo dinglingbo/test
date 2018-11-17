@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
   <title>首页</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.52"></script>
+    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.54"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css" rel="stylesheet" type="text/css" />
@@ -38,7 +38,7 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="toCarWashBill()">
                             <i class="fa fa-shower fa-4x  fa-inverse"></i> 
-                            <p>洗车开单</p> 
+                            <p>洗美开单</p> 
                         </a>
                     </div> 
                     <div class="menu_pannel menu_pannel_bg">
@@ -80,7 +80,7 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="toVisitMain()">
                             <i class="fa fa-handshake-o fa-4x  fa-inverse"></i>
-                            <p>工单回访</p> 
+                            <p>客户回访</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">

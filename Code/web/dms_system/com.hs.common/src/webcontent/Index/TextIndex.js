@@ -24,6 +24,20 @@ $(document).ready(function(v) {
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
         }
+		if (e.field == "recordDate") {
+			var str =e.cellHtml.split(" "); 
+			var qian = str[0].split("-");
+			var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
+				e.cellHtml = time;
+			}
+		if (e.field == "planFinishDate") {
+			if(e.cellHtml!=""&&e.cellHtml!=null){
+				var str =e.cellHtml.split(" "); 
+				var qian = str[0].split("-");
+				var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
+				e.cellHtml = time;
+			}
+		}
     });
 
     setTimeout(function(){

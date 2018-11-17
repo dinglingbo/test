@@ -68,7 +68,22 @@
                 <input class="nui-textbox" id="partNameAndPY" name="partNameAndPY" emptyText="输入查询条件" width="120" />
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch">
                   <span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-
+				<span class="separator"></span>
+				<input id="mtAdvisorId"
+					 name="mtAdvisorId" 
+					class="nui-combobox" 
+					textField="empName"
+	                valueField="empId" 
+	                emptyText="请选择领料人"
+	                required="true"
+	                url=""
+	                allowInput="true"
+	                showNullItem="false" 
+	                valueFromSelect="true"
+	                nullItemText="请选择领料人"
+				/>
+				<input class="nui-textbox" id="remark" required="true" name="remark" emptyText="请填写备注" width="120" />
+				<span class="separator"></span>
                   <a class="nui-button" iconCls="" plain="true" onclick="onOk">
                       <span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
                   </td>
@@ -101,8 +116,8 @@
             <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
             <div field="stockQty" name="stockQty" allowSort="true"  width="60" headerAlign="center" align="center" header="库存数量" datatype="float" summaryType="sum"></div>
             <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" align="center" header="库存单价"></div>
-            <div field="outQty" name="outQty" width="100" headerAlign="center" align="center" header="领料数量" datatype="float" summaryType="sum">
-                <input property="editor" class="nui-textbox" vtype="float"/> 
+            <div field="outQty" name="outQty" width="100"  headerAlign="center" align="center" header="领料数量" datatype="float" summaryType="sum">
+                <input property="editor" class="nui-textbox" required="true" vtype="float"/> 
             </div> 
             <div field="billTypeId" width="55px" headerAlign="center" align="center" allowSort="true" header="票据类型"></div>
             <div field="storeId" width="60" headerAlign="center" align="center"  allowSort="true" header="仓库"></div>
@@ -157,7 +172,9 @@
 		});
 	});
     
+	initMember("mtAdvisorId",function(){
 
+    });
      getStorehouse(function(data) {
         storehouse = data.storehouse || [];
         if (storehouse && storehouse.length > 0) {
@@ -214,6 +231,9 @@
                 e.cellHtml = "";
             }
             break;
+            case "outQty" :
+            	e.cellStyle = "background:#FFFFE6";
+            break;
             default:
             break;
         }
@@ -229,13 +249,27 @@
     function onOk(){
         var sum_out = 0;
         var data =  mainGrid.getChanges('modified');
+        var mtAdvisorId=nui.get('mtAdvisorId').getValue();
+        var mtAdvisor=nui.get('mtAdvisorId').getText();
+        var remark=nui.get('remark').getValue();
+        var childdata={};
+        childdata.mtAdvisor=mtAdvisor;
+        childdata.remark=remark;
+        if(!mtAdvisorId){
+        	showMsg("请选择领料人!","W");
+        	return;
+        }
+        if(!remark){
+        	showMsg("请填写备注!","W");
+        	return;
+        }
         if(data.length > 0){
 
             for (var i = 0; i < data.length; i++) {
                 if(data[i].outQty){
                     sum_out +=parseFloat(data[i].outQty);
                 }if(data[i].outQty==0){
-                    showMsg('领料数量不能为0!','W');
+                    showMsg('请填写领料数量!','W');
                     return;
                 }
                 
@@ -246,34 +280,36 @@
                 return;
             }
             if(sum_out>selectRow.qty-selectRow.pickQty){
-            	showMsg('超过可领料数量','W');
+            	showMsg('超过待领数量','W');
             	 return;
             }
-            nui.open({
-                url:webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,
-                title:"选择领料人",
-                height:"300px",
-                width:"600px", 
-                onload:function(){ 
-                    var iframe = this.getIFrameEl();
-                    iframe.contentWindow.SetData("ll");
-                },
-                ondestroy:function(action){
-                    if (action == "ok") {  
-                        var iframe = this.getIFrameEl();
-                        var childdata = iframe.contentWindow.GetFormData();
-                    savePartOut(childdata);     //如果点击“确定”
-                    //window.parent.tt(333);
+//             nui.open({
+//                 url:webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,
+//                 title:"选择领料人",
+//                 height:"300px",
+//                 width:"600px", 
+//                 onload:function(){ 
+//                     var iframe = this.getIFrameEl();
+//                     iframe.contentWindow.SetData("ll");
+//                 },
+//                 ondestroy:function(action){
+//                     if (action == "ok") {  
+//                         var iframe = this.getIFrameEl();
+//                         var childdata = iframe.contentWindow.GetFormData();
+//                     savePartOut(childdata);     //如果点击“确定”
+//                     //window.parent.tt(333);
                     
-                }
+//                 }
 
-            }
+//             }
 
-        });
+//         });
 
         }else{
             showMsg('没有需要出库的配件!','W');
+            return;
         }
+        savePartOut(childdata);
     }
 
 

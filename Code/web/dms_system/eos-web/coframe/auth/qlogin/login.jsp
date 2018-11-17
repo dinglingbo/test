@@ -261,7 +261,7 @@ a {
 		
 		<label>
 			<input class="min" type="text" id="authcode" name="authcode" value="" placeholder="请输入验证码" maxlength="11" />
-			<a href="javascript:sendMsg();" id="getKeyWorld" text-decoration="none";><span class="blue" id="sentCode">获取验证码</span></a>
+			<a href="javascript:sendMsg();" id="getKeyWorld" text-decoration="none";><span class="blue" >获取验证码</span></a>
 		</label>
 		
 		<label>
@@ -275,7 +275,7 @@ a {
 			
 		</label>
 		<label>
-			<div class="button"><input type="submit" value="注册" class="button" /></div>
+			<div class="button"><input id="registered" type="submit" value="注册" class="button" /></div>
 		</label>
 		<div class="you" >已经有帐号？  <span class="blue" id="login">登录</span></div>
 	</div>
@@ -356,46 +356,87 @@ a {
 	     		out.println("showError('')");
 	     	}
 		  %>
-	      function showError(msg){
-	      	 //$("#error").html(msg);
-	      	 if(msg){
-		      	//$("#error").addClass("errorC");
-		      	$("#error").html(msg);
-	      	 }else{
-	      	 	//$("#error").addClass("error");
-		      	//$("#error").html("");
-	      	 }
-	      } 
-	      
-	      	     function register(){
-	     	var phone = $("#phone").val();
-	     	var registername = $("#registername").val();
-	     	var registercompname = $("#registercompname").val();
-	     	var code = $("#authcode").val();
-	     	if(!registercompname){
-		      	$("#errorP").html("请输入公司名");
-		      	return false;
-	     	}
-	     	if(!registername){
-		      	$("#errorP").html("请输入用户名");
-		      	return false;
-	     	}
-	     	if(!phone){
-		      	$("#errorP").html("请输入手机号");
-		      	return false;
-	     	}
-
-	     	if(code != msgCode){
-		      	$("#errorP").html("验证码输入错误");
-		      	return false;
-	     	}
+		  
+$(function () {
+	//显示登录框
+	$("#login").click(openLogin);
+	//显示注册框
+	$("#register").click(openRegister);
+	
+	//登录
+	$("#loginJump").click(loginTest);
+	
+	//注册registered
+	$("#registered").click(registered);
+	
+	//发送验证码
+	$("#sentCode").click(sendMsg);
+	
+	//放大APP二维码
+	$(".imgbox").mousemove(maxImg).mouseout(function (){
+		$(".max_img").hide();
+	});
+	$(".weixinbox").mousemove(function() {
+		$(".weixin_max_img").show();
+	}).mouseout(function (){
+		$(".weixin_max_img").hide();
+	});
+});
 
 
-			document.registerForm.action="<%=regUrl%>"
-	        document.registerForm.submit();        
-	        
-	     }
-	     	 <% 
+//显示登录框
+function openLogin() {
+	$("#registerBox").hide();
+	$("#loginBox").show();
+}
+//显示注册框
+function openRegister() {
+	$("#registerBox").show();
+	$("#loginBox").hide();
+}
+function maxImg() {
+	console.log(2314);
+	$(".max_img").show();
+}
+function weixiMmaxImg() {
+	console.log(2314);
+	$(".weixin_max_img").show();
+}
+		  
+  function showError(msg){
+  	 if(msg){
+      	$("#error").html(msg);
+  	 }
+  } 
+  
+ //注册    
+function register(){
+ 	var phone = $("#phone").val();
+ 	var registername = $("#registername").val();
+ 	var registercompname = $("#registercompname").val();
+ 	var code = $("#authcode").val();
+     	if(!registercompname){
+	      	$("#errorP").html("请输入公司名");
+	      	return false;
+     	}
+     	if(!registername){
+	      	$("#errorP").html("请输入用户名");
+	      	return false;
+     	}
+     	if(!phone){
+	      	$("#errorP").html("请输入手机号");
+	      	return false;
+     	}
+
+     	if(code != msgCode){
+	      	$("#errorP").html("验证码输入错误");
+	      	return false;
+     	}
+	document.registerForm.action="<%=regUrl%>"
+    document.registerForm.submit();        
+    
+ }
+ 			 <% 
 	        	String errCode = (String)request.getAttribute("errCode");
 	        	String errMsg = (String)request.getAttribute("errMsg");
 	        	if(errCode=="E"){
@@ -473,7 +514,7 @@ a {
 	 		$("#password1").val("<%=password %>");
 	 	 });
 	 	 
-	 	 //登录验证
+ //登录验证
 function loginTest() {
 	var loginData = {
 			clientId: 'e7402717-528f-4179-a1b2-a7d52ddff9e4',
@@ -506,162 +547,6 @@ function loginTest() {
 	
 	 
 }
-
-
-var forgetPass;
-$(function () {
-
-	//显示登录框
-	$("#login").click(openLogin);
-	//显示注册框
-	$("#register").click(openRegister);
-	
-	//登录
-	$("#loginJump").click(loginTest);
-	
-	//发送验证码
-	$("#sentCode").click(sentCode);
-	
-	//放大APP二维码
-	$(".imgbox").mousemove(maxImg).mouseout(function (){
-		$(".max_img").hide();
-	});
-	$(".weixinbox").mousemove(function() {
-		$(".weixin_max_img").show();
-	}).mouseout(function (){
-		$(".weixin_max_img").hide();
-	});
-/* 	//隐私政策
-	$("#privacy").click(privacy);
-	//用户协议
-	$("#protocol").click(protocol); */
-});
-
-<%-- //隐私政策
-function privacy() {
-	window.open("coframe/auth/qlogin/privacyUrl.jsp");
-}
-//用户协议
-function protocol() {
-	window.open("<%=protocolUrl%>");
-} --%>
-//显示登录框
-function openLogin() {
-	$("#registerBox").hide();
-	$("#loginBox").show();
-}
-//显示注册框
-function openRegister() {
-	$("#registerBox").show();
-	$("#loginBox").hide();
-}
-function maxImg() {
-	console.log(2314);
-	$(".max_img").show();
-}
-function weixiMmaxImg() {
-	console.log(2314);
-	$(".weixin_max_img").show();
-}
-
-
-
-//改更密码验证
-function changeTest() {
-	var $target = $(this),
-		changePass = {},
-		$val = $target.parents(".login_box"),
-		$phone = $val.find(".phone"),
-		$code = $val.find(".code"),
-		$password = $val.find(".password");
-		
-		changePass.tel = $("#senderTel").val().trim();
-		changePass.valiCode = $(".valiCode").val().trim();
-		changePass.newPassword = $(".newPassword").val().trim();
-	if(!(PHONE_NUMBER.test(changePass.tel))){ 
-		$phone.next(".error").remove();
-		$phone.addClass("red_label").after('<div class="error">请输入正确的手机号码!</div>');
-		return false;
-	} else {
-		$phone.next(".error").remove();
-		$phone.removeClass("red_label");
-	}
-		
-	if (changePass.valiCode == "") {
-		$code.next(".error").remove();
-		$code.addClass("red_label").after('<div class="error">请输入验证码!</div>');
-		return false;
-	} else {
-		$code.next(".error").remove();
-		$code.removeClass("red_label");
-	}
-	
-	if (changePass.newPassword == "" || changePass.newPassword.length < 6) {
-		$password.next(".error").remove();
-		$password.addClass("red_label").after('<div class="error">请输入大于6位字符的密码!</div>');
-		return false;
-	} else {
-		$password.next(".error").remove();
-		$password.removeClass("red_label");
-	}
-	
-	sendRequest({
-		token: false,
-		action: 'ar/member/updatePassward',
-		data: changePass,
-		lock: true,
-		onSuccess: function(obj) {
-			if (obj.status == 'success') {
-				Dialog.popup('密码改更成功！', closeForgetPass);
-				//forgetPass.close();
-			} 
-		}
-	});
-	
-}
-function closeForgetPass() {
-	forgetPass.close();
-}
-
-//发送验证码
-function sentCode() {
-	var $target = $(this),
-		phone = $target.parents(".login").find("#senderTel").val().trim();
-		
-	if(!(PHONE_NUMBER.test(phone))){ 
-		Dialog.popup('请输入有效的手机号码！');
-		return false;
-	}
-
-	sendRequest({
-		token: false,
-        action: 'common/sendAuthcode',
-        data: {mobile: phone},
-		lock: true,
-        onSuccess: function(obj) {
-            if (obj.status == 'success') {
-				settime($target);
-			}
-        }
-    });
-}
-
-//验证码倒计时
-var rewireTime=300;
-function settime(target) {
-	if (rewireTime == 0) {
-		target.removeClass("disabled").text("重发验证码");
-		rewireTime = 300;
-	} else {
-		target.addClass("disabled").text(rewireTime +"秒后重发");
-		rewireTime--;
-		setTimeout(function() {
-			settime(target)
-		},1000);
-	}
-}
-
-
 
 
 $("#userId").focus(function(){

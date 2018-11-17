@@ -25,7 +25,7 @@
    String url = null;
    String loginUrl = "org.gocom.components.coframe.auth.login.login.flow";
    loginUrl = "com.hsapi.system.auth.login.mlogin.flow";
-   String regUrl = "com.hsapi.system.auth.login.register.flow";
+   String regUrl = "com.hsapi.system.auth.login.registerOfm.flow";
    
    HttpSecurityConfig securityConfig = new HttpSecurityConfig();
    boolean isOpenSecurity = securityConfig.isOpenSecurity();
@@ -68,28 +68,30 @@ body {
 .login_box .login {
 	position: absolute;
 	display: block;
-	width: 350px;
+	width: 380px;
 	background-color: #FFF;
-	top: 150px;
-	right: 140px;
+	top: 130px;
+	right: 80px;
 	padding-bottom: 20px;
 	
 }
+
+
 .login_box .login .title {
 	padding: 20px 0 15px;
 	font-size: 18px;
 	text-align: center;
-	height: 70px;
+	height: 40px;
 }
 .login_box .login .loginTitle {
-	height: 70px;
+	height: 10px;
 	padding-left: 30px;
 }
 .login_box .login .loginTitle .log {
 	float: left;
-	font-size: 18px;
+	font-size: 25px;
 	text-align: left;
-	padding-top: 20px;
+	padding-top: 10px;
 }
 .login_box .login .loginTitle .log span {
 	display: block;
@@ -159,10 +161,17 @@ body {
 	text-align: center;
 	color: #FFF;
 }
-.login_box .blue { color: #0050FB;cursor: pointer;}
+.login_box .blue { color: #0050FB;cursor: pointer;font-size: 14px;}
+.login_box .wu {
+	text-align: center;	
+	margin-top: 20px;
+	
+}
 .login_box .you {
 	text-align: center;	
 	margin-top: 20px;
+	width: 350px;
+	
 }
 #registerBox{display: none;
 }
@@ -220,26 +229,32 @@ body {
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
 }
+a {
+     text-decoration: none;
+}
 </style>
 
 </head>
 <body>
 <div class="login_box">
+	<form method="post"	name="registerForm" onsubmit="return register();" action="">
 	<div class="login" id="registerBox">
 		<div class="title">注册</div>
+		
 		<label>
-			<input type="text" id="userId" name="userId" value="" placeholder="请输入帐号名" maxlength="11" />
+			<p id="errorP"><span id="error" style="font-size:15px;color:red"></span></p>
+			<input type="text" id="registercompname" name="registercompname" value="" placeholder="请输入公司名" maxlength="11" />
 		</label>
 		<label>
-			<input type="password" id="password" name="password" value="" placeholder="请设置密码" maxlength="20" />
+			<input type="text" id="registername" name="registername" value="" placeholder="请输入用户名" maxlength="20" />
 		</label>
 		<label>
-			<input type="text" class="number" id="senderTel" value="" placeholder="手机号" maxlength="11" />
+			<input type="text" class="number" id="phone" name="phone" value="" placeholder="手机号码" maxlength="11" />
 		</label>
 		
 		<label>
-			<input class="min" type="text" id="valiCode" value="" placeholder="请输入手机验证码" maxlength="11" />
-			<span class="blue" id="sentCode">获取验证码</span>
+			<input class="min" type="text" id="authcode" name="authcode" value="" placeholder="请输入验证码" maxlength="11" />
+			<a href="javascript:sendMsg();" id="getKeyWorld" text-decoration="none";><span class="blue" id="sentCode">获取验证码</span></a>
 		</label>
 		
 		<label>
@@ -249,26 +264,27 @@ body {
 			我已阅读并接受<span class="blue">《云平台用户注册协议》</span>
 		</label>
 		<label>
-			<div class="button">注册</div>
+			<div class="button"><input type="submit" value="注册" class="button" /></div>
 		</label>
-		<div class="you">已经有帐号？  <span class="blue" id="login">登录</span></div>
+		<div class="you" >已经有帐号？  <span class="blue" id="login">登录</span></div>
 	</div>
+</form>	
 <form method="post"	name="loginForm" onsubmit="return login();" action="<%=url%>">	
 	<div class="login" id="loginBox">
 		<div class="loginTitle">
-			<div class="log">
-				欢迎登录车道商户版
-				<span>为了保障您顺畅的使用，建议使用谷歌/火孤/360浏览器</span>
-			</div>
 			<div class="weixinbox">
 				<img src="images/weixin-min-img.png"  />
 				<div class="weixin_max_img">
 					<img src="images/app-min-img.png"  />
 				</div>
 			</div>		
+			<div class="log">
+				欢迎登录车道商户版
+				<span>为了保障您顺畅的使用，建议使用谷歌/火孤/360浏览器</span>
+			</div>
 		</div>
 		<label>
-		<p  class="errorC"><span id="error" style="font-size:25px;color:red"></span></p>
+		<p  class="errorC"><span id="error" style="font-size:15px;color:red"></span></p>
 			<input type="text" id="userId" name="userId" value="" class="accountNo" placeholder="用户名" maxlength="11" />
 		</label>
 		<label>
@@ -291,13 +307,13 @@ body {
 					<img src="images/app-min-img.png"  />
 				</div>
 			</div>
-			<div class="you">还没帐号？  <span class="blue" id="register">立即注册</span></div>
+			<div class="wu">还没帐号？  <span class="blue" id="register">立即注册</span></div>
 		</div>	
 	</div>
 </form>
 </div>
 <script src="jquery-1.9.1.min.js?ver=1.01"></script>
-<script src="login.js?ver=1.02"></script>
+<script src="login.js?ver=2.0.0"></script>
 <script type="text/javascript">
 	   <% 
 	     	Object result = request.getAttribute("result");
@@ -332,13 +348,125 @@ body {
 	      	 //$("#error").html(msg);
 	      	 if(msg){
 		      	//$("#error").addClass("errorC");
-		      	//$("#error").html(msg);
-		      	Dialog.popup(msg);
+		      	$("#error").html(msg);
 	      	 }else{
 	      	 	//$("#error").addClass("error");
 		      	//$("#error").html("");
 	      	 }
 	      } 
+	      
+	      	     function register(){
+	     	var phone = $("#phone").val();
+	     	var registername = $("#registername").val();
+	     	var registercompname = $("#registercompname").val();
+	     	var code = $("#authcode").val();
+	     	if(!phone){
+	     		$("#errorP").addClass("errorC");
+		      	$("#errorP").html("请输入手机号");
+		      	return false;
+	     	}
+	     	if(!registername){
+	     		$("#errorP").addClass("errorC");
+		      	$("#errorP").html("请输入用户名");
+		      	return false;
+	     	}
+	     	if(!registercompname){
+	     		$("#errorP").addClass("errorC");
+		      	$("#errorP").html("请输入公司名");
+		      	return false;
+	     	}
+	     	if(code != msgCode){
+	     		$("#errorP").addClass("errorC");
+		      	$("#errorP").html("验证码输入错误");
+		      	return false;
+	     	}
+
+
+			document.registerForm.action="<%=regUrl%>"
+	        document.registerForm.submit();        
+	        
+	     }
+	     	 <% 
+	        	String errCode = (String)request.getAttribute("errCode");
+	        	String errMsg = (String)request.getAttribute("errMsg");
+	        	if(errCode=="E"){
+	        		out.println("showRegisterError('"+errMsg+"')");
+	        	}else if(errCode=="S"){
+	        		out.println("showRegisterError('注册成功,请待审批')");
+	        	}
+	        	
+
+	        %>
+
+	     $("#phone").focus(function(){
+			$("#errorP").removeClass("errorC");
+			$("#errorP").html("");
+		 });
+		 $("#authcode").focus(function(){
+			$("#errorP").removeClass("errorC");
+			$("#errorP").html("");
+		 });
+		 $("#registername").focus(function(){
+			$("#errorP").removeClass("errorC");
+			$("#errorP").html("");
+		 });
+		 $("#registercompname").focus(function(){
+			$("#errorP").removeClass("errorC");
+			$("#errorP").html("");
+		 });
+
+		 function showRegisterError(msg){
+	      	 alert(msg);
+	      }
+	      
+	       function sendMsg(){
+			var params={};
+			params.phone=$("#phone").val();
+		    $.ajax({
+		        url : "<%=sendUrl%>",
+		        contentType: "application/json;charset=utf-8",
+		        data : JSON.stringify({params:params}),
+		        type : "post",
+		        success : function(data) {
+		        	if(data.data.Code=="OK")
+		        		{
+		        		msgCode=data.data.msgCode;
+		        		settime(1);
+		        		}
+		        	else {
+		        		alert(data.data.Message);
+		        	}
+		        	
+		        },
+		        error : function(jqXHR, textStatus, errorThrown) {
+		           console.log(jqXHR.responseText);
+		        }
+		    });
+	      }
+
+	      function settime(time) {
+			  if (time == 0) {
+				  $("#getKeyWorld").attr("disabled", true);
+				  $("#getKeyWorld").attr("href","javascript:sendMsg();");
+				  $("#getKeyWorld").text("获取验证码"); 
+				  msgCode = null;
+			    return;
+			  } else {
+				  $("#getKeyWorld").attr("href","javascript:void(0);");
+				  $("#getKeyWorld").attr("disabled", false);
+				  $("#getKeyWorld").text("重新发送(" + time + ")");
+				
+			    time--;
+			  }
+			  setTimeout(function () { settime(time); }, 1000);
+			}
+
+	     $(function(){
+	 		var validateResult = "<%=result %>";
+	 		$("#userId").val("<%=userName %>");
+	 		$("#password").val("<%=password %>");
+	 		$("#password1").val("<%=password %>");
+	 	 });
 
 </script>
 

@@ -5,7 +5,7 @@
  var leftGrid = null;
  var leftGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceList.biz.ext";
 
- var statusHash = ["草稿","提交","完成"];
+ var statusHash = ["草稿","预结算","已结束"];
  var advancedSearchWin = null; 
  var advancedSearchForm = null;
  var advancedSearchFormData = null; 
@@ -17,7 +17,7 @@
     leftGrid.setUrl(leftGridUrl);
     leftGrid.load();
     leftGrid.on("drawcell", function (e) {
-        if (e.field == "status") {
+        if (e.field == "STATUS") {
             e.cellHtml = statusHash[e.value];
         }
         else {

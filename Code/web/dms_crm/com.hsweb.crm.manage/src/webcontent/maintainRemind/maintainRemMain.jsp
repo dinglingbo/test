@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/maintainRemMain.js?v=1.0.40" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/maintainRemMain.js?v=1.0.50" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0; 
@@ -35,11 +35,14 @@ pageEncoding="UTF-8" session="false" %>
         <input class="nui-textbox" name="tmobile" id="tmobile">
         <a class="nui-button" plain="true" onclick="onSearch()" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
-
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="">发送短信</a>
+		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="addBooking()">预约</a>
+		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="">跟踪明细</a>
+		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="checkMtRecord()">查看保养提醒</a>
     </div>
     <div class="nui-fit">
         <div class="nui-splitter" style="width: 100%; height: 100%;"> 
-            <div size="55%" showCollapseButton="true">
+            <div size="50%" showCollapseButton="true">
                 <div class="nui-fit">
                     <div id="gridCar" class="nui-datagrid gridborder"
                     style="width: 100%; height: 100%;"
@@ -48,7 +51,7 @@ pageEncoding="UTF-8" session="false" %>
                     pageSize="20" totalField="page.count" showPager="true">
 
                     <div property="columns">
-                        <div type="indexcolumn" width="25">序号</div>
+                        <div type="indexcolumn" width="30">序号</div>
                         <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
                         <div field="carModel" width="170" headerAlign="center"align="center">车型</div>
                         <div field="guestName" width="70" headerAlign="center"align="center">客户名称</div>
@@ -60,6 +63,9 @@ pageEncoding="UTF-8" session="false" %>
                         <div field="lastLeaveDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后离厂时间</div>
                         <div field="careDueDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center" align="center">保养到期时间</div>
                         <div field="preAdvisorName" width="70" headerAlign="center" align="center">营销员</div>
+                        <div field="mobile" visible="false" width="70" headerAlign="center" align="center">手机号</div>
+                        <div field="carBrandId" visible="false" width="70" headerAlign="center" align="center">品牌</div>
+                        <div field="carBrandId" visible="false" width="70" headerAlign="center" align="center">车型</div>
                     </div>
                 </div> 
             </div> 
@@ -190,7 +196,7 @@ pageEncoding="UTF-8" session="false" %>
                                 <tr class="htr">
                                     <td >提醒内容：</td>
                                     <td  colspan="6">
-                                        <input id="visitContent" name="visitContent" class="nui-textarea textboxWidth" style="width: 100%;height:380px;">
+                                        <input id="visitContent" name="visitContent" class="nui-textarea textboxWidth" style="width: 100%;height:280px;">
                                     </td>
                                 </tr> 
  

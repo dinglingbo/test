@@ -13,7 +13,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
     <script src="<%=crmDomain%>/common/crmcommon.js?v=1.0" type="text/javascript"></script> 
-    <script src="<%=crmDomain%>/telsales/js/datumMgr.js?v=1.0" type="text/javascript"></script> 
+    <script src="<%=crmDomain%>/telsales/js/R.js?v=1.0" type="text/javascript"></script> 
 </head>
 <body>
 

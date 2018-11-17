@@ -161,8 +161,8 @@ function clearQueryForm(){
 function newClient(){
     mini.open({
         url: webPath + contextPath + "/com.hsweb.crm.manage.clientInfo_edit.flow?token="+ token,
-        title: "新增客户", width: 520, height: 520,
-        onload: function () {
+        title: "新增客户", width: 520, height: 550,
+        onload: function () { 
             var iframe = this.getIFrameEl();
             //var data = { action: "edit", id: row.id };
             iframe.contentWindow.setData({});

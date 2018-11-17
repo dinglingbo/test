@@ -253,7 +253,7 @@ dd:empty {
 		<input type="checkbox" id="memory" checked="checked" /><span style="width: 150px">记住密码</span>
 	</label>
 	<button class="btn btn_yellow btn_full" id="loginJump" style=" margin-bottom:28px;" type="submit" >登录</button>
-	
+
 </div>	
 </form>
 

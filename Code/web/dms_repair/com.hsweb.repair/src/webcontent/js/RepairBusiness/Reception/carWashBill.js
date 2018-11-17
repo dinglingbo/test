@@ -718,14 +718,17 @@ function doSetMainInfo(car){
 
 function setInitData(params){
     fserviceId = params.id;
-	var data = {
+    var data = {
 			packageSubtotal:0,
 			packagePrefAmt:0,
 			itemSubtotal:0,
 			itemPrefAmt:0,
 			partSubtotal:0,
 			partPrefAmt:0,
-			mtAmt:0
+			totalAmt:0,
+			totalPrefAmt:0,
+			totalSubtotal:0,
+			ycAmt:0
 	};
 	sellForm.setData(data);
     if(!params.id){
@@ -776,12 +779,14 @@ function setInitData(params){
                 var p = {
                     data:{
                         guestId: data.guestId||0,
-                        contactorId: data.contactorId||0
+                        contactorId: data.contactorId||0,
+                        carId:data.carId || 0
                     }
                 }
                 getGuestContactorCar(p, function(text){
                     var errCode = text.errCode||"";
                     var guest = text.guest||{};
+                    var car = text.car || {};
                     var contactor = text.contactor||{};
                     if(errCode == 'S'){
                         $("#servieIdEl").html(data.serviceCode);
@@ -811,7 +816,7 @@ function setInitData(params){
                         data.guestMobile = guest.mobile;
                         data.contactorName = contactor.name;
                         data.mobile = contactor.mobile;
-
+                        data.carModel = car.carModel;
                         $("#guestNameEl").html(guest.guestFullName);
                         $("#showCarInfoEl").html(data.carNo);
                         $("#guestTelEl").html(guest.mobile);
@@ -899,7 +904,10 @@ function add(){
 			itemPrefAmt:0,
 			partSubtotal:0,
 			partPrefAmt:0,
-			mtAmt:0
+			totalAmt:0,
+			totalPrefAmt:0,
+			totalSubtotal:0,
+			ycAmt:0
 	};
     sellForm.setData(data);
     nui.get("mtAdvisorId").setValue(currEmpId);
@@ -966,14 +974,16 @@ function save(){
             var params = {
                 data:{
                     guestId: data.guestId||0,
-                    contactorId: data.contactorId||0
+                    contactorId: data.contactorId||0,
+                    carId:data.carId || 0
                 }
-            }
+            };
 
             getGuestContactorCar(params, function(text){
                 var errCode = text.errCode||"";
                 var guest = text.guest||{};
                 var contactor = text.contactor||{};
+                var car = text.car || {};
                 if(errCode == 'S'){
                     $("#servieIdEl").html(data.serviceCode);
                     var carNo = data.carNo||"";
@@ -997,7 +1007,7 @@ function save(){
                     data.guestMobile = guest.mobile;
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
-
+                    data.carModel = car.carModel;
                     billForm.setData(data);
                     var status = data.status||0;
                     var isSettle = data.isSettle||0;
@@ -3323,13 +3333,21 @@ function onDrawSummaryCellPack(e){
 			  data.packageSubtotal = sumPkgSubtotal;
 			  data.packagePrefAmt = sumPkgPrefAmt;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
-			  data.mtAmt = mtAmt.toFixed(2);
+			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
+			  data.totalSubtotal = mtAmt.toFixed(2);
+			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
+			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
+			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }else{
 			  data.packageSubtotal = 0;
 			  data.packagePrefAmt = 0;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
-			  data.mtAmt = mtAmt.toFixed(2);
+			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
+			  data.totalSubtotal = mtAmt.toFixed(2);
+			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
+			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
+			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }
 	  } 
@@ -3371,14 +3389,22 @@ function onDrawSummaryCellItem(e){
 			  sumItemPrefAmt = sumItemPrefAmt.toFixed(2);
 			  data.itemSubtotal = sumItemSubtotal;
 			  data.itemPrefAmt = sumItemPrefAmt;
-			  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
-			  data.mtAmt = mtAmt.toFixed(2);
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
+			  data.totalSubtotal = mtAmt.toFixed(2);
+			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
+			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
+			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }else{
 			  data.itemSubtotal = 0;
 			  data.itemPrefAmt = 0;
-			  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
-			  data.mtAmt = mtAmt.toFixed(2);
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
+			  data.totalSubtotal = mtAmt.toFixed(2);
+			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
+			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
+			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }
 		  if(sumPartSubtotal>0 && sumPartAmt>=0)
@@ -3388,14 +3414,22 @@ function onDrawSummaryCellItem(e){
 			  sumPartPrefAmt = sumPartPrefAmt.toFixed(2);
 			  data.partSubtotal = sumPartSubtotal;
 			  data.partPrefAmt = sumPartPrefAmt;
-			  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
-			  data.mtAmt = mtAmt.toFixed(2);
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
+			  data.totalSubtotal = mtAmt.toFixed(2);
+			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
+			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
+			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }else{
 			  data.partSubtotal = 0;
 			  data.partPrefAmt = 0;
-			  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
-			  data.mtAmt = mtAmt.toFixed(2);
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
+			  data.totalSubtotal = mtAmt.toFixed(2);
+			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
+			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
+			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }  
 	  }  

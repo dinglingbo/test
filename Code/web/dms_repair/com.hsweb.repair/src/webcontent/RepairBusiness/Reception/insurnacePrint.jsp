@@ -462,7 +462,7 @@ pageEncoding="UTF-8" session="false" %>
         <tr>
             <td class="left" width="33.3%" id="">支付方式：</td>
             <td class="left" width="33.3%" id=""></td>
-            <td class="fr fb">实际支付合计：元</td>
+            <td class="fr fb" width="33.3%">实际支付合计：  &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;元</td>
         </tr>
         <tr>
             <td class="left" id="">结算时间：</td>
@@ -526,7 +526,7 @@ pageEncoding="UTF-8" session="false" %>
                 var insuranceDate = null;
                 if(recordDate){
                     recordDate = new Date(recordDate);
-                    recordDate = format(recordDate, "yyyy-MM-dd hh:MM");
+                    recordDate = format(recordDate, "yyyy-MM-dd HH:mm");
                 }
                 if(beginDate){
                     beginDate = new Date(recordDate);

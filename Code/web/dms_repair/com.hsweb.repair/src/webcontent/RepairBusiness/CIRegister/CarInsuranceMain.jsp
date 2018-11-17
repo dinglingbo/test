@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>保险开单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceMain.js?v=1.0.62"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceMain.js?v=1.0.63"></script>
     <style type="text/css">
 
     table {
@@ -84,7 +84,7 @@ pageEncoding="UTF-8" session="false"%>
     <div property="columns">
         <div type="indexcolumn" headeralign="center" allowsort="true" visible="true" width="30">序号</div>
         <div field="serviceCode" headeralign="center" allowsort="true" visible="true" width="80px">工单号</div>
-        <div field="status" headeralign="center" allowsort="true" visible="true" width="40px">状态</div>
+        <div field="STATUS" headeralign="center" allowsort="true" visible="true" width="40px">状态</div>
         <div field="guestName" headeralign="center" allowsort="true" visible="true" width="80px">姓名</div>
         <div field="carNo" headeralign="center" allowsort="true" visible="true" width="60px">车牌号</div>
         <div field="carModel" headeralign="center" allowsort="true" visible="true" width="180px">品牌/车型</div>

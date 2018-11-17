@@ -61,15 +61,12 @@
             </div>
             <div class="nui-fit">
                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
-                        showPager="true"
                         dataField="list"
                         sortMode="client"
                         selectOnLoad="true"
                         allowCellSelect="true"
-                        allowCellEdit="true"
-                        totalField="page.count"
-                        pageSize="20"
-                        sizeList="[50,100,200]"
+                        allowCellEdit="true"                      
+                        showPager="false"
                         allowCellWrap = true
                         showSummaryRow="false">
                     <div property="columns">

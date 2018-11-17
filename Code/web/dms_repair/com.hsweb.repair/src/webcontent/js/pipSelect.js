@@ -150,6 +150,10 @@ function init()
         {
             e.cellHtml = typeHash[e.value].name;
         }
+        if(e.field == "serviceTypeId" && servieTypeHash[e.value])
+        {
+            e.cellHtml = servieTypeHash[e.value].name;
+        }
     });
     itemGrid.on("rowdblclick",function(e)
     {
@@ -291,6 +295,7 @@ function doSearchPackage(params)
     p.name = params.name;
     p.serviceTypeId = params.serviceTypeId;
     p.isDisabled = 0;
+    p.serviceTypeId = 3;
     packageGrid.clearRows();
     packageGrid.load({
     	token:token,
@@ -303,6 +308,9 @@ function doSearchItem(params)
     p.isDisabled = 0;
     p.name = params.name||"";
     p.ltype = params.ltype||"";
+    //查询洗美业务类型工时
+    p.serviceTypeId = 3;
+   
     itemGrid.clearRows();
     itemGrid.load({
     	token:token,
@@ -316,6 +324,7 @@ function doSearchPart(params)
     p.isDisabled = 0;
     p.PNP = params.name||"";
     p.carTypeIdF = params.carTypeIdF||"";
+    p.serviceTypeId = 3;
     partGrid.clearRows();
     partGrid.load({
     	token:token,

@@ -706,9 +706,12 @@ function doSetMainInfo(car){
     maintain.insuranceName = car.insuranceName;
     maintain.insureNo = car.insureNo;
     maintain.insureDueDate = car.insureDueDate;
+    //maintain.lastComeKilometers = car.lastComeKilometers;
+    $("#lastComeKilometers").html("( 上次里程："+car.lastComeKilometers+")");
     mpackageRate = 0;
     mitemRate = 0;
     mpartRate = 0;
+    
 
     billForm.setData(maintain);
     sendGuestForm.setData(maintain);
@@ -790,16 +793,19 @@ function setInitData(params){
                     data:{
                         guestId: data.guestId||0,
                         contactorId: data.contactorId||0,
-                        carId:data.carId || 0
+                        carId:data.carId || 0,
+                        carExtendId:data.carId || 0
                     }
                 };
                 getGuestContactorCar(p, function(text){
                     var errCode = text.errCode||"";
                     var guest = text.guest||{};
                     var car = text.car || {};
+                    var carExtend = text.carExtend || {};
                     var contactor = text.contactor||{};
                     if(errCode == 'S'){
                         $("#servieIdEl").html(data.serviceCode);
+                        $("#lastComeKilometers").html("( 上次里程："+carExtend.lastComeKilometers+")");
                         var carNo = data.carNo||"";
                         var tel = guest.mobile||"";
                         var guestName = guest.fullName||"";
@@ -941,6 +947,7 @@ function add(){
     $("#showCardTimesEl").html("次卡套餐(0)");
     $("#showCardEl").html("储值卡(0)");
     $("#creditEl").html("挂账:0");
+    $("#lastComeKilometers").html("上次里程:0");
     $("#showCarInfoEl").html("");
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");

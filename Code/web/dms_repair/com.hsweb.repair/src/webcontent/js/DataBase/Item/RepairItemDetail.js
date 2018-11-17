@@ -5,15 +5,18 @@ var salesDeductTypeEl = null;
 var techDeductTypeEl = null;
 var advisorDeductTypeEl = null;
 var servieTypeList = [];
+var servieTypeHash = {};
+var serviceTypeIdEl = null;
 var requiredField = {
 	name: "工时名称",
 	type: "工时类型",
-	code: "工时编码"
-	//carBrandId: "品牌"
+	code: "工时编码",
+	serviceTypeId: "业务类型"
 	//carModelId: "车型"
 };
 $(document).ready(function(){
 	
+	serviceTypeIdEl = nui.get("serviceTypeId");
 	if(currIsMaster=="1"){
 		$("#isShareTd").show();
 		$("#isShare").show();
@@ -36,12 +39,13 @@ $(document).ready(function(){
         }
       };
       
-   initServiceType("serviceTypeId",function(data) {
-      servieTypeList = nui.get("serviceTypeId").getData();
-      servieTypeList.forEach(function(v) {
-          servieTypeHash[v.id] = v;
+      initServiceType("serviceTypeId",function(data) {
+          servieTypeList = nui.get("serviceTypeId").getData();
+          servieTypeList.forEach(function(v) {
+              servieTypeHash[v.id] = v;
+          });
       });
-   }
+   
 });
 function onInputFocus(e)
 {

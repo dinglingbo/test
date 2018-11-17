@@ -25,7 +25,7 @@
     <figSize height="20" width="40"/>
     <node>end1</node>
   </nodes>
-  <nodes xsi:type="process:tView" id="view0" name="maintainRemind.jsp" displayName="investInput.jsp" collapsed="false" type="view" contributionName="com.hsweb.crm.manage" uri="/manage/investInput.jsp">
+  <nodes xsi:type="process:tView" description="" id="view0" name="maintainRemind.jsp" displayName="maintainRemMain.jsp" collapsed="false" type="view" contextPath="" contributionName="com.hsweb.crm.manage" method="forward" uri="/manage/maintainRemind/maintainRemMain.jsp">
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" displayName="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end1</targetNode>
@@ -34,6 +34,8 @@
     <location x="260" y="170"/>
     <size height="28" width="22"/>
     <nodeLabel>view0label</nodeLabel>
+    <process:inputParameters/>
+    <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
     <location x="199" y="206"/>

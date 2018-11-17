@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修工时</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.8" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.9" type="text/javascript"></script>
 
 </head>
 <body>
@@ -22,6 +22,18 @@
 			<tr>
 				<td>
 					<label style="font-family: Verdana;font-size: 12px;">快速查询：</label>
+					<input name="serviceTypeId"
+	                     id="serviceTypeId"
+	                     class="nui-hidden"
+	                     textField="name"
+	                     valueField="id"
+	                     emptyText="请选择..."
+	                     url=""
+	                     allowInput="true"
+	                     showNullItem="false"
+	                     width="100%"
+	                     valueFromSelect="true"
+	                     nullItemText="请选择..."/>
 					<!-- <label style="font-family: Verdana;;font-size: 12px;">工种：</label>
 					<input id="itemKind"
 						   name="itemKind"
@@ -46,7 +58,6 @@
 						   allowInput="false"
 						   showNullItem="false"
 						   nullItemText="请选择..."/>
-                           
                     <!-- <input id="costType" visible="false"
 						   name="costType"
 						   class="nui-combobox width1"
@@ -60,6 +71,7 @@
 					<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="onClear()"><span class="fa fa-trash-o"></span>&nbsp;清空</a>
 				</td>
+				
 			</tr>
 		</table>
 	</div>
@@ -122,6 +134,7 @@
 								<div field="code" headerAlign="center" width="100px">工时编码</div>
 								<div field="name" headerAlign="center" allowSort="true" width="150px">工时名称</div>
 								<div field="type" headerAlign="center" allowSort="true" width="100px">工时类型</div>
+								<!-- <div field="serviceTypeId" headerAlign="center" allowSort="true" width="100px">业务类型</div> -->
 								<div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="50px">工时</div>
 								<div field="unitPrice" headerAlign="center" allowSort="true" width="70px">工时单价</div>
 								<div field="amt" headerAlign="center" allowSort="true" width="70px">工时费</div>

@@ -29,13 +29,16 @@
    
    HttpSecurityConfig securityConfig = new HttpSecurityConfig();
    boolean isOpenSecurity = securityConfig.isOpenSecurity();
+
+   String ip = securityConfig.getHost();
+   String https_port = securityConfig.getHttps_port();
+ 		 
    if(isOpenSecurity){
    		boolean isAllInHttps = securityConfig.isAllInHttps();
    		if(!isAllInHttps){
-   			String ip = securityConfig.getHost();
-   			String https_port = securityConfig.getHttps_port();
    			url = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + loginUrl;
    			regUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + regUrl;
+
    		}else{
    			url = loginUrl;
    		}
@@ -47,6 +50,8 @@
 	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
 	String sysApi = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
 	String sendUrl = apiPath + sysApi + "/com.hsapi.system.tenant.register.sendMsg.biz.ext";
+	String privacyUrl = request.getContextPath() + "/coframe/auth/qlogin/privacyUrl.jsp";
+	String protocolUrl = request.getContextPath() + "/coframe/auth/qlogin/protocolUrl.jsp";
  %> 
 <style type="text/css">
 body { 
@@ -58,7 +63,7 @@ body {
 
 .login_box{
 	max-width: 1200px;
-	height: 675px;
+	height: 600px;
 	background-image: url(images/bg.png);
 	background-repeat: no-repeat;
 	background-position:center center;
@@ -87,7 +92,7 @@ body {
 .login_box .login .loginTitle {
 	height: 10px;
 	padding-left: 30px;
-	height: 120px;
+	height: 80px;
 }
 .login_box .login .loginTitle .log {
 	float: left;
@@ -192,8 +197,8 @@ body {
 	position: absolute;
 	top: 0;
 	right: 0px;
-	width: 350px;
-	height: 320px;
+	width: 250px;
+	height: 250px;
 }
 .weixin_max_img img {width: 100%; height: 100%;}
 .checkbox_box {
@@ -244,7 +249,7 @@ a {
 		<div class="title">注册</div>
 		
 		<label>
-			<p id="errorP"><span id="errorP" style="font-size:15px;color:red"></span></p>
+			<p ><span id="errorP" style="font-size:15px;color:red"></span></p>
 			<input type="text" id="registercompname" name="registercompname" value="" placeholder="请输入公司名" maxlength="11" />
 		</label>
 		<label>
@@ -256,17 +261,21 @@ a {
 		
 		<label>
 			<input class="min" type="text" id="authcode" name="authcode" value="" placeholder="请输入验证码" maxlength="11" />
-			<a href="javascript:sendMsg();" id="getKeyWorld" text-decoration="none";><span class="blue" id="sentCode">获取验证码</span></a>
+			<a href="javascript:sendMsg();" id="getKeyWorld" text-decoration="none";><span class="blue" >获取验证码</span></a>
 		</label>
 		
 		<label>
-			<div class="checkbox_box">
+<!-- 			<div class="checkbox_box">
 				<input type="checkbox" checked="checked" /><div class="show-box"></div>
-			</div>
-			我已阅读并接受<span class="blue">《云平台用户注册协议》</span>
+			</div> -->
+			<font size="2">注册即同意</font><span class="blue">
+					<a target="_blank" href="<%=privacyUrl%>"><span class="blue" id="privacy"  >隐私政策</span></a>&nbsp;<span style="color:#999">/</span>
+					<a  target="_blank" href="<%=protocolUrl%>"><span class="blue"  id="protocol" >用户协议</span></a>
+			</span>
+			
 		</label>
 		<label>
-			<div class="button"><input type="submit" value="注册" class="button" /></div>
+			<div class="button"><input id="registered" type="submit" value="注册" class="button" /></div>
 		</label>
 		<div class="you" >已经有帐号？  <span class="blue" id="login">登录</span></div>
 	</div>
@@ -277,7 +286,7 @@ a {
 			<div class="weixinbox">
 				<img src="images/weixin-min-img.png"  />
 				<div class="weixin_max_img">
-					<img src="images/app-min-img.png"  />
+					<img src="images/xiongying.jpg"  />
 				</div>
 			</div>		
 			<div class="log">
@@ -286,7 +295,7 @@ a {
 			</div>
 		</div>
 		<label>
-		<p  class="errorC"><span id="error" style="font-size:25px;color:red">2222</span></p>
+		<p  class="errorC"><span id="error" style="font-size:15px;color:red"></span></p>
 			<input type="text" id="userId" name="userId" value="" class="accountNo" placeholder="用户名" maxlength="11" />
 		</label>
 		<label>
@@ -296,18 +305,18 @@ a {
 		<label>
 			<div class="button" id="loginJump">登录</div>
 		</label>
-		<label>
+<!-- 		<label>
 			<div class="checkbox_box">
 				<input type="checkbox" id="memory" checked="checked" /><div class="show-box"></div>
 			</div>
 			登录即同意 <span class="blue">隐私政策/用户协议</span>
-		</label>
+		</label> -->
 
 		<div class="app">
 			<div class="imgbox">
 				<img src="images/app-min-img.png"  />
 				<div class="max_img">
-					<img src="images/app-min-img.png"  />
+					<img src="images/xiongying.jpg"  />
 				</div>
 			</div>
 			<div class="wu">还没帐号？  <span class="blue" id="register">立即注册</span></div>
@@ -347,49 +356,87 @@ a {
 	     		out.println("showError('')");
 	     	}
 		  %>
-	      function showError(msg){
-	      	 //$("#error").html(msg);
-	      	 if(msg){
-		      	//$("#error").addClass("errorC");
-		      	$("#error").html(msg);
-	      	 }else{
-	      	 	//$("#error").addClass("error");
-		      	//$("#error").html("");
-	      	 }
-	      } 
-	      
-	      	     function register(){
-	     	var phone = $("#phone").val();
-	     	var registername = $("#registername").val();
-	     	var registercompname = $("#registercompname").val();
-	     	var code = $("#authcode").val();
-	     	if(!phone){
-	     		$("#errorP").addClass("errorC");
-		      	$("#errorP").html("请输入手机号");
-		      	return false;
-	     	}
-	     	if(!registername){
-	     		$("#errorP").addClass("errorC");
-		      	$("#errorP").html("请输入用户名");
-		      	return false;
-	     	}
-	     	if(!registercompname){
-	     		$("#errorP").addClass("errorC");
-		      	$("#errorP").html("请输入公司名");
-		      	return false;
-	     	}
-	     	if(code != msgCode){
-	     		$("#errorP").addClass("errorC");
-		      	$("#errorP").html("验证码输入错误");
-		      	return false;
-	     	}
+		  
+$(function () {
+	//显示登录框
+	$("#login").click(openLogin);
+	//显示注册框
+	$("#register").click(openRegister);
+	
+	//登录
+	$("#loginJump").click(loginTest);
+	
+	//注册registered
+	$("#registered").click(registered);
+	
+	//发送验证码
+	$("#sentCode").click(sendMsg);
+	
+	//放大APP二维码
+	$(".imgbox").mousemove(maxImg).mouseout(function (){
+		$(".max_img").hide();
+	});
+	$(".weixinbox").mousemove(function() {
+		$(".weixin_max_img").show();
+	}).mouseout(function (){
+		$(".weixin_max_img").hide();
+	});
+});
 
 
-			document.registerForm.action="<%=regUrl%>"
-	        document.registerForm.submit();        
-	        
-	     }
-	     	 <% 
+//显示登录框
+function openLogin() {
+	$("#registerBox").hide();
+	$("#loginBox").show();
+}
+//显示注册框
+function openRegister() {
+	$("#registerBox").show();
+	$("#loginBox").hide();
+}
+function maxImg() {
+	console.log(2314);
+	$(".max_img").show();
+}
+function weixiMmaxImg() {
+	console.log(2314);
+	$(".weixin_max_img").show();
+}
+		  
+  function showError(msg){
+  	 if(msg){
+      	$("#error").html(msg);
+  	 }
+  } 
+  
+ //注册    
+function register(){
+ 	var phone = $("#phone").val();
+ 	var registername = $("#registername").val();
+ 	var registercompname = $("#registercompname").val();
+ 	var code = $("#authcode").val();
+     	if(!registercompname){
+	      	$("#errorP").html("请输入公司名");
+	      	return false;
+     	}
+     	if(!registername){
+	      	$("#errorP").html("请输入用户名");
+	      	return false;
+     	}
+     	if(!phone){
+	      	$("#errorP").html("请输入手机号");
+	      	return false;
+     	}
+
+     	if(code != msgCode){
+	      	$("#errorP").html("验证码输入错误");
+	      	return false;
+     	}
+	document.registerForm.action="<%=regUrl%>"
+    document.registerForm.submit();        
+    
+ }
+ 			 <% 
 	        	String errCode = (String)request.getAttribute("errCode");
 	        	String errMsg = (String)request.getAttribute("errMsg");
 	        	if(errCode=="E"){
@@ -402,19 +449,15 @@ a {
 	        %>
 
 	     $("#phone").focus(function(){
-			$("#errorP").removeClass("errorC");
 			$("#errorP").html("");
 		 });
 		 $("#authcode").focus(function(){
-			$("#errorP").removeClass("errorC");
 			$("#errorP").html("");
 		 });
 		 $("#registername").focus(function(){
-			$("#errorP").removeClass("errorC");
 			$("#errorP").html("");
 		 });
 		 $("#registercompname").focus(function(){
-			$("#errorP").removeClass("errorC");
 			$("#errorP").html("");
 		 });
 
@@ -471,7 +514,7 @@ a {
 	 		$("#password1").val("<%=password %>");
 	 	 });
 	 	 
-	 	 //登录验证
+ //登录验证
 function loginTest() {
 	var loginData = {
 			clientId: 'e7402717-528f-4179-a1b2-a7d52ddff9e4',
@@ -506,165 +549,10 @@ function loginTest() {
 }
 
 
-var forgetPass;
-$(function () {
-
-	//显示登录框
-	$("#login").click(openLogin);
-	//显示注册框
-	$("#register").click(openRegister);
-	
-	//登录
-	$("#loginJump").click(loginTest);
-	
-	//发送验证码
-	$("#sentCode").click(sentCode);
-	
-	//放大APP二维码
-	$(".imgbox").mousemove(maxImg).mouseout(function (){
-		$(".max_img").hide();
-	});
-	$(".weixinbox").mousemove(function() {
-		$(".weixin_max_img").show();
-	}).mouseout(function (){
-		$(".weixin_max_img").hide();
-	});
-
-});
-//显示登录框
-function openLogin() {
-	$("#registerBox").hide();
-	$("#loginBox").show();
-}
-//显示注册框
-function openRegister() {
-	$("#registerBox").show();
-	$("#loginBox").hide();
-}
-function maxImg() {
-	console.log(2314);
-	$(".max_img").show();
-}
-function weixiMmaxImg() {
-	console.log(2314);
-	$(".weixin_max_img").show();
-}
-
-
-
-//改更密码验证
-function changeTest() {
-	var $target = $(this),
-		changePass = {},
-		$val = $target.parents(".login_box"),
-		$phone = $val.find(".phone"),
-		$code = $val.find(".code"),
-		$password = $val.find(".password");
-		
-		changePass.tel = $("#senderTel").val().trim();
-		changePass.valiCode = $(".valiCode").val().trim();
-		changePass.newPassword = $(".newPassword").val().trim();
-	if(!(PHONE_NUMBER.test(changePass.tel))){ 
-		$phone.next(".error").remove();
-		$phone.addClass("red_label").after('<div class="error">请输入正确的手机号码!</div>');
-		return false;
-	} else {
-		$phone.next(".error").remove();
-		$phone.removeClass("red_label");
-	}
-		
-	if (changePass.valiCode == "") {
-		$code.next(".error").remove();
-		$code.addClass("red_label").after('<div class="error">请输入验证码!</div>');
-		return false;
-	} else {
-		$code.next(".error").remove();
-		$code.removeClass("red_label");
-	}
-	
-	if (changePass.newPassword == "" || changePass.newPassword.length < 6) {
-		$password.next(".error").remove();
-		$password.addClass("red_label").after('<div class="error">请输入大于6位字符的密码!</div>');
-		return false;
-	} else {
-		$password.next(".error").remove();
-		$password.removeClass("red_label");
-	}
-	
-	sendRequest({
-		token: false,
-		action: 'ar/member/updatePassward',
-		data: changePass,
-		lock: true,
-		onSuccess: function(obj) {
-			if (obj.status == 'success') {
-				Dialog.popup('密码改更成功！', closeForgetPass);
-				//forgetPass.close();
-			} 
-		}
-	});
-	
-}
-function closeForgetPass() {
-	forgetPass.close();
-}
-
-//发送验证码
-function sentCode() {
-	var $target = $(this),
-		phone = $target.parents(".login").find("#senderTel").val().trim();
-		
-	if(!(PHONE_NUMBER.test(phone))){ 
-		Dialog.popup('请输入有效的手机号码！');
-		return false;
-	}
-
-	sendRequest({
-		token: false,
-        action: 'common/sendAuthcode',
-        data: {mobile: phone},
-		lock: true,
-        onSuccess: function(obj) {
-            if (obj.status == 'success') {
-				settime($target);
-			}
-        }
-    });
-}
-
-//验证码倒计时
-var rewireTime=300;
-function settime(target) {
-	if (rewireTime == 0) {
-		target.removeClass("disabled").text("重发验证码");
-		rewireTime = 300;
-	} else {
-		target.addClass("disabled").text(rewireTime +"秒后重发");
-		rewireTime--;
-		setTimeout(function() {
-			settime(target)
-		},1000);
-	}
-}
-
-
-function showError(msg){
- 	 //$("#error").html(msg);
- 	 if(msg){
-     	$("#error").addClass("errorC");
-     	$("#error").html(msg);
- 	 }else{
- 	 	$("#error").addClass("error");
-     	$("#error").html("");
- 	 }
- }
-
 $("#userId").focus(function(){
-	$("#error").removeClass("errorC");
 	$("#error").html("");
 });
 $("#password").focus(function(){
-	$("#error").removeClass("errorC");
 	$("#error").html("");
 });
  
@@ -685,107 +573,7 @@ function login(){
    
    document.loginForm.submit();
 }
-function register(){
-	var phone = $("#phone").val();
-	var registername = $("#registername").val();
-	var registercompname = $("#registercompname").val();
-	var code = $("#authcode").val();
-	if(!phone){
-		$("#errorP").addClass("errorC");
-     	$("#errorP").html("请输入手机号");
-     	return false;
-	}
-	if(!registername){
-		$("#errorP").addClass("errorC");
-     	$("#errorP").html("请输入用户名");
-     	return false;
-	}
-	if(!registercompname){
-		$("#errorP").addClass("errorC");
-     	$("#errorP").html("请输入公司名");
-     	return false;
-	}
-	if(code != msgCode){
-		$("#errorP").addClass("errorC");
-     	$("#errorP").html("验证码输入错误");
-     	return false;
-	}
 
-
-	document.registerForm.action="<%=regUrl%>"
-   document.registerForm.submit();        
-   
-}
-
-$("#phone").focus(function(){
-	$("#errorP").removeClass("errorC");
-	$("#errorP").html("");
-});
-$("#authcode").focus(function(){
-	$("#errorP").removeClass("errorC");
-	$("#errorP").html("");
-});
-$("#registername").focus(function(){
-	$("#errorP").removeClass("errorC");
-	$("#errorP").html("");
-});
-$("#registercompname").focus(function(){
-	$("#errorP").removeClass("errorC");
-	$("#errorP").html("");
-});
-
-function showRegisterError(msg){
- 	 alert(msg);
- }
-
- function sendMsg(){
-	var params={};
-	params.phone=$("#phone").val();
-   $.ajax({
-       url : "<%=sendUrl%>",
-       contentType: "application/json;charset=utf-8",
-       data : JSON.stringify({params:params}),
-       type : "post",
-       success : function(data) {
-       	if(data.data.Code=="OK")
-       		{
-       		msgCode=data.data.msgCode;
-       		settime(60);
-       		}
-       	else {
-       		alert(data.data.Message);
-       	}
-       	
-       },
-       error : function(jqXHR, textStatus, errorThrown) {
-          console.log(jqXHR.responseText);
-       }
-   });
- }
-
- function settime(time) {
-	  if (time == 0) {
-		  $("#getKeyWorld").attr("disabled", true);
-		  $("#getKeyWorld").attr("href","javascript:sendMsg();");
-		  $("#getKeyWorld").text("获取验证码"); 
-		  msgCode = null;
-	    return;
-	  } else {
-		  $("#getKeyWorld").attr("href","javascript:void(0);");
-		  $("#getKeyWorld").attr("disabled", false);
-		  $("#getKeyWorld").text("重新发送(" + time + ")");
-		
-	    time--;
-	  }
-	  setTimeout(function () { settime(time); }, 1000);
-	}
-
-$(function(){
-	var validateResult = "<%=result %>";
-	$("#userId").val("<%=userName %>");
-	$("#password").val("<%=password %>");
-	$("#password1").val("<%=password %>");
- });
 
 
 </script>

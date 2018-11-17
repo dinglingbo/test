@@ -103,9 +103,16 @@
 									<label>业务类型：</label>
 								</td>
 								<td colspan="1">
-									<input class="nui-combobox" name="serviceTypeId" id="serviceTypeId"
-										   valueField="id" allowInput="true" valueFromSelect="true"
-										   textField="name" width="100%"/>
+							
+			                      <input name="serviceTypeId"
+			                             id="serviceTypeId"
+			                             class="nui-combobox"
+			                             textField="name"
+			                             valueField="id"
+			                             allowInput="true"
+			                             width="100%"
+			                             valueFromSelect="true"
+			                            />
 						     </td>
 							</tr>
 							<tr>
@@ -129,7 +136,7 @@
 											valueField="id"
 											textField="nameCn"
 											onValuechanged="initCarSeries('carSeriesId', e.value)"
-											width="100%"/>
+											width="100%" popupHeight="100%"/>
 								</td>
 								
 							</tr>
@@ -142,7 +149,7 @@
 											valueField="carSeriesId"
 											textField="carSeriesName"
 											onValuechanged="initCarModel('carModelId', '', e.value)"
-											width="100%"/>
+											width="100%" popupHeight="100%"/>
 								</td>
 								<td class="form_label">
 									<label>车型：</label>
@@ -151,7 +158,7 @@
 									<input class="nui-combobox" name="carModelId" id="carModelId"
 											valueField="carModelId"
 											textField="carModel"
-											width="100%"/>
+											width="100%" popupHeight="100%"/>
 								</td>
 							</tr>
 						</table>
@@ -171,7 +178,7 @@
 											format="0.00"
 											value="0" maxValue="1000000000"
 											changeOnMousewheel="true" showButton="false"
-											width="100%" inputStyle="text-align:right;"/>
+											width="100%" inputStyle="text-align:right;" />
 								</td>
 								<td class="form_label">
 									<label>工时单价：</label>

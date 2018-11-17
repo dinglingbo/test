@@ -78,13 +78,14 @@
                              valueField="customid"
                              emptyText="请选择..."
                              url=""
-                             width="40%"
+                             width="28%"
                              allowInput="true"
                              showNullItem="false"
                              valueFromSelect="true"
                              nullItemText="请选择..."/>
                        <label class="title required">进厂里程：</label>
-                       <input class="nui-Spinner" minValue="0" maxValue="100000000" width="43%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
+                       <input class="nui-Spinner" minValue="0" maxValue="100000000" width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
+                       <label class="title" id="lastComeKilometers">(上次里程：0)</label>
                   </td>
                   <td class="title required">
                       <label>进厂日期：</label>

@@ -158,7 +158,8 @@
             f.chain_consume_amt as chainConsumeAmt,
             g.chain_come_times as chainComeTimes,
             g.last_come_date as lastComeDate,
-            d.id_no as idNo
+            d.id_no as idNo,
+            g.last_come_kilometers lastComeKilometers
 		FROM
 			rpb_car a
 			inner join wb_common.com_guest b on (a.guest_id = b.id)

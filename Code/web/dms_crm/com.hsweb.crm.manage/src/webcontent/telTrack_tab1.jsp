@@ -85,14 +85,14 @@
                             name="nextScoutDate" 
                             required="true"
                             class="nui-datepicker width2" 
-                            dateFormat="yyyy-MM-dd hh:MM" 
+                            dateFormat="yyyy-MM-dd HH:mm" 
                             emptyText="请选择日期" alwaysView="true"/>
                         <span class="title title-width3 required">下次保养日期：</span>
                         <input id="careDueDate" 
                             name="careDueDate" 
                             required="true"
                             class="nui-datepicker width2" 
-                            dateFormat="yyyy-MM-dd hh:MM" 
+                            dateFormat="yyyy-MM-dd HH:mm" 
                             emptyText="请选择日期" alwaysView="true"/>
                     </div>
                     <div class="row">
@@ -100,13 +100,13 @@
                         <input id="annualInspectionDate" 
                             name="annualInspectionDate" 
                             class="nui-datepicker width2" 
-                            dateFormat="yyyy-MM-dd hh:MM" 
+                            dateFormat="yyyy-MM-dd HH:mm" 
                             emptyText="请选择日期" alwaysView="true"/>
                         <span class="title title-width3">交强险到期日：</span>
                         <input id="insureDueDate" 
                             name="insureDueDate" 
                             class="nui-datepicker width2" 
-                            dateFormat="yyyy-MM-dd hh:MM" 
+                            dateFormat="yyyy-MM-dd HH:mm" 
                             emptyText="请选择日期" alwaysView="true"/>
                     </div>
                     <div class="row">
@@ -144,7 +144,7 @@
              totalField="page.count">                
             <div property="columns">                                              
                 <div field="visitMan" headerAlign="center" width="50px" align="center">跟踪员</div>
-                <div field="visitDate" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" width="80px" align="center">跟踪日期</div>
+                <div field="visitDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" width="80px" align="center">跟踪日期</div>
                 <div field="scoutResult" headerAlign="center" width="50px" align="center">跟踪结果</div>
                 
                 <div field="scoutMode" headerAlign="center" width="50px" align="center">跟踪方式</div>

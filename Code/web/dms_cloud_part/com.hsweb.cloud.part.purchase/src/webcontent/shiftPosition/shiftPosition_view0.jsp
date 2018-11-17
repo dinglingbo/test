@@ -140,7 +140,7 @@
                                                id="outDate"
                                                width="100%"
                                                showTime="true"
-                                               class="nui-datepicker" enabled="true" format="yyyy-MM-dd hh:MM"/>
+                                               class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                                     </td>
                                     <td class="title">
                                         <label>移出单号：</label>
@@ -291,7 +291,7 @@
                                 <input name="createDate"
                                        width="100%"
                                        showTime="true" enabled="false"
-                                       class="nui-datepicker" enabled="true" format="yyyy-MM-dd hh:MM"/>
+                                       class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                             </td>
                             
                             <td class="title">
@@ -308,7 +308,7 @@
                                 <input name="auditDate"
                                        width="100%"
                                        showTime="true" enabled="false"
-                                       class="nui-datepicker" enabled="true" format="yyyy-MM-dd hh:MM"/>
+                                       class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                             </td>
                         </tr>
                     </table>

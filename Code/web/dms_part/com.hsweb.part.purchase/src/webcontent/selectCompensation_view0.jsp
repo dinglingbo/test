@@ -122,9 +122,9 @@
 		                  <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div>
 		                  <div field="carModel" name="carModel" width="160" headerAlign="center" header="车型"></div>
 		                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="VIN码"></div>
-		                  <div field="sureMtDate" name="sureMtDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="维修日期"></div>
-		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="完工日期"></div>
-		                  <div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="结算日期"></div>
+		                  <div field="sureMtDate" name="sureMtDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="维修日期"></div>
+		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="完工日期"></div>
+		                  <div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="结算日期"></div>
 	                  </div>
                   </div>
               </div>

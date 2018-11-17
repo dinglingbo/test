@@ -108,8 +108,8 @@ function doSelect(chkObj){
 						<td><b:write property="agentFrom" iterateId="agent"/></td>
 						<td><b:write property="agentTo" iterateId="agent"/></td>
 						<td><d:write property="agentType" dictTypeId="WFDICT_AgentType"  iterateId="agent"/></td>
-						<td><b:write property="startTime" iterateId="agent" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
-						<td><b:write property="endTime" iterateId="agent" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
+						<td><b:write property="startTime" iterateId="agent" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
+						<td><b:write property="endTime" iterateId="agent" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
 					</tr>
 					<% 	flag++;  %>
 				</l:iterate>

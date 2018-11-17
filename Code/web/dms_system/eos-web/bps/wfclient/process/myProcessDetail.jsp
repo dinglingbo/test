@@ -52,22 +52,22 @@
 						</tr>
 						<tr>
 							<td class="nui-form-label"><%=I18nUtil.getMessage(request, "bps.wfclient.process.CreationTime") %>:</td>
-							<td><input id="createTime"  name="createTime" class="nui-datepicker asLabel" format="yyyy-MM-dd hh:MM" readOnly="true" width="100%"/></td>
+							<td><input id="createTime"  name="createTime" class="nui-datepicker asLabel" format="yyyy-MM-dd HH:mm" readOnly="true" width="100%"/></td>
 							<td class="nui-form-label"><%=I18nUtil.getMessage(request, "bps.wfclient.process.STime") %>:</td>
-							<td><input id="startTime"  name="startTime" class="nui-datepicker asLabel" format="yyyy-MM-dd hh:MM" readOnly="true" width="100%"/></td>
+							<td><input id="startTime"  name="startTime" class="nui-datepicker asLabel" format="yyyy-MM-dd HH:mm" readOnly="true" width="100%"/></td>
 						</tr>
 						<tr>
 							<td class="nui-form-label"><%=I18nUtil.getMessage(request, "bps.wfclient.process.EndTime") %>:</td>
-							<td><input id="endTime"  name="endTime" class="nui-datepicker asLabel" format="yyyy-MM-dd hh:MM" readOnly="true" width="100%"/></td>
+							<td><input id="endTime"  name="endTime" class="nui-datepicker asLabel" format="yyyy-MM-dd HH:mm" readOnly="true" width="100%"/></td>
 							<td class="nui-form-label"><%=I18nUtil.getMessage(request, "bps.wfclient.process.FinalTime") %>:</td>
-							<td><input id="finalTime"  name="finalTime" class="nui-datepicker asLabel" format="yyyy-MM-dd hh:MM" readOnly="true" width="100%"/></td>
+							<td><input id="finalTime"  name="finalTime" class="nui-datepicker asLabel" format="yyyy-MM-dd HH:mm" readOnly="true" width="100%"/></td>
 							</tr>
 						<tr>
 							<td class="nui-form-label"><%=I18nUtil.getMessage(request, "bps.wfclient.process.TimeLimit") %>:</td>
 							<td><input id="limitNumDesc"  name="limitNumDesc" class="nui-textbox asLabel" readOnly="true"/></td>
 							
 							<td class="nui-form-label"><%=I18nUtil.getMessage(request, "bps.wfclient.process.RemindTime") %>:</td>
-							<td><input id="remindTime"  name="remindTime" class="nui-datepicker asLabel" format="yyyy-MM-dd hh:MM" readOnly="true" width="100%"/></td>
+							<td><input id="remindTime"  name="remindTime" class="nui-datepicker asLabel" format="yyyy-MM-dd HH:mm" readOnly="true" width="100%"/></td>
 						</tr>	
 						<tr>
 							<td class="nui-form-label"><%=I18nUtil.getMessage(request, "bps.wfclient.process.Timeout") %>:</td>

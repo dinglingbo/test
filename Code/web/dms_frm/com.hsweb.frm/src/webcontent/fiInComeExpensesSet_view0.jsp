@@ -49,7 +49,7 @@ pageEncoding="UTF-8" session="false" %>
             <div field="itemTypeId" name="itemTypeId" width="40" renderer="onIEType"  headeralign="center" >项目类型</div>
             <div field="isPrimaryBusiness" name="isPrimaryBusiness" width="40" renderer="onRenderer"  headeralign="center" >主营业务</div>
             <div field="operator" name="operator" width="60"  headeralign="center" >最近修改人</div>
-            <div field="operateDate" name="operateDate" width="80" dateFormat="yyyy-MM-dd hh:MM"  headeralign="center" >修改日期</div>
+            <div field="operateDate" name="operateDate" width="80" dateFormat="yyyy-MM-dd HH:mm"  headeralign="center" >修改日期</div>
             <div field="remark" name="remark" width="100"  headeralign="center" >备注</div> 
         </div>
     </div>

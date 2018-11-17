@@ -120,7 +120,7 @@ table {
 										</div>
 										<div field="worker" headerAlign="center" allowSort="true" visible="true">承修人
 										</div>
-										<div field="beginDate" headerAlign="center" allowSort="true" visible="true" dateFormat="yyyy-MM-dd hh:MM">开始时间
+										<div field="beginDate" headerAlign="center" allowSort="true" visible="true" dateFormat="yyyy-MM-dd HH:mm">开始时间
 										</div>
 									</div>
 								</div>
@@ -129,7 +129,7 @@ table {
 										<div field="finishAuditor" headerAlign="center" allowSort="true" visible="true">
 											完工审核人
 										</div>
-										<div field="finishDate" headerAlign="center" allowSort="true" visible="true" dateFormat="yyyy-MM-dd hh:MM">完工时间
+										<div field="finishDate" headerAlign="center" allowSort="true" visible="true" dateFormat="yyyy-MM-dd HH:mm">完工时间
 										</div>
 										<div field="status" headerAlign="center" allowSort="true" visible="true">状态
 										</div>
@@ -244,7 +244,7 @@ table {
 										<label>报价日期：</label>
 									</td>
 									<td>
-										<input name="quoteDate" class="nui-datepicker" value="" format="yyyy-MM-dd hh:MM"
+										<input name="quoteDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm"
 											   nullValue="null" timeFormat="HH:mm:ss" showTime="true"
 											   showOkButton="false" showClearButton="true"/>
 									</td>
@@ -252,7 +252,7 @@ table {
 										<label>预计交车：</label>
 									</td>
 									<td>
-										<input name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd hh:MM"
+										<input name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm"
 											   nullValue="null" timeFormat="HH:mm:ss" showTime="true"
 											   showOkButton="false" showClearButton="true"/>
 									</td>

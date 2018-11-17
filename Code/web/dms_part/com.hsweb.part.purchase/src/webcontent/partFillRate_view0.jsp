@@ -57,7 +57,7 @@
                 <td style="white-space:nowrap;width: 100px;">
                     <input name="endDate"
                            class="nui-datepicker"
-                           format="yyyy-MM-dd hh:MM"
+                           format="yyyy-MM-dd HH:mm"
                            timeFormat="H:mm:ss"
                            showTime="false"
                            showOkButton="false"

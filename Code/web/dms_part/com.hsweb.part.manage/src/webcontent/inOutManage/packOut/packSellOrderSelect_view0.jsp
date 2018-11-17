@@ -93,7 +93,7 @@
               <div field="fullName" width="150" headerAlign="center" header="客户名称"></div>
               <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
               <!-- <div field="orderAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div> -->
-              <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd hh:MM"></div>
+              <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
               <div field="remark" width="120" headerAlign="center" header="备注"></div>
               <div allowSort="true" summaryType="count" field="serviceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
 

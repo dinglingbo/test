@@ -70,8 +70,8 @@
 								</tr>
 								<tr>
 									<td class="style1"><b:message key="biz_process_extract_jsp.modified_time"/></td><!-- 修改时间 -->
-									<b:write property="procList/updateTime" formatPattern="yyyy-MM-dd hh:MM"/>
-									<td><input style="width:260px" type="text" disabled="disabled" name="updateTime" value="<b:write property="procList/updateTime" formatPattern="yyyy-MM-dd hh:MM"/>"/></td>
+									<b:write property="procList/updateTime" formatPattern="yyyy-MM-dd HH:mm"/>
+									<td><input style="width:260px" type="text" disabled="disabled" name="updateTime" value="<b:write property="procList/updateTime" formatPattern="yyyy-MM-dd HH:mm"/>"/></td>
 								</tr>
 								<tr>
 									<td class="style1"><b:message key="biz_process_extract_jsp.version_state"/></td><!-- 版本状态 -->

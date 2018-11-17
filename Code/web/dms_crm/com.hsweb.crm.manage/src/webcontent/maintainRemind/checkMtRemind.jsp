@@ -39,7 +39,7 @@ pageEncoding="UTF-8" session="false" %>
 	                <div field="mobile" name="mobile" width="100" headerAlign="center" header="客户手机"></div>
                   	<div field="visitMan" name="visitMan" width="70" headerAlign="center" header="提醒人"></div>
 	                <div field="visitMode" name="visitMode" width="60" headerAlign="center" header="提醒方式"></div>
-                    <div field="visitDate" name="visitDate" width="110" headerAlign="center" header="提醒日期" dateFormat="yyyy-MM-dd hh:MM"></div>
+                    <div field="visitDate" name="visitDate" width="110" headerAlign="center" header="提醒日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div field="visitContent" name="visitContent" width="200" headerAlign="center" header="提醒内容"></div>
                     
             </div>

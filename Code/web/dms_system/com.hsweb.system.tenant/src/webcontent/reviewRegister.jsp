@@ -85,7 +85,7 @@
 								width="120"  >是否禁用</div>
 						<div field="recorder" allowSort="true" headerAlign="center"
 								width="120"  >建档人</div>
-						<div field="recordDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM"
+						<div field="recordDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm"
 								width="120"  >建档日期</div>
 								
 					</div>

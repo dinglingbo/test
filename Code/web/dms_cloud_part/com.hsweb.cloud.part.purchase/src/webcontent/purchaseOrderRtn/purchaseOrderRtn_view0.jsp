@@ -114,12 +114,12 @@ body .mini-grid-row-selected{
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
                         <div field="guestFullName" width="120" headerAlign="center" header="供应商"></div>
-                        <div field="createDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="退货日期"></div>
+                        <div field="createDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="退货日期"></div>
                         <div field="orderMan" width="60" headerAlign="center" header="退货员"></div><div field="auditSign" width="35" headerAlign="center" header="状态"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="采退单号"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                        <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="审核日期"></div>
+                        <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="审核日期"></div>
                     </div>
                 </div>
             </div>
@@ -176,7 +176,7 @@ body .mini-grid-row-selected{
                                                  width="100%"
                                                  enabled="false"
                                                  showTime="true"
-                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd hh:MM"/>
+                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
                                       </td>
                                       <td class="title">
                                           <label>采退单号：</label>

@@ -140,7 +140,7 @@
                                         <label>报价日期：</label>
                                     </td>
                                     <td>
-                                        <input name="quoteDate" class="nui-datepicker" value="" format="yyyy-MM-dd hh:MM"
+                                        <input name="quoteDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm"
                                                nullValue="null" timeFormat="HH:mm:ss" showTime="true"
                                                showOkButton="false" showClearButton="true"/>
                                     </td>
@@ -148,7 +148,7 @@
                                         <label>预计交车：</label>
                                     </td>
                                     <td>
-                                        <input name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd hh:MM"
+                                        <input name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm"
                                                nullValue="null" timeFormat="HH:mm:ss" showTime="true"
                                                showOkButton="false" showClearButton="true"/>
                                     </td>

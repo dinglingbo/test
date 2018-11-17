@@ -39,7 +39,7 @@
 	            	</tr>
 	            	<tr>
 		                <td style="text-align:right"><%=I18nUtil.getMessage(request, "bps.wfclient.process.CreationTime") %>:</td>
-		                <td><input id="createTime" formatter="yyyy-MM-dd hh:MM" name="createTime" class="nui-textbox asLabel" readOnly="true" width="100%"/></td>
+		                <td><input id="createTime" formatter="yyyy-MM-dd HH:mm" name="createTime" class="nui-textbox asLabel" readOnly="true" width="100%"/></td>
 	            	</tr>
 	            	<tr>
 		                <td style="text-align:right"><%=I18nUtil.getMessage(request, "bps.wfclient.process.UpdateTime") %>:</td>
@@ -75,10 +75,10 @@
     		processGraphObj.setProcDefID(rowData.processDefID);
     		processGraphObj.load();
     		if(rowData.createTime){
-    			rowData.createTime = nui.formatDate(rowData.createTime, "yyyy-MM-dd hh:MM");
+    			rowData.createTime = nui.formatDate(rowData.createTime, "yyyy-MM-dd HH:mm");
     		}
     		if(rowData.updateTime){
-    			rowData.updateTime = nui.formatDate(rowData.updateTime, "yyyy-MM-dd hh:MM");
+    			rowData.updateTime = nui.formatDate(rowData.updateTime, "yyyy-MM-dd HH:mm");
     		}
       		form.setData(rowData);
     	}

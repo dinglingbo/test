@@ -80,8 +80,8 @@
     	function setData(data){
     		var info=nui.clone(data);
     		agentID=info.agentID;
-    		info.startTime=nui.formatDate(info.startTime,"yyyy-MM-dd hh:MM");
-    		info.endTime=nui.formatDate(info.endTime,"yyyy-MM-dd hh:MM");
+    		info.startTime=nui.formatDate(info.startTime,"yyyy-MM-dd HH:mm");
+    		info.endTime=nui.formatDate(info.endTime,"yyyy-MM-dd HH:mm");
     		form.setData(info);
     		grid.load({agentID:agentID});
     	}

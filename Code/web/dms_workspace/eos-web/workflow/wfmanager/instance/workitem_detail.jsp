@@ -319,9 +319,9 @@ String leafType = com.primeton.bps.workspace.frame.common.WSOMUtil.getLeafPartic
                 </tr>
                 <tr >
                   <td class="EOS_table_row" nowrap="nowrap"><b:message key="all_workitem_detail_jsp.start_time"/></td><%-- 启动时间: --%>
-                  <td><b:write property="workItem/startTime"  formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
+                  <td><b:write property="workItem/startTime"  formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
                   <td class="EOS_table_row" nowrap="nowrap"><b:message key="all_workitem_detail_jsp.end_time"/></td><%-- 结束时间: --%>
-                  <td><b:write property="workItem/endTime"  formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
+                  <td><b:write property="workItem/endTime"  formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
                 </tr>
                 <tr >
                   <td class="EOS_table_row" nowrap="nowrap"><b:message key="all_workitem_detail_jsp.url_type"/></td><%-- 自定义URL类型: --%>

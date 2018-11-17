@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	<%@include file="/common/sysCommon.jsp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -11,12 +11,12 @@
 <head>
 <title>客户资料</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    
+        <%@include file="/common/sysCommon.jsp" %>
     <script src="<%=webPath + contextPath%>/manage/js/clientInfo_edit.js?v=1.0.7" type="text/javascript"></script>
     <link href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.0" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <form id="form1" method="post" style="width:100%;height:92%;">
+    <form id="form1" method="post" style="width:100%;height:100%;">
 	     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
             <table style="width:80%;">
                 <tr>

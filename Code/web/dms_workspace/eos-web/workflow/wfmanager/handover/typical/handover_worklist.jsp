@@ -42,7 +42,7 @@
                       								<td><b:write property="processDefName" iterateId="workitem"/></td>
                       								<td><b:write property="processInstName" iterateId="workitem"/></td>
                       								<td><d:write dictTypeId="WFDICT_WorkItemState" property="currentState" iterateId="workitem"/></td>
-                      								<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyy-MM-dd hh:MM.S"/></td>
+                      								<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyy-MM-dd HH:mm.S"/></td>
                       								<td><b:write property="limitNumDesc" iterateId="workitem"/></td>						
                     							</tr>
                 							<% 	flag1++;  %>
@@ -81,7 +81,7 @@
                       								<td><b:write property="processDefName" iterateId="workitem"/></td>
                       								<td><b:write property="processInstName" iterateId="workitem"/></td>
                       								<td><d:write dictTypeId="WFDICT_WorkItemState" property="currentState" iterateId="workitem"/></td>
-                      								<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyy-MM-dd hh:MM.S"/></td>
+                      								<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyy-MM-dd HH:mm.S"/></td>
                       								<td><b:write property="limitNumDesc" iterateId="workitem"/></td>						
                     							</tr>
                                             <% 	flag2++;  %>
@@ -120,7 +120,7 @@
                       								<td><b:write property="processDefName" iterateId="workitem"/></td>
                       								<td><b:write property="processInstName" iterateId="workitem"/></td>
                       								<td><d:write dictTypeId="WFDICT_WorkItemState" property="currentState" iterateId="workitem"/></td>
-                      								<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyy-MM-dd hh:MM.S"/></td>
+                      								<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyy-MM-dd HH:mm.S"/></td>
                       								<td><b:write property="limitNumDesc" iterateId="workitem"/></td>						
                     							</tr>
                 							<% flag3++; %>
@@ -159,7 +159,7 @@
                       								<td><b:write property="processDefName" iterateId="workitem"/></td>
                       								<td><b:write property="processInstName" iterateId="workitem"/></td>
                       								<td><d:write dictTypeId="WFDICT_WorkItemState" property="currentState" iterateId="workitem"/></td>
-                      								<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyy-MM-dd hh:MM.S"/></td>
+                      								<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyy-MM-dd HH:mm.S"/></td>
                       								<td><b:write property="limitNumDesc" iterateId="workitem"/></td>						
                     							</tr>
                                           	<% flag4++; %>
@@ -195,7 +195,7 @@
                       								<td><b:write property="processDefName" iterateId="processDef"/></td>
                       								<td><b:write property="versionSign" iterateId="processDef"/></td>
                       								<td><b:write property="processDefOwner" iterateId="processDef"/></td>
-                      								<td><b:write property="createTime" iterateId="processDef" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
+                      								<td><b:write property="createTime" iterateId="processDef" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
                     							</tr>
                                           	<% flag5++; %>
                                           	<% 	flag++;  %>
@@ -231,8 +231,8 @@
                                                     <td><b:write property="agentFrom" iterateId="agent"/></td>
                       								<td><b:write property="agentTo" iterateId="agent"/></td>
                       								<td><d:write property="agentType" dictTypeId="WFDICT_AgentType"  iterateId="agent"/></td>
-                      								<td><b:write property="startTime" iterateId="agent" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
-                      								<td><b:write property="endTime" iterateId="agent" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>						
+                      								<td><b:write property="startTime" iterateId="agent" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
+                      								<td><b:write property="endTime" iterateId="agent" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>						
                     							</tr>
                 							<% flag6++; %>
                 							<% 	flag++;  %>

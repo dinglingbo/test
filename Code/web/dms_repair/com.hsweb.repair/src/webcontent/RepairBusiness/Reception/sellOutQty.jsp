@@ -153,7 +153,7 @@
         <div header="出库信息" headerAlign="center">
             <div property="columns">
                 <div allowSort="true"  field=pickMan width="60" headerAlign="center" header="出库人" dataType="float" align="left"></div>
-                <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd hh:MM" field="outDate" headerAlign="center" header="出库日期" dataType="float" align="left"></div>
+                <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd HH:mm" field="outDate" headerAlign="center" header="出库日期" dataType="float" align="left"></div>
             </div>
         </div>
     </div>

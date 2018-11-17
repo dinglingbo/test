@@ -127,7 +127,7 @@
         
          <div header="领料信息" headerAlign="center">
             <div property="columns">
-                <div  allowSort="true"  field="pickDate"dateFormat="yyyy-MM-dd hh:MM" width="130" headerAlign="center" header="领料日期" dataType="float" align="left"></div>
+                <div  allowSort="true"  field="pickDate"dateFormat="yyyy-MM-dd HH:mm" width="130" headerAlign="center" header="领料日期" dataType="float" align="left"></div>
                 <div allowSort="true" datatype="float" field="pickMan"  width="60" headerAlign="center" header="领料人" dataType="float" align="left"></div>
             </div>
         </div>
@@ -156,7 +156,7 @@
             <div property="columns">
                 <div allowSort="true"  field=outReturnSign width="60" headerAlign="center" header="退货标志" dataType="float" align="left"></div>
                 <div allowSort="true"  field=pickMan width="60" headerAlign="center" header="退货人" dataType="float" align="left"></div>
-                <div allowSort="true"  field="outDate" width="130"  dateFormat="yyyy-MM-dd hh:MM"  headerAlign="center" header="退货日期" dataType="float" align="left"></div>
+                <div allowSort="true"  field="outDate" width="130"  dateFormat="yyyy-MM-dd HH:mm"  headerAlign="center" header="退货日期" dataType="float" align="left"></div>
             </div>
         </div>
     </div>

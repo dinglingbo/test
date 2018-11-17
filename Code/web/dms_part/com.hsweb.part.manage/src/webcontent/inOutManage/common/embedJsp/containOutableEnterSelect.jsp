@@ -111,7 +111,7 @@
             <div field="serviceId" align="left" width="55px" headerAlign="center" allowSort="true">
             入库单号
             </div>
-            <div field="auditDate" dateFormat="yyyy-MM-dd hh:MM" width="120px" format="yyyy-MM-dd hh:MM" headerAlign="center" allowSort="true">
+            <div field="auditDate" dateFormat="yyyy-MM-dd HH:mm" width="120px" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true">
             入库日期
             </div>
             <div field="guestName" width="150px" headerAlign="center" allowSort="true">

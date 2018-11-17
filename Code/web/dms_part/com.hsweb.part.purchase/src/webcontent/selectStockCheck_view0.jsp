@@ -62,7 +62,7 @@
             <div allowSort="true" field="checkCode" width="150" headerAlign="center">单号</div>
             <div allowSort="true" field="checkName" width="60" headerAlign="center">名称</div>
             <div allowSort="true" field="checker" width="70" headerAlign="center">盘点人</div>
-            <div allowSort="true" field="checkDate" width="80" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd hh:MM">盘点日期</div>
+            <div allowSort="true" field="checkDate" width="80" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">盘点日期</div>
             <div allowSort="true" field="remark" width="80" headerAlign="center" allowSort="true">备注</div>
         </div>
     </div>

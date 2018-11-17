@@ -56,7 +56,7 @@
             <div field="name" name="name" width="120" headerAlign="center" allowSort="true">级别名称</div>
             <div allowSort="true" width="50" field="isDisabled" headerAlign="center" header="状态"></div>
             <div field="modifier" width="60" allowSort="true" headerAlign="center">修改人</div>
-            <div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd hh:MM">修改时间</div>
+            <div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">修改时间</div>
             </div>
        </div>
    </div>

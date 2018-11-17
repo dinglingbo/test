@@ -12,7 +12,7 @@
 <title>电话跟踪</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=webPath + contextPath%>/manage/js/telTrack.js?v=1.0.10"></script>
-    <link href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.4" rel="stylesheet" type="text/css" />
+<link href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.4" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -80,9 +80,9 @@
                     emptyText="请选择日期" alwaysView="true"/>
                 <a class="nui-button"  plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
-                <a class="nui-button"  plain="true" onclick="add()" id="add" enabled="true">发送短信</a>
-                <a class="nui-button"  plain="true" onclick="edit()" id="edit" enabled="true">预约维修</a>
-                <a class="nui-button"  plain="true" onclick="edit()" id="edit" enabled="true">业绩登记</a>
+                <a class="nui-button"  plain="true" onclick="add()" id="add" enabled="true"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
+                <a class="nui-button"  plain="true" onclick="edit()" id="edit" enabled="true"><span class="fa fa-wrench fa-lg"></span>&nbsp;预约维修</a>
+                <a class="nui-button"  plain="true" onclick="edit()" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;业绩登记</a>
                 <a class="nui-button"  plain="true" onclick="newClient()" id="edit" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增客户</a>
             </td>
         </tr>
@@ -124,7 +124,7 @@
                                     <div field="firstRegDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
                                     <div field="annualInspectionDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
                                     <div field="recorder" width="80" headerAlign="center" allowSort=false>建档人</div>
-                                    <div field="recordDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>建档日期</div>
+                                    <div field="recordDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>建档日期</div>
                                 </div>
                             </div>
                             <div headerAlign="center"><strong>客户信息</strong>
@@ -143,8 +143,8 @@
                                 <div property="columns">
                                     <div field="visitManId" width="60" headerAlign="center" summaryType="" allowSort=false>营销员</div>
                                     <div field="visitStatus" width="100" headerAlign="center">跟踪状态</div>
-                                    <div field="priorScoutDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>上次联系时间</div>
-                                    <div field="nextScoutDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>下次联系时间</div>
+                                    <div field="priorScoutDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>上次联系时间</div>
+                                    <div field="nextScoutDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>下次联系时间</div>
                                 </div>
                             </div>
                         </div>

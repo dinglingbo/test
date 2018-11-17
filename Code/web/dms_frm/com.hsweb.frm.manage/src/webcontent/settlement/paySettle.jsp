@@ -212,12 +212,12 @@
                         <div field="rpAmt" width="60" headerAlign="center" header="应收金额"></div>
                         <div field="nowAmt" width="60" headerAlign="center" header="结算金额"></div>
                         <div field="nowVoidAmt" width="60" headerAlign="center" header="优惠金额"></div>
-                        <div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd hh:MM"></div>
+                        <div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                         <div field="settleStatus" width="60" headerAlign="center" header="结算状态"></div>
                         <div field="charOffAmt" width="60" headerAlign="center" header="已结金额"></div>
                         <!-- <div field="balanceSign" width="60" headerAlign="center" header="是否对账"></div>
                         <div field="balancer" width="60" headerAlign="center" header="对账人"></div>
-                        <div allowSort="true" field="balanceDate" headerAlign="center" header="对账日期" dateFormat="yyyy-MM-dd hh:MM"></div> -->
+                        <div allowSort="true" field="balanceDate" headerAlign="center" header="对账日期" dateFormat="yyyy-MM-dd HH:mm"></div> -->
 
                     </div>
                 </div>
@@ -408,7 +408,7 @@
           <div field="typeCode" width="60" headerAlign="center" header="业务类型"></div>
           <div field="billAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
           <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
-          <div allowSort="true" field="billDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd hh:MM"></div>
+          <div allowSort="true" field="billDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
           <div field="remark" width="120" headerAlign="center" header="备注"></div>
           <div allowSort="true" summaryType="count" field="billServiceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
       </div>

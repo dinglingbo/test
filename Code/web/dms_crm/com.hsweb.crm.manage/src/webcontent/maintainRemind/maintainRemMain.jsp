@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/maintainRemMain.js?v=1.0.50" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/maintainRemMain.js?v=1.0.60" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0; 
@@ -37,7 +37,7 @@ pageEncoding="UTF-8" session="false" %>
         <span class="separator"></span>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="">发送短信</a>
 		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="addBooking()">预约</a>
-		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="">跟踪明细</a>
+		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="remindDetail()">跟踪明细</a>
 		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="checkMtRecord()">查看保养提醒</a>
     </div>
     <div class="nui-fit">

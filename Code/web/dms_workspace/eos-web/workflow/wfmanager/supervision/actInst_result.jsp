@@ -81,7 +81,7 @@
 										<td nowrap="nowrap">
 										<b:write iterateId="list" property="processInstID" /></td>
 										<td nowrap="nowrap">
-										<b:write iterateId="list" property="startTime" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
+										<b:write iterateId="list" property="startTime" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
 									</tr>
 									   
 								<%flag++;  %>

@@ -81,21 +81,21 @@ String length = ResourcesMessageUtil.getI18nResourceMessage("query_procInst_jsp.
 								style='border:0px;background-color:transparent'>
 								<tr style='border:0px;background-color:transparent'>
 									<td style='border:0px;background-color:transparent'><w:date
-										 allowNull="true"  defaultNull="true" format="yyyy-MM-dd hh:MM"
+										 allowNull="true"  defaultNull="true" format="yyyy-MM-dd HH:mm"
 										name="createTime_min" size="20" readonly="true" /></td>
 									<td style='border:0px;background-color:transparent'>&nbsp;-&nbsp;</td>
 									<td style='border:0px;background-color:transparent'><w:date
-										 allowNull="true"  defaultNull="true" format="yyyy-MM-dd hh:MM"
+										 allowNull="true"  defaultNull="true" format="yyyy-MM-dd HH:mm"
 										name="createTime_max" size="20" readonly="true"/></td>
 								</tr>
 							</table>
 							<input type="hidden" name="queryCondition/_expr[6]/createTime">
 							<input type="hidden" name="queryCondition/_expr[6]/_pattern"
-								value="yyyy-MM-dd hh:MM"> <input type="hidden"
+								value="yyyy-MM-dd HH:mm"> <input type="hidden"
 								name="queryCondition/_expr[6]/_op" value=">="> <input
 								type="hidden" name="queryCondition/_expr[7]/createTime">
 							<input type="hidden" name="queryCondition/_expr[7]/_pattern"
-								value="yyyy-MM-dd hh:MM"> <input type="hidden"
+								value="yyyy-MM-dd HH:mm"> <input type="hidden"
 								name="queryCondition/_expr[7]/_op" value="<="></td>
 						</tr>
 						<tr>
@@ -109,20 +109,20 @@ String length = ResourcesMessageUtil.getI18nResourceMessage("query_procInst_jsp.
 								style='border:0px;background-color:transparent'>
 								<tr style='border:0px;background-color:transparent'>
 									<td style='border:0px;background-color:transparent'><w:date
-										 allowNull="true"  defaultNull="true" format="yyyy-MM-dd hh:MM"
+										 allowNull="true"  defaultNull="true" format="yyyy-MM-dd HH:mm"
 										name="startTime_min" size="20" readonly="true"/></td>
 									<td style='border:0px;background-color:transparent'>&nbsp;-&nbsp;</td>
 									<td style='border:0px;background-color:transparent'><w:date
-										  allowNull="true" defaultNull="true" format="yyyy-MM-dd hh:MM"
+										  allowNull="true" defaultNull="true" format="yyyy-MM-dd HH:mm"
 										name="startTime_max" size="20" readonly="true"/></td>
 								</tr>
 							</table>
 							<input type="hidden" name="queryCondition/_expr[9]/startTime">
 							<input type="hidden" name="queryCondition/_expr[10]/startTime">
 							<input type="hidden" name="queryCondition/_expr[9]/_pattern"
-								value="yyyy-MM-dd hh:MM"> <input type="hidden"
+								value="yyyy-MM-dd HH:mm"> <input type="hidden"
 								name="queryCondition/_expr[10]/_pattern"
-								value="yyyy-MM-dd hh:MM"> <input type="hidden"
+								value="yyyy-MM-dd HH:mm"> <input type="hidden"
 								name="queryCondition/_expr[9]/_op" value=">="> <input
 								type="hidden" name="queryCondition/_expr[10]/_op" value="<=">
 							</td>
@@ -145,20 +145,20 @@ String length = ResourcesMessageUtil.getI18nResourceMessage("query_procInst_jsp.
 								style='border:0px;background-color:transparent'>
 								<tr style='border:0px;background-color:transparent'>
 									<td style='border:0px;background-color:transparent'><w:date
-										  allowNull="true" defaultNull="true" format="yyyy-MM-dd hh:MM"
+										  allowNull="true" defaultNull="true" format="yyyy-MM-dd HH:mm"
 										name="endTime_min" size="20" readonly="true"/></td>
 									<td style='border:0px;background-color:transparent'>&nbsp;-&nbsp;</td>
 									<td style='border:0px;background-color:transparent'><w:date
-										 allowNull="true" defaultNull="true" format="yyyy-MM-dd hh:MM"
+										 allowNull="true" defaultNull="true" format="yyyy-MM-dd HH:mm"
 										name="endTime_max" size="20" readonly="true"/></td>
 								</tr>
 							</table>
 							<input type="hidden" name="queryCondition/_expr[12]/endTime">
 							<input type="hidden" name="queryCondition/_expr[13]/endTime">
 							<input type="hidden" name="queryCondition/_expr[12]/_pattern"
-								value="yyyy-MM-dd hh:MM"> <input type="hidden"
+								value="yyyy-MM-dd HH:mm"> <input type="hidden"
 								name="queryCondition/_expr[13]/_pattern"
-								value="yyyy-MM-dd hh:MM"> <input type="hidden"
+								value="yyyy-MM-dd HH:mm"> <input type="hidden"
 								name="queryCondition/_expr[12]/_op" value=">="> <input
 								type="hidden" name="queryCondition/_expr[13]/_op" value="<="></td>
 						</tr>

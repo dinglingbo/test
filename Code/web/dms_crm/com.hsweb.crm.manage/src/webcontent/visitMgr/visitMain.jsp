@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.1.6" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.1.8" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0; 
@@ -35,10 +35,10 @@ pageEncoding="UTF-8" session="false" %>
         <input class="nui-textbox" name="tcarNo" id="tcarNo">
         <a class="nui-button" plain="true" onclick="quickSearch(3)" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="">发送短信</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()">维修历史</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="">回访历史</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowComplianDetail()">投诉登记</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-reply fa-lg"></span>&nbsp;回访历史</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowComplianDetail()"><span class="fa fa-edit fa-lg"></span>&nbsp;投诉登记</a>
     </div>
     <div class="nui-fit">
         <div class="nui-splitter" style="width: 100%; height: 100%;"> 
@@ -72,57 +72,57 @@ pageEncoding="UTF-8" session="false" %>
                     <input class="nui-hidden" name="serviceId" id="serviceId"/>
                     <input class="nui-hidden" name="mtAdvisorId" id="mtAdvisorId"/>
                     <input class="nui-hidden" name="guestId" id="guestId"/>
-                    <table class="tmargin" style="margin-left:5px;">
+                    <table class="tmargin" style="margin-left:5px;" id="tableDis">
                         <tr class="htr">
                             <td style="width: 70px;">客户名称：</td>
                             <td style="width: 140px;">
-                                <input id="guest" name="guest" class="nui-textbox textboxWidth">
+                                <input id="guest" name="guest" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                             <td style="width: 70px;">客户电话：</td>
                             <td style="width: 140px;">
-                                <input id="mobile" name="mobile" class="nui-textbox textboxWidth">
+                                <input id="mobile" name="mobile" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                             <td style="width: 70px;">来厂次数：</td>
                             <td style="width: 140px;">
-                                <input id="" name="" class="nui-textbox textboxWidth">
+                                <input id="compComeTimes" name="compComeTimes" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                         </tr> 
                         <tr class="htr">
                             <td >联系人：</td>
                             <td >
-                                <input id="contactor" name="contactor" class="nui-textbox textboxWidth">
+                                <input id="contactor" name="contactor" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                             <td >联系电话：</td>
                             <td >
-                                <input id="contactorTel" name="contactorTel" class="nui-textbox textboxWidth">
+                                <input id="contactorTel" name="contactorTel" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                             <td >身份：</td>
                             <td >
-                                <input id="" name="" class="nui-combobox textboxWidth">
+                                <input id="identity" name="identity" class="nui-combobox textboxWidth"valueField="customid" textField="name" enabled="false">
                             </td>
                         </tr>
                         <tr class="htr">
                             <td >车牌号：</td>
                             <td >
-                                <input id="carNo" name="carNo" class="nui-textbox textboxWidth">
+                                <input id="carNo" name="carNo" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                             <td >品牌：</td>
                             <td >
-                                <input id="" name="" class="nui-combobox textboxWidth">
+                                <input id="carBrandId" name="carBrandId" class="nui-combobox textboxWidth"textField="name"valueField="id" enabled="false">
                             </td>
                             <td >车型：</td>
                             <td >
-                                <input id="" name="" class="nui-textbox textboxWidth">
+                                <input id="carModel" name="carModel" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                         </tr>  
                         <tr class="htr">
                             <td >发动机号：</td> 
                             <td >
-                                <input id="" name="" class="nui-textbox textboxWidth">
+                                <input id="engineNo" name="engineNo" class="nui-textbox textboxWidth" enabled="false">
                             </td>
-                            <td >底盘号：</td>
+                            <td >车架号：</td>
                             <td >
-                                <input id="" name="" class="nui-textbox textboxWidth">
+                                <input id="carVin" name="carVin" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                             <td ></td>
                             <td >
@@ -132,12 +132,23 @@ pageEncoding="UTF-8" session="false" %>
                         <tr class="htr">
                             <td >业务类型：</td>
                             <td >
-                                <input id="billTypeId" name="billTypeId" class="nui-combobox textboxWidth">
+                                    <input name="serviceTypeId"
+                                    id="serviceTypeId"
+                                    class="nui-combobox textboxWidth"
+                                    textField="name"
+                                    valueField="id"
+                                    emptyText="业务类型"
+                                    url=""
+                                    allowInput="true"
+                                    showNullItem="true"
+                                    valueFromSelect="true"
+                                    onvaluechanged=""
+                                    nullItemText="请选择..." enabled="false"/>
                             </td>
 
                             <td >服务顾问：</td>
                             <td >
-                                <input id="mtAdvisor" name="mtAdvisor" class="nui-combobox textboxWidth" allowInput="true" textField="empName"valueField="empId"emptyText="请选择..."nullItemText="请选择..." onvaluechanged="mtAdvisorChanged">
+                                <input id="mtAdvisor" name="mtAdvisor" class="nui-combobox textboxWidth" allowInput="true" textField="empName"valueField="empId"emptyText="请选择..."nullItemText="请选择..." onvaluechanged="mtAdvisorChanged" enabled="false">
                             </td>
                             <td ></td>
                             <td >
@@ -147,15 +158,15 @@ pageEncoding="UTF-8" session="false" %>
                         <tr class="htr">
                             <td >里程数：</td>
                             <td >
-                                <input id="enterKilometers" name="enterKilometers" class="nui-textbox textboxWidth">
+                                <input id="enterKilometers" name="enterKilometers" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                             <td >进场日期：</td>
                             <td >
-                                <input id="enterDate" name="enterDate" class="nui-datepicker textboxWidth">
+                                <input id="enterDate" name="enterDate" class="nui-datepicker textboxWidth" enabled="false">
                             </td>
                             <td >离厂日期：</td>
                             <td >
-                                <input id="outDate" name="outDate" class="nui-datepicker textboxWidth">
+                                <input id="outDate" name="outDate" class="nui-datepicker textboxWidth" enabled="false">
                             </td>
                         </tr>
                     </table>
@@ -320,19 +331,19 @@ pageEncoding="UTF-8" session="false" %>
                     <tr >
                         <td style="width: 60px;">客户描述：</td>
                         <td style="width:calc(100% - 60px)">
-                            <input id="guestDesc" name="guestDesc" class="nui-textarea textboxWidth" style="height:100px;width:100%">
+                            <input id="guestDesc" name="guestDesc" class="nui-textarea textboxWidth" style="height:100px;width:100%" enabled="false">
                         </td>
                     </tr> 
                     <tr >
                         <td style="width: 60px;">故障现象：</td>
                         <td >
-                            <input id="faultPhen" name="faultPhen" class="nui-textarea textboxWidth"style="height:100px;width:100%">
+                            <input id="faultPhen" name="faultPhen" class="nui-textarea textboxWidth"style="height:100px;width:100%" enabled="false">
                         </td>
                     </tr>
                     <tr >
                         <td style="width: 60px;">解决措施：</td>
                         <td >
-                            <input id="solveMethod" name="solveMethod" class="nui-textarea textboxWidth"style="height:100px;width:100%">
+                            <input id="solveMethod" name="solveMethod" class="nui-textarea textboxWidth"style="height:100px;width:100%" enabled="false">
                         </td>
                     </tr>
                 </table>

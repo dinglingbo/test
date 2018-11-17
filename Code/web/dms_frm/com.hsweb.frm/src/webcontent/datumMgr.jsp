@@ -13,7 +13,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
     <script src="<%=crmDomain%>/common/crmcommon.js?v=1.0" type="text/javascript"></script> 
-    <script src="<%=crmDomain%>/telsales/js/datumMgr.js?v=1.0" type="text/javascript"></script> 
+    <script src="<%=crmDomain%>/telsales/js/R.js?v=1.0" type="text/javascript"></script> 
 </head>
 <body>
 
@@ -194,8 +194,8 @@
                                 <div property="columns">
                                     <div field="visitManId" width="60" headerAlign="center" summaryType="" allowSort=false>营销员</div>
                                     <div field="visitStatus" width="70" headerAlign="center" summaryType="" allowSort=false>跟踪状态</div>
-                                    <div field="priorScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>上次联系时间</div>
-                                    <div field="nextScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>下次联系时间</div>
+                                    <div field="priorScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>上次联系时间</div>
+                                    <div field="nextScoutDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>下次联系时间</div>
                                 </div>
                             </div>
                         </div>

@@ -7,17 +7,17 @@ var repairUrl = apiPath + repairApi + "/";
 var saveUrl = baseUrl + "com.hsapi.system.tenant.employee.saveEmployee.biz.ext";//"com.hsapi.system.employee.employeeMgr.employeeSave.biz.ext";
 var fromUrl = baseUrl + "com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
 var sex;
-var isShowBills = null;
-var isShowMessage = null;
+var isShowOwnBill = null;
+var isAllowRemind = null;
 var isservicelist = [{id: 0, name: '是'}, {id: 1, name: '否'}];
 var basicInfoForm = null;
 var form1=null;
 $(document).ready(function(v) {
-	isShowBills=nui.get("isShowBills");
-	isShowMessage=nui.get("isShowMessage");
-	isShowBills.setData(isservicelist);
+	isShowOwnBill=nui.get("isShowOwnBill");
+	isAllowRemind=nui.get("isAllowRemind");
+	isShowOwnBill.setData(isservicelist);
 
-	isShowMessage.setData(isservicelist);
+	isAllowRemind.setData(isservicelist);
 
     basicInfoForm = new nui.Form('#basicInfoForm');
     from1=basicInfoForm.getData();
@@ -41,8 +41,6 @@ function onempid(e) {
     }
 }
 function SetInitData(data) {
-	data.isShowBills=0;
-	data.isShowMessage = 0;
 	if (!data.empid) return; 
 	basicInfoForm.setData(data);
 

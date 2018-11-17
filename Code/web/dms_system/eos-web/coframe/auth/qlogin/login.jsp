@@ -161,12 +161,14 @@ body {
 	color: #A5A5A5;
 }
 .login_box .login input.min { width: initial;}
+
 .login_box .login .button {
 	background-color: #95B93D;
 	height: 34px;
 	line-height: 34px;
 	text-align: center;
 	color: #FFF;
+	cursor: pointer;
 }
 .login_box .blue { color: #0050FB;cursor: pointer;font-size: 14px;}
 .login_box .wu {
@@ -275,7 +277,7 @@ a {
 			
 		</label>
 		<label>
-			<div class="button"><input id="registered" type="submit" value="注册" class="button" /></div>
+			<div class="sing"><input id="registered" type="submit" value="注册" class="button" /></div>
 		</label>
 		<div class="you" >已经有帐号？  <span class="blue" id="login">登录</span></div>
 	</div>
@@ -303,7 +305,7 @@ a {
 			<input type="password" d="password" name="password" value="" class="password_val" placeholder="密码" maxlength="20" />
 		</label>
 		<label>
-			<div class="button" id="loginJump">登录</div>
+			<div class="sing" id="loginJump"><input  type="submit" value="登录" class="button" /></div>
 		</label>
 <!-- 		<label>
 			<div class="checkbox_box">
@@ -468,6 +470,10 @@ function register(){
 	       function sendMsg(){
 			var params={};
 			params.phone=$("#phone").val();
+			if(!params.phone){
+		      	$("#errorP").html("请输入手机号");
+		      	return false;
+	     	}
 		    $.ajax({
 		        url : "<%=sendUrl%>",
 		        contentType: "application/json;charset=utf-8",

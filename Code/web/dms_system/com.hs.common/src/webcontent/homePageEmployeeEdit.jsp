@@ -39,11 +39,11 @@
                     <tr>
                         <td align="right">显示个人单据：</td>
                         <td>
-                       		 <input class="nui-combobox"  required="false" id="isShowBills" name="isShowBills" textField="name"  value="0" valueField="id" />
+                       		 <input class="nui-combobox"  required="false" id="isShowOwnBill" name="isShowOwnBill" textField="name"  value="0" valueField="id" />
                        		 <input class="nui-textbox" required="false" id="empid" name="empid" vtype="int" onvalidation="onempid" visible="false" emptyText="系统自动分配"/>
                         </td>
                         <td align="right">允许消息通知：</td>
-                        <td><input class="nui-combobox"  required="false" id="isShowMessage" name="isShowMessage" textField="name"  value="0" valueField="id" /></td>
+                        <td><input class="nui-combobox"  required="false" id="isAllowRemind" name="isAllowRemind" textField="name"  value="0" valueField="id" /></td>
                     </tr>
 
                     <tr>

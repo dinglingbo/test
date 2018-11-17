@@ -113,7 +113,7 @@ function edit(action) {
     	emp = row;  	
     }
 
-    var url = webPath + contextPath + "/common/employeeEdit.jsp?token="+token;
+    var url = webPath + contextPath + "/com.hs.common.employeeEdit.flow?token="+token;
     var width = 680;
     var height = 430;
     if(currCompType == 'PART'){

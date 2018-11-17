@@ -146,7 +146,7 @@
             			</table>
             		</div>
             		<div title="套餐信息">
-            			           <div id="rpsPackageGrid" class="nui-datagrid" style="width:100%;height:auto;" dataField="list" showPager="false" showModified="false" allowSortColumn="false" ondrawsummarycell="">
+            			           <div id="rpsPackageGrid" class="nui-datagrid" style="width:100%;height:100%;" dataField="list" showPager="false" showModified="false" allowSortColumn="false" ondrawsummarycell="">
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
                     <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
@@ -180,7 +180,7 @@
             </div>
             		</div>
             		<div title="维修项目信息" >
-            			 <div id="rpsItemGrid" borderStyle="border-bottom:1;" class="nui-datagrid" dataField="list" style="width: 100%; height:auto;" showPager="false" showModified="false" allowSortColumn="true" ondrawsummarycell="">
+            			 <div id="rpsItemGrid" borderStyle="border-bottom:1;" class="nui-datagrid" dataField="list" style="width: 100%; height:100%;" showPager="false" showModified="false" allowSortColumn="true" ondrawsummarycell="">
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
                     <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>

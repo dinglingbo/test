@@ -51,7 +51,7 @@
 								name="recorder" /></td>
 							<td class="title">本单结转日期:</td>
 							<td><input class="nui-datepicker width2M" enabled="false"
-								name="recordDate" format="yyyy-MM-dd hh:MM" /></td>
+								name="recordDate" format="yyyy-MM-dd HH:mm" /></td>
 
 						</tr>
 

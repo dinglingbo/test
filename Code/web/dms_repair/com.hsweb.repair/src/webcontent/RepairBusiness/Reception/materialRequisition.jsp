@@ -372,6 +372,7 @@
     </style>
     <div class="print_btn">
         <a id="print" href="javascript:void(0)">打印</a>
+        <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
     </div>
     <div id="print-container">
         <div class="company-info">
@@ -467,6 +468,10 @@
         });
 	});	
 	
+	 function CloseWindow(action) {
+            if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+            else window.close();
+        }
 	function SetData(params){
 	    $.ajaxSettings.async = false;
 	    $.post(params.partApiUrl+"com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext?"+"&token="+params.token,{},function(text){

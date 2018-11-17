@@ -54,7 +54,7 @@
 					</td>
 					<td style="vertical-align: inherit;text-align:left;" >
              			 <input errorMode="none" name="startTime" id="startTime" class="nui-datepicker"   required="true" style="width:160px" showTime="true"
-             			 allowInput="false" format="yyyy-MM-dd hh:MM" showOkButton="true" showClearButton="false"/>
+             			 allowInput="false" format="yyyy-MM-dd HH:mm" showOkButton="true" showClearButton="false"/>
              			 <font style="color:red">*</font>
             		</td>
 				</tr>
@@ -70,7 +70,7 @@
             		</td>
 					<td style="vertical-align: inherit;text-align:left;">
              			 <input errorMode="none" name="endTime" class="nui-datepicker" style="width:160px" required="true"  id="endTime"
-        					format="yyyy-MM-dd hh:MM" allowInput="false" showTime="true" showOkButton="true" showClearButton="false"/>
+        					format="yyyy-MM-dd HH:mm" allowInput="false" showTime="true" showOkButton="true" showClearButton="false"/>
         					<font style="color:red">*</font>
             		</td>
 				</tr>

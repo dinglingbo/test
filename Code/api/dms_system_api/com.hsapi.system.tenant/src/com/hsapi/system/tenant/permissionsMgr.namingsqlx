@@ -72,6 +72,8 @@
 			a.is_dimission as isDimission,
 			a.is_open_account as isOpenAccount,
 			a.is_artificer as isArtificer,
+			a.is_allow_remind as isAllowRemind,
+			a.is_show_own_bill as isShowOwnBill,
 			a.member_group_id as memberGroupId,
 			a.member_level_id as memberLevelId,
 			a.integral_discount_max as integralDiscountMax,

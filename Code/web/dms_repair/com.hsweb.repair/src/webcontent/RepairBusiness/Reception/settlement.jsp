@@ -381,7 +381,7 @@
 	        	}
 	        }
 	        document.getElementById("comp").innerHTML = params.comp;
-	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd hh:MM");
+	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
 	        $.ajaxSettings.async = false;//设置为同步执行
 	        var url = null;
 	        if(params.type){
@@ -406,7 +406,7 @@
 	        		if(enterDate){
 	        			enterDate = enterDate.replace(/-/g,"/");
 	        			enterDate = new Date(enterDate);
-	        			enterDate = format(enterDate, "yyyy-MM-dd hh:MM");
+	        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm");
 	        		}
 	        		var guestFullName = list.guestFullName || "";
 	        		var enterOilMass = list.enterOilMass || "0";
@@ -424,7 +424,7 @@
 	        		if(planFinishDate){
 	        			planFinishDate = planFinishDate.replace(/-/g,"/");
 	        			planFinishDate = new Date(planFinishDate);
-	        			planFinishDate = format(planFinishDate, "yyyy-MM-dd hh:MM");
+	        			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm");
 	        		}
 	        		var serviceCode = list.serviceCode || "";
 	        		var guestDesc = list.guestDesc || "";

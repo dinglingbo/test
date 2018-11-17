@@ -152,7 +152,7 @@
 				} else if(propertyType == "Time") {
 					tipString = "提示：左值为<span id='leftTypeId'>" + propertyType + "</span>类型，右值填写格式：hh:mm:ss";
 				} else if(propertyType == "TimeStamp") {
-					tipString = "提示：左值为<span id='leftTypeId'>" + propertyType + "</span>类型，右值填写格式：yyyy-MM-dd hh:MM";
+					tipString = "提示：左值为<span id='leftTypeId'>" + propertyType + "</span>类型，右值填写格式：yyyy-MM-dd HH:mm";
 				} else {
 					tipString = "提示：左值为<span id='leftTypeId'>" + propertyType + "</span>类型，右值请填写正确格式";
 				}
@@ -739,7 +739,7 @@
 					} else if(propertyType == "TimeStamp") {
 					
 						if((typeof node.rightId=='object')&&node.rightId.constructor==Date) {
-	            			node.rightId = date2str(node.rightId,'yyyy-MM-dd hh:MM');
+	            			node.rightId = date2str(node.rightId,'yyyy-MM-dd HH:mm');
 	            		}
 						
 						if(node.condition == "in" || node.condition == "notin") {

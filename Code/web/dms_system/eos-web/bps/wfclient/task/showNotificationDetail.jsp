@@ -25,16 +25,16 @@
 					<td class="nui-form-label"><label for="createTime$text"><%=I18nUtil.getMessage(request, "bps.wfclient.notification.CreateTime")%>:</label></td>
 					<td><input id="createTime" name="createTime"
 						class="nui-datepicker asLabell" readOnly="true"
-						style="width: 100%" format="yyyy-MM-dd hh:MM" /></td>
+						style="width: 100%" format="yyyy-MM-dd HH:mm" /></td>
 					<td class="nui-form-label"><label for="remindTime$text"><%=I18nUtil.getMessage(request, "bps.wfclient.notification.RemindTime")%>:</label></td>
 					<td><input id="remindTime" name="remindTime"
-						format="yyyy-MM-dd hh:MM" class="nui-datepicker asLabell "
+						format="yyyy-MM-dd HH:mm" class="nui-datepicker asLabell "
 						readOnly="true" style="width: 100%" /></td>
 				</tr>
 				<tr>
 					<td class="nui-form-label"><label for="confirmTime$text"><%=I18nUtil.getMessage(request, "bps.wfclient.notification.ReadTime")%>:</label></td>
 					<td><input id="confirmTime" name="confirmTime"
-						class="nui-datepicker asLabell" readOnly="true" format="yyyy-MM-dd hh:MM" style="width: 100%"/></td>
+						class="nui-datepicker asLabell" readOnly="true" format="yyyy-MM-dd HH:mm" style="width: 100%"/></td>
 					<td class="nui-form-label"><label for="sender$text"><%=I18nUtil.getMessage(request, "bps.wfclient.notification.Sender")%>:</label></td>
 					<td><input id="sender" name="sender"
 						class="nui-textbox asLabel " readOnly="true" /></td>

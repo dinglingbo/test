@@ -58,7 +58,7 @@
                     <div field="goods_sn"  headerAlign="center" header="配件编码" allowSort="true"></div>
                     <div field="goods_name" headerAlign="center" header="配件名称" allowSort="true"></div>
                     <div field="shop_price" headerAlign="center" header="最新进价" allowSort="true"></div>
-                    <div field="last_update" headerAlign="center" header="最近更新日期" dateFormat="yyyy-MM-dd hh:MM" allowSort="true"></div>
+                    <div field="last_update" headerAlign="center" header="最近更新日期" dateFormat="yyyy-MM-dd HH:mm" allowSort="true"></div>
                 </div>
             </div>
             <div header="零件基本信息" headerAlign="center">

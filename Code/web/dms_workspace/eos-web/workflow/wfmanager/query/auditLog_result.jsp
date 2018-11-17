@@ -55,7 +55,7 @@
 										<d:write iterateId="list" property="optionLevel" dictTypeId="WFDICT_AuditOpt"/>
 										</td>
 										<td nowrap="nowrap">
-										<b:write iterateId="list" property="createTime"  formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
+										<b:write iterateId="list" property="createTime"  formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
 										<td nowrap="nowrap"  width="6%">
 										<b:write iterateId="list" property="processDefineID" />
 										</td>

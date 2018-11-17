@@ -71,7 +71,7 @@
 						<div id="isOpenAccount" field="isOpenAccount" headerAlign="center" allowSort="true" visible="true" width="50px">是否开通系统</div>
 						<div id="systemAccount" field="systemAccount" headerAlign="center" allowSort="true" visible="true" width="50px">登陆账号</div>
 						<div id="recorder" field="recorder" headerAlign="center" allowSort="true" visible="true" width="60px">建档人</div>
-						<div id="recordDate" field="recordDate" headerAlign="center" allowSort="true" visible="true" width="60px" dateFormat="yyyy-MM-dd hh:MM">建档日期</div>
+						<div id="recordDate" field="recordDate" headerAlign="center" allowSort="true" visible="true" width="60px" dateFormat="yyyy-MM-dd HH:mm">建档日期</div>
 		
 				
 			</div>

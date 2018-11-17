@@ -285,7 +285,7 @@
                   	<div field="contactMobile" name="contactMobile" width="80" headerAlign="center" header="送修人手机"></div>
                   	<div field="mtAdvisor" name="mtAdvisor" width="70" headerAlign="center" header="服务顾问"></div>
 	                <div field="serviceCode" name="serviceCode" width="120" headerAlign="center" header="工单号"></div>
-                    <div field="recordDate" name="recordDate" width="110" headerAlign="center" header="开单日期" dateFormat="yyyy-MM-dd hh:MM"></div>
+                    <div field="recordDate" name="recordDate" width="110" headerAlign="center" header="开单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div field="balaAmt" name="balaAmt" width="60" headerAlign="center" header="金额"></div>
                     
             </div>

@@ -104,11 +104,11 @@
 									<div field="recorder" allowSort="true" headerAlign="center"
 										width="70">订单状态</div>
 									<div field="recordDate" allowSort="true" headerAlign="center"
-										dateFormat="yyyy-MM-dd hh:MM" width="70">销售顾问</div>
+										dateFormat="yyyy-MM-dd HH:mm" width="70">销售顾问</div>
 									<div field="recorder" allowSort="true" headerAlign="center"
 										width="70">订车日期</div>
 									<div field="recordDate" allowSort="true" headerAlign="center"
-										dateFormat="yyyy-MM-dd hh:MM" width="70">预交车日期</div>
+										dateFormat="yyyy-MM-dd HH:mm" width="70">预交车日期</div>
 
 
 								</div>
@@ -122,15 +122,15 @@
 									<div field="recorder" allowSort="true" headerAlign="center"
 										width="70">品牌</div>
 									<div field="recordDate" allowSort="true" headerAlign="center"
-										dateFormat="yyyy-MM-dd hh:MM" width="70">类别</div>
+										dateFormat="yyyy-MM-dd HH:mm" width="70">类别</div>
 									<div field="recorder" allowSort="true" headerAlign="center"
 										width="70">规格</div>
 									<div field="recordDate" allowSort="true" headerAlign="center"
-										dateFormat="yyyy-MM-dd hh:MM" width="70">外观颜色</div>
+										dateFormat="yyyy-MM-dd HH:mm" width="70">外观颜色</div>
 									<div field="recordDate" allowSort="true" headerAlign="center"
-										dateFormat="yyyy-MM-dd hh:MM" width="70">内饰颜色</div>
+										dateFormat="yyyy-MM-dd HH:mm" width="70">内饰颜色</div>
 									<div field="recordDate" allowSort="true" headerAlign="center"
-										dateFormat="yyyy-MM-dd hh:MM" width="70">配置</div>
+										dateFormat="yyyy-MM-dd HH:mm" width="70">配置</div>
 
 
 								</div>

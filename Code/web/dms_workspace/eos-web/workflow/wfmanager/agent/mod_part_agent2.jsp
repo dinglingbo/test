@@ -33,8 +33,8 @@
                                  <b:message key="detail_full_agent_jsp.efficient_time"/>
                               </td><%-- 生效时间: --%>
                               <td nowrap>
-                                 <b:write  property="StartTime" formatPattern="yyyy-MM-dd hh:MM"/>
-                                 <input type="hidden" name="StartTime" value='<b:write  property="StartTime" formatPattern="yyyy-MM-dd hh:MM"/>'>
+                                 <b:write  property="StartTime" formatPattern="yyyy-MM-dd HH:mm"/>
+                                 <input type="hidden" name="StartTime" value='<b:write  property="StartTime" formatPattern="yyyy-MM-dd HH:mm"/>'>
                               </td>
                             </tr>
                             <tr>
@@ -52,8 +52,8 @@
                                   <b:message key="detail_full_agent_jsp.end_time"/>
                               </td><%-- 终止时间: --%>
                               <td>
-                                  <b:write  property="EndTime" formatPattern="yyyy-MM-dd hh:MM"/>
-                                  <input type="hidden" name="EndTime" value='<b:write  property="EndTime" formatPattern="yyyy-MM-dd hh:MM"/>'>
+                                  <b:write  property="EndTime" formatPattern="yyyy-MM-dd HH:mm"/>
+                                  <input type="hidden" name="EndTime" value='<b:write  property="EndTime" formatPattern="yyyy-MM-dd HH:mm"/>'>
                               </td>
                             </tr>
 							<tr>

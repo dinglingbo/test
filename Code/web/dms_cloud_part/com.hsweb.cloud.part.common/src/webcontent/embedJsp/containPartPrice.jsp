@@ -42,7 +42,7 @@
             <div allowSort="true" field="name" width="100" headerAlign="center" header="价格类型"></div>
             <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="售价"></div>
             <div allowSort="true" datatype="float" field="operator" width="60" headerAlign="center" header="创建人"></div>
-            <div allowSort="true" field="operateDate" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd hh:MM"></div>
+            <div allowSort="true" field="operateDate" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm"></div>
         </div>
     </div>
 </div>

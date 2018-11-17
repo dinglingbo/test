@@ -48,7 +48,7 @@
 					</tr>
 					<tr>
 						<td class="title">本单结转日期：</td>
-						<td><input class="nui-datepicker width2M" enabled="false" name="recordDate"  format="yyyy-MM-dd hh:MM"/></td>
+						<td><input class="nui-datepicker width2M" enabled="false" name="recordDate"  format="yyyy-MM-dd HH:mm"/></td>
 						<td class="title">未收金额：</td>
 						<td><input class="nui-textbox"  enabled="false" name="rpAmtYes"/></td>
 					</tr>

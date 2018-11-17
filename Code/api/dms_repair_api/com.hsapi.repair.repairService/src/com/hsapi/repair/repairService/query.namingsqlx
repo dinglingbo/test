@@ -704,4 +704,96 @@
 			FROM wb_repair.rps_pick_detail
 			WHERE main_id = #mainId# and IFNULL(fault_code,'') != ''
 	</select>
+	
+	<select id="queryMainRemind" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				b.orgid,
+				b.car_no as carNo,
+				b.car_model as carModel,
+				b.guest_id as guestId,
+				c.full_name as guestName,
+				DATEDIFF(now(),a.last_leave_date) as leaveDays,
+				DATE_SUB(a.care_due_date,INTERVAL d.param1 day) as finalRemindDay,
+				a.chain_come_times as chainComeTimes,
+				a.last_come_date as lastComeDate,
+				a.first_come_date as firstComeDate,
+				a.last_leave_date as lastLeaveDate,
+				a.care_due_date as careDueDate,
+				a.prev_advisor_name as preAdvisorName,
+				c.mobile as mobile,
+				e.id as serviceId,
+				b.car_model_id as carModelId,
+				b.car_brand_id as carBrandId
+			FROM
+				rpb_car_extend a
+			INNER JOIN rpb_car b ON a.car_id = b.id
+			INNER JOIN wb_common.com_guest c on c.id=b.guest_id
+			left JOIN rpb_remind_param d on b.orgid=d.orgid
+			LEFT JOIN (
+			SELECT * FROM(SELECT id,car_id from rps_maintain  order by record_date desc)p GROUP  BY p.car_id 
+			) e on b.id=e.car_id
+			
+			WHERE 1=1
+			<isNotEmpty prepend="and" property="orgid">
+  				 b.orgid = #orgid#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">
+  				b.car_no = #carNo#
+            </isNotEmpty>
+            
+            <!-- 是否需要提醒-->
+            <isNotEmpty prepend="and" property="isNeedRemind">
+  				a.is_need_remind = #isNeedRemind#
+            </isNotEmpty>
+            <!--提醒状态-->
+            <isNotEmpty prepend="and" property="remindStatus">
+  				a.remind_status = #remindStatus#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="mobile">
+  				c.mobile like '%$mobile$%'
+            </isNotEmpty>
+	</select>
+	
+		<select id="queryRpsCareRecord" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				a.id AS id,
+				a.orgid AS orgid,
+				a.care_type AS careType,
+				a.guest_id AS guestId,
+				a.car_id AS carId,
+				a.visit_mode AS visitMode,
+				a.visit_content AS visitContent,
+				a.visit_id AS visitId,
+				a.visit_man AS visitMan,
+				a.visit_date AS visitDate,
+				b.full_name AS guestName,
+				b.mobile AS mobile,
+				c.car_no as carNo
+			FROM
+				rps_care_record AS a
+			INNER JOIN wb_common.com_guest b ON a.guest_id = b.id
+			INNER JOIN rpb_car c ON c.id = a.car_id
+			WHERE
+				1 = 1
+			<isNotEmpty prepend="and" property="orgid">
+  				 a.orgid = #orgid#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">
+  				c.car_no = #carNo#
+            </isNotEmpty>
+            
+            <!--提醒类型-->
+            <isNotEmpty prepend="and" property="careType">
+  				a.care_type = #careType#
+            </isNotEmpty>
+
+            <isNotEmpty prepend="and" property="guestId">
+  				a.guest_id = #guestId#
+            </isNotEmpty>
+
+            <isNotEmpty prepend="and" property="mobile">
+  				b.mobile like '%$mobile$%'
+            </isNotEmpty>
+	</select>
 </sqlMap>

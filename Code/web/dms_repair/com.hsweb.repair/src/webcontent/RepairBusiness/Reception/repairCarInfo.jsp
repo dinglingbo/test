@@ -26,7 +26,7 @@
                   <td class="title required">
                       <label>车牌号：</label>
                   </td>
-                  <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
+                  <td class="" width="24%"><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
                   <td class="title required">
                       <label>业务类型：</label>
                   </td>
@@ -61,7 +61,13 @@
                              valueFromSelect="true"
                              nullItemText="请选择..."/>
                   </td>
-                  <td class="title required">
+                   <td class="title required" >
+                      <label>品牌/车型：</label>
+                  </td>
+                      <td class=""><input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/></td>
+              </tr>
+              <tr>
+                 <td class="title required">
                       <label>进厂油量：</label>
                   </td>
                   <td>
@@ -72,32 +78,27 @@
                              valueField="customid"
                              emptyText="请选择..."
                              url=""
+                             width="28%"
                              allowInput="true"
                              showNullItem="false"
-                             width="100%"
                              valueFromSelect="true"
                              nullItemText="请选择..."/>
-                  </td>
-              </tr>
-              <tr>
-                  <td class="title required">
-                      <label>进厂里程：</label>
-                  </td>
-                  <td >
-                      <input class="nui-Spinner" minValue="0" maxValue="100000000" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" width="100%"/>
+                       <label class="title required">进厂里程：</label>
+                       <input class="nui-Spinner" minValue="0" maxValue="100000000" width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
+                       <label class="title" id="lastComeKilometers">(上次里程：0)</label>
                   </td>
                   <td class="title required">
                       <label>进厂日期：</label>
                   </td>
                   <td>
-                      <input id="enterDate" name="enterDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd hh:MM" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
-                      <input id="recordDate" name="recordDate" class="nui-datepicker" visible="false" value="" nullValue="null" format="yyyy-MM-dd hh:MM" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
+                      <input id="enterDate" name="enterDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
+                      <input id="recordDate" name="recordDate" class="nui-datepicker" visible="false" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
                   </td>
                   <td class="title required">
                       <label>预计交车：</label>
                   </td>
                   <td>
-                      <input id="planFinishDate" name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd hh:MM" nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" width="100%"/>
+                      <input id="planFinishDate" name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm" nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" width="100%"/>
                   </td>
                   <td class="title">
                       <label>备注：</label>

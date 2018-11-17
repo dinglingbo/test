@@ -155,7 +155,7 @@ function init(){
 									<td><b:write property="processDefName" iterateId="workitem"/></td>
 									<td><b:write property="processInstName" iterateId="workitem"/></td>
 									<td><d:write dictTypeId="WFDICT_WorkItemState" property="currentState" iterateId="workitem"/></td>
-									<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyy-MM-dd hh:MM.0"/></td>
+									<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyy-MM-dd HH:mm.0"/></td>
 									<td><b:write property="limitNumDesc" iterateId="workitem"/></td>
 									<td><span id="toName[<%=flag%>]" name="toName[<%=flag%>]"><b:write property="toName"/></span> <wf:selectParticipant id="<%=toNameStr%>" form="query" selectTypes="<%=leafType %>" output="<%=toNameStr%>" root="" value="<%=modify %>" hidden="<%=toStr%>" styleClass="button" hiddenType="ID" maxNum="1"></wf:selectParticipant><%-- 修改... --%>
 									<input type="hidden" id="to[<%=flag%>]" name="to[<%=flag%>]" value='<b:write property="to"/>'>
@@ -191,7 +191,7 @@ function init(){
 									<td><b:write property="processDefName" iterateId="workitem"/></td>
 									<td><b:write property="processInstName" iterateId="workitem"/></td>
 									<td><d:write dictTypeId="WFDICT_WorkItemState" property="currentState" iterateId="workitem"/></td>
-									<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyy-MM-dd hh:MM.0"/></td>
+									<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyy-MM-dd HH:mm.0"/></td>
 									<td><b:write property="limitNumDesc" iterateId="workitem"/></td>
 									<td><span id="toName[<%=flag%>]" name="toName[<%=flag%>]"><b:write property="toName"/></span> <wf:selectParticipant selectTypes="<%=leafType %>" id="<%=toNameStr %>" form="query" styleClass="button" output="<%=toNameStr%>" root="" value="<%=modify %>" hidden="<%=toStr%>" hiddenType="ID" maxNum="1"></wf:selectParticipant><%--  --%>
 									<input type="hidden" name="to[<%=flag%>]" value='<b:write property="to"/>'>
@@ -227,7 +227,7 @@ function init(){
 									<td><b:write property="processDefName" iterateId="workitem"/></td>
 									<td><b:write property="processInstName" iterateId="workitem"/></td>
 									<td><d:write dictTypeId="WFDICT_WorkItemState" property="currentState" iterateId="workitem"/></td>
-									<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyy-MM-dd hh:MM.0"/></td>
+									<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyy-MM-dd HH:mm.0"/></td>
 									<td><b:write property="limitNumDesc" iterateId="workitem"/></td>
 									<td><span id="toName[<%=flag%>]" name="toName[<%=flag%>]"><b:write property="toName"/></span> <wf:selectParticipant selectTypes="<%=leafType %>" id="<%=toNameStr %>" form="query" styleClass="button" output="<%=toNameStr%>" root="" value="<%=modify %>" hidden="<%=toStr%>" hiddenType="ID" maxNum="1"></wf:selectParticipant><%-- 修改... --%>
 									<input type="hidden" name="to[<%=flag%>]" value='<b:write property="to"/>'>
@@ -263,7 +263,7 @@ function init(){
 									<td><b:write property="processDefName" iterateId="workitem"/></td>
 									<td><b:write property="processInstName" iterateId="workitem"/></td>
 									<td><d:write dictTypeId="WFDICT_WorkItemState" property="currentState" iterateId="workitem"/></td>
-									<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyy-MM-dd hh:MM.0"/></td>
+									<td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyy-MM-dd HH:mm.0"/></td>
 									<td><b:write property="limitNumDesc" iterateId="workitem"/></td>
 									<td><span id="toName[<%=flag%>]" name="toName[<%=flag%>]"><b:write property="toName"/></span> <wf:selectParticipant id="<%=toNameStr %>" selectTypes="<%=leafType %>" form="query" styleClass="button" output="<%=toNameStr %>" root="" value="<%=modify %>" hidden="<%=toStr%>" hiddenType="ID" maxNum="1"></wf:selectParticipant><%-- 修改... --%>
 									<input type="hidden" name="to[<%=flag%>]" value='<b:write property="to"/>'>

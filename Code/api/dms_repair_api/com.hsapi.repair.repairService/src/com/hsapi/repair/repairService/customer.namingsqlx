@@ -158,7 +158,8 @@
             f.chain_consume_amt as chainConsumeAmt,
             g.chain_come_times as chainComeTimes,
             g.last_come_date as lastComeDate,
-            d.id_no as idNo
+            d.id_no as idNo,
+            g.last_come_kilometers lastComeKilometers
 		FROM
 			rpb_car a
 			inner join wb_common.com_guest b on (a.guest_id = b.id)
@@ -280,7 +281,7 @@
 			a.default_logistics AS defaultLogistics,
 			f.chain_consume_amt AS chainConsumeAmt,
       		g.card_type as cardType,
-			g.recharge_bala_amt as rechargeBalaAmt,
+			g.recharge_bala_amt as rechargeBalaAmt
 		FROM
 			wb_common.com_guest a
 		    LEFT JOIN wb_repair.rpb_guest f ON a.id = f.id

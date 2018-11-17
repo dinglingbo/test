@@ -11,7 +11,7 @@
 -->
 <head>
 <title>产品选择</title>
-<script src="<%=request.getContextPath()%>/repair/js/pipSelect.js?v=1.0.1"></script>
+<script src="<%=request.getContextPath()%>/repair/js/pipSelect.js?v=1.0.3"></script>
 <style type="text/css">
 
 table {
@@ -154,6 +154,7 @@ table {
                             <div field="itemTime" width="50" headerAlign="center" allowSort="true" header="工时"></div>
                             <div field="amt" width="60" headerAlign="center" allowSort="true" header="工时金额"></div>
                             <div field="type" width="60" headerAlign="center" allowSort="true" header="工时类型"></div>
+                            <div field="serviceTypeId" width="60" headerAlign="center" allowSort="true" header="业务类型"></div>
                         </div>
                     </div>
                 </div>

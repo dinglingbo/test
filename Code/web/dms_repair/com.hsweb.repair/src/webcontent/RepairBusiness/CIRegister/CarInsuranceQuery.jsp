@@ -87,9 +87,9 @@ pageEncoding="UTF-8" session="false"%>
                     <div field="insureCompName" headeralign="center" allowsort="true" visible="true" width="100px">保险公司</div>
 					<div field="saleMans" headeralign="center" allowsort="true" visible="true" width="100px">销售员</div>
                     <div field="serviceCode" headeralign="center" allowsort="true" visible="true" width="100px">工单号</div>
-                    <div field="outDate" name="" width="70" headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd hh:MM"></div>
-                    <div field="beginDate" name="" width="70" headerAlign="center" header="有效开始日期" dateFormat="yyyy-MM-dd hh:MM"></div>
-                    <div field="endDate" name="" width="70" headerAlign="center" header="有效结束日期" dateFormat="yyyy-MM-dd hh:MM"></div>
+                    <div field="outDate" name="" width="70" headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div field="beginDate" name="" width="70" headerAlign="center" header="有效开始日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div field="endDate" name="" width="70" headerAlign="center" header="有效结束日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div field="settleTypeId" headeralign="center" allowsort="true" visible="true" width="80px">保费收取方式</div>
                     <div field="amt" name="amt" width="80" headerAlign="center" header="保司保费总金额"></div>
                     <div field="rtnCompAmt" name="partAmt" width="80" headerAlign="center" header="保司返点总金额"></div>

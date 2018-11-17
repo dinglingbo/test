@@ -45,9 +45,9 @@
 			<div field="message" headerAlign="center" align="center" width="75"><%=I18nUtil.getMessage(request, "bps.wfclient.notification.Message")%></div>
 			<div field="sender" headerAlign="center" align="center" width="60"><%=I18nUtil.getMessage(request, "bps.wfclient.notification.Sender")%></div>
 			<div field="workItemID" headerAlign="center" align="center" width="65"><%=I18nUtil.getMessage(request, "bps.wfclient.notification.WorkItemID")%></div>
-			<div field="createTime" headerAlign="center" align="center" dateFormat="yyyy-MM-dd hh:MM" width="130"><%=I18nUtil.getMessage(request, "bps.wfclient.notification.CreateTime")%></div>
-			<div field="remindTime" headerAlign="center" align="center" dateFormat="yyyy-MM-dd hh:MM" width="130"><%=I18nUtil.getMessage(request, "bps.wfclient.notification.RemindTime")%></div>
-			<div field="finalTime" headerAlign="center" align="center" dateFormat="yyyy-MM-dd hh:MM" width="130"><%=I18nUtil.getMessage(request, "bps.wfclient.notification.OutTime")%></div>
+			<div field="createTime" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm" width="130"><%=I18nUtil.getMessage(request, "bps.wfclient.notification.CreateTime")%></div>
+			<div field="remindTime" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm" width="130"><%=I18nUtil.getMessage(request, "bps.wfclient.notification.RemindTime")%></div>
+			<div field="finalTime" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm" width="130"><%=I18nUtil.getMessage(request, "bps.wfclient.notification.OutTime")%></div>
 			<div field="timeOutFlag" headerAlign="center" align="center" renderer="doChangetimeOutFlag" width="40"><%=I18nUtil.getMessage(request, "bps.wfclient.notification.TimeOutFlag")%></div>
 		</div>
 	</div>

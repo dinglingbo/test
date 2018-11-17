@@ -41,7 +41,7 @@
 			                      <td><b:write property="processInstName" iterateId="workitem" maxLength="50"/></td>
 			                      <td><d:write dictTypeId="WFDICT_WorkItemState" property="currentState" iterateId="workitem"/></td>
 			                      <td><a href='javascript:void(editParticipant(<b:write iterateId="workitem" property="workItemID"/>))'><b:write property="partiName" iterateId="workitem"/></a></td>
-			                      <td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyy-MM-dd hh:MM.0"/></td>
+			                      <td><b:write property="createTime" iterateId="workitem" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyy-MM-dd HH:mm.0"/></td>
 			                      <td><b:write property="limitNumDesc" iterateId="workitem"/></td>
 			                    </tr>
 			                    <%flag++; %>

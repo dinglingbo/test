@@ -10,6 +10,7 @@ var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServ
 var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
 var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
+var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
 var ycAmt = 0;
 var tcAmt = 0;
 var gsAmt = 0;
@@ -705,9 +706,12 @@ function doSetMainInfo(car){
     maintain.insuranceName = car.insuranceName;
     maintain.insureNo = car.insureNo;
     maintain.insureDueDate = car.insureDueDate;
+    //maintain.lastComeKilometers = car.lastComeKilometers;
+    $("#lastComeKilometers").html("( 上次里程："+car.lastComeKilometers+")");
     mpackageRate = 0;
     mitemRate = 0;
     mpartRate = 0;
+    
 
     billForm.setData(maintain);
     sendGuestForm.setData(maintain);
@@ -734,7 +738,10 @@ function setInitData(params){
 			itemPrefAmt:0,
 			partSubtotal:0,
 			partPrefAmt:0,
-			mtAmt:0
+			totalAmt:0,
+			totalPrefAmt:0,
+			totalSubtotal:0,
+			ycAmt:0
 	};
 	sellForm.setData(data);
     if(!params.id){
@@ -745,29 +752,60 @@ function setInitData(params){
             cls: 'mini-mask-loading',
             html: '数据加载中...'
         });
-
         var params = {
             data: {
                 id: params.id
             }
-        }
+        };
         getMaintain(params, function(text){
             var errCode = text.errCode||"";
             var data = text.maintain||{};
             if(errCode == 'S'){
             	xyguest = data;
+            	//挂账
+            	if(data.guestId){
+                	var accAmt = {};
+                	accAmt.guestId = data.guestId;
+                	nui.ajax({
+                        url : getAccountUrl,
+                        type : "post",
+                        data : JSON.stringify({
+                            params : accAmt,
+                            token : token
+                        }),
+                        success : function(data) {
+                        	data = data || {};
+                            if (data.errCode == "S") {
+                                var account = data.account[0];
+                                var Amt = account.accountAmt || 0;
+                                $("#creditEl").html("挂账:"+Amt);
+                            } else {
+                                showMsg(data.errMsg || "获取挂账信息失败","W");
+                            }
+                        },
+                        error : function(jqXHR, textStatus, errorThrown) {
+                            unmaskcall && unmaskcall();
+                            console.log(jqXHR.responseText);
+                        }
+                    });
+                }
                 var p = {
                     data:{
                         guestId: data.guestId||0,
-                        contactorId: data.contactorId||0
+                        contactorId: data.contactorId||0,
+                        carId:data.carId || 0,
+                        carExtendId:data.carId || 0
                     }
-                }
+                };
                 getGuestContactorCar(p, function(text){
                     var errCode = text.errCode||"";
                     var guest = text.guest||{};
+                    var car = text.car || {};
+                    var carExtend = text.carExtend || {};
                     var contactor = text.contactor||{};
                     if(errCode == 'S'){
                         $("#servieIdEl").html(data.serviceCode);
+                        $("#lastComeKilometers").html("( 上次里程："+carExtend.lastComeKilometers+")");
                         var carNo = data.carNo||"";
                         var tel = guest.mobile||"";
                         var guestName = guest.fullName||"";
@@ -795,6 +833,7 @@ function setInitData(params){
                         data.contactorName = contactor.name;
                         data.sex = contactor.sex;
                         data.mobile = contactor.mobile;
+                        data.carModel = car.carModel;
 
                         $("#guestNameEl").html(guest.fullName);
                         $("#showCarInfoEl").html(data.carNo);
@@ -888,8 +927,11 @@ function add(){
 			itemPrefAmt:0,
 			partSubtotal:0,
 			partPrefAmt:0,
-			mtAmt:0
-	};  
+			totalAmt:0,
+			totalPrefAmt:0,
+			totalSubtotal:0,
+			ycAmt:0
+	}; 
     sellForm.setData(data);
     nui.get("mtAdvisorId").setValue(currEmpId);
     nui.get("mtAdvisor").setValue(currUserName);
@@ -904,6 +946,8 @@ function add(){
     $("#servieIdEl").html("");
     $("#showCardTimesEl").html("次卡套餐(0)");
     $("#showCardEl").html("储值卡(0)");
+    $("#creditEl").html("挂账:0");
+    $("#lastComeKilometers").html("上次里程:0");
     $("#showCarInfoEl").html("");
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
@@ -920,20 +964,47 @@ function save(){
         html: '保存中...'
     });
     saveMaintain(function(data){
- 
         if(data.id){
             fserviceId = data.id;
             showMsg("保存成功!","S");
-
+            //查询挂账
+            if(data.guestId){
+            	var params = {};
+                params.guestId = data.guestId;
+            	nui.ajax({
+                    url : getAccountUrl,
+                    type : "post",
+                    data : JSON.stringify({
+                        params : params,
+                        token : token
+                    }),
+                    success : function(data) {
+                    	data = data || {};
+                        if (data.errCode == "S") {
+                            var account = data.account[0];
+                            var Amt = account.accountAmt || 0;
+                            $("#creditEl").html("挂账:"+Amt);
+                        } else {
+                            showMsg(data.errMsg || "获取挂账信息失败","W");
+                        }
+                    },
+                    error : function(jqXHR, textStatus, errorThrown) {
+                        unmaskcall && unmaskcall();
+                        console.log(jqXHR.responseText);
+                    }
+                });
+            }
             var params = {
                 data:{
                     guestId: data.guestId||0,
-                    contactorId: data.contactorId||0
+                    contactorId: data.contactorId||0,
+                    carId:data.carId || 0
                 }
             };
             getGuestContactorCar(params, function(text){
                 var errCode = text.errCode||"";
                 var guest = text.guest||{};
+                var car = text.car || {};
                 var contactor = text.contactor||{};
                 if(errCode == 'S'){
                     $("#servieIdEl").html(data.serviceCode);
@@ -958,7 +1029,7 @@ function save(){
                     data.guestMobile = guest.mobile;
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
-
+                    data.carModel = car.carModel;
                     billForm.setData(data);
 
                     var status = data.status||0;
@@ -970,19 +1041,19 @@ function save(){
                         data:{
                             serviceId: data.id||0
                         }
-                    }
+                    };
                     var p2 = {
                         interType: "item",
                         data:{
                             serviceId: data.id||0
                         }
-                    }
+                    };
                     var p3 = {
                         interType: "part",
                         data:{
                             serviceId: data.id||0
                         }
-                    }
+                    };
                     loadDetail(p1, p2, p3);
 
                 }else{
@@ -990,9 +1061,6 @@ function save(){
                 }
 
             }, function(){});
-
-            
-            
         }
         
     },function(){ 
@@ -1686,8 +1754,6 @@ function doSearchCardTimes(guestId)
        // document.getElementById("formIframe").contentWindow.doSetCardTimes(data);
     });
 }
-
-
 
 function doSearchMemCard(guestId)
 {
@@ -3444,6 +3510,7 @@ function onValueChangedItemTypeId(e){
 		}
 	});
 }
+
 var sumPkgSubtotal = 0;
 var sumPkgPrefAmt = 0;
 var sumItemSubtotal = 0;
@@ -3479,13 +3546,21 @@ function onDrawSummaryCellPack(e){
 			  data.packageSubtotal = sumPkgSubtotal;
 			  data.packagePrefAmt = sumPkgPrefAmt;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
-			  data.mtAmt = mtAmt.toFixed(2);
+			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
+			  data.totalSubtotal = mtAmt.toFixed(2);
+			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
+			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
+			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }else{
 			  data.packageSubtotal = 0;
 			  data.packagePrefAmt = 0;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
-			  data.mtAmt = mtAmt.toFixed(2);
+			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
+			  data.totalSubtotal = mtAmt.toFixed(2);
+			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
+			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
+			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }
 	  } 
@@ -3527,14 +3602,22 @@ function onDrawSummaryCellItem(e){
 			  sumItemPrefAmt = sumItemPrefAmt.toFixed(2);
 			  data.itemSubtotal = sumItemSubtotal;
 			  data.itemPrefAmt = sumItemPrefAmt;
-			  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
-			  data.mtAmt = mtAmt.toFixed(2);
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
+			  data.totalSubtotal = mtAmt.toFixed(2);
+			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
+			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
+			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }else{
 			  data.itemSubtotal = 0;
 			  data.itemPrefAmt = 0;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
-			  data.mtAmt = mtAmt.toFixed(2);
+			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
+			  data.totalSubtotal = mtAmt.toFixed(2);
+			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
+			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
+			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }
 		  if(sumPartSubtotal>0 && sumPartAmt>=0)
@@ -3544,14 +3627,22 @@ function onDrawSummaryCellItem(e){
 			  sumPartPrefAmt = sumPartPrefAmt.toFixed(2);
 			  data.partSubtotal = sumPartSubtotal;
 			  data.partPrefAmt = sumPartPrefAmt;
-			  var mtAmt = parseFloat(data.itemSubtotal)+parseFloat(data.packageSubtotal)+parseFloat(data.partSubtotal);
-			  data.mtAmt = mtAmt.toFixed(2);
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
+			  data.totalSubtotal = mtAmt.toFixed(2);
+			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
+			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
+			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }else{
 			  data.partSubtotal = 0;
 			  data.partPrefAmt = 0;
 			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
-			  data.mtAmt = mtAmt.toFixed(2);
+			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
+			  data.totalSubtotal = mtAmt.toFixed(2);
+			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
+			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
+			  data.totalAmt = totalAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }  
 	  }  

@@ -69,7 +69,7 @@
                         <div field="remark" width="80" headerAlign="center" allowSort="true">备注</div>
                         <div field="shortName" width="60" headerAlign="center" allowSort="true">往来单位</div>
                         <div field="creator" width="50" headerAlign="center" allowSort="true">业务员</div>
-                        <div field="createDate" width="80" dateFormat="yyyy-MM-dd hh:MM" headerAlign="center" allowSort="true">创建日期</div>
+                        <div field="createDate" width="80" dateFormat="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true">创建日期</div>
                 </div>
         </div>
 </div>

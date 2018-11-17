@@ -193,8 +193,8 @@ function editParticipant(workItemID){
 						<td>
 							<a href='javascript:void(editParticipant(<b:write iterateId="list" property="workItemID"/>))'><b:write iterateId="list" property="partiName"/>
 						</td>
-						<td><b:write iterateId="list" property="startTime" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
-						<td><b:write iterateId="list" property="endTime" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
+						<td><b:write iterateId="list" property="startTime" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
+						<td><b:write iterateId="list" property="endTime" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
 					</tr>
 					<%flag++;  %>
 				</l:iterate>

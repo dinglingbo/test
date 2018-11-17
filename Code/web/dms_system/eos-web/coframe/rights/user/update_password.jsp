@@ -32,6 +32,17 @@
 </head>
 <body>
 <div style="padding-top:5px;">
+			 <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                            <a class="nui-button" onclick="save()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+                            <a class="nui-button" onclick="cancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+		   
 	<form method="post" id = "form1"	name="UpdateForm" action="<%=url%>"  onsubmit="return checkFormSelf(this);">
 		<input id="operatorId" class="nui-hidden" name="user/operatorId" />
 		<input id="userId" class="nui-hidden" name="user/userId" value="<%=AppUserManager.getCurrentUserId() %>"/>
@@ -61,17 +72,7 @@
 	        </td>
 	      </tr>
 	    </table>
-	    <div class="nui-toolbar" style="border:0;padding:0px;">
-		   <table width="100%">
-		      <tr>
-		        <td style="text-align:center;">
-		          <a class="nui-button" iconCls="icon-save" onclick="save">保存</a>
-              <span style="display:inline-block;width:25px;"></span>
-              <a class="nui-button" iconCls="icon-cancel" onclick="cancel">取消</a>
-		        </td>
-		      </tr>
-		   </table>
-		</div>
+
 	</form>
 </div>
 

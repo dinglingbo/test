@@ -80,6 +80,14 @@
 									<input class="nui-textbox" name="name" width="100%"/>
 								</td>
 								<td class="form_label required">
+									<label>工时编码：</label>
+								</td>
+								<td colspan="1">
+									<input class="nui-textbox" name="code" width="100%"/>
+								</td>
+							</tr>
+							<tr>
+							<td class="form_label required">
 									<label>工时类型：</label>
 								</td>
 								<td colspan="1">
@@ -89,17 +97,26 @@
 											valueFromSelect="true"
 											allowInput="true"
 											width="100%"/>
-								</td>
-							</tr>
-							<tr>
-								<td class="form_label required">
-									<label>工时编码：</label>
+						     </td>
+						   		
+							<td class="form_label required">
+									<label>业务类型：</label>
 								</td>
 								<td colspan="1">
-									<input class="nui-textbox" name="code" width="100%"/>
-								</td>
-								
-								 <td >
+							
+			                      <input name="serviceTypeId"
+			                             id="serviceTypeId"
+			                             class="nui-combobox"
+			                             textField="name"
+			                             valueField="id"
+			                             allowInput="true"
+			                             width="100%"
+			                             valueFromSelect="true"
+			                            />
+						     </td>
+							</tr>
+							<tr>
+							    <td >
 									<label id="isShareTd">是否共享：</label>
 								</td>
 								<td colspan="1">
@@ -110,11 +127,7 @@
 					
 									<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
 								</td>
-									
-
 								
-							</tr>
-							<tr>
 								<td class="form_label">
 									<label>品牌：</label>
 								</td>
@@ -123,9 +136,12 @@
 											valueField="id"
 											textField="nameCn"
 											onValuechanged="initCarSeries('carSeriesId', e.value)"
-											width="100%"/>
+											width="100%" popupHeight="100%"/>
 								</td>
-								<td class="form_label">
+								
+							</tr>
+							<tr>
+							  <td class="form_label">
 									<label>车系：</label>
 								</td>
 								<td>
@@ -133,18 +149,16 @@
 											valueField="carSeriesId"
 											textField="carSeriesName"
 											onValuechanged="initCarModel('carModelId', '', e.value)"
-											width="100%"/>
+											width="100%" popupHeight="100%"/>
 								</td>
-							</tr>
-							<tr>
 								<td class="form_label">
 									<label>车型：</label>
 								</td>
-								<td colspan="3">
+								<td colspan="1">
 									<input class="nui-combobox" name="carModelId" id="carModelId"
 											valueField="carModelId"
 											textField="carModel"
-											width="100%"/>
+											width="100%" popupHeight="100%"/>
 								</td>
 							</tr>
 						</table>
@@ -164,7 +178,7 @@
 											format="0.00"
 											value="0" maxValue="1000000000"
 											changeOnMousewheel="true" showButton="false"
-											width="100%" inputStyle="text-align:right;"/>
+											width="100%" inputStyle="text-align:right;" />
 								</td>
 								<td class="form_label">
 									<label>工时单价：</label>

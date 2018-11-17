@@ -370,4 +370,40 @@
         order by a.create_date
 	</select>
     
+    
+    	<!--结算账户余额表-->
+     <select id="querySummaryAccountBalances" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+			    a.id as id,
+	            a.main_id as mainId,
+	            a.sett_account_id as settAccountId,
+	            a.sett_account_name as settAccountName,
+	            a.bala_type_code as balaTypeCode,
+	            a.bala_type_name as balaTypeName,
+	            a.sett_account_code as settAccountCode,
+	            a.rp_dc  as rpDc,
+	            a.char_off_amt as charOffAmt,
+	            a.remark as remark,
+				b.create_date as createDate,
+				b.guest_name as guestName,
+				b.orgid as orgid,
+				b.rp_account_id as rpAccountId,
+				b.guest_id as guestId
+			FROM
+				fis_rp_account_d_type a
+				 INNER JOIN fis_rp_account  b on(a.main_id=b.id)
+			
+			WHERE 
+				a.sett_account_id=#settAccountId#
+		       AND  b.orgid = #orgid#
+
+            <isNotEmpty prepend="and" property="startDate">  
+                (b.create_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (b.create_date &lt; #endDate#)
+            </isNotEmpty>
+    </select>
+    
+    
     </sqlMap>

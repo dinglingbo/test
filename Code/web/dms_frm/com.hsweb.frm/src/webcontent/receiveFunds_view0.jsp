@@ -142,13 +142,13 @@
 								width="120">发票金额</div>
 							<div field="recorder" allowSort="true" headerAlign="center"
 								width="120">结转人</div>
-							<div field="recordDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM"
+							<div field="recordDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm"
 								width="120">结转日期</div>
 							<div field="auditor" allowSort="true" headerAlign="center"
 								width="120">审核人</div>
-							<div field="auditDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM"
+							<div field="auditDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm"
 								width="125">审核日期</div>
-							<div field="onAccountDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM"
+							<div field="onAccountDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm"
 								width="125" >挂账日期</div>
 							<div field="OwnDay" allowSort="true" headerAlign="center"
 								width="120">挂账天数</div>

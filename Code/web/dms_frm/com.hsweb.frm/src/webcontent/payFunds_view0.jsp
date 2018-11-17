@@ -126,11 +126,11 @@
 
 							<div field="recorder" allowSort="true" headerAlign="center"
 								width="120">结转人</div>
-							<div field="recordDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM"
+							<div field="recordDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm"
 								width="120">结转日期</div>
 							<div field="auditor" allowSort="true" headerAlign="center"
 								width="120">审核人</div>
-							<div field="auditDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM"
+							<div field="auditDate" allowSort="true" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm"
 								width="125">审核日期</div>
 						
 

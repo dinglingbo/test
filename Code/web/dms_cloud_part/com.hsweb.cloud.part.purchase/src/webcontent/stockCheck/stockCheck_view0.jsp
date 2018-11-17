@@ -108,12 +108,12 @@
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
-                        <div field="createDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="盘点日期"></div>
+                        <div field="createDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="盘点日期"></div>
                         <div field="orderMan" width="60" headerAlign="center" header="盘点员"></div><div field="auditSign" width="50" headerAlign="center" header="状态"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="盘点单号"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                        <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="审核日期"></div>
+                        <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="审核日期"></div>
                     </div>
                 </div>
             </div>
@@ -165,7 +165,7 @@
                                                  width="100%"
                                                  enabled="false"
                                                  showTime="true"
-                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd hh:MM"/>
+                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
                                       </td>
                                       <td class="title">
                                           <label>盘点单号：</label>

@@ -106,8 +106,8 @@
             <div allowSort="true" datatype="float" field="occupyQty" summaryType="sum" width="60" headerAlign="center" header="占用数量"></div> -->
             <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
             <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
-            <div allowSort="true" field="lastEnterDate" headerAlign="center" header="最近入库日期" dateFormat="yyyy-MM-dd hh:MM"></div>
-            <div allowSort="true" field="lastOutDate" headerAlign="center" header="最近出库日期" dateFormat="yyyy-MM-dd hh:MM"></div>
+            <div allowSort="true" field="lastEnterDate" headerAlign="center" header="最近入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+            <div allowSort="true" field="lastOutDate" headerAlign="center" header="最近出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
             <div allowSort="true" field="upLimit" width="60" headerAlign="center" header="库存上限"></div>
             <div allowSort="true" field="downLimit" width="60" headerAlign="center" header="库存下限"></div>
             <div allowSort="true" field="detailRemark" width="200" headerAlign="center" header="备注"></div>

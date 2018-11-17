@@ -97,18 +97,25 @@
                                     id="param1" maxValue="999999" showButton="false"/>天提醒
                             </td>
                         </tr>
-                        <tr class="htr">
+                        <!--<tr class="htr">
                             <td class="tbtext ">车辆保养周期</td>
                             <td >
                                 <input name="param2" class="nui-spinner" width="50px" format="0" 
                                     id="param2" maxValue="999999" showButton="false"/>天提醒
                             </td>
-                        </tr>
+                        </tr>-->
                         <tr class="htr">
-                            <td class="tbtext ">距离车辆保险到期日期</td>
+                            <td class="tbtext ">距离车辆商业险到期日期</td>
                             <td >
                                 <input name="param3" class="nui-spinner" width="50px" format="0" 
                                     id="param3" maxValue="999999" showButton="false"/>天提醒
+                            </td>
+                        </tr>
+                        <tr class="htr">
+                            <td class="tbtext ">距离车辆交强险到期日期</td>
+                            <td >
+                                <input name="param11" class="nui-spinner" width="50px" format="0" 
+                                    id="param11" maxValue="999999" showButton="false"/>天提醒
                             </td>
                         </tr>
                         <tr class="htr">

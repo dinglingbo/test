@@ -49,7 +49,7 @@ pageEncoding="UTF-8" session="false" %>
             <div field="isDisabled" name="isDisabled" width="40" renderer="onRenderer"  headeralign="center" >统一售价</div>
             <div field="remark" name="remark" width="80"  headeralign="center" >备注</div>
             <div field="operator" name="modifier" width="60"  headeralign="center" >最近修改人</div>
-            <div field="operateDate" name="operateDate" width="80" dateFormat="yyyy-MM-dd hh:MM"  headeralign="center" >最近修改日期</div>
+            <div field="operateDate" name="operateDate" width="80" dateFormat="yyyy-MM-dd HH:mm"  headeralign="center" >最近修改日期</div>
        
         </div>
     </div>

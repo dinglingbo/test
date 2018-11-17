@@ -30,7 +30,7 @@
 			</div> 
 			<div title="库存设置" name="stockTab" url="" >
 			</div>  
-			<div title="绩效设置" name="basicDeductTab" url="" >
+			<div title="绩效设置" name="basicDeductTab" url="" visible="false">
 			</div>
 			<div title="提醒设置" name="remindTab" url="" >
 			</div> 

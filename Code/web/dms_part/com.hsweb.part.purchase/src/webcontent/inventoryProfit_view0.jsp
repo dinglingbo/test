@@ -114,7 +114,7 @@
                                        width="100%"
                                        showTime="false"
                                        allowInput="false"
-                                       class="nui-datepicker" enabled="false" format="yyyy-MM-dd hh:MM"/>
+                                       class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
                             </td>
                             <td class="title required">
                                 <label>仓库：</label>
@@ -255,7 +255,7 @@
                 <td>
                     <input name="endDate"
                            class="nui-datepicker"
-                           format="yyyy-MM-dd hh:MM"
+                           format="yyyy-MM-dd HH:mm"
                            timeFormat="H:mm:ss"
                            showTime="false"
                            allowInput="false"

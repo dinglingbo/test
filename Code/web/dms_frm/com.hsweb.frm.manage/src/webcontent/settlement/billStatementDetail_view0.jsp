@@ -112,7 +112,7 @@
                                  width="100%"
                                  enabled="false"
                                  showTime="true"
-                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd hh:MM"/>
+                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
                       </td>
                       <td class="title" style="width:72px">
                           <label>对账单号：</label>
@@ -215,7 +215,7 @@
                   <div field="typeCode" width="60" headerAlign="center" header="业务类型"></div>
                   <div field="billAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
                   <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
-                  <div allowSort="true" field="billDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd hh:MM"></div>
+                  <div allowSort="true" field="billDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                   <div field="remark" width="120" headerAlign="center" header="备注"></div>
                   <div allowSort="true" summaryType="count" field="billServiceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
               </div>

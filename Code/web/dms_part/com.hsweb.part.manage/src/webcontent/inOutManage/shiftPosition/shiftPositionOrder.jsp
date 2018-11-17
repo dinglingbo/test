@@ -97,7 +97,7 @@
                                 <td width="120"><input name="createDate" id="createDate"
                                     width="100%" enabled="false" showTime="true"
                                     class="nui-datepicker" enabled="false"
-                                    format="yyyy-MM-dd hh:MM" /></td>
+                                    format="yyyy-MM-dd HH:mm" /></td>
                                     <td class="title" style="width: 7%"><label>移仓单号：</label>
                                     </td>
                                     <td><input class="nui-textbox" width="100%"

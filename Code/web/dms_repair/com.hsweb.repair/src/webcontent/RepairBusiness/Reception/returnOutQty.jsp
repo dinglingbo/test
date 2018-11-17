@@ -85,15 +85,9 @@
                   url=""
                   allowInput="true"
                   valueFromSelect="false"
-                  width="120px">
-                
-               <td class="form_label" style="width:6%; text-align:center;">退货日期 从:</td>
-               <td style="width:4%;">
-                 <input class="nui-datepicker" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
-             </td>
-             <td class="" style="width:1%;">至:</td>
-             <td  style="width:50px;">
-                <input class="nui-datepicker" id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+                  width="120px">        
+			退货日期 从:<input class="nui-datepicker" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
+			至:<input class="nui-datepicker" id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
             </td>
             
@@ -138,7 +132,7 @@
         
          <div header="领料信息" headerAlign="center">
             <div property="columns">
-                <div  allowSort="true"  field="pickDate"dateFormat="yyyy-MM-dd hh:MM" width="130" headerAlign="center" header="领料日期" dataType="float" align="left"></div>
+                <div  allowSort="true"  field="pickDate"dateFormat="yyyy-MM-dd HH:mm" width="130" headerAlign="center" header="领料日期" dataType="float" align="left"></div>
                 <div allowSort="true" datatype="float" field="pickMan"  width="60" headerAlign="center" header="领料人" dataType="float" align="left"></div>
             </div>
         </div>
@@ -167,7 +161,7 @@
             <div property="columns">
                 <div allowSort="true"  field=outReturnSign width="60" headerAlign="center" header="退货标志" dataType="float" align="left"></div>
                 <div allowSort="true"  field=pickMan width="60" headerAlign="center" header="退货人" dataType="float" align="left"></div>
-                <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd hh:MM" field="outDate" headerAlign="center" header="退货日期" dataType="float" align="left"></div>
+                <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd HH:mm" field="outDate" headerAlign="center" header="退货日期" dataType="float" align="left"></div>
             </div>
         </div>
     </div>

@@ -184,13 +184,13 @@ function enableButton(){
 	   				<td class="EOS_table_row">当前状态:</td>
 					<td><d:write dictTypeId="WFDICT_WorkItemState" property="workitem/currentState"/></td>
 					<td class="EOS_table_row">创建时间:</td>
-					<td><b:write property="workitem/createTime" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
+					<td><b:write property="workitem/createTime" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
 				</tr>
 				<tr> 
 					<td class="EOS_table_row">时间限制:</td>
 					<td><b:write property="workitem/limitNumDesc"/></td>
 					<td class="EOS_table_row">提醒时间:</td>
-					<td><b:write property="workitem/remindTime"  formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
+					<td><b:write property="workitem/remindTime"  formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
 				</tr>
 				<tr> 
 					<td class="EOS_table_row">是否超时:</td>
@@ -235,7 +235,7 @@ function enableButton(){
 			  				<wf:fetchMessageList id="message" workItemID="@workitem/workItemID">
 			  				<tr class="EOS_table_row" align="center">
 				              	<td nowrap="nowrap" >
-				                  	<b:write property="time" iterateId="message" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/>
+				                  	<b:write property="time" iterateId="message" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/>
 				              	</td>
 				              	<td nowrap="nowrap" >
 				                  	<b:write property="operateType" iterateId="message"/>

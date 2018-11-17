@@ -41,9 +41,9 @@
 	        </tr>
 	        <tr>
 	          <td class="EOS_table_row" nowrap="nowrap"><b:message key="processinst_detail_jsp.create_time"/></td><%-- 创建时间 --%>
-	          <td nowrap="nowrap"><b:write property="processInst/createTime"  formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
+	          <td nowrap="nowrap"><b:write property="processInst/createTime"  formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
 	          <td class="EOS_table_row" nowrap="nowrap"><b:message key="processinst_detail_jsp.start_time"/></td><%-- 启动时间 --%>
-	          <td nowrap="nowrap"><b:write property="processInst/startTime"  formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
+	          <td nowrap="nowrap"><b:write property="processInst/startTime"  formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
 	        </tr>
 	        <tr>
 	          <td class="EOS_table_row" nowrap="nowrap"><b:message key="processinst_detail_jsp.proc_def_name"/></td><%-- 流程定义名称 --%>
@@ -53,7 +53,7 @@
 	        </tr>
 	        <tr>
 			  <td class="EOS_table_row" nowrap="nowrap"><b:message key="processinst_detail_jsp.end_time"/></td><%-- 结束时间 --%>
-	          <td nowrap="nowrap" colspan="3"><b:write property="processInst/endTime"  formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
+	          <td nowrap="nowrap" colspan="3"><b:write property="processInst/endTime"  formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
 	        </tr>
 	      </table>
     </td>

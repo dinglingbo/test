@@ -61,15 +61,12 @@
             </div>
             <div class="nui-fit">
                 <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
-                        showPager="true"
                         dataField="list"
                         sortMode="client"
                         selectOnLoad="true"
                         allowCellSelect="true"
-                        allowCellEdit="true"
-                        totalField="page.count"
-                        pageSize="20"
-                        sizeList="[50,100,200]"
+                        allowCellEdit="true"                      
+                        showPager="false"
                         allowCellWrap = true
                         showSummaryRow="false">
                     <div property="columns">
@@ -83,7 +80,7 @@
                                 class="nui-combobox" valueField="id" textField="name" data="dataList" /> 
                         </div>
                         <div field="modifier" width="60" headerAlign="center" header="修改人"></div>
-                        <div field="modifyDate" width="130" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" header="修改日期"></div>
+                        <div field="modifyDate" width="130" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="修改日期"></div>
                     </div>
                 </div>
             </div>
@@ -124,7 +121,7 @@
                        <div field="isDisabled" width="80" headerAlign="center" allowSort="true">所需配件</div> -->
                        <div allowSort="true" width="50" field="isDisabled" headerAlign="center" header="状态"></div>
                        <div field="modifier" width="60" allowSort="true" headerAlign="center">修改人</div>
-                       <div field="modifyDate" width="120" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd hh:MM">修改时间</div>
+                       <div field="modifyDate" width="120" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">修改时间</div>
                    </div>
                </div>
            </div>

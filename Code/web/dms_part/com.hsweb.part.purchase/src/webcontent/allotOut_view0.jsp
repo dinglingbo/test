@@ -117,7 +117,7 @@
                                        width="100%"
                                        showTime="false"
                                        allowInput="false"
-                                       class="nui-datepicker" enabled="false" format="yyyy-MM-dd hh:MM"/>
+                                       class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
                             </td>
                             <td class="title required">
                                 <label>仓库：</label>

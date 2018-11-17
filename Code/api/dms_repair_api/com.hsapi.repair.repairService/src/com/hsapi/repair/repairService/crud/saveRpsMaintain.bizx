@@ -333,18 +333,19 @@
     <targetConnections>link47</targetConnections>
     <targetConnections>link48</targetConnections>
     <targetConnections>link52</targetConnections>
+    <targetConnections>link53</targetConnections>
     <location x="1145" y="608"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hs.common.uniq.getCompBillNO</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="billTypeCode" type="literal" value="String" valueType="Primitive" pattern="reference">WXD</process:inputVariable>
+        <process:inputVariable id="0" name="billTypeCode" type="query" value="String" valueType="Primitive" pattern="reference">billTypeCode</process:inputVariable>
         <process:inputVariable id="1" name="orgid" type="query" value="Long" valueType="Primitive" pattern="reference">m:userObject/userOrgId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceNo</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"/>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -881,6 +882,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link18" name="link18" displayName="连接线" type="transition">
+      <sourceNode>assign19</sourceNode>
+      <targetNode>assign25</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">billTypeId</process:leftOperand>
+          <process:rightOperand type="literal">5</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="890" y="608"/>
     <size height="28" width="28"/>
@@ -905,7 +916,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign20label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">WXD</process:from>
+      <process:from type="literal" pattern="reference">ZHD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -924,7 +935,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign21label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">CLD</process:from>
+      <process:from type="literal" pattern="reference">CCD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -943,7 +954,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign22label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">XMD</process:from>
+      <process:from type="literal" pattern="reference">XCD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -962,7 +973,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign23label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">SXD</process:from>
+      <process:from type="literal" pattern="reference">XSD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -971,7 +982,7 @@
     <figSize height="17" width="39"/>
     <node>assign23</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign24" name="赋值24" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign24" name="LPD" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link52" name="link52" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign24</sourceNode>
       <targetNode>subprocess0</targetNode>
@@ -981,13 +992,13 @@
     <size height="28" width="28"/>
     <nodeLabel>assign24label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">JCD</process:from>
+      <process:from type="literal" pattern="reference">LPD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign24label" name="label" nodeType="label">
-    <location x="1027" y="741"/>
-    <figSize height="17" width="39"/>
+    <location x="1035" y="741"/>
+    <figSize height="17" width="23"/>
     <node>assign24</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
@@ -1037,6 +1048,25 @@
     <location x="521" y="706"/>
     <figSize height="17" width="39"/>
     <node>assign11</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign25" name="THD" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link53" name="link53" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign25</sourceNode>
+      <targetNode>subprocess0</targetNode>
+    </sourceConnections>
+    <targetConnections>link18</targetConnections>
+    <location x="1031" y="777"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign25label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">THD</process:from>
+      <process:to type="query">billTypeCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign25label" name="label" nodeType="label">
+    <location x="1032" y="813"/>
+    <figSize height="17" width="26"/>
+    <node>assign25</node>
   </nodes>
   <topRuler>
     <guides position="1523" horizontal="true"/>

@@ -4,7 +4,7 @@ var deductForm = null;
 var salesDeductTypeEl = null;
 var techDeductTypeEl = null;
 var advisorDeductTypeEl = null;
-
+var servieTypeList = [];
 var requiredField = {
 	name: "工时名称",
 	type: "工时类型",
@@ -35,6 +35,13 @@ $(document).ready(function(){
             onCancel();
         }
       };
+      
+   initServiceType("serviceTypeId",function(data) {
+      servieTypeList = nui.get("serviceTypeId").getData();
+      servieTypeList.forEach(function(v) {
+          servieTypeHash[v.id] = v;
+      });
+   }
 });
 function onInputFocus(e)
 {

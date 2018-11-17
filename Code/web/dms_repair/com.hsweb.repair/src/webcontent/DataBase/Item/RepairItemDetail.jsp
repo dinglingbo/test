@@ -80,6 +80,14 @@
 									<input class="nui-textbox" name="name" width="100%"/>
 								</td>
 								<td class="form_label required">
+									<label>工时编码：</label>
+								</td>
+								<td colspan="1">
+									<input class="nui-textbox" name="code" width="100%"/>
+								</td>
+							</tr>
+							<tr>
+							<td class="form_label required">
 									<label>工时类型：</label>
 								</td>
 								<td colspan="1">
@@ -89,17 +97,19 @@
 											valueFromSelect="true"
 											allowInput="true"
 											width="100%"/>
-								</td>
-							</tr>
-							<tr>
-								<td class="form_label required">
-									<label>工时编码：</label>
+						     </td>
+						   		
+							<td class="form_label required">
+									<label>业务类型：</label>
 								</td>
 								<td colspan="1">
-									<input class="nui-textbox" name="code" width="100%"/>
-								</td>
-								
-								 <td >
+									<input class="nui-combobox" name="serviceTypeId" id="serviceTypeId"
+										   valueField="id" allowInput="true" valueFromSelect="true"
+										   textField="name" width="100%"/>
+						     </td>
+							</tr>
+							<tr>
+							    <td >
 									<label id="isShareTd">是否共享：</label>
 								</td>
 								<td colspan="1">
@@ -110,11 +120,7 @@
 					
 									<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
 								</td>
-									
-
 								
-							</tr>
-							<tr>
 								<td class="form_label">
 									<label>品牌：</label>
 								</td>
@@ -125,7 +131,10 @@
 											onValuechanged="initCarSeries('carSeriesId', e.value)"
 											width="100%"/>
 								</td>
-								<td class="form_label">
+								
+							</tr>
+							<tr>
+							  <td class="form_label">
 									<label>车系：</label>
 								</td>
 								<td>
@@ -135,12 +144,10 @@
 											onValuechanged="initCarModel('carModelId', '', e.value)"
 											width="100%"/>
 								</td>
-							</tr>
-							<tr>
 								<td class="form_label">
 									<label>车型：</label>
 								</td>
-								<td colspan="3">
+								<td colspan="1">
 									<input class="nui-combobox" name="carModelId" id="carModelId"
 											valueField="carModelId"
 											textField="carModel"

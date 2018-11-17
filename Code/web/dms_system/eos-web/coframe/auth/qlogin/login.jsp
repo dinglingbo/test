@@ -29,13 +29,16 @@
    
    HttpSecurityConfig securityConfig = new HttpSecurityConfig();
    boolean isOpenSecurity = securityConfig.isOpenSecurity();
+
+   String ip = securityConfig.getHost();
+   String https_port = securityConfig.getHttps_port();
+ 		 
    if(isOpenSecurity){
    		boolean isAllInHttps = securityConfig.isAllInHttps();
    		if(!isAllInHttps){
-   			String ip = securityConfig.getHost();
-   			String https_port = securityConfig.getHttps_port();
    			url = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + loginUrl;
    			regUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + regUrl;
+
    		}else{
    			url = loginUrl;
    		}
@@ -47,6 +50,8 @@
 	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
 	String sysApi = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
 	String sendUrl = apiPath + sysApi + "/com.hsapi.system.tenant.register.sendMsg.biz.ext";
+	String privacyUrl = request.getContextPath() + "/coframe/auth/qlogin/privacyUrl.jsp";
+	String protocolUrl = request.getContextPath() + "/coframe/auth/qlogin/protocolUrl.jsp";
  %> 
 <style type="text/css">
 body { 
@@ -58,7 +63,7 @@ body {
 
 .login_box{
 	max-width: 1200px;
-	height: 675px;
+	height: 600px;
 	background-image: url(images/bg.png);
 	background-repeat: no-repeat;
 	background-position:center center;
@@ -87,7 +92,7 @@ body {
 .login_box .login .loginTitle {
 	height: 10px;
 	padding-left: 30px;
-	height: 120px;
+	height: 80px;
 }
 .login_box .login .loginTitle .log {
 	float: left;
@@ -192,8 +197,8 @@ body {
 	position: absolute;
 	top: 0;
 	right: 0px;
-	width: 350px;
-	height: 320px;
+	width: 250px;
+	height: 250px;
 }
 .weixin_max_img img {width: 100%; height: 100%;}
 .checkbox_box {
@@ -244,7 +249,7 @@ a {
 		<div class="title">注册</div>
 		
 		<label>
-			<p id="errorP"><span id="errorP" style="font-size:15px;color:red"></span></p>
+			<p ><span id="errorP" style="font-size:15px;color:red"></span></p>
 			<input type="text" id="registercompname" name="registercompname" value="" placeholder="请输入公司名" maxlength="11" />
 		</label>
 		<label>
@@ -260,10 +265,14 @@ a {
 		</label>
 		
 		<label>
-			<div class="checkbox_box">
+<!-- 			<div class="checkbox_box">
 				<input type="checkbox" checked="checked" /><div class="show-box"></div>
-			</div>
-			我已阅读并接受<span class="blue">《云平台用户注册协议》</span>
+			</div> -->
+			<font size="2">注册即同意</font><span class="blue">
+					<a target="_blank" href="<%=privacyUrl%>"><span class="blue" id="privacy"  >隐私政策</span></a>&nbsp;<span style="color:#999">/</span>
+					<a  target="_blank" href="<%=protocolUrl%>"><span class="blue"  id="protocol" >用户协议</span></a>
+			</span>
+			
 		</label>
 		<label>
 			<div class="button"><input type="submit" value="注册" class="button" /></div>
@@ -277,7 +286,7 @@ a {
 			<div class="weixinbox">
 				<img src="images/weixin-min-img.png"  />
 				<div class="weixin_max_img">
-					<img src="images/app-min-img.png"  />
+					<img src="images/xiongying.jpg"  />
 				</div>
 			</div>		
 			<div class="log">
@@ -286,7 +295,7 @@ a {
 			</div>
 		</div>
 		<label>
-		<p  class="errorC"><span id="error" style="font-size:25px;color:red">2222</span></p>
+		<p  class="errorC"><span id="error" style="font-size:15px;color:red"></span></p>
 			<input type="text" id="userId" name="userId" value="" class="accountNo" placeholder="用户名" maxlength="11" />
 		</label>
 		<label>
@@ -296,18 +305,18 @@ a {
 		<label>
 			<div class="button" id="loginJump">登录</div>
 		</label>
-		<label>
+<!-- 		<label>
 			<div class="checkbox_box">
 				<input type="checkbox" id="memory" checked="checked" /><div class="show-box"></div>
 			</div>
 			登录即同意 <span class="blue">隐私政策/用户协议</span>
-		</label>
+		</label> -->
 
 		<div class="app">
 			<div class="imgbox">
 				<img src="images/app-min-img.png"  />
 				<div class="max_img">
-					<img src="images/app-min-img.png"  />
+					<img src="images/xiongying.jpg"  />
 				</div>
 			</div>
 			<div class="wu">还没帐号？  <span class="blue" id="register">立即注册</span></div>
@@ -363,23 +372,20 @@ a {
 	     	var registername = $("#registername").val();
 	     	var registercompname = $("#registercompname").val();
 	     	var code = $("#authcode").val();
-	     	if(!phone){
-	     		$("#errorP").addClass("errorC");
-		      	$("#errorP").html("请输入手机号");
-		      	return false;
-	     	}
-	     	if(!registername){
-	     		$("#errorP").addClass("errorC");
-		      	$("#errorP").html("请输入用户名");
-		      	return false;
-	     	}
 	     	if(!registercompname){
-	     		$("#errorP").addClass("errorC");
 		      	$("#errorP").html("请输入公司名");
 		      	return false;
 	     	}
+	     	if(!registername){
+		      	$("#errorP").html("请输入用户名");
+		      	return false;
+	     	}
+	     	if(!phone){
+		      	$("#errorP").html("请输入手机号");
+		      	return false;
+	     	}
+
 	     	if(code != msgCode){
-	     		$("#errorP").addClass("errorC");
 		      	$("#errorP").html("验证码输入错误");
 		      	return false;
 	     	}
@@ -402,19 +408,15 @@ a {
 	        %>
 
 	     $("#phone").focus(function(){
-			$("#errorP").removeClass("errorC");
 			$("#errorP").html("");
 		 });
 		 $("#authcode").focus(function(){
-			$("#errorP").removeClass("errorC");
 			$("#errorP").html("");
 		 });
 		 $("#registername").focus(function(){
-			$("#errorP").removeClass("errorC");
 			$("#errorP").html("");
 		 });
 		 $("#registercompname").focus(function(){
-			$("#errorP").removeClass("errorC");
 			$("#errorP").html("");
 		 });
 
@@ -529,8 +531,20 @@ $(function () {
 	}).mouseout(function (){
 		$(".weixin_max_img").hide();
 	});
-
+/* 	//隐私政策
+	$("#privacy").click(privacy);
+	//用户协议
+	$("#protocol").click(protocol); */
 });
+
+<%-- //隐私政策
+function privacy() {
+	window.open("coframe/auth/qlogin/privacyUrl.jsp");
+}
+//用户协议
+function protocol() {
+	window.open("<%=protocolUrl%>");
+} --%>
 //显示登录框
 function openLogin() {
 	$("#registerBox").hide();
@@ -648,23 +662,12 @@ function settime(target) {
 }
 
 
-function showError(msg){
- 	 //$("#error").html(msg);
- 	 if(msg){
-     	$("#error").addClass("errorC");
-     	$("#error").html(msg);
- 	 }else{
- 	 	$("#error").addClass("error");
-     	$("#error").html("");
- 	 }
- }
+
 
 $("#userId").focus(function(){
-	$("#error").removeClass("errorC");
 	$("#error").html("");
 });
 $("#password").focus(function(){
-	$("#error").removeClass("errorC");
 	$("#error").html("");
 });
  
@@ -685,107 +688,7 @@ function login(){
    
    document.loginForm.submit();
 }
-function register(){
-	var phone = $("#phone").val();
-	var registername = $("#registername").val();
-	var registercompname = $("#registercompname").val();
-	var code = $("#authcode").val();
-	if(!phone){
-		$("#errorP").addClass("errorC");
-     	$("#errorP").html("请输入手机号");
-     	return false;
-	}
-	if(!registername){
-		$("#errorP").addClass("errorC");
-     	$("#errorP").html("请输入用户名");
-     	return false;
-	}
-	if(!registercompname){
-		$("#errorP").addClass("errorC");
-     	$("#errorP").html("请输入公司名");
-     	return false;
-	}
-	if(code != msgCode){
-		$("#errorP").addClass("errorC");
-     	$("#errorP").html("验证码输入错误");
-     	return false;
-	}
 
-
-	document.registerForm.action="<%=regUrl%>"
-   document.registerForm.submit();        
-   
-}
-
-$("#phone").focus(function(){
-	$("#errorP").removeClass("errorC");
-	$("#errorP").html("");
-});
-$("#authcode").focus(function(){
-	$("#errorP").removeClass("errorC");
-	$("#errorP").html("");
-});
-$("#registername").focus(function(){
-	$("#errorP").removeClass("errorC");
-	$("#errorP").html("");
-});
-$("#registercompname").focus(function(){
-	$("#errorP").removeClass("errorC");
-	$("#errorP").html("");
-});
-
-function showRegisterError(msg){
- 	 alert(msg);
- }
-
- function sendMsg(){
-	var params={};
-	params.phone=$("#phone").val();
-   $.ajax({
-       url : "<%=sendUrl%>",
-       contentType: "application/json;charset=utf-8",
-       data : JSON.stringify({params:params}),
-       type : "post",
-       success : function(data) {
-       	if(data.data.Code=="OK")
-       		{
-       		msgCode=data.data.msgCode;
-       		settime(60);
-       		}
-       	else {
-       		alert(data.data.Message);
-       	}
-       	
-       },
-       error : function(jqXHR, textStatus, errorThrown) {
-          console.log(jqXHR.responseText);
-       }
-   });
- }
-
- function settime(time) {
-	  if (time == 0) {
-		  $("#getKeyWorld").attr("disabled", true);
-		  $("#getKeyWorld").attr("href","javascript:sendMsg();");
-		  $("#getKeyWorld").text("获取验证码"); 
-		  msgCode = null;
-	    return;
-	  } else {
-		  $("#getKeyWorld").attr("href","javascript:void(0);");
-		  $("#getKeyWorld").attr("disabled", false);
-		  $("#getKeyWorld").text("重新发送(" + time + ")");
-		
-	    time--;
-	  }
-	  setTimeout(function () { settime(time); }, 1000);
-	}
-
-$(function(){
-	var validateResult = "<%=result %>";
-	$("#userId").val("<%=userName %>");
-	$("#password").val("<%=password %>");
-	$("#password1").val("<%=password %>");
- });
 
 
 </script>

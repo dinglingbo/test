@@ -1,12 +1,12 @@
 /**
 * Created by Administrator on 2018/10/23.
 */
-var webBaseUrl = webPath + contextPath + "/";
-var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
+var baseUrl = apiPath +repairApi + "/";
+var sysUrl =apiPath +sysApi+"/";
 var gridCarUrl = baseUrl+"com.hsapi.repair.repairService.query.queryMainRemind.biz.ext";
 var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
 var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
-var visitModeCtrlUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130703000021&fromDb=true";
+var visitModeCtrlUrl = sysUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130703000021&fromDb=true";
 
 var gridCar = null;
 var tabForm = null;
@@ -112,17 +112,17 @@ function SetData(rowData){
 						enterDate:data.enterDate, 
 						outDate:data.outDate
 					}; 
-					var visitdetaildata = searchVisitDetail(rowData.id);
-					if(visitdetaildata){
-						form.visitMode = visitdetaildata.visitMode;
-						form.visitId = visitdetaildata.visitId;
-						form.visitMan = visitdetaildata.visitMan;
-						form.visitDate = visitdetaildata.visitDate;
-						form.visitContent = visitdetaildata.visitContent;
-						form.careDueDate = visitdetaildata.careDueDate;
-						form.careDayCycle = visitdetaildata.careDayCycle;
-						form.detailId = visitdetaildata.id;
-					}
+//					var visitdetaildata = searchVisitDetail(rowData.id);
+//					if(visitdetaildata){
+//						form.visitMode = visitdetaildata.visitMode;
+//						form.visitId = visitdetaildata.visitId;
+//						form.visitMan = visitdetaildata.visitMan;
+//						form.visitDate = visitdetaildata.visitDate;
+//						form.visitContent = visitdetaildata.visitContent;
+//						form.careDueDate = visitdetaildata.careDueDate;
+//						form.careDayCycle = visitdetaildata.careDayCycle;
+//						form.detailId = visitdetaildata.id;
+//					}
 					tabForm.setData(form);
 					table1Form.setData(data);
 
@@ -216,33 +216,33 @@ function save(){
 	});
 }
 
-function searchVisitDetail(mid){
-	var ret = null;
-	var p ={
-		mainId:mid
-	};
-	nui.ajax({
-		url:baseUrl + "com.hsapi.crm.svr.visit.queryCrmVisitRecord.biz.ext",
-		type:"post",
-		async: false,
-		data:{
-			params:p,
-			token:token
-		},
-		success:function(text){
-			if(text.errCode == "S"){
-				var tdata = text.data;
-				if(tdata.length == 1){
-					ret = tdata[0];
-				}else if(tdata.length > 1 ){
-					showMsg("获取数据失败！","E");
-				}else{}
-			}
-
-		}
-	});
-	return ret;
-}
+//function searchVisitDetail(mid){
+//	var ret = null;
+//	var p ={
+//		mainId:mid
+//	};
+//	nui.ajax({
+//		url:baseUrl + "com.hsapi.crm.svr.visit.queryCrmVisitRecord.biz.ext",
+//		type:"post",
+//		async: false,
+//		data:{
+//			params:p,
+//			token:token
+//		},
+//		success:function(text){
+//			if(text.errCode == "S"){
+//				var tdata = text.data;
+//				if(tdata.length == 1){
+//					ret = tdata[0];
+//				}else if(tdata.length > 1 ){
+//					showMsg("获取数据失败！","E");
+//				}else{}
+//			}
+//
+//		}
+//	});
+//	return ret;
+//}
 
 
 function quickSearch(e){
@@ -278,4 +278,51 @@ function doSearch(params){
 	params.isNeedRemind=1;
 	params.remindStatus=0;
 	gridCar.load({params:params,token:token});
+}
+
+
+function addBooking() {
+    var row = gridCar.getSelected();
+    row.contactorName=row.guestName;
+    row.contactorTel=row.mobile;
+    row.carSeriesId=row.carModelId;
+    if (row == undefined) {
+        showMsg("请选中一条数据","W");
+        return;
+    }
+    nui.open({
+        url: webPath + repairDomain + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
+        title: "新增", width: 655, height: 386,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            var param = { action: "edit", data: row };
+            iframe.contentWindow.SetData(param);
+        },
+        ondestroy: function (action) {
+        	//重新加载
+        }
+    });
+}
+
+function checkMtRecord() {
+    var row = gridCar.getSelected();
+    if (row == undefined) {
+        showMsg("请选中一条数据","W");
+        return;
+    }
+    nui.open({
+        url: webPath + repairDomain + "/manage/maintainRemind/checkMtRemind.jsp?token="+token,
+        title: "查看保养提醒", width: 700, height: 386,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            var param = { 
+        		guestId: row.guestId,
+        		careType : 1
+        		};
+            iframe.contentWindow.SetData(param);
+        },
+        ondestroy: function (action) {
+        	//重新加载
+        }
+    });
 }

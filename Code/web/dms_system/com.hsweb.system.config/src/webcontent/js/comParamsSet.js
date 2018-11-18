@@ -11,6 +11,8 @@ var editParice = null;
 var rate = null;
 var openToArchives = null;
 var openToGuestQrcode = null;
+var repairDefaultStore = null;
+var repairPchsRtnFlag = null;
  
 $(document).ready(function(v) {
     basicInfoForm = new nui.Form("#basicInfoForm");
@@ -21,18 +23,23 @@ $(document).ready(function(v) {
     repairBillCmodelFlag = nui.get("repairBillCmodelFlag");
     //repairBillMobileFlag = nui.get("repairBillMobileFlag");
     editParice = nui.get("editParice");
-    rate = nui.get("rate");
-    openToArchives = nui.get("openToArchives");
+    repairPchsRtnFlag = nui.get("repairPchsRtnFlag");
+    //rate = nui.get("rate");
+    //openToArchives = nui.get("openToArchives");
     openToGuestQrcode = nui.get("openToGuestQrcode");
+    repairDefaultStore = nui.get("repairDefaultStore");
     
     //repairBillControlFlag.setData(radioList);
+    repairPchsRtnFlag.setData(radioList);
     repairBillPartFlag.setData(radioList);
     repairBillQrcodeFlag.setData(radioList);
     repairBillQrSettleFlag.setData(radioList);
     repairBillCmodelFlag.setData(radioList);
     //repairBillMobileFlag.setData(radioList);
-    openToArchives.setData(typeList);
+    //openToArchives.setData(typeList);
     openToGuestQrcode.setData(typeList);
+    
+    getStore();
 
     getServiceTypeList(function(data){
         editParice.setData(data);
@@ -113,7 +120,7 @@ function getComParamsList(){
 		}
 	});
 }
-function onRateValidation(e){
+/*function onRateValidation(e){
     if (e.isValid) {
         var reg=/(^[1-9][0-9]$|^[0-9]$|^100$)/;
         if (!reg.test(e.value)) {
@@ -121,7 +128,7 @@ function onRateValidation(e){
             e.isValid = false;
         }
     }
-}
+}*/
 var saveUrl = apiPath + sysApi + "/com.hsapi.system.config.paramSet.saveBillParams.biz.ext";
 function save(){
     basicInfoForm.validate();
@@ -165,6 +172,32 @@ function save(){
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
             nui.unmask(document.body);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+var storeUrl = apiPath + partApi + "/com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
+function getStore(){
+    nui.ajax({
+		url : storeUrl,
+        type : "post",
+        async:false,
+		data : JSON.stringify({
+            token:token
+        }),
+		success : function(data) {
+			nui.unmask(document.body);
+            data = data || {};
+			if (data.storehouse) {
+                
+                repairDefaultStore.setData(data.storehouse);
+                
+			} else{
+                parent.showMsg("添加仓库后才可以设置默认仓库!","W");
+            }
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
 			console.log(jqXHR.responseText);
 		}
 	});

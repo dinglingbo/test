@@ -28,8 +28,8 @@
 			</div> 
 			<div title="查车模板设置" name="carCheckModelTab" url="" >
 			</div> 
-			<div title="库存设置" name="stockTab" url="" >
-			</div>  
+			<!--<div title="库存设置" name="stockTab" url="" >
+			</div>  -->
 			<div title="绩效设置" name="basicDeductTab" url="" visible="false">
 			</div>
 			<div title="提醒设置" name="remindTab" url="" >

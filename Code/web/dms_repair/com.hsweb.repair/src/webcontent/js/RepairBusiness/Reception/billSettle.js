@@ -40,7 +40,7 @@ function onbillPTypeChange(e){
 function getData(data){
 	// 跨页面传递的数据对象，克隆后才可以安全使用
 	data = data||{};
-	data.amount = data.mtAmt;
+	data.amount = data.totalSubtotal;
 	data.payType = "020101";
 	var json = {
 		guestId:data.guestId,
@@ -68,7 +68,7 @@ function getData(data){
 	});
 	nui.get("rechargeBalaAmt").setValue("￥"+data.rechargeBalaAmt); 
 	
-	onetInAmt  = data.mtAmt;
+	onetInAmt  = data.totalSubtotal;
 }
 function setData(params){
 	var param = {isMain:0};
@@ -146,16 +146,16 @@ function setData(params){
 			}
 			var amount = 0;
 			if(params.data.ycAmt==null||params.data.ycAmt==""){
-				amount = params.data.mtAmt;
+				amount = params.data.totalSubtotal;
 			}else{
-				amount = params.data.mtAmt-params.data.ycAmt;
-				amount = amount.toFixed(2)
+				params.data.totalSubtotal = params.data.totalSubtotal-params.data.ycAmt;
+				params.data.totalSubtotal = params.data.totalSubtotal.toFixed(2)
 			}
 			netInAmt = amount;
-			params.data.mtAmt = parseFloat(params.data.mtAmt)+amt;
-			document.getElementById('totalAmt').innerHTML = "￥"+params.data.mtAmt;
-			document.getElementById('totalAmt1').innerHTML = params.data.mtAmt;
-			document.getElementById('amount').innerHTML = amount;
+			params.data.totalSubtotal = parseFloat(params.data.totalSubtotal)+amt;
+			document.getElementById('totalAmt').innerHTML = "￥"+params.data.totalSubtotal;
+			document.getElementById('totalAmt1').innerHTML = params.data.totalSubtotal;
+			document.getElementById('amount').innerHTML =  params.data.totalSubtotal;
 			document.getElementById('ycAmt').innerHTML = params.data.ycAmt||0;
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

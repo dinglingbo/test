@@ -1,69 +1,19 @@
 var baseUrl = apiPath + repairApi + "/";
 
-var maintain = null;
-var business = null;
-var compulsoryInsurance = null;
-var drivingLicense = null;
-var car = null;
+
 var appointment = null;
-var guestBirthday = null;
+
 var employeeBirthday = null;
 
 var datagrid1 = null;
 $(document).ready(function(v){
-	maintain = nui.get("maintain");
-	business = nui.get("business");
-	compulsoryInsurance = nui.get("compulsoryInsurance");
-	drivingLicense = nui.get("drivingLicense");
-	car = nui.get("car");
+
 	appointment = nui.get("appointment");
-	guestBirthday = nui.get("guestBirthday");
+
 	employeeBirthday = nui.get("employeeBirthday");
-	maintain.on("drawcell", function (e) {
-        if(e.field == "readSign"){
-             if(e.value == 0){
-                 e.cellHtml = "已读";
-             }else{
-                 e.cellHtml = "未读";
-             }
-         }
-     });
-	business.on("drawcell", function (e) {
-        if(e.field == "readSign"){
-             if(e.value == 0){
-                 e.cellHtml = "已读";
-             }else{
-                 e.cellHtml = "未读";
-             }
-         }
-     });
-	compulsoryInsurance.on("drawcell", function (e) {
-        if(e.field == "readSign"){
-             if(e.value == 0){
-                 e.cellHtml = "已读";
-             }else{
-                 e.cellHtml = "未读";
-             }
-         }
-     });
-	drivingLicense.on("drawcell", function (e) {
-        if(e.field == "readSign"){
-             if(e.value == 0){
-                 e.cellHtml = "已读";
-             }else{
-                 e.cellHtml = "未读";
-             }
-         }
-     });
-	car.on("drawcell", function (e) {
-        if(e.field == "readSign"){
-             if(e.value == 0){
-                 e.cellHtml = "已读";
-             }else{
-                 e.cellHtml = "未读";
-             }
-         }
-     });
+
+
+
 	appointment.on("drawcell", function (e) {
         if(e.field == "readSign"){
              if(e.value == 0){
@@ -73,15 +23,7 @@ $(document).ready(function(v){
              }
          }
      });
-	guestBirthday.on("drawcell", function (e) {
-        if(e.field == "readSign"){
-             if(e.value == 0){
-                 e.cellHtml = "已读";
-             }else{
-                 e.cellHtml = "未读";
-             }
-         }
-     });
+
 	employeeBirthday.on("drawcell", function (e) {
         if(e.field == "readSign"){
              if(e.value == 0){

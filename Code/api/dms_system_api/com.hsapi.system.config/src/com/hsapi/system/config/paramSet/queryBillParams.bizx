@@ -64,7 +64,7 @@
       <process:partner type="literal">this.queryComParams</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
-        <process:inputVariable id="1" name="fromDb" type="literal" value="Boolean" valueType="Primitive" pattern="reference">true</process:inputVariable>
+        <process:inputVariable id="1" name="fromDb" type="query" value="Boolean" valueType="Primitive" pattern="reference">fromDb</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="list" type="query" value="java.util.HashMap[]" valueType="Java">paramsList</process:outputVariable>
@@ -668,6 +668,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
+    <process:input description="" isArray="false" name="fromDb" primitiveType="Boolean"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="false" name="billParams"/>

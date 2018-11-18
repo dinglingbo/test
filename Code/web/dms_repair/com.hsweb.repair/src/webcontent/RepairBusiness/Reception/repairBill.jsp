@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.9.9"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.9.14"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -160,10 +160,10 @@
                 <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 
                 <ul id="popupMenuMore" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="unfinish()" id="addBtn">返单</li>
                     <li iconCls="" onclick="updateBillExpense()" id="billExpense">费用登记</li>
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li>
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">修改报销单</li>
-                    <li iconCls="" onclick="unfinish()" id="addBtn">返单</li>
                     <!-- <li iconCls="" onclick="addcardTime()" id="type13">车牌替换/修改</li>
                     <li iconCls="" onclick="addcard()" id="type11">等级转介绍客户</li> -->
                 </ul>
@@ -190,7 +190,7 @@
                 <td>
                     <span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp;
                     <label style="font-family:Verdana;">客户名称:</label>
-                    <label id="guestNameEl" style="font-family:Verdana;"></label>&nbsp;
+                    <label id="" style="font-family:Verdana;"><a id="guestNameEl" href="javascript:checkGuest()"></a></label>&nbsp;
                     <label style="font-family:Verdana;">客户手机:</label>
                     <label id="guestTelEl" style="font-family:Verdana;"></label>&nbsp;
                 </td>
@@ -328,16 +328,15 @@
      showHeader="false"
      allowResize="false"
      allowDrag="false">
-     <!-- <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+      <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="showCardTimes()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
         </table>
-    </div> -->
+    </div>
     <div class="nui-fit">
           <div id="cardTimesGrid" class="nui-datagrid" style="width:100%;height:95%;"
                selectOnLoad="true"
@@ -365,6 +364,15 @@
      showHeader="false"
      allowResize="false"
      allowDrag="false">
+       <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100%;">
+                    <a class="nui-button" iconCls="" plain="true" onclick="showCard()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
     <div class="nui-fit">
           <div id="memCardGrid" class="nui-datagrid" style="width:100%;height:95%;"
                selectOnLoad="true"

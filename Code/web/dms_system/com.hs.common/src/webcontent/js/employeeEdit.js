@@ -16,6 +16,11 @@ var form1=null;
 var workList=[];
 var memberLever=[];
 $(document).ready(function(v) {
+	isShowOwnBill=nui.get("isShowOwnBill");
+	isAllowRemind=nui.get("isAllowRemind");
+	isShowOwnBill.setData(isservicelist);
+
+	isAllowRemind.setData(isservicelist);
 	isservice=nui.get("isArtificer");
 	sex=nui.get("sex");
 	sex.setData(sexlist);

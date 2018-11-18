@@ -138,6 +138,7 @@ function init(callback) {
         nui.unmask();
         callback && callback();
     };
+    
     var pId = SERVICE_TYPE;
     getDatadictionaries(pId, function (data) {
         data = data || {};
@@ -149,6 +150,7 @@ function init(callback) {
             checkComplete();
         });
     });
+
     initDicts({
         enterOilMass: ENTER_OIL_MASS,//进厂油量
     }, function () {

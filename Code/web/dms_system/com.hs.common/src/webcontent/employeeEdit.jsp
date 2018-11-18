@@ -11,7 +11,7 @@
 <head> 
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.0.4" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.0.5" type="text/javascript"></script>
     <style type="text/css">
 </style>
 </head>
@@ -75,7 +75,15 @@
                 <td align="right">微信/QQ号：<span></span></td>
                 <td colspan="2"><input class="nui-textbox" name="wechat" id="wechat" vtype="maxLength:50"/></td>
             </tr>
-
+            <tr>
+                        <td align="right">显示个人单据：</td>
+                        <td>
+                       		 <input class="nui-combobox"  required="false" id="isShowOwnBill" name="isShowOwnBill" textField="name"  value="0" valueField="id" />
+                       		 <input class="nui-textbox" required="false" id="empid" name="empid" vtype="int" onvalidation="onempid" visible="false" emptyText="系统自动分配"/>
+                        </td>
+                        <td align="right">允许消息通知：</td>
+                        <td><input class="nui-combobox"  required="false" id="isAllowRemind" name="isAllowRemind" textField="name"  value="0" valueField="id" /></td>
+             </tr>
             <tr>
                 <td align="right">紧急联系人：<span></span></td>
                 <td ><input class="nui-textbox" name="urgencyPerson" id="urgencyPerson" vtype="maxLength:20"/></td>

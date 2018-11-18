@@ -85,15 +85,15 @@ String select = ResourcesMessageUtil.getI18nResourceMessage("query_workItem_jsp.
 						<table border="0" cellpadding="0" cellspacing="0" style='border:0px;background-color:transparent'>
 						<tr style='border:0px;background-color:transparent'> 
 						<td style='border:0px;background-color:transparent'>
-						<w:date  allowNull="true"  defaultNull="true" format="yyyy-MM-dd hh:MM"  name="createTime_min" size="20" readonly="true"/>
+						<w:date  allowNull="true"  defaultNull="true" format="yyyy-MM-dd HH:mm"  name="createTime_min" size="20" readonly="true"/>
 						</td><td style='border:0px;background-color:transparent'>&nbsp;-&nbsp;</td>
 						<td style='border:0px;background-color:transparent'>
-						<w:date  allowNull="true" defaultNull="true" format="yyyy-MM-dd hh:MM" name="createTime_max" size="20" readonly="true" />
+						<w:date  allowNull="true" defaultNull="true" format="yyyy-MM-dd HH:mm" name="createTime_max" size="20" readonly="true" />
 						</td></tr></table>
 						<input type="hidden" name="queryCondition/_expr[8]/createTime">
 						<input type="hidden" name="queryCondition/_expr[9]/createTime">
-						<input type="hidden" name="queryCondition/_expr[8]/_pattern" value="yyyy-MM-dd hh:MM"> 
-						<input type="hidden" name="queryCondition/_expr[9]/_pattern" value="yyyy-MM-dd hh:MM"> 
+						<input type="hidden" name="queryCondition/_expr[8]/_pattern" value="yyyy-MM-dd HH:mm"> 
+						<input type="hidden" name="queryCondition/_expr[9]/_pattern" value="yyyy-MM-dd HH:mm"> 
 						<input type="hidden" name="queryCondition/_expr[8]/_op" value=">=">
 						<input type="hidden" name="queryCondition/_expr[9]/_op" value="<=">
 						</td>
@@ -109,15 +109,15 @@ String select = ResourcesMessageUtil.getI18nResourceMessage("query_workItem_jsp.
 						<table border="0" cellpadding="0" cellspacing="0" style='border:0px;background-color:transparent'>
 						<tr style='border:0px;background-color:transparent'> 
 						<td style='border:0px;background-color:transparent'>
-							<w:date allowNull="true"  defaultNull="true" format="yyyy-MM-dd hh:MM" name="startTime_min" size="20"  readonly="true" />
+							<w:date allowNull="true"  defaultNull="true" format="yyyy-MM-dd HH:mm" name="startTime_min" size="20"  readonly="true" />
 						</td><td style='border:0px;background-color:transparent'>&nbsp;-&nbsp;</td>
 						<td style='border:0px;background-color:transparent'> 
-							<w:date  allowNull="true"  defaultNull="true" format="yyyy-MM-dd hh:MM" name="startTime_max" size="20"  readonly="true" /> 
+							<w:date  allowNull="true"  defaultNull="true" format="yyyy-MM-dd HH:mm" name="startTime_max" size="20"  readonly="true" /> 
 						</td></tr></table>
 							<input type="hidden" name="queryCondition/_expr[11]/startTime"> 
 							<input type="hidden" name="queryCondition/_expr[12]/startTime"> 
-							<input type="hidden" name="queryCondition/_expr[11]/_pattern" value="yyyy-MM-dd hh:MM"> 
-							<input type="hidden" name="queryCondition/_expr[12]/_pattern" value="yyyy-MM-dd hh:MM"> 
+							<input type="hidden" name="queryCondition/_expr[11]/_pattern" value="yyyy-MM-dd HH:mm"> 
+							<input type="hidden" name="queryCondition/_expr[12]/_pattern" value="yyyy-MM-dd HH:mm"> 
 							<input type="hidden" name="queryCondition/_expr[11]/_op" value=">=">
 							<input type="hidden" name="queryCondition/_expr[12]/_op" value="<=">
 						</td>
@@ -133,15 +133,15 @@ String select = ResourcesMessageUtil.getI18nResourceMessage("query_workItem_jsp.
 						<table border="0" cellpadding="0" cellspacing="0" style='border:0px;background-color:transparent'>
 						<tr style='border:0px;background-color:transparent'> 
 						<td style='border:0px;background-color:transparent'>
-							<w:date  allowNull="true"  defaultNull="true" format="yyyy-MM-dd hh:MM" name="endTime_min" size="20"  readonly="true" />
+							<w:date  allowNull="true"  defaultNull="true" format="yyyy-MM-dd HH:mm" name="endTime_min" size="20"  readonly="true" />
 						</td><td style='border:0px;background-color:transparent'>&nbsp;-&nbsp;</td>
 						<td style='border:0px;background-color:transparent'> 
-							<w:date allowNull="true" defaultNull="true" format="yyyy-MM-dd hh:MM" name="endTime_max" size="20"  readonly="true" /> 
+							<w:date allowNull="true" defaultNull="true" format="yyyy-MM-dd HH:mm" name="endTime_max" size="20"  readonly="true" /> 
 						</td></tr></table>
 							<input type="hidden" name="queryCondition/_expr[14]/endTime"> 
 							<input type="hidden" name="queryCondition/_expr[15]/endTime"> 
-							<input type="hidden" name="queryCondition/_expr[14]/_pattern" value="yyyy-MM-dd hh:MM"> 
-							<input type="hidden" name="queryCondition/_expr[15]/_pattern" value="yyyy-MM-dd hh:MM"> 
+							<input type="hidden" name="queryCondition/_expr[14]/_pattern" value="yyyy-MM-dd HH:mm"> 
+							<input type="hidden" name="queryCondition/_expr[15]/_pattern" value="yyyy-MM-dd HH:mm"> 
 							<input type="hidden" name="queryCondition/_expr[14]/_op" value=">=">
 							<input type="hidden" name="queryCondition/_expr[15]/_op" value="<=">
 						</td> 

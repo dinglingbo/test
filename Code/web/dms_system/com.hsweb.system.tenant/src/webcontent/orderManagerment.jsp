@@ -98,10 +98,10 @@
                     <div field="productId" width="80" headerAlign="center" align="center">产品ID</div>
                     <div field="name" width="80" headerAlign="center" align="center">产品名称</div>
                     <div field="type" width="80" headerAlign="center" align="center">产品类型</div>
-                    <div field="startDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd hh:MM">开通时间</div>
-                    <div field="endDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd hh:MM">结束时间</div>
+                    <div field="startDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">开通时间</div>
+                    <div field="endDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">结束时间</div>
                     <div field="isPayment" width="80" headerAlign="center" align="center">是否付款</div>
-                    <div field="paymentDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd hh:MM">付款时间</div>
+                    <div field="paymentDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">付款时间</div>
                     <div field="paymentType" width="80" headerAlign="center" align="center">付款方式</div>
                     <!-- <div field="" width="80" headerAlign="center" align="center">是否生效</div> -->
                     <div field="status" width="80" headerAlign="center" align="center">订单状态</div>

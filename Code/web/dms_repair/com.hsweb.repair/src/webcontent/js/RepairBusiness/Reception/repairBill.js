@@ -706,9 +706,12 @@ function doSetMainInfo(car){
     maintain.insuranceName = car.insuranceName;
     maintain.insureNo = car.insureNo;
     maintain.insureDueDate = car.insureDueDate;
+    //maintain.lastComeKilometers = car.lastComeKilometers;
+    $("#lastComeKilometers").html(car.lastComeKilometers);
     mpackageRate = 0;
     mitemRate = 0;
     mpartRate = 0;
+    
 
     billForm.setData(maintain);
     sendGuestForm.setData(maintain);
@@ -757,6 +760,8 @@ function setInitData(params){
         getMaintain(params, function(text){
             var errCode = text.errCode||"";
             var data = text.maintain||{};
+            var lastEnterKilometers = data.lastEnterKilometers || 0;
+            $("#lastComeKilometers").html(lastEnterKilometers);
             if(errCode == 'S'){
             	xyguest = data;
             	//挂账
@@ -790,13 +795,14 @@ function setInitData(params){
                     data:{
                         guestId: data.guestId||0,
                         contactorId: data.contactorId||0,
-                        carId:data.carId || 0
+                        carId:data.carId || 0,
                     }
                 };
                 getGuestContactorCar(p, function(text){
                     var errCode = text.errCode||"";
                     var guest = text.guest||{};
                     var car = text.car || {};
+                    var carExtend = text.carExtend || {};
                     var contactor = text.contactor||{};
                     if(errCode == 'S'){
                         $("#servieIdEl").html(data.serviceCode);
@@ -941,6 +947,7 @@ function add(){
     $("#showCardTimesEl").html("次卡套餐(0)");
     $("#showCardEl").html("储值卡(0)");
     $("#creditEl").html("挂账:0");
+    $("#lastComeKilometers").html("0");
     $("#showCarInfoEl").html("");
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
@@ -1086,7 +1093,7 @@ function saveMaintain(callback,unmaskcall){
 		}
     }
     data.billTypeId = 0;
-
+    data.lastEnterKilometers = $("#lastComeKilometers").text() || 0;
     var params = {
         data:{
             maintain:data
@@ -3397,6 +3404,7 @@ function onValueChangedItemRate(e){
   }	
 }
 
+
 //修改了小计，只会修改优惠率
 function onValueChangedItemSubtotal(e){	
 	var el = e.sender;
@@ -3641,6 +3649,13 @@ function onDrawSummaryCellItem(e){
 	  }  
 }
 
+function setEnterKilometers(e){
+	var last =  $("#lastComeKilometers").text() || 0;
+	if(e.value < last){
+		showMsg("进厂里程不能小于上次里程","W");
+		nui.get("enterKilometers").setValue("");
+	}
+}
 function addExpenseAccount(){
 	var data = billForm.getData();
 	var data1 = sendGuestForm.getData();

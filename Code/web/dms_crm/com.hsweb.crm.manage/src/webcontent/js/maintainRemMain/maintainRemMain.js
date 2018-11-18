@@ -186,8 +186,19 @@ function loadDetail(p1, p2, p3){
 function save(){
 	var data = tabForm.getData();
 	var row=gridCar.getSelected();
+	if(!row){
+		showMsg("请先选择一条记录","W");
+		return;
+	}
+	if(!data.visitMode){
+		showMsg("清先选择提醒方式","W");
+		return;
+	}
+	if(!data.visitContent){
+		showMsg("清填写内容","W");
+		return;
+	}
 	var record = {
-		id:data.id,
 		orgid: currOrgId,
 		careType:1,
 		guestId:data.guestId,
@@ -207,7 +218,7 @@ function save(){
 		success:function(text){
 			if(text.errCode == "S"){
 				var detailData = text.list;
-//				showMsg("保存成功！","S");
+				showMsg("保存成功！","S");
 				nui.get("id").setValue(detailData.id);
 				gridCar.removeRow (row, true);
 			}
@@ -318,6 +329,29 @@ function checkMtRecord() {
             var param = { 
         		guestId: row.guestId,
         		careType : 1
+        		};
+            iframe.contentWindow.SetData(param);
+        },
+        ondestroy: function (action) {
+        	//重新加载
+        }
+    });
+}
+
+function remindDetail() {
+    var row = gridCar.getSelected();
+    if (row == undefined) {
+        showMsg("请选中一条数据","W");
+        return;
+    }
+    nui.open({
+        url: webPath + crmDomain + "/basic/remindDetail.jsp?token="+token,
+        title: "跟踪明细", width: 700, height: 386,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            var param = { 
+        		guestId: row.guestId,
+        		careType :1 
         		};
             iframe.contentWindow.SetData(param);
         },

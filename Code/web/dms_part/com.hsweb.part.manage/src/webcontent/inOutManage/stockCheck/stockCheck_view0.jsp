@@ -181,7 +181,7 @@
                                                  width="100%"
                                                  enabled="false"
                                                  showTime="true"
-                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd hh:MM"/>
+                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
                                       </td>
                                       <td class="title" style="width:7%">
                                           <label>盘点单号：</label>

@@ -7,9 +7,11 @@ var tree = null;
 var grid = null;
 var gridUrl = baseUrl+"com.hsapi.repair.common.common.getCarModelByBrandId.biz.ext";
 var queryForm = null;
+var datagrid1 = null;
 $(document).ready(function(v)
 {
     tree = nui.get("tree");
+    datagrid1 = nui.get("datagrid1");
     tree.setUrl(treeUrl);
 /*
  * {
@@ -40,6 +42,10 @@ $(document).ready(function(v)
     grid.setUrl(gridUrl);
 
     queryForm = new nui.Form('#queryForm');
+    
+    datagrid1.on("rowdblclick",function(e){
+		onOk();
+	});
 });
 function getSearchParams()
 {

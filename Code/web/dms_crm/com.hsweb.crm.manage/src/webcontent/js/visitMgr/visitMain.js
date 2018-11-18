@@ -6,10 +6,14 @@ var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var gridCarUrl = baseUrl+"com.hsapi.crm.svr.visit.queryCrmVisitData.biz.ext";
 var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
 var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
+var queryInfo = baseUrl + "com.hsapi.repair.repairService.query.queryRpsMaintainInfo.biz.ext";
 var visitModeCtrlUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130703000021&fromDb=true";
 
 var gridCar = null;
 var tabForm = null;
+var table1Form = null;
+var tableDisForm = null;
+var tab5Form = null;
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
 var mainId_ctrl = null;
@@ -20,9 +24,10 @@ var mtAdvisorIdEl = null;
 var mtAdvisorEl = null;
 var visitManEl = null;
 var visitIdEl = null;
-var table1Form = null;
+var serviceTypeIdEl = null;
 
 $(document).ready(function(){
+	serviceTypeIdEl = nui.get("serviceTypeId");
 	rpsPackageGrid = nui.get("rpsPackageGrid");
 	rpsItemGrid = nui.get("rpsItemGrid");
 	mtAdvisorEl = nui.get("mtAdvisor");
@@ -31,6 +36,13 @@ $(document).ready(function(){
 	visitIdEl = nui.get("visitId");
 	tabForm = new nui.Form("#tabs");
 	table1Form = new nui.Form("#table1");
+	//tabForm.setEnabled(false);
+	//table1Form.setEnabled(true);
+
+	//tableDisForm = new nui.Form("#tableDis");
+	//tableDisForm.setEnabled(false);
+	//tab5Form = new nui.Form("#tab5");
+	//tab5Form.setEnabled(false);
 	tcarNo_ctrl = nui.get("tcarNo");
 	visitMode_ctrl = nui.get("visitMode");
 	visitMode_ctrl.setUrl(visitModeCtrlUrl);
@@ -44,20 +56,42 @@ $(document).ready(function(){
 	});
 	
 	document.onkeyup = function(event) {
-        var e = event || window.event;
+		var e = event || window.event;
         var keyCode = e.keyCode || e.which;// 38向上 40向下
         
 
         if ((keyCode == 13)) { // Enter
-            quickSearch(3);
+        	quickSearch(3);
         }
 
     }
 
-	initMember("mtAdvisor",function(){
-		memList = mtAdvisorEl.getData();
-		nui.get("visitMan").setData(memList); 
-	}); 
+    initMember("mtAdvisor",function(){
+    	memList = mtAdvisorEl.getData();
+    	nui.get("visitMan").setData(memList); 
+    }); 
+
+    var pId = SERVICE_TYPE;
+    getDatadictionaries(pId, function (data) {
+    	data = data || {};
+    	var list = data.list || [];
+    	serviceTypeIdEl.setData(list);
+
+    });
+
+    initDicts({
+        //carSpec:CAR_SPEC,//车辆规格
+        //kiloType:KILO_TYPE,//里程类别
+        //source:GUEST_SOURCE,//客户来源
+        identity:IDENTITY //客户身份
+    },function(){
+    	hash.initDicts = true;
+    	checkComplete();
+    });
+
+    initCarBrand("carBrandId",function(data) {
+
+    });
 
 });
 
@@ -75,85 +109,77 @@ function visitManChanged(e){
 
 function SetData(rowData){
 	var params = {
-		data: {
-			id: rowData.serviceId
-		}
+		id: rowData.serviceId
 	};
-	getMaintain(params, function(text){
-		var errCode = text.errCode||"";
-		var data = text.maintain||{};
-		if(errCode == 'S'){
-			var p = {
-				data:{
-					guestId: data.guestId||0,
-					contactorId: data.contactorId||0
-				}
-			};
-			getGuestContactorCar(p, function(text){
-				var errCode = text.errCode||"";
-				var guest = text.guest||{};
-				var contactor = text.contactor||{};
-				if(errCode == 'S'){
-					
+	nui.ajax({
+		url:queryInfo,
+		type:"post",
+		data:{params:params},
+		success:function(text){
+			if(text.errCode == "S"){
+				var data = text.list[0];
 
-					var form ={
-						mainId:rowData.id,
-						guest:guest.fullName,
-						carNo:data.carNo,
-						carVin:data.carVin,
-						carId:data.carId,
-						guestId:data.guestId,
-						serviceId:data.id,
-						enterKilometers:data.enterKilometers,
-						mobile:guest.mobile,
-						contactor:guest.contactor,
-						contactorTel:guest.contactorTel,
-						mtAdvisor:data.mtAdvisor,
-						mtAdvisorId:data.mtAdvisorId,
-						billTypeId:data.billTypeId, 
-						enterDate:data.enterDate, 
-						outDate:data.outDate
-					}; 
-					var visitdetaildata = searchVisitDetail(rowData.id);
-					if(visitdetaildata){
-						form.visitMode = visitdetaildata.visitMode;
-						form.visitId = visitdetaildata.visitId;
-						form.visitMan = visitdetaildata.visitMan;
-						form.visitDate = visitdetaildata.visitDate;
-						form.visitContent = visitdetaildata.visitContent;
-						form.careDueDate = visitdetaildata.careDueDate;
-						form.careDayCycle = visitdetaildata.careDayCycle;
-						form.detailId = visitdetaildata.id;
+				var form ={
+					mainId:rowData.id,
+					serviceId:data.id,
+					guest:data.guestShortName,
+					carNo:data.carNo,
+					carVin:data.carVin,
+					carId:data.carId,
+					carBrandId:data.carBrandId,
+					carModel:data.carModel,
+					guestId:data.guestId,
+					enterKilometers:data.enterKilometers,
+					compComeTimes:data.compComeTimes,
+					engineNo:data.engineNo,
+					mobile:data.mobile,
+					contactor:data.contactorName,
+					contactorTel:data.contactorTel,
+					identity:data.identity,
+					mtAdvisor:data.mtAdvisor,
+					mtAdvisorId:data.mtAdvisorId,
+					billTypeId:data.billTypeId, 
+					enterDate:data.enterDate, 
+					outDate:data.outDate,
+					guestDesc:data.guestDesc,
+					faultPhen:data.faultPhen,
+					solveMethod:data.solveMethod
+				}; 
+				var visitdetaildata = searchVisitDetail(rowData.id);
+				if(visitdetaildata){
+					form.visitMode = visitdetaildata.visitMode;
+					form.visitId = visitdetaildata.visitId;
+					form.visitMan = visitdetaildata.visitMan;
+					form.visitDate = visitdetaildata.visitDate;
+					form.visitContent = visitdetaildata.visitContent;
+					form.careDueDate = visitdetaildata.careDueDate;
+					form.careDayCycle = visitdetaildata.careDayCycle;
+					form.detailId = visitdetaildata.id;
+				}
+				tabForm.setData(form);
+				table1Form.setData(data);
+
+
+				var p1 = {
+					interType: "package",
+					data:{
+						serviceId: data.id||0
 					}
-					tabForm.setData(form);
-					table1Form.setData(data);
-
-
-					var p1 = {
-						interType: "package",
-						data:{
-							serviceId: data.id||0
-						}
-					};
-					var p2 = {
-						interType: "item",
-						data:{
-							serviceId: data.id||0
-						}
-					};
-					var p3 = {
-						interType: "part",
-						data:{
-							serviceId: data.id||0
-						}
-					};
-					loadDetail(p1, p2, p3);
-
-
-
-
-				}
-			});
+				};
+				var p2 = {
+					interType: "item",
+					data:{
+						serviceId: data.id||0
+					}
+				};
+				var p3 = {
+					interType: "part",
+					data:{
+						serviceId: data.id||0
+					}
+				};
+				loadDetail(p1, p2, p3);
+			}
 		}
 	});
 }

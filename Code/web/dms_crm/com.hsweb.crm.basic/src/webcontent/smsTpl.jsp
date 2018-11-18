@@ -93,7 +93,7 @@
                                     <div field="content" width="80" headerAlign="center" summaryType="" allowSort=false>短信内容</div>
                                     <div field="source" width="30" headerAlign="center" summaryType="" allowSort=false>短信来源</div>
                                     <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>创建人</div>
-                                    <div field="recordDate" width="30" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" allowSort=false>创建日期</div>
+                                    <div field="recordDate" width="30" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>创建日期</div>
                                 </div>
                             </div>
                         </div>

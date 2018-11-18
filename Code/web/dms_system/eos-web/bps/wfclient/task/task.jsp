@@ -59,7 +59,7 @@
 						<td class="nui-form-label"><%=I18nUtil.getMessage(request, "bps.wfclient.myTask.TimeLimit")%>:</td>
 						<td><input id="limitNumDesc"  name="limitNumDesc" class="nui-textbox asLabel" readOnly="true"/></td>
 						<td class="nui-form-label"><%=I18nUtil.getMessage(request, "bps.wfclient.myTask.RemindTime")%>:</td>
-						<td><input id="remindTime"  name="remindTime" class="nui-datepicker asLabel" format="yyyy-MM-dd hh:MM" readOnly="true" width="160"/></td>
+						<td><input id="remindTime"  name="remindTime" class="nui-datepicker asLabel" format="yyyy-MM-dd HH:mm" readOnly="true" width="160"/></td>
 					</tr>
 					<tr>
 						<td class="nui-form-label"><%=I18nUtil.getMessage(request, "bps.wfclient.myTask.IsTimeOut")%>:</td>
@@ -71,13 +71,13 @@
 						<td class="nui-form-label"><%=I18nUtil.getMessage(request, "bps.wfclient.myTask.PartiName")%>:</td>
 						<td><input id="partiName"  name="partiName" class="nui-textbox asLabel" readOnly="true"/></td>
 						<td class="nui-form-label"><%=I18nUtil.getMessage(request, "bps.wfclient.myTask.CreateTime")%>:</td>
-						<td><input id="createTime"  name="createTime" class="nui-datepicker asLabel" format="yyyy-MM-dd hh:MM" readOnly="true" width="160"/></td>
+						<td><input id="createTime"  name="createTime" class="nui-datepicker asLabel" format="yyyy-MM-dd HH:mm" readOnly="true" width="160"/></td>
 					</tr>		
 					<tr>
 						<td class="nui-form-label"><%=I18nUtil.getMessage(request, "bps.wfclient.myTask.StartTime")%>:</td>
-						<td><input id="startTime"  name="startTime" class="nui-datepicker asLabel" format="yyyy-MM-dd hh:MM" readOnly="true" width="160"/></td>
+						<td><input id="startTime"  name="startTime" class="nui-datepicker asLabel" format="yyyy-MM-dd HH:mm" readOnly="true" width="160"/></td>
 						<td class="nui-form-label"><%=I18nUtil.getMessage(request, "bps.wfclient.myTask.EndTime")%>:</td>
-						<td><input id="endTime"  name="endTime" class="nui-datepicker asLabel" format="yyyy-MM-dd hh:MM" readOnly="true" width="160"/></td>
+						<td><input id="endTime"  name="endTime" class="nui-datepicker asLabel" format="yyyy-MM-dd HH:mm" readOnly="true" width="160"/></td>
 					</tr>
 				</table>
 			</div> 

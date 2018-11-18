@@ -59,8 +59,8 @@
                 <div field="saleManId" headerAlign="center"
                      allowSort="false" visible="false" width="80" header="销售员" align="center">
                 </div> 
-                <div field="recordDate" width="60" headerAlign="center" header="购买日期" dateFormat="yyyy-MM-dd hh:MM"> </div>
-                <div field="recordDate" width="60" headerAlign="center" header="购买日期" dateFormat="yyyy-MM-dd hh:MM"> </div> 
+                <div field="recordDate" width="60" headerAlign="center" header="购买日期" dateFormat="yyyy-MM-dd HH:mm"> </div>
+                <div field="recordDate" width="60" headerAlign="center" header="购买日期" dateFormat="yyyy-MM-dd HH:mm"> </div> 
            </div>
          </div>
        </div>

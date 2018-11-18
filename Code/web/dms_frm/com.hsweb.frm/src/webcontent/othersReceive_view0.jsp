@@ -113,9 +113,9 @@
                         </div>
                         <div field="postStatus" width="30" headerAlign="center" header="是否审核"></div>
                         <div field="recorder" width="30" headerAlign="center" header="审核人"></div>
-                        <div allowSort="true" field="recordDate" width="60" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd hh:MM"></div>
+                        <div allowSort="true" field="recordDate" width="60" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                         <div field="code" width="60" headerAlign="center" header="单号"></div>
-                        <div allowSort="true" field="recordDate" width="60" headerAlign="center" visible="false" dateFormat="yyyy-MM-dd hh:MM"></div>
+                        <div allowSort="true" field="recordDate" width="60" headerAlign="center" visible="false" dateFormat="yyyy-MM-dd HH:mm"></div>
                             
                     </div>  
                   

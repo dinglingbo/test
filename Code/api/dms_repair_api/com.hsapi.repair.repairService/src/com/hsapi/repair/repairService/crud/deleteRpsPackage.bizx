@@ -701,10 +701,6 @@
       <process:from type="query" pattern="reference">pkg/id</process:from>
       <process:to type="query">cond3/_expr[1]/billPackageId</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond3/_expr[1]/op</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
     <location x="-107" y="116"/>
@@ -744,9 +740,10 @@
     <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo6</sourceNode>
       <targetNode>assign7</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link34</targetConnections>
-    <location x="-30" y="81"/>
+    <location x="-15" y="81"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo6label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -762,7 +759,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
-    <location x="-100" y="117"/>
+    <location x="-85" y="117"/>
     <figSize height="17" width="162"/>
     <node>invokePojo6</node>
   </nodes>

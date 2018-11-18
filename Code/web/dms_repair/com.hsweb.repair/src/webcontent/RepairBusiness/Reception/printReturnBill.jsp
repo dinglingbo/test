@@ -521,7 +521,7 @@ function SetData(params){
       $("#amt").html(sumAmt);
       $("#Damt").html(transform(sumAmt+""));  
    });
-   $("#date").html(format(date, "yyyy-MM-dd hh:MM"));
+   $("#date").html(format(date, "yyyy-MM-dd HH:mm"));
    $("#currUserName").html(currUserName);
    $("#currCompAddress").html(currCompAddress || "");
    $("#currComptel").html(currComptel);

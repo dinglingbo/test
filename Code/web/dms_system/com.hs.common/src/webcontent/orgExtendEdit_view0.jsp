@@ -159,7 +159,7 @@
                                     </label>
                                 </td>
                                 <td>
-                                    <input class="nui-datepicker tabwidth" width="120px" enabled="true" format="yyyy-MM-dd hh:MM" name="softOpenDate" id="softOpenDate" />
+                                    <input class="nui-datepicker tabwidth" width="120px" enabled="true" format="yyyy-MM-dd HH:mm" name="softOpenDate" id="softOpenDate" />
                                 </td>
                             </tr>
                             <tr>

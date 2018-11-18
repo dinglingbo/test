@@ -181,8 +181,11 @@ pageEncoding="UTF-8" session="false"%>
     showSummaryRow="true" showModified ="false" ondrawsummarycell="drawSummaryCell">
     <div property="columns"> 
         <div type="indexcolumn" width="50" headeralign="center" align="center">序号</div>
-        <div field="insureTypeId" headeralign="center"  align="center" visible="true" width="100">险种ID</div>
         <div field="insureTypeName" headeralign="center"  align="center" visible="true" width="100">名称</div>
+        <div field="insureTypeId" headeralign="center"  align="center" visible="false" width="100"  header="险种ID"> </div>
+        <div field="insureNo" headeralign="center"  align="center" visible="true" width="100"  header="交强险/商业险单号">
+        <input property="editor" class="nui-textbox" vtype="float" >
+        </div>
         <div field="amt" name="amt" headeralign="center" align="center" visible="true" width="100" header="保司保费(售价/元)"summaryType="sum">
             <input property="editor" class="nui-textbox" vtype="float" >
         </div>

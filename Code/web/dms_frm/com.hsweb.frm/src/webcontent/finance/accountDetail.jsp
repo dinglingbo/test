@@ -52,7 +52,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="rpDc" name="rpDc" width="50"  headeralign="center" >收/支</div>
                 <div field="charOffAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" >结算金额</div>
                 <div field="auditor" name="auditor" width="60"  headeralign="center" >结算人</div>
-                <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd hh:MM" headeralign="center" >结算日期</div>
+                <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" >结算日期</div>
                 <div field="fullName" name="name" width="120"  headeralign="center" >客户全称</div>
            
             </div>

@@ -115,7 +115,7 @@ function doSelect(chkObj){
 						<td><b:write property="processDefName" iterateId="processDef"/></td>
 						<td><b:write property="versionSign" iterateId="processDef"/></td>
 						<td><b:write property="processDefOwner" iterateId="processDef"/></td>
-						<td><b:write property="createTime" iterateId="processDef" formatPattern="yyyy-MM-dd hh:MM" srcFormatPattern="yyyyMMddHHmmss"/></td>
+						<td><b:write property="createTime" iterateId="processDef" formatPattern="yyyy-MM-dd HH:mm" srcFormatPattern="yyyyMMddHHmmss"/></td>
 						<td><span id="toName[<%=flag%>]" name="toName[<%=flag%>]"><b:write property="toName"/></span> <wf:selectParticipant selectTypes="<%=leafType >" form="query" id="<%=toNameStr%>" styleClass="button" output="<%=toNameStr%>" root="" value="<%=modify %>" hidden="<%=toStr%>" hiddenType="ID" maxNum="1"></wf:selectParticipant><%-- 修改... --%>
 						</td>
 						<input type="hidden" id="to[<%=flag%>]" name="to[<%=flag%>]" value='<b:write property="to"/>'>

@@ -7,7 +7,7 @@
 <html>
 <head>
 
-<title>汽修达人管理平台</title>
+<title>车道商户版</title>
 <meta charset="utf-8">
 <meta name="keywords" content="汽修达人管理平台"/>
 <meta name="description" content="汽修达人管理平台"/>

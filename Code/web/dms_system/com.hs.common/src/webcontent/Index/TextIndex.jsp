@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
 <%@include file="/common/sysCommon.jsp"%>
-<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -10,9 +9,9 @@ pageEncoding="UTF-8" session="false" %>
   - Description:
 -->
 <head>
-  <title>首页</title> 
+  <title>首页</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.57"></script>
+    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.54"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css" rel="stylesheet" type="text/css" />
@@ -92,7 +91,7 @@ pageEncoding="UTF-8" session="false" %>
                     </div>
 
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="addGuest()">
+                        <a onclick="toCustomerProfileMain()">
                             <i class="fa fa-car fa-4x  fa-inverse"></i>
                             <p>车辆新建</p> 
                         </a>

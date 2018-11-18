@@ -11,7 +11,7 @@
   --%>
 <head>
 	<title>特别关怀</title>
-	<script src="<%=request.getContextPath()%>/manage/js/specialAttention.js?v=1.0.2">
+	<script src="<%=request.getContextPath()%>/manage/js/specialAttention.js?v=1.0.6">
 	</script>
 </head>
 
@@ -39,14 +39,14 @@
 								<table style="width:100%;">
 									<tr>
 										<td style="width:100%;">
-<!-- 											<a class="nui-button" iconCls="" plain="true" onclick="clear()" id="saveBtn">
-												<span class="fa fa-envelope-open fa-lg"></span>&nbsp;标记已读</a> -->
+ 												<a class="nui-button" iconCls="" plain="true" onclick="Care()" id="saveBtn">
+												<span class="fa fa-envelope-open fa-lg"></span>&nbsp;关怀</a> 
 										</td>
 									</tr>
 								</table>
 							</div>
 							<div class="nui-fit">
-								<div id="business" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="20" showPageInfo="true"
+								<div id="business" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" multiSelect="true" pageSize="20" showPageInfo="true"
 								 onDrawCell="onDrawCell" onselectionchanged="selectionChanged" allowSortColumn="false">
 								 <div property="columns">
 										<div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
@@ -68,14 +68,14 @@
 							<table style="width:100%;">
 								<tr>
 									<td style="width:100%;">
-<!-- 										<a class="nui-button" iconCls="" plain="true" onclick="clear()" id="saveBtn">
-											<span class="fa fa-envelope-open fa-lg"></span>&nbsp;标记已读</a> -->
+ 												<a class="nui-button" iconCls="" plain="true" onclick="Care()" id="saveBtn">
+												<span class="fa fa-envelope-open fa-lg"></span>&nbsp;关怀</a> 
 									</td>
 								</tr>
 							</table>
 						</div>
 						<div class="nui-fit">
-							<div id="compulsoryInsurance" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="20" showPageInfo="true"
+							<div id="compulsoryInsurance" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" multiSelect="true" pageSize="20" showPageInfo="true"
 							 onDrawCell="onDrawCell" onselectionchanged="selectionChanged" allowSortColumn="false">
 							 <div property="columns">
 									<div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
@@ -97,25 +97,26 @@
 									<table style="width:100%;">
 										<tr>
 											<td style="width:100%;">
-<!-- 												<a class="nui-button" iconCls="" plain="true" onclick="clear()" id="saveBtn">
-													<span class="fa fa-envelope-open fa-lg"></span>&nbsp;标记已读</a> -->
+ 												<a class="nui-button" iconCls="" plain="true" onclick="Care()" id="saveBtn">
+												<span class="fa fa-envelope-open fa-lg"></span>&nbsp;关怀</a> 
 											</td>
 										</tr>
 									</table>
 								</div>
 								<div class="nui-fit">
-									<div id="drivingLicense" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="20" showPageInfo="true"
+									<div id="drivingLicense" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" multiSelect="true" pageSize="20" showPageInfo="true"
 									 onDrawCell="onDrawCell" onselectionchanged="selectionChanged" allowSortColumn="false">
 									 <div property="columns">
 											<div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
 											<div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
 											<div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
-											<div field="mtAdvisorId" headerAlign="center" allowSort="true" visible="false">mtAdvisorId</div>
+											<div field="orgid" headerAlign="center" allowSort="true" visible="false">orgid</div>
 											<div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
-											<div field="msgContent" headerAlign="center" allowSort="true" width="100px">消息内容</div>
-											<div field="readSign" headerAlign="center" allowSort="true" width="60px">状态</div>
-											<div field="recordDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="50px">
-												发生日期</div>
+											<div field="guestName" headerAlign="center" allowSort="true" width="100px">客户姓名</div>
+											<div field="mobile" headerAlign="center" allowSort="true" width="60px">电话</div>
+											<div field="licenseStatus" headerAlign="center" allowSort="true" width="60px">状态</div>
+											<div field="licenseOverDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="50px">
+												驾照年审日期</div>
 										</div>
 									</div>
 								</div>
@@ -125,14 +126,14 @@
 								<table style="width:100%;">
 									<tr>
 										<td style="width:100%;">
-	<!-- 										<a class="nui-button" iconCls="" plain="true" onclick="clear()" id="saveBtn">
-												<span class="fa fa-envelope-open fa-lg"></span>&nbsp;标记已读</a> -->
+ 												<a class="nui-button" iconCls="" plain="true" onclick="Care()" id="saveBtn">
+												<span class="fa fa-envelope-open fa-lg"></span>&nbsp;关怀</a> 
 										</td>
 									</tr>
 								</table>
 							</div>
 							<div class="nui-fit">
-								<div id="car" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="20" showPageInfo="true"
+								<div id="car" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="20" multiSelect="true" showPageInfo="true"
 								 onDrawCell="onDrawCell" onselectionchanged="selectionChanged" allowSortColumn="false">
 								 <div property="columns">
 										<div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
@@ -154,25 +155,26 @@
 									<table style="width:100%;">
 										<tr>
 											<td style="width:100%;">
-<!-- 												<a class="nui-button" iconCls="" plain="true" onclick="clear()" id="saveBtn">
-													<span class="fa fa-envelope-open fa-lg"></span>&nbsp;标记已读</a> -->
+ 												<a class="nui-button" iconCls="" plain="true" onclick="Care()" id="saveBtn">
+												<span class="fa fa-envelope-open fa-lg"></span>&nbsp;关怀</a> 
 											</td>
 										</tr>
 									</table>
 								</div>
 								<div class="nui-fit">
-									<div id="guestBirthday" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="20" showPageInfo="true"
+									<div id="guestBirthday" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" multiSelect="true" pageSize="20" showPageInfo="true"
 									 onDrawCell="onDrawCell" onselectionchanged="selectionChanged" allowSortColumn="false">
 									 <div property="columns">
 											<div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
 											<div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
 											<div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
-											<div field="mtAdvisorId" headerAlign="center" allowSort="true" visible="false">mtAdvisorId</div>
-											<div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
-											<div field="msgContent" headerAlign="center" allowSort="true" width="100px">消息内容</div>
-											<div field="readSign" headerAlign="center" allowSort="true" width="60px">状态</div>
-											<div field="recordDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="50px">
-												发生日期</div>
+											<div field="carId" headerAlign="center" allowSort="true" visible="false">orgid</div>
+											<div field="guestName" headerAlign="center" allowSort="true" width="100px">客户姓名</div>
+											<div field="mobile" headerAlign="center" allowSort="true" width="60px">电话</div>
+											<div field="birthdayType" headerAlign="center" allowSort="true" width="100px">生日类型</div>
+											<div field="birStatus" headerAlign="center" allowSort="true" width="60px">状态</div>
+											<div field="birthday" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="50px">
+												生日</div>
 										</div>
 									</div>
 								</div>

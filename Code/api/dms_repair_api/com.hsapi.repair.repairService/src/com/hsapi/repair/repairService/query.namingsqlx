@@ -815,8 +815,8 @@
 				b.insure_due_date as insureDueDate,
 				b.insure_comp_name as insureCompName
 			FROM
-				rpb_car_extend a
-			INNER JOIN rpb_car b ON a.car_id = b.id
+				wb_repair.rpb_car_extend a
+			INNER JOIN wb_repair.rpb_car b ON a.car_id = b.id
 		
 			WHERE 
 				b.orgid=#orgid#	
@@ -845,6 +845,43 @@
             <isNotEmpty prepend="and" property="veriStatus">
   				a.veri_status = #veriStatus#
             </isNotEmpty> 
+ 
+	</select>
+	
+			<select id="queryRemindS" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				a.id as guestId,
+				a.orgid as orgid,
+				a.name as guestName,
+				a.mobile as mobile,
+				a.birthday_type as birthdayType,
+				a.birthday as birthday,
+				a.license_over_date as licenseOverDate,
+				a.license_status as licenseStatus,
+				a.bir_status as birStatus
+
+			FROM
+				wb_repair.rpb_contactor a
+		
+			WHERE 
+				a.orgid=#orgid#	
+          
+            <!-- 生日是否需要提醒-->
+            <isNotEmpty prepend="and" property="isBirRemind">
+  				a.is_bir_remind = #isBirRemind#
+            </isNotEmpty>
+            <!--提醒状态-->
+            <isNotEmpty prepend="and" property="birStatus">
+  				a.bir_status = #birStatus#
+            </isNotEmpty>
+             <!-- 驾照是否需要提醒-->
+            <isNotEmpty prepend="and" property="isLicenseRemind">
+  				a.is_license_remind = #isLicenseRemind#
+            </isNotEmpty>
+            <!--提醒状态-->
+            <isNotEmpty prepend="and" property="licenseStatus">
+  				a.license_status = #licenseStatus#
+            </isNotEmpty>
  
 	</select>
 	

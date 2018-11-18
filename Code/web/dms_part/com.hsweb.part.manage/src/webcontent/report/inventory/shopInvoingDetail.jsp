@@ -106,7 +106,7 @@
         <div type="indexcolumn">序号</div>
         <div header="配件信息" headerAlign="center">
             <div property="columns">
-                <div allowSort="true" field="partId" width="100" headerAlign="center" header="配件内码"></div>
+<!--                 <div allowSort="true" field="partId" width="100" headerAlign="center" header="配件内码"></div> -->
                 <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
                 <div allowSort="true" field="partName" width="150" headerAlign="center" header="配件名称"></div>
    				<div allowSort="true" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>

@@ -110,7 +110,9 @@ $(document).ready(function ()
                 mtAdvisorId:""
             };
             basicInfoForm.setData(sdata);
-
+            $("#guestNameEl").html(guestName);
+            $("#showCarInfoEl").html(carNo);
+            $("#guestTelEl").html(tel);
             if(tel){
                 tel = "/"+tel;
             }
@@ -127,6 +129,7 @@ $(document).ready(function ()
             searchNameEl.setVisible(true);
             var t = carNo + tel + guestName + carVin;
             searchNameEl.setValue(t);
+           
 
         }
     });

@@ -182,6 +182,7 @@ table{
         	<div>
         		<div align="center" class="print_btn">
 			     	<a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
+			     	<a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
 			    </div>
         		<table id="" width="100%">
 				  <tr style="font-size:25px;">
@@ -271,8 +272,22 @@ table{
 	            $(".print_btn").hide();
 	            window.print();
 	        }); 
+	         document.onkeyup = function(event) {
+		        var e = event || window.event;
+		        var keyCode = e.keyCode || e.which;// 38向上 40向下
+		        
+		
+		        if ((keyCode == 27)) { // ESC
+		            CloseWindow('cancle');
+		        }
+		
+		    }
     	});
     	
+    	function CloseWindow(action) {
+            if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+            else window.close();
+        }
     	function SetData(mainParams,detailParms,formParms){
        		$('#guestFullName').text("供应商:"+mainParams.guestFullName);
        		$('#createDate').text("入库日期："+format(mainParams.createDate,"yyyy/MM/dd/HH:mm:ss"));

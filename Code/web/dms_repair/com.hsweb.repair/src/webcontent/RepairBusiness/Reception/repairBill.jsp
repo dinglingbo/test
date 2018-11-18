@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.9.6"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.9.9"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -132,7 +132,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="sureMT()" id="addBtn"><span class="fa fa-car fa-lg"></span>&nbsp;确定维修</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="unfinish()" id="addBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
+               
                 <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="addBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
 
                 <!-- <a class="nui-button" iconCls="" plain="true" onclick="del()" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a> -->
@@ -154,6 +154,7 @@
                 <ul id="popupMenuQT" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="addcardTime()" id="type10">计次卡销售</li>
                     <li iconCls="" onclick="addcard()" id="type11">储值卡充值</li>
+                    
                 </ul>
 
                 <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
@@ -162,6 +163,7 @@
                     <li iconCls="" onclick="updateBillExpense()" id="billExpense">费用登记</li>
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li>
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">修改报销单</li>
+                    <li iconCls="" onclick="unfinish()" id="addBtn">返单</li>
                     <!-- <li iconCls="" onclick="addcardTime()" id="type13">车牌替换/修改</li>
                     <li iconCls="" onclick="addcard()" id="type11">等级转介绍客户</li> -->
                 </ul>
@@ -431,11 +433,17 @@
         <a class="nui-button  mini-button-info" style="height: 30px;font-size: 14px;" iconCls="" plain="false" onclick="MemSelectCancel(2)" id="">
             <span style="line-height: 30px;">车况派工</span>
         </a>
+        <a class="nui-button  mini-button-info" style="height: 30px;font-size: 14px;" iconCls="" plain="false" onclick="showHealth()" id="">
+            <span style="line-height: 30px;">取消</span>
+        </a>
     </div>
 
     <div align="center" style="margin-top:20px;display: none; " id="checkStatusButton2">
         <a class="nui-button  mini-button-info" style="height: 30px;font-size: 14px;" iconCls="" plain="false" onclick="newCheckMain()" id="">
             <span style="line-height: 30px;">车况查看</span>
+        </a>
+        <a class="nui-button  mini-button-info" style="height: 30px;font-size: 14px;" iconCls="" plain="false" onclick="showHealth()" id="">
+            <span style="line-height: 30px;">取消</span>
         </a>
     </div>
 </div>

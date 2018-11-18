@@ -139,7 +139,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="sureMT()" id="addBtn"><span class="fa fa-car fa-lg"></span>&nbsp;确定开单</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="unfinish()" id="addBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
+<!--                 <a class="nui-button" iconCls="" plain="true" onclick="unfinish()" id="addBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="addBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
                 <!-- <a class="nui-button" iconCls="" plain="true" onclick="del()" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a> -->
                 <span class="separator"></span>
@@ -168,6 +168,7 @@
                     <li iconCls="" onclick="updateBillExpense()" id="billExpense">费用登记</li>
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li>
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">修改报销单</li>
+                    <li iconCls="" onclick="unfinish()" id="addBtn">返单</li>
                     <!-- <li iconCls="" onclick="addcardTime()" id="type13">车牌替换/修改</li>
                     <li iconCls="" onclick="addcard()" id="type11">等级转介绍客户</li> -->
                 </ul>
@@ -199,7 +200,7 @@
                 <td class="title required" >
                     <label>业务类型：</label>
                 </td>
-                <td class="" width="20%">
+                <td class="" width="24%">
                     <input name="serviceTypeId"
                     id="serviceTypeId"
                     class="nui-combobox width1"
@@ -245,7 +246,7 @@
                
                 <input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="32%"/>
                 <label class="title required">客户手机：</label>
-                <input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="47%"/>
+                <input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="40%"/>
                
                 </td>
                 

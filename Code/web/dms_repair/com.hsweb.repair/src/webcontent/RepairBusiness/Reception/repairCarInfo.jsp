@@ -26,7 +26,7 @@
                   <td class="title required">
                       <label>车牌号：</label>
                   </td>
-                  <td class="" width="24%"><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
+                  <td class="" width="28%"><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
                   <td class="title required">
                       <label>业务类型：</label>
                   </td>

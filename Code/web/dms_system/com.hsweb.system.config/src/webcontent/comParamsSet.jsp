@@ -9,7 +9,7 @@
 -->
 <head>
   <title>工单设置</title>
-  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.1"></script>
+  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.3"></script>
   <style type="text/css">
 
     .title {
@@ -114,12 +114,12 @@
                     textField="text" valueField="id" ></div>
                 </td>
             </tr>
-            <tr>
+            <!--<tr>
                 <td class="tbtext">税率比例：</td>
                 <td class="tbCtrl" >
                     <input id="rate" name="rate" onvalidation="onRateValidation" class="nui-textbox" >
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <td class="tbtext">结算单打印抬头显示：</td>
                 <td class="tbCtrl" >
@@ -134,26 +134,42 @@
                 </td>
             </tr>
             <tr>
-                <td class="tbtext">委托单打印内容：</td>
+                <td class="tbtext">报价单打印内容：</td>
                 <td class="tbCtrl" >
                     <input id="repairEntrustPrintContent" name="repairEntrustPrintContent" class="nui-textarea" 
                            style="height:100px;width:300px">
                 </td>
             </tr>
-            <tr>
+            <!--<tr>
                 <td class="tbtext">工单服务性质对健康档案不开放：</td>
                 <td class="tbCtrl" >
                     <div id="openToArchives" name="openToArchives" class="nui-checkboxlist" repeatItems="5" 
                         repeatLayout="flow"  value="" 
                         textField="text" valueField="id" ></div>
                 </td>
-            </tr>
+            </tr>-->
             <tr>
                 <td class="tbtext">工单服务性质对车主微信端不开放：</td>
                 <td class="tbCtrl" >
                     <div id="openToGuestQrcode" name="openToGuestQrcode" class="nui-checkboxlist" repeatItems="5" 
                         repeatLayout="flow"  value="" 
                         textField="text" valueField="id" ></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="tbtext">采购退货供应商一致才可退货：</td>
+                <td class="tbCtrl" >
+                    <div id="repairPchsRtnFlag" name="repairPchsRtnFlag" 
+						class="nui-radiobuttonlist" value="" repeatItems="2" 
+						repeatDirection="" repeatLayout="table" 
+						textField="text" valueField="id" ></div>
+                </td>
+            </tr>
+            <tr>
+                <td class="tbtext">默认仓库：</td>
+                <td class="tbCtrl" >
+					<div id="repairDefaultStore" name="repairDefaultStore" 
+						class="nui-combobox" textField="name" valueField="id" valuechanged="aa" ></div>
                 </td>
             </tr>
             <tr>

@@ -219,5 +219,27 @@
         FROM rpb_business_type 
         where is_disabled = 0 and (orgid = #orgid# or orgid = 0 )
         order by id
-    </select>    
+    </select>   
+    
+    <!--查询本店系统参数 设置-->
+    <select id="queryBillParams" parameterClass="HashMap" resultClass="HashMap">
+        SELECT a.orgid, a.keyid_id as keyidId, a.keyid_value as keyidValue FROM com_params AS a
+        where 1 = 1
+        
+            <isNotEmpty prepend="and" property="keyidIds">  
+                (a.keyid_id in ($keyidIds$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">  
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="keyidId">  
+                (a.keyid_id = #keyidId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="type">  
+                (a.type = #type#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty>
+    </select> 
 </sqlMap>

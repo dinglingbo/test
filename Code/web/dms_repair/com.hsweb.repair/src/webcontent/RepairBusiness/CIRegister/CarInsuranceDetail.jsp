@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>车险登记明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.0.69"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.0.71"></script>
     <style type="text/css">
    .title {
         width: 80px;
@@ -146,7 +146,7 @@ pageEncoding="UTF-8" session="false"%>
             <td>
                 <span id="wechatTag" class="fa fa-wechat fa-lg healthview"></span>&nbsp;
                 <label style="font-family:Verdana;">客户名称:</label>
-                <label id="guestNameEl" style="font-family:Verdana;"></label>&nbsp;
+                <label id="" style="font-family:Verdana;"><a id="guestNameEl" href="javascript:checkGuest()"></a></label>&nbsp;
                 <label style="font-family:Verdana;">客户手机:</label>
                 <label id="guestTelEl" style="font-family:Verdana;"></label>&nbsp;
             </td>
@@ -181,8 +181,11 @@ pageEncoding="UTF-8" session="false"%>
     showSummaryRow="true" showModified ="false" ondrawsummarycell="drawSummaryCell">
     <div property="columns"> 
         <div type="indexcolumn" width="50" headeralign="center" align="center">序号</div>
-        <div field="insureTypeId" headeralign="center"  align="center" visible="true" width="100">险种ID</div>
         <div field="insureTypeName" headeralign="center"  align="center" visible="true" width="100">名称</div>
+        <div field="insureTypeId" headeralign="center"  align="center" visible="false" width="100"  header="险种ID"> </div>
+        <div field="insureNo" headeralign="center"  align="center" visible="true" width="100"  header="交强险/商业险单号">
+        <input property="editor" class="nui-textbox" vtype="float" >
+        </div>
         <div field="amt" name="amt" headeralign="center" align="center" visible="true" width="100" header="保司保费(售价/元)"summaryType="sum">
             <input property="editor" class="nui-textbox" vtype="float" >
         </div>

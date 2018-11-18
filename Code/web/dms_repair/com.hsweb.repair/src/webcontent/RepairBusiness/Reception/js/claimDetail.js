@@ -699,6 +699,7 @@ function doSetMainInfo(car){
     mitemRate = 0;
     mpartRate = 0;
 
+    $("#lastComeKilometers").html(car.lastComeKilometers);
     billForm.setData(maintain);
     sendGuestForm.setData(maintain);
     describeForm.setData(maintain);
@@ -747,6 +748,8 @@ function setInitData(params){
         getMaintain(params, function(text){
             var errCode = text.errCode||"";
             var data = text.maintain||{};
+            var lastEnterKilometers = data.lastEnterKilometers || 0;
+            $("#lastComeKilometers").html(lastEnterKilometers);
             if(errCode == 'S'){
             	//挂账
             	if(data.guestId){
@@ -936,6 +939,7 @@ function add(){
     $("#showCardTimesEl").html("次卡套餐(0)");
     $("#showCardEl").html("储值卡(0)");
     $("#creditEl").html("挂账:0");
+    $("#lastComeKilometers").html("0");
     $("#showCarInfoEl").html("");
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
@@ -1096,7 +1100,7 @@ function saveMaintain(callback,unmaskcall){
 		}
     }
     data.billTypeId = 4;
-
+    data.lastEnterKilometers = $("#lastComeKilometers").text() || 0;
     var params = {
         data:{
             maintain:data
@@ -3531,6 +3535,14 @@ function onDrawSummaryCellItem(e){
 	  }  
 }
 
+function setEnterKilometers(e){
+	var last =  $("#lastComeKilometers").text() || 0;
+	if(e.value < last){
+		showMsg("进厂里程不能小于上次里程","W");
+		nui.get("enterKilometers").setValue("");
+	}
+}
+
 function addExpenseAccount(){
 	var data = billForm.getData();
 	var data1 = sendGuestForm.getData();
@@ -3802,6 +3814,27 @@ function outCarMainExpense(){
     });
 }
 
+function checkGuest(){
+	var data = billForm.getData();
+	 nui.open({
+         url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditGuest.flow?token="+token,
+         title: '客户详情',
+         width: 750, height: 570,
+         onload: function () {
+             var iframe = this.getIFrameEl();
+             var params = {};	
+             params.guest=data;
+             iframe.contentWindow.setData(params);
+         },
+         ondestroy: function (action)
+         {
+             if("ok" == action)
+             {
+                 grid.reload();
+             }
+         }
+     });
+}
 
 
 

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
 <%@ page language="java" import="com.eos.data.datacontext.IUserObject"%>
 <%@page import="com.eos.data.datacontext.IMUODataContext,com.eos.data.datacontext.UserObject,com.eos.data.datacontext.DataContextManager,commonj.sdo.DataObject"%>
-<%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env"%>
+<%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env,com.hs.common.Utils"%>
 <%@ taglib uri="http://eos.primeton.com/tags/html" prefix="h"%>
 <%@ taglib uri="http://eos.primeton.com/tags/logic" prefix="l"%>
 <%@ taglib uri="http://eos.primeton.com/tags/bean" prefix="b"%>
@@ -85,6 +85,15 @@
     String isMaster = "";
     String empId = "";
 	Map attr=new HashMap();
+	Object billParamsObj = null;
+	Map billParams = new HashMap();
+	String repairBillQrcodeFlag = "0";
+	String repairBillCmodelFlag = "0";
+	String repairSettorderPrintShow = "";
+	String repairSettPrintContent = "";
+	String repairEntrustPrintContent = "";
+	String repairPchsRtnFlag = "1";
+	String repairDefaultStore = "";
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
 	}else{
@@ -98,7 +107,9 @@
             
 			String noOrgId = "N";
             try {
-				attr = u.getAttributes();                
+				attr = u.getAttributes();     
+				
+                System.out.println(attr);            
                 if(attr.get("token") != null){
                 	token = attr.get("token").toString();
                 }
@@ -123,6 +134,42 @@
                 if(attr.get("compTel") != null){
                 	compTel = attr.get("compTel").toString();
                 }
+                
+                if(attr.get("billParams") != null){
+                	billParamsObj = attr.get("billParams");
+                	billParams = Utils.obj2Map(billParamsObj);
+                	System.out.println(billParams);
+
+	                if(billParams.get("repairBillQrcodeFlag") != null){
+	                	repairBillQrcodeFlag = billParams.get("repairBillQrcodeFlag").toString();
+	                }
+	                if(billParams.get("repairBillCmodelFlag") != null){
+	                	repairBillCmodelFlag = billParams.get("repairBillCmodelFlag").toString();
+	                }
+	                if(billParams.get("repairSettorderPrintShow") != null){
+	                	repairSettorderPrintShow = billParams.get("repairSettorderPrintShow").toString();
+	                }
+	                if(billParams.get("repairSettPrintContent") != null){
+	                	repairSettPrintContent = billParams.get("repairSettPrintContent").toString();
+	                }
+	                if(billParams.get("repairEntrustPrintContent") != null){
+	                	repairEntrustPrintContent = billParams.get("repairEntrustPrintContent").toString();
+	                }
+	                if(billParams.get("repairPchsRtnFlag") != null){
+	                	repairPchsRtnFlag = billParams.get("repairPchsRtnFlag").toString();
+	                }
+	                if(billParams.get("repairDefaultStore") != null){
+	                	repairDefaultStore = billParams.get("repairDefaultStore").toString();
+	                }
+                }
+              
+              System.out.println(repairBillQrcodeFlag);  
+              System.out.println(repairBillCmodelFlag);  
+              System.out.println(repairSettorderPrintShow);  
+              System.out.println(repairEntrustPrintContent);  
+              System.out.println(repairPchsRtnFlag);  
+              System.out.println(repairDefaultStore);  
+                
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -26,7 +26,7 @@
                   <td class="title required">
                       <label>车牌号：</label>
                   </td>
-                  <td class="" width="24%"><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
+                  <td class="" width="28%"><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
                   <td class="title required">
                       <label>业务类型：</label>
                   </td>
@@ -84,8 +84,8 @@
                              valueFromSelect="true"
                              nullItemText="请选择..."/>
                        <label class="title required">进厂里程：</label>
-                       <input class="nui-Spinner" minValue="0" maxValue="100000000" width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
-                       <label class="title" id="lastComeKilometers">(上次里程：0)</label>
+                       <input class="nui-Spinner" minValue="0" maxValue="100000000" width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" onvaluechanged="setEnterKilometers"/>
+                       <label class="title">(上次里程：<span id="lastComeKilometers">0</span>)</label>
                   </td>
                   <td class="title required">
                       <label>进厂日期：</label>

@@ -20,15 +20,17 @@
 	<div id="queryform" class="nui-form">
 		<div class="nui-toolbar">
 			<input class="nui-textbox" id="expense" visible="false"/>
-			<input class="nui-combobox" visible="false" name="serviceTypeId" id="serviceTypeId"
-										   valueField="id" allowInput="true" valueFromSelect="true"
-										   textField="name"/>
+			
 			<input class="nui-hidden" name="criteria/_entity"
 				value="com.hsapi.repair.data.rpb.RpbCardStored">
 			<table id="table1">
 				<tr>
 					<td>套餐名称: <input class="nui-textbox" onenter="search()" 
-						name="criteria/_expr[1]/name" id="pkgName"/> <input class="nui-hidden"
+						name="criteria/_expr[1]/name" id="pkgName"/>
+						套餐类型：<input class="nui-combobox" onenter="search()"  name="criteria/_expr[4]/serviceTypeId" id="serviceTypeId"
+										   valueField="id" allowInput="true" valueFromSelect="true"
+										   textField="name"/>
+						 <input class="nui-hidden"
 						name="criteria/_expr[1]/_op" value="like"> <input
 						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
 						<a class="nui-button" onclick="search()" plain="true"> <span
@@ -64,8 +66,8 @@
 				<div field="total" headerAlign="center" allowSort="true">市场金额</div>
 				<div field="amount" headerAlign="center" allowSort="true">
 					套餐金额</div>
-				<div field="isShare" renderer="onstatus" headerAlign="center"
-					allowSort="true">是否共享</div>
+<!-- 				<div field="isShare" renderer="onstatus" headerAlign="center" -->
+<!-- 					allowSort="true">是否共享</div> -->
 				<div field="isDisabled" renderer="onstatus" headerAlign="center"
 					allowSort="true">状态</div>
 		  </div>

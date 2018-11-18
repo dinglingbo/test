@@ -15,7 +15,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link26</targetConnections>
-    <location x="1065" y="180"/>
+    <location x="1155" y="234"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -28,7 +28,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="1067" y="216"/>
+    <location x="1157" y="270"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -42,7 +42,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">1001,1002,1003,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014</process:from>
+      <process:from type="literal" pattern="reference">1001,1002,1003,1004,1006,1007,1008,1009,1011,1014,1017</process:from>
       <process:to type="query">params/keyidIds</process:to>
     </process:copy>
   </nodes>
@@ -60,13 +60,16 @@
     <location x="332" y="182"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.queryComParams</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
+        <process:inputVariable id="1" name="fromDb" type="query" value="Boolean" valueType="Primitive" pattern="reference">fromDb</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="list" type="query" value="com.hsapi.system.data.sys.ComParams[]" valueType="DataObject">paramsList</process:outputVariable>
+        <process:outputVariable id="0" name="list" type="query" value="java.util.HashMap[]" valueType="Java">paramsList</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -210,14 +213,34 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link32" name="link32" displayName="连接线" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>assign15</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">paramObj/keyidId</process:leftOperand>
+          <process:rightOperand type="literal">1004</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link33" name="link33" displayName="连接线" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>assign16</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">paramObj/keyidId</process:leftOperand>
+          <process:rightOperand type="literal">1017</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="405" y="183"/>
+    <location x="405" y="228"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
     <process:iterate iterable="paramsList" iterableElement="paramObj"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
-    <location x="405" y="215"/>
+    <location x="405" y="260"/>
     <figSize height="17" width="25"/>
     <node>loopstart0</node>
   </nodes>
@@ -227,18 +250,18 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link27</targetConnections>
-    <location x="921" y="183"/>
+    <location x="921" y="228"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
-    <location x="909" y="215"/>
+    <location x="909" y="260"/>
     <figSize height="17" width="49"/>
     <node>loopend0</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
     <location x="405" y="-30"/>
-    <size height="466" width="541"/>
+    <size height="556" width="541"/>
     <chidren>loopend0</chidren>
     <chidren>loopstart0</chidren>
     <chidren>assign1</chidren>
@@ -255,6 +278,8 @@
     <chidren>assign12</chidren>
     <chidren>assign13</chidren>
     <chidren>assign14</chidren>
+    <chidren>assign15</chidren>
+    <chidren>assign16</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
@@ -505,6 +530,8 @@
     <targetConnections>link25</targetConnections>
     <targetConnections>link30</targetConnections>
     <targetConnections>link31</targetConnections>
+    <targetConnections>link34</targetConnections>
+    <targetConnections>link35</targetConnections>
     <location x="799" y="180"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
@@ -583,18 +610,65 @@
     <figSize height="17" width="39"/>
     <node>assign14</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign15" name="赋值15" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign15</sourceNode>
+      <targetNode>assign11</targetNode>
+    </sourceConnections>
+    <targetConnections>link32</targetConnections>
+    <location x="495" y="417"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign15label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">paramObj/keyidValue</process:from>
+      <process:to type="query">keyValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">keyValue</process:from>
+      <process:to type="query">billParams/repairDefaultStore</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
+    <location x="490" y="453"/>
+    <figSize height="17" width="39"/>
+    <node>assign15</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign16" name="赋值16" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign16</sourceNode>
+      <targetNode>assign11</targetNode>
+    </sourceConnections>
+    <targetConnections>link33</targetConnections>
+    <location x="591" y="444"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign16label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">paramObj/keyidValue</process:from>
+      <process:to type="query">keyValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">keyValue</process:from>
+      <process:to type="query">billParams/repairPchsRtnFlag</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
+    <location x="586" y="480"/>
+    <figSize height="17" width="39"/>
+    <node>assign16</node>
+  </nodes>
   <topRuler>
     <guides position="311" horizontal="true"/>
   </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-10 11:33:41" date="2018-07-10Z" description="" name="queryBillParams" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.ComParams" name="paramsList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComParams" name="paramObj"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="true" name="paramsList"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="paramObj"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="keyValue" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
+    <process:input description="" isArray="false" name="fromDb" primitiveType="Boolean"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="false" name="billParams"/>

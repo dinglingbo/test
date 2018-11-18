@@ -83,7 +83,7 @@
 				<a class="nui-button" id="add" iconCls="" onclick="add()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增工时</a>
 				<a class="nui-button" id="update" iconCls="" onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改工时</a>
 				<span class="separator" id="sep"></span>
-				<a class="nui-button" id="addItemType" iconCls="" onclick="addItemType()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增类型</a>
+<!-- 				<a class="nui-button" id="addItemType" iconCls="" onclick="addItemType()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增类型</a> -->
 				<a class="nui-button" id="editItemType" iconCls="" onclick="editItemType()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改类型</a>
 				<a class="nui-button" id="selectBtn" iconCls="" onclick="onOk()" plain="true" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
 			</td>

@@ -12,6 +12,8 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.beanutils.BeanMap;
+
 import com.alibaba.fastjson.JSONObject;
 import com.eos.data.datacontext.UserObject;
 import com.eos.system.annotation.Bizlet;
@@ -178,6 +180,16 @@ public class Utils {
 			return null;
 		}
 	}
+	
+	@Bizlet("对象转换为Map")
+	public static Map obj2Map(Object obj) {
+        if (obj == null) {
+            return null;
+        }
+        BeanMap beanMap = new org.apache.commons.beanutils.BeanMap(obj);
+        Map map = (Map) beanMap.getBean();
+        return map;//new org.apache.commons.beanutils.BeanMap(obj);
+    }
 
 	@Bizlet("")
 	public static HashMap<String, Object>[] row2Column(

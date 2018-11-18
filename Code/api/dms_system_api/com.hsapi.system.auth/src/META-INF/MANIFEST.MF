@@ -1,8 +1,9 @@
 Manifest-Version: 1.0
 Require-Bundle: com.hsapi.system.basic,com.hs.common,com.hsapi.system.
- tenant,com.eos.foundation,com.hsapi.system.data
-eos-webCtxPath: auth
+ tenant,com.hsapi.system.config,com.eos.foundation,com.hsapi.system.da
+ ta
 Bundle-Vendor: Guine
+eos-webCtxPath: auth
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.system.auth
 Bundle-Description: 

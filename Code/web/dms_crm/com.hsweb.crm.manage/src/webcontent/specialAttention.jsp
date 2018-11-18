@@ -11,7 +11,7 @@
   --%>
 <head>
 	<title>特别关怀</title>
-	<script src="<%=request.getContextPath()%>/manage/js/specialAttention.js?v=1.0.6">
+	<script src="<%=request.getContextPath()%>/manage/js/specialAttention.js?v=1.0.7">
 	</script>
 </head>
 

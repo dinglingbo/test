@@ -314,13 +314,26 @@ function showTenantGuestCar(){
     });
 }
 function toMaintain(e){
-    var item={};
-    item.id = "maintain";
-    item.text = "首页提醒";
-    item.url = webPath + contextPath + "/stat.maintain.flow?token="+token;
-    item.iconCls = "fa fa-file-text";
-    var params = {id:e};
-    window.parent.activeTabAndInit(item,params);
+	if(e==1||e==2){
+	    var item={};
+	    item.id = "maintain";
+	    item.text = "首页提醒";
+	    item.url = webPath + contextPath + "/stat.maintain.flow?token="+token;
+	    item.iconCls = "fa fa-file-text";
+	    var params = {id:e};
+	    window.parent.activeTabAndInit(item,params);
+	}else if(e==8){
+		
+	}else{
+	    var item={};
+	    item.id = "te";
+	    item.text = "特别关怀";
+	    item.url = webPath + contextPath + "/com.hsweb.crm.manage.specialAttention.flow?token="+token;
+	    item.iconCls = "fa fa-file-text";
+	    var params = {id:e};
+	    window.parent.activeTabAndInit(item,params);
+	}
+
 }
 
 //查询消息提醒，msg_Type消息类型
@@ -393,34 +406,3 @@ function query (){
 	});
 }
 
-function addGuest(){
-    doApplyCustomer({},function(adction){
-        if("ok" == action)
-        {
-            var iframe = this.getIFrameEl();
-            var data = iframe.contentWindow.getSaveData();
-            var carNo = data.carNo||"";
-            var mobile = data.mobile||"";
-            var guestName = data.guestFullName||"";
-            if(carNo){
-                searchKeyEl.setValue(carNo);
-                searchKeyEl.setText(carNo);
-                searchKeyEl.doQuery();
-                return;
-            }
-            if(mobile){
-                searchKeyEl.setValue(mobile);
-                searchKeyEl.setText(mobile);
-                searchKeyEl.doQuery();
-                return;
-            }
-            if(guestName){
-                searchKeyEl.setValue(guestName);
-                searchKeyEl.setText(guestName);
-                searchKeyEl.doQuery();
-                return;
-            }
-
-        }
-    });
-}

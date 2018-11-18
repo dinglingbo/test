@@ -211,3 +211,11 @@ function Care(){
         }
     });
 }
+
+function setInitData(params){
+	var tab = nui.get("tabs");
+	tab.activeTab (tab.getTab ( params.id-1-2 ) );
+
+	
+	
+}

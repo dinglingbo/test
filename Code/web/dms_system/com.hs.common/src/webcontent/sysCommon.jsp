@@ -108,8 +108,7 @@
 			String noOrgId = "N";
             try {
 				attr = u.getAttributes();     
-				
-                System.out.println(attr);            
+				         
                 if(attr.get("token") != null){
                 	token = attr.get("token").toString();
                 }
@@ -138,7 +137,6 @@
                 if(attr.get("billParams") != null){
                 	billParamsObj = attr.get("billParams");
                 	billParams = Utils.obj2Map(billParamsObj);
-                	System.out.println(billParams);
 
 	                if(billParams.get("repairBillQrcodeFlag") != null){
 	                	repairBillQrcodeFlag = billParams.get("repairBillQrcodeFlag").toString();
@@ -163,12 +161,6 @@
 	                }
                 }
               
-              System.out.println(repairBillQrcodeFlag);  
-              System.out.println(repairBillCmodelFlag);  
-              System.out.println(repairSettorderPrintShow);  
-              System.out.println(repairEntrustPrintContent);  
-              System.out.println(repairPchsRtnFlag);  
-              System.out.println(repairDefaultStore);  
                 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -206,6 +198,13 @@
     var token = "<%=token %>";
     var currCompAddress = "<%=compAddress %>";
     var currCompTel = "<%=compTel %>";
+    var currRepairBillQrcodeFlag = "<%=repairBillQrcodeFlag %>";
+	var currRepairBillCmodelFlag = "<%=repairBillCmodelFlag %>";
+	var currRepairSettorderPrintShow = "<%=repairSettorderPrintShow %>";
+	var currRepairSettPrintContent = "<%=repairSettPrintContent %>";
+	var currRepairEntrustPrintContent = "<%=repairEntrustPrintContent %>";
+	var currRepairPchsRtnFlag = "<%=repairPchsRtnFlag %>";
+	var currRepairDefaultStore = "<%=repairDefaultStore %>";
     //alert("token=" + token);
     
     /* var _sysMsg_;

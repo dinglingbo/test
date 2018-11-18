@@ -55,7 +55,7 @@
                     <a class="nui-button"  onclick="finish()" id = "readyPay" plain="true"><span class="fa fa-check fa-lg" ></span>&nbsp;完工</a>
                     <!-- <a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >保存</a>  -->
                     <a class="nui-button"  onclick="onCancel()" id = "payOk" plain="true"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> 
-                    <a class="nui-button"  onclick="SelectReport()" id = "SelectReport" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;质检报告模板</a>
+                    <a class="nui-button"  onclick="SelectReport()" id = "SelectReport" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;出车报告模板</a>
                 </td>
                 <td align="left"><span id="checkDescribe" style="color:red;"></span></td>
             </tr>
@@ -100,7 +100,7 @@
         <table class="nui-form-table" style="width:100%;height: 100%">
             <tr>
                 <td  style="text-align:left">
-                    <label >质检报告：</label>
+                    <label >出车报告：</label>
                 </td>
             </tr>
             <tr>

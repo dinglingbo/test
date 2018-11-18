@@ -458,6 +458,7 @@
 
 
 	<script type="text/javascript">
+	var guestId=null;
 	$(document).ready(function (){
 		$("#print").click(function () {
             $(".print_btn").hide();
@@ -494,7 +495,7 @@
         			enterDate = new Date(enterDate);
         			enterDate = format(enterDate, "yyyy-MM-dd HH:mm");
         		}
-        		var guestId = maintain.guestId;
+        		guestId = maintain.guestId;
         		var enterKilometers = maintain.enterKilometers;
         		var mtAdvisor = maintain.mtAdvisor;
         		var planFinishDate = maintain.planFinishDate || "";
@@ -510,7 +511,7 @@
         		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
         		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
         		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
-        		document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML + guestId;
+//         		document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML + guestId;
         		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
         		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
         		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate;
@@ -519,16 +520,16 @@
         	}
         });
         $.ajaxSettings.async = true;//设置为异步执行
-        var guestId = document.getElementById("guestId").innerHTML;
-        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext?guestId="+ guestId.replace(/[^0-9]/ig,"")+"&token="+params.token,{},function(text){
-        	if(text.errCode == "S"){
-        		var guest = text.guest;
-        		var fullName = guest.fullName;
-           		var tel = guest.mobile;
-           		document.getElementById("guestId").innerHTML =  guestId.replace(/[0-9]/ig,"") + fullName;
-           		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
-        	}
-        });
+
+//         $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext?guestId="+ guestId+"&token="+params.token,{},function(text){
+//         	if(text.errCode == "S"){
+//         		var guest = text.guest;
+//         		var fullName = guest.fullName;
+//            		var tel = guest.mobile;
+//           		document.getElementById("guestId").innerHTML =  guestId.replace(/[0-9]/ig,"") + fullName;
+//            		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
+//         	}
+//         });
         $.post(params.baseUrl+"com.hsapi.repair.repairService.query.getRpsItemByServiceId.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
             	var tBody = $("#tbodyId");

@@ -392,3 +392,35 @@ function query (){
 		}
 	});
 }
+
+function addGuest(){
+    doApplyCustomer({},function(adction){
+        if("ok" == action)
+        {
+            var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getSaveData();
+            var carNo = data.carNo||"";
+            var mobile = data.mobile||"";
+            var guestName = data.guestFullName||"";
+            if(carNo){
+                searchKeyEl.setValue(carNo);
+                searchKeyEl.setText(carNo);
+                searchKeyEl.doQuery();
+                return;
+            }
+            if(mobile){
+                searchKeyEl.setValue(mobile);
+                searchKeyEl.setText(mobile);
+                searchKeyEl.doQuery();
+                return;
+            }
+            if(guestName){
+                searchKeyEl.setValue(guestName);
+                searchKeyEl.setText(guestName);
+                searchKeyEl.doQuery();
+                return;
+            }
+
+        }
+    });
+}

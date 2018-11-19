@@ -892,6 +892,7 @@ function setInitData(params){
         })
     }
 }
+
 function add(){
     // $("#servieIdEl").html("综合开单详情");
     // $("#carNoEl").html("");
@@ -1067,6 +1068,131 @@ function save(){
         nui.unmask(document.body);
     });
 }
+
+
+function saveNoshowMsg(callback){
+	var data = billForm.getData();
+	 var desData = describeForm.getData();
+	 for(var v in desData){
+	      data[v] = desData[v];
+	 }
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+	          nui.get(key).focus();
+	          showMsg(requiredField[key] + "不能为空!","W");
+			return;
+		}
+	 }
+	saveMaintain(function(data){
+        if(data.id){
+            fserviceId = data.id;
+            //showMsg("保存成功!","S");
+            //查询挂账
+            if(data.guestId){
+            	var params = {};
+                params.guestId = data.guestId;
+            	nui.ajax({
+                    url : getAccountUrl,
+                    type : "post",
+                    data : JSON.stringify({
+                        params : params,
+                        token : token
+                    }),
+                    success : function(data) {
+                    	data = data || {};
+                        if (data.errCode == "S") {
+                            var account = data.account[0];
+                            var Amt = account.accountAmt || 0;
+                            $("#creditEl").html("挂账:"+Amt);
+                        } else {
+                            showMsg(data.errMsg || "获取挂账信息失败","W");
+                        }
+                    },
+                    error : function(jqXHR, textStatus, errorThrown) {
+                        unmaskcall && unmaskcall();
+                        console.log(jqXHR.responseText);
+                    }
+                });
+            }
+            var params = {
+                data:{
+                    guestId: data.guestId||0,
+                    contactorId: data.contactorId||0,
+                    carId:data.carId || 0
+                }
+            };
+            getGuestContactorCar(params, function(text){
+                var errCode = text.errCode||"";
+                var guest = text.guest||{};
+                var car = text.car || {};
+                var contactor = text.contactor||{};
+                if(errCode == 'S'){
+                    $("#servieIdEl").html(data.serviceCode);
+                    var carNo = data.carNo||"";
+                    var tel = guest.mobile||"";
+                    var guestName = guest.fullName||"";
+                    var carVin = data.carVin||"";
+                    if(tel){
+                        tel = "/"+tel;
+                    }
+                    if(guestName){
+                        guestName = "/"+guestName;
+                    }
+                    if(carVin){
+                        carVin = "/"+carVin;
+                    }
+                    var t = carNo + tel + guestName + carVin;
+                    searchNameEl.setValue(t);
+                    searchNameEl.setEnabled(false);
+
+                    data.guestFullName = guest.fullName;
+                    data.guestMobile = guest.mobile;
+                    data.contactorName = contactor.name;
+                    data.mobile = contactor.mobile;
+                    data.carModel = car.carModel;
+                    billForm.setData(data);
+
+                    var status = data.status||0;
+                    var isSettle = data.isSettle||0;
+                    doSetStyle(status, isSettle);
+
+                    var p1 = {
+                        interType: "package",
+                        data:{
+                            serviceId: data.id||0
+                        }
+                    };
+                    var p2 = {
+                        interType: "item",
+                        data:{
+                            serviceId: data.id||0
+                        }
+                    };
+                    var p3 = {
+                        interType: "part",
+                        data:{
+                            serviceId: data.id||0
+                        }
+                    };
+                    loadDetail(p1, p2, p3);
+
+                }else{
+                    showMsg("数据加载失败,请重新打开工单!","W");
+                }
+
+            }, function(){});
+        }
+        
+    });
+}
+
+
+
+
+
+
+
+
 var requiredField = {
     carNo : "车牌号",
     serviceTypeId : "业务类型",
@@ -2551,8 +2677,9 @@ function chooseItem(){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
-        showMsg("请选择保存工单!","S");
-        return;
+       // showMsg("请选择保存工单!","S");
+       // return;
+	  saveNoshowMsg();
     }
     var status = main.status||0;
     if(status == 2){
@@ -2563,26 +2690,27 @@ function chooseItem(){
         showMsg("此单已结算,不能添加工时!","S");
         return;
     }
-
-    doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, function(text){
-        var p1 = { }
-        var p2 = {
-            interType: "item",
-            data:{
-                serviceId: main.id||0
-            }
-        };
-        var p3 = {};
-        loadDetail(p1, p2, p3);
-    });
+	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, function(text){
+		    main = billForm.getData();
+	        var p1 = { }
+	        var p2 = {
+	            interType: "item",
+	            data:{
+	                serviceId: main.id||0
+	            }
+	        };
+	        var p3 = {};
+	        loadDetail(p1, p2, p3);
+	    }); 
 }
 
 function choosePackage(){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
-        showMsg("请选择保存套餐!","S");
-        return;
+       // showMsg("请选择保存套餐!","S");
+       // return;
+       saveNoshowMsg();
     }
     var status = main.status||0;
     if(status == 2){
@@ -2595,6 +2723,7 @@ function choosePackage(){
     }
                                                        
     doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, function(text){
+        main = billForm.getData();
         var p1 = { 
     		interType: "package",
             data:{
@@ -2996,45 +3125,57 @@ function showBasicData(type){
     var BasicDataUrl = null;
     var title = null;
     if(!maintain.id){
-        showMsg("请选择保存工单!","W");
-        return;
-    }
-    if(status==2){
-        showMsg("本单已完工,不能录入!","W");
-        return;
-    }
-    if(isSettle == 1){
-        showMsg("本单已结算,不能录入!","W");
-        return;
-    }
-    var carVin = maintain.carVin;
-    var params = {
-        vin:carVin,
-        serviceId:maintain.id,
-        carNo:maintain.carNo
-    };
-    if(type=="pkg"){
-    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";
-    	title = "标准套餐查询";
-    }
-    if(type=="item"){
-    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryItem.flow?token=";
-    	title = "标准工时查询";
-    }
-    
-    
-    //添加回调函数，进行显示
-    doSelectBasicData(BasicDataUrl,title,params,function(p1,p2,p3){
-       /* var p1 = { }
-        var p2 = {
-            interType: "item",
-            data:{
-                serviceId: main.id||0
-            }
-        };
-        var p3 = {};*/
-        loadDetail(p1, p2, p3);
-    });
+        //showMsg("请选择保存工单!","W");
+        //return;
+    	saveNoshowMsg(function(){
+    		maintain = billForm.getData();
+    		var carVin = maintain.carVin;
+    	    var params = {
+    	        vin:carVin,
+    	        serviceId:maintain.id,
+    	        carNo:maintain.carNo
+    	    };
+    	    if(type=="pkg"){
+    	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";
+    	    	title = "标准套餐查询";
+    	    }
+    	    if(type=="item"){
+    	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryItem.flow?token=";
+    	    	title = "标准工时查询";
+    	    }
+    	    //添加回调函数，进行显示
+    	    doSelectBasicData(BasicDataUrl,title,params,function(p1,p2,p3){
+    	        loadDetail(p1, p2, p3);
+    	    });
+    	});
+    }else{
+    	 if(status==2){
+    	        showMsg("本单已完工,不能录入!","W");
+    	        return;
+    	    }
+    	    if(isSettle == 1){
+    	        showMsg("本单已结算,不能录入!","W");
+    	        return;
+    	    }
+    	    var carVin = maintain.carVin;
+    	    var params = {
+    	        vin:carVin,
+    	        serviceId:maintain.id,
+    	        carNo:maintain.carNo
+    	    };
+    	    if(type=="pkg"){
+    	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";
+    	    	title = "标准套餐查询";
+    	    }
+    	    if(type=="item"){
+    	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryItem.flow?token=";
+    	    	title = "标准工时查询";
+    	    }	    
+    	    //添加回调函数，进行显示
+    	    doSelectBasicData(BasicDataUrl,title,params,function(p1,p2,p3){
+    	        loadDetail(p1, p2, p3);
+    	    });
+    }  
 }
 
 function showBasicDataPart(){

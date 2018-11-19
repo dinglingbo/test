@@ -121,7 +121,7 @@
                 </td>
             </tr>-->
             <tr>
-                <td class="tbtext">结算单打印抬头显示：</td>
+                <td class="tbtext">打印抬头显示：</td>
                 <td class="tbCtrl" >
                     <input id="repairSettorderPrintShow" name="repairSettorderPrintShow" class="nui-textbox" >
                 </td>

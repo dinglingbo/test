@@ -3677,6 +3677,19 @@ function addExpenseAccount(){
 	}
 }
 
+function openOrderDetail(){
+	var data={};
+	data.id=billForm.getData().id;
+
+	if(data.id){
+		var item={};
+		item.id = "11111";
+	    item.text = "工单详情页";
+		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+data.id;
+		item.iconCls = "fa fa-cog";
+		window.parent.activeTabAndInit(item,data);
+	}
+}
 function newCheckMain() {  
     var data = billForm.getData();
     var item={};

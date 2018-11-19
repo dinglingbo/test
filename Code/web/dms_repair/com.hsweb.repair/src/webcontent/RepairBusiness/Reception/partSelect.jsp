@@ -117,7 +117,7 @@
             <div field="stockQty" name="stockQty" allowSort="true"  width="60" headerAlign="center" align="center" header="库存数量" datatype="float" summaryType="sum"></div>
             <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" align="center" header="库存单价"></div>
             <div field="outQty" name="outQty" width="100"  headerAlign="center" align="center" header="领料数量" datatype="float" summaryType="sum">
-                <input property="editor" class="nui-textbox" required="true" vtype="float"/> 
+                <input property="editor" class="nui-textbox" vtype="float"/> 
             </div> 
             <div field="billTypeId" width="55px" headerAlign="center" align="center" allowSort="true" header="票据类型"></div>
             <div field="storeId" width="60" headerAlign="center" align="center"  allowSort="true" header="仓库"></div>
@@ -232,7 +232,7 @@
             }
             break;
             case "outQty" :
-            	e.cellStyle = "background:#FFFFE6";
+            	e.cellStyle = "background:#54FF9F";
             break;
             default:
             break;

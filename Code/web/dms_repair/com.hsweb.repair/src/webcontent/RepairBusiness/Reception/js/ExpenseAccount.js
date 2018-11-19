@@ -155,10 +155,12 @@ $(document).ready(function () {
 		if(field == "subtotal"){
 			var rate = null;
 			if(row.amt){
-				rate = 1 - (parseFloat(row.subtotal)/parseFloat(row.amt/100));
+				rate = 100 - (parseFloat(row.subtotal)/parseFloat(row.amt/100));
+				rate = rate.toFixed(2);
 			}else{
-				rate = 1;
+				rate = 100;
 			}
+			;
 			var newRow = {rate : rate};
 			rpsPackageGrid.updateRow(row,newRow);
 		}
@@ -166,6 +168,7 @@ $(document).ready(function () {
 			var subtotal = null;
 			if(row.rate){
 				subtotal = parseFloat(row.amt) * parseFloat(100-row.rate)/100;
+				subtotal = subtotal.toFixed(2);
 			}else{
 				subtotal = 0;
 			}
@@ -197,6 +200,7 @@ $(document).ready(function () {
 		field = e.field;
 		if(field == "itemTime" || field == "unitPrice" || field == "rate"){
 			var subtotal = parseFloat(row.itemTime) * parseFloat(row.unitPrice) * parseFloat(100-row.rate) * 0.01;
+			subtotal = subtotal.toFixed(2);
 			var newRow = {subtotal : subtotal};
 			rpsItemGrid.updateRow(row,newRow);
 		}
@@ -209,7 +213,7 @@ $(document).ready(function () {
 		var uid = record._uid;
 		if(field == "rate"){
 			if(value){
-				e.cellHtml = value.toFixed(2) + "%";
+				e.cellHtml = value + "%";
 			}else{
 				e.cellHtml = 0 + "%";
 			}

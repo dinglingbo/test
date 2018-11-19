@@ -1175,7 +1175,7 @@ function saveNoshowMsg(callback){
                         }
                     };
                     loadDetail(p1, p2, p3);
-
+                    callback && callback();
                 }else{
                     showMsg("数据加载失败,请重新打开工单!","W");
                 }
@@ -3143,7 +3143,7 @@ function showBasicData(type){
     	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryItem.flow?token=";
     	    	title = "标准工时查询";
     	    }
-    	    //添加回调函数，进行显示
+    	  //添加回调函数，进行显示
     	    doSelectBasicData(BasicDataUrl,title,params,function(p1,p2,p3){
     	        loadDetail(p1, p2, p3);
     	    });
@@ -3170,13 +3170,14 @@ function showBasicData(type){
     	    if(type=="item"){
     	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryItem.flow?token=";
     	    	title = "标准工时查询";
-    	    }	    
-    	    //添加回调函数，进行显示
+    	    }
+    	  //添加回调函数，进行显示
     	    doSelectBasicData(BasicDataUrl,title,params,function(p1,p2,p3){
     	        loadDetail(p1, p2, p3);
     	    });
+
     }  
-}
+ }
 
 function showBasicDataPart(){
     var row = FItemRow;//rpsItemGrid.getRowByUID(row_uid);

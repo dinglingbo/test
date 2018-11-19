@@ -90,7 +90,7 @@
             <div class="nui-fit" >
                 <div id="partGrid" class="nui-datagrid" style="float:left;width:100%;height:100%;"
                      frozenStartColumn="0"
-                     frozenEndColumn="6"
+                     frozenEndColumn="5"
                      borderStyle="border:0;"
                      dataField="parts"
                      url=""
@@ -106,13 +106,12 @@
                         <div header="基础信息" headerAlign="center">
                             <div property="columns">
                                 <div type="indexcolumn">序号</div>
-                                 <div allowSort="true" field="name" width="80" headerAlign="center" allowSort="true">名称</div>
                                 <div allowSort="true" field="fullName" width="100" headerAlign="center" allowSort="true">全称</div>
                                 <div allowSort="true" field="qualityTypeId" width="60" headerAlign="center">品质</div>
                                 <div allowSort="true" field="partBrandId" width="70" headerAlign="center">品牌</div>
                                 <div allowSort="true" field="code" width="80" headerAlign="center" allowSort="true">编码</div>
-       
-                                 <div allowSort="true" field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
+       							<div allowSort="true" field="stockQty" width="60" headerAlign="center" allowSort="true">本店库存</div>
+                                <div allowSort="true" field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
                                 
                                 <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
                             </div>
@@ -138,6 +137,7 @@
                         </div>
                         <div header="辅助信息" headerAlign="center">
                             <div property="columns">
+                                <div allowSort="true" field="name" width="80" headerAlign="center" allowSort="true">名称</div>
                                 <div allowSort="true" field="queryCode" width="60" headerAlign="center" allowSort="true">助记码</div>
 
                                 <div allowSort="true" field="namePy" width="60" headerAlign="center" allowSort="true">拼音</div>

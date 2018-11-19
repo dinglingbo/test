@@ -151,7 +151,7 @@ function toPurchaseOrderMain(){
     var item={};
     item.id = "2089";
     item.text = "采购订单";
-    item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrderMain.flow?token="+token,
+    item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrder.flow?token="+token,
     item.iconCls = "fa fa-exchange";
     window.parent.activeTab(item);
 }

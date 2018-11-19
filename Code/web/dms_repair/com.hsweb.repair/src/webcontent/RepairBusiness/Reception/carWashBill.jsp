@@ -196,11 +196,16 @@
         <table   style="width: 100%;border-spacing: 0px 5px;"> 
             <tr>   
                 <td class="title required">车牌号：</td> 
-                <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
+                <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>  
+                <td class="title required" >
+                      <label>品牌/车型：</label>
+                  </td>
+                 <td class="" colspan="3"><input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/></td>
+    
                 <td class="title required" >
                     <label>业务类型：</label>
                 </td>
-                <td class="" width="24%">
+                <td class="" >
                     <input name="serviceTypeId"
                     id="serviceTypeId"
                     class="nui-combobox width1"
@@ -230,31 +235,6 @@
                     nullItemText="请选择..." width="100%"/>
                
                 </td>
-                <td class="title">进厂里程：</td> 
-                <td class=""><input  class="nui-textbox" name="enterKilometers" width="100%"/></td>
-                <td class="title">备注：</td> 
-                <td class="" colspan=""><input  class="nui-textbox" name="remark" width="100%"/></td>
-            </tr>
-            <tr>   
-                <td class="title required" >
-                      <label>品牌/车型：</label>
-                  </td>
-                 <td class=""><input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/></td>
-    
-                <td class="title required">客户名称：</td> 
-                <td class="">
-               
-                <input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="32%"/>
-                <label class="title required">客户手机：</label>
-                <input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="40%"/>
-               
-                </td>
-                
-                
-                <td class="title required">联系人名称：</td> 
-                <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false" width="100%"/></td>
-                <td class="title required">联系人手机：</td> 
-                <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false" width="100%"/></td>
                 <td class="title">开单时间：</td> 
                 <td class="">
                     <input id="recordDate"
@@ -262,6 +242,28 @@
                     allowInput="false" format="yyyy-MM-dd HH:mm"
                     class="nui-datepicker" enabled="false" width="100%"/>
                 </td>
+            </tr>
+            <tr> 
+                <td class="title required">客户名称：</td> 
+                <td class="">
+               
+                <input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="100%"/>
+               
+                </td>
+                <td class="title required">客户手机：</td> 
+                <td class="">
+                <input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="100%"/>
+               
+                </td>
+                
+                <td class="title required">联系人名称：</td> 
+                <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false" width="100%"/></td>
+                <td class="title required">联系人手机：</td> 
+                <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false" width="100%"/></td>
+                <td class="title">进厂里程：</td> 
+                <td class=""><input  class="nui-textbox" name="enterKilometers" width="100%"/></td>
+                <td class="title">备注：</td> 
+                <td class="" colspan=""><input  class="nui-textbox" name="remark" width="100%"/></td>
             </tr>
         </table>
     </div>

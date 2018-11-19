@@ -345,7 +345,7 @@
                 </tr>
                 <tr>
                    <td height="30" style="padding: 8px;" colspan="3">
-                      <span style = "margin-left: 0px;" id = "show">尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准</span>
+                      <span style = "margin-left: 0px;" id = "show"></span>
                       <span style = "margin-left: 500px;">客户签名：</span>
                   </td>
                  
@@ -357,6 +357,7 @@
 		var url_two = null;
 		var url_three = null;
 		var data = [];
+		//尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准
 		$(document).ready(function (){
 			$("#print").click(function () {
 	            $(".print_btn").hide();
@@ -393,7 +394,9 @@
 	        	document.getElementById("spstorename").innerHTML = params.name;
 	        	//维修结算单没有这段话
 	        	if(params.name == "维修结算单"){
-	        	   document.getElementById("show").innerHTML = "";
+	        	   document.getElementById("show").innerHTML = params.currRepairSettPrintContent||"";
+	        	}else if(params.name == "报价单"){
+	        	   document.getElementById("show").innerHTML = params.currRepairEntrustPrintContent||"";
 	        	}
 	        }
 	        document.getElementById("comp").innerHTML = params.comp;

@@ -639,12 +639,14 @@ function doPrint(params){
 	if(source == 1){  //打印报价单
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
 		p.name = "报价单";
+		p.currRepairEntrustPrintContent = currRepairEntrustPrintContent;
 	}else if(source == 2){  //打印派工单
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.repairOrder.flow?token="+token;
 		p.name = "派工单";
 	}else if(source == 3){  //打印结算单
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
 		p.name = "维修结算单";
+		p.currRepairSettPrintContent = currRepairSettPrintContent;
 	}else if(source == 4){  //打印小票
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.smallSettlement.flow?token="+token;
 		p.name = "维修结算单";

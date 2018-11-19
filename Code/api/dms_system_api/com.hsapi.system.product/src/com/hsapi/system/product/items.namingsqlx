@@ -12,6 +12,10 @@
 			<isNotNull property="carBrandId">
 				ISNULL(carBrandId, #carBrandId#) = #carBrandId#
 			</isNotNull>
+			
+			<isNotNull property="type">
+				AND code like '$type$%'
+			</isNotNull>
 			<isNotNull property="parentId">
 				AND parentId = #parentId#
 			</isNotNull>			

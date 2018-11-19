@@ -12,7 +12,7 @@ var visitModeCtrlUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ex
 var gridCar = null;
 var tabForm = null;
 var table1Form = null;
-var tableDisForm = null;
+var tableDisForm = null; 
 var tab5Form = null;
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
@@ -25,6 +25,7 @@ var mtAdvisorEl = null;
 var visitManEl = null;
 var visitIdEl = null;
 var serviceTypeIdEl = null;
+var hash = {};
 
 $(document).ready(function(){
 	serviceTypeIdEl = nui.get("serviceTypeId");
@@ -33,16 +34,9 @@ $(document).ready(function(){
 	mtAdvisorEl = nui.get("mtAdvisor");
 	mtAdvisorIdEl = nui.get("mtAdvisorId");
 	visitManEl = nui.get("visitMan");
-	visitIdEl = nui.get("visitId");
+	visitIdEl = nui.get("visitId"); 
 	tabForm = new nui.Form("#tabs");
 	table1Form = new nui.Form("#table1");
-	//tabForm.setEnabled(false);
-	//table1Form.setEnabled(true);
-
-	//tableDisForm = new nui.Form("#tableDis");
-	//tableDisForm.setEnabled(false);
-	//tab5Form = new nui.Form("#tab5");
-	//tab5Form.setEnabled(false);
 	tcarNo_ctrl = nui.get("tcarNo");
 	visitMode_ctrl = nui.get("visitMode");
 	visitMode_ctrl.setUrl(visitModeCtrlUrl);
@@ -71,11 +65,7 @@ $(document).ready(function(){
     	nui.get("visitMan").setData(memList); 
     }); 
 
-    var pId = SERVICE_TYPE;
-    getDatadictionaries(pId, function (data) {
-    	data = data || {};
-    	var list = data.list || [];
-    	serviceTypeIdEl.setData(list);
+    initServiceType("serviceTypeId",function(data) {
 
     });
 
@@ -86,13 +76,10 @@ $(document).ready(function(){
         identity:IDENTITY //客户身份
     },function(){
     	hash.initDicts = true;
-    	checkComplete();
     });
 
     initCarBrand("carBrandId",function(data) {
-
     });
-
 });
 
 function mtAdvisorChanged(e){
@@ -134,11 +121,12 @@ function SetData(rowData){
 					engineNo:data.engineNo,
 					mobile:data.mobile,
 					contactor:data.contactorName,
-					contactorTel:data.contactorTel,
+					contactorTel:data.contactorMobile,
 					identity:data.identity,
-					mtAdvisor:data.mtAdvisor,
+					mtAdvisor:data.mtAdvisorId, 
 					mtAdvisorId:data.mtAdvisorId,
 					billTypeId:data.billTypeId, 
+					serviceTypeId:data.serviceTypeId, 
 					enterDate:data.enterDate, 
 					outDate:data.outDate,
 					guestDesc:data.guestDesc,

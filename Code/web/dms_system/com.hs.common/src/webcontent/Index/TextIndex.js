@@ -103,7 +103,7 @@ function toRepairBill(){
 function toCarWashBill(){//1
     var item={};
     item.id = "3000";
-    item.text = "洗车开单";
+    item.text = "洗美开单";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBill.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
@@ -151,7 +151,7 @@ function toPurchaseOrderMain(){
     var item={};
     item.id = "2089";
     item.text = "采购订单";
-    item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrderMain.flow?token="+token,
+    item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrder.flow?token="+token,
     item.iconCls = "fa fa-exchange";
     window.parent.activeTab(item);
 }

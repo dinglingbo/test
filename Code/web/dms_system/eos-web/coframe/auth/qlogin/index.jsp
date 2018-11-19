@@ -22,6 +22,14 @@
     <script src="<%=request.getContextPath()%>/common/nui/themes/res/third-party/scrollbar/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
 
 	<style type="text/css">
+    .navbar-brand
+{
+    width:210px;
+    background:#367ea8;/* 20180708#fff */
+    cursor:default;
+    font-size: 20px;
+    font-weight: bold;    
+}
     
     #_sys_tip_msg_ {
         z-index: 9999;
@@ -77,7 +85,7 @@
 
 <div class="container">
     <div class="navbar">
-        <div class="navbar-brand">管理系统</div>
+        <div class="navbar-brand">车道商户版管理系统</div>
         <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->

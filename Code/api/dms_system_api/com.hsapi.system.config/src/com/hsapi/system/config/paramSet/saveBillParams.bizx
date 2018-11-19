@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveBillParams.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="1001    结算单打印内容&#xD;&#xA;1002    报价单打印内容&#xD;&#xA;1003    结算单打印抬头显示&#xD;&#xA;1004    默认仓库&#xD;&#xA;1006    完工、结算配件必须出库&#xD;&#xA;1007    小票、结算单显示结算二维码&#xD;&#xA;或微信公众号二维码&#xD;&#xA;1008    微信车主端服务详细直接结算&#xD;&#xA;1009    车型可自由填写&#xD;&#xA;1011    哪些类别工时开单不能改价&#xD;&#xA;1014    工单服务性质对车主微信端不开放&#xD;&#xA;1017    采购退货供应商一致才可退货&#xD;&#xA;&#xD;&#xA;1006完工、结算配件必须出库，默认是开启的（逻辑流控制）&#xD;&#xA;1007小票、结算单显示结算二维码&#xD;&#xA;或微信公众号二维码，默认是开启的，需要读取（前端传参）&#xD;&#xA;1009车型可自由填写，默认是关闭的（前端传参）&#xD;&#xA;1011哪些类别工时开单不能改价，暂不确定怎么应用&#xD;&#xA;1003结算单打印抬头（前端传参）&#xD;&#xA;1001结算单打印内容（前端传参）&#xD;&#xA;1002报价单打印内容（前端传参）&#xD;&#xA;1017采购退货供应商一致才可退货（前端传参）&#xD;&#xA;1004默认仓库（前端传参）" title="Administrator&#x9;18-11-17 下午3:26">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="1001    结算单打印内容&#xD;&#xA;1002    报价单打印内容&#xD;&#xA;1003    结算单打印抬头显示&#xD;&#xA;1004    默认仓库&#xD;&#xA;1006    完工、结算配件必须出库&#xD;&#xA;1007    小票、结算单显示结算二维码&#xD;&#xA;或微信公众号二维码&#xD;&#xA;1008    微信车主端服务详细直接结算&#xD;&#xA;1009    车型可自由填写&#xD;&#xA;1011    哪些类别工时开单不能改价&#xD;&#xA;1014    工单服务性质对车主微信端不开放&#xD;&#xA;1017    采购退货供应商一致才可退货&#xD;&#xA;&#xD;&#xA;1006完工、结算配件必须出库，默认是开启的（逻辑流控制）  已加&#xD;&#xA;1007小票、结算单显示结算二维码&#xD;&#xA;或微信公众号二维码，默认是开启的，需要读取（前端传参）&#xD;&#xA;1009车型可自由填写，默认是关闭的（前端传参）  已加&#xD;&#xA;1011哪些类别工时开单不能改价，暂不确定怎么应用&#xD;&#xA;1003结算单打印抬头（前端传参） &#xD;&#xA;1001结算单打印内容（前端传参）  已加&#xD;&#xA;1002报价单打印内容（前端传参）  已加&#xD;&#xA;1017采购退货供应商一致才可退货（前端传参）&#xD;&#xA;1004默认仓库（前端传参）" title="Administrator&#x9;18-11-17 下午3:26">
     <location x="-275" y="-394"/>
     <size height="516" width="232"/>
   </nodes>
@@ -13,7 +13,7 @@
       <sourceNode>start0</sourceNode>
       <targetNode>transactionbegin0</targetNode>
     </sourceConnections>
-    <location x="-246" y="157"/>
+    <location x="-246" y="159"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -28,7 +28,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="-244" y="193"/>
+    <location x="-244" y="195"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -43,12 +43,12 @@
       <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="-174" y="157"/>
+    <location x="-174" y="159"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionbegin0label" name="label" nodeType="label">
-    <location x="-184" y="193"/>
+    <location x="-184" y="195"/>
     <figSize height="17" width="49"/>
     <node>transactionbegin0</node>
   </nodes>
@@ -58,7 +58,7 @@
       <targetNode>loopstart0</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <location x="-96" y="157"/>
+    <location x="-96" y="159"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -67,7 +67,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="-94" y="193"/>
+    <location x="-94" y="195"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>

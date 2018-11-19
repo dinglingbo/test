@@ -29,6 +29,13 @@ $(document).ready(function()
 	contactInfoForm = new nui.Form("#contactInfoForm");
 	basicInfoForm = new nui.Form("#basicInfoForm");
 	nui.get("name").focus();
+	
+	if(currRepairBillCmodelFlag == "1"){
+        nui.get("carModel").disable();
+    }else{
+        nui.get("carModel").enable();
+    }
+	
 	document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;//38向上 40向下

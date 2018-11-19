@@ -1141,4 +1141,11 @@
 			LEFT JOIN rpb_contactor d on d.id = a.contactor_id
 			where 1=1 and a.orgid = #orgid#
 				and  a.id = #id#
-		</select></sqlMap>
+	</select>
+		
+	<select id="checkBillPart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+   		   	SELECT 1 FROM rps_part AS a
+            WHERE a.service_id = #serviceId# AND a.pick_qty &lt; a.qty
+    </select>
+		
+</sqlMap>

@@ -27,7 +27,7 @@ var itemKindHash = {
 };
 $(document).ready(function ()
 {
-    init();
+    //init();
     //查询套餐
     packageGrid.load({
     });
@@ -52,7 +52,7 @@ $(document).ready(function ()
     	 onOk(2);
      });
 });
-function init()
+function init(type)
 {
     var treeUrl = baseUrl+"com.hsapi.system.product.items.getPrdtType.biz.ext";
     tree = nui.get("tree");
@@ -64,7 +64,31 @@ function init()
             treeHash[v.id] = v;
         });
     });
+    tree.on("beforeload",function(e){
+    	var types = "01";
+    	if(type == "pkg"){
+    		types = "01";
+    	}else if(type == "item"){
+    		types = "02";
+    	}
+    	e.data.type = "01";
+    	console.log(e);
+    });
     tree.setUrl(treeUrl);
+    tree.on("preload",function(e){
+    	tree.setData([]);
+    	var data = e.result.rs||[];
+    	var rs = [];
+    	for(var i = 0; i<data.length; i++){
+    		var row = data[i];
+    		var customId = row.customId||"";
+    		var indexCus = customId.indexOf("01");
+    		if(indexCus == 0){
+    			rs.push(row);
+    		}
+    	}
+    	tree.setData(rs);
+    });
     tree.on("nodedblclick",function(e)
     {
         var node = e.node;
@@ -342,8 +366,9 @@ function setData(data,ck)
     	nui.get("ExpenseAccount").setValue("1");
     }else{
     	var vin = data.vin||"";
+    	var type = data.type||"";
         serviceId = data.serviceId;
-        init();
+        init(type);
         vinEl.setValue(vin);
         vinEl.doValueChanged();
     }

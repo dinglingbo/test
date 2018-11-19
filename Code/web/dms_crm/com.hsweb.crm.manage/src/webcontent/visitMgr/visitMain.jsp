@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.1.8" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.2.0" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0; 
@@ -148,7 +148,9 @@ pageEncoding="UTF-8" session="false" %>
 
                             <td >服务顾问：</td>
                             <td >
-                                <input id="mtAdvisor" name="mtAdvisor" class="nui-combobox textboxWidth" allowInput="true" textField="empName"valueField="empId"emptyText="请选择..."nullItemText="请选择..." onvaluechanged="mtAdvisorChanged" enabled="false">
+                                <input id="mtAdvisor" name="mtAdvisor" class="nui-combobox textboxWidth" allowInput="true" 
+                                textField="empName"valueField="empId"emptyText="请选择..."nullItemText="请选择..." 
+                                onvaluechanged="mtAdvisorChanged" enabled="false">
                             </td>
                             <td ></td>
                             <td >

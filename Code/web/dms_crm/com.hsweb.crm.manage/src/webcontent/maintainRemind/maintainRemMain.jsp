@@ -35,14 +35,14 @@ pageEncoding="UTF-8" session="false" %>
         <input class="nui-textbox" name="tmobile" id="tmobile">
         <a class="nui-button" plain="true" onclick="onSearch()" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="">发送短信</a>
-		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="addBooking()">预约</a>
-		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="remindDetail()">跟踪明细</a>
-		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="checkMtRecord()">查看保养提醒</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
+		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="addBooking()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;预约</a>
+		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="remindDetail()"><span class="fa fa-list fa-lg"></span>&nbsp;跟踪明细</a>
+		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="checkMtRecord()"><span class="fa fa-search fa-lg"></span>&nbsp;查看保养提醒</a>
     </div>
     <div class="nui-fit">
         <div class="nui-splitter" style="width: 100%; height: 100%;"> 
-            <div size="50%" showCollapseButton="true">
+            <div size="30%" showCollapseButton="true">
                 <div class="nui-fit">
                     <div id="gridCar" class="nui-datagrid gridborder"
                     style="width: 100%; height: 100%;"
@@ -82,57 +82,57 @@ pageEncoding="UTF-8" session="false" %>
                     <input class="nui-hidden" name="serviceId" id="serviceId"/>
                     <input class="nui-hidden" name="mtAdvisorId" id="mtAdvisorId"/>
                     <input class="nui-hidden" name="guestId" id="guestId"/>
-                    <table class="tmargin" style="margin-left:5px;">
+                    <table class="tmargin" style="margin-left:5px;" id="tableDis">
                         <tr class="htr">
                             <td style="width: 70px;">客户名称：</td>
                             <td style="width: 140px;">
-                                <input id="guest" name="guest" class="nui-textbox textboxWidth">
+                                <input id="guest" name="guest" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                             <td style="width: 70px;">客户电话：</td>
                             <td style="width: 140px;">
-                                <input id="mobile" name="mobile" class="nui-textbox textboxWidth">
+                                <input id="mobile" name="mobile" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                             <td style="width: 70px;">来厂次数：</td>
                             <td style="width: 140px;">
-                                <input id="" name="" class="nui-textbox textboxWidth">
+                                <input id="compComeTimes" name="compComeTimes" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                         </tr> 
                         <tr class="htr">
                             <td >联系人：</td>
                             <td >
-                                <input id="contactor" name="contactor" class="nui-textbox textboxWidth">
+                                <input id="contactor" name="contactor" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                             <td >联系电话：</td>
                             <td >
-                                <input id="contactorTel" name="contactorTel" class="nui-textbox textboxWidth">
+                                <input id="contactorTel" name="contactorTel" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                             <td >身份：</td>
                             <td >
-                                <input id="" name="" class="nui-combobox textboxWidth">
+                                <input id="identity" name="identity" class="nui-combobox textboxWidth"valueField="customid" textField="name" enabled="false">
                             </td>
                         </tr>
                         <tr class="htr">
                             <td >车牌号：</td>
                             <td >
-                                <input id="carNo" name="carNo" class="nui-textbox textboxWidth">
+                                <input id="carNo" name="carNo" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                             <td >品牌：</td>
                             <td >
-                                <input id="" name="" class="nui-combobox textboxWidth">
+                                <input id="carBrandId" name="carBrandId" class="nui-combobox textboxWidth"textField="name"valueField="id" enabled="false">
                             </td>
                             <td >车型：</td>
                             <td >
-                                <input id="" name="" class="nui-textbox textboxWidth">
+                                <input id="carModel" name="carModel" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                         </tr>  
                         <tr class="htr">
                             <td >发动机号：</td> 
                             <td >
-                                <input id="" name="" class="nui-textbox textboxWidth">
+                                <input id="engineNo" name="engineNo" class="nui-textbox textboxWidth" enabled="false">
                             </td>
-                            <td >底盘号：</td>
+                            <td >车架号：</td>
                             <td >
-                                <input id="" name="" class="nui-textbox textboxWidth">
+                                <input id="carVin" name="carVin" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                             <td ></td>
                             <td >
@@ -142,12 +142,23 @@ pageEncoding="UTF-8" session="false" %>
                         <tr class="htr">
                             <td >业务类型：</td>
                             <td >
-                                <input id="billTypeId" name="billTypeId" class="nui-combobox textboxWidth">
+                                    <input name="serviceTypeId"
+                                    id="serviceTypeId"
+                                    class="nui-combobox textboxWidth"
+                                    textField="name"
+                                    valueField="id"
+                                    emptyText="业务类型"
+                                    url=""
+                                    allowInput="true"
+                                    showNullItem="true"
+                                    valueFromSelect="true"
+                                    onvaluechanged=""
+                                    nullItemText="请选择..." enabled="false"/>
                             </td>
 
                             <td >服务顾问：</td>
                             <td >
-                                <input id="mtAdvisor" name="mtAdvisor" class="nui-combobox textboxWidth" allowInput="true" textField="empName"valueField="empId"emptyText="请选择..."nullItemText="请选择..." onvaluechanged="mtAdvisorChanged">
+                                <input id="mtAdvisor" name="mtAdvisor" class="nui-combobox textboxWidth" allowInput="true" textField="empName"valueField="empId"emptyText="请选择..."nullItemText="请选择..." onvaluechanged="mtAdvisorChanged" enabled="false">
                             </td>
                             <td ></td>
                             <td >
@@ -157,15 +168,15 @@ pageEncoding="UTF-8" session="false" %>
                         <tr class="htr">
                             <td >里程数：</td>
                             <td >
-                                <input id="enterKilometers" name="enterKilometers" class="nui-textbox textboxWidth">
+                                <input id="enterKilometers" name="enterKilometers" class="nui-textbox textboxWidth" enabled="false">
                             </td>
                             <td >进场日期：</td>
                             <td >
-                                <input id="enterDate" name="enterDate" class="nui-datepicker textboxWidth">
+                                <input id="enterDate" name="enterDate" class="nui-datepicker textboxWidth" enabled="false">
                             </td>
                             <td >离厂日期：</td>
                             <td >
-                                <input id="outDate" name="outDate" class="nui-datepicker textboxWidth">
+                                <input id="outDate" name="outDate" class="nui-datepicker textboxWidth" enabled="false">
                             </td>
                         </tr>
                     </table>
@@ -196,7 +207,7 @@ pageEncoding="UTF-8" session="false" %>
                                 <tr class="htr">
                                     <td >提醒内容：</td>
                                     <td  colspan="6">
-                                        <input id="visitContent" name="visitContent" class="nui-textarea textboxWidth" style="width: 100%;height:280px;">
+                                        <input id="visitContent" name="visitContent" class="nui-textarea textboxWidth" style="width: 100%;height:200px;">
                                     </td>
                                 </tr> 
  

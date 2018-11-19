@@ -1174,13 +1174,6 @@ function saveNoshowMsg(callback){
     });
 }
 
-
-
-
-
-
-
-
 var requiredField = {
     carNo : "车牌号",
     serviceTypeId : "业务类型",
@@ -3199,7 +3192,6 @@ function showBasicData(type){
     	    doSelectBasicData(BasicDataUrl,title,params,function(p1,p2,p3){
     	        loadDetail(p1, p2, p3);
     	    });
-
     }  
  }
 

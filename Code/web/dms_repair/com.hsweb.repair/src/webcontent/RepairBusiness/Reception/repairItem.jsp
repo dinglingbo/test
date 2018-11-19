@@ -126,8 +126,8 @@
             </tr>
             <tr >
                 <td colspan="2" style="text-align: center;">
-                    <a class="nui-button"  plain="false" onclick="closeItemPartRateSetWin()">取消</a>
                     <a class="nui-button"  plain="false" onclick="sureItemPartRateSetWin()" id="itemOk">确定</a>
+                    <a class="nui-button"  plain="false" onclick="closeItemPartRateSetWin()">取消</a>
                 </td>
             </tr>
         </table>

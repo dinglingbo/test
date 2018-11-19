@@ -93,18 +93,14 @@
 	                    		<input class="nui-Spinner" minValue="0" maxValue="100000000" width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" onvaluechanged="setEnterKilometers"/>
                                 <label class="title">(上次里程：<span id="lastComeKilometers">0</span>)</label>
 	                    	</td>
+	                    	
 	                </tr>
 	                <tr>
-	                    <td align="right" ><font color="red">手机号码：</font></td>
-	                    <td><input class="mini-textbox" id="tel" name="tel" required="true" onvalidation="onMobileValidation" /></td>
-	                    <td align="right">是否服务技师：</td>
-	                    <td><div  class="nui-checkbox" id="isArtificer" name="isArtificer" value="0" trueValue="1" falseValue="0" onvaluechanged="onChanged"></div>
-	                    <input class="nui-combobox" id="memberLevelId" name="memberLevelId" required="false" style="width: 107px;display: none;" emptytext="选择技师等级" textField="name" valueField="id"/>
-	                          <!--<div id="isArtificer" name="isArtificer" class="nui-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical"
-	                          textField="name" valueField="id" value="1"  width="100%"
-	                          url="" > -->
-	                      </div>
-	                  </td>
+	                    <td align="right">进厂日期:</td>
+	                    <td><input id="enterDate" name="enterDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/></td>
+	                    <td align="right">预计交车：</td>
+	                    <td> <input id="planFinishDate" name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm" nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" width="100%"/>
+	                    </td>
 	              </tr>
 	
 	              <tr>

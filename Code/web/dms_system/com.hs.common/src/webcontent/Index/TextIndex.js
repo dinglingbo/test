@@ -95,7 +95,7 @@ $(document).ready(function(v) {
 function toRepairBill(){
     var item={};
     item.id = "2000";
-    item.text = "综合开单";
+    item.text = "综合开单详情";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
@@ -103,7 +103,7 @@ function toRepairBill(){
 function toCarWashBill(){//1
     var item={};
     item.id = "3000";
-    item.text = "洗美开单";
+    item.text = "洗美开单详情";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBill.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
@@ -111,7 +111,7 @@ function toCarWashBill(){//1
 function toSellBill(){
     var item={};
     item.id = "5000";
-    item.text = "销售开单";
+    item.text = "销售开单详情";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.sellBill.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
@@ -119,7 +119,7 @@ function toSellBill(){
 function toCarInsuranceDetail(){
     var item={};
     item.id = "InsuranceDetail";
-    item.text = "保险开单";
+    item.text = "保险开单详情";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CarInsuranceDetail.flow?token="+token;
     item.iconCls = "fa fa-car";
     window.parent.activeTab(item);
@@ -149,11 +149,12 @@ function toRepairOut(){
 }
 function toPurchaseOrderMain(){
     var item={};
-    item.id = "2089";
-    item.text = "采购订单";
+    item.id = "6000";
+    item.text = "采购订单详情";
     item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrder.flow?token="+token,
     item.iconCls = "fa fa-exchange";
-    window.parent.activeTab(item);
+    var params = {};
+    window.parent.activeTabAndInit(item,params);
 }
 
 function toCustomerProfileMain(){

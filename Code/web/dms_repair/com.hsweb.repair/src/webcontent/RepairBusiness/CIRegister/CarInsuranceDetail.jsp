@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>车险登记明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.0.69"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.0.74"></script>
     <style type="text/css">
    .title {
         width: 80px;
@@ -24,9 +24,42 @@ pageEncoding="UTF-8" session="false"%>
    .form_label {
        width: 84px;
    }
-
+	#wechatTag{
+            color:#62b900;
+        }
+   #guestInfo a:link { 
+        font-size: 12px; 
+        color: #578ccd; 
+        text-decoration: none; 
+        }  
+    #guestInfo a:visited { 
+        font-size: 12px; 
+        color: #578ccd; 
+        text-decoration: none; 
+        } 
+    #guestInfo a:hover { 
+        font-size: 12px; 
+        color: #578ccd; 
+        text-decoration: underline; 
+        }  
+   a.chooseClass{ background:#578ccd; font-size:13px; color:#fff; text-decoration:none;  padding:0px 8px; border-radius:20px;}
+  a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}  
    a.healthview{ background:#78c800; font-size:13px; color:#fff; text-decoration:none;  padding:0px 8px; border-radius:20px;}
    a.healthview:hover{ background:#f00000;color:#fff;text-decoration:none;}
+   
+    a.optbtn {
+            width: 44px;
+            /* height: 26px; */
+            border: 1px #d2d2d2 solid;
+            background: #f2f6f9;
+            text-align: center;
+            display: inline-block;
+            /* line-height: 26px; */
+            margin: 0 4px;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 5px;
+        }
 </style>
 
 </head>
@@ -146,7 +179,7 @@ pageEncoding="UTF-8" session="false"%>
             <td>
                 <span id="wechatTag" class="fa fa-wechat fa-lg healthview"></span>&nbsp;
                 <label style="font-family:Verdana;">客户名称:</label>
-                <label id="guestNameEl" style="font-family:Verdana;"></label>&nbsp;
+                <label id="guestInfo" style="font-family:Verdana;"><a id="guestNameEl" href="javascript:checkGuest()"></a></label>&nbsp;
                 <label style="font-family:Verdana;">客户手机:</label>
                 <label id="guestTelEl" style="font-family:Verdana;"></label>&nbsp;
             </td>
@@ -181,8 +214,11 @@ pageEncoding="UTF-8" session="false"%>
     showSummaryRow="true" showModified ="false" ondrawsummarycell="drawSummaryCell">
     <div property="columns"> 
         <div type="indexcolumn" width="50" headeralign="center" align="center">序号</div>
-        <div field="insureTypeId" headeralign="center"  align="center" visible="true" width="100">险种ID</div>
         <div field="insureTypeName" headeralign="center"  align="center" visible="true" width="100">名称</div>
+        <div field="insureTypeId" headeralign="center"  align="center" visible="false" width="100"  header="险种ID"> </div>
+        <div field="insureNo" headeralign="center"  align="center" visible="true" width="100"  header="交强险/商业险单号">
+        <input property="editor" class="nui-textbox" vtype="float" >
+        </div>
         <div field="amt" name="amt" headeralign="center" align="center" visible="true" width="100" header="保司保费(售价/元)"summaryType="sum">
             <input property="editor" class="nui-textbox" vtype="float" >
         </div>

@@ -129,24 +129,24 @@
         valueFromSelect="true"
         onvaluechanged=""
         nullItemText="请选择..."/>
-        <table  style=" left:0;right:0;margin: 0 auto;"> 
+        <table  style=" left:0;right:0;margin: 0 auto; width:100%;"> 
 
             <tr>
                 <td class="tbtext">客户名称:</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName" />
+                    <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName" style="width:100%" />
                 </td>
                 <td class="tbtext">客户手机:</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" />
+                    <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" style="width:100%"/>
                 </td>
 	            <td class="tbtext">送修人:</td>
 	            <td class="tbCtrl">
-	                <input class="nui-textbox tabwidth" name="contactorName" id="contactorName"/>
+	                <input class="nui-textbox tabwidth" name="contactorName" id="contactorName"style="width:100%"/>
 	            </td>
 	            <td class="tbtext">联系方式:</td>
 	            <td class="tbCtrl">
-	                <input class="nui-textbox tabwidth" " name="mobile" id="mobile" />
+	                <input class="nui-textbox tabwidth" " name="mobile" id="mobile" style="width:100%"/>
 	            </td>
                 <!-- 
                 <td class="tbtext">级别:</td>
@@ -162,19 +162,19 @@
         <tr>
             <td class="tbtext">车牌号:</td>
             <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="carNo" id="carNo"/>
+                <input class="nui-textbox tabwidth" name="carNo" id="carNo" style="width:100%"/>
             </td>
             <td class="tbtext">服务顾问:</td>
             <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="mtAdvisor" id="mtAdvisor"/>
+                <input class="nui-textbox tabwidth" name="mtAdvisor" id="mtAdvisor"style="width:100%"/>
             </td>
             <td class="tbtext">VIN码:</td>
             <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" id="carVin" name="carVin"/>
+                <input class="nui-textbox tabwidth" id="carVin" name="carVin"style="width:100%"/>
             </td>
             <td class="tbtext">车型:</td>
             <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="carModel" id="carModel"/>
+                <input class="nui-textbox tabwidth" name="carModel" id="carModel" style="width:100%"/>
             </td>
         </tr>
 
@@ -195,11 +195,11 @@ allowCellEdit="true" >
         <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="80px" header="配件编码"></div> 
         <div field="serviceTypeId" name="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
         <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量"></div>
+        <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>                        
         <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价"></div>
         <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" align="center"  header="优惠率"></div>
         <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"></div>
         <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
-        <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>                        
         <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center"></div>
         <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center">
         </div>   

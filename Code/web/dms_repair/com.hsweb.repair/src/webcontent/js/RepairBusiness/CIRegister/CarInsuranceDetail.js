@@ -110,7 +110,9 @@ $(document).ready(function ()
                 mtAdvisorId:""
             };
             basicInfoForm.setData(sdata);
-
+            $("#guestNameEl").html(guestName);
+            $("#guestCarEl").html(carNo);
+            $("#guestTelEl").html(tel);
             if(tel){
                 tel = "/"+tel;
             }
@@ -127,6 +129,7 @@ $(document).ready(function ()
             searchNameEl.setVisible(true);
             var t = carNo + tel + guestName + carVin;
             searchNameEl.setValue(t);
+           
 
         }
     });
@@ -556,4 +559,25 @@ function onPrint(argument) {
     });
 }
 
+function checkGuest(){
+	var data = basicInfoForm.getData();
+	 nui.open({
+         url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditGuest.flow?token="+token,
+         title: '客户详情',
+         width: 750, height: 570,
+         onload: function () {
+             var iframe = this.getIFrameEl();
+             var params = {};	
+             params.guest=data;
+             iframe.contentWindow.setData(params);
+         },
+         ondestroy: function (action)
+         {
+             if("ok" == action)
+             {
+                 grid.reload();
+             }
+         }
+     });
+}
 

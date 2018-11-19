@@ -10,7 +10,11 @@ var cityId;
 var data;
 $(document).ready(function()
 {
-	
+	if(currRepairBillCmodelFlag == "1"){
+        nui.get("carModel").disable();
+    }else{
+        nui.get("carModel").enable();
+    }
     //init();
 });
 function init(callback)

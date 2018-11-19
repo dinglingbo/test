@@ -77,6 +77,7 @@
 <body>
 <div class="print_btn">
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
+        <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
 </div>
 <div style="height:5px"></div>
 <table width="380" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -179,8 +180,23 @@
 	            $(".print_btn").hide();
 	            window.print();
 	        }); 
+	        
+	         document.onkeyup = function(event) {
+		        var e = event || window.event;
+		        var keyCode = e.keyCode || e.which;// 38向上 40向下
+		        
+		
+		        if ((keyCode == 27)) { // ESC
+		            CloseWindow('cancle');
+		        }
+		
+		    }
         });; 
     	
+	    function CloseWindow(action) {
+            if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+            else window.close();
+        }
     	function SetData(params){
     		nui.ajax({
                 url: params.baseUrl+"com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext",

@@ -817,7 +817,7 @@ function setInitData(params){
                         data.contactorName = contactor.name;
                         data.mobile = contactor.mobile;
                         data.carModel = car.carModel;
-                        $("#guestNameEl").html(guest.guestFullName);
+                        $("#guestNameEl").html(data.guestFullName);
                         $("#showCarInfoEl").html(data.carNo);
                         $("#guestTelEl").html(guest.mobile);
 
@@ -3780,4 +3780,26 @@ function outCarMainExpense(){
             }
         }
     });
+}
+
+function checkGuest(){
+	var data = billForm.getData();
+	 nui.open({
+         url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditGuest.flow?token="+token,
+         title: '客户详情',
+         width: 750, height: 570,
+         onload: function () {
+             var iframe = this.getIFrameEl();
+             var params = {};	
+             params.guest=data;
+             iframe.contentWindow.setData(params);
+         },
+         ondestroy: function (action)
+         {
+             if("ok" == action)
+             {
+                 grid.reload();
+             }
+         }
+     });
 }

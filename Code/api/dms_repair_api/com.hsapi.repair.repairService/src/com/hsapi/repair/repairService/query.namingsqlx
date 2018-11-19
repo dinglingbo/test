@@ -796,4 +796,93 @@
   				b.mobile like '%$mobile$%'
             </isNotEmpty>
 	</select>
+	
+		<select id="queryCommercialInsurance" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				a.annual_status as annualStatus,
+				a.insure_status as insureStatus,
+				a.veri_status as veriStatus,
+				b.id as carId,
+				b.orgid as orgid,
+				b.car_no as carNo,
+				b.guest_id as guestId,
+				b.car_model as carModel,
+				b.issuing_date as issuingDate,
+				b.annual_verification_due_date as annualVerificationDueDate,
+				b.insure_buy_date as insureBuyDate,
+				b.annual_inspection_date as annualInspectionDate,
+				b.annual_inspection_comp_name as annualInspectionCompName,
+				b.insure_due_date as insureDueDate,
+				b.insure_comp_name as insureCompName
+			FROM
+				wb_repair.rpb_car_extend a
+			INNER JOIN wb_repair.rpb_car b ON a.car_id = b.id
+		
+			WHERE 
+				b.orgid=#orgid#	
+          
+            <!-- 商业险是否需要提醒-->
+            <isNotEmpty prepend="and" property="isAnnualRemind">
+  				a.is_annual_remind = #isAnnualRemind#
+            </isNotEmpty>
+            <!--提醒状态-->
+            <isNotEmpty prepend="and" property="annualStatus">
+  				a.annual_status = #annualStatus#
+            </isNotEmpty>
+             <!-- 交强险是否需要提醒-->
+            <isNotEmpty prepend="and" property="isInsureRemind">
+  				a.is_insure_remind = #isInsureRemind#
+            </isNotEmpty>
+            <!--提醒状态-->
+            <isNotEmpty prepend="and" property="insureStatus">
+  				a.insure_status = #insureStatus#
+            </isNotEmpty>
+             <!-- 车辆年检是否需要提醒-->
+            <isNotEmpty prepend="and" property="isVeriRemind">
+  				a.is_veri_remind = #isVeriRemind#
+            </isNotEmpty>
+            <!--提醒状态-->
+            <isNotEmpty prepend="and" property="veriStatus">
+  				a.veri_status = #veriStatus#
+            </isNotEmpty> 
+ 
+	</select>
+	
+			<select id="queryRemindS" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT
+				a.id as guestId,
+				a.orgid as orgid,
+				a.name as guestName,
+				a.mobile as mobile,
+				a.birthday_type as birthdayType,
+				a.birthday as birthday,
+				a.license_over_date as licenseOverDate,
+				a.license_status as licenseStatus,
+				a.bir_status as birStatus
+
+			FROM
+				wb_repair.rpb_contactor a
+		
+			WHERE 
+				a.orgid=#orgid#	
+          
+            <!-- 生日是否需要提醒-->
+            <isNotEmpty prepend="and" property="isBirRemind">
+  				a.is_bir_remind = #isBirRemind#
+            </isNotEmpty>
+            <!--提醒状态-->
+            <isNotEmpty prepend="and" property="birStatus">
+  				a.bir_status = #birStatus#
+            </isNotEmpty>
+             <!-- 驾照是否需要提醒-->
+            <isNotEmpty prepend="and" property="isLicenseRemind">
+  				a.is_license_remind = #isLicenseRemind#
+            </isNotEmpty>
+            <!--提醒状态-->
+            <isNotEmpty prepend="and" property="licenseStatus">
+  				a.license_status = #licenseStatus#
+            </isNotEmpty>
+ 
+	</select>
+	
 </sqlMap>

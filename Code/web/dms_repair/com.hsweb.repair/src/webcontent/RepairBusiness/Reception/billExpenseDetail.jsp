@@ -42,6 +42,16 @@ a.optbtn {
 </style>
 <div class="nui-fit">
 	<div class="nui-fit">
+		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:100%;">
+                            <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+                            <a class="nui-button" onclick="onCancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 		<div class="" style="width:100%;height:50%;" >
 			<div id="receiveGrid"
 				borderStyle="border-bottom:1;"
@@ -101,10 +111,7 @@ a.optbtn {
 	</div>
 </div>
 
-<div class="nui-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;text-align:center;">
-    <a class="nui-button" iconCls="" plain="false" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
-    <a class="nui-button" iconCls="" plain="false" onclick="onOk()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-</div>
+
 
 </body>
 <script type="text/javascript">

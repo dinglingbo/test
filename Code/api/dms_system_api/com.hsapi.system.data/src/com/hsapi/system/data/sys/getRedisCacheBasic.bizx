@@ -90,6 +90,15 @@
       <sourceNode>invokePojo5</sourceNode>
       <targetNode>subprocess1</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" type="transition">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link9</targetConnections>
     <location x="589" y="206"/>
     <size height="28" width="22"/>
@@ -237,6 +246,7 @@
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <targetConnections>link24</targetConnections>
+    <targetConnections>link5</targetConnections>
     <location x="825" y="154"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -364,7 +374,7 @@
       <targetNode>assign2</targetNode>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
-    <location x="765" y="190"/>
+    <location x="780" y="190"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -382,7 +392,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="737" y="225"/>
+    <location x="752" y="225"/>
     <figSize height="17" width="83"/>
     <node>subprocess1</node>
   </nodes>
@@ -413,6 +423,7 @@
   </nodes>
   <topRuler>
     <guides position="371" horizontal="true"/>
+    <guides position="431" horizontal="true"/>
   </topRuler>
   <leftRuler/>
   <process:info author="Guine" createTime="2018-03-23 08:55:46" date="2018-03-23Z" description="" name="carModel" version="7.0.0.0"/>

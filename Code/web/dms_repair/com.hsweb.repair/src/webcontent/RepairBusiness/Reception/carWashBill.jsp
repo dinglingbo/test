@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.8"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.11"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -139,7 +139,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="sureMT()" id="addBtn"><span class="fa fa-car fa-lg"></span>&nbsp;确定开单</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="unfinish()" id="addBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
+<!--                 <a class="nui-button" iconCls="" plain="true" onclick="unfinish()" id="addBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="addBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
                 <!-- <a class="nui-button" iconCls="" plain="true" onclick="del()" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a> -->
                 <span class="separator"></span>
@@ -165,6 +165,7 @@
                 <a class="nui-menubutton" plain="true" menu="#popupMenuMore" id="menuMore"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
 
                 <ul id="popupMenuMore" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="unfinish()" id="addBtn">返单</li>
                     <li iconCls="" onclick="updateBillExpense()" id="billExpense">费用登记</li>
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li>
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">修改报销单</li>
@@ -195,11 +196,16 @@
         <table   style="width: 100%;border-spacing: 0px 5px;"> 
             <tr>   
                 <td class="title required">车牌号：</td> 
-                <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
+                <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>  
+                <td class="title required" >
+                      <label>品牌/车型：</label>
+                  </td>
+                 <td class="" colspan="3"><input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/></td>
+    
                 <td class="title required" >
                     <label>业务类型：</label>
                 </td>
-                <td class="" width="20%">
+                <td class="" >
                     <input name="serviceTypeId"
                     id="serviceTypeId"
                     class="nui-combobox width1"
@@ -229,31 +235,6 @@
                     nullItemText="请选择..." width="100%"/>
                
                 </td>
-                <td class="title">进厂里程：</td> 
-                <td class=""><input  class="nui-textbox" name="enterKilometers" width="100%"/></td>
-                <td class="title">备注：</td> 
-                <td class="" colspan=""><input  class="nui-textbox" name="remark" width="100%"/></td>
-            </tr>
-            <tr>   
-                <td class="title required" >
-                      <label>品牌/车型：</label>
-                  </td>
-                 <td class=""><input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/></td>
-    
-                <td class="title required">客户名称：</td> 
-                <td class="">
-               
-                <input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="32%"/>
-                <label class="title required">客户手机：</label>
-                <input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="47%"/>
-               
-                </td>
-                
-                
-                <td class="title required">联系人名称：</td> 
-                <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false" width="100%"/></td>
-                <td class="title required">联系人手机：</td> 
-                <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false" width="100%"/></td>
                 <td class="title">开单时间：</td> 
                 <td class="">
                     <input id="recordDate"
@@ -261,6 +242,28 @@
                     allowInput="false" format="yyyy-MM-dd HH:mm"
                     class="nui-datepicker" enabled="false" width="100%"/>
                 </td>
+            </tr>
+            <tr> 
+                <td class="title required">客户名称：</td> 
+                <td class="">
+               
+                <input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="100%"/>
+               
+                </td>
+                <td class="title required">客户手机：</td> 
+                <td class="">
+                <input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="100%"/>
+               
+                </td>
+                
+                <td class="title required">联系人名称：</td> 
+                <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false" width="100%"/></td>
+                <td class="title required">联系人手机：</td> 
+                <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false" width="100%"/></td>
+                <td class="title">进厂里程：</td> 
+                <td class=""><input  class="nui-textbox" name="enterKilometers" width="100%"/></td>
+                <td class="title">备注：</td> 
+                <td class="" colspan=""><input  class="nui-textbox" name="remark" width="100%"/></td>
             </tr>
         </table>
     </div>
@@ -278,7 +281,7 @@
                 <td>
                     <span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp;
                     <label style="font-family:Verdana;">客户名称:</label>
-                    <label id="guestNameEl" style="font-family:Verdana;"></label>&nbsp;
+                    <label id="guestInfo" style="font-family:Verdana;"><a id="guestNameEl" href="javascript:checkGuest()"></a></label>&nbsp;
                     <label style="font-family:Verdana;">客户手机:</label>
                     <label id="guestTelEl" style="font-family:Verdana;"></label>&nbsp;
                 </td>
@@ -441,16 +444,15 @@ showModal="false"
 showHeader="false"
 allowResize="false"
 allowDrag="false">
-     <!-- <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+      <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                    <a class="nui-button" iconCls="" plain="true" onclick="addSelectPart" id="saveBtn"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onPartClose" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="showCardTimes()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
         </table>
-    </div> -->
+    </div> 
     <div class="nui-fit">
       <div id="cardTimesGrid" class="nui-datagrid" style="width:100%;height:95%;"
       selectOnLoad="true"
@@ -478,6 +480,15 @@ showModal="false"
 showHeader="false"
 allowResize="false"
 allowDrag="false">
+<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100%;">
+                    <a class="nui-button" iconCls="" plain="true" onclick="showCard()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
 <div class="nui-fit">
   <div id="memCardGrid" class="nui-datagrid" style="width:100%;height:95%;"
   selectOnLoad="true"
@@ -547,11 +558,17 @@ allowDrag="false">
         <a class="nui-button  mini-button-info" style="height: 30px;font-size: 14px;" iconCls="" plain="false" onclick="MemSelectCancel(2)" id="">
             <span style="line-height: 30px;">车况派工</span>
         </a>
+          <a class="nui-button  mini-button-info" style="height: 30px;font-size: 14px;" iconCls="" plain="false" onclick="showHealth()" id="">
+            <span style="line-height: 30px;">取消</span>
+        </a>
     </div>
 
     <div align="center" style="margin-top:20px;display: none; " id="checkStatusButton2">
         <a class="nui-button  mini-button-info" style="height: 30px;font-size: 14px;" iconCls="" plain="false" onclick="newCheckMain()" id="">
             <span style="line-height: 30px;">车况查看</span>
+        </a>
+          <a class="nui-button  mini-button-info" style="height: 30px;font-size: 14px;" iconCls="" plain="false" onclick="showHealth()" id="">
+            <span style="line-height: 30px;">取消</span>
         </a>
     </div>
 </div>

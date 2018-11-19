@@ -9,9 +9,9 @@ pageEncoding="UTF-8" session="false" %>
   - Description:
 -->
 <head>
-  <title>首页</title>
+  <title>首页</title> 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.52"></script>
+    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.60"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css" rel="stylesheet" type="text/css" />
@@ -38,7 +38,7 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="toCarWashBill()">
                             <i class="fa fa-shower fa-4x  fa-inverse"></i> 
-                            <p>洗车开单</p> 
+                            <p>洗美开单</p> 
                         </a>
                     </div> 
                     <div class="menu_pannel menu_pannel_bg">
@@ -80,7 +80,7 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="toVisitMain()">
                             <i class="fa fa-handshake-o fa-4x  fa-inverse"></i>
-                            <p>工单回访</p> 
+                            <p>客户回访</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
@@ -91,7 +91,7 @@ pageEncoding="UTF-8" session="false" %>
                     </div>
 
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="toCustomerProfileMain()">
+                        <a onclick="addCustomer()">
                             <i class="fa fa-car fa-4x  fa-inverse"></i>
                             <p>车辆新建</p> 
                         </a>
@@ -158,25 +158,25 @@ pageEncoding="UTF-8" session="false" %>
                             
                                 <tr>  
                                     <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>保养到期提醒：</td>
-                                    <td class="tablenum"><a id="queryMaintain" href="javascript:toMaintain(1)"><span></span></a></td>
+                                    <td class="tablenum"><a id="queryMaintain" href="javascript:toMaintain(8)"><span></span></a></td>
                                     <td style="width:0.05%;"></td>
                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>商业险到期提醒：</td>
-                                   <td class="tablenum"><a id="queryBusiness" href="javascript:toMaintain(2)"><span></span></a></td>
+                                   <td class="tablenum"><a id="queryBusiness" href="javascript:toMaintain(3)"><span></span></a></td>
                                 </tr>
 
                                 <tr>
                                     <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>交强险到期提醒：</td>
-                                    <td class="tablenum"><a id="queryCompulsoryInsurance" href="javascript:toMaintain(3)"><span></span></a></td>
+                                    <td class="tablenum"><a id="queryCompulsoryInsurance" href="javascript:toMaintain(4)"><span></span></a></td>
                                    <td ></td>
                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>驾照年审提醒：</td>
-                                   <td class="tablenum"><a id="queryDrivingLicense" href="javascript:toMaintain(4)"><span></span></a></td>
+                                   <td class="tablenum"><a id="queryDrivingLicense" href="javascript:toMaintain(5)"><span></span></a></td>
                                </tr>
                                <tr>
                                 <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>车辆年检提醒：</td>
-                                <td class="tablenum"><a id="queryCar" href="javascript:toMaintain(5)"><span></span></a></td>
+                                <td class="tablenum"><a id="queryCar" href="javascript:toMaintain(6)"><span></span></a></td>
                                 <td ></td>
                                 <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>预约到店提醒：</td>
-                                <td class="tablenum"><a id="queryAppointment" href="javascript:toMaintain(6)"><span></span></a></td>
+                                <td class="tablenum"><a id="queryAppointment" href="javascript:toMaintain(1)"><span></span></a></td>
                               </tr>
 
                                <tr>
@@ -184,7 +184,7 @@ pageEncoding="UTF-8" session="false" %>
                                 <td class="tablenum"><a id="queryGuestBirthday" href="javascript:toMaintain(7)"><span></span></a></td>
                                 <td ></td>
                                 <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>员工生日提醒：</td>
-                                <td class="tablenum"><a id="queryEmployeeBirthday" href="javascript:toMaintain(8)"><span></span></a></td>
+                                <td class="tablenum"><a id="queryEmployeeBirthday" href="javascript:toMaintain(2)"><span></span></a></td>
                               </tr>
 
                           </table>

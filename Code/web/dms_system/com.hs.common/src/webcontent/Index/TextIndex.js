@@ -24,6 +24,20 @@ $(document).ready(function(v) {
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
         }
+		if (e.field == "recordDate") {
+			var str =e.cellHtml.split(" "); 
+			var qian = str[0].split("-");
+			var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
+				e.cellHtml = time;
+			}
+		if (e.field == "planFinishDate") {
+			if(e.cellHtml!=""&&e.cellHtml!=null){
+				var str =e.cellHtml.split(" "); 
+				var qian = str[0].split("-");
+				var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
+				e.cellHtml = time;
+			}
+		}
     });
 
     setTimeout(function(){
@@ -89,7 +103,7 @@ function toRepairBill(){
 function toCarWashBill(){//1
     var item={};
     item.id = "3000";
-    item.text = "洗车开单";
+    item.text = "洗美开单";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBill.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
@@ -137,7 +151,7 @@ function toPurchaseOrderMain(){
     var item={};
     item.id = "2089";
     item.text = "采购订单";
-    item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrderMain.flow?token="+token,
+    item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrder.flow?token="+token,
     item.iconCls = "fa fa-exchange";
     window.parent.activeTab(item);
 }
@@ -300,13 +314,26 @@ function showTenantGuestCar(){
     });
 }
 function toMaintain(e){
-    var item={};
-    item.id = "maintain";
-    item.text = "首页提醒";
-    item.url = webPath + contextPath + "/stat.maintain.flow?token="+token;
-    item.iconCls = "fa fa-file-text";
-    var params = {id:e};
-    window.parent.activeTabAndInit(item,params);
+	if(e==1||e==2){
+	    var item={};
+	    item.id = "maintain";
+	    item.text = "首页提醒";
+	    item.url = webPath + contextPath + "/stat.maintain.flow?token="+token;
+	    item.iconCls = "fa fa-file-text";
+	    var params = {id:e};
+	    window.parent.activeTabAndInit(item,params);
+	}else if(e==8){
+		
+	}else{
+	    var item={};
+	    item.id = "te";
+	    item.text = "特别关怀";
+	    item.url = webPath + contextPath + "/com.hsweb.crm.manage.specialAttention.flow?token="+token;
+	    item.iconCls = "fa fa-file-text";
+	    var params = {id:e};
+	    window.parent.activeTabAndInit(item,params);
+	}
+
 }
 
 //查询消息提醒，msg_Type消息类型
@@ -378,3 +405,4 @@ function query (){
 		}
 	});
 }
+

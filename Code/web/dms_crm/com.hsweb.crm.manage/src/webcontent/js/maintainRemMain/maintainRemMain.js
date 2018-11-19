@@ -198,7 +198,8 @@ function save(){
 		showMsg("清填写内容","W");
 		return;
 	}
-	var record = {
+	var record=[];
+	    record[0] = {
 		orgid: currOrgId,
 		careType:1,
 		guestId:data.guestId,
@@ -219,8 +220,8 @@ function save(){
 			if(text.errCode == "S"){
 				var detailData = text.list;
 				showMsg("保存成功！","S");
-				nui.get("id").setValue(detailData.id);
 				gridCar.removeRow (row, true);
+				
 			}
 
 		}

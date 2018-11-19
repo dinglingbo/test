@@ -175,6 +175,7 @@
     <div class="print_btn">
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a href="javascript:box_setup_open()">修改</a>
+        <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
     </div>
     <div style="margin: 0 10px;" class="printny">
         <div class="company-info">
@@ -344,7 +345,7 @@
                 </tr>
                 <tr>
                    <td height="30" style="padding: 8px;" colspan="3">
-                      <span style = "margin-left: 0px;" id = "show">尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准</span>
+                      <span style = "margin-left: 0px;" id = "show"></span>
                       <span style = "margin-left: 500px;">客户签名：</span>
                   </td>
                  
@@ -356,13 +357,29 @@
 		var url_two = null;
 		var url_three = null;
 		var data = [];
+		//尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准
 		$(document).ready(function (){
 			$("#print").click(function () {
 	            $(".print_btn").hide();
 	            window.print();
 	        }); 
+	      
+       document.onkeyup = function(event) {
+	        var e = event || window.event;
+	        var keyCode = e.keyCode || e.which;// 38向上 40向下
 	        
+	
+	        if ((keyCode == 27)) { // ESC
+	            CloseWindow('cancle');
+	        }
+	
+	    }  
         });
+        
+         function CloseWindow(action) {
+            if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+            else window.close();
+        }
         //com.hsapi.repair.repairService.svr.billqyeryMaintainList
         function getSubtotal(){//更新套餐工时配件合计金额
         	var money = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(document.getElementById("item").innerHTML) + parseFloat(document.getElementById("part").innerHTML);
@@ -377,7 +394,9 @@
 	        	document.getElementById("spstorename").innerHTML = params.name;
 	        	//维修结算单没有这段话
 	        	if(params.name == "维修结算单"){
-	        	   document.getElementById("show").innerHTML = "";
+	        	   document.getElementById("show").innerHTML = params.currRepairSettPrintContent||"";
+	        	}else if(params.name == "报价单"){
+	        	   document.getElementById("show").innerHTML = params.currRepairEntrustPrintContent||"";
 	        	}
 	        }
 	        document.getElementById("comp").innerHTML = params.comp;

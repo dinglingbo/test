@@ -29,7 +29,10 @@
 			d.mobile as contactMobile,
 			a.bala_audit_sign as balaAuditSign,
 			a.bala_auditor as balaAuditor,
-			a.bala_audit_date as balaAuditDate
+			a.bala_audit_date as balaAuditDate,
+			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = a.id) as serviceTypeName
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )

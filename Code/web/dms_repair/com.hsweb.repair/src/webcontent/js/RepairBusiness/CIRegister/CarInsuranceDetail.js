@@ -111,7 +111,7 @@ $(document).ready(function ()
             };
             basicInfoForm.setData(sdata);
             $("#guestNameEl").html(guestName);
-            $("#showCarInfoEl").html(carNo);
+            $("#guestCarEl").html(carNo);
             $("#guestTelEl").html(tel);
             if(tel){
                 tel = "/"+tel;

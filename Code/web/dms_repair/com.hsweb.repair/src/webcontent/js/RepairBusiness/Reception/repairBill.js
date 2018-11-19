@@ -1071,18 +1071,6 @@ function save(){
 
 
 function saveNoshowMsg(callback){
-	var data = billForm.getData();
-	 var desData = describeForm.getData();
-	 for(var v in desData){
-	      data[v] = desData[v];
-	 }
-	for ( var key in requiredField) {
-		if (!data[key] || $.trim(data[key]).length == 0) {
-	          nui.get(key).focus();
-	          showMsg(requiredField[key] + "不能为空!","W");
-			return;
-		}
-	 }
 	saveMaintain(function(data){
         if(data.id){
             fserviceId = data.id;
@@ -2679,6 +2667,18 @@ function chooseItem(){
     if(!main.id){
        // showMsg("请选择保存工单!","S");
        // return;
+    	 var data = billForm.getData();
+    	 var desData = describeForm.getData();
+    	 for(var v in desData){
+    	      data[v] = desData[v];
+    	 }
+    	for ( var key in requiredField) {
+    		if (!data[key] || $.trim(data[key]).length == 0) {
+    	          nui.get(key).focus();
+    	          showMsg(requiredField[key] + "不能为空!","W");
+    			return;
+    		}
+    	 }
 	  saveNoshowMsg();
     }
     var status = main.status||0;
@@ -2710,6 +2710,18 @@ function choosePackage(){
     if(!main.id){
        // showMsg("请选择保存套餐!","S");
        // return;
+    	 var data = billForm.getData();
+    	 var desData = describeForm.getData();
+    	 for(var v in desData){
+    	      data[v] = desData[v];
+    	 }
+    	for ( var key in requiredField) {
+    		if (!data[key] || $.trim(data[key]).length == 0) {
+    	          nui.get(key).focus();
+    	          showMsg(requiredField[key] + "不能为空!","W");
+    			return;
+    		}
+    	 }
        saveNoshowMsg();
     }
     var status = main.status||0;
@@ -3127,6 +3139,18 @@ function showBasicData(type){
     if(!maintain.id){
         //showMsg("请选择保存工单!","W");
         //return;
+    	 var data = billForm.getData();
+    	 var desData = describeForm.getData();
+    	 for(var v in desData){
+    	      data[v] = desData[v];
+    	 }
+    	for ( var key in requiredField) {
+    		if (!data[key] || $.trim(data[key]).length == 0) {
+    	          nui.get(key).focus();
+    	          showMsg(requiredField[key] + "不能为空!","W");
+    			return;
+    		}
+    	 }
     	saveNoshowMsg(function(){
     		maintain = billForm.getData();
     		var carVin = maintain.carVin;

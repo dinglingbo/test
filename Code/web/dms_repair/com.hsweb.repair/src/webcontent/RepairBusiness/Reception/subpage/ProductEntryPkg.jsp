@@ -11,7 +11,7 @@
 -->
 <head>
 <title>标准化产品查询</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.2.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.2.2"></script>
 <style type="text/css">
 
 table {
@@ -42,13 +42,15 @@ table {
 
 </head>
 <body>
-<div  class="nui-panel" showToolbar="false" title="车型信息" showFooter="false" style="width:100%;">
+<div  class="nui-panel" showToolbar="false" title="快速查询" showFooter="false" style="width:100%;">
 	<div id="carInfoForm">
 	    <input class="nui-hidden" id="ExpenseAccount" name="ExpenseAccount"/>
 		<input class="nui-hidden" name="carLevelId"/>
 		<input class="nui-hidden" name="carLineId"/>
 		<table class="nui-form-table">
 			<tr>
+			</tr>
+			<tr style="display:none;">
 				<td>
 					<label>车架号(VIN)：</label>
 				</td>
@@ -72,7 +74,7 @@ table {
 						   valueField="carModelId" textField="carModel"/>
 				</td>
 			</tr>
-			<tr>
+			<tr style="display:none;">
 				<td>
 					<label>品牌：</label>
 				</td>
@@ -98,7 +100,7 @@ table {
 					<input class="nui-textbox asLabel" readOnly="true" name="carModelName"/>
 				</td>
 			</tr>
-			<tr>
+			<tr style="display:none;">
 				<td>
 					<label>发动机：</label>
 				</td>
@@ -150,8 +152,8 @@ table {
 							<input class="nui-textbox" id="queryValue"/>
 						</td>
 						<td>
-							<a class="nui-button" plain="false"  onclick="onSearch(0)">查询</a>
-							<a class="nui-button" plain="false"  onclick="onOk(0)">选择</a>
+							<a class="nui-button" plain="true"  onclick="onSearch(0)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+							<a class="nui-button" plain="true"  onclick="onOk(0)"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
 						</td>
 					</tr>
 				</table>

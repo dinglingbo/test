@@ -111,6 +111,10 @@
       <process:to type="query">p/parentId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">type</process:from>
+      <process:to type="query">p/type</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">执行成功！</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
@@ -133,6 +137,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="carBrandId" primitiveType="String"/>
     <process:input description="" isArray="false" name="parentId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="type" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="rs"/>

@@ -137,6 +137,8 @@
                 if(attr.get("billParams") != null){
                 	billParamsObj = attr.get("billParams");
                 	billParams = Utils.obj2Map(billParamsObj);
+                	
+                	System.out.println("==================系统缓存参数===================" + billParams);
 
 	                if(billParams.get("repairBillQrcodeFlag") != null){
 	                	repairBillQrcodeFlag = billParams.get("repairBillQrcodeFlag").toString();
@@ -149,9 +151,11 @@
 	                }
 	                if(billParams.get("repairSettPrintContent") != null){
 	                	repairSettPrintContent = billParams.get("repairSettPrintContent").toString();
+	                	repairSettPrintContent = repairSettPrintContent.replaceAll("(\r\n|\r|\n|\n\r)", "<br>");
 	                }
 	                if(billParams.get("repairEntrustPrintContent") != null){
 	                	repairEntrustPrintContent = billParams.get("repairEntrustPrintContent").toString();
+	                	repairEntrustPrintContent = repairEntrustPrintContent.replaceAll("(\r\n|\r|\n|\n\r)", "<br>");
 	                }
 	                if(billParams.get("repairPchsRtnFlag") != null){
 	                	repairPchsRtnFlag = billParams.get("repairPchsRtnFlag").toString();

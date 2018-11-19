@@ -344,43 +344,20 @@ function toMaintain(e){
 }
 
 //查询消息提醒，msg_Type消息类型
-function queryRemind (list){
-	var queryMaintain = 0;//11保养
-	var queryBusiness = 0;//13商业险
-	var queryCompulsoryInsurance = 0;//16交强险
-	var queryDrivingLicense = 0;//14驾照年审
-	var queryCar = 0;//15车辆年检
+function queryRemind (carExtendQty,contactorQty,messageQty){
+/*
 	var queryAppointment = 0;//6预约到店
-	var queryGuestBirthday = 0;//17客户生日
 	var queryEmployeeBirthday = 0;//18员工生日
-	
-	for(var i =0;i<list.length;i++){
-		if(list[i].msgType==11){
-			queryMaintain++;
-		}else if(list[i].msgType==13){
-			queryBusiness++;
-		}else if(list[i].msgType==16){
-			queryCompulsoryInsurance++;
-		}else if(list[i].msgType==14){
-			queryDrivingLicense++;
-		}else if(list[i].msgType==15){
-			queryCar++;
-		}else if(list[i].msgType==6){
-			queryAppointment++;
-		}else if(list[i].msgType==17){
-			queryGuestBirthday++;
-		}else if(list[i].msgType==18){
-			queryEmployeeBirthday++;
-		}
-	}
-	$("#queryMaintain span").text(queryMaintain);
-	$("#queryBusiness span").text(queryBusiness);
-	$("#queryCompulsoryInsurance span").text(queryCompulsoryInsurance);
-	$("#queryDrivingLicense span").text(queryDrivingLicense);
-	$("#queryCar span").text(queryCar);
-	$("#queryAppointment span").text(queryAppointment);
-	$("#queryGuestBirthday span").text(queryGuestBirthday);
-	$("#queryEmployeeBirthday span").text(queryEmployeeBirthday);
+*/	
+
+	$("#queryMaintain span").text(carExtendQty[0].needQuantity);
+	$("#queryBusiness span").text(carExtendQty[0].annualQuantity);
+	$("#queryCompulsoryInsurance span").text(carExtendQty[0].insureQuantity);
+	$("#queryDrivingLicense span").text(contactorQty[0].licenseQuantity);
+	$("#queryCar span").text(carExtendQty[0].veriQuantity);
+	$("#queryAppointment span").text(messageQty[0].appQuantity);
+	$("#queryGuestBirthday span").text(contactorQty[0].birQuantity);
+	$("#queryEmployeeBirthday span").text(messageQty[0].ebirQuantity);
 }
 
 //判断对象是否为{}
@@ -391,21 +368,19 @@ function isEmptyObject (obj){
 	return true;
 }
 function query (){
-	var queryMaintainUrl = baseUrl+"com.hsapi.repair.repairService.query.queryRemind.biz.ext";
+	var queryMaintainUrl = baseUrl+"com.hsapi.repair.repairService.query.homePageQuantity.biz.ext";
 	nui.ajax({
 		url : queryMaintainUrl,
 		type : "post",
 		cache : false,
-		data : JSON.stringify({
-			params: { 
-            	readSign : 1,
-            	readerTargetId : currEmpId
-            },
+		data : JSON.stringify({ 
             token:token
         }),
 		success : function(text) {
-			var list = text.data||0;
-			queryRemind(list); 
+			var carExtendQty = text.carExtendQty;
+			var contactorQty = text.contactorQty;
+			var messageQty = text.messageQty;
+			queryRemind(carExtendQty,contactorQty,messageQty); 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);

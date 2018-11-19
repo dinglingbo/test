@@ -36,7 +36,7 @@ $(document).ready(function(v){
 
 var params = {
 	    	readSign : 1,
-	    	readerTargetId : currEmpId
+/*	    	readerTargetId : currEmpId*/
 };
 	query(params);
 });
@@ -61,58 +61,17 @@ function query (params){
 }
 //查询消息提醒，msg_Type消息类型
 function queryRemind (list){
-	var queryMaintainList = [];//11保养
-	var queryBusinessList = [];//13商业险
-	var queryCompulsoryInsuranceList = [];//16交强险
-	var queryDrivingLicenseList = [];//14驾照年审
-	var queryCarList = [];//15车辆年检
+
 	var queryAppointmentList = [];//6预约到店
-	var queryGuestBirthdayList =[];//17客户生日
+
 	var queryEmployeeBirthdayList = [];//18员工生日
 	
 	for(var i =0;i<list.length;i++){
-		if(list[i].msgType==11){
-        	if(list[i].recordDate.indexOf(".") > -1){
-        		list[i].recordDate = list[i].recordDate.substring(0, list[i].recordDate.indexOf(".")-3);
-        	}
-			queryMaintainList.push(list[i]);
-		}else if(list[i].msgType==13){
-        	if(list[i].recordDate.indexOf(".") > -1){
-        		list[i].recordDate = list[i].recordDate.substring(0, list[i].recordDate.indexOf(".")-3);
-        	}
-			queryBusinessList.push(list[i]);
-		}else if(list[i].msgType==16){
-        	if(list[i].recordDate.indexOf(".") > -1){
-        		list[i].recordDate = list[i].recordDate.substring(0, list[i].recordDate.indexOf(".")-3);
-        	}
-			queryCompulsoryInsuranceList.push(list[i]);
-		}else if(list[i].msgType==14){
-        	if(list[i].recordDate.indexOf(".") > -1){
-        		list[i].recordDate = list[i].recordDate.substring(0, list[i].recordDate.indexOf(".")-3);
-        	}
-			queryDrivingLicenseList.push(list[i]);
-		}else if(list[i].msgType==15){
-        	if(list[i].recordDate.indexOf(".") > -1){
-        		list[i].recordDate = list[i].recordDate.substring(0, list[i].recordDate.indexOf(".")-3);
-        	}
-/*			var params = list[i].msgParams.split(",");
-			var queryCar ={};
-			queryCar.carId=(params[0].split(":"))[1];
-			queryCar.carNo=(params[1].split(":"))[1];
-			queryCar.dueDate=(params[2].split(":"))[1];
-			queryCar.guestId=(params[3].split(":"))[1];
-			queryCar.mtAdvisorId=(params[4].split(":"))[1];*/
-			queryCarList.push(list[i]);
-		}else if(list[i].msgType==6){
+		 if(list[i].msgType==6){
         	if(list[i].recordDate.indexOf(".") > -1){
         		list[i].recordDate = list[i].recordDate.substring(0, list[i].recordDate.indexOf(".")-3);
         	}
 			queryAppointmentList.push(list[i]);
-		}else if(list[i].msgType==17){
-        	if(list[i].recordDate.indexOf(".") > -1){
-        		list[i].recordDate = list[i].recordDate.substring(0, list[i].recordDate.indexOf(".")-3);
-        	}
-			queryGuestBirthdayList.push(list[i]);
 		}else if(list[i].msgType==18){
         	if(list[i].recordDate.indexOf(".") > -1){
         		list[i].recordDate = list[i].recordDate.substring(0, list[i].recordDate.indexOf(".")-3);
@@ -121,15 +80,7 @@ function queryRemind (list){
 		}
 	}
 
-		business.setData(queryBusinessList);
-		car.setData(queryCarList);
-		maintain.setData(queryMaintainList);
-		
-		compulsoryInsurance.setData(queryCompulsoryInsuranceList);
-		drivingLicense.setData(queryDrivingLicenseList);
 		appointment.setData(queryAppointmentList);
-		
-		guestBirthday.setData(queryGuestBirthdayList);
 		employeeBirthday.setData(queryEmployeeBirthdayList);
 
 
@@ -163,7 +114,7 @@ function quickSearch(type) {
     }
     var menunamestatus = nui.get("menunamestatus");
     menunamestatus.setText(queryname);
-    params.readerTargetId = currEmpId;
+/*    params.readerTargetId = currEmpId;*/
     	query(params);
 }
 

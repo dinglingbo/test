@@ -893,7 +893,7 @@ function choosePart(){
 		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.repair.DataBase.partSelectView.flow?token=" + token,
 		title : "配件管理",
-		width : 1300,
+		width : 1000,
 		height : 560,
 		allowDrag : true,
 		allowResize : true,

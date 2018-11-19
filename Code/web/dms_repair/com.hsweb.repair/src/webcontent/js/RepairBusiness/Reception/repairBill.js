@@ -1071,18 +1071,6 @@ function save(){
 
 
 function saveNoshowMsg(callback){
-	var data = billForm.getData();
-	 var desData = describeForm.getData();
-	 for(var v in desData){
-	      data[v] = desData[v];
-	 }
-	for ( var key in requiredField) {
-		if (!data[key] || $.trim(data[key]).length == 0) {
-	          nui.get(key).focus();
-	          showMsg(requiredField[key] + "不能为空!","W");
-			return;
-		}
-	 }
 	saveMaintain(function(data){
         if(data.id){
             fserviceId = data.id;
@@ -1185,13 +1173,6 @@ function saveNoshowMsg(callback){
         
     });
 }
-
-
-
-
-
-
-
 
 var requiredField = {
     carNo : "车牌号",
@@ -2679,6 +2660,18 @@ function chooseItem(){
     if(!main.id){
        // showMsg("请选择保存工单!","S");
        // return;
+    	 var data = billForm.getData();
+    	 var desData = describeForm.getData();
+    	 for(var v in desData){
+    	      data[v] = desData[v];
+    	 }
+    	for ( var key in requiredField) {
+    		if (!data[key] || $.trim(data[key]).length == 0) {
+    	          nui.get(key).focus();
+    	          showMsg(requiredField[key] + "不能为空!","W");
+    			return;
+    		}
+    	 }
 	  saveNoshowMsg();
     }
     var status = main.status||0;
@@ -2710,6 +2703,18 @@ function choosePackage(){
     if(!main.id){
        // showMsg("请选择保存套餐!","S");
        // return;
+    	 var data = billForm.getData();
+    	 var desData = describeForm.getData();
+    	 for(var v in desData){
+    	      data[v] = desData[v];
+    	 }
+    	for ( var key in requiredField) {
+    		if (!data[key] || $.trim(data[key]).length == 0) {
+    	          nui.get(key).focus();
+    	          showMsg(requiredField[key] + "不能为空!","W");
+    			return;
+    		}
+    	 }
        saveNoshowMsg();
     }
     var status = main.status||0;
@@ -3127,6 +3132,18 @@ function showBasicData(type){
     if(!maintain.id){
         //showMsg("请选择保存工单!","W");
         //return;
+    	 var data = billForm.getData();
+    	 var desData = describeForm.getData();
+    	 for(var v in desData){
+    	      data[v] = desData[v];
+    	 }
+    	for ( var key in requiredField) {
+    		if (!data[key] || $.trim(data[key]).length == 0) {
+    	          nui.get(key).focus();
+    	          showMsg(requiredField[key] + "不能为空!","W");
+    			return;
+    		}
+    	 }
     	saveNoshowMsg(function(){
     		maintain = billForm.getData();
     		var carVin = maintain.carVin;
@@ -3175,7 +3192,6 @@ function showBasicData(type){
     	    doSelectBasicData(BasicDataUrl,title,params,function(p1,p2,p3){
     	        loadDetail(p1, p2, p3);
     	    });
-
     }  
  }
 
@@ -3819,6 +3835,19 @@ function addExpenseAccount(){
 	}
 }
 
+function openOrderDetail(){
+	var data={};
+	data.id=billForm.getData().id;
+
+	if(data.id){
+		var item={};
+		item.id = "11111";
+	    item.text = "工单详情页";
+		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+data.id;
+		item.iconCls = "fa fa-cog";
+		window.parent.activeTabAndInit(item,data);
+	}
+}
 function newCheckMain() {  
     var data = billForm.getData();
     var item={};

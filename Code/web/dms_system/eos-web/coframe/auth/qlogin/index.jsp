@@ -30,7 +30,6 @@
     font-size: 20px;
     font-weight: bold;    
 }
-    
     #_sys_tip_msg_ {
         z-index: 9999;
         position: fixed;
@@ -80,7 +79,7 @@
     
 
 <div class="sidebar">
-    <div id="mainMenu"></div>
+    <div id="mainMenu" style="overflow-y:auto; overflow-x:hidden; width:400px !important; height:800px;"></div>
 </div>
 
 <div class="container">

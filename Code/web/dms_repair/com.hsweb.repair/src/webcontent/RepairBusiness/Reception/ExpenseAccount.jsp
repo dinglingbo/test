@@ -202,9 +202,11 @@
 		     showModified="false"
 		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true">
     <div property="columns">
-    	<div type="indexcolumn" headerAlign="center" align="center">序号</div>
+    	 <div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
+        <div field="orderindex" name="orderindex" headerAlign="center" allowSort="false" visible="true" width="20">序号</div>
         <div header="套餐信息">
             <div property="columns">
+             
             <div field="billPackageId" width="120" headerAlign="center" allowSort="true" visible="false">员工帐号</div>  
                 <div field="packageName" headerAlign="center" allowSort="false"
                      visible="true" width="100" header="套餐名称">

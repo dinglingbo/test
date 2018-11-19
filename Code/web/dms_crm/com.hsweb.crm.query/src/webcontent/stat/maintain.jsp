@@ -11,7 +11,7 @@
   --%>
 <head>
 	<title>首页提醒</title>
-	<script src="<%=request.getContextPath()%>/query/stat/js/maintain.js?v=1.1.3">
+	<script src="<%=request.getContextPath()%>/query/stat/js/maintain.js?v=1.1.5">
 	</script>
 </head>
 

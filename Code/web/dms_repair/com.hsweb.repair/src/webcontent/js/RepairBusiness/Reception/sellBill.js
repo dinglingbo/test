@@ -358,7 +358,7 @@ function doSetMainInfo(car){
     maintain.guestFullName = car.guestFullName;
     maintain.guestId = car.guestId;
     maintain.carModel = car.carModel;
-    maintain.billTypeId = 2;
+    maintain.billTypeId = 3;
     maintain.serviceTypeId = 3;
     maintain.mtAdvisorId = currEmpId;
     maintain.mtAdvisor = currUserName;
@@ -560,6 +560,64 @@ function save(){
         nui.unmask(document.body);
     });
 }
+
+function saveNoShowMsg(){
+    saveMaintain(function(data){
+        if(data.id){
+            var params = {
+                data:{
+                    guestId: data.guestId||0,
+                    contactorId: data.contactorId||0
+                }
+            }
+            getGuestContactorCar(params, function(text){
+                var errCode = text.errCode||"";
+                var guest = text.guest||{};
+                var contactor = text.contactor||{};
+                if(errCode == 'S'){
+                    $("#servieIdEl").html(data.serviceCode);
+                    var carNo = data.carNo||"";
+                    var tel = guest.mobile||"";
+                    var guestName = guest.fullName||"";
+                    var carVin = data.carVin||"";
+                    if(tel){
+                        tel = "/"+tel;
+                    }
+                    if(guestName){
+                        guestName = "/"+guestName;
+                    }
+                    if(carVin){
+                        carVin = "/"+carVin;
+                    }
+                    var t = carNo + tel + guestName + carVin;
+                    searchNameEl.setValue(t);
+                    searchNameEl.setEnabled(false);
+
+                    data.guestFullName = guest.fullName;
+                    data.guestMobile = guest.mobile;
+                    data.contactorName = contactor.name;
+                    data.mobile = contactor.mobile;
+
+                    billForm.setData(data);
+
+                    var p3 = {
+                        interType: "part",
+                        data:{
+                            serviceId: data.id||0
+                        }
+                    }
+                    loadDetail(p3);
+
+                }else{
+                    showMsg("数据加载失败,请重新打开工单!","W");
+                }
+
+            }, function(){});           
+        }
+        
+    },function(){});
+}
+
 var requiredField = {
     carNo : "车牌号",
     guestId : "客户",
@@ -577,7 +635,7 @@ function saveMaintain(callback,unmaskcall){
 			return;
 		}
     }
-    data.billTypeId = 2;
+    data.billTypeId = 3;
     data.serviceTypeId = 1 ;
     data.mtAdvisorId = currUserId;
     data.mtAdvisor = currUserName;
@@ -611,7 +669,7 @@ function loadMaintain(callback,unmaskcall){
 			return;
 		}
     }
-    data.billTypeId = 2;
+    data.billTypeId = 3;
     
     nui.ajax({
         url : saveMaintainUrl,
@@ -881,14 +939,21 @@ function choosePart(){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
      if(!main.id){
-        showMsg("请选择保存工单!","S");
-        return;
-    }
+        //showMsg("请选择保存工单!","S");
+        //return;
+    	var data = billForm.getData();
+		for ( var key in requiredField) {
+			if (!data[key] || $.trim(data[key]).length == 0) {
+	            showMsg(requiredField[key] + "不能为空!","W");
+				return;
+			}
+	    }
+		saveNoShowMsg();
+    }     
     if(isSettle == 1){
         showMsg("此单已结算,不能添加配件!","S");
         return;
     }
-
     nui.open({
 		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.repair.DataBase.partSelectView.flow?token=" + token,
@@ -1092,7 +1157,7 @@ function onCellCommitEdit(e) {
  * 修改维修主表的信息
  * */
 var SaveUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.saveAndUpdReturnRpsPart.biz.ext";
-var saveMaintain = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
+var saveMaintain2 = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 
 function saveBatch(){
 	var main = billForm.getData();
@@ -1124,7 +1189,7 @@ function saveBatch(){
 		});
 	    
 		nui.ajax({
-			url : saveMaintain,
+			url : saveMaintain2,
 			type : 'POST',
 			data : json,
 			cache : false,

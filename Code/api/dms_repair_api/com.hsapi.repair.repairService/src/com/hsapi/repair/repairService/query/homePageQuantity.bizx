@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="homePageQuantity.bizx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="homePageQuantity.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="&#xD;&#xA;com.hsapi.repair.repairService.query.homePageQuantity" title="Administrator&#x9;18-11-19 上午11:56">
     <location x="418" y="382"/>
     <size height="100" width="498"/>
@@ -38,6 +38,8 @@
       <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
+    <targetConnections>link9</targetConnections>
+    <targetConnections>link10</targetConnections>
     <location x="392" y="205"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -74,12 +76,12 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">common</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
       <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.repairService.query.homePageQuantity</process:inputVariable>
       <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">params</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">data</process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">carExtendQty</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -104,14 +106,16 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
     <targetConnections>link0</targetConnections>
-    <targetConnections>link7</targetConnections>
+    <targetConnections>link8</targetConnections>
     <location x="870" y="100"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="commonj.sdo.DataObject[]" name="data" type="query" valueType="Java">data</process:return>
-      <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="0" language="commonj.sdo.DataObject[]" name="carExtendQty" type="query" valueType="Java">carExtendQty</process:return>
+      <process:return id="1" language="commonj.sdo.DataObject[]" name="contactorQty" type="query" valueType="Java">contactorQty</process:return>
+      <process:return id="2" language="commonj.sdo.DataObject[]" name="messageQty" type="query" valueType="Java">messageQty</process:return>
+      <process:return id="3" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="4" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
@@ -120,9 +124,14 @@
     <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="queryByNamedSql1" displayName="queryByNamedSql" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
-      <targetNode>invokePojo2</targetNode>
+      <targetNode>end1</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="615" y="98"/>
@@ -134,11 +143,11 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">common</process:inputVariable>
-      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.repairService.query.homePageQuantity</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.repairService.query.homePageQuantity2</process:inputVariable>
       <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">params</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">data</process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">messageQty</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
@@ -146,37 +155,14 @@
     <figSize height="17" width="116"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="queryByNamedSql2" displayName="queryByNamedSql" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo2</sourceNode>
-      <targetNode>end1</targetNode>
-    </sourceConnections>
-    <targetConnections>link6</targetConnections>
-    <location x="720" y="98"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo2label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.queryByNamedSql</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">common</process:inputVariable>
-      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.repairService.query.homePageQuantity</process:inputVariable>
-      <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">params</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">data</process:outputVariable>
-    </process:outputVariables>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="673" y="134"/>
-    <figSize height="17" width="116"/>
-    <node>invokePojo2</node>
-  </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="queryByNamedSql3" displayName="queryByNamedSql" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="508" y="98"/>
@@ -187,12 +173,12 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">common</process:inputVariable>
-      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.repairService.query.homePageQuantity</process:inputVariable>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.repairService.query.homePageQuantity1</process:inputVariable>
       <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">params</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">data</process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.Object[]" valueType="Java">contactorQty</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
@@ -205,12 +191,15 @@
   <process:info author="Administrator" createTime="2018-11-19 11:53:35" date="2018-11-19Z" description="" name="homePageQuantity" version="7.0.0.0"/>
   <process:variables/>
   <process:inputs varArgs="false">
-    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
+    <process:input anyType="commonj.sdo.DataObject" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
-    <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="data"/>
+    <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="carExtendQty"/>
+    <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="contactorQty"/>
+    <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="messageQty"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
 </process:tBusinessLogic>

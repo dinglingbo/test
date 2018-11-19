@@ -27,6 +27,7 @@ var visitManEl = null;
 var visitIdEl = null;
 var table1Form = null;
 var visitConForm = null;
+var hash = {};
 
 $(document).ready(function(){
 
@@ -76,6 +77,21 @@ $(document).ready(function(){
 		nui.get("scoutMan").setData(memList); 
 	}); 
 
+    initServiceType("serviceTypeId",function(data) {
+
+    });
+
+    initDicts({
+        //carSpec:CAR_SPEC,//车辆规格
+        //kiloType:KILO_TYPE,//里程类别
+        //source:GUEST_SOURCE,//客户来源
+        identity:IDENTITY //客户身份
+    },function(){
+    	hash.initDicts = true;
+    });
+
+    initCarBrand("carBrandId",function(data) {
+    });
 });
 
 function mtAdvisorChanged(e){

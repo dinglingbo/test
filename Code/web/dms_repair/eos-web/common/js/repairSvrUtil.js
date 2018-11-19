@@ -628,9 +628,10 @@ function doPrint(params){
 	var source = params.source||0;
 	var serviceId = params.serviceId||0;
 	var sourceUrl = "";
+	var printName = currRepairSettorderPrintShow||currOrgName;
 	var p = {
 		serviceId : serviceId,
-		comp : currOrgName,
+		comp : printName,
 		partApiUrl:apiPath + partApi + "/",
 		baseUrl: apiPath + repairApi + "/",
 		sysUrl: apiPath + sysApi + "/",

@@ -889,29 +889,29 @@
 	SELECT
 		count(
 			CASE
-			WHEN is_annual_remind = 1
-			AND annual_status = 0 THEN
+			WHEN a.is_annual_remind = 1
+			AND a.annual_status = 0 THEN
 				1
 			END
 		) AS annualQuantity,
 		count(
 			CASE
-			WHEN is_insure_remind = 1
-			AND insure_status = 0 THEN
+			WHEN a.is_insure_remind = 1
+			AND a.insure_status = 0 THEN
 				1
 			END
 		) AS insureQuantity,
 		count(
 			CASE
-			WHEN is_veri_remind = 1
-			AND veri_status = 0 THEN
+			WHEN a.is_veri_remind = 1
+			AND a.veri_status = 0 THEN
 				1
 			END
 		) AS veriQuantity,
 		count(
 			CASE
-			WHEN is_need_remind = 1
-			AND remind_status = 0 THEN
+			WHEN a.is_need_remind = 1
+			AND a.remind_status = 0 THEN
 				1
 			END
 		) AS needQuantity

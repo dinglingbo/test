@@ -323,7 +323,13 @@ function toMaintain(e){
 	    var params = {id:e};
 	    window.parent.activeTabAndInit(item,params);
 	}else if(e==8){
-		
+	    var item={};
+	    item.id = "2261";
+	    item.text = "保养提醒";
+	    item.url = webPath + contextPath + "/com.hsweb.crm.manage.maintainRemind.flow?token="+token;
+	    item.iconCls = "fa fa-file-text";
+	    var params = {id:e};
+	    window.parent.activeTab(item);
 	}else{
 	    var item={};
 	    item.id = "te";

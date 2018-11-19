@@ -421,6 +421,8 @@ function addCar() {
 		showMsg("请先保存上面的客户信息!","W");
 		return;
 	}
+	nui.get("carNo").enable();
+	nui.get("vin").enable();
 	carInfoFrom.setData("");
 	carview.show();
 }
@@ -432,6 +434,7 @@ function addContact() {
 		return;
 	}
 	contactview.show();
+	contactInfoForm.setData("");
 	nui.get("name").setValue(fullName);
 	nui.get("mobile2").setValue(mobile);
 }

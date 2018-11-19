@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.3.6"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.3.7"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -130,10 +130,10 @@
         <input class="nui-hidden" name="sourceServiceId"/>
         <input class="nui-hidden" name="isSettle"/>
         <input id="enterDate" name="enterDate" class="nui-datepicker"visible="false"nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
-        <table  style=" left:0;right:0;margin: 0 auto;"> 
+        <table  style=" left:0;right:0;margin: 0 auto;width:100%"> 
             <tr>   
                 <td class="title required">车牌号:</td> 
-                <td class=""><input  class="nui-textbox" name="carNo" id="carNo" /></td>
+                <td class=""><input  class="nui-textbox" name="carNo" id="carNo" style="width:100%;"/></td>
                 <td class="title required">
                     <label>业务类型:</label>
                 </td>
@@ -148,7 +148,7 @@
                         allowInput="true"
                         showNullItem="false"
                         valueFromSelect="true"
-                        nullItemText="请选择..."/>
+                        nullItemText="请选择..." style="width:100%;"/>
                 </td>
                 <td class="title required">
                     <label>服务顾问：</label>
@@ -164,28 +164,28 @@
                             allowInput="true"
                             showNullItem="false"
                             valueFromSelect="true"
-                            nullItemText="请选择..."/>
+                            nullItemText="请选择..." style="width:100%;"/>
                 </td>
                 <td class="title">进厂里程:</td> 
-                <td class=""><input  class="nui-textbox" name="enterKilometers"/></td>
+                <td class=""><input  class="nui-textbox" name="enterKilometers" style="width:100%;"/></td>
                 <td class="title">备注:</td> 
-                <td class="" colspan=""><input  class="nui-textbox" name="remark"/></td>
+                <td class="" colspan=""><input  class="nui-textbox" name="remark" style="width:100%;"/></td>
             </tr>
             <tr>   
                 <td class="title required">客户名称:</td> 
-                <td class=""><input  class="nui-textbox" name="guestName" id="guestName" /></td>
+                <td class=""><input  class="nui-textbox" name="guestName" id="guestName" style="width:100%;"/></td>
                 <td class="title required">客户手机:</td> 
-                <td class=""><input  class="nui-textbox" name="guestTel" id="guestTel" /></td>
-                <td class="title required">送修人名称:</td> 
-                <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" /></td>
-                <td class="title required">送修人手机:</td> 
-                <td class=""><input  class="nui-textbox" name="contactorTel" id="contactorTel" /></td>
+                <td class=""><input  class="nui-textbox" name="guestTel" id="guestTel"  style="width:100%;"/></td>
+                <td class="title required">联系人名称:</td> 
+                <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" style="width:100%;"/></td>
+                <td class="title required">联系人手机:</td> 
+                <td class=""><input  class="nui-textbox" name="contactorTel" id="contactorTel" style="width:100%;"/></td>
                 <td class="title">开单时间:</td> 
                 <td class="">
                     <input id="recordDate"
                     name="recordDate"
                     allowInput="false" format="yyyy-MM-dd"
-                    class="nui-datepicker" />
+                    class="nui-datepicker" style="width:100%;"/>
                 </td>
             </tr>
         </table>

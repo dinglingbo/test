@@ -3635,6 +3635,7 @@ function pay(){
         var sellData = sellForm.getData();
         ycAmt = parseFloat(tcAmt)+parseFloat(gsAmt);
         sellData.ycAmt = ycAmt;
+        sellData.mtAmt = sellData.totalSubtotal;
         var params = {
             serviceId:data.id||0,
             guestId:data.guestId||0,

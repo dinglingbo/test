@@ -174,7 +174,7 @@
       <sourceNode>assign3</sourceNode>
       <targetNode>assign4</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="综合" displayName="连接线" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
@@ -184,7 +184,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link10" name="link10" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link10" name="洗美" displayName="连接线" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign6</targetNode>
       <process:transitionCondition>
@@ -194,7 +194,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="理赔" displayName="连接线" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign7</targetNode>
       <process:transitionCondition>
@@ -212,6 +212,24 @@
       <process:from type="query" pattern="reference">maintain/billTypeId</process:from>
       <process:to type="query">billTypeId</process:to>
     </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <location x="349" y="238"/>
+    <figSize height="17" width="32"/>
+    <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <targetConnections>link12</targetConnections>
+    <targetConnections>link13</targetConnections>
+    <targetConnections>link14</targetConnections>
+    <location x="454" y="202"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
       <process:to type="query">modelMain/tenantId</process:to>
@@ -244,24 +262,26 @@
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">modelMain/modifyDate</process:to>
     </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="349" y="238"/>
-    <figSize height="17" width="32"/>
-    <node>assign3</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign4</sourceNode>
-      <targetNode>invokePojo1</targetNode>
-    </sourceConnections>
-    <targetConnections>link7</targetConnections>
-    <targetConnections>link12</targetConnections>
-    <targetConnections>link13</targetConnections>
-    <targetConnections>link14</targetConnections>
-    <location x="454" y="202"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsPackage</process:from>
+      <process:to type="query">condPkg/_entity</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">serviceId</process:from>
+      <process:to type="query">condPkg/_expr[1]/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">condPkg/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">condItem/_entity</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">condItem/_expr[1]/_dateRule</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="452" y="238"/>
@@ -381,6 +401,10 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbBillModel" name="modelMain"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsPackage" name="pkgList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="condPkg"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsItem" name="itemList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="condItem"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="模板名称" isArray="false" name="modelName" primitiveType="String"/>

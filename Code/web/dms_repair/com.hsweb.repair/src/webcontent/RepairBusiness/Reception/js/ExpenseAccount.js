@@ -135,6 +135,7 @@ $(document).ready(function () {
 		        			var discountAmt = data[i].discountAmt;
 		        			var remark = data[i].remark;
 		        			var unitPrice = data[i].unitPrice;
+		        			var orderindex = data[i].orderIndex;
 		        			var itemId = 0;
 		        			if(data[i].billItemId == 0){
 		        				itemId = data[i].id;
@@ -150,7 +151,7 @@ $(document).ready(function () {
 		        					discountAmt : discountAmt,
 		        					remark : remark,
 		        					unitPrice : unitPrice,
-		        					orderindex : data[i].orderIndex
+		        					orderindex : orderindex
 		        			};
 		        			var dataAll = rpsItemGrid.getData();
 		        			rpsItemGrid.addRow(newRow,dataAll.length);
@@ -376,6 +377,11 @@ function choosePart(){//配件
             iframe.contentWindow.setData(params);
 		},
 		ondestroy : function(action) {
+			//先获取这一行有多少
+			var billItemId = null;
+			if(row.id){
+				
+			}
             var iframe = this.getIFrameEl();
             var data = iframe.contentWindow.getData();
             data = data.part || {};

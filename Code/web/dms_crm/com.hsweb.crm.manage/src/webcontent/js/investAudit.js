@@ -147,7 +147,11 @@ function onRowclick(e){
 }
 
 function onAuditClick(auditSign){
-	var data = investGrid.getSelected()
+	var data = investGrid.getSelected();
+	if(data == null){
+		nui.alert("请先选择一条数据");
+		return;
+	}
 	if(data.auditSign != 0){
 		nui.alert("已审核，无法再次审核");
 		return;

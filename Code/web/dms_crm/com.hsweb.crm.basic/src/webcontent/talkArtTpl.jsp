@@ -29,12 +29,12 @@
                 <input class="nui-textbox" name="recorder" id="recorder" enabled="true"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="editgroup">
-                    <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="add" enabled="true">新增话术</a>
-                    <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">修改话术</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="add()" id="add" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增话术</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改话术</a>
                 </span>
                 <span class="selgroup" style="display:none;">
-                    <a class="nui-button" iconCls="icon-edit" plain="true" onclick="doSelect" id="select" enabled="true">选择话术</a>
-                    <a class="nui-button" iconCls="icon-edit" plain="true" onclick="onCancel" id="cancel" enabled="true">取消选择</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="doSelect" id="select" enabled="true"><span class="fa fa-check fa-lg"></span>&nbsp;选择话术</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onCancel" id="cancel" enabled="true"><span class="fa fa-close fa-lg"></span>&nbsp;取消选择</a>
                 </span>
             </td>
         </tr>

@@ -10,7 +10,7 @@ $(document).ready(function(v){
     basicInfoForm = new nui.Form("#basicInfoForm");
     typeId = nui.get("typeId");
     content = nui.get("content");
-    recorder = nui.get("recorder");
+    recorder = nui.get("recorder"); 
     recordDate = nui.get("recordDate");
     modifier = nui.get("modifier");
     modifyDate = nui.get("modifyDate");

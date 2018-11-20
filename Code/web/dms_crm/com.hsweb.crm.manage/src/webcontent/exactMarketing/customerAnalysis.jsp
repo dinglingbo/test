@@ -27,18 +27,24 @@
 </style>  
 </head>
 <body>
-	<div class="nui-fit">
+	
 		<div  class="nui-toolbar" style="padding:2px;border-bottom:1;">
                 <table id="top"style="width:100%;">
                     <tr>
                         <td style="width:100%;">
-                            	消费次数：<input class="nui-textbox" width="100px" id="" name="" selectOnFocus="true" enabled="true" emptyText=""/>
-                            	最近消费：<input class="nui-textbox" width="100px" id="" emptyText=""  selectOnFocus="true" name=""/>         
-                            	活动周期：<input class="nui-textbox" width="100px" id="" emptyText="" selectOnFocus="true" name=""/>
+                            	消费次数：<input class="nui-textbox" width="" id="" name="" selectOnFocus="true" enabled="true" emptyText=""/>
+                            	最近消费：<input class="nui-textbox" width="" id="" emptyText=""  selectOnFocus="true" name=""/>         
+                            	活动周期：<input class="nui-textbox" width="" id="" emptyText="" selectOnFocus="true" name=""/>
                             	消费金额：<input id="" visible="true" class="nui-textbox" name="" />
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:100%;">
+                            
                             	业务类型：<input id="" visible="true" class="nui-combobox" name="" />
-                            	   关键字：<input id="" visible="true" class="nui-textbox" name="" />
-                            	   客单价：<input id="" visible="true" class="nui-textbox" name="" />
+                      &nbsp;&nbsp; 关键字：<input id="" visible="true" class="nui-textbox" name="" />
+                    &nbsp;&nbsp; &nbsp;客单价：<input id="" visible="true" class="nui-textbox" name="" />
                             	服务顾问：<input id="" visible="true" class="nui-combobox" name="" />
                             <span class="separator"></span>
                             <a class="nui-button" iconCls="" plain="true" onclick="morePartSearch" id="saveBtn"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
@@ -47,7 +53,7 @@
                     </tr>
                 </table>
             </div>
-            
+      <div class="nui-fit">   
 		<div id="typeGridTabs" class="nui-tabs" name="gridTabs"
            activeIndex="0" 
            style="width:100%; height:100%;" 

@@ -71,8 +71,8 @@ a {
                 
             <input class="nui-textbox" id="name" name="name" emptyText="输入客户姓名" width="120" />
             <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" />
-            <input class="nui-combobox" id="status" name="status" emptyText="选择维修进程" data="con_data_status" valueField="id" textField="text" showNullItem="true" nullItemText="所有"/>
-            <input class="nui-combobox" id="isSettle" name="isSettle" emptyText="选择结算状态"  data="con_data_isSettle" valueField="id" textField="text" showNullItem="true" nullItemText="所有"/>
+<!--             <input class="nui-combobox" id="status" name="status" emptyText="选择维修进程" data="con_data_status" valueField="id" textField="text" showNullItem="true" nullItemText="所有"/> -->
+<!--             <input class="nui-combobox" id="isSettle" name="isSettle" emptyText="选择结算状态"  data="con_data_isSettle" valueField="id" textField="text" showNullItem="true" nullItemText="所有"/> -->
             <input name="serviceTypeId"
             id="serviceTypeId"
             class="nui-combobox width1"
@@ -109,10 +109,10 @@ a {
         <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
         <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
         <div field="carModel" name="carModel" width="130" headerAlign="center" align="center">品牌/车型</div>
-        <div field="status" name="status" width="30" headerAlign="center" align="center">进程</div>
-        <div field="serviceTypeName" name="serviceTypeName" width="40" headerAlign="center" align="center">业务类型</div>
-        <div field="isSettle" name="isSettle" width="30" headerAlign="center" align="center">结算状态</div>
-        <div field="enterDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">进厂日期</div>
+        <div field="billTypeId" name="billTypeId" width="30" headerAlign="center" align="center">工单类型</div>
+        <div field="serviceTypeName" name="serviceTypeName" width="80" headerAlign="center" align="center">业务类型</div>
+<!--         <div field="isSettle" name="isSettle" width="30" headerAlign="center" align="center">结算状态</div> -->
+        <div field="enterDate" name="recordDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">进厂日期</div>
         <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
     </div> 
 </div>
@@ -243,9 +243,9 @@ a {
             name:nui.get("name").value,
             sRecordDate:sdate,
             eRecordDate:edate,
-            status:tstatus.value,
+            status:1,
             serviceTypeId:nui.get("serviceTypeId").value,
-            isSettle:isSettle.value,
+//             isSettle:isSettle.value,
             token:token
         };
         mainGrid.load({params:params,token:token});
@@ -296,6 +296,20 @@ a {
                 e.cellHtml = "未结算";
             }else if(value == 1){
             	e.cellHtml = "已结算";
+            }
+        }else if(e.field == "billTypeId"){
+        	if (value == 0) {
+                e.cellHtml = "综合";
+            }else if(value == 1){
+            	e.cellHtml = "检查";
+            }else if (value == 2) {
+                e.cellHtml = "洗美";
+            }else if(value == 3){
+            	e.cellHtml = "销售";
+            }else if (value == 4) {
+                e.cellHtml = "理赔";
+            }else if(value == 5){
+            	e.cellHtml = "退货";
             }
         }
     });

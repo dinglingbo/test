@@ -49,7 +49,7 @@
                         	   状态：<input id="" visible="true" class="nui-textbox" name="" />                                    
                         	<span class="separator"></span>
                             <a class="nui-button" iconCls="" plain="true" onclick="morePartSearch" id=""><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                            <a class="nui-button" iconCls="" plain="true" onclick="" id=""><span class="fa fa-plus fa-lg"></span>&nbsp;添加商机</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="addBusinessOpp" id=""><span class="fa fa-plus fa-lg"></span>&nbsp;添加商机</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="" id=""><span class="fa fa-edit fa-lg"></span>&nbsp;商机设置</a>
                         </td>
                     </tr>
@@ -113,6 +113,49 @@
 
 	<script type="text/javascript">
     	nui.parse();
+    	function addBusinessOpp(){
+    		nui.open({
+			url : webPath+ crmDomain+ "/manage/exactMarketing/addBusinessOpp.jsp?token"+ token,
+			title : "添加商机",
+			width : 500,
+			height : 300,
+			allowDrag : false,
+			allowResize : false,
+			onload : function() {
+				var iframe = this.getIFrameEl();
+
+
+// 				iframe.contentWindow.SetData(params);
+			},
+			ondestroy : function(action) {
+				if (action == 'ok') {
+
+				}
+			}
+		});
+    	}
+    	
+    	function editMatinRemind(){
+    		nui.open({
+			url : webPath+ crmDomain+ "/manage/exactMarketing/addBusinessOpp.jsp?token"+ token,
+			title : "项目提醒设置",
+			width : 500,
+			height : 300,
+			allowDrag : false,
+			allowResize : false,
+			onload : function() {
+				var iframe = this.getIFrameEl();
+
+
+// 				iframe.contentWindow.SetData(params);
+			},
+			ondestroy : function(action) {
+				if (action == 'ok') {
+
+				}
+			}
+		});
+    	}
     </script>
 </body>
 </html>

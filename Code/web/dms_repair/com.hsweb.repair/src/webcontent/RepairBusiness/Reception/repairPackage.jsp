@@ -120,8 +120,8 @@
             </tr>
             <tr >
                 <td colspan="2" style="text-align: center;">
-                    <a class="nui-button"  plain="false" onclick="closePkgRateSetWin()">取消</a>
                     <a class="nui-button"  plain="false" onclick="surePkgRateSetWin()" id="pkgOk">确定</a>
+                    <a class="nui-button"  plain="false" onclick="closePkgRateSetWin()">取消</a>
                 </td>
             </tr>
         </table>

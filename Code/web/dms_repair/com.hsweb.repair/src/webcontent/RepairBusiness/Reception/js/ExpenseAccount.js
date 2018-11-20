@@ -88,7 +88,8 @@ $(document).ready(function () {
 		        					packageName : packageName,
 		        					subtotal : subtotal,
 		        					rate : rate,
-		        					amt : amt
+		        					amt : amt,
+		        					orderindex : data[i].orderIndex
 		        			};
 		        			var dataAll = rpsPackageGrid.getData();
 		        			rpsPackageGrid.addRow(newRow,dataAll.length);
@@ -596,7 +597,8 @@ function setInitData(params){
 		nui.ajax({
 	        url: baseUrl+"com.hsapi.repair.repairService.svr.billqyeryMaintainList.biz.ext",
 	        type: "post",
-	        cache: false,
+	        //cache: false,
+	        async: false,
 	        data: {
 	        	sourceServiceId : params.id
 	        },

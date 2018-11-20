@@ -233,6 +233,7 @@
     <location x="525" y="143"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart2label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="pkgList" iterableElement="pkgTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart2label" name="label" nodeType="label">
@@ -276,6 +277,7 @@
     <location x="825" y="144"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart3label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="itemList" iterableElement="itemTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart3label" name="label" nodeType="label">

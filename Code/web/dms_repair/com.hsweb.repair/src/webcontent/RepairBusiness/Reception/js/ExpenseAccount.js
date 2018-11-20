@@ -78,18 +78,28 @@ $(document).ready(function () {
 		        	var data = nui.decode(text.data);
 		        	if(data.length > 0){
 		        		for(var i = 0 , l = data.length ; i < l ; i ++){
+		        			//表示是套餐
 		        			var billPackageId = data[i].billPackageId;
 		        			var packageName = data[i].prdtName || "";
 		        			var subtotal = data[i].subtotal || "";
 		        			var rate = data[i].rate || "";
 		        			var amt = data[i].amt || "";
+		        			var remark = data[i].remark;
+		        			var discountAmt = data[i].discountAmt;
+		        			var backageId = 0;
+		        			if(data[i].billPackageId==0){
+			        			 backageId = data[i].id;
+		        			}
 		        			var newRow = {
 		        					billPackageId : billPackageId,
 		        					packageName : packageName,
 		        					subtotal : subtotal,
 		        					rate : rate,
 		        					amt : amt,
-		        					orderindex : data[i].orderIndex
+		        					orderindex : data[i].orderIndex,
+		        					remark : remark,
+		        					discountAmt : discountAmt,
+		        					backageId : backageId
 		        			};
 		        			var dataAll = rpsPackageGrid.getData();
 		        			rpsPackageGrid.addRow(newRow,dataAll.length);

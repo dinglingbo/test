@@ -158,33 +158,33 @@ pageEncoding="UTF-8" session="false" %>
                             
                                 <tr>  
                                     <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>保养到期提醒：</td>
-                                    <td class="tablenum"><a id="queryMaintain" href="javascript:toMaintain(8)"><span></span></a></td>
+                                    <td class="tablenum"><a id="queryMaintain" href="javascript:toMaintain(8)" style="color: #61acc9;"><span></span></a></td>
                                     <td style="width:0.05%;"></td>
                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>商业险到期提醒：</td>
-                                   <td class="tablenum"><a id="queryBusiness" href="javascript:toMaintain(3)"><span></span></a></td>
+                                   <td class="tablenum"><a id="queryBusiness" href="javascript:toMaintain(3)" style="color: #61acc9;"><span></span></a></td>
                                 </tr>
 
                                 <tr>
                                     <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>交强险到期提醒：</td>
-                                    <td class="tablenum"><a id="queryCompulsoryInsurance" href="javascript:toMaintain(4)"><span></span></a></td>
+                                    <td class="tablenum"><a id="queryCompulsoryInsurance" href="javascript:toMaintain(4)" style="color: #61acc9;"><span></span></a></td>
                                    <td ></td>
                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>驾照年审提醒：</td>
-                                   <td class="tablenum"><a id="queryDrivingLicense" href="javascript:toMaintain(5)"><span></span></a></td>
+                                   <td class="tablenum"><a id="queryDrivingLicense" href="javascript:toMaintain(5)" style="color: #61acc9;"><span></span></a></td>
                                </tr>
                                <tr>
                                 <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>车辆年检提醒：</td>
-                                <td class="tablenum"><a id="queryCar" href="javascript:toMaintain(6)"><span></span></a></td>
+                                <td class="tablenum"><a id="queryCar" href="javascript:toMaintain(6)" style="color: #61acc9;"><span></span></a></td>
                                 <td ></td>
                                 <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>预约到店提醒：</td>
-                                <td class="tablenum"><a id="queryAppointment" href="javascript:toMaintain(1)"><span></span></a></td>
+                                <td class="tablenum"><a id="queryAppointment" href="javascript:toMaintain(1)" style="color: #61acc9;"><span></span></a></td>
                               </tr>
 
                                <tr>
                                 <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>客户生日提醒：</td>
-                                <td class="tablenum"><a id="queryGuestBirthday" href="javascript:toMaintain(7)"><span></span></a></td>
+                                <td class="tablenum"><a id="queryGuestBirthday" href="javascript:toMaintain(7)" style="color: #61acc9;"><span></span></a></td>
                                 <td ></td>
                                 <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>员工生日提醒：</td>
-                                <td class="tablenum"><a id="queryEmployeeBirthday" href="javascript:toMaintain(2)"><span></span></a></td>
+                                <td class="tablenum"><a id="queryEmployeeBirthday" href="javascript:toMaintain(2)" style="color: #61acc9;"><span></span></a></td>
                               </tr>
 
                           </table>

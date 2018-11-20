@@ -88,6 +88,34 @@
                         <input class="nui-textbox" name="idNo" width="100%" />
                     </td>
                 </tr>
+                 <tr>
+                    <td class="form_label">
+                        <label>驾驶证号：</label>
+                    </td>
+                    <td>
+                 	   <input class="nui-textbox" name="licenseNo" width="100%" />
+                    </td>
+                    <td class="form_label">
+                        <label>准备车型(A1)：</label>
+                    </td>
+                    <td>
+                    	<input class="nui-textbox" name="licenseType" width="100%" />
+                    </td>
+                </tr>
+                 <tr>
+                    <td class="form_label">
+                        <label>初次领证时间：</label>
+                    </td>
+                    <td>
+                        <input name="licenseRecordDate" allowInput="false" class="nui-datepicker" width="100%" />
+                    </td>
+                    <td class="form_label">
+                        <label>驾照到期日期：</label>
+                    </td>
+                    <td>
+                        <input name="licenseOverDate" allowInput="false" class="nui-datepicker" width="100%" />
+                    </td>
+                </tr>
                 <tr>
                     <td class="form_label">
                         <label>生日类型：</label>
@@ -457,6 +485,15 @@
                                     </div>
                                     <div field="birthday" allowSort="true" align="left" headerAlign="center" width="">
                                         生日
+                                    </div>
+                                     <div field="licenseRecordDate" allowSort="true" align="left" headerAlign="center" width="">
+                                        初次领证日期
+                                    </div>
+                                    <div field="licenseOverDate" allowSort="true" align="left" headerAlign="center" width="">
+                                        驾照到期日期
+                                    </div>
+                                     <div field="licenseNo" allowSort="true" align="left" headerAlign="center" width="">
+                                        驾照证号
                                     </div>
                                     <div field="idNo" allowSort="true" align="left" headerAlign="center" width="">
                                         身份证号码

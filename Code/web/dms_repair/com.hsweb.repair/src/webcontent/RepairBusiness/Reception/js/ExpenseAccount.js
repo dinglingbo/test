@@ -377,16 +377,28 @@ function choosePart(){//配件
             iframe.contentWindow.setData(params);
 		},
 		ondestroy : function(action) {
-			//先获取这一行有多少
-			var billItemId = null;
-			if(row.id){
-				
+			var orderindex = 0;
+			//获取这一工时下有多少个配件
+			var itemPart = rpsItemGrid.getData();
+			var index = rpsItemGrid.indexOf(selectRow);
+			for(var i=0;i<itemPart.length;i++){
+				if(itemPart[i].billItemId == row.itemId){
+					orderindex = parseInt(orderindex) + 1;
+				}
 			}
+			if(orderindex){
+				orderindex = parseInt(orderindex) + 1;
+				index = parseInt(index)+parseInt(orderindex);
+				orderindex = row.orderindex + "." + orderindex;
+			}else{
+				orderindex = row.orderindex + ".1";
+				index = parseInt(index)+1;
+			}		
             var iframe = this.getIFrameEl();
             var data = iframe.contentWindow.getData();
             data = data.part || {};
         	var name = data.name || "";
-        	data = rpsItemGrid.getData();
+        	/*data = rpsItemGrid.getData();
         	
         	
         	var itemName = data.name || "";
@@ -405,17 +417,17 @@ function choosePart(){//配件
         		num = parseFloat(num)+0.1;
             	num = num.toFixed(1);
             	index = rpsItemGrid.indexOf(selectRow);
-        	}
+        	}*/
         	var newRow = {
-        			itemName : itemName,
-        			itemTime : 0,
+        			itemName : name,
+        			itemTime : 1,
         			unitPrice : 0,
         			rate : 0,
         			subtotal : 0,
-        			pid : selectRow.myId,
-        			orderindex : num
+        			billItemId: row.itemId,
+        			orderindex : orderindex
         	};
-        	rpsItemGrid.addRow(newRow,index+1);
+        	rpsItemGrid.addRow(newRow,index);
 		}
 	});
 }

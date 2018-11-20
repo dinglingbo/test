@@ -138,8 +138,6 @@
                 	billParamsObj = attr.get("billParams");
                 	billParams = Utils.obj2Map(billParamsObj);
                 	
-                	System.out.println("==================系统缓存参数===================" + billParams);
-
 	                if(billParams.get("repairBillQrcodeFlag") != null){
 	                	repairBillQrcodeFlag = billParams.get("repairBillQrcodeFlag").toString();
 	                }

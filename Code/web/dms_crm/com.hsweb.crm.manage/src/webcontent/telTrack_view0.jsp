@@ -12,7 +12,6 @@
 <title>电话跟踪</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=webPath + contextPath%>/manage/js/telTrack.js?v=1.0.10"></script>
-<link href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.4" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -84,15 +83,14 @@
                 <a class="nui-button"  plain="true" onclick="edit()" id="edit" enabled="true"><span class="fa fa-wrench fa-lg"></span>&nbsp;预约维修</a>
                 <a class="nui-button"  plain="true" onclick="edit()" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;业绩登记</a>
                 <a class="nui-button"  plain="true" onclick="newClient()" id="edit" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增客户</a>
+                <a class="nui-button"  plain="true" onclick="" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改客户资料</a>
             </td>
         </tr>
     </table>
 </div>
 
-<div class="nui-fit">
-    <!-- splitter 1 -->
-    <div class="nui-splitter" vertical="false" style="width:100%;height:100%;" style="border:0;" handlerSize=0>
-        <div size="58%" showCollapseButton="false" style="border:0;">
+
+
             <div class="nui-fit">
                 <div title="" class="nui-panel"
                      showHeader="false"
@@ -113,7 +111,7 @@
                         <div property="columns">
                             <div type="checkcolumn" width="20"></div>
                             <div type="indexcolumn" width="30" summaryType="count">序号</div>
-                            <div headerAlign="center"><strong>车辆信息</strong>
+                            <div headerAlign="center">车辆信息
                                 <div property="columns">
                                     <div field="id" visible=false>ID</div>
                                     <div field="orgid" width="100" headerAlign="center" allowSort=false>所在分店</div>
@@ -127,7 +125,7 @@
                                     <div field="recordDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>建档日期</div>
                                 </div>
                             </div>
-                            <div headerAlign="center"><strong>客户信息</strong>
+                            <div headerAlign="center">客户信息
                                 <div property="columns">
                                     <div field="guestId" visible=false>客户ID</div>
                                     <div field="guestName" width="80" headerAlign="center" summaryType="" allowSort=false>客户名称</div>
@@ -139,7 +137,7 @@
                                     -->
                                 </div>
                             </div>
-                            <div headerAlign="center"><strong>联系状态</strong>
+                            <div headerAlign="center">联系状态
                                 <div property="columns">
                                     <div field="visitManId" width="60" headerAlign="center" summaryType="" allowSort=false>营销员</div>
                                     <div field="visitStatus" width="100" headerAlign="center">跟踪状态</div>
@@ -151,19 +149,5 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div showCollapseButton="false" style="border:0;">
-            <div class="nui-fit">
-                <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
-                     onactivechanged="" >
-                    <!--联系内容--><%=webPath + contextPath%>/telsell/js/telTrack.js
-                    <%@include file="../manage/telTrack_tab1.jsp" %>
-                    <!--客户资料-->
-                    <%@include file="../manage/telTrack_tab2.jsp" %>
-                </div>
-            </div>
-        </div>
-    </div><!--splitter-->
-</div>
 </body>
 </html>

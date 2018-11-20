@@ -16,9 +16,7 @@
 <body>
 
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
-    <table style="width:100%;">
-        <tr>
-            <td ><!--style="white-space:nowrap;"-->
+				<!--style="white-space:nowrap;"-->
                 <label style="font-family:Verdana;" title="点击清空条件"><span onclick="clearQueryForm()">快速查询：</span></label>
                 <a class="nui-menubutton " iconCls="" menu="#popupMenu1" value="-1" id="assignStatus">所有</a>
                 <ul id="popupMenu1" class="nui-menu" style="display:none;">
@@ -91,9 +89,8 @@
                     showNullItem="false"
                     nullItemText="请选择..."/>
                 <a class="nui-button"  plain="true" onclick="assignTracker()" id="add" enabled="true"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
-            </td>
-        </tr>
-    </table>
+                <a class="nui-button"  plain="true" onclick="" id="" enabled="true"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;导入资料</a>
+
 </div>
 
 <div class="nui-fit">

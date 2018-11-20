@@ -708,6 +708,7 @@
 	<select id="queryMainRemind" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 			SELECT
 				b.orgid,
+				a.car_id carId,
 				b.car_no as carNo,
 				b.car_model as carModel,
 				b.guest_id as guestId,

@@ -234,8 +234,8 @@
     </div>
 
     <div class="nui-fit">
-<!--         <div class="nui-fit"> -->
-                <div style="width:100%;height:5px;"></div>
+
+                <div style="width:100%;height:5px;">
                 <div id="rpsPackageGrid" class="nui-datagrid"
                 style="width:100%;height:auto;"
                 dataField="aa" ondrawsummarycell="onDrawSummaryCellPack"
@@ -273,10 +273,8 @@
     </div>
 </div>
 </div>
-<div style="width:100%;height:15px;">
 
-</div>
-<div style="width:100%;height:5px;"></div>
+<div style="width:100%;height:15px;"></div>
 <div id="rpsItemGrid" class="nui-datagrid"
 style="width:100%;height:auto;"
 dataField="bb"
@@ -309,7 +307,9 @@ allowSortColumn="false" ondrawsummarycell="onDrawSummaryCellItem" allowCellEdit=
     </div>
 </div>
 </div>
-
+</div>
+</div>
+</div>
 <div style="background-color: #cfddee;position:absolute; top:90%;width:100%;height: 10%; z-index:900;">
  <div id="sellForm" class="form"  style="float:right;height: 100%;padding-right: 20px;">
     	<table style='height: 100%'>
@@ -341,7 +341,7 @@ allowSortColumn="false" ondrawsummarycell="onDrawSummaryCellItem" allowCellEdit=
 
 
 
-</div>
+
 
 
 

@@ -78,17 +78,28 @@ $(document).ready(function () {
 		        	var data = nui.decode(text.data);
 		        	if(data.length > 0){
 		        		for(var i = 0 , l = data.length ; i < l ; i ++){
+		        			//表示是套餐
 		        			var billPackageId = data[i].billPackageId;
 		        			var packageName = data[i].prdtName || "";
 		        			var subtotal = data[i].subtotal || "";
 		        			var rate = data[i].rate || "";
 		        			var amt = data[i].amt || "";
+		        			var remark = data[i].remark;
+		        			var discountAmt = data[i].discountAmt;
+		        			var backageId = 0;
+		        			if(data[i].billPackageId==0){
+			        			 backageId = data[i].id;
+		        			}
 		        			var newRow = {
 		        					billPackageId : billPackageId,
 		        					packageName : packageName,
 		        					subtotal : subtotal,
 		        					rate : rate,
-		        					amt : amt
+		        					amt : amt,
+		        					orderindex : data[i].orderIndex,
+		        					remark : remark,
+		        					discountAmt : discountAmt,
+		        					backageId : backageId
 		        			};
 		        			var dataAll = rpsPackageGrid.getData();
 		        			rpsPackageGrid.addRow(newRow,dataAll.length);
@@ -155,10 +166,12 @@ $(document).ready(function () {
 		if(field == "subtotal"){
 			var rate = null;
 			if(row.amt){
-				rate = 1 - (parseFloat(row.subtotal)/parseFloat(row.amt/100));
+				rate = 100 - (parseFloat(row.subtotal)/parseFloat(row.amt/100));
+				rate = rate.toFixed(2);
 			}else{
-				rate = 1;
+				rate = 100;
 			}
+			;
 			var newRow = {rate : rate};
 			rpsPackageGrid.updateRow(row,newRow);
 		}
@@ -166,6 +179,7 @@ $(document).ready(function () {
 			var subtotal = null;
 			if(row.rate){
 				subtotal = parseFloat(row.amt) * parseFloat(100-row.rate)/100;
+				subtotal = subtotal.toFixed(2);
 			}else{
 				subtotal = 0;
 			}
@@ -197,6 +211,7 @@ $(document).ready(function () {
 		field = e.field;
 		if(field == "itemTime" || field == "unitPrice" || field == "rate"){
 			var subtotal = parseFloat(row.itemTime) * parseFloat(row.unitPrice) * parseFloat(100-row.rate) * 0.01;
+			subtotal = subtotal.toFixed(2);
 			var newRow = {subtotal : subtotal};
 			rpsItemGrid.updateRow(row,newRow);
 		}
@@ -209,7 +224,7 @@ $(document).ready(function () {
 		var uid = record._uid;
 		if(field == "rate"){
 			if(value){
-				e.cellHtml = value.toFixed(2) + "%";
+				e.cellHtml = value + "%";
 			}else{
 				e.cellHtml = 0 + "%";
 			}
@@ -592,7 +607,8 @@ function setInitData(params){
 		nui.ajax({
 	        url: baseUrl+"com.hsapi.repair.repairService.svr.billqyeryMaintainList.biz.ext",
 	        type: "post",
-	        cache: false,
+	        //cache: false,
+	        async: false,
 	        data: {
 	        	sourceServiceId : params.id
 	        },

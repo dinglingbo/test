@@ -10,7 +10,7 @@
   - Description:
 -->
 <head>
-<title>关怀</title>
+<title>特别关怀</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     	<script src="<%=request.getContextPath()%>/manage/js/Care.js?v=1.0.5">
 	</script>
@@ -32,7 +32,7 @@
                             <input class="nui-hidden" name="id" id="id"/>
                             <table class="tmargin" style="table-layout: fixed;width:100%">
                                 <tr class="htr">
-                                    <td  style="width: 70px;">提醒方式：</td>
+                                    <td  style="width: 70px;">关怀方式：</td>
                                     <td style="width: 100px;">
                                         <input id="visitMode" name="visitMode" class="nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name">
                                     </td>
@@ -40,7 +40,7 @@
                                     <td style="width: "></td>
                                 </tr> 
                                 <tr class="htr">
-                                    <td >提醒内容：</td>
+                                    <td >关怀内容：</td>
                                     <td  colspan="6">
                                         <input id="visitContent" name="visitContent" class="nui-textarea textboxWidth" style="width: 100%;height:280px;">
                                     </td>

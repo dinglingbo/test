@@ -11,6 +11,7 @@
     	SELECT
 			a.id as id,
 			a.service_code as serviceCode,
+			a.bill_type_id as billTypeId,
 			a.enter_date as enterDate,
 			c.full_name as guestFullName,
 			c.short_name as guestShortName,
@@ -29,7 +30,10 @@
 			d.mobile as contactMobile,
 			a.bala_audit_sign as balaAuditSign,
 			a.bala_auditor as balaAuditor,
-			a.bala_audit_date as balaAuditDate
+			a.bala_audit_date as balaAuditDate,
+			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = a.id) as serviceTypeName
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
@@ -69,7 +73,10 @@
                 (a.enter_date &lt; #eEnterDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeId">  
-                (a.service_type_id = #serviceTypeId#)
+                exists(
+					select 1 from wb_repair.rps_service_type g 
+					where a.id = g.service_id and g.service_type_id = #serviceTypeId#
+				)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeIdList">  
                 (a.service_type_id in ($serviceTypeIdList$))

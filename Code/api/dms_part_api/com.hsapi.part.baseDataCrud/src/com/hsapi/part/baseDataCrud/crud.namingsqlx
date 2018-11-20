@@ -645,4 +645,23 @@
         </dynamic>
     </select>
     
+    <select id="queryPartStockByIds" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT orgid, part_id as partId, stock_qty as stockQty, stock_amt as stockAmt 
+    	from wb_part.pj_part_stock
+		WHERE
+			1 = 1
+				
+			<dynamic>
+            <isNotEmpty prepend="and" property="orgid">
+            	(orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partIds">
+            	(part_id in ($partIds$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">
+            	(part_id = #partId#)
+            </isNotEmpty>
+        </dynamic>
+    </select>
+    
 </sqlMap>

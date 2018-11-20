@@ -168,15 +168,15 @@
       <process:to type="query">rpTemp/rpDc</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">rpAccount/settAccountCode</process:from>
       <process:to type="query">rpTemp/settAccountCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">rpAccount/settAccountId</process:from>
       <process:to type="query">rpTemp/settAccountId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">rpAccount/settAccountName</process:from>
       <process:to type="query">rpTemp/settAccountName</process:to>
     </process:copy>
   </nodes>
@@ -1239,6 +1239,7 @@
     <process:input description="" isArray="false" name="payAmt" primitiveType="Double"/>
     <process:input description="020101现金，020102刷卡，020104微信/支付宝" isArray="false" name="payType" primitiveType="String"/>
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimes" name="cardTimes"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.common.FisRpAccountDType" name="rpAccount"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

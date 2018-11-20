@@ -11,6 +11,7 @@
     	SELECT
 			a.id as id,
 			a.service_code as serviceCode,
+			a.bill_type_id as billTypeId,
 			a.enter_date as enterDate,
 			c.full_name as guestFullName,
 			c.short_name as guestShortName,
@@ -72,7 +73,10 @@
                 (a.enter_date &lt; #eEnterDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeId">  
-                (a.service_type_id = #serviceTypeId#)
+                exists(
+					select 1 from wb_repair.rps_service_type g 
+					where a.id = g.service_id and g.service_type_id = #serviceTypeId#
+				)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeIdList">  
                 (a.service_type_id in ($serviceTypeIdList$))

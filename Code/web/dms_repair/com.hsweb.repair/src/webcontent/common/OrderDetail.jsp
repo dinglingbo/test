@@ -234,8 +234,8 @@
     </div>
 
     <div class="nui-fit">
-
-                <div style="width:100%;height:5px;">
+			<div class="" style="width:100%;height:auto;" >
+                <div style="width:100%;height:15px;"></div>
                 <div id="rpsPackageGrid" class="nui-datagrid"
                 style="width:100%;height:auto;"
                 dataField="aa" ondrawsummarycell="onDrawSummaryCellPack"
@@ -277,10 +277,11 @@
 <div style="width:100%;height:15px;"></div>
 <div id="rpsItemGrid" class="nui-datagrid"
 style="width:100%;height:auto;"
+borderStyle="border-bottom:1;"
 dataField="bb"
 showPager="false"
 showModified="false"
-allowSortColumn="false" ondrawsummarycell="onDrawSummaryCellItem" allowCellEdit="false" allowCellSelect="true">
+allowSortColumn="true" ondrawsummarycell="onDrawSummaryCellItem" allowCellEdit="false" allowCellSelect="true">
 <div property="columns">
     <div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
     <div field="orderIndex" name="orderIndex" headerAlign="center" allowSort="false" visible="true" width="20" name="num">序号</div>
@@ -309,6 +310,7 @@ allowSortColumn="false" ondrawsummarycell="onDrawSummaryCellItem" allowCellEdit=
 </div>
 </div>
 </div>
+<div style="height: 11%;"></div>
 </div>
 <div style="background-color: #cfddee;position:absolute; top:90%;width:100%;height: 10%; z-index:900;">
  <div id="sellForm" class="form"  style="float:right;height: 100%;padding-right: 20px;">
@@ -341,13 +343,6 @@ allowSortColumn="false" ondrawsummarycell="onDrawSummaryCellItem" allowCellEdit=
 
 
 
-
-
-
-
-
-
-</div>
 <script type="text/javascript">
    nui.parse();
 </script>

@@ -114,7 +114,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.sureMt.getRpsMaintainById</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="id" type="query" value="String" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
+        <process:inputVariable id="0" name="id" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject">maintain</process:outputVariable>

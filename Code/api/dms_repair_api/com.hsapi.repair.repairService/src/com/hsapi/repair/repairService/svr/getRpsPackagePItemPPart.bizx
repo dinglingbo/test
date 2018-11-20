@@ -185,6 +185,16 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo8</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>end1</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">serviceId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="119" y="141"/>
     <size height="28" width="28"/>
@@ -644,7 +654,8 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link51</targetConnections>
-    <location x="433" y="307"/>
+    <targetConnections>link6</targetConnections>
+    <location x="189" y="307"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -654,7 +665,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="431" y="343"/>
+    <location x="187" y="343"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>

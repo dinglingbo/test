@@ -2,9 +2,7 @@ var baseUrl = apiPath + crmApi + "/";
 var getScoutGuestListUrl = baseUrl+"com.hsapi.crm.telsales.crmTelsales.getScoutGuestList.biz.ext";
 var queryForm;
 var dgGrid;
-var dgScoutDetail;
-var form1;
-var form2;
+//var dgScoutDetail;
 var currGuest;
 var memList = [];
 var memHash={};
@@ -12,11 +10,9 @@ var carModelHash = [];
 
 $(document).ready(function(v){
     queryForm = new nui.Form("#queryForm");
-    form1 = new nui.Form("#form1");
-    form2 = new nui.Form("#form2");
     dgGrid = nui.get("dgGrid");
     dgGrid.setUrl(getScoutGuestListUrl);
-    dgScoutDetail = nui.get("dgScoutDetail");
+    //dgScoutDetail = nui.get("dgScoutDetail");
     dgGrid.on("beforeload",function(e){
     	e.data.token = token;
     });
@@ -36,14 +32,14 @@ $(document).ready(function(v){
             }
         }
     });
-    dgScoutDetail.on("drawcell", function (e) { //表格绘制
+   /* dgScoutDetail.on("drawcell", function (e) { //表格绘制
         var field = e.field;
         if(field == "scoutResult"){//跟踪结果
             e.cellHtml = setColVal('scoutResult', 'value', 'text', e.value);
         }else if(field == "scoutMode"){//跟踪方式
             e.cellHtml = setColVal('scoutMode', 'customid', 'name', e.value);
         }
-    });
+    });*/
     
     document.onkeyup = function(event) {
         var e = event || window.event;
@@ -132,7 +128,7 @@ function editWin(title, data){
 }
 
 function setScoutForm(e){
-    $(".saveGroup").show();
+  /*  $(".saveGroup").show();
     form1.setData(e.record);
     form2.setData(e.record);
     currGuest = e.record;
@@ -151,7 +147,7 @@ function setScoutForm(e){
         },
         token:token
     }
-    dgScoutDetail.load(params);
+    dgScoutDetail.load(params);*/
 }
 
 function clearQueryForm(){

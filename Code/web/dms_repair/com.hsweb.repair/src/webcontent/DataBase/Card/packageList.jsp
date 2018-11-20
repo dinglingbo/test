@@ -53,7 +53,7 @@
 		<div id="datagrid1" dataField="package1" class="nui-datagrid"
 			pageSize="20" onDrawCell="onDrawCell"
 			onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true"
-			style="width: 100%; height: 100%;float:left;"multiSelect="true" >
+			style="width: 100%; height: 100%;float:left;"multiSelect="false" >
 			<div property="columns">
 				<div type="indexcolumn"></div>
 				<div type="checkcolumn" visible="false" id="checkcolumn" name="checkcolumn"></div>

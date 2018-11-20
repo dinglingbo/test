@@ -31,6 +31,7 @@
 			a.bala_audit_sign as balaAuditSign,
 			a.bala_auditor as balaAuditor,
 			a.bala_audit_date as balaAuditDate,
+			a.plan_finish_date as planFinishDate,
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
 	       where e.service_id = a.id) as serviceTypeName
@@ -71,6 +72,13 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="eEnterDate">  
                 (a.enter_date &lt; #eEnterDate#)
+            </isNotEmpty>
+            <!--交车日期 -->
+            <isNotEmpty prepend="and" property="sPlanFinishDate">  
+                (a.plan_finish_date &gt;= #sPlanFinishDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="ePlanFinishDate">  
+                (a.plan_finish_date &lt; #ePlanFinishDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceTypeId">  
                 exists(

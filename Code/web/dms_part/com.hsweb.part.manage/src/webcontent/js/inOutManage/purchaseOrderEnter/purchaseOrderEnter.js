@@ -1372,6 +1372,14 @@ function addInsertRow(value,row) {
 	return false;
 }
 function addPart() {
+	var data = basicInfoForm.getData();
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+			showMsg(requiredField[key] + "不能为空!","W");
+
+			return;
+		}
+	}
 	var row = leftGrid.getSelected();
 	if (row) {
 		if (row.auditSign == 1) {

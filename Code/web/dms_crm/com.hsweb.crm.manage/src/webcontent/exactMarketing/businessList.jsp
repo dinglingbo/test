@@ -135,27 +135,7 @@
 		});
     	}
     	
-    	function editMatinRemind(){
-    		nui.open({
-			url : webPath+ crmDomain+ "/manage/exactMarketing/addBusinessOpp.jsp?token"+ token,
-			title : "项目提醒设置",
-			width : 500,
-			height : 300,
-			allowDrag : false,
-			allowResize : false,
-			onload : function() {
-				var iframe = this.getIFrameEl();
-
-
-// 				iframe.contentWindow.SetData(params);
-			},
-			ondestroy : function(action) {
-				if (action == 'ok') {
-
-				}
-			}
-		});
-    	}
+    	
     </script>
 </body>
 </html>

@@ -183,9 +183,7 @@ function onOk()
 {
     var guest = basicInfoForm.getData();
     guest.guestType = "01020103";
-
-
-    
+  
     for(key in basicRequiredField){
         //tmp = nui.get(key).getText();
         if(!nui.get(key).value){
@@ -193,10 +191,6 @@ function onOk()
             return;
         }
     }
-    
-
-    
- 
     
     if(!checkMobile(nui.get("mobile").value)){
         return;

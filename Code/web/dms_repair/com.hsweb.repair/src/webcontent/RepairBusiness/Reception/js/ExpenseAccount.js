@@ -85,10 +85,10 @@ $(document).ready(function () {
 		        			var amt = data[i].amt || "";
 		        			var remark = data[i].remark || "";
 		        			var discountAmt = data[i].discountAmt || "";
-		        			var backageId = 0;
+		        			var packageId = 0;
 		        			//表示是套餐
 		        			if(data[i].billPackageId==0){
-			        			 backageId = data[i].id;
+			        			 packageId = data[i].id;
 		        			}
 		        			var newRow = {
 		        					billPackageId : billPackageId,
@@ -99,7 +99,7 @@ $(document).ready(function () {
 		        					orderindex : data[i].orderIndex,
 		        					remark : remark,
 		        					discountAmt : discountAmt,
-		        					backageId : backageId
+		        					packageId : packageId
 		        			};
 		        			var dataAll = rpsPackageGrid.getData();
 		        			rpsPackageGrid.addRow(newRow,dataAll.length);
@@ -135,6 +135,7 @@ $(document).ready(function () {
 		        			var discountAmt = data[i].discountAmt;
 		        			var remark = data[i].remark;
 		        			var unitPrice = data[i].unitPrice;
+		        			var orderindex = data[i].orderIndex;
 		        			var itemId = 0;
 		        			if(data[i].billItemId == 0){
 		        				itemId = data[i].id;
@@ -150,7 +151,7 @@ $(document).ready(function () {
 		        					discountAmt : discountAmt,
 		        					remark : remark,
 		        					unitPrice : unitPrice,
-		        					orderindex : data[i].orderIndex
+		        					orderindex : orderindex
 		        			};
 		        			var dataAll = rpsItemGrid.getData();
 		        			rpsItemGrid.addRow(newRow,dataAll.length);
@@ -376,11 +377,28 @@ function choosePart(){//配件
             iframe.contentWindow.setData(params);
 		},
 		ondestroy : function(action) {
+			var orderindex = 0;
+			//获取这一工时下有多少个配件
+			var itemPart = rpsItemGrid.getData();
+			var index = rpsItemGrid.indexOf(selectRow);
+			for(var i=0;i<itemPart.length;i++){
+				if(itemPart[i].billItemId == row.itemId){
+					orderindex = parseInt(orderindex) + 1;
+				}
+			}
+			if(orderindex){
+				orderindex = parseInt(orderindex) + 1;
+				index = parseInt(index)+parseInt(orderindex);
+				orderindex = row.orderindex + "." + orderindex;
+			}else{
+				orderindex = row.orderindex + ".1";
+				index = parseInt(index)+1;
+			}		
             var iframe = this.getIFrameEl();
             var data = iframe.contentWindow.getData();
             data = data.part || {};
         	var name = data.name || "";
-        	data = rpsItemGrid.getData();
+        	/*data = rpsItemGrid.getData();
         	
         	
         	var itemName = data.name || "";
@@ -399,17 +417,17 @@ function choosePart(){//配件
         		num = parseFloat(num)+0.1;
             	num = num.toFixed(1);
             	index = rpsItemGrid.indexOf(selectRow);
-        	}
+        	}*/
         	var newRow = {
-        			itemName : itemName,
-        			itemTime : 0,
+        			itemName : name,
+        			itemTime : 1,
         			unitPrice : 0,
         			rate : 0,
         			subtotal : 0,
-        			pid : selectRow.myId,
-        			orderindex : num
+        			billItemId: row.itemId,
+        			orderindex : orderindex
         	};
-        	rpsItemGrid.addRow(newRow,index+1);
+        	rpsItemGrid.addRow(newRow,index);
 		}
 	});
 }
@@ -459,7 +477,7 @@ function choosePackage(){
     			var amt = data[i].amount || "";
     			var remark = data[i].remark || "";
     			var discountAmt = data[i].discountAmt || "";
-    			var backageId = data[i].id;
+    			var packageId = data[i].id;
    			    id = data[i].id || 0;
     			var rpsPackageGridData = rpsPackageGrid.getData();
     			
@@ -482,7 +500,7 @@ function choosePackage(){
     					orderindex : orderindex,
     					remark : remark,
     					discountAmt : discountAmt,
-    					backageId : backageId
+    					packageId : packageId
     			};
     			rpsPackageGrid.addRow(newRow,rpsPackageGridData.length);
     			 //查找明细
@@ -513,7 +531,7 @@ function choosePackage(){
                 					orderindex : orderindexs,
                 					remark : remark,
                 					discountAmt : 0,
-                					backageId : 0
+                					packageId : 0
                 			};
                     		var rpsPackageGridData = rpsPackageGrid.getData();
                 			rpsPackageGrid.addRow(newRow,rpsPackageGridData.length);
@@ -535,7 +553,7 @@ function choosePackage(){
                 					orderindex : orderindexs,
                 					remark : remark,
                 					discountAmt : 0,
-                					backageId : 0
+                					packageId : 0
                 			};
                     		var rpsPackageGridData = rpsPackageGrid.getData();
                 			rpsPackageGrid.addRow(newRow,rpsPackageGridData.length);
@@ -637,8 +655,24 @@ function save(){
         	}else{
         		nui.get("rid").setValue(text.mainId);
             	showGridMsg(text.mainId);
+            	var serviceId = nui.get("sourceServiceId").value;
+            	nui.ajax({
+                    url: baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext",
+                    type: "post",
+                    cache: false,
+                    data:{
+                    	serviceId : serviceId
+                    },
+                    success: function(text) {
+                    	var pkgBill = text.pkgBill;
+                    	var itemBill = text.itemBill;
+                    	rpsPackageGrid.setData(pkgBill);
+                    	rpsItemGrid.setData(itemBill);
+                    	
+                    }
+                });
+            }
         	}
-        }
     });
 }
 

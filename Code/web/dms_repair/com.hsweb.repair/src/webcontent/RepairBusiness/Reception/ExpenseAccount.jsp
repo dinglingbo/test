@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.3.9"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.3"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -197,7 +197,7 @@
         <div style="width:100%;height:5px;"></div>
         <div id="rpsPackageGrid" class="nui-datagrid"
 		     style="width:100%;height:auto;"
-		     dataField="aa"
+		     dataField="pkgBill"
 		     showPager="false"
 		     showModified="false"
 		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true">
@@ -237,7 +237,7 @@
                             <div style="width:100%;height:5px;"></div>
                             <div id="rpsItemGrid" class="nui-datagrid"
 		     style="width:100%;height:auto;"
-		     dataField="bb"
+		     dataField="itemBill"
 		     showPager="false"
 		     showModified="false"
 		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true">

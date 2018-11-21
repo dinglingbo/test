@@ -476,13 +476,18 @@
 	        	}
         	});
         	if(params.type){
-        		url_one = "com.hsapi.repair.repairService.svr.billgetRpsPackagePItemPParts.biz.ext?serviceId=";
+        		url_one = "com.hsapi.repair.baseData.query.searchExpensePkgBill.biz.ext?serviceId=";
         	}else{
         		url_one = "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext?serviceId=";
         	}
         	$.post(params.baseUrl+url_one+params.serviceId+"&token="+params.token,{},function(text){//套餐
 	        	if(text.errCode == "S"){
-	        	    var data = text.data;
+	        	    var data = {};//
+	        	    if(params.type){
+	    			   data = text.pkgBill;
+	    			}else{
+	    			    data = text.data;
+	    			}
 	        	    if(data.length>0){
 		        		var tBody = $("#tbodyId");
 	    				tBody.empty();
@@ -562,13 +567,18 @@
 	          }
         	});
         	if(params.type){
-        		url_two = "com.hsapi.repair.repairService.svr.billgetRpsMainItem.biz.ext?serviceId=";
+        		url_two = "com.hsapi.repair.baseData.query.searchExpenseItemBill.biz.ext?serviceId=";
         	}else{
         		url_two = "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext?serviceId=";
         	}
         	 $.post(params.baseUrl+url_two+params.serviceId+"&token="+params.token,{},function(text){//工时
 	        	if(text.errCode == "S"){
-	        	    var data = text.data;
+	        	    var data = {};
+	        	    if(params.type){
+	        	       data = text.itemBill;
+	        	    }else{
+	        	       data = text.data;
+	        	    }
 	        	    if(data.length>0){
 	        	        var tBody = $("#tbodyId2");
     				tBody.empty();
@@ -590,16 +600,23 @@
     					if(params.type){
     						 itemTime = data[i].itemTime || "";
     						 itemName = data[i].itemName || "";
+    						 if(data[i].billItemId != 0 ){
+    						   itemName = "&nbsp;&nbsp;&nbsp;&nbsp;" + itemName;
+    						   document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
+    					      }else{
+    						     document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
+    					      }
     					}else{
     						itemTime = data[i].qty || "";
     						itemName = data[i].prdtName || "";
+    						if(data[i].pid != 0 ){
+    						   itemName = "&nbsp;&nbsp;&nbsp;&nbsp;" + itemName;
+    						   document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
+    					    }else{
+    						   document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
+    					   }
     					}
-    					if(data[i].pid != 0 ){
-    						itemName = "&nbsp;&nbsp;&nbsp;&nbsp;" + itemName;
-    						document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
-    					}else{
-    						document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
-    					}
+    					 
 				    			tr.append(
 				    				tds.replace("[id]",data[i].orderIndex)
 				    				.replace("[prdtName]",itemName)

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.3"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.20"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -203,7 +203,7 @@
 		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true">
     <div property="columns">
     	 <div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
-        <div field="orderindex" name="orderindex" headerAlign="center" allowSort="false" visible="true" width="20">序号</div>
+         <div field="orderIndex"  headerAlign="center" allowSort="false" visible="true" width="20" name="num">序号</div>
         <div header="套餐信息">
             <div property="columns">
              
@@ -234,8 +234,8 @@
         <a href="javascript:choosePackage()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择套餐</a>
     </span>
 </div>
-                            <div style="width:100%;height:5px;"></div>
-                            <div id="rpsItemGrid" class="nui-datagrid"
+      <div style="width:100%;height:5px;"></div>
+      <div id="rpsItemGrid" class="nui-datagrid"
 		     style="width:100%;height:auto;"
 		     dataField="itemBill"
 		     showPager="false"
@@ -243,9 +243,10 @@
 		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true">
     <div property="columns">
     	<div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
-        <div field="orderindex" name="orderindex" headerAlign="center" allowSort="false" visible="true" width="20">序号</div>
+        <div field="orderIndex" name="orderIndex" headerAlign="center" allowSort="false" visible="true" width="20">序号</div>
         <div header="项目信息">
             <div property="columns">
+                
                 <div field="itemName" name="itemName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称
                 	<input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
@@ -270,12 +271,12 @@
     <span id="carHealthEl" >
         <a href="javascript:chooseItem()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择项目</a>
     </span>
-    <span>&nbsp;</span>
-    <span id="carHealthEl" >
+    <!--<span>&nbsp;</span>
+     <span id="carHealthEl" >
         <a href="javascript:showBasicData('item')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择标准项目</a>
-    </span>
+    </span> -->
 </div>
-<div id="advancedMorePartWin" class="nui-window"
+<!-- <div id="advancedMorePartWin" class="nui-window"
      title="" style="height:70px;width:100px;"
      showModal="false"
      showHeader="false"
@@ -293,11 +294,11 @@
             </td>
         </tr>
     </table>
-</div> 
-                        </div>
+</div>  -->
+          </div>
                 
                         
-                    </div>
+      </div>
     </div>
 
 

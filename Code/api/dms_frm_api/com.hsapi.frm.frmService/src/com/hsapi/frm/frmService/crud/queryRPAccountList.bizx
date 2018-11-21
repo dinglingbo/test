@@ -104,7 +104,7 @@
       <sourceNode>assign2</sourceNode>
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
+        <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">params/auditSign</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>

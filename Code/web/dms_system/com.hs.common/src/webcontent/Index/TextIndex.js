@@ -130,8 +130,9 @@ function addCustomer(){
         url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
         title: title, width: 560, height: 570,
         onload: function () {
-            //var iframe = this.getIFrameEl();
-            //iframe.contentWindow.setData(params);
+        	var params={};
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(params);
         },
         ondestroy: function (action)
         {

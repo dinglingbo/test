@@ -299,7 +299,7 @@
 
 											</td>
 											<td height="40" class="line24">
-												<input class="mini-spinner" id="deductible" name="deductible" width="100px" minValue="0" maxValue="1000000" showbutton="false"
+												<input class="mini-spinner" id="deductible" name="deductible" width="100px" minValue="0" maxValue="1000000" showbutton="false" changeOnMousewheel="false"
 												 allowNull="false" onvaluechanged="onChanged" />
 											</td>
 										</tr>

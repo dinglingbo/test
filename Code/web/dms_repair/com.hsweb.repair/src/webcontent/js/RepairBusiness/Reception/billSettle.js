@@ -362,10 +362,10 @@ function pay(){
 		}
 	}
 		var count = scount();
-		if(count==0){
+/*		if(count==0){
 			nui.alert("请选择结算账户,并填写结算金额","提示");
 			return;
-		}
+		}*/
 		if(count!=zongAmt){
 			nui.alert("结算金额和应结金额不一致，请重新确认！","提示");
 			return;
@@ -375,7 +375,7 @@ function pay(){
 	var payType = nui.get("payType").getValue()||0;
 	var amt = $("#amount").text();
 	var json = {
-		rpAccount : accountTypeList,
+		accountTypeList : accountTypeList,
 		allowanceAmt:PrefAmt,
 		cardPayAmt:deductible,
 		serviceId:fserviceId,

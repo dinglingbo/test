@@ -172,10 +172,10 @@ function settleOK() {
 		}
 	}
 		var count = scount();
-		if(count==0){
+/*		if(count==0){
 			nui.alert("请选择结算账户,并填写结算金额","提示");
 			return;
-		}
+		}*/
 		if(count!=zongAmt){
 			nui.alert("结算金额和应结金额不一致，请重新确认！","提示");
 			return;

@@ -6,6 +6,7 @@ var tableNum = 0;
 var form = null;
 var type = null;
 var typeList = {};
+var zongAmt = 0;//实时填写的结算金额
 var guestData = null;
 var deductible = 0;
 $(document).ready(function (){
@@ -17,6 +18,7 @@ $(document).ready(function (){
 
 function setData(data){
 	guestData = data;
+	zongAmt = data[0].nowAmt;
 	var rechargeBalaAmt = 0;
 	document.getElementById('carNo').innerHTML = data[0].carNo;
 	document.getElementById('guest').innerHTML = data[0].guestName;
@@ -38,8 +40,8 @@ function onChanged() {
 		nui.alert("收款大于应收金额，请重新填写","提示");
 		return;
 	}
-	var amount = parseFloat(netInAmt)-parseFloat(count);
-	document.getElementById('amount').innerHTML = amount;
+/*	var amount = parseFloat(netInAmt)-parseFloat(count);
+	document.getElementById('amount').innerHTML = amount;*/
 
 }
 
@@ -137,8 +139,12 @@ function settleOK() {
 
 
 		var count = scount();
-		if(count==0){
+/*		if(count==0){
 			nui.alert("请选择结算账户,并填写结算金额","提示");
+			return;
+		}*/
+		if(count!=zongAmt){
+			nui.alert("付款金额和应付金额不一致，请重新确认！","提示");
 			return;
 		}
 		var account = {};

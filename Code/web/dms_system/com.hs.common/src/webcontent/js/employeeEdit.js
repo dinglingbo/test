@@ -53,8 +53,8 @@ function SetInitData(data) {
 	var itemDiscountRate =data.itemDiscountRate*100;
 	var partDiscountRate =data.partDiscountRate*100;
 	basicInfoForm.setData(data);
-	nui.get("itemDiscountRate").setvalue(itemDiscountRate);
-	nui.get("partDiscountRate").setvalue(partDiscountRate);
+	nui.get("itemDiscountRate").setValue(itemDiscountRate);
+	nui.get("partDiscountRate").setValue(partDiscountRate);
 	var isArtificer = nui.get("isArtificer").value;
 	   if(isArtificer == true){
 	        $("#memberLevelId").show();
@@ -233,8 +233,7 @@ function initMemberLever(){
 
 function onRateValidation(e){
 	var el = e.sender.id;
-	if(el == "integralDiscountMax"||el == "freeDiscountMax"||el == "cashDiscountMax"){
-			if (e.isValid) {
+	if(el == "itemDiscountRate"||el == "partDiscountRate"){
 				if(e.value == "" || e.value == null){
 
 				}else{
@@ -245,8 +244,7 @@ function onRateValidation(e){
 						showMsg("请输入0~100的数,最多可保留两位小数","W");
 					}
 				}
-			}
-	}else if(el == "itemDiscountRate"||el == "partDiscountRate"){
+	}else if(el == "integralDiscountMax"||el == "freeDiscountMax"||el == "cashDiscountMax"){
 			if(e.value == "" || e.value == null){
 
 			}else{

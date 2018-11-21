@@ -73,7 +73,7 @@ function onChanged() {
 	}
 	
 	var amount = parseFloat(netInAmt) - parseFloat(deductible) - parseFloat(PrefAmt)-parseFloat(count);
-		amount = amount.toFixed(2)
+		amount = amount.toFixed(2);
 	document.getElementById('amount').innerHTML = amount;
 
 }

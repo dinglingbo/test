@@ -11,7 +11,7 @@
 
 <head>
 	<title>工单结算</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.1.9"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.2.7"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -393,7 +393,7 @@
 
 											</td>
 											<td height="40" class="line24">
-												<input class="mini-spinner" id="deductible" name="deductible" width="100px" minValue="0" maxValue="1000000" showbutton="false"
+												<input class="mini-spinner" id="deductible" name="deductible" width="100px" minValue="0" maxValue="1000000" showbutton="false" changeOnMousewheel="false" showbutton="false"
 												 allowNull="false" onvaluechanged="onChanged" />
 											</td>
 										</tr>
@@ -442,7 +442,7 @@
 
 											</td>
 											<td height="40" class="line24">
-												<input class="nui-textbox" id="PrefAmt" name="PrefAmt" m="1" cardid="" amount="" style="width: 100px; float: left;" onvaluechanged="onChanged">
+												<input class="mini-spinner" id="PrefAmt" name="PrefAmt" changeOnMousewheel="false" showbutton="false" m="1" allowNull="false" minValue="0" maxValue="1000000" cardid="" amount="" style="width: 100px; float: left;" onvaluechanged="onChanged">
 											</td>
 										</tr>
 									</tbody>
@@ -481,6 +481,7 @@
 						</div>
 					</div>
 
+					
 					<div class="pay_list">
 						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">费用支出</span></h2>
 						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
@@ -508,7 +509,58 @@
 
 						</div>
 					</div>
-					
+					<div class="pay_list">
+						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">收款方式</span></h2>
+						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
+							<div id="dataform">
+								<div class="skbox2" id="div0" name="div0">
+									<table name="account0" id="account0" width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+										<tbody>
+											<tr>
+												<td width="50%" height="&quot;44&quot;">
+													<select name="optaccount0" id="optaccount0" onchange="checkField(this.id)" style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;border:0;">
+
+
+													</select>
+												</td>
+												<td>
+												</td>
+												<!-- <td>
+											<a class="depj" data-balloon="删除收款方式" href="javascript:void(0);" onclick="dF()" style="margin-left: 15px;"></a>
+										</td> -->
+											</tr>
+										</tbody>
+									</table>
+									<table name="ppaytype0" id="ppaytype0" width="96%" border="0" cellpadding="0" cellspacing="0">
+										<tbody>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="" id="csdiv" style="background: #f8f8f8;">
+								<div class="guazhangbz">
+									<table id="tbaddaccount" width="96%" height="30px" border="0" align="center" cellpadding="0" cellspacing="0">
+										<tbody>
+											<tr>
+												<td>
+													<div class="pay_tcbk_list" style="padding: 0; margin-bottom: 2px;">
+														<ul>
+															<li>
+																<a href="javascript:void(0);" onclick="addF()">
+																	<font>添加收款方式</font>
+																</a>
+															</li>
+														</ul>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
 					<div class="pay_list">
 						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">结算方式</span></h2>
 						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
@@ -550,6 +602,24 @@
 										</tbody>
 									</table>
 								</div>
+							</div>
+						</div>
+					</div>
+					<div class="pay_list">
+						<div class="pay_tcbk zffs" id="csdiv" style="background: #f8f8f8;">
+							<div class="guazhangbz">
+								<table width="100%" border="0" cellspacing="0" cellpadding="10">
+									<tr>
+										<!-- <td width="100">收款时间</td>
+										<td width="220">
+											<input class="mini-datepicker">
+										</td> -->
+										<td width="120" align="center">收款备注</td>
+										<td >
+											<input class="nui-textbox" id="txtreceiptcomment" name="txtreceiptcomment">
+										</td>
+									</tr>
+								</table>
 							</div>
 						</div>
 					</div>

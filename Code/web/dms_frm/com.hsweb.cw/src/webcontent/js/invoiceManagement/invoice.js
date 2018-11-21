@@ -26,7 +26,7 @@ $(document).ready(function () {
             		var list = nui.decode(text.list);
             		document.getElementById("rate").value = list[0].rate;
             		form.setData(list[0]);
-            		showMsg("保存成功！", "S");
+            		
             	}
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -125,6 +125,7 @@ function saveData(){//保存
         },
         success: function(text) {
         	nui.get("main").setValue(text.mainId);
+        	showMsg("保存成功！", "S");
         	grid.setUrl(baseUrl+"com.hsapi.repair.repairService.query.searchTicketDetail.biz.ext");
         	grid.load({mainId : text.mainId,token : token});
         }

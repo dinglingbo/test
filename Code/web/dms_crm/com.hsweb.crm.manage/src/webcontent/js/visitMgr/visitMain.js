@@ -14,6 +14,15 @@ var visitManEl = null;
 var visitIdEl = null;
 var hash = {};
 
+var statusHash = {
+	"0" : "报价",
+	"1" : "施工",
+	"2" : "完工",
+	"3" : "待结算",
+	"4" : "已结算"
+};
+
+
 $(document).ready(function(){
 	visitManEl = nui.get("visitMan");
 	visitIdEl = nui.get("visitId"); 
@@ -36,8 +45,38 @@ $(document).ready(function(){
         if ((keyCode == 13)) { // Enter
         	quickSearch(3);
         }
-
-    }
+    };
+    initCarBrand("carBrandId",function(data) {
+    	brandList = nui.get("carBrandId").getData();
+    	brandList.forEach(function(v) {
+    		brandHash[v.id] = v;
+    	});
+    });
+    initServiceType("serviceTypeId",function(data) {
+    	servieTypeList = nui.get("serviceTypeId").getData();
+    	servieTypeList.forEach(function(v) {
+    		servieTypeHash[v.id] = v;
+    	});
+    });
+    gridCar.on("drawcell", function (e) { 
+    	if (e.field == "status") {
+    		e.cellHtml = statusHash[e.value];
+    	}else if (e.field == "carBrandId") {
+    		if (brandHash && brandHash[e.value]) {
+    			e.cellHtml = brandHash[e.value].name;
+    		}
+    	}else if (e.field == "serviceTypeId") {
+    		if (servieTypeHash && servieTypeHash[e.value]) {
+    			e.cellHtml = servieTypeHash[e.value].name;
+    		}
+    	}else if(e.field == "isSettle"){
+    		if(e.value == 1){
+    			e.cellHtml = "已结算";
+    		}else{
+    			e.cellHtml = "未结算";
+    		}
+    	}
+    });
 
 });
 
@@ -49,18 +88,18 @@ function mtAdvisorChanged(e){
 
 
 function SetData(rowData){ 
-    mini.open({
-        url: webPath + contextPath + "/manage/visitMgr/visitMainDetail.jsp?token="+ token,
-        title: "回访信息", 
-        width: 680, height: 360,
-        onload: function () {
-            var iframe = this.getIFrameEl(); 
-            iframe.contentWindow.setData(rowData);
-        },
-        ondestroy: function (action) {
-            gridCar.reload();
-        }
-    });
+	mini.open({
+		url: webPath + contextPath + "/manage/visitMgr/visitMainDetail.jsp?token="+ token,
+		title: "回访信息", 
+		width: 680, height: 360,
+		onload: function () {
+			var iframe = this.getIFrameEl(); 
+			iframe.contentWindow.setData(rowData);
+		},
+		ondestroy: function (action) {
+			gridCar.reload();
+		}
+	});
 }
 
 
@@ -110,10 +149,49 @@ function WindowComplianDetail(){
 function WindowrepairHistory(){
 	var row = gridCar.getSelected();
 	var params = {
-			carId : row.carId,
-			guestId : row.guestId
+		carId : row.carId,
+		guestId : row.guestId
 	};
 	if(row.id){
 		doShowCarInfo(params);
 	}
+}
+
+
+function openOrderDetail(){
+	var row = gridCar.getSelected();
+	var data = {};
+	data.id = row.serviceId;
+
+	if(data.id){
+		var item={};
+		item.id = "11111";
+		item.text = "工单详情页";
+		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow";
+		item.iconCls = "fa fa-cog";
+		window.parent.activeTabAndInit(item,data);
+	}
+}
+
+
+
+function sendInfo(){
+	var row = gridCar.getSelected();
+	if (row == undefined) {
+		showMsg("请选中一条数据","W");
+		return;
+	}
+	nui.open({
+		url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
+		title: "发送短信", width: 655, height: 386,
+		onload: function () {
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.setData();
+		},
+		ondestroy: function (action) {
+            //重新加载
+            //query(tab);
+        }
+    });
+
 }

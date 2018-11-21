@@ -143,3 +143,14 @@ function onDrawcell(e) {
         e.cellHtml = hash[e.value-1];
 }
 }
+
+
+
+function onEditClick22(){
+	var data = investGrid.getSelected();
+	if(data == null){
+		showMsg("请先选择一条数据","W");
+		return;
+	}
+
+}

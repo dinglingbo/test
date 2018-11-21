@@ -488,7 +488,7 @@
     <location x="447" y="143"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.proItemInfo</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="tmp" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">tmp</process:inputVariable>

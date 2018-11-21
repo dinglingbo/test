@@ -35,10 +35,11 @@ pageEncoding="UTF-8" session="false" %>
         <input class="nui-textbox" name="tmobile" id="tmobile">
         <a class="nui-button" plain="true" onclick="onSearch()" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
 		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="addBooking()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;预约</a>
 		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="remindDetail()"><span class="fa fa-list fa-lg"></span>&nbsp;跟踪明细</a>
 		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="checkMtRecord()"><span class="fa fa-search fa-lg"></span>&nbsp;查看保养提醒</a>
+                <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a>
     </div>
 
                 <div class="nui-fit">

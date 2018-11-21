@@ -36,10 +36,10 @@ pageEncoding="UTF-8" session="false" %>
         
         <input id="accountId" width="100px" textField="name" valueField="id" emptyText="结算账户" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
         <span class="separator"></span> 
-        <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-select fa-lg"></span>&nbsp;查询</a>
+        <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     </div>
     <div class="nui-fit">
-        <div id="mainGrid" class="nui-datagrid" style="width:800px;height:100%;" 
+        <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" 
              showPager="true"  dataField="list"   url="" sortMode="client" ondrawcell=""
               pageSize="100" sizeList="[50,100,200,500]" showSummaryRow="true">
             <div property="columns">

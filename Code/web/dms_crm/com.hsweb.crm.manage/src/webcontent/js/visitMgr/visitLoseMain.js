@@ -7,11 +7,13 @@ var gridCarUrl = baseUrl+"com.hsapi.crm.svr.visit.queryLoseGuestByDay.biz.ext";
 
 var gridCar = null;
 var tcarNo_ctrl = null;
+var tlost_ctrl = null;
 var loseParam_ctrl = null;
 
 $(document).ready(function(){
 
 	tcarNo_ctrl = nui.get("tcarNo");
+	tlost_ctrl = nui.get("tlost");
 	loseParam_ctrl = nui.get("loseParam");
 	setLoseParams();
 
@@ -65,12 +67,12 @@ function SetData(rowData){
 
 
 function quickSearch(e){
-	var lparam = loseParam_ctrl.value;
+
 	var  p = null;
 	if(e == 0){//车牌号
 		p = {
 			carNo:tcarNo_ctrl.value,
-			//sloseDay:120,
+			sloseDay:tlost_ctrl.value,
 		};
 	}
 	if(e == 1){//今日计划跟进客户
@@ -154,3 +156,40 @@ function WindowrepairHistory(){
 			}
 		});
 	}
+
+
+	function openOrderDetail(){
+	var row = gridCar.getSelected();
+	var data = {};
+	data.id = row.lastServiceId;
+
+	if(data.id){
+		var item={};
+		item.id = "11111";
+	    item.text = "工单详情页";
+		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow";
+		item.iconCls = "fa fa-cog";
+		window.parent.activeTabAndInit(item,data);
+	}
+}
+
+function sendInfo(){
+    var row = gridCar.getSelected();
+        if (row == undefined) {
+        showMsg("请选中一条数据","W");
+        return;
+    }
+    nui.open({
+        url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
+        title: "发送短信", width: 655, height: 386,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData();
+        },
+        ondestroy: function (action) {
+            //重新加载
+            //query(tab);
+        }
+    });
+
+}

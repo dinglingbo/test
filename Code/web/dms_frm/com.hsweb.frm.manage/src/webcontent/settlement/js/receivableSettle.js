@@ -892,7 +892,7 @@ function checkSettleRow() {
 			} else {
 				var nowAmt = row.nowAmt || 0;
 				var nowVoidAmt = row.nowVoidAmt || 0;
-				if (nowAmt + nowVoidAmt <= 0) {
+				if (nowAmt + nowVoidAmt < 0) {
 					msg += "请填写业务单据：" + billServiceId + "的结算金额；</br>";
 				}
 			}
@@ -1460,7 +1460,7 @@ function onCellCommitEdit(e) {
 	editor.validate();
 	if (editor.isValid() == false) {
 		showMsg("请输入数字!", "W");
-		e.cancel = true;
+		e.cancel = false;
 	}
 }
 function checkSettleAccountAmt(charOffAmt) {

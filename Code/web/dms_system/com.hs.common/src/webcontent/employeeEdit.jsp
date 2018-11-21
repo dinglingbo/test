@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
- <%@ include file="/common/sysCommon.jsp"%>
+<%@include file="/common/common.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
 
 
 <html>
@@ -11,7 +12,7 @@
 <head> 
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.0.5" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.0.8" type="text/javascript"></script>
     <style type="text/css">
 </style>
 </head>
@@ -98,23 +99,23 @@
         <table>
             <tr>
                 <td align="right">积分抵扣上限金额：<span></span></td>
-                <td><input class="nui-textbox" name="integralDiscountMax" id="integralDiscountMax" value="0" required="true" vtype="range:0,1000000"/></td>
+                <td><input class="nui-textbox" name="integralDiscountMax" id="integralDiscountMax" onvalidation="onRateValidation" value="0" required="true" vtype="range:0,1000000"/>元</td>
             </tr>
             <tr>
                 <td align="right">工时优惠率最高上限：</td>
-                <td><input class="nui-textbox" name="itemDiscountRate" id="itemDiscountRate" value="0" required="true"  vtype="range:0,1"/></td>
+                <td><input class="nui-textbox" name="itemDiscountRate" id="itemDiscountRate" onvalidation="onRateValidation" value="0" required="true"  vtype="range:0,100">%</td>
             </tr>
             <tr>
                 <td align="right">配件优惠率最高上限：</td>
-                <td><input class="nui-textbox" name="partDiscountRate" id="partDiscountRate" value="0" required="true"  vtype="range:0,1"/></td>
+                <td><input class="nui-textbox" name="partDiscountRate" id="partDiscountRate" onvalidation="onRateValidation" value="0" required="true"  vtype="range:0,100"/>%</td>
             </tr>
             <tr>
                 <td align="right">整单全免上限金额：<span></span></td>
-                <td><input class="mini-textbox" id="freeDiscountMax" name="freeDiscountMax" value="0" required="true" vtype="range:0,1000000"/></td>
+                <td><input class="mini-textbox" id="freeDiscountMax" name="freeDiscountMax" onvalidation="onRateValidation" value="0" required="true" vtype="range:0,1000000"/>元</td>
             </tr>
             <tr>
                 <td align="right">收银优惠上限金额：</td>
-                <td><input class="mini-textbox" name="cashDiscountMax" id="cashDiscountMax" value="0" required="true" vtype="range:0,1000000"/></td>
+                <td><input class="mini-textbox" name="cashDiscountMax" id="cashDiscountMax" onvalidation="onRateValidation" value="0" required="true" vtype="range:0,1000000"/>元</td>
             </tr>
         </table>
     </fieldset>

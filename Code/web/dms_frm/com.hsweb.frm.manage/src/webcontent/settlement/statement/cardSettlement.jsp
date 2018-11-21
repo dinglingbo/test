@@ -10,8 +10,8 @@
 -->
 
 <head>
-	<title>应收结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.3.7"></script>
+	<title>计次卡/储值卡结算</title>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.0.4"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -241,7 +241,7 @@
 	<div style="position: relative;">
 		<div class="fw">
 			<div class="fw_top" style="text-align: center; background: #dcdcdc; font-size: 25px; line-height: 64px;">
-				收款结账
+				结算收款
 			</div>
 			<div class="pay_top">
 				<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -275,88 +275,8 @@
 				</table>
 			</div>
 			<div class="pay_list">
-				<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">优惠/抵扣</span></h2>
-				<div class="pay_tcbk">
-					<div id="benefitdeductionbox">
+				
 
-						<div class="pay_jshj_list">
-							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">储值卡抵扣</a>
-							</div>
-							<div class="pay_js_right">
-								<table width="100%" border="0" cellspacing="0" cellpadding="0">
-									<tbody>
-										<tr>
-											<td width="15%">
-												<span>储值卡余额：</span>
-
-											</td>
-											<td height="40" class="line24">
-												<input class="nui-textbox" id="rechargeBalaAmt" name="rechargeBalaAmt" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;">
-											</td>
-											<td width="10%">
-												<span>抵扣金额：</span>
-
-											</td>
-											<td height="40" class="line24">
-												<input class="mini-spinner" id="deductible" name="deductible" width="100px" minValue="0" maxValue="1000000" showbutton="false" changeOnMousewheel="false"
-												 allowNull="false" onvaluechanged="onChanged" />
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="pay_jshj_list">
-							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">优惠券抵扣</a>
-							</div>
-							<div class="pay_js_right">
-								<table id="tbcouponlist" width="100%" border="0" cellspacing="0" cellpadding="0">
-									<tbody>
-										<tr>
-											<td height="40">没有可用优惠券或者该用户未在微信公众号注册</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="pay_jshj_list">
-							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">积分抵扣</a>
-							</div>
-							<div class="pay_js_right">
-								<table id="tbcommissionlist" width="100%" border="0" cellspacing="0" cellpadding="0">
-									<tbody>
-										<tr>
-											<td height="40">没有可用积分</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="pay_jshj_list">
-							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">优惠金额</a>
-							</div>
-							<div class="pay_js_right">
-								<table width="100%" border="0" cellspacing="0" cellpadding="0">
-									<tbody>
-										<tr>
-											<td width="10%">
-												<span>其他优惠：</span>
-
-											</td>
-											<td height="40" class="line24">
-												<input class="nui-textbox" id="PrefAmt" name="PrefAmt" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;" readonly="readonly">
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 
 
@@ -377,7 +297,7 @@
 												<td>
 												</td>
 												<!-- <td>
-											<a class="depj" data-balloon="删除收款方式" href="javascript:void(0);" onclick="dF()" style="margin-left: 15px;"></a>
+											<a class="depj" data-balloon="删除付款方式" href="javascript:void(0);" onclick="dF()" style="margin-left: 15px;"></a>
 										</td> -->
 											</tr>
 										</tbody>
@@ -412,7 +332,50 @@
 							</div>
 						</div>
 					</div>
+					<div class="pay_list">
+						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">结算方式</span></h2>
+						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
+							<div id="dataform">
+								<div class="skbox2" id="div0" name="div0">
+									<table name="account0" id="account0" width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+										<tbody>
+											<tr>
+												<td width="50%" height="&quot;44&quot;">
+											
+												</td>
+												<td>
+												</td>
+											
+											</tr>
+										</tbody>
+									</table>
+									<table name="paytype2" id="paytype2" width="96%" border="0" cellpadding="0" cellspacing="0">
+										<tbody>
 
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="" id="csdiv" style="background: #f8f8f8;">
+								<div class="guazhangbz">
+									<table id="tbaddaccount" width="96%" height="30px" border="0" align="center" cellpadding="0" cellspacing="0">
+										<tbody>
+											<tr>
+												<td>结算方式:</td>
+												<td colspan="3" align="center">
+														<div class="mini-radiobuttonlist" repeatItems="1"
+														repeatLayout="table" repeatDirection="vertical" id="payType" name="payType"
+														textField="text" valueField="value"
+														data="[{value:'020101',text:'现金',},{value:'020102',text:'刷卡'},{value:'020104',text:'微信/支付宝'}]"
+														value="020101" ></div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
 						
 
 					<div class="pay_list">
@@ -470,7 +433,7 @@
 						<label style="font-family:Verdana;">实收金额：</label>
 						<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 					</td>
-					<td >
+<!-- 					<td >
 						<a id="wxbtnsettle" style="    width: 120px;
 							height: 40px;
 							font-size: 18px;
@@ -482,7 +445,7 @@
 							line-height: 2;
 							text-decoration: none;" 
 							href="javascript:void(0)" onclick="settleOK()">微信结算</a>
-					</td>
+					</td> -->
 					<td >
 						<a id="btnsettle" style="    width: 120px;
 							height: 40px;

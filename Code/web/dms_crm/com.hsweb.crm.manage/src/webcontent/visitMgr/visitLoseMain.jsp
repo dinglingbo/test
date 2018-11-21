@@ -39,12 +39,13 @@ pageEncoding="UTF-8" session="false" %>
         <label style="font-family:Verdana;">车牌号：</label>
         <input class="nui-textbox" name="tcarNo" id="tcarNo">
         <label style="font-family:Verdana;">流失超过(天)：</label>
-        <input class="nui-textbox" name="" id="" style="width: 80px;">
+        <input class="nui-textbox" name="tlost" id="tlost" style="width: 80px;">
         <a class="nui-button" plain="true" onclick="quickSearch(0)" iconcls="" ><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-reply fa-lg"></span>&nbsp;回访历史</a>
+                <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a>
     </div>
 
     <div class="nui-fit">

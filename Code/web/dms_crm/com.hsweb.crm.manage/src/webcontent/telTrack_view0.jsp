@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-	 <%@include file="/common/sysCommon.jsp" %>
+     <%@include file="/common/commonRepair.jsp"%>
 <html>
 <!-- 
   - Author(s): Guine
@@ -19,7 +19,7 @@
     <table style="width:100%;">
         <tr>
             <td><!-- style="white-space:nowrap;"-->
-                <label style="font-family:Verdana;" title="点击清空条件"><span onclick="clearQueryForm()">快速查询：</span></label>
+                <!-- <label style="font-family:Verdana;" title="点击清空条件"><span onclick="clearQueryForm()">快速查询：</span></label> -->
                 <input name="orgid"
                     id="query_orgid"
                     visible="false"
@@ -50,8 +50,8 @@
                     textField="name"
                     valueField="customid"
                     emptyText="请选择..."
-                    url=""
-                    allowInput="false"
+                    url="" 
+                    allowInput="false" 
                     valueFromSelect="true"
                     showNullItem="false"
                     nullItemText="请选择..."/>
@@ -65,11 +65,21 @@
 	                  allowInput="true"
 	                  valueFromSelect="false"
 	                  width="100px">
+	                 <input class="nui-combobox" 
+	                  id="carBrandId" 
+	                  name="carBrandId" 
+	                  textField="empName"
+	                  valueField="empId"
+	          		  visible="false"
+	                  url=""
+	                  allowInput="true"
+	                  valueFromSelect="false"
+	                  width="100px">
                 <label style="font-family:Verdana;">车牌号：</label>
                 <input class="nui-textbox" name="carNo" id="query_carno" enabled="true"/>
                 
-                <label style="font-family:Verdana;">手机号：</label>
-                <input class="nui-textbox" name="mobile" id="query_mobile" enabled="true"/>
+               <!--  <label style="font-family:Verdana;">手机号：</label>
+                <input class="nui-textbox" name="mobile" id="query_mobile" enabled="true"/> -->
 
                 <label style="font-family:Verdana;">下次跟踪时间：</label>
                 <input id="query_nextScoutDate" 
@@ -79,11 +89,11 @@
                     emptyText="请选择日期" alwaysView="true"/>
                 <a class="nui-button"  plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
-                <a class="nui-button"  plain="true" onclick="add()" id="add" enabled="true"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
-                <a class="nui-button"  plain="true" onclick="edit()" id="edit" enabled="true"><span class="fa fa-wrench fa-lg"></span>&nbsp;预约维修</a>
-                <a class="nui-button"  plain="true" onclick="edit()" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;业绩登记</a>
+                <a class="nui-button"  plain="true" onclick="sendInfo()" id="add" enabled="true"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
+                <a class="nui-button"  plain="true" onclick="" id="" enabled="true"><span class="fa fa-wrench fa-lg"></span>&nbsp;预约维修</a>
+                <a class="nui-button"  plain="true" onclick="" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;业绩登记</a>
                 <a class="nui-button"  plain="true" onclick="newClient()" id="edit" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增客户</a>
-                <a class="nui-button"  plain="true" onclick="" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改客户资料</a>
+                <a class="nui-button"  plain="true" onclick="editClient()" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改客户资料</a>
             </td>
         </tr>
     </table>
@@ -102,7 +112,7 @@
                         pageSize="50" sizeList=[20,50,100] 
                         selectOnLoad="true"
                         ondrawcell=""
-                        onSelect="setScoutForm"
+                        onSelect=""
                         dataField="data"
                         allowCellWrap = true
                         virtualColumns="true"

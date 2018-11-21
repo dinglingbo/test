@@ -25,7 +25,7 @@
                     <a class="nui-button" iconCls="" plain="true" onclick="onAddClick()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onEditClick()"><span class="fa fa-edit fa-lg"></span>&nbsp;修改 </a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onDeleteClick()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick=""><span class="fa fa-search fa-lg"></span>&nbsp;查看跟踪明细</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onEditClick22()"><span class="fa fa-search fa-lg"></span>&nbsp;查看跟踪明细</a>
                 </td>
             </tr>
         </table>

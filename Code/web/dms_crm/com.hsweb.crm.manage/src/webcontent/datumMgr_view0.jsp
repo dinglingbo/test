@@ -11,7 +11,41 @@
 <head>
 <title>资料管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
     <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.12"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/importData.js?v=1.0.12"></script>
+    <style type="text/css">
+    
+    .file {
+    position: relative;
+    display: inline-block;
+    background: #D0EEFF;
+    border: 1px solid #99D3F5;
+    border-radius: 4px;
+    padding: 0px 12px;
+    text-align: center;
+    color: #1E88C7;
+    text-decoration: none;
+    text-indent: 0;
+
+}
+.file input {
+    position: absolute;
+    font-size: 10px;
+    right: 0;
+    top: 0px;
+    opacity: 0;
+}
+.file:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
+}
+    
+    </style>
+    
+    
 </head>
 <body>
 
@@ -41,10 +75,7 @@
                     valueFromSelect="true"
                     showNullItem="false"
                     nullItemText="请选择..."/>
-                
-                <label style="font-family:Verdana;">车牌号：</label>
-                <input class="nui-textbox width1" name="carNo" id="carNo" enabled="true"/>
-                
+                          
                 <label style="font-family:Verdana;">跟踪状态：</label>
                 <input name="visitStatus"
                     id="visitStatus"
@@ -57,6 +88,9 @@
                     valueFromSelect="true"
                     showNullItem="false"
                     nullItemText="请选择..."/>
+                    
+                                    <label style="font-family:Verdana;">车牌号：</label>
+                <input class="nui-textbox width1" name="carNo" id="carNo" enabled="true"/>
                 <!--
                 <label style="font-family:Verdana;">来厂状态：</label>
                 <input name="isCome"
@@ -67,11 +101,11 @@
                     valueField="customid"
                     emptyText="请选择..."
                     allowInput="false"
-                    valueFromSelect="true"
+                    valueFromSelect="true" 
                     showNullItem="false"
                     nullItemText="请选择..."/>
                 -->
-                <a class="nui-button"  plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button"  plain="true" onclick="query(0)" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button"  plain="true" onclick="updateField('visitStatus', '060701')" id="add" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;设为继续跟踪</a>
                 <a class="nui-button"  plain="true" onclick="updateField('visitStatus', '060702')" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;设为结束跟踪</a>
                 
@@ -89,8 +123,11 @@
                     showNullItem="false"
                     nullItemText="请选择..."/>
                 <a class="nui-button"  plain="true" onclick="assignTracker()" id="add" enabled="true"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
-                <a class="nui-button"  plain="true" onclick="" id="" enabled="true"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;导入资料</a>
-
+                <!-- <a class="nui-button"  plain="true" onclick="" id="" enabled="true"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;导入资料</a> -->
+                    <a href="javascript:;" class="file">导入资料
+                        <input type="file" name="" id="" onchange="importf(this)">
+                    </a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
 </div>
 
 <div class="nui-fit">

@@ -96,17 +96,33 @@ function payOk(){
 			totalAmt:rpbCard.totalAmt,
 			useRemark:rpbCard.useRemark,
 			carId:data.carId,
-			carNo:data.carNo
+			carNo:data.carNo,
+			settlementUrl:1
 	    };
 	//整理数据
-	    payAmt = rpbCard.sellAmt;
+/*	    payAmt = rpbCard.sellAmt;
 	    var json = nui.encode({
 		    "payAmt":payAmt,
 		    "payType":data.payType,
 		    "cardTimes":cardTimes,
 		    token:token
-	  });
-		//提示框 
+	  });*/
+	    //打开储值卡计次卡结算界面
+		nui.open({
+	        url: webPath + contextPath +"/com.hsweb.frm.manage.cardSettlement.flow?token="+token,
+	         width: "100%", height: "100%", 
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.setData(cardTimes);
+	        },
+			ondestroy : function(action) {// 弹出页面关闭前
+				if (action == "saveSuccess") {
+					showMsg("结算成功!", "S");
+					rightGrid.reload();
+				}
+			}
+	    });
+/*		//提示框 
 		//判断客户有没有选择
 	    nui.confirm("结算金额【"+payAmt+"】元,确定以【"+payType[data.payType]+"】结算吗？", "友情提示",function(action){
 	       if(action == "ok"){
@@ -137,7 +153,7 @@ function payOk(){
 	     }else {
 				return;
 		 }
-		 });
+		 });*/
 
 	}else{
 		nui.alert("请选择客户", "提示");

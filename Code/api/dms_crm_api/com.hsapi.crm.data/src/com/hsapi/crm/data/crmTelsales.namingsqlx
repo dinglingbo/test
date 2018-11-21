@@ -41,7 +41,7 @@
         <isEqual property="assignStatus" compareValue="-1">
         </isEqual>
         <isEqual property="assignStatus" compareValue="0">
-            AND LENGTH(IFNULL(visit_man_id,"")) = 0
+            AND IFNULL(visit_man_id,"0") = 0
         </isEqual>
         <isEqual property="assignStatus" compareValue="1">
             AND LENGTH(IFNULL(visit_man_id,"")) &gt; 0

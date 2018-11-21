@@ -5,11 +5,11 @@ var servieTypeList = [];
 var servieTypeHash = {};
 var mtAdvisorIdEl = null;
 var FItemRow = {};
-var advancedMorePartWin = null;
+//var advancedMorePartWin = null;
 var baseUrl = apiPath + repairApi + "/";
 var webBaseUrl = webPath + contextPath + "/";  
-
-document.onmousemove = function(e){
+ 
+/*document.onmousemove = function(e){
 
     if(advancedMorePartWin.visible){
         var mx = e.pageX;
@@ -28,14 +28,14 @@ document.onmousemove = function(e){
             return;
         }
     }
-};
+};*/
 
 $(document).ready(function () {
 	rpsPackageGrid = nui.get("rpsPackageGrid");
 	rpsItemGrid = nui.get("rpsItemGrid");
 	billForm = new nui.Form("#billForm");
 	mtAdvisorIdEl = nui.get("mtAdvisorId");
-	advancedMorePartWin = nui.get("advancedMorePartWin");
+	//advancedMorePartWin = nui.get("advancedMorePartWin");
 	initServiceType("serviceTypeId",function(data) {
 	    servieTypeList = nui.get("serviceTypeId").getData();
 	    servieTypeList.forEach(function(v) {
@@ -85,10 +85,10 @@ $(document).ready(function () {
 		        			var amt = data[i].amt || "";
 		        			var remark = data[i].remark || "";
 		        			var discountAmt = data[i].discountAmt || "";
-		        			var backageId = 0;
+		        			var packageId = 0;
 		        			//表示是套餐
 		        			if(data[i].billPackageId==0){
-			        			 backageId = data[i].id;
+			        			 packageId = data[i].id;
 		        			}
 		        			var newRow = {
 		        					billPackageId : billPackageId,
@@ -96,10 +96,10 @@ $(document).ready(function () {
 		        					subtotal : subtotal,
 		        					rate : rate,
 		        					amt : amt,
-		        					orderindex : data[i].orderIndex,
+		        					orderIndex : data[i].orderIndex,
 		        					remark : remark,
 		        					discountAmt : discountAmt,
-		        					backageId : backageId
+		        					packageId : packageId
 		        			};
 		        			var dataAll = rpsPackageGrid.getData();
 		        			rpsPackageGrid.addRow(newRow,dataAll.length);
@@ -135,7 +135,7 @@ $(document).ready(function () {
 		        			var discountAmt = data[i].discountAmt;
 		        			var remark = data[i].remark;
 		        			var unitPrice = data[i].unitPrice;
-		        			var orderindex = data[i].orderIndex;
+		        			var orderIndex = data[i].orderIndex;
 		        			var itemId = 0;
 		        			if(data[i].billItemId == 0){
 		        				itemId = data[i].id;
@@ -151,7 +151,7 @@ $(document).ready(function () {
 		        					discountAmt : discountAmt,
 		        					remark : remark,
 		        					unitPrice : unitPrice,
-		        					orderindex : orderindex
+		        					orderIndex : orderIndex
 		        			};
 		        			var dataAll = rpsItemGrid.getData();
 		        			rpsItemGrid.addRow(newRow,dataAll.length);
@@ -201,6 +201,8 @@ $(document).ready(function () {
 	rpsPackageGrid.on("drawcell",function(e){
 		var field = e.field,
 		value = e.value;
+		var record = e.record;
+		var uid = record._uid;
 		/*if(field == "rate"){
 			if(value){
 				e.cellHtml = value.toFixed(2) + "%";
@@ -214,7 +216,12 @@ $(document).ready(function () {
 			}
 		}
 		if(field == "action"){
-			e.cellHtml = ' <a class="optbtn" href="javascript:deleteRow(rpsPackageGrid)">删除</a>';
+			if(record.billPackageId==0){
+				e.cellHtml = ' <a class="optbtn" href="javascript:deleteRowRpsPackageGrid(\'' + uid + '\')">删除</a>';
+			}else{
+				e.cellHtml = "--"
+			}
+			
 		}
 	});
 	rpsItemGrid.on("cellendedit",function(e){
@@ -246,14 +253,20 @@ $(document).ready(function () {
 			}
 		}
 		if(field == "action"){
-			e.cellHtml = ' <a class="optbtn" href="javascript:deleteRow(rpsItemGrid)">删除</a>';
+			if(record.billItemId == 0){
+				e.cellHtml = ' <a class="optbtn" href="javascript:deleteRowRpsItemGrid(\'' + uid + '\')">删除</a>'+'<a href="javascript:choosePart(\'' + uid + '\')" class="optbtn" ><span class="fa fa-plus"></span>&nbsp;配件</a>';
+			}else{
+				e.cellHtml = ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
+			}
+			
 		}
 		if(field == "itemName"){
-			if(row.billItemId == 0){
+			e.cellHtml = e.value;
+			/*if(row.billItemId == 0){
                 e.cellHtml = '<a href="javascript:showMorePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value;	
             }else{
             	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
-            }
+            }*/
 		}
 	});
 });
@@ -286,19 +299,19 @@ function showBasicData(type){
         },
         ondestroy: function (action)
         {
-        	var iframe = this.getIFrameEl();
+        	/*var iframe = this.getIFrameEl();
             var data = iframe.contentWindow.getSelectedRow();
             var dataAll = rpsItemGrid.getData();
-        	var orderindex = null;
+        	var orderIndex = null;
         	for(var j = 0 , k = dataAll.length ; j < k ; j ++){
         		if(dataAll[j].pid == 0){
-        			orderindex = dataAll[j].orderindex;
+        			orderIndex = dataAll[j].orderIndex;
         		}
         	}
-        	if(!orderindex){
-        		orderindex = 1;
+        	if(!orderIndex){
+        		orderIndex = 1;
         	}else{
-        		orderindex = parseInt(orderindex) + 1;
+        		orderIndex = parseInt(orderIndex) + 1;
         	}
         	var newRow = {
         				itemName : data.itemName,
@@ -306,10 +319,47 @@ function showBasicData(type){
         				unitPrice : data.astandTime,
         				subtotal : 0,
         				pid : 0,
-        				orderindex : orderindex
+        				orderIndex : orderIndex
         				};
         	var dataAll = rpsItemGrid.getData();
-        	rpsItemGrid.addRow(newRow,dataAll.length);
+        	rpsItemGrid.addRow(newRow,dataAll.length);*/ 	
+        	var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getSelectedRow();
+            for(var i = 0 , l = data.length; i < l ; i++){
+            	var itemName = data[i].name || "";
+            	var type = data[i].type || "";
+            	var subtotal = data[i].amt || "";
+            	var itemTime = data[i].itemTime || "";
+            	var unitPrice = data[i].unitPrice || "";
+            	var itemId = data[i].id;
+            	var dataAll = rpsItemGrid.getData();
+            	var orderIndex = null;
+            	for(var j = 0 , k = dataAll.length ; j < k ; j ++){
+            		if(dataAll[j].billItemId == 0){
+            			orderIndex = dataAll[j].orderIndex;
+            		}
+            	}
+            	if(!orderIndex){
+            		orderIndex = 1;
+            	}else{
+            		orderIndex = parseInt(orderIndex) + 1;
+            	}
+            	var newRow = {
+            				itemName : itemName,
+            				type : type,
+            				itemTime :itemTime,
+            				unitPrice : unitPrice,
+            				subtotal : subtotal,
+            				itemId : itemId,
+            				billItemId:0,
+            				orderIndex : orderIndex
+            				};
+            	var dataAll = rpsItemGrid.getData();
+            	rpsItemGrid.addRow(newRow,dataAll.length);
+            }
+        	
+        	
+        	
         }
     });
 }
@@ -353,11 +403,11 @@ function showBasicDataPart(){
    
 }
 
-function choosePart(){//配件
+function choosePart(row_uid){//配件
     //var row = rpsItemGrid.getRowByUID(row_uid);
     //获取到工时中的ID
-    var row = FItemRow||{};
-    advancedMorePartWin.hide();
+    var row = rpsItemGrid.getRowByUID(row_uid);
+   // advancedMorePartWin.hide();
     var selectRow = rpsItemGrid.getSelected();
     var index = 0;
     nui.open({
@@ -377,62 +427,53 @@ function choosePart(){//配件
             iframe.contentWindow.setData(params);
 		},
 		ondestroy : function(action) {
-			var orderindex = 0;
+			var orderIndex = 0;
 			//获取这一工时下有多少个配件
 			var itemPart = rpsItemGrid.getData();
 			var index = rpsItemGrid.indexOf(selectRow);
 			for(var i=0;i<itemPart.length;i++){
 				if(itemPart[i].billItemId == row.itemId){
-					orderindex = parseInt(orderindex) + 1;
+					orderIndex = parseInt(orderIndex) + 1;
 				}
 			}
-			if(orderindex){
-				orderindex = parseInt(orderindex) + 1;
-				index = parseInt(index)+parseInt(orderindex);
-				orderindex = row.orderindex + "." + orderindex;
+			if(orderIndex){
+				orderIndex = parseInt(orderIndex) + 1;
+				index = parseInt(index)+parseInt(orderIndex);
+				orderIndex = row.orderIndex + "." + orderIndex;
 			}else{
-				orderindex = row.orderindex + ".1";
+				orderIndex = row.orderIndex + ".1";
 				index = parseInt(index)+1;
 			}		
             var iframe = this.getIFrameEl();
-            var data = iframe.contentWindow.getData();
-            data = data.part || {};
-        	var name = data.name || "";
-        	/*data = rpsItemGrid.getData();
-        	
-        	
-        	var itemName = data.name || "";
-        	var num = null;
-        	for(var i = 0 , l = data.length ; i < l ; i ++){
-        		if(data[i].pid == selectRow.myId){
-        			num = data[i].orderindex;
-        			index = i;
-        		}
-        	}
-        	if(num){
-        		num = parseFloat(num)+0.1;
-            	num = num.toFixed(1);
-        	}else{//没有配件 index == 0
-        		num = selectRow.orderindex;
-        		num = parseFloat(num)+0.1;
-            	num = num.toFixed(1);
-            	index = rpsItemGrid.indexOf(selectRow);
-        	}*/
-        	var newRow = {
-        			itemName : name,
-        			itemTime : 1,
-        			unitPrice : 0,
-        			rate : 0,
-        			subtotal : 0,
-        			billItemId: row.itemId,
-        			orderindex : orderindex
-        	};
-        	rpsItemGrid.addRow(newRow,index);
+            var data = null;
+            data = iframe.contentWindow.getData();
+            var falg = isEmptyObject(data);
+            if(falg){
+            	data = data.part;
+            	var name = data.name || "";
+            	var newRow = {
+            			itemName : name,
+            			itemTime : 1,
+            			unitPrice : 0,
+            			rate : 0,
+            			subtotal : 0,
+            			billItemId: row.itemId,
+            			orderIndex : orderIndex
+            	};
+            	rpsItemGrid.addRow(newRow,index);
+            }
 		}
 	});
 }
 
-function showMorePart(row_uid){
+function isEmptyObject (obj){
+  for(var key in obj ){
+	  return true;
+	}
+  return false;
+}
+
+/*function showMorePart(row_uid){
     var row = rpsItemGrid.getRowByUID(row_uid); 
     if(FItemRow == row) {
         advancedMorePartWin.hide();
@@ -443,12 +484,52 @@ function showMorePart(row_uid){
     var atEl = rpsItemGrid._getCellEl(row,"itemName");
     advancedMorePartWin.showAtEl(atEl, {xAlign:"left",yAlign:"above"});
    	
+}*/
+
+function deleteRowRpsPackageGrid(row_uid){
+	var row = rpsPackageGrid.getRowByUID(row_uid);
+	var data = rpsPackageGrid.getData();
+	var orderIndex = row.orderIndex;
+	var str1 = parseFloat(orderIndex) + 1;
+	var index = rpsPackageGrid.indexOf(row);
+	for(var i = index , l = data.length ; i < l ; i ++){
+		var str = data[i].orderIndex;
+		str = parseFloat(str);
+		if(str<str1){
+			//rpsPackageGrid.removeRow ( row, autoSelect )
+			grow = rpsPackageGrid.getRow(index);
+			rpsPackageGrid.removeRow(grow);
+		}else{
+			break;
+		} 
+	}
 }
 
-function deleteRow(grid){
-	var row = grid.getSelected();
-	grid.removeRow(row);
+
+function deleteRowRpsItemGrid(row_uid){
+	var row = rpsItemGrid.getRowByUID(row_uid);
+	var data = rpsItemGrid.getData();
+	var orderIndex = row.orderIndex;
+	var str1 = parseFloat(orderIndex) + 1;
+	var index = rpsItemGrid.indexOf(row);
+	for(var i = index , l = data.length ; i < l ; i ++){
+		var str = data[i].orderIndex;
+		str = parseFloat(str);
+		if(str<str1){
+			//rpsPackageGrid.removeRow ( row, autoSelect )
+			grow = rpsItemGrid.getRow(index);
+			rpsItemGrid.removeRow(grow);
+		}else{
+			break;
+		} 
+	}
 }
+
+function deletePartRow(row_uid){
+	var row = rpsItemGrid.getRowByUID(row_uid);
+	rpsItemGrid.removeRow(row);
+}
+
 
 var PackageDetailUrl = baseUrl + "repairApi/com.hsapi.repair.baseData.crud.queryPackageDetail.biz.ext";
 function choosePackage(){
@@ -468,7 +549,7 @@ function choosePackage(){
 			
 			var iframe = this.getIFrameEl();
             var data = iframe.contentWindow.getDataAll();
-            var orderindex = null;
+            var orderIndex = null;
             for(var i = 0 , l = data.length ; i < l ; i ++){
             	var id = null;
     			var packageName = data[i].name || "";
@@ -477,19 +558,19 @@ function choosePackage(){
     			var amt = data[i].amount || "";
     			var remark = data[i].remark || "";
     			var discountAmt = data[i].discountAmt || "";
-    			var backageId = data[i].id;
+    			var packageId = data[i].id;
    			    id = data[i].id || 0;
     			var rpsPackageGridData = rpsPackageGrid.getData();
     			
             	for(var j = 0 , k = rpsPackageGridData.length ; j < k ; j ++){
             		if(rpsPackageGridData[j].billPackageId == 0){
-            			orderindex = rpsPackageGridData[j].orderindex;
+            			orderIndex = rpsPackageGridData[j].orderIndex;
             		}
             	}
-            	if(!orderindex){
-            		orderindex = 1;
+            	if(!orderIndex){
+            		orderIndex = 1;
             	}else{
-            		orderindex = parseInt(orderindex) + 1;
+            		orderIndex = parseInt(orderIndex) + 1;
             	}
     			var newRow = {
     					billPackageId : 0,
@@ -497,10 +578,10 @@ function choosePackage(){
     					subtotal : subtotal,
     					rate : rate,
     					amt : amt,
-    					orderindex : orderindex,
+    					orderIndex : orderIndex,
     					remark : remark,
     					discountAmt : discountAmt,
-    					backageId : backageId
+    					packageId : packageId
     			};
     			rpsPackageGrid.addRow(newRow,rpsPackageGridData.length);
     			 //查找明细
@@ -521,17 +602,17 @@ function choosePackage(){
                     		var subtotal = items[m].trueAmt;
                     		var remark = items[m].remark;
                     		var inx = parseInt(m)+1;
-                    		var orderindexs = orderindex+"."+ inx;
+                    		var orderIndexs = orderIndex+"."+ inx;
                     		var newRow = {
                 					billPackageId : id,
                 					packageName : packageName,
                 					subtotal : subtotal,
                 					rate : 0,
                 					amt : amt,
-                					orderindex : orderindexs,
+                					orderIndex : orderIndexs,
                 					remark : remark,
                 					discountAmt : 0,
-                					backageId : 0
+                					packageId : 0
                 			};
                     		var rpsPackageGridData = rpsPackageGrid.getData();
                 			rpsPackageGrid.addRow(newRow,rpsPackageGridData.length);
@@ -543,17 +624,17 @@ function choosePackage(){
                     		var subtotal = parts[n].trueAmt;
                     		var remark = parts[n].remark;
                     		var inx = parseInt(items.length)+parseInt(n)+1;
-                    		var orderindexs = orderindex+"."+ inx;
+                    		var orderIndexs = orderIndex+"."+ inx;
                     		var newRow = {
                 					billPackageId : id,
                 					packageName : packageName,
                 					subtotal : subtotal,
                 					rate : 0,
                 					amt : amt,
-                					orderindex : orderindexs,
+                					orderIndex : orderIndexs,
                 					remark : remark,
                 					discountAmt : 0,
-                					backageId : 0
+                					packageId : 0
                 			};
                     		var rpsPackageGridData = rpsPackageGrid.getData();
                 			rpsPackageGrid.addRow(newRow,rpsPackageGridData.length);
@@ -576,6 +657,8 @@ function chooseItem(){
 		allowResize : true,
 		onload : function() {
 			var iframe = this.getIFrameEl();
+			var params = {};
+			iframe.contentWindow.setData(params);
 			iframe.contentWindow.showCheckcolumn();
 		},
 		ondestroy : function(action) {
@@ -589,16 +672,16 @@ function chooseItem(){
             	var unitPrice = data[i].unitPrice || "";
             	var itemId = data[i].id;
             	var dataAll = rpsItemGrid.getData();
-            	var orderindex = null;
+            	var orderIndex = null;
             	for(var j = 0 , k = dataAll.length ; j < k ; j ++){
             		if(dataAll[j].billItemId == 0){
-            			orderindex = dataAll[j].orderindex;
+            			orderIndex = dataAll[j].orderIndex;
             		}
             	}
-            	if(!orderindex){
-            		orderindex = 1;
+            	if(!orderIndex){
+            		orderIndex = 1;
             	}else{
-            		orderindex = parseInt(orderindex) + 1;
+            		orderIndex = parseInt(orderIndex) + 1;
             	}
             	var newRow = {
             				itemName : itemName,
@@ -608,7 +691,7 @@ function chooseItem(){
             				subtotal : subtotal,
             				itemId : itemId,
             				billItemId:0,
-            				orderindex : orderindex
+            				orderIndex : orderIndex
             				};
             	var dataAll = rpsItemGrid.getData();
             	rpsItemGrid.addRow(newRow,dataAll.length);
@@ -655,8 +738,8 @@ function save(){
         	}else{
         		nui.get("rid").setValue(text.mainId);
             	showGridMsg(text.mainId);
+            }
         	}
-        }
     });
 }
 
@@ -704,10 +787,14 @@ function onPrint(e){
 }
 
 function showGridMsg(serviceId){
-	rpsPackageGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
-	rpsPackageGrid.load({serviceId : serviceId,token : token});
-	rpsItemGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpense.biz.ext");
-	rpsItemGrid.load({serviceId : serviceId,token : token});
+	rpsPackageGrid.setData([]);
+	rpsItemGrid.setData([]);
+	rpsPackageGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpensePkgBill.biz.ext");
+	rpsPackageGrid.load({serviceId : serviceId,token : token},function(e){
+		rpsItemGrid.setUrl(baseUrl+"com.hsapi.repair.baseData.query.searchExpenseItemBill.biz.ext");
+		rpsItemGrid.load({serviceId : serviceId,token : token});
+	});
+
 }
 
 

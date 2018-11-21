@@ -11,7 +11,7 @@
 
 <head>
 	<title>应收结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.3.5"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivable.js?v=1.3.7"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -299,7 +299,7 @@
 
 											</td>
 											<td height="40" class="line24">
-												<input class="mini-spinner" id="deductible" name="deductible" width="100px" minValue="0" maxValue="1000000" showbutton="false"
+												<input class="mini-spinner" id="deductible" name="deductible" width="100px" minValue="0" maxValue="1000000" showbutton="false" changeOnMousewheel="false"
 												 allowNull="false" onvaluechanged="onChanged" />
 											</td>
 										</tr>
@@ -449,7 +449,7 @@
 						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					</td>
 					<td >
-						<label style="font-family:Verdana;">待收金额：</label>
+						<label style="font-family:Verdana;">应收金额：</label>
 						<span id="totalAmt1" name="totalAmt1" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 					</td>
 					<td >
@@ -467,7 +467,7 @@
 						<input type="checkbox" id="settlesenddx">短信通知车主
 					</td>
 					<td >
-						<label style="font-family:Verdana;">剩余应收：</label>
+						<label style="font-family:Verdana;">实收金额：</label>
 						<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 					</td>
 					<td >

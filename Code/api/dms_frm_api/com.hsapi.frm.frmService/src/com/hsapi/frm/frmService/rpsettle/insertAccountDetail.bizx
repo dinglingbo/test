@@ -378,6 +378,7 @@
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign11</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo2</sourceNode>
@@ -699,7 +700,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">msgO+serviceId+msgT</process:from>
+      <process:from type="expression" pattern="reference">msgO+serviceId+msgT</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>

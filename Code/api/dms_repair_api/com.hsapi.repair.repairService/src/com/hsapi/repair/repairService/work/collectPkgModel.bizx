@@ -134,8 +134,20 @@
       <process:to type="query">pkgModel/packageName</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">pkgModel/packageTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">pkgModel/pkgamt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">rpsPackage/amt</process:from>
       <process:to type="query">pkgModel/amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">pkgModel/amt4s</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">rpsPackage/rate</process:from>
@@ -148,6 +160,66 @@
     <process:copy>
       <process:from type="query" pattern="reference">rpsPackage/subtotal</process:from>
       <process:to type="query">pkgModel/subtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/detailAmt</process:from>
+      <process:to type="query">pkgModel/detailAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/differAmt</process:from>
+      <process:to type="query">pkgModel/differAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/costAmt</process:from>
+      <process:to type="query">pkgModel/costAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/salesDeductType</process:from>
+      <process:to type="query">pkgModel/salesDeductType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/salesDeductOriginValue</process:from>
+      <process:to type="query">pkgModel/salesDeductOriginValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/salesDeductValue</process:from>
+      <process:to type="query">pkgModel/salesDeductValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/techDeductType</process:from>
+      <process:to type="query">pkgModel/techDeductType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/techDeductOriginValue</process:from>
+      <process:to type="query">pkgModel/techDeductOriginValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/techDeductValue</process:from>
+      <process:to type="query">pkgModel/techDeductValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/advisorDeductType</process:from>
+      <process:to type="query">pkgModel/advisorDeductType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/advisorDeductOriginValue</process:from>
+      <process:to type="query">pkgModel/advisorDeductOriginValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/advisorDeductValue</process:from>
+      <process:to type="query">pkgModel/advisorDeductValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/isCanRate</process:from>
+      <process:to type="query">pkgModel/isCanRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/isDisabled</process:from>
+      <process:to type="query">pkgModel/isDisabled</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsPackage/sourceId</process:from>
+      <process:to type="query">pkgModel/sourceId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">rpsPackage/remark</process:from>
@@ -779,7 +851,9 @@
     <node>assign3</node>
   </nodes>
   <topRuler/>
-  <leftRuler/>
+  <leftRuler>
+    <guides position="317" horizontal="true"/>
+  </leftRuler>
   <process:info author="Administrator" createTime="2018-11-20 09:37:19" date="2018-11-20Z" description="根据工单ID和套餐ID生成模板数据" name="collectPkgModel" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond1"/>

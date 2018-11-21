@@ -84,7 +84,7 @@
       <process:to type="query">itemModel/modelId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">rpsItem/serviceId</process:from>
+      <process:from type="query" pattern="reference">rpsItem/serviceTypeId</process:from>
       <process:to type="query">itemModel/serviceTypeId</process:to>
     </process:copy>
     <process:copy>

@@ -60,7 +60,7 @@
                      repeatItems="2"
                      id="countWay"
                      width="500"
-                     style="position: absolute;top: 4px;display: inline-table;"
+                     style="position: absolute;top: 154px;display: inline-table;"
                      textField="text" valueField="id" value="1" data="[{id:1,text:'连锁数据按店分析'},{id:2,text:'本店数据按品牌分析'},{id:3,text:'本店数据按零件类别分析'}]">
                 </div>
             </td>

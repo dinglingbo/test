@@ -5,12 +5,17 @@ var sellForm = null;
 var receiveGrid = null;
 var payGrid = null;
 var fserviceId = 0;
+var deductible = 0;
+var tableNum = 0;
 var plist = [];
 var rlist = [];
+var typeList = {};
 var mtAmtEl = null;
+var guestData = null;
 var amountEl = null;
 var onetInAmt = 0;
 var netInAmt = 0;
+var zongAmt = 0;//总金额
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var frmUrl = apiPath + frmApi + "/";
@@ -18,7 +23,9 @@ var expenseUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.svr.getR
 var srnum = [];
 $(document).ready(function(v) {
 
-
+	$("body").on("input  onvaluechanged","input[name='amount']",function(){
+		onChanged();
+	});
 
 });
 function onbillRTypeChange(e){
@@ -40,7 +47,7 @@ function onbillPTypeChange(e){
 function getData(data){
 	// 跨页面传递的数据对象，克隆后才可以安全使用
 	data = data||{};
-	data.amount = data.totalSubtotal;
+	data.amount = data.mtAmt;
 	data.payType = "020101";
 	var json = {
 		guestId:data.guestId,
@@ -68,9 +75,16 @@ function getData(data){
 	});
 	nui.get("rechargeBalaAmt").setValue("￥"+data.rechargeBalaAmt); 
 	
-	onetInAmt  = data.totalSubtotal;
+	onetInAmt  = data.mtAmt;
 }
 function setData(params){
+	guestData = params;
+	zongAmt = params.data.mtAmt;
+	var rechargeBalaAmt = 0;
+	var jsonq = {
+			guestId:params.guestId,
+			token : token
+		};
 	var param = {isMain:0};
 	svrInComeExpenses(param,function(data) {
 		var list = data.list||{};
@@ -146,16 +160,16 @@ function setData(params){
 			}
 			var amount = 0;
 			if(params.data.ycAmt==null||params.data.ycAmt==""){
-				amount = params.data.totalSubtotal;
+				amount = params.data.mtAmt;
 			}else{
-				params.data.totalSubtotal = params.data.totalSubtotal-params.data.ycAmt;
-				params.data.totalSubtotal = params.data.totalSubtotal.toFixed(2)
+				params.data.mtAmt = params.data.mtAmt-params.data.ycAmt;
+				params.data.mtAmt = params.data.mtAmt.toFixed(2)
 			}
 			netInAmt = amount;
-			params.data.totalSubtotal = parseFloat(params.data.totalSubtotal)+amt;
-			document.getElementById('totalAmt').innerHTML = "￥"+params.data.totalSubtotal;
-			document.getElementById('totalAmt1').innerHTML = params.data.totalSubtotal;
-			document.getElementById('amount').innerHTML =  params.data.totalSubtotal;
+			params.data.mtAmt = parseFloat(params.data.mtAmt)+amt;
+			document.getElementById('totalAmt').innerHTML = "￥"+params.data.mtAmt;
+			document.getElementById('totalAmt1').innerHTML = params.data.mtAmt;
+			document.getElementById('amount').innerHTML =  params.data.mtAmt;
 			document.getElementById('ycAmt').innerHTML = params.data.ycAmt||0;
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -209,44 +223,26 @@ function setData(params){
 			console.log(jqXHR.responseText);
 		}
 	});
-	/*
-	receiveGrid.load({
-		serviceId: fserviceId,
-		dc: 1,
-		token: token
-	},function(rs){
-		var result = rs.result||{};
-		var errCode = result.errCode||"";
-		if(errCode=='S'){
-			var data = result.data||[];
-			if(data && data.length>0){
-			}else{
-				var row = {};
-				receiveGrid.addRow(row);
-			}
-		}
-	});
+	
 
-	payGrid.load({
-		serviceId: fserviceId,
-		dc: -1,
-		token: token
-	},function(rs){
-		var result = rs.result||{};
-		var errCode = result.errCode||"";
-		if(errCode=='S'){
-			var data = result.data||[];
-			if(data && data.length>0){
-			}else{
-				var row = {};
-				payGrid.addRow(row);
+		
+		nui.ajax({
+			url : apiPath + repairApi + "/com.hsapi.repair.baseData.query.queryMemberByGuestId.biz.ext" ,
+			type : "post",
+			data : jsonq,
+			success : function(data) {
+				if(data.member.length==0){
+					rechargeBalaAmt=0;
+				}else{	
+					rechargeBalaAmt = data.member[0].rechargeBalaAmt;
+				}
+				nui.get("rechargeBalaAmt").setValue("￥"+rechargeBalaAmt); 
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				console.log(jqXHR.responseText);
 			}
-		}
-	});*/
-
-	// var row = {};
-	// receiveGrid.addRow(row);
-	// payGrid.addRow(row);
+		});
+		addType();
 
 	getData(data);
 }
@@ -288,30 +284,34 @@ function deletePayRow(row_uid){
 }
 var resultData = {};
 function onChanged() {
-	var deductible = nui.get("deductible").getValue()||0;
+	var count = scount();
+	 deductible = nui.get("deductible").getValue()||0;
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
 	var memAmt = nui.get("rechargeBalaAmt").getValue()||0;
 		memAmt = (memAmt.split("￥"))[1];
 	if(deductible>memAmt){
 		nui.alert("储值抵扣不能大于储值余额","提示");
 		nui.get("deductible").setValue(0);
+		deductible=0;
 		nui.get("PrefAmt").setValue(0);
-		document.getElementById('amount').innerHTML=netInAmt;
+
 		return;
 	}
-	if(parseFloat(deductible) + parseFloat(PrefAmt) > netInAmt){
+	if(parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count)  > netInAmt){
 		nui.alert("储值抵扣加上优惠金额不能大于应收金额","提示");
 		nui.get("deductible").setValue(0);
+		deductible=0;
 		nui.get("PrefAmt").setValue(0);
-		document.getElementById('amount').innerHTML=netInAmt;
+
 		return;
 	}
 	
-	var amount = parseFloat(netInAmt) - parseFloat(deductible) - parseFloat(PrefAmt);
-	document.getElementById('amount').innerHTML = amount.toFixed(2);
+	var amount = parseFloat(netInAmt) - parseFloat(deductible) - parseFloat(PrefAmt)-parseFloat(count);
+	amount = amount.toFixed(2);
+	//document.getElementById('amount').innerHTML = amount.toFixed(2);
 
 }
-function setNetInAmt(){
+/*function setNetInAmt(){
 	var rAmt = 0;
 	receiveGrid.findRows(function(row){
 		if(row){
@@ -331,32 +331,58 @@ function setNetInAmt(){
 	}
 	mtAmtEl.setValue(netInAmt.toFixed(2));
 	amountEl.setValue(amount.toFixed(2));
-}
+}*/
 
+//转预结算
 function noPay(){
-
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
 	doNoPay(fserviceId,PrefAmt);
 }
 
+//结算
 function pay(){
-
-	
+	var accountTypeList =[];
+	var accountDetail = {};
+	for(var i = 0;i<tableNum+1;i++){
+		var  Sel=document.getElementById("optaccount"+i);
+		if(Sel!=null){
+			var index=Sel.selectedIndex ;
+			var selectValue =  Sel.options[index].value;
+			var seletText = Sel.options[index].text;
+		}
+		for(var j =1;j<typeList.length;j++){
+			var dtype = typeList[j].split("p");
+			var typeF = dtype[0].substring(0,1);
+			if(typeF==i){
+				var deductible1 = dtype[1];
+				var TypeCode = dtype[0].substring(1,dtype[0].length);
+				var list={balaTypeCode:TypeCode,charOffAmt:deductible1,settAccountId:selectValue,settAccountName:seletText};
+				accountTypeList.push(list);
+			}
+		}
+	}
+		var count = scount();
+/*		if(count==0){
+			nui.alert("请选择结算账户,并填写结算金额","提示");
+			return;
+		}*/
+		if(count!=zongAmt){
+			nui.alert("结算金额和应结金额不一致，请重新确认！","提示");
+			return;
+		}
 	var deductible = nui.get("deductible").getValue()||0;
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
 	var payType = nui.get("payType").getValue()||0;
 	var amt = $("#amount").text();
-
-
-
 	var json = {
+		accountTypeList : accountTypeList,
 		allowanceAmt:PrefAmt,
 		cardPayAmt:deductible,
 		serviceId:fserviceId,
 		payType:payType,
 		payAmt:amt
 	}
-    nui.confirm("结算金额:"+amt+"元,确定结算吗?", "友情提示",function(action){
+    nui.confirm("确定结算吗?", "友情提示",function(action){
 	       if(action == "ok"){
 			    nui.mask({
 			        el : document.body,
@@ -482,4 +508,129 @@ function svrInComeExpenses(params, callback) {
             console.log(jqXHR.responseText);
         }
     });
+}
+
+function addF(){
+	tableNum++;
+	var str = '<div class="skbox2" id="div'+tableNum+'" name="'+tableNum+'"><table name="'+tableNum+'" width="98%" border="0" align="center" cellpadding="0" cellspacing="0"><tbody><tr><td width="50%" height="&quot;44&quot;"><select name="optaccount'+tableNum+'" id="optaccount'+tableNum+'" onchange="checkField(this.id)"  style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;border:0;"></select></td><td><a class="depj" id="'+tableNum+'" data-balloon="删除收款方式" href="javascript:void(0);" onclick="remove(this.id)" style="margin-left: 15px;"></a></td></tr></tbody></table><table name="ppaytype'+tableNum+'" id="ppaytype'+tableNum+'" width="96%" border="0" cellpadding="0" cellspacing="0"><tbody></tbody></table></div>';
+	var dataform = document.getElementById("dataform");
+	//dataform.innerHTML = dataform.innerHTML+str;
+	 $("#csdiv").before(str);
+	addType();
+}
+
+function addType(){
+	nui.ajax({
+		url : apiPath + frmApi + "/com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext?token="+ token,
+		type : "post",
+		data : "",
+		success : function(data) {
+			for(var i = tableNum;i<=tableNum;i++){
+				$("#optaccount"+i).empty();
+				var optaccount = document.getElementById('optaccount'+i);
+				$("<option value=''>—请选择结算账户—</option>").appendTo("#optaccount"+i);
+				for (var j = 0; j < data.settleAccount.length; j++) {
+					$("<option  value="+data.settleAccount[j].id+">"+data.settleAccount[j].name+"</option>").appendTo("#optaccount"+i);
+				}
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+function checkField(id){
+	 var str = "";
+	 var s1=id.split("optaccount");
+	 $("#ppaytype"+s1[1]).empty();
+	 var myselect=document.getElementById("optaccount"+s1[1]);
+	 var index=myselect.selectedIndex;
+	 var c  =myselect.options[index].value
+   var json = {
+   		accountId:c,
+   		token:token
+   }
+	nui.ajax({
+		url : apiPath + frmApi + "/com.hsapi.frm.setting.queryAccountSettleType.biz.ext",
+		type : "post",
+		data : json,
+		success : function(data) {
+			for(var i = 0;i<data.list.length;i++){
+				var ss = '<td width="110" height="44" align="right">'+data.list[i].customName+'</td>'+'<td>'+'<input class="nui-textbox" id ='+s1[1]+data.list[i].customId+' name ="amount" onvaluechanged="onChanged" style="width: 100px;">'+'</td>';
+				if(((i+1)%3)==0){
+					ss=ss+'</tr>'+'<tr>';
+				}
+				str = str+ss;
+			}
+			str='<tr>'+str+'</tr>';
+			document.getElementById('ppaytype'+s1[1]).innerHTML = str;
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+	 onChanged();
+}
+
+function remove(id){
+	$("#div"+id).empty();
+	onChanged();
+}
+
+
+//计算输入金额的结算金额
+function  scount(){
+	type = null;
+	var count = 0;
+	for(var j =0;j<tableNum+1;j++){
+		for(var i =0;i<10;i++){
+			if(document.getElementById(j+"02010"+i)==null||document.getElementById(j+"02010"+i).value==""){
+				
+			}else{
+				var dk = parseFloat(document.getElementById(j+"02010"+i).value);
+				count= count+dk;
+				type=type+","+j+"02010"+i+"p"+dk;
+			}
+		}
+	}
+	if(type==null||type==""){
+		
+	}else{
+		typeList = type.split(",");
+	}
+	return count;
+}
+
+function checkField(id){
+	 var str = "";
+	 var s1=id.split("optaccount");
+	 $("#ppaytype"+s1[1]).empty();
+	 var myselect=document.getElementById("optaccount"+s1[1]);
+	 var index=myselect.selectedIndex;
+	 var c  =myselect.options[index].value
+   var json = {
+   		accountId:c,
+   		token:token
+   }
+	nui.ajax({
+		url : apiPath + frmApi + "/com.hsapi.frm.setting.queryAccountSettleType.biz.ext",
+		type : "post",
+		data : json,
+		success : function(data) {
+			for(var i = 0;i<data.list.length;i++){
+				var ss = '<td width="110" height="44" align="right">'+data.list[i].customName+'</td>'+'<td>'+'<input class="nui-textbox" id ='+s1[1]+data.list[i].customId+' name ="amount" onvaluechanged="onChanged" style="width: 100px;">'+'</td>';
+				if(((i+1)%3)==0){
+					ss=ss+'</tr>'+'<tr>';
+				}
+				str = str+ss;
+			}
+			str='<tr>'+str+'</tr>';
+			document.getElementById('ppaytype'+s1[1]).innerHTML = str;
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+	 onChanged();
 }

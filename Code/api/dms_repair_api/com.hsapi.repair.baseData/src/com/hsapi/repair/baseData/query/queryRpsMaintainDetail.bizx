@@ -207,6 +207,7 @@
     <location x="645" y="151"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="itemList" iterableElement="itemTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -218,6 +219,7 @@
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopend0</sourceNode>
       <targetNode>loopstart1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
     <targetConnections>link11</targetConnections>
@@ -329,6 +331,7 @@
     <location x="960" y="151"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="partList" iterableElement="partTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">

@@ -287,6 +287,14 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">condItem/_expr[1]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">condItem/_expr[2]/billPackageId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">condItem/_expr[2]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="322" y="238"/>
@@ -465,7 +473,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -541,7 +549,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -774,7 +782,9 @@
     <figSize height="17" width="49"/>
     <node>invokePojo4</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="828" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-11-19 15:51:51" date="2018-11-19Z" description="" name="collectBillModel" version="7.0.0.0"/>
   <process:variables>

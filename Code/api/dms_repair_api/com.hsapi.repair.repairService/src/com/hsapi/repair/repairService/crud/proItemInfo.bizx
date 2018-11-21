@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="proItemInfo" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="修改时删除  rps_item_workers 数据，重新添加&#xD;&#xA;新增时 直接添加 rps_item_workers 数据&#xD;&#xA;&#xD;&#xA;以金额来计算单价，避免优惠率导致结算差异&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;预存的在新增时，金额和单价不需要重新计算，因为新增时已经处理好，且修改时不能改变金额优惠率等信息&#xD;&#xA;&#xD;&#xA;预存的只能修改施工员；不是预存的需要判断是否超过优惠限制（暂时不处理）" title="Administrator&#x9;18-8-8 下午3:30">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="修改时删除  rps_item_workers 数据，重新添加&#xD;&#xA;新增时 直接添加 rps_item_workers 数据&#xD;&#xA;&#xD;&#xA;以金额来计算单价，避免优惠率导致结算差异&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;预存的在新增时，金额和单价不需要重新计算，因为新增时已经处理好，且修改时不能改变金额优惠率等信息&#xD;&#xA;&#xD;&#xA;预存的只能修改施工员；不是预存的需要判断是否超过优惠限制（暂时不处理）&#xD;&#xA;&#xD;&#xA;Double.parseDouble(s)" title="Administrator&#x9;18-8-8 下午3:30">
     <location x="148" y="-240"/>
     <size height="252" width="541"/>
   </nodes>
@@ -24,7 +24,7 @@
       <targetNode>assign20</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -457,6 +457,7 @@
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="link30" isDefault="true" type="transition">
       <sourceNode>assign23</sourceNode>
       <targetNode>assign25</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="link47" type="transition">
       <sourceNode>assign23</sourceNode>
@@ -598,6 +599,7 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link56" isDefault="true" type="transition">
       <sourceNode>assign28</sourceNode>
       <targetNode>assign29</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link77</targetConnections>
     <location x="1000" y="96"/>
@@ -726,6 +728,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">itemTemp/serviceId</process:from>
       <process:to type="query">updateItemTemp/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(uAmt))</process:from>
+      <process:to type="query">d1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(uSubtotal))</process:from>
+      <process:to type="query">d2</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign30label" name="label" nodeType="label">
@@ -942,19 +952,21 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="itemTime" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="price" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rate" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="discountAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="discountAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="subtotal" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="amt" primitiveType="Float"/>
     <process:variable description="用于查询业务表数据" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItem" name="itemTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="uSubtotal" primitiveType="Double"/>
+    <process:variable description="Double" historyStateLocation="client" isArray="false" name="uSubtotal" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="uRate" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="uItemTime" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="uAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="uPrice" primitiveType="Double"/>
+    <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d1"/>
+    <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d2"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input anyType="java.util.HashMap" description="" isArray="false" name="tmp"/>
+    <process:input anyType="commonj.sdo.DataObject" description="" isArray="false" name="tmp"/>
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>

@@ -15,6 +15,7 @@ var guestData = null;
 var amountEl = null;
 var onetInAmt = 0;
 var netInAmt = 0;
+var zongAmt = 0;//总金额
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var frmUrl = apiPath + frmApi + "/";
@@ -78,6 +79,7 @@ function getData(data){
 }
 function setData(params){
 	guestData = params;
+	zongAmt = params.data.mtAmt;
 	var rechargeBalaAmt = 0;
 	var jsonq = {
 			guestId:params.guestId,
@@ -292,7 +294,7 @@ function onChanged() {
 		nui.get("deductible").setValue(0);
 		deductible=0;
 		nui.get("PrefAmt").setValue(0);
-		document.getElementById('amount').innerHTML=netInAmt;
+
 		return;
 	}
 	if(parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count)  > netInAmt){
@@ -300,15 +302,16 @@ function onChanged() {
 		nui.get("deductible").setValue(0);
 		deductible=0;
 		nui.get("PrefAmt").setValue(0);
-		document.getElementById('amount').innerHTML=netInAmt;
+
 		return;
 	}
 	
 	var amount = parseFloat(netInAmt) - parseFloat(deductible) - parseFloat(PrefAmt)-parseFloat(count);
-	document.getElementById('amount').innerHTML = amount.toFixed(2);
+	amount = amount.toFixed(2);
+	//document.getElementById('amount').innerHTML = amount.toFixed(2);
 
 }
-function setNetInAmt(){
+/*function setNetInAmt(){
 	var rAmt = 0;
 	receiveGrid.findRows(function(row){
 		if(row){
@@ -328,15 +331,15 @@ function setNetInAmt(){
 	}
 	mtAmtEl.setValue(netInAmt.toFixed(2));
 	amountEl.setValue(amount.toFixed(2));
-}
+}*/
 
+//转预结算
 function noPay(){
-
-
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
 	doNoPay(fserviceId,PrefAmt);
 }
 
+//结算
 function pay(){
 	var accountTypeList =[];
 	var accountDetail = {};
@@ -363,23 +366,16 @@ function pay(){
 			nui.alert("请选择结算账户,并填写结算金额","提示");
 			return;
 		}
-		var account = {};
-	
-	account.guestId = guestData.guestId;
-	account.guestName = guestData.guestName;
-	account.itemQty = 1;
-	account.rpDc = 1;
-	account.settleType = "应收";
-	account.voidAmt = 0;
-	account.trueCharOffAmt = guestData.data.mtAmt;
-	account.charOffAmt = guestData.data.mtAmt;
-	account.remark = nui.get('txtreceiptcomment').getValue();
+		if(count!=zongAmt){
+			nui.alert("结算金额和应结金额不一致，请重新确认！","提示");
+			return;
+		}
 	var deductible = nui.get("deductible").getValue()||0;
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
 	var payType = nui.get("payType").getValue()||0;
 	var amt = $("#amount").text();
 	var json = {
-			rpAccount : account,
+		rpAccount : accountTypeList,
 		allowanceAmt:PrefAmt,
 		cardPayAmt:deductible,
 		serviceId:fserviceId,
@@ -582,6 +578,8 @@ function remove(id){
 	onChanged();
 }
 
+
+//计算输入金额的结算金额
 function  scount(){
 	type = null;
 	var count = 0;

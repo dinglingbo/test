@@ -19,7 +19,6 @@ $(document).ready(function(v) {
 	isShowOwnBill=nui.get("isShowOwnBill");
 	isAllowRemind=nui.get("isAllowRemind");
 	isShowOwnBill.setData(isservicelist);
-
 	isAllowRemind.setData(isservicelist);
 	isservice=nui.get("isArtificer");
 	sex=nui.get("sex");
@@ -51,12 +50,16 @@ function onempid(e) {
 }
 function SetInitData(data) {
 	if (!data.empid) return; 
+	var itemDiscountRate =data.itemDiscountRate*100;
+	var partDiscountRate =data.partDiscountRate*100;
 	basicInfoForm.setData(data);
+	nui.get("itemDiscountRate").setvalue(itemDiscountRate);
+	nui.get("partDiscountRate").setvalue(partDiscountRate);
 	var isArtificer = nui.get("isArtificer").value;
 	   if(isArtificer == true){
 	        $("#memberLevelId").show();
 	   }
-	nui.get("newand").setVisible(false);
+//	nui.get("newand").setVisible(false);
 //    nui.ajax({
 //        url:fromUrl + "?params/empid=" + data.empid,
 //        type:"post",        
@@ -87,7 +90,8 @@ var requiredField = {
 function save(action) {
 	var form = new nui.Form("#basicInfoForm");
     var data = form.getData();
-    
+	data.itemDiscountRate =data.itemDiscountRate/100;
+	data.partDiscountRate =data.partDiscountRate/100;
     for(var key in requiredField)
     {
         if(!data[key] || data[key].trim().length==0)
@@ -225,4 +229,33 @@ function initMemberLever(){
 	        }
 	    });	
 	
+}
+
+function onRateValidation(e){
+	var el = e.sender.id;
+	if(el == "integralDiscountMax"||el == "freeDiscountMax"||el == "cashDiscountMax"){
+			if (e.isValid) {
+				if(e.value == "" || e.value == null){
+
+				}else{
+					var reg=/^(\d|[1-9]\d)(\.\d{1,2})?$|100$/;
+					if (!reg.test(e.value)) {
+						e.errorText = "请输入0~100的数,最多可保留两位小数";
+						e.isValid = false;
+						showMsg("请输入0~100的数,最多可保留两位小数","W");
+					}
+				}
+			}
+	}else if(el == "itemDiscountRate"||el == "partDiscountRate"){
+			if(e.value == "" || e.value == null){
+
+			}else{
+				var reg=/(^[1-9]{1}[0-9]*$)|(^[0-9]*\.[0-9]{2}$)|0$/;
+				if (!reg.test(e.value)) {
+					e.errorText = "请输入大于等于0的整数或者保留两位小数";
+					e.isValid = false;
+					showMsg("请输入大于0的整数或者保留两位小数","W");
+				}
+			}
+	}
 }

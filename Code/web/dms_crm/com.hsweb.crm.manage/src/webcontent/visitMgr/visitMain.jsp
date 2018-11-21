@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.2.1" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.2.2" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0; 
@@ -27,6 +27,8 @@ pageEncoding="UTF-8" session="false" %>
 </style>  
 </head>
 <body>
+    <input name="serviceTypeId"id="serviceTypeId" visible="false"class="nui-combobox"textField="name"valueField="id"/>
+    <input name="carBrandId"id="carBrandId" visible="false"class="nui-combobox"textField="name"valueField="id"/>
     <div class="nui-toolbar">
         <label style="font-family:Verdana;">快速查询：</label>
         <a href="##" iconCls="" plain="true" onclick="quickSearch(1)">我接待的车辆</a>
@@ -35,10 +37,10 @@ pageEncoding="UTF-8" session="false" %>
         <input class="nui-textbox" name="tcarNo" id="tcarNo">
         <a class="nui-button" plain="true" onclick="quickSearch(3)" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-reply fa-lg"></span>&nbsp;回访历史</a>
-        <a class="nui-button" plain="true" onclick="" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a>
+        <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a>
     </div>
 
     <div class="nui-fit">
@@ -51,6 +53,19 @@ pageEncoding="UTF-8" session="false" %>
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
+            <div field="status" name="status" width="40px" headerAlign="center" header="进程"></div>
+            <div field="carNo" name="carNo" width="80px" headerAlign="center" header="车牌"></div>
+            <div field="carModel" name="carModel" width="200px" headerAlign="center"  header="品牌/车型"></div>
+            <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
+            <!-- <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>
+            <div field="guestMobile" name="guestMobile" width="100px" headerAlign="center" header="客户手机"></div>
+            <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
+            <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div> -->
+            <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
+            <!-- <div field="serviceTypeName" name="serviceTypeName" width="100px" headerAlign="center" header="业务类型"></div>
+            <div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div> -->
+            <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="开单日期"></div>
+            <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计完工日期"></div>
             <div field="mtAdvisor" width="70" headerAlign="center" align="center">维修顾问</div>
             <div field="serviceCode" width="130" headerAlign="center" align="center">工单号</div>
             <div field="leaveDays" width="70" headerAlign="center" align="center">离厂天数</div>

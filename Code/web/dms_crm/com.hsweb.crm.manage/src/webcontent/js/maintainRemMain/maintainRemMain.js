@@ -160,3 +160,48 @@ function remindDetail() {
         }
     });
 }
+
+
+function openOrderDetail(){
+	var row = gridCar.getSelected();
+    if (row == undefined) {
+        showMsg("请选中一条数据","W");
+        return;
+    }
+
+	var data = {};
+	data.id = row.serviceId;
+
+	if(data.id){
+		var item={};
+		item.id = "11111";
+	    item.text = "工单详情页";
+		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow";
+		item.iconCls = "fa fa-cog";
+		window.parent.activeTabAndInit(item,data);
+	}
+}
+
+
+function sendInfo(){
+	var row = gridCar.getSelected();
+	    if (row == undefined) {
+        showMsg("请选中一条数据","W");
+        return;
+    }
+    nui.open({
+        url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
+        title: "发送短信", width: 655, height: 386,
+        onload: function () {
+        	var iframe = this.getIFrameEl();
+        	iframe.contentWindow.setData();
+        },
+        ondestroy: function (action) {
+        	//重新加载
+        	//query(tab);
+        }
+    });
+
+
+
+}

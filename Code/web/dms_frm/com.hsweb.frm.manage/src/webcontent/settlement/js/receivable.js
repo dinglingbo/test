@@ -6,6 +6,7 @@ var tableNum = 0;
 var form = null;
 var type = null;
 var typeList = {};
+var zongAmt = 0;//实时填写的结算金额
 var guestData = null;
 var deductible = 0;
 $(document).ready(function (){
@@ -14,9 +15,10 @@ $(document).ready(function (){
 	});
 });
 
-
+//页面传值，放入本页面
 function setData(data){
 	guestData = data;
+	zongAmt = data[0].nowAmt;
 	var rechargeBalaAmt = 0;
 	document.getElementById('carNo').innerHTML = data[0].carNo;
 	document.getElementById('guest').innerHTML = data[0].guestName;
@@ -60,7 +62,7 @@ function onChanged() {
 		nui.get("deductible").setValue(0);
 		deductible=0;
 		nui.get("PrefAmt").setValue(0);
-		document.getElementById('amount').innerHTML=netInAmt;
+		//document.getElementById('amount').innerHTML=netInAmt;
 		return;
 	}
 	if(parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count) > netInAmt){
@@ -68,13 +70,13 @@ function onChanged() {
 		nui.get("deductible").setValue(0);
 		deductible=0;
 		nui.get("PrefAmt").setValue(0);
-		document.getElementById('amount').innerHTML=netInAmt;
+		//document.getElementById('amount').innerHTML=netInAmt;
 		return;
 	}
 	
-	var amount = parseFloat(netInAmt) - parseFloat(deductible) - parseFloat(PrefAmt)-parseFloat(count);
+/*	var amount = parseFloat(netInAmt) - parseFloat(deductible) - parseFloat(PrefAmt)-parseFloat(count);
 		amount = amount.toFixed(2);
-	document.getElementById('amount').innerHTML = amount;
+	document.getElementById('amount').innerHTML = amount;*/
 
 }
 
@@ -170,8 +172,12 @@ function settleOK() {
 		}
 	}
 		var count = scount();
-		if(count==0){
+/*		if(count==0){
 			nui.alert("请选择结算账户,并填写结算金额","提示");
+			return;
+		}*/
+		if(count!=zongAmt){
+			nui.alert("结算金额和应结金额不一致，请重新确认！","提示");
 			return;
 		}
 		var account = {};

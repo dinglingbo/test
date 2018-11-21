@@ -11,7 +11,7 @@
 
 <head>
 	<title>应付结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.0.3"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.0.4"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -369,7 +369,7 @@
 						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					</td>
 					<td >
-						<label style="font-family:Verdana;">待付金额：</label>
+						<label style="font-family:Verdana;">应付金额：</label>
 						<span id="totalAmt1" name="totalAmt1" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 					</td>
 					<td >
@@ -387,7 +387,7 @@
 						<input type="checkbox" id="settlesenddx">短信通知车主
 					</td>
 					<td >
-						<label style="font-family:Verdana;">剩余应付：</label>
+						<label style="font-family:Verdana;">实付金额：</label>
 						<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 					</td>
 					<td >

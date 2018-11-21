@@ -52,7 +52,7 @@ $(document).ready(function(v){
     });
     
     init();
-    query();
+    query(0);
     
     document.onkeyup = function(event) {
         var e = event || window.event;
@@ -60,7 +60,7 @@ $(document).ready(function(v){
         
 
         if ((keyCode == 13)) { // F9
-        	query();
+        	query(0);
         }
     }
  
@@ -80,15 +80,19 @@ function init(){
 /*
  *查询
  **/
-function query(){
-    var data = getQueryValue();
+function query(e){
     var params = {};
+    var data = getQueryValue();
+    if(e == 0){
+    	data = queryForm.getData();
+    }
     params.p = data;
 
 //    dgGrid.load(params,null,function(){
 //        //失败;
 //        showMsg("数据加载失败！");
 //    });
+
     dgGrid.load({p:params.p,token:token});
 
 }
@@ -110,7 +114,11 @@ function clearQueryForm(){
 function setMenu1(obj, target, value){
     target.setValue(value);
     target.setText(obj.getText());   
-    query();    
+    //query(0);     
+    var params={ 
+            assignStatus:value 
+        };
+    dgGrid.load({p:params,token:token});
 }
 
 /*
@@ -139,7 +147,7 @@ function onType1DbClick(e){
     }
     
     currType1Node = node;
-    query();    
+    query(1);    
 }
 
 //营销员
@@ -150,7 +158,7 @@ function onType2DbClick(e){
     }
     
     currType2Node = node;
-    query();    
+    query(1);    
 }
 
 //设置跟踪状态、营销员

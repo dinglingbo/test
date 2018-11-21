@@ -491,7 +491,7 @@
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.proItemInfo</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="tmp" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">tmp</process:inputVariable>
+        <process:inputVariable id="0" name="tmp" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">tmp</process:inputVariable>
         <process:inputVariable id="1" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -553,7 +553,7 @@
   <process:info author="chenziming" createTime="2018-03-21 16:54:40" date="2018-03-21Z" description="" name="saveRpsItem" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
-    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="tmp"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="tmp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="card"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="cardList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="cardDetailId" primitiveType="Int"/>
@@ -581,7 +581,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="uPrice" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input anyType="commonj.sdo.DataObject" description="" isArray="true" name="updList"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="true" name="updList"/>
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>

@@ -729,14 +729,6 @@
       <process:from type="query" pattern="reference">itemTemp/serviceId</process:from>
       <process:to type="query">updateItemTemp/serviceId</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(uAmt))</process:from>
-      <process:to type="query">d1</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(uSubtotal))</process:from>
-      <process:to type="query">d2</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign30label" name="label" nodeType="label">
     <location x="960" y="260"/>
@@ -949,12 +941,12 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="billPackageId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="oserviceId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="id" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="itemTime" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="price" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="rate" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="itemTime" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="price" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="rate" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="discountAmt" primitiveType="Double"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="subtotal" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="amt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="subtotal" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="amt" primitiveType="Double"/>
     <process:variable description="用于查询业务表数据" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItem" name="itemTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
     <process:variable description="Double" historyStateLocation="client" isArray="false" name="uSubtotal" primitiveType="Double"/>
@@ -966,7 +958,7 @@
     <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d2"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input anyType="commonj.sdo.DataObject" description="" isArray="false" name="tmp"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="tmp"/>
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>

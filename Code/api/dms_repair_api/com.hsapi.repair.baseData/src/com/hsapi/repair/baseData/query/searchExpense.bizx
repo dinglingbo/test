@@ -95,7 +95,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="NE">
           <process:leftOperand type="query">pid</process:leftOperand>
-          <process:rightOperand type="query">item1/itemId</process:rightOperand>
+          <process:rightOperand type="query">item1/billItemId</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -186,10 +186,6 @@
       <process:to type="query">temp1/orderIndex</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">item1/id</process:from>
-      <process:to type="query">temp1/id</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">item1/amt</process:from>
       <process:to type="query">temp1/amt</process:to>
     </process:copy>
@@ -222,16 +218,24 @@
       <process:to type="query">temp1/billItemId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">item/itemName</process:from>
+      <process:from type="literal" pattern="reference">item1/itemName</process:from>
       <process:to type="query">temp1/packageId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">item/unitPrice</process:from>
+      <process:from type="query" pattern="reference">item1/unitPrice</process:from>
       <process:to type="query">temp1/unitPrice</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">item/itemTime</process:from>
+      <process:from type="query" pattern="reference">item1/itemTime</process:from>
       <process:to type="query">temp1/itemTime</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item1/itemId</process:from>
+      <process:to type="query">temp1/itemId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item1/id</process:from>
+      <process:to type="query">temp1/id</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
@@ -355,12 +359,16 @@
       <process:to type="query">temp/subtotal</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">pkg1/packageId</process:from>
+      <process:from type="literal" pattern="reference">pkg1/packageId</process:from>
       <process:to type="query">temp/packageId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">pkg1/billPackageId</process:from>
       <process:to type="query">temp/billPackageId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkg1/id</process:from>
+      <process:to type="query">temp/id</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -422,7 +430,7 @@
       <process:to type="query">temp/orderIndex</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
+      <process:from type="literal" pattern="reference">pid</process:from>
       <process:to type="query">temp/packageId</process:to>
     </process:copy>
   </nodes>
@@ -443,7 +451,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="NE">
           <process:leftOperand type="query">pid</process:leftOperand>
-          <process:rightOperand type="query">pkg1/packageId</process:rightOperand>
+          <process:rightOperand type="query">pkg1/billPackageId</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -738,9 +746,10 @@
       <sourceNode>assign13</sourceNode>
       <targetNode>assign14</targetNode>
       <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>item/billItemId>0 || item/itemId>0</process:code>
-        </process:complexCondition>
+        <process:simpleCondition operator="LE">
+          <process:leftOperand type="query">pid</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link14</targetConnections>
@@ -748,7 +757,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign13label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">item/id</process:from>
+      <process:from type="query" pattern="reference">item/itemId</process:from>
       <process:to type="query">pid</process:to>
     </process:copy>
   </nodes>
@@ -766,10 +775,6 @@
     <location x="981" y="454"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">item/id</process:from>
-      <process:to type="query">temp1/id</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">item/amt</process:from>
       <process:to type="query">temp1/amt</process:to>
@@ -799,7 +804,7 @@
       <process:to type="query">temp1/subtotal</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
+      <process:from type="literal" pattern="reference">item/billItemId</process:from>
       <process:to type="query">temp1/billItemId</process:to>
     </process:copy>
     <process:copy>
@@ -812,7 +817,7 @@
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">item/itemName</process:from>
-      <process:to type="query">temp1/packageId</process:to>
+      <process:to type="query">temp1/itemName</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">item/unitPrice</process:from>
@@ -821,6 +826,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">item/itemTime</process:from>
       <process:to type="query">temp1/itemTime</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item/itemId</process:from>
+      <process:to type="query">temp1/itemId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
@@ -916,9 +925,10 @@
       <sourceNode>assign17</sourceNode>
       <targetNode>assign8</targetNode>
       <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>pkg/billPackageId>0 || pkg/packageId>0</process:code>
-        </process:complexCondition>
+        <process:simpleCondition operator="LE">
+          <process:leftOperand type="query">pid</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="link29" isDefault="true" type="transition">
@@ -931,7 +941,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign17label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">pkg/id</process:from>
+      <process:from type="query" pattern="reference">pkg/packageId</process:from>
       <process:to type="query">pid</process:to>
     </process:copy>
   </nodes>

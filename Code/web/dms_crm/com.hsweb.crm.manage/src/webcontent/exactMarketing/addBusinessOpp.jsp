@@ -17,7 +17,7 @@
         <style type="text/css">
 
    	#remark.mini-textbox{
-   		width: 310px;
+   		width: 335px;
    	}
    	#remark.mini-textbox-border{
    		width:303px;
@@ -46,19 +46,19 @@
 		
 		<table>
 			<tr>
-				<td>客户手机号：<input  class="nui-textbox" id="partCode" name="partCode" type="text"></td>
-				<td>商业类型：<input  class="nui-combobox" id="fullName" name="fullName" type="text"></td>
+				<td style="padding-left: 18px;">客户手机号：<input  class="nui-textbox" id="partCode" name="partCode" type="text"></td>
+				<td style="padding-left: 24px;">商业类型：<input  class="nui-combobox" id="fullName" name="fullName" type="text"></td>
 			</tr>
 			<tr>
-				<td style="padding-left: 25px;">车牌号：<input  class="nui-textbox" id="partBrandId" name="partBrandId" type="text"></td>
-				<td>销售阶段：<input  class="nui-combobox" id="applyCarModel" name="applyCarModel" type="text"></td>
+				<td style="padding-left: 41px;">车牌号：<input  class="nui-textbox" id="partBrandId" name="partBrandId" type="text"></td>
+				<td style="padding-left: 24px;">销售阶段：<input  class="nui-combobox" id="applyCarModel" name="applyCarModel" type="text"></td>
 			</tr>
 			<tr>
-				<td id="" style="padding-left: 14px;">客户姓名：<input  class="nui-textbox" id="stockQty" name="stockQty" type="text"></td>
-				<td>预计金额：<input class="nui-textbox" id="" name="" type="text">元</td>
+				<td id="" style="padding-left: 30px;">客户姓名：<input  class="nui-textbox" id="stockQty" name="stockQty" type="text"></td>
+				<td style="padding-left: 24px;">预计金额：<input class="nui-textbox" id="" name="" type="text">元</td>
 			</tr>
 			<tr>
-				<td colspan="2" id="" >销售产品/项目：<input  class="nui-textbox" id="stockQty" name="stockQty" type="text" width="74%"></td>
+				<td colspan="2" id=""  >销售产品/项目：<input  class="nui-textbox" id="stockQty" name="stockQty" type="text" width="78%"></td>
 	
 			</tr>
 <!-- 			<tr><td  colspan="2" id="out1">请输入数量及领料人:</td></tr> -->
@@ -69,7 +69,8 @@
 				<td>下次跟进日期：<input  class="nui-datepicker" id="" name="" ></td>
 			</tr>
 			<tr id="out">
-				<td style="" colspan="2">备注：<input   class="nui-textarea" id="remark" name="remark" type="text" ></td>
+				<td style="" colspan="2" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;备注：
+				<input   class="nui-textarea" id="remark" name="remark" type="text" ></td>
 			</tr>
 
 			

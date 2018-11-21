@@ -34,7 +34,7 @@
            plain="true" 
            onactivechanged="">
            <div title="客户分析" id="grid1Tab" name="grid1Tab" url="" >
-<%--            		 <%@include file="/manage/exactMarketing/customerAnalysis.jsp"%> --%>
+
            </div>
            <div title="车辆分析" id="grid2Tab" name="grid2Tab" url="" >
            </div>

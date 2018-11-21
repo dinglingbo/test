@@ -265,6 +265,18 @@
       <process:from type="query" pattern="reference">maintain/mtAdvisor</process:from>
       <process:to type="query">data/mt_advisor</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/guestDesc</process:from>
+      <process:to type="query">data/guestDesc</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/faultPhen</process:from>
+      <process:to type="query">data/faultPhen</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/solveMethod</process:from>
+      <process:to type="query">data/solveMethod</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="355" y="186"/>

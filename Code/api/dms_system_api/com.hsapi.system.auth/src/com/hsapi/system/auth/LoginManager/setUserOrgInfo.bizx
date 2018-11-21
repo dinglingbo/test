@@ -134,6 +134,38 @@
       <process:to type="query">m:userObject/attributes/billParams</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">u/integralDiscountMax</process:from>
+      <process:to type="query">m:userObject/attributes/integralDiscountMax</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">u/itemDiscountRate</process:from>
+      <process:to type="query">m:userObject/attributes/itemDiscountRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">u/partDiscountRate</process:from>
+      <process:to type="query">m:userObject/attributes/partDiscountRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">u/freeDiscountMax</process:from>
+      <process:to type="query">m:userObject/attributes/freeDiscountMax</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">u/cashDiscountMax</process:from>
+      <process:to type="query">m:userObject/attributes/cashDiscountMax</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">u/displayRemindTag</process:from>
+      <process:to type="query">m:userObject/attributes/displayRemindTag</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">u/displayBusinessTag</process:from>
+      <process:to type="query">m:userObject/attributes/displayBusinessTag</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">u/displayBillTag</process:from>
+      <process:to type="query">m:userObject/attributes/displayBillTag</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>
@@ -293,6 +325,7 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
+    <targetConnections>link6</targetConnections>
     <location x="297" y="180"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
@@ -332,7 +365,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="-12" y="180"/>
+    <location x="-78" y="180"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -347,13 +380,13 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="-52" y="215"/>
+    <location x="-118" y="215"/>
     <figSize height="17" width="107"/>
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" description="" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link24</targetConnections>
-    <location x="268" y="291"/>
+    <location x="43" y="291"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -363,7 +396,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="266" y="327"/>
+    <location x="41" y="327"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
@@ -374,7 +407,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link23</targetConnections>
-    <location x="147" y="291"/>
+    <location x="-78" y="291"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -383,7 +416,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="143" y="327"/>
+    <location x="-82" y="327"/>
     <figSize height="17" width="37"/>
     <node>assign0</node>
   </nodes>
@@ -396,6 +429,15 @@
           <process:leftOperand type="query">errCode</process:leftOperand>
           <process:rightOperand type="literal">S</process:rightOperand>
         </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="目前不设置岗位" displayName="连接线" type="transition">
+      <sourceNode>subprocess1</sourceNode>
+      <targetNode>invokePojo4</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link22</targetConnections>

@@ -95,13 +95,13 @@ table{
     background: #df0024;
 }
 #comPartCode{
-	width:13%;
+	width:11%;
 }
 #comOemCode{
-	width:12%;
+	width:11%;
 }
 #comPartName{
-	width:13%;
+	width:11%;
 }
 #comPartBrandId{
 	width:6%;
@@ -131,6 +131,9 @@ table{
 	width:10%;
 }
 #storeShelf{
+	width:4%;
+}
+#index{
 	width:4%;
 }
 </style>
@@ -229,7 +232,7 @@ table{
 		var sumOrderAmt=0;
     	$(document).ready(function(){
     		$('#currOrgName').text(currOrgName);
-    		$('#nowDate').text("打印日期:"+format(date,"yyyy/MM/dd/HH:mm:ss"));
+    		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
     		$('#currUserName').text("打印人:"+currUserName);
 			$("#print").click(function () {
 	            $(".print_btn").hide();
@@ -254,7 +257,7 @@ table{
         }
     	function SetData(mainParams,detailParms,formParms){
        		$('#guestFullName').text("供应商:"+formParms.guestFullName);
-       		$('#createDate').text("订单日期："+format(formParms.createDate,"yyyy/MM/dd/HH:mm:ss"));
+       		$('#createDate').text("订单日期："+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
        		$('#serviceId').text("No:"+formParms.serviceId);
      
     		$('#billTypeId').text("票据类型:"+formParms.billTypeId);

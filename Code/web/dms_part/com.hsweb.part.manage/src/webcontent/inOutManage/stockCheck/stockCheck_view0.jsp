@@ -8,7 +8,7 @@
 -->
 <head>
 <title>盘点单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheck.js?v=1.0.11"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheck.js?v=1.0.14"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -170,7 +170,7 @@
 		                                  <label>状态：</label>
 		                              </td>
 		                              <td>
-		                                  <input class="nui-textbox" width="100%" id="AuditSign" name="AuditSign"/>
+		                                  <input allowInput="false" class="nui-textbox" width="100%" id="AuditSign" name="AuditSign"/>
 		                              </td>
                                       <td class="title required" style="width:7%">
                                           <label>盘点日期：</label>

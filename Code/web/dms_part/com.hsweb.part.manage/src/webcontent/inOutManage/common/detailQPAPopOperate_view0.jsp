@@ -31,6 +31,16 @@
 </head>
 <body>
 
+<div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+    <table style="width:80%;">
+        <tr>
+            <td style="width:80%;">
+                <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onCancel()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+            </td>
+        </tr>
+    </table>
+</div>
 <div id="basicInfoForm" class="form">
     <input class="nui-hidden" name="detailId"/>
     <input class="nui-hidden" name="id"/>
@@ -147,11 +157,11 @@
         </tr>
     </table>
 </div>
-<div style="text-align:center;padding:10px;">
-    <a class="mini-button" id="chooseBtn" onclick="onOk" style="width:60px;margin-right:20px;"><span class="fa fa-save fa-lg"></span>&nbsp;确定</a>
-    <a class="mini-button" id="cancelBtn" onclick="onCancel" style="width:60px;"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+<!-- <div style="text-align:center;padding:10px;"> -->
+<!--     <a class="mini-button" id="chooseBtn" onclick="onOk" style="width:60px;margin-right:20px;"><span class="fa fa-save fa-lg"></span>&nbsp;确定</a> -->
+<!--     <a class="mini-button" id="cancelBtn" onclick="onCancel" style="width:60px;"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> -->
     
-</div>
+<!-- </div> -->
 
 
 </body>

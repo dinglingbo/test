@@ -650,3 +650,26 @@ function getCarVinModel(vin, callback) {
 }
 var currOrgid = 2;
 var currUserName = '刘阳';
+
+function showHotWord(){
+	var obj=[];
+	var htmlStr="";
+	for(var i=0;i<20;i++){
+		
+		var name="测试"+i;
+		var id=i;
+		obj.push(name);
+		s="<a href='javascript:;' name='hotWord'id='"+id+"' >"+name+"</a>";
+		htmlStr +=s;
+	}
+	$(".addyytime").html(htmlStr);
+	selectclick();
+}
+function selectclick() {
+	$("a[name=hotWord]").click(function () {
+	    $(this).siblings().removeClass("xz");
+	    $(this).toggleClass("xz");
+	    text=$(this).text();
+	    id=$(this).attr("id");
+	});
+}

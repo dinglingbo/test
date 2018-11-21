@@ -171,7 +171,7 @@ mainGrid.on("celldblclick",function(e){
 function add(){
     var part={};
     part.id = "checkPrecheckDetail";
-    part.text = "检查开单详情";
+    part.text = "查车开单详情";
     part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkDetail.flow?token="+token;
     part.iconCls = "fa fa-file-text";
     var params = {
@@ -185,7 +185,7 @@ function edit(){
     if(!row) return;
     var part={};
     part.id = "checkPrecheckDetail";
-    part.text = "检查开单详情";
+    part.text = "查车开单详情";
     part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkDetail.flow?token="+token;
     part.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);

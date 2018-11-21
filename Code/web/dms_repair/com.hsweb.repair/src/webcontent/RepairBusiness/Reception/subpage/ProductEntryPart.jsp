@@ -11,7 +11,7 @@
 -->
 <head>
 <title>标准化产品查询</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.2.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.2.6"></script>
 <style type="text/css">
 
 table {
@@ -38,82 +38,46 @@ table {
 	font-size: 12px;
 	font-weight: 600;
 }
+
+a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 40px -1px no-repeat; padding-right:22px; color:#888; text-decoration:none;}
+        .addyytime a{width:50px;height:25px;line-height:36px;border:1px #a6e0f5 solid;display:block;float:left;text-decoration:none;text-align:center;color:#00b4f6;border-radius:4px;margin:0 15px 15px 15px;}
+        .addyytime a.hui{border:1px #e6e6e6 solid;color:#c8c8c8;background:#e6e6e6;}
+        .addyytime a.xz{ border:1px #ff7800 solid; color:#fff; background:#ff7800;}
+        a:link, a:visited { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; color: #555555; text-decoration: none; }
+        a:hover { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; color: #df0024; text-decoration: none; }
+        a {transition:all .4s ease;}
+        a.hot-word{color:blue !important;text-decoration: underline !important;}
 </style>
 
 </head>
 <body>
-<div  class="nui-panel" showToolbar="false" title="车型信息" showFooter="false" style="width:100%;">
-	<div id="carInfoForm">
+<div  class="nui-panel" showToolbar="false" title="车型信息" showHeader="false" showFooter="false" style="width:100%;">
+	<div class="nui-fit">
+	<div id="carInfoForm" style="height:15%">
 		<input class="nui-hidden" id="ExpenseAccount" name="ExpenseAccount"/>
 		<input class="nui-hidden" name="carLevelId"/>
 		<input class="nui-hidden" name="carLineId"/>
-		<table class="nui-form-table">
+		<input class="nui-hidden" name="carBrandId"/>
+		<table class="nui-form-table" height="8%">
 			<tr>
-				<td>
-					<label>车架号(VIN)：</label>
-				</td>
-				<td>
-					<input class="nui-textbox" name="vin" id="vin" width="150px"/>
-				</td>
-				<td>
-					<label>品牌：</label>
-				</td>
-				<td>
-					<input class="nui-combobox" allowInput="false"
-						   name="carBrandId" id="carBrandId"
-						   valueField="id" textField="nameCn"/>
-				</td>
-				<td>
-					<label>车型：</label>
-				</td>
-				<td colspan="3">
-					<input class="nui-combobox" name="carModelId" id="carModelId"
-						   width="100%"
-						   valueField="carModelId" textField="carModel"/>
-				</td>
+				<td>热词分类：
+					<a name="" class="hot-word" href='javascript:;' onclick="showHotWord()">保养</a>
+					<a class="hot-word" href='javascript:;' onclick="showHotWord()">发动机</a>
+					<a class="hot-word" href='javascript:;' onclick="showHotWord()">底盘</a>
+					<a class="hot-word" href='javascript:;' onclick="showHotWord()">车身</a>
+					<a class="hot-word" href='javascript:;' onclick="showHotWord()">电器</a>
+					<a class="hot-word"  href='javascript:;' onclick="showHotWord()">所有</a>
+				</td>				
 			</tr>
 			<tr>
-				<td>
-					<label>品牌：</label>
-				</td>
-				<td class="point">
-					<input class="nui-textbox asLabel" readOnly="true" name="carBrandName"/>
-				</td>
-				<td>
-					<label>等级：</label>
-				</td>
-				<td class="point">
-					<input class="nui-textbox asLabel" readOnly="true" name="carLevelName"/>
-				</td>
-				<td>
-					<label>车系：</label>
-				</td>
-				<td class="point">
-					<input class="nui-textbox asLabel" readOnly="true" name="carLineName"/>
-				</td>
-				<td>
-					<label>车型：</label>
-				</td>
-				<td class="point">
-					<input class="nui-textbox asLabel" readOnly="true" name="carModelName"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>发动机：</label>
-				</td>
-				<td class="point">
-					<input class="nui-textbox asLabel" readOnly="true" name=""/>
-				</td>
-				<td>
-					<label>变速箱：</label>
-				</td>
-				<td colspan="3" class="point">
-					<input class="nui-textbox asLabel" width="100%" readOnly="true" name=""/>
-				</td>
-			</tr>
+            	 <td colspan="5">
+                    <div class="addyytime">
+                    </div>
+                </td>
+            </tr>
 		</table>
 	</div>
+</div>
 </div>
 <div class="nui-fit">
 	<div class="nui-splitter" style="width:100%;height:100%;"

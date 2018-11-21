@@ -21,7 +21,7 @@
 	<input  class="nui-button" onclick="save" text="保存"  style="float:left; margin-top: 10px;"></input>		
 </div>
 <div id="dgGrid" class="nui-datagrid" style="width:100%;height:100%;"
-	 dataField="data" sortMode="client" allowCellSelect="true" allowCellEdit="true"
+	 dataField="data" sortMode="client" allowCellSelect="true" allowCellEdit="true" showpager="false"
 	 showModified="false" showSummaryRow="true"
 	 style="width: 80%; height: 40%; margin-left: 10%; ">
 	<div property="columns">

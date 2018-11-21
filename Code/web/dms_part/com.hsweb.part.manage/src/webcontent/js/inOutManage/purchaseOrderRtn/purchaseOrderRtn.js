@@ -73,6 +73,7 @@ $(document).ready(function(v)
         getStorehouse(function(data)
         {
             storehouse = data.storehouse||[];
+         
             if(storehouse && storehouse.length>0){
                 FStoreId = storehouse[0].id;
             }else{
@@ -142,6 +143,7 @@ $(document).ready(function(v)
             addNewRow(true);
         }
     });
+    add();
 });
 //返回类型给srvBottom，用于srvBottom初始化
 function confirmType(){
@@ -184,7 +186,7 @@ function loadMainAndDetailInfo(row)
         if(!mainId){
             mainId = -1;
         }
-//       loadRightGridData(mainId);
+       loadRightGridData(mainId);
    }else {
         //form.reset();
         //grid_details.clearRows();
@@ -1364,7 +1366,15 @@ function getPartPrice(params){
 
     return price;
 }
-function addInsertRow(value, row) {    
+function addInsertRow(value, row) {
+	
+	 var data = basicInfoForm.getData();
+	    for ( var key in requiredField) {
+	        if (!data[key] || $.trim(data[key]).length == 0) {
+	            showMsg(requiredField[key] + "不能为空!","W");
+	            return;
+	        }
+	    }
     var guestId = nui.get("guestId").getValue();
     if(!guestId) {
         showMsg("请先选择供应商再添加配件!","W");
@@ -1437,7 +1447,18 @@ function deletePart(){
     {
         delete editPartHash[part.detailId];
     }
-    rightGrid.removeRow(part,true);
+//    rightGrid.removeRow(part,true);
+    var data = rightGrid.getData();
+    if(data && data.length==1){
+        var row = rightGrid.getSelected();
+        rightGrid.removeRow(row);
+        var newRow = {};
+        rightGrid.addRow(newRow);
+        rightGrid.beginEditCell(newRow, "comPartCode");
+    }else{
+        var row = rightGrid.getSelected();
+        rightGrid.removeRow(row);
+    }
 }
 function checkRightData()
 {
@@ -1730,25 +1751,32 @@ function selectPart(callback,checkcallback)
 }
 function addPart() {
 	var data = basicInfoForm.getData();
+
+    for ( var key in requiredField) {
+        if (!data[key] || $.trim(data[key]).length == 0) {
+            showMsg(requiredField[key] + "不能为空!","W");
+            return;
+        }
+    }
 	if (data) {
 		if (data.auditSign == 1) {
 			return;
 		}
 	}
-
+	
     var guestId = nui.get("guestId").getValue();
     if(!guestId) {
         showMsg("请选择供应商!","W");
         return;
     }
 
-    rightGrid.findRow(function(row){
-        var partId = row.partId;
-        var partCode = row.comPartCode;
-        if(partId == null || partId == "" || partId == undefined || partCode == null || partCode == "" || partCode == undefined){
-            rightGrid.removeRow(row);
-        }
-    });
+//    rightGrid.findRow(function(row){
+//        var partId = row.partId;
+//        var partCode = row.comPartCode;
+//        if(partId == null || partId == "" || partId == undefined || partCode == null || partCode == "" || partCode == undefined){
+//            rightGrid.removeRow(row);
+//        }
+//    });
 
     selectPart(function(data) {
         addDetail(data);
@@ -1800,7 +1828,12 @@ function addDetail(rows)
             systemUnitId : row.comUnit,
             outUnitId : row.comUnit
         };
-
+        var row=rightGrid.getData();
+        for(var i=0;i<row.length;i++){
+			if(!row[i].partId){
+				rightGrid.removeRow(row[i]);
+			}
+		}
 
         rightGrid.addRow(newRow);
     }

@@ -12,7 +12,7 @@
 <head>
 <title>计次卡购买</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.1.7"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/buyCardTimes.js?v=1.1.8"></script>
 </head>
 <body>
 <div class="nui-fit">
@@ -49,7 +49,7 @@
                         </td>
                    
                    </tr>
-                   <tr>
+<!--                    <tr>
                     <td class="form_label" align="right">结算方式:</td>
 					<td colspan="1">
 						<div class="mini-radiobuttonlist" repeatItems="1"
@@ -58,7 +58,7 @@
 							data="[{value:'020101',text:'现金',},{value:'020102',text:'刷卡'},{value:'020104',text:'微信/支付宝'}]" value="020101" >
 						</div> 
 					</td>	
-                 </tr>
+                 </tr> -->
                  
                  <tr>
                     <td class="form_label" align="right">结算金额:</td>

@@ -1009,6 +1009,10 @@
       <process:from type="query" pattern="reference">m:userObject/userId</process:from>
       <process:to type="query">msgRecord/recorderId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">结算成功</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign22label" name="label" nodeType="label">
     <location x="1311" y="182"/>

@@ -24,9 +24,9 @@ var periodValidity = -1;
 $(document).ready(function(){
 	basicInfoForm = new nui.Form("#basicInfoForm");
 	var accountTypeIdEl = null;
-	accountTypeIdEl=nui.get('radio');
+/*	accountTypeIdEl=nui.get('radio');
 	accountTypeList=[{id:1,name:"现金"},{id:2,name:"刷卡"},{id:3,name:"微信/支付宝"}];
-	accountTypeIdEl.setData(accountTypeList);
+	accountTypeIdEl.setData(accountTypeList);*/
 	getCard();
 	nui.get('guestFullName').focus();
 	document.onkeyup=function(event){
@@ -157,14 +157,9 @@ function onCard(text){
 //确认支付
 var payurl=baseUrl+"com.hsapi.repair.repairService.settlement.rechargeReceive.biz.ext";
 function pay(){
-	if(payType==0){
-		showMsg("请选择支付方式","W");
-		return;
-	}
-	var stored=[];
 	name=text;
 	var payAmt=rechargeAmt;
-	var form={
+	var stored={
 			cardId		: cardId,
 			cardName	: name,
 			giveAmt		: giveAmt,
@@ -176,10 +171,26 @@ function pay(){
 			rechargeAmt	: rechargeAmt,
 			totalAmt 	: totalAmt,
 			balaAmt		: totalAmt,
-			periodValidity : periodValidity
+			periodValidity : periodValidity,
+			sellAmt :rechargeAmt,	
+			settlementUrl:2//跳转结算界面的类型，储值卡
 	};
-	stored.push(form);
-    nui.confirm("结算金额【"+payAmt+"】元,确定结算吗？", "友情提示",function(action){
+	
+    //打开储值卡计次卡结算界面
+	nui.open({
+        url: webPath + contextPath +"/com.hsweb.frm.manage.cardSettlement.flow?token="+token,
+         width: "100%", height: "100%", 
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(stored);
+        },
+		ondestroy : function(action) {// 弹出页面关闭前
+			if (action == "saveSuccess") {
+				showMsg("结算成功!", "S");
+			}
+		}
+    });
+/*    nui.confirm("结算金额【"+payAmt+"】元,确定结算吗？", "友情提示",function(action){
 	       if(action == "ok"){
 			    nui.mask({
 			        el : document.body,
@@ -211,7 +222,7 @@ function pay(){
 	     }else {
 				return;
 		 }
-		 });
+		 });*/
 
 }
 
@@ -293,7 +304,7 @@ $(function(){
 });
 
 
-$ (function(){
+/*$ (function(){
 	$('#radio').click(function(){
 		radio=$('input:radio:checked').val();
 		switch(radio){
@@ -311,7 +322,7 @@ $ (function(){
 			break;
 		}
 	});
-});
+});*/
 
 function CloseWindow(action) {
 	if (action == "close") {

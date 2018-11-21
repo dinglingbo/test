@@ -11,7 +11,7 @@
 -->
 <head>
 <title>会员卡充值</title>
-    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.2.4"></script>
+    <script src="<%=webPath + repairDomain%>/repair/js/RepairBusiness/CustomerProfile/CardUp.js?v=1.2.7"></script>
 	<style type="text/css">
 	
 	table {
@@ -101,10 +101,10 @@
 					</tr>
 					</table>
 					<table style="width:100%;">
-					<tr >
+<!-- 					<tr >
 						<td style="padding-left:90px;;width:32%">支付方式：</td>
 						<td  id="radio"  class="nui-radiobuttonlist" textField="name" valueField="id" ></td>
-					</tr>
+					</tr> -->
 					<!-- <tr align="center" height="40px">
 						<td colspan="2">
 							<a class="nui-button"onclick="noPay()">保存</a>

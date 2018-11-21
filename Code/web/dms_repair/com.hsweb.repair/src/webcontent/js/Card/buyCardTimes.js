@@ -96,7 +96,8 @@ function payOk(){
 			totalAmt:rpbCard.totalAmt,
 			useRemark:rpbCard.useRemark,
 			carId:data.carId,
-			carNo:data.carNo
+			carNo:data.carNo,
+			settlementUrl:1
 	    };
 	//整理数据
 /*	    payAmt = rpbCard.sellAmt;

@@ -528,10 +528,6 @@
       <process:from type="query" pattern="reference">result/errCode</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">result/errMsg</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="778" y="262"/>

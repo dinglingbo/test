@@ -442,6 +442,10 @@
       <process:from type="literal" pattern="reference">E</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">result/errMsg</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
     <location x="749" y="372"/>
@@ -514,9 +518,9 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>assign9</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
+        <process:simpleCondition operator="NE">
           <process:leftOperand type="query">errCode</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>

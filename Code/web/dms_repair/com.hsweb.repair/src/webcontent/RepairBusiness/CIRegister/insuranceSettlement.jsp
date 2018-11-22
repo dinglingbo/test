@@ -10,8 +10,8 @@
 -->
 
 <head>
-	<title>工单结算</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CIRegister/insuranceSettlement.js?v=1.0.0"></script>
+	<title>保险结算</title>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CIRegister/insuranceSettlement.js?v=1.0.3"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -268,8 +268,10 @@
 								<dl>
 									<dt>待收金额：</dt>
 									<dd totalmoney="0" totalpaid="0" id="totalAmt" name="totalAmt"></dd>
+									<dd totalmoney="0" totalpaid="0" id="totalAmtSpan" name="totalAmtSpan" style="font-size: 10;"></dd>
 								</dl>
 							</td>
+
 						</tr>
 					</tbody>
 				</table>
@@ -305,7 +307,7 @@
 											<span>客户返点：</span>
 											</td>
 											<td height="40" class="line24">
-												<input class="nui-textbox" id="compulsoryRate" name="compulsoryRate" enabled="false" width="100px" enabled="false"   showbutton="false"
+												<input class="nui-textbox" id="compulsoryRtnGuestRate" name="compulsoryRtnGuestRate" enabled="false" width="100px" enabled="false"   showbutton="false"
 												 allowNull="false" />
 											</td>
 										</tr>
@@ -478,19 +480,18 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="pay_list">
 						<div class="pay_tcbk zffs" id="csdiv" style="background: #f8f8f8;">
 							<div class="guazhangbz">
 								<table width="100%" border="0" cellspacing="0" cellpadding="10">
 									<tr>
-										<!-- <td width="100">收款时间</td>
-										<td width="220">
-											<input class="mini-datepicker">
-										</td> -->
-										<td width="120" align="center">收款备注</td>
-										<td >
-											<input class="nui-textbox" id="txtreceiptcomment" name="txtreceiptcomment">
-										</td>
+											<td >
+												<label>保费收取方式：</label> 
+												<input type="radio" name="settleTypeId" id="radio1" value="1" disabled style="margin-left: 0px;">保司直收
+												<input type="radio" name="settleTypeId" id="radio2" value="2" disabled>门店代收全款
+												<input type="radio" name="settleTypeId" id="radio3" value="3" disabled>代收减返点
+											</td>
 									</tr>
 								</table>
 							</div>
@@ -514,8 +515,7 @@
 							</div>
 						</div>
 					</div>
-					
-					
+		
 
 				</div>
 			</div>
@@ -550,10 +550,10 @@
 					<td >
 						<input type="checkbox" id="settlesenddx">短信通知车主
 					</td>
-										<td >
+<!-- 					<td >
 						<label style="font-family:Verdana;">预存金额：</label>
 						<span id="ycAmt" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
-					</td>
+					</td> -->
 					<td >
 						<label style="font-family:Verdana;">实收金额：</label>
 						<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元

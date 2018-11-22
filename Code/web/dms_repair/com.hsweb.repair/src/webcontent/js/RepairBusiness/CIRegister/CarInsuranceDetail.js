@@ -523,7 +523,7 @@ function pay() {
         allowResize:false,
         onload:function(){
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(params);
+            iframe.contentWindow.setData(params);
         },
         ondestroy:function(action){
 
@@ -550,7 +550,7 @@ function onPrint(argument) {
         allowResize:false,
         onload:function(){
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.setData(params);
+            iframe.contentWindow.SetData(params);
         },
         ondestroy:function(action){
 

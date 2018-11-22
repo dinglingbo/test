@@ -187,7 +187,7 @@ function onItemButtonEdit()
     nui.open({
         targetWindow: window,
         url: webPath+contextPath+"/repair/DataBase/Item/RepairItemMain.jsp?token="+token,
-        title: "工时查询",
+        title: "项目查询",
         width:900, height: 650,
         allowDrag:true,
         allowResize:true,

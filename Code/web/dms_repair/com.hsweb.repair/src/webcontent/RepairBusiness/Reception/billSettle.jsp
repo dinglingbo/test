@@ -309,21 +309,21 @@
 						</div>
 						<div class="pay_jshj_list">
 							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">工时金额</a>
+								<a href="javascript:;" class="xz">项目金额</a>
 							</div>
 							<div class="pay_js_right">
 								<table id="tbcouponlist" width="100%" border="0" cellspacing="0" cellpadding="0">
 									<tbody>
 										<tr>
 											<td width="15%">
-												<span>工时金额：</span>
+												<span>项目金额：</span>
 
 											</td>
 											<td height="40" class="line24">
 												<input class="nui-textbox" id="itemSubtotal" name="itemSubtotal" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;">
 											</td>
 											<td width="10%">
-												<span>工时优惠：</span>
+												<span>项目优惠：</span>
 
 											</td >
 											<td height="40" class="line24">

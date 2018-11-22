@@ -62,7 +62,7 @@
 					<td class="form_label">套餐优惠率:</td>
 					<td colspan="1"><input class="nui-textbox"
 						name="card.packageRate" /></td>
-					<td class="form_label">工时优惠率:</td>
+					<td class="form_label">项目优惠率:</td>
 					<td colspan="1"><input class="nui-textbox"
 						name="card.itemRate" /></td>
 				</tr>

@@ -412,7 +412,7 @@ function doSelectItem(dock, dodelck, docck, callback) {
 	nui.open({
 		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemMain.flow?token=" + token,
-		title : "维修工时",
+		title : "维修项目",
 		width : 1000,
 		height : 560,
 		allowDrag : true,

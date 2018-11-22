@@ -82,6 +82,10 @@ var statusHash = {
     
 };
 
+function onenterCarNo(){
+	onSearch();
+}
+
 function clear(){
     advancedSearchForm.setData([]); 
     beginDateEl.setValue(getMonthStartDate());

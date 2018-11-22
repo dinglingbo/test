@@ -107,7 +107,7 @@
                 </td>      
             </tr>-->
             <tr>
-                <td class="tbtext">哪些类别工时开单不能改价：</td>
+                <td class="tbtext">哪些类别项目开单不能改价：</td>
                 <td class="tbCtrl" >
                     <div id="editParice" name="editParice" class="nui-checkboxlist" repeatItems="5" 
                     repeatLayout="flow"  value="" 

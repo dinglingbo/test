@@ -40,7 +40,7 @@
                 <td>
                     <div class="nui-radiobuttonlist" valueField="id" repeatItems="2" textField="text"
                          repeatLayout="table" name="countField1" id="countField1" value="b.item_time"
-                         data="[{ id:'b.item_time', text: '工时' },{ id: 'b.amt', text: '工时费' }]">
+                         data="[{ id:'b.item_time', text: '项目' },{ id: 'b.amt', text: '项目金额' }]">
                     </div>
                 </td>
                 <td>
@@ -84,7 +84,7 @@
                     <div field="worker" headerAlign="center" allowSort="true" visible="true" width="70px">成员名称</div>
                 </div>
             </div>
-            <div header="工时信息" headerAlign="center">
+            <div header="项目信息" headerAlign="center">
                 <div property="columns">
                     <div field="t1" headerAlign="center" allowSort="true" visible="true" width="60px">1号</div>
                     <div field="t2" headerAlign="center" allowSort="true" visible="true" width="60px">2号</div>

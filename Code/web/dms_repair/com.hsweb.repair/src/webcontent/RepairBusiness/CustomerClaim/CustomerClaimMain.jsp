@@ -115,7 +115,7 @@ table {
             <div header="费用信息" headerAlign="center">
                 <div property="columns">
                     <div field="itemAmt" headerAlign="center" allowSort="true" align="right" datatype="float"
-                         visible="true" width="80px">工时金额
+                         visible="true" width="80px">项目金额
                     </div>
                     <div field="partAmt" headerAlign="center" allowSort="true" align="right" datatype="float"
                          visible="true" width="80px">配件金额

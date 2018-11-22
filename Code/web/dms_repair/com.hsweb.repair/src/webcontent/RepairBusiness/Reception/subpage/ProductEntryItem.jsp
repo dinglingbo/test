@@ -168,18 +168,18 @@ table {
 				<div type="indexcolumn" width="35">序号</div>
 				<div header="项目基本信息" headerAlign="center" >
 					<div property="columns" >
-						<div field="itemCode" width="70" headerAlign="center" allowSort="true" header="工时编码"></div>
+						<div field="itemCode" width="70" headerAlign="center" allowSort="true" header="项目编码"></div>
 						<div field="itemName" width="180" headerAlign="center" allowSort="true" header="项目名称"></div>
 					</div>
 				</div>
-				<div header="标准工时" headerAlign="center">
+				<div header="标准项目" headerAlign="center">
 					<div property="columns">
 						<div field="astandTime" width="100" headerAlign="center" allowSort="true" header="时间（h）/（副）"></div>
 					</div>
 				</div>
-				<div header="工时费" headerAlign="center">
+				<div header="项目金额" headerAlign="center">
 					<div property="columns">
-						<div field="astandSum" headerAlign="center" allowSort="true" header="工时金额"></div>
+						<div field="astandSum" headerAlign="center" allowSort="true" header="项目金额"></div>
 						<div field="4sSum" headerAlign="center" allowSort="true" header="市场金额"></div>
 					</div>
 				</div>

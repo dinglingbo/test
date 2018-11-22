@@ -63,9 +63,9 @@
 			<div field="mtAmt" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">班组</div>
 			<div field="cardTimesAmt" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">人数</div>
 			<div field="partManageExp" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">维修单数</div>
-		    <div field="mtAmt" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">工时金额</div>
+		    <div field="mtAmt" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">项目金额</div>
 			<div field="partManageExp" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">人均金额</div>
-		    <div field="cardTimesAmt" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">工时提成</div>
+		    <div field="cardTimesAmt" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">项目提成</div>
 		</div>
 	</div>
 </div>

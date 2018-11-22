@@ -11,7 +11,7 @@
 -->
 <head>
     <title>新增客户档案</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.14"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.15"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -164,8 +164,7 @@
                         <label>车牌号：</label>
                     </td>
                     <td colspan="3">
-                        <input class="nui-textbox" name="carNo" id="carNo" />
-
+                        <input class="nui-textbox" name="carNo" id="carNo" onvaluechanged="onCarNoChanged"/>
                     </td>
                 </tr>
                 <tr>

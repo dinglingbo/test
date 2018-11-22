@@ -76,7 +76,7 @@
                        minValue="0" maxValue="100000000"/>
             </td>
             <td class="form_label">
-                <label>工时单价：</label>
+                <label>单价：</label>
             </td>
             <td>
                 <input class="nui-spinner" name="unitPrice" id="unitPrice" format="0.00"
@@ -85,7 +85,7 @@
                        minValue="0" maxValue="100000000"/>
             </td>
             <td class="form_label">
-                <label>工时费：</label>
+                <label>项目金额：</label>
             </td>
             <td>
                 <input class="nui-spinner" name="amt" id="amt" format="0.00"

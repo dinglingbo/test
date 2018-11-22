@@ -28,7 +28,7 @@ $(document).ready(function()
 	carInfoFrom = new nui.Form("#carInfoFrom");
 	contactInfoForm = new nui.Form("#contactInfoForm");
 	basicInfoForm = new nui.Form("#basicInfoForm");
-	nui.get("name").focus();
+	//nui.get("name").focus();
 	
 	if(currRepairBillCmodelFlag == "1"){
         nui.get("carModel").disable();
@@ -36,8 +36,10 @@ $(document).ready(function()
         nui.get("carModel").enable();
     }
 	
+	nui.get("mobile2").focus();
 	document.onkeyup=function(event){
-        var e=event||window.event;
+        
+		var e=event||window.event;
         var keyCode=e.keyCode||e.which;//38向上 40向下
 
         if((keyCode==27))  {  //ESC

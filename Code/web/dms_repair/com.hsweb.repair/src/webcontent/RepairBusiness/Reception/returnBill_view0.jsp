@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-销售单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnBill.js?v=1.3.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnBill.js?v=1.3.9"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">

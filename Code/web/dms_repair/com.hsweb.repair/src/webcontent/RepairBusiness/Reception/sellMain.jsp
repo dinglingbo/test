@@ -61,7 +61,7 @@
                     </ul>
                     <span class="separator"></span>
                     <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
-                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
+                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onenterCarNo(this.value)"/>
                     <label class="form_label">开单日期&nbsp;从：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
 	                <label class="form_label">至：</label>

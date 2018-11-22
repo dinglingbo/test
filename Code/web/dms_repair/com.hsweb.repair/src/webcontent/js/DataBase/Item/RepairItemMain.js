@@ -141,7 +141,7 @@ function addOrEdit(item){
 	nui.open({
 		targetWindow: window,
 		url:webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemDetail.flow?token="+token,
-		title:"维修工时",
+		title:"维修项目",
 		width:550,
 		height:400,
 		allowResize:false,
@@ -224,7 +224,7 @@ function onOk()
 			if(ckcallback){
 				var rs = ckcallback(row);
 				if(rs){
-					showMsg("此工时已添加,请返回查看!","W");
+					showMsg("此项目已添加,请返回查看!","W");
 					return;
 				}else{
 					if(callback){
@@ -260,7 +260,7 @@ function onOk()
 			}
 		}
 		else{
-			showMsg("请选择一个工时", "W");
+			showMsg("请选择一个项目", "W");
 		}
 	}
 }
@@ -284,7 +284,7 @@ function editItemType(){
 	var row = tree1.getSelected();
 	var orgid = row.orgid;
 	if(orgid != currOrgId){
-		showMsg("只能修改本店定义的工时类型!","W");
+		showMsg("只能修改本店定义的项目类型!","W");
 		return;
 	}
 	advancedAddForm.setData([]);

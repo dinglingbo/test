@@ -238,7 +238,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPkg">
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8"><b></b></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"><b>套餐项目(含工时/配件)</b></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8"><b>套餐项目(含项目/配件)</b></td>
                     <td width="60" align="center" bgcolor="#f8f8f8"><b>数量</b></td>
                     <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
                     <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>

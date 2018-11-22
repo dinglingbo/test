@@ -31,7 +31,7 @@ var innerpackGrid = null;
 var advancedSearchWin = null;
 var prdtTypeHash = {
 	    "1":"套餐",
-	    "2":"工时",
+	    "2":"项目",
 	    "3":"配件"
 };
 $(document).ready(function ()
@@ -386,6 +386,14 @@ function getSearchParam() {
     }
     return params;
 }
+
+function onenterSearch(e){
+	onSearch();
+}
+function onenterMtAdvisor(e){
+	onSearch();
+}
+
 
 function onAdvancedSearchCancel(){
     advancedSearchWin.hide();

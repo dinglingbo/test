@@ -11,7 +11,7 @@
 
 <head>
 	<title>工单结算</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.3.0"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CIRegister/insuranceSettlement.js?v=1.0.0"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -250,7 +250,7 @@
 							<td width="300" height="58">
 								车辆：
 								
-								<span style="padding-top: 2px;"  id="carNo" name="carNo">></span>
+								<span style="padding-top: 2px;"  id="carNo" name="carNo"></span>
 							</td>
 							<td align="center">
 								客户：
@@ -275,31 +275,37 @@
 				</table>
 			</div>
 			<div class="pay_list">
-				<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">收费详情</span></h2>
+				<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">保险详情</span></h2>
 				<div class="pay_tcbk">
 					<div id="benefitdeductionbox">
 
 						<div class="pay_jshj_list">
 							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">套餐金额</a>
+								<a href="javascript:;" class="xz">交强险</a>
 							</div>
 							<div class="pay_js_right">
 								<table width="100%" border="0" cellspacing="0" cellpadding="0">
 									<tbody>
 										<tr>
 											<td width="15%">
-												<span>套餐金额：</span>
-
+												<span>保司保费：</span>
 											</td>
 											<td height="40" class="line24">
-												<input class="nui-textbox" id="packageSubtotal" name="packageSubtotal" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;">
+												<input class="nui-textbox" id="compulsoryAmt" name="compulsoryAmt" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;">
 											</td>
 											<td width="10%">
-												<span>套餐优惠：</span>
+												<span>保司返点：</span>
 
 											</td>
 											<td height="40" class="line24">
-												<input class="nui-textbox" id="packagePrefAmt" name="packagePrefAmt" enabled="false" width="100px" enabled="false"   showbutton="false"
+												<input class="nui-textbox" id="compulsoryRate" name="compulsoryRate" enabled="false" width="100px" enabled="false"   showbutton="false"
+												 allowNull="false" />
+											</td>
+											<td>
+											<span>客户返点：</span>
+											</td>
+											<td height="40" class="line24">
+												<input class="nui-textbox" id="compulsoryRate" name="compulsoryRate" enabled="false" width="100px" enabled="false"   showbutton="false"
 												 allowNull="false" />
 											</td>
 										</tr>
@@ -309,26 +315,33 @@
 						</div>
 						<div class="pay_jshj_list">
 							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">项目金额</a>
+								<a href="javascript:;" class="xz">商业险</a>
 							</div>
 							<div class="pay_js_right">
-								<table id="tbcouponlist" width="100%" border="0" cellspacing="0" cellpadding="0">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
 									<tbody>
 										<tr>
 											<td width="15%">
-												<span>项目金额：</span>
+												<span>保司保费：</span>
 
 											</td>
 											<td height="40" class="line24">
-												<input class="nui-textbox" id="itemSubtotal" name="itemSubtotal" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;">
+												<input class="nui-textbox" id="commercialAmt" name="commercialAmt" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;">
 											</td>
 											<td width="10%">
-												<span>项目优惠：</span>
+												<span>保司返点：</span>
 
-											</td >
+											</td>
 											<td height="40" class="line24">
-												<input class="nui-textbox" id="itemPrefAmt" name="itemPrefAmt" enabled="false" width="100px"  showbutton="false"
-												 allowNull="false"  />
+												<input class="nui-textbox" id="commercialRtnCompRate" name="commercialRtnCompRate" enabled="false" width="100px" enabled="false"   showbutton="false"
+												 allowNull="false" />
+											</td>
+											<td>
+											<span>客户返点：</span>
+											</td>
+											<td height="40" class="line24">
+												<input class="nui-textbox" id="commercialRtnGuestRate" name="commercialRtnGuestRate" enabled="false" width="100px" enabled="false"   showbutton="false"
+												 allowNull="false" />
 											</td>
 										</tr>
 									</tbody>
@@ -337,178 +350,82 @@
 						</div>
 						<div class="pay_jshj_list">
 							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">配件金额</a>
+								<a href="javascript:;" class="xz">车船税</a>
 							</div>
 							<div class="pay_js_right">
-								<table id="tbcommissionlist" width="100%" border="0" cellspacing="0" cellpadding="0">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
 									<tbody>
 										<tr>
 											<td width="15%">
-												<span>配件金额：</span>
+												<span>保司保费：</span>
 
 											</td>
 											<td height="40" class="line24">
-												<input class="nui-textbox" id="partSubtotal" name="partSubtotal" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;">
+												<input class="nui-textbox" id="VehicleShipAmt" name="VehicleShipAmt" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;">
 											</td>
 											<td width="10%">
-												<span>配件优惠：</span>
+												<span>保司返点：</span>
 
 											</td>
 											<td height="40" class="line24">
-												<input class="nui-textbox" id="partPrefAmt" name="partPrefAmt" enabled="false" width="100px"  showbutton="false"
-												 allowNull="false"  />
+												<input class="nui-textbox" id="VehicleShipRtnCompRate" name="VehicleShipRtnCompRate" enabled="false" width="100px" enabled="false"   showbutton="false"
+												 allowNull="false" />
+											</td>
+											<td>
+											<span>客户返点：</span>
+											</td>
+											<td height="40" class="line24">
+												<input class="nui-textbox" id="VehicleShipGuestRate" name="VehicleShipGuestRate" enabled="false" width="100px" enabled="false"   showbutton="false"
+												 allowNull="false" />
 											</td>
 										</tr>
 									</tbody>
 								</table>
 							</div>
 						</div>
+						<div class="pay_jshj_list">
+							<div class="pay_js_left">
+								<a href="javascript:;" class="xz">合计</a>
+							</div>
+							<div class="pay_js_right">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tbody>
+										<tr>
+											<td width="15%">
+												<span>保司保费：</span>
 
+											</td>
+											<td height="40" class="line24">
+												<input class="nui-textbox" id="totalAmt" name="totalAmt" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;">
+											</td>
+											<td width="10%">
+												<span>保司返点：</span>
+
+											</td>
+											<td height="40" class="line24">
+												<input class="nui-textbox" id="totalRtnCompRate" name="totalRtnCompRate" enabled="false" width="100px" enabled="false"   showbutton="false"
+												 allowNull="false" />
+											</td>
+											<td>
+											<span>客户返点：</span>
+											</td>
+											<td height="40" class="line24">
+												<input class="nui-textbox" id="totalRtnGuestRate" name="totalRtnGuestRate" enabled="false" width="100px" enabled="false"   showbutton="false"
+												 allowNull="false" />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
+			
 			
-			<div class="pay_list">
-				<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">优惠/抵扣</span></h2>
-				<div class="pay_tcbk">
-					<div id="benefitdeductionbox">
 
-						<div class="pay_jshj_list">
-							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">储值卡抵扣</a>
-							</div>
-							<div class="pay_js_right">
-								<table width="100%" border="0" cellspacing="0" cellpadding="0">
-									<tbody>
-										<tr>
-											<td width="15%">
-												<span>储值卡余额：</span>
-
-											</td>
-											<td height="40" class="line24">
-												<input class="nui-textbox" id="rechargeBalaAmt" name="rechargeBalaAmt" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;">
-											</td>
-											<td width="10%">
-												<span>抵扣金额：</span>
-
-											</td>
-											<td height="40" class="line24">
-												<input class="mini-spinner" id="deductible" name="deductible" width="100px" minValue="0" maxValue="1000000" showbutton="false" changeOnMousewheel="false" showbutton="false"
-												 allowNull="false" onvaluechanged="onChanged" />
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="pay_jshj_list">
-							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">优惠券抵扣</a>
-							</div>
-							<div class="pay_js_right">
-								<table id="tbcouponlist" width="100%" border="0" cellspacing="0" cellpadding="0">
-									<tbody>
-										<tr>
-											<td height="40">没有可用优惠券或者该用户未在微信公众号注册</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="pay_jshj_list">
-							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">积分抵扣</a>
-							</div>
-							<div class="pay_js_right">
-								<table id="tbcommissionlist" width="100%" border="0" cellspacing="0" cellpadding="0">
-									<tbody>
-										<tr>
-											<td height="40">没有可用积分</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<div class="pay_jshj_list">
-							<div class="pay_js_left">
-								<a href="javascript:;" class="xz">优惠金额</a>
-							</div>
-							<div class="pay_js_right">
-								<table width="100%" border="0" cellspacing="0" cellpadding="0">
-									<tbody>
-										<tr>
-											<td width="10%">
-												<span>其他优惠：</span>
-
-											</td>
-											<td height="40" class="line24">
-												<input class="mini-spinner" id="PrefAmt" name="PrefAmt" changeOnMousewheel="false" showbutton="false" m="1" allowNull="false" minValue="0" maxValue="1000000" cardid="" amount="" style="width: 100px; float: left;" onvaluechanged="onChanged">
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-					<div class="pay_list">
-						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">其它收入</span></h2>
-						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
-							<div id="dataform">
-								<div class="skbox2" id="div0" name="div0">
-									<table name="account0" id="account0" width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
-										<tbody>
-											<tr>
-												<td width="50%" height="&quot;44&quot;">
-											
-												</td>
-												<td>
-												</td>
-											
-											</tr>
-										</tbody>
-									</table>
-									<table name="paytype0" id="paytype0" width="96%" border="0" cellpadding="0" cellspacing="0">
-										<tbody>
-
-										</tbody>
-									</table>
-								</div>
-							</div>
-					
-						</div>
-					</div>
 
 					
-					<div class="pay_list">
-						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">费用支出</span></h2>
-						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
-							<div id="dataform">
-								<div class="skbox2" id="div0" name="div0">
-									<table name="account0" id="account0" width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
-										<tbody>
-											<tr>
-												<td width="50%" height="&quot;44&quot;">
-									
-												</td>
-												<td>
-												</td>
-									
-											</tr>
-										</tbody>
-									</table>
-									<table name="paytype1" id="paytype1" width="96%" border="0" cellpadding="0" cellspacing="0">
-										<tbody>
-
-										</tbody>
-									</table>
-								</div>
-							</div>
-
-						</div>
-					</div>
 					<div class="pay_list">
 						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">收款方式</span></h2>
 						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
@@ -562,46 +479,20 @@
 						</div>
 					</div>
 					<div class="pay_list">
-						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">结算方式</span></h2>
-						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
-							<div id="dataform">
-								<div class="skbox2" id="div0" name="div0">
-									<table name="account0" id="account0" width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
-										<tbody>
-											<tr>
-												<td width="50%" height="&quot;44&quot;">
-											
-												</td>
-												<td>
-												</td>
-											
-											</tr>
-										</tbody>
-									</table>
-									<table name="paytype2" id="paytype2" width="96%" border="0" cellpadding="0" cellspacing="0">
-										<tbody>
-
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<div class="" id="csdiv" style="background: #f8f8f8;">
-								<div class="guazhangbz">
-									<table id="tbaddaccount" width="96%" height="30px" border="0" align="center" cellpadding="0" cellspacing="0">
-										<tbody>
-											<tr>
-												<td>结算方式:</td>
-												<td colspan="3" align="center">
-														<div class="mini-radiobuttonlist" repeatItems="1"
-														repeatLayout="table" repeatDirection="vertical" id="payType" name="payType"
-														textField="text" valueField="value"
-														data="[{value:'020101',text:'现金',},{value:'020102',text:'刷卡'},{value:'020104',text:'微信/支付宝'}]"
-														value="020101" ></div>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+						<div class="pay_tcbk zffs" id="csdiv" style="background: #f8f8f8;">
+							<div class="guazhangbz">
+								<table width="100%" border="0" cellspacing="0" cellpadding="10">
+									<tr>
+										<!-- <td width="100">收款时间</td>
+										<td width="220">
+											<input class="mini-datepicker">
+										</td> -->
+										<td width="120" align="center">收款备注</td>
+										<td >
+											<input class="nui-textbox" id="txtreceiptcomment" name="txtreceiptcomment">
+										</td>
+									</tr>
+								</table>
 							</div>
 						</div>
 					</div>

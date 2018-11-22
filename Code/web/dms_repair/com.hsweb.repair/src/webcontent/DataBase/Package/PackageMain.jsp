@@ -183,8 +183,8 @@
 									<table>
 										<tr>
 											<td>
-												<a class="nui-button" plain="true" iconCls="" onclick="addItem()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加工时</a>
-												<a class="nui-button" plain="true" iconCls="" onclick="removeItem()"><span class="fa fa-trash-o"></span>&nbsp;删除工时</a>
+												<a class="nui-button" plain="true" iconCls="" onclick="addItem()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加项目</a>
+												<a class="nui-button" plain="true" iconCls="" onclick="removeItem()"><span class="fa fa-trash-o"></span>&nbsp;删除项目</a>
 											</td>
 										</tr>
 									</table>
@@ -201,13 +201,13 @@
 										 allowSortColumn="true">
 										<div property="columns" >
 											<div type="indexcolumn" width="40" summaryType="count">序号</div>
-											<div header="工时信息" headerAlign="center" >
+											<div header="项目信息" headerAlign="center" >
 												<div property="columns">
-													<div field="itemCode" headerAlign="center" width="60" visible="true">工时编码</div>
-													<div field="itemName" headerAlign="center" width="60"  visible="true">工时名称</div>
+													<div field="itemCode" headerAlign="center" width="60" visible="true">项目编码</div>
+													<div field="itemName" headerAlign="center" width="60"  visible="true">项目名称</div>
 													<!-- <div field="itemKind" headerAlign="center"  width="60"  visible="true">工种</div> -->
-													<div field="type" headerAlign="center" width="80"  visible="true">工时类型</div>
-													<div field="itemTime" headerAlign="center" width="55"  visible="true">工时数量</div>
+													<div field="type" headerAlign="center" width="80"  visible="true">项目类型</div>
+													<div field="itemTime" headerAlign="center" width="55"  visible="true">工时/数量</div>
 													<div field="unitPrice" headerAlign="center" width="55"  visible="true">原价</div>
 													<div field="truePrice"  align="left" headerAlign="center" width="55">
 														销价 <input class="nui-spinner" name="sellPrice" property="editor" minValue="0" dataType="float" showButton="false" maxValue="100000000" onvaluechanged ="onValueChangedSellPrice"/>

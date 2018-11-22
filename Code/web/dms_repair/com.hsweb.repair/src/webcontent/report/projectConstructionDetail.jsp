@@ -47,7 +47,7 @@ body {
             <div property="columns">
                 <div field="serviceCode"  name="serviceCode" headeralign="center" width="100" align="center">工单号</div>
                 <div field="serviceTypeId"  name="serviceTypeId" headeralign="center" width="100" align="center">业务类型</div>
-                <div field="itemName"  name="itemName" headeralign="center" width="100" align="center">工时名称</div>
+                <div field="itemName"  name="itemName" headeralign="center" width="100" align="center">项目名称</div>
                 <div field="carNo"  name="carNo" headeralign="center" width="100" align="center">车牌号</div>
                 <div field="carModel"  name="carModel" headeralign="center" width="200" align="center" width="130">品牌</div>
                 <div field="guestName"  name="guestName" headeralign="center" width="100" align="center">客户名称</div>

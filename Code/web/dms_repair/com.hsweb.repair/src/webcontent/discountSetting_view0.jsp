@@ -79,18 +79,18 @@ table {
                 <td>
                     <div id="normalDiscount" name="normalDiscount" class="nui-checkbox" readOnly="false" text="正常优惠" trueValue="1" falseValue="0"></div>
                     <div id="outDiscount" name="outDiscount" class="nui-checkbox" readOnly="false" text="出单优惠" trueValue="1" falseValue="0"></div>
-                    <div id="itemDiscount" name="itemDiscount" class="nui-checkbox" readOnly="false" text="工时优惠" trueValue="1" falseValue="0"></div>
+                    <div id="itemDiscount" name="itemDiscount" class="nui-checkbox" readOnly="false" text="项目优惠" trueValue="1" falseValue="0"></div>
                     <input id="itemRate" class="nui-spinner"  minValue="0" maxValue="100" showButton="false" enabled="true" value="0" allowNull="false"/>
-                    <div id="partDiscount" name="partDiscount" class="nui-checkbox" readOnly="false" text="工时优惠" trueValue="1" falseValue="0"></div>
+                    <div id="partDiscount" name="partDiscount" class="nui-checkbox" readOnly="false" text="项目优惠" trueValue="1" falseValue="0"></div>
                     <input id ="partRate" class="nui-spinner"  minValue="0" maxValue="100" showButton="false" enabled="true" value="0" allowNull="false"/>
                     <a class="nui-button" onclick="onSet" >应用</a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label>工时优惠率：</label>
+                    <label>项目优惠率：</label>
                     <label id="itemAmtRate"></label>
-                    <label>材料优惠率：</label>
+                    <label>配件优惠率：</label>
                     <label id="partAmtRate"></label>
                     <label>优惠共计：</label>
                     <label id="discountAmt"></label>
@@ -101,7 +101,7 @@ table {
 </div>
 <div class="nui-fit">
     <div class="nui-tabs" activeIndex="0" style="width:calc(100% - 10px);height:calc(100% - 10px);">
-        <div title="工时优惠信息">
+        <div title="项目优惠信息">
             <div id="itemGrid" class="nui-datagrid"
                  dataField="list"
                  sortMode="client"

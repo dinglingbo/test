@@ -102,7 +102,7 @@
 			<div header="维修金额信息" headerAlign="center">
 				<div property="columns">
 					<div field="packageSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">套餐小计</div>
-					<div field="itemSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">工时小计</div>
+					<div field="itemSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">项目小计</div>
 					<div field="partSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">配件小计</div>
 					<div field="itemSubtot" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">实营金额</div>
 				</div>

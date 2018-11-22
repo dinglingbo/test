@@ -516,10 +516,10 @@ function pay() {
     };
     saveData(2);//转入结算和预结算都要保存
     nui.open({
-        url: webBaseUrl + "repair/RepairBusiness/CIRegister/insuranceBillUp.jsp?token="+token,
-        title:"结算",
-        height:"300px",
-        width:"600px",
+        url: webBaseUrl + "com.hsweb.RepairBusiness.insuranceSettlement.flow?token="+token,
+        title:"保险结算",
+        height:"100%",
+        width:"100%",
         allowResize:false,
         onload:function(){
             var iframe = this.getIFrameEl();
@@ -550,7 +550,7 @@ function onPrint(argument) {
         allowResize:false,
         onload:function(){
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(params);
+            iframe.contentWindow.setData(params);
         },
         ondestroy:function(action){
 

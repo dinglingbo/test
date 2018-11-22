@@ -972,7 +972,7 @@ function getMaintain() {
 				}
 				$("#accomplishdate").val(data.accomplishdate)
 				$mtadvisor.val(data.mtadvisorid)
-				console.log('获取工单详情的套餐工时和普通工时')
+				console.log('获取工单详情的套餐项目和普通项目')
 				
 				$("#hoursList").html($('#hours-list-tmpl').tmpl(itemList));
 			} else {
@@ -1010,7 +1010,7 @@ function saveTechnicianSub(e) {
 		return false;
 	}
 	if (saveTechnician.itemcode.length == 0) {
-		Dialog.popup('请选择工时项目！');
+		Dialog.popup('请选择项目！');
 		return false;
 	}
 	

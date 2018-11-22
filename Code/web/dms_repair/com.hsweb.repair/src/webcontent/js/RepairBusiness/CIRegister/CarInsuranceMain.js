@@ -120,6 +120,17 @@ function view() {
         nui.alert("请先选择一条记录！");
     }
 }
+
+
+function onenterGuestName(){
+    onSearch();
+}
+
+function onenterCarNo(){
+    onSearch();
+}
+
+
 function onAdvancedSearchCancel(){
     advancedSearchWin.hide();
 }

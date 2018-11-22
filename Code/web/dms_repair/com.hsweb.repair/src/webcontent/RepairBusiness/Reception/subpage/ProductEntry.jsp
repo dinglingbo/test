@@ -151,7 +151,7 @@ table {
 						<td>
 							<div class="nui-radiobuttonlist" valueField="id" repeatItems="3" textField="text" repeatLayout="table"
 								 id="queryTabId"
-								  data="[{ id: 0, text: '套餐'},{ id: 1, text: '工时' },{ id: 2, text: '配件' }]" value="0">
+								  data="[{ id: 0, text: '套餐'},{ id: 1, text: '项目' },{ id: 2, text: '配件' }]" value="0">
 							</div>
 						</td>
 						<td>
@@ -212,18 +212,18 @@ table {
 								dataField="rs" showPager="false">
 								<div property="columns">
 									<div field="type" width="60" headerAlign="center" allowSort="true" header="类型"></div>
-									<div field="itemCode" width="120" headerAlign="center" allowSort="true" header="工时/配件名称编码"></div>
+									<div field="itemCode" width="120" headerAlign="center" allowSort="true" header="项目/配件名称编码"></div>
 									<div field="itemName" width="120" headerAlign="center" allowSort="true" header="名称"></div>
 									<div field="itemKind" width="120" headerAlign="center" allowSort="true" header="工种"></div>
 									<div field="qty" width="120" headerAlign="center" allowSort="true" header="工时/数量"></div>
-									<div field="price" width="120" headerAlign="center" allowSort="true" header="工时/配件单价"></div>
-									<div field="amt" width="120" headerAlign="center" allowSort="true" header="工时/配件金额"></div>
+									<div field="price" width="120" headerAlign="center" allowSort="true" header="单价"></div>
+									<div field="amt" width="120" headerAlign="center" allowSort="true" header="金额"></div>
 									<div field="partBrandId" width="120" headerAlign="center" allowSort="true" header="配件品牌"></div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div title="标准工时">
+					<div title="标准项目">
 						<div class="nui-datagrid" style="width:100%;height:100%"
 							 id="itemGrid"
 							 dataField="rs"
@@ -236,18 +236,18 @@ table {
 								<div type="indexcolumn" width="35">序号</div>
 								<div header="项目基本信息" headerAlign="center" >
 									<div property="columns" >
-										<div field="itemCode" width="70" headerAlign="center" allowSort="true" header="工时编码"></div>
+										<div field="itemCode" width="70" headerAlign="center" allowSort="true" header="项目编码"></div>
 										<div field="itemName" width="180" headerAlign="center" allowSort="true" header="项目名称"></div>
 									</div>
 								</div>
-								<div header="标准工时" headerAlign="center">
+								<div header="标准项目" headerAlign="center">
 									<div property="columns">
 										<div field="astandTime" width="100" headerAlign="center" allowSort="true" header="时间（h）/（副）"></div>
 									</div>
 								</div>
-								<div header="工时费" headerAlign="center">
+								<div header="项目金额" headerAlign="center">
 									<div property="columns">
-										<div field="astandSum" headerAlign="center" allowSort="true" header="工时金额"></div>
+										<div field="astandSum" headerAlign="center" allowSort="true" header="项目金额"></div>
 										<div field="4sSum" headerAlign="center" allowSort="true" header="市场金额"></div>
 									</div>
 								</div>

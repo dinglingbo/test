@@ -35,7 +35,7 @@
                 <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemSubtotal" selectOnFocus="true"/>
                 </div>
-                <div field="amt"  name="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">工时总金额
+                <div field="amt"  name="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">项目总金额
                 </div>
                 <div field="workers" headerAlign="center"
                      allowSort="false" visible="true" width="80" header="施工员" name="workers" align="center">
@@ -110,7 +110,7 @@
             </tr>
             <tr >
                 <td style="text-align: right;">
-                    工时优惠率：
+                    项目优惠率：
                 </td>
                 <td >
                     <input property="editor" id="itemRateEl"  width="80%" vtype="float"  class="nui-textbox" value="0" selectOnFocus="true" onvaluechanged="onItemRateValuechangedBath"/>%

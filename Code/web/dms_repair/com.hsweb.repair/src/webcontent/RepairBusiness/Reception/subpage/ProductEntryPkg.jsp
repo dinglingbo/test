@@ -205,12 +205,12 @@ table {
 						dataField="rs" showPager="false">
 						<div property="columns">
 							<div field="type" width="60" headerAlign="center" allowSort="true" header="类型"></div>
-							<div field="itemCode" width="120" headerAlign="center" allowSort="true" header="工时/配件名称编码"></div>
+							<div field="itemCode" width="120" headerAlign="center" allowSort="true" header="项目/配件名称编码"></div>
 							<div field="itemName" width="120" headerAlign="center" allowSort="true" header="名称"></div>
 							<div field="itemKind" width="120" headerAlign="center" allowSort="true" header="工种"></div>
 							<div field="qty" width="120" headerAlign="center" allowSort="true" header="工时/数量"></div>
-							<div field="price" width="120" headerAlign="center" allowSort="true" header="工时/配件单价"></div>
-							<div field="amt" width="120" headerAlign="center" allowSort="true" header="工时/配件金额"></div>
+							<div field="price" width="120" headerAlign="center" allowSort="true" header="单价"></div>
+							<div field="amt" width="120" headerAlign="center" allowSort="true" header="金额"></div>
 							<div field="partBrandId" width="120" headerAlign="center" allowSort="true" header="配件品牌"></div>
 						</div>
 					</div>

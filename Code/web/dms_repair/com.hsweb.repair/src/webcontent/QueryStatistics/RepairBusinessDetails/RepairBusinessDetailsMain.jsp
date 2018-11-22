@@ -88,14 +88,14 @@
                     <div field="outDate" headerAlign="center" allowSort="true" visible="true" width="80px" dateFormat="yyyy-MM-dd">离厂日期</div>
                 </div>
             </div>
-            <div header="工时信息" headerAlign="center">
+            <div header="项目信息" headerAlign="center">
                 <div property="columns">
-                    <div field="itemTotalAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">工时总额</div>
-                    <div field="itemFreeAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">免费工时</div>
-                    <div field="itemAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">收费工时</div>
+                    <div field="itemTotalAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">项目总额</div>
+                    <div field="itemFreeAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">免费项目</div>
+                    <div field="itemAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">收费项目</div>
                     <div field="itemPreRate" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right" numberFormat="p">优惠率</div>
                     <div field="itemPrefAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">优惠金额</div>
-                    <div field="itemSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">工时小计</div>
+                    <div field="itemSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">项目小计</div>
                 </div>
             </div>
             <div header="材料信息" headerAlign="center">

@@ -295,7 +295,7 @@ allowSortColumn="true" ondrawsummarycell="onDrawSummaryCellItem" allowCellEdit="
             <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时/数量
                 <input property="editor" vtype="float" class="nui-textbox"/>
             </div>
-            <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时单价
+            <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
                 <input property="editor" vtype="float" class="nui-textbox"/>
             </div>
             <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率

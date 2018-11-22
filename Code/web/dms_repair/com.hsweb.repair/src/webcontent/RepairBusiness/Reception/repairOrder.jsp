@@ -424,7 +424,7 @@
                     <tbody>
                         <tr>
                             <td width="30" height="35" align="center">序号</td>
-                            <td width="200" align="center">工时名称</td>
+                            <td width="200" align="center">项目名称</td>
                             <td align="center">施工员</td>
                             <td align="center">备注</td>
                             <td align="center">签字</td>

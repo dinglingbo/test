@@ -56,9 +56,9 @@
         		<div field="" width="80" headerAlign="center" align="center" header="班组"></div>
         		<div field="" width="100" headerAlign="center" align="center" header="维修单数"></div>
         		<div field="" width="80" headerAlign="center" align="center" header="人数"></div>
-        		<div field="" width="80" headerAlign="center" align="center" header="工时金额"></div>
+        		<div field="" width="80" headerAlign="center" align="center" header="项目金额"></div>
         		<div field="" width="80" headerAlign="center" align="center" header="人均工时"></div>
-        		<div field="" width="80" headerAlign="center" align="center" header="工时提成(参考)"></div>
+        		<div field="" width="80" headerAlign="center" align="center" header="项目提成(参考)"></div>
               </div>
           </div>
          <div class="nui-fit">

@@ -132,7 +132,7 @@
                 		<div field="" width="80" headerAlign="center" align="center" header="喷漆提成"></div>
                 		<div field="" width="80" headerAlign="center" align="center" header="美容金额"></div>
                 		<div field="" width="80" headerAlign="center" align="center" header="美容提成"></div>
-                		<div field="" width="80" headerAlign="center" align="center" header="工时提成合计"></div>
+                		<div field="" width="80" headerAlign="center" align="center" header="项目提成合计"></div>
                 	</div>
         		  </div>
         		  <div header="实际工时提成 工时金额*工时提成率(1-整单优惠率)" headerAlign="center" >

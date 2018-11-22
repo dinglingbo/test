@@ -104,8 +104,8 @@
 				<div type="indexcolumn">序号</div>
 				<div field="车牌号" width="90px" summaryType="count" headerAlign="center" allowSort="true">
 					车牌号<input property="editor" class="nui-textbox"/></div>
-				<div field="工时名称" width="70px" headerAlign="center" allowSort="true">
-					工时名称<input property="editor" class="nui-textbox"/></div>
+				<div field="项目名称" width="70px" headerAlign="center" allowSort="true">
+					项目名称<input property="editor" class="nui-textbox"/></div>
 				<div field="总次数" width="135px" headerAlign="center" allowSort="true">
 					总次数<input property="editor" class="nui-textbox"/></div>
 				<div field="已使用次数" width="135px" headerAlign="center" allowSort="true">

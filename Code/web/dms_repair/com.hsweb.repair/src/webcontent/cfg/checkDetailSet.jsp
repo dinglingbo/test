@@ -125,7 +125,7 @@
                             <td ><input name="remark" class="nui-textbox" width="100%" id="remark"/></td>
                         </tr>
                         <tr class="htr">
-                            <td class=" right fwidthb">工时:</td>
+                            <td class=" right fwidthb">项目:</td>
                             <td >
                                 <input name="itemNameId" id="itemNameId"
                                 class="nui-buttonedit" emptyText=""

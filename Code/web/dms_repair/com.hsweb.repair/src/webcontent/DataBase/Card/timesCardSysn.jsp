@@ -118,7 +118,7 @@
 							<td style="width: 15%;"><a class="nui-button"
 								onclick="selectPackage()"  id = "addp"> <span class="fa fa-plus fa-lg"></span>添加套餐 </a></td>
 							<td style="width: 15%;"><a class="nui-button"
-								onclick="selectItem()"  id = "addi"> <span class="fa fa-plus fa-lg"></span>添加工时 </a></td>
+								onclick="selectItem()"  id = "addi"> <span class="fa fa-plus fa-lg"></span>添加项目 </a></td>
 							<td style="width: 15%;"><a class="nui-button"
 								onclick="addDetail()"  id = "addr"> <span class="fa fa-plus fa-lg"></span>添加配件 </a></td>
 							<td style="width: 55%;"><a class="nui-button "

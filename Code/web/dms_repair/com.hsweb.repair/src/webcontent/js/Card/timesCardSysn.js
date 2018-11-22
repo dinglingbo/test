@@ -566,7 +566,7 @@ function selectItem(callback) {
 		url : webPath + contextPath
 				+ "/com.hsweb.repair.DataBase.RepairItemMain.flow?token="
 				+ token,
-		title : "维修工时",
+		title : "维修项目",
 		width : 1000,
 		height : 560,
 		allowDrag : true,
@@ -615,7 +615,7 @@ function selectItem(callback) {
 }
 
 function onDrawCell(e) {
-	var hash = new Array("套餐", "工时", "配件");
+	var hash = new Array("套餐", "项目", "配件");
 	
 	switch (e.field) {
 	case "prdtType":

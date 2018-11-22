@@ -39,23 +39,23 @@ table {
     <input class="nui-hidden" name="packgePrefAmt">
     <input class="nui-hidden" name="cardAmt">
     <input class="nui-hidden" name="totalPrefRate">
-    <div class="nui-panel" title="工时信息" style="width:calc(100% - 10px);" bodyStyle="padding:0;" borderStyle="border-bottom:0;" headerStyle="height:22px;">
+    <div class="nui-panel" title="项目信息" style="width:calc(100% - 10px);" bodyStyle="padding:0;" borderStyle="border-bottom:0;" headerStyle="height:22px;">
         <table class="nui-form-table">
             <tr>
                 <td class="form_label">
-                    <label>总工时费：</label>
+                    <label>总项目费：</label>
                 </td>
                 <td>
                     <input name="itemTotalAmt" class="nui-spinner"  minValue="0" maxValue="1000000000" showButton="false" enabled="false"/>
                 </td>
                 <td class="form_label">
-                    <label>免费工时：</label>
+                    <label>免费项目：</label>
                 </td>
                 <td>
                     <input name="itemFreeAmt" class="nui-spinner"  minValue="0" maxValue="1000000000" showButton="false" enabled="false"/>
                 </td>
                 <td class="form_label">
-                    <label>收费工时：</label>
+                    <label>收费项目：</label>
                 </td>
                 <td>
                     <input name="itemAmt" class="nui-spinner"  minValue="0" maxValue="1000000000" showButton="false" enabled="false"/>
@@ -75,7 +75,7 @@ table {
                     <input name="itemPrefAmt" class="nui-spinner"  minValue="0" maxValue="1000000000" showButton="false" enabled="false"/>
                 </td>
                 <td class="form_label">
-                    <label>工时小计：</label>
+                    <label>项目小计：</label>
                 </td>
                 <td>
                     <input name="itemSubtotal" class="nui-spinner"  minValue="0" maxValue="1000000000" showButton="false" enabled="false"/>

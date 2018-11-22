@@ -112,7 +112,7 @@
                         <div allowSort="true" field="packageDiscountRate" headerAlign="center" header="套餐优惠(0-100)">
                                 <input property="editor" decimalPlaces="0" class="nui-spinner" format="0"  value="0" maxValue="100" showButton="false"/>
                         </div>
-                        <div allowSort="true" field="itemDiscountRate" headerAlign="center" header="工时优惠(0-100)">
+                        <div allowSort="true" field="itemDiscountRate" headerAlign="center" header="项目优惠(0-100)">
                                 <input property="editor" decimalPlaces="0"  class="nui-spinner" format="0"  value="0" maxValue="100" showButton="false"/>
                         </div>
                         <div allowSort="true" field="partDiscountRate" headerAlign="center" header="配件优惠(0-100)">

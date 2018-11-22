@@ -50,9 +50,9 @@
       <tr>
         <td>
           <input class="nui-hidden" id="cNo" name="cNo" value='<b:write property="cNo"/>'/>
-          <input class="nui-textbox" id="guestName" name="guestName" emptyText="输入客户姓名" width="120" />
-          <input class="nui-textbox" id="serviceCode" name="serviceCode" emptyText="请输入单号" width="120" />
-          <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" />
+          <input class="nui-textbox" id="guestName" name="guestName" emptyText="输入客户姓名" width="120"  onenter="onenterGuestName(this.value)"/>
+          <input class="nui-textbox" id="serviceCode" name="serviceCode" emptyText="请输入单号" width="120" onenter="onenterServiceCode(this.value)"/>
+          <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" onenter="onenterCarNo(this.value)"/>
           <label class="form_label">开单日期&nbsp;从：</label>
           <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
           <label class="form_label">至：</label>
@@ -196,6 +196,19 @@ function edit(){
     window.parent.activeTabAndInit(part,params);
 }
 
+
+
+function onenterServiceCode(){
+     onSearch();
+}
+
+function onenterGuestName(){
+     onSearch();
+}
+
+function onenterCarNo(){
+     onSearch();
+}
 
 </script>
 

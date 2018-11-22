@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>保险开单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceMain.js?v=1.0.63"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceMain.js?v=1.0.64"></script>
     <style type="text/css">
 
     table {
@@ -47,9 +47,9 @@ pageEncoding="UTF-8" session="false"%>
                 </td>
                 <td>
                     <label class="form_label">车牌号：</label>
-                    <input class="nui-textbox" name="carNo" id="carNo-search"/>
+                    <input class="nui-textbox" name="carNo" id="carNo-search" onenter="onenterCarNo(this.value)"/>
                     <label class="form_label">客户名称：</label>
-                    <input class="nui-textbox" name="guestName" id="guestName"/>
+                    <input class="nui-textbox" name="guestName" id="guestName" onenter="onenterGuestName(this.value)"/>
                     <a class="nui-button" iconCls="" onclick="onSearch()" plain="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button" iconCls="" onclick="advancedSearch()" plain="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                 </td>

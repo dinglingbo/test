@@ -408,7 +408,7 @@
         <process:inputVariable id="0" name="rpAccount" type="query" value="com.hsapi.repair.data.common.FisRpBill" valueType="DataObject" pattern="reference">fisRpBill</process:inputVariable>
         <process:inputVariable id="1" name="pay" type="query" value="com.hsapi.repair.data.common.FisRpAccount" valueType="DataObject" pattern="reference">fisRpAccount</process:inputVariable>
         <process:inputVariable id="2" name="payDetail" type="query" value="com.hsapi.repair.data.common.FisRpAccountDetail[]" valueType="DataObject" pattern="reference">fisRpDetail</process:inputVariable>
-        <process:inputVariable id="3" name="payTypeDetail" type="query" value="com.hsapi.repair.data.common.FisRpAccountDType[]" valueType="DataObject" pattern="reference">fisRpDetailType</process:inputVariable>
+        <process:inputVariable id="3" name="payTypeDetail" type="query" value="com.hsapi.repair.data.common.FisRpAccountDType[]" valueType="DataObject" pattern="reference">accountTypeList</process:inputVariable>
         <process:inputVariable id="4" name="isPay" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
         <process:inputVariable id="5" name="rpAdd" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">value</process:inputVariable>
       </process:inputVariables>
@@ -1393,6 +1393,7 @@
     <location x="1006" y="205"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="accountTypeList" iterableElement="rpAccount"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">

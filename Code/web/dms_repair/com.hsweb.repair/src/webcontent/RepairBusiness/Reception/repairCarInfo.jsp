@@ -27,7 +27,7 @@
                             <label>车牌号：</label>
                         </td>
                         <td class="" ><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
-                        <td class="title required" >
+                        <td class="title" >
                            <label>品牌/车型：</label>
                         </td>
                         <td class="" colspan="3">

@@ -196,7 +196,7 @@ function toCardList(){
 function toVisitMain(){
     var item={};
     item.id = "2187";
-    item.text = "工单回访";
+    item.text = "客户回访";
     item.url = webPath + contextPath + "/com.hsweb.crm.manage.visitMain.flow?token="+token
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);

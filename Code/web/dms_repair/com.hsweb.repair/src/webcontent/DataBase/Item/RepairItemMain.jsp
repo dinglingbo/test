@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修项目</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.9" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.10" type="text/javascript"></script>
 
 </head>
 <body>
@@ -42,17 +42,16 @@
 					<table class="table" id="table1">
 						<tr>
 							<td>
-								<label style="font-family: Verdana;font-size: 12px;">快速查询：</label>
+								<label style="font-family: Verdana;;font-size: 12px;">业务类型：</label>
 								<input name="serviceTypeId"
 										id="serviceTypeId"
-										class="nui-hidden"
+										class="nui-combobox"
 										textField="name"
 										valueField="id"
-										emptyText="请选择..."
+										emptyText=""
 										url=""
 										allowInput="true"
 										showNullItem="false"
-										width="100%"
 										valueFromSelect="true"
 										nullItemText="请选择..."/>
 								<!-- <label style="font-family: Verdana;;font-size: 12px;">工种：</label>
@@ -65,8 +64,7 @@
 										url=""
 										allowInput="false"
 										showNullItem="false"
-										nullItemText="请选择..."/> -->
-										
+										nullItemText="请选择..."/> -->										
 								<!-- <label style="font-family: Verdana;;font-size: 12px;">品牌：</label> -->
 								<input id="carBrandId"
 										name="carBrandId"
@@ -84,10 +82,10 @@
 										class="nui-combobox width1"
 										textField="name"
 										valueField="customid"/> -->
-							<label style="font-family: Verdana;;font-size: 12px;">项目编码：</label>
-								<input class="nui-textbox" id="search-code" name="code" onenter="onSearch()"/>
 								<label style="font-family: Verdana;;font-size: 12px;">项目名称：</label>
 								<input class="nui-textbox" id="search-name" name="name" onenter="onSearch()" />
+								<label style="font-family: Verdana;;font-size: 12px;">项目编码：</label>
+								<input class="nui-textbox" id="search-code" name="code" onenter="onSearch()"/>
 								<span class="separator"></span>
 								<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 								<a class="nui-button" plain="true" iconCls="" onclick="onClear()"><span class="fa fa-trash-o"></span>&nbsp;清空</a>
@@ -104,7 +102,7 @@
 							<a class="nui-button" id="add" iconCls="" onclick="add()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增项目</a>
 							<a class="nui-button" id="update" iconCls="" onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改项目</a>
 							<span class="separator" id="sep"></span>
-			<!-- 				<a class="nui-button" id="addItemType" iconCls="" onclick="addItemType()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增类型</a> -->
+			 				<a class="nui-button" id="addItemType" iconCls="" onclick="addItemType()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增类型</a> 
 							<a class="nui-button" id="editItemType" iconCls="" onclick="editItemType()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改类型</a>
 							<a class="nui-button" id="selectBtn" iconCls="" onclick="onOk()" plain="true" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
 						</td>
@@ -130,23 +128,16 @@
 					<div property="columns" >
 						<div type="indexcolumn">序号</div>
 						<div type="checkcolumn" name="checkcolumn" visible="false"></div>
-						<div header="项目基本信息" headerAlign="center">
-							<div property="columns">
-								<div field="code" headerAlign="center" width="100px">项目编码</div>
-								<div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
-								<div field="type" headerAlign="center" allowSort="true" width="100px">项目类型</div>
-								<!-- <div field="serviceTypeId" headerAlign="center" allowSort="true" width="100px">业务类型</div> -->
-								<div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="50px">工时</div>
-								<div field="unitPrice" headerAlign="center" allowSort="true" width="70px">单价</div>
-								<div field="amt" headerAlign="center" allowSort="true" width="70px">金额</div>
-							</div>
-						</div>
-						<div header="其他" headerAlign="center">
-							<div property="columns">
-								<div field="isDisabled" headerAlign="center" allowSort="true" width="50px">是否禁用</div>
-								<div field="isShare" headerAlign="center" allowSort="true" width="50px">是否共享</div>
-							</div>
-						</div>
+						<div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
+						<div field="type" headerAlign="center" allowSort="true" width="100px">项目类型</div>
+						<div field="serviceTypeId" headerAlign="center" allowSort="true" width="50px">业务类型</div>
+						<div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="50px">工时</div>
+						<div field="unitPrice" headerAlign="center" allowSort="true" width="50px">单价</div>
+						<div field="amt" headerAlign="center" allowSort="true" width="50px">金额</div>
+						<div field="code" headerAlign="center" width="50px">项目编码</div>
+						<div field="isDisabled" name="isDisabled" headerAlign="center" allowSort="true" width="50px">是否禁用</div>
+						<div field="isShare" name="isShare" headerAlign="center" allowSort="true" width="50px">是否共享</div>
+							
 					</div>
 				</div>
 

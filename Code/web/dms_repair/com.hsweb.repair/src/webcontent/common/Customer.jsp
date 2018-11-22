@@ -12,7 +12,7 @@
 
 <head>
 <title>客户选择</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerSelect.js?v=1.0.6"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/CustomerSelect.js?v=1.0.7"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -26,9 +26,9 @@ table {
             <tr>
                 <td class="">
                     <label>查询选项：</label>
-                    <input class="nui-combobox" valueFromSelect="true" id="key" name="key" value="carNo"/>
+                    <input class="nui-combobox" valueFromSelect="true" id="key" name="key" value="lcarNo"/>
                     <label>查询值：</label>
-                    <input class="nui-textbox" name="value" id = "setValue"/>
+                    <input class="nui-textbox" name="value" id = "setValue"  onenter="onenterSearch(this.value)"/>
                     <div class="nui-radiobuttonlist"
                          name="searchArea"
                          style="display: inline-block;position: relative;top:5px;"
@@ -36,7 +36,8 @@ table {
                          repeatItems="2"
                          textField="text"
                          repeatLayout="table"
-                         data="[{ id: 0, text: '本店资料 '},{ id: 1, text: '所有资料' }]" value="0">
+                         data="[{ id: 0, text: '本店资料 '},{ id: 1, text: '所有资料' }]" value="0"
+                         >
                     </div>
                     <a class="nui-button" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>

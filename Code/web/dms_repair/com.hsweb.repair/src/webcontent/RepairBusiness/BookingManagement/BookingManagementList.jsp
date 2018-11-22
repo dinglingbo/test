@@ -10,7 +10,7 @@
 
 <head>
     <title>预约列表</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=2.1.1"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=2.1.3"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -107,8 +107,8 @@
                         <a class="nui-button" plain="true" id="btnCall" iconCls="" onclick="callBill()">
                             <span class="fa fa-comment-o fa-lg"></span>&nbsp;跟进</a>
                          <a class="nui-button" plain="true" id="btnCall" iconCls="" onclick=""><span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp;发送微信</a>
-                        <a class="nui-button" plain="true" id="btnshowhistory" iconCls="" onclick="showhistory()" visib le="false">
-                            <span class="fa fa-shopping-bag fa-lg"></span>&nbsp;服务履历</a>
+                       <!--  <a class="nui-button" plain="true" id="btnshowhistory" iconCls="" onclick="showhistory()" visible="false">
+                            <span class="fa fa-shopping-bag fa-lg"></span>&nbsp;服务履历</a> -->
                     </td>
                 </tr>
             </table>

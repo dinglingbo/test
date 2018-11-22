@@ -59,6 +59,7 @@ var AuditSignHash = {
 	"2" : "已过账",
 	"3" : "已取消"
 };
+
 $(document).ready(function(v) {
 	nui.mask({
         el: document.body,
@@ -127,7 +128,10 @@ $(document).ready(function(v) {
         }
 
     });
-
+	
+	document.ondragstart = function() {
+	    return false;
+	};
     document.onkeyup=function(event){
 	    var e=event||window.event;
 	    var keyCode=e.keyCode||e.which;

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购退货主界面</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnMain.js?v=1.0.14"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnMain.js?v=1.0.15"></script>
 <style type="text/css">
 .title {
 	width: 90px;

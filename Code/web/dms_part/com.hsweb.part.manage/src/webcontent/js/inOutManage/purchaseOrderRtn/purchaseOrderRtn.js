@@ -37,6 +37,8 @@ var AuditSignHash = {
   "0":"草稿",
   "1":"已退货"
 };
+
+
 $(document).ready(function(v)
 {
     nui.mask({
@@ -94,6 +96,9 @@ $(document).ready(function(v)
         });
     });
     
+    document.ondragstart = function() {
+        return false;
+    };
     document.onkeyup=function(event){
 	    var e=event||window.event;
 	    var keyCode=e.keyCode||e.which;

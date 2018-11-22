@@ -1,19 +1,14 @@
-
-
 var receiveGrid = null;
 var payGrid = null;
 var fserviceId = 0;
-var deductible = 0;
 var tableNum = 0;
-var plist = [];
 var rlist = [];
 var typeList = {};
 var mtAmtEl = null;
 var guestData = null;
 var amountEl = null;
-var onetInAmt = 0;
-var netInAmt = 0;
 var zongAmt = 0;//总金额
+var showAmt = null;//结算金额是否减客户返点
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var frmUrl = apiPath + frmApi + "/";
@@ -26,206 +21,49 @@ $(document).ready(function(v) {
 
 });
 
-function getData(data){
-	data = data||{};
-	data.amount = data.mtAmt;
-	data.payType = "020101";
-	var json = {
-		guestId:data.guestId,
-		token : token
-	}
-	
-	nui.ajax({
-		url : baseUrl
-		+ "com.hsapi.repair.baseData.query.queryMemberByGuestId.biz.ext" ,
-		type : "post",
-		data : json,
-		async: false,
-		success : function(rs) {
-			if(rs.member.length==0){
-				data.rechargeBalaAmt=0;
-			}else{
-				data.rechargeBalaAmt = rs.member[0].rechargeBalaAmt;
-			}
-
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});
-	nui.get("rechargeBalaAmt").setValue("￥"+data.rechargeBalaAmt); 
-	
-	onetInAmt  = data.mtAmt;
-}
 function setData(params){
+	
+	if(params.sTypeId == 1){
+		$("#radio1").attr("checked", "checked");
+		showAmt = "(保司保费)";
+	}else if(params.sTypeId == 2){
+		$("#radio2").attr("checked", "checked"); 
+		showAmt = "(保司保费)";
+	}else if(params.sTypeId == 3){
+		$("#radio3").attr("checked", "checked"); 
+		showAmt = "(保司保费-客户返点)";
+	}
 	guestData = params;
-	zongAmt = params.data.mtAmt;
-	var rechargeBalaAmt = 0;
-	var jsonq = {
-			guestId:params.guestId,
-			token : token
-		};
-	var param = {isMain:0};
-	svrInComeExpenses(param,function(data) {
-		var list = data.list||{};
-		for(var i = 0; i<list.length; i++){
-			var obj = list[i];
-			if(obj.itemTypeId==1){
-				rlist.push(obj);
-			}else if(obj.itemTypeId==-1){
-				plist.push(obj);
-			}
-		}
-    });
-	var amt = 0;
-	var serviceId = params.serviceId||0;
-	var data = params.data||{};
-	var guestId = params.guestId||0;
-	data.guestId = guestId;
+	zongAmt = params.moneyCost;
+	var serviceId = params.data1.id||0;
 	fserviceId = serviceId;
-	document.getElementById('carNo').innerHTML = params.carNo;
-	document.getElementById('guest').innerHTML = params.guestName;
-
+	document.getElementById('carNo').innerHTML = params.data1.carNo||"";
+	document.getElementById('guest').innerHTML = params.data1.guestFullName||"";
 	
-	nui.get('packageSubtotal').setValue("￥"+params.data.packageSubtotal);
-	nui.get('itemSubtotal').setValue("￥"+params.data.itemSubtotal);
-	nui.get('partSubtotal').setValue("￥"+params.data.partSubtotal);
-	nui.get('packagePrefAmt').setValue("￥"+params.data.packagePrefAmt);
-	nui.get('itemPrefAmt').setValue("￥"+params.data.itemPrefAmt);
-	nui.get('partPrefAmt').setValue("￥"+params.data.partPrefAmt);
+	document.getElementById('totalAmt').innerHTML = "￥"+zongAmt||0;
+	document.getElementById('totalAmtSpan').innerHTML = showAmt||"";
+	document.getElementById('totalAmt1').innerHTML = zongAmt||0;
+	document.getElementById('amount').innerHTML =  zongAmt||0;
+	//document.getElementById('ycAmt').innerHTML = params.data.ycAmt||0;
 	
-	var json = {
-			serviceId: fserviceId,
-			dc: 1,
-			token: token
-	}
-	nui.ajax({
-		url : baseUrl
-		+ "com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext" ,
-		type : "post",
-		data : json,
-		async: false,
-		success : function(rs) {
-			var str = "";
-			srnum = rs.data;
-			if(srnum.length>0){
-				for(var i = 0;i<rs.data.length;i++){
-					for(var j =0;j<rlist.length;j++){
-						if(rs.data[i].typeCode==rlist[j].code){
-							rs.data[i].typeCode=rlist[j].name;
-						}
-					}
-					if(rs.data[i].remark==null){
-						rs.data[i].remark="无";
-					}
-					var ss = '<td width="110" height="44" align="right">收入项目</td>'+'<td>'+'<input class="nui-textbox" enabled="false" id ='+i+'stypeCode name ="amount" value='+rs.data[i].typeCode+' style="width: 100px;">'+'</td>   <td width="110" height="44" align="right">收入金额</td>'+'<td>'+'<input class="nui-textbox" enabled="false" value='+rs.data[i].amt+' id ='+i+'sAmt name ="amount"  style="width: 100px;">'+'</td> <td width="110" height="44" align="right">备注</td>'+'<td>'+'<input class="nui-textbox" enabled="false" value='+rs.data[i].remark+' id ='+i+'sremark name ="amount"  style="width: 100px;">'+'</td>';
-						ss=ss+'</tr>'+'<tr>';
-					str = str+ss;
-				}
-				str='<tr>'+str+'</tr>';
-			}else{
-				str='<tr><td align="center" ><spand style="color: #ff7800;">无其他收入</spand></td></tr>';
-			}
-
-			document.getElementById('paytype0').innerHTML = str;
-			for(var i = 0;i<rs.data.length;i++){
-				//nui.get().enable();
-				document.getElementById(i+"stypeCode").disabled =true;
-				document.getElementById(i+"sAmt").disabled =true;
-				document.getElementById(i+"sremark").disabled =true;
-			}
-			amt = parseFloat(amt);
-			for(var i = 0;i<srnum.length;i++){
-				amt=amt+parseFloat(srnum[i].amt);
-			}
-			var amount = 0;
-			if(params.data.ycAmt==null||params.data.ycAmt==""){
-				amount = params.data.mtAmt;
-			}else{
-				params.data.mtAmt = params.data.mtAmt-params.data.ycAmt;
-				params.data.mtAmt = params.data.mtAmt.toFixed(2)
-			}
-			netInAmt = amount;
-			params.data.mtAmt = parseFloat(params.data.mtAmt)+amt;
-			document.getElementById('totalAmt').innerHTML = "￥"+params.data.mtAmt;
-			document.getElementById('totalAmt1').innerHTML = params.data.mtAmt;
-			document.getElementById('amount').innerHTML =  params.data.mtAmt;
-			document.getElementById('ycAmt').innerHTML = params.data.ycAmt||0;
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});
-	var json1 = {
-			serviceId: fserviceId,
-			dc: -1,
-			token: token
-	}
-	nui.ajax({
-		url : baseUrl
-		+ "com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext" ,
-		type : "post",
-		data : json1,
-		async: false,
-		success : function(rs) {
-			var str = "";
-			srnum = rs.data;
-			if(srnum.length>0){
-				for(var i = 0;i<rs.data.length;i++){
-					for(var j =0;j<plist.length;j++){
-						if(rs.data[i].typeCode==plist[j].code){
-							rs.data[i].typeCode=plist[j].name;
-						}
-					}
-					if(rs.data[i].remark==null){
-						rs.data[i].remark="无";
-					}
-					var ss = '<td width="110" height="44" align="right">费用项目</td>'+'<td>'+'<input class="nui-textbox" readonly="readonly" id ='+i+'ztypeCode name ="amount" value='+rs.data[i].typeCode+' style="width: 100px;">'+'</td>   <td width="110" height="44" align="right">支出金额</td>'+'<td>'+'<input class="nui-textbox" readonly="readonly" value='+rs.data[i].amt+' id ='+i+'zAmt name ="amount"  style="width: 100px;">'+'</td> <td width="110" height="44" align="right">备注</td>'+'<td>'+'<input class="nui-textbox" enabled="false" value='+rs.data[i].remark+' id ='+i+'zremark name ="amount"  style="width: 100px;">'+'</td>';
-						ss=ss+'</tr>'+'<tr>';
-					str = str+ss;
-				}
-				str='<tr>'+str+'</tr>';
-			}else{
-				str='<tr><td align="center" ><spand style="color: #ff7800;">无费用支出</spand></td></tr>';
-			}
-			document.getElementById('paytype1').innerHTML = str;
-			for(var i = 0;i<rs.data.length;i++){
-				//nui.get().enable();
-				document.getElementById(i+"ztypeCode").disabled =true;
-				document.getElementById(i+"zAmt").disabled =true;
-				document.getElementById(i+"zremark").disabled =true;
-			}
-
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			// nui.alert(jqXHR.responseText);
-			console.log(jqXHR.responseText);
-		}
-	});
+	nui.get('compulsoryAmt').setValue("￥"+(params.gridData[0].amt||0));
+	nui.get('compulsoryRate').setValue((params.gridData[0].rtnCompRate||0)+"%");
+	nui.get('compulsoryRtnGuestRate').setValue((params.gridData[0].rtnGuestRate||0)+"%");
+	
+	nui.get('commercialAmt').setValue("￥"+(params.gridData[1].amt||0));
+	nui.get('commercialRtnCompRate').setValue((params.gridData[1].rtnCompRate||0)+"%");
+	nui.get('commercialRtnGuestRate').setValue((params.gridData[1].rtnGuestRate||0)+"%");
+	
+	nui.get('VehicleShipAmt').setValue("￥"+(params.gridData[2].amt||0));
+	nui.get('VehicleShipRtnCompRate').setValue((params.gridData[2].rtnCompRate||0)+"%");
+	nui.get('VehicleShipGuestRate').setValue((params.gridData[2].rtnGuestRate||0)+"%");
+	
+	nui.get('totalAmt').setValue("￥"+(params.t_amt||0));
+	nui.get('totalRtnCompRate').setValue("￥"+(params.t_rtnCompRate||0));
+	nui.get('totalRtnGuestRate').setValue("￥"+(params.t_rtnGuestRate||0));
 	
 
-		
-		nui.ajax({
-			url : apiPath + repairApi + "/com.hsapi.repair.baseData.query.queryMemberByGuestId.biz.ext" ,
-			type : "post",
-			data : jsonq,
-			success : function(data) {
-				if(data.member.length==0){
-					rechargeBalaAmt=0;
-				}else{	
-					rechargeBalaAmt = data.member[0].rechargeBalaAmt;
-				}
-				nui.get("rechargeBalaAmt").setValue("￥"+rechargeBalaAmt); 
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				console.log(jqXHR.responseText);
-			}
-		});
-		addType();
-
-	getData(data);
+	addType();
 }
 function addReceiveRow(row_uid){
 	var row = {};
@@ -266,42 +104,20 @@ function deletePayRow(row_uid){
 var resultData = {};
 function onChanged() {
 	var count = scount();
-	 deductible = nui.get("deductible").getValue()||0;
-	var PrefAmt = nui.get("PrefAmt").getValue()||0;
-	var memAmt = nui.get("rechargeBalaAmt").getValue()||0;
-		memAmt = (memAmt.split("￥"))[1];
-	if(deductible>memAmt){
-		nui.alert("储值抵扣不能大于储值余额","提示");
-		nui.get("deductible").setValue(0);
-		deductible=0;
-		nui.get("PrefAmt").setValue(0);
-
+	if( parseFloat(count)>zongAmt){
+		nui.alert("结算金额不能大于应收金额","提示");
 		return;
 	}
-	if(parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count)  > netInAmt){
-		nui.alert("储值抵扣加上优惠金额不能大于应收金额","提示");
-		nui.get("deductible").setValue(0);
-		deductible=0;
-		nui.get("PrefAmt").setValue(0);
-
-		return;
-	}
-	
-	var amount = parseFloat(netInAmt) - parseFloat(deductible) - parseFloat(PrefAmt)-parseFloat(count);
-	amount = amount.toFixed(2);
-
 }
 
 //转预结算
 function noPay(){
-	var PrefAmt = nui.get("PrefAmt").getValue()||0;
-	doNoPay(fserviceId,PrefAmt);
+	doNoPay(fserviceId,zongAmt);
 }
 
 //结算
 function pay(){
 	var accountTypeList =[];
-	var accountDetail = {};
 	for(var i = 0;i<tableNum+1;i++){
 		var  Sel=document.getElementById("optaccount"+i);
 		if(Sel!=null){
@@ -321,25 +137,16 @@ function pay(){
 		}
 	}
 		var count = scount();
-/*		if(count==0){
-			nui.alert("请选择结算账户,并填写结算金额","提示");
-			return;
-		}*/
 		if(count!=zongAmt){
 			nui.alert("结算金额和应结金额不一致，请重新确认！","提示");
 			return;
 		}
-	var deductible = nui.get("deductible").getValue()||0;
-	var PrefAmt = nui.get("PrefAmt").getValue()||0;
-	var payType = nui.get("payType").getValue()||0;
-	var amt = $("#amount").text();
 	var json = {
 		accountTypeList : accountTypeList,
-		allowanceAmt:PrefAmt,
-		cardPayAmt:deductible,
+		allowanceAmt:0,
+		cardPayAmt:0,
 		serviceId:fserviceId,
-		payType:payType,
-		payAmt:amt
+		payAmt:count
 	}
     nui.confirm("确定结算吗?", "友情提示",function(action){
 	       if(action == "ok"){
@@ -350,7 +157,7 @@ function pay(){
 			    });
 	    		nui.ajax({
 	    			url : baseUrl
-	    			+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ,
+	    			+ "com.hsapi.repair.repairService.settlement.receiveInsuranceSettle.biz.ext" ,
 	    			type : "post",
 	    			data : json,
 			        cache : false,

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>应付账款管理</title>
-    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.0.9"></script> 
+    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.1.0"></script> 
     <style type="text/css">
 .title {
     width: 90px;

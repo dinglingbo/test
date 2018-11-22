@@ -69,6 +69,12 @@ function init() {
 
 function onenterSelect(e){
 	 var carNo = e;
+	 var falge = isVehicleNumber(carNo);
+		if(!falge){
+			nui.get("carNo").setText("");
+			showMsg("请输入正确的车牌号","W");
+			return;
+		}
 	 openCustomerWindow(carNo,function (v) {
 	        basicInfoForm = new nui.Form("#basicInfoForm");	
 	        var main = basicInfoForm.getData();
@@ -165,6 +171,7 @@ function SetData(params) {
     
 }
 
+
 function onOk() {
 	basicInfoForm = new nui.Form("#basicInfoForm");	
     var main = basicInfoForm.getData();
@@ -180,6 +187,10 @@ function onOk() {
          return;
     }
 
+    if(!checkMobile(nui.get("contactorTel").value)){
+        return;
+    }
+    
     main.predictComeDate = timeStartEl.getValue() + ' ' + time + ":00";
 
     if (!main.id) {
@@ -391,3 +402,26 @@ function CloseWindow(action)
 	else
 		window.close();
 }
+
+function onCarNoChanged(e){
+	var falge = isVehicleNumber(e.value);
+	if(!falge){
+		nui.get("carNo").setText("");
+		showMsg("请输入正确的车牌号","W");
+		return;
+	}
+}
+
+function isVehicleNumber(vehicleNumber) {
+    var result = false;
+    if (vehicleNumber.length == 7){
+      var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
+      result = express.test(vehicleNumber);
+    }
+    return result;
+}
+
+
+
+
+

@@ -79,7 +79,6 @@ function getData(data){
 }
 function setData(params){
 	guestData = params;
-	zongAmt = params.data.mtAmt;
 	var rechargeBalaAmt = 0;
 	var jsonq = {
 			guestId:params.guestId,
@@ -160,13 +159,15 @@ function setData(params){
 			}
 			var amount = 0;
 			if(params.data.ycAmt==null||params.data.ycAmt==""){
-				amount = params.data.mtAmt;
+				amount = parseFloat(params.data.mtAmt)+parseFloat(amt);
 			}else{
-				params.data.mtAmt = params.data.mtAmt-params.data.ycAmt;
-				params.data.mtAmt = params.data.mtAmt.toFixed(2)
+				params.data.mtAmt = parseFloat(params.data.mtAmt)-parseFloat(params.data.ycAmt)+parseFloat(amt);
+				params.data.mtAmt = params.data.mtAmt.toFixed(2);
 			}
+			
 			netInAmt = amount;
-			params.data.mtAmt = parseFloat(params.data.mtAmt)+amt;
+			params.data.mtAmt = (parseFloat(params.data.mtAmt)+amt).toFixed(2);
+			zongAmt=params.data.mtAmt;
 			document.getElementById('totalAmt').innerHTML = "￥"+params.data.mtAmt;
 			document.getElementById('totalAmt1').innerHTML = params.data.mtAmt;
 			document.getElementById('amount').innerHTML =  params.data.mtAmt;
@@ -287,28 +288,28 @@ function onChanged() {
 	var count = scount();
 	 deductible = nui.get("deductible").getValue()||0;
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
+	if(PrefAmt>0){
+		var amount = parseFloat(netInAmt) - parseFloat(PrefAmt);
+		zongAmt = amount.toFixed(2);
+		document.getElementById('amount').innerHTML = amount.toFixed(2);
+	}
 	var memAmt = nui.get("rechargeBalaAmt").getValue()||0;
 		memAmt = (memAmt.split("￥"))[1];
 	if(deductible>memAmt){
 		nui.alert("储值抵扣不能大于储值余额","提示");
-		nui.get("deductible").setValue(0);
-		deductible=0;
-		nui.get("PrefAmt").setValue(0);
 
 		return;
 	}
-	if(parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count)  > netInAmt){
+	if((parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count)).toFixed(2)  > netInAmt){
 		nui.alert("储值抵扣加上优惠金额不能大于应收金额","提示");
-		nui.get("deductible").setValue(0);
-		deductible=0;
-		nui.get("PrefAmt").setValue(0);
+
 
 		return;
 	}
 	
-	var amount = parseFloat(netInAmt) - parseFloat(deductible) - parseFloat(PrefAmt)-parseFloat(count);
+/*	var amount = parseFloat(netInAmt) - parseFloat(deductible) - parseFloat(PrefAmt)-parseFloat(count);
 	amount = amount.toFixed(2);
-	//document.getElementById('amount').innerHTML = amount.toFixed(2);
+	document.getElementById('amount').innerHTML = amount.toFixed(2);*/
 
 }
 /*function setNetInAmt(){
@@ -362,10 +363,13 @@ function pay(){
 		}
 	}
 		var count = scount();
+		
 /*		if(count==0){
 			nui.alert("请选择结算账户,并填写结算金额","提示");
 			return;
 		}*/
+		deductible = nui.get("deductible").getValue()||0;
+		count = (count+deductible).toFixed(2);
 		if(count!=zongAmt){
 			nui.alert("结算金额和应结金额不一致，请重新确认！","提示");
 			return;
@@ -373,7 +377,7 @@ function pay(){
 	var deductible = nui.get("deductible").getValue()||0;
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
 	var payType = nui.get("payType").getValue()||0;
-	var amt = $("#amount").text();
+	var amt = scount();
 	var json = {
 		accountTypeList : accountTypeList,
 		allowanceAmt:PrefAmt,
@@ -381,7 +385,7 @@ function pay(){
 		serviceId:fserviceId,
 		payType:payType,
 		payAmt:amt
-	}
+	};
     nui.confirm("确定结算吗?", "友情提示",function(action){
 	       if(action == "ok"){
 			    nui.mask({

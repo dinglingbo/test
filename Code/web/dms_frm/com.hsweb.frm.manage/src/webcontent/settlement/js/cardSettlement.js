@@ -4,12 +4,13 @@ var frmUrl = apiPath + frmApi + "/";
 var netInAmt = 0;
 var settlementUrl = 0;//什么界面过来的  1计次卡，2储值卡
 var tableNum = 0;
-var card = {};//页面传过来的卡
+var card = {};//传进逻辑流的卡
+var row = {}//页面传过来的卡
 var form = null;
 var type = null;
 var typeList = {};
 var zongAmt = 0;//实时填写的结算金额
-var guestData = null;
+var guestData = {};
 var deductible = 0;
 $(document).ready(function (){
 	$("body").on("input  onvaluechanged","input[name='amount']",function(){
@@ -19,21 +20,16 @@ $(document).ready(function (){
 
 
 function setData(data){
-	card = data;
-	zongAmt = data.sellAmt;
+	guestData = data.xyguest||{};
+	row = data.row;
+	zongAmt = data.row.sellAmt;
 	settlementUrl = data.settlementUrl;
-	var rechargeBalaAmt = 0;
-	document.getElementById('carNo').innerHTML = data.carNo||"";
-	document.getElementById('guest').innerHTML = data.guestName;
-	document.getElementById('totalAmt').innerHTML = "￥"+data.sellAmt;
-	document.getElementById('totalAmt1').innerHTML = data.sellAmt;
-	document.getElementById('amount').innerHTML = data.sellAmt;
-	netInAmt = data.sellAmt;
-	var json = {
-		guestId:data.guestId,
-		token : token
-	}
-	
+	document.getElementById('carNo').innerHTML = data.xyguest.carNo||"";
+	document.getElementById('guest').innerHTML = data.xyguest.guestFullName||"";
+	document.getElementById('totalAmt').innerHTML = "￥"+zongAmt;
+	document.getElementById('totalAmt1').innerHTML = zongAmt;
+	document.getElementById('amount').innerHTML = zongAmt;
+	netInAmt = data.sellAmt;	
 	addType();
 }
 
@@ -85,7 +81,7 @@ function checkField(id){
 		 $("#paytype"+s1[1]).empty();
 		 var myselect=document.getElementById("optaccount"+s1[1]);
 		 var index=myselect.selectedIndex;
-		 var c  =myselect.options[index].value
+		 var c  =myselect.options[index].value;
 	    var json = {
 	    		accountId:c,
 	    		token:token
@@ -127,9 +123,8 @@ function settleOK() {
 		nui.alert("付款金额和应付金额不一致，请重新确认！","提示");
 		return;
 	}	
-	var payType = nui.get("payType").getValue()||0;
 	var accountTypeList =[];
-	var accountDetail = {};
+	
 	for(var i = 0;i<tableNum+1;i++){
 		var  Sel=document.getElementById("optaccount"+i);
 		if(Sel!=null){
@@ -154,18 +149,48 @@ function settleOK() {
 	//判断什么界面跳转过来的，调用不同的逻辑流
 	if(settlementUrl==1){
 		url =payMeth;
+		card ={
+				guestId:guestData.guestId,
+				guestName:guestData.guestFullName,
+				cardId:row.id,
+				cardName:row.name,
+				periodValidity:row.periodValidity,
+				salesDeductType:row.salesDeductType,
+				remark:row.remark,
+				salesDeductValue:row.salesDeductValue,
+				sellAmt:row.sellAmt,
+				totalAmt:row.totalAmt,
+				useRemark:row.useRemark,
+				carId:guestData.carId,
+				carNo:guestData.carNo,
+		};
 		json={
 				payAmt:zongAmt,
-				payType:payType,
+				payType:020104,
 				accountTypeList:accountTypeList,
 				cardTimes :card,
 				token:token
 		}
 	}else if(settlementUrl==2){
 		url =payurl;
+		card ={
+				guestId:guestData.guestId,
+				guestName:guestData.guestFullName,
+				cardId:row.id,
+				cardName:row.name,
+				periodValidity:row.periodValidity,
+				salesDeductType:row.salesDeductType,
+				remark:row.remark,
+				salesDeductValue:row.salesDeductValue,
+				sellAmt:row.sellAmt,
+				totalAmt:row.totalAmt,
+				useRemark:row.useRemark,
+				carId:guestData.carId,
+				carNo:guestData.carNo,
+		};
 		json={
 				payAmt:zongAmt,
-				payType:payType,
+				payType:020104,
 				accountTypeList:accountTypeList,
 				stored :card,
 				token:token
@@ -235,4 +260,30 @@ function CloseWindow(action) {
 		return window.CloseOwnerWindow(action);
 	else
 		return window.close();
+}
+
+function selectCustomer() {
+    openCustomerWindow(function (v) { 
+    	guestData = v;
+    	document.getElementById('carNo').innerHTML = guestData.carNo||"";
+    	document.getElementById('guest').innerHTML = guestData.guestFullName||"";
+    });
+}
+
+function openCustomerWindow(callback) {
+    nui.open({
+        url: webPath + contextPath + "/com.hsweb.RepairBusiness.Customer.flow?token="+token,
+        title: "客户选择", width: 800, height: 450,
+        onload: function () {
+        },
+        ondestroy: function (action) {
+            if ("ok" == action) {
+                var iframe = this.getIFrameEl();
+                //调用子界面的方法，返回子界面的数据
+                var data = iframe.contentWindow.getData();
+                var guest = data.guest;
+                callback && callback(guest);
+            }
+        }
+    });
 }

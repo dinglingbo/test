@@ -9,7 +9,7 @@
 -->
 <head>
     <title>库存周转汇总</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/stockTurnOverCount.js?v=1.0.27"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/report/stockTurnOverCount.js?v=1.0.31"></script>
     <style type="text/css">
     .title {
       width: 60px;

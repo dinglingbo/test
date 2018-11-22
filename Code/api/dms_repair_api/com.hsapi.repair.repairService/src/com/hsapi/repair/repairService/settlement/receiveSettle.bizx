@@ -964,31 +964,31 @@
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">settlement/totalPrefAmt</process:from>
+      <process:from type="query" pattern="value">settlement/totalPrefAmt</process:from>
       <process:to type="query">totalPrefAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">totalPrefAmt+allowanceAmt</process:from>
+      <process:from type="expression" pattern="value">totalPrefAmt+allowanceAmt</process:from>
       <process:to type="query">totalPrefAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">settlement/otherAmt</process:from>
+      <process:from type="query" pattern="value">settlement/otherAmt</process:from>
       <process:to type="query">receiveAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">balaAmt-allowanceAmt+receiveAmt</process:from>
+      <process:from type="expression" pattern="value">balaAmt-allowanceAmt+receiveAmt</process:from>
       <process:to type="query">balaAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">balaAmt==0?0:totalPrefAmt/balaAmt</process:from>
+      <process:from type="expression" pattern="value">balaAmt==0?0:totalPrefAmt/balaAmt</process:from>
       <process:to type="query">totalPrefRate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">settlement/mtAmt</process:from>
+      <process:from type="query" pattern="value">settlement/mtAmt</process:from>
       <process:to type="query">mtAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">settlement/netinAmt</process:from>
+      <process:from type="query" pattern="value">settlement/netinAmt</process:from>
       <process:to type="query">netinAmt</process:to>
     </process:copy>
     <process:copy>

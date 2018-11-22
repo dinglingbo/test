@@ -9,7 +9,7 @@
 -->
 <head>
     <title>库存周转明细查询</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/stockTurnOverDeatail.js?v=1.0.16"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/report/stockTurnOverDeatail.js?v=1.0.23"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -70,16 +70,11 @@
                   allowInput="true"
                   valueFromSelect="false"
                   width="120px">
-                
-               <td class="form_label" style="width:6%; text-align:center;">日期 从:</td>
-               <td style="width:4%;">
+     		日期 从
                  <input class="nui-datepicker" id="startDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
-             </td>
-             <td class="" style="width:1%;">至:</td>
-             <td  style="width:50px;">
+  			至:
                 <input class="nui-datepicker" id="endDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-            </td>
             
         </td>
     </tr>

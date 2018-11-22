@@ -11,7 +11,7 @@
 
 <head>
 	<title>计次卡/储值卡结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.0.4"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.0.6"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -270,6 +270,19 @@
 									<dd totalmoney="0" totalpaid="0" id="totalAmt" name="totalAmt"></dd>
 								</dl>
 							</td>
+ 					<td >
+						<a id="btnsettle" style="    width: 100px;
+							height: 40px;
+							font-size: 18px;
+							background: #578ccd;
+							color: #fff;
+							text-align: center;
+							display: block;
+							border-radius: 5px;
+							text-decoration: none;
+							line-height: 2;" 
+							href="javascript:void(0)" onclick="selectCustomer()">选择客户</a>
+					</td> 
 						</tr>
 					</tbody>
 				</table>
@@ -332,50 +345,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="pay_list">
-						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">结算方式</span></h2>
-						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
-							<div id="dataform">
-								<div class="skbox2" id="div0" name="div0">
-									<table name="account0" id="account0" width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
-										<tbody>
-											<tr>
-												<td width="50%" height="&quot;44&quot;">
-											
-												</td>
-												<td>
-												</td>
-											
-											</tr>
-										</tbody>
-									</table>
-									<table name="paytype2" id="paytype2" width="96%" border="0" cellpadding="0" cellspacing="0">
-										<tbody>
-
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<div class="" id="csdiv" style="background: #f8f8f8;">
-								<div class="guazhangbz">
-									<table id="tbaddaccount" width="96%" height="30px" border="0" align="center" cellpadding="0" cellspacing="0">
-										<tbody>
-											<tr>
-												<td>结算方式:</td>
-												<td colspan="3" align="center">
-														<div class="mini-radiobuttonlist" repeatItems="1"
-														repeatLayout="table" repeatDirection="vertical" id="payType" name="payType"
-														textField="text" valueField="value"
-														data="[{value:'020101',text:'现金',},{value:'020102',text:'刷卡'},{value:'020104',text:'微信/支付宝'}]"
-														value="020101" ></div>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
+					
 						
 
 					<div class="pay_list">

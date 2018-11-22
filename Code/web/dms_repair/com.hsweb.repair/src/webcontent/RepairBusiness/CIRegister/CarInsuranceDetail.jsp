@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>车险登记明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.0.74"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.0.8"></script>
     <style type="text/css">
    .title {
         width: 80px;

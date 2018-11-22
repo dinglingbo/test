@@ -923,6 +923,7 @@
 			AND b.is_settle = 1
 			AND b.guest_id = #guestId#	
 			AND a.pick_qty &gt; a.out_return_qty
+			AND a.detail_id = 0
 	</select>
 	
 	    <select id="queryComprehensive" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

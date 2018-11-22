@@ -38,7 +38,7 @@
 			<tr >
 				<td>套餐金额:<input class="nui-textbox" enabled="false" width="50%" id="packageSubtotal" name="packageSubtotal"/></td>
 
-				<td>工时金额:<input class="nui-textbox" enabled="false" width="50%" id="itemSubtotal" name="itemSubtotal"/></td>
+				<td>项目金额:<input class="nui-textbox" enabled="false" width="50%" id="itemSubtotal" name="itemSubtotal"/></td>
 
 				<td>配件金额:<input class="nui-textbox" enabled="false" width="50%" id="partSubtotal" name="partSubtotal"/></td>
 			</tr>
@@ -46,7 +46,7 @@
  			<tr >
 				<td>套餐优惠:<input class="nui-textbox" enabled="false" width="50%" id="packagePrefAmt" name="packagePrefAmt"/></td>
 
-				<td>工时优惠:<input class="nui-textbox" enabled="false" width="50%" id="itemPrefAmt" name="itemPrefAmt"/></td>
+				<td>项目优惠:<input class="nui-textbox" enabled="false" width="50%" id="itemPrefAmt" name="itemPrefAmt"/></td>
 
 				<td>配件优惠:<input class="nui-textbox" enabled="false" width="50%" id="partPrefAmt" name="partPrefAmt"/></td>
 			</tr>

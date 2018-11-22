@@ -10,7 +10,7 @@
   - Description:
 -->
 <head>
-<title>维修工时</title>
+<title>维修项目</title>
 <script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.9" type="text/javascript"></script>
 
 </head>
@@ -23,7 +23,7 @@
 			<div class="nui-fit">
 				<div class="nui-toolbar"
 					 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
-					<span>工时类型</span>
+					<span>项目类型</span>
 				</div>
 				<div class="nui-fit">
 					<ul id="tree1" class="nui-tree" url="" style="width: 100%;"
@@ -84,9 +84,9 @@
 										class="nui-combobox width1"
 										textField="name"
 										valueField="customid"/> -->
-							<label style="font-family: Verdana;;font-size: 12px;">工时编码：</label>
+							<label style="font-family: Verdana;;font-size: 12px;">项目编码：</label>
 								<input class="nui-textbox" id="search-code" name="code" onenter="onSearch()"/>
-								<label style="font-family: Verdana;;font-size: 12px;">工时名称：</label>
+								<label style="font-family: Verdana;;font-size: 12px;">项目名称：</label>
 								<input class="nui-textbox" id="search-name" name="name" onenter="onSearch()" />
 								<span class="separator"></span>
 								<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
@@ -101,8 +101,8 @@
 				<table style="width: 100%">
 					<tr>
 						<td style="width: 100%">
-							<a class="nui-button" id="add" iconCls="" onclick="add()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增工时</a>
-							<a class="nui-button" id="update" iconCls="" onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改工时</a>
+							<a class="nui-button" id="add" iconCls="" onclick="add()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增项目</a>
+							<a class="nui-button" id="update" iconCls="" onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改项目</a>
 							<span class="separator" id="sep"></span>
 			<!-- 				<a class="nui-button" id="addItemType" iconCls="" onclick="addItemType()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增类型</a> -->
 							<a class="nui-button" id="editItemType" iconCls="" onclick="editItemType()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改类型</a>
@@ -130,15 +130,15 @@
 					<div property="columns" >
 						<div type="indexcolumn">序号</div>
 						<div type="checkcolumn" name="checkcolumn" visible="false"></div>
-						<div header="工时基本信息" headerAlign="center">
+						<div header="项目基本信息" headerAlign="center">
 							<div property="columns">
-								<div field="code" headerAlign="center" width="100px">工时编码</div>
-								<div field="name" headerAlign="center" allowSort="true" width="150px">工时名称</div>
-								<div field="type" headerAlign="center" allowSort="true" width="100px">工时类型</div>
+								<div field="code" headerAlign="center" width="100px">项目编码</div>
+								<div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
+								<div field="type" headerAlign="center" allowSort="true" width="100px">项目类型</div>
 								<!-- <div field="serviceTypeId" headerAlign="center" allowSort="true" width="100px">业务类型</div> -->
 								<div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="50px">工时</div>
-								<div field="unitPrice" headerAlign="center" allowSort="true" width="70px">工时单价</div>
-								<div field="amt" headerAlign="center" allowSort="true" width="70px">工时费</div>
+								<div field="unitPrice" headerAlign="center" allowSort="true" width="70px">单价</div>
+								<div field="amt" headerAlign="center" allowSort="true" width="70px">金额</div>
 							</div>
 						</div>
 						<div header="其他" headerAlign="center">
@@ -161,12 +161,12 @@
 					url="">
 					<div property="columns" >
 						<div type="indexcolumn" width="20px" headerAlign="center">序号</div>
-						<div header="已添加工时" headerAlign="left">
+						<div header="已添加项目" headerAlign="left">
 							<div property="columns">
 								<div type="checkboxcolumn" field="check" trueValue="1" falseValue="0" 
 									width="20" headerAlign="center" header="">操作
 								</div>
-								<div field="itemName" headerAlign="center" allowSort="true" width="80px">工时名称</div>
+								<div field="itemName" headerAlign="center" allowSort="true" width="80px">项目名称</div>
 								<div field="amt" headerAlign="center" allowSort="true" width="20px">金额</div>								
 							</div>
 						</div>
@@ -179,7 +179,7 @@
 </div>
 
 <div id="advancedAddWin" class="nui-window"
-     title="工时类型" style="width:300px;height:160px;"
+     title="项目类型" style="width:300px;height:160px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">

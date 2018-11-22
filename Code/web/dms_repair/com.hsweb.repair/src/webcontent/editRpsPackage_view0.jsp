@@ -71,7 +71,7 @@ table {
 <div class="nui-fit" style="padding-top:10px;">
     <div id="mainTabs" class="nui-tabs" activeIndex="0" style="width: 100%; height: 100%;"
          plain="false">
-        <div title="工时">
+        <div title="项目">
             <div id="itemGrid" class="nui-datagrid"
                  style="width: 100%;height: 100%;"
                  dataField="list"
@@ -81,13 +81,13 @@ table {
                  allowSortColumn="true">
                 <div property="columns">
                     <div headerAlign="center" type="indexcolumn" width="30">序号</div>
-                    <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="">工时名称</div>
+                    <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="">项目名称</div>
                     <div field="remark" headerAlign="center" allowSort="true" visible="true" width="100" header="备注">
                         <input property="editor" class="nui-textbox" style="width:100%;"/>
                     </div>
                     <div field="itemKind" headerAlign="center" allowSort="true" visible="true" width="80">工种</div>
                     <div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="80">工时</div>
-                    <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" header="工时金额" align="right">
+                    <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" header="项目金额" align="right">
                         <input property="editor" class="nui-spinner"  minValue="0" maxValue="100000000" showButton="false" style="width:100%;"/>
                     </div>
                     <div field="itemIsNeed" headerAlign="center" allowSort="true" visible="true" width="80">必要性</div>

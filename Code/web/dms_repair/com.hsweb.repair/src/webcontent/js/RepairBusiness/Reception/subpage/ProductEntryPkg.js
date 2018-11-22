@@ -358,7 +358,7 @@ function doSelect(idx)
         		success : function(text) {
         			var returnJson = nui.decode(text);
         			if (returnJson.errCode == "S") {
-        				showMsg("工时添加成功","S");
+        				showMsg("项目添加成功","S");
         				//执行回调函数，传参数，套餐参数,不知道可不可行
         				CloseWindow("ok");
         				callback && callback(p1,p2,p3);

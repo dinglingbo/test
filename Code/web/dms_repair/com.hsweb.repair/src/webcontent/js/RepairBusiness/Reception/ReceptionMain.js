@@ -32,7 +32,7 @@ var advancedSearchWin = null;
 //var serviceTypeIds = null;
 var prdtTypeHash = {
 	    "1":"套餐",
-	    "2":"工时",
+	    "2":"项目",
 	    "3":"配件"
 };
 $(document).ready(function ()

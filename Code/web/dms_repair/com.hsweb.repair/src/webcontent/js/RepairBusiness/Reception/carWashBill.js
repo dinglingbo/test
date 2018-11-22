@@ -68,7 +68,7 @@
  var lastPkgRate = null;
  var prdtTypeHash = {
     "1":"套餐",
-    "2":"工时",
+    "2":"项目",
     "3":"配件"
 };
 document.onmousemove = function(e){
@@ -1547,7 +1547,7 @@ function addPrdt(data){
                     }
                 }, function(){});
             }else{
-                showMsg(errMsg||"添加工时信息失败!","W");
+                showMsg(errMsg||"添加项目信息失败!","W");
                 return;
             }
         });
@@ -1614,7 +1614,7 @@ function checkPrdt(data){
         }else if(prdtType == 2){
             var rs = checkFromBillItem(rtnRow);
             if(rs){
-                return "此工时已经添加!";
+                return "此项目已经添加!";
             }
         }else if(prdtType == 3){
             var rs = checkFromBillPart(rtnRow);
@@ -1631,7 +1631,7 @@ function checkPrdt(data){
     }else if(type == 2){
         var rs = checkFromBillItem(rtnRow);
         if(rs){
-            return "此工时已经添加!";
+            return "此项目已经添加!";
         }
     }else if(type == 3){
         var rs = checkFromBillPart(rtnRow);
@@ -1757,7 +1757,7 @@ function deleteItemRow(row_uid){
             });
         	rpsItemGrid.removeRows(rows);
         }else{
-            showMsg(errMsg||"删除工时信息失败!","W");
+            showMsg(errMsg||"删除项目信息失败!","W");
             return;
         }
     });
@@ -2541,11 +2541,11 @@ function chooseItem(){
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("本工单已完工,不能添加工时!","W");
+        showMsg("本工单已完工,不能添加项目!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能添加工时!","S");
+        showMsg("此单已结算,不能添加项目!","S");
         return;
     }
 	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, function(text){
@@ -2686,7 +2686,7 @@ function addToBillItem(row, callback, unmaskcall){
             callback && callback(res);
         }else{
             unmaskcall && unmaskcall();
-            showMsg(errMsg||"添加工时失败!","W");
+            showMsg(errMsg||"添加项目失败!","W");
             return;
         }
     },function(){
@@ -2844,7 +2844,7 @@ function showBasicData(type){
     	    }
     	    if(type=="item"){
     	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryItem.flow?token=";
-    	    	title = "标准工时查询";
+    	    	title = "标准项目查询";
     	    }
     	  //添加回调函数，进行显示
     	    doSelectBasicData(BasicDataUrl,title,params,function(p1,p2,p3){
@@ -2872,7 +2872,7 @@ function showBasicData(type){
     	    }
     	    if(type=="item"){
     	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryItem.flow?token=";
-    	    	title = "标准工时查询";
+    	    	title = "标准项目查询";
     	    }
     	  //添加回调函数，进行显示
     	    doSelectBasicData(BasicDataUrl,title,params,function(p1,p2,p3){

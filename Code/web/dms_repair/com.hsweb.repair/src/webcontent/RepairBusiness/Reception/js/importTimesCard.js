@@ -88,7 +88,7 @@ function fixdata(data) { //文件流转BinaryString
 }
 var requiredField = {
 		carNo : "车牌号",
-	itemName: "工时名称",
+	itemName: "项目名称",
 	totalTimes : "总次数",
 	useTimes : "已使用次数"
 };
@@ -100,7 +100,7 @@ function sure() {
 		for (var i = 0; i < data.length; i++) {
 			var newRow = {};
 			newRow.carNo = data[i].车牌号||"";
-			newRow.itemName = data[i].工时名称||"";
+			newRow.itemName = data[i].项目名称||"";
 			newRow.totalTimes = data[i].总次数||"";
 			newRow.useTimes = data[i].已使用次数||"";
 

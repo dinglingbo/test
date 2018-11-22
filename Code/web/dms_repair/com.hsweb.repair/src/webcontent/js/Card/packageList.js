@@ -12,10 +12,13 @@ var tempGrid = null;
 var callback = null;
 var delcallback = null;
 var ckcallback = null;
+var typeGrid = null;
 var isChooseClose = 1;//默认选择后就关闭窗体
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
+
+	typeGrid = nui.get("typeGrid");
 	
 	grid.on("beforeload",function(e){
         e.data.token = token;
@@ -26,12 +29,16 @@ $(document).ready(function(v) {
 	
 	
 	initServiceType("serviceTypeId",function(data) {
-	    servieTypeList = nui.get("serviceTypeId").getData();
+		servieTypeList = nui.get("serviceTypeId").getData();
+		typeGrid.setData(servieTypeList);
 	    servieTypeList.forEach(function(v) {
 	        servieTypeHash[v.id] = v;
 	    });
-	 });
-	
+	});
+	typeGrid.on("rowdblclick",function(e){
+		var row = e.row;
+		search(row.id);
+	});
 	//双击
 	grid.on("rowdblclick",function(e){
 		edit();
@@ -135,11 +142,14 @@ function refresh() {
 }
 
 // 查询
-function search() {
+function search(serviceTypeId) {
 
 	var form = new nui.Form("#queryform");
 	var json = form.getData(false, false);
 	json.isDisabled = 0;
+	if(serviceTypeId){
+		json.serviceTypeId = serviceTypeId;
+	}
 	grid.load(json);// grid查询
 }
 

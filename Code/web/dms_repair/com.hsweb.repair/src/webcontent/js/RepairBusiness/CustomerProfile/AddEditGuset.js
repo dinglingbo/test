@@ -296,6 +296,8 @@ function setData(data)
                     if(data.guest && data.guest.id)
                     {
                         basicInfoForm.setData(data.guest);
+                        initCityByParent('cityId', data.guest.provinceId || -1);
+                        initCityByParent('areaId', data.guest.cityId || -1);
                         contactList = data.contactList||[{}];
                         carList = data.carList||[{}];
                         cardatagrid.addRows(carList);

@@ -273,20 +273,21 @@ function getSearchParams()
         carLineId:carInfo.carLineId,
         carModelId:carInfo.carModelId
     };
-    var queryItem = nui.get("queryItem").getValue();
+    //var queryItem = nui.get("queryItem").getValue();
     var queryValue = nui.get("queryValue").getValue();
-    if(queryItem == 0)
-    {
-        params.code = queryValue
-    }
-    else if(queryItem == 1)
-    {
-        params.name = queryValue
-    }
-    else if(queryItem == 2)
-    {
-        params.pyCode = queryValue
-    }
+    params.name = queryValue;
+//    if(queryItem == 0)
+//    {
+//        params.code = queryValue
+//    }
+//    else if(queryItem == 1)
+//    {
+//        params.name = queryValue
+//    }
+//    else if(queryItem == 2)
+//    {
+//        params.pyCode = queryValue
+//    }
     return params;
 }
 /*function onSearch()

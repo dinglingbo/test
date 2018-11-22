@@ -11,7 +11,7 @@
 -->
 <head>
 <title>标准化产品查询</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.2.6"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.2.7"></script>
 <style type="text/css">
 
 table {
@@ -86,7 +86,7 @@ a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 
 		<div size="180" showCollapseButton="false">
 			<div class="nui-fit">
 				<div class="nui-toolbar" style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
-					<label>产品分组</label>
+					<label>配件类型</label>
 				</div>
 				<div class="nui-fit">
 					<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
@@ -101,14 +101,7 @@ a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 
 				<table class="nui-form-table">
 					<tr>
 						<td>
-							<label>查询项：</label>
-						</td>
-						<td>
-							<input class="nui-combobox" id="queryItem"
-								   data="[{id:0,text:'编码'},{id:1,text:'名称'},{id:2,text:'拼音'}]" value="1"/>
-						</td>
-						<td>
-							<label>查询值：</label>
+							<label>配件名称：</label>
 						</td>
 						<td>
 							<input class="nui-textbox" id="queryValue"/>

@@ -271,6 +271,10 @@
 		showMsg(message, "W");
 	};
 	
+	//禁止拖拽
+	document.ondragstart = function() {
+	    return false;
+	};
 	//showMsg("Hello success!"); // 第二个参数life是指消息显示时间
 	//showError("Hello error!");
     function backToLogin(){

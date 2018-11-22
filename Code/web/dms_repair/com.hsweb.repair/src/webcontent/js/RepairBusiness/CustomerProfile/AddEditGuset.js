@@ -36,7 +36,7 @@ $(document).ready(function()
         nui.get("carModel").enable();
     }
 	
-	nui.get("mobile2").focus();
+	nui.get("identity").focus();
 	document.onkeyup=function(event){
         
 		var e=event||window.event;

@@ -387,6 +387,14 @@ function getSearchParam() {
     return params;
 }
 
+function onenterSearch(e){
+	onSearch();
+}
+function onenterMtAdvisor(e){
+	onSearch();
+}
+
+
 function onAdvancedSearchCancel(){
     advancedSearchWin.hide();
 }

@@ -92,7 +92,7 @@ pageEncoding="UTF-8" session="false"%>
                    <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
                    <div type="indexcolumn">序号</div>
                    <div field="partCode" name="partCode" width="90" headerAlign="center" header="配件编码"></div>
-                   <div field="oemCode" name="oemCode" width="90" headerAlign="center" header="OEM码"></div>
+                   <div field="oemCode" name="oemCode" width="190" headerAlign="center" header="OEM码"></div>
                    <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
                    <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" headerAlign="center" header="库存数量"></div>
                    <div allowSort="true" visible="false"  datatype="int" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
@@ -106,7 +106,7 @@ pageEncoding="UTF-8" session="false"%>
                    <div field="partBrandId" name="partBrandId" width="70" headerAlign="center" header="品牌"></div>
                    <div field="applyCarModel" name="applyCarModel" width="200" headerAlign="center" header="车型"></div>
                    <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
-                   <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
+                   <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="150px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
                    <div field="guestName" width="280px" headerAlign="center" allowSort="true" header="供应商"></div>  
 
                    <div field="fullName" name="fullName" width="300" headerAlign="center" header="配件全称"></div> 

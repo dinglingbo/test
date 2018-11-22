@@ -46,20 +46,14 @@
                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                </ul>
                <span class="separator"></span>
-               <td style="width:12%;">
+
                	仓库: <input  property="editor" enabled="true"  id="storehouse" name="storehouse" dataField="storehouse" allowInput="true" class="nui-combobox" valueField="id" textField="name" data="storehouse">
-               </td>
-               
-               <td class="form_label" style="width:6%; text-align:left;">创建日期 从:</td>
-               <td style="width:4%;">
+			创建日期 从:
                  <input class="nui-datepicker" id="startDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
-             </td>
-             <td class="" style="width:1%;">至:</td>
-             <td  style="width:50px;">
+  				至:
                 <input class="nui-datepicker" id="endDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>              
-            </td>
-            
+
         </td>
     </tr>
 </table>

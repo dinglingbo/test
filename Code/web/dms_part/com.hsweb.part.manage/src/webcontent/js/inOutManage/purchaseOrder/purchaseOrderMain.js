@@ -34,6 +34,7 @@ var StatusHash = {
 	};
 var innerPartGrid=null;
 var editFormDetail = null;
+
 $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
@@ -85,6 +86,9 @@ $(document).ready(function(v)
         }
     });
     
+    document.ondragstart = function() {
+        return false;
+    };
 	document.onkeyup = function(event) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下

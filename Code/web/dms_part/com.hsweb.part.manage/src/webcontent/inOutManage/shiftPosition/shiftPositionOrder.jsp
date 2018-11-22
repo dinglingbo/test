@@ -8,7 +8,7 @@
 -->
 <head>
     <title>移仓单</title>
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrder.js?v=1.0.12"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrder.js?v=1.0.16"></script>
     <style type="text/css">
     .title {
         width: 60px;
@@ -85,7 +85,7 @@
                                   <label>状态：</label>
                               </td>
                               <td>
-                                  <input class="nui-textbox" width="100%" id="AuditSign" name="AuditSign"/>
+                                  <input allowInput="false" class="nui-textbox" width="100%" id="AuditSign" name="AuditSign"/>
                               </td>
                             <td class="title required"><label>业务员：</label></td>
                             <td colspan="1"><input class="nui-combobox" id="orderMan"

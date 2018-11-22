@@ -374,7 +374,8 @@
         }
     </style>
     <div class="print_btn">
-        <a id="print" href="javascript:void(0)">打印</a>
+        <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
+        <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
     </div>
     <div id="print-container">
         <div class="company-info">
@@ -435,10 +436,23 @@
             $(".print_btn").hide();
             window.print();
         });
-        
+        document.onkeyup = function(event) {
+	        var e = event || window.event;
+	        var keyCode = e.keyCode || e.which;// 38向上 40向下
+	        
+	
+	        if ((keyCode == 27)) { // ESC
+	            CloseWindow('cancle');
+	        }
+	
+	    }
 	});	
 	
 	
+	function CloseWindow(action) {
+            if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+            else window.close();
+        }
 	function SetData(params){
 		// params.baseUrl params.serviceId params.token 
         $.ajaxSettings.async = false;//设置为同步执行

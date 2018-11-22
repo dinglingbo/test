@@ -59,6 +59,7 @@ var AuditSignHash = {
 	"2" : "已过账",
 	"3" : "已取消"
 };
+
 $(document).ready(function(v) {
 	nui.mask({
         el: document.body,
@@ -127,7 +128,10 @@ $(document).ready(function(v) {
         }
 
     });
-
+	
+	document.ondragstart = function() {
+	    return false;
+	};
     document.onkeyup=function(event){
 	    var e=event||window.event;
 	    var keyCode=e.keyCode||e.which;
@@ -314,7 +318,7 @@ function loadMainAndDetailInfo(row) {
 			mainId = -1;
 		}
 		var auditSign = data.auditSign||0;
-//		loadRightGridData(mainId, auditSign);
+		loadRightGridData(mainId, auditSign);
 	} else {
 	}
 
@@ -377,12 +381,14 @@ function setEditable(flag) {
 		nui.get('guestId').enabled=true;
 		nui.get('orderMan').enabled=true;
 		nui.get('settleTypeId').enabled=true;
+		nui.get('planArriveDate').enabled=true;
 
 	} else {
 		document.getElementById("fd1").disabled = true;
 		nui.get('guestId').enabled=false;
 		nui.get('orderMan').enabled=false;
 		nui.get('settleTypeId').enabled=false;
+		nui.get('planArriveDate').enabled=false;
 	}
 }
 function doSearch(params) {
@@ -570,7 +576,8 @@ var requiredField = {
 	orderMan : "采购员",
 	createDate : "订货日期",
 	billTypeId : "票据类型",
-	settleTypeId : "结算方式"
+	settleTypeId : "结算方式",
+	planArriveDate :"预计到货日期",
 };
 var saveUrl = baseUrl
 		+ "com.hsapi.part.invoice.crud.savePjPchsOrder.biz.ext";
@@ -638,7 +645,6 @@ function save() {
 					// 保存成功后重新加载数据
 					loadMainAndDetailInfo(row);
 					$('#bServiceId').text("订单号："+row.serviceId);
-		
 			
 				}
 			} else {
@@ -918,6 +924,7 @@ function selectPart(callback, checkcallback) {
 }
 function addDetail(part) {
 	var data = basicInfoForm.getData();
+	var row=rightGrid.getData();
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 			showMsg(requiredField[key] + "不能为空!","W");
@@ -977,7 +984,12 @@ function addDetail(part) {
 						enterDetail.fullName = data.fullName;
 						enterDetail.systemUnitId = data.unit;
 						enterDetail.enterUnitId = data.unit;
-
+						
+						for(var i=0;i<row.length;i++){
+							if(!row[i].partId){
+								rightGrid.removeRow(row[i]);
+							}
+						}
 						rightGrid.addRow(enterDetail);
 					}
 				}
@@ -1020,7 +1032,17 @@ function getPartPrice(params){
 	return dInfo;
 }
 function addInsertRow(value,row) {    
+	
+	var data = basicInfoForm.getData();
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+			showMsg(requiredField[key] + "不能为空!","W");
+			//如果检测到有必填字段未填写，切换到主表界面
+//			mainTabs.activeTab(billmainTab);
 
+			return;
+		}
+	}
     var params = {partCode:value};
 	var part = getPartInfo(params);
 	var storeId = FStoreId;
@@ -1075,6 +1097,16 @@ function addInsertRow(value,row) {
 }
 function addPart() {
 	
+	var data = basicInfoForm.getData();
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+			showMsg(requiredField[key] + "不能为空!","W");
+			//如果检测到有必填字段未填写，切换到主表界面
+//			mainTabs.activeTab(billmainTab);
+
+			return;
+		}
+	}
 	var data = basicInfoForm.getData();
 	if (data) {
 		if (data.auditSign == 1) {
@@ -1641,6 +1673,7 @@ function onPrint(e){
  }
 
 function addSelectPart(){
+	
 	var row = morePartGrid.getSelected();
 	if(row){
 		var params = {partCode:row.code};
@@ -2129,6 +2162,13 @@ function setInitExportData(main, detail){
     method5('tableExcel',"采购订单"+serviceId,'tableExportA');
 }
 
+function deleteState(){
+	var data=rightGrid.getData();
+	for(var i=0;i<data.length;i++){
+		delete data[i]._state;
+	}	
+	console.log(data);
+}
 
 function setInitData(params){
 	if(params.id){

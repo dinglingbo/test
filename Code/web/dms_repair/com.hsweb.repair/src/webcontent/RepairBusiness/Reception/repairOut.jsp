@@ -218,8 +218,8 @@ a {
 	        default:
 	            break;
 	    }
-	    beginDateEl.setValue(params.sRecordDate);
-	    endDateEl.setValue(params.eRecordDate);
+	    beginDateEl.setValue(params.sRecordDate);  
+	    endDateEl.setValue(addDate(params.eRecordDate,-1));
 	    currType = type;
 	    if(querysign == 1){
 	    	var menunamedate = nui.get("menunamedate");

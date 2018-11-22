@@ -36,7 +36,7 @@ $(document).ready(function(v)
 			if (storeHash[e.value]) {
 				e.cellHtml = storeHash[e.value].name || "";
 			} else {
-				e.cellHtml = "";
+				e.cellHtml = "汇总";
 			}
 			break;
 		default:
@@ -59,8 +59,8 @@ $(document).ready(function(v)
 });
 function getSearchParams(){
     var params = {};
-    params.startDate=nui.get("startDate").getValue().substr(0, 10);
-    params.endDate=nui.get("endDate").getValue().substr(0, 10);
+    params.startDate=nui.get("startDate").getValue();
+    params.endDate=addDate(nui.get("endDate").getValue(),1);
     var countWay = nui.get("countWay").getValue();
     if(countWay == 1)
     {
@@ -80,22 +80,22 @@ function quickSearch(type){
     {
         case 0:
             params.startDate = getDate(7);
-            params.endDate = getDate(0);
+            params.endDate = getDate(-1);
             queryname = "最近七天";
             break;
         case 1:
             params.startDate = getDate(30);
-            params.endDate = getDate(0);
+            params.endDate = getDate(-1);
             queryname = "最近30天";
             break;
         case 2:
             params.startDate = getDate(90);
-            params.endDate = getDate(0);
+            params.endDate = getDate(-1);
             queryname = "最近90天";
             break;
         case 3:
             params.startDate = getDate(180);
-            params.endDate = getDate(0);
+            params.endDate = getDate(-1);
             queryname = "最近180天";
             break; 
         default:
@@ -103,7 +103,7 @@ function quickSearch(type){
     }
     currType = type;
     startDateEl.setValue(params.startDate);
-    endDateEl.setValue(params.endDate);
+    endDateEl.setValue(addDate(params.endDate,-1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
     doSearch(params);

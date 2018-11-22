@@ -160,7 +160,7 @@ function getSearchParam(){
     params.serviceId = comServiceId.getValue();
     params.auditSign=nui.get('auditSign').getValue();
     params.storeId=nui.get('storeId').getValue();
-	params.endDate = searchEndDate.getValue();
+    params.endDate = addDate(searchEndDate.getValue(),1);
 	params.startDate = searchBeginDate.getValue();
     return params;
 }
@@ -249,7 +249,7 @@ function quickSearch(type){
             break;
     }
     searchBeginDate.setValue(params.startDate);
-    searchEndDate.setValue(params.endDate);
+    searchEndDate.setValue(addDate(params.endDate,-1));
     nui.get('auditSign').setValue(params.auditSign);
     nui.get('billStatusId').setValue(params.billStatusId);
     currType = type;

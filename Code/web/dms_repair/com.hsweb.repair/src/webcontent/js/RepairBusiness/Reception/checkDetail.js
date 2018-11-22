@@ -568,6 +568,7 @@ function SearchCheckMain(sId) {
 
 function saveb(){
 	
+	var data=billForm.getData();
 	if(!(nui.get('guestFullName').value) && !(nui.get('search_name').value)){
 		showMsg("请先添加客户","W");
 		return;
@@ -576,6 +577,11 @@ function saveb(){
     if(!(nui.get("checkMainId").value||nui.get("checkMainId").text)){
         showMsg("请先选择模板!","W");
         return;
+    }
+    
+    if(data.isFinish==1 || data.checkStatus==1){
+    	showMsg("单据已完成!","W");
+    	return;
     }
     
     if(mainParams.isCheckMain == "Y"){
@@ -714,10 +720,11 @@ function saveCheckMain(){//isCheckMain == "Y"
             if(data.errCode == "S"){
                 var mainData = data.mainData;
                 nui.get("id").setValue(mainData.id);
+                billForm.setData(mainData);
                 $("#servieIdEl").html(mainData.serviceCode);
                 saveDetailB();
             }else{
-                showMsg("保存失败！","E");
+                showMsg(data.errMsg,"E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -726,6 +733,43 @@ function saveCheckMain(){//isCheckMain == "Y"
 
 }
 
+function finish(){
+	
+	var data = billForm.getData();
+	if(data.isFinish != 1){		
+		saveDetailB();
+	}
+	if(data.isFinish ==1){
+		showMsg("本单已完成！","W");
+		return;
+	}
+	if(!data.id){
+		showMsg('请先保存查车开单!',"W");
+		return;
+	}
+	nui.ajax({
+        url : baseUrl + "com.hsapi.repair.repairService.repairInterface.saveCheckMainA.biz.ext",
+        type : "post",
+        data : {
+            data:data,
+            isFinish :1,
+            token : token
+        },
+        success : function(data) {
+            if(data.errCode == "S"){
+                var mainData = data.mainData;
+                nui.get("id").setValue(mainData.id);
+                billForm.setData(mainData);
+                $("#servieIdEl").html(mainData.serviceCode);
+                showMsg("保存成功","S");
+            }else{
+                showMsg(data.errMsg,"E");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+        }
+    });
+}
 function saveDetailB(){
     var grid_all = mainGrid.getData(); //保存
     var gridData = [];
@@ -767,6 +811,10 @@ function saveDetailB(){
                 nui.unmask(document.body);
                 checkMainId.setEnabled(false);
                 showMsg("保存成功!","S");
+            }
+            else{
+            	showMsg(data.errMsg,"E");
+            	return;
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {

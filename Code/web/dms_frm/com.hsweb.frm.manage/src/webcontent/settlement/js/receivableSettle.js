@@ -972,6 +972,10 @@ function doSettle() {
 	}
 
 	var rows = rightGrid.getSelecteds();
+	if(rows[0].settleStatus!=0){
+		showMsg("此单已结算", "W");
+		return;
+	}
 	if(rows[0].nowAmt!=rows[0].rpAmt){
 		showMsg("结算金额和应收金额不一致", "W");
 		return;

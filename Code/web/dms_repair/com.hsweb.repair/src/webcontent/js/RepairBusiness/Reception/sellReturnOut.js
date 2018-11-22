@@ -216,7 +216,8 @@ function quickSearch(type){
             break;
     }
     beginDateEl.setValue(params.sRecordDate);
-    endDateEl.setValue(params.eRecordDate);
+    
+    endDateEl.setValue(addDate(params.eRecordDate,-1));
     nui.get('status').setValue(params.status);
     currType = type;
     if(querysign == 1){
@@ -258,7 +259,7 @@ function doSearch(params) {
 function getSearchParam() {
     var params = {};
     params.sRecordDate = beginDateEl.getValue();
-    params.eRecordDate = endDateEl.getValue();
+    params.eRecordDate = addDate(endDateEl.getValue(),1);
     params.status=nui.get('status').getValue();
     if(params.status===""){
     	params.statusList = "1,2";

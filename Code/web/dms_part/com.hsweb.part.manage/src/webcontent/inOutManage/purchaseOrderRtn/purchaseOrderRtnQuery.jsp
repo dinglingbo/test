@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购退货明细</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnQuery.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnQuery.js?v=1.0.3"></script>
 <style type="text/css">
 .title {
 	width: 90px;

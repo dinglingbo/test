@@ -173,7 +173,7 @@ function getSearchParam(){
     }else{
     	params.guestId = comSearchGuestId.getValue();
     }
-	params.endDate = searchEndDate.getValue();
+	params.endDate = addDate(searchEndDate.getValue(),1);
 	params.startDate = searchBeginDate.getValue();
 //	params.isDiffOrder = 0;
     return params;
@@ -280,7 +280,7 @@ function quickSearch(type){
             break;
     }
     searchBeginDate.setValue(params.startDate);
-    searchEndDate.setValue(params.endDate);
+    searchEndDate.setValue(addDate(params.endDate,-1));
     nui.get('auditSign').setValue(params.auditSign);
 //    nui.get('billStatusId').setValue(params.billStatusId);
     currType = type;

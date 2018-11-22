@@ -80,26 +80,6 @@
 									<input class="nui-textbox" name="name" width="100%"/>
 								</td>
 								<td class="form_label required">
-									<label>项目编码：</label>
-								</td>
-								<td colspan="1">
-									<input class="nui-textbox" name="code" width="100%"/>
-								</td>
-							</tr>
-							<tr>
-							<td class="form_label required">
-									<label>项目类型：</label>
-								</td>
-								<td colspan="1">
-									<input class="nui-combobox" name="type" id="type"
-											valueField="customid"
-											textField="name"
-											valueFromSelect="true"
-											allowInput="true"
-											width="100%"/>
-						     </td>
-						   		
-							<td class="form_label required">
 									<label>业务类型：</label>
 								</td>
 								<td colspan="1">
@@ -113,7 +93,27 @@
 			                             width="100%"
 			                             valueFromSelect="true"
 			                            />
-						     </td>
+						     	</td>
+							</tr>
+							<tr>
+							<td class="form_label required">
+									<label>项目类型：</label>
+								</td>
+								<td colspan="1">
+									<input class="nui-combobox" name="type" id="type"
+											valueField="customid"
+											textField="name"
+											valueFromSelect="true"
+											allowInput="true"
+											width="100%"/>
+						     	</td>
+								<td class="form_label required">
+									<label>项目编码：</label>
+								</td>
+								<td colspan="1">
+									<input class="nui-textbox" name="code" width="100%"/>
+								</td>
+							
 							</tr>
 							<tr>
 							    <td >

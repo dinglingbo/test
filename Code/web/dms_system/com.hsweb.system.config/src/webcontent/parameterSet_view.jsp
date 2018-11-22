@@ -102,7 +102,7 @@
 				<div field="packageDiscountRate" allowSort="true" headerAlign="center"  Align="right" >套餐折扣（0.1-1.00）
 					<input property="editor" class="nui-textbox"  vtype="range:0,1"   style="width:100%;  " value="0"/>
 				</div>
-				<div field="itemDiscountRate" allowSort="true" headerAlign="center"  Align="right" >工时折扣（0.1-1.00）
+				<div field="itemDiscountRate" allowSort="true" headerAlign="center"  Align="right" >项目折扣（0.1-1.00）
 					<input property="editor" class="nui-textbox"  vtype="range:0,1"   style="width:100%;  " value="0"/>
 				</div>
 				<div field="partDiscountRate" allowSort="true" headerAlign="center" Align="right">配件折扣（0.1-1.00）

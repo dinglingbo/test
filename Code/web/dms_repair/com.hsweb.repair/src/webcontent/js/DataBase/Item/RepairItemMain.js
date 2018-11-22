@@ -94,7 +94,7 @@ $(document).ready(function()
 	            servieTypeHash[v.id] = v;
 	        });
 	 });
-	/* rightGrid.on("drawcell", function (e) {
+	rightGrid.on("drawcell", function (e) {
         switch (e.field) {
             case "serviceTypeId":
                 e.cellHtml = servieTypeHash[e.value].name;
@@ -102,7 +102,7 @@ $(document).ready(function()
             default:
                 break;
         }
-	 });*/
+	 });
 	nui.get("search-name").focus();
 	document.onkeyup=function(event){
         var e=event||window.event;
@@ -187,8 +187,10 @@ function setData(data)
 	list = data.list||[];
 	//nui.get("add").hide();
 	nui.get("update").hide();
-	//nui.get("addItemType").hide();
+	nui.get("addItemType").hide();
 	nui.get("editItemType").hide();
+	rightGrid.hideColumn("isDisabled");
+	rightGrid.hideColumn("isShare");
 	document.getElementById('sep').style.display = "none";  
 	nui.get("selectBtn").show();
 	isOpenWin = 1;

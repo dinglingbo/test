@@ -1317,6 +1317,10 @@ function finish(){
 		showMsg("此单已审核,不能重复审核!","S");
         return;
 	} 
+	if(main.status==2){
+		showMsg("此单已出库,不能审核!","S");
+        return;
+	}
 	var sellPartAdd = rpsPartGrid.getChanges("added");
 	var sellPartUpdate = rpsPartGrid.getChanges("modified");
 	var sellPartDelete = rpsPartGrid.getChanges("removed");

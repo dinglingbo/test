@@ -273,20 +273,21 @@ function getSearchParams()
         carLineId:carInfo.carLineId,
         carModelId:carInfo.carModelId
     };
-    var queryItem = nui.get("queryItem").getValue();
+    //var queryItem = nui.get("queryItem").getValue();
     var queryValue = nui.get("queryValue").getValue();
-    if(queryItem == 0)
-    {
-        params.code = queryValue
-    }
-    else if(queryItem == 1)
-    {
-        params.name = queryValue
-    }
-    else if(queryItem == 2)
-    {
-        params.pyCode = queryValue
-    }
+    params.name = queryValue;
+//    if(queryItem == 0)
+//    {
+//        params.code = queryValue
+//    }
+//    else if(queryItem == 1)
+//    {
+//        params.name = queryValue
+//    }
+//    else if(queryItem == 2)
+//    {
+//        params.pyCode = queryValue
+//    }
     return params;
 }
 /*function onSearch()
@@ -476,7 +477,7 @@ function doSelect(idx)
 	        		success : function(text) {
 	        			var returnJson = nui.decode(text);
 	        			if (returnJson.errCode == "S") {
-	        				showMsg("工时添加成功","S");
+	        				showMsg("项目添加成功","S");
 	        				//执行回调函数，传参数，套餐参数,不知道可不可行
 	        				CloseWindow("ok");
 	        				callback && callback(p1,p2,p3);
@@ -650,3 +651,26 @@ function getCarVinModel(vin, callback) {
 }
 var currOrgid = 2;
 var currUserName = '刘阳';
+
+function showHotWord(){
+	var obj=[];
+	var htmlStr="";
+	for(var i=0;i<20;i++){
+		
+		var name="测试"+i;
+		var id=i;
+		obj.push(name);
+		s="<a href='javascript:;' name='hotWord'id='"+id+"' >"+name+"</a>";
+		htmlStr +=s;
+	}
+	$(".addyytime").html(htmlStr);
+	selectclick();
+}
+function selectclick() {
+	$("a[name=hotWord]").click(function () {
+	    $(this).siblings().removeClass("xz");
+	    $(this).toggleClass("xz");
+	    text=$(this).text();
+	    id=$(this).attr("id");
+	});
+}

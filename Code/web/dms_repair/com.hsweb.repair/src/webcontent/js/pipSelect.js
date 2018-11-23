@@ -35,7 +35,7 @@ var checkcallback = null;
 
 var prdtTypeHash = {
     "1":"套餐",
-    "2":"工时",
+    "2":"项目",
     "3":"配件"
 };
 $(document).ready(function ()
@@ -231,7 +231,7 @@ function queryType(t){
     if(t == 1){
         menuqueryItemTab.setText("套餐");
     }else if(t == 2){
-        menuqueryItemTab.setText("工时");
+        menuqueryItemTab.setText("项目");
     }else if(t == 3){
         menuqueryItemTab.setText("配件");
     }else if(t == 0){

@@ -595,7 +595,7 @@ function selectItem(callback)
 	nui.open({
 		targetWindow: window,
 		url: "com.hsweb.repair.DataBase.RepairItemMain.flow",
-		title: "选择工时", width: 930, height: 560,
+		title: "选择项目", width: 930, height: 560,
 		allowDrag:true,
 		allowResize:true,
 		onload: function ()
@@ -629,7 +629,7 @@ function addItem()
 			return false;
 		});
 		if(row && row.itemId){
-			showMsg("套餐已经包含此工时!","W");
+			showMsg("套餐已经包含此项目!","W");
 			return;
 		}
 

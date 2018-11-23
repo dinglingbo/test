@@ -61,7 +61,7 @@ table {
                     <ul id="queryItemTab" class="nui-menu" style="display:none;">
                             <li iconCls="" onclick="queryType(0)" id="type10">客户已购买</li>
                         <li iconCls="" onclick="queryType(1)" id="type10">套餐</li>
-                        <li iconCls="" onclick="queryType(2)" id="type11">工时</li>
+                        <li iconCls="" onclick="queryType(2)" id="type11">项目</li>
                         <li iconCls="" onclick="queryType(3)" id="type11">配件</li>
                     </ul>
 
@@ -141,7 +141,7 @@ table {
                     </div>
                 </div>
             </div>
-            <div title="工时">
+            <div title="项目">
                 <div  class="nui-fit">
                     <div class="nui-datagrid" style="width:100%;height:100%"
                             id="itemGrid"
@@ -152,8 +152,8 @@ table {
                         <div property="columns">
                             <div field="name" width="100" headerAlign="center" allowSort="true" header="项目名称"></div>
                             <div field="itemTime" width="50" headerAlign="center" allowSort="true" header="工时"></div>
-                            <div field="amt" width="60" headerAlign="center" allowSort="true" header="工时金额"></div>
-                            <div field="type" width="60" headerAlign="center" allowSort="true" header="工时类型"></div>
+                            <div field="amt" width="60" headerAlign="center" allowSort="true" header="金额"></div>
+                            <div field="type" width="60" headerAlign="center" allowSort="true" header="项目类型"></div>
                             <div field="serviceTypeId" width="60" headerAlign="center" allowSort="true" header="业务类型"></div>
                         </div>
                     </div>

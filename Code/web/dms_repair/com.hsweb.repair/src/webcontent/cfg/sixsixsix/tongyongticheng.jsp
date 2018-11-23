@@ -26,8 +26,8 @@ body {
 	<div class="nui-fit">
 		<div style="width:100%;height:50%;">
 			<div>
-				<strong><span>工时提成：</span></strong>
-				<span style="color: red">如果一个工时提成没有设置，则会使用通用提成。若需关闭通用提成，请清空设置即可。</span>
+				<strong><span>项目提成：</span></strong>
+				<span style="color: red">如果一个项目提成没有设置，则会使用通用提成。若需关闭通用提成，请清空设置即可。</span>
 				<a class="nui-button" iconcls="" onclick="saveAll()">保存</a>
 				<input style="display :none;" id="serviceTypeId" name="serviceTypeId" class="nui-combobox" valueField="id" textFiled="name" required="true"allowInput="true">
 			</div>

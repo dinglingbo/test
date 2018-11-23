@@ -99,7 +99,7 @@
                         </div>
                     </fieldset>
                     <fieldset style="width: 620px; border: solid 1px #aaa; margin-top: 8px;margin-left: 14px;  position: relative;">
-                        <legend>工时信息</legend>
+                        <legend>项目信息</legend>
                         <div id="editForm2" style="padding: 5px;">
                             <table style="width: 100%;">
                                 <tbody>

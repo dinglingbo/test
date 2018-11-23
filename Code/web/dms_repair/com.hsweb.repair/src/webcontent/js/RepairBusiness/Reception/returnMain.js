@@ -202,6 +202,10 @@ function getSearchParam() {
     return params;
 }
 
+function onenterCarNo(){
+	onSearch();
+}
+
 function addSell(){
     var part={};
     part.id = "5200";

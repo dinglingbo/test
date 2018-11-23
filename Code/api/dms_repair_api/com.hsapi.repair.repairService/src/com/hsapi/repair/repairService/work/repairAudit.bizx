@@ -4,9 +4,9 @@
     <location x="261" y="360"/>
     <size height="100" width="451"/>
   </nodes>
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="草稿是否可以直接完工，还是要施工状态下才可以完工，是否需要全部领料完才可以完工&#xD;&#xA;&#xD;&#xA;确认维修后才可以领工&#xD;&#xA;&#xD;&#xA;完工后，更新套餐对应的工时和配件的业务类型，更新工时对应的配件的业务类型&#xD;&#xA;完工后，如果存在提成来源值为null的，根据业务类型完善通用提成//20181011&#xD;&#xA;不考虑返工后修改业务类型，如果存在业务类型修改，应先删除再添加，这样提成值才不会有问题&#xD;&#xA;&#xD;&#xA;目前其它收入和费用支出只能在完工前登记,完工时汇总other_amt 和 other_cost_amt&#xD;&#xA;转预结算或是直接结算收款时,如果有费用支出,需要生成应付单" title="Administrator&#x9;18-8-7 下午7:47">
-    <location x="-6" y="-210"/>
-    <size height="211" width="571"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="草稿是否可以直接完工，还是要施工状态下才可以完工，是否需要全部领料完才可以完工&#xD;&#xA;&#xD;&#xA;确认维修后才可以领工&#xD;&#xA;&#xD;&#xA;完工后，更新套餐对应的工时和配件的业务类型，更新工时对应的配件的业务类型&#xD;&#xA;完工后，如果存在提成来源值为null的，根据业务类型完善通用提成//20181011&#xD;&#xA;不考虑返工后修改业务类型，如果存在业务类型修改，应先删除再添加，这样提成值才不会有问题&#xD;&#xA;&#xD;&#xA;目前其它收入和费用支出只能在完工前登记,完工时汇总other_amt 和 other_cost_amt&#xD;&#xA;转预结算或是直接结算收款时,如果有费用支出,需要生成应付单&#xD;&#xA;&#xD;&#xA;更新未完工的工时为已完工" title="Administrator&#x9;18-8-7 下午7:47">
+    <location x="-4" y="-255"/>
+    <size height="301" width="571"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
@@ -207,7 +207,7 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
-      <targetNode>assign5</targetNode>
+      <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="928" y="105"/>
@@ -347,7 +347,7 @@
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link15</targetConnections>
     <targetConnections>link16</targetConnections>
-    <location x="1178" y="105"/>
+    <location x="1270" y="105"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -357,7 +357,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="1180" y="141"/>
+    <location x="1272" y="141"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -366,8 +366,8 @@
       <sourceNode>assign5</sourceNode>
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
-    <targetConnections>link12</targetConnections>
-    <location x="1017" y="105"/>
+    <targetConnections>link31</targetConnections>
+    <location x="1109" y="105"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -388,7 +388,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="1015" y="141"/>
+    <location x="1107" y="141"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
@@ -414,12 +414,12 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
-    <location x="1088" y="105"/>
+    <location x="1180" y="105"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="1078" y="141"/>
+    <location x="1170" y="141"/>
     <figSize height="17" width="49"/>
     <node>transactioncommit0</node>
   </nodes>
@@ -429,12 +429,12 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link14</targetConnections>
-    <location x="928" y="206"/>
+    <location x="1109" y="206"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionrollback0label" name="label" nodeType="label">
-    <location x="918" y="242"/>
+    <location x="1099" y="242"/>
     <figSize height="17" width="49"/>
     <node>transactionrollback0</node>
   </nodes>
@@ -481,8 +481,48 @@
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">d</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/attributes/billParams/repairBillPartFlag</process:from>
       <process:to type="query">repairBillPartFlag</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsItem</process:from>
+      <process:to type="query">cond/_entity</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">id</process:from>
+      <process:to type="query">cond/_expr[1]/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cond/_expr[2]/status</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[2]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">itemTemp/status</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">itemTemp/finishDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">itemTemp/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">itemTemp/modifyDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
@@ -621,7 +661,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -653,6 +693,33 @@
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="更新未完工的工时" displayName="updateEntityByCriteriaEntity" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link31" name="link31" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo2</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <targetConnections>link12</targetConnections>
+    <location x="1023" y="105"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo2label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntityByCriteriaEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="value" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">itemTemp</process:inputVariable>
+      <process:inputVariable id="2" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
+    <location x="986" y="141"/>
+    <figSize height="17" width="97"/>
+    <node>invokePojo2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-30 15:54:28" date="2018-03-30Z" description="" name="repairAudit" version="7.0.0.0"/>
@@ -665,6 +732,8 @@
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsItem" name="itemList"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsPart" name="partList"/>
     <process:variable description="1要判断必须领料；0和Null不用" historyStateLocation="client" isArray="false" name="repairBillPartFlag" primitiveType="String"/>
+    <process:variable description="更新未完工的工时为已完工" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItem" name="itemTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="id" primitiveType="String"/>

@@ -147,6 +147,7 @@ $(document).ready(function(v)
             addNewRow(true);
         }
     });
+    add();
 });
 //返回类型给srvBottom，用于srvBottom初始化
 function confirmType(){
@@ -949,6 +950,14 @@ function addNewRow(check){
 var partInfoUrl = baseUrl
         + "com.hsapi.part.invoice.paramcrud.queryPartInfoByParam.biz.ext";
 function getPartInfo(params){
+	
+   var data = basicInfoForm.getData();
+    for ( var key in requiredField) {
+        if (!data[key] || $.trim(data[key]).length == 0) {
+            showMsg(requiredField[key] + "不能为空!","W");
+            return;
+        }
+    }
     var part = null;
 
     nui.ajax({
@@ -1095,7 +1104,18 @@ function deletePart(){
     {
         delete editPartHash[part.detailId];
     }
-    rightGrid.removeRow(part,true);
+//    rightGrid.removeRow(part,true);
+    var data = rightGrid.getData();
+    if(data && data.length==1){
+        var row = rightGrid.getSelected();
+        rightGrid.removeRow(row);
+        var newRow = {};
+        rightGrid.addRow(newRow);
+        rightGrid.beginEditCell(newRow, "comPartCode");
+    }else{
+        var row = rightGrid.getSelected();
+        rightGrid.removeRow(row);
+    }
 }
 function checkRightData()
 {
@@ -1473,6 +1493,7 @@ function setInitData(params){
 
 function addDetail(part) {
 	var data = basicInfoForm.getData();
+	var row=rightGrid.getData();
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 			showMsg(requiredField[key] + "不能为空!","W");
@@ -1533,7 +1554,12 @@ function addDetail(part) {
 						enterDetail.fullName = data.fullName;
 						enterDetail.systemUnitId = data.unit;
 						enterDetail.enterUnitId = data.unit;
-
+						
+						for(var i=0;i<row.length;i++){
+							if(!row[i].partId){
+								rightGrid.removeRow(row[i]);
+							}
+						}
 						rightGrid.addRow(enterDetail);
 					}
 				}

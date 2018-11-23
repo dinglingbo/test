@@ -164,7 +164,7 @@
                     <li iconCls="" onclick="updateBillExpense()" id="billExpense">费用登记</li>
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount">新增报销单</li>
                     <li iconCls="" onclick="addExpenseAccount()" id="ExpenseAccount1">修改报销单</li>
-                    <li iconCls="" onclick="openOrderDetail()" id="ExpenseAccount">打开工单详情页</li>
+                    <li iconCls="" onclick="openOrderDetail()" id="openOrderDetail">打开工单详情页</li>
                     <!-- <li iconCls="" onclick="addcardTime()" id="type13">车牌替换/修改</li>
                     <li iconCls="" onclick="addcard()" id="type11">等级转介绍客户</li> -->
                 </ul>

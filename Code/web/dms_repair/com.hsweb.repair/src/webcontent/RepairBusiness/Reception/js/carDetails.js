@@ -33,14 +33,39 @@ $(document).ready(function () {
                 });
                 
 
-                grid2.on("load",function(e){
-                	var data = e.data;
-                	for(var i = 0;i<data.length;i++){
-                		data[i].balaAmt=data[i].totalAmt-data[i].useAmt;
-                		grid2.updateRow(data[i],i);
-                	}
-                });
+        grid2.on("load",function(e){
+        	var data = e.data;
+        	for(var i = 0;i<data.length;i++){
+        		data[i].balaAmt=data[i].totalAmt-data[i].useAmt;
+        		grid2.updateRow(data[i],i);
+        	}
+        });
+        nui.get("carNo").focus();
+        document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;//38向上 40向下
+
+        if((keyCode==27))  {  //ESC
+            onCancel();
+        }
+      };
 });
+
+//取消
+function onCancel() {
+    CloseWindow("cancel");
+}
+//关闭窗口
+function CloseWindow(action) {
+    if (action == "close" && form.isChanged()) {
+        if (confirm("数据被修改了，是否先保存？")) {
+            saveData();
+        }
+    }
+    if (window.CloseOwnerWindow)
+        return window.CloseOwnerWindow(action);
+    else window.close();
+}
 
 function SetData(params){
 	nui.get("carId").setValue(params.carId);

@@ -325,7 +325,7 @@
                         </div>
                     </div>
                 </div>
-                <div title="工时录入">
+                <div title="项目录入">
                     <div class="nui-toolbar">
                         <div id="itemQueryForm" class="form">
                             <table>

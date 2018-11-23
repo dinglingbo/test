@@ -174,7 +174,7 @@ table tr td span
 
         </tr>
                 <tr>   
-            <td class="tbtext">工时信息</td> 
+            <td class="tbtext">项目信息</td> 
             <td class="tbCtrl" style="width:600px;">
                 <input  class="nui-combobox tabwidth" />
                 <input  class="nui-textbox tabwidth" /></td>

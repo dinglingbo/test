@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.49"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.59"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -100,6 +100,7 @@
                <a class="nui-button" iconCls="" plain="true" onclick="addNew()" id="addNew"> <span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> 
                 <a class="nui-button" onclick="newCheckMainMore()" plain="true" id="history" name="history"><span class="fa fa-list fa-lg"></span>&nbsp;查看历史记录</a>
                 <a class="nui-button" onclick="saveb()" plain="true" id="saveData" name="saveData"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <a class="nui-button" onclick="finish()" plain="true" id="saveData" name="saveData"><span class="fa fa-check fa-lg"></span>&nbsp;完成</a>
                 <a class="nui-button" onclick="tprint()" plain="true" id="onPrint" name="onPrint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
             </td>     
         </tr>
@@ -123,6 +124,8 @@
         <input class="nui-hidden" name="status"/>
         <input class="nui-hidden" name="isSettle"/>
         <input class="nui-hidden" name="serviceTypeId"/>
+        <input class="nui-hidden" name="isFinish"/>
+        <input class="nui-hidden" name="checkStatus"/>
         <input  class="nui-combobox" style="display:none; width:100%;" name="checkTypeA" id="checkTypeA"
 	            textfield="name" valuefield="customid" dataFile="data"  allowInput="true"/>  
         <table style=" left:0;right:0;margin: 0 auto; width:100%">

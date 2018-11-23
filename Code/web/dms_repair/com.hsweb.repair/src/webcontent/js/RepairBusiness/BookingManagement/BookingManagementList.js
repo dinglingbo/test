@@ -108,37 +108,37 @@ function quickSearch(ctlid, value, text) {
     if (d == 0) {
         params.today = 1;
         startDate = getNowStartDate();
-        endDate = addDate(getNowEndDate(), 1);
+        endDate = getNowEndDate();
         beginDateEl.setValue(startDate);
         endDateEl.setValue(endDate);
     } else if (d == 1) {
         params.yesterday = 1;
         startDate = getPrevStartDate();
-        endDate = addDate(getPrevEndDate(), 1);
+        endDate = getPrevEndDate();
         beginDateEl.setValue(startDate);
         endDateEl.setValue(endDate);
     } else if (d == 2) {
         params.thisWeek = 1;
         startDate = getWeekStartDate();
-        endDate = addDate(getWeekEndDate(), 1);
+        endDate = getWeekEndDate();
         beginDateEl.setValue(startDate);
         endDateEl.setValue(endDate);
     } else if (d == 3) {
         params.lastWeek = 1;
         startDate = getLastWeekStartDate();
-        endDate = addDate(getLastWeekEndDate(), 1);
+        endDate = getLastWeekEndDate();
         beginDateEl.setValue(startDate);
         endDateEl.setValue(endDate);
     } else if (d == 4) {
         params.thisMonth = 1;
         startDate = getMonthStartDate();
-        endDate = addDate(getMonthEndDate(), 1);
+        endDate = getMonthEndDate();
         beginDateEl.setValue(startDate);
         endDateEl.setValue(endDate);
     } else if (d == 5) {
         params.lastMonth = 1;
         startDate = getLastMonthStartDate();
-        endDate = addDate(getLastMonthEndDate(), 1);
+        endDate = getLastMonthEndDate();
         beginDateEl.setValue(startDate);
         endDateEl.setValue(endDate);
     }
@@ -147,6 +147,7 @@ function quickSearch(ctlid, value, text) {
 
 function doSearch() {
     var params = getSearchParam();
+    
     upGrid.load({
         params: params,
         token: token
@@ -162,7 +163,7 @@ function getSearchParam() {
     params.carNo = nui.get("carNo").getValue();
     params.contactorTel = nui.get("contactorTel").getValue();
     params.startDate = beginDateEl.getValue();
-    params.endDate = endDateEl.getValue();
+    params.endDate = addDate(endDateEl.getValue(), 1); 
     var status = menuBtnStatusQuickSearch.getValue();
     if(status == 0 || status == 1 || status == 2){
         params.status = status;
@@ -198,7 +199,7 @@ function onupGridSelectionchanged(e) {
         btnEdit.disable();
         btnconfirm.disable();
         btnNewBill.enable();
-        btnCancel.enable();
+        btnCancel.disable();
         btnCall.enable();
         
     } else if (status >= 2) { //已开单，已取消，已评价

@@ -72,14 +72,18 @@
         height: auto;
     }
     
+    #toolData{
+    	width: 1600px;
+    }
+    
  
 </style>
 </head>
 <body>
     
 
-<div class="sidebar">
-    <div id="mainMenu" style="overflow-y:auto; overflow-x:hidden; width:400px !important; height:800px;"></div>
+<div id="toolData" class="sidebar">
+    <div id="mainMenu" style="overflow-y:auto; overflow-x:hidden; width:400px !important; height:auto;"></div>
 </div>
 
 <div class="container">

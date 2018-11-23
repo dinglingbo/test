@@ -129,15 +129,11 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">serviceTypeId</process:from>
-      <process:to type="query">criteria/_expr[4]/_value</process:to>
+      <process:to type="query">criteria/_expr[4]/serviceTypeId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">criteria/_expr[4]/_op</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">serviceTypeId</process:from>
-      <process:to type="query">criteria/_expr[4]/_property</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -172,7 +168,7 @@
     <process:input description="" isArray="false" name="pageIndex" primitiveType="Int"/>
     <process:input description="" isArray="false" name="pageSize" primitiveType="Int"/>
     <process:input description="" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="criteria"/>
-    <process:input description="" isArray="false" name="serviceTypeId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="serviceTypeId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbPackage" name="package1"/>

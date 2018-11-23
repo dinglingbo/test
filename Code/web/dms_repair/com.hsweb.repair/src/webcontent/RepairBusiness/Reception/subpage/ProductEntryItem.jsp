@@ -42,7 +42,7 @@ table {
 
 </head>
 <body>
-<div  class="nui-panel" showToolbar="false" title="车型信息" showFooter="false" style="width:100%;">
+<div  class="nui-panel" showToolbar="false" title="车型信息" showFooter="false" style="width:100%;display:none;">
 	<div id="carInfoForm">
 		<input class="nui-hidden" id="ExpenseAccount" name="ExpenseAccount"/>
 		<input class="nui-hidden" name="carLevelId"/>
@@ -122,80 +122,75 @@ table {
 		<div size="180" showCollapseButton="false">
 			<div class="nui-fit">
 				<div class="nui-toolbar" style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
-					<label>产品分组</label>
+					<label>项目类型</label>
 				</div>
 				<div class="nui-fit">
 					<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
-						dataField="rs" showTreeIcon="true" textField="name"
+						dataField="rs" showTreeIcon="true" textField="name" expandOnLoad="0"
 						idField="id" parentField="parentId" resultAsTree="false">
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div showCollapseButton="false">
-			<div class="nui-toolbar" style="padding: 2px; border: 0;;">
+			<div class="nui-toolbar" style="padding: 2px; border: 0;">
 				<table class="nui-form-table">
 					<tr>
 						<td>
-							<label>查询项：</label>
-						</td>
-						<td>
-							<input class="nui-combobox" id="queryItem"
-								   data="[{id:0,text:'编码'},{id:1,text:'名称'},{id:2,text:'拼音'}]" value="1"/>
-						</td>
-						<td>
-							<label>查询值：</label>
+							<label>项目名称：</label>
 						</td>
 						<td>
 							<input class="nui-textbox" id="queryValue"/>
 						</td>
 						<td>
-							<a class="nui-button" plain="false"  onclick="onSearch(1)">查询</a>
-							<a class="nui-button" plain="false"  onclick="onOk(1)">选择</a>
+							<a class="nui-button" plain="true"  onclick="onSearch(1)"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+							<a class="nui-button" plain="true"  onclick="onOk(1)"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
 						</td>
 					</tr>
 				</table>
 			</div>
-        <div class="nui-datagrid" style="width:100%;height:100%"
-			 id="itemGrid"
-			 dataField="rs"
-			 pageSize="20"
-			 totalField="page.count"
-			 allowSortColumn="true"
-			 frozenStartColumn="0"
-			 frozenEndColumn="2">
-			<div property="columns">
-				<div type="indexcolumn" width="35">序号</div>
-				<div header="项目基本信息" headerAlign="center" >
-					<div property="columns" >
-						<div field="itemCode" width="70" headerAlign="center" allowSort="true" header="工时编码"></div>
-						<div field="itemName" width="180" headerAlign="center" allowSort="true" header="项目名称"></div>
-					</div>
-				</div>
-				<div header="标准工时" headerAlign="center">
+			<div class="nui-fit">
+		        <div class="nui-datagrid" style="width:100%;height:100%"
+					 id="itemGrid"
+					 dataField="rs"
+					 showPager="true"
+					 pageSize="20"
+					 totalField="page.count"
+					 allowSortColumn="true">
 					<div property="columns">
-						<div field="astandTime" width="100" headerAlign="center" allowSort="true" header="时间（h）/（副）"></div>
-					</div>
-				</div>
-				<div header="工时费" headerAlign="center">
-					<div property="columns">
-						<div field="astandSum" headerAlign="center" allowSort="true" header="工时金额"></div>
-						<div field="4sSum" headerAlign="center" allowSort="true" header="市场金额"></div>
-					</div>
-				</div>
-				<div header="" headerAlign="center">
-					<div property="columns">
-						<div field="itemKind" width="40" headerAlign="center" allowSort="true" header="工种"></div>
-						<div field="carModelName" width="120" headerAlign="center" allowSort="true" header="车型"></div>
-						<div field="typeId" width="80" headerAlign="center" allowSort="true" header="项目类型"></div>
-						<div field="factoryName" width="150" headerAlign="center" allowSort="true" header="参考名称"></div>
-						<div field="useCount" width="70" headerAlign="center" allowSort="true" header="使用频率"></div>
+						<div type="indexcolumn" width="35">序号</div>
+						<div header="项目基本信息" headerAlign="center" >
+							<div property="columns" >
+								<div field="itemName" width="260" headerAlign="center" allowSort="true" header="项目名称"></div>
+								<!--<div field="itemCode" width="70" headerAlign="center" allowSort="true" header="项目编码"></div>-->
+							</div>
+						</div>
+						<div header="标准项目" headerAlign="center" width="40">
+							<div property="columns">
+								<div field="astandTime" width="40" headerAlign="center" allowSort="true" header="工时"></div>
+								<!--时间（h）/（副）-->
+							</div>
+						</div>
+						<div header="项目金额" headerAlign="center" width="80">
+							<div property="columns">
+								<div field="astandSum" width="40" headerAlign="center" allowSort="true" header="项目金额"></div>
+								<div field="4sSum" width="40" headerAlign="center" allowSort="true" header="市场金额"></div>
+							</div>
+						</div>
+						<div header="" headerAlign="center">
+							<div property="columns">
+								<div field="itemKind" width="40" headerAlign="center" allowSort="true" header="工种"></div>
+								<!--<div field="carModelName" width="120" headerAlign="center" allowSort="true" header="车型"></div>-->
+								<!--<div field="typeId" width="80" headerAlign="center" allowSort="true" header="项目类型"></div>-->
+								<!--<div field="factoryName" width="150" headerAlign="center" allowSort="true" header="参考名称"></div>
+								<div field="useCount" width="70" headerAlign="center" allowSort="true" header="使用频率"></div>-->
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
     <div class="nui-datagrid" style="width:100%;height:100%"  id="packageGrid" visible="false"></div>
     <div class="nui-datagrid" style="width:100%;height:100%"  id="packageDetail" visible="false"></div>
 	<div class="nui-datagrid" style="width:100%;height:100%"  id="partGrid" visible="false"></div>

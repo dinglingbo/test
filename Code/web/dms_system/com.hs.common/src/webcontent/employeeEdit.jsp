@@ -102,7 +102,7 @@
                 <td><input class="nui-textbox" name="integralDiscountMax" id="integralDiscountMax" onvalidation="onRateValidation" value="0" required="true" vtype="range:0,1000000"/>元</td>
             </tr>
             <tr>
-                <td align="right">工时优惠率最高上限：</td>
+                <td align="right">项目优惠率最高上限：</td>
                 <td><input class="nui-textbox" name="itemDiscountRate" id="itemDiscountRate" onvalidation="onRateValidation" value="0" required="true"  vtype="range:0,100">%</td>
             </tr>
             <tr>

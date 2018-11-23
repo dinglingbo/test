@@ -32,6 +32,8 @@ $(document).ready(function(v)
     });
     partGrid.on("drawcell",function(e)
     {
+    	var record = e.record;
+    	var uid = record._uid;
         if(!partTypeHash)
         {
             partTypeHash = {};
@@ -70,6 +72,14 @@ $(document).ready(function(v)
             {
                 e.cellHtml = brandHash[e.value].name||"";
             }
+        }else if(field == "code"){
+                //e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' +'<a href="javascript:showBasicDataPart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;标准配件</a>'+ e.value;
+            
+                e.cellHtml = e.value + '</br><a href="javascript:showMorePart(\'' + uid + '\')" class="chooseClass" >询价</a>&nbsp;<a href="javascript:showMorePart(\'' + uid + '\')" class="chooseClass" >采购</a>';	
+                			 //'<ul class="add_ul" style="z-index: 99; display: none;">' +
+		            		 //'<li>< a href="javascript:choosePart(\'' + uid + '\')">添加配件</ a></li>' +
+		            		 //'<li>< a href="javascript:showBasicDataPart(\'' + uid + '\')" class="xzpj">选择配件</ a></li>' +
+                             //'</ul>';
         }
         else{
             onDrawCell(e);

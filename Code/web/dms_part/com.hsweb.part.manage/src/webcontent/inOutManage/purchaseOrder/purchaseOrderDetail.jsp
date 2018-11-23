@@ -30,7 +30,7 @@
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
                 <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>       
             </td>
         </tr>
     </table>
@@ -152,7 +152,7 @@
                                       <label>状态：</label>
                                   </td>
                                   <td>
-                                      <input class="nui-textbox" width="100%" id="AbillStatusId" name="AbillStatusId"/>
+                                      <input allowInput="false" class="nui-textbox" width="100%" id="AbillStatusId" name="AbillStatusId"/>
                                   </td>
                                   <td class="title">
                                       <label>备注：</label>

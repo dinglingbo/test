@@ -30,7 +30,7 @@ var x = 0;
 var y = 0;
 var prdtTypeHash = {
     "1":"套餐",
-    "2":"工时",
+    "2":"项目",
     "3":"配件"
 };
 
@@ -1317,6 +1317,10 @@ function finish(){
 		showMsg("此单已审核,不能重复审核!","S");
         return;
 	} 
+	if(main.status==2){
+		showMsg("此单已出库,不能审核!","S");
+        return;
+	}
 	var sellPartAdd = rpsPartGrid.getChanges("added");
 	var sellPartUpdate = rpsPartGrid.getChanges("modified");
 	var sellPartDelete = rpsPartGrid.getChanges("removed");

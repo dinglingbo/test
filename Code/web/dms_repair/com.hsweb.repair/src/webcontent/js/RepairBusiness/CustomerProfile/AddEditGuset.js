@@ -28,7 +28,7 @@ $(document).ready(function()
 	carInfoFrom = new nui.Form("#carInfoFrom");
 	contactInfoForm = new nui.Form("#contactInfoForm");
 	basicInfoForm = new nui.Form("#basicInfoForm");
-	nui.get("name").focus();
+	//nui.get("name").focus();
 	
 	if(currRepairBillCmodelFlag == "1"){
         nui.get("carModel").disable();
@@ -36,8 +36,10 @@ $(document).ready(function()
         nui.get("carModel").enable();
     }
 	
+	nui.get("identity").focus();
 	document.onkeyup=function(event){
-        var e=event||window.event;
+        
+		var e=event||window.event;
         var keyCode=e.keyCode||e.which;//38向上 40向下
 
         if((keyCode==27))  {  //ESC
@@ -296,6 +298,8 @@ function setData(data)
                     if(data.guest && data.guest.id)
                     {
                         basicInfoForm.setData(data.guest);
+                        initCityByParent('cityId', data.guest.provinceId || -1);
+                        initCityByParent('areaId', data.guest.cityId || -1);
                         contactList = data.contactList||[{}];
                         carList = data.carList||[{}];
                         cardatagrid.addRows(carList);
@@ -704,3 +708,28 @@ function onClose(e){
 		carview.hide();
 	}
 }
+
+function onCarNoChanged(e){
+	var falge = isVehicleNumber(e.value);
+	if(!falge){
+		nui.get("#carNo").setValue("");
+		showMsg("请输入正确的车牌号","W");
+		return;
+	}
+}
+
+function isVehicleNumber(vehicleNumber) {
+    var result = false;
+    if (vehicleNumber.length == 7){
+      var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
+      result = express.test(vehicleNumber);
+    }
+    return result;
+}
+
+
+
+
+
+
+

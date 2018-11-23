@@ -8,9 +8,9 @@ var servieTypeList = [];
 var servieTypeHash = {};
 var serviceTypeIdEl = null;
 var requiredField = {
-	name: "工时名称",
-	type: "工时类型",
-	code: "工时编码",
+	name: "项目名称",
+	type: "项目类型",
+	code: "项目编码",
 	serviceTypeId: "业务类型"
 	//carModelId: "车型"
 };
@@ -149,7 +149,7 @@ function onOk(){
 	if(data.id){
 		var orgid = data.orgid||0;
 		if(orgid != currOrgId){
-			showMsg("只能修改本店工时!","S");
+			showMsg("只能修改本店项目!","S");
 			return;
 		}
 	}

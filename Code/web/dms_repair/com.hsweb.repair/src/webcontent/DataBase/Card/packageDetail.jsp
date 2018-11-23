@@ -74,7 +74,7 @@
 	
 <table cellspacing="200px" bgcolor="#FOF8FF" >  
 <div id="tabs1" class="mini-tabs" activeIndex="0" style="width: 100%;height: 100%;" plain="false" >
-    <div title="工时明细" >
+    <div title="项目明细" >
 	<div id="item" class="nui-datagrid" style="width: 100%;height: 100%;"
 						showPager="false" sortMode="client" allowCellEdit="true"
 						allowCellSelect="true" multiSelect="true" showSummaryRow="true"
@@ -85,12 +85,12 @@
 								工时ID 
 							</div>
 							<div field="itemName" allowSort="true" align="left"
-								headerAlign="center" width="">工时名称</div>
+								headerAlign="center" width="">项目名称</div>
 							<div field="itemTime" allowSort="true" align="left"
 								headerAlign="center" width="">工时</div>
 							<div field="truePrice" allowSort="true" align="left"
 								headerAlign="unit_price" width="" headerAlign="center">
-								工时单价 
+								单价 
 							</div>
 							<div field="trueAmt" allowSort="true" align="left"
 								headerAlign="center" width="" summaryType="sum">

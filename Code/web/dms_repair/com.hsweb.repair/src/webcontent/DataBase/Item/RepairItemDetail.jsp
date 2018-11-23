@@ -65,7 +65,7 @@
 		style="width:100%; height:80%;" 
 		plain="false" >
 		
-		<div title="工时设置" id="itemTab" name="itemTab" >
+		<div title="项目设置" id="itemTab" name="itemTab" >
 				<div id="basicInfoForm" class="form">
 					<input name="id" class="nui-hidden"/>
 					<input name="orgid" class="nui-hidden"/>
@@ -74,32 +74,12 @@
 						<table class="nui-form-table" border=0>
 							<tr>
 								<td class="form_label required">
-									<label>工时名称：</label>
+									<label>项目名称：</label>
 								</td>
 								<td>
 									<input class="nui-textbox" name="name" width="100%"/>
 								</td>
 								<td class="form_label required">
-									<label>工时编码：</label>
-								</td>
-								<td colspan="1">
-									<input class="nui-textbox" name="code" width="100%"/>
-								</td>
-							</tr>
-							<tr>
-							<td class="form_label required">
-									<label>工时类型：</label>
-								</td>
-								<td colspan="1">
-									<input class="nui-combobox" name="type" id="type"
-											valueField="customid"
-											textField="name"
-											valueFromSelect="true"
-											allowInput="true"
-											width="100%"/>
-						     </td>
-						   		
-							<td class="form_label required">
 									<label>业务类型：</label>
 								</td>
 								<td colspan="1">
@@ -113,7 +93,27 @@
 			                             width="100%"
 			                             valueFromSelect="true"
 			                            />
-						     </td>
+						     	</td>
+							</tr>
+							<tr>
+							<td class="form_label required">
+									<label>项目类型：</label>
+								</td>
+								<td colspan="1">
+									<input class="nui-combobox" name="type" id="type"
+											valueField="customid"
+											textField="name"
+											valueFromSelect="true"
+											allowInput="true"
+											width="100%"/>
+						     	</td>
+								<td class="form_label required">
+									<label>项目编码：</label>
+								</td>
+								<td colspan="1">
+									<input class="nui-textbox" name="code" width="100%"/>
+								</td>
+							
 							</tr>
 							<tr>
 							    <td >
@@ -163,7 +163,7 @@
 							</tr>
 						</table>
 					</div>
-					<div class="nui-panel" showToolbar="false" title="工时价格信息" showFooter="false"
+					<div class="nui-panel" showToolbar="false" title="项目价格信息" showFooter="false"
 							style="width:calc(100% - 20px);">
 						<table class="nui-form-table" border=0>
 							<tr>
@@ -181,7 +181,7 @@
 											width="100%" inputStyle="text-align:right;" />
 								</td>
 								<td class="form_label">
-									<label>工时单价：</label>
+									<label>单价：</label>
 								</td>
 								<td colspan="1">
 									<input class="nui-spinner" name="unitPrice" id="unitPrice" format="0.00" value="0" maxValue="1000000000"
@@ -190,7 +190,7 @@
 							</tr>            
 							<tr>
 								<td class="form_label">
-									<label>工时金额：</label>
+									<label>金额：</label>
 								</td>
 								<td colspan="1">
 									<input class="nui-spinner" name="amt" id="amt" format="0.00" value="0" maxValue="1000000000"

@@ -94,7 +94,7 @@ $(document).ready(function()
 	            servieTypeHash[v.id] = v;
 	        });
 	 });
-	/* rightGrid.on("drawcell", function (e) {
+	rightGrid.on("drawcell", function (e) {
         switch (e.field) {
             case "serviceTypeId":
                 e.cellHtml = servieTypeHash[e.value].name;
@@ -102,7 +102,7 @@ $(document).ready(function()
             default:
                 break;
         }
-	 });*/
+	 });
 	nui.get("search-name").focus();
 	document.onkeyup=function(event){
         var e=event||window.event;
@@ -141,7 +141,7 @@ function addOrEdit(item){
 	nui.open({
 		targetWindow: window,
 		url:webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemDetail.flow?token="+token,
-		title:"维修工时",
+		title:"维修项目",
 		width:550,
 		height:400,
 		allowResize:false,
@@ -187,8 +187,10 @@ function setData(data)
 	list = data.list||[];
 	//nui.get("add").hide();
 	nui.get("update").hide();
-	//nui.get("addItemType").hide();
+	nui.get("addItemType").hide();
 	nui.get("editItemType").hide();
+	rightGrid.hideColumn("isDisabled");
+	rightGrid.hideColumn("isShare");
 	document.getElementById('sep').style.display = "none";  
 	nui.get("selectBtn").show();
 	isOpenWin = 1;
@@ -224,7 +226,7 @@ function onOk()
 			if(ckcallback){
 				var rs = ckcallback(row);
 				if(rs){
-					showMsg("此工时已添加,请返回查看!","W");
+					showMsg("此项目已添加,请返回查看!","W");
 					return;
 				}else{
 					if(callback){
@@ -260,7 +262,7 @@ function onOk()
 			}
 		}
 		else{
-			showMsg("请选择一个工时", "W");
+			showMsg("请选择一个项目", "W");
 		}
 	}
 }
@@ -284,7 +286,7 @@ function editItemType(){
 	var row = tree1.getSelected();
 	var orgid = row.orgid;
 	if(orgid != currOrgId){
-		showMsg("只能修改本店定义的工时类型!","W");
+		showMsg("只能修改本店定义的项目类型!","W");
 		return;
 	}
 	advancedAddForm.setData([]);

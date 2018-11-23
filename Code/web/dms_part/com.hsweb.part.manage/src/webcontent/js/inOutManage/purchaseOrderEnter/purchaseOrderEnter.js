@@ -1318,7 +1318,16 @@ function addInsertRow(value,row) {
 
     rightGrid.beginEditCell(newRow, "comPartCode");*/
 
+	var data = basicInfoForm.getData();
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+			showMsg(requiredField[key] + "不能为空!","W");
+			//如果检测到有必填字段未填写，切换到主表界面
+//			mainTabs.activeTab(billmainTab);
 
+			return;
+		}
+	}
     var params = {partCode:value};
 	var part = getPartInfo(params);
 	var storeId = FStoreId;

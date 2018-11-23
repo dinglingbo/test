@@ -44,7 +44,7 @@ function init()
 
     var keyList = [
         {
-            id:"carNo",
+            id:"lcarNo",
             text:"车牌号"
         },
         {
@@ -167,4 +167,8 @@ function CloseWindow(action)
 //取消
 function onCancel() {
     CloseWindow("cancel");
+}
+
+function onenterSearch(){
+	onSearch();
 }

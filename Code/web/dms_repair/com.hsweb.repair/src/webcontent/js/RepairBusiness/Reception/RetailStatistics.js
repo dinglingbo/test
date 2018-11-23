@@ -71,6 +71,9 @@ $(document).ready(function(v) {
         });
     });
     
+    mainTabs.on("activechanged",function(e){
+    	onSearch();
+	});
     getAllPartType(function(data) {
         partTypeList = data.partTypes;
         partTypeList.forEach(function(v) {
@@ -78,8 +81,8 @@ $(document).ready(function(v) {
         });
     });
 
+  
  
-    onSearch();
 });
 function getSearchParam() {
 	var params = {};

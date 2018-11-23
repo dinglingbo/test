@@ -10,7 +10,7 @@
 -->
 <head>
 <title>质检&完工</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/checkFinish.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/checkFinish.js?v=1.0.5"></script>
 <style type="text/css">
 
 .title {
@@ -70,7 +70,7 @@
         allowSortColumn="true">
         <div property="columns">
             <div headerAlign="center" type="indexcolumn" width="10">序号</div>
-            <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="60">工时名称</div>
+            <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="60">项目名称</div>
             <div field="workers" headerAlign="center" allowSort="true" visible="true" width="60" datatype="int" align="center">施工员</div>
             <div field="status" headerAlign="center" allowSort="true" visible="true" width="60" datatype="int" align="center">是否完工</div>
             <!-- <div field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">是否合格</div>

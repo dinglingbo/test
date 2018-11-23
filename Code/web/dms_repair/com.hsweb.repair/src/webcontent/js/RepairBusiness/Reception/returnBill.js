@@ -29,7 +29,7 @@ var x = 0;
 var y = 0;
 var prdtTypeHash = {
     "1":"套餐",
-    "2":"工时",
+    "2":"项目",
     "3":"配件"
 };
 
@@ -946,7 +946,7 @@ function chooseReturnPart(){
 		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.RepairBusiness.returnPart.flow?token=" + token,
 		title : "配件选择",
-		width : "80%",
+		width : "60%",
 		height : "50%",
 		allowDrag : true,
 		allowResize : true,
@@ -1254,6 +1254,10 @@ function finish(){
 		showMsg("此单已审核,不能重复审核!","W");
         return;
 	} 
+	if(main.status==2){
+		showMsg("此单已归库,不能审核!","S");
+        return;
+	}
 	var maintain = billForm.getData();
 	var sellPartAdd = rpsPartGrid.getChanges("added");
 	var sellPartUpdate = rpsPartGrid.getChanges("modified");

@@ -103,7 +103,7 @@ function addBooking() {
     }
     nui.open({
         url: webPath + repairDomain + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
-        title: "新增", width: 655, height: 386,
+        title: "预约", width: 655, height: 300,
         onload: function () {
             var iframe = this.getIFrameEl();
             var param = { action: "edit", data: row };

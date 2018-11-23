@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 	<%@include file="/common/sysCommon.jsp" %>
 <html>
-<!-- 
+<!--
   - Author(s): Guine
   - Date: 2018-03-26 10:16:08
   - Description:
@@ -12,10 +12,10 @@
 <title>资料管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-    <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.12"></script>
-    <script src="<%=webPath + contextPath%>/manage/js/importData.js?v=1.0.12"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.13"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/importData.js?v=1.0.13"></script>
     <style type="text/css">
-    
+
     .file {
     position: relative;
     display: inline-block;
@@ -42,10 +42,10 @@
     color: #004974;
     text-decoration: none;
 }
-    
+
     </style>
-    
-    
+
+
 </head>
 <body>
 
@@ -63,7 +63,7 @@
                     <li iconCls="icon-tip" onclick="openMore()" id="type3">更多</li>
                     -->
                 </ul>
-                
+
                 <input name="orgid"
                     id="query_orgid"
                     visible="false"
@@ -75,7 +75,7 @@
                     valueFromSelect="true"
                     showNullItem="false"
                     nullItemText="请选择..."/>
-                          
+
                 <label style="font-family:Verdana;">跟踪状态：</label>
                 <input name="visitStatus"
                     id="visitStatus"
@@ -88,7 +88,7 @@
                     valueFromSelect="true"
                     showNullItem="false"
                     nullItemText="请选择..."/>
-                    
+
                                     <label style="font-family:Verdana;">车牌号：</label>
                 <input class="nui-textbox width1" name="carNo" id="carNo" enabled="true"/>
                 <!--
@@ -101,15 +101,15 @@
                     valueField="customid"
                     emptyText="请选择..."
                     allowInput="false"
-                    valueFromSelect="true" 
+                    valueFromSelect="true"
                     showNullItem="false"
                     nullItemText="请选择..."/>
                 -->
                 <a class="nui-button"  plain="true" onclick="query(0)" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button"  plain="true" onclick="updateField('visitStatus', '060701')" id="add" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;设为继续跟踪</a>
                 <a class="nui-button"  plain="true" onclick="updateField('visitStatus', '060702')" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;设为结束跟踪</a>
-                
-                
+
+
                 <li class="separator"></li>
                 <label style="font-family:Verdana;">分配给：</label>
                 <input name="tracker"
@@ -127,7 +127,7 @@
                     <a href="javascript:;" class="file">导入资料
                         <input type="file" name="" id="" onchange="importf(this)">
                     </a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;保存导入数据</a>
 </div>
 
 <div class="nui-fit">
@@ -139,15 +139,15 @@
                      showHeader="true"
                      showFooter="false"
                      style="width:100%;height:60%;border: 0;">
-                    <ul id="tree1" class="nui-tree" 
-                        style="width:100%;height:95%;padding:5px;" 
-                        showTreeIcon="true" 
-                        dataField="rs" 
-                        textField="nameCn" 
-                        idField="id" 
-                        resultAsTree="false" 
-                        parentField="" 
-                        showTreeLines="true" 
+                    <ul id="tree1" class="nui-tree"
+                        style="width:100%;height:95%;padding:5px;"
+                        showTreeIcon="true"
+                        dataField="rs"
+                        textField="nameCn"
+                        idField="id"
+                        resultAsTree="false"
+                        parentField=""
+                        showTreeLines="true"
                         onNodedblclick="onType1DbClick"
                         allowDrag="true">
                     </ul>
@@ -156,15 +156,15 @@
                      showHeader="true"
                      showFooter="false"
                      style="width:100%;height:40%;border: 0;">
-                    <ul id="tree2" class="nui-tree" 
-                        style="width:100%;height:95%;padding:5px;" 
-                        showTreeIcon="true" 
-                        dataField="data" 
-                        textField="empName" 
-                        idField="empId" 
-                        resultAsTree="false" 
-                        parentField="" 
-                        showTreeLines="true" 
+                    <ul id="tree2" class="nui-tree"
+                        style="width:100%;height:95%;padding:5px;"
+                        showTreeIcon="true"
+                        dataField="data"
+                        textField="empName"
+                        idField="empId"
+                        resultAsTree="false"
+                        parentField=""
+                        showTreeLines="true"
                         onNodedblclick="onType2DbClick"
                         allowDrag="true">
                     </ul>
@@ -180,7 +180,7 @@
                     <div id="dgGrid" class="nui-datagrid" style="width:100%;height:100%;"
                          showPager="true"
                          totalField="page.count"
-                         pageSize="50" sizeList=[20,50,100] 
+                         pageSize="50" sizeList=[20,50,100]
                          selectOnLoad="true"
                          ondrawcell=""
                          onrowdblclick=""
@@ -211,6 +211,7 @@
                                 <div property="columns">
                                     <div field="guestId" visible=false>客户ID</div>
                                     <div field="guestName" width="80" headerAlign="center" summaryType="" allowSort=false>客户名称</div>
+                                    <div field="mobile" width="100" headerAlign="center" summaryType="" allowSort=false>联系电话</div>
                                     <div field="address" width="150" headerAlign="center" summaryType="" allowSort=false>地址</div>
                                     <!--
                                     <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>客户等级</div>

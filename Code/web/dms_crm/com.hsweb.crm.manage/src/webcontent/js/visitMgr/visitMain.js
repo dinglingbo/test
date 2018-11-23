@@ -21,7 +21,8 @@ var statusHash = {
 	"3" : "待结算",
 	"4" : "已结算"
 };
-
+var brandHash = null;
+var servieTypeHash = null;
 
 $(document).ready(function(){
 	visitManEl = nui.get("visitMan");

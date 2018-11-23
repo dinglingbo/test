@@ -60,8 +60,8 @@
 	                dataField="pointList"
 	            	data="pointList"
 	                allowInput="true"
-	                showNullItem="false"
-	                nullItemText="分类"/>
+	                showNullItem="true"
+	                nullItemText="请选择..."/>
 	                
                   <input id="serviceTypeId"
                     name="serviceTypeId"

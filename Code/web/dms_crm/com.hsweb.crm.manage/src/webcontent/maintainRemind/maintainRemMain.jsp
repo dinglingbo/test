@@ -28,7 +28,7 @@ pageEncoding="UTF-8" session="false" %>
 </head>
 <body>
     <div class="nui-toolbar">
-        <label style="font-family:Verdana;">快速查询：</label>
+       <!--  <label style="font-family:Verdana;">快速查询：</label> -->
         <label style="font-family:Verdana;">车牌号：</label>
         <input class="nui-textbox" name="tcarNo" id="tcarNo">
         <label style="font-family:Verdana;">手机号：</label>

@@ -110,8 +110,8 @@ function getSearchParams(){
     params.partName=nui.get("partName").getValue();
     params.partBrandId=nui.get("partBrandId").getValue();
     params.storeId=nui.get("storeId").getValue();
-    params.sOutDate=nui.get("sOutDate").getValue().substr(0, 10);
-    params.eOutDate=nui.get("eOutDate").getValue().substr(0, 10);
+    params.sOutDate=nui.get("sOutDate").getValue();
+    params.eOutDate=addDate(eOutDateEl.getValue(),1);
     return params;
 }
 var currType = 2;
@@ -174,7 +174,7 @@ function quickSearch(type){
     }
     currType = type;
     sOutDateEl.setValue(params.sOutDate);
-    eOutDateEl.setValue(params.eOutDate);
+    eOutDateEl.setValue(addDate(params.eOutDate,-1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
     doSearch(params);

@@ -366,11 +366,23 @@
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">data/modifier</process:to>
+      <process:to type="query">main/modifier</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
-      <process:to type="query">data/modifyDate</process:to>
+      <process:to type="query">main/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">total_rtnCompAmt</process:from>
+      <process:to type="query">main/rtnCompAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">total_amt</process:from>
+      <process:to type="query">main/amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">total_rtnGuestAmt</process:from>
+      <process:to type="query">main/rtnGuestAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
@@ -470,6 +482,7 @@
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
       <targetNode>assign10</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link25" name="link25" displayName="连接线" type="transition">
       <sourceNode>assign9</sourceNode>
@@ -1050,7 +1063,6 @@
     <location x="296" y="262"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="detailData" iterableElement="detail"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">

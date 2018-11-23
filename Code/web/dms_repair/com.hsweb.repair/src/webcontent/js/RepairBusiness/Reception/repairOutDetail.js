@@ -211,7 +211,7 @@ function setInitData(params){
     					data.guestMobile = guest.mobile;
     					data.contactorName = contactor.name;
     					data.mobile = contactor.mobile;
-
+    					data.carModel=mainRow.carModel;
                         //$("#guestNameEl").html(guest.guestFullName);
                         //$("#showCarInfoEl").html(data.carNo);
                         //$("#guestTelEl").html(guest.mobile);

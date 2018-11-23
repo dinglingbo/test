@@ -171,11 +171,11 @@ function saveUnifyPart(){
     
 	var data=rightUnifyGrid.getData();
 	for(var i=0;i<data.length;i++){
-		if(!data[i].sellPrice )
-        {
-            showMsg("售价不能为空", "W");
-            return;
-        }
+//		if(!data[i].sellPrice )
+//        {
+//            showMsg("售价不能为空", "W");
+//            return;
+//        }
 		if(!data[i].salesDeductType )
         {
             showMsg("提成类型不能为空", "W");
@@ -183,7 +183,7 @@ function saveUnifyPart(){
         }
 		if(!data[i].salesDeductValue )
         {
-            showMsg("提成金额不能为空", "W");
+            showMsg("提成类型对应的比率或金额不能为空", "W");
             return;
         }
 		

@@ -106,7 +106,7 @@
 		                  <div field="carModel" name="carModel" width="80" headerAlign="center" header="车型"></div>
 		                  <div field="carVin" name="carVin" width="80" headerAlign="center" header="VIN码"></div>
 		                  <div field="guestFullName" name="guestFullName" width="60" headerAlign="center" header="客户姓名"></div>
-		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div>
+<!-- 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div> -->
 		                  <div field="mtAdvisor" name="mtAdvisor" width="60" headerAlign="center" header="服务顾问"></div>
 		                  <div field="serviceTypeId" name="serviceTypeId" width="60" headerAlign="center" header="业务类型"></div> 
 		                  <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>

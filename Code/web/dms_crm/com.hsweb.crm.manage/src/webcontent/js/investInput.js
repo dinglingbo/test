@@ -12,9 +12,24 @@ var gAuditSign=[{
 	"text":"不通过"
 }];
 
+var brandList=[];
+var brandHash={};
+var serviceList=[];
+var serviceHash={};
+
 $(document).ready(function(){
 	investGrid = nui.get("investGrid");
 	investGrid.setUrl(queryInvestListUrl);
+	
+	initCarBrand("carBrandId",function(data) {
+		brandList = nui.get("carBrandId").getData();
+		brandList.forEach(function(v) {brandHash[v.id] = v;});
+	});
+	initServiceType("serviceTypeId",function(data) {
+		serviceList = nui.get("serviceTypeId").getData();
+		serviceList.forEach(function(v) {serviceHash[v.id] = v;});
+	});
+	
 	
 	investGrid.on("rowdblclick", function(e) {
 		var row = investGrid.getSelected();
@@ -142,6 +157,11 @@ function onDrawcell(e) {
     if (e.field == "carType") {
         e.cellHtml = hash[e.value-1];
 }
+    if (e.field == "serviceTypeId") {
+        if (serviceHash && serviceHash[e.value]) {
+            e.cellHtml = serviceHash[e.value].name;
+        }
+    }
 }
 
 

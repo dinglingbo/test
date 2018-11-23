@@ -325,6 +325,10 @@
                     (a.bill_type_id = #billTypeId#)
                 </isNotEmpty>
                 
+                <isNotEmpty prepend="and" property="billTypeIds">  
+                    (a.bill_type_id in ($billTypeIds$))
+                </isNotEmpty>
+                
                 <!--对账日期 -->
                 <isNotEmpty prepend="and" property="sBalanceDate">  
                     (a.balance_date &gt;= #sBalanceDate#)

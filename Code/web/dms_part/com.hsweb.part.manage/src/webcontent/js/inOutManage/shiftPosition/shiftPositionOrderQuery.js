@@ -112,7 +112,7 @@ function getSearchParam(){
 	params.partCode = comPartCode.getValue();
 	params.partNameAndPY = comPartNameAndPY.getValue();
 	params.guestId = comSearchGuestId.getValue();
-	params.endDate = searchEndDate.getValue();
+	params.endDate = addDate(searchEndDate.getValue(),1);
 	params.startDate = searchBeginDate.getValue();
     return params;
 }
@@ -174,7 +174,7 @@ function quickSearch(type){
             break;
     }
     searchBeginDate.setValue(params.startDate);
-    searchEndDate.setValue(params.endDate);
+    searchEndDate.setValue(addDate(params.endDate,-1));
     currType = type;
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);

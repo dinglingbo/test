@@ -4,7 +4,7 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var detailGrid = null;
-
+var insurance = [];
 var mainListUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceList.biz.ext";
 var detailGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceDetailList.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
@@ -15,12 +15,13 @@ var searchKeyEl = null;
 var mtAdvisorIdEl = null;
 var mtAdvisorEl = null;
 var insuranceComp = null;
-var insuranceForm = null;
+//var insuranceForm = null;
 var saleManIds = null;
 var fserviceId = 0;
 var fguestId = 0;
 var carCheckInfo = null;
 var mainData = null;
+var settleTypeIdList = [{id:1,name:"保司直收"},{id:2,name:"门店代收全款"},{id:3,name:"代收减返点"}];
 var detailData = [{insureTypeId:1,insureTypeName:"交强险"},{insureTypeId:2,insureTypeName:"商业险"},{insureTypeId:3,insureTypeName:"车船税"}];
 $(document).ready(function ()
 {
@@ -29,7 +30,7 @@ $(document).ready(function ()
     var dd = (new Date()).getDate();
     var db = yy + "-" + mm + "-" + dd; //本日
     basicInfoForm = new nui.Form("#basicInfoForm");
-    insuranceForm = new nui.Form("#insuranceForm");
+//    insuranceForm = new nui.Form("#insuranceForm");
     mtAdvisorIdEl = nui.get("mtAdvisorId");
     mtAdvisorEl = nui.get("mtAdvisor");
     saleManIds = nui.get("saleManIds");
@@ -167,7 +168,7 @@ $(document).ready(function ()
     });
 
     document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号/VIN码)");
-
+    InsuranceQuery();//查出保险公司，用于带出返点
 
 });
 
@@ -220,6 +221,15 @@ function drawSummaryCell(e){
 function insuranceChange(e){
     var selected = e.selected;
     nui.get("insureCompId").setValue(selected.id);
+    for(var i =0;i<insurance.length;i++){
+    	if(insurance[i].id==selected.id){
+    		detailData = [
+    		              {insureTypeId:1,rtnCompRate:insurance[i].rebateAgentToCompany1,rtnGuestRate:insurance[i].rebateCompanyToGuest1,insureTypeName:"交强险"},
+    		              {insureTypeId:2,rtnCompRate:insurance[i].rebateAgentToCompany2,rtnGuestRate:insurance[i].rebateCompanyToGuest2,insureTypeName:"商业险"},
+    		              {insureTypeId:3,rtnCompRate:insurance[i].rebateAgentToCompany3,rtnGuestRate:insurance[i].rebateCompanyToGuest3,insureTypeName:"车船税"}];
+    		 detailGrid.setData(detailData);
+    	}
+    }
 }
 function saleManChange(e){
     var val = nui.get("saleManIds").text;
@@ -247,6 +257,19 @@ function searchMainData(tid){
     return val;
 }
 
+//查出保险公司，用于带出返点
+function InsuranceQuery(){
+    nui.ajax({
+        url:insuranceInfoUrl,
+        tupe:"post",
+        async:false, 
+        success:function(text){
+        	insurance=text.list;
+
+        }
+
+    });
+}
 
 function setInitData(params){
     mainData= params;
@@ -328,22 +351,26 @@ function setInitData(params){
                         date1:ldata.beginDate,
                         date2:ldata.endDate,
                         mtAdvisorId:ldata.mtAdvisorId,
-                        mtAdvisor:ldata.mtAdvisor
+                        mtAdvisor:ldata.mtAdvisor,
+                        settleTypeId :ldata.settleTypeId
                     };
-
+                
             basicInfoForm.setData(sdata);
-            insuranceForm.setData(sdata);
+            nui.get('mtAdvisorId').setValue(sdata.mtAdvisorId);
+            nui.get('mtAdvisorId').setText(sdata.mtAdvisor);
+            
+//            insuranceForm.setData(sdata);
             detailGrid.load({serviceId:params.id,token:token});
 
-            if(ldata.settleTypeId == 1){
-                $("#radio1").attr("checked", "checked");
-            }
-            if(ldata.settleTypeId == 2){
-                $("#radio2").attr("checked", "checked");
-            }
-            if(ldata.settleTypeId == 3){
-                $("#radio3").attr("checked", "checked");
-            }
+//            if(ldata.settleTypeId == 1){
+//                $("#radio1").attr("checked", "checked");
+//            }
+//            if(ldata.settleTypeId == 2){
+//                $("#radio2").attr("checked", "checked");
+//            }
+//            if(ldata.settleTypeId == 3){
+//                $("#radio3").attr("checked", "checked");
+//            }
 
         }else{
             showMsg("数据加载失败,请重新打开工单!","W");
@@ -372,7 +399,7 @@ function add(){
     var sk = document.getElementById("search_key");
     sk.style.display = "";
     searchKeyEl.focus();
-    insuranceForm.setData([]);
+//    insuranceForm.setData([]);
     basicInfoForm.setData([]);
 
     nui.get("mtAdvisorId").setValue(currEmpId);
@@ -432,8 +459,8 @@ function saveData(e){
             return;
         }
     }
-    var data1 = basicInfoForm.getData();
-    var data2 = getData2();
+    var data = basicInfoForm.getData();
+//    var data2 = getData2();
     var gridData = detailGrid.getData();
 
     nui.ajax({
@@ -441,17 +468,19 @@ function saveData(e){
         type:"post",
         async: false,
         data:{
-            data1:data1,
-            data2:data2,
+            data:data,
             detailData:gridData
         },
         success:function(text){
-            var mainData = text.mainData;
-            nui.get("id").setValue(mainData.id);
-            detailGrid.load({serviceId:mainData.id,token:token});
-            if(e == 1){
-                showMsg("保存成功！","S");
-                $("#servieIdEl").html(mainData.serviceCode);
+            if(text.errCode=='S'){	
+	        	var mainData = text.mainData;
+	        	nui.get("id").setValue(mainData.id);
+	        	detailGrid.load({serviceId:mainData.id,token:token});
+	        	
+	        	if(e == 1){
+	        		showMsg("保存成功！","S");
+	        		$("#servieIdEl").html(mainData.serviceCode);
+	        	}
             }
 
         }
@@ -459,17 +488,17 @@ function saveData(e){
     });
 }
 
-function getData2() {
-    var data2 = insuranceForm.getData();
-    var b1= document.getElementsByName('settleTypeId');
-    for (var i = 0; i < b1.length; i++) {
-        if (b1[i].checked == true) {//如果选中，
-            data2.settleTypeId = b1[i].value;
-        }
-
-    }
-    return data2;
-}
+//function getData2() {
+//    var data2 = insuranceForm.getData();
+//    var b1= document.getElementsByName('settleTypeId');
+//    for (var i = 0; i < b1.length; i++) {
+//        if (b1[i].checked == true) {//如果选中，
+//            data2.settleTypeId = b1[i].value;
+//        }
+//
+//    }
+//    return data2;
+//}
 
 
 function pay() {
@@ -488,7 +517,7 @@ function pay() {
     var sTypeId = null;
 
     var data1 = basicInfoForm.getData();
-    var data2 = getData2();
+//    var data2 = getData2();
     var gridData = detailGrid.getData();
     var b1= document.getElementsByName('settleTypeId');
     for (var i = 0; i < b1.length; i++) {
@@ -506,7 +535,6 @@ function pay() {
     }
     var params ={
         data1:data1,
-        data2:data2,
         gridData:gridData,
         t_amt:t_amt,
         t_rtnCompRate:t_rtnCompRate,

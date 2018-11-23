@@ -288,7 +288,7 @@ function onChanged() {
 	var count = scount();
 	 deductible = nui.get("deductible").getValue()||0;
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
-	if(PrefAmt>0){
+	if(PrefAmt>=0){
 		var amount = parseFloat(netInAmt) - parseFloat(PrefAmt);
 		zongAmt = amount.toFixed(2);
 		document.getElementById('amount').innerHTML = amount.toFixed(2);
@@ -376,17 +376,17 @@ function pay(){
 		}
 	var deductible = nui.get("deductible").getValue()||0;
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
-	var payType = nui.get("payType").getValue()||0;
+
 	var amt = scount();
 	var json = {
 		accountTypeList : accountTypeList,
 		allowanceAmt:PrefAmt,
 		cardPayAmt:deductible,
 		serviceId:fserviceId,
-		payType:payType,
+
 		payAmt:amt
 	};
-    nui.confirm("确定结算吗?", "友情提示",function(action){
+    nui.confirm("是否确定结算？", "友情提示",function(action){
 	       if(action == "ok"){
 			    nui.mask({
 			        el : document.body,

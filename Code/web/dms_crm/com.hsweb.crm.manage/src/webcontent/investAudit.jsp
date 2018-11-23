@@ -6,27 +6,26 @@
 <head>
 <title>业绩审核</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-   <script src="<%=webPath + contextPath%>/manage/js/investAudit.js?v=1.0.3"></script>
+   <script src="<%=webPath + contextPath%>/manage/js/investAudit.js?v=1.0.34"></script>
 </head>
 <body>
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-        <table class="table">
-            <tr>
-                <td>
+	                 <input class="nui-combobox" id="carBrandId"   name="carBrandId" textField="empName"
+	                  valueField="empId" visible="false" allowInput="true"valueFromSelect="false">
+	                  	                 <input class="nui-combobox" id="serviceTypeId"   name="serviceTypeId" textField="empName"
+	                  valueField="empId" visible="false" allowInput="true"valueFromSelect="false">
                     <span>车牌号:</span>
                     <input id="carNo" class="nui-textbox" emptyText="输入查询条件" width="120"/>
                     <span>工单号:</span>
                     <input id="serviceCode" class="nui-textbox" emptyText="输入查询条件" width="120"/>
                     <span>审核状态:</span>
-                    <input id="auditSign" class="nui-combobox" data="gAuditSign" emptyText="输入查询条件" width="120"/>
+                    <input id="auditSign" class="nui-combobox" data="gAuditSign" emptyText="输入查询条件" width="120" showNullItem="true" nullItemText="请选择..."/>
                     <a class="nui-button"  plain="true" onclick="search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onAuditClick(1)"><span class="fa fa-check fa-lg"></span>&nbsp;审核通过</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onAuditClick(2)"><span class="fa fa-remove fa-lg"></span>&nbsp;审核不通过</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onDeleteClick()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                     <a class="nui-button" iconCls="" plain="true" onclick=""><span class="fa fa-history fa-lg"></span>&nbsp;跟踪记录</a>
-                </td>
-            </tr>
-        </table>
+
     </div>
 
     <div class="nui-fit">

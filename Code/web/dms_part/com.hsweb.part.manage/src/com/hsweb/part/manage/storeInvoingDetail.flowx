@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tPageFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="storeInvoingDetail.flowx" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0" state="stateless">
-  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="shopInvoingDetail.jsp" collapsed="false" type="view" contextPath="" contributionName="com.hsweb.cloud.part.common" method="forward" uri="/manage/report/inventory/shopInvoingDetail.jsp">
+  <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="storeInvoingDetail.jsp" collapsed="false" type="view" contextPath="" contributionName="com.hsweb.cloud.part.common" method="forward" uri="/manage/report/inventory/storeInvoingDetail.jsp">
     <sourceConnections xsi:type="process:tActionLink" id="link1" name="link1" displayName="link1" lineType="reference" isDefault="true" type="action" actionName="action1">
       <sourceNode>view0</sourceNode>
       <targetNode>end1</targetNode>

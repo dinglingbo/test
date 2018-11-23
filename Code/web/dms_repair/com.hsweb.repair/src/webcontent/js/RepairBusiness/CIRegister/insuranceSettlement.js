@@ -148,7 +148,7 @@ function pay(){
 		serviceId:fserviceId,
 		payAmt:count
 	}
-    nui.confirm("确定结算吗?", "友情提示",function(action){
+    nui.confirm("是否确定结算？", "友情提示",function(action){
 	       if(action == "ok"){
 			    nui.mask({
 			        el : document.body,

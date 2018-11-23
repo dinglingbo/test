@@ -4,7 +4,7 @@
 
 <head>
 <title>配件类型汇总按月排行</title>
-<script src="<%=webPath + contextPath%>/manage/js/report/partTypePchsForMonth.js?v=1.1.1"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/partTypePchsForMonth.js?v=1.1.2"></script>
 </head>
 
 <body>

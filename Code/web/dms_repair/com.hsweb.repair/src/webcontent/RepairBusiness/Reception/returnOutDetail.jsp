@@ -12,7 +12,7 @@
 <head> 
     <title>归库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.26"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.29"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -129,16 +129,16 @@
         valueFromSelect="true"
         onvaluechanged=""
         nullItemText="请选择..."/>
-        <table  style=" left:0;right:0;margin: 0 auto;"> 
+        <table  style="width:100%; left:0;right:0;margin: 0 auto;"> 
 
             <tr>
                 <td class="tbtext">车主:</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName" />
+                    <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName" width="100%" />
                 </td>
                 <td class="tbtext">车主电话:</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" />
+                    <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" width="100%" />
                 </td>
                 <!-- 
                 <td class="tbtext">级别:</td>
@@ -151,22 +151,22 @@
                 </td>
             -->
             <td class="tbtext">车型:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="carModel" id="carModel"/>
+            <td colspan="3" class="tbCtrl">
+                <input class="nui-textbox tabwidth" name="carModel" id="carModel" width="100%"/>
             </td>
-        </tr> 
-        <tr>
+             
             <td class="tbtext">车牌:</td>
             <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="carNo" id="carNo"/>
+                <input class="nui-textbox tabwidth" name="carNo" id="carNo"  width="100%"/>
             </td>
 
-            <td class="tbtext">VIN码:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" id="carVin" name="carVin"/>
-            </td>
-        </tr>
+            
+        </tr> 
         <tr>
+           <td class="tbtext">VIN码:</td>
+            <td class="tbCtrl">
+                <input class="nui-textbox tabwidth" id="carVin" name="carVin"  width="100%"/>
+            </td>
             <td class="tbtext">服务顾问:</td>
             <td class="tbCtrl">
                 <input name="mtAdvisorId"
@@ -176,6 +176,7 @@
                 valueField="empId"
                 emptyText="请选择..."
                 url=""
+                width="100%"
                 allowInput="true"
                 showNullItem="false"
                 valueFromSelect="true"
@@ -184,22 +185,22 @@
             </td>
             <td class="tbtext">服务技师:</td>
             <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="sureMtMan" id="sureMtMan"/>
+                <input class="nui-textbox tabwidth" name="sureMtMan" id="sureMtMan"  width="100%"/>
             </td>
             <td class="tbtext">送修人:</td>
             <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="contactorName" id="contactorName"/>
+                <input class="nui-textbox tabwidth" name="contactorName" id="contactorName" width="100%"/>
             </td>
             <td class="tbtext">联系方式:</td>
             <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" " name="mobile" id="mobile" />
+                <input class="nui-textbox tabwidth" " name="mobile" id="mobile"  width="100%"/>
             </td>
-
         </tr>
+
 
     </table>
 </div>
-
+<div style="height:10px;width:100%"></div>
 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
 dataField="data"   multiSelect="false" 
 url=""  showModified="false"

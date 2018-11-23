@@ -306,7 +306,7 @@
 //         });
 
         }else{
-            showMsg('没有需要出库的配件!','W');
+            showMsg('没有填写需要出库的配件!','W');
             return;
         }
         savePartOut(childdata);
@@ -386,7 +386,7 @@
                 }  
             }); 
         }else{  
-            showMsg('没有需要出库的配件!','W'); 
+            showMsg('没有填写需要出库的配件!','W'); 
         } 
     } 
 

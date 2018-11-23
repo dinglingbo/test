@@ -114,8 +114,8 @@ function remove(id){
 }
 
 var settleAuditUrl = frmUrl+ "com.hsapi.frm.frmService.rpsettle.rpAccountSettle.biz.ext";//应收应付
-var payMeth = frmUrl + "/com.hsapi.repair.repairService.settlement.receiveCardTimes.biz.ext";//计次卡
-var payurl=baseUrl+"com.hsapi.repair.repairService.settlement.rechargeReceive.biz.ext";//储值卡支付
+var payMeth = apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.receiveCardTimes.biz.ext";//计次卡
+var payurl = apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.rechargeReceive.biz.ext";//储值卡支付
 
 function settleOK() {
 	var count = scount();

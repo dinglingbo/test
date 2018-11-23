@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>车险登记明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.4"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.8"></script>
     <style type="text/css">
    .title {
         width: 80px;
@@ -120,6 +120,8 @@ pageEncoding="UTF-8" session="false"%>
     <input class="nui-hidden" name="billTypeId"/>
     <input class="nui-hidden" name="status"/>
     <input class="nui-hidden" name="isSettle"/>
+    <input class="nui-hidden" name="insureCompId" id="insureCompId"/>
+    <input class="nui-hidden" name="saleMans" id="saleMans"/>
     <table  style="width: 100%;border-spacing: 0px 5px;"> 
         <tr>
             <td class="title required">车牌号:</td> 
@@ -166,7 +168,26 @@ pageEncoding="UTF-8" session="false"%>
 
             <td class="title required">车辆/品牌:</td> 
             <td class=""><input  class="nui-textbox" name="carBrand" id="carBrand" enabled="false" width="100%"/></td>
+			
+        </tr>
+        
+        <tr>   
+            <td class="title required">保险公司:</td> 
+            <td class=""><input class="nui-combobox" id="insureCompName" name="insureCompName" emptyText="选择保险公司" dataField="list" valueField="fullName" textField="fullName" showNullItem="true" nullItemText="请选择..."popupWidth="200" onvaluechanged="insuranceChange" width="100%"/></td>
+            <td class="title required">销售人员:</td> 
+            <td class=""><input class="nui-combobox" id="saleManIds" name="saleManIds" emptyText="选择销售人员" dataField="data" valueField="empId" textField="empName" showNullItem="true" nullItemText="请选择..." multiSelect="true" onvaluechanged="saleManChange" width="100%"/></td>
 
+            <td class="title required">
+                <label>有效日期：</label>
+            </td>
+            <td>
+               <input id="date1" name="date1" class="nui-datepicker" value="" format="yyyy-MM-dd " width="46%"/>
+    			至 <input id="date2" name="date2" class="nui-datepicker" value="" format="yyyy-MM-dd "width="46%"/> &nbsp;&nbsp;
+            </td>
+
+            <td class="title required">保费收取方式:</td> 
+            <td class=""><input  class="nui-combobox" name="settleTypeId" id="settleTypeId" valueField="id" textField="name" data="settleTypeIdList" dataField="settleTypeIdList" width="100%"/></td>
+			
         </tr>
     </table>
 </div>
@@ -193,20 +214,20 @@ pageEncoding="UTF-8" session="false"%>
     </table>
 </div> 
 
-<div class="nui-toolbar" style="margin-top:5px;" id="insuranceForm">
-    <input class="nui-hidden" name="insureCompId" id="insureCompId"/>
-    <input class="nui-hidden" name="saleMans" id="saleMans"/>
-    <input class="nui-combobox" id="insureCompName" name="insureCompName" emptyText="选择保险公司" dataField="list" valueField="fullName" textField="fullName" showNullItem="true" nullItemText="请选择..."popupWidth="200" onvaluechanged="insuranceChange"/>
-    <input class="nui-combobox" id="saleManIds" name="saleManIds" emptyText="选择销售人员" dataField="data" valueField="empId" textField="empName" showNullItem="true" nullItemText="请选择..." multiSelect="true" onvaluechanged="saleManChange"/>
-    有效日期 从<input id="date1" name="date1" class="nui-datepicker" value="" format="yyyy-MM-dd "/>
-    至 <input id="date2" name="date2" class="nui-datepicker" value="" format="yyyy-MM-dd "/> &nbsp;&nbsp;
+<!-- <div class="nui-toolbar" style="margin-top:5px;" id="insuranceForm"> -->
+<!--     <input class="nui-hidden" name="insureCompId" id="insureCompId"/> -->
+<!--     <input class="nui-hidden" name="saleMans" id="saleMans"/> -->
+<!--     <input class="nui-combobox" id="insureCompName" name="insureCompName" emptyText="选择保险公司" dataField="list" valueField="fullName" textField="fullName" showNullItem="true" nullItemText="请选择..."popupWidth="200" onvaluechanged="insuranceChange"/> -->
+<!--     <input class="nui-combobox" id="saleManIds" name="saleManIds" emptyText="选择销售人员" dataField="data" valueField="empId" textField="empName" showNullItem="true" nullItemText="请选择..." multiSelect="true" onvaluechanged="saleManChange"/> -->
+<!--     有效日期 从<input id="date1" name="date1" class="nui-datepicker" value="" format="yyyy-MM-dd "/> -->
+<!--     至 <input id="date2" name="date2" class="nui-datepicker" value="" format="yyyy-MM-dd "/> &nbsp;&nbsp; -->
 
-    <label>保费收取方式：</label> 
-    <input type="radio" name="settleTypeId" id="radio1" value="1">保司直收
-    <input type="radio" name="settleTypeId" id="radio2" value="2" checked>门店代收全款
-    <input type="radio" name="settleTypeId" id="radio3" value="3">代收减返点
+<!--     <label>保费收取方式：</label>  -->
+<!--     <input type="radio" name="settleTypeId" id="radio1" value="1">保司直收 -->
+<!--     <input type="radio" name="settleTypeId" id="radio2" value="2" checked>门店代收全款 -->
+<!--     <input type="radio" name="settleTypeId" id="radio3" value="3">代收减返点 -->
 
-</div>   
+<!-- </div>    -->
 
 <div class="nui-fit">
     <div id="detailGrid" datafield="list" class="nui-datagrid" style="width: 100%; height:118px;" 

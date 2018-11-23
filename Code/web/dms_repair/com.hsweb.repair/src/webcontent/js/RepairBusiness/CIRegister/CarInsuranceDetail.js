@@ -21,6 +21,7 @@ var fserviceId = 0;
 var fguestId = 0;
 var carCheckInfo = null;
 var mainData = null;
+var settleTypeIdList = [{id:1,name:"保司直收"},{id:2,name:"门店代收全款"},{id:3,name:"代收减返点"}];
 var detailData = [{insureTypeId:1,insureTypeName:"交强险"},{insureTypeId:2,insureTypeName:"商业险"},{insureTypeId:3,insureTypeName:"车船税"}];
 $(document).ready(function ()
 {
@@ -350,22 +351,23 @@ function setInitData(params){
                         date1:ldata.beginDate,
                         date2:ldata.endDate,
                         mtAdvisorId:ldata.mtAdvisorId,
-                        mtAdvisor:ldata.mtAdvisor
+                        mtAdvisor:ldata.mtAdvisor,
+                        settleTypeId :ldata.settleTypeId
                     };
 
             basicInfoForm.setData(sdata);
             insuranceForm.setData(sdata);
             detailGrid.load({serviceId:params.id,token:token});
 
-            if(ldata.settleTypeId == 1){
-                $("#radio1").attr("checked", "checked");
-            }
-            if(ldata.settleTypeId == 2){
-                $("#radio2").attr("checked", "checked");
-            }
-            if(ldata.settleTypeId == 3){
-                $("#radio3").attr("checked", "checked");
-            }
+//            if(ldata.settleTypeId == 1){
+//                $("#radio1").attr("checked", "checked");
+//            }
+//            if(ldata.settleTypeId == 2){
+//                $("#radio2").attr("checked", "checked");
+//            }
+//            if(ldata.settleTypeId == 3){
+//                $("#radio3").attr("checked", "checked");
+//            }
 
         }else{
             showMsg("数据加载失败,请重新打开工单!","W");
@@ -454,8 +456,8 @@ function saveData(e){
             return;
         }
     }
-    var data1 = basicInfoForm.getData();
-    var data2 = getData2();
+    var data = basicInfoForm.getData();
+//    var data2 = getData2();
     var gridData = detailGrid.getData();
 
     nui.ajax({
@@ -463,8 +465,7 @@ function saveData(e){
         type:"post",
         async: false,
         data:{
-            data1:data1,
-            data2:data2,
+            data:data,
             detailData:gridData
         },
         success:function(text){

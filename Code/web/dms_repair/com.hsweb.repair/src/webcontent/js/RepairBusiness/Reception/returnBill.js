@@ -822,15 +822,15 @@ function deletePartRow(row_uid){
 	var main = billForm.getData();	
     var isSettle = main.isSettle||0;
     if(main.status==1){
-		showMsg("此单已审核,不能修改!","S");
+		showMsg("此单已审核,不能修改!","W");
         return;
 	} 
 	if(main.status==2){
-		showMsg("此单已归库,不能修改!","S");
+		showMsg("此单已归库,不能修改!","W");
         return;
 	} 
 	if(isSettle == 1){
-        showMsg("此单已结算,不能修改!","S");
+        showMsg("此单已结算,不能修改!","W");
         return;
     }
     var row = rpsPartGrid.getRowByUID(row_uid);
@@ -938,7 +938,7 @@ function chooseReturnPart(){
  		saveNoShowMsg();
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能修改!","S");
+        showMsg("此单已结算,不能修改!","W");
         return;
     }
 
@@ -1050,17 +1050,17 @@ function onCellCommitEdit(e) {
 	var qty = record.qty||0;
 	editor.validate();
 	if(main.status==1){
-		showMsg("此单已审核,不能修改!","S");
+		showMsg("此单已审核,不能修改!","W");
 		e.cancel = true;
 		return;
 	} 
 	if(main.status==2){
-		showMsg("此单已归库,不能修改!","S");
+		showMsg("此单已归库,不能修改!","W");
 		e.cancel = true;
 		return;
     } 
 	if(isSettle == 1){
-	    showMsg("此单已结算,不能修改!","S");
+	    showMsg("此单已结算,不能修改!","W");
 	    e.cancel = true;
 	    return;
 	}
@@ -1100,11 +1100,11 @@ function saveBatch(){
 	var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(isSettle == 1){
-        showMsg("此单已结算,不能修改!","S");
+        showMsg("此单已结算,不能修改!","W");
         return;
     }
 	if(main.status==1){
-		showMsg("此单已审核,不能修改!","S");
+		showMsg("此单已审核,不能修改!","W");
         return;
 	} 
 	//保存工单
@@ -1255,7 +1255,7 @@ function finish(){
         return;
 	} 
 	if(main.status==2){
-		showMsg("此单已归库,不能审核!","S");
+		showMsg("此单已归库,不能审核!","W");
         return;
 	}
 	var maintain = billForm.getData();

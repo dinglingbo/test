@@ -840,11 +840,11 @@ function deletePartRow(row_uid){
 	var main = billForm.getData();	
     var isSettle = main.isSettle||0;
     if(isSettle == 1){
-        showMsg("此单已结算,不能修改!","S");
+        showMsg("此单已结算,不能修改!","W");
         return;
     }
 	if(main.status==2){
-		showMsg("此单已出库,不能修改!","S");
+		showMsg("此单已出库,不能修改!","W");
         return;
 	} 
     var row = rpsPartGrid.getRowByUID(row_uid);
@@ -951,7 +951,7 @@ function choosePart(){
 		saveNoShowMsg();
     }     
     if(isSettle == 1){
-        showMsg("此单已结算,不能添加配件!","S");
+        showMsg("此单已结算,不能添加配件!","W");
         return;
     }
     nui.open({
@@ -1163,11 +1163,11 @@ function saveBatch(){
 	var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(isSettle == 1){
-        showMsg("此单已结算,不能修改!","S");
+        showMsg("此单已结算,不能修改!","W");
         return;
     }
 	if(main.status==1){
-		showMsg("此单已审核,不能修改!","S");
+		showMsg("此单已审核,不能修改!","W");
         return;
 	} 
 	//保存工单
@@ -1306,19 +1306,19 @@ function finish(){
 	}*/
     var isSettle = main.isSettle||0;
      if(!main.id){
-        showMsg("请选择保存工单!","S");
+        showMsg("请选择保存工单!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能审核!","S");
+        showMsg("此单已结算,不能审核!","W");
         return;
     }
 	if(main.status==1 || b == 1){
-		showMsg("此单已审核,不能重复审核!","S");
+		showMsg("此单已审核,不能重复审核!","W");
         return;
 	} 
 	if(main.status==2){
-		showMsg("此单已出库,不能审核!","S");
+		showMsg("此单已出库,不能审核!","W");
         return;
 	}
 	var sellPartAdd = rpsPartGrid.getChanges("added");

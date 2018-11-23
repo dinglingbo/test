@@ -149,7 +149,7 @@ table {
                                     <label>车牌号：</label>
                                 </td>
                                 <td colspan="3">
-                                    <input class="nui-textbox" name="carNo" id="carNo"/>
+                                    <input class="nui-textbox" name="carNo" id="carNo" onvaluechanged="onCarNoChanged"/>
                                     
                                         <a class="nui-button" iconCls="icon-upgrade" id="preCarBtn" onclick="preCar()" style="margin-right:10px;"></a>
                                         <a class="nui-button" iconCls="icon-downgrade" id="nextCarBtn" onclick="nextCar()" style="margin-right:10px;"></a>

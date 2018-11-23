@@ -2545,7 +2545,7 @@ function chooseItem(){
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能添加项目!","S");
+        showMsg("此单已结算,不能添加项目!","W");
         return;
     }
 	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, function(text){
@@ -2583,7 +2583,7 @@ function choosePackage(){
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能添加套餐!","S");
+        showMsg("此单已结算,不能添加套餐!","W");
         return;
     }
                                                        
@@ -2787,7 +2787,7 @@ function choosePart(){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
-        showMsg("请选择保存工单!","S");
+        showMsg("请选择保存工单!","W");
         return;
     }
     var status = main.status||0;
@@ -2796,7 +2796,7 @@ function choosePart(){
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能添加配件!","S");
+        showMsg("此单已结算,不能添加配件!","W");
         return;
     }
 
@@ -2890,7 +2890,7 @@ function showBasicDataPart(row_uid){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
-        showMsg("请选择保存工单!","S");
+        showMsg("请选择保存工单!","W");
         return;
     }
     var status = main.status||0;
@@ -2899,7 +2899,7 @@ function showBasicDataPart(row_uid){
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能添加配件!","S");
+        showMsg("此单已结算,不能添加配件!","W");
         return;
     }  
     var BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPart.flow?token=";
@@ -3957,3 +3957,9 @@ function checkGuest(){
          }
      });
 }
+
+
+
+
+
+

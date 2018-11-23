@@ -269,7 +269,7 @@ $(document).ready(function ()
                     var t = carNo + tel + guestName + carVin;
                     searchNameEl.setValue(t);
                     //searchNameEl.setEnabled(false);
-        
+                    
                     doSetMainInfo(item);
                 }
             });
@@ -701,6 +701,7 @@ function doSetMainInfo(car){
 
     $("#lastComeKilometers").html(car.lastComeKilometers);
     billForm.setData(maintain);
+    nui.get("contactorName").setText(car.contactName);
     sendGuestForm.setData(maintain);
     describeForm.setData(maintain);
     insuranceForm.setData(maintain);
@@ -849,6 +850,8 @@ function setInitData(params){
                         	nui.get("ExpenseAccount").setVisible(true);
                         	nui.get("ExpenseAccount1").setVisible(false);
                         }
+                        //设置联系人姓名
+                        nui.get("contactorName").setText(contactor.name);
                         sendGuestForm.setData(data);
                         describeForm.setData(data);
 
@@ -934,7 +937,8 @@ function add(){
     fguestId = 0;
     fcarId = 0;
     fserviceId = 0;
-
+    //设置联系人姓名
+    nui.get("contactorName").setText("");
     $("#servieIdEl").html("");
     $("#showCardTimesEl").html("次卡套餐(0)");
     $("#showCardEl").html("储值卡(0)");
@@ -1023,7 +1027,8 @@ function save(){
                     data.mobile = contactor.mobile;
                     data.carModel = car.carModel;
                     billForm.setData(data);
-
+                    //设置联系人姓名
+                    nui.get("contactorName").setText(contactor.name);
                     var status = data.status||0;
                     var isSettle = data.isSettle||0;
                     doSetStyle(status, isSettle);
@@ -1145,7 +1150,8 @@ function saveNoshowMsg(callback){
                     data.mobile = contactor.mobile;
                     data.carModel = car.carModel;
                     billForm.setData(data);
-
+                    //设置联系人姓名
+                    nui.get("contactorName").setText(contactor.name);
                     var status = data.status||0;
                     var isSettle = data.isSettle||0;
                     doSetStyle(status, isSettle);
@@ -2646,7 +2652,7 @@ function choosePackage(){
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能添加套餐!","S");
+        showMsg("此单已结算,不能添加套餐!","W");
         return;
     }
                                                        
@@ -2851,7 +2857,7 @@ function choosePart(){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
-        showMsg("请选择保存工单!","S");
+        showMsg("请选择保存工单!","W");
         return;
     }
     var status = main.status||0;
@@ -2860,7 +2866,7 @@ function choosePart(){
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能添加配件!","S");
+        showMsg("此单已结算,不能添加配件!","W");
         return;
     }
 
@@ -3116,7 +3122,7 @@ function showBasicDataPart(row_uid){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
-        showMsg("请选择保存工单!","S");
+        showMsg("请选择保存工单!","W");
         return;
     }
     var status = main.status||0;
@@ -3125,7 +3131,7 @@ function showBasicDataPart(row_uid){
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能添加配件!","S");
+        showMsg("此单已结算,不能添加配件!","W");
         return;
     }  
     var BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPart.flow?token=";
@@ -4010,6 +4016,53 @@ function checkGuest(){
      });
 }
 
-
-
+function chooseContactor(){
+	var data = billForm.getData();
+	var guestId = data.guestId;
+	if(!guestId){
+		showMsg("请填写客户信息!","W");
+        return; 
+	}
+	if(data.status == 2){
+		showMsg("此单已完工,不能修改联系人!","W");
+        return;        
+    }
+	if(data.isSettle == 1){
+		showMsg("此单已结算,不能修改联系人!","W");
+        return;        
+    }
+	
+	 nui.open({
+         url: webPath + contextPath + "/com.hsweb.repair.DataBase.SelectContactor.flow?token="+token,
+         title: '选择联系人',
+         width: 700, height: 300,
+         onload: function () {
+             var iframe = this.getIFrameEl();
+             var params = {};	
+             params.guestId=guestId;
+             iframe.contentWindow.setData(params);
+         },
+         ondestroy: function (action)
+         {
+        	 var iframe = this.getIFrameEl();
+        	 var row = iframe.contentWindow.getData();
+        	 var contactor = sendGuestForm.getData();
+        	 contactor.id = row.id;
+        	 contactor.contactorName = row.name;
+        	 contactor.sex = row.sex;
+        	 contactor.mobile = row.mobile;
+        	 contactor.idNo = row.idNo;
+        	 contactor.remark = row.remark;
+        	 sendGuestForm.setData(contactor);
+        	 nui.get("contactorName").setText(row.name);
+        	 if(data.id){
+        		 var maintain = billForm.getData();
+        		 maintain.contactorId = row.id;
+        		 maintain.contactorName = row.name;
+        		 billForm.setData(maintain);
+        		 saveNoshowMsg();
+        	 }
+         }
+     });
+}
 

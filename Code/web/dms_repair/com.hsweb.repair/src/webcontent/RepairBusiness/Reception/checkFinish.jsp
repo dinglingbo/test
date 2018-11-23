@@ -10,7 +10,7 @@
 -->
 <head>
 <title>质检&完工</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/checkFinish.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/checkFinish.js?v=1.0.5"></script>
 <style type="text/css">
 
 .title {

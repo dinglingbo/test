@@ -54,7 +54,6 @@ pageEncoding="UTF-8" session="false" %>
             <div type="indexcolumn">序号</div>
             <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
             <div field="status" name="status" width="40px" headerAlign="center" header="进程"></div>
-            <div field="carNo" name="carNo" width="80px" headerAlign="center" header="车牌"></div>
             <div field="carModel" name="carModel" width="200px" headerAlign="center"  header="品牌/车型"></div>
             <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
             <!-- <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>
@@ -65,7 +64,7 @@ pageEncoding="UTF-8" session="false" %>
             <!-- <div field="serviceTypeName" name="serviceTypeName" width="100px" headerAlign="center" header="业务类型"></div>
             <div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div> -->
             <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="开单日期"></div>
-            <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计完工日期"></div>
+            <!-- <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计完工日期"></div> -->
             <div field="mtAdvisor" width="70" headerAlign="center" align="center">维修顾问</div>
             <div field="serviceCode" width="130" headerAlign="center" align="center">工单号</div>
             <div field="leaveDays" width="70" headerAlign="center" align="center">离厂天数</div>

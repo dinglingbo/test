@@ -11,7 +11,7 @@
 -->
 <head>
 <title>标准化产品查询</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.2.2"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.2.3"></script>
 <style type="text/css">
 
 table {
@@ -42,7 +42,7 @@ table {
 
 </head>
 <body>
-<div  class="nui-panel" showToolbar="false" title="快速查询" showFooter="false" style="width:100%;">
+<div  class="nui-panel" showToolbar="false" title="快速查询" showFooter="false" style="width:100%;display:none;">
 	<div id="carInfoForm">
 	    <input class="nui-hidden" id="ExpenseAccount" name="ExpenseAccount"/>
 		<input class="nui-hidden" name="carLevelId"/>
@@ -124,11 +124,11 @@ table {
 		<div size="180" showCollapseButton="false">
 			<div class="nui-fit">
 				<div class="nui-toolbar" style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
-					<label>产品分组</label>
+					<label>套餐类型</label>
 				</div>
 				<div class="nui-fit">
 					<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
-						dataField="rs" showTreeIcon="true" textField="name"
+						dataField="rs" showTreeIcon="true" textField="name" expandOnLoad="0"
 						idField="id" parentField="parentId" resultAsTree="false">
 					</ul>
 				</div>
@@ -138,15 +138,15 @@ table {
 			<div class="nui-toolbar" style="padding: 2px; border: 0;;">
 				<table class="nui-form-table">
 					<tr>
-						<td>
+						<!--<td>
 							<label>查询项：</label>
 						</td>
 						<td>
 							<input class="nui-combobox" id="queryItem"
 								   data="[{id:0,text:'编码'},{id:1,text:'名称'},{id:2,text:'拼音'}]" value="1"/>
-						</td>
+						</td>-->
 						<td>
-							<label>查询值：</label>
+							<label>套餐名称：</label>
 						</td>
 						<td>
 							<input class="nui-textbox" id="queryValue"/>
@@ -190,12 +190,12 @@ table {
 						<div field="carLineName" headerAlign="center" allowSort="true" header="车系"></div>
 						<div field="carLevelName" width="80" headerAlign="center" allowSort="true" header="车型等级"></div>
 						<div field="carModelName" width="80" headerAlign="center" allowSort="true" header="车型"></div>
-						<div field="" width="80" headerAlign="center" allowSort="true" header="技术工艺"></div>
+						<!--<div field="" width="80" headerAlign="center" allowSort="true" header="技术工艺"></div>-->
 						<div field="" width="150" headerAlign="center" allowSort="true" header="备注"></div>
-						<div field="packageTypeId" headerAlign="center" allowSort="true" header="类型"></div>
-						<div field="packageId" width="80" headerAlign="center" allowSort="true" header="套餐编码"></div>
-						<div field="paintQty" headerAlign="center" allowSort="true" header="幅数"></div>
-						<div field="useCount" width="80" headerAlign="center" allowSort="true" header="使用频率"></div>
+						<!--<div field="packageTypeId" headerAlign="center" allowSort="true" header="类型"></div>-->
+						<!--<div field="packageId" width="80" headerAlign="center" allowSort="true" header="套餐编码"></div>-->
+						<!--<div field="paintQty" headerAlign="center" allowSort="true" header="幅数"></div>
+						<div field="useCount" width="80" headerAlign="center" allowSort="true" header="使用频率"></div>-->
 					</div>
 				</div>
 		  </div>

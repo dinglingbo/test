@@ -142,6 +142,21 @@ $(document).ready(
 			sellOutWin = nui.get("sellOutWin");
 			sellRtnWin = nui.get("sellRtnWin");
 
+			/*rRightGrid.on("cellbeginedit",function(e){
+				var row = rRightGrid.getSelected();
+		    	if(row.status == 2)
+		    	{
+		    		switch (e.field)
+		    		{
+		    		   case "nowAmt":
+		    			   e.cancel = true;
+		    			   break;
+		    		   default:
+		    			   break;
+		    		}
+		    	}
+			});*/
+			
 			searchBeginDate.setValue(getNowStartDate());
 			searchEndDate.setValue(addDate(getNowEndDate(), 1));
 

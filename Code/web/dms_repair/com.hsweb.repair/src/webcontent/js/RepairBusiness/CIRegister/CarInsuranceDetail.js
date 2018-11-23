@@ -4,7 +4,7 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var detailGrid = null;
-
+var insurance = [];
 var mainListUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceList.biz.ext";
 var detailGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceDetailList.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
@@ -167,7 +167,7 @@ $(document).ready(function ()
     });
 
     document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号/VIN码)");
-
+    InsuranceQuery();//查出保险公司，用于带出返点
 
 });
 
@@ -220,6 +220,15 @@ function drawSummaryCell(e){
 function insuranceChange(e){
     var selected = e.selected;
     nui.get("insureCompId").setValue(selected.id);
+    for(var i =0;i<insurance.length;i++){
+    	if(insurance[i].id==selected.id){
+    		detailData = [
+    		              {insureTypeId:1,rtnCompRate:insurance[i].rebateAgentToCompany1,rtnGuestRate:insurance[i].rebateCompanyToGuest1,insureTypeName:"交强险"},
+    		              {insureTypeId:2,rtnCompRate:insurance[i].rebateAgentToCompany2,rtnGuestRate:insurance[i].rebateCompanyToGuest2,insureTypeName:"商业险"},
+    		              {insureTypeId:3,rtnCompRate:insurance[i].rebateAgentToCompany3,rtnGuestRate:insurance[i].rebateCompanyToGuest3,insureTypeName:"车船税"}];
+    		 detailGrid.setData(detailData);
+    	}
+    }
 }
 function saleManChange(e){
     var val = nui.get("saleManIds").text;
@@ -247,6 +256,19 @@ function searchMainData(tid){
     return val;
 }
 
+//查出保险公司，用于带出返点
+function InsuranceQuery(){
+    nui.ajax({
+        url:insuranceInfoUrl,
+        tupe:"post",
+        async:false, 
+        success:function(text){
+        	insurance=text.list;
+
+        }
+
+    });
+}
 
 function setInitData(params){
     mainData= params;

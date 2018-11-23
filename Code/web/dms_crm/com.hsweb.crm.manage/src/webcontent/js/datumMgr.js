@@ -18,7 +18,7 @@ $(document).ready(function(v){
     tracker = nui.get("tracker");
     memList = nui.get("tree2");
     tree1 = nui.get("tree1");
-   //tree2 = nui.get("tree2");
+    tree2 = nui.get("tree2");
     dgGrid = nui.get("dgGrid");
     dgGrid.setUrl(queryDatumMgrListUrl);
 //    dgGrid.on("beforeload",function(e){
@@ -57,7 +57,6 @@ $(document).ready(function(v){
     document.onkeyup = function(event) {
         var e = event || window.event;
         var keyCode = e.keyCode || e.which;// 38向上 40向下
-        
 
         if ((keyCode == 13)) { // F9
         	query(0);

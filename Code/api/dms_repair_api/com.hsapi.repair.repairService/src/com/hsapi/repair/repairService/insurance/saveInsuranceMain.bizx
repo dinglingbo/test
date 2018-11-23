@@ -5,7 +5,7 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign16</targetNode>
     </sourceConnections>
-    <location x="-435" y="150"/>
+    <location x="-494" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -22,7 +22,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="-433" y="186"/>
+    <location x="-492" y="186"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -114,12 +114,13 @@
   <nodes xsi:type="process:tLoopStart" description="" id="loopstart0" name="循环" displayName="循环" grouped="true" type="loopstart" matchedName="loopend0" loopType="iterate">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart0</sourceNode>
-      <targetNode>assign2</targetNode>
+      <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="309" y="152"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="detailData" iterableElement="detail"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -148,6 +149,7 @@
     <chidren>loopend0</chidren>
     <chidren>loopstart0</chidren>
     <chidren>assign2</chidren>
+    <chidren>subprocess0</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link27" name="link27" displayName="连接线" isDefault="true" type="transition">
@@ -177,8 +179,8 @@
       <sourceNode>assign2</sourceNode>
       <targetNode>loopend0</targetNode>
     </sourceConnections>
-    <targetConnections>link8</targetConnections>
-    <location x="387" y="150"/>
+    <targetConnections>link11</targetConnections>
+    <location x="416" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
@@ -190,27 +192,23 @@
       <process:to type="query">temp_amt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">detail/rtnCompRate</process:from>
-      <process:to type="query">temp_rtnCompRate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">detail/rtnGuestRate</process:from>
-      <process:to type="query">temp_rtnGuestRate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">(temp_amt*temp_rtnCompRate)/100</process:from>
-      <process:to type="query">detail/rtnCompAmt</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="expression" pattern="reference">(temp_amt*temp_rtnGuestRate)/100</process:from>
       <process:to type="query">detail/rtnGuestAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">(temp_amt*temp_rtnCompRate)/100+total_rtnCompAmt</process:from>
+      <process:from type="query" pattern="reference">detail/rtnCompAmt</process:from>
+      <process:to type="query">rtnCompAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">detail/rtnGuestAmt</process:from>
+      <process:to type="query">rtnGuestAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">rtnCompAmt+total_rtnCompAmt</process:from>
       <process:to type="query">total_rtnCompAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">(temp_amt*temp_rtnGuestRate)/100+total_rtnGuestAmt</process:from>
+      <process:from type="expression" pattern="reference">rtnGuestAmt+total_rtnGuestAmt</process:from>
       <process:to type="query">total_rtnGuestAmt</process:to>
     </process:copy>
     <process:copy>
@@ -219,7 +217,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="385" y="186"/>
+    <location x="414" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -301,13 +299,14 @@
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo7</sourceNode>
       <targetNode>invokePojo5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo7</sourceNode>
       <targetNode>assign13</targetNode>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
-    <location x="535" y="262"/>
+    <location x="600" y="262"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo7label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -321,7 +320,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo7label" name="label" nodeType="label">
-    <location x="518" y="298"/>
+    <location x="583" y="298"/>
     <figSize height="17" width="56"/>
     <node>invokePojo7</node>
   </nodes>
@@ -346,18 +345,10 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link40</targetConnections>
+    <targetConnections>link7</targetConnections>
     <location x="-71" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">S</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
-      <process:to type="query">d</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
     <location x="-73" y="186"/>
@@ -369,8 +360,8 @@
       <sourceNode>assign7</sourceNode>
       <targetNode>invokePojo7</targetNode>
     </sourceConnections>
-    <targetConnections>link50</targetConnections>
-    <location x="315" y="262"/>
+    <targetConnections>link30</targetConnections>
+    <location x="541" y="262"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
@@ -383,7 +374,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="313" y="298"/>
+    <location x="539" y="298"/>
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
@@ -404,7 +395,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">data/serviceCode</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -456,7 +447,7 @@
       <targetNode>invokePojo1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -593,7 +584,7 @@
   <nodes xsi:type="process:tTransactionBegin" id="transactionbegin0" name="事务开始" displayName="事务开始" type="transactionbegin">
     <sourceConnections xsi:type="process:tLink" id="link50" name="link50" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>transactionbegin0</sourceNode>
-      <targetNode>assign7</targetNode>
+      <targetNode>loopstart1</targetNode>
     </sourceConnections>
     <targetConnections>link24</targetConnections>
     <location x="228" y="262"/>
@@ -625,7 +616,8 @@
       <sourceNode>transactioncommit0</sourceNode>
       <targetNode>assign5</targetNode>
     </sourceConnections>
-    <targetConnections>link55</targetConnections>
+    <targetConnections>link52</targetConnections>
+    <targetConnections>link49</targetConnections>
     <location x="1004" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
@@ -692,27 +684,61 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link42</targetConnections>
-    <location x="-232" y="150"/>
+    <location x="-291" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
-    <location x="-237" y="186"/>
+    <location x="-296" y="186"/>
     <figSize height="17" width="39"/>
     <node>assign14</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign15" name="赋值15" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign15" name="赋值15" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign15</sourceNode>
-      <targetNode>assign6</targetNode>
+      <targetNode>invokePojo3</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link33" name="link33" displayName="连接线" type="transition">
+      <sourceNode>assign15</sourceNode>
+      <targetNode>assign22</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NE">
+          <process:leftOperand type="query">dlen</process:leftOperand>
+          <process:rightOperand type="literal">3</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link39</targetConnections>
-    <location x="-164" y="150"/>
+    <location x="-223" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign15label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">d</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbGuestAgentExtend</process:from>
+      <process:to type="query">cond/_entity</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">data/insureCompId</process:from>
+      <process:to type="query">cond/_expr[1]/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">detailData.length</process:from>
+      <process:to type="query">dlen</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
-    <location x="-169" y="186"/>
+    <location x="-228" y="186"/>
     <figSize height="17" width="39"/>
     <node>assign15</node>
   </nodes>
@@ -732,7 +758,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="-375" y="150"/>
+    <location x="-434" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign16label</nodeLabel>
     <process:copy>
@@ -741,7 +767,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
-    <location x="-380" y="186"/>
+    <location x="-439" y="186"/>
     <figSize height="17" width="39"/>
     <node>assign16</node>
   </nodes>
@@ -761,12 +787,12 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link41</targetConnections>
-    <location x="-308" y="150"/>
+    <location x="-367" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign17label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign17label" name="label" nodeType="label">
-    <location x="-313" y="186"/>
+    <location x="-372" y="186"/>
     <figSize height="17" width="39"/>
     <node>assign17</node>
   </nodes>
@@ -776,7 +802,7 @@
       <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link43</targetConnections>
-    <location x="-375" y="238"/>
+    <location x="-434" y="238"/>
     <size height="28" width="28"/>
     <nodeLabel>assign18label</nodeLabel>
     <process:copy>
@@ -789,7 +815,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
-    <location x="-380" y="274"/>
+    <location x="-439" y="274"/>
     <figSize height="17" width="39"/>
     <node>assign18</node>
   </nodes>
@@ -799,7 +825,7 @@
       <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link44</targetConnections>
-    <location x="-308" y="238"/>
+    <location x="-367" y="238"/>
     <size height="28" width="28"/>
     <nodeLabel>assign19label</nodeLabel>
     <process:copy>
@@ -812,7 +838,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
-    <location x="-313" y="274"/>
+    <location x="-372" y="274"/>
     <figSize height="17" width="39"/>
     <node>assign19</node>
   </nodes>
@@ -822,7 +848,7 @@
       <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link45</targetConnections>
-    <location x="-232" y="238"/>
+    <location x="-291" y="238"/>
     <size height="28" width="28"/>
     <nodeLabel>assign20label</nodeLabel>
     <process:copy>
@@ -835,7 +861,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign20label" name="label" nodeType="label">
-    <location x="-237" y="274"/>
+    <location x="-296" y="274"/>
     <figSize height="17" width="39"/>
     <node>assign20</node>
   </nodes>
@@ -843,7 +869,9 @@
     <targetConnections>link46</targetConnections>
     <targetConnections>link47</targetConnections>
     <targetConnections>link48</targetConnections>
-    <location x="-375" y="345"/>
+    <targetConnections>link10</targetConnections>
+    <targetConnections>link34</targetConnections>
+    <location x="-434" y="345"/>
     <size height="28" width="28"/>
     <nodeLabel>end2label</nodeLabel>
     <process:returns>
@@ -853,21 +881,21 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
-    <location x="-377" y="381"/>
+    <location x="-436" y="381"/>
     <figSize height="17" width="32"/>
     <node>end2</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="updateEntityBatch" displayName="updateEntityBatch" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link49" name="link49" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
-      <targetNode>subprocess0</targetNode>
+      <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link53" name="link53" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo5</sourceNode>
       <targetNode>assign13</targetNode>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
-    <location x="685" y="262"/>
+    <location x="732" y="262"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo5label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -881,14 +909,14 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
-    <location x="644" y="298"/>
+    <location x="691" y="298"/>
     <figSize height="17" width="105"/>
     <node>invokePojo5</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="insertEntityBatch" displayName="insertEntityBatch" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link52" name="link52" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
-      <targetNode>subprocess0</targetNode>
+      <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link54" name="link54" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo2</sourceNode>
@@ -913,32 +941,229 @@
     <figSize height="17" width="96"/>
     <node>invokePojo2</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="calInsuranceDeduct" displayName="calInsuranceDeduct" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link55" name="link55" displayName="连接线" isDefault="true" type="transition">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="calInsuranceDeduct" displayName="calInsuranceDeduct" grouped="true" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
+      <targetNode>assign2</targetNode>
     </sourceConnections>
-    <targetConnections>link52</targetConnections>
-    <targetConnections>link49</targetConnections>
-    <location x="900" y="150"/>
+    <targetConnections>link8</targetConnections>
+    <location x="360" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.calInsuranceDeduct</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="insurance" type="query" value="com.hsapi.repair.data.rps.RpsInsuranceMain" valueType="DataObject" pattern="reference">data</process:inputVariable>
+        <process:inputVariable id="0" name="detail" type="query" value="com.hsapi.repair.data.rps.RpsInsuranceDetail" valueType="DataObject" pattern="reference">detail</process:inputVariable>
+        <process:inputVariable id="1" name="extendGuest" type="query" value="com.hsapi.repair.data.rpb.RpbGuestAgentExtend" valueType="DataObject" pattern="reference">extendGuest</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="insurance" type="query" value="com.hsapi.repair.data.rps.RpsInsuranceMain" valueType="DataObject">data</process:outputVariable>
+        <process:outputVariable id="2" name="detail" type="query" value="com.hsapi.repair.data.rps.RpsInsuranceDetail" valueType="DataObject">detail</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="856" y="185"/>
+    <location x="316" y="185"/>
     <figSize height="17" width="114"/>
     <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="保险公司" displayName="expandEntityByCriteriaEntity" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>assign6</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" type="transition">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">len</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link40</targetConnections>
+    <location x="-150" y="150"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo3label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.expandEntityByCriteriaEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond</process:inputVariable>
+      <process:inputVariable id="2" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">extendGuest</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java">len</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
+    <location x="-163" y="186"/>
+    <figSize height="17" width="49"/>
+    <node>invokePojo3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>end2</targetNode>
+    </sourceConnections>
+    <targetConnections>link9</targetConnections>
+    <location x="-152" y="238"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">获取保险公司信息失败</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <location x="-154" y="274"/>
+    <figSize height="17" width="32"/>
+    <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="model:GroupNode" id="group1" name="group1" grouped="true" gstart="loopstart1" gend="loopend1">
+    <location x="296" y="236"/>
+    <size height="93" width="202"/>
+    <chidren>assign21</chidren>
+    <chidren>subprocess2</chidren>
+    <chidren>loopstart1</chidren>
+    <chidren>loopend1</chidren>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
+    <location x="292" y="294"/>
+    <figSize height="17" width="32"/>
+    <node>loopstart1</node>
+  </nodes>
+  <nodes xsi:type="process:tLoopStart" description="" id="loopstart1" name="循环1" displayName="循环" grouped="true" type="loopstart" matchedName="loopend1" loopType="iterate">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="link8" isDefault="true" type="transition">
+      <sourceNode>loopstart1</sourceNode>
+      <targetNode>subprocess2</targetNode>
+    </sourceConnections>
+    <targetConnections>link50</targetConnections>
+    <location x="296" y="262"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
+    <process:iterate iterable="detailData" iterableElement="detail"/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopend1label" name="label" nodeType="label">
+    <location x="457" y="294"/>
+    <figSize height="17" width="56"/>
+    <node>loopend1</node>
+  </nodes>
+  <nodes xsi:type="process:tLoopEnd" id="loopend1" name="循环结束1" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart1">
+    <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>loopend1</sourceNode>
+      <targetNode>assign7</targetNode>
+    </sourceConnections>
+    <targetConnections>link12</targetConnections>
+    <location x="473" y="262"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopend1label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign21" name="赋值21" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="link51" isDefault="true" type="transition">
+      <sourceNode>assign21</sourceNode>
+      <targetNode>loopend1</targetNode>
+    </sourceConnections>
+    <targetConnections>link14</targetConnections>
+    <location x="403" y="260"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign21label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/id</process:from>
+      <process:to type="query">detail/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">detail/amt</process:from>
+      <process:to type="query">temp_amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">(temp_amt*temp_rtnGuestRate)/100</process:from>
+      <process:to type="query">detail/rtnGuestAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">detail/rtnCompAmt</process:from>
+      <process:to type="query">rtnCompAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">detail/rtnGuestAmt</process:from>
+      <process:to type="query">rtnGuestAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">rtnCompAmt+total_rtnCompAmt</process:from>
+      <process:to type="query">total_rtnCompAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">rtnGuestAmt+total_rtnGuestAmt</process:from>
+      <process:to type="query">total_rtnGuestAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">temp_amt+total_amt</process:from>
+      <process:to type="query">total_amt</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign21label" name="label" nodeType="label">
+    <location x="398" y="296"/>
+    <figSize height="17" width="39"/>
+    <node>assign21</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="calInsuranceDeduct1" displayName="calInsuranceDeduct" grouped="true" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="link11" isDefault="true" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>assign21</targetNode>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <location x="347" y="260"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess2label</nodeLabel>
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.calInsuranceDeduct</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="detail" type="query" value="com.hsapi.repair.data.rps.RpsInsuranceDetail" valueType="DataObject" pattern="reference">detail</process:inputVariable>
+        <process:inputVariable id="1" name="extendGuest" type="query" value="com.hsapi.repair.data.rpb.RpbGuestAgentExtend" valueType="DataObject" pattern="reference">extendGuest</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="detail" type="query" value="com.hsapi.repair.data.rps.RpsInsuranceDetail" valueType="DataObject">detail</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
+    <location x="300" y="295"/>
+    <figSize height="17" width="121"/>
+    <node>subprocess2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign22" name="赋值22" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link34" name="link34" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign22</sourceNode>
+      <targetNode>end2</targetNode>
+    </sourceConnections>
+    <targetConnections>link33</targetConnections>
+    <location x="-224" y="236"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign22label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">提交数据有误</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign22label" name="label" nodeType="label">
+    <location x="-229" y="272"/>
+    <figSize height="17" width="39"/>
+    <node>assign22</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -946,14 +1171,13 @@
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsInsuranceMain" name="main"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsInsuranceDetail" name="detail"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="temp_amt" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="temp_rtnCompRate" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="temp_rtnGuestRate" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="total_rtnCompAmt" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="total_rtnGuestAmt" primitiveType="Float"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="total_amt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbGuestAgentExtend" name="extendGuest"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="rtnCompAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="rtnGuestAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="dlen" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsInsuranceMain" name="data"/>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryRPAccountList" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="params/dc  1应收；-1应付；无  综合&#xD;&#xA;&#xD;&#xA;billServiceIdList 满足  'CGR00001','XSC00003',''...&#xD;&#xA;&#xD;&#xA;其他应收应付默认查询未审核的数据；&#xD;&#xA;系统生成的应收应付应该是查询审核的数据（只会存在审核的数据）" title="Administrator&#x9;18-3-21 下午9:06">
-    <location x="30" y="-30"/>
-    <size height="136" width="455"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="params/dc  1应收；-1应付；无  综合&#xD;&#xA;&#xD;&#xA;billServiceIdList 满足  'CGR00001','XSC00003',''...&#xD;&#xA;&#xD;&#xA;其他应收应付默认查询未审核的数据；&#xD;&#xA;系统生成的应收应付应该是查询审核的数据（只会存在审核的数据）&#xD;&#xA;com.hsapi.frm.frmService.query.queryRpsBillList" title="Administrator&#x9;18-3-21 下午9:06">
+    <location x="30" y="-15"/>
+    <size height="166" width="455"/>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="link6" isDefault="true" type="transition">

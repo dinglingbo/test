@@ -469,12 +469,15 @@ function saveData(e){
             detailData:gridData
         },
         success:function(text){
-            var mainData = text.mainData;
-            nui.get("id").setValue(mainData.id);
-            detailGrid.load({serviceId:mainData.id,token:token});
-            if(e == 1){
-                showMsg("保存成功！","S");
-                $("#servieIdEl").html(mainData.serviceCode);
+            if(text.errCode=='S'){	
+	        	var mainData = text.mainData;
+	        	nui.get("id").setValue(mainData.id);
+	        	detailGrid.load({serviceId:mainData.id,token:token});
+	        	
+	        	if(e == 1){
+	        		showMsg("保存成功！","S");
+	        		$("#servieIdEl").html(mainData.serviceCode);
+	        	}
             }
 
         }
@@ -511,7 +514,7 @@ function pay() {
     var sTypeId = null;
 
     var data1 = basicInfoForm.getData();
-    var data2 = getData2();
+//    var data2 = getData2();
     var gridData = detailGrid.getData();
     var b1= document.getElementsByName('settleTypeId');
     for (var i = 0; i < b1.length; i++) {
@@ -529,7 +532,6 @@ function pay() {
     }
     var params ={
         data1:data1,
-        data2:data2,
         gridData:gridData,
         t_amt:t_amt,
         t_rtnCompRate:t_rtnCompRate,

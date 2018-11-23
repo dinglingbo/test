@@ -489,6 +489,27 @@ function doAddcardTime(params,callback){
 }
 
 function doAddcard(params,callback){
+	var p={
+			data:params
+	};
+	nui.open({
+		url:webPath + contextPath +"/com.hsweb.repair.DataBase.cardList.flow?token"+token,
+		title: "储值卡充值", width: 965, height: 573,
+		onload: function(){
+			var iframe=this.getIFrameEl();	
+			iframe.contentWindow.setData(p);		
+		},
+		onedestroy: function(action){
+            var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getData();
+            data = data || {};
+            data.action = action;
+            callback && callback(data);
+		}
+	});
+
+}
+/*function doAddcard(params,callback){
 		var p={
 				data:params
 		};
@@ -508,7 +529,7 @@ function doAddcard(params,callback){
 			}
 		});
 
-}
+}*/
 //产品录入
 function addPackage(data,callback){
 	//获取到套餐的数据

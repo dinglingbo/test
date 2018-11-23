@@ -199,26 +199,27 @@ function lookCardTimes(){
 	}
 }
 
-//购买次卡
+//打开计次卡储值卡页面
 var action = null;
-var buyUrl =webPath + contextPath + "/repair/DataBase/Card/buyCardTimes.jsp?token"+token;
+var buyUrl =webPath + contextPath + "/com.hsweb.frm.manage.cardSettlement.flow?token"+token;
 function onBuy(){
 	var row = grid.getSelected();
 	if (row) {
 		nui.open({
 			url : buyUrl,
 			title : "购买次卡",
-			width : 400,
-			height : 240,
+			width :"100%",
+			height : "100%",
 			onload : function() {
 				var iframe = this.getIFrameEl();
 				//var data = row;
 				var data ={
 						xyguest:xyguest,
-						row:row
+						row:row,
+						settlementUrl:1
 				} 
 				//把数据传到子页面
-				iframe.contentWindow.giveData(data);
+				iframe.contentWindow.setData(data);
 			},
 		});
 	} else {

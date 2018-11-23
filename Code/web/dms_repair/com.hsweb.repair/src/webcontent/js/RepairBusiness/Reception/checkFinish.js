@@ -122,14 +122,17 @@ function finish(){
     svrRepairAudit(params, function(data){
         data = data||{};
         var errCode = data.errCode||"";
+        var errMsg = data.errMsg||"";
         if(errCode == 'S'){
             var dataHash = data.data||{};
             resultData = dataHash.maintain||{};
             resultData.action = 'ok';
+            showMsg("操作成功","S");
             CloseWindow('ok');
         }else{
-            resultData.action = 'cancel';
-            CloseWindow("cancel");
+        	showMsg(errMsg||"操作失败","W");
+            //resultData.action = 'cancel';
+            //CloseWindow("cancel");
         }
         nui.unmask(document.body);
     }, function(){

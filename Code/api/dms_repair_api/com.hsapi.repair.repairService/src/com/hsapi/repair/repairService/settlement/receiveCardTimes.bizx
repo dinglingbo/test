@@ -376,6 +376,14 @@
       <process:to type="query">fisRpBill/guestName</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">cardTimes/carId</process:from>
+      <process:to type="query">fisRpBill/carId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimes/carNo</process:from>
+      <process:to type="query">fisRpBill/carNo</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">fisRpBill/isDisabled</process:to>
     </process:copy>

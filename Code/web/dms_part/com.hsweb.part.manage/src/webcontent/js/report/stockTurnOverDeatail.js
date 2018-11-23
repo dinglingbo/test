@@ -82,8 +82,8 @@ function getSearchParams(){
     params.partCodeOrName=nui.get('partCodeOrName').getValue();
     params.partBrandId=nui.get('partBrandId').getValue();
     params.partTypeId=nui.get('partTypeId').getValue();
-    params.startDate=nui.get("startDate").getValue().substr(0, 10);
-    params.endDate=nui.get("endDate").getValue().substr(0, 10);
+    params.startDate=nui.get("startDate").getValue();
+    params.endDate=addDate(endDateEl.getValue(),1);
     return params;
 }
 var currType = 2;
@@ -94,24 +94,24 @@ function quickSearch(type){
     {
         case 0:
             params.startDate = getDate(7);
-            params.endDate = getDate(0);
+            params.endDate = getDate(-1);
             queryname = "最近7天";
             break;
         case 1:
             params.startDate = getDate(30);
-            params.endDate = getDate(0);
+            params.endDate = getDate(-1);
             queryname = "最近30天";
             break;
         case 2:
             params.thisWeek = 1;
             params.startDate = getDate(30);
-            params.endDate = getDate(0);
+            params.endDate = getDate(-1);
             queryname = "最近90天";
             break;
         case 3:
             params.lastWeek = 1;
             params.startDate = getDate(180);
-            params.endDate = getDate(0);
+            params.endDate = getDate(-1);
             queryname = "最近180天";
             break;
         default:
@@ -119,7 +119,7 @@ function quickSearch(type){
     }
     currType = type;
     startDateEl.setValue(params.startDate);
-    endDateEl.setValue(params.endDate);
+    endDateEl.setValue(addDate(params.endDate,-1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
     doSearch(params);

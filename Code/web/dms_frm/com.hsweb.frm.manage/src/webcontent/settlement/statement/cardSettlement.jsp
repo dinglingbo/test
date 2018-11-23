@@ -11,7 +11,7 @@
 
 <head>
 	<title>计次卡/储值卡结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.0.4"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.0.6"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -270,6 +270,19 @@
 									<dd totalmoney="0" totalpaid="0" id="totalAmt" name="totalAmt"></dd>
 								</dl>
 							</td>
+ 					<td >
+						<a id="btnsettle" style="    width: 100px;
+							height: 40px;
+							font-size: 18px;
+							background: #578ccd;
+							color: #fff;
+							text-align: center;
+							display: block;
+							border-radius: 5px;
+							text-decoration: none;
+							line-height: 2;" 
+							href="javascript:void(0)" onclick="selectCustomer()">选择客户</a>
+					</td> 
 						</tr>
 					</tbody>
 				</table>

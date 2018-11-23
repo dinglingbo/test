@@ -48,7 +48,7 @@ $(document).ready(function(v) {
 	quickSearch(3);
 });
 
-function quickSearch(){
+function quickSearch(type){
 	var params = getSearchParam();
     var querysign = 1;
     var queryname = "本日";
@@ -130,6 +130,7 @@ function getSearchParam(){
     params.guestId = advanceGuestIdEl.getValue();
     params.isMain = isMainEl.getValue();
     params.rpDc = 1;
+    return params;
 }
 
 function onSearch(){

@@ -204,6 +204,7 @@ var action = null;
 var buyUrl =webPath + contextPath + "/com.hsweb.frm.manage.cardSettlement.flow?token"+token;
 function onBuy(){
 	var row = grid.getSelected();
+	row.jsAmt = row.sellAmt;//结算金额，便于结算界面结算，储值卡计次卡结算金额字段不一样
 	if (row) {
 		nui.open({
 			url : buyUrl,

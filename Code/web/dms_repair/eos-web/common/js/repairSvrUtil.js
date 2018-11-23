@@ -489,15 +489,14 @@ function doAddcardTime(params,callback){
 }
 
 function doAddcard(params,callback){
-	var p={
-			data:params
-	};
+
 	nui.open({
 		url:webPath + contextPath +"/com.hsweb.repair.DataBase.cardList.flow?token"+token,
-		title: "储值卡充值", width: 965, height: 573,
+		title: "储值卡充值", width: 1100, height: 573,
 		onload: function(){
 			var iframe=this.getIFrameEl();	
-			iframe.contentWindow.setData(p);		
+			iframe.contentWindow.setStely();
+			iframe.contentWindow.setData(params);		
 		},
 		onedestroy: function(action){
             var iframe = this.getIFrameEl();

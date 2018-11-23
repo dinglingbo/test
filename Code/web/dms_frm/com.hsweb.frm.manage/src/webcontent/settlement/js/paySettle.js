@@ -1398,9 +1398,7 @@ function onGridbeforeselect(e) {
 
 }
 function onPGridbeforeselect(e) {
-	var field = e.field;
 	var row = e.row;
-	if (field == "check") {
 		var row = e.row;
 		var billDc = row.billDc;
 		var newRow = {
@@ -1412,7 +1410,6 @@ function onPGridbeforeselect(e) {
 			newRow.nowAmt = row.noCharOffAmt;
 		}
 		pRightGrid.updateRow(row, newRow);
-	}
 
 }
 

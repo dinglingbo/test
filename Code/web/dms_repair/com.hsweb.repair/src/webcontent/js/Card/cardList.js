@@ -115,7 +115,7 @@ function onKeyEnter(e) {
 	search();
 }
 
-// 当选择列时
+/*// 当选择列时
 function selectionChanged() {
 	var rows = grid.getSelecteds();
 	if (rows.length > 1) {
@@ -128,7 +128,7 @@ function selectionChanged() {
 		mini.get("addBtn").setVisible(false);
 		mini.get("onBuy").setVisible(true);
 	}
-}
+}*/
 function setStely(){
 	 xs = 1;
 	mini.get("updateBtn").setVisible(false);
@@ -141,10 +141,12 @@ var action = null;
 var buyUrl =webPath + contextPath + "/com.hsweb.frm.manage.cardSettlement.flow?token"+token;
 function onBuy(){
 	var row = grid.getSelected();
+	row.jsAmt = row.rechargeAmt;//结算金额，便于结算界面结算，储值卡计次卡结算金额字段不一样
+	
 	if (row) {
 		nui.open({
 			url : buyUrl,
-			title : "购买次卡",
+			title : "充值储值卡",
 			width :"100%",
 			height : "100%",
 			onload : function() {
@@ -153,7 +155,7 @@ function onBuy(){
 				var data ={
 						xyguest:xyguest,
 						row:row,
-						settlementUrl:1
+						settlementUrl:2
 				} 
 				//把数据传到子页面
 				iframe.contentWindow.setData(data);
@@ -231,4 +233,10 @@ function selectionChanged() {
 		mini.get("addBtn").setVisible(false);
 		mini.get("onBuy").setVisible(true);
 	}
+}
+
+function setData(data)
+{
+	xyguest= data;
+	assistant = 1;//判断是主页面还是open页面。用于双击触发事件
 }

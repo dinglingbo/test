@@ -70,7 +70,7 @@ function getSearchParams(){
     var params = {};
     params.storeId=nui.get('storehouse').getValue(); 
     params.startDate=nui.get("startDate").getValue().substr(0, 10);
-    params.endDate=nui.get("endDate").getValue().substr(0, 10);
+    params.endDate=addDate(endDateEl.getValue(),1);
     return params;
 }
 var currType = 2;
@@ -133,7 +133,7 @@ function quickSearch(type){
     }
     currType = type;
     startDateEl.setValue(params.startDate);
-    endDateEl.setValue(params.endDate);
+    endDateEl.setValue(addDate(params.endDate,1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
     doSearch(params);

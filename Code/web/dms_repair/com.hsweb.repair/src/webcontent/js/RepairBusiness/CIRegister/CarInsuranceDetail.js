@@ -354,8 +354,11 @@ function setInitData(params){
                         mtAdvisor:ldata.mtAdvisor,
                         settleTypeId :ldata.settleTypeId
                     };
-
+                
             basicInfoForm.setData(sdata);
+            nui.get('mtAdvisorId').setValue(sdata.mtAdvisorId);
+            nui.get('mtAdvisorId').setText(sdata.mtAdvisor);
+            
 //            insuranceForm.setData(sdata);
             detailGrid.load({serviceId:params.id,token:token});
 

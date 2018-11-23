@@ -45,7 +45,7 @@ $(document).ready(function(v) {
 
     });
 
-	quickSearch(3);
+	quickSearch(2);
 });
 
 function quickSearch(type){

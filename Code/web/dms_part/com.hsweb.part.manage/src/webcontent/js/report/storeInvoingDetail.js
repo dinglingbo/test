@@ -82,7 +82,7 @@ function getSearchParams(){
     params.guestName=nui.get("guestName").getValue();
     params.operator=nui.get("operatorId").getText();
     params.OstartDate=nui.get("OstartDate").getValue().substr(0, 10);
-    params.OendDate=nui.get("OendDate").getValue().substr(0, 10);
+    params.OendDate=addDate(endDateEl.getValue(),1);
     return params;
 }
 var currType = 2;
@@ -145,7 +145,7 @@ function quickSearch(type){
     }
     currType = type;
     startDateEl.setValue(params.OstartDate);
-    endDateEl.setValue(params.OendDate);
+    endDateEl.setValue(addDate(params.OendDate,-1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
     doSearch(params);

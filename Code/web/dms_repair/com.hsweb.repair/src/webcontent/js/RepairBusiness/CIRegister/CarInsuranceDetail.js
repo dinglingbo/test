@@ -15,7 +15,7 @@ var searchKeyEl = null;
 var mtAdvisorIdEl = null;
 var mtAdvisorEl = null;
 var insuranceComp = null;
-var insuranceForm = null;
+//var insuranceForm = null;
 var saleManIds = null;
 var fserviceId = 0;
 var fguestId = 0;
@@ -30,7 +30,7 @@ $(document).ready(function ()
     var dd = (new Date()).getDate();
     var db = yy + "-" + mm + "-" + dd; //本日
     basicInfoForm = new nui.Form("#basicInfoForm");
-    insuranceForm = new nui.Form("#insuranceForm");
+//    insuranceForm = new nui.Form("#insuranceForm");
     mtAdvisorIdEl = nui.get("mtAdvisorId");
     mtAdvisorEl = nui.get("mtAdvisor");
     saleManIds = nui.get("saleManIds");
@@ -356,7 +356,7 @@ function setInitData(params){
                     };
 
             basicInfoForm.setData(sdata);
-            insuranceForm.setData(sdata);
+//            insuranceForm.setData(sdata);
             detailGrid.load({serviceId:params.id,token:token});
 
 //            if(ldata.settleTypeId == 1){
@@ -396,7 +396,7 @@ function add(){
     var sk = document.getElementById("search_key");
     sk.style.display = "";
     searchKeyEl.focus();
-    insuranceForm.setData([]);
+//    insuranceForm.setData([]);
     basicInfoForm.setData([]);
 
     nui.get("mtAdvisorId").setValue(currEmpId);
@@ -482,17 +482,17 @@ function saveData(e){
     });
 }
 
-function getData2() {
-    var data2 = insuranceForm.getData();
-    var b1= document.getElementsByName('settleTypeId');
-    for (var i = 0; i < b1.length; i++) {
-        if (b1[i].checked == true) {//如果选中，
-            data2.settleTypeId = b1[i].value;
-        }
-
-    }
-    return data2;
-}
+//function getData2() {
+//    var data2 = insuranceForm.getData();
+//    var b1= document.getElementsByName('settleTypeId');
+//    for (var i = 0; i < b1.length; i++) {
+//        if (b1[i].checked == true) {//如果选中，
+//            data2.settleTypeId = b1[i].value;
+//        }
+//
+//    }
+//    return data2;
+//}
 
 
 function pay() {

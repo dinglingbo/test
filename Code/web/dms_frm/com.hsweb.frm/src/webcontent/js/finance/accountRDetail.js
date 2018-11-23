@@ -15,7 +15,7 @@ var enterTypeIdList = [];
 var enterTypeIdHash = {};
 var pList = [];
 var pHash = {};
-
+var type=0;
 $(document).ready(function(v) {
 	mainGrid = nui.get("mainGrid");
 	mainGrid.setUrl(queryUrl);

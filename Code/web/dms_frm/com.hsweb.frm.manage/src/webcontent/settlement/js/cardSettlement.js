@@ -22,14 +22,14 @@ $(document).ready(function (){
 function setData(data){
 	guestData = data.xyguest||{};
 	row = data.row;
-	zongAmt = data.row.sellAmt;
+	zongAmt = data.row.jsAmt;
 	settlementUrl = data.settlementUrl;
 	document.getElementById('carNo').innerHTML = data.xyguest.carNo||"";
 	document.getElementById('guest').innerHTML = data.xyguest.guestFullName||"";
-	document.getElementById('totalAmt').innerHTML = "￥"+zongAmt;
-	document.getElementById('totalAmt1').innerHTML = zongAmt;
-	document.getElementById('amount').innerHTML = zongAmt;
-	netInAmt = data.sellAmt;	
+	document.getElementById('totalAmt').innerHTML = "￥"+(zongAmt||0);
+	document.getElementById('totalAmt1').innerHTML = zongAmt||0;
+	document.getElementById('amount').innerHTML = zongAmt||0;
+	netInAmt = data.jsAmt;	
 	addType();
 }
 
@@ -114,8 +114,8 @@ function remove(id){
 }
 
 var settleAuditUrl = frmUrl+ "com.hsapi.frm.frmService.rpsettle.rpAccountSettle.biz.ext";//应收应付
-var payMeth = apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.receiveCardTimes.biz.ext";//计次卡
-var payurl = apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.rechargeReceive.biz.ext";//储值卡支付
+var payMeth = baseUrl + "/com.hsapi.repair.repairService.settlement.receiveCardTimes.biz.ext";//计次卡
+var payurl=baseUrl+"com.hsapi.repair.repairService.settlement.rechargeReceive.biz.ext";//储值卡支付
 
 function settleOK() {
 	var count = scount();
@@ -173,21 +173,19 @@ function settleOK() {
 		}
 	}else if(settlementUrl==2){
 		url =payurl;
-		card ={
-				guestId:guestData.guestId,
-				guestName:guestData.guestFullName,
+		card={
 				cardId:row.id,
 				cardName:row.name,
-				periodValidity:row.periodValidity,
-				salesDeductType:row.salesDeductType,
-				remark:row.remark,
-				salesDeductValue:row.salesDeductValue,
-				sellAmt:row.sellAmt,
-				totalAmt:row.totalAmt,
-				useRemark:row.useRemark,
-				carId:guestData.carId,
-				carNo:guestData.carNo,
+				giveAmt	: row.giveAmt,
+				guestId:guestData.guestId,
+				guestName:guestData.guestFullName,	
+				rechargeAmt	: row.rechargeAmt,
+				totalAmt 	: row.totalAmt,
+				balaAmt		: row.totalAmt,
+				periodValidity : row.periodValidity,
+				sellAmt :row.rechargeAmt
 		};
+
 		json={
 				payAmt:zongAmt,
 				payType:020104,
@@ -196,7 +194,7 @@ function settleOK() {
 				token:token
 		}
 	}
-		  nui.confirm("确定结算吗？", "友情提示",function(action){
+		  nui.confirm("是否确定结算？", "友情提示",function(action){
 		       if(action == "ok"){
 					nui.mask({
 						el : document.body,

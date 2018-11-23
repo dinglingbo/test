@@ -1414,9 +1414,7 @@ function settleOK() {
 
 
 function onRGridbeforeselect(e) {
-	var field = e.field;
 	var row = e.row;
-	if (field == "check") {
 		var row = e.row;
 		var billDc = row.billDc;
 		var newRow = {
@@ -1428,7 +1426,6 @@ function onRGridbeforeselect(e) {
 			newRow.nowAmt = row.noCharOffAmt;
 		}
 		rRightGrid.updateRow(row, newRow);
-	}
 }
 
 

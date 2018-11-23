@@ -149,6 +149,7 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link20" name="link20" displayName="连接线" type="transition">
       <sourceNode>assign0</sourceNode>
@@ -909,6 +910,7 @@
     <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
       <targetNode>subprocess0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link44" name="link44" displayName="连接线" type="transition">
       <sourceNode>invokePojo5</sourceNode>
@@ -916,7 +918,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="NE">
           <process:leftOperand type="query">trueCharOffAmt</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
+          <process:rightOperand type="query">dAmt</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>

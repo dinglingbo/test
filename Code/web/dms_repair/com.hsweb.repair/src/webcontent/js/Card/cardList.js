@@ -21,6 +21,14 @@ $(document).ready(function(v) {
 		nui.get('addBtn').setVisible(false);
 		nui.get('updateBtn').setVisible(false);
 	}*/
+	grid.on("rowdblclick",function(e){
+		if(assistant==1){
+			onBuy();
+		}else{
+			edit();
+		}
+
+	});
 });
 
 // 新增
@@ -115,8 +123,47 @@ function selectionChanged() {
 	} else {
 		nui.get("update").enable();
 	}
+	if(xs==1){
+		mini.get("updateBtn").setVisible(false);
+		mini.get("addBtn").setVisible(false);
+		mini.get("onBuy").setVisible(true);
+	}
+}
+function setStely(){
+	 xs = 1;
+	mini.get("updateBtn").setVisible(false);
+	mini.get("addBtn").setVisible(false);
+	mini.get("onBuy").setVisible(true);
 }
 
+//打开计次卡储值卡页面
+var action = null;
+var buyUrl =webPath + contextPath + "/com.hsweb.frm.manage.cardSettlement.flow?token"+token;
+function onBuy(){
+	var row = grid.getSelected();
+	if (row) {
+		nui.open({
+			url : buyUrl,
+			title : "购买次卡",
+			width :"100%",
+			height : "100%",
+			onload : function() {
+				var iframe = this.getIFrameEl();
+				//var data = row;
+				var data ={
+						xyguest:xyguest,
+						row:row,
+						settlementUrl:1
+				} 
+				//把数据传到子页面
+				iframe.contentWindow.setData(data);
+			},
+		});
+	} else {
+		nui.alert("请选中一条记录", "提示");
+	}
+	
+}
 function onDrawCell(e) {
 	//var hash = new Array("原价比例(%)", "折后价比例(%)", "产值比例(%)", "固定金额(元)");
 	var hash = {"1":"原价比例(%)","2":"折后价比例(%)","3":"产值比例(%)","4":"固定金额(元)"};

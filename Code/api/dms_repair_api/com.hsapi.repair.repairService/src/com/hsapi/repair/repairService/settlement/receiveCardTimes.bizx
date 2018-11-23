@@ -195,7 +195,6 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link16</targetConnections>
-    <targetConnections>link42</targetConnections>
     <targetConnections>link44</targetConnections>
     <targetConnections>link47</targetConnections>
     <targetConnections>link63</targetConnections>
@@ -557,16 +556,6 @@
       <targetNode>invokePojo5</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link41" name="link41" displayName="连接线" type="transition">
-      <sourceNode>invokePojo6</sourceNode>
-      <targetNode>assign1</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">payType</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="-120" y="146"/>
     <size height="28" width="22"/>
@@ -725,29 +714,6 @@
     <location x="665" y="334"/>
     <figSize height="17" width="39"/>
     <node>assign21</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link42" name="link42" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign1</sourceNode>
-      <targetNode>end1</targetNode>
-    </sourceConnections>
-    <targetConnections>link41</targetConnections>
-    <location x="-123" y="225"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">结算方式不能为空</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="-125" y="261"/>
-    <figSize height="17" width="32"/>
-    <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link44" name="link44" displayName="连接线" isDefault="true" type="transition">
@@ -1230,7 +1196,6 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="payAmt" primitiveType="Double"/>
-    <process:input description="020101现金，020102刷卡，020104微信/支付宝" isArray="false" name="payType" primitiveType="String"/>
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimes" name="cardTimes"/>
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.common.FisRpAccountDType" name="accountTypeList"/>
   </process:inputs>

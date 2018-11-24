@@ -157,7 +157,7 @@ function quickSearch(type){
             break;
     }
     beginDateEl.setValue(params.startDate);
-    endDateEl.setValue(params.endDate);
+    endDateEl.setValue(addDate(params.endDate,-1));
     currType = type;
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
@@ -212,7 +212,7 @@ function doSearch(params) {
 function getSearchParam() {
     var params = {};
     params.sRecordDate = beginDateEl.getValue();
-    params.eRecordDate = endDateEl.getValue();
+    params.eRecordDate = addDate(endDateEl.getValue(),1);
     params.isSettle=1;
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();

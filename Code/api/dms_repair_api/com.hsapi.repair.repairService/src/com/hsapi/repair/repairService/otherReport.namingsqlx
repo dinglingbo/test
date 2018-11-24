@@ -7,7 +7,7 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
-   
+   <!--  施工台次，工时时间，工时收入，工时成本，返工台次，返工台次占比-->
        <select id="selectItemTotalreportA" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     
     
@@ -51,7 +51,7 @@ order by tc
     
     
     </select>
-    
+       <!--  返工台次，返工台次占比-->
         <select id="selectItemTotalreportB" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     
     SELECT
@@ -207,12 +207,12 @@ where b.orgid =#orgid#
 			b.true_unit_price trueUnitPrice, b.true_cost trueCost,b.return_sign returnSign,b.return_man returnMan,
 			b.return_date returnDate,c.part_brand_id partBrandId,c.apply_car_model applyCarModel,
 			c.car_type_id_f carTypeIdF,c.car_type_id_s carTypeIdS,c.car_type_id_t carTypeIdT,
-			c.spec,c.direction,c.model,c.part_type_id partTypeId,d.guest_name guestName
-			d.enter_date enterDate,
+			c.spec,c.direction,c.model,c.part_type_id partTypeId,d.guest_name guestName,
+			d.enter_date enterDate
 			from wb_repair.rps_maintain a 
-			INNER JOIN pj_repair_out b on b.service_code = a.service_code
+			INNER JOIN wb_part.pj_repair_out b on b.service_code = a.service_code
 			inner join wb_common.com_attribute c on b.part_id = c.id
-			LEFT JOIN pj_enter_detail_chk d on d.id =b.source_id 
+			LEFT JOIN wb_part.pj_enter_detail_chk d on d.id =b.source_id 
 			where a.orgid =#orgid#
 			and b.return_sign &lt;&gt; 1
 <dynamic>

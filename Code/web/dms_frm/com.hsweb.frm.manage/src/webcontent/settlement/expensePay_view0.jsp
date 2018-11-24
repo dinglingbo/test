@@ -9,7 +9,7 @@
 -->
 <head>
 <title>费用支出单</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/expensePay.js?v=2.0.3"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/expensePay.js?v=2.0.4"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -45,12 +45,12 @@
                     <tr>
                         <td style="white-space:nowrap;">
                             <label style="font-family:Verdana;">创建日期 从：</label>
-                            <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+                            <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" onvaluechanged="refresh" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                             <label style="font-family:Verdana;">至</label>
-                            <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+                            <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" onvaluechanged="refresh" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 
                             <label style="font-family:Verdana;">审核状态：</label>
-                            <input class="nui-combobox" id="auditSign" name="auditSign" value="0" nullitemtext="请选择..." emptyText="审核状态" data="auditSignList" width="70px" />
+                            <input class="nui-combobox" id="auditSign" name="auditSign" value="0" onitemclick="refresh"  nullitemtext="请选择..." emptyText="审核状态" data="auditSignList" width="70px" />
                             <input id="searchGuestId" class="nui-buttonedit" emptyText="请选择往来单位..."  onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                             <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             <a class="nui-button" plain="true" iconCls="" onclick="addGuest()" id="addGuestBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>

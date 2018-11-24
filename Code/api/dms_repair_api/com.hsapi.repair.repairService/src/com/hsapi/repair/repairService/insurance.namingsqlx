@@ -23,7 +23,7 @@
 			a.insure_comp_name insureCompName,
 			a.sale_man_ids saleManIds,
 			a.sale_mans saleMans,
-			a. STATUS,
+			a. status  status ,
 			a.begin_date beginDate,
 			a.end_date endDate,
 			a.settle_type_id settleTypeId,
@@ -47,6 +47,9 @@
 			<isNotEmpty prepend="and" property="id">  
 	            (a.id = #id#)
 	        </isNotEmpty>
+	        <isNotEmpty prepend="and" property="status">  
+	            (a.status  = #status#)
+	        </isNotEmpty>
 					<isNotEmpty prepend="and" property="guestFullName">  
 	            (c.full_name like '%$guestFullName$%')
 	        </isNotEmpty>
@@ -63,11 +66,12 @@
 	        </isNotEmpty>
 	        
 			<isNotEmpty prepend="and" property="startDate">  
-	            (date_format(a.record_date,'%Y-%m-%d') &gt;= #startDate#)
+	            (a.record_date &gt;= #startDate#)
 	        </isNotEmpty>
 	        <isNotEmpty prepend="and" property="endDate">  
-	            (date_format(a.record_date,'%Y-%m-%d') &lt;= #endDate#)
+	            (a.record_date &lt;= #endDate#)
 	        </isNotEmpty>
+	        	order by recordDate desc
 	    </dynamic>
     </select>
     <select id="getRpsInsuranceMainById" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

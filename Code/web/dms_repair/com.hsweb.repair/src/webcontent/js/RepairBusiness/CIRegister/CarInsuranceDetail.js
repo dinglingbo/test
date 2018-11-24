@@ -337,6 +337,8 @@ function setInitData(params){
                         carVin:ldata.carVin,
                         carId:ldata.carId,
                         guestMobile:ldata.mobile,
+                        carBrandId : ldata.carBrandId,
+                        carModel : ldata.carModel,
                         //contactName:item.contactName,
                         contactorId:ldata.contactorId,
                         guestId:ldata.guestId,
@@ -348,8 +350,8 @@ function setInitData(params){
                         insureCompName:ldata.insureCompName,
                         saleMans:ldata.saleMans,
                         saleManIds:ldata.saleManIds,
-                        date1:ldata.beginDate,
-                        date2:ldata.endDate,
+                        beginDate:ldata.beginDate,
+                        endDate:ldata.endDate,
                         mtAdvisorId:ldata.mtAdvisorId,
                         mtAdvisor:ldata.mtAdvisor,
                         settleTypeId :ldata.settleTypeId
@@ -449,7 +451,17 @@ function addGuest(){
     });
 }
 
-
+var requiredField={
+	carNo				:"车牌号",
+	enterKilometers		:"本次里程",
+	mtAdvisorId 		:"服务顾问",
+	insureCompName 		:"保险公司",
+	saleManIds			:"销售人员",
+	beginDate			:"有效开始日期",
+	endDate				:"有效结束日期",
+	settleTypeId		:"保费收取方式"	
+	
+};
 function saveData(e){
     var tid = nui.get("id").value;
     if(tid){
@@ -460,6 +472,13 @@ function saveData(e){
         }
     }
     var data = basicInfoForm.getData();
+    
+    for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+			showMsg(requiredField[key] + "不能为空!","W");
+			return;
+		}
+	}
 //    var data2 = getData2();
     var gridData = detailGrid.getData();
 
@@ -481,6 +500,8 @@ function saveData(e){
 	        		showMsg("保存成功！","S");
 	        		$("#servieIdEl").html(mainData.serviceCode);
 	        	}
+            }else{
+            	showMsg("保存失败!","E");
             }
 
         }

@@ -566,11 +566,16 @@ function SearchCheckMain(sId) {
     return t;
 }
 
-
+var requiredField={
+	enterKilometers :"本次里程",
+	mtAdvisorId    	:"服务顾问"
+};
 
 function saveb(){
 	
 	var data=billForm.getData();
+	
+	
 	if(!(nui.get('guestFullName').value) && !(nui.get('search_name').value)){
 		showMsg("请先添加客户","W");
 		return;
@@ -581,6 +586,15 @@ function saveb(){
         return;
     }
     
+    for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+			showMsg("请填写"+requiredField[key] + "!","W");
+			//如果检测到有必填字段未填写，切换到主表界面
+//			mainTabs.activeTab(billmainTab);
+
+			return;
+		}
+	}
     if(data.isFinish==1 || data.checkStatus==1){
     	showMsg("本单已完成，不能再修改!","W");
     	return;

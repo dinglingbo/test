@@ -377,7 +377,7 @@ function doSetMainInfo(car){
     mpartRate = 0;
 
     billForm.setData(maintain);
-
+    nui.get("mtAdvisorId").setText(currUserName);
     fguestId = car.guestId||0;
     fcarId = car.id||0;
 
@@ -494,7 +494,7 @@ function add(){
     billForm.setData([]);
  
     nui.get("mtAdvisorId").setValue(currEmpId);
-    nui.get("mtAdvisor").setValue(currUserName);
+    nui.get("mtAdvisorId").setText(currUserName);
     nui.get("serviceTypeId").setValue(3);
     nui.get("recordDate").setValue(now);
 
@@ -548,9 +548,8 @@ function save(){
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
                     data.addr = guest.addr;
-
                     billForm.setData(data);
-
+                    nui.get("mtAdvisorId").setText(data.mtAdvisor);
                     var p3 = {
                         interType: "part",
                         data:{
@@ -610,9 +609,8 @@ function saveNoShowMsg(){
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
                     data.addr = guest.addr;
-
                     billForm.setData(data);
-
+                    nui.get("mtAdvisorId").setText(data.mtAdvisor);
                     var p3 = {
                         interType: "part",
                         data:{
@@ -822,23 +820,20 @@ function deletePartRow(row_uid){
 	var main = billForm.getData();	
     var isSettle = main.isSettle||0;
     if(main.status==1){
-		showMsg("此单已审核,不能修改!","W");
+		showMsg("工单已审核,不能删除配件!","W");
         return;
 	} 
 	if(main.status==2){
-		showMsg("此单已归库,不能修改!","W");
+		showMsg("工单已归库,不能删除配件!","W");
         return;
 	} 
 	if(isSettle == 1){
-        showMsg("此单已结算,不能修改!","W");
+        showMsg("工单已结算,不能删除配件!","W");
         return;
     }
     var row = rpsPartGrid.getRowByUID(row_uid);
     rpsPartGrid.removeRow(row);
-
-
 }
-
 
 function addGuest(){
     doApplyCustomer({},function(adction){
@@ -937,11 +932,15 @@ function chooseReturnPart(){
  	    }
  		saveNoShowMsg();
     }
-    if(isSettle == 1){
-        showMsg("此单已结算,不能修改!","W");
-        return;
-    }
-
+     
+     if(main.status == 1){
+         showMsg("工单已审核,不能添加配件!","W");
+         return;
+     }
+     if(isSettle == 1){
+         showMsg("工单已结算,不能添加配件!","W");
+         return;
+     }
     nui.open({
 		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.RepairBusiness.returnPart.flow?token=" + token,
@@ -1050,17 +1049,17 @@ function onCellCommitEdit(e) {
 	var qty = record.qty||0;
 	editor.validate();
 	if(main.status==1){
-		showMsg("此单已审核,不能修改!","W");
+		showMsg("工单已审核,不能修改!","W");
 		e.cancel = true;
 		return;
 	} 
 	if(main.status==2){
-		showMsg("此单已归库,不能修改!","W");
+		showMsg("工单已归库,不能修改!","W");
 		e.cancel = true;
 		return;
     } 
 	if(isSettle == 1){
-	    showMsg("此单已结算,不能修改!","W");
+	    showMsg("工单已结算,不能修改!","W");
 	    e.cancel = true;
 	    return;
 	}
@@ -1099,14 +1098,14 @@ var saveMaintain2 = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMainta
 function saveBatch(){
 	var main = billForm.getData();
     var isSettle = main.isSettle||0;
-    if(isSettle == 1){
-        showMsg("此单已结算,不能修改!","W");
-        return;
-    }
-	if(main.status==1){
-		showMsg("此单已审核,不能修改!","W");
+    if(main.status==1){
+		showMsg("工单已审核!","W");
         return;
 	} 
+    if(isSettle == 1){
+        showMsg("工单已结算!","W");
+        return;
+    }
 	//保存工单
 	if(!main.id){
 	 var data = billForm.getData();
@@ -1247,15 +1246,15 @@ function finish(){
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能审核!","W");
+        showMsg("工单已结算,不能审核!","W");
         return;
     }
-	if(main.status==1 || b == 1){
-		showMsg("此单已审核,不能重复审核!","W");
+	if(main.status==1){
+		showMsg("工单已审核!","W");
         return;
 	} 
 	if(main.status==2){
-		showMsg("此单已归库,不能审核!","W");
+		showMsg("工单已归库,不能审核!","W");
         return;
 	}
 	var maintain = billForm.getData();
@@ -1285,7 +1284,9 @@ function finish(){
 		success : function(text) {
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == "S") {
-				b = 1;
+				main.status = 1;
+				billForm.setData(main);
+				nui.get("mtAdvisorId").setText(main.mtAdvisor);
 				var p3 = {
                         interType: "part",
                         data:{

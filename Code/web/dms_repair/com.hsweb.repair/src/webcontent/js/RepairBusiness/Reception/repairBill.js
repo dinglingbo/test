@@ -658,7 +658,7 @@ function onApplyClick(){
                 billForm.setData(maintain);
                 sendGuestForm.setData(maintain);
                 describeForm.setData(maintain);
-
+                nui.get("contactorName").setText(guest.contactName);
                 fguestId = guest.guestId||0;
                 fcarId = guest.carId||0;
 
@@ -963,6 +963,22 @@ function add(){
 
 }
 function save(){
+	//判断里程
+	var last =  $("#lastComeKilometers").text() || 0;
+	var enterKilometers = nui.get("enterKilometers").getValue();
+	if(enterKilometers < last){
+		showMsg("进厂里程不能小于上次里程","W");
+		return;
+	}
+	var data = billForm.getData();
+	if(data.status == 2){
+		showMsg("工单已完工","W");
+        return;        
+    }
+	if(data.isSettle == 1){
+		showMsg("工单已结算","W");
+        return;        
+    }
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -1251,12 +1267,13 @@ function saveMaintain(callback,unmaskcall){
 }
 function sureMT(){
     var data = billForm.getData();
+    var carModel = data.carModel;
     if(!data.id){
         showMsg("请先保存工单!","W");
         return;
     }else{
         if(data.status != 0){
-            showMsg("本工单已经确定维修!","W");
+            showMsg("工单已确定维修!","W");
             return;
         }
         var params = {
@@ -1275,6 +1292,7 @@ function sureMT(){
             var errMsg = data.errMsg||"";
             if(errCode == 'S'){
                 var main = data.maintain||{};
+                main.carModel = carModel;
                 billForm.setData([]);
                 billForm.setData(main);
                 var status = main.status||0;
@@ -1292,23 +1310,25 @@ function sureMT(){
 }
 function finish(){
     var data = billForm.getData();
+    var carModel = data.carModel;
     if(!data.id){
         showMsg("请先保存工单!","W");
         return;
     }else{
         if(data.status == 2){
-            showMsg("本工单已经完工!","W");
+            showMsg("工单已完工!","W");
             return;
         }
         var params = {
             serviceId:data.id||0
         };
         doFinishWork(params, function(data){
-            data = data||{};data = data||{};
+            data = data||{};
             if(data.action){
                 var action = data.action||"";
                 if(action == 'ok'){
                     billForm.setData([]);
+                    data.carModel = carModel;
                     billForm.setData(data);
                     var status = data.status||0;
                     var isSettle = data.isSettle||0;
@@ -1332,11 +1352,11 @@ function unfinish(){
     }else{
         var isSettle = data.isSettle||0;
         if(isSettle == 1){
-            showMsg("本工单已经结算,不能返工!","W");
+            showMsg("工单已经结算,不能返单!","W");
             return;
         }
         if(data.status != 2){
-            showMsg("本工单未完工,不能返工!!","W");
+            showMsg("工单未完工,不能返单!!","W");
             return;
         }
         
@@ -1363,9 +1383,9 @@ function unfinish(){
                 var status = 1;
                 var isSettle = maintain.isSettle||0;
                 doSetStyle(status, isSettle);
-                showMsg("返工成功!","S");
+                showMsg("返单成功!","S");
             }else{
-                showMsg(errMsg||"返工失败!","W");
+                showMsg(errMsg||"返单失败!","W");
             }
             nui.unmask(document.body);
         }, function(){
@@ -1645,11 +1665,11 @@ function deletePackRow(row_uid){
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("本工单已完工,不能删除套餐!","W");
+        showMsg("工单已完工,不能删除套餐!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能删除套餐!","W");
+        showMsg("工单已结算,不能删除套餐!","W");
         return;
     }
 
@@ -1755,11 +1775,11 @@ function deletePartRow(row_uid){
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("本工单已完工,不能删除配件!","W");
+        showMsg("工单已完工,不能删除配件!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能删除配件!","W");
+        showMsg("工单已结算,不能删除配件!","W");
         return;
     }
 
@@ -1931,7 +1951,7 @@ function setPkgRate(){
     }else{
         var status = main.status||0;
         if(status == 2){
-            showMsg("本单已完工,不能修改!","W");
+            showMsg("工单已完工,不能修改!","W");
             return;
         }else{
             advancedPkgRateSetWin.show();
@@ -1949,13 +1969,13 @@ function surePkgRateSetWin(){
     }else{
         var status = data.status||0;
         if(status == 2){
-            showMsg("本单已完工,不能修改!","W");
+            showMsg("工单已完工,不能修改!","W");
             advancedPkgRateSetWin.hide();
             return;
         }else{
             var isSettle = data.isSettle||0;
             if(isSettle == 1){
-                showMsg("本工单已经结算,不能修改!","W");
+                showMsg("工单已结算,不能修改!","W");
                 return;
             }
             serviceId = data.id||0;
@@ -2009,7 +2029,7 @@ function setItemPartRate(){
     }else{
         var status = main.status||0;
         if(status == 2){
-            showMsg("本单已完工,不能修改!","W");
+            showMsg("工单已完工,不能修改!","W");
             return;
         }else{
             advancedItemPartRateSetWin.show();
@@ -2027,13 +2047,13 @@ function sureItemPartRateSetWin(){
     }else{
         var status = data.status||0;
         if(status == 2){
-            showMsg("本单已完工,不能修改!","W");
+            showMsg("工单已完工,不能修改!","W");
             advancedItemPartRateSetWin.hide();
             return;
         }else{
             var isSettle = data.isSettle||0;
             if(isSettle == 1){
-                showMsg("本工单已经结算,不能修改!","W");
+                showMsg("工单已结算,不能修改!","W");
                 return;
             }
             serviceId = data.id||0;
@@ -2319,11 +2339,11 @@ function editRpsPackage(row_uid){
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("本工单已完工,不能修改套餐!","W");
+        showMsg("工单已完工,不能修改套餐!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能修改套餐!","W");
+        showMsg("工单已结算,不能修改套餐!","W");
         return;
     }
 
@@ -2346,11 +2366,11 @@ function updateRpsPackage(row_uid){
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("本工单已完工,不能修改套餐!","W");
+        showMsg("工单已完工,不能修改套餐!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能修改套餐!","W");
+        showMsg("工单已结算,不能修改套餐!","W");
         return;
     }
 
@@ -2447,11 +2467,11 @@ function editRpsItem(row_uid){
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("本工单已完工,不能修改项目!","W");
+        showMsg("工单已完工,不能修改项目!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能修改项目!","W");
+        showMsg("工单已结算,不能修改项目!","W");
         return;
     }
 
@@ -2476,11 +2496,11 @@ function updateRpsItem(row_uid){
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("本工单已完工,不能修改项目!","W");
+        showMsg("工单已完工,不能修改项目!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能修改项目!","W");
+        showMsg("工单已结算,不能修改项目!","W");
         return;
     }
 
@@ -2558,11 +2578,11 @@ function editItemRpsPart(row_uid){
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("本工单已完工,不能修改配件!","W");
+        showMsg("工单已完工,不能修改配件!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能修改配件!","W");
+        showMsg("工单已结算,不能修改配件!","W");
         return;
     }
 
@@ -2587,14 +2607,13 @@ function updateItemRpsPart(row_uid){
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("本工单已完工,不能修改配件!","W");
+        showMsg("工单已完工,不能修改配件!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能修改配件!","W");
+        showMsg("工单已结算,不能修改配件!","W");
         return;
     }
-
     var rowc = rpsItemGrid.getRowByUID(row_uid);
     if (rowc) {
     	rpsItemGrid.commitEdit();
@@ -2660,6 +2679,16 @@ function updateItemRpsPart(row_uid){
 function chooseItem(){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
+    var status = main.status||0;
+    if(isSettle == 1){
+        showMsg("工单已结算,不能添加项目!","W");
+        return;
+    }
+    if(status == 2){
+        showMsg("工单已完工,不能添加项目!","W");
+        return;
+    }
+    
     if(!main.id){
        // showMsg("请选择保存工单!","S");
        // return;
@@ -2675,16 +2704,13 @@ function chooseItem(){
     			return;
     		}
     	 }
+    	var last =  $("#lastComeKilometers").text() || 0;
+        var enterKilometers = nui.get("enterKilometers").getValue();
+        if(enterKilometers < last){
+      	  showMsg("进厂里程不能小于上次里程","W");
+      	  return;
+      	}
 	  saveNoshowMsg();
-    }
-    var status = main.status||0;
-    if(status == 2){
-        showMsg("本工单已完工,不能添加项目!","W");
-        return;
-    }
-    if(isSettle == 1){
-        showMsg("此单已结算,不能添加项目!","W");
-        return;
     }
 	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, function(text){
 		    main = billForm.getData();
@@ -2703,6 +2729,15 @@ function chooseItem(){
 function choosePackage(){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("工单已完工,不能添加套餐!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("工单已结算,不能添加套餐!","W");
+        return;
+    }
     if(!main.id){
        // showMsg("请选择保存套餐!","S");
        // return;
@@ -2719,17 +2754,7 @@ function choosePackage(){
     		}
     	 }
        saveNoshowMsg();
-    }
-    var status = main.status||0;
-    if(status == 2){
-        showMsg("本工单已完工,不能添加套餐!","W");
-        return;
-    }
-    if(isSettle == 1){
-        showMsg("此单已结算,不能添加套餐!","W");
-        return;
-    }
-                                                       
+    }                                                   
     doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, function(text){
         main = billForm.getData();
         var p1 = { 
@@ -3083,6 +3108,7 @@ function showCarCheckInfo(){
     SearchCheckMain(changeCheckInfoTab);
 }
 
+//结算界面关掉之后，还是可以再次结算？？
 function pay(){
 	
 	var data = billForm.getData();
@@ -3091,8 +3117,12 @@ function pay(){
         return;
     }else{
         if(data.status != 2){
-            showMsg("本工单未完工,不能结算!","W");
+            showMsg("工单未完工,不能结算!","W");
             return;
+        }
+        if(data.isSettle == 1){
+        	 showMsg("工单已结算!","W");
+             return;
         }
         var sellData = sellForm.getData();
         ycAmt = parseFloat(tcAmt)+parseFloat(gsAmt);
@@ -3133,6 +3163,14 @@ function showBasicData(type){
     var status = maintain.status||0;
     var BasicDataUrl = null;
     var title = null;
+    if(status==2){
+        showMsg("工单已完工,不能录入!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("工单已结算,不能录入!","W");
+        return;
+    }
     if(!maintain.id){
         //showMsg("请选择保存工单!","W");
         //return;
@@ -3148,6 +3186,12 @@ function showBasicData(type){
     			return;
     		}
     	 }
+    	var last =  $("#lastComeKilometers").text() || 0;
+        var enterKilometers = nui.get("enterKilometers").getValue();
+        if(enterKilometers < last){
+        	showMsg("进厂里程不能小于上次里程","W");
+        	return;
+        }
     	saveNoshowMsg(function(){
     		maintain = billForm.getData();
     		var carVin = maintain.carVin;
@@ -3170,14 +3214,6 @@ function showBasicData(type){
     	    });
     	});
     }else{
-    	 if(status==2){
-    	        showMsg("本单已完工,不能录入!","W");
-    	        return;
-    	    }
-    	    if(isSettle == 1){
-    	        showMsg("本单已结算,不能录入!","W");
-    	        return;
-    	    }
     	    var carVin = maintain.carVin;
     	    var params = {
     	        vin:carVin,
@@ -3216,11 +3252,11 @@ function showBasicDataPart(){
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("本工单已完工,不能添加配件!","W");
+        showMsg("工单已完工,不能添加配件!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能添加配件!","W");
+        showMsg("工单已结算,不能添加配件!","W");
         return;
     }  
     var BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPart.flow?token=";
@@ -4134,11 +4170,11 @@ function chooseContactor(){
         return; 
 	}
 	if(data.status == 2){
-		showMsg("此单已完工,不能修改联系人!","W");
+		showMsg("工单已完工,不能修改联系人!","W");
         return;        
     }
 	if(data.isSettle == 1){
-		showMsg("此单已结算,不能修改联系人!","W");
+		showMsg("工单已结算,不能修改联系人!","W");
         return;        
     }
 	

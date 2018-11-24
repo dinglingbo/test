@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>车险登记明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.13"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.18"></script>
     <style type="text/css">
    .title {
         width: 80px;
@@ -181,8 +181,8 @@ pageEncoding="UTF-8" session="false"%>
                 <label>有效日期：</label>
             </td>
             <td style="width:20%">
-               <input id="date1" name="date1" class="nui-datepicker" value="" format="yyyy-MM-dd " width="43%"/>
-    			至 <input id="date2" name="date2" class="nui-datepicker" value="" format="yyyy-MM-dd "width="43%"/> &nbsp;&nbsp;
+               <input id="beginDate" name="beginDate" class="nui-datepicker" value="" format="yyyy-MM-dd " width="43%"/>
+    			至 <input id="endDate" name="endDate" class="nui-datepicker" value="" format="yyyy-MM-dd "width="43%"/> &nbsp;&nbsp;
             </td>
 
             <td class="title required">保费收取方式:</td> 

@@ -655,7 +655,7 @@ function onApplyClick(){
                 maintain.carModel = guest.carModel;
                 carNoEl.setText(guest.carNo);
                 billForm.setData(maintain);
-
+                nui.get("contactorName").setText(guest.contactName);
                 fguestId = guest.guestId||0;
                 fcarId = guest.carId||0;
 
@@ -699,10 +699,11 @@ function doSetMainInfo(car){
     maintain.mtAdvisor = currUserName;
     maintain.recordDate = now;
 
+    $("#lastComeKilometers").html(car.lastComeKilometers);  
     mpackageRate = 0;
     mitemRate = 0;
     mpartRate = 0;
-
+    nui.get("contactorName").setText(car.contactName);
     billForm.setData(maintain);
     xyguest = maintain;
     fguestId = car.guestId||0;
@@ -747,8 +748,9 @@ function setInitData(params){
         getMaintain(params, function(text){
             var errCode = text.errCode||"";
             var data = text.maintain||{};
+            var lastEnterKilometers = data.lastEnterKilometers || 0;
+            $("#lastComeKilometers").html(lastEnterKilometers);
             if(errCode == 'S'){
-            	
             	//挂账
             	if(data.guestId){
                 	var accAmt = {};
@@ -827,6 +829,7 @@ function setInitData(params){
                         doSearchCardTimes(fguestId);
                         doSearchMemCard(fguestId);
                         xyguest = data;
+                        nui.get("contactorName").setText(contactor.name);
                         billForm.setData(data);
 
                         var status = data.status||0;
@@ -909,6 +912,7 @@ function add(){
 			totalSubtotal:0,
 			ycAmt:0
 	};
+    nui.get("contactorName").setText("");
     sellForm.setData(data);
     nui.get("mtAdvisorId").setValue(currEmpId);
     nui.get("mtAdvisor").setValue(currUserName);
@@ -921,6 +925,7 @@ function add(){
 
 
     document.getElementById("formIframe").contentWindow.doSetCardTimes([]);
+    $("#lastComeKilometers").html("0");
     $("#servieIdEl").html("");
     $("#showCardTimesEl").html("次卡套餐(0)");
     $("#showCardEl").html("储值卡(0)");
@@ -934,6 +939,25 @@ function add(){
 
 }
 function save(){
+	
+	var data = billForm.getData();
+	if(data.status == 2){
+		showMsg("工单已完工","W");
+        return;        
+    }
+	if(data.isSettle == 1){
+		showMsg("工单已结算","W");
+        return;        
+    }
+	
+	//判断里程
+	var last =  $("#lastComeKilometers").text() || 0;
+	var enterKilometers = nui.get("enterKilometers").getValue();
+	if(enterKilometers < last){
+		showMsg("进厂里程不能小于上次里程","W");
+		return;
+	}
+	
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -1012,7 +1036,7 @@ function save(){
                     var status = data.status||0;
                     var isSettle = data.isSettle||0;
                     doSetStyle(status, isSettle);
-
+                    nui.get("contactorName").setText(contactor.name);
                     var p1 = {
                         interType: "package",
                         data:{
@@ -1118,7 +1142,7 @@ function saveNoshowMsg(callback){
                     data.mobile = contactor.mobile;
                     data.carModel = car.carModel;
                     billForm.setData(data);
-
+                    nui.get("contactorName").setText(contactor.name);
                     var status = data.status||0;
                     var isSettle = data.isSettle||0;
                     doSetStyle(status, isSettle);
@@ -1157,7 +1181,8 @@ var requiredField = {
     carNo : "车牌号",
     guestId : "客户",
     serviceTypeId : "业务类型",
-    mtAdvisorId : "服务顾问"
+    mtAdvisorId : "服务顾问",
+    enterKilometers : "进厂里程",
 };
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function saveMaintain(callback,unmaskcall){
@@ -1170,7 +1195,7 @@ function saveMaintain(callback,unmaskcall){
     }
   }
 data.billTypeId = 2;
-
+data.lastEnterKilometers = $("#lastComeKilometers").text() || 0;
 var params = {
     data:{
         maintain:data
@@ -1223,7 +1248,7 @@ function sureMT(){
         return;
     }else{
         if(dataForm.status != 0){
-            showMsg("本工单已经确定维修!","W");
+            showMsg("工单已确定维修!","W");
             return;
         }
         var params = {
@@ -1246,8 +1271,10 @@ function sureMT(){
                 main.guestMobile = dataForm.guestMobile;
                 main.guestFullName = dataForm.guestFullName;
                 main.mobile = dataForm.mobile;
+                main.carModel = dataForm.carModel;
                 billForm.setData([]);
                 billForm.setData(main);
+                nui.get("contactorName").setText(dataForm.contactorName);
                 var status = main.status||0;
                 var isSettle = main.isSettle||0;
                 doSetStyle(status, isSettle);
@@ -1268,7 +1295,7 @@ function finish(){
         return;
     }else{
         if(dataForm.status == 2){
-            showMsg("本工单已经完工!","W");
+            showMsg("工单已完工!","W");
             return;
         }
         var params = {
@@ -1282,9 +1309,11 @@ function finish(){
                 data.guestMobile = dataForm.guestMobile;
                 data.guestFullName = dataForm.guestFullName;
                 data.mobile = dataForm.mobile;
+                data.carModel = dataForm.carModel;
                 if(action == 'ok'){
                     billForm.setData([]);
                     billForm.setData(data);
+                    nui.get("contactorName").setText(dataForm.contactorName);
                     var status = data.status||0;
                     var isSettle = data.isSettle||0;
                     doSetStyle(status, isSettle);
@@ -1307,11 +1336,11 @@ function unfinish(){
     }else{
         var isSettle = data.isSettle||0;
         if(isSettle == 1){
-            showMsg("本工单已经结算,不能返工!","W");
+            showMsg("工单已结算,不能返单!","W");
             return;
         }
         if(data.status != 2){
-            showMsg("本工单未未完工,不能返工!!","W");
+            showMsg("工单未完工,不能返单!!","W");
             return;
         }
         
@@ -1335,12 +1364,13 @@ function unfinish(){
                 olddata.status = 1;
                 billForm.setData([]);
                 billForm.setData(olddata);
+                nui.get("contactorName").setText(maintain.contactorName);
                 var status = 1;
                 var isSettle = maintain.isSettle||0;
                 doSetStyle(status, isSettle);
-                showMsg("返工成功!","S");
+                showMsg("返单成功!","S");
             }else{
-                showMsg(errMsg||"返工失败!","W");
+                showMsg(errMsg||"返单失败!","W");
             }
             nui.unmask(document.body);
         }, function(){
@@ -1641,6 +1671,21 @@ function checkPrdt(data){
     }
 }
 function deletePartRow(row_uid){
+	var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","W");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("工单已完工,不能删除配件!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("工单已结算,不能删除配件!","W");
+        return;
+    }
     var data = rpsItemGrid.getData();
     var row = rpsItemGrid.getRowByUID(row_uid);
     if(data && data.length==1){
@@ -1685,6 +1730,9 @@ function addItemNewRow(){
     rpsItemGrid.addRow(newRow);
 }
 function deletePackRow(row_uid){
+	
+	
+	
     var data = rpsPackageGrid.getData();
     var row = rpsPackageGrid.getRowByUID(row_uid);
     var prdtId = row.prdtId;
@@ -1899,7 +1947,7 @@ function setPkgRate(){
     }else{
         var status = main.status||0;
         if(status == 2){
-            showMsg("本单已完工,不能修改!","W");
+            showMsg("工单已完工,不能修改!","W");
             return;
         }else{
             advancedPkgRateSetWin.show();
@@ -1917,13 +1965,13 @@ function surePkgRateSetWin(){
     }else{
         var status = data.status||0;
         if(status == 2){
-            showMsg("本单已完工,不能修改!","W");
+            showMsg("工单已完工,不能修改!","W");
             advancedPkgRateSetWin.hide();
             return;
         }else{
             var isSettle = data.isSettle||0;
             if(isSettle == 1){
-                showMsg("本工单已经结算,不能修改!","W");
+                showMsg("工单已结算,不能修改!","W");
                 return;
             }
             serviceId = data.id||0;
@@ -1977,7 +2025,7 @@ function setItemPartRate(){
     }else{
         var status = main.status||0;
         if(status == 2){
-            showMsg("本单已完工,不能修改!","W");
+            showMsg("工单已完工,不能修改!","W");
             return;
         }else{
             advancedItemPartRateSetWin.show();
@@ -1995,13 +2043,13 @@ function sureItemPartRateSetWin(){
     }else{
         var status = data.status||0;
         if(status == 2){
-            showMsg("本单已完工,不能修改!","W");
+            showMsg("工单已完工,不能修改!","W");
             advancedItemPartRateSetWin.hide();
             return;
         }else{
             var isSettle = data.isSettle||0;
             if(isSettle == 1){
-                showMsg("本工单已经结算,不能修改!","W");
+                showMsg("工单已结算,不能修改!","W");
                 return;
             }
             serviceId = data.id||0;
@@ -2275,6 +2323,21 @@ function loadDetail(p1, p2, p3){
 var __workerIds="";
 var __saleManId="";
 function editRpsPackage(row_uid){
+	 var main = billForm.getData();
+	 var isSettle = main.isSettle||0;
+	 if(!main.id){
+	     showMsg("请选择保存工单!","W");
+	     return;
+	 }
+	 var status = main.status||0;
+	 if(status == 2){
+	     showMsg("工单已完工,不能修改套餐!","W");
+	     return;
+	 }
+	 if(isSettle == 1){
+	     showMsg("工单已结算,不能修改套餐!","W");
+	     return;
+	 }
     var row = rpsPackageGrid.getRowByUID(row_uid);
     lastPkgSubtotal = row.subtotal;
     lastPkgRate = row.rate;
@@ -2286,6 +2349,21 @@ function editRpsPackage(row_uid){
     }
 }
 function updateRpsPackage(row_uid){
+	var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","W");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("工单已完工,不能修改套餐!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("工单已结算,不能修改套餐!","W");
+        return;
+    }
     var rowc = rpsPackageGrid.getRowByUID(row_uid);
     if (rowc) {
         rpsPackageGrid.commitEdit();
@@ -2370,6 +2448,22 @@ function updateRpsPackage(row_uid){
     }
 }
 function editRpsItem(row_uid){
+	var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","W");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("工单已完工,不能修改项目!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("工单已结算,不能修改项目!","W");
+        return;
+    }
+	
     var row = rpsItemGrid.getRowByUID(row_uid);
     lastItemQty = row.qty;
     lastItemRate = row.rate;
@@ -2383,6 +2477,22 @@ function editRpsItem(row_uid){
     }
 }
 function editItemRpsPart(row_uid){
+	var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","W");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("工单已完工,不能修改配件!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("工单已结算,不能修改配件!","W");
+        return;
+    }
+
     var row = rpsItemGrid.getRowByUID(row_uid);
     lastItemQty = row.qty;
     lastItemRate = row.rate;
@@ -2396,6 +2506,23 @@ function editItemRpsPart(row_uid){
     }
 }
 function updateRpsItem(row_uid){
+	
+	var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","W");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("工单已完工,不能修改项目!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("工单已结算,不能修改项目!","W");
+        return;
+    }
+	
     var rowc = rpsItemGrid.getRowByUID(row_uid);
     if (rowc) {
         rpsItemGrid.commitEdit();
@@ -2463,6 +2590,21 @@ function updateRpsItem(row_uid){
 }
 
 function updateItemRpsPart(row_uid){
+	var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("请选择保存工单!","W");
+        return;
+    }
+    var status = main.status||0;
+    if(status == 2){
+        showMsg("工单已完工,不能修改配件!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("工单已结算,不能修改配件!","W");
+        return;
+    }
     var rowc = rpsItemGrid.getRowByUID(row_uid);
     if (rowc) {
     	rpsItemGrid.commitEdit();
@@ -2525,6 +2667,17 @@ function updateItemRpsPart(row_uid){
     }
 }
 function chooseItem(){
+	var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    var status = main.status||0;
+    if(isSettle == 1){
+        showMsg("工单已结算,不能添加项目!","W");
+        return;
+    }
+    if(status == 2){
+        showMsg("工单已完工,不能添加项目!","W");
+        return;
+    }
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
@@ -2537,16 +2690,13 @@ function chooseItem(){
             return;
         }
       }
+      var last =  $("#lastComeKilometers").text() || 0;
+      var enterKilometers = nui.get("enterKilometers").getValue();
+      if(enterKilometers < last){
+    	  showMsg("进厂里程不能小于上次里程","W");
+    	  return;
+    	}
 	  saveNoshowMsg();
-    }
-    var status = main.status||0;
-    if(status == 2){
-        showMsg("本工单已完工,不能添加项目!","W");
-        return;
-    }
-    if(isSettle == 1){
-        showMsg("此单已结算,不能添加项目!","W");
-        return;
     }
 	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, function(text){
 		    main = billForm.getData();
@@ -2792,11 +2942,11 @@ function choosePart(){
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("本工单已完工,不能添加配件!","W");
+        showMsg("工单已完工,不能添加配件!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能添加配件!","W");
+        showMsg("工单已结算,不能添加配件!","W");
         return;
     }
 
@@ -2818,6 +2968,14 @@ function showBasicData(type){
     var maintain = billForm.getData();
     var isSettle = maintain.isSettle||0;
     var status = maintain.status||0;
+    if(status==2){
+        showMsg("工单已完工,不能录入!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("工单已结算,不能录入!","W");
+        return;
+    }
     var BasicDataUrl = null;
     var title = null;
     if(!maintain.id){
@@ -2830,36 +2988,34 @@ function showBasicData(type){
             return;
         }
       }
-    	saveNoshowMsg(function(){
-    		maintain = billForm.getData();
-    		var carVin = maintain.carVin;
-    	    var params = {
-    	        vin:carVin,
-    	        serviceId:maintain.id,
-    	        carNo:maintain.carNo
-    	    };
-    	    if(type=="pkg"){
-    	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";
-    	    	title = "标准套餐查询";
-    	    }
-    	    if(type=="item"){
-    	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryItem.flow?token=";
-    	    	title = "标准项目查询";
-    	    }
-    	  //添加回调函数，进行显示
-    	    doSelectBasicData(BasicDataUrl,title,params,function(p1,p2,p3){
-    	        loadDetail(p1, p2, p3);
-    	    });
-    	});
+      var last =  $("#lastComeKilometers").text() || 0;
+      var enterKilometers = nui.get("enterKilometers").getValue();
+      if(enterKilometers < last){
+      	showMsg("进厂里程不能小于上次里程","W");
+      	return;
+      }
+	  saveNoshowMsg(function(){
+		maintain = billForm.getData();
+		var carVin = maintain.carVin;
+	    var params = {
+	        vin:carVin,
+	        serviceId:maintain.id,
+	        carNo:maintain.carNo
+	    };
+	    if(type=="pkg"){
+	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";
+	    	title = "标准套餐查询";
+	    }
+	    if(type=="item"){
+	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryItem.flow?token=";
+	    	title = "标准项目查询";
+	    }
+	  //添加回调函数，进行显示
+	    doSelectBasicData(BasicDataUrl,title,params,function(p1,p2,p3){
+	        loadDetail(p1, p2, p3);
+	    });
+	  });
     }else{
-    	 if(status==2){
-    	        showMsg("本单已完工,不能录入!","W");
-    	        return;
-    	    }
-    	    if(isSettle == 1){
-    	        showMsg("本单已结算,不能录入!","W");
-    	        return;
-    	    }
     	    var carVin = maintain.carVin;
     	    var params = {
     	        vin:carVin,
@@ -2895,11 +3051,11 @@ function showBasicDataPart(row_uid){
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("本工单已完工,不能添加配件!","W");
+        showMsg("工单已完工,不能添加配件!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能添加配件!","W");
+        showMsg("工单已结算,不能添加配件!","W");
         return;
     }  
     var BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPart.flow?token=";
@@ -3958,8 +4114,54 @@ function checkGuest(){
      });
 }
 
+function chooseContactor(){
+	var data = billForm.getData();
+	var guestId = data.guestId;
+	if(!guestId){
+		showMsg("请填写客户信息!","W");
+        return; 
+	}
+	if(data.status == 2){
+		showMsg("工单已完工,不能修改联系人!","W");
+        return;        
+    }
+	if(data.isSettle == 1){
+		showMsg("工单已结算,不能修改联系人!","W");
+        return;        
+    }
+	
+	 nui.open({
+         url: webPath + contextPath + "/com.hsweb.repair.DataBase.SelectContactor.flow?token="+token,
+         title: '选择联系人',
+         width: 700, height: 300,
+         onload: function () {
+             var iframe = this.getIFrameEl();
+             var params = {};	
+             params.guestId=guestId;
+             iframe.contentWindow.setData(params);
+         },
+         ondestroy: function (action)
+         {
+        	 var iframe = this.getIFrameEl();
+        	 var row = iframe.contentWindow.getData();
+        	 nui.get("contactorName").setText(row.name);
+        	 if(data.id){
+        		 var maintain = billForm.getData();
+        		 maintain.contactorId = row.id;
+        		 maintain.contactorName = row.name;
+        		 maintain.mobile = row.mobile;
+        		 billForm.setData(maintain);
+        		 saveNoshowMsg();
+        	 }
+         }
+     });
+}
 
-
-
-
+function setEnterKilometers(e){
+	var last =  $("#lastComeKilometers").text() || 0;
+	if(e.value < last){
+		showMsg("进厂里程不能小于上次里程","W");
+		nui.get("enterKilometers").setValue("");
+	}
+}
 

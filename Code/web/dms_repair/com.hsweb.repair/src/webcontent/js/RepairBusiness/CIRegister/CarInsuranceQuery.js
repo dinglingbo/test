@@ -50,7 +50,7 @@
  var searchByDateBtnTextHash = ["本日","昨日","本周","上周","本月","上月","本年","上年"];
  var currType = 0;
  function quickSearch(type) {
-    var params = {};
+
     currType = type;
 
     var btn = nui.get("searchByDateBtn");
@@ -67,14 +67,15 @@
     beginDateEl.setValue(dateObj.startDate);
     endDateEl.setValue(dateObj.endDate);
     advancedSearchForm.setData(data);
+    var params = getSearchParams();
     doSearch(params);
 }
 function getSearchParams()
 {
     var params = {};
     var data = advancedSearchForm.getData();
-    params.startDate = beginDateEl.getValue();
-    params.endDate = endDateEl.getValue();
+    params.startDate = beginDateEl.getValue().substr(0,10);
+    params.endDate = addDate(endDateEl.getValue().substr(0,10),1);
     params.carNo = nui.get("carNo-search").getValue();
     params.guestFullName = nui.get("guestName").getValue();
     params.isSettle=1;

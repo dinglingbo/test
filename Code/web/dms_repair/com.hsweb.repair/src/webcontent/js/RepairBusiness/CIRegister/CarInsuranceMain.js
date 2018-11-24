@@ -96,7 +96,6 @@ function onAdvancedSearchOk()
     {
         nui.alert("起始日期和终止日期不能为空");
         return;
-
     }
     searchData.startDate = searchData.startDate.substr(0,10);
     searchData.endDate = searchData.endDate.substr(0,10);

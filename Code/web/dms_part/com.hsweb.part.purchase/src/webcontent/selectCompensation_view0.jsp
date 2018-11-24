@@ -10,7 +10,7 @@
 -->
 <head>
 <title>理赔开单查询</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectCompensation.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectCompensation.js?v=1.0.2"></script>
 <style type="text/css">
 
 .title {
@@ -51,6 +51,22 @@
         <table class="table" id="table1">
             <tr>
                 <td>
+                	<label style="font-family:Verdana;">快速查询：</label>
+                	 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+
+	                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+	                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+	                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+	                    <li class="separator"></li>
+	                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+	                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+	                    <li class="separator"></li>
+	                    <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+	                    <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+	                    <li class="separator"></li>
+	                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+	                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+	                </ul>
                     <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
                     <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
@@ -86,6 +102,7 @@
                onrowdblclick=""
                allowCellSelect="true"
                editNextOnEnterKey="true"
+               allowCellWrap = true
                onshowrowdetail="onShowRowDetail"
                url="">
                <div property="columns">
@@ -96,9 +113,9 @@
 		                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>  
 		                  <div field="carNo" name="carNO" width="80" headerAlign="center" header="车牌"></div>
 		                  <div field="guestFullName" name="guestFullName" width="60" headerAlign="center" header="客户姓名"></div>
-		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div>
+<!-- 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div> -->
 		                  <div field="mtAdvisor" name="mtAdvisor" width="60" headerAlign="center" header="服务顾问"></div>
-		                  <div field="serviceTypeName" name="serviceTypeName" width="60" headerAlign="center" header="业务类型"></div> 
+		                  <div field="serviceTypeName" name="serviceTypeName" width="100" headerAlign="center" header="业务类型"></div> 
 		                  <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
 	                  </div>
                   </div>
@@ -120,7 +137,7 @@
                    <div header="其他" headerAlign="center">
 	                  <div property="columns" >
 		                  <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div>
-		                  <div field="carModel" name="carModel" width="160" headerAlign="center" header="车型"></div>
+		                  <div field="carModel" name="carModel" width="360" headerAlign="center" header="车型"></div>
 		                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="VIN码"></div>
 		                  <div field="sureMtDate" name="sureMtDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="维修日期"></div>
 		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="完工日期"></div>

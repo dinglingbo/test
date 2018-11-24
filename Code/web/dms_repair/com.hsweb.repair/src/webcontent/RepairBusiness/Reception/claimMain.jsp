@@ -10,7 +10,7 @@
 -->
 <head>
 <title>理赔-工单</title>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/claimMain.js?v=1.1.4"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/claimMain.js?v=1.1.5"></script>
 <style type="text/css">
 
 .title {

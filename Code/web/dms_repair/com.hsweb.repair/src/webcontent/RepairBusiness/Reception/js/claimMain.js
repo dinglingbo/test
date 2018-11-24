@@ -33,6 +33,7 @@ var prdtTypeHash = {
 	    "2":"项目",
 	    "3":"配件"
 };
+var seeBill = true;
 $(document).ready(function ()
 {
     mainGrid = nui.get("mainGrid");
@@ -71,11 +72,10 @@ $(document).ready(function ()
                 brandList.forEach(function(v) {
                     brandHash[v.id] = v;
                 });
-
-                quickSearch(0);
+                if(seeBill){
+                    quickSearch(0);
+                }
             });
-
-
         });
 
     });
@@ -431,6 +431,7 @@ function setInitData(params){
             token:token,
             params: p
         });
+        seeBill = false;
     }
 }
 function finish(){

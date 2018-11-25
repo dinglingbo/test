@@ -49,14 +49,31 @@
     <table class="table" id="table1"> 
       <tr>
         <td>
+         	 <label style="font-family:Verdana;">快速查询：</label>
+                    
+                    <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+
+                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+                    <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+                    <li class="separator"></li>
+                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+                </ul>
           <input class="nui-hidden" id="cNo" name="cNo" value='<b:write property="cNo"/>'/>
           <input class="nui-textbox" id="guestName" name="guestName" emptyText="输入客户姓名" width="120"  onenter="onenterGuestName(this.value)"/>
           <input class="nui-textbox" id="serviceCode" name="serviceCode" emptyText="请输入单号" width="120" onenter="onenterServiceCode(this.value)"/>
           <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" onenter="onenterCarNo(this.value)"/>
           <label class="form_label">开单日期&nbsp;从：</label>
-          <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
+          <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="sRecordDate" id = "sRecordDate" value=""/>
           <label class="form_label">至：</label>
-          <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
+          <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="eRecordDate" id = "eRecordDate" value=""/>
         
           <a class="nui-button" iconCls="" plain="true" onclick="onSearch">
            <span class="fa fa-search fa-lg"></span>&nbsp;查询
@@ -107,24 +124,13 @@
   mainGrid.setUrl(gridUrl);
   beginDateEl = nui.get("sRecordDate");
   endDateEl = nui.get("eRecordDate");
-  var date = new Date();
-  var sdate = new Date();
-  sdate.setMonth(date.getMonth()-3);
-  endDateEl.setValue(date);
-  beginDateEl.setValue(sdate);
+//   var date = new Date();
+//   var sdate = new Date();
+//   sdate.setMonth(date.getMonth()-3);
+//   endDateEl.setValue(date);
+//   beginDateEl.setValue(sdate);
 
-  onSearch();
-
-  function onSearch(){
-    var data = form.getData();
-    data.orgid = currOrgId;
-    data.sRecordDate = beginDateEl.getValue();
-    data.eRecordDate = endDateEl.getValue();
-    mainGrid.load({ 
-      params:data,
-      token:token
-  });
-}
+ 
 
 /*  function selectModel(){
     nui.open({
@@ -141,7 +147,101 @@
 
     });
 }*/
-
+	quickSearch(2);
+function getSearchParam(){
+	var params = form.getData();
+    params.orgid = currOrgId;
+    params.sRecordDate = beginDateEl.getValue().substr(0,10);
+    params.eRecordDate = addDate(endDateEl.getValue(),1);
+    return params;
+}
+function doSearch(params){
+	mainGrid.load({ 
+      params:params,
+      token:token
+  });
+}
+  function onSearch(){
+  	var params = getSearchParam();
+    doSearch(params);
+}
+function quickSearch(type){
+    var params = getSearchParam();
+    var querysign = 1;
+    var queryname = "本日";
+    var querystatusname = "所有";
+    switch (type)
+    {
+        case 0:
+            params.today = 1;
+            params.sRecordDate = getNowStartDate();
+            params.eRecordDate = addDate(getNowEndDate(), 1);
+            querysign = 1;
+            queryname = "本日";
+            break;
+        case 1:
+            params.yesterday = 1;
+            params.sRecordDate = getPrevStartDate();
+            params.eRecordDate = addDate(getPrevEndDate(), 1);
+            querysign = 1;
+            queryname = "昨日";
+            break;
+        case 2:
+            params.thisWeek = 1;
+            params.sRecordDate = getWeekStartDate();
+            params.eRecordDate = addDate(getWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "本周";
+            break;
+        case 3:
+            params.lastWeek = 1;
+            params.sRecordDate = getLastWeekStartDate();
+            params.eRecordDate = addDate(getLastWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "上周";
+            break;
+        case 4:
+            params.thisMonth = 1;
+            params.sRecordDate = getMonthStartDate();
+            params.eRecordDate = addDate(getMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "本月";
+            break;
+        case 5:
+            params.lastMonth = 1;
+            params.sRecordDate = getLastMonthStartDate();
+            params.eRecordDate = addDate(getLastMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "上月";
+            break;
+        case 10:
+            params.thisYear = 1;
+            params.sRecordDate = getYearStartDate();
+            params.eRecordDate = getYearEndDate();
+            querysign = 1;
+            queryname = "本年";
+            break;
+        case 11:
+            params.lastYear = 1;
+            params.sRecordDate = getPrevYearStartDate();
+            params.eRecordDate = getPrevYearEndDate();
+            querysign = 1;
+            queryname = "上年";
+            break;       
+        default:      	
+            break;
+    }
+    
+    beginDateEl.setValue(params.sRecordDate);
+    endDateEl.setValue(addDate(params.eRecordDate,-1));
+    currType = type;
+    if(querysign == 1){
+    	var menunamedate = nui.get("menunamedate");
+    	menunamedate.setText(queryname); 	
+    }
+   
+    doSearch(params);
+}
 function setInitData(params){
     var pa={
       carNo:nui.get("cNo").value,

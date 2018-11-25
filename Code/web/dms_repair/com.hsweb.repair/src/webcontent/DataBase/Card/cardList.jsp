@@ -12,7 +12,7 @@
 <head>
 <title>储值卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.4.0"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.4.4"></script>
 </head>
 <body>
 	<div id="queryform" class="nui-form">
@@ -33,13 +33,14 @@
 						onclick="edit()" plain="true"> 
 						<span class="fa fa-edit fa-lg"></span>
 					修改 </a>
+					<a class="nui-button" iconCls="" plain="true" onclick="onBuy()" id = "onBuy" visible = "false"><span class="fa fa-check fa-lg"></span>&nbsp;购买</a>
 					</td>
 				</tr>
 			</table>
 		</div>
 	</div>
 	<div class="nui-fit">
-		<div id="datagrid1" dataField="card" class="nui-datagrid" onrowdblclick="edit()"
+		<div id="datagrid1" dataField="card" class="nui-datagrid" 
 			pageSize="50" onDrawCell="onDrawCell" onselectionchanged="selectionChanged"
 			onrowclick="" allowSortColumn="true"
 			style="width: 100%; height: 100%;">

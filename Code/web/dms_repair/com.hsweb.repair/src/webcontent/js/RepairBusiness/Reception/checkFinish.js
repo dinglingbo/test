@@ -106,38 +106,86 @@ function getDrawOutReport(serviceId){
 });	
 } 
 var resultData = {};
-function finish(){
-	var drawOutReport = form.getData().content;
-    nui.mask({
-        el: document.body,
-        cls: 'mini-mask-loading',
-        html: '处理中...'
-    });
-    var params = {
-        data:{
-            id:fserviceId||0,
-            "drawOutReport":drawOutReport
-        }
-    };
-    svrRepairAudit(params, function(data){
-        data = data||{};
-        var errCode = data.errCode||"";
-        var errMsg = data.errMsg||"";
-        if(errCode == 'S'){
-            var dataHash = data.data||{};
-            resultData = dataHash.maintain||{};
-            resultData.action = 'ok';
-            showMsg("操作成功","S");
-            CloseWindow('ok');
-        }else{
-        	showMsg(errMsg||"操作失败","W");
-            //resultData.action = 'cancel';
-            //CloseWindow("cancel");
-        }
-        nui.unmask(document.body);
-    }, function(){
-        nui.unmask(document.body);
-    })
+function finish(){	
+	var itemData = itemGrid.getData();
+	var falg = false;
+	for(var i = 0;i<itemData.length;i++){
+		if(itemData.workers == "" || itemData.workers == null){
+			falg = true ;
+			break;
+		}		
+	}				
+	if(falg){	
+	  nui.confirm("工单有未派工项目，是否确定完工", "友情提示",function(action){
+	       if(action == "ok"){
+	    	   var drawOutReport = form.getData().content;
+	    	    nui.mask({
+	    	        el: document.body,
+	    	        cls: 'mini-mask-loading',
+	    	        html: '处理中...'
+	    	    });
+	    	    var params = {
+	    	        data:{
+	    	            id:fserviceId||0,
+	    	            "drawOutReport":drawOutReport
+	    	        }
+	    	    };
+	    	    svrRepairAudit(params, function(data){
+	    	        data = data||{};
+	    	        var errCode = data.errCode||"";
+	    	        var errMsg = data.errMsg||"";
+	    	        if(errCode == 'S'){
+	    	            var dataHash = data.data||{};
+	    	            resultData = dataHash.maintain||{};
+	    	            resultData.action = 'ok';
+	    	            showMsg("操作成功","S");
+	    	            CloseWindow('ok');
+	    	        }else{
+	    	        	showMsg(errMsg||"操作失败","W");
+	    	            //resultData.action = 'cancel';
+	    	            //CloseWindow("cancel");
+	    	        }
+	    	        nui.unmask(document.body);
+	    	    }, function(){
+	    	        nui.unmask(document.body);
+	    	    });
+	     }else {
+	    	 onCancel();
+		 }
+		 });		
+	}else{
+		var drawOutReport = form.getData().content;
+	    nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '处理中...'
+	    });
+	    var params = {
+	        data:{
+	            id:fserviceId||0,
+	            "drawOutReport":drawOutReport
+	        }
+	    };
+	    svrRepairAudit(params, function(data){
+	        data = data||{};
+	        var errCode = data.errCode||"";
+	        var errMsg = data.errMsg||"";
+	        if(errCode == 'S'){
+	            var dataHash = data.data||{};
+	            resultData = dataHash.maintain||{};
+	            resultData.action = 'ok';
+	            showMsg("操作成功","S");
+	            CloseWindow('ok');
+	        }else{
+	        	showMsg(errMsg||"操作失败","W");
+	            //resultData.action = 'cancel';
+	            //CloseWindow("cancel");
+	        }
+	        nui.unmask(document.body);
+	    }, function(){
+	        nui.unmask(document.body);
+	    });
+	}
 }
 function getRtnData(){
     return resultData;

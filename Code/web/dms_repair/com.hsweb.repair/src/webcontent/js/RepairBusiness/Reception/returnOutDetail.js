@@ -189,6 +189,9 @@ function setInitData(params){
     					data.guestMobile = guest.mobile;
     					data.contactorName = contactor.name;
     					data.mobile = contactor.mobile;
+    					data.carModel=mainRow.carModel;
+    					data.mtAdvisorId=mainRow.mtAdvisorId;
+    					data.mtAdvisor=mainRow.mtAdvisor;
 
                         billForm.setData(data);
 //                        nui.ajax({
@@ -268,6 +271,7 @@ function THSave(){
 		}
 	}else{
 		showMsg('请先选择需要归库的配件!','W');
+		return;
 	}
 	
 	savepartOutRtn(rows);
@@ -402,8 +406,12 @@ function  savepartOutRtn(data){
     	
     	var data=mainGrid.getSelected();
     	
+    	if(!data){
+    		showMsg('请先选择一条记录',"W");
+    		return;
+    	}
     	if(status==2 ||data.status==2){
-    		showMsg("配件已归库");
+    		showMsg("配件已归库","W");
     		return;
     	}
     	outParams={
@@ -413,8 +421,6 @@ function  savepartOutRtn(data){
     	if(data && status==1){
     		repairOutGrid.load({params:outParams,token:token});
     	 	advancedPartWin.show();
-    	}else{
-    		showMsg("请选择一条记录","W");
     	}
     }
 //    function onPrint(e){

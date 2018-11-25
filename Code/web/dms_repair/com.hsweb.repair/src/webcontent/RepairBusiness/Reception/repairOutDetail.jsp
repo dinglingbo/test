@@ -12,7 +12,7 @@
 <head> 
     <title>维修出库详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.14"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.15"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -181,6 +181,8 @@
     </table>
 </div>
 
+<div style="height:10px;width:100%"></div>
+
 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
 dataField="data"   multiSelect="false" 
 url=""  showModified="false"
@@ -208,6 +210,8 @@ allowCellEdit="true" >
 </div> 
 </div>
 </div>  
+
+<div style="height:10px;width:100%"></div>
 
 <div id="repairOutGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
 dataField="data"  allowCellSelect="true" multiSelect="false" 

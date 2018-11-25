@@ -9,7 +9,7 @@
 -->
 <head>
 <title>应付账款管理</title>
-    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.1.0"></script> 
+    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.1.2"></script> 
     <style type="text/css">
 .title {
     width: 90px;
@@ -162,7 +162,7 @@
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div type="checkcolumn" field="check" width="20"></div>
-                        <div type="expandcolumn" width="20" >#</div>
+                        <!-- <div type="expandcolumn" width="20" >#</div> -->
                         <div field="guestName" width="150" headerAlign="center" header="结算单位"></div>
                         <div field="carNo" width="80" headerAlign="center" header="车牌号"></div>
                         <div allowSort="true" summaryType="count" field="billServiceId" width="120" summaryType="count" headerAlign="center" header="业务单号"></div>

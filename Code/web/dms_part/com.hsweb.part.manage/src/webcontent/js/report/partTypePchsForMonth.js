@@ -142,7 +142,8 @@ $(document).ready(function(v) {
             typeHash[v.id] = v;
         });
     });
-
+    
+    quickSearch(0);
 });
 function getSearchParam() {
 	var params = {};
@@ -191,7 +192,7 @@ function quickSearch(type){
             break;
     }
     beginDateEl.setValue(params.startDate);
-    endDateEl.setValue(params.endDate);
+    endDateEl.setValue(addDate(params.endDate,-1));
     currType = type;
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
@@ -200,7 +201,7 @@ function quickSearch(type){
 function onSearch(){
 	var params = getSearchParam();
     params.startDate = beginDateEl.getValue();
-    params.endDate = endDateEl.getValue();
+    params.endDate = addDate(endDateEl.getValue(),1);
 
     doSearch(params);
 }

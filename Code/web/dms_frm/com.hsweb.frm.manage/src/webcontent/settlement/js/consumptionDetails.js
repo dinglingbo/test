@@ -61,6 +61,7 @@ function search(){
 	var cardName = null;
 	var startDate = nui.get("startDate").getValue();
 	var endDate = nui.get("endDate").getValue();
+	endDate = addDate(endDate, 1);
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){

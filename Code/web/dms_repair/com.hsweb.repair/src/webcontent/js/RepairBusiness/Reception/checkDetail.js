@@ -506,6 +506,8 @@ function isCheckMainN(){
                     data.lastPoint = temp.lastPoint;
                     data.checkMan = temp.checkMan;
                     data.checkPoint = temp.checkPoint;
+                    data.isFinish =temp.isFinish;
+                    data.checkStatus=temp.checkStatus;
                     billForm.setData(data);
                     
                     if(actionType == "view"){
@@ -564,11 +566,16 @@ function SearchCheckMain(sId) {
     return t;
 }
 
-
+var requiredField={
+	enterKilometers :"本次里程",
+	mtAdvisorId    	:"服务顾问"
+};
 
 function saveb(){
 	
 	var data=billForm.getData();
+	
+	
 	if(!(nui.get('guestFullName').value) && !(nui.get('search_name').value)){
 		showMsg("请先添加客户","W");
 		return;
@@ -579,8 +586,17 @@ function saveb(){
         return;
     }
     
+    for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+			showMsg("请填写"+requiredField[key] + "!","W");
+			//如果检测到有必填字段未填写，切换到主表界面
+//			mainTabs.activeTab(billmainTab);
+
+			return;
+		}
+	}
     if(data.isFinish==1 || data.checkStatus==1){
-    	showMsg("单据已完成!","W");
+    	showMsg("本单已完成，不能再修改!","W");
     	return;
     }
     
@@ -614,8 +630,12 @@ function saveDetail(){ //√  isCheckMain == "N"
         tem.mainId = mainParams.row.id;
         tem.checkName = grid_all[i].checkName;
         tem.checkType = grid_all[i].checkType;
+        tem.checkRemark=grid_all[i].checkRemark;
         tem.status = grid_all[i].status;
+        tem.settleType=grid_all[i].settleType;
         tem.remark = grid_all[i].remark;
+        tem.careDueMileage=grid_all[i].careDueMileage;
+        tem.careDueDate=grid_all[i].careDueDate;
 
         if(actionType == "new"){
             tem.checkId = grid_all[i].id;
@@ -649,15 +669,15 @@ function saveDetail(){ //√  isCheckMain == "N"
         type : "post",
         data :{
             listall:gridData,
+            mainId :gridData[0].mainId, //主表Id
             token : token
         },
         success : function(data) {
 
             updateCheckMain(mainData);
 
-            actionType = 'edit';
-            var rid = mainParams.id;
-            nui.get("id").setValue(rid);
+            actionType = 'edit'; 
+            nui.get("id").setValue(mainParams.cmId);
             $("#servieIdEl").html(data.data.serviceCode);
             mainGrid.setUrl(baseUrl + "com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
             mainGrid.load({mainId:mainParams.row.id,token:token});
@@ -740,7 +760,7 @@ function finish(){
 		saveDetailB();
 	}
 	if(data.isFinish ==1){
-		showMsg("本单已完成！","W");
+		showMsg("本单已完成，不能再修改！","W");
 		return;
 	}
 	if(!data.id){
@@ -801,6 +821,7 @@ function saveDetailB(){
         type : "post",
         data :{
             listall:gridData,
+            mainId : gridData[0].mainId,
             token : token
         },
         success : function(data) {

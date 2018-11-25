@@ -176,6 +176,8 @@ function settleOK() {
 			nui.alert("请选择结算账户,并填写结算金额","提示");
 			return;
 		}*/
+		deductible = nui.get("deductible").getValue()||0;
+		count = (count+deductible).toFixed(2);
 		if(count!=zongAmt){
 			nui.alert("结算金额和应结金额不一致，请重新确认！","提示");
 			return;
@@ -208,10 +210,7 @@ function settleOK() {
 		var rpAmt = guestData[0].rpAmt || 0; // 应结金额
 		var nowAmt = guestData[0].nowAmt || 0;
 		var nowVoidAmt = guestData[0].nowVoidAmt || 0;
-		if(guestData[0].nowAmt!=(count+deductible+pVoidAmt)){
-			nui.alert("结算金额与应收金额不一致","提示");
-			return;
-		}
+
 		accountDetail.rpDc = -1;
 		nowAmt = parseFloat(nowAmt);
 		nowVoidAmt = parseFloat(nowVoidAmt);
@@ -234,7 +233,7 @@ function settleOK() {
 		var list={balaTypeCode:"020107",charOffAmt:deductible,settAccountId:"274"};
 		accountTypeList.push(list);
 
-		  nui.confirm("确认结算吗？", "友情提示",function(action){
+		  nui.confirm("是否确定结算?？", "友情提示",function(action){
 		       if(action == "ok"){
 					nui.mask({
 						el : document.body,
@@ -258,7 +257,7 @@ function settleOK() {
 								CloseWindow("saveSuccess");
 			
 							} else {
-								showMsg(data.errMsg || "结算失败!", "w");
+								showMsg(data.errMsg || "结算失败!", "W");
 							}
 						},
 						error : function(jqXHR, textStatus, errorThrown) {

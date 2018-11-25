@@ -12,7 +12,7 @@
 <head>
     <title>开票管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoiceManagement.js?v=1.0.2" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoiceManagement.js?v=1.0.3" type="text/javascript"></script>
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/date.js" type="text/javascript"></script>
 </head>
 <style type="text/css">
@@ -32,7 +32,7 @@
 		    <table style="width:100%;">
 		        <tr>
 		        <td style="width:100%;">
-		                   单据日期:<input class="nui-datepicker" id="start"onblur="valueChane()"/>-<input class="nui-datepicker" id="end"/>
+		                   源单日期:<input class="nui-datepicker" id="start"onblur="valueChane()"/>-<input class="nui-datepicker" id="end"/>
 		            <input class="nui-combobox" data="data" textfield="text" valuefield="id" value="1" id="type"/>
 		           <input id="message"name="message" class="nui-textbox" style="width:18%"  >
 		            <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>

@@ -90,6 +90,7 @@
          ondrawcell="onDrawCell"
          sortMode="client"
          url=""
+         allowCellWrap = true
          pageSize="10000"
          sizeList="[1000,5000,10000]"
          showSummaryRow="true">
@@ -98,18 +99,18 @@
             <div header="采购信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
-                    <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
+                    <div field="guestFullName" width="250" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settelTypeId" width="60" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="createDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="createDate"width="140" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
             <div header="配件信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="comPartCode" headerAlign="center" header="配件编码"></div>
-                    <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
+                    <div allowSort="true"width="100" field="comPartName" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
                     <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
@@ -121,13 +122,13 @@
                     <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="60" headerAlign="center" header="采购数量"></div>
                     <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="采购单价"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="采购金额"></div>
-                    <div allowSort="true" field="detailRemark" width="60" headerAlign="center" header="备注"></div>
+                    <div allowSort="true" field="detailRemark" width="120" headerAlign="center" header="备注"></div>
                 </div>
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
                 	<div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                    <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" width="140"field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                 </div>
             </div>
         </div>

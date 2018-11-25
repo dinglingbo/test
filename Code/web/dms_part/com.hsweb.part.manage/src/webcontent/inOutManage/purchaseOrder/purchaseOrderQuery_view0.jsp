@@ -103,6 +103,7 @@
          ondrawcell="onDrawCell"
          sortMode="client"
          url=""
+         allowCellWrap = true
          pageSize="10000"
          sizeList="[1000,5000,10000]"
          showSummaryRow="true">
@@ -111,16 +112,16 @@
             <div header="订单信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
-                    <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
+                    <div field="guestFullName" width="200" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settelTypeId" width="60" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="createDate" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true"  width="140" field="createDate" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>
                     <div allowSort="true" field="settType" width="60" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div> -->
-                    <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
             <div header="配件信息" headerAlign="center">
@@ -161,7 +162,7 @@
                     <div allowSort="true" datatype="float" summaryType="sum" field="notEnterQty" width="60" headerAlign="center" header="未入库数量"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="adjustQty" width="60" headerAlign="center" header="调整数量"></div> -->
                     <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                    <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" width="140"  field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                 </div>
             </div>
         </div>

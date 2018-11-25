@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-    <title>销售出库查询</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.29"></script>
+    <title>维修出库明细</title>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.30"></script>
     <style type="text/css">
     .title {
       width: 60px;

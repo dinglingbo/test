@@ -138,7 +138,7 @@ function quickSearch(type){
             break;
     }
     beginDateEl.setValue(params.sRecordDate);
-    endDateEl.setValue(params.eRecordDate);
+    endDateEl.setValue(addDate(params.eRecordDate,-1));
     currType = type;
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
@@ -146,8 +146,8 @@ function quickSearch(type){
 }
 function onSearch(){
 	var params = getSearchParam();
-    params.startDate = beginDateEl.getValue();
-    params.endDate = endDateEl.getValue();
+    params.sRecordDate = beginDateEl.getValue();
+    params.eRecordDate = addDate(endDateEl.getValue(),1);
     
     doSearch(params);
 }

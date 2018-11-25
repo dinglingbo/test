@@ -109,10 +109,10 @@ a {
                allowCellEdit="true"
                url="">
               <div property="columns">
-                  <div type="indexcolumn">序号</div>
+                  <div type="indexcolumn" width="15">序号</div>
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
                   <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>
-                  <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
+<!--                   <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div> -->
                   <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌" visible="false"></div>           
                   <div field="carModel" name="carModel" width="180" headerAlign="center" header="车型" visible="false"></div>
                   <div field="partAmt" name="partAmt" width="40" headerAlign="center" header="金额"></div>
@@ -121,7 +121,7 @@ a {
 	              <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
 	              <div field="status" name="status" width="50" headerAlign="center" header="状态"></div>
 	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="退货日期" dateFormat="  yyyy-MM-dd HH:mm"></div>
-	              <div field="remark" name="carModel" width="70" headerAlign="center" header="备注" ></div>
+	              <div field="remark" name="carModel" width="170" headerAlign="center" header="备注" ></div>
 	              <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
                  </div>
          </div>
@@ -133,7 +133,7 @@ a {
        showPager="false"
        allowSortColumn="true">
       <div property="columns">
-           <div headerAlign="center" type="indexcolumn" width="20">序号</div>
+           <div headerAlign="center" type="indexcolumn" width="15">序号</div>
            <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div> 
            <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码" align="center"></div>   
 <!--            <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"> </div> --> 

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>零售业务统计分析</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/RetailStatistics.js?v=1.2.11"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/RetailStatistics.js?v=1.2.12"></script>
 <style type="text/css">
 .title {
   width: 60px;

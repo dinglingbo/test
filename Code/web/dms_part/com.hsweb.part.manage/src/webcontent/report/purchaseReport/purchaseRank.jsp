@@ -89,13 +89,14 @@
                  ondrawcell="onDrawCell"
                  sortMode="client"
                  url="" 
+                  allowCellWrap = true
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
                     <div allowSort="true" field="shortName" summaryType="count" width="100" headerAlign="center" header="供应商简称"></div>
-                    <div allowSort="true" field="supplierCode" width="50" headerAlign="center" header="供应商编码"></div>
-                    <div allowSort="true" field="supplierType" width="80" headerAlign="center" header="供应商类型"></div>
-                    <div allowSort="true" field="fullName" width="100" headerAlign="center" header="供应商全称"></div>
+                    <div allowSort="true" field="supplierCode" width="150" headerAlign="center" header="供应商编码"></div>
+                    <div allowSort="true" field="supplierType" width="100" headerAlign="center" header="供应商类型"></div>
+                    <div allowSort="true" field="fullName" width="220" headerAlign="center" header="供应商全称"></div>
                     <div allowSort="true" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
                     <div allowSort="true" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
                     <div allowSort="true" field="orderRtnQty" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
@@ -116,13 +117,14 @@
                  ondrawcell="onDrawCell"
                  sortMode="client"
                  url="" 
+                  allowCellWrap = true
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
                     <div allowSort="true" field="partCode" summaryType="count" width="80" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="partName" width="80" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="配件品牌"></div>
-                    <div allowSort="true" field="oemCode" width="80" headerAlign="center" header="OEM码"></div>
+                    <div allowSort="true" field="oemCode" width="180" headerAlign="center" header="OEM码"></div>
                     <div allowSort="true" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
                     <div allowSort="true" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
                     <div allowSort="true" field="orderRtnQty" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
@@ -143,6 +145,7 @@
                  ondrawcell="onDrawCell"
                  sortMode="client"
                  url="" 
+                 allowCellWrap = true
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
@@ -167,6 +170,7 @@
                  ondrawcell="onDrawCell"
                  sortMode="client"
                  url="" 
+                 allowCellWrap = true
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>

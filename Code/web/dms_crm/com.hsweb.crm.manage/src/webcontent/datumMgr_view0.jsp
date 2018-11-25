@@ -12,8 +12,8 @@
 <title>资料管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-    <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.13"></script>
-    <script src="<%=webPath + contextPath%>/manage/js/importData.js?v=1.0.13"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.16"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/importData.js?v=1.0.15"></script>
     <style type="text/css">
 
     .file {
@@ -63,6 +63,17 @@
                     <li iconCls="icon-tip" onclick="openMore()" id="type3">更多</li>
                     -->
                 </ul>
+                <input name="color"
+                    id="color"
+                    class="nui-combobox width2"
+                    textField="name"
+                    visible="false"
+                    valueField="customid"
+                    emptyText="请选择..."
+                    url=""
+                    allowInput="false"
+                    showNullItem="false"
+                    nullItemText="请选择..."/>
 
                 <input name="orgid"
                     id="query_orgid"
@@ -201,6 +212,8 @@
                                     <div field="carBrandId" width="100" headerAlign="center" allowSort=false>品牌</div>
                                     <div field="carModel" width="250" headerAlign="center" allowSort=false>车型</div>
                                     <div field="vin" width="160" headerAlign="center" allowSort=false>车架号(VIN)</div>
+                                    <div field="engineNo" width="160" headerAlign="center" allowSort=false>发动机号</div>
+                                    <div field="color" width="160" headerAlign="center" allowSort=false>颜色</div>
                                     <div field="firstRegDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
                                     <div field="annualInspectionDate" width="100" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
                                     <div field="recorder" width="80" headerAlign="center" allowSort=false>建档人</div>
@@ -212,12 +225,10 @@
                                     <div field="guestId" visible=false>客户ID</div>
                                     <div field="guestName" width="80" headerAlign="center" summaryType="" allowSort=false>客户名称</div>
                                     <div field="mobile" width="100" headerAlign="center" summaryType="" allowSort=false>联系电话</div>
+                                    <div field="contacts" width="80" headerAlign="center" summaryType="" allowSort=false>联系人</div>
+                                    <div field="tel" width="100" headerAlign="center" summaryType="" allowSort=false>电话</div>
+                                    <div field="sex" width="80" headerAlign="center" summaryType="" allowSort=false>性别</div>
                                     <div field="address" width="150" headerAlign="center" summaryType="" allowSort=false>地址</div>
-                                    <!--
-                                    <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>客户等级</div>
-                                    <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>来厂次数</div>
-                                    <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>离厂天数</div>
-                                    -->
                                 </div>
                             </div>
                             <div headerAlign="center"><strong>联系状态</strong>

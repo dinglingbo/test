@@ -17,7 +17,7 @@ $(document).ready(function(v){
     assignStatus = nui.get("assignStatus");
     tracker = nui.get("tracker");
     memList = nui.get("tree2");
-    tree1 = nui.get("tree1");
+    tree1 = nui.get("tree1"); 
     tree2 = nui.get("tree2");
     dgGrid = nui.get("dgGrid");
     dgGrid.setUrl(queryDatumMgrListUrl);
@@ -39,6 +39,8 @@ $(document).ready(function(v){
             }
         }else if(field == "visitStatus"){//跟踪状态
             e.cellHtml = setColVal('visitStatus', 'customid', 'name', e.value);
+        }else if(field == "color"){//跟踪状态
+            e.cellHtml = setColVal('color', 'customid', 'name', e.value);
         }
 
     });
@@ -67,11 +69,12 @@ $(document).ready(function(v){
 
 function init(){
     initComp("query_orgid");//公司组织
-    initCarBrand("tree1");//车辆品牌
+    initCarBrand("tree1");//车辆品牌s
     //initInsureComp("insureCompCode");//保险公司
     initDicts({
         //isCome: "DDT20150303000004",//来厂状态
-        visitStatus: "DDT20130703000081"//跟踪状态
+        visitStatus: "DDT20130703000081",//跟踪状态
+        color: "DDT20130726000003"//车辆颜色
     });
 
     

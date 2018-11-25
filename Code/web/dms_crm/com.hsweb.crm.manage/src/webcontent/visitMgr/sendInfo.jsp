@@ -22,8 +22,9 @@ pageEncoding="UTF-8" session="false" %>
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                    <a class="nui-button" onclick="save()" plain="true" style="width: 80px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                    <a class="nui-button" onclick="onClose()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
+                    <a class="nui-button" onclick="" plain="true" style="width: ;"><span class="fa fa-commenting fa-lg"></span>&nbsp;选择短信模板</a>
+                    <a class="nui-button" onclick="save()" plain="true" style="width: ;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                    <a class="nui-button" onclick="onClose()" plain="true"  style="width: ;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
         </table>
@@ -31,14 +32,14 @@ pageEncoding="UTF-8" session="false" %>
     <input class="nui-hidden" name="visitId" id="visitId"/>
     <input class="nui-hidden" name="id" id="id"/>
     <table class="tmargin" style="table-layout: fixed;width:100%">
-        <tr class="htr">
+        <!-- <tr class="htr">
             <td  style="width: 70px;">选择模板：</td>
             <td style="width: 100px;">
                 <input id="visitMode" name="visitMode" class="nui-combobox textboxWidth" dataField="" valueField="customid" textField="name">
             </td>
-
+        
             <td style="width: "></td>
-        </tr> 
+        </tr>  -->
         <tr class="htr">
             <td >短信内容：</td>
             <td  colspan="6">

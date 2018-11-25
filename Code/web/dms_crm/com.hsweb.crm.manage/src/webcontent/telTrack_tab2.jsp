@@ -8,7 +8,7 @@ pageEncoding="UTF-8" session="false" %>
             <td style="width:80%;">
                 <a class="nui-button" iconCls="" plain="true" onclick="saveClientInfo()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
             </td>
-        </tr>
+        </tr> 
     </table>
 </div>  
 <form id="form2" method="post">
@@ -86,7 +86,7 @@ pageEncoding="UTF-8" session="false" %>
                             emptyText="请选择..."
                             url=""
                             allowInput="false"
-                            onvaluechanged="onCarBrandChange"   
+                            onvaluechanged=""   
                             showNullItem="false"
                             nullItemText="请选择..."/></td>
                         </tr>

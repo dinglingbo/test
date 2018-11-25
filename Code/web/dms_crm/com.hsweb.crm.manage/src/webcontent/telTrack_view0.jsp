@@ -89,8 +89,9 @@
                     emptyText="请选择日期" alwaysView="true"/>
                 <a class="nui-button"  plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
+                <a class="nui-button"  plain="true" onclick="telInfo()" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;跟踪信息</a>
                 <a class="nui-button"  plain="true" onclick="sendInfo()" id="add" enabled="true"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
-                <a class="nui-button"  plain="true" onclick="" id="" enabled="true"><span class="fa fa-wrench fa-lg"></span>&nbsp;预约维修</a>
+                <a class="nui-button"  plain="true" onclick="addRow()" id="" enabled="true"><span class="fa fa-wrench fa-lg"></span>&nbsp;预约维修</a>
                 <a class="nui-button"  plain="true" onclick="" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;业绩登记</a>
                 <a class="nui-button"  plain="true" onclick="newClient()" id="edit" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增客户</a>
                 <a class="nui-button"  plain="true" onclick="editClient()" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改客户资料</a>
@@ -112,7 +113,7 @@
                         pageSize="50" sizeList=[20,50,100] 
                         selectOnLoad="true"
                         ondrawcell=""
-                        onSelect=""
+                        onrowdblclick="telInfo"
                         dataField="data"
                         allowCellWrap = true
                         virtualColumns="true"

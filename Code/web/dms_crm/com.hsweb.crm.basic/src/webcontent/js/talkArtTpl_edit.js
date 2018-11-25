@@ -13,13 +13,18 @@ $(document).ready(function(v){
     recordDate = nui.get("recordDate");
     modifier = nui.get("modifier");
     modifyDate = nui.get("modifyDate");
+    
+    
+    initDicts({
+    	typeId: "DDT20130725000001"//话术类型        
+   });
 });
 
 function setData(data){
     var tmpUser = modifier.getValue();
     var currDate = new Date();
     basicInfoForm.setData(data);
-    typeId.setData(data.artType);
+   // typeId.setData(data.artType);
     if(!data.id){
         recorder.setValue(tmpUser);
         recordDate.setValue(currDate);

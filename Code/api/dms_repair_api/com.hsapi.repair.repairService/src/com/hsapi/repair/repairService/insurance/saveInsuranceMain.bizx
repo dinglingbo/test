@@ -390,7 +390,7 @@
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getCompBillNO" displayName="getCompBillNO" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getCompBillNO" displayName="calcDetail" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>invokePojo0</targetNode>
@@ -478,7 +478,7 @@
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign9" name="赋值9" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
       <targetNode>assign10</targetNode>
@@ -954,7 +954,7 @@
     <figSize height="17" width="96"/>
     <node>invokePojo2</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="calInsuranceDeduct" displayName="calInsuranceDeduct" grouped="true" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="calcDetail" displayName="calcDetail" grouped="true" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign2</targetNode>
@@ -964,7 +964,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.calInsuranceDeduct</process:partner>
+      <process:partner type="literal">this.calcDetail</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="detail" type="query" value="com.hsapi.repair.data.rps.RpsInsuranceDetail" valueType="DataObject" pattern="reference">detail</process:inputVariable>
         <process:inputVariable id="1" name="extendGuest" type="query" value="com.hsapi.repair.data.rpb.RpbGuestAgentExtend" valueType="DataObject" pattern="reference">extendGuest</process:inputVariable>
@@ -1127,7 +1127,7 @@
     <figSize height="17" width="39"/>
     <node>assign21</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="calInsuranceDeduct1" displayName="calInsuranceDeduct" grouped="true" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="calInsuranceDeduct1" displayName="calcDetail" grouped="true" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="link11" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
       <targetNode>assign21</targetNode>
@@ -1137,7 +1137,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">this.calInsuranceDeduct</process:partner>
+      <process:partner type="literal">this.calcDetail</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="detail" type="query" value="com.hsapi.repair.data.rps.RpsInsuranceDetail" valueType="DataObject" pattern="reference">detail</process:inputVariable>
         <process:inputVariable id="1" name="extendGuest" type="query" value="com.hsapi.repair.data.rpb.RpbGuestAgentExtend" valueType="DataObject" pattern="reference">extendGuest</process:inputVariable>

@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>保险开单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceMain.js?v=1.0.64"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceMain.js?v=1.0.69"></script>
     <style type="text/css">
 
     table {
@@ -33,24 +33,19 @@ pageEncoding="UTF-8" session="false"%>
                     <label style="font-family:Verdana;">快速查询：</label>
                 </td>
                 <td>
-                    <a class="nui-menubutton" plain="true" iconCls="" id="searchByDateBtn" menu="#popupMenu" >本日</a>
+                    <a class="nui-menubutton"  iconCls="" id="searchByDateBtn" menu="#popupMenu" >所有</a>
                     <ul id="popupMenu" class="nui-menu" style="display:none;">
-                        <li iconCls="" onclick="quickSearch(0)">本日</li>
-                        <li iconCls="" onclick="quickSearch(1)">昨日</li>
-                        <li iconCls="" onclick="quickSearch(2)">本周</li>
-                        <li iconCls="" onclick="quickSearch(3)">上周</li>
-                        <li iconCls="" onclick="quickSearch(4)">本月</li>
-                        <li iconCls="" onclick="quickSearch(5)">上月</li>
-                        <li iconCls="" onclick="quickSearch(6)">本年</li>
-                        <li iconCls="" onclick="quickSearch(7)">上年</li>
+                        <li iconCls="" onclick="quickSearch(0)">所有</li>
+                        <li iconCls="" onclick="quickSearch(1)">草稿</li>
+                        <li iconCls="" onclick="quickSearch(2)">预结算</li>
+                        <li iconCls="" onclick="quickSearch(3)">已结算</li>
                     </ul>
                 </td>
+
                 <td>
-                    <label class="form_label">车牌号：</label>
-                    <input class="nui-textbox" name="carNo" id="carNo-search" onenter="onenterCarNo(this.value)"/>
-                    <label class="form_label">客户名称：</label>
-                    <input class="nui-textbox" name="guestName" id="guestName" onenter="onenterGuestName(this.value)"/>
-                    <a class="nui-button" iconCls="" onclick="onSearch()" plain="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"  onenter="quickSearch()"/>
+                    <a class="nui-button" iconCls="" onclick="quickSearch()" plain="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button" iconCls="" onclick="advancedSearch()" plain="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                 </td>
                 <td>
@@ -83,13 +78,14 @@ pageEncoding="UTF-8" session="false"%>
     allowSortColumn="true">
     <div property="columns">
         <div type="indexcolumn" headeralign="center" allowsort="true" visible="true" width="30">序号</div>
-        <div field="serviceCode" headeralign="center" allowsort="true" visible="true" width="80px">工单号</div>
-        <div field="STATUS" headeralign="center" allowsort="true" visible="true" width="40px">状态</div>
-        <div field="guestName" headeralign="center" allowsort="true" visible="true" width="80px">姓名</div>
+        
         <div field="carNo" headeralign="center" allowsort="true" visible="true" width="60px">车牌号</div>
-        <div field="carModel" headeralign="center" allowsort="true" visible="true" width="180px">品牌/车型</div>
+        <div field="guestName" headeralign="center" allowsort="true" visible="true" width="80px">姓名</div>
+        <div field="status" headeralign="center" allowsort="true" visible="true" width="40px">状态</div>
         <div field="insureCompName" headeralign="center" allowsort="true" visible="true" width="100px">保险公司</div>
-
+        <div field="carModel" headeralign="center" allowsort="true" visible="true" width="180px">品牌/车型</div>
+        <div field="serviceCode" headeralign="center" allowsort="true" visible="true" width="80px">工单号</div>
+		<div field="recordDate" headeralign="center" allowsort="true" visible="true" dateFormat="yyyy-MM-dd HH:mm" width="100px">开单日期</div>
     </div>
 </div>
 </div>

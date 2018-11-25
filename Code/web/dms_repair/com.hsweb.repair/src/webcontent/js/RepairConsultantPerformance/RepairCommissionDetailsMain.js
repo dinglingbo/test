@@ -34,8 +34,9 @@ $(document).ready(function ()
     mtAdvisorIdEl = nui.get("mtAdvisorId");
     serviceTypeIdEl = nui.get("serviceTypeId");
     serviceTypeIds = nui.get("serviceTypeIds");
-    
-    onSearch();
+    beginDateEl =nui.get('sOutDate');
+    endDateEl =nui.get('eOutDate');
+
     initMember("mtAdvisorId",function(){     
         initServiceType("serviceTypeId",function(data) {
             servieTypeList = nui.get("serviceTypeId").getData();
@@ -74,6 +75,7 @@ $(document).ready(function ()
         }
     });
     
+    quickSearch(2);
 });
 var statusHash = {
     "0" : "报价",
@@ -87,6 +89,83 @@ function clear(){
    
     beginDateEl.setValue(getMonthStartDate());
     endDateEl.setValue(addDate(getMonthEndDate(), 1));
+}
+
+function quickSearch(type){
+    var params = getSearchParam();
+    var querysign = 1;
+    var queryname = "本日";
+    switch (type)
+    {
+        case 0:
+            params.today = 1;
+            params.sOutDate = getNowStartDate();
+            params.eOutDate = addDate(getNowEndDate(), 1);
+            querysign = 1;
+            queryname = "本日";
+            break;
+        case 1:
+            params.yesterday = 1;
+            params.sOutDate = getPrevStartDate();
+            params.eOutDate = addDate(getPrevEndDate(), 1);
+            querysign = 1;
+            queryname = "昨日";
+            break;
+        case 2:
+            params.thisWeek = 1;
+            params.sOutDate = getWeekStartDate();
+            params.eOutDate = addDate(getWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "本周";
+            break;
+        case 3:
+            params.lastWeek = 1;
+            params.sOutDate = getLastWeekStartDate();
+            params.eOutDate = addDate(getLastWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "上周";
+            break;
+        case 4:
+            params.thisMonth = 1;
+            params.sOutDate = getMonthStartDate();
+            params.eOutDate = addDate(getMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "本月";
+            break;
+        case 5:
+            params.lastMonth = 1;
+            params.sOutDate = getLastMonthStartDate();
+            params.eOutDate = addDate(getLastMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "上月";
+            break;
+        case 10:
+            params.thisYear = 1;
+            params.sOutDate = getYearStartDate();
+            params.eOutDate = getYearEndDate();
+            querysign = 1;
+            queryname = "本年";
+            break;
+        case 11:
+            params.lastYear = 1;
+            params.sOutDate = getPrevYearStartDate();
+            params.eOutDate = getPrevYearEndDate();
+            querysign = 1;
+            queryname = "上年";
+            break;
+       
+        default:
+            break;
+    }
+    
+    beginDateEl.setValue(params.sOutDate);
+    endDateEl.setValue(addDate(params.eOutDate,-1));
+    if(querysign == 1){
+    	var menunamedate = nui.get("menunamedate");
+    	menunamedate.setText(queryname); 	
+    }
+    
+    doSearch(params);
 }
 
 function onSearch()
@@ -105,7 +184,7 @@ function doSearch() {
 function getSearchParam() {
     var params = {};
     params.sOutDate = nui.get("sOutDate").getValue();
-    params.eOutDate = nui.get("eOutDate").getValue();  
+    params.eOutDate = addDate(endDateEl.getValue(),1);  
     params.mtAuditorId = mtAdvisorIdEl.getValue();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();

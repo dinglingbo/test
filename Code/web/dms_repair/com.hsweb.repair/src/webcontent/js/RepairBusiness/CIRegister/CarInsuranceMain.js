@@ -5,7 +5,8 @@
  var leftGrid = null;
  var leftGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceList.biz.ext";
 
- var statusHash = ["草稿","预结算","已结束"];
+ var statusHash = ["草稿","预结算","已结算"];
+ var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"客户名称"}];
  var advancedSearchWin = null; 
  var advancedSearchForm = null;
  var advancedSearchFormData = null; 
@@ -17,7 +18,7 @@
     leftGrid.setUrl(leftGridUrl);
     leftGrid.load();
     leftGrid.on("drawcell", function (e) {
-        if (e.field == "STATUS") {
+        if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
         }
         else {
@@ -38,40 +39,41 @@
     leftGrid.on("rowdblclick",function(e){
     	view();
 	});
+    
 }); 
 
- var searchByDateBtnTextHash = ["本日","昨日","本周","上周","本月","上月","本年","上年"];
  var currType = 0;
  function quickSearch(type) {
-    var params = {};
-    currType = type;
-
-    var btn = nui.get("searchByDateBtn");
-    if(btn)
-    {
-        var text = searchByDateBtnTextHash[type];
-        btn.setText(text);
-    }
-    var dateObj = getDate(type);
-    var data = advancedSearchForm.getData();
-    data.startDate = dateObj.startDate;
-    data.endDate = dateObj.endDate;
-    advancedSearchForm.setData(data);
-    onSearch();
+	 var params = {};
+	 if(type==0){
+		 
+	 }else if(type==1){
+		 params.status = 0;
+	 }else if(type==2){
+		 params.status = 1;
+	 }else if(type==3){
+		 params.status = 2;
+	 }
+	    var type = nui.get("search-type").getValue();
+	    var typeValue = nui.get("carNo-search").getValue();
+	    if(type==0){
+	        params.carNo = typeValue;
+	    }else if(type==1){
+	        params.guestFullName = typeValue;
+	    }
+    onSearch(params);
 }
 function getSearchParams()
 {
     var params = {};
     var data = advancedSearchForm.getData();
-    params.startDate = data.startDate.substr(0,10);
-    params.endDate = data.endDate.substr(0,10);
+
     params.carNo = nui.get("carNo-search").getValue();
     params.guestFullName = nui.get("guestName").getValue();
     return params;
 }
-function onSearch()
+function onSearch(params)
 {
-    var params = getSearchParams();
     doSearch(params);
 } 
 function doSearch(params) {
@@ -94,7 +96,6 @@ function onAdvancedSearchOk()
     {
         nui.alert("起始日期和终止日期不能为空");
         return;
-
     }
     searchData.startDate = searchData.startDate.substr(0,10);
     searchData.endDate = searchData.endDate.substr(0,10);
@@ -160,4 +161,8 @@ function newInsuranceDetail() {
     
     //var params = {};
     //window.parent.activeTabAndInit(item,params);
+}
+
+function onAdvancedSearchClear(){
+	advancedSearchForm.setData([]);
 }

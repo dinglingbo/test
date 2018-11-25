@@ -369,7 +369,7 @@ function doSetMainInfo(car){
     mpartRate = 0;
 
     billForm.setData(maintain);
-
+    nui.get("mtAdvisorId").setText(currUserName);
     fguestId = car.guestId||0;
     fcarId = car.id||0;
 
@@ -485,7 +485,7 @@ function add(){
     billForm.setData([]);
  
     nui.get("mtAdvisorId").setValue(currEmpId);
-    nui.get("mtAdvisor").setValue(currUserName);
+    nui.get("mtAdvisorId").setText(currUserName);
     nui.get("serviceTypeId").setValue(3);
     nui.get("recordDate").setValue(now);
 
@@ -495,6 +495,11 @@ function add(){
   
 }
 function save(){
+	var data = billForm.getData();
+	if(data.status==1){
+		showMsg("工单已审核!","W");
+        return;
+	}
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -538,9 +543,8 @@ function save(){
                     data.guestMobile = guest.mobile;
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
-
                     billForm.setData(data);
-
+                    nui.get("mtAdvisorId").setText(data.mtAdvisor);
                     var p3 = {
                         interType: "part",
                         data:{
@@ -597,7 +601,7 @@ function saveNoShowMsg(){
                     data.guestMobile = guest.mobile;
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
-
+                    nui.get("mtAdvisorId").setText(data.mtAdvisor);
                     billForm.setData(data);
 
                     var p3 = {
@@ -839,20 +843,17 @@ function addPartNewRow(){
 function deletePartRow(row_uid){
 	var main = billForm.getData();	
     var isSettle = main.isSettle||0;
-    if(isSettle == 1){
-        showMsg("此单已结算,不能修改!","S");
-        return;
-    }
-	if(main.status==2){
-		showMsg("此单已出库,不能修改!","S");
+    if(main.status==1){
+		showMsg("工单已审核,不能删除配件!","W");
         return;
 	} 
+    if(isSettle == 1){
+        showMsg("工单已结算,不能删除配件!","W");
+        return;
+    }
     var row = rpsPartGrid.getRowByUID(row_uid);
     rpsPartGrid.removeRow(row);
-
-
 }
-
 
 function addGuest(){
     doApplyCustomer({},function(adction){
@@ -951,7 +952,11 @@ function choosePart(){
 		saveNoShowMsg();
     }     
     if(isSettle == 1){
-        showMsg("此单已结算,不能添加配件!","S");
+        showMsg("工单已结算,不能添加配件!","W");
+        return;
+    }
+    if(main.status == 1){
+        showMsg("工单已审核,不能添加配件!","W");
         return;
     }
     nui.open({
@@ -1162,14 +1167,15 @@ var saveMaintain2 = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMainta
 function saveBatch(){
 	var main = billForm.getData();
     var isSettle = main.isSettle||0;
-    if(isSettle == 1){
-        showMsg("此单已结算,不能修改!","S");
-        return;
-    }
-	if(main.status==1){
-		showMsg("此单已审核,不能修改!","S");
+    if(main.status==1){
+		showMsg("工单已审核!","W");
         return;
 	} 
+    if(isSettle == 1){
+        showMsg("工单已结算!","W");
+        return;
+    }
+	
 	//保存工单
 	if(!main.id){
 	 var data = billForm.getData();
@@ -1234,8 +1240,8 @@ function saveBatch(){
 			                    data.contactorName = contactor.name;
 			                    data.mobile = contactor.mobile;
 			                    data.addr = guest.addr;
-                                
 			                    billForm.setData(data);
+			                    nui.get("mtAdvisorId").setText(data.mtAdvisor);
 
 			                }else{
 			                    showMsg("数据加载失败,请重新打开工单!","W");
@@ -1251,8 +1257,7 @@ function saveBatch(){
 			}
 		});
 	    
-	   	}else{
-		
+	}else{		
 		var maintain = billForm.getData();
 		var addSellPart = nui.get("rpsPartGrid").getData();
 		var sellPartAdd = rpsPartGrid.getChanges("added");
@@ -1306,19 +1311,20 @@ function finish(){
 	}*/
     var isSettle = main.isSettle||0;
      if(!main.id){
-        showMsg("请选择保存工单!","S");
+        showMsg("请选择保存工单!","W");
         return;
     }
+    if(main.status==1){
+ 		showMsg("工单已审核!","W");
+         return;
+ 	} 
     if(isSettle == 1){
-        showMsg("此单已结算,不能审核!","S");
+        showMsg("工单已结算,不能审核!","W");
         return;
     }
-	if(main.status==1 || b == 1){
-		showMsg("此单已审核,不能重复审核!","S");
-        return;
-	} 
+	
 	if(main.status==2){
-		showMsg("此单已出库,不能审核!","S");
+		showMsg("工单已出库,不能审核!","W");
         return;
 	}
 	var sellPartAdd = rpsPartGrid.getChanges("added");
@@ -1342,7 +1348,9 @@ function finish(){
 		success : function(text) {
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == "S") {
-				b = 1;
+				main.status = 1;
+				billForm.setData(main);
+				nui.get("mtAdvisorId").setText(main.mtAdvisor);
 				var p3 = {
                         interType: "part",
                         data:{
@@ -1379,11 +1387,11 @@ payUrl = webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token
 function pay(){	
 	var main = billForm.getData();
 	if(main.isSettle == 1){
-        showMsg("此单已结算!","W");
+        showMsg("工单已结算!","W");
         return;
     }
 	if(main.status != 2){
-		 showMsg("此单未出库，不能结算!","W");
+		 showMsg("工单未出库,不能结算!","W");
 	     return;
 	}
 	nui.open({

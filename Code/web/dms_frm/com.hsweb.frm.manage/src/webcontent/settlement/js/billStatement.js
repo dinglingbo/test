@@ -224,42 +224,42 @@ function quickSearch(type){
         case 0:
             params.today = 1;
             params.startDate = getNowStartDate();
-            params.endDate = addDate(getNowEndDate(), 1);
+            params.endDate = getNowEndDate();
             querysign = 1;
             queryname = "本日";
             break;
         case 1:
             params.yesterday = 1;
             params.startDate = getPrevStartDate();
-            params.endDate = addDate(getPrevEndDate(), 1);
+            params.endDate = getPrevEndDate();
             querysign = 1;
             queryname = "昨日";
             break;
         case 2:
             params.thisWeek = 1;
             params.startDate = getWeekStartDate();
-            params.endDate = addDate(getWeekEndDate(), 1);
+            params.endDate = getWeekEndDate();
             querysign = 1;
             queryname = "本周";
             break;
         case 3:
             params.lastWeek = 1;
             params.startDate = getLastWeekStartDate();
-            params.endDate = addDate(getLastWeekEndDate(), 1);
+            params.endDate = getLastWeekEndDate();
             querysign = 1;
             queryname = "上周";
             break;
         case 4:
             params.thisMonth = 1;
             params.startDate = getMonthStartDate();
-            params.endDate = addDate(getMonthEndDate(), 1);
+            params.endDate = getMonthEndDate();
             querysign = 1;
             queryname = "本月";
             break;
         case 5:
             params.lastMonth = 1;
             params.startDate = getLastMonthStartDate();
-            params.endDate = addDate(getLastMonthEndDate(), 1);
+            params.endDate = getLastMonthEndDate();
             querysign = 1;
             queryname = "上月";
             break;
@@ -313,6 +313,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
+	params.endDate = addDate(params.endDate, 1);
 	//params.sortField = "audit_date";
    // params.sortOrder = "desc";
    // params.orderTypeId = 1;

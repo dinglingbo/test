@@ -11,7 +11,7 @@
 <head>
 <title>储值卡消费记录</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.2.0"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.2.2"></script>
 <style type="text/css">
 html,body {
 	margin: 0;

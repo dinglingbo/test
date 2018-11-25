@@ -249,6 +249,10 @@ function onOk()
         return;
     }
     
+    if(!checkMobile(nui.get("mobile2").value)){
+        return;
+    }
+    
     var insCarList = carList.filter(function(v)
     {
         return !v.id;
@@ -540,7 +544,23 @@ function setCarModel(data){
     nui.get("carModel").setValue(data.carModel);
 }
 
+function onCarNoChanged(e){
+	var falge = isVehicleNumber(e.value);
+	if(!falge){
+		nui.get("#carNo").setValue("");
+		showMsg("请输入正确的车牌号","W");
+		return;
+	}
+}
 
+function isVehicleNumber(vehicleNumber) {
+    var result = false;
+    if (vehicleNumber.length == 7){
+      var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
+      result = express.test(vehicleNumber);
+    }
+    return result;
+}
 
 
 

@@ -82,6 +82,7 @@
 		 dataField="list"
 		 pageSize="20"
 		 showPager="true"
+		 allowCellWrap = true
 		 totalCount="page.count" allowSortColumn="true" virtualScroll="true" virtualColumns="true"
 		 frozenStartColumn="0" >
 		<div property="columns">

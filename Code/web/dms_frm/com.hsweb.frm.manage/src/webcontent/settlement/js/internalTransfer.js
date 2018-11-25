@@ -31,7 +31,7 @@ $(document).ready(function(v)
     auditSignEl = nui.get("auditSign");
 
     searchBeginDate.setValue(getNowStartDate());
-    searchEndDate.setValue(addDate(getNowEndDate(), 1));
+    searchEndDate.setValue(getNowEndDate());
 
     getInComeExpenses(function(data) {
         list = data.list;
@@ -116,7 +116,7 @@ function doSearch() {
     params.auditSign = auditSignEl.getValue();
     
     params.sCreateDate = searchBeginDate.getValue();
-    params.eCreateDate = searchEndDate.getValue();
+    params.eCreateDate =(addDate(searchEndDate.getValue(), 1));
 
     mainGrid.load({
         params: params,

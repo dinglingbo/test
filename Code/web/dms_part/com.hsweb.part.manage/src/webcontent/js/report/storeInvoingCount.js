@@ -133,7 +133,7 @@ function quickSearch(type){
     }
     currType = type;
     startDateEl.setValue(params.startDate);
-    endDateEl.setValue(addDate(params.endDate,1));
+    endDateEl.setValue(addDate(params.endDate,-1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
     doSearch(params);

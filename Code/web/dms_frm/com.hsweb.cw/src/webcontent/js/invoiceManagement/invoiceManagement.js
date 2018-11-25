@@ -47,7 +47,7 @@ function refresh(){
 		params.recordStartDate = nui.get("start").value;
 	}
 	if(nui.get("end").value){
-		params.recordEndDate = nui.get("end").value;
+		params.recordEndDate =addDate(nui.get("end").value, 1);
 	}
 	grid.load({token : token,params : params});
 }

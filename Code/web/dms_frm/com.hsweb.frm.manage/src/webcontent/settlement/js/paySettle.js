@@ -241,37 +241,37 @@ function quickSearch(type) {
 	case 0:
 		params.today = 1;
 		params.sCreateDate = getNowStartDate();
-		params.eCreateDate = addDate(getNowEndDate(), 1);
+		params.eCreateDate = getNowEndDate();
 		var queryname = "本日";
 		break;
 	case 1:
 		params.yesterday = 1;
 		params.sCreateDate = getPrevStartDate();
-		params.eCreateDate = addDate(getPrevEndDate(), 1);
+		params.eCreateDate = getPrevEndDate();
 		var queryname = "昨日";
 		break;
 	case 2:
 		params.thisWeek = 1;
 		params.sCreateDate = getWeekStartDate();
-		params.eCreateDate = addDate(getWeekEndDate(), 1);
+		params.eCreateDate = getWeekEndDate();
 		var queryname = "本周";
 		break;
 	case 3:
 		params.lastWeek = 1;
 		params.sCreateDate = getLastWeekStartDate();
-		params.eCreateDate = addDate(getLastWeekEndDate(), 1);
+		params.eCreateDate = getLastWeekEndDate();
 		var queryname = "上周";
 		break;
 	case 4:
 		params.thisMonth = 1;
 		params.sCreateDate = getMonthStartDate();
-		params.eCreateDate = addDate(getMonthEndDate(), 1);
+		params.eCreateDate = getMonthEndDate();
 		var queryname = "本月";
 		break;
 	case 5:
 		params.lastMonth = 1;
 		params.sCreateDate = getLastMonthStartDate();
-		params.eCreateDate = addDate(getLastMonthEndDate(), 1);
+		params.eCreateDate = getLastMonthEndDate();
 		var queryname = "上月";
 		break;
 	case 10:
@@ -302,6 +302,7 @@ function onSearch() {
 	doSearch(params);
 }
 function doSearch(params) {
+	params.eCreateDate = addDate(params.eCreateDate, 1);
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
 	switch (name) {

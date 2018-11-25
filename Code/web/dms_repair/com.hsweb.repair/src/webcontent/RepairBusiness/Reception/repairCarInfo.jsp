@@ -125,8 +125,18 @@
                   <tr>
                       <td class="title required">
                           <label>姓名：</label>
+                      </td >
+                      <td ><!-- <input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false" /> -->
+                      <input id="contactorName"
+	                         name="contactorName"
+	                         class="nui-buttonedit"
+	                         emptyText=""
+	                         onbuttonclick="chooseContactor()"
+	                         placeholder="请选择联系人"
+	                         selectOnFocus="true" 
+	                         allowInput="false"
+	                         />
                       </td>
-                      <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" enabled="false"/></td>
                       <td class="title">
                           <label>性别：</label>
                       </td>

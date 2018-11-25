@@ -67,13 +67,13 @@
 	            (a.card_name like '%$cardName$%')
 	    </isNotEmpty>
     	<isNotEmpty prepend="and" property="startDate"> 
-                (date_format(a.record_date,'%Y-%m-%d') &gt;= #startDate#)
+                (a.record_date &gt;= #startDate#)
          </isNotEmpty>
          <isNotEmpty prepend="and" property="endDate">
-                (date_format(a.record_date,'%Y-%m-%d') &lt;= #endDate#)
+                (a.record_date &lt; #endDate#)
          </isNotEmpty>
         </dynamic>
- 
+ 			order by recordDate desc
 	</select>
 	
 	 <select id="queryCardTimesDe" parameterClass="java.lang.String" resultClass="java.util.HashMap">

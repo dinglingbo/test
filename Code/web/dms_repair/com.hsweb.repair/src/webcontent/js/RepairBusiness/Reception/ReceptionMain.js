@@ -29,6 +29,7 @@ var advancedSearchFormData = null;
 var editFormDetail = null;
 var innerItemGrid = null;
 var advancedSearchWin = null;
+var seeBill = true;
 //var serviceTypeIds = null;
 var prdtTypeHash = {
 	    "1":"套餐",
@@ -73,7 +74,9 @@ $(document).ready(function ()
                     brandHash[v.id] = v;
                 });
 
-                quickSearch(0);
+                if(seeBill){
+                    quickSearch(0);
+                }
             });
 
 
@@ -549,5 +552,6 @@ function setInitData(params){
             token:token,
             params: p
         });
+        seeBill = false;
     }
 }

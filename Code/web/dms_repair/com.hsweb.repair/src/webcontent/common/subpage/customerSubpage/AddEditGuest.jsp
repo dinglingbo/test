@@ -363,7 +363,7 @@
                         </tr>
                         <tr>
 
-                            <td colspan="6" align="right">
+                            <td colspan="6" align="left">
                                 <a class="nui-button" onclick="onOk" style="width:120px;margin-right:20px;">
                                     <span class="fa fa-save fa-lg"></span>&nbsp;保存客户信息</a>
                                 <!-- <a class="nui-button" onclick="onCancel" style="width:60px;"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> -->
@@ -383,11 +383,11 @@
                         <div class="nui-toolbar" style="border-bottom: 0; padding: 0px; height:33px" id="toolbar1">
                             <table style="width: 100%;">
                                 <tr>
-                                    <td style="width: 75%;text-align:right;">
+                                    <td style="width: 90px;text-align:left;">
                                         <a class="nui-button" onclick="addCar()" id="addp">
                                             <span class="fa fa-plus fa-lg"></span>&nbsp;添加车辆 </a>
                                     </td>
-                                    <td style="width: 15%;">
+                                    <td >
                                         <a class="nui-button" onclick="eaidCar()" id="addi">
                                             <span class="fa fa-edit fa-lg"></span>&nbsp;修改车辆 </a>
                                     </td>
@@ -397,7 +397,7 @@
                         </div>
                         <div class="nui-fit">
                             <div id="cardatagrid" class="nui-datagrid" style="width: 100%;height:100%" showPager="false" sortMode="client" allowCellEdit="true"
-                                allowCellSelect="true" multiSelect="true" showsummaryrow="true" editNextOnEnterKey="true">
+                                allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true">
                                 <div property="columns">
 
                                     <div field="id" class="nui-hidden" allowSort="true" align="left" headerAlign="center" width="" visible="false">
@@ -446,11 +446,11 @@
                         <div class="nui-toolbar" style="border-bottom: 0; padding: 0px; height:33px" id="toolbar1">
                             <table style="width: 100%;">
                                 <tr>
-                                    <td style="width: 65%;text-align:right;">
+                                    <td style="width: 100px;text-align:left;">
                                         <a class="nui-button" onclick="addContact()" id="addp">
                                             <span class="fa fa-plus fa-lg"></span>&nbsp;添加联系人 </a>
                                     </td>
-                                    <td style="width: 15%;">
+                                    <td >
                                         <a class="nui-button" onclick="eaidContact()" id="addi">
                                             <span class="fa fa-edit fa-lg"></span>&nbsp;修改联系人 </a>
                                     </td>
@@ -459,7 +459,7 @@
                         </div>
                         <div class="nui-fit">
                             <div id="contactdatagrid" class="nui-datagrid" style="width: 100%;height:100%" showPager="false" sortMode="client" allowCellEdit="true"
-                                allowCellSelect="true" multiSelect="true" showsummaryrow="true" editNextOnEnterKey="true" onDrawCell="onDrawCell">
+                                allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true" onDrawCell="onDrawCell">
                                 <div property="columns">
 
                                     <div field="id" class="nui-hidden" allowSort="true" align="left" headerAlign="center" width="" visible="false">

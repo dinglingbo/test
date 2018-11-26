@@ -12,7 +12,7 @@
 <head>
 <title>其他收支明细</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/otherIncomeAndExpenditure.js?v=1.0.5">
+	src="<%=request.getContextPath()%>/manage/settlement/js/otherIncomeAndExpenditure.js?v=1.0.7">
 	</script>
 </head>
 <body>
@@ -23,12 +23,28 @@
 	<div class="nui-toolbar" style="border-bottom: 0; padding: 0px;">
 		<div id="queryform" class="nui-form" align="center">             
 			<table style="width: 100%;" id="table1">
-				<tr> 
+				<tr> 		
 				<td style="width: 100%;">
-					<input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择往来单位..." onvalueChanged="onSearch()" onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />	
-					审核状态；<input class="nui-combobox" id="auditSign" width="80" textField="name" valueField="id" value="0" data="statusList1" allowInput="false"/>
-						结算状态：<input class="nui-combobox" id="settleStatus" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
-						<input class="nui-combobox" id="search-date" width="80" textField="name" valueField="id" value="0" data="statusList2" allowInput="false"/>
+					  <label style="font-family:Verdana;">快速查询：</label>
+				    	<a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+				    	<ul id="popupMenuDate" class="nui-menu" style="display:none;">
+				            <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+				            <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+				            <li class="separator"></li>
+				            <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+				            <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+				            <li class="separator"></li>
+				            <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+				            <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+				            <li class="separator"></li>
+				            <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+				            <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+				        </ul>
+				        <span class="separator"></span>
+					<input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择往来单位..."  onvalueChanged="Search()" onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />	
+					审核状态；<input class="nui-combobox" id="auditSign" onvalueChanged="search()" width="80" textField="name" valueField="id" value="0" data="statusList1" allowInput="false"/>
+						结算状态：<input class="nui-combobox" id="settleStatus" onvalueChanged="search()" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+						<input class="nui-combobox" id="search-date" width="80" textField="name" onvalueChanged="search()" valueField="id" value="0" data="statusList2" allowInput="false"/>
 							 从<input id="sDate" name="" class="nui-datepicker" value=""/>
          					   至 <input id="eDate" name="" class="nui-datepicker" value=""/>
 

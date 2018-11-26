@@ -114,6 +114,7 @@ function getSearchParams(){
     params.eOutDate=addDate(eOutDateEl.getValue(),1);
     return params;
 }
+
 var currType = 2;
 function quickSearch(type){
 	var params = getSearchParams();

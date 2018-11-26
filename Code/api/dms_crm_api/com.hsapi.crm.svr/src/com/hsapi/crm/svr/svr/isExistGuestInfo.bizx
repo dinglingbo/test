@@ -129,10 +129,9 @@
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" grouped="true" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>assign4</sourceNode>
-      <targetNode>assign9</targetNode>
-      <process:transitionCondition/>
+      <targetNode>loopend0</targetNode>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
     <location x="570" y="192"/>
@@ -264,7 +263,6 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
-    <targetConnections>link7</targetConnections>
     <location x="675" y="140"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
@@ -332,6 +330,7 @@
       <targetNode>assign9</targetNode>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
+    <targetConnections>link3</targetConnections>
     <location x="621" y="142"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>

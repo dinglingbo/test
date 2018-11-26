@@ -27,7 +27,7 @@ $(document).ready(function(v){
 
 function initData(data){
 	partBrandIdList = data.partBrandIdList||[];
-	partBrandIdList.forEach(function(v)
+	partBrandIdList.forEach(function(v) 
 	{
 		partBrandIdHash[v.name] = v;
 	});
@@ -38,7 +38,7 @@ function initData(data){
 		carBrandHash[v.nameCn] = v;
 	});
 
-}
+} 
 
 function importf(obj) {//导入
 	if (!obj.files) {
@@ -97,12 +97,17 @@ function toGrid(data) {
 		newRow.carBrandId = data[i].品牌||"";
 		newRow.carModel = data[i].车型||"";
 		newRow.vin = data[i].车架号||"";
+		newRow.engineNo = data[i].发动机号||"";
+		newRow.color = data[i].颜色||"";
 		newRow.firstRegDate = data[i].初登日期||"";
 		newRow.annualInspectionDate = data[i].保险到期||"";
 		newRow.recorder = data[i].建档人||"";
 		newRow.recordDate = data[i].建档日期||"";
 		newRow.guestName = data[i].客户名称||"";
 		newRow.mobile = data[i].联系电话||"";
+		newRow.contacts = data[i].联系人||"";
+		newRow.tel = data[i].电话||"";
+		newRow.sex = data[i].性别||"";
 		newRow.address = data[i].地址||"";
 		newRow.visitManId = data[i].营销员||"";
 		newRow.visitStatus = data[i].跟踪状态||"";
@@ -112,6 +117,36 @@ function toGrid(data) {
 	}
 	return arrList;
 }
+
+function changedToText(newRow){//从文字转化为编码存到数据库中
+	var colorList = nui.get("color").getData();
+	var orgList = nui.get("query_orgid").getData();
+	var brandList = nui.get("tree1").getData();
+	if(newRow.sex == "男"){
+		newRow.sex = 1;
+	}else if(newRow.sex == "女"){
+		newRow.sex = 0;
+	}
+	for (var i = 0; i < colorList.length; i++) {
+		if(newRow.color == colorList[i].name){
+			newRow.color = colorList[i].customid;
+		}
+	}
+	for (var i = 0; i < orgList.length; i++) {
+		if(newRow.orgid == orgList[i].orgname){
+			newRow.orgid = orgList[i].orgid;
+		}
+	}
+	for (var i = 0; i < brandList.length; i++) {
+		if(newRow.carBrandId == brandList[i].nameCn){
+			newRow.carBrandId = brandList[i].id;
+		}
+	}
+	return newRow;
+}
+
+
+
 
 function sure() {
 	var data = saveData;
@@ -127,8 +162,8 @@ function sure() {
 					return;
 				}
 			}
-
-			partList.push(newRow);
+			var row = changedToText(newRow);
+			partList.push(row);
 		}
 
 	}
@@ -177,7 +212,10 @@ function saveEnterPart(partList){
 					}
 				} else {
 					//nui.get("fastCodeList").setValue(data.errMsg);
-					showMsg(data.errMsg || "导入失败!","W");
+					var noImportList = data.noImportList;
+					var l = noImportList.length;
+					showMsg(l+"条导入失败!","W");
+					showNoImportList(noImportList);
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -188,4 +226,23 @@ function saveEnterPart(partList){
 		
 	}
 
+}
+
+
+function showNoImportList(list){
+
+	nui.open({
+		url: webPath + contextPath+ "/manage/datumMgr_noImportList.jsp?token="+ token,
+		title: "未导入的数据",
+		allowResize:true,
+		width: 800,
+		height: 400,
+		onload: function () {
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.setData(list);
+		},
+		ondestroy: function (action) {
+
+		}
+	});
 }

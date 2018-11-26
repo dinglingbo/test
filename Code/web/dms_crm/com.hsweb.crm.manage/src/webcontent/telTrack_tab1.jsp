@@ -160,12 +160,11 @@ pageEncoding="UTF-8" session="false" %>
             showColumns="true"
             allowcellwrap="true"
             showPager="true"
-            totalField="page.count">                
-            <div property="columns">                                              
+            totalField="page.count">
+            <div property="columns">
                 <div field="visitMan" headerAlign="center" width="50px" align="center">跟踪员</div>
                 <div field="visitDate" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" width="80px" align="center">跟踪日期</div>
                 <div field="scoutResult" headerAlign="center" width="50px" align="center">跟踪结果</div>
-                
                 <div field="scoutMode" headerAlign="center" width="50px" align="center">跟踪方式</div>
                 <div field="scoutContent" headerAlign="center" width="50px" align="center">跟踪内容</div>
             </div>

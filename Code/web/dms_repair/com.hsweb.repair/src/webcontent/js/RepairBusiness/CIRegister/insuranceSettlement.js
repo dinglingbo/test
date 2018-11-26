@@ -221,7 +221,7 @@ function doNoPay(serviceId,allowanceAmt){
 			token:token
 	};
 	
-    nui.confirm("确定将此单加入待结算吗？", "友情提示",function(action){
+    nui.confirm("确定将此单转入预结算吗？", "友情提示",function(action){
 	       if(action == "ok"){
 			    nui.mask({
 			        el : document.body,

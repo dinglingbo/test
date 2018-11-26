@@ -42,6 +42,7 @@
                 <isNotEmpty prepend="order by" property="sortField">  
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
+	            order by b.audit_date desc
     </select>
     
     <!--收付款明细  rpDc 1收  -1付-->

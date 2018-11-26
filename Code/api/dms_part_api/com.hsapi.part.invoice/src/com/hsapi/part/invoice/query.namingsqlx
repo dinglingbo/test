@@ -767,7 +767,8 @@
 			b.spec as spec,
 			b.direction as direction,
 			b.model as model,
-			b.unit as unit
+			b.unit as unit,
+			a.sell_price as sellPrice
 		FROM
 		pj_part_store_stock a
 		inner join wb_common.com_attribute b

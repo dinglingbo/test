@@ -72,9 +72,9 @@ pageEncoding="UTF-8" session="false" %>
 			<div type="checkcolumn" width="25"></div>
 			<div field="partCode" name="partCode" headerAlign="center" allowSort="true">配件编码</div>
 			<div field="partName" name="partName" headerAlign="center" allowSort="true">配件名称</div>
-			<div field="sellPrice" name="sellPrice" headerAlign="center" allowSort="true" header="参考售价">
-				<input property="editor" required="true" vtype="float" class="nui-textbox"/>
-			</div>
+<!-- 			<div field="sellPrice" name="sellPrice" headerAlign="center" allowSort="true" header="参考售价"> -->
+<!-- 				<input property="editor" required="true" vtype="float" class="nui-textbox"/> -->
+<!-- 			</div> -->
 			<div  field="salesDeductType"  name="salesDeductType" headerAlign="center" allowSort="true" header="销售提成类型">
 <!-- 				<input  property="editor" vtype="float" class="nui-textbox"/> -->
 				<input required="true" property="editor" name="salesDeductType"

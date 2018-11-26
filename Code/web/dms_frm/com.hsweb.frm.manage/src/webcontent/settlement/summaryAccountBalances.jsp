@@ -22,13 +22,12 @@
 
 	<div class="nui-toolbar" style="border-bottom: 0; padding: 0px;">
 		<div id="queryform" class="nui-form" align="center">             
-			<table style="width: 100%;" id="table1">
+			<table style="width: 100%;" id="table1"> 
 				<tr> 
 				<td style="width: 100%;">	
 					结算账户；<input class="nui-combobox" id="auditSign" width="120" textField="name" valueField="id" value="0" onvaluechanged="search()" allowInput="false"/>
 							 结算日期：<input id="sDate" name="" class="nui-datepicker" value="" allowInput="false"/>
          					   至 <input id="eDate" name="" class="nui-datepicker" value="" allowInput="false"/>
-
 				<a class="nui-button" onclick="search()" plain="true">
 						<span class="fa fa-search fa-lg"></span> 查询 </a> 
 					

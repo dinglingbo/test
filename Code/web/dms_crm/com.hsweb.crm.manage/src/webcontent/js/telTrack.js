@@ -4,20 +4,20 @@ var queryForm;
 var dgGrid;
 var currGuest;
 var memList = [];
-var memHash={}; 
+var memHash={};  
 var carModelHash = [];
 
 $(document).ready(function(v){
-    queryForm = new nui.Form("#queryForm");
+    queryForm = new nui.Form("#queryForm"); 
     dgGrid = nui.get("dgGrid");
     dgGrid.setUrl(getScoutGuestListUrl);
-    dgGrid.on("beforeload",function(e){
+    dgGrid.on("beforeload",function(e){ 
         e.data.token = token;
     });
     dgGrid.on("drawcell", function (e) { //表格绘制
-       var field = e.field;
-        if(field == "orgid"){ 
-            e.cellHtml = setColVal('query_orgid', 'orgid', 'orgname', e.value);
+     var field = e.field;
+     if(field == "orgid"){ 
+        e.cellHtml = setColVal('query_orgid', 'orgid', 'orgname', e.value);
         }else if(field == "carBrandId"){//品牌
             e.cellHtml = setColVal('carBrandId', 'id', 'nameCn', e.value);
         }else if(field == "carModelId"){//车型
@@ -74,13 +74,13 @@ function onCarBrandChange(e){
 /*
  *查询
  **/
-function query(){ 
+ function query(){ 
     var data = queryForm.getData();
     var params = {}; 
     params.p = data;
     dgGrid.load(params,null,function(){
         //失败;
-         showMsg("数据加载失败！","E");
+        showMsg("数据加载失败！","E");
     });
 }
 
@@ -99,11 +99,11 @@ function edit(){
 
 function editWin(title, data){
    // data.artType = tree1.getData();
-    mini.open({
-        url: webPath + contextPath + "/com.hsweb.crm.basic.smsTpl_edit.flow?token="+ token,
-        title: title, width: 500, height: 420,
-        onload: function () {
-            var iframe = this.getIFrameEl();
+   mini.open({
+    url: webPath + contextPath + "/com.hsweb.crm.basic.smsTpl_edit.flow?token="+ token,
+    title: title, width: 500, height: 420,
+    onload: function () {
+        var iframe = this.getIFrameEl();
             //var data = { action: "edit", id: row.id };
             iframe.contentWindow.setData(data);
         },
@@ -180,7 +180,7 @@ function editClient(){
 
 function sendInfo(){
     var row = dgGrid.getSelected();
-        if (row == undefined) {
+    if (row == undefined) {
         showMsg("请选中一条数据","W");
         return;
     }
@@ -198,3 +198,51 @@ function sendInfo(){
     });
 
 }
+
+function telInfo(e){
+    var row = dgGrid.getSelected();
+    if (row == undefined) {
+        showMsg("请选中一条数据","W");
+        return;
+    }
+    if(e){
+        var data=e.record;
+    }else{
+
+        var data =row;
+    }
+    nui.open({
+        url: webPath + contextPath  + "/manage/telTrack_info.jsp?token="+token,
+        title: "跟踪信息", width: 570, height: 550,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setScoutForm(data);
+        },
+        ondestroy: function (action) {
+            //重新加载
+            //query(tab);
+        }
+    });
+
+}
+
+
+function addRow() {
+    nui.open({
+        url: webPath + contextPath + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
+        title: "新增预约", width: 655, height: 386,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            var data = {};
+            data.mtAdvisorId = currEmpId;
+            data.mtAdvisor = currUserName;
+            var param = { action: "add", data: data };
+            iframe.contentWindow.SetData(param);
+        },
+        ondestroy: function (action) {
+            dgGrid.reload();
+        }
+    });
+}
+
+

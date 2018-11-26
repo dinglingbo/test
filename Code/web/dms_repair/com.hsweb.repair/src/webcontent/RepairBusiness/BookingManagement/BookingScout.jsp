@@ -10,7 +10,7 @@
 
 <head>
     <title>预约跟进</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingScout.js?v=1.3.1"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingScout.js?v=1.3.3"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -32,6 +32,16 @@
     
     <div style=" width: 100%;  ">
         <div showCollapseButton="false" style="border:0; ">
+        	 <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+	            <table style="width:80%;">
+	                <tr>
+	                    <td style="width:80%;">
+	                        <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+	                        <a class="nui-button" iconCls="" plain="true" onclick="onClose"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+	                    </td>
+	                </tr>
+	            </table>
+	        </div>
             <div class="nui-form" id="basicInfoForm">     
                 <input id="id" class="nui-textbox" visible="false" />           
                 <input id="serviceId" class="nui-textbox" visible="false" />
@@ -92,10 +102,10 @@
                     </tr>
                 </table>
             </div>
-            <div style="text-align: center; padding: 1px;">
-                <a class="nui-button" onclick="onOk" style="width: 60px;">保存(S)</a>
-                <a class="nui-button" onclick="onClose" style="width: 60px;">关闭(C)</a>
-            </div>
+<!--             <div style="text-align: center; padding: 1px;"> -->
+<!--                 <a class="nui-button" onclick="onOk" style="width: 60px;">保存(S)</a> -->
+<!--                 <a class="nui-button" onclick="onClose" style="width: 60px;">关闭(C)</a> -->
+<!--             </div> -->
 
         </div>
     </div>

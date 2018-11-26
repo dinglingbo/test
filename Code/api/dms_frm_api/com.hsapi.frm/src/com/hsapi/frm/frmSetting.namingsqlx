@@ -367,7 +367,7 @@
                 (a.audit_date  &lt; #eauditDate#)
             </isNotEmpty>
         </dynamic>  
-        order by a.create_date
+        order by a.create_date desc
 	</select>
     
     

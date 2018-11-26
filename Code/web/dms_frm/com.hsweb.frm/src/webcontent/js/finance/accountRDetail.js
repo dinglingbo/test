@@ -124,7 +124,7 @@ function quickSearch(type){
 }
 function getSearchParam(){
 	var params = {};
-	params.id = accountIdEl.getValue();
+	params.settAccountId = accountIdEl.getValue();
 	params.startDate = beginDateEl.getValue();
     params.endDate = addDate(endDateEl.getValue(),1);
     params.guestId = advanceGuestIdEl.getValue();

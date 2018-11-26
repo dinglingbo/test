@@ -46,7 +46,7 @@ $(document).ready(function(v) {
 
 function search() {
     var params = {};
-    params.guestName = nui.get("guestName").getValue();
+    params.guestName = nui.get("advanceGuestId").getValue();
     if(nui.get("auditSign").getValue()==4){
     	
     }else{
@@ -70,4 +70,36 @@ function search() {
 }
 
 
-	
+function selectSupplier(elId) {
+    supplier = null;
+    nui.open({
+        targetWindow : window,
+        url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        title : "客户资料",
+        width : 980,
+        height : 560,
+        allowDrag : true,
+        allowResize : true,
+        onload : function() {
+            var iframe = this.getIFrameEl();
+            var params = {
+                isClient: 1
+            };
+            iframe.contentWindow.setGuestData(params);
+        },
+        ondestroy : function(action) {
+            if (action == 'ok') {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+
+                supplier = data.supplier;
+                var value = supplier.id;
+                var text = supplier.fullName;
+                var el = nui.get(elId);
+                el.setValue(value);
+                el.setText(text);
+
+            }
+        }
+    });
+}

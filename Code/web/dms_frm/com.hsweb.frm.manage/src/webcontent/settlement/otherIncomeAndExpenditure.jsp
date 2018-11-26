@@ -12,7 +12,7 @@
 <head>
 <title>其他收支明细</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/otherIncomeAndExpenditure.js?v=1.0.3">
+	src="<%=request.getContextPath()%>/manage/settlement/js/otherIncomeAndExpenditure.js?v=1.0.5">
 	</script>
 </head>
 <body>
@@ -25,7 +25,7 @@
 			<table style="width: 100%;" id="table1">
 				<tr> 
 				<td style="width: 100%;">
-					往来单位名称：<input class="nui-textbox" id="guestName" emptyText="请输入查询单位名称" width="120"/>	
+					<input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择往来单位..." onvalueChanged="onSearch()" onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />	
 					审核状态；<input class="nui-combobox" id="auditSign" width="80" textField="name" valueField="id" value="0" data="statusList1" allowInput="false"/>
 						结算状态：<input class="nui-combobox" id="settleStatus" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
 						<input class="nui-combobox" id="search-date" width="80" textField="name" valueField="id" value="0" data="statusList2" allowInput="false"/>

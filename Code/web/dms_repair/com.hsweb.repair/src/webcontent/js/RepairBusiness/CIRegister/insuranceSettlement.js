@@ -23,13 +23,13 @@ $(document).ready(function(v) {
 
 function setData(params){
 	
-	if(params.sTypeId == 1){
+	if(params.data1.settleTypeId == 1){
 		$("#radio1").attr("checked", "checked");
 		showAmt = "(保司保费)";
-	}else if(params.sTypeId == 2){
+	}else if(params.data1.settleTypeId == 2){
 		$("#radio2").attr("checked", "checked"); 
 		showAmt = "(保司保费)";
-	}else if(params.sTypeId == 3){
+	}else if(params.data1.settleTypeId == 3){
 		$("#radio3").attr("checked", "checked"); 
 		showAmt = "(保司保费-客户返点)";
 	}
@@ -229,7 +229,7 @@ function doNoPay(serviceId,allowanceAmt){
 				    html : '处理中...'
 			    });
 				nui.ajax({
-					url : apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
+					url : apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.PreInsuranceReceiveSettle.biz.ext" ,
 					type : "post",
 					data : json,
 					success : function(data) {

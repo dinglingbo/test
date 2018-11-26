@@ -8,7 +8,7 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
     
-    <select id="getRPAccountList" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.invoicing.RPAcount">
+    <select id="getRPAccountList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT
 		A.ORGID as orgid,
 		A.SUPPLIER_ID AS guestId,

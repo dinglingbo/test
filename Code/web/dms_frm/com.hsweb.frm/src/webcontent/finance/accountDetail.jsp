@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" session="false" %>
-<%@include file="/common/sysCommon.jsp"%>
-<%@include file="/common/commonCloudPart.jsp"%>
+<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+<%@include file="/common/commonPart.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!--
@@ -12,7 +10,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>账户结算明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountDetail.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountDetail.js?v=1.0.2"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -29,16 +27,32 @@ pageEncoding="UTF-8" session="false" %>
 </head>
 <body>
     <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;">
+       	<label style="font-family:Verdana;">快速查询：</label>
+    	<a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本周</a>
+    	<ul id="popupMenuDate" class="nui-menu" style="display:none;">
+            <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+            <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+            <li class="separator"></li>
+            <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+            <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+            <li class="separator"></li>
+            <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+            <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+            <li class="separator"></li>
+            <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+            <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+        </ul>
+        <span class="separator"></span>
         <label style="font-family:Verdana;">开始日期 从：</label>
         <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
         <label style="font-family:Verdana;">至</label>
         <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
         
-        <input id="rpDc" width="100px" data="dcList" textField="text" valueField="id"  emptyText="收/支" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
-        <input id="accountId" width="100px" textField="name" valueField="id" emptyText="结算账户" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
-        <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择往来单位..." onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
+        <input id="rpDc" width="100px" data="dcList" textField="text" valueField="id" onvalueChanged="doSearch()" emptyText="收/支" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
+        <input id="accountId" width="100px" textField="name" valueField="id" emptyText="结算账户" onvalueChanged="doSearch()" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
+        <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择往来单位..." onvalueChanged="doSearch()" onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
         <span class="separator"></span> 
-        <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-select fa-lg"></span>&nbsp;查询</a>
+        <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     </div>
     <div class="nui-fit">
         <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" 

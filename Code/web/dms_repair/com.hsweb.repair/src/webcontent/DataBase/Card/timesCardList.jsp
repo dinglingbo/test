@@ -12,7 +12,7 @@
 <head>
 <title>计次卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.3.8">
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.3.9">
 	</script>
 </head>
 <body>
@@ -66,7 +66,7 @@
 				<div field="totalAmt" headerAlign="center" allowSort="true" width="50px">
 					总价值</div>
 				<div field="isShare" headerAlign="center" allowSort="true" width="50px">
-					是否可修改</div>
+					是否共享</div>
 				<!-- <div field="salesDeductType" headerAlign="center" allowSort="true">销售提成方式</div>
 				<div field="salesDeductValue" headerAlign="center" allowSort="true">
 					销售提成值</div> -->

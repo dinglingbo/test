@@ -221,7 +221,7 @@ function doNoPay(serviceId,allowanceAmt){
 			token:token
 	};
 	
-    nui.confirm("确定将此单加入待结算吗？", "友情提示",function(action){
+    nui.confirm("确定将此单转入预结算吗？", "友情提示",function(action){
 	       if(action == "ok"){
 			    nui.mask({
 			        el : document.body,
@@ -229,13 +229,13 @@ function doNoPay(serviceId,allowanceAmt){
 				    html : '处理中...'
 			    });
 				nui.ajax({
-					url : apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
+					url : apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.PreInsuranceReceiveSettle.biz.ext" ,
 					type : "post",
 					data : json,
 					success : function(data) {
 						if(data.errCode=="S"){
 							nui.unmask(document.body);
-							nui.alert("待结算成功","提示");
+							nui.alert("转预结算成功","提示");
 						}else{
 							nui.unmask(document.body);
 							nui.alert(data.errMsg,"提示");

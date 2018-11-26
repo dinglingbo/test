@@ -15,12 +15,14 @@ var settleStatusHash = {
 	    "1" : "部分结算",
 	    "2" : "全部结算"
 	};
-
+var sDate = null;
+var eDate = null;
 
 $(document).ready(function(v) {
 	datagrid1 = nui.get("datagrid1");
+	sDate = nui.get("sDate");
+	eDate = nui.get("eDate");
 	datagrid1.setUrl(queryOtherIncomeAndExpenditureUrl);
-    search();
     datagrid1.on("drawcell", function (e) {
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
@@ -40,13 +42,88 @@ $(document).ready(function(v) {
             }
         }
     });
+    quickSearch(2);
 });
 
+function quickSearch(type){
+	var params = {};
+    var querysign = 1;
+    var queryname = "本日";
+    switch (type)
+    {
+        case 0:
+            params.today = 1;
+            params.sDate = getNowStartDate();
+            params.eDate = addDate(getNowEndDate(), 1);
+            querysign = 1;
+            queryname = "本日";
+            break;
+        case 1:
+            params.yesterday = 1;
+            params.sDate = getPrevStartDate();
+            params.eDate = addDate(getPrevEndDate(), 1);
+            querysign = 1;
+            queryname = "昨日";
+            break;
+        case 2:
+            params.thisWeek = 1;
+            params.sDate = getWeekStartDate();
+            params.eDate = addDate(getWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "本周";
+            break;
+        case 3:
+            params.lastWeek = 1;
+            params.sDate = getLastWeekStartDate();
+            params.eDate = addDate(getLastWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "上周";
+            break;
+        case 4:
+            params.thisMonth = 1;
+            params.sDate = getMonthStartDate();
+            params.eDate = addDate(getMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "本月";
+            break;
+        case 5:
+            params.lastMonth = 1;
+            params.sDate = getLastMonthStartDate();
+            params.eDate = addDate(getLastMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "上月";
+            break;
+        case 10:
+            params.thisYear = 1;
+            params.sDate = getYearStartDate();
+            params.eDate = getYearEndDate();
+            querysign = 1;
+            queryname = "本年";
+            break;
+        case 11:
+            params.lastYear = 1;
+            params.sDate = getPrevYearStartDate();
+            params.eDate = getPrevYearEndDate();
+            querysign = 1;
+            queryname = "上年";
+            break;      
+        default:
+            break;
+    }
+    sDate.setValue(params.sDate);
+    eDate.setValue(addDate(params.eDate,-1));
+    currType = type;
+    if(querysign == 1){
+        var menunamedate = nui.get("menunamedate");
+        menunamedate.setText(queryname);    
+    }
+    search();
+}
 
 
 function search() {
     var params = {};
-    params.guestName = nui.get("guestName").getValue();
+    params.guestName = nui.get("advanceGuestId").getValue();
     if(nui.get("auditSign").getValue()==4){
     	
     }else{
@@ -70,4 +147,36 @@ function search() {
 }
 
 
-	
+function selectSupplier(elId) {
+    supplier = null;
+    nui.open({
+        targetWindow : window,
+        url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        title : "客户资料",
+        width : 980,
+        height : 560,
+        allowDrag : true,
+        allowResize : true,
+        onload : function() {
+            var iframe = this.getIFrameEl();
+            var params = {
+                isClient: 1
+            };
+            iframe.contentWindow.setGuestData(params);
+        },
+        ondestroy : function(action) {
+            if (action == 'ok') {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+
+                supplier = data.supplier;
+                var value = supplier.id;
+                var text = supplier.fullName;
+                var el = nui.get(elId);
+                el.setValue(value);
+                el.setText(text);
+
+            }
+        }
+    });
+}

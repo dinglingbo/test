@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
 <%@include file="/common/sysCommon.jsp"%>
-<%@include file="/common/commonCloudPart.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!--
@@ -12,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>收款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountRDetail.js?v=1.0.8"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountRDetail.js?v=1.1.0"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -50,13 +49,13 @@ pageEncoding="UTF-8" session="false" %>
         <label style="font-family:Verdana;">至</label>
         <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
         
-        <input id="accountId" width="100px" textField="name" valueField="id" emptyText="结算账户" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
-        <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择客户..." onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
+        <input id="accountId" width="100px" textField="name" valueField="id" emptyText="结算账户" onvalueChanged="onSearch()" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
+        <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择客户..." onvalueChanged="onSearch()" onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
 
-        <input id="isMain" width="100px" data="pList" textField="text" valueField="id"  emptyText="是否主营业务" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
+        <input id="isMain" width="100px" data="pList" textField="text" valueField="id"  emptyText="是否主营业务" onvalueChanged="onSearch()" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
 
         <span class="separator"></span> 
-        <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-select fa-lg"></span>&nbsp;查询</a>
+        <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     </div>
     <div class="nui-fit">
         <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" 

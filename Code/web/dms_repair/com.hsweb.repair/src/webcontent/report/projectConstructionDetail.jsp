@@ -26,66 +26,177 @@ body {
 }
 </style>
 <body>
+    <input name="serviceTypeId"id="serviceTypeId"class="nui-combobox "textField="name"valueField="id" visible="false"/>
     <div id="form1" class="mini-toolbar" style="padding:10px;">
-        结算日期:
-        <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" /> 至
-        <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
-        <input class="nui-textbox"  id="serviceCode" name="serviceCode" emptytext="工单号">
-        <input class="nui-textbox" id="carNo" name="carNo"emptytext="车牌号">
-        <input class="nui-textbox" id="itemName" name="itemName"emptytext="工时名称">
-        <input class="nui-textbox" id="mtAdvisor"name="mtAdvisor" emptytext="服务顾问">
-        <input class="nui-textbox" id=""name=""emptytext="配件分类">
+        <label style="font-family:Verdana;">快速查询：</label>
+        <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+        <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+         <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+         <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+         <li class="separator"></li>
+         <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+         <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+         <li class="separator"></li>
+         <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+         <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+         <li class="separator"></li>
+         <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+         <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+     </ul>
+     结算日期:
+     <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" /> 至
+     <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
+     <input class="nui-textbox"  id="serviceCode" name="serviceCode" emptytext="工单号">
+     <input class="nui-textbox" id="carNo" name="carNo"emptytext="车牌号">
+     <input class="nui-textbox" id="itemName" name="itemName"emptytext="工时名称">
+     <input class="nui-textbox" id="mtAdvisor"name="mtAdvisor" emptytext="服务顾问">
+     <input class="nui-textbox" id=""name=""emptytext="配件分类">
 
-        <a class="nui-button" iconcls=""  name="" onclick="Search()">查询</a>
-        <a class="nui-button" iconcls=""  name="" onclick="">导出</a>
-    </div>
+     <a class="nui-button" iconcls=""  name="" onclick="Search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+     <a class="nui-button" iconcls=""  name="" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a>
+ </div>
 
-    <div class="nui-fit">
-        <div id="grid" class="nui-datagrid" datafield="list" allowcelledit="true" url="" 
-        allowcellwrap="true" style="width:100%;height:100%;"
-        totalField="page.count">
-            <div property="columns">
-                <div field="serviceCode"  name="serviceCode" headeralign="center" width="100" align="center">工单号</div>
-                <div field="serviceTypeId"  name="serviceTypeId" headeralign="center" width="100" align="center">业务类型</div>
-                <div field="itemName"  name="itemName" headeralign="center" width="100" align="center">项目名称</div>
-                <div field="carNo"  name="carNo" headeralign="center" width="100" align="center">车牌号</div>
-                <div field="carModel"  name="carModel" headeralign="center" width="200" align="center" width="130">品牌</div>
-                <div field="guestName"  name="guestName" headeralign="center" width="100" align="center">客户名称</div>
-                <div field="carVin"  name="carVin" headeralign="center" width="100" align="center">VIN码</div>
-                <div field="itemTime"  name="itemTime" headeralign="center" width="100" align="center">工时</div>
-                <div field="unitPrice"  name="unitPrice" headeralign="center" width="100" align="center">单价</div>
-                <div field="amt"  name="amt" headeralign="center" width="100" align="center">金额</div>
-                <div field="rate"  name="rate" headeralign="center" width="100" align="center">优惠率</div>
-                <div field="subtotal"  name="subtotal" headeralign="center" width="100" align="center">小计</div>
-                <div field=""  name="" headeralign="center" width="100" align="center">来店途径</div>
-                <div field="workers"  name="workers" headeralign="center" width="100" align="center">施工员</div>
-                <div field="status"  name="status" headeralign="center" width="100" align="center">状态</div>
-                <div field="isBack"  name="isBack" headeralign="center" width="100" align="center">是否返工</div>
-                <div field="mtAdvisor"  name="mtAdvisor" headeralign="center" width="100" align="center">服务顾问</div>
-                <div field="finishDate"  name="finishDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd">完工日期</div>
-                <div field="outDate"  name="outDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd">结算日期</div>
-            </div>
-        </div>
+ <div class="nui-fit">
+    <div id="grid" class="nui-datagrid" datafield="list" allowcelledit="true" url="" 
+    allowcellwrap="true" style="width:100%;height:100%;"
+    totalField="page.count">
+    <div property="columns">
+        <div field="serviceCode"  name="serviceCode" headeralign="center" width="110" align="center">工单号</div>
+        <div field="serviceTypeId"  name="serviceTypeId" headeralign="center" width="100" align="center">业务类型</div>
+        <div field="itemName"  name="itemName" headeralign="center" width="100" align="center">项目名称</div>
+        <div field="carNo"  name="carNo" headeralign="center" width="100" align="center">车牌号</div>
+        <div field="carModel"  name="carModel" headeralign="center" width="200" align="center" width="160">品牌</div>
+        <div field="guestName"  name="guestName" headeralign="center" width="100" align="center">客户名称</div>
+        <div field="carVin"  name="carVin" headeralign="center" width="150" align="center">VIN码</div>
+        <div field="itemTime"  name="itemTime" headeralign="center" width="100" align="center">工时</div>
+        <div field="unitPrice"  name="unitPrice" headeralign="center" width="100" align="center">单价</div>
+        <div field="amt"  name="amt" headeralign="center" width="100" align="center">金额</div>
+        <div field="rate"  name="rate" headeralign="center" width="100" align="center">优惠率</div>
+        <div field="subtotal"  name="subtotal" headeralign="center" width="100" align="center">小计</div>
+        <div field=""  name="" headeralign="center" width="100" align="center">来店途径</div>
+        <div field="workers"  name="workers" headeralign="center" width="150" align="center">施工员</div>
+        <div field="status"  name="status" headeralign="center" width="100" align="center">状态</div>
+        <div field="isBack"  name="isBack" headeralign="center" width="100" align="center">是否返工</div>
+        <div field="mtAdvisor"  name="mtAdvisor" headeralign="center" width="100" align="center">服务顾问</div>
+        <div field="finishDate"  name="finishDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd">完工日期</div>
+        <div field="outDate"  name="outDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd">结算日期</div>
     </div>
+</div>
+</div>
 
 <script type="text/javascript">
 
     nui.parse();
-        var webBaseUrl = webPath + contextPath + "/";
+    var webBaseUrl = webPath + contextPath + "/";
     var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
     var grid = nui.get("grid");
     var gridUrl = 'com.hsapi.repair.repairService.report.queryItemTotalDetailReport.biz.ext';
     var form=new nui.Form("#form1");
+    var startDateEl = nui.get("startDate");
+    var endDateEl = nui.get("endDate");
+    var serviceTypeIdEl = nui.get("serviceTypeId");
+    var servieTypeList = [];
+    var servieTypeHash = {};
     grid.setUrl(gridUrl);
-    grid.load();
+    quickSearch(3);
+
+
+    initServiceType("serviceTypeId",function(data) {
+        servieTypeList = nui.get("serviceTypeId").getData();
+        servieTypeList.forEach(function(v) {
+            servieTypeHash[v.id] = v;
+        });
+    });
+
+
+    grid.on("drawcell", function (e) {
+        if(e.field =="serviceTypeId"){
+            e.cellHtml = servieTypeHash[e.value].name;
+        }
+
+    });
 
     function Search() {
         var data= form.getData();
-
-
+        var eDate = nui.get("endDate").getFormValue();
+        if(eDate){
+            data.endDate = eDate +" 23:59:59";
+        }
         grid.load({params:data});
     }
 
+
+
+    var currType = 2;
+    function quickSearch(type){
+     var params = form.getData();
+     var queryname = "本日";
+     switch (type)
+     {
+        case 0:
+        params.today = 1;
+        params.startDate = getNowStartDate();
+        params.endDate = addDate(getNowEndDate(), 1);
+        queryname = "本日";
+        break;
+        case 1:
+        params.yesterday = 1;
+        params.startDate = getPrevStartDate();
+        params.endDate = addDate(getPrevEndDate(), 1);
+        queryname = "昨日"; 
+        break;
+        case 2:
+        params.thisWeek = 1;
+        params.startDate = getWeekStartDate();
+        params.endDate = addDate(getWeekEndDate(), 1);
+        queryname = "本周";
+        break;
+        case 3: 
+        params.lastWeek = 1;
+        params.startDate = getLastWeekStartDate();
+        params.endDate = addDate(getLastWeekEndDate(), 1);
+        queryname = "上周";
+        break;
+        case 4:
+        params.thisMonth = 1;
+        params.startDate = getMonthStartDate();
+        params.endDate = addDate(getMonthEndDate(), 1);
+        queryname = "本月";
+        break;
+        case 5:
+        params.lastMonth = 1;
+        params.startDate = getLastMonthStartDate();
+        params.endDate = addDate(getLastMonthEndDate(), 1);
+        queryname = "上月";
+        break;
+
+        case 10:
+        params.thisYear = 1;
+        params.startDate = getYearStartDate();
+        params.endDate = getYearEndDate();
+        queryname="本年";
+        break;
+        case 11:
+        params.lastYear = 1;
+        params.startDate = getPrevYearStartDate();
+        params.endDate = getPrevYearEndDate();
+        queryname="上年";
+        break;
+        default:
+        break;
+    }
+    currType = type;
+    startDateEl.setValue(params.startDate);
+    endDateEl.setValue(addDate(params.endDate,-1));
+    var menunamedate = nui.get("menunamedate");
+    menunamedate.setText(queryname);
+    // doSearch(params);
+
+    if(params.endDate){
+        params.endDate = params.endDate +" 23:59:59";
+    }
+    grid.load({params:params});
+}
 </script>
 </body>
 </html>

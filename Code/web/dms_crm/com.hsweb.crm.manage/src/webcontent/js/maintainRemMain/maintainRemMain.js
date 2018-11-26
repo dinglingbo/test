@@ -2,6 +2,7 @@
 * Created by Administrator on 2018/10/23.
 */
 var baseUrl = apiPath +repairApi + "/";
+var webBaseUrl = webPath + contextPath + "/";
 var sysUrl =apiPath +sysApi+"/";
 var gridCarUrl = baseUrl+"com.hsapi.repair.repairService.query.queryMainRemind.biz.ext";
 
@@ -9,7 +10,7 @@ var gridCar = null;
 var tcarNo_ctrl = null;
 var tmobileEl=null;
 var hash = {};
- 
+
 $(document).ready(function(){
 	tcarNo_ctrl = nui.get("tcarNo");
 	tmobileEl=nui.get('tmobile');
@@ -32,8 +33,16 @@ $(document).ready(function(){
         }
 
     }
-	onSearch();
+    onSearch();
 });
+
+function remind() {
+    var row = gridCar.getSelected();
+    if(row){
+
+        SetData(row);
+    }
+}
 
 
 function SetData(rowData){
@@ -47,10 +56,10 @@ function SetData(rowData){
         },
         ondestroy: function (action) {
         	if(action == "ok"){
-        		 gridCar.removeRow (rowData, true);
-        	}
-        }
-    });
+             gridCar.removeRow (rowData, true);
+         }
+     }
+ });
 }
 
 
@@ -127,12 +136,12 @@ function checkMtRecord() {
         onload: function () {
             var iframe = this.getIFrameEl();
             var param = { 
-        		guestId: row.guestId,
-        		careType : 1
-        		};
-            iframe.contentWindow.SetData(param);
-        },
-        ondestroy: function (action) {
+              guestId: row.guestId,
+              careType : 1
+          };
+          iframe.contentWindow.SetData(param);
+      },
+      ondestroy: function (action) {
         	//重新加载
         }
     });
@@ -150,12 +159,12 @@ function remindDetail() {
         onload: function () {
             var iframe = this.getIFrameEl();
             var param = { 
-        		guestId: row.guestId,
-        		careType :1 
-        		};
-            iframe.contentWindow.SetData(param);
-        },
-        ondestroy: function (action) {
+              guestId: row.guestId,
+              careType :1 
+          };
+          iframe.contentWindow.SetData(param);
+      },
+      ondestroy: function (action) {
         	//重新加载
         }
     });
@@ -169,39 +178,55 @@ function openOrderDetail(){
         return;
     }
 
-	var data = {};
-	data.id = row.serviceId;
+    var data = {};
+    data.id = row.serviceId;
 
-	if(data.id){
-		var item={};
-		item.id = "11111";
-	    item.text = "工单详情页";
-		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow";
-		item.iconCls = "fa fa-cog";
-		window.parent.activeTabAndInit(item,data);
-	}
+    if(data.id){
+      var item={};
+      item.id = "11111";
+      item.text = "工单详情页";
+      item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow";
+      item.iconCls = "fa fa-cog";
+      window.parent.activeTabAndInit(item,data);
+  }
 }
 
 
 function sendInfo(){
 	var row = gridCar.getSelected();
-	    if (row == undefined) {
-        showMsg("请选中一条数据","W");
-        return;
-    }
-    nui.open({
-        url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
-        title: "发送短信", width: 655, height: 386,
-        onload: function () {
-        	var iframe = this.getIFrameEl();
-        	iframe.contentWindow.setData();
-        },
-        ondestroy: function (action) {
+   if (row == undefined) {
+    showMsg("请选中一条数据","W");
+    return;
+}
+nui.open({
+    url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
+    title: "发送短信", width: 655, height: 386,
+    onload: function () {
+       var iframe = this.getIFrameEl();
+       iframe.contentWindow.setData();
+   },
+   ondestroy: function (action) {
         	//重新加载
         	//query(tab);
         }
     });
+}
 
 
-
+function addRow() {
+    nui.open({
+        url: webPath + contextPath + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
+        title: "新增预约", width: 655, height: 300,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            var data = {};
+            data.mtAdvisorId = currEmpId;
+            data.mtAdvisor = currUserName;
+            var param = { action: "add", data: data };
+            iframe.contentWindow.SetData(param);
+        },
+        ondestroy: function (action) {
+            dgGrid.reload();
+        }
+    });
 }

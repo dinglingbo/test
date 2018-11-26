@@ -20,12 +20,17 @@ $(document).ready(function (){
 
 
 function setData(data){
+	if(data.xyguest==null||data.xyguest=={}){
+		document.getElementById('carNo').innerHTML = "";
+		document.getElementById('guest').innerHTML = "";
+	}else{
+		document.getElementById('carNo').innerHTML = data.xyguest.carNo||"";
+		document.getElementById('guest').innerHTML = data.xyguest.guestFullName||"";
+	}
 	guestData = data.xyguest||{};
 	row = data.row;
 	zongAmt = data.row.jsAmt;
 	settlementUrl = data.settlementUrl;
-	document.getElementById('carNo').innerHTML = data.xyguest.carNo||"";
-	document.getElementById('guest').innerHTML = data.xyguest.guestFullName||"";
 	document.getElementById('totalAmt').innerHTML = "￥"+(zongAmt||0);
 	document.getElementById('totalAmt1').innerHTML = zongAmt||0;
 	document.getElementById('amount').innerHTML = zongAmt||0;
@@ -119,6 +124,10 @@ var payurl=baseUrl+"com.hsapi.repair.repairService.settlement.rechargeReceive.bi
 
 function settleOK() {
 	var count = scount();
+	if(!guestData.guestId){
+		nui.alert("请选择客户！","提示");
+		return;
+	}
 	if(count!=zongAmt){
 		nui.alert("付款金额和应付金额不一致，请重新确认！","提示");
 		return;
@@ -284,4 +293,93 @@ function openCustomerWindow(callback) {
             }
         }
     });
+}
+
+
+function noPayOk(){	
+	var noPayMeth = "";
+	var payAmt = 0;
+	var json = {};
+	if(!guestData.guestId){
+		nui.alert("请选择客户！","提示");
+		return;
+	}
+	if(settlementUrl==1){
+		noPayMeth = apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.preSettleCardTimes.biz.ext";
+		var cardTimes ={
+				guestId:guestData.guestId,
+				guestName:guestData.guestFullName,
+				cardId:row.id,
+				cardName:row.name,
+				periodValidity:row.periodValidity,
+				salesDeductType:row.salesDeductType,
+				remark:row.remark,
+				salesDeductValue:row.salesDeductValue,
+				sellAmt:row.sellAmt,
+				totalAmt:row.totalAmt,
+				useRemark:row.useRemark,
+				carId:guestData.carId,
+				carNo:guestData.carNo
+		    };
+		//整理数据
+		 payAmt = row.sellAmt;
+		 json = nui.encode({
+			    "cardTimes":cardTimes,
+			    token:token
+		  });
+	}else if(settlementUrl==2){
+		noPayMeth = apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.preSettleRecharge.biz.ext";
+		payAmt=row.rechargeAmt;
+		var stored={
+				cardId		: row.id,
+				cardName	: row.name,
+				giveAmt		: row.giveAmt,
+				guestId		: guestData.guestId,
+				guestName	: guestData.guestName,	
+				rechargeAmt	: row.rechargeAmt,
+				totalAmt 	: row.totalAmt,
+				periodValidity : row.periodValidity,
+				balaAmt : row.totalAmt
+		};
+	    json = nui.encode({
+		    "stored":stored,
+		    token:token
+	  });
+	}
+
+
+		//提示框 
+		//判断客户有没有选择
+	    nui.confirm("结算金额【"+payAmt+"】元,确定保存进入待结算吗？", "友情提示",function(action){
+	       if(action == "ok"){
+			    nui.mask({
+			        el : document.body,
+				    cls : 'mini-mask-loading',
+				    html : '处理中...'
+			    });
+		        nui.ajax({
+				    url : noPayMeth,
+				    type : 'POST',
+			        data : json,
+			        cache : false,
+			        contentType : 'text/json',
+			        success : function(text) {		
+			            nui.unmask(document.body);
+				        var returnJson = nui.decode(text);
+				        if (returnJson.errCode == "S") {
+				        	showMsg("转待结算成功!","S");
+				        	//nui.alert("转待结算成功", "系统提示");
+				        	CloseWindow("saveSuccess");
+				        }
+				        else {
+				            nui.alert("转结算失败:"+returnJson.errMsg, "系统提示");
+				        }
+				   }				        	  
+			  });		
+	     }else {
+				return;
+		 }
+		 });
+	
+	
 }

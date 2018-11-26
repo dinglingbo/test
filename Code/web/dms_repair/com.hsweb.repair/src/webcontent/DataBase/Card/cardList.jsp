@@ -12,7 +12,7 @@
 <head>
 <title>储值卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.4.4"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.4.5"></script>
 </head>
 <body>
 	<div id="queryform" class="nui-form">
@@ -64,7 +64,7 @@
 				<div field="totalAmt" headerAlign="center" allowSort="true" width="40px">
 					总金额</div>
 				<div field="isShare" headerAlign="center" allowSort="true" width="50px">
-					修改权限</div>
+					是否共享</div>
 				<div field="salesDeductType" headerAlign="center" allowSort="true" width="50px">
 					销售提成方式</div>
 				<div field="salesDeductValue" headerAlign="center" allowSort="true" width="40px">

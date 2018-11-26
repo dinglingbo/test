@@ -11,7 +11,7 @@
 
 <head>
 	<title>计次卡/储值卡结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.0.9"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.1.5"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -403,7 +403,7 @@
 						<label style="font-family:Verdana;">实收金额：</label>
 						<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 					</td>
-<!-- 					<td >
+ 					<td >
 						<a id="wxbtnsettle" style="    width: 120px;
 							height: 40px;
 							font-size: 18px;
@@ -414,8 +414,8 @@
 							border-radius: 5px;
 							line-height: 2;
 							text-decoration: none;" 
-							href="javascript:void(0)" onclick="settleOK()">微信结算</a>
-					</td> -->
+							href="javascript:void(0)" onclick="noPayOk()">转预结算</a>
+					</td>
 					<td >
 						<a id="btnsettle" style="    width: 120px;
 							height: 40px;

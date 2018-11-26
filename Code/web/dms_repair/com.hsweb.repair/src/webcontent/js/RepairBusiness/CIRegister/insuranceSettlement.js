@@ -23,13 +23,13 @@ $(document).ready(function(v) {
 
 function setData(params){
 	
-	if(params.data1.settleTypeId == 1){
+	if(params.sTypeId == 1){
 		$("#radio1").attr("checked", "checked");
 		showAmt = "(保司保费)";
-	}else if(params.data1.settleTypeId == 2){
+	}else if(params.sTypeId == 2){
 		$("#radio2").attr("checked", "checked"); 
 		showAmt = "(保司保费)";
-	}else if(params.data1.settleTypeId == 3){
+	}else if(params.sTypeId == 3){
 		$("#radio3").attr("checked", "checked"); 
 		showAmt = "(保司保费-客户返点)";
 	}
@@ -235,7 +235,7 @@ function doNoPay(serviceId,allowanceAmt){
 					success : function(data) {
 						if(data.errCode=="S"){
 							nui.unmask(document.body);
-							nui.alert("待结算成功","提示");
+							nui.alert("转预结算成功","提示");
 						}else{
 							nui.unmask(document.body);
 							nui.alert(data.errMsg,"提示");

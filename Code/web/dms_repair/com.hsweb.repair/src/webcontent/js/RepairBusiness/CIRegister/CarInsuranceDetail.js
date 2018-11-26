@@ -453,7 +453,7 @@ function addGuest(){
 
 var requiredField={
 	carNo				:"车牌号",
-	enterKilometers		:"本次里程",
+	//enterKilometers		:"本次里程",
 	mtAdvisorId 		:"服务顾问",
 	insureCompName 		:"保险公司",
 	saleManIds			:"销售人员",

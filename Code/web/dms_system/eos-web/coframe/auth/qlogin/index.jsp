@@ -76,6 +76,9 @@
     	width: 1600px;
     }
     
+    .menu{
+    	padding-top: 40px;
+    }
  
 </style>
 </head>
@@ -83,7 +86,7 @@
     
 
 <div id="toolData" class="sidebar">
-    <div id="mainMenu" style="overflow-y:auto; overflow-x:hidden; width:400px !important; height:auto;"></div>
+    <div id="mainMenu" style="overflow-y:auto; overflow-x:hidden; width:400px !important; height:1000px;"></div>
 </div>
 
 <div class="container">

@@ -71,27 +71,27 @@
     "2":"项目",
     "3":"配件"
 };
-document.onmousemove = function(e){
-
-    if(advancedMorePartWin.visible){
-        var mx = e.pageX;
-        var my = e.pageY;
-        var loc = "当前位置 x:"+e.pageX+",y:"+e.pageY
-        var x = advancedMorePartWin.x;
-        var y = advancedMorePartWin.y;
-        if(x - mx > 10 || mx - x > 180){
-            advancedMorePartWin.hide();
-            FItemRow = {};
-            return;
-        }
-        if(y - my > 10 || my - y > 130){
-            advancedMorePartWin.hide();
-            FItemRow = {};
-            return;
-        }
-    }
-   
-}
+//document.onmousemove = function(e){
+//
+//    if(advancedMorePartWin.visible){
+//        var mx = e.pageX;
+//        var my = e.pageY;
+//        var loc = "当前位置 x:"+e.pageX+",y:"+e.pageY
+//        var x = advancedMorePartWin.x;
+//        var y = advancedMorePartWin.y;
+//        if(x - mx > 10 || mx - x > 180){
+//            advancedMorePartWin.hide();
+//            FItemRow = {};
+//            return;
+//        }
+//        if(y - my > 10 || my - y > 130){
+//            advancedMorePartWin.hide();
+//            FItemRow = {};
+//            return;
+//        }
+//    }
+//   
+//}
 $(document).ready(function ()
 {
     rpsPackageGrid = nui.get("rpsPackageGrid");
@@ -445,7 +445,7 @@ $(document).ready(function ()
 	           if(pid == 0){
 	                //e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' +'<a href="javascript:showBasicDataPart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;标准配件</a>'+ e.value;
 	            
-	               e.cellHtml = '<a href="javascript:showMorePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value + s;	
+	               e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value + s;	
 	                			 //'<ul class="add_ul" style="z-index: 99; display: none;">' +
 			            		 //'<li>< a href="javascript:choosePart(\'' + uid + '\')">添加配件</ a></li>' +
 			            		 //'<li>< a href="javascript:showBasicDataPart(\'' + uid + '\')" class="xzpj">选择配件</ a></li>' +
@@ -2927,8 +2927,8 @@ function showMorePart(row_uid){
    	
 }
 //配件
-function choosePart(){
-    var row = FItemRow||{};//rpsItemGrid.getRowByUID(row_uid);
+function choosePart(row_uid){
+    var row = rpsItemGrid.getRowByUID(row_uid);//FItemRow||{};//
     //获取到工时中的ID,不确定是否是这个字段,把工时ID传到添加配件的页面中,考虑能不能直接在本页面把ID传到addToBillPart函数中
     var itemId = null;
     if(row){

@@ -58,3 +58,56 @@ function getAccountList(callback) {
     });
 }
 
+function quickSearch(type){
+	var params = {};
+    var querysign = 1;
+    var queryname = "本月";
+    switch (type)
+    {
+        case 0:
+            params.today = 1;
+            params.startDate = getMonthStartDate();
+            params.endDate = addDate(getMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "本月";
+            break;
+        case 1:
+            params.yesterday = 1;
+            params.startDate = getLastMonthStartDate();
+            params.endDate = addDate(getLastMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "上月";
+            break;
+        case 2:
+            params.thisWeek = 1;
+            params.startDate = getQuarterStartDate();
+            params.endDate = addDate(getQuarterEndDate(), 1);
+            querysign = 1;
+            queryname = "本季度";
+            break;
+        case 3:
+            params.lastWeek = 1;
+            params.startDate = getYearStartDate();
+            params.endDate = addDate(getYearEndDate(), 1);
+            querysign = 1;
+            queryname = "本年";
+            break;
+        case 4:
+            params.thisMonth = 1;
+            params.startDate = getPrevYearStartDate();
+            params.endDate = addDate(getPrevYearEndDate(), 1);
+            querysign = 1;
+            queryname = "上年";
+            break;   
+        default:
+            break;
+    }
+    beginDateEl.setValue(params.startDate);
+    endDateEl.setValue(addDate(params.endDate,-1));
+    currType = type;
+    if(querysign == 1){
+        var menunamedate = nui.get("menunamedate");
+        menunamedate.setText(queryname);    
+    }
+    doSearch();
+}

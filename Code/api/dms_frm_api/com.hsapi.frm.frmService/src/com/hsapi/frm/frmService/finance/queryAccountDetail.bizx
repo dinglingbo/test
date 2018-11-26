@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryAccountDetail" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="&#xD;&#xA;账户结算明细 orgid  startDate endDate guestId  settAccountId rpDc  sortField  $sortOrder$" title="Administrator&#x9;18-6-4 下午7:57">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="&#xD;&#xA;账户结算明细 orgid  startDate endDate guestId  settAccountId rpDc  sortField  $sortOrder$&#xD;&#xA;com.hsapi.frm.frmService.finance.queryAccountDetail" title="Administrator&#x9;18-6-4 下午7:57">
     <location x="45" y="-15"/>
     <size height="100" width="528"/>
   </nodes>
@@ -136,7 +136,9 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="602" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-06-04 19:26:42" date="2018-06-04Z" description="" name="queryAccountBalance" version="7.0.0.0"/>
   <process:variables>

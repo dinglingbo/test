@@ -403,6 +403,7 @@
             <isNotEmpty prepend="and" property="endDate">  
                 (b.create_date &lt; #endDate#)
             </isNotEmpty>
+            order by b.create_date desc
     </select>
     
     

@@ -135,7 +135,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
-    <location x="570" y="217"/>
+    <location x="570" y="192"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
@@ -144,7 +144,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="568" y="253"/>
+    <location x="568" y="228"/>
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
@@ -189,7 +189,7 @@
       <targetNode>loopstart0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -367,18 +367,18 @@
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="480" y="217"/>
+    <location x="493" y="192"/>
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="475" y="253"/>
+    <location x="488" y="228"/>
     <figSize height="17" width="39"/>
     <node>assign10</node>
   </nodes>

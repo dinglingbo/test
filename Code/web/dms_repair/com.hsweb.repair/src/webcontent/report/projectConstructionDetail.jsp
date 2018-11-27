@@ -53,7 +53,7 @@ body {
      <input class="nui-textbox" id=""name=""emptytext="配件分类">
 
      <a class="nui-button" iconcls="" plain="true" name="" onclick="Search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-     <a class="nui-button" iconcls="" plain="true" name="" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a>
+<!--      <a class="nui-button" iconcls="" plain="true" name="" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a> -->
  </div>
 
  <div class="nui-fit">

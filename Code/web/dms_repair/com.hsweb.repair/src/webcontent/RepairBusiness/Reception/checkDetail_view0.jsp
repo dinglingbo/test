@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.67"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.77"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -145,7 +145,7 @@
                     <input class="nui-textbox tabwidth" name="carNo" id="carNo"enabled="false" style="width:100%"/>
                 </td>
 
-                <td class="tbtext">检查模板:</td>
+                <td class="tbtext" style="color: red;">检查模板:</td>
                 <td class="tbCtrl">
                     <input class="nui-combobox tabwidth"  id="checkMainId" name="checkMainId" 
                     dataField="list" valueField="id" textField="name" onvaluechanged="ValueChanged" style="width:100%"/>
@@ -172,11 +172,11 @@
                     <input class="nui-textbox tabwidth" enabled="false" name="lastPoint" id="lastPoint" style="width:100%"/>
                 </td>
                 
-                <td class="tbtext">本次里程:</td>
+                <td class="tbtext" style="color: red;">本次里程:</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="enterKilometers" id="enterKilometers" style="width:100%"/>
+                    <input class="nui-textbox tabwidth" vtype="float" name="enterKilometers" id="enterKilometers" style="width:100%"/>
                 </td>
-                <td class="tbtext">服务顾问:</td>
+                <td class="tbtext" style="color: red;">服务顾问:</td>
                 <td >
 
                     <input name="mtAdvisorId"
@@ -193,7 +193,7 @@
                     nullItemText="请选择..."/>
 
                 </td>
-                <td colspan="3" class="tbtext">本次检查得分:</td>
+                <td colspan="3" class="tbtext" >本次检查得分:</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="checkPoint" id="checkPoint" enabled="false" style="width:100%"/>
                 </td>
@@ -237,7 +237,7 @@
         </div>
         <div type="checkboxcolumn" field="settleType" name="settleType" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center" value="1"><strong>下次处理</strong></div>
         <div type="checkboxcolumn" field="nosettleType" name="nosettleType" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center"><strong>本次处理</strong></div>
-        <div field="careDueMileage" name="careDueMileage" width="30" headerAlign="center" align="center"><strong>下次保养里程</strong>
+        <div field="careDueMileage" name="careDueMileage" width="30" vtype="float" headerAlign="center" align="center"><strong>下次保养里程</strong>
         	<input property="editor" class="nui-textbox" style="width:100%;" allowInput="true"/>  
         </div>
         <div field="careDueDate" name="careDueDate" width="30" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm""><strong>下次保养时间</strong>

@@ -66,7 +66,7 @@
                     <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul>
-          <input class="nui-hidden" id="cNo" name="cNo" value='<b:write property="cNo"/>'/>
+          
           <input class="nui-textbox" id="guestName" name="guestName" emptyText="输入客户姓名" width="120"  onenter="onenterGuestName(this.value)"/>
           <input class="nui-textbox" id="serviceCode" name="serviceCode" emptyText="请输入单号" width="120" onenter="onenterServiceCode(this.value)"/>
           <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" onenter="onenterCarNo(this.value)"/>
@@ -124,6 +124,7 @@
   mainGrid.setUrl(gridUrl);
   beginDateEl = nui.get("sRecordDate");
   endDateEl = nui.get("eRecordDate");
+  var searchFlag=0;
 //   var date = new Date();
 //   var sdate = new Date();
 //   sdate.setMonth(date.getMonth()-3);
@@ -147,7 +148,9 @@
 
     });
 }*/
-	quickSearch(2);
+	if(searchFlag==0){	
+		quickSearch(2);
+	}
 function getSearchParam(){
 	var params = form.getData();
     params.orgid = currOrgId;
@@ -243,12 +246,10 @@ function quickSearch(type){
     doSearch(params);
 }
 function setInitData(params){
-    var pa={
-      carNo:nui.get("cNo").value,
-      orgid:currOrgId
-  }; 
+ searchFlag=1;
+  params.orgid=currOrgId;
   mainGrid.load({ 
-      params:pa, 
+      params:params, 
 
       token:token 
   });

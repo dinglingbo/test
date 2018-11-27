@@ -583,7 +583,15 @@ function pay() {
             iframe.contentWindow.setData(params);
         },
         ondestroy:function(action){
-
+            if(action == "ok"){
+            	main.status =2;
+                showMsg("结算成功!","S");
+            }else{
+                if(data.errCode){
+                    showMsg("结算失败!","W");
+                    return;
+                }
+            }
     }
 
 });

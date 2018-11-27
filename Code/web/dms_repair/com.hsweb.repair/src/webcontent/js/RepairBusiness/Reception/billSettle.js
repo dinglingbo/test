@@ -482,11 +482,10 @@ function doNoPay(serviceId,allowanceAmt){
 					type : "post",
 					data : json,
 					success : function(data) {
+						nui.unmask(document.body);
 						if(data.errCode=="S"){
-							nui.unmask(document.body);
-							nui.alert("转预结算成功","提示");
+							CloseWindow("ok");
 						}else{
-							nui.unmask(document.body);
 							nui.alert(data.errMsg,"提示");
 						}
 

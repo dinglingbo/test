@@ -16,6 +16,8 @@ var amountEl = null;
 var onetInAmt = 0;
 var netInAmt = 0;
 var zongAmt = 0;//总金额
+var typeUrl = 0;//不同工单URL不同   1销售开单
+var settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ;
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var frmUrl = apiPath + frmApi + "/";
@@ -78,6 +80,12 @@ function getData(data){
 	onetInAmt  = data.mtAmt;
 }
 function setData(params){
+	typeUrl = params.typeUrl||0;
+	if(typeUrl==1){
+		settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.salesSettle.biz.ext" ;
+	}else{
+		settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ;
+	}
 	guestData = params;
 	var rechargeBalaAmt = 0;
 	var jsonq = {
@@ -396,8 +404,7 @@ function pay(){
 				    html : '处理中...'
 			    });
 	    		nui.ajax({
-	    			url : baseUrl
-	    			+ "com.hsapi.repair.repairService.settlement.salesSettle.biz.ext" ,
+	    			url : settlementUrl,
 	    			type : "post",
 	    			data : json,
 			        cache : false,
@@ -405,7 +412,8 @@ function pay(){
 	    			success : function(data) {
 	    				nui.unmask(document.body);
 	    				if(data.errCode=="S"){
-	    					nui.alert(data.errMsg,"提示");
+	    					
+	    					CloseWindow("ok");
 	    				}else{
 	    					nui.alert(data.errMsg,"提示");
 	    				}
@@ -458,6 +466,7 @@ function doNoPay(serviceId,allowanceAmt){
 	var json = {
 			serviceId:serviceId,
 			allowanceAmt:allowanceAmt,
+			remark:nui.get("txtreceiptcomment").getValue(),
 			token:token
 	};
 	
@@ -475,7 +484,7 @@ function doNoPay(serviceId,allowanceAmt){
 					success : function(data) {
 						if(data.errCode=="S"){
 							nui.unmask(document.body);
-							nui.alert("待结算成功","提示");
+							nui.alert("转预结算成功","提示");
 						}else{
 							nui.unmask(document.body);
 							nui.alert(data.errMsg,"提示");
@@ -614,11 +623,11 @@ function checkField(id){
 	 $("#ppaytype"+s1[1]).empty();
 	 var myselect=document.getElementById("optaccount"+s1[1]);
 	 var index=myselect.selectedIndex;
-	 var c  =myselect.options[index].value
+	 var c  =myselect.options[index].value;
    var json = {
    		accountId:c,
    		token:token
-   }
+   };
 	nui.ajax({
 		url : apiPath + frmApi + "/com.hsapi.frm.setting.queryAccountSettleType.biz.ext",
 		type : "post",
@@ -639,4 +648,17 @@ function checkField(id){
 		}
 	});
 	 onChanged();
+}
+var rs = {};
+function getRtnData(){
+	return rs;
+}
+
+function CloseWindow(action) {
+	if (action == "close") {
+
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
 }

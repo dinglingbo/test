@@ -750,7 +750,7 @@
       <process:to type="query">params/dc</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">remark</process:from>
       <process:to type="query">params/remark</process:to>
     </process:copy>
     <process:copy>
@@ -1210,6 +1210,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
     <process:input description="" isArray="false" name="allowanceAmt" primitiveType="Double"/>
+    <process:input description="业务备注" isArray="false" name="remark" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

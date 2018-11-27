@@ -537,7 +537,7 @@
       <process:to type="query">params/dc</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">cardTimes/cardName</process:from>
+      <process:from type="query" pattern="reference">remark</process:from>
       <process:to type="query">params/remark</process:to>
     </process:copy>
     <process:copy>
@@ -750,6 +750,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimes" name="cardTimes"/>
+    <process:input description="备注" isArray="false" name="remark" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -278,7 +278,7 @@ function doNoPay(serviceId,allowanceAmt){
 					success : function(data) {
 						if(data.errCode=="S"){
 							nui.unmask(document.body);
-							CloseWindow("ok");
+							CloseWindow("onok");
 						}else{
 							nui.unmask(document.body);
 							nui.alert(data.errMsg,"提示");

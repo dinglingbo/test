@@ -3191,6 +3191,13 @@ function pay(){
                     var isSettle = data.isSettle||1;
                     doSetStyle(status, isSettle);
                     showMsg("结算成功!","S");
+                }else if(action == "onok"){
+                    billForm.setData([]);
+                    billForm.setData(data);
+                    var status = data.status||2;
+                    var isSettle = data.isSettle||1;
+                    doSetStyle(status, isSettle);
+                    showMsg("转预结算成功!","S");
                 }else{
                     if(data.errCode){
                         showMsg("结算失败!","W");

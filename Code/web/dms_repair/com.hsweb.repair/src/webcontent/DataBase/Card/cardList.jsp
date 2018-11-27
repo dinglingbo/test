@@ -11,7 +11,7 @@
 <head>
 <title>储值卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.4.5"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.4.7"></script>
 </head>
 <body>
 	<div id="queryform" class="nui-form">

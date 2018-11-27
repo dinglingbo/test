@@ -3,6 +3,7 @@ var datagrid1 = null;
 var queryOtherIncomeAndExpenditureUrl = baseUrl
 + "com.hsapi.frm.setting.queryOtherIncomeAndExpenditure.biz.ext";
 var statusList = [{id:"4",name:"全部"},{id:"0",name:"未结算"},{id:"1",name:"部分结算"},{id:"2",name:"全部结算"}];
+
 var statusList1 = [{id:"4",name:"全部"},{id:"1",name:"已审核"},{id:"0",name:"未审核"}];
 var statusList2 = [{id:"0",name:"发生日期"},{id:"1",name:"审核日期"}];
 
@@ -117,6 +118,8 @@ function quickSearch(type){
         var menunamedate = nui.get("menunamedate");
         menunamedate.setText(queryname);    
     }
+    nui.get("auditSign").setValue(4);
+    nui.get("settleStatus").setValue(4);
     search();
 }
 

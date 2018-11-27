@@ -12,7 +12,7 @@
 <head>
 <title>其他收支明细</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/otherIncomeAndExpenditure.js?v=1.0.7">
+	src="<%=request.getContextPath()%>/manage/settlement/js/otherIncomeAndExpenditure.js?v=1.0.8">
 	</script>
 </head>
 <body>

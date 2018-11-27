@@ -218,7 +218,7 @@ function settleOK() {
 							nui.unmask(document.body);
 							data = data || {};
 							if (data.errCode == "S") {
-								nui.alert(data.errMsg,"提示");
+								CloseWindow("ok");
 			
 							} else {
 								nui.alert(data.errMsg,"提示");
@@ -367,9 +367,7 @@ function noPayOk(){
 			            nui.unmask(document.body);
 				        var returnJson = nui.decode(text);
 				        if (returnJson.errCode == "S") {
-				        	showMsg("转待结算成功!","S");
-				        	//nui.alert("转待结算成功", "系统提示");
-				        	CloseWindow("saveSuccess");
+				        	CloseWindow("ok");
 				        }
 				        else {
 				            nui.alert("转结算失败:"+returnJson.errMsg, "系统提示");
@@ -382,4 +380,13 @@ function noPayOk(){
 		 });
 	
 	
+}
+
+function CloseWindow(action) {
+	if (action == "close") {
+
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
 }

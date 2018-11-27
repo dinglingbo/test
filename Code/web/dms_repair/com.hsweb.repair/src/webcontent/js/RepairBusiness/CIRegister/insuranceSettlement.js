@@ -36,6 +36,7 @@ function setData(params){
 	}
 	guestData = params;
 	zongAmt = params.moneyCost;
+	netInAmt = params.moneyCost;
 	var serviceId = params.data1.id||0;
 	fserviceId = serviceId;
 	document.getElementById('carNo').innerHTML = params.data1.carNo||"";
@@ -206,7 +207,7 @@ function pay(){
 	    			success : function(data) {
 	    				nui.unmask(document.body);
 	    				if(data.errCode=="S"){
-	    					nui.alert(data.errMsg,"提示");
+	    					CloseWindow("ok");
 	    				}else{
 	    					nui.alert(data.errMsg,"提示");
 	    				}
@@ -259,6 +260,7 @@ function doNoPay(serviceId,allowanceAmt){
 	var json = {
 			serviceId:serviceId,
 			allowanceAmt:allowanceAmt,
+			remark:nui.get("txtreceiptcomment").getValue(),
 			token:token
 	};
 	
@@ -276,7 +278,7 @@ function doNoPay(serviceId,allowanceAmt){
 					success : function(data) {
 						if(data.errCode=="S"){
 							nui.unmask(document.body);
-							nui.alert("转预结算成功","提示");
+							CloseWindow("ok");
 						}else{
 							nui.unmask(document.body);
 							nui.alert(data.errMsg,"提示");
@@ -408,4 +410,13 @@ function checkField(id){
 		}
 	});
 	 onChanged();
+}
+
+function CloseWindow(action) {
+	if (action == "close") {
+
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
 }

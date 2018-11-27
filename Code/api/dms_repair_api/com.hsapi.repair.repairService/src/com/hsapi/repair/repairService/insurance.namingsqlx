@@ -57,6 +57,11 @@
 	        <isNotEmpty prepend="and" property="carNo">  
 	            (b.car_no like '%$carNo$%')
 	        </isNotEmpty>
+	        
+	        <isNotEmpty prepend="and" property="carVin">  
+	            (b.vin like '%$carVin$%')
+	        </isNotEmpty>
+	        
 	        <isNotEmpty prepend="and" property="carNoList">  
 	            (b.car_no in ($carNoList$))
 	        </isNotEmpty>

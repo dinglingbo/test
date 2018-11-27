@@ -61,11 +61,11 @@
      结算日期:
      <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" /> 至
      <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
-     <a class="nui-button" iconcls=""  name="" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-     <a class="nui-button" iconcls=""  name="" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>
-     <a class="nui-button" iconcls=""  name="" onclick="load(1)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按业务类型汇总</a>
-     <a class="nui-button" iconcls=""  name="" onclick="load(2)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按项目名称汇总</a>
-     <a class="nui-button" iconcls=""  name="" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a>
+     <a class="nui-button" iconcls=""  name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+     <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>
+     <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(1)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按业务类型汇总</a>
+     <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(2)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按项目名称汇总</a>
+<!--      <a class="nui-button" iconcls=""  name="" plain="true" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a> -->
  </div>
  <div class="nui-fit">
     <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;"
@@ -138,9 +138,10 @@ quickSearch(3);
         }
         
         var data= form.getData();
+    	data.endDate = data.endDate.substr(0,10) +" 23:59:59";
         data.groupByType = cType;
         updateGridColoumn(cType);
-        grid1.load({params:data});
+        grid1.load({params:data,token :token});
     }
 
 
@@ -224,9 +225,9 @@ quickSearch(3);
     params.groupByType = cType;
     // doSearch(params);
 
-    if(params.endDate){
-    params.endDate = params.endDate +" 23:59:59";
-}
+//     if(params.endDate){
+//     params.endDate = params.endDate +" 23:59:59";
+// }
 grid1.load({params:params});
 updateGridColoumn(cType);
 }

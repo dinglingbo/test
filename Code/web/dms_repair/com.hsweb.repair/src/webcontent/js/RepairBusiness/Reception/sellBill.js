@@ -1417,7 +1417,8 @@ function pay(){
 		    	"guestId":main.guestId,
 		    	"guestName":main.guestFullName,
 		    	"serviceId":main.id,
-		    	"data":data
+		    	"data":data,
+		    	"typeUrl" :1
 		    };
 		    iframe.contentWindow.setData(params);			
 		},

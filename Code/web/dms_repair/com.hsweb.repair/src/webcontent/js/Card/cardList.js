@@ -160,6 +160,18 @@ function onBuy(){
 				//把数据传到子页面
 				iframe.contentWindow.setData(data);
 			},
+	        ondestroy:function(action){
+	            if(action == "ok"){
+	                showMsg("结算成功!","S");
+	            }else if(action == "onok"){
+	            	showMsg("转预结算成功!","S");
+	            }else{
+	                if(data.errCode){
+	                    showMsg("结算失败!","W");
+	                    return;
+	                }
+	            }
+	    }
 		});
 	} else {
 		nui.alert("请选中一条记录", "提示");

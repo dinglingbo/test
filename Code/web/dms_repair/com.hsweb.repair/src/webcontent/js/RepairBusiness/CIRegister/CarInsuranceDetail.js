@@ -99,7 +99,7 @@ $(document).ready(function ()
             var carModel = item.carModel||"";
             var sdata = {
                 carNo:carNo,
-                carVin:item.carVin,
+                carVin:carVin,
                 carId:item.carId,
                 guestMobile:tel,
                 contactName:item.contactName,
@@ -111,6 +111,8 @@ $(document).ready(function ()
                 mtAdvisorId:""
             };
             basicInfoForm.setData(sdata);
+            nui.get('mtAdvisorId').setValue(currEmpId);
+            nui.get('mtAdvisorId').setText(currUserName);
             $("#guestNameEl").html(guestName);
             $("#guestCarEl").html(carNo);
             $("#guestTelEl").html(tel);
@@ -219,6 +221,8 @@ function drawSummaryCell(e){
 
 
 function insuranceChange(e){
+	var data=detailGrid.getData();
+	var  detailData=[];
 	var carNo=nui.get('carNo').getValue();
 	if(!carNo){
 		showMsg("请先添加客户信息!","W");
@@ -232,8 +236,13 @@ function insuranceChange(e){
     		              {insureTypeId:1,rtnCompRate:insurance[i].rebateAgentToCompany1,rtnGuestRate:insurance[i].rebateCompanyToGuest1,insureTypeName:"交强险"},
     		              {insureTypeId:2,rtnCompRate:insurance[i].rebateAgentToCompany2,rtnGuestRate:insurance[i].rebateCompanyToGuest2,insureTypeName:"商业险"},
     		              {insureTypeId:3,rtnCompRate:insurance[i].rebateAgentToCompany3,rtnGuestRate:insurance[i].rebateCompanyToGuest3,insureTypeName:"车船税"}];
-    		 detailGrid.setData(detailData);
     	}
+    }
+    if(detailData.length>0){
+    	for(var i=0;i<detailData.length;i++){
+    		detailGrid.updateRow(data[i],detailData[i]);
+    	}
+    	
     }
 }
 function saleManChange(e){
@@ -576,7 +585,18 @@ function pay() {
             iframe.contentWindow.setData(params);
         },
         ondestroy:function(action){
-
+            if(action == "ok"){
+            	main.status =2;
+                showMsg("结算成功!","S");
+            }else if(action == "onok"){
+            	main.status =2;
+                showMsg("转预结算成功!","S");
+            }else{
+                if(data.errCode){
+                    showMsg("结算失败!","W");
+                    return;
+                }
+            }
     }
 
 });

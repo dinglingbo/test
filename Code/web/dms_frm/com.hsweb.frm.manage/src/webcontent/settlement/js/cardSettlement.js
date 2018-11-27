@@ -175,6 +175,7 @@ function settleOK() {
 		};
 		json={
 				payAmt:zongAmt,
+				remark:nui.get("txtreceiptcomment").getValue(),
 				payType:020104,
 				accountTypeList:accountTypeList,
 				cardTimes :card,
@@ -197,6 +198,7 @@ function settleOK() {
 
 		json={
 				payAmt:zongAmt,
+				remark:nui.get("txtreceiptcomment").getValue(),
 				payType:020104,
 				accountTypeList:accountTypeList,
 				stored :card,
@@ -218,7 +220,7 @@ function settleOK() {
 							nui.unmask(document.body);
 							data = data || {};
 							if (data.errCode == "S") {
-								nui.alert(data.errMsg,"提示");
+								CloseWindow("ok");
 			
 							} else {
 								nui.alert(data.errMsg,"提示");
@@ -325,6 +327,7 @@ function noPayOk(){
 		 payAmt = row.sellAmt;
 		 json = nui.encode({
 			    "cardTimes":cardTimes,
+			    remark:nui.get("txtreceiptcomment").getValue(),
 			    token:token
 		  });
 	}else if(settlementUrl==2){
@@ -343,6 +346,7 @@ function noPayOk(){
 		};
 	    json = nui.encode({
 		    "stored":stored,
+		    remark:nui.get("txtreceiptcomment").getValue(),
 		    token:token
 	  });
 	}
@@ -367,9 +371,7 @@ function noPayOk(){
 			            nui.unmask(document.body);
 				        var returnJson = nui.decode(text);
 				        if (returnJson.errCode == "S") {
-				        	showMsg("转待结算成功!","S");
-				        	//nui.alert("转待结算成功", "系统提示");
-				        	CloseWindow("saveSuccess");
+				        	CloseWindow("onok");
 				        }
 				        else {
 				            nui.alert("转结算失败:"+returnJson.errMsg, "系统提示");
@@ -382,4 +384,13 @@ function noPayOk(){
 		 });
 	
 	
+}
+
+function CloseWindow(action) {
+	if (action == "close") {
+
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
 }

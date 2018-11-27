@@ -49,6 +49,15 @@ function mtAdvisorChanged(e){
 }
 
 
+function visit() {
+    var row = gridCar.getSelected();
+    if(row){
+        
+        SetData(row);
+    }
+}
+
+
 function SetData(rowData){ 
     mini.open({
         url: webPath + contextPath + "/manage/visitMgr/visitLoseMainDetail.jsp?token="+ token,

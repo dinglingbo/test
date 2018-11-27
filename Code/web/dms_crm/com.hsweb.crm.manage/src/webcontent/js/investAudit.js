@@ -168,3 +168,26 @@ function onAuditClick(auditSign){
     });
 }
 
+function trackDetail(){
+        var data = investGrid.getSelected();
+    if(data == null){
+        showMsg("请先选择一条数据","W");
+        return;
+    }
+    nui.open({
+        url: webPath + contextPath+ "/manage/trackInfo.jsp?token="+ token,
+        title: "跟踪记录",
+        allowResize:false,
+        width: 800,
+        height: 300,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(data);
+         },
+         ondestroy: function (action) {
+             if(action == "ok"){
+                 search();
+             }
+         }
+    });
+}

@@ -24,7 +24,7 @@
                     <a class="nui-button" iconCls="" plain="true" onclick="onAuditClick(1)"><span class="fa fa-check fa-lg"></span>&nbsp;审核通过</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onAuditClick(2)"><span class="fa fa-remove fa-lg"></span>&nbsp;审核不通过</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onDeleteClick()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick=""><span class="fa fa-history fa-lg"></span>&nbsp;跟踪记录</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="trackDetail()"><span class="fa fa-history fa-lg"></span>&nbsp;跟踪记录</a>
 
     </div>
 

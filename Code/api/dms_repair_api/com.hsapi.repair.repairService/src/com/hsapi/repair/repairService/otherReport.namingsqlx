@@ -40,14 +40,17 @@ and b.orgid =#orgid#
 
     <isEqual  prepend="" property="groupByType"   compareValue="0">
 GROUP BY b.datekey
+order by b.datekey desc
   </isEqual>
       <isEqual  prepend="" property="groupByType"   compareValue="1">
      GROUP BY a.service_type_id
+     order by tc
      </isEqual>
            <isEqual  prepend="" property="groupByType"   compareValue="2">
      GROUP BY a.item_name
+     order by tc
      </isEqual>
-order by tc
+
     
     
     </select>

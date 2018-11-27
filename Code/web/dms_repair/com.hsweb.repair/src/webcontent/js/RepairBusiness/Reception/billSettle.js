@@ -411,8 +411,7 @@ function pay(){
 			        contentType : 'text/json',
 	    			success : function(data) {
 	    				nui.unmask(document.body);
-	    				if(data.errCode=="S"){
-	    					
+	    				if(data.errCode=="S"){  					
 	    					CloseWindow("ok");
 	    				}else{
 	    					nui.alert(data.errMsg,"提示");
@@ -484,7 +483,7 @@ function doNoPay(serviceId,allowanceAmt){
 					success : function(data) {
 						nui.unmask(document.body);
 						if(data.errCode=="S"){
-							CloseWindow("ok");
+							CloseWindow("onok");
 						}else{
 							nui.alert(data.errMsg,"提示");
 						}

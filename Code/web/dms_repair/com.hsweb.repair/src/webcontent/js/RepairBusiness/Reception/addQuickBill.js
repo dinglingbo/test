@@ -164,28 +164,6 @@ $(document).ready(function () {
 }*/
 
 
-//配件
-function choosePart(){
-    var row = FItemRow||{};
-    var itemId = null;
-    if(row){
-    	itemId = row.id;
-    }else{
-        return;
-    }
-    advancedMorePartWin.hide();
-    doSelectPart(itemId,addToBillPart, delFromBillPart, null, function(text){
-        var p1 = { };
-        var p2 = {
-            interType: "item",
-            data:{
-                serviceId: main.id||0
-            }
-        };
-        var p3 = {};
-        loadDetail(p1, p2, p3);
-    });
-}
 
 function add(){
 	billForm.setData([]);
@@ -235,6 +213,62 @@ function editRpsPackage(row_uid){
         rpsPackageGrid.beginEditRow(row);
     }
 }
+
+
+function updateRpsPackage(row_uid){
+    var rowc = rpsPackageGrid.getRowByUID(row_uid);
+    if (rowc) {
+        rpsPackageGrid.commitEdit();
+        var rows = rpsPackageGrid.getChanges();
+        if(rows && rows.length>0){
+            var row = rows[0];
+            if(row.type == 3){
+                rpsPackageGrid.accept();
+                return;
+            }
+            var modelId = row.modelId||0;
+            var rate = row.rate/100;
+            rate = rate.toFixed(4);
+            var pkg = {
+                modelId:row.modelId,
+                //优惠率除以100
+                rate:rate,
+                id:row.id,
+                serviceTypeId:row.serviceTypeId,
+                subtotal:row.subtotal
+            };
+            var params = {
+                type:"update",
+                interType:"package",
+                data:{
+                    pkg: pkg,
+                }
+            };
+            svrCRUD(params,function(text){
+                var errCode = text.errCode||"";
+                var errMsg = text.errMsg||"";
+                if(errCode == 'S'){   
+                    rpsPackageGrid.accept();
+                    var p1 = {
+                            interType: "package",
+                            data:{
+                            	modelId: modelId
+                            }
+                        }
+                     loadDetail(p1, {}, {});
+                     rpsPackageGrid.reject();
+                }else{
+                	rpsPackageGrid.reject();
+                    rpsPackageGrid.accept();
+                    showMsg(errMsg||"修改数据失败!","W");
+                    return;
+                }
+            });
+        }
+    }
+}
+
+
 
 
 
@@ -451,8 +485,6 @@ function doSelectPackage(dock, dodelck, docck, callback) {
 	});
 }
 
-
-
 function chooseItem(){
 	 var main = billForm.getData();
 	    if(!main.id){
@@ -578,11 +610,93 @@ function doSelectItem(dock, dodelck, docck, callback) {
 	});
 }
 
+//配件
+function choosePart(row_uid){
+	var row = rpsItemGrid.getRowByUID(row_uid);
+    var itemId = null;
+    if(row){
+    	itemId = row.id;
+    }else{
+        return;
+    }
+    doSelectPart(itemId,addToBillPart, delFromBillPart, null, function(text){
+    	main = billForm.getData();
+    	var p1 = { };
+        var p2 = {
+            interType: "item",
+            data:{
+                modelId: main.id||0
+            }
+        };
+        var p3 = {};
+        loadDetail(p1, p2, p3);
+    });
+}
+
+function addToBillPart(row, callback, unmaskcall){
+    var main = billForm.getData();
+    var data = {};
+    var insPart = {
+        modelId:main.id||0,
+        partId:row.id,
+        modelItemId:row.billItemId,     
+        qty:1
+    };
+    data.insPart = insPart;
+    data.modelId = main.id||0;
+    
+    var params = {
+        type:"insert",
+        interType:'part',
+        data:data
+    };
+    svrCRUD(params,function(text){
+        var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
+        var res = text.data||{};
+        if(errCode == 'S'){
+            unmaskcall && unmaskcall();
+            callback && callback(res);
+        }else{
+            unmaskcall && unmaskcall();
+            showMsg(errMsg||"添加配件失败!","W");
+            return;
+        }
+    },function(){
+        unmaskcall && unmaskcall();
+    });
+}
+
+function delFromBillPart(data, callback){
+    var part = {
+        serviceId:data.serviceId,
+        id:data.id,
+        cardDetailId:data.cardDetailId||0
+    };
+    var params = {
+        type:"delete",
+        interType:"part",
+        data:{
+        	part: part
+        }
+    };
+    svrCRUD(params,function(text){
+        var errCode = text.errCode||"";
+        var errMsg = text.errMsg||"";
+        if(errCode == 'S'){   
+            callback && callback();
+        }else{
+            showMsg(errMsg||"删除配件信息失败!","W");
+            return;
+        }
+    });
+}
+
 var addRpbPackageModelUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.insRpbPackageModel.biz.ext";
-var updRpsPackageUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.updRpsPackage.biz.ext";
+var updRpsPackageUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.updRpbPackageModl.biz.ext";
 var delRpsPackageUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.deleteRpsPackage.biz.ext";
 
-var addRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.insRpbItemModel.biz.ext";
+var addRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.insRpbPartModel.biz.ext";
 var updRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.saveRpsPart.biz.ext";
 var delRpsPartUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.deleteRpsPart.biz.ext";
 

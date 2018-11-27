@@ -55,12 +55,12 @@ $(document).ready(function ()
      packageGrid.on("rowdblclick",function(e){
     	 onOk(0);
      });
-     itemGrid.on("rowdblclick",function(e){
-    	 onOk(1);
-     });
-     partGrid.on("rowdblclick",function(e){
-    	 onOk(2);
-     });
+//     itemGrid.on("rowdblclick",function(e){
+//    	 onOk(1);
+//     });
+//     partGrid.on("rowdblclick",function(e){
+//    	 onOk(2);
+//     });
 });
 function init(type)
 {

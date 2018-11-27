@@ -19,30 +19,24 @@ var itemGrid = null;
 var treeHash={};
 var partGrid = null;
 var brandPartGrid = null;
-var packageGridUrl = baseUrl+"com.hsapi.system.product.items.getPackage.biz.ext";
-var itemGridUrl = baseUrl+"com.hsapi.system.product.items.getItem.biz.ext";
 var itemKindHash = {
     JD:"机电",
     BJ:"钣金",
     PQ:"喷漆",
     MR:"洗美"
 };
+var packageGridUrl = baseUrl+"com.hsapi.system.product.items.getPackage.biz.ext";
+var itemGridUrl = baseUrl+"com.hsapi.system.product.items.getItem.biz.ext";
 $(document).ready(function ()
 {
    
     packageDetail = nui.get("packageDetail");
     packageGrid = nui.get("packageGrid");
     packageGrid.setUrl(packageGridUrl);
+    partGrid = nui.get("partGrid");
     
     itemGrid = nui.get("itemGrid");
     itemGrid.setUrl(itemGridUrl);
-    partGrid = nui.get("partGrid");
-    //init();
-    //查询套餐
-//    packageGrid.load({
-//    });
-    /*brandPartGrid.load({
-    });*/
     nui.get("carModelId").focus();
 	document.onkeyup=function(event){
         var e=event||window.event;
@@ -52,19 +46,19 @@ $(document).ready(function ()
             onCancel();
         }
       };
-     packageGrid.on("rowdblclick",function(e){
-    	 onOk(0);
-     });
-//     itemGrid.on("rowdblclick",function(e){
-//    	 onOk(1);
+//     packageGrid.on("rowdblclick",function(e){
+//    	 onOk(0);
 //     });
+     itemGrid.on("rowdblclick",function(e){
+    	 onOk(1);
+     });
 //     partGrid.on("rowdblclick",function(e){
 //    	 onOk(2);
 //     });
 });
-function init(type)
+function init()
 {
-    var treeUrl = baseUrl+"com.hsapi.system.product.items.getPrdtType.biz.ext";
+    var treeUrl = baseUrl+"com.hsapi.system.product.items.getHotWord.biz.ext";
     tree = nui.get("tree");
     tree.on("load",function(e)
     {
@@ -75,13 +69,13 @@ function init(type)
         });
     });
     tree.on("beforeload",function(e){
-    	var types = "01";
-    	if(type == "pkg"){
-    		types = "01";
-    	}else if(type == "item"){
-    		types = "02";
-    	}
-    	e.data.type = "01";
+//    	var types = "01";
+//    	if(type == "pkg"){
+//    		types = "01";
+//    	}else if(type == "item"){
+//    		types = "02";
+//    	}
+//    	e.data.type = "02";
     	console.log(e);
     });
     tree.setUrl(treeUrl);
@@ -103,10 +97,10 @@ function init(type)
     {
         var node = e.node;
         var nodeList = tree.getAncestors(node);
-        var customId = node.customId;
-        if(nodeList.length>0)
+ 
+        if(nodeList.length<0)
         {
-            customId = nodeList[0].customId;
+            return;
         }
         var carInfo = carInfoForm.getData();
         var params = {
@@ -115,27 +109,9 @@ function init(type)
             carLineId:carInfo.carLineId,
             carModelId:carInfo.carModelId
         };
-        if(customId.indexOf("01") == 0)
-        {
-            //queryTabIdEl.setValue(0);
-           // queryTabIdEl.doValueChanged();
-            params.packageTypeId = node.id;
-            doSearchPackage(params);
-        }
-        if(customId.indexOf("02") == 0 || customId.indexOf("03") == 0)
-        {
-           // queryTabIdEl.setValue(1);
-           // queryTabIdEl.doValueChanged();
-            params.typeId = node.id;
-            doSearchItem(params);
-        }
-        if(customId.indexOf("04") == 0)
-        {
-           // queryTabIdEl.setValue(2);
-           // queryTabIdEl.doValueChanged();
-            params.groupId = node.id;
-            doSearchPart(params);
-        }
+        params.partNameId = node.id;
+        doSearchItem(params);
+
     });
 
     packageGrid.on("beforeload",function(e)
@@ -372,9 +348,9 @@ function setData(data,ck)
     	nui.get("ExpenseAccount").setValue("1");
     }else{
     	var vin = data.vin||"";
-    	var type = data.type||"";
+//    	var type = data.type||"";
         serviceId = data.serviceId;
-        init("pkg");
+        init();
         vinEl.setValue(vin);
         vinEl.doValueChanged();
     }
@@ -449,7 +425,7 @@ function doSelect(idx)
 	        row = result.item;
 	      /*  var item_kind = getItemKind(row.itemKind);
 	        row.itemKind = item_kind;*/
-	        if(row.itemId){
+	        if(row.ItemID){
 	        	
 	       	 nui.mask({
 	                el: document.body,
@@ -458,7 +434,7 @@ function doSelect(idx)
 	            });
 	       }
 	        insItem = {
-	        		itemId:row.itemId,
+	        		itemId:row.ItemID,
 	            }
 	        	var json = nui.encode({
 	        		"insItem":insItem,

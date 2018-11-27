@@ -390,7 +390,7 @@ function del(){
     }
 
     if(row.status != 0){
-        showMsg("本工单不能删除!","W");
+        showMsg("工单不能删除!","W");
         return;
     }
     nui.mask({
@@ -522,7 +522,6 @@ function add(){
     //window.parent.activeTab(item);
     var params = {};
     window.parent.activeTabAndInit(item,params);
-
 }
 function edit(){
     var row = mainGrid.getSelected();

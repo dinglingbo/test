@@ -48,12 +48,12 @@ body {
      <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
      <input class="nui-textbox"  id="serviceCode" name="serviceCode" emptytext="工单号">
      <input class="nui-textbox" id="carNo" name="carNo"emptytext="车牌号">
-     <input class="nui-textbox" id="itemName" name="itemName"emptytext="工时名称">
+     <input class="nui-textbox" id="itemName" name="itemName"emptytext="项目名称">
      <input class="nui-textbox" id="mtAdvisor"name="mtAdvisor" emptytext="服务顾问">
      <input class="nui-textbox" id=""name=""emptytext="配件分类">
 
-     <a class="nui-button" iconcls=""  name="" onclick="Search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-     <a class="nui-button" iconcls=""  name="" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a>
+     <a class="nui-button" iconcls="" plain="true" name="" onclick="Search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+     <a class="nui-button" iconcls="" plain="true" name="" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a>
  </div>
 
  <div class="nui-fit">
@@ -67,7 +67,7 @@ body {
         <div field="carNo"  name="carNo" headeralign="center" width="100" align="center">车牌号</div>
         <div field="carModel"  name="carModel" headeralign="center" width="200" align="center" width="160">品牌</div>
         <div field="guestName"  name="guestName" headeralign="center" width="100" align="center">客户名称</div>
-        <div field="carVin"  name="carVin" headeralign="center" width="150" align="center">VIN码</div>
+        <div field="carVin"  name="carVin" headeralign="center" width="150" align="center">车架号(VIN)</div>
         <div field="itemTime"  name="itemTime" headeralign="center" width="100" align="center">工时</div>
         <div field="unitPrice"  name="unitPrice" headeralign="center" width="100" align="center">单价</div>
         <div field="amt"  name="amt" headeralign="center" width="100" align="center">金额</div>
@@ -113,7 +113,16 @@ body {
         if(e.field =="serviceTypeId"){
             e.cellHtml = servieTypeHash[e.value].name;
         }
+	
+	document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
 
+        if ((keyCode == 13)) { // F9
+            Search();
+        }
+    }
     });
 
     function Search() {
@@ -136,37 +145,37 @@ body {
         case 0:
         params.today = 1;
         params.startDate = getNowStartDate();
-        params.endDate = addDate(getNowEndDate(), 1);
+        params.endDate = addDate(getNowEndDate(), 0);
         queryname = "本日";
         break;
         case 1:
         params.yesterday = 1;
         params.startDate = getPrevStartDate();
-        params.endDate = addDate(getPrevEndDate(), 1);
+        params.endDate = addDate(getPrevEndDate(), 0);
         queryname = "昨日"; 
         break;
         case 2:
         params.thisWeek = 1;
         params.startDate = getWeekStartDate();
-        params.endDate = addDate(getWeekEndDate(), 1);
+        params.endDate = addDate(getWeekEndDate(), 0);
         queryname = "本周";
         break;
         case 3: 
         params.lastWeek = 1;
         params.startDate = getLastWeekStartDate();
-        params.endDate = addDate(getLastWeekEndDate(), 1);
+        params.endDate = addDate(getLastWeekEndDate(),0);
         queryname = "上周";
         break;
         case 4:
         params.thisMonth = 1;
         params.startDate = getMonthStartDate();
-        params.endDate = addDate(getMonthEndDate(), 1);
+        params.endDate = addDate(getMonthEndDate(), 0);
         queryname = "本月";
         break;
         case 5:
         params.lastMonth = 1;
         params.startDate = getLastMonthStartDate();
-        params.endDate = addDate(getLastMonthEndDate(), 1);
+        params.endDate = addDate(getLastMonthEndDate(), 0);
         queryname = "上月";
         break;
 
@@ -192,9 +201,9 @@ body {
     menunamedate.setText(queryname);
     // doSearch(params);
 
-    if(params.endDate){
-        params.endDate = params.endDate +" 23:59:59";
-    }
+//     if(params.endDate){
+//         params.endDate = params.endDate +" 23:59:59";
+//     }
     grid.load({params:params});
 }
 </script>

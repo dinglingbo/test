@@ -11,7 +11,7 @@
 -->
 <head>
 <title>标准化产品查询</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.2.3"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntryPkg.js?v=1.2.6"></script>
 <style type="text/css">
 
 table {
@@ -129,7 +129,7 @@ table {
 				<div class="nui-fit">
 					<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
 						dataField="rs" showTreeIcon="true" textField="name" expandOnLoad="0"
-						idField="id" parentField="parentId" resultAsTree="false">
+						idField="id" parentField="" resultAsTree="false">
 					</ul>
 				</div>
 			</div>
@@ -175,23 +175,23 @@ table {
 				<div type="expandcolumn" >#</div>
 				<div header="基本信息" headerAlign="center">
 					<div property="columns" >
-						<div field="packageName" width="180" headerAlign="center" allowSort="true" header="套餐名称"></div>
+						<div field="PackageName" width="180" headerAlign="center" allowSort="true" header="套餐名称"></div>
 					</div>
 				</div>
 				<div header="价格信息" headerAlign="center">
 					<div property="columns">
-						<div field="packageAmt" width="100" headerAlign="center" allowSort="true" header="套餐金额"></div>
-						<div field="package4sAmt" width="100" headerAlign="center" allowSort="true" header="市场金额"></div>
+						<div field="PackageAmt" width="100" headerAlign="center" allowSort="true" header="套餐金额"></div>
+						<div field="Package4SAmt" width="100" headerAlign="center" allowSort="true" header="市场金额"></div>
 					</div>
 				</div>
 				<div header="其他信息" headerAlign="center">
 					<div property="columns">
-						<div field="carbrandName" headerAlign="center" allowSort="true" header="品牌"></div>
-						<div field="carLineName" headerAlign="center" allowSort="true" header="车系"></div>
-						<div field="carLevelName" width="80" headerAlign="center" allowSort="true" header="车型等级"></div>
-						<div field="carModelName" width="80" headerAlign="center" allowSort="true" header="车型"></div>
+						<div field="CarbrandName" headerAlign="center" allowSort="true" header="品牌"></div>
+						<div field="CarLineName" headerAlign="center" allowSort="true" header="车系"></div>
+						<div field="CarLevelName" width="80" headerAlign="center" allowSort="true" header="车型等级"></div>
+						<div field="CarModelName" width="80" headerAlign="center" allowSort="true" header="车型"></div>
 						<!--<div field="" width="80" headerAlign="center" allowSort="true" header="技术工艺"></div>-->
-						<div field="" width="150" headerAlign="center" allowSort="true" header="备注"></div>
+						<div field="Remark" width="150" headerAlign="center" allowSort="true" header="备注"></div>
 						<!--<div field="packageTypeId" headerAlign="center" allowSort="true" header="类型"></div>-->
 						<!--<div field="packageId" width="80" headerAlign="center" allowSort="true" header="套餐编码"></div>-->
 						<!--<div field="paintQty" headerAlign="center" allowSort="true" header="幅数"></div>

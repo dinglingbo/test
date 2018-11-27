@@ -11,7 +11,7 @@
 -->
 <head>
 <title>标准化产品查询</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntry.js?v=1.2.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/productEntryItem.js?v=1.2.8"></script>
 <style type="text/css">
 
 table {
@@ -127,7 +127,7 @@ table {
 				<div class="nui-fit">
 					<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
 						dataField="rs" showTreeIcon="true" textField="name" expandOnLoad="0"
-						idField="id" parentField="parentId" resultAsTree="false">
+						idField="id" parentField="" resultAsTree="false">
 					</ul>
 				</div>
 			</div>
@@ -161,25 +161,25 @@ table {
 						<div type="indexcolumn" width="35">序号</div>
 						<div header="项目基本信息" headerAlign="center" >
 							<div property="columns" >
-								<div field="itemName" width="260" headerAlign="center" allowSort="true" header="项目名称"></div>
+								<div field="ItemName" width="260" headerAlign="center" allowSort="true" header="项目名称"></div>
 								<!--<div field="itemCode" width="70" headerAlign="center" allowSort="true" header="项目编码"></div>-->
 							</div>
 						</div>
 						<div header="标准项目" headerAlign="center" width="40">
 							<div property="columns">
-								<div field="astandTime" width="40" headerAlign="center" allowSort="true" header="工时"></div>
+								<div field="AStandTime" width="40" headerAlign="center" allowSort="true" header="工时"></div>
 								<!--时间（h）/（副）-->
 							</div>
 						</div>
 						<div header="项目金额" headerAlign="center" width="80">
 							<div property="columns">
-								<div field="astandSum" width="40" headerAlign="center" allowSort="true" header="项目金额"></div>
-								<div field="4sSum" width="40" headerAlign="center" allowSort="true" header="市场金额"></div>
+								<div field="AStandSum" width="40" headerAlign="center" allowSort="true" header="项目金额"></div>
+								<div field="Amt4S" width="40" headerAlign="center" allowSort="true" header="市场金额"></div>
 							</div>
 						</div>
 						<div header="" headerAlign="center">
 							<div property="columns">
-								<div field="itemKind" width="40" headerAlign="center" allowSort="true" header="工种"></div>
+								<div field="ItemKind" width="40" headerAlign="center" allowSort="true" header="工种"></div>
 								<!--<div field="carModelName" width="120" headerAlign="center" allowSort="true" header="车型"></div>-->
 								<!--<div field="typeId" width="80" headerAlign="center" allowSort="true" header="项目类型"></div>-->
 								<!--<div field="factoryName" width="150" headerAlign="center" allowSort="true" header="参考名称"></div>

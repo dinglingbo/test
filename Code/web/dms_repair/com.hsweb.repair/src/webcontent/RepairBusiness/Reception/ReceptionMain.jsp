@@ -75,14 +75,10 @@
                      <!--<a class="nui-button" iconCls="" plain="true" onclick="unfinish()" id="addBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返工</a>-->
                     <!-- <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="addBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a> -->
                     <a class="nui-button" iconCls="" plain="true" onclick="del()" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
-
-                    
                 </td>
             </tr>
         </table>
     </div>
-
-
     <div class="nui-fit">
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"

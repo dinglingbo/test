@@ -158,16 +158,17 @@ function setData(params){
 				amt=amt+parseFloat(srnum[i].amt);
 			}
 			var amount = 0;
-			if(params.data.ycAmt==null||params.data.ycAmt==""){
+			if(params.data.ycAmt==null||params.data.ycAmt==0){
 				amount = parseFloat(params.data.mtAmt)+parseFloat(amt);
 				params.data.mtAmt =  parseFloat(params.data.mtAmt)+parseFloat(amt);
 				params.data.mtAmt = params.data.mtAmt.toFixed(2);
 			}else{
 				params.data.mtAmt = parseFloat(params.data.mtAmt)-parseFloat(params.data.ycAmt)+parseFloat(amt);
 				params.data.mtAmt = params.data.mtAmt.toFixed(2);
+				amount=params.data.mtAmt;
 			}
 			
-			netInAmt = amount;
+			netInAmt = parseFloat(amount);
 			zongAmt=params.data.mtAmt;
 			document.getElementById('totalAmt').innerHTML = "￥"+params.data.mtAmt;
 			document.getElementById('totalAmt1').innerHTML = params.data.mtAmt;
@@ -301,7 +302,7 @@ function onChanged() {
 
 		return;
 	}
-	if((parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count)).toFixed(2)  > netInAmt){
+	if((parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count)).toFixed(2)>netInAmt){
 		nui.alert("储值抵扣加上优惠金额不能大于应收金额","提示");
 
 
@@ -377,14 +378,14 @@ function pay(){
 		}
 	var deductible = nui.get("deductible").getValue()||0;
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
-
+	
 	var amt = scount();
 	var json = {
 		accountTypeList : accountTypeList,
 		allowanceAmt:PrefAmt,
 		cardPayAmt:deductible,
 		serviceId:fserviceId,
-
+		remark:nui.get("txtreceiptcomment").getValue(),
 		payAmt:amt
 	};
     nui.confirm("是否确定结算？", "友情提示",function(action){
@@ -396,7 +397,7 @@ function pay(){
 			    });
 	    		nui.ajax({
 	    			url : baseUrl
-	    			+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ,
+	    			+ "com.hsapi.repair.repairService.settlement.salesSettle.biz.ext" ,
 	    			type : "post",
 	    			data : json,
 			        cache : false,

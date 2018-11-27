@@ -139,11 +139,12 @@ function onDrawCell(e) {
 	var hash = new Array("按原价比例", "按折后价比例", "按产值比例", "固定金额");
 	switch (e.field) {
 	case "isShare":
-		e.cellHtml = e.value == 1 ? "否" : "是";
+		e.cellHtml = e.value == 1 ? "是" : "否";
 		break;
 	case "canModify":
 		e.cellHtml = e.value == 1 ? "是" : "否";
 		break;
+		
 	case "packageRate":
 		e.cellHtml = e.value + "%";
 		break;

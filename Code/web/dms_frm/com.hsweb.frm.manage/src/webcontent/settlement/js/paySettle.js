@@ -921,13 +921,13 @@ function checkSettleRow() {
 				var amt12 = row.amt12 || 0;
 				var amt13 = row.amt13 || 0;
 				var amt14 = row.amt14 || 0;
-				if (amt1 + amt2 + amt3 + amt4 + amt11 + amt12 + amt13 + amt14 <= 0) {
+				if (amt1 + amt2 + amt3 + amt4 + amt11 + amt12 + amt13 + amt14 < 0) {
 					msg += "请填写业务单据：" + billServiceId + "的结算金额；</br>";
 				}
 			} else {
 				var nowAmt = row.nowAmt || 0;
 				var nowVoidAmt = row.nowVoidAmt || 0;
-				if (nowAmt + nowVoidAmt <= 0) {
+				if (nowAmt + nowVoidAmt < 0) {
 					msg += "请填写业务单据：" + billServiceId + "的结算金额；</br>";
 				}
 			}

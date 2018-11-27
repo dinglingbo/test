@@ -6,6 +6,7 @@ var rlist = [];
 var typeList = {};
 var mtAmtEl = null;
 var guestData = null;
+var netInAmt = 0;
 var amountEl = null;
 var zongAmt = 0;//总金额
 var showAmt = null;//结算金额是否减客户返点
@@ -61,7 +62,26 @@ function setData(params){
 	nui.get('totalAmt').setValue("￥"+(params.t_amt||0));
 	nui.get('totalRtnCompRate').setValue("￥"+(params.t_rtnCompRate||0));
 	nui.get('totalRtnGuestRate').setValue("￥"+(params.t_rtnGuestRate||0));
-	
+	var jsonq = {
+			guestId:guestData.guestId,
+			token : token
+		};
+	nui.ajax({
+		url : apiPath + repairApi + "/com.hsapi.repair.baseData.query.queryMemberByGuestId.biz.ext" ,
+		type : "post",
+		data : jsonq,
+		success : function(data) {
+			if(data.member.length==0){
+				rechargeBalaAmt=0;
+			}else{	
+				rechargeBalaAmt = data.member[0].rechargeBalaAmt;
+			}
+			nui.get("rechargeBalaAmt").setValue("￥"+rechargeBalaAmt); 
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
 
 	addType();
 }
@@ -104,8 +124,24 @@ function deletePayRow(row_uid){
 var resultData = {};
 function onChanged() {
 	var count = scount();
-	if( parseFloat(count)>zongAmt){
-		nui.alert("结算金额不能大于应收金额","提示");
+	 deductible = nui.get("deductible").getValue()||0;
+	var PrefAmt = nui.get("PrefAmt").getValue()||0;
+	if(PrefAmt>=0){
+		var amount = parseFloat(netInAmt) - parseFloat(PrefAmt);
+		zongAmt = amount.toFixed(2);
+		document.getElementById('amount').innerHTML = amount.toFixed(2);
+	}
+	var memAmt = nui.get("rechargeBalaAmt").getValue()||0;
+		memAmt = (memAmt.split("￥"))[1];
+	if(deductible>memAmt){
+		nui.alert("储值抵扣不能大于储值余额","提示");
+
+		return;
+	}
+	if((parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count)).toFixed(2)  > netInAmt){
+		nui.alert("储值抵扣加上优惠金额不能大于应收金额","提示");
+
+
 		return;
 	}
 }
@@ -137,15 +173,20 @@ function pay(){
 		}
 	}
 		var count = scount();
+		deductible = nui.get("deductible").getValue()||0;
+		count = (count+deductible).toFixed(2);
 		if(count!=zongAmt){
 			nui.alert("结算金额和应结金额不一致，请重新确认！","提示");
 			return;
 		}
+		var deductible = nui.get("deductible").getValue()||0;
+		var PrefAmt = nui.get("PrefAmt").getValue()||0;
 	var json = {
 		accountTypeList : accountTypeList,
-		allowanceAmt:0,
-		cardPayAmt:0,
+		allowanceAmt:PrefAmt,
+		cardPayAmt:deductible,
 		serviceId:fserviceId,
+		remark:nui.get("txtreceiptcomment").getValue(),
 		payAmt:count
 	}
     nui.confirm("是否确定结算？", "友情提示",function(action){
@@ -221,7 +262,7 @@ function doNoPay(serviceId,allowanceAmt){
 			token:token
 	};
 	
-    nui.confirm("确定将此单加入待结算吗？", "友情提示",function(action){
+    nui.confirm("确定将此单转入预结算吗？", "友情提示",function(action){
 	       if(action == "ok"){
 			    nui.mask({
 			        el : document.body,
@@ -229,13 +270,13 @@ function doNoPay(serviceId,allowanceAmt){
 				    html : '处理中...'
 			    });
 				nui.ajax({
-					url : apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.preReceiveSettle.biz.ext" ,
+					url : apiPath + repairApi + "/com.hsapi.repair.repairService.settlement.PreInsuranceReceiveSettle.biz.ext" ,
 					type : "post",
 					data : json,
 					success : function(data) {
 						if(data.errCode=="S"){
 							nui.unmask(document.body);
-							nui.alert("待结算成功","提示");
+							nui.alert("转预结算成功","提示");
 						}else{
 							nui.unmask(document.body);
 							nui.alert(data.errMsg,"提示");

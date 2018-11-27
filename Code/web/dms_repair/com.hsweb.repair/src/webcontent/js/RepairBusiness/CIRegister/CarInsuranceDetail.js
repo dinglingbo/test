@@ -219,6 +219,11 @@ function drawSummaryCell(e){
 
 
 function insuranceChange(e){
+	var carNo=nui.get('carNo').getValue();
+	if(!carNo){
+		showMsg("请先添加客户信息!","W");
+		return;
+	}
     var selected = e.selected;
     nui.get("insureCompId").setValue(selected.id);
     for(var i =0;i<insurance.length;i++){
@@ -453,7 +458,7 @@ function addGuest(){
 
 var requiredField={
 	carNo				:"车牌号",
-	enterKilometers		:"本次里程",
+	//enterKilometers		:"本次里程",
 	mtAdvisorId 		:"服务顾问",
 	insureCompName 		:"保险公司",
 	saleManIds			:"销售人员",
@@ -540,12 +545,8 @@ function pay() {
     var data1 = basicInfoForm.getData();
 //    var data2 = getData2();
     var gridData = detailGrid.getData();
-    var b1= document.getElementsByName('settleTypeId');
-    for (var i = 0; i < b1.length; i++) {
-        if (b1[i].checked == true) {//如果选中，
-            sTypeId = b1[i].value;
-        }
-    }
+    var b1= nui.get('settleTypeId').getValue();
+    sTypeId = b1;
     t_amt= detailGrid.getSummaryCellEl("amt").textContent;
     t_rtnCompRate= detailGrid.getSummaryCellEl("rtnCompRate").textContent;
     t_rtnGuestRate= detailGrid.getSummaryCellEl("rtnGuestRate").textContent;

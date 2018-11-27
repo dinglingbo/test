@@ -371,7 +371,6 @@
         )M
     	
         
-        group by M.id
         ORDER BY M.operateDate DESC
     </select>
     
@@ -1488,7 +1487,6 @@
                 </isNotEmpty> 
             </dynamic>  
 
-                group by a.id
         ORDER BY A.OPERATE_DATE DESC
     </select>
     
@@ -1628,7 +1626,6 @@
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
             </dynamic>  
-           group by a.id
         
         ORDER BY A.OPERATE_DATE DESC
     </select>

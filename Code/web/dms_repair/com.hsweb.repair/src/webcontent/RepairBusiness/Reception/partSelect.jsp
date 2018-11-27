@@ -159,6 +159,8 @@
         mrecordId = id;
         mainRow = mRow;
         selectRow = srow;
+        nui.get('mtAdvisorId').setValue(currEmpId);
+        nui.get('mtAdvisorId').setText(currUserName);
 
     } 
 

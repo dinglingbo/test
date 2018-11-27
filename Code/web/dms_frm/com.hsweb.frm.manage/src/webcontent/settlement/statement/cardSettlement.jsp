@@ -11,7 +11,7 @@
 
 <head>
 	<title>计次卡/储值卡结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.0.9"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.1.8"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -287,10 +287,40 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="pay_list">
-				
+<!-- 			<div class="pay_list" >
+				<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">优惠/抵扣</span></h2>
+				<div class="pay_tcbk">
+					<div id="benefitdeductionbox">
 
-			</div>
+						<div class="pay_jshj_list">
+							<div class="pay_js_left">
+								<a href="javascript:;" class="xz">储值卡抵扣</a>
+							</div>
+							<div class="pay_js_right" id = "dk" style="display:none;">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+									<tbody>
+										<tr>
+											<td width="15%">
+												<span>储值卡余额：</span>
+
+											</td>
+											<td height="40" class="line24">
+												<input class="nui-textbox" id="rechargeBalaAmt" name="rechargeBalaAmt" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;">
+											</td>
+											<td width="10%">
+												<span>抵扣金额：</span>
+
+											</td>
+											<td height="40" class="line24">
+												<input class="mini-spinner" id="deductible" name="deductible" width="100px" minValue="0" maxValue="1000000" showbutton="false" changeOnMousewheel="false" showbutton="false"
+												 allowNull="false" onvaluechanged="onChanged" />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+			</div> -->
 
 
 					<div class="pay_list">
@@ -403,7 +433,7 @@
 						<label style="font-family:Verdana;">实收金额：</label>
 						<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 					</td>
-<!-- 					<td >
+ 					<td >
 						<a id="wxbtnsettle" style="    width: 120px;
 							height: 40px;
 							font-size: 18px;
@@ -414,8 +444,8 @@
 							border-radius: 5px;
 							line-height: 2;
 							text-decoration: none;" 
-							href="javascript:void(0)" onclick="settleOK()">微信结算</a>
-					</td> -->
+							href="javascript:void(0)" onclick="noPayOk()">转预结算</a>
+					</td>
 					<td >
 						<a id="btnsettle" style="    width: 120px;
 							height: 40px;

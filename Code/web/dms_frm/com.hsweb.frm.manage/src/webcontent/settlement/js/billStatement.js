@@ -518,7 +518,7 @@ function add(){
     var item={};
     item.id = "6200";
     item.text = "月对账详情";
-    item.url = webPath + contextPath + "/manage/settlement/billStatementDetail_view0.jsp";
+    item.url = webPath + contextPath + "/com.hsweb.frm.manage.billStatementDetail.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};
@@ -532,7 +532,7 @@ function edit(){
     var item={};
     item.id = "6200";
     item.text = "月对账详情";
-    item.url = webPath + contextPath + "/manage/settlement/billStatementDetail_view0.jsp";
+    item.url = webPath + contextPath + "/com.hsweb.frm.manage.billStatementDetail.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = row; 

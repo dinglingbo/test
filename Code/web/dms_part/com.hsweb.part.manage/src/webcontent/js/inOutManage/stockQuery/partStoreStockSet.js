@@ -92,6 +92,7 @@ $(document).ready(function(v)
             onSearch();
         }
     });
+    onSearch();
 });
 function getSearchParam(){
     var params = {};
@@ -260,6 +261,7 @@ function save(){
             newObj.storeId = gridData[i].storeId;
             newObj.partId = gridData[i].partId;
             newObj.shelf = gridData[i].shelf;
+            newObj.sellPrice = gridData[i].sellPrice;
             newObj.upLimit = gridData[i].upLimit;
             newObj.downLimit = gridData[i].downLimit;
             newObj.minOrderQty = gridData[i].minOrderQty;

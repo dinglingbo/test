@@ -12,7 +12,7 @@
 <head>
 <title>结算账户余额汇总表</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/summaryAccountBalances.js?v=1.0.9">
+	src="<%=request.getContextPath()%>/manage/settlement/js/summaryAccountBalances.js?v=1.1.0">
 	</script>
 </head>
 <body>
@@ -22,13 +22,28 @@
 
 	<div class="nui-toolbar" style="border-bottom: 0; padding: 0px;">
 		<div id="queryform" class="nui-form" align="center">             
-			<table style="width: 100%;" id="table1">
+			<table style="width: 100%;" id="table1"> 
 				<tr> 
 				<td style="width: 100%;">	
+					    <label style="font-family:Verdana;">快速查询：</label>
+				    	<a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+				    	<ul id="popupMenuDate" class="nui-menu" style="display:none;">
+				            <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+				            <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+				            <li class="separator"></li>
+				            <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+				            <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+				            <li class="separator"></li>
+				            <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+				            <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+				            <li class="separator"></li>
+				            <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+				            <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+				        </ul>
+				        <span class="separator"></span>
 					结算账户；<input class="nui-combobox" id="auditSign" width="120" textField="name" valueField="id" value="0" onvaluechanged="search()" allowInput="false"/>
 							 结算日期：<input id="sDate" name="" class="nui-datepicker" value="" allowInput="false"/>
          					   至 <input id="eDate" name="" class="nui-datepicker" value="" allowInput="false"/>
-
 				<a class="nui-button" onclick="search()" plain="true">
 						<span class="fa fa-search fa-lg"></span> 查询 </a> 
 					

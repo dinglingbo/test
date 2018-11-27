@@ -176,6 +176,9 @@ function onDrawCell(e) {
 	case "canModify":
 		e.cellHtml = e.value == 1 ? "是" : "否";
 		break;
+	case "isShare":
+		e.cellHtml = e.value == 1 ? "是" : "否";
+		break;
 	case "packageRate":
 		e.cellHtml = e.value + "%";
 		break;

@@ -92,6 +92,7 @@ $(document).ready(function(v)
             onSearch();
         }
     });
+    onSearch();
 });
 function getSearchParam(){
     var params = {};

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/common.jsp"%>
 <%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,8 +9,8 @@ pageEncoding="UTF-8" session="false"%>
   - Description:
 -->
 <head>
-    <title>车险登记明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.18"></script>
+    <title>保险开单明细</title>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.22"></script>
     <style type="text/css">
    .title {
         width: 80px;
@@ -145,9 +144,7 @@ pageEncoding="UTF-8" session="false"%>
         <tr>   
             <td class="title required">客户名称:</td> 
             <td class=""><input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="100%"/></td>
-            <td class="title required">客户单位:</td> 
-            <td class=""><input  class="nui-textbox" name="" id="" enabled="false" width="100%"/></td>
-
+         
             <td class="title required">
                 <label>服务顾问：</label>
             </td>
@@ -167,7 +164,7 @@ pageEncoding="UTF-8" session="false"%>
             </td>
 
             <td class="title required">车辆/品牌:</td> 
-            <td class=""><input  class="nui-textbox" name="carBrand" id="carBrand" enabled="false" width="100%"/></td>
+            <td class="" colspan="3"><input  class="nui-textbox" name="carBrand" id="carBrand" enabled="false" width="100%"/></td>
 			
         </tr>
         

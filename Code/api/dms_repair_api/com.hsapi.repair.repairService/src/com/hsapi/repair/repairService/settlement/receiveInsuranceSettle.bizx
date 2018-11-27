@@ -122,6 +122,10 @@
       <process:to type="query">fisRpBill/carNo</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">remark</process:from>
+      <process:to type="query">fisRpBill/remark</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">insurance/carVin</process:from>
       <process:to type="query">fisRpBill/carVin</process:to>
     </process:copy>
@@ -1174,6 +1178,7 @@
     <process:input description="支付金额" isArray="false" name="payAmt" primitiveType="Double"/>
     <process:input description="020101现金，020102刷卡，020104微信/支付宝" isArray="false" name="payType" primitiveType="String"/>
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.common.FisRpAccountDType" name="accountTypeList"/>
+    <process:input description="收款备注" isArray="false" name="remark" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

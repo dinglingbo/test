@@ -25,14 +25,18 @@ var itemKindHash = {
     PQ:"喷漆",
     MR:"洗美"
 };
+var packageGridUrl = baseUrl+"com.hsapi.system.product.items.getPackage.biz.ext";
+var itemGridUrl = baseUrl+"com.hsapi.system.product.items.getItem.biz.ext";
 $(document).ready(function ()
 {
-    //init();
-    //查询套餐
-    packageGrid.load({
-    });
-    /*brandPartGrid.load({
-    });*/
+   
+    packageDetail = nui.get("packageDetail");
+    packageGrid = nui.get("packageGrid");
+    packageGrid.setUrl(packageGridUrl);
+    partGrid = nui.get("partGrid");
+    
+    itemGrid = nui.get("itemGrid");
+    itemGrid.setUrl(itemGridUrl);
     nui.get("carModelId").focus();
 	document.onkeyup=function(event){
         var e=event||window.event;
@@ -127,10 +131,7 @@ function init(type)
             doSearchPart(params);
         }
     });
-    var packageGridUrl = baseUrl+"com.hsapi.system.product.items.getPackage.biz.ext";
-    packageDetail = nui.get("packageDetail");
-    packageGrid = nui.get("packageGrid");
-    packageGrid.setUrl(packageGridUrl);
+
     packageGrid.on("beforeload",function(e)
     {
         e.data["token"] = "";
@@ -158,9 +159,7 @@ function init(type)
         packageDetail.clearRows();
         loadPackageDetailByPkgId(row.id,function(){});
     });
-    var itemGridUrl = baseUrl+"com.hsapi.system.product.items.getItem.biz.ext";
-    itemGrid = nui.get("itemGrid");
-    itemGrid.setUrl(itemGridUrl);
+ 
     itemGrid.on("beforeload",function(e)
     {
         e.data["token"] = "";
@@ -186,7 +185,7 @@ function init(type)
         e.data["page/isCount"] = true;
     });
     var partGridUrl = baseUrl+"com.hsapi.system.product.items.getPart.biz.ext";
-    partGrid = nui.get("partGrid");
+
     partGrid.on("rowdblclick",function(e)
     {
         var row = e.record;
@@ -444,7 +443,7 @@ function doSelect(idx)
 	        row = result.item;
 	      /*  var item_kind = getItemKind(row.itemKind);
 	        row.itemKind = item_kind;*/
-	        if(row.itemId){
+	        if(row.ItemID){
 	        	
 	       	 nui.mask({
 	                el: document.body,
@@ -453,7 +452,7 @@ function doSelect(idx)
 	            });
 	       }
 	        insItem = {
-	        		itemId:row.itemId,
+	        		itemId:row.ItemID,
 	            }
 	        	var json = nui.encode({
 	        		"insItem":insItem,

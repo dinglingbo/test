@@ -1153,5 +1153,43 @@
    		   	SELECT 1 FROM rps_part AS a
             WHERE a.service_id = #serviceId# AND a.pick_qty &lt; a.qty
     </select>
-		
+ 
+ <select id="queryRpbBillModelList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+	        a.id id,
+	        a.bill_type_id billTypeId,
+	        a.service_type_id serviceTypeId,
+	        a.model_name modelName,
+	        a.remark remark,
+	        a.recorder recorder,
+	        a.record_date recordDate,
+	        a.modifier modifier,
+	        a.modify_date modifyDate	
+		FROM
+			rpb_bill_model a
+		WHERE
+			a.orgid = #orgid#
+		<dynamic>
+		    <isNotEmpty prepend="and" property="billTypeId">  
+                (a.bill_type_id = #billTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeIds">  
+                (a.bill_type_id = 1 or a.bill_type_id = 2 or a.bill_type_id = 3)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">  
+                (a.service_type_id = #serviceTypeId#)
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="modelName">  
+                (a.model_name like '%$modelName$%')
+            </isNotEmpty>
+            <!--创建日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">  
+                (a.record_date &gt;= #sRecordDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">  
+                (a.record_date &lt; #eRecordDate#)
+            </isNotEmpty>
+        </dynamic>  
+        order by a.modify_date desc
+	</select>	    	
 </sqlMap>

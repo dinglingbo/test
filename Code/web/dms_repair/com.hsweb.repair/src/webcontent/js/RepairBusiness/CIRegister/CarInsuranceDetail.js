@@ -111,6 +111,8 @@ $(document).ready(function ()
                 mtAdvisorId:""
             };
             basicInfoForm.setData(sdata);
+            nui.get('mtAdvisorId').setValue(currEmpId);
+            nui.get('mtAdvisorId').setText(currUserName);
             $("#guestNameEl").html(guestName);
             $("#guestCarEl").html(carNo);
             $("#guestTelEl").html(tel);

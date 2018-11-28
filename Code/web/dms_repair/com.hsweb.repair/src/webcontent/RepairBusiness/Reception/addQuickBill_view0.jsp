@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单模板设置详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/addQuickBill.js?v=1.0.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/addQuickBill.js?v=1.0.9"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -170,14 +170,13 @@
                      allowSort="false" visible="true" width="50" header="业务类型" align="center">
                      <input  property="editor" enabled="true" dataField="servieTypeList" 
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
-                             url="" onvaluechanged="onPkgTypeIdValuechanged" emptyText=""  vtype="required" /> 
+                             url=""  emptyText=""  vtype="required" /> 
                 </div>
                 <div field="amt" headerAlign="center" name="pkgAmt"
                      allowSort="false" visible="true" width="60" header="原价" align="center">
                 </div>
                 <div field="rate" headerAlign="center" name="pkgRate"
-                     allowSort="false" visible="true" width="60" header="" align="center">
-                                  优惠率<a href="javascript:setPkgRate()" title="批量设置优化率" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+                     allowSort="false" visible="true" width="60" header="优惠率" align="center">
                      <input property="editor"  width="60%" vtype="float"  class="nui-textbox"  onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
                 </div>
                  <div field="subtotal" headerAlign="center" name="pkgSubtotal"
@@ -212,7 +211,7 @@
                 <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" align="center">业务类型
                     <input  property="editor" enabled="true" dataField="servieTypeList" 
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
-                             url="" onvaluechanged="onValueChangedItemTypeId" emptyText=""  vtype="required"/> 
+                             url=""  emptyText=""  vtype="required"/> 
                 </div>
                 <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" name="itemItemTime">工时/数量
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedComQty" selectOnFocus="true"/>
@@ -221,7 +220,7 @@
                     <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onValueChangedItemUnitPrice" selectOnFocus="true"/>
                 </div>
                 <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >
-                    优惠率<a href="javascript:setItemPartRate()" title="批量设置优化率" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+                                                          优惠率
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemRate" selectOnFocus="true"/>
                 </div>
                 <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额

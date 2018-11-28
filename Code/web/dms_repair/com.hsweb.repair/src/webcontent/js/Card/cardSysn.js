@@ -69,7 +69,6 @@ $(document).ready(function(v) {
 var requiredField = {
 	name : "会员卡名称",
 	rechargeAmt : "充值金额",
-	giveAmt : "赠送金额",
 	periodValidity : "有效期",
 	salesDeductValue : "提成值"
 };
@@ -160,6 +159,13 @@ function saveData() {
 		token:token
 	}
 	var json = nui.encode(param);
+	
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
+    
 	nui.ajax({
 		url : saveDataUrl,
 		type : 'POST',
@@ -169,19 +175,17 @@ function saveData() {
 		success : function(text) {
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == 'S') {
-				showMsg("保存成功");
+				nui.unmask(document.body);
+				showMsg("保存成功","S");
 				CloseWindow("saveSuccess");
 	
 			} else {
-				if(returnJson.errCode == 'E' && returnJson.errMsg==null){
-					nui.alert("卡已经存在,请修改卡名");
-				}
-				nui.alert("保存失败", "系统提示", function(action) {
-
-					if (action == "ok" || action == "close") {
-						// CloseWindow("saveFailed");
-					}
-				});
+				nui.unmask(document.body);
+				showMsg(returnJson.errMsg||"保存失败","W");
+				//if(returnJson.errCode == 'E' && returnJson.errMsg==null){
+					//showMsg("保存失败","W");
+					//nui.alert("卡已经存在,请修改卡名");
+				//}
 			}
 		}
 	});

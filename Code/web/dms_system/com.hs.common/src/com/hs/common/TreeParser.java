@@ -51,20 +51,29 @@ public class TreeParser {
     }
 	
 	public static <E extends TreeEntity<E>> List<E> clearTree(List<E> entityList){
+		boolean ck = false;
 		Iterator<E> iter = entityList.iterator();  
 		while(iter.hasNext()){  
 		    E s = iter.next(); 
 		    List<E> list = s.getChildrenMenuTreeNodeList();
 		    String linkAction = s.getLinkAction();
 		    boolean cl = list == null || list.size()==0;
-		    if(cl && linkAction == null){  
-		        iter.remove();  
-		    } else {
-		    	boolean ck = clearSubList(list);
-	    		if(ck) {
+		    if(linkAction == null) {
+		    	if(cl) {
 			        iter.remove();
-	    		}
+		    	} else {
+		    		ck = clearSubList(list);
+		    		if(ck) {
+				        iter.remove();
+		    		}
+		    	}
+		    } else {
+		    	if(cl) {
+		    	} else {
+		    		ck = clearSubList(list);
+		    	}
 		    }
+		    
 		}  
 				
 		return entityList;

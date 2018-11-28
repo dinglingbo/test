@@ -178,6 +178,10 @@
     		<isNotEmpty prepend="and" property="code">  
                 (code like '%$code$%')
             </isNotEmpty>
+            
+    		<isNotEmpty prepend="and" property="guestType">  
+                (a.guest_type = #guestType#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="supplierType">  
                 (supplier_type = #supplierType#)
             </isNotEmpty>

@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>保险开单明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.33"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.49"></script>
     <style type="text/css">
    .title {
         width: 80px;
@@ -130,7 +130,7 @@ pageEncoding="UTF-8" session="false"%>
             <td class=""><input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="100%"/></td>
 
             <td class="title required" style="color:red">本次里程:</td> 
-            <td class=""><input  class="nui-textbox" name="enterKilometers" id="enterKilometers" enabled="true" width="100%"/></td>
+            <td class=""><input  class="nui-textbox" name="enterKilometers" vtype="int;range:0,100000000" id="enterKilometers" enabled="true" width="100%"/></td>
 
             <td class="title">开单时间:</td> 
             <td class="">
@@ -164,7 +164,7 @@ pageEncoding="UTF-8" session="false"%>
             </td>
 
             <td class="title required">车辆/品牌:</td> 
-            <td class="" colspan="3"><input  class="nui-textbox" name="carBrand" id="carBrand" enabled="false" width="100%"/></td>
+            <td class="" colspan="3"><input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/></td>
 			
         </tr>
         

@@ -17,13 +17,14 @@ pageEncoding="UTF-8" session="false" %>
 
 </head>
 <body>
-  <div class="nui-fit">
+  <div class="nui-fit" id="form1">
       <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                    <a class="nui-button" onclick="" plain="true" style="width: ;"><span class="fa fa-commenting fa-lg"></span>&nbsp;选择短信模板</a>
-                    <a class="nui-button" onclick="save()" plain="true" style="width: ;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+
+                    <a class="nui-button" onclick="save()" plain="true" style="width: ;"><span class="fa fa-commenting fa-lg"></span>&nbsp;发送</a>
+                     <a class="nui-button" onclick="" plain="true" style="width: ;"><span class="fa fa-navicon fa-lg"></span>&nbsp;选择短信模板</a>
                     <a class="nui-button" onclick="onClose()" plain="true"  style="width: ;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
@@ -41,20 +42,30 @@ pageEncoding="UTF-8" session="false" %>
             <td style="width: "></td>
         </tr>  -->
         <tr class="htr">
-            <td >短信内容：</td>
+           
             <td  colspan="6">
-                <input id="visitContent" name="visitContent" class="nui-textarea textboxWidth" style="width: 100%;height:280px;">
+                <input id="visitContent" name="visitContent" class="nui-textarea textboxWidth" style="width: 100%;height:200px;"
+                emptyText="请输入短信内容" required="true">
             </td>
         </tr> 
         
     </table>
 </div>
-</div>
+
 
 
 <script type="text/javascript">
    nui.parse();
+var form1 = new nui.Form("#form1");
 
+function save(){
+    //验证
+    if(!formValidate(form1)){
+      showMsg("请输入短信内容!","W");
+      return ;
+  }
+
+}
 
    function CloseWindow(action) {
     if (action == "close") {

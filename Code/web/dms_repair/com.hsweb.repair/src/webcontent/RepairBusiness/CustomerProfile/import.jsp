@@ -18,6 +18,8 @@
 	<div id ="tabs" class="nui-tabs" width="100%" height="100%">
 		<div title="客户导入" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/importGuest.jsp">
 		</div>
+		<div title="电销客户导入" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/importTelTrackGuest.jsp">
+		</div>
 		<div title="按电话号码导入储值卡" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/importCardByMobile.jsp">
 		</div>
 		<div title="按车牌号导入储值卡" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/importCardByCarNo.jsp">

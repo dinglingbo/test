@@ -11,7 +11,7 @@
 <head>
 <title>客户资料</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <%@include file="/common/sysCommon.jsp" %>
+        <%@include file="/common/commonRepair.jsp"%>
     <script src="<%=webPath + contextPath%>/manage/js/clientInfo_edit.js?v=1.0.7" type="text/javascript"></script>
     <link href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.0" rel="stylesheet" type="text/css" />
 </head>

@@ -14,26 +14,37 @@ pageEncoding="UTF-8" session="false" %>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <%@include file="/common/commonRepair.jsp"%>
 </head>
-<body>
+<body> 
 
   <div class="nui-fit">
-    <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
-    onactivechanged="" >
+
     <!--联系内容-->
     <%@include file="../manage/telTrack_tab1.jsp" %>
-    <!--客户资料-->
-    <%@include file="../manage/telTrack_tab2.jsp" %>
-</div>
 </div>
 
 <script type="text/javascript">
+    var visStatus = [{customid:"060701",name:"继续跟踪"},
+    {customid:"060702",name:"终止跟踪"},
+    {customid:"060703",name:"重点跟踪"},
+    {customid:"060704",name:"已来厂/已成交"}];
    nui.parse();
    var baseUrl = apiPath + crmApi + "/"; 
    var dgScoutDetail  = nui.get("dgScoutDetail");
    var form1 = new nui.Form("#form1");
-   var form2 = new nui.Form("#form2");
    var carModelHash = [];
    init();
+
+
+nui.get("scoutContent").focus();
+document.onkeyup=function(event){
+var e=event||window.event;
+var keyCode=e.keyCode||e.which;//38向上 40向下
+
+if((keyCode==27)) { //ESC
+onClose();
+}
+};
+
 
     dgScoutDetail.on("drawcell", function (e) { //表格绘制
         var field = e.field;
@@ -47,12 +58,12 @@ pageEncoding="UTF-8" session="false" %>
 
    function init(){
     //initComp("query_orgid");//公司组织
-    initCarBrand("carBrandId");//车辆品牌
-    initCarModel("carModelId");//车辆车型
-    initInsureComp("insureCompCode");//保险公司
+    //initCarBrand("carBrandId");//车辆品牌
+    //initCarModel("carModelId");//车辆车型
+    //initInsureComp("insureCompCode");//保险公司
     initDicts({
         scoutMode: "DDT20130703000021",//跟踪方式
-        visitStatus: "DDT20130703000081",//跟踪状态
+       // visitStatus: "DDT20130703000081",//跟踪状态
         //query_visitStatus: "DDT20130703000081",//跟踪状态
         //artType: "DDT20130725000001"//话术类型        
    });
@@ -60,20 +71,20 @@ pageEncoding="UTF-8" session="false" %>
 }
 
 
-/*function onCarBrandChange(e){     
+function onCarBrandChange(e){     
     initCarModel("carModelId", e.value,"", function () {
         var data = nui.get("carModelId").getData();
         data.forEach(function (v) {
-            carModelHash[v.id] = v;
+            carModelHash[v.id] = v; 
         });
     });
-}*/
+}
+
 
 
 function setScoutForm(record){
     $(".saveGroup").show();
     form1.setData(record);
-    form2.setData(record);
     var currGuest = record;
     //触发选择事件
     //nui.get("carBrandId").doValueChanged();
@@ -101,23 +112,13 @@ function saveScout(){
   var url =baseUrl+ "/com.hsapi.crm.telsales.crmTelsales.saveScout.biz.ext";
   doSave(form1, url);
 }
-//保存客户信息
-function saveClientInfo(){
-  var url = baseUrl+"/com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext";
-  doSave(form2, url);    
-}
+
 
 function doSave(tform, url, callBack){
     //验证
     if(!formValidate(tform)){
       showMsg("请完善信息!","W");
       return ;
-  }
-
-  var paramData = form2.getData();
-  if(!paramData.id){
-      showMsg("未选中客户资料!","W");
-      return false;
   }
 
   try {
@@ -165,7 +166,7 @@ function colleTalkArt(){
   data.artType = "";//nui.get("artType").getData();
   data.url = webPath + contextPath +"/com.hsweb.crm.basic.talkArtTpl_edit.flow?token="+token;
   data.width = 480;
-  data.height = 420;
+  data.height = 340;
   data.content = nui.get("scoutContent").getValue();
   openTalkArt(data, "收藏话术");
 }
@@ -184,6 +185,19 @@ function openTalkArt(data, title){
     }
 }
 });
+}
+
+
+function CloseWindow(action) {
+if (action == "close") {
+} else if (window.CloseOwnerWindow)
+return window.CloseOwnerWindow(action);
+else
+return window.close();
+}
+
+function onClose(){
+window.CloseOwnerWindow(); 
 }
 </script>
 </body>

@@ -13,7 +13,7 @@ function search(){
 			sEnterDate:nui.get("sEnterDate").getValue(),
 			eEnterDate:nui.get("eEnterDate").getValue(),
 			"page/isCount":true
-	}
+	};
 	mainGrid.load({
 		params:params
 	});

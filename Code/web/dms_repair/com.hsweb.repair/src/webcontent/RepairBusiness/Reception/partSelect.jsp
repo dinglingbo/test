@@ -361,9 +361,11 @@
                 paramsDataArr.push(paramsData);
             } 
 
-            //console.log(paramsData);
-            //console.log(tdata);
-            //return;  
+            nui.mask({
+	            el: document.body,
+	            cls: 'mini-mask-loading',
+	            html: '处理中...'
+	        });
             nui.ajax({
                 url:baseUrl + "com.hsapi.repair.repairService.work.repairOut.biz.ext",
                 type:"post",

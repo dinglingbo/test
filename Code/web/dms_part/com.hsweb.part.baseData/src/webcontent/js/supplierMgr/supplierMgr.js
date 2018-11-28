@@ -39,7 +39,7 @@ var orgHash = {};
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
-	grid.load();
+	search();
 	grid.on("beforeload", function(e) {
 		e.data.token = token;
 	});
@@ -103,6 +103,7 @@ function getSearchParam() {
 
 }
 function doSearch(params) {
+	params.isSupplier = 1;
 	grid.load({
 		params : params
 	});

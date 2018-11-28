@@ -398,6 +398,12 @@ function saveData() {
 		"pchsOrderDetailDelete" : pchsOrderDetailDelete,
 		token : token
 	});
+	
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+    });
 
 	nui.ajax({
 		url : gridUrl1,
@@ -407,17 +413,12 @@ function saveData() {
 		contentType : 'text/json',
 		success : function(text) {
 			var returnJson = nui.decode(text);
+			nui.unmask(document.body);
 			if (returnJson.exception == null) {
 				showMsg("保存成功");
 				CloseWindow("saveSuccess");
 			} else {
-				nui.alert("保存失败", "系统提示", function(action) {
-					
-					if (action == "ok" || action == "close") {
-						// CloseWindow("saveFailed");
-						
-					}
-				});
+				showMsg(returnJson.errMsg||"保存失败","W");
 			}
 		}
 	});

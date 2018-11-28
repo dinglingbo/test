@@ -299,17 +299,17 @@ a {
             }
         }else if(e.field == "billTypeId"){
         	if (value == 0) {
-                e.cellHtml = "综合";
+                e.cellHtml = "综合开单";
             }else if(value == 1){
-            	e.cellHtml = "检查";
+            	e.cellHtml = "检查开单";
             }else if (value == 2) {
-                e.cellHtml = "洗美";
+                e.cellHtml = "洗美开单";
             }else if(value == 3){
-            	e.cellHtml = "销售";
+            	e.cellHtml = "销售开单";
             }else if (value == 4) {
-                e.cellHtml = "理赔";
+                e.cellHtml = "理赔开单";
             }else if(value == 5){
-            	e.cellHtml = "退货";
+            	e.cellHtml = "退货开单";
             }
         }
     });
@@ -319,7 +319,7 @@ a {
         if(row){ 
             var item={};
             item.id = "checkDetail";
-            item.text = "维修出库详情";
+            item.text = "配件领料详情";
             item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/repairOutDetail.jsp";
             item.iconCls = "fa fa-file-text";
             //window.parent.activeTab(item);

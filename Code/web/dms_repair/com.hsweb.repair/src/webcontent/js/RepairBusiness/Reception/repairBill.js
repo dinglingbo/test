@@ -917,7 +917,7 @@ function add(){
     // $("#clubCardEl").html("会员卡(0)");
     // $("#creditEl").html("挂账:0");
     // $("#carHealthEl").html("车况:0");
-	toRefresh();
+
 	sellForm.setData(data);
     searchNameEl.setVisible(false);
     searchNameEl.setEnabled(false);

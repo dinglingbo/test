@@ -42,6 +42,9 @@ $(document).ready(function ()
                 break;
         }
    });
+    mainGrid.on("rowdblclick",function(e){
+		edit();
+	});
     quickSearch(4);
 });
 function quickSearch(type) {

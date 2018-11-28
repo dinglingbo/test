@@ -137,7 +137,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">temp/id</process:leftOperand>
+          <process:leftOperand type="query">temp/realId</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -216,7 +216,7 @@
       <process:to type="query">roleResauth/partyScope</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">temp/id</process:from>
+      <process:from type="query" pattern="reference">temp/realId</process:from>
       <process:to type="query">roleResauth/resId</process:to>
     </process:copy>
     <process:copy>

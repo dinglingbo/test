@@ -122,4 +122,31 @@
     </select>
     
     
+    <!--获取菜单结构-->
+    <select id="queryMenu" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT m.menuid, m.menuname, m.menucode, m.imagepath, m.parentsid, m.funccode, m.DISPLAYORDER, null as funcaction
+		from app_menu m
+		where ifnull(m.funccode, '') = ''
+		order by m.DISPLAYORDER asc
+    </select>
+    
+    <!--获取菜单列表功能RES-->
+    <select id="queryMenuRes" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT DISTINCT a.menuid, a.menuname, a.menucode, a.imagepath, a.parentsid, b.funccode, a.DISPLAYORDER,  b.funcaction
+		from app_menu a
+		inner join app_function b
+		on a.funccode = b.FUNCCODE
+		inner join cap_resauth c
+		on b.funccode = c.RES_ID
+		where  1 = 1
+		      <isNotEmpty prepend="and" property="roleIds">  
+                    c.PARTY_ID in ($roleIds$)
+              </isNotEmpty>
+              <isEmpty prepend="and" property="roleIds">  
+                    c.PARTY_ID = -1
+              </isEmpty>
+		order by a.DISPLAYORDER asc
+    </select>
+    
+    
 </sqlMap>

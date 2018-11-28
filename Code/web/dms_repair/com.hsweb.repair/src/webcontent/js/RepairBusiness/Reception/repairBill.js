@@ -897,6 +897,16 @@ function setInitData(params){
     }
 }
 
+/*function toRefresh(){
+    var tabs = mini.get("mainTabs");
+    var tab = tabs.getActiveTab();
+     
+    if(tab.name == "index") {
+    	tab.url = defDomin + "/common/Index/TextIndex.jsp";
+    }
+    tabs.loadTab(tab.url, tab);
+}*/
+
 function add(){
     // $("#servieIdEl").html("综合开单详情");
     // $("#carNoEl").html("");
@@ -907,7 +917,7 @@ function add(){
     // $("#clubCardEl").html("会员卡(0)");
     // $("#creditEl").html("挂账:0");
     // $("#carHealthEl").html("车况:0");
-	
+
 	sellForm.setData(data);
     searchNameEl.setVisible(false);
     searchNameEl.setEnabled(false);

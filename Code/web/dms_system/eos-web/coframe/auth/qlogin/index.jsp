@@ -354,7 +354,7 @@
         new MenuPop(menu);
 
         $.ajax({
-            url:  defDomin + "/org.gocom.components.coframe.auth.LoginManager.getMenuData.biz.ext",
+            url:  defDomin + "/com.hsapi.system.tenant.permissions.getMenuData.biz.ext",//defDomin + "/org.gocom.components.coframe.auth.LoginManager.getMenuData.biz.ext",
             type: "POST",
             success: function(text){
                 var treeNodes = text.treeNodes;

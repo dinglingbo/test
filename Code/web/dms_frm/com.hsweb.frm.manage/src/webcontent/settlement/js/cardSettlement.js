@@ -29,12 +29,12 @@ function setData(data){
 	}
 	guestData = data.xyguest||{};
 	row = data.row;
-	zongAmt = data.row.jsAmt;
+	zongAmt = parseFloat(data.row.jsAmt);
 	settlementUrl = data.settlementUrl;
 	document.getElementById('totalAmt').innerHTML = "￥"+(zongAmt||0);
 	document.getElementById('totalAmt1').innerHTML = zongAmt||0;
 	document.getElementById('amount').innerHTML = zongAmt||0;
-	netInAmt = data.jsAmt;	
+	netInAmt =parseFloat(data.row.jsAmt);	
 	addType();
 }
 
@@ -338,7 +338,7 @@ function noPayOk(){
 				cardName	: row.name,
 				giveAmt		: row.giveAmt,
 				guestId		: guestData.guestId,
-				guestName	: guestData.guestName,	
+				guestName	: guestData.guestFullName,	
 				rechargeAmt	: row.rechargeAmt,
 				totalAmt 	: row.totalAmt,
 				periodValidity : row.periodValidity,

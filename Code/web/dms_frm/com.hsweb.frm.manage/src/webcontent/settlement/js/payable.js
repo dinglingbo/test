@@ -18,14 +18,14 @@ $(document).ready(function (){
 
 function setData(data){
 	guestData = data;
-	zongAmt = data[0].nowAmt;
+	zongAmt = parseFloat(data[0].nowAmt);
 	var rechargeBalaAmt = 0;
 	document.getElementById('carNo').innerHTML = data[0].carNo;
 	document.getElementById('guest').innerHTML = data[0].guestName;
 	document.getElementById('totalAmt').innerHTML = "￥"+data[0].nowAmt;
 	document.getElementById('totalAmt1').innerHTML = data[0].nowAmt;
 	document.getElementById('amount').innerHTML = data[0].nowAmt;
-	netInAmt = data[0].nowAmt;
+	netInAmt = parseFloat(data[0].nowAmt);
 	var json = {
 		guestId:data[0].guestId,
 		token : token

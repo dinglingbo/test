@@ -177,7 +177,7 @@ function setData(params){
 			}
 			
 			netInAmt = parseFloat(amount);
-			zongAmt=params.data.mtAmt;
+			zongAmt=parseFloat(params.data.mtAmt);
 			document.getElementById('totalAmt').innerHTML = "￥"+params.data.mtAmt;
 			document.getElementById('totalAmt1').innerHTML = params.data.mtAmt;
 			document.getElementById('amount').innerHTML =  params.data.mtAmt;

@@ -18,7 +18,7 @@ $(document).ready(function (){
 //页面传值，放入本页面
 function setData(data){
 	guestData = data;
-	zongAmt = data[0].nowAmt;
+	zongAmt = parseFloat(data[0].nowAmt);
 	var rechargeBalaAmt = 0;
 	document.getElementById('carNo').innerHTML = data[0].carNo;
 	document.getElementById('guest').innerHTML = data[0].guestName;

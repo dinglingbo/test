@@ -36,7 +36,7 @@ function setData(params){
 	}
 	guestData = params;
 	zongAmt = params.moneyCost;
-	netInAmt = params.moneyCost;
+	netInAmt = parseFloat(params.moneyCost);
 	var serviceId = params.data1.id||0;
 	fserviceId = serviceId;
 	document.getElementById('carNo').innerHTML = params.data1.carNo||"";

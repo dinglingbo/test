@@ -134,6 +134,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="2" language="com.hsapi.repair.data.rpb.RpbPackageModel" name="data" type="query" valueType="DataObject">data</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -322,7 +323,7 @@
       <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
-    <location x="-585" y="220"/>
+    <location x="-575" y="219"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -336,7 +337,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="-606" y="256"/>
+    <location x="-596" y="255"/>
     <figSize height="17" width="64"/>
     <node>invokePojo2</node>
   </nodes>
@@ -384,12 +385,12 @@
       <targetNode>assign9</targetNode>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
-    <location x="-588" y="315"/>
+    <location x="-578" y="304"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="-590" y="351"/>
+    <location x="-580" y="340"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -425,6 +426,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">condP/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkgModel/id</process:from>
+      <process:to type="query">data/id</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -743,14 +748,14 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo10" name="insertEntityBatch2" displayName="insertEntityBatch1" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link41" name="link41" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo10</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
+      <targetNode>invokePojo11</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link47" name="link47" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo10</sourceNode>
       <targetNode>assign10</targetNode>
     </sourceConnections>
     <targetConnections>link40</targetConnections>
-    <location x="240" y="212"/>
+    <location x="218" y="212"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo10label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -764,7 +769,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo10label" name="label" nodeType="label">
-    <location x="200" y="248"/>
+    <location x="178" y="248"/>
     <figSize height="17" width="103"/>
     <node>invokePojo10</node>
   </nodes>
@@ -773,39 +778,23 @@
       <sourceNode>transactioncommit0</sourceNode>
       <targetNode>assign8</targetNode>
     </sourceConnections>
-    <targetConnections>link41</targetConnections>
-    <location x="315" y="211"/>
+    <targetConnections>link1</targetConnections>
+    <location x="390" y="207"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="305" y="247"/>
+    <location x="380" y="243"/>
     <figSize height="17" width="49"/>
     <node>transactioncommit0</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
-    <targetConnections>link43</targetConnections>
-    <targetConnections>link50</targetConnections>
-    <location x="465" y="215"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end2label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
-    <location x="463" y="251"/>
-    <figSize height="17" width="32"/>
-    <node>end2</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值9" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
-      <targetNode>end2</targetNode>
+      <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link42</targetConnections>
-    <location x="390" y="215"/>
+    <location x="435" y="207"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
     <process:copy>
@@ -818,7 +807,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="388" y="251"/>
+    <location x="433" y="243"/>
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
@@ -841,9 +830,9 @@
     <node>assign9</node>
   </nodes>
   <nodes xsi:type="process:tTransactionRollback" id="transactionrollback0" name="事务回滚" displayName="事务回滚" type="transactionrollback">
-    <sourceConnections xsi:type="process:tLink" id="link50" name="link50" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>transactionrollback0</sourceNode>
-      <targetNode>end2</targetNode>
+      <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link49</targetConnections>
     <location x="215" y="430"/>
@@ -1107,6 +1096,49 @@
     <chidren>invokePojo6</chidren>
     <chidren>invokePojo8</chidren>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo11" name="expandEntity1" displayName="expandEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo11</sourceNode>
+      <targetNode>transactioncommit0</targetNode>
+    </sourceConnections>
+    <targetConnections>link41</targetConnections>
+    <location x="315" y="207"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo11label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.expandEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">data</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo11label" name="label" nodeType="label">
+    <location x="285" y="243"/>
+    <figSize height="17" width="82"/>
+    <node>invokePojo11</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
+    <targetConnections>link2</targetConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="518" y="207"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end1label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="2" language="com.hsapi.repair.data.rpb.RpbPackageModel" name="data" type="query" valueType="DataObject">data</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
+    <location x="516" y="243"/>
+    <figSize height="17" width="32"/>
+    <node>end1</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-11-26 17:38:11" date="2018-11-26Z" description="" name="insRpbPackageModel" version="7.0.0.0"/>
@@ -1131,6 +1163,7 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPackageModel" name="data"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

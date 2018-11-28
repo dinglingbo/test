@@ -420,8 +420,8 @@ pageEncoding="UTF-8" session="false" %>
                         <td width="30" height="35" align="center">序号</td>
                         <td width="200" align="center">名称</td>
                         <td align="center">保司保费(售价)</td>
-                        <td align="center">保司返点</td>
-                        <td align="center">客户返点</td>
+                        <td align="center">保司返点金额(元)</td>
+                        <td align="center">客户返点金额(元)</td>
                     </tr>
                     <tbody id="tbodyId">
                     </tbody>

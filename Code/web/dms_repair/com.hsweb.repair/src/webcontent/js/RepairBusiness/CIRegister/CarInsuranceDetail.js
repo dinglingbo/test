@@ -113,6 +113,7 @@ $(document).ready(function ()
             basicInfoForm.setData(sdata);
             nui.get('mtAdvisorId').setValue(currEmpId);
             nui.get('mtAdvisorId').setText(currUserName);
+            nui.get('mtAdvisor').setValue(currUserName);
             $("#guestNameEl").html(guestName);
             $("#guestCarEl").html(carNo);
             $("#guestTelEl").html(tel);
@@ -153,7 +154,7 @@ $(document).ready(function ()
         var column = e.column;
         var field = e.field;
         var editor = e.editor;
-        if(column.field == "amt" ||column.field == "rtn_comp_amt" ||column.field == "rtn_guest_amt"){
+        if(column.field == "amt" ||column.field == "rtnCompRate" ||column.field == "rtnGuestRate"){
             editor.validate();
             if (editor.isValid() == false) {
                 showMsg("请输入有效数字！","W");
@@ -359,7 +360,6 @@ function setInitData(params){
                         enterKilometers:ldata.enterKilometers,
                         guestFullName:ldata.guestName,
                         recordDate:ldata.recordDate,
-                        mtAdvisorId:"",
                         insureCompId:ldata.insureCompId,
                         insureCompName:ldata.insureCompName,
                         saleMans:ldata.saleMans,
@@ -372,8 +372,11 @@ function setInitData(params){
                     };
                 
             basicInfoForm.setData(sdata);
-            nui.get('mtAdvisorId').setValue(sdata.mtAdvisorId);
-            nui.get('mtAdvisorId').setText(sdata.mtAdvisor);
+            if(!sdata.mtAdvisorId){
+            	nui.get('mtAdvisorId').setValue(currEmpId);
+            	nui.get('mtAdvisorId').setText(currUserName); 
+            	nui.get('mtAdvisor').setValue(currUserName);
+            }
             
 //            insuranceForm.setData(sdata);
             detailGrid.load({serviceId:params.id,token:token});
@@ -467,7 +470,7 @@ function addGuest(){
 
 var requiredField={
 	carNo				:"车牌号",
-	//enterKilometers		:"本次里程",
+	enterKilometers		:"本次里程",
 	mtAdvisorId 		:"服务顾问",
 	insureCompName 		:"保险公司",
 	saleManIds			:"销售人员",
@@ -482,15 +485,19 @@ function saveData(e){
         var main = searchMainData(tid);
             if(main.status != 0){
             showMsg("该工单已转入预结算或已结算，不能再进行此操作！","W");
-            return;
+            return false;
         }
     }
     var data = basicInfoForm.getData();
-    
+    basicInfoForm.validate();
+    if(basicInfoForm.isValid()==false){
+		showMsg("本次里程请填写正整数！","W");
+		return false;
+	}
     for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 			showMsg(requiredField[key] + "不能为空!","W");
-			return;
+			return false;
 		}
 	}
 //    var data2 = getData2();
@@ -516,6 +523,7 @@ function saveData(e){
 	        	}
             }else{
             	showMsg("保存失败!","E");
+           
             }
 
         }
@@ -560,9 +568,9 @@ function pay() {
     t_rtnCompRate= detailGrid.getSummaryCellEl("rtnCompRate").textContent;
     t_rtnGuestRate= detailGrid.getSummaryCellEl("rtnGuestRate").textContent;
     if (sTypeId == 3){
-        moneyCost = t_amt - t_rtnGuestRate;
+        moneyCost = parseFloat(t_amt - t_rtnGuestRate).tofixed(2);
     }else{
-        moneyCost = t_amt;
+        moneyCost = parseFloat(t_amt).tofixed(2);
     }
     var params ={
         data1:data1,
@@ -574,6 +582,9 @@ function pay() {
         sTypeId:sTypeId
     };
     saveData(2);//转入结算和预结算都要保存
+    if(saveData(2)==false){
+    	return;
+    }
     nui.open({
         url: webBaseUrl + "com.hsweb.RepairBusiness.insuranceSettlement.flow?token="+token,
         title:"保险结算",
@@ -606,6 +617,10 @@ function pay() {
 
 
 function onPrint(argument) {
+	if(!nui.get("id").value){
+		showMsg("清先保存保险开单!","W");
+		return;
+	}
     var params={
         comp:"",
         baseUrl:baseUrl,

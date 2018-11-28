@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.77"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.79"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -174,7 +174,7 @@
                 
                 <td class="tbtext" style="color: red;">本次里程:</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" vtype="float" name="enterKilometers" id="enterKilometers" style="width:100%"/>
+                    <input class="nui-textbox tabwidth" vtype="float;range:0,100000000" name="enterKilometers" id="enterKilometers" style="width:100%"/>
                 </td>
                 <td class="tbtext" style="color: red;">服务顾问:</td>
                 <td >

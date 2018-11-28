@@ -568,9 +568,9 @@ function pay() {
     t_rtnCompRate= detailGrid.getSummaryCellEl("rtnCompRate").textContent;
     t_rtnGuestRate= detailGrid.getSummaryCellEl("rtnGuestRate").textContent;
     if (sTypeId == 3){
-        moneyCost = t_amt - t_rtnGuestRate;
+        moneyCost = parseFloat(t_amt - t_rtnGuestRate).tofixed(2);
     }else{
-        moneyCost = t_amt;
+        moneyCost = parseFloat(t_amt).tofixed(2);
     }
     var params ={
         data1:data1,

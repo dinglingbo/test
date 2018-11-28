@@ -35,13 +35,14 @@ pageEncoding="UTF-8" session="false" %>
 
                 <tr>
                     <td><span class="title title-width1 required">客户名称：</span></td>
-                    <td colspan="3"><input id="guestName" name="guestName" class="nui-textbox" style="width: 100%;" required="true"/></td>
+                    <td colspan="3"><input id="guestName" name="guestName" class="nui-textbox" style="width: 100%;" required="true"
+                    onvaluechanged="guestNameChange"/></td>
                 </tr>               
 
                 <tr>
 
-                    <td><span class="title title-width1 required">联系人：</span></td>
-                    <td><input id="contacts" name="contacts" class="nui-textbox width2" required="true"/></td>
+                    <td><span class="title title-width1 ">联系人：</span></td>
+                    <td><input id="contacts" name="contacts" class="nui-textbox width2" required="false"/></td>
                     <td><span class="title title-width1 ">性别：</span></td>
                     <td><input name="sex"
                         id="sex"
@@ -59,8 +60,8 @@ pageEncoding="UTF-8" session="false" %>
                 <tr>
                     <td><span class="title title-width1 required">手机号码：</span></td>
                     <td><input id="mobile" name="mobile" class="nui-textbox width2" required="true"/></td>
-                    <td><span class="title title-width1 required">电话号码：</span></td>
-                    <td><input id="tel" name="tel" class="nui-textbox width2" required="true"/></td>
+                    <td><span class="title title-width1 ">电话号码：</span></td>
+                    <td><input id="tel" name="tel" class="nui-textbox width2" required="false"/></td>
                 </tr>
                 <tr>
                     <td><span class="title title-width1 ">客户地址：</span></td>
@@ -68,7 +69,7 @@ pageEncoding="UTF-8" session="false" %>
                 </tr>
                 <tr>
                     <td><span class="title title-width1">身份证号：</span></td>
-                    <td  colspan="3"><input id="idcard" name="idcard" class="nui-textbox" style="width: 100%;" /></td>
+                    <td  colspan="3"><input id="idCardNumber" name="idCardNumber" class="nui-textbox" style="width: 100%;" /></td>
                 </tr>
             </table>
 
@@ -102,8 +103,8 @@ pageEncoding="UTF-8" session="false" %>
                 </td>
             </tr>            
             <tr>
-                <td><span class="title title-width1 required">厂牌号(VIN)：</span></td>
-                <td colspan="3"><input id="vin" name="vin" class="nui-textbox width4" required="true"/>
+                <td><span class="title title-width1 ">厂牌号(VIN)：</span></td>
+                <td colspan="3"><input id="vin" name="vin" class="nui-textbox width4" required="false"/>
                     <a class="nui-button" iconCls="icon-find" plain="true" onclick="query()" id="query">解析</a></td>
 
                 </tr>            

@@ -27,6 +27,17 @@ pageEncoding="UTF-8" session="false" %>
 </style>
 </head>
 <body>
+
+<div class="nui-toolbar" style="padding:0px;border-bottom:0;" id="queryForm">
+    <table style="width:100%;">
+        <tr>
+        	<td>
+                     <a class="nui-button" iconCls="" plain="true" onclick="onOk" id="select" enabled="true"><span class="fa fa-check fa-lg"></span>&nbsp;保存</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onCancel" id="cancel" enabled="true"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+             </td>
+        </tr>
+    </table>
+    </div>
     <form id="form1" method="post">
         <fieldset style="border:solid 1px #aaa;padding:3px;">
             <legend >基本信息</legend>
@@ -97,10 +108,10 @@ pageEncoding="UTF-8" session="false" %>
                     </div>
                 </div>
             </fieldset>
-            <div style="text-align:center;padding:10px;">
+            <!-- <div style="text-align:center;padding:10px;">
                 <a id="save" class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a>
                 <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a>
-            </div>
+            </div> -->
         </form>
     </body>
     </html>

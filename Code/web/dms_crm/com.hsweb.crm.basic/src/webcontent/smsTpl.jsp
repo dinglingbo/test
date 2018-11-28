@@ -27,9 +27,9 @@
                 <input class="nui-textbox" name="content" id="content" enabled="true"/>
                 <label style="font-family:Verdana;">创建人：</label>
                 <input class="nui-textbox" name="recorder" id="recorder" enabled="true"/>
-                <a class="nui-button" iconCls="icon-find" plain="true" onclick="query()" id="query" enabled="true">查询</a>
-                <a class="nui-button" iconCls="icon-add" plain="true" onclick="add()" id="add" enabled="true">新增模板</a>
-                <a class="nui-button" iconCls="icon-edit" plain="true" onclick="edit()" id="edit" enabled="true">修改模板</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="add" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增模板</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改模板</a>
             </td>
         </tr>
     </table>
@@ -80,15 +80,15 @@
                          url="<%=apiPath + crmApi%>/com.hsapi.crm.basic.crmBasic.getSmsList.biz.ext"
                          showSummaryRow="true">
                         <div property="columns">
-                            <div type="indexcolumn" width="20" summaryType="count">序号</div>
-                            <div headerAlign="center"><strong>基本信息</strong>
+                            <div type="indexcolumn" width="20" summaryType="count" headerAlign="center" >序号</div>
+                            <div headerAlign="center">基本信息
                                 <div property="columns">
                                     <div field="id" visible=false>ID</div>
                                     <div field="typeId" width="50" headerAlign="center" renderer="setTypeName" allowSort=false>类别</div>
                                     <div field="charCount" width="30" headerAlign="center" summaryType="" allowSort=false>字数</div>
                                 </div>
                             </div>
-                            <div headerAlign="center"><strong>详细信息</strong>
+                            <div headerAlign="center">详细信息
                                 <div property="columns">
                                     <div field="content" width="80" headerAlign="center" summaryType="" allowSort=false>短信内容</div>
                                     <div field="source" width="30" headerAlign="center" summaryType="" allowSort=false>短信来源</div>

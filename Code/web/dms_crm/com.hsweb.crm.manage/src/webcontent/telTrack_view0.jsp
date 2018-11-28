@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
      <%@include file="/common/commonRepair.jsp"%>
 <html>
-<!-- 
+<!--
   - Author(s): Guine
   - Date: 2018-03-26 10:16:08
   - Description:
@@ -50,14 +50,16 @@
                     textField="name"
                     valueField="customid"
                     emptyText="请选择..."
-                    url="" 
-                    allowInput="false" 
+                    url=""
+                    value="060706" 
+                    onvaluechanged="query()"
+                    allowInput="false"
                     valueFromSelect="true"
                     showNullItem="false"
                     nullItemText="请选择..."/>
-                <input class="nui-combobox" 
-	                  id="member" 
-	                  name="member" 
+                <input class="nui-combobox"
+	                  id="member"
+	                  name="member"
 	                  textField="empName"
 	                  valueField="empId"
 	          		  visible="false"
@@ -65,9 +67,9 @@
 	                  allowInput="true"
 	                  valueFromSelect="false"
 	                  width="100px">
-	                 <input class="nui-combobox" 
-	                  id="carBrandId" 
-	                  name="carBrandId" 
+	                 <input class="nui-combobox"
+	                  id="carBrandId"
+	                  name="carBrandId"
 	                  textField="empName"
 	                  valueField="empId"
 	          		  visible="false"
@@ -77,22 +79,21 @@
 	                  width="100px">
                 <label style="font-family:Verdana;">车牌号：</label>
                 <input class="nui-textbox" name="carNo" id="query_carno" enabled="true"/>
-                
+
                <!--  <label style="font-family:Verdana;">手机号：</label>
                 <input class="nui-textbox" name="mobile" id="query_mobile" enabled="true"/> -->
 
                 <label style="font-family:Verdana;">下次跟踪时间：</label>
-                <input id="query_nextScoutDate" 
-                    name="nextScoutDate" 
-                    class="nui-datepicker width2" 
-                    dateFormat="yyyy-MM-dd" 
+                <input id="query_nextScoutDate"
+                    name="nextScoutDate"
+                    class="nui-datepicker width2"
+                    dateFormat="yyyy-MM-dd"
                     emptyText="请选择日期" alwaysView="true"/>
                 <a class="nui-button"  plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-
-                <a class="nui-button"  plain="true" onclick="telInfo()" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;跟踪信息</a>
+                <a class="nui-button"  plain="true" onclick="telInfo()" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;电话跟踪</a>
                 <a class="nui-button"  plain="true" onclick="sendInfo()" id="add" enabled="true"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
-                <a class="nui-button"  plain="true" onclick="addRow()" id="" enabled="true"><span class="fa fa-wrench fa-lg"></span>&nbsp;预约维修</a>
-                <a class="nui-button"  plain="true" onclick="newClient()" id="edit" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增客户</a>
+                <a class="nui-button"  plain="true" onclick="addRow()" id="" enabled="true"><span class="fa fa-wrench fa-lg"></span>&nbsp;预约登记</a>
+                <a class="nui-button"  plain="true" onclick="newClient()" id="edit" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增客户资料</a>
                 <a class="nui-button"  plain="true" onclick="editClient()" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改客户资料</a>
             </td>
         </tr>
@@ -109,7 +110,7 @@
                     <div id="dgGrid" class="nui-datagrid" style="width:100%;height:100%;"
                         showPager="true"
                         totalField="page.count"
-                        pageSize="50" sizeList=[20,50,100] 
+                        pageSize="50" sizeList=[20,50,100]
                         selectOnLoad="true"
                         ondrawcell=""
                         onrowdblclick="telInfo"

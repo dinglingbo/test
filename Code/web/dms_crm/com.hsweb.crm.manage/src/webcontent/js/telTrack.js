@@ -135,9 +135,13 @@ function newClient(){
 
 function editClient(){
     var row = dgGrid.getSelected();
+    if (row == undefined) {
+        showMsg("请选中一条数据","W");
+        return;
+    }
     mini.open({
         url: webPath + contextPath + "/com.hsweb.crm.manage.clientInfo_edit.flow?token="+ token,
-        title: "新增客户", width: 520, height: 550,
+        title: "修改客户", width: 520, height: 550,
         onload: function () { 
             var iframe = this.getIFrameEl();
             //var data = { action: "edit", id: row.id };
@@ -182,11 +186,11 @@ function sendInfo(){
     var row = dgGrid.getSelected();
     if (row == undefined) {
         showMsg("请选中一条数据","W");
-        return;
+        return; 
     }
     nui.open({
         url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
-        title: "发送短信", width: 655, height: 386,
+        title: "发送短信", width: 655, height: 280,
         onload: function () {
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setData();

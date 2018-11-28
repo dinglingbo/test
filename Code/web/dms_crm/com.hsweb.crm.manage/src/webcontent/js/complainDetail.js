@@ -11,7 +11,7 @@ $(document).ready(function(){
             CloseWindow('cancle');
         }
 
-    }
+    };
 });
 
 function onOk(){

@@ -190,13 +190,13 @@
                       <td >
                           <input class="nui-textbox" enabled="false" width="100%" id="insuranceName" name="insuranceName"/>
                       </td>
-                      <td class="title">
+                      <td class="title" style="width: 100px">
                           <label>交强险单号：</label>
                       </td>
                       <td >
                           <input class="nui-textbox" enabled="false" width="100%" id="insureNo" name="insureNo"/>
                       </td>
-                      <td class="title">
+                      <td class="title" style="width: 100px">
                           <label>交强险到期：</label>
                       </td>
                       <td width="">

@@ -4,18 +4,18 @@
 <div title="保险保养信息" name="tab1" visible="true">
     <fieldset style="border:solid 1px #aaa;padding:3px;">
         <legend >信息</legend>
-        <div style="padding:5px;">
+        <div style="padding:5px;"> 
 
 <table>
     <tr>
                 <td><span class="title title-width2 ">保险公司：</span></td>
                 <td colspan="3"><input name="insureCompCode"
+                 		dataField="list"
                        id="insureCompCode"
                        class="nui-combobox "
-                       textField="fullName"
+                       textField="fullName" 
                        valueField="code"
                        emptyText="请选择..."
-                       url=""
                        allowInput="false"
                        showNullItem="false"
                        style="width:100%;" 

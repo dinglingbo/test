@@ -13,31 +13,21 @@ var mainGrid = null;
 var nstoreId = null; 
 var enterMain = null; 
 
-var partBrandIdList = [];
-var partBrandIdHash = {};
-var carBrandList = [];
-var carBrandHash = {};
-var saveData = {};
-
-
 $(document).ready(function(v){
 	mainGrid = nui.get("dgGrid");
-
+	initData();
 });
 
 function initData(data){
-	partBrandIdList = data.partBrandIdList||[];
-	partBrandIdList.forEach(function(v) 
-	{
-		partBrandIdHash[v.name] = v;
-	});
-	
-	carBrandList = data.carBrandList||[];
-	carBrandList.forEach(function(v)
-	{
-		carBrandHash[v.nameCn] = v;
-	});
-
+    initComp("query_orgid");//公司组织
+    initCarBrand("carBrandId");//车辆品牌s
+    //initInsureComp("insureCompCode");//保险公司
+    initDicts({
+        //isCome: "DDT20150303000004",//来厂状态
+        visitStatus: "DDT20130703000081",//跟踪状态
+        color: "DDT20130726000003"//车辆颜色
+    });
+    initMember("man",function(){});
 } 
 
 function importf(obj) {//导入
@@ -63,7 +53,6 @@ function importf(obj) {//导入
 		var columns = JSON.stringify(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]));
 		var indexs = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
 		var trow = toGrid(indexs);
-		saveData = trow;
 		mainGrid.addRows(trow);
 	};
 	if (rABS) {
@@ -121,7 +110,10 @@ function toGrid(data) {
 function changedToText(newRow){//从文字转化为编码存到数据库中
 	var colorList = nui.get("color").getData();
 	var orgList = nui.get("query_orgid").getData();
-	var brandList = nui.get("tree1").getData();
+	var brandList = nui.get("carBrandId").getData();
+	var visitStatusList = nui.get("visitStatus").getData();
+	var manList = nui.get("man").getData();
+	
 	if(newRow.sex == "男"){
 		newRow.sex = 1;
 	}else if(newRow.sex == "女"){
@@ -142,6 +134,16 @@ function changedToText(newRow){//从文字转化为编码存到数据库中
 			newRow.carBrandId = brandList[i].id;
 		}
 	}
+	for (var i = 0; i < visitStatusList.length; i++) {
+		if(newRow.visitStatus == visitStatusList[i].name){
+			newRow.visitStatus = visitStatusList[i].customid;
+		}
+	}
+	for (var i = 0; i < manList.length; i++) {
+		if(newRow.visitManId == manList[i].empName){
+			newRow.visitManId = manList[i].empId;
+		}
+	}
 	return newRow;
 }
 
@@ -149,7 +151,7 @@ function changedToText(newRow){//从文字转化为编码存到数据库中
 
 
 function sure() {
-	var data = saveData;
+	var data = mainGrid.getData();
 	var partList = [];
 	if (data) {
 		//alert(data.length);

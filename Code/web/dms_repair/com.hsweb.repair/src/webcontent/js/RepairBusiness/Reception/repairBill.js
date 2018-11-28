@@ -918,13 +918,14 @@ function add(){
     // $("#creditEl").html("挂账:0");
     // $("#carHealthEl").html("车况:0");
 
-	sellForm.setData(data);
+	sellForm.setData({});
     searchNameEl.setVisible(false);
     searchNameEl.setEnabled(false);
     searchNameEl.setValue("");
     var sk = document.getElementById("search_key");
     sk.style.display = "";
     searchKeyEl.focus();
+    searchKeyEl.setValue("");//点增加给输入框个值，防止触发不了onchanged方法，不能放入客户
     nui.get("contactorName").setText("");
 
     rpsPackageGrid.clearRows();

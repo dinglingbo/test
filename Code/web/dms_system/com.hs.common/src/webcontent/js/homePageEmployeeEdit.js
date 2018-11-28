@@ -9,9 +9,10 @@ var fromUrl = baseUrl + "com.hsapi.system.tenant.employee.queryEmployee.biz.ext"
 var sex;
 var isShowOwnBill = null;
 var isAllowRemind = null;
-var isservicelist = [{id: 0, name: '是'}, {id: 1, name: '否'}];
+var isservicelist = [{id: 0, name: '否'}, {id: 1, name: '是'}];
 var basicInfoForm = null;
 var form1=null;
+var rmp = {};
 $(document).ready(function(v) {
 	isShowOwnBill=nui.get("isShowOwnBill");
 	isAllowRemind=nui.get("isAllowRemind");
@@ -42,6 +43,7 @@ function onempid(e) {
 }
 function SetInitData(data) {
 	if (!data.empid) return; 
+	emp = data;
 	basicInfoForm.setData(data);
 
 }
@@ -53,7 +55,13 @@ var requiredField = {
 function save(action) {
 	var form = new nui.Form("#basicInfoForm");
     var data = form.getData();
-    
+    emp.isShowOwnBill = data.isShowOwnBill;
+    emp.isAllowRemind = data.isAllowRemind;
+    emp.tel = data.tel;
+    emp.birthday = data.birthday;
+    emp.urgencyPerson = data.urgencyPerson;
+    emp.urgencyPersonPhone = data.urgencyPersonPhone;
+    emp.wechat = data.wechat;  
     for(var key in requiredField)
     {
         if(!data[key] || data[key].trim().length==0)
@@ -74,7 +82,7 @@ function save(action) {
         url:saveUrl,
         type:"post",
         data:JSON.stringify({
-        	emp:data,
+        	emp:emp,
         	token: token
         }),
         success:function(data)

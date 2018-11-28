@@ -130,7 +130,7 @@ $(document).ready(function () {
 	                           + ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
 	                     }
 	                  }
-	                e.cellHtml = s
+	                e.cellHtml = s;
 	                break;
 	            case "serviceTypeId":
 	                var type = record.type||0;

@@ -110,7 +110,7 @@ function finish(){
 	var itemData = itemGrid.getData();
 	var falg = false;
 	for(var i = 0;i<itemData.length;i++){
-		if(itemData.workers == "" || itemData.workers == null){
+		if(itemData[i].workers == "" || itemData[i].workers == null){
 			falg = true ;
 			break;
 		}		

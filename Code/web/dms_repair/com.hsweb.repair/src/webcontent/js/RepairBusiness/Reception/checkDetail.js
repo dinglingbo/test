@@ -328,9 +328,12 @@ function newCheckMainMore(){
     var item={};
     item.id = "2085";
     item.text = "检查开单";
-    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkMain.jsp?cNo="+cNo;
+    item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/checkMain.jsp";
     item.iconCls = "fa fa-cog";
-    window.parent.activeTab(item);
+    var params={
+    		carNo:cNo
+    };
+    window.parent.activeTabAndInit(item,params);
 } 
 
 function tprint(){
@@ -574,7 +577,11 @@ var requiredField={
 function saveb(){
 	
 	var data=billForm.getData();
-	
+	billForm.validate();
+	if(billForm.isValid()==false){
+		showMsg("请正确填写本次里程！","W");
+		return;
+	}
 	
 	if(!(nui.get('guestFullName').value) && !(nui.get('search_name').value)){
 		showMsg("请先添加客户","W");
@@ -599,6 +606,7 @@ function saveb(){
     	showMsg("本单已完成，不能再修改!","W");
     	return;
     }
+    
     
     if(mainParams.isCheckMain == "Y"){
         saveCheckMain();
@@ -715,8 +723,15 @@ function updateCheckMain(mData){
 
 function saveCheckMain(){//isCheckMain == "Y"
 	var gridData=mainGrid.getData();
+	var rex=/^\d+(\.\d+)?$/
+	  
 	for(var i=0;i<gridData.length;i++){
 		if(gridData[i].settleType==0){
+			 var careDueMileage=gridData[i].careDueMileage;
+    	     if(!rex.test(careDueMileage)){
+	    		  showMsg("请正确填写下次里程","W");
+	    		  return;
+    	     }  
 			if(!gridData[i].careDueMileage){
 				showMsg("项目 "+gridData[i].checkName+" 请填写下次保养里程","W");
 				return;

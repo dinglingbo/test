@@ -390,7 +390,7 @@ function del(){
     }
 
     if(row.status != 0){
-        showMsg("本工单不能删除!","W");
+        showMsg("工单不能删除!","W");
         return;
     }
     nui.mask({
@@ -520,9 +520,8 @@ function add(){
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
-    var params = {};
+    var params = {Refresh:"Refresh"};//是否刷新页面，解决工单详情界面结算之后不能再选择客户
     window.parent.activeTabAndInit(item,params);
-
 }
 function edit(){
     var row = mainGrid.getSelected();

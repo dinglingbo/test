@@ -650,6 +650,7 @@
     <sourceConnections xsi:type="process:tLink" id="link65" name="link65" displayName="link9" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link60</targetConnections>
     <location x="739" y="145"/>
@@ -700,7 +701,7 @@
       <process:to type="query">params/dc</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">stored/cardName</process:from>
+      <process:from type="query" pattern="reference">remark</process:from>
       <process:to type="query">params/remark</process:to>
     </process:copy>
     <process:copy>
@@ -909,6 +910,7 @@
     <process:input description="" isArray="false" name="payAmt" primitiveType="Double"/>
     <process:input description="020101现金，020102刷卡，020104微信/支付宝" isArray="false" name="payType" primitiveType="String"/>
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsStoredRecord" name="stored"/>
+    <process:input description="" isArray="false" name="remark" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/common.jsp"%>
 <%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -90,7 +89,7 @@ pageEncoding="UTF-8" session="false"%>
 </div>
 </div>
 <div id="advancedSearchWin" class="nui-window"
-title="高级查询" style="width:420px;height:300px;"
+title="高级查询" style="width:420px;height:250px;"
 showModal="true"
 allowResize="false"
 allowDrag="false">
@@ -117,22 +116,22 @@ allowDrag="false">
                 showClearButton="true"/>
             </td>
         </tr>
+<!--         <tr> -->
+<!--             <td class="form_label">交强险保单号:</td> -->
+<!--             <td colspan="3"> -->
+<!--                 <input class="nui-textbox" emptyText="" width="100%" name="insuranceSaliNo" /> -->
+<!--             </td> -->
+<!--         </tr> -->
+<!--         <tr> -->
+<!--             <td class="form_label">交强险保单号:</td> -->
+<!--             <td colspan="3"> -->
+<!--                 <input class="nui-textbox" emptyText="" width="100%" name="insuranceBizNo" /> -->
+<!--             </td> -->
+<!--         </tr> -->
         <tr>
-            <td class="form_label">交强险保单号:</td>
+            <td class="form_label">车架号(VIN):</td>
             <td colspan="3">
-                <input class="nui-textbox" emptyText="" width="100%" name="insuranceSaliNo" />
-            </td>
-        </tr>
-        <tr>
-            <td class="form_label">交强险保单号:</td>
-            <td colspan="3">
-                <input class="nui-textbox" emptyText="" width="100%" name="insuranceBizNo" />
-            </td>
-        </tr>
-        <tr>
-            <td class="form_label">底盘号:</td>
-            <td colspan="3">
-                <input class="nui-textbox" emptyText="" width="100%" name="underpanNo" />
+                <input class="nui-textbox" emptyText="" width="100%" name="carVin" />
             </td>
         </tr>
         <tr>

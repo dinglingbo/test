@@ -16,6 +16,8 @@ var amountEl = null;
 var onetInAmt = 0;
 var netInAmt = 0;
 var zongAmt = 0;//总金额
+var typeUrl = 0;//不同工单URL不同   1销售开单
+var settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ;
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var frmUrl = apiPath + frmApi + "/";
@@ -78,6 +80,12 @@ function getData(data){
 	onetInAmt  = data.mtAmt;
 }
 function setData(params){
+	typeUrl = params.typeUrl||0;
+	if(typeUrl==1){
+		settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.salesSettle.biz.ext" ;
+	}else{
+		settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ;
+	}
 	guestData = params;
 	var rechargeBalaAmt = 0;
 	var jsonq = {
@@ -158,16 +166,18 @@ function setData(params){
 				amt=amt+parseFloat(srnum[i].amt);
 			}
 			var amount = 0;
-			if(params.data.ycAmt==null||params.data.ycAmt==""){
+			if(params.data.ycAmt==null||params.data.ycAmt==0){
 				amount = parseFloat(params.data.mtAmt)+parseFloat(amt);
+				params.data.mtAmt =  parseFloat(params.data.mtAmt)+parseFloat(amt);
+				params.data.mtAmt = params.data.mtAmt.toFixed(2);
 			}else{
 				params.data.mtAmt = parseFloat(params.data.mtAmt)-parseFloat(params.data.ycAmt)+parseFloat(amt);
 				params.data.mtAmt = params.data.mtAmt.toFixed(2);
+				amount=params.data.mtAmt;
 			}
 			
-			netInAmt = amount;
-			params.data.mtAmt = (parseFloat(params.data.mtAmt)+amt).toFixed(2);
-			zongAmt=params.data.mtAmt;
+			netInAmt = parseFloat(amount);
+			zongAmt=parseFloat(params.data.mtAmt);
 			document.getElementById('totalAmt').innerHTML = "￥"+params.data.mtAmt;
 			document.getElementById('totalAmt1').innerHTML = params.data.mtAmt;
 			document.getElementById('amount').innerHTML =  params.data.mtAmt;
@@ -300,7 +310,7 @@ function onChanged() {
 
 		return;
 	}
-	if((parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count)).toFixed(2)  > netInAmt){
+	if((parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count)).toFixed(2)>netInAmt){
 		nui.alert("储值抵扣加上优惠金额不能大于应收金额","提示");
 
 
@@ -376,14 +386,14 @@ function pay(){
 		}
 	var deductible = nui.get("deductible").getValue()||0;
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
-
+	
 	var amt = scount();
 	var json = {
 		accountTypeList : accountTypeList,
 		allowanceAmt:PrefAmt,
 		cardPayAmt:deductible,
 		serviceId:fserviceId,
-
+		remark:nui.get("txtreceiptcomment").getValue(),
 		payAmt:amt
 	};
     nui.confirm("是否确定结算？", "友情提示",function(action){
@@ -394,16 +404,15 @@ function pay(){
 				    html : '处理中...'
 			    });
 	    		nui.ajax({
-	    			url : baseUrl
-	    			+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ,
+	    			url : settlementUrl,
 	    			type : "post",
 	    			data : json,
 			        cache : false,
 			        contentType : 'text/json',
 	    			success : function(data) {
 	    				nui.unmask(document.body);
-	    				if(data.errCode=="S"){
-	    					nui.alert(data.errMsg,"提示");
+	    				if(data.errCode=="S"){  					
+	    					CloseWindow("ok");
 	    				}else{
 	    					nui.alert(data.errMsg,"提示");
 	    				}
@@ -456,6 +465,7 @@ function doNoPay(serviceId,allowanceAmt){
 	var json = {
 			serviceId:serviceId,
 			allowanceAmt:allowanceAmt,
+			remark:nui.get("txtreceiptcomment").getValue(),
 			token:token
 	};
 	
@@ -471,11 +481,10 @@ function doNoPay(serviceId,allowanceAmt){
 					type : "post",
 					data : json,
 					success : function(data) {
+						nui.unmask(document.body);
 						if(data.errCode=="S"){
-							nui.unmask(document.body);
-							nui.alert("待结算成功","提示");
+							CloseWindow("onok");
 						}else{
-							nui.unmask(document.body);
 							nui.alert(data.errMsg,"提示");
 						}
 
@@ -612,11 +621,11 @@ function checkField(id){
 	 $("#ppaytype"+s1[1]).empty();
 	 var myselect=document.getElementById("optaccount"+s1[1]);
 	 var index=myselect.selectedIndex;
-	 var c  =myselect.options[index].value
+	 var c  =myselect.options[index].value;
    var json = {
    		accountId:c,
    		token:token
-   }
+   };
 	nui.ajax({
 		url : apiPath + frmApi + "/com.hsapi.frm.setting.queryAccountSettleType.biz.ext",
 		type : "post",
@@ -637,4 +646,17 @@ function checkField(id){
 		}
 	});
 	 onChanged();
+}
+var rs = {};
+function getRtnData(){
+	return rs;
+}
+
+function CloseWindow(action) {
+	if (action == "close") {
+
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
 }

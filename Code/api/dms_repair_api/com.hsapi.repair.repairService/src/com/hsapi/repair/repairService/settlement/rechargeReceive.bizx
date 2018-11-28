@@ -597,6 +597,10 @@
       <process:to type="query">fisRpBill/charOffAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">remark</process:from>
+      <process:to type="query">fisRpBill/remark</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">fmonth</process:from>
       <process:to type="query">fisRpBill/fMonth</process:to>
     </process:copy>
@@ -1643,6 +1647,7 @@
     <process:input description="" isArray="false" name="payAmt" primitiveType="Double"/>
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsStoredRecord" name="stored"/>
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.common.FisRpAccountDType" name="accountTypeList"/>
+    <process:input description="备注" isArray="false" name="remark" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

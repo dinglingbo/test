@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.17"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.20"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -275,7 +275,7 @@
                 </td>
                 <td class="title required">进厂里程：</td> 
                 <td >
-                     <input class="nui-Spinner" minValue="0" maxValue="100000000" width="60%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
+                     <input class="nui-Spinner" minValue="0" maxValue="100000000" width="45%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
                      <label class="title">(上次里程：<span id="lastComeKilometers">0</span>)</label>
                 </td>
                 <!-- <td class=""><input  class="nui-textbox" name="enterKilometers" width="100%"/></td> -->

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/common.jsp"%>
 <%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -12,7 +11,7 @@
 <head>
 <title>储值卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.4.5"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/cardList.js?v=1.4.7"></script>
 </head>
 <body>
 	<div id="queryform" class="nui-form">

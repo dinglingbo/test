@@ -25,6 +25,17 @@
             color: red;
         }
 
+    
+        a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 40px -1px no-repeat; padding-right:22px; color:#888; text-decoration:none;}
+        .addyytime a{width:150px;height:36px;line-height:36px;border:1px #a6e0f5 solid;display:block;float:left;text-decoration:none;text-align:center;color:#00b4f6;border-radius:4px;margin:0 15px 15px 0;}
+        .addyytime a.hui{border:1px #e6e6e6 solid;color:#c8c8c8;background:#e6e6e6;}
+        .addyytime a.xz{ border:1px #ff7800 solid; color:#fff; background:#ff7800;}
+        a:link, a:visited { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; color: #555555; text-decoration: none; }
+        a:hover { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; color: #df0024; text-decoration: none; }
+        a {text-decoration:none;transition:all .4s ease;}
+
+    
+
     </style>
 
 </head>
@@ -138,15 +149,10 @@
                             </div>
                         </td>
                     </tr>
-
-                    
                 </table>
             </div>
 
         </div>
-    </div>
-
-
     </div>
 </body>
 

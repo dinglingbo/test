@@ -67,6 +67,7 @@
 	nui.parse();
 	var employeeGrid = nui.get("employeeGrid");
 	var pageSize = employeeGrid.getPageSize();
+	var saveUrl = apiPath + sysApi + "/com.hsapi.system.tenant.permissions.savePartyAuths.biz.ext";
 	<% if(null != request.getParameter("roleId") && !"".equals(request.getParameter("roleId"))){ %>
 		var roleIdData = "<%= StringUtil.htmlFilter(request.getParameter("roleId")) %>";
 		var sendData = {"roleId":roleIdData, token:token};
@@ -103,93 +104,34 @@
 	        cls : 'mini-mask-loading',
 	        html : '保存中...'
 	    });
-		
-		if(addList && addList.length > 0){
-			for(var i = 0; i < addList.length; i++){
-				var temp = addList[i];
-				var id = temp.partyId;
-				var partyTypeID = 'user';
-				var partys = {id: id, partyTypeID: partyTypeID};
-				var ret = saveData(partys, roleList);
-				if(ret != 1){
-					nui.unmask();
-					nui.alert("第"+(i+1)+"条信息处理失败,请刷新数据后操作!");
-					return;
-				}
-			}
-		}
-
-		if(deleteList && deleteList.length > 0){
-			for(var i = 0; i < deleteList.length; i++){
-				var temp = deleteList[i];
-				var id = temp.partyId;
-				var partyTypeID = 'user';
-				var partys = {id: id, partyTypeID: partyTypeID};
-				var ret = deleteData(partys, roleList);
-				if(ret != 1){
-					nui.unmask();
-					nui.alert("第"+(i+1)+"条信息处理失败,请刷新数据后操作!");
-					return;
-				}
-			}
-		}
-		
-		nui.unmask();
-		nui.alert("权限设置成功");
-		
-		
-	}
-	
-	function saveData(partys, items){
-		var ret = -1;
+	    
 	    var json = nui.encode({
-	    	party:partys,
-			roleList:items	    	
+	    	roleId:"<%=request.getParameter("roleId") %>",
+			addList:addList,
+			deleteList:deleteList	
 	    });
+	    
 	    nui.ajax({
-	    	url: "org.gocom.components.coframe.auth.partyauth.partyauth.addPartyAuth.biz.ext",
+	    	url: saveUrl,
 	    	cache: false,
 	    	async: false,
 	    	data: json,
 	    	type: 'POST',
 	    	contentType:'text/json',
 	    	success: function (text) {
-	    		if(text.result){
-		    		ret = 1;
+	    		if(text.errCode == 'S'){
+		    		nui.unmask();
+					nui.alert("权限设置成功");
+	    		}else{
+	    			nui.unmask();
+					nui.alert(text.errMsg||"权限设置失败");
 	    		}
             },
             error: function () {
             }
-	    });
-	    
-	    return ret;
-    }
-	
-	function deleteData(partys, items){
-		var ret = -1;
-	    var json = nui.encode({
-	    	party:partys,
-	    	roleList:items
-	    });
-	    nui.ajax({
-	    	url: "org.gocom.components.coframe.auth.partyauth.partyauth.deletePartyAuth.biz.ext",
-	    	cache: false,
-	    	async: false,
-	    	data: json,
-	    	type: 'POST',
-	    	contentType:'text/json',
-	    	success: function (text) {
-	    		if(text.result){
-		    		ret = 1;
-	    		}
-            },
-            error: function () {
-            }
-	    });
-	    
-	    return ret;
+	    });	
 	}
-
+	
 	function searchEmployee(){
 		var p = {};
 		p.orgname = nui.get("orgname").getValue();

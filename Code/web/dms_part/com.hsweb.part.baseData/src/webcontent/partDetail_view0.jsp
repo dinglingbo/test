@@ -70,19 +70,20 @@
 </head>
 <body>
 
-<div class="nui-fit" id= "basicInfoForm">
+ <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100%;">
+                    <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+                    <a class="nui-button" onclick="onCancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                </td>
+            </tr>
+        </table>
+    </div>
+<div class="nui-fit" id= "basicInfoForm"  style="width:100%;">
       <!-- <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>基本信息</span></div> -->
       <div class="vpanel_body vpanel_bodyww">
-      		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
-                <table style="width:100%;">
-                    <tr>
-                        <td style="width:100%;">
-                            <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
-                            <a class="nui-button" onclick="onCancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+      	
   			    <input id="orgid" name="orgid" width="150px" class="nui-hidden" >
   			    <input class="nui-hidden" name="id"/>
   			    <input class="nui-hidden" name="isEdit"/>

@@ -6,13 +6,16 @@ var modifyDate;//修改日期
 var baseUrl = apiPath + crmApi + "/";
 var carModelInfo;
 var carModelHash = [];
-
+var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgid+"&params/isDisabled=0";
+var insureCompCode = null;
 $(document).ready(function(v){
     form1 = new nui.Form("#form1");
     recorder = nui.get("recorder");
     recordDate = nui.get("recordDate");
     modifier = nui.get("modifier");
     modifyDate = nui.get("modifyDate");
+    insureCompCode = nui.get("insureCompCode");
+    insureCompCode.setUrl(insuranceInfoUrl);
     
     carModelInfo = nui.get("carModelInfo");
     init();
@@ -25,13 +28,12 @@ $(document).ready(function(v){
 		if ((keyCode == 27)) { // ESC
 			onCancel();
 		}
-
-	}
+	};
 });
 
 function init(){
     initCarBrand("carBrandId");//车辆品牌
-    initInsureComp("insureCompCode");//保险公司
+   // initInsureComp("insureCompCode");//保险公司
     initDicts({color: "DDT20130726000003"});//车辆颜色
     nui.get('guestName').focus();
 }
@@ -43,6 +45,10 @@ function onCarBrandChange(e){
         	carModelHash[v.id] = v;
         });
     });
+}
+
+function guestNameChange(e){
+	nui.get("contacts").setValue(nui.get("guestName").value);
 }
 
 function setData(data){

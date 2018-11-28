@@ -20,7 +20,8 @@
     		visit_man_id visitManId, visit_status visitStatus, prior_scout_date priorScoutDate, 
     		next_scout_date nextScoutDate, is_continue_scout isContinueScout, 
     		first_scout_date firstScoutDate, is_black isBlack, status, recorder, 
-    		record_date recordDate, modifier, modify_date modifyDate
+    		record_date recordDate, modifier, modify_date modifyDate,
+    		id_card_number idCardNumber,car_model_text carModelText
 		FROM crm_guest
         WHERE orgid = #orgid#
     </sql>
@@ -44,7 +45,7 @@
             AND IFNULL(visit_man_id,"0") = 0
         </isEqual>
         <isEqual property="assignStatus" compareValue="1">
-            AND LENGTH(IFNULL(visit_man_id,"")) &gt; 0
+            AND IFNULL(visit_man_id,"0") &lt;&gt; 0
         </isEqual>
         <isEqual property="assignStatus" compareValue="2"> 
             AND next_scout_date &lt; DATE_FORMAT(date_add(now(),interval 1 day),'%Y-%m-%d')

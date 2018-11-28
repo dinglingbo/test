@@ -87,11 +87,11 @@
 			html : '保存中...'
 		});
 
-		
+		//webPath + defDomin + "/org.gocom.components.coframe.framework.FunctionAuth.saveFunctionAuths.biz.ext"
+		var saveRoleResauthUrl = baseUrl + "com.hsapi.system.tenant.permissions.saveFunctionAuths.biz.ext";
 
 		nui.ajax({
-			url: webPath + defDomin + "/org.gocom.components.coframe.framework.FunctionAuth.saveFunctionAuths.biz.ext",
-			
+			url: saveRoleResauthUrl,
 			type: 'POST',
 			data:nui.encode({
 				roleId:"<%=request.getParameter("roleId") %>",
@@ -102,7 +102,7 @@
 			contentType:'text/json',
 			success: function (text) {
 				nui.unmask();
-				if(text.data){
+				if(text.errCode == 'S'){
 					nui.alert("权限设置成功");
 				}else{
 					nui.alert("权限设置失败");

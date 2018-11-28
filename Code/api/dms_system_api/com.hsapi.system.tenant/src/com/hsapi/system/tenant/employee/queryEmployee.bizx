@@ -9,29 +9,32 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
-    <location x="100" y="100"/>
+    <location x="100" y="155"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="102" y="136"/>
-    <figSize height="17" width="25"/>
+    <location x="99" y="191"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" collapsed="false" type="end">
     <targetConnections>link4</targetConnections>
     <targetConnections>link1</targetConnections>
-    <location x="565" y="100"/>
+    <targetConnections>link3</targetConnections>
+    <location x="565" y="155"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="java.util.HashMap[]" name="rs" type="query" valueType="Java">rs</process:return>
       <process:return id="1" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
+      <process:return id="2" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="3" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="567" y="136"/>
-    <figSize height="17" width="25"/>
+    <location x="564" y="191"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="queryByNamedSqlWithPage" displayName="queryByNamedSqlWithPage" type="invoke" index="4" invokeType="invoke_pojo" varArgs="false">
@@ -40,8 +43,12 @@
       <targetNode>end0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
     <targetConnections>link6</targetConnections>
-    <location x="360" y="100"/>
+    <location x="360" y="155"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -59,8 +66,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="289" y="136"/>
-    <figSize height="17" width="164"/>
+    <location x="268" y="191"/>
+    <figSize height="20" width="206"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -78,7 +85,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="225" y="100"/>
+    <location x="225" y="155"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -93,10 +100,18 @@
       <process:from type="expression" pattern="reference">true</process:from>
       <process:to type="query">page/isCount</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">查询成功</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="227" y="136"/>
-    <figSize height="17" width="25"/>
+    <location x="224" y="191"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -106,14 +121,45 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="226" y="210"/>
+    <location x="226" y="265"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">请正确传参</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="224" y="246"/>
-    <figSize height="17" width="32"/>
+    <location x="220" y="301"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="465" y="92"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">查询失败</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="459" y="128"/>
+    <figSize height="20" width="40"/>
+    <node>assign2</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -130,6 +176,8 @@
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="rs"/>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
+    <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
+    <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

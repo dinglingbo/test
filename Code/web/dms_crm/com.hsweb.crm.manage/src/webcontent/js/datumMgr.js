@@ -41,6 +41,12 @@ $(document).ready(function(v){
             e.cellHtml = setColVal('visitStatus', 'customid', 'name', e.value);
         }else if(field == "color"){//跟踪状态
             e.cellHtml = setColVal('color', 'customid', 'name', e.value);
+        }else if(field == "sex"){//性别
+            if(e.record.sex == 0){
+                e.cellHtml = '女';
+            }else if(e.record.sex == 1){
+                e.cellHtml = '男';
+            }
         }
 
     });
@@ -221,6 +227,24 @@ function editWin(title, data){
             var iframe = this.getIFrameEl();
             //var data = { action: "edit", id: row.id };
             iframe.contentWindow.setData(data);
+        },
+        ondestroy: function (action) {
+            //var iframe = this.getIFrameEl();
+            dgGrid.reload();
+        }
+    });
+}
+
+
+function editClient(){
+    var row = dgGrid.getSelected();
+    mini.open({
+        url: webPath + contextPath + "/com.hsweb.crm.manage.clientInfo_edit.flow?token="+ token,
+        title: "修改客户", width: 520, height: 550,
+        onload: function () { 
+            var iframe = this.getIFrameEl();
+            //var data = { action: "edit", id: row.id };
+            iframe.contentWindow.setData(row);
         },
         ondestroy: function (action) {
             //var iframe = this.getIFrameEl();

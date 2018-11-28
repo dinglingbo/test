@@ -7,7 +7,7 @@ pageEncoding="UTF-8" session="false" %>
   - Author(s): Administrator
   - Date: 2018-10-22 15:07:42
   - Description: 
--->   
+-->    
 <head>  
     <title>流失回访</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -42,10 +42,14 @@ pageEncoding="UTF-8" session="false" %>
         <input class="nui-textbox" name="tlost" id="tlost" style="width: 80px;">
         <a class="nui-button" plain="true" onclick="quickSearch(0)" iconcls="" ><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="visit()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;回访</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
+        <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="visit()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;回访</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a> -->
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-phone-square fa-lg"></span>&nbsp;电话回访</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-reply fa-lg"></span>&nbsp;回访历史</a>
         <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a>
     </div>
 
@@ -59,6 +63,9 @@ pageEncoding="UTF-8" session="false" %>
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
+            <div field="carModel" width="150" headerAlign="center"align="center">车型</div>
+            <div field="carVin" width="130" headerAlign="center"align="center">厂牌号(VIN)</div>
+            <div field="chainComeTimes" width="70" headerAlign="center"align="center">来厂次数</div>
             <div field="mtAdvisorName" width="70" headerAlign="center" align="center">维修顾问</div>
             <div field="careDueDdate" width="70" headerAlign="center" align="center">计划回访日期</div>
             <div field="leaveDays" width="70" headerAlign="center" align="center">离厂天数</div>

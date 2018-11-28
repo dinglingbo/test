@@ -18,6 +18,18 @@ $(document).ready(function(v){
     initDicts({
     	typeId: "DDT20130725000001"//话术类型        
    });
+    
+    
+    
+    nui.get("content").focus();
+    document.onkeyup=function(event){
+    var e=event||window.event;
+    var keyCode=e.keyCode||e.which;//38向上 40向下
+
+    if((keyCode==27)) { //ESC
+    	onClose();
+    }
+    };
 });
 
 function setData(data){
@@ -54,10 +66,12 @@ function onOk(){
             success: function (data) {
                 $("#save").show();
                 if (data.errCode == "S"){
-                    nui.alert("保存成功！");
+                   // nui.alert("保存成功！");
+                	showMsg("保存成功！","S");
                     closeWindow();
                 }else {
-                    nui.alert(data.errMsg);
+                   // nui.alert(data.errMsg);
+                	showMsg(data.errMsg,"E");
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -68,3 +82,16 @@ function onOk(){
     finally {        
     }  
 }
+
+
+function CloseWindow(action) {
+	if (action == "close") {
+	} else if (window.CloseOwnerWindow)
+	return window.CloseOwnerWindow(action);
+	else
+	return window.close();
+	}
+
+	function onClose(){
+	window.CloseOwnerWindow(); 
+	}

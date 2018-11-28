@@ -86,7 +86,7 @@ pageEncoding="UTF-8" session="false" %>
                             emptyText="请选择..."
                             url=""
                             allowInput="false"
-                            onvaluechanged=""   
+                            onValuechanged="onCarBrandChange"
                             showNullItem="false"
                             nullItemText="请选择..."/></td>
                         </tr>

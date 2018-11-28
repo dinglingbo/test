@@ -34,8 +34,8 @@ $(document).ready(function(){
 	gridCar.load();
 
 	gridCar.on("rowdblclick",function(e){
-		var record = e.record;
-		SetData(record);
+		/*var record = e.record;
+		SetData(record);*/
 	});
 	
 	document.onkeyup = function(event) {
@@ -76,6 +76,8 @@ $(document).ready(function(){
     		}else{
     			e.cellHtml = "未结算";
     		}
+    	}else if(e.field == "serviceCode"){
+    		e.cellHtml ='<a href="##" onclick="openOrderDetail('+"'"+e.record.serviceId+"'"+')">'+e.record.serviceCode+'</a>';
     	}
     });
 
@@ -168,10 +170,13 @@ function WindowrepairHistory(){
 }
 
 
-function openOrderDetail(){
+function openOrderDetail(serviceId){
 	var row = gridCar.getSelected();
 	var data = {};
 	data.id = row.serviceId;
+	if(serviceId){
+		data.id = serviceId;
+	}
 
 	if(data.id){
 		var item={};

@@ -527,11 +527,12 @@
     <location x="450" y="15"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.settlement.PreInsuranceReceiveSettle</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">main/id</process:inputVariable>
         <process:inputVariable id="1" name="allowanceAmt" type="literal" value="Double" valueType="Primitive" pattern="reference">0</process:inputVariable>
+        <process:inputVariable id="2" name="remark" type="literal" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

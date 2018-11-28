@@ -70,26 +70,26 @@ var prdtTypeHash = {
     "2":"项目",
     "3":"配件"
 };
-//document.onmousemove = function(e){
-//
-//    if(advancedMorePartWin.visible){
-//        var mx = e.pageX;
-//        var my = e.pageY;
-//        var loc = "当前位置 x:"+e.pageX+",y:"+e.pageY
-//        var x = advancedMorePartWin.x;
-//        var y = advancedMorePartWin.y;
-//        if(x - mx > 10 || mx - x > 180){
-//            advancedMorePartWin.hide();
-//            FItemRow = {};
-//            return;
-//        }
-//        if(y - my > 10 || my - y > 130){
-//            advancedMorePartWin.hide();
-//            FItemRow = {};
-//            return;
-//        }
-//    }
-//}
+document.onmousemove = function(e){
+
+    if(advancedMorePartWin.visible){
+        var mx = e.pageX;
+        var my = e.pageY;
+        var loc = "当前位置 x:"+e.pageX+",y:"+e.pageY
+        var x = advancedMorePartWin.x;
+        var y = advancedMorePartWin.y;
+        if(x - mx > 10 || mx - x > 180){
+            advancedMorePartWin.hide();
+            FItemRow = {};
+            return;
+        }
+        if(y - my > 10 || my - y > 130){
+            advancedMorePartWin.hide();
+            FItemRow = {};
+            return;
+        }
+    }
+}
 $(document).ready(function ()
 {
 	
@@ -444,7 +444,7 @@ $(document).ready(function ()
                 if(pid == 0){
                     //e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' +'<a href="javascript:showBasicDataPart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;标准配件</a>'+ e.value;
                 
-                    e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value + s;	
+                    e.cellHtml = '<a href="javascript:showMorePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value + s;	
                     			 //'<ul class="add_ul" style="z-index: 99; display: none;">' +
 			            		 //'<li>< a href="javascript:choosePart(\'' + uid + '\')">添加配件</ a></li>' +
 			            		 //'<li>< a href="javascript:showBasicDataPart(\'' + uid + '\')" class="xzpj">选择配件</ a></li>' +
@@ -897,6 +897,16 @@ function setInitData(params){
     }
 }
 
+/*function toRefresh(){
+    var tabs = mini.get("mainTabs");
+    var tab = tabs.getActiveTab();
+     
+    if(tab.name == "index") {
+    	tab.url = defDomin + "/common/Index/TextIndex.jsp";
+    }
+    tabs.loadTab(tab.url, tab);
+}*/
+
 function add(){
     // $("#servieIdEl").html("综合开单详情");
     // $("#carNoEl").html("");
@@ -907,7 +917,7 @@ function add(){
     // $("#clubCardEl").html("会员卡(0)");
     // $("#creditEl").html("挂账:0");
     // $("#carHealthEl").html("车况:0");
-	
+
 	sellForm.setData(data);
     searchNameEl.setVisible(false);
     searchNameEl.setEnabled(false);
@@ -2927,29 +2937,28 @@ function checkFromBillPart(data){
     return false;
 }
 function showMorePart(row_uid){
-//    if(!fguestId) {
-//        advancedMorePartWin.hide();
-//        FItemRow = {};
-//        return;
-//    }
-//
-//    var row = rpsItemGrid.getRowByUID(row_uid); 
-//    if(FItemRow == row) {
-//        advancedMorePartWin.hide();
-//        FItemRow = {};
-//        return;
-//    }      
-//    FItemRow = row;    
-//    var atEl = rpsItemGrid._getCellEl(row,"prdtName");
-//    advancedMorePartWin.showAtEl(atEl, {xAlign:"left",yAlign:"above"});
+    if(!fguestId) {
+        advancedMorePartWin.hide();
+        FItemRow = {};
+        return;
+    }
+
+    var row = rpsItemGrid.getRowByUID(row_uid); 
+    if(FItemRow == row) {
+        advancedMorePartWin.hide();
+        FItemRow = {};
+        return;
+    }      
+    FItemRow = row;    
+    var atEl = rpsItemGrid._getCellEl(row,"prdtName");
+    advancedMorePartWin.showAtEl(atEl, {xAlign:"left",yAlign:"above"});
    	
 }
 //配件
-function choosePart(row_uid){
+function choosePart(){
     //var row = rpsItemGrid.getRowByUID(row_uid);
-	var row = rpsItemGrid.getRowByUID(row_uid);
     //获取到工时中的ID
-    //var row = FItemRow||{};
+    var row = FItemRow||{};
     var itemId = null;
     if(row){
     	itemId = row.id;
@@ -2971,7 +2980,7 @@ function choosePart(row_uid){
         showMsg("此单已结算,不能添加配件!","W");
         return;
     }
-    //advancedMorePartWin.hide();
+    advancedMorePartWin.hide();
     doSelectPart(itemId,addToBillPart, delFromBillPart, null, function(text){
         var p1 = { };
         var p2 = {
@@ -3140,16 +3149,23 @@ function pay(){
             data = data||{};
             if(data.action){
                 var action = data.action||"";
-                if(action == 'ok'){
+                if(action == "ok"){
                     billForm.setData([]);
                     billForm.setData(data);
-                    var status = data.status||0;
-                    var isSettle = data.isSettle||0;
+                    var status = data.status||2;
+                    var isSettle = data.isSettle||1;
                     doSetStyle(status, isSettle);
-                    showMsg("完工成功!","S");
+                    showMsg("结算成功!","S");
+                }else if(action == "onok"){
+                    billForm.setData([]);
+                    billForm.setData(data);
+                    var status = data.status||2;
+                    var isSettle = data.isSettle||1;
+                    doSetStyle(status, isSettle);
+                    showMsg("转预结算成功!","S");
                 }else{
                     if(data.errCode){
-                        showMsg("完工失败!","W");
+                        showMsg("结算失败!","W");
                         return;
                     }
                 }

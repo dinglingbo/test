@@ -77,6 +77,10 @@
       <process:to type="query">rpAccountHash/billServiceId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">rpAccount/remark</process:from>
+      <process:to type="query">rpAccountHash/remark</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">rpAccount/billTypeId</process:from>
       <process:to type="query">rpAccountHash/billTypeId</process:to>
     </process:copy>
@@ -179,6 +183,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">pay/itemQty</process:from>
       <process:to type="query">payHash/itemQty</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pay/remark</process:from>
+      <process:to type="query">payHash/remark</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">pay/orgid</process:from>
@@ -655,6 +663,7 @@
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo6</sourceNode>
       <targetNode>invokePojo8</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="499" y="226"/>
@@ -872,6 +881,7 @@
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link25" name="link25" displayName="连接线" type="transition">
       <sourceNode>assign5</sourceNode>
@@ -953,7 +963,7 @@
       <targetNode>assign13</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

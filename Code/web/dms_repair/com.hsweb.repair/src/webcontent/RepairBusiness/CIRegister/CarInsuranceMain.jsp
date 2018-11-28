@@ -89,7 +89,7 @@ pageEncoding="UTF-8" session="false"%>
 </div>
 </div>
 <div id="advancedSearchWin" class="nui-window"
-title="高级查询" style="width:420px;height:300px;"
+title="高级查询" style="width:420px;height:250px;"
 showModal="true"
 allowResize="false"
 allowDrag="false">
@@ -116,22 +116,22 @@ allowDrag="false">
                 showClearButton="true"/>
             </td>
         </tr>
+<!--         <tr> -->
+<!--             <td class="form_label">交强险保单号:</td> -->
+<!--             <td colspan="3"> -->
+<!--                 <input class="nui-textbox" emptyText="" width="100%" name="insuranceSaliNo" /> -->
+<!--             </td> -->
+<!--         </tr> -->
+<!--         <tr> -->
+<!--             <td class="form_label">交强险保单号:</td> -->
+<!--             <td colspan="3"> -->
+<!--                 <input class="nui-textbox" emptyText="" width="100%" name="insuranceBizNo" /> -->
+<!--             </td> -->
+<!--         </tr> -->
         <tr>
-            <td class="form_label">交强险保单号:</td>
+            <td class="form_label">车架号(VIN):</td>
             <td colspan="3">
-                <input class="nui-textbox" emptyText="" width="100%" name="insuranceSaliNo" />
-            </td>
-        </tr>
-        <tr>
-            <td class="form_label">交强险保单号:</td>
-            <td colspan="3">
-                <input class="nui-textbox" emptyText="" width="100%" name="insuranceBizNo" />
-            </td>
-        </tr>
-        <tr>
-            <td class="form_label">底盘号:</td>
-            <td colspan="3">
-                <input class="nui-textbox" emptyText="" width="100%" name="underpanNo" />
+                <input class="nui-textbox" emptyText="" width="100%" name="carVin" />
             </td>
         </tr>
         <tr>

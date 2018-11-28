@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>保险开单明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.22"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.50"></script>
     <style type="text/css">
    .title {
         width: 80px;
@@ -129,8 +129,8 @@ pageEncoding="UTF-8" session="false"%>
             <td class="title required">手机号:</td> 
             <td class=""><input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="100%"/></td>
 
-            <td class="title required">本次里程:</td> 
-            <td class=""><input  class="nui-textbox" name="enterKilometers" id="enterKilometers" enabled="true" width="100%"/></td>
+            <td class="title required" style="color:red">本次里程:</td> 
+            <td class=""><input  class="nui-textbox" name="enterKilometers" vtype="int;range:0,100000000" id="enterKilometers" enabled="true" width="100%"/></td>
 
             <td class="title">开单时间:</td> 
             <td class="">
@@ -145,7 +145,7 @@ pageEncoding="UTF-8" session="false"%>
             <td class="title required">客户名称:</td> 
             <td class=""><input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="100%"/></td>
          
-            <td class="title required">
+            <td class="title required" style="color:red">
                 <label>服务顾问：</label>
             </td>
             <td>
@@ -164,25 +164,25 @@ pageEncoding="UTF-8" session="false"%>
             </td>
 
             <td class="title required">车辆/品牌:</td> 
-            <td class="" colspan="3"><input  class="nui-textbox" name="carBrand" id="carBrand" enabled="false" width="100%"/></td>
+            <td class="" colspan="3"><input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/></td>
 			
         </tr>
         
         <tr>   
-            <td class="title required">保险公司:</td> 
+            <td class="title required" style="color:red">保险公司:</td> 
             <td class=""><input class="nui-combobox" id="insureCompName" name="insureCompName" emptyText="选择保险公司" dataField="list" valueField="fullName" textField="fullName" showNullItem="true" nullItemText="请选择..."popupWidth="200" onvaluechanged="insuranceChange" width="100%"/></td>
-            <td class="title required">销售人员:</td> 
+            <td class="title required" style="color:red">销售人员:</td> 
             <td class=""><input class="nui-combobox" id="saleManIds" name="saleManIds" emptyText="选择销售人员" dataField="data" valueField="empId" textField="empName" showNullItem="true" nullItemText="请选择..." multiSelect="true" onvaluechanged="saleManChange" width="100%"/></td>
 
-            <td class="title required">
+            <td class="title required" style="color:red">
                 <label>有效日期：</label>
             </td>
-            <td style="width:20%">
+            <td style="width:20%" >
                <input id="beginDate" name="beginDate" class="nui-datepicker" value="" format="yyyy-MM-dd " width="43%"/>
     			至 <input id="endDate" name="endDate" class="nui-datepicker" value="" format="yyyy-MM-dd "width="43%"/> &nbsp;&nbsp;
             </td>
 
-            <td class="title required">保费收取方式:</td> 
+            <td class="title required" style="color:red">保费收取方式:</td> 
             <td class=""><input  class="nui-combobox" name="settleTypeId" id="settleTypeId" valueField="id" textField="name" data="settleTypeIdList" dataField="settleTypeIdList" width="100%"/></td>
 			
         </tr>

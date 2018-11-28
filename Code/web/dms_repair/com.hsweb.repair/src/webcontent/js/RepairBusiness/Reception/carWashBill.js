@@ -3803,16 +3803,23 @@ function pay(){
             data = data||{};
             if(data.action){
                 var action = data.action||"";
-                if(action == 'ok'){
+                if(action == "ok"){
                     billForm.setData([]);
                     billForm.setData(data);
-                    var status = data.status||0;
-                    var isSettle = data.isSettle||0;
+                    var status = data.status||2;
+                    var isSettle = data.isSettle||1;
                     doSetStyle(status, isSettle);
-                    showMsg("完工成功!","S");
+                    showMsg("结算成功!","S");
+                }else if(action == "onok"){
+                    billForm.setData([]);
+                    billForm.setData(data);
+                    var status = data.status||2;
+                    var isSettle = data.isSettle||1;
+                    doSetStyle(status, isSettle);
+                    showMsg("转预结算成功!","S");
                 }else{
                     if(data.errCode){
-                        showMsg("完工失败!","W");
+                        showMsg("结算失败!","W");
                         return;
                     }
                 }

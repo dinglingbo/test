@@ -58,8 +58,9 @@
                     <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(3)">待结算</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(4)">已结算</a> -->
                 	
-                    <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">草稿</a>
+                    <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">全部</a>
                     <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                        <li iconCls="" onclick="quickSearch(5)" id="type0">全部</li>
                         <li iconCls="" onclick="quickSearch(0)" id="type0">草稿</li>
                         <li iconCls="" onclick="quickSearch(1)" id="type0">待归库</li>
                         <li iconCls="" onclick="quickSearch(2)" id="type1">已归库</li>

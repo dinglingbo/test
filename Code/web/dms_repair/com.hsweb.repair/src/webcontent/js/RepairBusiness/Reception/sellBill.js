@@ -1145,7 +1145,7 @@ function onCellCommitEdit(e) {
 			var unitPrice = 0;
 			if(qty>0){
 				unitPrice = amt * 1.0 / qty;
-			}
+			} 
 			// e.cellHtml = enterqty * enterprice;
 			newRow = {
 					unitPrice : unitPrice,
@@ -1173,7 +1173,11 @@ function saveBatch(){
         showMsg("工单已结算!","W");
         return;
     }
-	
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+    });
 	//保存工单
 	if(!main.id){
 	 var data = billForm.getData();
@@ -1200,6 +1204,7 @@ function saveBatch(){
 			contentType : 'text/json',
 			success : function(text) {
 				var returnJson = nui.decode(text);
+				nui.unmask(document.body);
 				if (returnJson.errCode == "S") {
 					showMsg("保存成功");
 					data = returnJson.data;
@@ -1288,8 +1293,9 @@ function saveBatch(){
 	                    }
 	                loadDetail(p3);
 					showMsg("保存成功");
-													
+					nui.unmask(document.body);								
 				} else {
+					nui.unmask(document.body);
 					rpsPartGrid.reject();
 					showMsg(returnJson.errMsg);
 				}
@@ -1325,6 +1331,11 @@ function finish(){
 		showMsg("工单已出库,不能审核!","W");
         return;
 	}
+	 nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '审核中...'
+	});
 	var sellPartAdd = rpsPartGrid.getChanges("added");
 	var sellPartUpdate = rpsPartGrid.getChanges("modified");
 	var sellPartDelete = rpsPartGrid.getChanges("removed");
@@ -1345,6 +1356,7 @@ function finish(){
 		contentType : 'text/json',
 		success : function(text) {
 			var returnJson = nui.decode(text);
+			nui.unmask(document.body);
 			if (returnJson.errCode == "S") {
 				main.status = 1;
 				billForm.setData(main);

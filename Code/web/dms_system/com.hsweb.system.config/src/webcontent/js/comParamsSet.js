@@ -6,6 +6,7 @@ var repairBillPartFlag = null;
 var repairBillQrcodeFlag = null;
 var repairBillQrSettleFlag = null;
 var repairBillCmodelFlag = null;
+var repairBillCmodelFlagT = null;
 var repairBillMobileFlag = null;
 var editParice = null;
 var rate = null;
@@ -21,13 +22,15 @@ $(document).ready(function(v) {
     repairBillQrcodeFlag = nui.get("repairBillQrcodeFlag");
     repairBillQrSettleFlag = nui.get("repairBillQrSettleFlag");
     repairBillCmodelFlag = nui.get("repairBillCmodelFlag");
+    repairBillCmodelFlagT = nui.get("repairBillCmodelFlagT");
     //repairBillMobileFlag = nui.get("repairBillMobileFlag");
     editParice = nui.get("editParice");
     repairPchsRtnFlag = nui.get("repairPchsRtnFlag");
     //rate = nui.get("rate");
-    //openToArchives = nui.get("openToArchives");
+    openToArchives = nui.get("openToArchives");
     openToGuestQrcode = nui.get("openToGuestQrcode");
     repairDefaultStore = nui.get("repairDefaultStore");
+    nui.get("repairSettorderPrintShowT").disable();
     
     //repairBillControlFlag.setData(radioList);
     repairPchsRtnFlag.setData(radioList);
@@ -35,8 +38,9 @@ $(document).ready(function(v) {
     repairBillQrcodeFlag.setData(radioList);
     repairBillQrSettleFlag.setData(radioList);
     repairBillCmodelFlag.setData(radioList);
+    repairBillCmodelFlagT.setData(radioList);
     //repairBillMobileFlag.setData(radioList);
-    //openToArchives.setData(typeList);
+    openToArchives.setData(typeList);
     openToGuestQrcode.setData(typeList);
     
     getStore();

@@ -285,6 +285,15 @@
 				return false;
 			}
 		} */
+		
+                System.out.println("====================com.hsweb.crm.manage.maintainRemind.flow退出");
+                System.out.println("====================com.hsweb.crm.manage.maintainRemind.flow退出");
+                System.out.println("====================com.hsweb.crm.manage.maintainRemind.flow退出");
+                System.out.println("====================com.hsweb.crm.manage.maintainRemind.flow退出");
+                System.out.println("====================com.hsweb.crm.manage.maintainRemind.flow登录");
+                System.out.println("====================com.hsweb.crm.manage.maintainRemind.flow登录");
+                System.out.println("====================com.hsweb.crm.manage.maintainRemind.flow登录");
+                System.out.println("====================com.hsweb.crm.manage.maintainRemind.flow登录");
 		if(window.parent!=window
 			&& ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
 			window.parent.backToLogin();

@@ -9,7 +9,7 @@
 -->
 <head>
   <title>工单设置</title>
-  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.3"></script>
+  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.6"></script>
   <style type="text/css">
 
     .title {
@@ -140,14 +140,42 @@
                            style="height:100px;width:300px">
                 </td>
             </tr>
-            <!--<tr>
+            <tr>
+                <td class="tbtext">开通维修电子档案：</td>
+                <td class="tbCtrl" >
+                    <div id="repairBillCmodelFlagT" name="repairBillCmodelFlagT" 
+                        class="nui-radiobuttonlist" value="" repeatItems="2" 
+                        repeatDirection="" repeatLayout="table" 
+                        textField="text" valueField="id" ></div>
+                </td>      
+            </tr>
+            <tr>
+                <td class="tbtext">维修经营许可证号：</td>
+                <td class="tbCtrl" >
+                    <input id="repairSettorderPrintShowT" name="repairSettorderPrintShowT" class="nui-textbox" >
+                </td>
+            </tr>
+            <tr>
+                <td class="tbtext">企业注册区域编码：</td>
+                <td class="tbCtrl" >
+                    <input id="repairSettorderPrintShowT" name="repairSettorderPrintShowT" class="nui-textbox" >
+                </td>
+            </tr>
+            <tr>
+                <td class="tbtext">电子档案唯一标识：</td>
+                <td class="tbCtrl" >
+                    <input  id="repairSettorderPrintShowT" name="repairSettorderPrintShowT" class="nui-textbox" >
+                    <a class="nui-button" onclick=""   plain="false" >获取标识</a>
+                </td>
+            </tr>
+            <tr>
                 <td class="tbtext">工单服务性质对健康档案不开放：</td>
                 <td class="tbCtrl" >
                     <div id="openToArchives" name="openToArchives" class="nui-checkboxlist" repeatItems="5" 
                         repeatLayout="flow"  value="" 
                         textField="text" valueField="id" ></div>
                 </td>
-            </tr>-->
+            </tr>
             <tr>
                 <td class="tbtext">工单服务性质对车主微信端不开放：</td>
                 <td class="tbCtrl" >

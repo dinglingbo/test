@@ -50,7 +50,7 @@
 	</div>
 	<div class="nui-fit">
 		<div id="employeeGrid" class="nui-datagrid" style="width:100%;height:100%;"  onload="onGridLoad"
-			url="com.hsapi.system.tenant.permissions.getRoleUserValue.biz.ext"
+			url=""
 			idField="empid" allowResize="false" allowCellEdit="true" sizeList="[10,20,30]" pageSize="20" multiSelect="true" dataField="empUserList" showPager="false" >
 		    <div property="columns">
 		        <div field="userId" width="120" headerAlign="center" >登录账号</div>
@@ -67,10 +67,12 @@
 	nui.parse();
 	var employeeGrid = nui.get("employeeGrid");
 	var pageSize = employeeGrid.getPageSize();
+	var loadUrl = apiPath + sysApi + "/com.hsapi.system.tenant.permissions.getRoleUserValue.biz.ext";
 	var saveUrl = apiPath + sysApi + "/com.hsapi.system.tenant.permissions.savePartyAuths.biz.ext";
 	<% if(null != request.getParameter("roleId") && !"".equals(request.getParameter("roleId"))){ %>
 		var roleIdData = "<%= StringUtil.htmlFilter(request.getParameter("roleId")) %>";
 		var sendData = {"roleId":roleIdData, token:token};
+		employeeGrid.setUrl(loadUrl);
 		employeeGrid.load(sendData);
 	<% } %>
 

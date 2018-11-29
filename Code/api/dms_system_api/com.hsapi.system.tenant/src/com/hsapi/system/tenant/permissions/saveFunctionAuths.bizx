@@ -105,7 +105,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.CapResauth</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.ComCapResauth</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -345,9 +345,9 @@
   <process:info author="Administrator" createTime="2018-06-17 15:39:04" date="2018-06-17Z" description="" name="saveFunctionAuths" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cd"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.CapResauth" name="roleResauth"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComCapResauth" name="roleResauth"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="temp"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.CapResauth" name="roleResauthList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.ComCapResauth" name="roleResauthList"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="roleId" primitiveType="Int"/>

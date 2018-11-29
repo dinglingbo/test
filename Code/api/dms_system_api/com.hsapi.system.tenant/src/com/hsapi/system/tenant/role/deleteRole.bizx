@@ -98,8 +98,16 @@
       <process:to type="query">cond1/_expr[1]/roleId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond1/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">role</process:from>
-      <process:to type="query">cond1/_expr[1]/roleType</process:to>
+      <process:to type="query">cond1/_expr[2]/roleType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond1/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.CapResauth</process:from>
@@ -110,8 +118,16 @@
       <process:to type="query">cond2/_expr[1]/partyId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond2/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">role</process:from>
-      <process:to type="query">cond2/_expr[1]/partyType</process:to>
+      <process:to type="query">cond2/_expr[2]/partyType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond2/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.CapRole</process:from>
@@ -218,6 +234,7 @@
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
     <targetConnections>link14</targetConnections>

@@ -35,7 +35,7 @@
     <!--3.获取租户角色现有的权限资源-->
     <select id="queryRoleResApplication" parameterClass="HashMap" resultClass="HashMap">
     	SELECT res_id as resId
-		from cap_resauth
+		from com_cap_resauth
 		where party_type = 'role' and res_state = 1 and party_id = #roleId#
     </select>
     
@@ -134,9 +134,9 @@
     <select id="queryMenuRes" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT DISTINCT a.menuid, a.menuname, a.menucode, a.imagepath, a.parentsid, b.funccode, a.DISPLAYORDER,  b.funcaction
 		from app_menu a
-		inner join app_function b
+		inner join com_app_function b
 		on a.funccode = b.FUNCCODE
-		inner join cap_resauth c
+		inner join com_cap_resauth c
 		on b.funccode = c.RES_ID
 		where  1 = 1
 		      <isNotEmpty prepend="and" property="roleIds">  

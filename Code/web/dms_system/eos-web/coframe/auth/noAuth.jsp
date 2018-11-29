@@ -3,6 +3,12 @@
 <head>
 <title>noImprimatur</title>
 <%@include file="/common/sysCommon.jsp" %>
+<%
+	//应用地址
+	String xx="";
+	System.out.println(xx);
+	return;
+%>
 </head>
 <body>
 <table width="100%" height="100%" bgcolor="#FFFFFF">

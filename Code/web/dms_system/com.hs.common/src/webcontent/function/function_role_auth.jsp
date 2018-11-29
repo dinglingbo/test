@@ -44,7 +44,7 @@
     <!--body-->
  	<div class="nui-fit" style="padding:0px 10px 10px 10px;">
 		<ul id="funcTree" class="nui-tree" style="width:100%;height:100%;"
-			url="com.hsapi.system.tenant.permissions.getRoleResauthValue.biz.ext"
+			url="<%=apiPath + sysApi%>/com.hsapi.system.tenant.permissions.getRoleResauthValue.biz.ext"
 			idField="id" textField="text" parentField="parentId" resultAsTree="false" checkedField="isCheck"
 			showTreeIcon="true" ajaxData="setRoleId" showTreeLines="true" expandOnDblClick="true" expandOnLoad="false" showCheckBox="true" checkRecursive="true">
 		</ul>

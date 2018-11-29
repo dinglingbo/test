@@ -10,7 +10,7 @@
 -->
 <head>
 <title>销售开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellMain.js?v=1.3.4"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellMain.js?v=1.3.5"></script>
 <style type="text/css">
 
 .title {
@@ -51,8 +51,9 @@
             <tr>
                 <td>
                     <label style="font-family:Verdana;">快速查询：</label>
-                    <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">草稿</a>
+                    <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">全部</a>
                     <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                        <li iconCls="" onclick="quickSearch(5)" id="type0">全部</li>
                         <li iconCls="" onclick="quickSearch(0)" id="type0">草稿</li>
                         <li iconCls="" onclick="quickSearch(1)" id="type0">待出库</li>
                         <li iconCls="" onclick="quickSearch(2)" id="type1">已出库</li>

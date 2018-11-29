@@ -105,7 +105,7 @@ pageEncoding="UTF-8" session="false" %>
             <tr>
                 <td><span class="title title-width1 ">车架号(VIN)：</span></td>
                 <td colspan="3"><input id="vin" name="vin" class="nui-textbox width4" required="false"/>
-                    <a class="nui-button" iconCls="icon-find" plain="true" onclick="query()" id="query">解析</a></td>
+                    <a class="nui-button" iconCls="icon-find" plain="true" onclick="carVinModel()" id="query">解析</a></td>
 
                 </tr>            
                 <tr>

@@ -23,16 +23,21 @@ $(document).ready(function(){
 		SetData(record);
 	});
 	
+    gridCar.on("drawcell", function (e) { 
+        if(e.field == "serviceCode"){
+            e.cellHtml ='<a href="##" onclick="openOrderDetail('+"'"+e.record.serviceId+"'"+')">'+e.record.serviceCode+'</a>';
+        }
+    });
+
+
 	document.onkeyup = function(event) {
         var e = event || window.event;
         var keyCode = e.keyCode || e.which;// 38向上 40向下
-        
-
         if ((keyCode == 13)) { // Enter
         	onSearch();
         }
 
-    }
+    };
     onSearch();
 });
 
@@ -85,7 +90,7 @@ function quickSearch(e){
 }
 
 function onSearch(){
-	var params={}
+	var params={};
 	if(tcarNo_ctrl.value ||tmobileEl.value ){
 		quickSearch(3);
 	}
@@ -171,26 +176,23 @@ function remindDetail() {
 }
 
 
-function openOrderDetail(){
-	var row = gridCar.getSelected();
-    if (row == undefined) {
-        showMsg("请选中一条数据","W");
-        return;
-    }
-
+function openOrderDetail(serviceId){
+    var row = gridCar.getSelected();
     var data = {};
     data.id = row.serviceId;
+    if(serviceId){
+        data.id = serviceId;
+    }
 
     if(data.id){
-      var item={};
-      item.id = "11111";
-      item.text = "工单详情页";
-      item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow";
-      item.iconCls = "fa fa-cog";
-      window.parent.activeTabAndInit(item,data);
-  }
+        var item={};
+        item.id = "11111";
+        item.text = "工单详情页";
+        item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow";
+        item.iconCls = "fa fa-cog";
+        window.parent.activeTabAndInit(item,data);
+    }
 }
-
 
 function sendInfo(){
 	var row = gridCar.getSelected();

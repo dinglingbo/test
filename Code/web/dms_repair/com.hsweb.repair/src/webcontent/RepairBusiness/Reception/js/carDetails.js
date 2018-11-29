@@ -15,23 +15,6 @@ $(document).ready(function () {
     grid2.setUrl(baseUrl+"com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext");
     mainGrid1.setUrl(baseUrl+"com.hsapi.repair.repairService.query.querySettleList.biz.ext");
     mainGrid2 = nui.get("mainGrid2");
-                nui.ajax({
-                    url: baseUrl+"com.hsapi.repair.repairService.svr.getGuestContactorCar.biz.ext",
-                    type : "post",
-                    data : {
-                    	guestId : nui.get("guestId").value
-                    },
-                    success: function (text) {
-                        var guest = nui.decode(text.guest);
-                        var form = new nui.Form("#editForm4");
-                        form.setData(guest);
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.log(jqXHR.responseText);
-                        showMsg("网络出错", "W");
-                    }
-                });
-                
 
         grid2.on("load",function(e){
         	var data = e.data;
@@ -49,6 +32,26 @@ $(document).ready(function () {
             onCancel();
         }
       };
+      
+      var tip = new nui.ToolTip();
+      tip.set({
+          target: document,
+          selector: '#carModel .mini-textbox-input',
+          onbeforeopen: function (e) {
+              e.cancel = false;
+          },
+          onopen: function (e) {
+              var el = e.element;
+              
+              var val = $(el).val();
+              if (val == "") {
+                  tip.hide();
+              } else {
+                  tip.setContent(val);
+              }
+
+          }
+      });
 });
 
 //取消
@@ -70,6 +73,7 @@ function CloseWindow(action) {
 function SetData(params){
 	nui.get("carId").setValue(params.carId);
 	nui.get("guestId").setValue(params.guestId);
+	
 	var json = {
 			carId : nui.get("carId").value
     };
@@ -94,7 +98,25 @@ function SetData(params){
     		token:token
     };
     grid1.load({p:pa});
+    mainGrid1.load({params:pa});
 
     grid2.load({guestId:params.guestId});
+    nui.ajax({
+        url: baseUrl+"com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext",
+        type : "post",
+        data : {
+        	guestId : params.guestId
+        },
+        success: function (data) {
+        	var contactList = data.contactList||[{}];
+            var form = new nui.Form("#editForm4");
+            form.setData(contactList[0]);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+            showMsg("网络出错", "W");
+        }
+    });
 
 }
+

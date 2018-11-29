@@ -11,7 +11,7 @@
 <head>
 <title>车辆详情</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.0.7" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.2" type="text/javascript"></script>
 </head>
 <style type="text/css">
         body { 
@@ -33,7 +33,67 @@
 <input class="nui-hidden" id="guestId"name="guestId"/>
 <div id="editForm1" style="width:100%;height:100%;">
 
-    <div title="车辆信息">
+    <div >
+    <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:30%;">
+    	 <legend>客户信息</legend>
+        <div id="editForm4" style="padding:5px;">
+        <table class="nui-form-table" style="width:99%">
+                        <tr>
+                            <td class="form_label required">
+                                <label>客户名称：</label>
+                            </td>
+                            <td>
+                                <input class="nui-hidden" name="id" id="guestId" />
+                                <input class="nui-textbox" id="name" name="name" width="100%" onvaluechanged="onChanged(this.id)" />
+                            </td>
+                            <td class="form_label required">
+                                <label>手机号码：</label>
+                            </td>
+                            <td>
+                                <input class="nui-textbox" id="mobile" name="mobile" width="100%" onvaluechanged="onChanged(this.id)" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="form_label">
+                                <label>性别：</label>
+                            </td>
+                            <td>
+                                <input class="nui-combobox" data="[{value:'0',text:'男',},{value:'1',text:'女'},]" textField="text" valueField="value" name="sex"
+                                    value="0" />
+                            </td>
+                            <td class="form_label ">
+                                <label>客户简称：</label>
+                            </td>
+                            <td>
+                                <input class="nui-textbox" id="shortName" name="shortName" onValuechanged="processMobile(this.value)" width="100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="form_label">
+                                <label>生日类型：</label>
+                            </td>
+                            <td>
+                                <input class="nui-combobox" data="[{value:'0',text:'农历',},{value:'1',text:'阳历'},]" textField="text" valueField="value" name="birthdayType"
+                                    value="0" />
+                            </td>
+                            <td class="form_label ">
+                                <label>生日日期：</label>
+                            </td>
+                            <td>
+                                <input name="birthday" allowInput="false" class="nui-datepicker" width="100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="form_label">
+                                <label>备注：</label>
+                            </td>
+                            <td colspan="3">
+                                <input class="nui-textbox" name="remark" width="100%" />
+                            </td>
+                        </tr>
+                    </table> 
+        </div>
+        </fieldset>
         <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;">
             <legend>基本信息</legend>
             <div id="editForm" style="padding:5px;">
@@ -50,33 +110,24 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="width:80px;"align="right">品牌：</td>
-                        <td style="width:150px;">
-                            <input class="nui-textbox" id="carBrandId" name="carBrandId" width="100%" allowInput="false"/>                    
-                        </td>
+
                         <td style="width:80px;"align="right">车型：</td>
                         <td style="width:150px;">
                             <input class="nui-textbox" id="carModel" name="carModel" width="100%" allowInput="false"/>        
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width:80px;"align="right">车系：</td>
-                        <td style="width:150px;">
-                            <input class="nui-textbox" id="carBrandId" name="carBrandId" width="100%" allowInput="false"/>     
                         </td>
                         <td style="width:80px;"align="right">发动机号：</td>
                         <td style="width:150px;">
                             <input class="nui-textbox" id="engineNo" name="engineNo" width="100%" allowInput="false"/>
                         </td>
                     </tr>
-                    <tr>
+<!--                     <tr>
                         <td style="width:80px;"align="right">车辆颜色：</td>
                         <td style="width:150px;">
                             <input class="nui-textbox" id="color" name="color" width="100%" allowInput="false"/>
                         </td>
                         <td></td>
                         <td></td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td style="width:80px;"align="right">注册时间：</td>
                         <td style="width:150px;">
@@ -113,7 +164,7 @@
                 </table>
             </div>
         </fieldset>
-        <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:70%;">
+        <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:40%;">
             <legend>保险</legend>
             <div id="editForm3" style="padding:5px;">
                 
@@ -128,16 +179,7 @@
                             <input class="nui-datepicker" name="annualInspectionDate" width="100%" allowInput="false"/>
                         </td>
                     </tr>
-                    <tr>
-                        <td style="width:80px;"align="right">交强险保险公司：</td>
-                        <td style="width:150px;">
-                            <input class="nui-textbox" name="" width="100%" allowInput="false"/>
-                        </td>
-                        <td style="width:80px;"align="right">商业险公司名称：</td>
-                        <td style="width:150px;">
-                            <input class="nui-textbox" name="" width="100%" allowInput="false"/>
-                        </td>
-                    </tr>
+
                     <tr>
                         <td style="width:80px;"align="right">交强险保单号：</td>
                         <td style="width:150px;">
@@ -148,107 +190,18 @@
                             <input class="nui-textbox" name="annualInspectionNo" width="100%" allowInput="false"/>
                         </td>
                     </tr>
-                    <tr>
-                        <td style="width:80px;"align="right">交强险销售人员：</td>
-                        <td style="width:150px;">
-                            <input class="nui-textbox" name="" width="100%" allowInput="false"/>
-                        </td>
-                        <td style="width:80px;"align="right">商业险销售人员：</td>
-                        <td style="width:150px;">
-                            <input class="nui-textbox" name="" width="100%" allowInput="false"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width:80px;"align="right">保险备注:</td>
-                        <td style="width:150px;" colspan="3">
-                            <input class="nui-textbox" name="" width="100%" allowInput="false"/>
-                        </td>
-                    </tr>
+
+
                 </table>
             </div>
         </fieldset>
         </div>
 
-    	 <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:50%;">
-    	 <legend>客户信息</legend>
-        <div id="editForm4" style="padding:5px;">
-        
-            <table style="width:100%;" border="0" cellspacing="0" cellpadding="2px">
-                <tr>
-                    <td style="width:80px;"align="right">姓名：</td>
-                    <td style="width:150px;">
-                        <input class="nui-textbox" name="guestFullName" width="100%"allowInput="false"/>
-                    </td>
-                    <td style="width:80px;"align="right">性别：</td>
-                    <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"allowInput="false"/>
-                    </td>
-                    <td style="width:80px;"align="right">客户来源：</td>
-                    <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"allowInput="false"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width:80px;"align="right">手机号：</td>
-                    <td style="width:150px;">
-                        <input class="nui-textbox" name="guestMobile" width="100%"allowInput="false"/>
-                    </td>
-                    <td style="width:80px;"align="right">生日：</td>
-                    <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"allowInput="false"/>
-                    </td>
-                    <td style="width:80px;"align="right">服务顾问：</td>
-                    <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"allowInput="false"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width:80px;"align="right">客户单位：</td>
-                    <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"allowInput="false"/>
-                    </td>
-                    <td style="width:80px;"align="right">积分：</td>
-                    <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"allowInput="false"/>
-                    </td>
-                    <td style="width:80px;"align="right">挂账：</td>
-                    <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"allowInput="false"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width:80px;"align="right">客户分组：</td>
-                    <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"allowInput="false"/>
-                    </td>
-                    <td style="width:80px;"align="right">地址：</td>
-                    <td style="width:150px;" colspan="3">
-                        <input class="nui-textbox" name="addr" width="100%"allowInput="false"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width:80px;"align="right">资料照片:</td>
-                    <td style="width:150px;" colspan="5">
-                        <input class="nui-textbox" name="" width="100%"allowInput="false"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width:80px;"align="right">上次消费时间：</td>
-                    <td style="width:150px;">
-                        <input class="nui-textbox" name="" width="100%"allowInput="false"/>
-                    </td>
-                    <td style="width:80px;"align="right">累计消费：</td>
-                    <td style="width:150px;" colspan="3">
-                        <input class="nui-textbox" name="" width="100%"allowInput="false"/>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        </fieldset>
+    	 
         <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;">
             <legend>计次卡</legend>
-                 <div id="grid1" class="nui-datagrid" style="width:100%;height:190px;" selectOnLoad="true" showPager="true" pageSize="50"
-            totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="">
+                 <div id="grid1" class="nui-datagrid" style="width:100%;height:190px;" selectOnLoad="true"  
+            totalField="page.count"  dataField="data" onrowdblclick="" allowCellSelect="true" url="">
                     <div property="columns">
                           <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
 		                  <div field="prdtType" name="prdtType" width="50" headerAlign="center" header="产品类别"></div>
@@ -261,8 +214,8 @@
 
         <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;height:50%;">
             <legend>储值卡</legend>
-            <div id="grid2" class="nui-datagrid" style="width:100%;height:190px;" selectOnLoad="true" showPager="true" pageSize="50"
-                totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="">
+            <div id="grid2" class="nui-datagrid" style="width:100%;height:190px;" selectOnLoad="true" showPager="true" 
+                totalField="page.count"  dataField="data" onrowdblclick="" allowCellSelect="true" url="">
                 <div property="columns">
                     <div field="cardName" name="cardName" width="100" headerAlign="center" header="卡名称"></div>
                     <div field="balaAmt" name="balaAmt" width="50" headerAlign="center" header="余额"></div>
@@ -275,8 +228,8 @@
 
      <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;height:50%;">
       <legend>服务记录</legend>
-        <div id="mainGrid1" class="nui-datagrid" style="width:100%;height:190px;" selectOnLoad="true" showPager="true" pageSize="50"
-            totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick="" allowCellSelect="true" url="">
+        <div id="mainGrid1" class="nui-datagrid" style="width:100%;height:190px;" selectOnLoad="true" showPager="true" 
+            totalField="page.count"  dataField="data" onrowdblclick="" allowCellSelect="true" url="">
             <div property="columns">
                 	<div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌"></div>
 	                <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>

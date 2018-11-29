@@ -1,5 +1,6 @@
 var investForm = null;
 var baseUrl = apiPath + crmApi + "/";
+var hash = [{id:1,text:"潜在客户"},{id:2,text: "回访来厂"}, {id:3,text:"流失回厂"}];
 $(document).ready(function(){
 	investForm = new nui.Form("#investForm");
 	

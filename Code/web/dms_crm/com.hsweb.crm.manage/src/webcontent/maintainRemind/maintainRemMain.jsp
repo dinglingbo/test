@@ -36,11 +36,11 @@ pageEncoding="UTF-8" session="false" %>
         <a class="nui-button" plain="true" onclick="onSearch()" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;提醒</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
 		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="addRow()"><span class="fa fa-wrench fa-lg"></span>&nbsp;预约</a>
 		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="remindDetail()"><span class="fa fa-list fa-lg"></span>&nbsp;跟踪明细</a>
 		<a class="nui-button" plain="true" iconCls="" plain="false" onclick="checkMtRecord()"><span class="fa fa-search fa-lg"></span>&nbsp;查看保养提醒</a>
-                <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a>
+        <!-- <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a> -->
     </div>
 
                 <div class="nui-fit">
@@ -52,12 +52,13 @@ pageEncoding="UTF-8" session="false" %>
 
                     <div property="columns">
                         <div type="indexcolumn" width="30">序号</div>
+                        <div field="serviceCode" width="120" headerAlign="center" align="center">工单号</div>
                         <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
                         <div field="carModel" width="170" headerAlign="center"align="center">车型</div>
                         <div field="guestName" width="70" headerAlign="center"align="center">客户名称</div>
                         <div field="leaveDays" width="70" headerAlign="center"align="center">离厂天数</div>
                         <div field="finalRemindDay" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后提醒时间</div>
-                        <div field="chainComeTimes" width="70" headerAlign="center"align="center">连锁次数</div>
+                        <div field="chainComeTimes" width="90" headerAlign="center"align="center">连锁来厂次数</div>
                         <div field="lastComeDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后进厂时间</div>
                         <div field="firstComeDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">首次来厂时间</div>
                         <div field="lastLeaveDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后离厂时间</div>

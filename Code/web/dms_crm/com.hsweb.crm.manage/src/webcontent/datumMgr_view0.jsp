@@ -82,7 +82,7 @@ pageEncoding="UTF-8" session="false" %>
             nullItemText="请选择..."/>
         -->
         <a class="nui-button"  plain="true" onclick="query(0)" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-        <a class="nui-button"  plain="true" onclick="" id="" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;高级查询</a>
+        <a class="nui-button"  plain="true" onclick="" id="" enabled="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;高级查询</a>
         <li class="separator"></li>
         <a class="nui-button"  plain="true" onclick="updateField('visitStatus', '060701')" id="add" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;设为继续跟踪</a>
         <a class="nui-button"  plain="true" onclick="updateField('visitStatus', '060702')" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;设为结束跟踪</a>

@@ -120,7 +120,7 @@ function clearQueryForm(){
 function newClient(){
     mini.open({
         url: webPath + contextPath + "/com.hsweb.crm.manage.clientInfo_edit.flow?token="+ token,
-        title: "新增客户", width: 520, height: 550,
+        title: "新增客户资料", width: 520, height: 550,
         onload: function () { 
             var iframe = this.getIFrameEl();
             //var data = { action: "edit", id: row.id };
@@ -141,7 +141,7 @@ function editClient(){
     }
     mini.open({
         url: webPath + contextPath + "/com.hsweb.crm.manage.clientInfo_edit.flow?token="+ token,
-        title: "修改客户", width: 520, height: 550,
+        title: "修改客户资料", width: 520, height: 550,
         onload: function () { 
             var iframe = this.getIFrameEl();
             //var data = { action: "edit", id: row.id };
@@ -217,7 +217,7 @@ function telInfo(e){
     }
     nui.open({
         url: webPath + contextPath  + "/manage/telTrack_info.jsp?token="+token,
-        title: "跟踪信息", width: 570, height: 550,
+        title: "电话跟踪", width: 570, height: 550,
         onload: function () {
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setScoutForm(data);

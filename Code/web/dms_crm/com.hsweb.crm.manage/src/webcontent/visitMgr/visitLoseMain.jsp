@@ -44,7 +44,7 @@ pageEncoding="UTF-8" session="false" %>
         <span class="separator"></span>
         <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="visit()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;回访</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a> -->
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-phone-square fa-lg"></span>&nbsp;电话回访</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>

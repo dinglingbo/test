@@ -417,7 +417,7 @@
                                     <div field="annualVerificationDueDate" allowSort="true" align="left" headerAlign="center" width="">
                                         年审到期
                                     </div>
-                                    <div field="insureCompCode" allowSort="true" align="left" headerAlign="center" width="">
+                                    <div field="insureCompName" allowSort="true" align="left" headerAlign="center" width="">
                                         保险公司
                                     </div>
                                     <div field="annualInspectionNo" allowSort="true" align="left" headerAlign="center" width="">

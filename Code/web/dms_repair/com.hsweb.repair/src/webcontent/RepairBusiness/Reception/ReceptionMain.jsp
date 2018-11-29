@@ -100,7 +100,7 @@
                   <div field="status" name="status" width="40px" headerAlign="center" header="进程"></div>
                   <div field="carNo" name="carNo" width="80px" headerAlign="center" header="车牌"></div>
                   <div field="carModel" name="carModel" width="200px" headerAlign="center"  header="品牌/车型"></div>
-                  <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
+                  <div field="carVin" name="carVin" width="135px" headerAlign="center" header="车架号(VIN)"></div>
                   <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>
                   <div field="guestMobile" name="guestMobile" width="100px" headerAlign="center" header="客户手机"></div>
                   <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>

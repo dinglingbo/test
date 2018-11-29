@@ -111,14 +111,14 @@
                             <label>预约类型：</label>
                         </td>
                         <td>
-                            <input class="nui-combobox" name="prebookCategory" id="prebookCategory" textField="name" valueField="id" required="true"/>
+                            <input class="nui-combobox" name="prebookCategory" id="prebookCategory" textField="name" valueField="id" />
                         </td>
 
                                                 <td class="form_label">
                             <label>品牌：</label>
                         </td>
                         <td>
-                            <input class="nui-combobox" id="carBrandId" name="carBrandId" allowInput="true" valueField="id" textField="name" onvaluechanged="onCarBrandChange" required="true" />
+                            <input class="nui-combobox" id="carBrandId" name="carBrandId" allowInput="true" valueField="id" textField="name" onvaluechanged="onCarBrandChange"  />
                         </td>
                         <td class="form_label">
                             <label>车系：</label>

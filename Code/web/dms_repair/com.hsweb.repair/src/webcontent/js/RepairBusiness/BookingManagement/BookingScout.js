@@ -66,19 +66,19 @@ function onOk() {
                 window.CloseOwnerWindow("ok");
             } else {
                 nui.unmask();
-                nui.alert(data.errMsg || "保存失败");
+                showMsg(data.errMsg || "保存失败","E");
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
             nui.unmask();
-            console.log(jqXHR.responseText);
-            nui.alert("网络出错，保存失败");           
+            console.log(jqXHR.responseText);   
+            showMsg(data.errMsg || "网络出错，保存失败","E");
         }
     });
 }
 
 function onClose() {
-	window.CloseOwnerWindow("ok");	
+	window.CloseOwnerWindow("onClose");	
 }
 	
 //只允许选择今日之后的日期

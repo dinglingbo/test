@@ -69,7 +69,7 @@ $(document).ready(function ()
                 break;
         }
     });  
-    quickSearch(0);
+    quickSearch(5);
     mainGrid.on("rowdblclick",function(e){
     	editSell();
 	});
@@ -107,7 +107,7 @@ function onShowRowDetail(e) {
 }
 function quickSearch(type) {
     var params = {};
-    var queryname = "草稿";
+    var queryname = "全部";
     switch (type) {
         case 0:
             params.status = 0;  //制单
@@ -132,6 +132,11 @@ function quickSearch(type) {
             queryname = "已结算";
             //document.getElementById("advancedMore").style.display='block';
             break;
+        case 5:
+            params.all = 1;
+            queryname = "全部";
+            //document.getElementById("advancedMore").style.display='block';
+            break;
         default:
             break;
     }
@@ -142,12 +147,6 @@ function quickSearch(type) {
 function onSearch()
 {
     var params = {};
-   // var value = nui.get("carNo-search").getValue()||"";
-    //value = value.replace(/\s+/g, "");
-   /* if(!value){
-        showMsg("请输入查询条件!","W");
-        return;
-    }*/
     var menunamestatus = nui.get("menunamestatus");
     var title = menunamestatus.getText();
     switch (title) {
@@ -167,15 +166,20 @@ function onSearch()
         params.status = 2;
         params.isSettle = 1;
         break;
+    case "全部":
+    	params.all = 1;
+        break;
     default:
         break;
-}
+ }
     doSearch(params);
 }
 function doSearch(params) {
     var gsparams = getSearchParam();
-    gsparams.status = params.status;
-    gsparams.isSettle = params.isSettle;
+    if(!params.all){
+    	gsparams.status = params.status;
+        gsparams.isSettle = params.isSettle;
+    }   
     //表示退货单
     gsparams.billTypeId = 5;
     mainGrid.load({
@@ -186,7 +190,7 @@ function doSearch(params) {
 function getSearchParam() {
     var params = {};
     params.sRecordDate = beginDateEl.getValue();
-    params.eRecordDate = endDateEl.getValue();
+    params.eRecordDate = addDate(endDateEl.getValue(), 1); 
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){

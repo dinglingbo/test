@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
-<%@include file="/common/common.jsp"%>
 <%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,7 +23,8 @@ pageEncoding="UTF-8" session="false" %>
                 <td style="width:100%;">
 
                     <a class="nui-button" onclick="save()" plain="true" style="width: ;"><span class="fa fa-commenting fa-lg"></span>&nbsp;发送</a>
-                     <a class="nui-button" onclick="" plain="true" style="width: ;"><span class="fa fa-navicon fa-lg"></span>&nbsp;选择短信模板</a>
+                    <a class="nui-button" onclick="selectModel()" plain="true" style="width: ;"><span class="fa fa-navicon fa-lg"></span>&nbsp;选择短信模板</a>
+                    <a class="nui-button" onclick="onClear()" plain="true" style="width: ;"><span class="fa fa-trash fa-lg"></span>&nbsp;清空内容</a>
                     <a class="nui-button" onclick="onClose()" plain="true"  style="width: ;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
@@ -42,7 +42,7 @@ pageEncoding="UTF-8" session="false" %>
             <td style="width: "></td>
         </tr>  -->
         <tr class="htr">
-           
+
             <td  colspan="6">
                 <input id="visitContent" name="visitContent" class="nui-textarea textboxWidth" style="width: 100%;height:200px;"
                 emptyText="请输入短信内容" required="true">
@@ -55,29 +55,65 @@ pageEncoding="UTF-8" session="false" %>
 
 
 <script type="text/javascript">
-   nui.parse();
-var form1 = new nui.Form("#form1");
+    nui.parse();
+    var webBaseUrl = webPath + contextPath + "/";
+    var form1 = new nui.Form("#form1");
+    var visitContent = nui.get("visitContent");
 
-function save(){
-    //验证
-    if(!formValidate(form1)){
-      showMsg("请输入短信内容!","W");
-      return ;
-  }
 
+    visitContent.focus();
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;//38向上 40向下
+
+        if((keyCode==27)) { //ESC
+            onClose();
+        }
+    };
+
+    function save(){
+        //验证
+        if(!formValidate(form1)){
+            showMsg("请输入短信内容!","W");
+            return ;
+        }
+    }
+
+function onClear(){
+    visitContent.setValue(null);
 }
 
-   function CloseWindow(action) {
-    if (action == "close") {
-    } else if (window.CloseOwnerWindow)
-    return window.CloseOwnerWindow(action);
-    else
-        return window.close();
-}
 
-function onClose(){
-    window.CloseOwnerWindow();  
-}
+    function selectModel() {
+        nui.open({
+            url: webPath + contextPath + "/com.hsweb.crm.basic.smsTpl.flow?token="+token,
+            title: "选择短信模板", width: 1000, height: 400,
+            onload: function () {
+                var iframe = this.getIFrameEl();
+                iframe.contentWindow.setData();
+            },
+            ondestroy: function (action) {
+                if(action == "ok"){
+                    var iframe = this.getIFrameEl();
+                    var data = iframe.contentWindow.getData();
+                    visitContent.setValue(data.content);
+                }
+            }
+        });
+    }
+
+
+    function CloseWindow(action) {
+        if (action == "close") {
+        } else if (window.CloseOwnerWindow)
+        return window.CloseOwnerWindow(action);
+        else
+            return window.close();
+    }
+
+    function onClose(){
+        window.CloseOwnerWindow();  
+    }
 </script>
 </body>
 </html>

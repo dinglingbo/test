@@ -72,9 +72,9 @@
         <isNotNull property="mobile">
             AND mobile = #mobile#
         </isNotNull>
-        
+         
         <isNotNull property="nextScoutDate">
-            AND next_scout_date &lt;= #nextScoutDate#
+            AND next_scout_date = #nextScoutDate#
         </isNotNull>
         
         <isNotNull property="carBrandId">

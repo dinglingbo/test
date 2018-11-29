@@ -8,7 +8,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
      <script src="<%=webPath + contextPath%>/manage/js/complainMgr.js?v=1.0.3"></script>
 </head>
-<body>
+<body> 
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
         <table class="table">
             <tr>

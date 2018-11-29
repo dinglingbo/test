@@ -55,7 +55,7 @@
                     onvaluechanged="query()"
                     allowInput="false"
                     valueFromSelect="true"
-                    showNullItem="false"
+                    showNullItem="true"
                     nullItemText="请选择..."/>
                 <input class="nui-combobox"
 	                  id="member"
@@ -90,9 +90,11 @@
                     dateFormat="yyyy-MM-dd"
                     emptyText="请选择日期" alwaysView="true"/>
                 <a class="nui-button"  plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                <a class="nui-button"  plain="true" onclick="telInfo()" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;电话跟踪</a>
-                <a class="nui-button"  plain="true" onclick="sendInfo()" id="add" enabled="true"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
+                <li class="separator"></li>
+                <a class="nui-button"  plain="true" onclick="telInfo()" id="" enabled="true"><span class="fa fa-phone fa-lg"></span>&nbsp;电话跟踪</a>
+                <a class="nui-button"  plain="true" onclick="sendInfo()" id="add" enabled="true"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
                 <a class="nui-button"  plain="true" onclick="addRow()" id="" enabled="true"><span class="fa fa-wrench fa-lg"></span>&nbsp;预约登记</a>
+                <li class="separator"></li>
                 <a class="nui-button"  plain="true" onclick="newClient()" id="edit" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增客户资料</a>
                 <a class="nui-button"  plain="true" onclick="editClient()" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改客户资料</a>
             </td>

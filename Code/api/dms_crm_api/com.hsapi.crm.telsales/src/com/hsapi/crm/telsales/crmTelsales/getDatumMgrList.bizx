@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getDatumMgrList" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="数据资料查询：&#xD;&#xA;参数：p，page" title="Guine&#x9;18-3-23 上午9:11">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="数据资料查询：&#xD;&#xA;参数：p，page&#xD;&#xA;&#xD;&#xA;com.hsapi.crm.data.crmTelsales.getDatumMgrList" title="Guine&#x9;18-3-23 上午9:11">
     <location x="45" y="21"/>
-    <size height="100" width="247"/>
+    <size height="100" width="451"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="link0" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" type="transition">
       <sourceNode>start0</sourceNode>

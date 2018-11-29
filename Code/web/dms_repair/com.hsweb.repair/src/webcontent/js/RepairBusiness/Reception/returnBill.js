@@ -1106,6 +1106,11 @@ function saveBatch(){
         showMsg("工单已结算!","W");
         return;
     }
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '保存中...'
+   });
 	//保存工单
 	if(!main.id){
 	 var data = billForm.getData();
@@ -1132,6 +1137,7 @@ function saveBatch(){
 			contentType : 'text/json',
 			success : function(text) {
 				var returnJson = nui.decode(text);
+				nui.unmask(document.body);
 				if (returnJson.errCode == "S") {
 					showMsg("保存成功");
 					data = returnJson.data;
@@ -1184,9 +1190,8 @@ function saveBatch(){
 					showMsg(returnJson.errMsg);
 				}
 			}
-		});
-	    
-	   	}else{
+		});    
+    }else{
 		var maintain = billForm.getData();
 		var addSellPart = nui.get("rpsPartGrid").getData();
 		var sellPartAdd = rpsPartGrid.getChanges("added");
@@ -1210,6 +1215,7 @@ function saveBatch(){
 			contentType : 'text/json',
 			success : function(text) {
 				var returnJson = nui.decode(text);
+				nui.unmask(document.body);
 				if (returnJson.errCode == "S") {
 					var p3 = {
                             interType: "part",
@@ -1257,6 +1263,11 @@ function finish(){
 		showMsg("工单已归库,不能审核!","W");
         return;
 	}
+	nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '审核中...'
+    });
 	var maintain = billForm.getData();
 	var sellPartAdd = rpsPartGrid.getChanges("added");
 	var sellPartUpdate = rpsPartGrid.getChanges("modified");
@@ -1283,6 +1294,7 @@ function finish(){
 		contentType : 'text/json',
 		success : function(text) {
 			var returnJson = nui.decode(text);
+			nui.unmask(document.body);
 			if (returnJson.errCode == "S") {
 				main.status = 1;
 				billForm.setData(main);

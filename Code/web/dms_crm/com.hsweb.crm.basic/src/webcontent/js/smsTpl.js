@@ -11,12 +11,22 @@ $(document).ready(function(v){
     	e.data.token = token;
     });
     query();
+
+    nui.get("content").focus();
+    document.onkeyup=function(event){
+        var e=event||window.event;
+    var keyCode=e.keyCode||e.which;//38向上 40向下
+
+    if((keyCode==27)) { //ESC
+        onClose();
+    }
+};
 });
 
 /*
  *查询
  **/
-function query(){
+ function query(){
     var data = queryForm.getData();
     var params = {};
     params.p = data;
@@ -57,7 +67,7 @@ function editWin(title, data){
     data.artType = tree1.getData();
     mini.open({
         url: webPath + crmDomain + "/com.hsweb.crm.basic.smsTpl_edit.flow",
-        title: title, width: 500, height: 420,
+        title: title, width: 500, height: 340,
         onload: function () {
             var iframe = this.getIFrameEl();
             //var data = { action: "edit", id: row.id };
@@ -78,4 +88,41 @@ function setTypeName(e){
         if (tmp.customid == e.value) return tmp.name;
     }
     return "";
+}
+
+function setData(params){
+    $("#span1").show();
+    dgGrid.showColumn("check");
+}
+
+
+function getData(){
+    var row = dgGrid.getSelected();
+    if(!row){
+        showMsg('请选择一条短信','W');
+        return;
+    }
+    return row;
+
+}
+
+function save(){
+    var row = dgGrid.getData();
+    if(!row){
+        showMsg('请选择一条短信','W');
+        return;
+    }
+    CloseWindow("ok");
+}
+
+function CloseWindow(action) {
+    if (action == "close") {
+    } else if (window.CloseOwnerWindow)
+    return window.CloseOwnerWindow(action);
+    else
+        return window.close();
+}
+
+function onClose(){
+    window.CloseOwnerWindow();  
 }

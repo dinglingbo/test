@@ -71,25 +71,29 @@
                         
             <!--本日来厂-->
             <isEqual  property="todayEnter" compareValue="1">
-					AND date(c.last_come_date) = date(NOW())	
+					<!-- AND date(c.last_come_date) = date(NOW())-->
+					 AND c.last_come_date &gt;= date_format(DATE_SUB(curdate(),INTERVAL 0 DAY),'%Y-%m-%d %H:%i:%s')  
 			</isEqual>
 			   <!--昨日来厂-->
-            <isEqual prepend="and" property="yesterdayEnter" compareValue="1">  
-                (date_format(c.last_come_date,'%Y-%m-%d')=date_format(DATE_SUB(now(),INTERVAL 1 DAY),'%Y-%m-%d'))
+            <isEqual  property="yesterdayEnter" compareValue="1">  
+                    AND c.last_come_date &gt;= date_format(DATE_SUB(curdate(),INTERVAL 1 DAY),'%Y-%m-%d %H:%i:%s')  
+                    AND c.last_come_date &lt; date_format(DATE_SUB(curdate(),INTERVAL 0 DAY),'%Y-%m-%d %H:%i:%s')
             </isEqual>
              <!--本日新客户-->
             <isEqual  property="todayNew" compareValue="1">
-					AND date(c.last_come_date) = date(NOW())
-					AND	date_format(c.last_come_date,'%Y-%m-%d')=date_format(c.first_come_date,'%Y-%m-%d')
+					 AND c.last_come_date &gt;= date_format(DATE_SUB(curdate(),INTERVAL 0 DAY),'%Y-%m-%d %H:%i:%s')
+					 AND c.chain_come_times = 1
 			</isEqual>
 			  <!--本月新客户 --> 
             <isEqual property="thisMonthNew" compareValue="1"> 
-                AND (date_format(c.last_come_date,'%Y-%m')=date_format(now(),'%Y-%m'))
-                AND (date_format(c.last_come_date,'%Y-%m')=date_format(c.first_come_date,'%Y-%m'))
+                and c.last_leave_date  &gt;= date_format(DATE_ADD(curdate(),interval -day(curdate())+1 day),'%Y-%m-%d %H:%i:%s')  
+                and c.last_leave_date  &lt; date_format(date_add(curdate()-day(curdate())+1,interval 1 month),'%Y-%m-%d %H:%i:%s')
+                and c.chain_come_times = 1
             </isEqual>
             <!--本月所有来厂客户 --> 
-            <isEqual prepend="and" property="thisMonthEnter" compareValue="1"> 
-                (date_format(c.last_come_date,'%Y-%m')=date_format(now(),'%Y-%m'))
+            <isEqual  property="thisMonthEnter" compareValue="1"> 
+                and c.last_come_date  &gt;= date_format(DATE_ADD(curdate(),interval -day(curdate())+1 day),'%Y-%m-%d %H:%i:%s')  
+                and c.last_come_date  &lt; date_format(date_add(curdate()-day(curdate())+1,interval 1 month),'%Y-%m-%d %H:%i:%s')
             </isEqual>
             <!--最后来厂日期 -->
             <isNotEmpty prepend="and" property="lastEnterStart">  

@@ -1,22 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false" %>
-	
+pageEncoding="UTF-8" session="false" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
-  - Author(s): Guine
-  - Date: 2018-03-26 10:16:08
+    - Author(s): Guine
+    - Date: 2018-03-26 10:16:08
   - Description:
 -->
 <head>
-<title>短信模板</title>
+    <title>短信模板</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
     <script src="<%=crmDomain%>/basic/js/smsTpl.js?v=1.0" type="text/javascript"></script> 
 </head>
 <body>
 
-<div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
+  <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
@@ -30,6 +30,11 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="add" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增模板</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改模板</a>
+                <span id="span1" style="display: none;">
+                <span class="separator"></span>
+                <a class="nui-button" iconCls="" plain="true" onclick="save()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onClose()"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                </span>
             </td>
         </tr>
     </table>
@@ -41,72 +46,65 @@
         <div size="20%" showCollapseButton="false" style="border:0;">
             <div class="nui-fit">
                 <div title="短信类型" class="nui-panel"
-                     showHeader="true"
-                     showFooter="false"
-                     style="width:100%;height:100%;border: 0;">
-                    <ul id="tree1" class="nui-tree" 
-                        url="<%=apiPath + sysApi%>/com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130902000005&page/length=200&token=<%=token%>" 
-                        style="width:95%;height:95%;padding:5px;" 
-                        showTreeIcon="true" 
-                        dataField="data" 
-                        textField="name" 
-                        idField="customid" 
-                        resultAsTree="false" 
-                        parentField="dictid" 
-                        showTreeLines="true" 
-                        onNodedblclick="onNodeDbClick"
-                        allowDrag="true">
-                    </ul>
+                showHeader="true"
+                showFooter="false"
+                style="width:100%;height:100%;border: 0;">
+                <ul id="tree1" class="nui-tree" 
+                url="<%=apiPath + sysApi%>/com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130902000005&page/length=200&token=<%=token%>" 
+                style="width:95%;height:95%;padding:5px;" 
+                showTreeIcon="false" 
+                dataField="data" 
+                textField="name" 
+                idField="customid" 
+                resultAsTree="false" 
+                parentField="dictid" 
+                showTreeLines="true" 
+                onNodedblclick="onNodeDbClick"
+                allowDrag="true">
+            </ul>
+        </div>
+    </div>
+</div>
+<div showCollapseButton="false" style="border:0;">
+    <div class="nui-fit">
+        <div title="" class="nui-panel" showHeader="false"showFooter="false"style="width:100%;height:100%;border: 0;">
+            <div id="dgGrid" class="nui-datagrid" style="width:100%;height:100%;"
+            showPager="true"
+            totalField="page.count"
+            pageSize="50" sizeList=[20,50,100] 
+            selectOnLoad="true"
+            ondrawcell=""
+            onrowdblclick=""
+            dataField="rs"
+            sortMode="client"
+            allowcellwrap="true"
+            idField="id"
+            url="<%=apiPath + crmApi%>/com.hsapi.crm.basic.crmBasic.getSmsList.biz.ext"
+            showSummaryRow="true">
+            <div property="columns">
+                <div type="checkcolumn"field="check"name="check" width="10" visible="false"></div>
+                <div type="indexcolumn" width="15" summaryType="count" headerAlign="center" >序号</div>
+                <div headerAlign="center">基本信息
+                    <div property="columns">
+                        <div field="id" visible=false>ID</div>
+                        <div field="typeId" width="50" headerAlign="center" renderer="setTypeName" allowSort=false>类别</div>
+                        <div field="charCount" width="20" headerAlign="center" summaryType="" allowSort=false>字数</div>
+                    </div>
+                </div>
+                <div headerAlign="center">详细信息
+                  <div property="columns">
+                    <div field="content" width="150" headerAlign="center" summaryType="" allowSort=false>短信内容</div>
+                    <div field="source" width="30" headerAlign="center" summaryType="" allowSort=false>短信来源</div>
+                    <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>创建人</div>
+                    <div field="recordDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>创建日期</div>
                 </div>
             </div>
         </div>
-        <div showCollapseButton="false" style="border:0;">
-            <div class="nui-fit">
-                <div title="" class="nui-panel"
-                     showHeader="false"
-                     showFooter="false"
-                     style="width:100%;height:100%;border: 0;">
-                    <div id="dgGrid" class="nui-datagrid" style="width:100%;height:100%;"
-                         showPager="true"
-                         totalField="page.count"
-                         pageSize="50" sizeList=[20,50,100] 
-                         selectOnLoad="true"
-                         ondrawcell=""
-                         onrowdblclick=""
-                         dataField="rs"
-                         sortMode="client"
-                         allowcellwrap="true"
-                         idField="id"
-                         url="<%=apiPath + crmApi%>/com.hsapi.crm.basic.crmBasic.getSmsList.biz.ext"
-                         showSummaryRow="true">
-                        <div property="columns">
-                            <div type="indexcolumn" width="20" summaryType="count" headerAlign="center" >序号</div>
-                            <div headerAlign="center">基本信息
-                                <div property="columns">
-                                    <div field="id" visible=false>ID</div>
-                                    <div field="typeId" width="50" headerAlign="center" renderer="setTypeName" allowSort=false>类别</div>
-                                    <div field="charCount" width="30" headerAlign="center" summaryType="" allowSort=false>字数</div>
-                                </div>
-                            </div>
-                            <div headerAlign="center">详细信息
-                                <div property="columns">
-                                    <div field="content" width="80" headerAlign="center" summaryType="" allowSort=false>短信内容</div>
-                                    <div field="source" width="30" headerAlign="center" summaryType="" allowSort=false>短信来源</div>
-                                    <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>创建人</div>
-                                    <div field="recordDate" width="30" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>创建日期</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--footer
-                    <div property="footer">
-                        <input class='nui-textbox' value='' id="leftGridCount" readonly="true" style='vertical-align:middle;'/>
-                    </div>
-                    -->
-                </div>
-            </div>
-        </div>
-    </div><!--splitter-->
+    </div>
+</div>
+</div>
+</div>
+</div><!--splitter-->
 </div>
 </body>
 </html>

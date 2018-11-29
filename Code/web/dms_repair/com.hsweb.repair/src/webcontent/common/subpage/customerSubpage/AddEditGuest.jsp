@@ -11,7 +11,7 @@
 -->
 <head>
     <title>新增客户档案</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.16"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.17"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -417,7 +417,7 @@
                                     <div field="annualVerificationDueDate" allowSort="true" align="left" headerAlign="center" width="">
                                         年审到期
                                     </div>
-                                    <div field="insureCompCode" allowSort="true" align="left" headerAlign="center" width="">
+                                    <div field="insureCompName" allowSort="true" align="left" headerAlign="center" width="">
                                         保险公司
                                     </div>
                                     <div field="annualInspectionNo" allowSort="true" align="left" headerAlign="center" width="">

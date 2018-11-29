@@ -37,7 +37,7 @@
 			wb_common.com_guest a , wb_repair.rpb_guest_agent_extend b
 			
 		WHERE
-			(a.orgid = 0 or a.orgid = #orgid#)
+			a.orgid = #orgid#
 			and a.guest_type = '01020104'
 			and a.id = b.guest_id
 		<dynamic>

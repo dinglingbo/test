@@ -723,6 +723,7 @@
 				a.prev_advisor_name as preAdvisorName,
 				c.mobile as mobile,
 				e.id as serviceId,
+				e.service_code serviceCode,
 				b.car_model_id as carModelId,
 				b.car_brand_id as carBrandId
 			FROM
@@ -731,7 +732,7 @@
 			INNER JOIN wb_common.com_guest c on c.id=b.guest_id
 			left JOIN rpb_remind_param d on b.orgid=d.orgid
 			LEFT JOIN (
-			SELECT * FROM(SELECT id,car_id from rps_maintain  order by record_date desc)p GROUP  BY p.car_id 
+			SELECT * FROM(SELECT id,car_id,service_code from rps_maintain  order by record_date desc)p GROUP  BY p.car_id 
 			) e on b.id=e.car_id
 			
 			WHERE 1=1

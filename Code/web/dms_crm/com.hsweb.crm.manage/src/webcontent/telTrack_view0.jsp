@@ -55,7 +55,7 @@
                     onvaluechanged="query()"
                     allowInput="false"
                     valueFromSelect="true"
-                    showNullItem="false"
+                    showNullItem="true"
                     nullItemText="请选择..."/>
                 <input class="nui-combobox"
 	                  id="member"

@@ -193,7 +193,7 @@ function sendInfo(){
         title: "发送短信", width: 655, height: 280,
         onload: function () {
             var iframe = this.getIFrameEl();
-            iframe.contentWindow.setData();
+            //iframe.contentWindow.setData();
         },
         ondestroy: function (action) {
             //重新加载

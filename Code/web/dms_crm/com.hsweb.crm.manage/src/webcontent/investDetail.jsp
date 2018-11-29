@@ -50,7 +50,7 @@
             </tr>      
             <tr>
                 <td style="width:70px;text-align:right;"><span>来厂类型:</span></td>
-				<td><input id="carType" name="carType" style="width:300px;" class="nui-combobox"/></td>
+				<td><input id="carType" name="carType" style="width:300px;" class="nui-combobox" data="hash" valueField="id" textField="text"/></td>
             </tr>
             <tr>
                 <td style="width:70px;text-align:right;"><span>备注:</span></td>

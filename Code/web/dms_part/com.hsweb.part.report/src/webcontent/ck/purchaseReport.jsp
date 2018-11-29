@@ -16,8 +16,7 @@ pageEncoding="UTF-8" session="false" %>
   <link href="<%=request.getContextPath()%>/cw/TextIndex.css" rel="stylesheet" type="text/css" />
   <script type="text/javascript" src="<%=request.getContextPath()%>/common/nui/echarts.min.js"></script>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <%@include file="/common/sysCommon.jsp"%>
-  <%@include file="/common/commonCloudPart.jsp"%>
+  <%@include file="/common/commonPart.jsp"%>
   <style type="text/css">          
 
 </style>

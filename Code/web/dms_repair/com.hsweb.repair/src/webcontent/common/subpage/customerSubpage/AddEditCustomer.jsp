@@ -35,10 +35,20 @@ table {
      borderStyle="border:0;"
      handlerSize="0"
      allowResize="false">
-    <div size="200" showCollapseButton="false" style="border:0;">
+    <div size="220" showCollapseButton="false" style="border:0;">
         <div class="nui-panel" showToolbar="false" title="客户信息" showFooter="false"
              borderStyle="border:0;"
              style="width:100%;height:100%;">
+              <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width:100%;">
+                                <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                                <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             <div class="form" id="basicInfoForm">
                 <input class="nui-hidden" name="id"/>
                 <table class="nui-form-table" style="width:99%">
@@ -384,10 +394,10 @@ table {
                     </div>
                 </div>
             </div>
-            <div id="btnGroup" style="text-align:center;padding:10px;">
-                <a class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">保存</a>
-                <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a>
-            </div>
+<!--             <div id="btnGroup" style="text-align:center;padding:10px;"> -->
+<!--                 <a class="nui-button" onclick="onOk" style="width:60px;margin-right:20px;">保存</a> -->
+<!--                 <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a> -->
+<!--             </div> -->
         </div>
     </div>
 </div>

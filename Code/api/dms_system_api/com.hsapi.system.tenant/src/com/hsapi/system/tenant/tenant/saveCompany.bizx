@@ -108,7 +108,7 @@
       <process:to type="query">orgTemp/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">comd/shortName</process:from>
+      <process:from type="query" pattern="reference">comd/name</process:from>
       <process:to type="query">orgTemp/orgname</process:to>
     </process:copy>
   </nodes>

@@ -29,6 +29,11 @@ $(document).ready(function(v){
 			onCancel();
 		}
 	};
+        if (currRepairBillCmodelFlag == "1") {
+        nui.get("carModelInfo").disable();
+    } else {
+        nui.get("carModelInfo").enable();
+    }
 });
 
 function init(){
@@ -112,4 +117,30 @@ function setCharCount(){
     var charCount = nui.get("charCount");
     var txt = content.getInputText() || "";
     charCount.setValue(txt.length);
+}
+
+
+function carVinModel() {
+    var  vin = nui.get("vin").value;
+    if(vin){
+    getCarVinModel(vin, function (data) {
+        data = data || {};
+        if (data.errCode == "S") {
+            var carVinModel = data.data.SuitCar || []; //list[0];
+            carVinModel = carVinModel[0] || {};
+            carVinModel.vin = vin;
+            var carModelInfo = "品牌:" + carVinModel.carBrandName + "\n";
+            carModelInfo += "车型:" + carVinModel.carModelName + "\n";
+            carModelInfo += "车系:" + carVinModel.carLineName + "\n";
+            var name1 = carVinModel.grandParentName || "";
+            name1 = name1 ? (name1 + " ") : "";
+            var name2 = carVinModel.parentName || "";
+            name2 = name2 ? (name2 + " ") : "";
+            var name3 = carVinModel.name || "";
+            nui.get("carModelInfo").setValue(name1 + name2 + name3);
+        }
+    });
+    }else{
+        showMsg('请输入车架号','W');
+    }
 }

@@ -194,7 +194,7 @@
     </select>
     <!--getItem-->
     <select id="getItem" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT ItemID = a.ID, hsItemCode = 'hs' + ItemNameID, ItemNameID, b.TechType,  b.ServiceType, b.ItemKind, ItemName =  b.name,  ItemCode =  a.ItemCode,  Price = ItemPrice, AStandTime = ItemTime, 
+    	SELECT Top 50  ItemID = a.ID, hsItemCode = 'hs' + ItemNameID, ItemNameID, b.TechType,  b.ServiceType, b.ItemKind, ItemName =  b.name,  ItemCode =  a.ItemCode,  Price = ItemPrice, AStandTime = ItemTime, 
 		         AStandSum = A.Amt, Amt4S, FactoryName = NULL, TypeID = NULL, MakeTime = NULL, b.UseCount, a.Remark 
 		 FROM wbstandard.dbo.ST_ItemCarModel a WITH(NOLOCK) INNER JOIN wbstandard.dbo.ST_ItemNameStd b WITH(NOLOCK) ON a.ItemNameID = b.ID 
 		 WHERE a.CarModelID =  '00009402' 
@@ -219,7 +219,7 @@
 				AND pyCode like '%$pyCode$%'
 			</isNotNull>
         UNION ALL 
-       SELECT ItemID = a.ID, hsItemCode = 'hs' + ItemNameID, ItemNameID, b.TechType,  b.ServiceType, b.ItemKind, ItemName =  b.name,  ItemCode =  a.ItemCode,  Price = ItemPrice, AStandTime = ItemTime, 
+       SELECT Top 50 ItemID = a.ID, hsItemCode = 'hs' + ItemNameID, ItemNameID, b.TechType,  b.ServiceType, b.ItemKind, ItemName =  b.name,  ItemCode =  a.ItemCode,  Price = ItemPrice, AStandTime = ItemTime, 
 		         AStandSum = A.Amt, Amt4S, FactoryName = NULL, TypeID = NULL, MakeTime = NULL, b.UseCount, a.Remark 
 		 FROM wbstandard.dbo.ST_ItemCarModel a WITH(NOLOCK) INNER JOIN wbstandard.dbo.ST_ItemNameStd b WITH(NOLOCK) ON a.ItemNameID = b.ID 
 		 WHERE a.CarModelID =#carModelId#
@@ -262,6 +262,12 @@
 		WHERE a.ID = #id#
     </select>
     
+       <select id="getHotWord" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+        SELECT TOP 50 id = code, name  FROM wbstandard.dbo.ST_PartNameStd 
+	        WHERE 
+			TypeID = 0 		
+		ORDER BY UseCount DESC 
+    </select>
     
     <parameterMap class="java.util.HashMap" id="parameterMap">
         <parameter javaType="String" property="id"/>
@@ -280,11 +286,6 @@
 		ORDER BY code
     </select>
     
-       <select id="getHotWord" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-        SELECT TOP 50 id = code, name  FROM ST_PartNameStd 
-	        WHERE 
-			TypeID = 0 		
-		ORDER BY UseCount DESC 
-    </select>
+    
 
 </sqlMap>

@@ -10,7 +10,7 @@
 
 <head>
     <title>预约列表</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=2.1.3"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementList.js?v=2.1.5"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -71,11 +71,11 @@
 
                             <span class="separator"></span>
                             <label>车牌号：</label>
-                            <input class="nui-textbox" id="carNo" name="carNo" />
+                            <input class="nui-textbox" id="carNo" name="carNo" onenter="doSearch()"/>
                             <label>手机号：</label>
-                            <input class="nui-textbox" id="contactorTel" name="contactorTel" />
+                            <input class="nui-textbox" id="contactorTel" name="contactorTel" onenter="doSearch()"/>
                             <label >服务顾问：</label>
-                            <input class="nui-combobox" id="mtAdvisorList" name="mtAdvisorList" showNullItem="true" value="" textField="empName" valueField="empId"
+                            <input class="nui-combobox" id="mtAdvisorList" name="mtAdvisorList" showNullItem="true" value="" textField="empName" valueField="empId" onvalueChanged="doSearch()""
                             />
                             <label class="form_label">创建日期&nbsp;从：</label>
 	                        <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>

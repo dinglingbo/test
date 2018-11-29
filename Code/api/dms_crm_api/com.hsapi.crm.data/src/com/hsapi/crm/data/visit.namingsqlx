@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <select id="select_id" parameterMap="parameterMap" resultMap="resultMap"></select>
+    
+        <select id="queryVisitMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+            	SELECT
+			a.id AS id,
+			a.guest_id AS guestId,
+			a.service_code AS serviceCode,
+			a.enter_date AS enterDate,
+			c.full_name AS guestFullName,
+			c.short_name AS guestShortName,
+			b.car_model AS carModel,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			c.tel AS guestTel,
+			c.mobile AS guestMobile,
+			b.car_brand_id AS carBrandId,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.service_type_id AS serviceTypeId,
+			a.remark AS remark,
+			a.bill_type_id AS billTypeId,
+			d.`name` AS contactName,
+			d.mobile AS contactMobile,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			b.insure_comp_name AS insureCompName,
+			a.package_amt AS packageAmt,
+			a.is_check AS isCheck,
+			b.insure_no AS insureNo,
+			b.color AS color,
+			a.enter_kilometers AS enterKilometers,
+			c.addr AS guestAddr,
+			b.engine_no AS engineNo,
+			b.first_reg_date AS firstRegDate,
+			b.annual_verification_due_date AS annualVerificationDueDate,
+			b.insure_due_date AS insureDueDate,
+			b.annual_inspection_date AS annualInspectionDate,
+			b.annual_inspection_no AS annualInspectionNo,
+			a.part_amt AS partAmt,
+			a.out_date as outDate,
+			e.visit_times visitTimes,
+			e.leave_days leaveDays,
+			e.status visitStatus,
+			e.data_type visitType,
+			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join wb_repair.rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = a.id) as serviceTypeName
+		FROM
+			 wb_repair.rps_maintain a
+			inner JOIN wb_repair.rpb_car b ON ( a.car_id = b.id )
+		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+			inner join wb_repair.rpb_contactor d on (a.contactor_id = d.id and c.id = d.guest_id)
+INNER JOIN wb_crm.crm_visit_data e on e.service_id = a.id 
+		WHERE 1 = 1
+			 and a.orgid = #orgid#
+			 <isNotEmpty prepend="and" property="id">  
+               	e.id  =  #id#
+            </isNotEmpty>
+               <isNotEmpty prepend="and" property="carNo">  
+               	a.car_no =   #carNo#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">  
+               	a.car_id =   #carId#
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="leaveDays">  
+               	e.leave_days  &lt;=   #leaveDays#
+            </isNotEmpty>
+              <isNotEmpty prepend="and" property="mtAdvisorId">  
+               	a.mt_advisor  =  #mtAdvisorId#
+            </isNotEmpty>
+        
+        </select>
+</sqlMap>

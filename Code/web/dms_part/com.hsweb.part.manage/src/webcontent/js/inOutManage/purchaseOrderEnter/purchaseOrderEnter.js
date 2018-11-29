@@ -849,7 +849,7 @@ function save() {
 			return;
 		}
 	}
-
+	
 	var row = leftGrid.getSelected();
 	if (row) {
 		if (row.auditSign == 1) {
@@ -864,7 +864,19 @@ function save() {
 
 	//由于票据类型可能修改，所以除了新建和删除，其他都应该是修改
 	var detailData = rightGrid.getData();
-
+	
+	for(var i=0;i<detailData.length;i++){
+		var comPartCode=detailData[i].comPartCode;
+		if(!detailData[i].orderQty || detailData[i].orderQty==="0" || detailData[i].orderQty==null){
+			showMsg("配件编码为"+comPartCode+"的数量不能为0","W");
+			return ;
+		}
+		if(!detailData[i].storeId){
+			showMsg("配件编码为"+comPartCode+"的仓库不能为空","W");
+			return ;
+		}
+	}
+	
 	var pchsOrderDetailAdd = rightGrid.getChanges("added");
 	var pchsOrderDetailUpdate = rightGrid.getChanges("modified");
 	var pchsOrderDetailDelete = rightGrid.getChanges("removed");
@@ -1554,7 +1566,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 	} else {
 		return;
 	}
-
+	
 	// 审核时，数量，单价，金额，仓库不能为空
 //	 var msg = checkRightData();
 //	 if (msg) {
@@ -1577,7 +1589,12 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 	
 				//由于票据类型可能修改，所以除了新建和删除，其他都应该是修改
 				var detailData = rightGrid.getData();
-	
+				
+				 if(detailData.length <=0) {
+				        showMsg("入库单明细为空，不能入库!","W");
+				        rightGrid.addRow({});
+				        return;
+				    }
 				var pchsOrderDetailAdd = rightGrid.getChanges("added");
 				var pchsOrderDetailUpdate = rightGrid.getChanges("modified");
 				var pchsOrderDetailDelete = rightGrid.getChanges("removed");
@@ -1638,10 +1655,16 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 			if (action == "ok") {
 	
 				data = getMainData();
-	
+				
+				
 				//由于票据类型可能修改，所以除了新建和删除，其他都应该是修改
 				var detailData = rightGrid.getData();
-	
+				
+				 if(detailData.length <=0) {
+				        showMsg("入库单明细为空，不能入库!","W");
+				        rightGrid.addRow({});
+				        return;
+				    }
 				var pchsOrderDetailAdd = rightGrid.getChanges("added");
 				var pchsOrderDetailUpdate = rightGrid.getChanges("modified");
 				var pchsOrderDetailDelete = rightGrid.getChanges("removed");

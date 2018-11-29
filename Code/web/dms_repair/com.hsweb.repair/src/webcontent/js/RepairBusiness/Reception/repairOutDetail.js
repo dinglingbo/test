@@ -276,7 +276,7 @@ function LLSave(argument) {
 function openPartSelect(par,type,id,row,srow){
 	var qty = srow.qty||0;
 	var pickQty = srow.pickQty||0;
-	var restQty = qty - pickQty;
+	var restQty = parseFloat(qty - pickQty).toFixed(2);
 	nui.open({
 		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow?token="+token,
 		title:"选择配件--待领料数量："+restQty,
@@ -362,10 +362,11 @@ function  savepartOutRtn(data,childdata){
             }
             paramsDataArr.push(paramsData);
 
-
-            //console.log(paramsData);
-            //console.log(tdata);
-            //return;
+            nui.mask({
+	            el: document.body,
+	            cls: 'mini-mask-loading',
+	            html: '数据处理中...'
+	        });
             nui.ajax({
             	url:baseUrl + "com.hsapi.repair.repairService.work.repairOutRtn.biz.ext",
             	type:"post",
@@ -375,13 +376,14 @@ function  savepartOutRtn(data,childdata){
             		token:token
             	},
             	success:function(text){
-            		var errCode = text.errCode; 
+            		var errCode = text.errCode;
+            		nui.unmask(document.body);
             		if(errCode == "S"){
             			mainGrid.load({serviceId:mid,token:token});
             			repairOutGrid.load({serviceId:mid,token:token});
             			showMsg('归库成功!','S');
             		}else{
-            			showMsg('归库失败!','E');
+            			showMsg(text.errMsg ||'归库失败!','W');
             		}
             	}
             });
@@ -391,6 +393,18 @@ function  savepartOutRtn(data,childdata){
     }
 
     function memberSelect(row){
+    	var count=0;
+    	var mainGridData=mainGrid.getData();
+    	for(var i=0;i<mainGridData.length;i++){
+    		if(mainGridData[i].qty==mainGridData[i].pickQty){
+    			count++;
+    			
+    		}
+    	}
+    	if(count==mainGridData.length){
+    		showMsg("本工单已完工,配件不能归库","W");
+    		return;
+    	}
     	nui.open({
     		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,
     		title:"选择归库人",

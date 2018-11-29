@@ -33,7 +33,7 @@ pageEncoding="UTF-8" session="false" %>
         <tr>
         	<td>
                      <a class="nui-button" iconCls="" plain="true" onclick="onOk" id="select" enabled="true"><span class="fa fa-check fa-lg"></span>&nbsp;保存</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="onCancel" id="cancel" enabled="true"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="CloseWindow('cancle')" id="cancel" enabled="true"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
              </td>
         </tr>
     </table>
@@ -81,7 +81,7 @@ pageEncoding="UTF-8" session="false" %>
                             <td colspan="3"> <input id="charCount" name="charCount" class="nui-textbox " style="width:100%" enabled=false /></td>
                         </tr>
 
-                        <tr>
+                        <tr style="display:none;">
                             <td><span class="title title-width1">建档人：</span></td>
                             <td><input id="recorder" name="recorder" enabled=false class="nui-textbox width2"/></td>
                             <td><span class="title title-width1">建档日期：</span></td>
@@ -93,7 +93,7 @@ pageEncoding="UTF-8" session="false" %>
                             </tr>
 
 
-                            <tr>
+                            <tr style="display:none;">
                                <td><span class="title title-width1">修改人：</span></td>
                                <td><input  id="modifier" name="modifier" enabled=false class="nui-textbox width2" value="<b:write property='userName'/>"/></td>
                                <td><span class="title title-width1">修改日期：</span></td>

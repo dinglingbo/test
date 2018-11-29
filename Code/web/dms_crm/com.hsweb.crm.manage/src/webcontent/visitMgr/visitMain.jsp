@@ -15,7 +15,7 @@ pageEncoding="UTF-8" session="false" %>
     <%@include file="/common/commonRepair.jsp"%>
     <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.2.9" type="text/javascript"></script>
     <style type="text/css">
-    body {
+    body { 
         margin: 0; 
         padding: 0;
         border: 0;
@@ -40,7 +40,7 @@ pageEncoding="UTF-8" session="false" %>
         <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="visit()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;回访</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a> -->
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-phone-square fa-lg"></span>&nbsp;电话回访</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
@@ -58,18 +58,18 @@ pageEncoding="UTF-8" session="false" %>
 
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div field="serviceCode" width="100" headerAlign="center" align="center">工单号</div>
+            <div field="serviceCode" width="120" headerAlign="center" align="center">工单号</div>
             <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
             <div field="carModel" name="carModel" width="200px" headerAlign="center"  header="品牌/车型"></div>
             <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
-            <!-- <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>
+            <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>
             <div field="guestMobile" name="guestMobile" width="100px" headerAlign="center" header="客户手机"></div>
             <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
-            <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div> -->
+            <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div> 
             <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
-            <!-- <div field="serviceTypeName" name="serviceTypeName" width="100px" headerAlign="center" header="业务类型"></div>
+            <div field="serviceTypeName" name="serviceTypeName" width="100px" headerAlign="center" header="业务类型"></div>
             <div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div> -->
-            <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="开单日期"></div>
+            <!--<div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="开单日期"></div>
             <!-- <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计完工日期"></div> -->
             <!-- <div field="mtAdvisor" width="70" headerAlign="center" align="center">维修顾问</div> -->
             <div field="leaveDays" width="70" headerAlign="center" align="center">离厂天数</div>

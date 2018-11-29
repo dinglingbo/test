@@ -125,6 +125,8 @@ function onOk()
     data.isDisabled = nui.get("isDisabled").getValue();
     data.isInternal = nui.get("isInternal").getValue();
     data.mobile=nui.get('mobile').getValue();
+    
+    
     if(data.isInternal == 1)
     {
         if(!data.fullName1)
@@ -148,7 +150,19 @@ function onOk()
         }
     }
 
-
+    var reg=/^[1](3|4|5|7|8)\d{9}$/;
+    if(data.mobile.length!=11 ||!reg.test(data.mobile) ){
+    	showMsg("请输入正确的联系人手机号码");
+    	return;
+    }
+    
+    if(data.contactorTel.length>0){    	
+    	if(data.contactorTel.length!=11 ||!reg.test(data.contactorTel) ){
+    		showMsg("请输入正确的业务员手机号码");
+    		return;
+    	}
+    }
+    
     if (data.modifyDate) {
         data.modifyDate = format(data.modifyDate, 'yyyy-MM-dd HH:mm:ss');
     }

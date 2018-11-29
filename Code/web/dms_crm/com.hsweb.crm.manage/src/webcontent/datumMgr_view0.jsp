@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>资料管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.17"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.20"></script>
     <style type="text/css">
 
 
@@ -82,7 +82,7 @@ pageEncoding="UTF-8" session="false" %>
             nullItemText="请选择..."/>
         -->
         <a class="nui-button"  plain="true" onclick="query(0)" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-        <a class="nui-button"  plain="true" onclick="" id="" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;高级查询</a>
+        <a class="nui-button"  plain="true" onclick="moreQuery()" id="" enabled="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
         <li class="separator"></li>
         <a class="nui-button"  plain="true" onclick="updateField('visitStatus', '060701')" id="add" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;设为继续跟踪</a>
         <a class="nui-button"  plain="true" onclick="updateField('visitStatus', '060702')" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;设为结束跟踪</a>
@@ -175,9 +175,9 @@ pageEncoding="UTF-8" session="false" %>
                     <div field="carModel" width="250" headerAlign="center" allowSort=false>车型</div>
                     <div field="vin" width="160" headerAlign="center" allowSort=false>车架号(VIN)</div>
                     <div field="engineNo" width="160" headerAlign="center" allowSort=false>发动机号</div>
-                    <div field="color" width="160" headerAlign="center" allowSort=false>颜色</div>
+                    <div field="color" width="80" headerAlign="center" allowSort=false>颜色</div>
                     <div field="firstRegDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
-                    <div field="annualInspectionDate" width="100" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
+                    <div field="annualInspectionDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
                     <div field="recorder" width="80" headerAlign="center" allowSort=false>建档人</div>
                     <div field="recordDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>建档日期</div>
                 </div>
@@ -189,7 +189,7 @@ pageEncoding="UTF-8" session="false" %>
                     <div field="mobile" width="100" headerAlign="center" summaryType="" allowSort=false>手机号</div>
                     <div field="contacts" width="80" headerAlign="center" summaryType="" allowSort=false>联系人</div>
                     <div field="tel" width="100" headerAlign="center" summaryType="" allowSort=false>电话</div>
-                    <div field="sex" width="80" headerAlign="center" summaryType="" allowSort=false>性别</div>
+                    <div field="sex" width="50" headerAlign="center" summaryType="" allowSort=false>性别</div>
                     <div field="address" width="150" headerAlign="center" summaryType="" allowSort=false>地址</div>
                 </div>
             </div>
@@ -197,8 +197,8 @@ pageEncoding="UTF-8" session="false" %>
                 <div property="columns">
                     <div field="visitManId" id="visitManId" name="visitManId" width="60" headerAlign="center" summaryType="" allowSort=false>营销员</div>
                     <div field="visitStatus" width="100" headerAlign="center" summaryType="" allowSort=false>跟踪状态</div>
-                    <div field="priorScoutDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>上次联系时间</div>
-                    <div field="nextScoutDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>下次联系时间</div>
+                    <div field="priorScoutDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>上次联系时间</div>
+                    <div field="nextScoutDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>下次联系时间</div>
                 </div>
             </div>
         </div>

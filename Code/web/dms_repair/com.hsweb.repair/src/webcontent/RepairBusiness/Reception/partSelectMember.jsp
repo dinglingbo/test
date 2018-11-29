@@ -24,12 +24,22 @@
 </head>
 
 <body>
+    
+	 <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+            <table style="width:80%;">
+                <tr>
+                    <td style="width:80%;">
+                        <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;确定</a>
+                        <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
     <div style="height: 10px;"></div>
-
     <table id="table1"  style=" left:0;right:0;margin: 0 auto;"> 
 
         <tr>
-            <td class="tbtext">领料人：</td>
+            <td class="tbtext">归库人：</td>
             <td class="tbCtrl" >
                 <input class="nui-textbox" name="ftype" id="ftype" value='<b:write property="ftype"/>'  visible="false"/>
                 <input class="nui-hidden" name="mtAdvisor" id="mtAdvisor"/>
@@ -60,14 +70,14 @@
 
         </tr> 
     </table>
-    <div align="center" style="margin-top:45px;">
-        <a class="nui-button" iconCls="" plain="false" onclick="onOk">
-            <span class="fa fa-check fa-lg"></span>&nbsp;确定
-        </a>
-        <a class="nui-button" iconCls="" plain="false" onclick="onCancel" style="margin-left: 20px;">
-            <span class="fa fa-remove fa-lg"></span>&nbsp;取消
-        </a>
-    </div> 
+<!--     <div align="center" style="margin-top:45px;"> -->
+<!--         <a class="nui-button" iconCls="" plain="false" onclick="onOk"> -->
+<!--             <span class="fa fa-check fa-lg"></span>&nbsp;确定 -->
+<!--         </a> -->
+<!--         <a class="nui-button" iconCls="" plain="false" onclick="onCancel" style="margin-left: 20px;"> -->
+<!--             <span class="fa fa-remove fa-lg"></span>&nbsp;取消 -->
+<!--         </a> -->
+<!--     </div>  -->
     <script type="text/javascript">
         nui.parse();
         var form = null;
@@ -84,6 +94,16 @@
 	            var text = mtAdvisorIdEl.getText();
 	            nui.get("mtAdvisor").setValue(text);
 	        });
+	        document.onkeyup = function(event) {
+		        var e = event || window.event;
+		        var keyCode = e.keyCode || e.which;// 38向上 40向下
+		        
+		
+		        if ((keyCode == 27)) { // ESC
+					onCancel();
+		        }
+		
+		    }
 		});
 
         
@@ -93,6 +113,7 @@
        	    mtAdvisorIdEl.setValue(currEmpId);
     		mtAdvisorIdEl.setText(currUserName);
     		nui.get("mtAdvisor").setValue(currUserName);
+    		nui.get('remark').focus();
         }
 
         function onOk(){ 

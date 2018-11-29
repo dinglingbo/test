@@ -6,7 +6,7 @@ var tracker;
 var tree1;
 var tree2;
 var currType1Node;//品牌
-var currType2Node;//营销员
+var currType2Node;//营销员 
 var memList = [];
 var memHash={};
 
@@ -24,7 +24,7 @@ $(document).ready(function(v){
 //    dgGrid.on("beforeload",function(e){
 //    	e.data.token = token;
 //    });
-    dgGrid.load({token :token});
+dgGrid.load({token :token});
     dgGrid.on("drawcell", function (e) { //表格绘制
         var field = e.field;
         if(field == "orgid"){
@@ -53,8 +53,8 @@ $(document).ready(function(v){
     initMember("tree2",function(){
         memList = memList.getData();
         memList.forEach(function(v) {
-			memHash[v.empId] = v;
-		});
+         memHash[v.empId] = v;
+     });
         nui.get("tree2").setData(memList);
         query1();
     });
@@ -70,7 +70,7 @@ $(document).ready(function(v){
         	query(0);
         }
     }
- 
+
 });
 
 function init(){
@@ -88,7 +88,7 @@ function init(){
 /*
  *查询
  **/
-function query(e){
+ function query(e){
     var params = {};
     var data = getQueryValue();
     if(e == 0){
@@ -101,7 +101,7 @@ function query(e){
 //        showMsg("数据加载失败！");
 //    });
 
-    dgGrid.load({p:params.p,token:token});
+dgGrid.load({p:params.p,token:token});
 
 }
 
@@ -119,20 +119,20 @@ function clearQueryForm(){
 /*
  *设置菜单
  **/
-function setMenu1(obj, target, value){
+ function setMenu1(obj, target, value){
     target.setValue(value);
     target.setText(obj.getText());   
     //query(0);     
     var params={ 
-            assignStatus:value 
-        };
+        assignStatus:value 
+    };
     dgGrid.load({p:params,token:token});
 }
 
 /*
  *快速查询参数
  **/
-function getQueryValue(){
+ function getQueryValue(){
     var params = queryForm.getData();
     params.assignStatus = assignStatus.getValue();
     
@@ -238,11 +238,12 @@ function editWin(title, data){
 
 function editClient(){
     var row = dgGrid.getSelected();
-    mini.open({
-        url: webPath + contextPath + "/com.hsweb.crm.manage.clientInfo_edit.flow?token="+ token,
-        title: "修改客户", width: 520, height: 550,
-        onload: function () { 
-            var iframe = this.getIFrameEl();
+    if(row){
+        mini.open({
+            url: webPath + contextPath + "/com.hsweb.crm.manage.clientInfo_edit.flow?token="+ token,
+            title: "修改客户", width: 520, height: 550,
+            onload: function () { 
+                var iframe = this.getIFrameEl();
             //var data = { action: "edit", id: row.id };
             iframe.contentWindow.setData(row);
         },
@@ -251,4 +252,25 @@ function editClient(){
             dgGrid.reload();
         }
     });
+    }else{
+        showMsg("请选中一条记录","W");
+    }
 }
+
+
+function moreQuery(){
+        mini.open({
+            url: webPath + contextPath + "/manage/datumMgr_search.jsp?token="+ token,
+            title: "更多查询", width: 520, height: 180,
+            onload: function () { 
+                var iframe = this.getIFrameEl();
+            //var data = { action: "edit", id: row.id };
+            //iframe.contentWindow.setData(row);
+        },
+        ondestroy: function (action) {
+            //var iframe = this.getIFrameEl();
+            //dgGrid.reload();
+        }
+    });
+}
+

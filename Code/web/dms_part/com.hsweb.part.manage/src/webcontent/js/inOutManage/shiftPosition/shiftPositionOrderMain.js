@@ -311,13 +311,13 @@ function onDrawCell(e)
         case "storeId":
             if(storehouseHash && storehouseHash[e.value])
             {
-                e.cellHtml = storehouseHash[e.value].name;
+                e.cellHtml = storehouseHash[e.value].name ||"";
             }
             break;       
         case "receiveStoreId":
             if(storehouseHash && storehouseHash[e.value])
             {
-                e.cellHtml = storehouseHash[e.value].name;
+                e.cellHtml = storehouseHash[e.value].name || "";
             }
             break;
     	case "auditSign":

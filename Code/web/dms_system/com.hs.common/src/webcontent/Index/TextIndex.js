@@ -128,7 +128,7 @@ function addCustomer(){
     var title = "新增客户资料";
     nui.open({
         url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
-        title: title, width: 560, height: 570,
+        title: title, width: 560, height: 630,
         onload: function () {
         	var params={};
             var iframe = this.getIFrameEl();

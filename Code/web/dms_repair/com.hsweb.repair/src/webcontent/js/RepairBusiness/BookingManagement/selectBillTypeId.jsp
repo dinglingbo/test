@@ -25,7 +25,7 @@
                <input type="radio"
 				style="vertical-align: middle; margin-top: -2px; margin-bottom: 1px;"
 				name="billType" id="billType1" value="2" checked="true" >
-				<label for="billType1" >洗车开单</label>    
+				<label for="billType1" >洗美开单</label>    
 				
 			  </td>
 			</tr>

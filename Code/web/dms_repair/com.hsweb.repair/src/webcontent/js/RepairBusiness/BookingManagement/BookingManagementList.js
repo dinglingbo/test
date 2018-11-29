@@ -265,7 +265,7 @@ function onDrawCell(e) {
 
 function addRow() {
     nui.open({
-        url: webPath + contextPath + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
+        url: webPath + contextPath + "/com.hsweb.RepairBusiness.BookingManagementEdit.flow?token="+token,
         title: "新增预约", width: 655, height: 386,
         onload: function () {
             var iframe = this.getIFrameEl();
@@ -325,7 +325,7 @@ function newBill() {
     if(row.guestId>0){
       var title = "开单类型";
 	   nui.open({
-		    url: webPath + contextPath + "/repair/js/RepairBusiness/BookingManagement/selectBillTypeId.jsp?token="+token,
+		    url: webPath + contextPath + "/com.hsweb.RepairBusiness.selectBillTypeId.flow?token="+token,
             title: title, width: 300, height: 160,
             onload: function () {
               
@@ -494,7 +494,7 @@ function callBill() {
     }
     
     nui.open({
-        url: webPath + contextPath + "/repair/RepairBusiness/BookingManagement/BookingScout.jsp?token="+token,
+        url: webPath + contextPath + "/com.hsweb.RepairBusiness.BookingScout.flow?token="+token,
         title: "预约跟进", width: 700, height: 350,
         onload: function () {
             var iframe = this.getIFrameEl();
@@ -502,7 +502,10 @@ function callBill() {
             iframe.contentWindow.SetData(param);
         },
         ondestroy: function (action) {
-            downGrid.reload();
+        	if(action=="ok"){
+        		  showMsg("跟进成功","S");			
+                downGrid.reload();
+        	}
         }
     });   
 }

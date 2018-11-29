@@ -200,7 +200,9 @@
 		     dataField="pkgBill"
 		     showPager="false"
 		     showModified="false"
-		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true">
+		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true"
+		     oncellcommitedit="onCellCommitEditPkg"
+		     >
     <div property="columns">
     	 <div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
          <div field="orderIndex"  headerAlign="center" allowSort="false" visible="true" width="20" name="num">序号</div>
@@ -240,7 +242,9 @@
 		     dataField="itemBill"
 		     showPager="false"
 		     showModified="false"
-		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true">
+		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true"
+		     oncellcommitedit="onCellCommitEditItem"
+		     >
     <div property="columns">
     	<div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
         <div field="orderIndex" name="orderIndex" headerAlign="center" allowSort="false" visible="true" width="20">序号</div>

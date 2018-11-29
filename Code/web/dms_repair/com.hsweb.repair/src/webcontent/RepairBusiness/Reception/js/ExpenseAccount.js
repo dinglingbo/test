@@ -171,7 +171,7 @@ $(document).ready(function () {
         var text = mtAdvisorIdEl.getText();
         nui.get("mtAdvisor").setValue(text);
     });
-	rpsPackageGrid.on("cellendedit",function(e){
+	/*rpsPackageGrid.on("cellendedit",function(e){
 		var row = e.row,
 		field = e.field;
 		if(field == "subtotal"){
@@ -197,19 +197,19 @@ $(document).ready(function () {
 			var newRow = {subtotal : subtotal};
 			rpsPackageGrid.updateRow(row,newRow);
 		}
-	});
+	});*/
 	rpsPackageGrid.on("drawcell",function(e){
 		var field = e.field,
 		value = e.value;
 		var record = e.record;
 		var uid = record._uid;
-		/*if(field == "rate"){
+		if(field == "rate"){
 			if(value){
-				e.cellHtml = value.toFixed(2) + "%";
+				e.cellHtml = value + "%";
 			}else{
 				e.cellHtml = 0 + "%";
 			}
-		}*/
+		}
 		if(field == "subtotal"){
 			if(!value){
 				e.cellHtml = 0;
@@ -224,7 +224,7 @@ $(document).ready(function () {
 			
 		}
 	});
-	rpsItemGrid.on("cellendedit",function(e){
+	/*rpsItemGrid.on("cellendedit",function(e){
 		var row = e.row,
 		field = e.field;
 		if(field == "itemTime" || field == "unitPrice" || field == "rate"){
@@ -233,7 +233,7 @@ $(document).ready(function () {
 			var newRow = {subtotal : subtotal};
 			rpsItemGrid.updateRow(row,newRow);
 		}
-	});
+	});*/
 	rpsItemGrid.on("drawcell",function(e){
 		var field = e.field,
 		value = e.value,
@@ -819,3 +819,164 @@ function setInitData(params){
 	    });
 	}
 }
+
+//oncellcommitedit="onCellCommitEditPkg"
+
+//提交单元格编辑数据前激发
+function onCellCommitEditItem(e) {
+	var editor = e.editor;
+	var record = e.record;
+	var row = e.row;
+	editor.validate();
+	if (editor.isValid() == false) {
+		showMsg("请输入数字!","W");
+		e.cancel = true;
+	} else {
+		var newRow = {};
+		if (e.field == "itemTime") {
+			var itemTime = e.value;
+			var unitPrice = record.unitPrice;
+            var rate = record.rate;
+            var subtotal = 0;
+			if (e.value == null || e.value == '') {
+				e.value = 1;
+				itemTime = 1;
+			} else if (e.value < 0) {
+				e.value = 1;
+				itemTime = 1;
+			}
+
+			var amt = itemTime * unitPrice;//toFixed(2)parseFloat
+            if(rate>0){
+            	rate = rate/100;
+            	rate = rate.toFixed(2);
+            	subtotal = amt*(1-parseFloat(rate));
+            }else{
+            	subtotal = amt;
+            }
+			newRow = {
+				amt : amt,
+				subtotal:amt
+			};
+			rpsItemGrid.updateRow(e.row, newRow);
+
+			// record.enteramt.cellHtml = enterqty * enterprice;
+		} else if (e.field == "unitPrice") {
+			var itemTime = record.itemTime;
+			var unitPrice = e.value;
+			var rate = record.rate;
+            var subtotal = 0;
+			if (e.value == null || e.value == '') {
+				e.value = 0;
+				unitPrice = 0;
+			} else if (e.value < 0) {
+				e.value = 0;
+				unitPrice = 0;
+			}
+
+			var amt = itemTime * unitPrice;
+			if(rate>0){
+            	rate = rate/100;
+            	rate = rate.toFixed(2);
+            	subtotal = amt*(1-parseFloat(rate));
+            }else{
+            	subtotal = amt;
+            }
+			newRow = {
+				amt : amt,
+				subtotal:subtotal
+			};
+			rpsItemGrid.updateRow(e.row, newRow);		
+
+		} else if (e.field == "rate") {
+			var itemTime = record.itemTime;
+			var unitPrice = record.unitPrice;
+			var rate = e.value;
+            var amt = 0;
+            var subtotal = 0;
+			if (e.value == null || e.value == '') {
+				e.value = 0;
+				rate = 0;
+			} else if (e.value < 0) {
+				e.value = 0;
+				rate = 0;
+			}
+            if(itemTime>0 && unitPrice>0){
+            	amt = itemTime*unitPrice;
+            	rate = rate/100;
+            	rate = rate.toFixed(2);
+            	subtotal = amt*(1-parseFloat(rate));
+            }
+            newRow = {
+    				amt : amt,
+    				subtotal:subtotal
+    		};
+			
+            rpsItemGrid.updateRow(e.row, newRow);
+		} 		
+	}
+}
+
+
+function onCellCommitEditPkg(e) {
+	var editor = e.editor;
+	var record = e.record;
+	var row = e.row;
+	editor.validate();
+	if (editor.isValid() == false) {
+		showMsg("请输入数字!","W");
+		e.cancel = true;
+	} else {
+		var newRow = {};
+		if (e.field == "subtotal") {
+			var subtotal = e.value;
+            var rate = 0;
+            var amt = record.amt;
+			if (e.value == null || e.value == '') {
+				e.value = 1;
+				subtotal = 1;
+			} else if (e.value < 0) {
+				e.value = 1;
+				subtotal = 1;
+			}
+			if(amt){
+				rate = 100 - (parseFloat(subtotal)/parseFloat(amt/100));
+				rate = rate.toFixed(2);
+			}else{
+				rate = 100;
+			};
+			var newRow = {rate : rate};
+			rpsPackageGrid.updateRow(row,newRow);
+			// record.enteramt.cellHtml = enterqty * enterprice;
+		} else if (e.field == "rate") {
+			var rate = e.value;
+			var amt = record.amt;
+			var subtotal = 0;
+			if (e.value == null || e.value == '') {
+				e.value = 0;
+				rate = 0;
+			} else if (e.value < 0) {
+				e.value = 0;
+				rate = 0;
+			}
+			if(row.rate){
+				subtotal = parseFloat(amt) * parseFloat(100-rate)/100;
+				subtotal = subtotal.toFixed(2);
+			}else{
+				subtotal = 0;
+			}
+			var newRow = {subtotal : subtotal};
+			rpsPackageGrid.updateRow(row,newRow);
+
+		} 
+	}
+}
+
+
+
+
+
+
+
+
+

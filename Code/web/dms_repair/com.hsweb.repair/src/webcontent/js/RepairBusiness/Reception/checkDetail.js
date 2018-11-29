@@ -868,7 +868,7 @@ function addNew(){
     var sk = document.getElementById("search_key");
     sk.style.display = "";
     searchKeyEl.focus();
-
+    searchKeyEl.setValue("");//点增加给输入框个值，防止触发不了onchanged方法，不能放入客户
     billForm.setData([]);
     mainGrid.setData([]);
     nui.get('checkMainId').setEnabled(true);

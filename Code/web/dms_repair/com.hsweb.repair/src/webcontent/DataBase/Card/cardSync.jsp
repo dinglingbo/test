@@ -11,7 +11,7 @@
   --%>
 <head>
 <title>储值卡录入</title>
-<script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.3.16"></script>
+<script src="<%=request.getContextPath()%>/repair/js/Card/cardSysn.js?v=1.3.18"></script>
 </head>
 <body>
 	<div class="nui-fit">
@@ -50,8 +50,7 @@
 					<td colspan="1"><input class="nui-textbox" name="rechargeAmt"
 						onvalidation="vaild" /></td>
 					<td class="form_label" align="right">赠送金额:</td>
-					<td colspan="2"><input class="nui-textbox" name="giveAmt"
-						onvalidation="vaild2" /></td>
+					<td colspan="2"><input class="nui-textbox" name="giveAmt"/></td>
 				</tr>
 				<tr>
 					<td class="form_label" align="right" colspan="1">销售提成方式:</td>

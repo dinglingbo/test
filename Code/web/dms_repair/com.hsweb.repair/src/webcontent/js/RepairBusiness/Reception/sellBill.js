@@ -480,7 +480,7 @@ function add(){
     var sk = document.getElementById("search_key");
     sk.style.display = "";
     searchKeyEl.focus();
-
+    searchKeyEl.setValue("");//点增加给输入框个值，防止触发不了onchanged方法，不能放入客户
     rpsPartGrid.clearRows();
     billForm.setData([]);
  
@@ -1423,10 +1423,21 @@ function pay(){
 		    iframe.contentWindow.setData(params);			
 		},
 	   ondestroy : function(action) {
-		/*if (action == 'ok') {
-			
-		}*/
-	}
+               if(action == "ok"){
+            	   main.isSettle=1;
+            	   billForm.setData(main);
+                   showMsg("结算成功!","S");
+               }else if(action == "onok"){
+            	   main.isSettle=1;
+            	   billForm.setData(main);
+                   showMsg("转预结算成功!","S");
+               }else{
+                   if(data.errCode){
+                       showMsg("结算失败!","W");
+                       return;
+                   }
+               }
+	   }
 	});		
 }
 

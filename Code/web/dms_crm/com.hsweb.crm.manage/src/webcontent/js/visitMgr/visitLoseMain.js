@@ -3,7 +3,7 @@
 */
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
-var gridCarUrl = baseUrl+"com.hsapi.crm.svr.visit.queryLoseGuestByDay.biz.ext";
+var gridCarUrl = apiPath + crmApi +"/com.hsapi.crm.svr.visit.queryLoseGuestByDay.biz.ext";
 
 var gridCar = null;
 var tcarNo_ctrl = null;
@@ -146,7 +146,7 @@ function WindowrepairHistory(){
 
 	function setLoseParams(){
 		nui.ajax({
-			url:baseUrl + "com.hsapi.crm.svr.visit.queryRemindParams.biz.ext",
+			url:apiPath + crmApi +"/com.hsapi.crm.svr.visit.queryRemindParams.biz.ext",
 			type:"post",
 			async: false,
 			data:{

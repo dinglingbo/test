@@ -474,6 +474,7 @@
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo8</sourceNode>
       <targetNode>assign9</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link32</targetConnections>
     <location x="34" y="174"/>
@@ -729,14 +730,6 @@
       <process:from type="literal" pattern="reference">保存成功！</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">emp/isAllowRemind</process:from>
-      <process:to type="query">isAllowRemind</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">emp/isShowOwnBill</process:from>
-      <process:to type="query">isShowOwnBill</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
     <location x="109" y="210"/>
@@ -811,9 +804,9 @@
     <node>assign5</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="removeCacheByName" displayName="removeCacheByName" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>assign11</targetNode>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="1236" y="174"/>
@@ -851,6 +844,29 @@
     <location x="557" y="441"/>
     <figSize height="20" width="31"/>
     <node>end0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值8" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign11</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link24</targetConnections>
+    <location x="1302" y="174"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign11label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">emp/isAllowRemind</process:from>
+      <process:to type="query">isAllowRemind</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">emp/isShowOwnBill</process:from>
+      <process:to type="query">isShowOwnBill</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
+    <location x="1296" y="210"/>
+    <figSize height="20" width="40"/>
+    <node>assign11</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

@@ -3,7 +3,7 @@
 */
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
-var gridCarUrl = baseUrl+"com.hsapi.crm.svr.visit.queryCrmVisitData.biz.ext";
+var gridCarUrl = apiPath + crmApi+"/com.hsapi.crm.svr.visit.queryCrmVisitData.biz.ext";
 
 var gridCar = null;
 var mainId_ctrl = null;

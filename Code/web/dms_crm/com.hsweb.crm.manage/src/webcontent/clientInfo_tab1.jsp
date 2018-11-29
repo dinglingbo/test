@@ -103,7 +103,7 @@ pageEncoding="UTF-8" session="false" %>
                 </td>
             </tr>            
             <tr>
-                <td><span class="title title-width1 ">厂牌号(VIN)：</span></td>
+                <td><span class="title title-width1 ">车架号(VIN)：</span></td>
                 <td colspan="3"><input id="vin" name="vin" class="nui-textbox width4" required="false"/>
                     <a class="nui-button" iconCls="icon-find" plain="true" onclick="query()" id="query">解析</a></td>
 

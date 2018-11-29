@@ -16,6 +16,7 @@
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="java.util.List" name="treeNodes" type="query" valueType="Java">treeNodes</process:return>
+      <process:return id="1" language="String" name="userId" type="query" valueType="Primitive">userId</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -75,12 +76,11 @@
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-11-28 10:52:54" date="2018-11-28Z" description="" name="test" version="7.0.0.0"/>
-  <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="userId" primitiveType="String"/>
-  </process:variables>
+  <process:variables/>
   <process:inputs varArgs="false"/>
   <process:outputs>
     <process:output anyType="java.util.List" description="" isArray="false" name="treeNodes"/>
+    <process:output description="" isArray="false" name="userId" primitiveType="String"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

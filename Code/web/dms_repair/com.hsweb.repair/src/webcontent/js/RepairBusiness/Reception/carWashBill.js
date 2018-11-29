@@ -893,7 +893,7 @@ function add(){
     var sk = document.getElementById("search_key");
     sk.style.display = "";
     searchKeyEl.focus();
-
+    searchKeyEl.setValue("");//点增加给输入框个值，防止触发不了onchanged方法，不能放入客户
     rpsPackageGrid.clearRows();
     rpsItemGrid.clearRows();
     billForm.setData([]);
@@ -3804,15 +3804,11 @@ function pay(){
             if(data.action){
                 var action = data.action||"";
                 if(action == "ok"){
-                    billForm.setData([]);
-                    billForm.setData(data);
                     var status = data.status||2;
                     var isSettle = data.isSettle||1;
                     doSetStyle(status, isSettle);
                     showMsg("结算成功!","S");
                 }else if(action == "onok"){
-                    billForm.setData([]);
-                    billForm.setData(data);
                     var status = data.status||2;
                     var isSettle = data.isSettle||1;
                     doSetStyle(status, isSettle);

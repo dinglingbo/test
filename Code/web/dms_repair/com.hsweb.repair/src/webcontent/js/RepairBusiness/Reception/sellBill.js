@@ -1142,18 +1142,16 @@ function onCellCommitEdit(e) {
 				e.value = 0;
 				amt = 0;
 			}
-
+			var unitPrice = 0;
+			if(qty>0){
+				unitPrice = amt * 1.0 / qty;
+			}
 			// e.cellHtml = enterqty * enterprice;
-			var unitPrice = amt * 1.0 / qty;
-
-
-			if (qty) {
-				newRow = {
+			newRow = {
 					unitPrice : unitPrice,
 					subtotal:amt
-				};
-				rpsPartGrid.updateRow(e.row, newRow);
-			}
+				   };
+		   rpsPartGrid.updateRow(e.row, newRow);
 		} 		
 	}
 }

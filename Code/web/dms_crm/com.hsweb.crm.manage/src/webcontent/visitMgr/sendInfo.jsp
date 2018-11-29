@@ -67,6 +67,23 @@ function save(){
 
 }
 
+
+
+function selectModel() {
+    nui.open({
+        url: webPath + contextPath + "/com.hsweb.crm.basic.smsTpl.flow?token="+token,
+        title: "选择短信模板", width: 855, height: 400,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.SetData(param);
+        },
+        ondestroy: function (action) {
+            
+        }
+    });
+}
+
+
    function CloseWindow(action) {
     if (action == "close") {
     } else if (window.CloseOwnerWindow)

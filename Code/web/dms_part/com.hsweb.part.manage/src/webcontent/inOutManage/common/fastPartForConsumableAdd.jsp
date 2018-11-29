@@ -77,12 +77,12 @@
                             emptyText="请选择..."
                             url=""
                              required="true"
-                            allowInput="true"
+                            allowInput="false"
                             valueFromSelect="false"
                             popupHeight="90%"
                           />
 				</td>
-				<td>出库数量:<input required="true"  vtype="int;range:1,100000000" class="nui-textbox" id="outQty" name="outQty" type="text"></td>
+				<td>出库数量:<input required="true"  vtype="float;range:1,100000000" class="nui-textbox" id="outQty" name="outQty" type="text"></td>
 			</tr>
 			<tr id="out">
 				<td style="" colspan="2">出库原因:<input required="true"  class="nui-textarea" id="remark" name="remark" type="text" ></td>

@@ -73,12 +73,12 @@
                             emptyText="请选择..."
                             url=""
                              required="true"
-                            allowInput="true"
+                            allowInput="false"
                             valueFromSelect="false"
                             popupHeight="90%"
                           />
 				</td>
-				<td>归库数量:<input   required="true" vtype="int" class="nui-textbox" id="outQty" name="outQty" type="text"></td>
+				<td>归库数量:<input  allowInput="false" required="true" vtype="int" class="nui-textbox" id="outQty" name="outQty" type="text"></td>
 			</tr>
 			<tr id="return">
 				<td style="" >归库原因ID:<input  class="nui-combobox" id="returnReasonId" name="returnReasonId" type="text"  popupHeight="85%"></td>

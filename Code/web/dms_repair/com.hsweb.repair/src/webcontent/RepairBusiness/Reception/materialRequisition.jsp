@@ -542,7 +542,7 @@
         		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate; 
         });//http://127.0.0.1:8080/default/
        
-        $.post(baseUrl+"com.hsapi.repair.repairService.query.queryRepairOutPart.biz.ext?serviceId="+params.serviceId,{},function(text){
+        $.post(baseUrl+"com.hsapi.repair.repairService.query.queryRepairOutPart.biz.ext?serviceId="+params.serviceId+"&retunSign=0",{},function(text){
             	var tBody = $("#tbodyId");
 				tBody.empty();
 				var tds = '<td align="center">[id]</td>' +

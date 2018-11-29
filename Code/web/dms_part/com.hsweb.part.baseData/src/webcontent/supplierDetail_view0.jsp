@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierDetail.js?v=1.1.2"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierDetail.js?v=1.1.5"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -164,7 +164,7 @@
                               <td class=" right fwidthb required">联系人:</td>
                               <td ><input id="manager" name="manager" width="100%" class="nui-textbox" ></td>
                               <td class=" right fwidthb required">联系人手机:</td>
-                              <td ><input id="mobile" name="mobile" width="100%" class="nui-textbox" ></td>
+                              <td ><input id="mobile" name="mobile" width="100%" vtype="int" class="nui-textbox" ></td>
                           </tr>
                           <tr class="htr">
                               <td class=" right fwidtha required">省份:</td>
@@ -183,7 +183,7 @@
                               <td class=" right fwidthb">业务员:</td>
                               <td ><input id="contactor" name="contactor" width="100%" class="nui-textbox" ></td>
                               <td class=" right fwidtha">业务员手机:</td>
-                              <td ><input id="contactorTel" name="contactorTel" width="100%" class="nui-textbox" ></td>
+                              <td ><input id="contactorTel" name="contactorTel" width="100%" class="nui-textbox" vtype="int" ></td>
                           </tr>
                           <tr class="htr">
                               <td class=" right fwidthb">电话:</td>

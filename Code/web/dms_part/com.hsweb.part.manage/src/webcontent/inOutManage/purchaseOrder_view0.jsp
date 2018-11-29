@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购订单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderCopy.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderCopy.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -174,7 +174,7 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="title required">
+                                        <td class="title required" >
                                             <label>订货日期：</label>
                                         </td>
                                         <td width="120">
@@ -184,7 +184,7 @@
                                                    showTime="true"
                                                    class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                                         </td>
-                                        <td class="title wide">
+                                        <td class="title required" >
                                             <label>预计到货日期：</label>
                                         </td>
                                         <td width="160">

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.57"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.61"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -331,7 +331,7 @@ body .mini-grid-row-selected{
                               <div header="辅助信息" headerAlign="center">
                                   <div property="columns">
                                       <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
-                                      仓库<input  property="editor" enabled="true" id="storehouse" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" 
+                                      仓库<input  property="editor" enabled="true" id="storehouse" name="storehouse" class="nui-combobox" valueField="id" textField="name" 
                                               url="" data="storehouse" dataField="storehouse"
                                               onvaluechanged="" emptyText=""  vtype="required"
                                               /> 

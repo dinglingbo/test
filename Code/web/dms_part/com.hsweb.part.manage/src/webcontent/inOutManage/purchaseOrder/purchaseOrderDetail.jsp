@@ -99,15 +99,15 @@
                                              showTime="true"
                                              class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
                                   </td>
-                                  <td class="title wide">
+                                  <td class="title required" style="width:8%;">
                                       <label>预计到货日期：</label>
                                   </td>
-                                  <td width="160">
+                                  <td width="200">
                                       <input name="planArriveDate"
                                              id="planArriveDate"
                                              width="100%"
                                              showTime="true"
-                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd"/>
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                                   </td>
                               </tr>
                               <tr>
@@ -122,7 +122,7 @@
                                              valueField="customid"
                                              emptyText="请选择..."
                                              url=""
-                                             allowInput="true"
+                                             allowInput="false"
                                              showNullItem="false"
                                              width="100%"
                                              valueFromSelect="true"
@@ -142,8 +142,9 @@
                                              valueFromSelect="true"
                                              emptyText="请选择..."
                                              url=""
-                                             allowInput="true"
+                                             allowInput="false"
                                              showNullItem="false"
+                                             valueFromSelect="true"
                                              width="100%"
                                              nullItemText="请选择..."
                                              onvalidation="onComboValidation"/>
@@ -233,7 +234,7 @@
                             <div header="辅助信息" headerAlign="center">
                                 <div property="columns">
                                   <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
-                        仓库<input  property="editor" enabled="true"  id="storehouse" name="storehouse" dataField="storehouse" allowInput="true" class="nui-combobox" valueField="id" textField="name" data="storehouse"
+                        仓库<input  property="editor" enabled="true"  id="storehouse" name="storehouse" dataField="storehouse" allowInput="false" class="nui-combobox" valueField="id" textField="name" data="storehouse"
                                       url=""
                                       onvaluechanged="" emptyText=""  vtype="required"
                                       /> 

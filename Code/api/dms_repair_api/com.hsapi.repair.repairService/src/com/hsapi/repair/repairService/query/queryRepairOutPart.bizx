@@ -13,8 +13,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="555" y="226"/>
-    <figSize height="17" width="32"/>
+    <location x="551" y="226"/>
+    <figSize height="20" width="40"/>
     <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" type="assign">
@@ -36,8 +36,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="336" y="136"/>
-    <figSize height="17" width="32"/>
+    <location x="332" y="136"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" collapsed="false" type="assign">
@@ -51,8 +51,8 @@
     <nodeLabel>assign2label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="553" y="136"/>
-    <figSize height="17" width="32"/>
+    <location x="549" y="136"/>
+    <figSize height="20" width="40"/>
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="查询配件" displayName="查询配件" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -81,8 +81,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="327" y="226"/>
-    <figSize height="17" width="49"/>
+    <location x="321" y="226"/>
+    <figSize height="20" width="61"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" collapsed="false" type="assign">
@@ -108,6 +108,14 @@
       <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">returnSign</process:from>
+      <process:to type="query">cond/_expr[2]/returnSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[2]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">id</process:from>
       <process:to type="query">cond/_orderby[1]/_property</process:to>
     </process:copy>
@@ -121,8 +129,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="233" y="226"/>
-    <figSize height="17" width="32"/>
+    <location x="229" y="226"/>
+    <figSize height="20" width="40"/>
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
@@ -135,8 +143,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="142" y="226"/>
-    <figSize height="17" width="25"/>
+    <location x="139" y="226"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -154,8 +162,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="422" y="226"/>
-    <figSize height="17" width="25"/>
+    <location x="419" y="226"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <topRuler/>
@@ -170,6 +178,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="returnSign" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.common.PjRepairOut" name="data"/>

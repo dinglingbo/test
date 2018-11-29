@@ -712,6 +712,7 @@ function audit()
     var orderDetailList = rightGrid.getData();
     if(orderDetailList.length <= 0) {
         showMsg("盘点明细为空，不能审核!","W");
+        rightGrid.addRow({});
         return;
     }
     orderDetailList = removeChanges(orderDetailAdd, orderDetailUpdate, orderDetailDelete, orderDetailList);

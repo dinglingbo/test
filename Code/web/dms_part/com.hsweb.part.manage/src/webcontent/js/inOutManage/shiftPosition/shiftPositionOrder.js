@@ -380,7 +380,11 @@ function save() {
             return;
         }
     }
-
+    
+    if(data.storeId == data.receiveStoreId){
+    	showMsg("移入仓库不能与移出仓库相同!","W");
+    	return;
+    }
     if(data){
         if(data.auditSign == 1) {
             showMsg("此单已审!","W");
@@ -390,7 +394,12 @@ function save() {
         return;
     }
     
-
+    var msg = checkRightData();
+    if(msg){
+        showMsg(msg,"W");
+        return;
+    }
+    
     data = getMainData();
 
     var orderDetailAdd = rightGrid.getChanges("added");
@@ -701,16 +710,19 @@ function audit()
         return;
     }
 
+   
     data = getMainData();
-
     var orderDetailAdd = rightGrid.getChanges("added");
     var orderDetailUpdate = rightGrid.getChanges("modified");
     var orderDetailDelete = rightGrid.getChanges("removed");
     var orderDetailList = rightGrid.getData();
-    if(orderDetailList.length <= 0) {
+    if(orderDetailList.length <=0) {
         showMsg("移仓明细为空，不能审核!","W");
+        rightGrid.addRow({});
         return;
     }
+    
+    
     orderDetailList = removeChanges(orderDetailAdd, orderDetailUpdate, orderDetailDelete, orderDetailList);
 
 

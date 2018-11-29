@@ -65,6 +65,8 @@ $(document).ready(function(v)
 
     sOrderDate = nui.get("sOrderDate");
     eOrderDate = nui.get("eOrderDate");
+    nui.get('orderMan').setValue(currEmpId);
+    nui.get('orderMan').setText(currUserName);
     
 	initMember("orderMan",function(){
 		memList = nui.get('orderMan').getData();
@@ -75,9 +77,10 @@ $(document).ready(function(v)
         getStorehouse(function(data)
         {
             storehouse = data.storehouse||[];
-         
+            
             if(storehouse && storehouse.length>0){
                 FStoreId = storehouse[0].id;
+                nui.get('storehouse').setData(storehouse);
             }else{
                 isNeedSet = true;
             }
@@ -421,7 +424,12 @@ function save() {
         return;
     }
     
-
+    var msg = checkRightData();
+    if(msg){
+        showMsg(msg,"W");
+        return;
+    }
+    
     data = getMainData();
 
     var sellOrderDetailAdd = rightGrid.getChanges("added");
@@ -762,7 +770,8 @@ function audit()
     var sellOrderDetailDelete = rightGrid.getChanges("removed");
     var sellOrderDetailList = rightGrid.getData();
     if(sellOrderDetailList.length <= 0) {
-        showMsg("销售明细为空，不能提交!","W");
+        showMsg("订单明细为空，不能退货!","W");
+        rightGrid.addRow({});
         return;
     }
     sellOrderDetailList = removeChanges(sellOrderDetailAdd, sellOrderDetailUpdate, sellOrderDetailDelete, sellOrderDetailList);

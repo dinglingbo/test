@@ -2,6 +2,7 @@ package com.hs.common;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.eos.system.annotation.Bizlet;
+
 
 import commonj.sdo.DataObject;
 
@@ -91,6 +93,17 @@ public class ArrayUtils {
 		return i;
 	}
 
+	@Bizlet("")
+	public static double addFloatColumn2(DataObject[] b,String propertyName) {
+		double  i = 0;
+		for (DataObject obj : b) {
+			double value = obj.getDouble(propertyName);
+			i =  ArithUtil.add(i,value);
+			//i = i + value;		
+		}
+		return i;
+	}
+	
 	@Bizlet("")
 	public static String[] propertyToStringArr(DataObject[] b,String propertyName) {
 		List t = new ArrayList();
@@ -402,4 +415,14 @@ public class ArrayUtils {
 		}
 	   
 
+}
+
+@Bizlet("")
+class ArithUtil{
+	private ArithUtil(){}	
+	public static double add(double d1,double d2){
+			BigDecimal b1=new BigDecimal(Double.toString(d1));
+			BigDecimal b2=new BigDecimal(Double.toString(d2));
+			return b1.add(b2).doubleValue();
+		}
 }

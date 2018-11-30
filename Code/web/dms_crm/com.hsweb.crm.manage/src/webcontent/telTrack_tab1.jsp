@@ -170,7 +170,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="visitDate" headerAlign="center" dateFormat="yyyy-MM-dd hh:MM" width="80px" align="center">跟踪日期</div>
                 <div field="scoutResult" headerAlign="center" width="50px" align="center">跟踪结果</div>
                 <div field="scoutMode" headerAlign="center" width="50px" align="center">跟踪方式</div>
-                <div field="scoutContent" headerAlign="center" width="100px" align="center">跟踪内容</div>
+                <div field="scoutContent" headerAlign="center" width="300px" align="center">跟踪内容</div>
             </div>
         </div>
     </div>

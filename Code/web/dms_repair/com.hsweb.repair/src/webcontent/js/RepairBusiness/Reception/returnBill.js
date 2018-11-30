@@ -1365,7 +1365,8 @@ function pay(){
 		    	"guestId":main.guestId,
 		    	"guestName":main.guestFullName,
 		    	"serviceId":main.id,
-		    	"data":data
+		    	"data":data,
+		    	"typeUrl" : 2
 		    };
 		    iframe.contentWindow.setData(params);			
 		},

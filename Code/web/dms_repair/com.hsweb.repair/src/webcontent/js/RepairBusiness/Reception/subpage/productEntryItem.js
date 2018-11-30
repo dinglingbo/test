@@ -56,6 +56,9 @@ $(document).ready(function ()
 //    	 onOk(2);
 //     });
 });
+function setRoleId(){
+	return {"token":token};
+}
 function init()
 {
     var treeUrl = baseUrl+"com.hsapi.system.product.items.getHotWord.biz.ext";
@@ -76,7 +79,6 @@ function init()
 //    		types = "02";
 //    	}
 //    	e.data.type = "02";
-    	console.log(e);
     });
     tree.setUrl(treeUrl);
     tree.on("preload",function(e){
@@ -104,12 +106,9 @@ function init()
         }
         var carInfo = carInfoForm.getData();
         var params = {
-            carBrandId:carInfo.carBrandId,
-            carLevelId:carInfo.carLevelId,
-            carLineId:carInfo.carLineId,
             carModelId:carInfo.carModelId
         };
-        params.partNameId = node.id;
+        params.partName = node.name;
         doSearchItem(params);
 
     });
@@ -153,7 +152,7 @@ function init()
         {
             e.cellHtml = treeHash[e.value].name.split(" ")[1];
         }*/
-        if(e.field == "itemKind")
+        if(e.field == "ItemKind")
         {
             e.cellHtml = itemKindHash[e.value];
         }
@@ -173,7 +172,7 @@ function init()
         var row = e.record;
         brandPartGrid.load({
             partId:row.id,
-            token:token,
+            token:token
         });
     });
     partGrid.on("beforeload",function(e)
@@ -242,19 +241,16 @@ function init()
 function loadPackageDetailByPkgId(pkgId,callback)
 {
     packageDetail.load({
-        pkgCarMtId:pkgId
+        pkgCarMtId:pkgId,
+        token:token
     },callback);
 }
 function getSearchParams()
 {
     var carInfo = carInfoForm.getData();
     var params = {
-        carBrandId:carInfo.carBrandId,
-        carLevelId:carInfo.carLevelId,
-        carLineId:carInfo.carLineId,
         carModelId:carInfo.carModelId
     };
-    //var queryItem = nui.get("queryItem").getValue();
     var queryValue = nui.get("queryValue").getValue();
     params.name = queryValue;
 //    if(queryItem == 0)
@@ -317,7 +313,6 @@ function doSearchPackage(params)
 }
 function doSearchItem(params)
 {
-    params.itemCode = params.code||"";
     params.itemName = params.name||"";
     itemGrid.load({
     	token:token,

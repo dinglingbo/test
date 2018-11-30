@@ -11,7 +11,7 @@
 -->
 <head>
 <title>标准化产品查询</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/productEntryItem.js?v=1.2.8"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/productEntryItem.js?v=1.2.11"></script>
 <style type="text/css">
 
 table {
@@ -127,7 +127,7 @@ table {
 				<div class="nui-fit">
 					<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
 						dataField="rs" showTreeIcon="true" textField="name" expandOnLoad="0"
-						idField="id" parentField="" resultAsTree="false">
+						idField="id" ajaxData="setRoleId" parentField="" resultAsTree="false">
 					</ul>
 				</div>
 			</div>

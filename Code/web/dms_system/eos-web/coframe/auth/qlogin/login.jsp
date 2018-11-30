@@ -241,6 +241,15 @@ body {
 a {
      text-decoration: none;
 }
+.com_text {
+  position: absolute;
+  left: 0;
+  width:100%;
+  bottom: 20px;
+  text-align: center;
+  color: #FFF;
+  font-size:13px;
+  }
 </style>
 
 </head>
@@ -325,6 +334,7 @@ a {
 		</div>	
 	</div>
 </form>
+<div class="com_text">Copyright © 2014-2018 广州信绘通信息科技有限公司  版权所有: 粤ICP备10036501号-1 </div>
 </div>
 <script src="jquery-1.9.1.min.js?ver=1.01"></script>
 <!-- <script src="login.js?ver=2.0.1"></script>  -->
@@ -576,7 +586,7 @@ function login(){
 	{
 		$("#password").val($("#password1").val());
 	}
-   
+  
    document.loginForm.submit();
 }
 

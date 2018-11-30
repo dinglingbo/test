@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getPrdtType" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询产品分组：&#xD;&#xA;参数：carBrandId string" title="Guine&#x9;18-3-23 上午9:11">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询产品分组：&#xD;&#xA;参数：carBrandId string&#xD;&#xA;com.hsapi.system.product.items.getPrdtType" title="Guine&#x9;18-3-23 上午9:11">
     <location x="30" y="0"/>
-    <size height="100" width="247"/>
+    <size height="100" width="391"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -115,6 +115,10 @@
       <process:to type="query">p/type</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">noShowParent</process:from>
+      <process:to type="query">p/noShowParent</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">执行成功！</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
@@ -138,6 +142,7 @@
     <process:input description="" isArray="false" name="carBrandId" primitiveType="String"/>
     <process:input description="" isArray="false" name="parentId" primitiveType="String"/>
     <process:input description="" isArray="false" name="type" primitiveType="String"/>
+    <process:input description="" isArray="false" name="noShowParent" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="rs"/>

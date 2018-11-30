@@ -3213,10 +3213,12 @@ function showBasicData(type){
     	saveNoshowMsg(function(){
     		maintain = billForm.getData();
     		var carVin = maintain.carVin;
+    		var carModelIdLy = maintain.carModelIdLy;
     	    var params = {
     	        vin:carVin,
     	        serviceId:maintain.id,
-    	        carNo:maintain.carNo
+    	        carNo:maintain.carNo,
+    	        carModelIdLy:carModelIdLy
     	    };
     	    if(type=="pkg"){
     	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";
@@ -3233,10 +3235,12 @@ function showBasicData(type){
     	});
     }else{
     	    var carVin = maintain.carVin;
+    		var carModelIdLy = maintain.carModelIdLy;
     	    var params = {
     	        vin:carVin,
     	        serviceId:maintain.id,
-    	        carNo:maintain.carNo
+    	        carNo:maintain.carNo,
+    	        carModelIdLy:carModelIdLy
     	    };
     	    if(type=="pkg"){
     	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";

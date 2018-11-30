@@ -227,11 +227,13 @@ function onOk() {
             token: token
         }),        
         success: function(data) {
-            if (data.errCode == "S") {                
+            if (data.errCode == "S") { 
+            	nui.unmask();
                 window.CloseOwnerWindow("ok");
+                showMsg("预约成功","S");
             } else {
                 nui.unmask();
-                nui.alert(data.errMsg || "保存失败");
+                showMsg(data.errMsg || "保存失败","E");
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {

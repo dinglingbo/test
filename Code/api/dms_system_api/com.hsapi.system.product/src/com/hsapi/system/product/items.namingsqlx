@@ -192,68 +192,29 @@
 		LEFT JOIN ST_PartName d ON D.ID = C.PartNameID 
 		WHERE c.id = #id#
     </select>
-    <!--getItem-->
+    <!--getItem a.CarModelID =  '00009402' -->
     <select id="getItem" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT Top 50  ItemID = a.ID, hsItemCode = 'hs' + ItemNameID, ItemNameID, b.TechType,  b.ServiceType, b.ItemKind, ItemName =  b.name,  ItemCode =  a.ItemCode,  Price = ItemPrice, AStandTime = ItemTime, 
+    	SELECT top 500 ItemID = a.ID, hsItemCode = 'hs' + ItemNameID, ItemNameID, b.TechType,  b.ServiceType, b.ItemKind, ItemName =  b.name,  ItemCode =  a.ItemCode,  Price = ItemPrice, AStandTime = ItemTime, 
 		         AStandSum = A.Amt, Amt4S, FactoryName = NULL, TypeID = NULL, MakeTime = NULL, b.UseCount, a.Remark 
 		 FROM wbstandard.dbo.ST_ItemCarModel a WITH(NOLOCK) INNER JOIN wbstandard.dbo.ST_ItemNameStd b WITH(NOLOCK) ON a.ItemNameID = b.ID 
-		 WHERE a.CarModelID =  '00009402' 
-        	<isNotNull property="typeId">
-				AND typeId = #typeId#
-			</isNotNull>			
-			<isNotNull property="itemKind">
-				AND itemKind = #itemKind#  -- ItemKind = 'PQ'
+		 WHERE 1 = 1
+		 
+		 	<isNotNull property="carModelId">
+				a.CarModelID =  #carModelId#
 			</isNotNull>
 			
-			<isNotNull property="partNameId">
-				AND b.PartNameID = #partNameId#
-			</isNotNull>
-			
-			<isNotNull property="itemCode">
-				AND itemCode like '%$itemCode$%'
-			</isNotNull>
 			<isNotNull property="itemName">
 				AND b.name like '%$itemName$%'
 			</isNotNull>
-			<isNotNull property="pyCode">
-				AND pyCode like '%$pyCode$%'
-			</isNotNull>
-        UNION ALL 
-       SELECT Top 50 ItemID = a.ID, hsItemCode = 'hs' + ItemNameID, ItemNameID, b.TechType,  b.ServiceType, b.ItemKind, ItemName =  b.name,  ItemCode =  a.ItemCode,  Price = ItemPrice, AStandTime = ItemTime, 
-		         AStandSum = A.Amt, Amt4S, FactoryName = NULL, TypeID = NULL, MakeTime = NULL, b.UseCount, a.Remark 
-		 FROM wbstandard.dbo.ST_ItemCarModel a WITH(NOLOCK) INNER JOIN wbstandard.dbo.ST_ItemNameStd b WITH(NOLOCK) ON a.ItemNameID = b.ID 
-		 WHERE a.CarModelID =#carModelId#
-        	<isNotNull property="carBrandId">
-         		AND carBrandId = #carBrandId#
-         	</isNotNull>
-			<isNotNull property="carLevelId">
-				AND carLevelId = #carLevelId#
+			
+			<isNotNull property="partName">
+				AND b.PartName like '%$partName$%'
 			</isNotNull>
 			
-			<isNotNull property="carLineId">
-				AND carLineId = #carLineId#
-			</isNotNull>
-			
-			<isNotNull property="typeId">
-				AND typeId = #typeId#
-			</isNotNull>		
 			<isNotNull property="partNameId">
 				AND b.PartNameID = #partNameId#
-			</isNotNull>			
-			<isNotNull property="itemKind">
-				AND itemKind = #itemKind#  -- ItemKind = 'PQ'
 			</isNotNull>
 			
-			<isNotNull property="itemCode">
-				AND itemCode like '%$itemCode$%'
-			</isNotNull>
-			<isNotNull property="itemName">
-				AND b.name  like '%$itemName$%'
-			</isNotNull>
-			<isNotNull property="pyCode">
-				AND pyCode like '%$pyCode$%'
-			</isNotNull>
-		ORDER BY useCount DESC
     </select>
     <select id="getItemById" parameterClass="HashMap" resultClass="HashMap">
     	SELECT ItemID = a.ID, hsItemCode = 'hs' + ItemNameID, ItemNameID, b.TechType,  b.ServiceType, b.ItemKind, ItemName =  b.name,  ItemCode =  a.ItemCode,  Price = ItemPrice, AStandTime = ItemTime, 

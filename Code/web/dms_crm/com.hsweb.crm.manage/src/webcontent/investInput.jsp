@@ -7,13 +7,13 @@
 <%@include file="/common/sysCommon.jsp" %>
 <title>业绩录入</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/investInput.js?v=1.0.5"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/investInput.js?v=1.0.7"></script>
 </head>
-<body>
+<body> 
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-	                 <input class="nui-combobox" id="carBrandId"   name="carBrandId" textField="empName"
-	                  valueField="empId" visible="false" allowInput="true"valueFromSelect="false">
-	                  	                 <input class="nui-combobox" id="serviceTypeId"   name="serviceTypeId" textField="empName"
+	                 <input class="nui-combobox" id="carBrandId"   name="carBrandId" textField="nameCn"
+	                  valueField="id" visible="false" allowInput="true"valueFromSelect="false">
+	                  <input class="nui-combobox" id="serviceTypeId"   name="serviceTypeId" textField="empName"
 	                  valueField="empId" visible="false" allowInput="true"valueFromSelect="false">
                     <span>车牌号:</span>
                     <input id="carNo" class="nui-textbox" emptyText="输入查询条件" width="120"/>

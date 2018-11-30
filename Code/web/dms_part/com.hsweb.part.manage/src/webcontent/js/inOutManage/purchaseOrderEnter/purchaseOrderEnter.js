@@ -270,10 +270,12 @@ function getParentStoreId(){
 }
 function loadMainAndDetailInfo(row) {
 	if (row) {
-		nui.get("orderMan").setText(row.orderMan);
+		var orderMan=row.orderMan;
+		
 		row.orderMan=row.orderManId; 
 		basicInfoForm.setData(row);
 		//bottomInfoForm.setData(row);
+		nui.get("orderMan").setText(orderMan);
 		nui.get("guestId").setText(row.guestFullName);
 
 		var row = leftGrid.getSelected();
@@ -716,7 +718,7 @@ function add() {
 				if(!orderMan || orderMan==""){
 					for(var i=0;i<memList.length;i++){
 						if(currEmpId==memList[i].empId){
-							nui.get("orderMan").setValue(currUserId);
+							nui.get("orderMan").setValue(currEmpId);
 							nui.get("orderMan").setText(currUserName);
 						}
 					}
@@ -758,7 +760,7 @@ function add() {
 		if(!orderMan || orderMan==""){
 			for(var i=0;i<memList.length;i++){
 				if(currEmpId==memList[i].empId){
-					nui.get("orderMan").setValue(currUserId);
+					nui.get("orderMan").setValue(currEmpId);
 					nui.get("orderMan").setText(currUserName);
 				}
 			}
@@ -2327,6 +2329,7 @@ function getOrderDetail(params)
 							orderQty : row.orderQty,
 							orderPrice : row.orderPrice,
 							orderAmt : parseFloat(row.orderQty) * parseFloat(row.orderPrice),
+							remark	: row.remark,
 							storeId : row.storeId,
 							storeShelf : row.shelf,
 							comOemCode : row.comOemCode,
@@ -2383,6 +2386,7 @@ function getSellDetail(params)
 							orderQty : row.orderQty,
 							orderPrice : row.orderPrice,
 							orderAmt : parseFloat(row.orderQty) * parseFloat(row.orderPrice),
+							remark  :row.remark,
 							storeId : FStoreId,
 							comOemCode : row.comOemCode,
 							comSpec : row.comSpec,

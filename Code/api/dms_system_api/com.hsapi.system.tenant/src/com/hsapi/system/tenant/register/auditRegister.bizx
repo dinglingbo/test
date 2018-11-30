@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="auditRegister" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、根据手机号判断是否已经存在" title="Administrator&#x9;18-6-14 上午10:51">
-    <location x="0" y="-180"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、根据手机号判断是否已经存在&#xD;&#xA;&#xD;&#xA;不能添加相同的用户&#xD;&#xA;&#xD;&#xA;2、汽修的审核，汽配的审核" title="Administrator&#x9;18-6-14 上午10:51">
+    <location x="-136" y="-150"/>
     <size height="163" width="571"/>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
@@ -55,6 +55,7 @@
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="link2" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo0</sourceNode>
@@ -136,6 +137,10 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">d</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">reg/companyName</process:from>
       <process:to type="query">comd/shortName</process:to>
     </process:copy>
@@ -152,7 +157,7 @@
       <process:to type="query">comd/recorder</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">comd/recordDate</process:to>
     </process:copy>
     <process:copy>
@@ -160,7 +165,7 @@
       <process:to type="query">comd/modifier</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">comd/modifyDate</process:to>
     </process:copy>
     <process:copy>
@@ -168,7 +173,7 @@
       <process:to type="query">comd/tenantId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">101</process:from>
+      <process:from type="literal" pattern="reference">value</process:from>
       <process:to type="query">comd/code</process:to>
     </process:copy>
     <process:copy>
@@ -192,7 +197,7 @@
       <process:to type="query">ten/recorder</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">ten/recordDate</process:to>
     </process:copy>
     <process:copy>
@@ -200,7 +205,7 @@
       <process:to type="query">ten/modifier</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">ten/modifyDate</process:to>
     </process:copy>
     <process:copy>
@@ -208,12 +213,20 @@
       <process:to type="query">ten/auditMan</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">ten/auditDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">reg/status</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">reg/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">reg/modifyDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
@@ -435,6 +448,7 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo1</sourceNode>
@@ -880,6 +894,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.OrgEmporg" name="empOrg"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.OrgEmployee" name="tmpEmployee"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.CapUser" name="capUser"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.system.data.sys.ComTrialRegister" name="reg"/>

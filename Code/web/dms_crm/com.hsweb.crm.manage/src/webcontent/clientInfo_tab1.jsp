@@ -128,6 +128,7 @@ pageEncoding="UTF-8" session="false" %>
                 <input class="nui-hidden" id="_carModel" name="carModel"/>
                 <td><input name="carModelId"
                     id="carModelId"
+                    popupWidth="400px"
                     class="nui-combobox width2"
                     textField="carModel"
                     valueField="carModelId"

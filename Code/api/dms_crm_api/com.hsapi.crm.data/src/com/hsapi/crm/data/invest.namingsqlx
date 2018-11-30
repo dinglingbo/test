@@ -49,12 +49,18 @@
 			f.name              contactName,
 			f.mobile            contactMobile,
 			f.id_no             contactIdNo
-		from crm_visit_achievement a, wb_repair.rps_settlement b,wb_repair.rps_maintain c, wb_repair.rpb_car d, wb_common.com_guest e, wb_repair.rpb_contactor f
+		from crm_visit_achievement a, 
+		wb_repair.rps_settlement b,
+		wb_repair.rps_maintain c, 
+		wb_repair.rpb_car d, 
+		wb_common.com_guest e, 
+		wb_repair.rpb_contactor f
 		where a.service_id = b.service_id
  			and b.service_id = c.id
  			and d.id = c.car_id
  			and c.guest_id = e.id
 			and c.contactor_id = f.id
+			and a.orgid = #orgid#
  		<isNotEmpty prepend="and" property="carNo">
         	(a.car_no = #carNo#)
         </isNotEmpty>

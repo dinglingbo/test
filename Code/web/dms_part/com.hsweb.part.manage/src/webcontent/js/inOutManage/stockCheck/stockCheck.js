@@ -60,6 +60,9 @@ $(document).ready(function(v)
 
     sOrderDate = nui.get("sOrderDate");
     eOrderDate = nui.get("eOrderDate");
+    nui.get('orderMan').setValue(currEmpId);
+    nui.get('orderMan').setText(currUserName);
+    
     getGuestId();
     
 	initMember("orderMan",function(){
@@ -803,8 +806,8 @@ function add()
                     
                 	if(!orderMan || orderMan==""){
     					for(var i=0;i<memList.length;i++){
-    						if(currUserId==memList[i].empId){
-    							nui.get("orderMan").setValue(currUserId);
+    						if(currEmpId==memList[i].empId){
+    							nui.get("orderMan").setValue(currEmpId);
     							nui.get("orderMan").setText(currUserName);
     						}
     					}
@@ -838,8 +841,8 @@ function add()
         
         if(!orderMan || orderMan==""){
 			for(var i=0;i<memList.length;i++){
-				if(currUserId==memList[i].empId){
-					nui.get("orderMan").setValue(currUserId);
+				if(currEmpId==memList[i].empId){
+					nui.get("orderMan").setValue(currEmpId);
 					nui.get("orderMan").setText(currUserName);
 				}
 			}
@@ -1070,7 +1073,7 @@ function addInsertRow(value, row) {
             return;
         }
 
-        var p = {partId:part.partId, storeId: storeIdEl.getValue()};
+        var p = {partId:part.id, storeId: storeIdEl.getValue()};
         var stock = getPartPrice(p);
         var stockQty = stock.stockQty;
         var stockPrice = stock.stockPrice;

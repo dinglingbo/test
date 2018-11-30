@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getTemplateRoleResauth.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="角色资源模板，com.hsapi.system.data.sys.CapResauth&#xD;&#xA;由最开始的 查询CapResauth，改为查询com_cap_resauth；表结构一致，主要去除EOS缓存的控制&#xD;&#xA;&#xD;&#xA;定义模板角色 cap_role&#xD;&#xA;定义模板角色对应的资源 com_cap_resauth" title="Administrator&#x9;18-11-30 上午11:28">
+    <location x="75" y="-15"/>
+    <size height="121" width="631"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="link0" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -20,7 +24,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.system.data.sys.CapResauth[]" name="capResauthList" type="query" valueType="DataObject">capResauthList</process:return>
+      <process:return id="0" language="com.hsapi.system.data.sys.ComCapResauth[]" name="capResauthList" type="query" valueType="DataObject">capResauthList</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -38,7 +42,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.CapResauth</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.ComCapResauth</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -91,7 +95,7 @@
     <process:input description="角色ID，对应partyId" isArray="false" name="roleId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.system.data.sys.CapResauth" name="capResauthList"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.system.data.sys.ComCapResauth" name="capResauthList"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

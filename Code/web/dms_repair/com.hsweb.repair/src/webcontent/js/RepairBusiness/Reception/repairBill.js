@@ -687,6 +687,7 @@ function doSetMainInfo(car){
     maintain.carId = car.id;
     maintain.carNo = car.carNo;
     maintain.carVin = car.vin;
+    maintain.carModelIdLy = car.carModelIdLy||"";
     maintain.engineNo = car.engineNo;
     maintain.contactorId = car.contactorId;
     maintain.contactorName = car.contactName;
@@ -836,6 +837,7 @@ function setInitData(params){
                         data.sex = contactor.sex;
                         data.mobile = contactor.mobile;
                         data.carModel = car.carModel;
+                        data.carModelIdLy = car.carModelIdLy||"";
 
                         $("#guestNameEl").html(guest.fullName);
                         $("#showCarInfoEl").html(data.carNo);
@@ -1062,6 +1064,7 @@ function save(){
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
                     data.carModel = car.carModel;
+                    data.carModelIdLy = car.carModelIdLy||"";
                     billForm.setData(data);
                     nui.get("contactorName").setText(contactor.name);
                     var status = data.status||0;
@@ -1169,6 +1172,7 @@ function saveNoshowMsg(callback){
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
                     data.carModel = car.carModel;
+                    data.carModelIdLy = car.carModelIdLy||"";
                     billForm.setData(data);
                     nui.get("contactorName").setText(contactor.name);
                     var status = data.status||0;

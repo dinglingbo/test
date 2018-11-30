@@ -8,7 +8,7 @@ var memHash={};
 var carModelHash = [];
 
 $(document).ready(function(v){
-    queryForm = new nui.Form("#queryForm"); 
+    queryForm = new nui.Form("#queryForm");  
     dgGrid = nui.get("dgGrid");
     dgGrid.setUrl(getScoutGuestListUrl);
     dgGrid.on("beforeload",function(e){ 
@@ -217,7 +217,7 @@ function telInfo(e){
     }
     nui.open({
         url: webPath + contextPath  + "/manage/telTrack_info.jsp?token="+token,
-        title: "电话跟踪", width: 570, height: 550,
+        title: "电话跟踪", width: 770, height: 550,
         onload: function () {
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setScoutForm(data);

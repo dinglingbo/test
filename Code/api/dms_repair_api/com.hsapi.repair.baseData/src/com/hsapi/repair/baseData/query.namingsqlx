@@ -53,7 +53,7 @@
 		SELECT
 				a.name AS name,
 				a.id AS id,
-				COUNT(*) AS num,
+				COUNT(1) AS num,
 				SUM(a.recharge_amt) AS amt
 			FROM
 				wb_repair.rpb_card_stored a
@@ -71,13 +71,13 @@
                 (b.record_date &lt;= #endDate#)
             </isNotEmpty>  
         </dynamic> 
-        GROUP BY a. NAME 
+        GROUP BY a.NAME,a.id 
 	</select>
 	
 	<select id="querytimesCard" parameterClass="commonj.sdo.DataObject" resultClass="java.util.HashMap">
 		SELECT
 				a. NAME AS NAME,
-				COUNT(*) AS num,
+				COUNT(1) AS num,
 				a.id AS id,
 				SUM(a.sell_amt) AS amt
 			FROM
@@ -94,7 +94,7 @@
                 (b.record_date &lt;= #endDate#)
             </isNotEmpty>  
         </dynamic> 
-        GROUP BY a. NAME 
+        GROUP BY a.NAME, a.id
 	</select>
 	
 	<select id="queryLastCheckModel" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">

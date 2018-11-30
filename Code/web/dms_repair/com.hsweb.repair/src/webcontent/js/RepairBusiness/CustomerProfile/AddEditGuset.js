@@ -347,6 +347,9 @@ function onParseUnderpanNo()
             name2 = name2?(name2+" "):"";
             var name3 = carVinModel.name||"";
             nui.get("carModel").setValue(name1 + name2 + name3);
+            nui.get("carBrandId").setValue("");
+            nui.get("carModelId").setValue(carVinModel.id);
+            nui.get("carModelIdLy").setValue(carModelId);
         }
     });
 }

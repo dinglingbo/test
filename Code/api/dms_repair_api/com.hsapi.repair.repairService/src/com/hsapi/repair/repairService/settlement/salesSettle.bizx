@@ -1646,7 +1646,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link67</targetConnections>
-    <location x="789" y="206"/>
+    <location x="788" y="258"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess7label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
@@ -1663,23 +1663,28 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess7label" name="label" nodeType="label">
-    <location x="773" y="241"/>
+    <location x="772" y="293"/>
     <figSize height="17" width="58"/>
     <node>subprocess7</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign25" name="赋值24" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link67" name="link67" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign25</sourceNode>
-      <targetNode>subprocess7</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link31" name="balaAmtC != balaAmt" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link31" name="balaAmtC != balaAmt" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign25</sourceNode>
       <targetNode>assign9</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NE">
           <process:leftOperand type="query">balaAmt</process:leftOperand>
           <process:rightOperand type="query">balaAmtC</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign25</sourceNode>
+      <targetNode>assign7</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -1778,6 +1783,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link64</targetConnections>
+    <targetConnections>link3</targetConnections>
     <location x="885" y="206"/>
     <size height="28" width="28"/>
     <nodeLabel>assign30label</nodeLabel>
@@ -1917,6 +1923,32 @@
     <location x="1366" y="242"/>
     <figSize height="17" width="39"/>
     <node>assign27</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign7" name="赋值7" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>assign30</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">maintain/billTypeId</process:leftOperand>
+          <process:rightOperand type="literal">5</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link67" name="link67" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>subprocess7</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link24</targetConnections>
+    <location x="734" y="205"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign7label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
+    <location x="732" y="241"/>
+    <figSize height="17" width="32"/>
+    <node>assign7</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

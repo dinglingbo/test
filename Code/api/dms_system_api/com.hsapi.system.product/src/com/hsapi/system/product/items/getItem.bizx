@@ -21,7 +21,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="java.util.HashMap[]" name="rs" type="query" valueType="Java">rs</process:return>
+      <process:return id="0" language="commonj.sdo.DataObject[]" name="rs" type="query" valueType="Java">rs</process:return>
       <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="3" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
@@ -161,7 +161,7 @@
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:inputs>
   <process:outputs>
-    <process:output anyType="java.util.HashMap" description="" isArray="true" name="rs"/>
+    <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="rs"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>

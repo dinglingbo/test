@@ -306,6 +306,10 @@
       <process:from type="literal" pattern="reference">E</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">结算失败</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="1183" y="256"/>

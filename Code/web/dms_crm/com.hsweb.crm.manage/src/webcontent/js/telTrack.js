@@ -8,7 +8,7 @@ var memHash={};
 var carModelHash = [];
 
 $(document).ready(function(v){
-    queryForm = new nui.Form("#queryForm");  
+    queryForm = new nui.Form("#queryForm");   
     dgGrid = nui.get("dgGrid");
     dgGrid.setUrl(getScoutGuestListUrl);
     dgGrid.on("beforeload",function(e){ 
@@ -232,14 +232,21 @@ function telInfo(e){
 
 
 function addRow() {
+        var row = dgGrid.getSelected();
+    if (row == undefined) {
+        showMsg("请选中一条数据","W");
+        return;
+    }
     nui.open({
         url: webPath + contextPath + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
         title: "新增预约", width: 655, height: 400,
         onload: function () {
             var iframe = this.getIFrameEl();
-            var data = {};
+            var data = row;
             data.mtAdvisorId = currEmpId;
             data.mtAdvisor = currUserName;
+            data.contactorName = data.guestName;
+            data.contactorTel = data.mobile;
             var param = { action: "add", data: data };
             iframe.contentWindow.SetData(param);
         },

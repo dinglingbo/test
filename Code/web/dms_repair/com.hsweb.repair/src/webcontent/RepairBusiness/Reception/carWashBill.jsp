@@ -192,7 +192,7 @@
         <input class="nui-hidden" name="identity"/>
         <input class="nui-hidden" name="billTypeId"/>
         <input class="nui-hidden" name="status"/>
-        <input class="nui-hidden" name="isSettle"/>
+        <input class="nui-hidden" name="isSettle" id="isSettle"/>
         <table   style="width: 100%;border-spacing: 0px 5px;"> 
             <tr>   
                 <td class="title required">车牌号：</td> 

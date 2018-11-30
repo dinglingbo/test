@@ -94,14 +94,37 @@ public class ArrayUtils {
 	}
 
 	@Bizlet("")
-	public static double addFloatColumn2(DataObject[] b,String propertyName) {
+	public static double addDoubleColumn(DataObject[] b,String propertyName) {
 		double  i = 0;
 		for (DataObject obj : b) {
 			double value = obj.getDouble(propertyName);
-			i =  ArithUtil.add(i,value);
-			//i = i + value;		
+			i =  sumValue(i,value);	
 		}
 		return i;
+	}
+	
+	//减
+	@Bizlet("")
+	public static double sub(double v1,double v2){
+		BigDecimal b1 = new BigDecimal(Double.toString(v1));
+		BigDecimal b2 = new BigDecimal(Double.toString(v2));
+		return b1.subtract(b2).doubleValue();
+		}
+	
+	//乘
+	@Bizlet("")
+	public static double mul(double v1,double v2){
+		BigDecimal b1 = new BigDecimal(Double.toString(v1));
+		BigDecimal b2 = new BigDecimal(Double.toString(v2));
+		return b1.multiply(b2).doubleValue();
+		}
+	
+	//加
+	@Bizlet("")
+	public static double sumValue(double d1,double d2){
+		BigDecimal b1=new BigDecimal(Double.toString(d1));
+		BigDecimal b2=new BigDecimal(Double.toString(d2));
+		return b1.add(b2).doubleValue();
 	}
 	
 	@Bizlet("")
@@ -417,12 +440,3 @@ public class ArrayUtils {
 
 }
 
-@Bizlet("")
-class ArithUtil{
-	private ArithUtil(){}	
-	public static double add(double d1,double d2){
-			BigDecimal b1=new BigDecimal(Double.toString(d1));
-			BigDecimal b2=new BigDecimal(Double.toString(d2));
-			return b1.add(b2).doubleValue();
-		}
-}

@@ -19,6 +19,7 @@ var itemGrid = null;
 var treeHash={};
 var partGrid = null;
 var brandPartGrid = null;
+var carModelIdLy = null;
 var packageGridUrl = baseUrl+"com.hsapi.system.product.items.getPackage.biz.ext";
 var itemGridUrl = baseUrl+"com.hsapi.system.product.items.getItem.biz.ext";
 var itemKindHash = {
@@ -62,6 +63,9 @@ $(document).ready(function ()
 //    	 onOk(2);
 //     });
 });
+function setToken(){
+	return {"token":token,"noShowParent":1};
+}
 function init(type)
 {
     var treeUrl = baseUrl+"com.hsapi.system.product.items.getPrdtType.biz.ext";
@@ -82,7 +86,6 @@ function init(type)
     		types = "02";
     	}
     	e.data.type = "01";
-    	console.log(e);
     });
     tree.setUrl(treeUrl);
     tree.on("preload",function(e){
@@ -149,6 +152,13 @@ function init(type)
         {
         	
             e.cellHtml = treeHash[e.value].name.split(" ")[1];
+        }
+    });
+    packageDetail.on("drawcell",function(e)
+    {
+        if(e.field == "itemKind")
+        {
+            e.cellHtml = itemKindHash[e.value];
         }
     });
     var packageDetailUrl = baseUrl+"com.hsapi.system.product.items.getPkgDetail.biz.ext";
@@ -332,8 +342,8 @@ function onSearch(tabIdx)
 }
 function doSearchPackage(params)
 {
-    params.packageId = params.code;
     params.packageName = params.name;
+    params.carModelId = carModelIdLy;
     packageGrid.load({
     	token:token,
         p:params
@@ -374,6 +384,7 @@ function setData(data,ck)
     	var vin = data.vin||"";
     	var type = data.type||"";
         serviceId = data.serviceId;
+        carModelIdLy = data.carModelIdLy||"";
         init("pkg");
         vinEl.setValue(vin);
         vinEl.doValueChanged();

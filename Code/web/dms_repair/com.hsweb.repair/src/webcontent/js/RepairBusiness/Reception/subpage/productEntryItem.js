@@ -19,6 +19,7 @@ var itemGrid = null;
 var treeHash={};
 var partGrid = null;
 var brandPartGrid = null;
+var carModelIdLy = null;
 var itemKindHash = {
     JD:"机电",
     BJ:"钣金",
@@ -314,6 +315,7 @@ function doSearchPackage(params)
 function doSearchItem(params)
 {
     params.itemName = params.name||"";
+    params.carModelId = carModelIdLy;
     itemGrid.load({
     	token:token,
         p:params
@@ -345,6 +347,7 @@ function setData(data,ck)
     	var vin = data.vin||"";
 //    	var type = data.type||"";
         serviceId = data.serviceId;
+        carModelIdLy = data.carModelIdLy||"";
         init();
         vinEl.setValue(vin);
         vinEl.doValueChanged();

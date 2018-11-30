@@ -11,7 +11,7 @@
 -->
 <head>
 <title>标准化产品查询</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntryPkg.js?v=1.2.6"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/subpage/ProductEntryPkg.js?v=1.2.9"></script>
 <style type="text/css">
 
 table {
@@ -129,7 +129,7 @@ table {
 				<div class="nui-fit">
 					<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
 						dataField="rs" showTreeIcon="true" textField="name" expandOnLoad="0"
-						idField="id" parentField="" resultAsTree="false">
+						idField="id" ajaxData="setToken" parentField="" resultAsTree="false">
 					</ul>
 				</div>
 			</div>
@@ -201,17 +201,17 @@ table {
 		  </div>
 		</div>
 		  <div id="detailGrid_Form" style="display:none;">
-					<div id="packageDetail" class="nui-datagrid" style="width:100%;"
+					<div id="packageDetail" class="nui-datagrid" style="width:600px;"
 						dataField="rs" showPager="false">
 						<div property="columns">
 							<div field="type" width="60" headerAlign="center" allowSort="true" header="类型"></div>
-							<div field="itemCode" width="120" headerAlign="center" allowSort="true" header="项目/配件名称编码"></div>
-							<div field="itemName" width="120" headerAlign="center" allowSort="true" header="名称"></div>
-							<div field="itemKind" width="120" headerAlign="center" allowSort="true" header="工种"></div>
+							<div field="itemCode" visible="false" width="120" headerAlign="center" allowSort="true" header="项目/配件名称编码"></div>
+							<div field="itemName" width="150" headerAlign="center" allowSort="true" header="名称"></div>
+							<div field="itemKind" width="60" headerAlign="center" allowSort="true" header="工种"></div>
 							<div field="qty" width="120" headerAlign="center" allowSort="true" header="工时/数量"></div>
 							<div field="price" width="120" headerAlign="center" allowSort="true" header="单价"></div>
 							<div field="amt" width="120" headerAlign="center" allowSort="true" header="金额"></div>
-							<div field="partBrandId" width="120" headerAlign="center" allowSort="true" header="配件品牌"></div>
+							<div field="partBrandId" visible="false" width="120" headerAlign="center" allowSort="true" header="配件品牌"></div>
 						</div>
 					</div>
 		         </div>				

@@ -77,7 +77,7 @@ $(document).ready(function(){
     			e.cellHtml = "未结算";
     		}
     	}else if(e.field == "serviceCode"){
-    		e.cellHtml ='<a href="##" onclick="openOrderDetail('+"'"+e.record.serviceId+"'"+')">'+e.record.serviceCode+'</a>';
+    		e.cellHtml ='<a href="##" onclick="openOrderDetail('+"'"+e.record.id+"'"+')">'+e.record.serviceCode+'</a>';
     	}
     });
 

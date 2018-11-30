@@ -983,9 +983,9 @@ function add()
 
                     if(!orderMan || orderMan==""){
     					for(var i=0;i<memList.length;i++){
-    						if(currUserId==memList[i].empId){
-    							nui.get("orderMan").setValue(currUserId);
-    							nui.get("orderMan").setText(currUserName);
+    						if(currEmpId==memList[i].empId){
+    							nui.get("orderMan").setValue(currEmpId);
+    							nui.get("orderMan").setText(currEmpId);
     						}
     					}
     				
@@ -1024,8 +1024,8 @@ function add()
         
         if(!orderMan || orderMan==""){
 			for(var i=0;i<memList.length;i++){
-				if(currUserId==memList[i].empId){
-					nui.get("orderMan").setValue(currUserId);
+				if(currEmpId==memList[i].empId){
+					nui.get("orderMan").setValue(currEmpId);
 					nui.get("orderMan").setText(currUserName);
 				}
 			}
@@ -1842,10 +1842,10 @@ function addDetail(rows)
             systemUnitId : row.comUnit,
             outUnitId : row.comUnit
         };
-        var row=rightGrid.getData();
-        for(var i=0;i<row.length;i++){
-			if(!row[i].partId){
-				rightGrid.removeRow(row[i]);
+        var gridData=rightGrid.getData();
+        for(var j=0;j<gridData.length;j++){
+			if(!gridData[j].partId){
+				rightGrid.removeRow(gridData[j]);
 			}
 		}
 

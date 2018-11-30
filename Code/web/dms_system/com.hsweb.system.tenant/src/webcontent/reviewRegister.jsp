@@ -1,21 +1,13 @@
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-
+<%@page pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@include file="/common/sysCommon.jsp"%>
 <html>
-<!-- 
-  - Author(s): Guine
-  - Date: 2018-04-23 11:00:21
-  - Description:
--->
-<%
-	//String contextPath = request.getContextPath();
-%>
 <head>
 <title>注册审核</title>
-	<%@include file="/common/sysCommon.jsp"%>
 <link
 	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
-<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.2"
+<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.3"
 	type="text/javascript"></script>
 </head>
 <body>
@@ -31,9 +23,9 @@
                 	<label style="font-family: Verdana;" title="点击清空条件"><span>审核状态：</span></label> 
 							<a class="nui-menubutton "  menu="#popupMenu1"  id="assignStatus" name="assignStatus" >所有</a>
                	 <ul id="popupMenu1" class="nui-menu" style="display:none;">
-                    <li iconCls="icon-tip" onclick="(this, assignStatus, '')" id="type1">所有</li>
-                    <li iconCls="icon-tip" onclick="setMenu1(this, assignStatus,0)" id="typeAll">未审</li>
-                    <li iconCls="icon-tip" onclick="setMenu1(this, assignStatus,1)" id="type0">已审</li>
+                    <li iconCls="" onclick="(this, assignStatus, '')" id="type1">所有</li>
+                    <li iconCls="" onclick="setMenu1(this, assignStatus,0)" id="typeAll">未审</li>
+                    <li iconCls="" onclick="setMenu1(this, assignStatus,1)" id="type0">已审</li>
                     </ul>	
                
                		<li class="separator"></li>
@@ -42,13 +34,13 @@
                             <label style="font-family:Verdana;">至</label>
                             <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 					<li class="separator"></li>
-					<a class="nui-button"  plain="true" href="javascript:query();" id="query" enabled="true"  onclick="superSearch">查询</a>
+					<a class="nui-button"  plain="true" href="javascript:query();" id="query" enabled="true"  onclick="superSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 						<a class="nui-button"  plain="true"
-					 id="sh" enabled="true"  onclick="audit">审核</a>
+					 id="sh" enabled="true"  onclick="audit"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
 					 	<a class="nui-button"  plain="true"
-					 id="jy" name="jy" enabled="true"  onclick="stopUse">禁用</a>
+					 id="jy" name="jy" enabled="true"  onclick="stopUse"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
 					  	<a class="nui-button"  plain="true" visible="false"
-					 id="qy" name="qy" enabled="true"  onclick="stopUse">启用</a>
+					 id="qy" name="qy" enabled="true"  onclick="stopUse"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用</a>
 			 	</td>
 			</tr>
 		</table>

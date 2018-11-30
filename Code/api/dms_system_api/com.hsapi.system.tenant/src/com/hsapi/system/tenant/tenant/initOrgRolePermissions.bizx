@@ -534,6 +534,7 @@
     <location x="575" y="219"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="tCapRoleList" iterableElement="roleTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
@@ -672,13 +673,13 @@
     <location x="645" y="217"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getTemplateRoleResauth</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="roleId" type="query" value="String" valueType="Primitive" pattern="reference">roleTemp/roleId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="capResauthList" type="query" value="com.hsapi.system.data.sys.CapResauth[]" valueType="DataObject">tCapResauth</process:outputVariable>
+        <process:outputVariable id="0" name="capResauthList" type="query" value="com.hsapi.system.data.sys.ComCapResauth[]" valueType="DataObject">tCapResauth</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -728,6 +729,7 @@
     <location x="893" y="220"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart2label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="tCapResauth" iterableElement="resauthTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart2label" name="label" nodeType="label">
@@ -997,7 +999,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link7</targetConnections>
-    <location x="2552" y="219"/>
+    <location x="2553" y="217"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -1006,7 +1008,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="2554" y="255"/>
+    <location x="2555" y="253"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -1022,7 +1024,7 @@
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getTemplateMenu</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="tentantId" type="literal" value="String" valueType="Primitive" pattern="reference">0</process:inputVariable>
+        <process:inputVariable id="0" name="tentantId" type="literal" value="String" valueType="Primitive" pattern="reference">-1</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="tenantMenu" type="query" value="com.hsapi.system.data.sys.ComTenantMenu[]" valueType="DataObject">tmpComTenantMenu</process:outputVariable>
@@ -1208,12 +1210,12 @@
     <process:variable description="用于循环添加新增角色" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.CapRole" name="roleTemp"/>
     <process:variable description="新增角色" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.CapRole" name="roleList"/>
     <process:variable description="角色ID" historyStateLocation="client" isArray="false" name="roleId" primitiveType="Long"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.CapResauth" name="tCapResauth"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.CapResauth" name="resauthTemp"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.CapResauth" name="resauthList"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.ComCapResauth" name="tCapResauth"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComCapResauth" name="resauthTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.ComCapResauth" name="resauthList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="roleCount" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mainRoleId" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.CapPartyauth" name="tmpPartyauth"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComCapPartyauth" name="tmpPartyauth"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComGuest" name="guest"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComStore" name="store"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.OrgOrganization" name="tmpOrgOrganization"/>

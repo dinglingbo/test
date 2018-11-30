@@ -358,6 +358,14 @@
         order by id desc
 	</select>
 	
+	<select id="messageCount" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT count(1) ct
+		from com_message
+		where 1 = 1 and orgid = #orgid# 
+              and  (reader_target_id = #userId#)
+              and read_sign = 0
+	</select>
+	
 	<select id="queryRemind" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT 
 			id as id, orgid as orgid, msg_title as msgTitle, msg_sub_title as msgSubTitle,

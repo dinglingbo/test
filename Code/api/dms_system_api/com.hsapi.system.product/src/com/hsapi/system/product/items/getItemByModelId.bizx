@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getItem" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getItemByModelId" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询项目车型：&#xD;&#xA;参数：p   根据车型ID和配件名称查询  carModelId partName itemName&#xD;&#xA;com.hsapi.system.product.items.getItem" title="Guine&#x9;18-3-23 上午9:11">
     <location x="-60" y="-3"/>
     <size height="100" width="496"/>
@@ -9,14 +9,13 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign1</targetNode>
     </sourceConnections>
-    <location x="45" y="144"/>
+    <location x="-30" y="144"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link2</targetConnections>
     <targetConnections>link3</targetConnections>
-    <targetConnections>link6</targetConnections>
     <location x="646" y="144"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -28,7 +27,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="47" y="180"/>
+    <location x="-28" y="180"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -69,18 +68,8 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" type="transition">
-      <sourceNode>assign1</sourceNode>
-      <targetNode>assign2</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">p/carModelId</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="208" y="144"/>
+    <location x="174" y="144"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -97,7 +86,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="206" y="180"/>
+    <location x="172" y="180"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -133,31 +122,14 @@
     <figSize height="17" width="164"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign2</sourceNode>
-      <targetNode>end0</targetNode>
-    </sourceConnections>
-    <targetConnections>link5</targetConnections>
-    <location x="208" y="225"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign2label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="206" y="261"/>
-    <figSize height="17" width="32"/>
-    <node>assign2</node>
-  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Guine" createTime="2018-03-23 08:55:46" date="2018-03-23Z" description="" name="carModel" version="7.0.0.0"/>
-  <process:variables/>
+  <process:variables>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
+  </process:variables>
   <process:inputs varArgs="false">
-    <process:input anyType="java.util.HashMap" description="" isArray="false" name="p"/>
+    <process:input description="" isArray="false" name="carId" primitiveType="Int"/>
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:inputs>
   <process:outputs>

@@ -22,6 +22,7 @@
                 <input class="nui-hidden" name="status"/>
                 <input class="nui-hidden" name="isSettle"/>
                 <input class="nui-hidden" name="isOutBill"/>
+                <input class="nui-hidden" name="carModelIdLy"/>
                 <tr>
                         <td class="title required">
                             <label>车牌号：</label>

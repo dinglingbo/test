@@ -53,8 +53,8 @@ dgGrid.load({token :token});
     initMember("tree2",function(){
         memList = memList.getData();
         memList.forEach(function(v) {
-         memHash[v.empId] = v;
-     });
+           memHash[v.empId] = v;
+       });
         nui.get("tree2").setData(memList);
         query1();
     });
@@ -259,17 +259,25 @@ function editClient(){
 
 
 function moreQuery(){
-        mini.open({
-            url: webPath + contextPath + "/manage/datumMgr_search.jsp?token="+ token,
-            title: "更多查询", width: 520, height: 180,
-            onload: function () { 
-                var iframe = this.getIFrameEl();
+    assignStatus.setValue(-1);
+    assignStatus.setText("所有");
+    nui.get("visitStatus").setValue(null);
+    nui.get("carNo").setValue(null);
+    nui.open({
+        url: webPath + contextPath + "/manage/datumMgr_search.jsp?token="+ token,
+        title: "更多查询", width: 520, height: 180,
+        onload: function () { 
+            var iframe = this.getIFrameEl();
             //var data = { action: "edit", id: row.id };
             //iframe.contentWindow.setData(row);
         },
         ondestroy: function (action) {
-            //var iframe = this.getIFrameEl();
-            //dgGrid.reload();
+            if(action == "ok"){
+                
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                dgGrid.load({p:data,token:token});
+            }
         }
     });
 }

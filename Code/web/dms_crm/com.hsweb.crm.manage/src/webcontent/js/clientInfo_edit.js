@@ -34,6 +34,27 @@ $(document).ready(function(v){
     } else {
         nui.get("carModelInfo").enable();
     }
+        
+        var tip = new mini.ToolTip();
+        tip.set({
+            target: document,
+            selector: '#carModelId .mini-buttonedit-input',
+           placement:'topleft',
+            onbeforeopen: function (e) {
+                e.cancel = false;
+            },
+            onopen: function (e) {
+                var el = e.element;
+                
+                var val = $(el).val();
+                if (val == "") {
+                    tip.hide();
+                } else {
+                    tip.setContent(val);
+                }
+
+            }
+        });
 });
 
 function init(){

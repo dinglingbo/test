@@ -4,7 +4,7 @@
 var baseUrl = apiPath + repairApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.repair.repairService.report.queryBillComment.biz.ext";
 var basicInfoForm = null;
-var rightGrid = null;
+var rightGrid = null; 
 var servieTypeList=[];
 var servieTypeHash={};
 var pointList=[{"id":1,"type":"good","name" :"好评" },{"id":2,"type":"nice","name" :"中评" },{"id":3,"type":"bad","name" :"差评" }];
@@ -80,65 +80,65 @@ function getSearchParams(){
 }
 var currType = 2;
 function quickSearch(type){
-	var params = getSearchParams();
+    var params = getSearchParams();
     var queryname = "本日";
     switch (type)
     {
         case 0:
             params.today = 1;
-            params.sRecordDate = getNowStartDate();
-            params.eRecordDate = addDate(getNowEndDate(), 1);
+            params.sOutDate = getNowStartDate();
+            params.eOutDate = addDate(getNowEndDate(), 1);
             queryname = "本日";
             break;
         case 1:
             params.yesterday = 1;
-            params.sRecordDate = getPrevStartDate();
-            params.eRecordDate = addDate(getPrevEndDate(), 1);
+            params.sOutDate = getPrevStartDate();
+            params.eOutDate = addDate(getPrevEndDate(), 1);
             queryname = "昨日";
             break;
         case 2:
             params.thisWeek = 1;
-            params.sRecordDate = getWeekStartDate();
-            params.eRecordDate = addDate(getWeekEndDate(), 1);
+            params.sOutDate = getWeekStartDate();
+            params.eOutDate = addDate(getWeekEndDate(), 1);
             queryname = "本周";
             break;
         case 3:
             params.lastWeek = 1;
-            params.sRecordDate = getLastWeekStartDate();
-            params.eRecordDate = addDate(getLastWeekEndDate(), 1);
+            params.sOutDate = getLastWeekStartDate();
+            params.eOutDate = addDate(getLastWeekEndDate(), 1);
             queryname = "上周";
             break;
         case 4:
             params.thisMonth = 1;
-            params.sRecordDate = getMonthStartDate();
-            params.eRecordDate = addDate(getMonthEndDate(), 1);
+            params.sOutDate = getMonthStartDate();
+            params.eOutDate = addDate(getMonthEndDate(), 1);
             queryname = "本月";
             break;
         case 5:
             params.lastMonth = 1;
-            params.sRecordDate = getLastMonthStartDate();
-            params.eRecordDate = addDate(getLastMonthEndDate(), 1);
+            params.sOutDate = getLastMonthStartDate();
+            params.eOutDate = addDate(getLastMonthEndDate(), 1);
             queryname = "上月";
             break;
 
         case 10:
             params.thisYear = 1;
-            params.sRecordDate = getYearStartDate();
-            params.eRecordDate = getYearEndDate();
+            params.sOutDate = getYearStartDate();
+            params.eOutDate = getYearEndDate();
             queryname="本年";
             break;
         case 11:
             params.lastYear = 1;
-            params.sRecordDate = getPrevYearStartDate();
-            params.eRecordDate = getPrevYearEndDate();
+            params.sOutDate = getPrevYearStartDate();
+            params.eOutDate = getPrevYearEndDate();
             queryname="上年";
             break;
         default:
             break;
     }
     currType = type;
-    sRecordDateEl.setValue(params.sRecordDate);
-    eRecordDateEl.setValue(params.eRecordDate);
+    sRecordDateEl.setValue(params.sOutDate);
+    eRecordDateEl.setValue(addDate(params.eOutDate,-1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
     doSearch(params);
@@ -151,6 +151,9 @@ function onSearch(){
 function doSearch(params)
 {
 	params.orgid = currOrgid;
+    if(params.eRecordDate){
+        params.eRecordDate = params.eRecordDate+" 23:59:59";
+    }
     rightGrid.load({
         params:params,
         token :token     

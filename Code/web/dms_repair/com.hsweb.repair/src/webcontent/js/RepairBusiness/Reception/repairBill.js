@@ -3158,11 +3158,17 @@ function pay(){
                     var status = data.status||2;
                     var isSettle = data.isSettle||1;
                     doSetStyle(status, isSettle);
+                    var main = billForm.getData();
+                    main.isSettle = 1;
+                    billForm.setData(main);
                     showMsg("结算成功!","S");
                 }else if(action == "onok"){
                     var status = data.status||2;
                     var isSettle = data.isSettle||1;
                     doSetStyle(status, isSettle);
+                    var main = billForm.getData();
+                    main.isSettle = 1;
+                    billForm.setData(main);
                     showMsg("转预结算成功!","S");
                 }else{
                     if(data.errCode){

@@ -916,6 +916,10 @@
       <process:from type="query" pattern="reference">rpbPart/partName</process:from>
       <process:to type="query">insPart/partName</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpbPart/unit</process:from>
+      <process:to type="query">insPart/unit</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
     <location x="232" y="178"/>
@@ -1045,6 +1049,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">rate</process:from>
       <process:to type="query">insPart/rate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpbPart/unit</process:from>
+      <process:to type="query">insPart/unit</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign23label" name="label" nodeType="label">

@@ -68,8 +68,8 @@ pageEncoding="UTF-8" session="false" %>
             <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div> 
             <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
             <div field="serviceTypeName" name="serviceTypeName" width="100px" headerAlign="center" header="业务类型"></div>
-            <div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div> -->
-            <!--<div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="开单日期"></div>
+            <!--<div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div> -->
+            <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="开单日期"></div>
             <!-- <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计完工日期"></div> -->
             <!-- <div field="mtAdvisor" width="70" headerAlign="center" align="center">维修顾问</div> -->
             <div field="leaveDays" width="70" headerAlign="center" align="center">离厂天数</div>

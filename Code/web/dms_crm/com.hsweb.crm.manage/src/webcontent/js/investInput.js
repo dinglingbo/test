@@ -86,6 +86,10 @@ function onEditClick(){
 		showMsg("请先选择一条数据","W");
 		return;
 	}
+	if(data.auditSign == 1){
+		showMsg("已审核通过，无法修改","W");
+		return;
+	}
 	nui.open({
 		url: webPath + contextPath+ "/com.hsweb.crm.manage.investDetail.flow?token="+ token,
 		title: "业绩修改",
@@ -156,10 +160,15 @@ function onDrawcell(e) {
     }
     if (e.field == "carType") {
         e.cellHtml = hash[e.value-1];
-}
+	}
     if (e.field == "serviceTypeId") {
         if (serviceHash && serviceHash[e.value]) {
             e.cellHtml = serviceHash[e.value].name;
+        }
+    }
+    if (e.field == "carBrandId") {
+        if (brandHash && brandHash[e.value]) {
+            e.cellHtml = brandHash[e.value].nameCn;
         }
     }
 }
@@ -181,6 +190,7 @@ function trackDetail(){
 		showMsg("请先选择一条数据","W");
 		return;
 	}
+
 	nui.open({
 		url: webPath + contextPath+ "/manage/trackInfo.jsp?token="+ token,
 		title: "跟踪记录",

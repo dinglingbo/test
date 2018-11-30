@@ -3788,6 +3788,10 @@ function pay(){
             showMsg("工单未完工,不能结算!","W");
             return;
         }
+        if(data.isSettle == 1){
+       	 showMsg("工单已结算!","W");
+            return;
+       }
         var sellData = sellForm.getData();
         ycAmt = parseFloat(tcAmt)+parseFloat(gsAmt);
         sellData.ycAmt = ycAmt;
@@ -3804,11 +3808,13 @@ function pay(){
             if(data.action){
                 var action = data.action||"";
                 if(action == "ok"){
+                	nui.get("isSettle").setValue(1);
                     var status = data.status||2;
                     var isSettle = data.isSettle||1;
                     doSetStyle(status, isSettle);
                     showMsg("结算成功!","S");
                 }else if(action == "onok"){
+                	nui.get("isSettle").setValue(1);
                     var status = data.status||2;
                     var isSettle = data.isSettle||1;
                     doSetStyle(status, isSettle);

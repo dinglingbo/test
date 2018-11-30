@@ -83,7 +83,7 @@ function setData(params){
 	typeUrl = params.typeUrl||0;
 	if(typeUrl==1){
 		settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.salesSettle.biz.ext" ;
-	}else if(typeUrl=2){
+	}else if(typeUrl==2){
 		settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.returnSettle.biz.ext" ;
 	}else{
 		settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ;

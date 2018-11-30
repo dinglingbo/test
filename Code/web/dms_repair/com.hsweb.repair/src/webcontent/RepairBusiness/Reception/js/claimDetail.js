@@ -3169,6 +3169,10 @@ function pay(){
             showMsg("本工单未完工,不能结算!","W");
             return;
         }
+        if(data.isSettle == 1){
+          	 showMsg("工单已结算!","W");
+               return;
+          }
         var sellData = sellForm.getData();
         ycAmt = parseFloat(tcAmt)+parseFloat(gsAmt);
         sellData.ycAmt = ycAmt;
@@ -3188,11 +3192,17 @@ function pay(){
                     var status = data.status||2;
                     var isSettle = data.isSettle||1;
                     doSetStyle(status, isSettle);
+                    var main = billForm.getData();
+                    main.isSettle = 1;
+                    billForm.setData(main);
                     showMsg("结算成功!","S");
                 }else if(action == "onok"){
                     var status = data.status||2;
                     var isSettle = data.isSettle||1;
                     doSetStyle(status, isSettle);
+                    var main = billForm.getData();
+                    main.isSettle = 1;
+                    billForm.setData(main);
                     showMsg("转预结算成功!","S");
                 }else{
                     if(data.errCode){

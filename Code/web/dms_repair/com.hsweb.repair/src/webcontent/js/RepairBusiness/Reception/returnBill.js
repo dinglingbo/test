@@ -1371,9 +1371,18 @@ function pay(){
 		    iframe.contentWindow.setData(params);			
 		},
 	   ondestroy : function(action) {
-		/*if (action == 'ok') {
-			
-		}*/
+           if(action == "ok"){
+           	nui.get("isSettle").setValue(1);
+               showMsg("结算成功!","S");
+           }else if(action == "onok"){
+           	nui.get("isSettle").setValue(1);
+               showMsg("转预结算成功!","S");
+           }else{
+               if(data.errCode){
+                   showMsg("结算失败!","W");
+                   return;
+               }
+           }
 	}
 	});		
 }

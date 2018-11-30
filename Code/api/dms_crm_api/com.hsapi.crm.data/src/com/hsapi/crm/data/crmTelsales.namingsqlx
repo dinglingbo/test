@@ -35,10 +35,6 @@
         <isNotNull property="carNo">
             AND car_no = #carNo#
         </isNotNull>
-        <isNotNull property="mobile">
-            AND mobile = #mobile#
-        </isNotNull>
-        
         <isEqual property="assignStatus" compareValue="-1">
         </isEqual>
         <isEqual property="assignStatus" compareValue="0">
@@ -50,7 +46,6 @@
         <isEqual property="assignStatus" compareValue="2"> 
             AND next_scout_date &lt; DATE_FORMAT(date_add(now(),interval 1 day),'%Y-%m-%d')
         </isEqual>
-     
         
         <isNotNull property="carBrandId">
             AND car_brand_id = #carBrandId#
@@ -58,6 +53,25 @@
         <isNotNull property="visitManId">
             AND visit_man_id = #visitManId#
         </isNotNull>
+         <isNotNull property="guestName">
+            AND  guest_name = #guestName#
+        </isNotNull>
+          <isNotNull property="mobile">
+            AND  mobile = #mobile#
+        </isNotNull>
+       <isNotNull property="vin">
+            AND  vin like  '%$vin$%'
+        </isNotNull>
+       <isNotNull property="carModel">
+            AND  car_model = #carModel#
+        </isNotNull>
+        <isNotNull property="engineNo">
+            AND  engine_no like  '%$engineNo$%'
+        </isNotNull>
+      <isNotNull property="address">
+            AND  address like  '%$address$%'
+        </isNotNull>
+        
    	</select>
     <!--跟踪客户列表-->
     <select id="getScoutGuestList" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">

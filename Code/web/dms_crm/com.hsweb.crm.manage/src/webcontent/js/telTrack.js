@@ -224,7 +224,7 @@ function telInfo(e){
         },
         ondestroy: function (action) {
             //重新加载
-            //query(tab);
+            dgGrid.reload();
         }
     });
 
@@ -234,7 +234,7 @@ function telInfo(e){
 function addRow() {
     nui.open({
         url: webPath + contextPath + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
-        title: "新增预约", width: 655, height: 300,
+        title: "新增预约", width: 655, height: 400,
         onload: function () {
             var iframe = this.getIFrameEl();
             var data = {};

@@ -156,7 +156,7 @@ function doSave(tform, url, callBack){
       function selTalkArt(){
          var data = {action: "sel"};
          data.url = webPath + contextPath+"/basic/talkArtTpl.jsp";
-         data.width = 680;
+         data.width = 880;
          data.height = 520;
          openTalkArt(data, "选择话术");
      }

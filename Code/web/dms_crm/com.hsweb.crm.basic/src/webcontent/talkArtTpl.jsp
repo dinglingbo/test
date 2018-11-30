@@ -52,7 +52,7 @@
                      style="width:100%;height:100%;border: 0;">
                     <ul id="tree1" class="nui-tree" 
                         style="width:95%;height:95%;padding:5px;" 
-                        showTreeIcon="true" 
+                        showTreeIcon="false" 
                         dataField="data" 
                         textField="name" 
                         idField="customid" 
@@ -86,16 +86,16 @@
                          showSummaryRow="true">
                         <div property="columns">
                             <div type="indexcolumn" width="20">序号</div>
-                            <div headerAlign="center"><strong>基本信息</strong>
+                            <div headerAlign="center">基本信息
                                 <div property="columns">
                                     <div field="id" visible=false>ID</div>
                                     <div field="topic" width="50" headerAlign="center" summaryType="count" allowSort=false>主题</div>
-                                    <div field="content" width="80" headerAlign="center" summaryType="" allowSort=false>话术内容
+                                    <div field="content" width="130" headerAlign="center" summaryType="" allowSort=false>话术内容
                                         <input property="editor" class="nui-textarea" style="width: 100%;">
                                     </div>
                                 </div>
                             </div>
-                            <div headerAlign="center"><strong>其他信息</strong>
+                            <div headerAlign="center">其他信息
                                 <div property="columns">
                                     <div field="source" width="30" headerAlign="center" summaryType="" allowSort=false>话术来源</div>
                                     <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>创建人</div>

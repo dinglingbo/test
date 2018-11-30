@@ -1319,7 +1319,7 @@ function finish(){
         return;
     }
     if(main.status==1){
- 		showMsg("工单已审核!","W");
+ 		showMsg("工单已确认开单!","W");
          return;
  	} 
     if(isSettle == 1){
@@ -1368,7 +1368,7 @@ function finish(){
                         }
                     };
                 loadDetail(p3);
-				showMsg("审核成功","S");
+				showMsg("确认开单成功","S");
 				
 			} else {
 				showMsg(returnJson.errMsg,"E");

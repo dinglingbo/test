@@ -12,7 +12,7 @@
 <head> 
     <title>维修出库详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.24"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.25"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -102,7 +102,7 @@
 
 
 <div class="nui-fit">
-    <div id="billForm" class="form">
+    <div id="billForm" class="form" >
         <input class="nui-hidden" name="id" id="id" />
         <input class="nui-hidden" name="guestId"/>
         <input class="nui-hidden" name="mtAdvisor" id="mtAdvisor"/>

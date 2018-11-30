@@ -208,6 +208,16 @@
       <targetNode>subprocess4</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link29" name="link29" displayName="连接线" type="transition">
+      <sourceNode>assign11</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">maintain/billTypeId</process:leftOperand>
+          <process:rightOperand type="literal">5</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link3</targetConnections>
     <targetConnections>link4</targetConnections>
     <location x="390" y="250"/>
@@ -596,6 +606,7 @@
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link26</targetConnections>
+    <targetConnections>link30</targetConnections>
     <location x="554" y="251"/>
     <size height="28" width="28"/>
     <nodeLabel>assign30label</nodeLabel>
@@ -632,6 +643,21 @@
     <location x="549" y="287"/>
     <figSize height="17" width="39"/>
     <node>assign30</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign30</targetNode>
+    </sourceConnections>
+    <targetConnections>link29</targetConnections>
+    <location x="469" y="334"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="467" y="370"/>
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

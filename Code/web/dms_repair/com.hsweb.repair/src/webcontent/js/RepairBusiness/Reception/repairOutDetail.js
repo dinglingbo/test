@@ -18,7 +18,7 @@ var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWi
 var mainGridUrl =  baseUrl + "com.hsapi.repair.repairService.query.getRpsPartByServiceId.biz.ext";
 var repairOutGridUrl =  partUrl + "com.hsapi.part.invoice.partInterface.queryEnbleRtnPart.biz.ext";
 var fserviceId = 0;
-var returnSignData = [{id:0,text:"未归库"},{id:1,text:"已归库"}];
+var returnSignData = [{id:0,text:"否"},{id:1,text:"是"}];
 
 var storehouse = null;
 var storeHash = {};
@@ -407,7 +407,7 @@ function  savepartOutRtn(data,childdata){
     	}
     	nui.open({
     		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,
-    		title:"选择归库人",
+    		title:"配件归库",
     		height:"300px",
     		width:"600px",
     		onload:function(){

@@ -687,6 +687,7 @@ function doSetMainInfo(car){
     maintain.carId = car.id;
     maintain.carNo = car.carNo;
     maintain.carVin = car.vin;
+    maintain.carModelIdLy = car.carModelIdLy||"";
     maintain.engineNo = car.engineNo;
     maintain.contactorId = car.contactorId;
     maintain.contactorName = car.contactName;
@@ -836,6 +837,7 @@ function setInitData(params){
                         data.sex = contactor.sex;
                         data.mobile = contactor.mobile;
                         data.carModel = car.carModel;
+                        data.carModelIdLy = car.carModelIdLy||"";
 
                         $("#guestNameEl").html(guest.fullName);
                         $("#showCarInfoEl").html(data.carNo);
@@ -1062,6 +1064,7 @@ function save(){
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
                     data.carModel = car.carModel;
+                    data.carModelIdLy = car.carModelIdLy||"";
                     billForm.setData(data);
                     nui.get("contactorName").setText(contactor.name);
                     var status = data.status||0;
@@ -1169,6 +1172,7 @@ function saveNoshowMsg(callback){
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
                     data.carModel = car.carModel;
+                    data.carModelIdLy = car.carModelIdLy||"";
                     billForm.setData(data);
                     nui.get("contactorName").setText(contactor.name);
                     var status = data.status||0;
@@ -3154,11 +3158,17 @@ function pay(){
                     var status = data.status||2;
                     var isSettle = data.isSettle||1;
                     doSetStyle(status, isSettle);
+                    var main = billForm.getData();
+                    main.isSettle = 1;
+                    billForm.setData(main);
                     showMsg("结算成功!","S");
                 }else if(action == "onok"){
                     var status = data.status||2;
                     var isSettle = data.isSettle||1;
                     doSetStyle(status, isSettle);
+                    var main = billForm.getData();
+                    main.isSettle = 1;
+                    billForm.setData(main);
                     showMsg("转预结算成功!","S");
                 }else{
                     if(data.errCode){
@@ -3209,10 +3219,12 @@ function showBasicData(type){
     	saveNoshowMsg(function(){
     		maintain = billForm.getData();
     		var carVin = maintain.carVin;
+    		var carModelIdLy = maintain.carModelIdLy;
     	    var params = {
     	        vin:carVin,
     	        serviceId:maintain.id,
-    	        carNo:maintain.carNo
+    	        carNo:maintain.carNo,
+    	        carModelIdLy:carModelIdLy
     	    };
     	    if(type=="pkg"){
     	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";
@@ -3229,10 +3241,12 @@ function showBasicData(type){
     	});
     }else{
     	    var carVin = maintain.carVin;
+    		var carModelIdLy = maintain.carModelIdLy;
     	    var params = {
     	        vin:carVin,
     	        serviceId:maintain.id,
-    	        carNo:maintain.carNo
+    	        carNo:maintain.carNo,
+    	        carModelIdLy:carModelIdLy
     	    };
     	    if(type=="pkg"){
     	    	BasicDataUrl = "/com.hsweb.RepairBusiness.ProductEntryPkg.flow?token=";

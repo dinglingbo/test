@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.2.9" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.3.0" type="text/javascript"></script>
     <style type="text/css">
     body { 
         margin: 0; 
@@ -68,8 +68,8 @@ pageEncoding="UTF-8" session="false" %>
             <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div> 
             <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
             <div field="serviceTypeName" name="serviceTypeName" width="100px" headerAlign="center" header="业务类型"></div>
-            <div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div> -->
-            <!--<div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="开单日期"></div>
+            <!--<div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div> -->
+            <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="开单日期"></div>
             <!-- <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计完工日期"></div> -->
             <!-- <div field="mtAdvisor" width="70" headerAlign="center" align="center">维修顾问</div> -->
             <div field="leaveDays" width="70" headerAlign="center" align="center">离厂天数</div>

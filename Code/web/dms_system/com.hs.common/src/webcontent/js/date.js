@@ -257,10 +257,10 @@ function getPrevYearEndDate() {
 }
 
 //获得本年的结束日期
-function getYearEndDate() {
+/*function getYearEndDate() {
 	var NowStartDate = new Date(nowYear, 11, 31);
 	return formatDate(NowStartDate);
-}
+}*/
 
 //获取两个日期间的月份数
 function getMonths(date1 , date2){

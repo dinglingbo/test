@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>资料管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.20"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.22"></script>
     <style type="text/css">
 
 
@@ -169,7 +169,7 @@ pageEncoding="UTF-8" session="false" %>
             <div headerAlign="center">车辆信息
                 <div property="columns">
                     <div field="id" visible=false>ID</div>
-                    <div field="orgid" width="120" headerAlign="center" allowSort=false>所在分店</div>
+                    <div field="orgid" width="120" headerAlign="center" allowSort=false visible="false">所在分店</div>
                     <div field="carNo" width="90" headerAlign="center" allowSort=false>车牌号</div>
                     <div field="carBrandId" width="100" headerAlign="center" allowSort=false>品牌</div>
                     <div field="carModel" width="250" headerAlign="center" allowSort=false>车型</div>
@@ -187,9 +187,9 @@ pageEncoding="UTF-8" session="false" %>
                     <div field="guestId" visible=false>客户ID</div>
                     <div field="guestName" width="80" headerAlign="center" summaryType="" allowSort=false>客户名称</div>
                     <div field="mobile" width="100" headerAlign="center" summaryType="" allowSort=false>手机号</div>
+                    <div field="sex" width="50" headerAlign="center" summaryType="" allowSort=false>性别</div>
                     <div field="contacts" width="80" headerAlign="center" summaryType="" allowSort=false>联系人</div>
                     <div field="tel" width="100" headerAlign="center" summaryType="" allowSort=false>电话</div>
-                    <div field="sex" width="50" headerAlign="center" summaryType="" allowSort=false>性别</div>
                     <div field="address" width="150" headerAlign="center" summaryType="" allowSort=false>地址</div>
                 </div>
             </div>

@@ -9,7 +9,7 @@
 -->
 <head>
     <title>客户服务-点评管理</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billCommmentQty.js?v=1.0.12"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billCommmentQty.js?v=1.0.14"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -107,14 +107,14 @@
             <div property="columns">
             	<div allowSort="true" field="serviceCode" width="130" headerAlign="center" header="业务单号"></div>
             	<div allowSort="true" field="carNo" width="100" headerAlign="center" header="车牌号"></div>
-   				<div allowSort="true" field="carModel" width="200" headerAlign="center" header="品牌/车型"></div>
+   				<div allowSort="true" field="carModel" width="250" headerAlign="center" header="品牌/车型"></div>
                 <div allowSort="true" field="chainComeTimes" width="80" headerAlign="center" header="来厂次数"></div>
                 <div allowSort="true" field="recorder" width="60" headerAlign="center"  header="点评人"></div>
                 <div allowSort="true" field="recordDate" width="130" headerAlign="center"dateFormat="yyyy-MM-dd HH:mm"  header="点评时间"></div>
                 <div allowSort="true" field="modifyDate" width="130" headerAlign="center"dateFormat="yyyy-MM-dd HH:mm" header="更新时间"></div>
                 <div allowSort="true" field="serviceTypeId" width="60" headerAlign="center" header="维修类型"></div>
             </div>
-        </div>
+        </div> 
         
          <div header="点评信息" headerAlign="center">
             <div property="columns">

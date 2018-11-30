@@ -3785,7 +3785,7 @@ function pay(){
         return;
     }else{
         if(data.status != 2){
-            showMsg("本工单未完工,不能结算!","W");
+            showMsg("工单未完工,不能结算!","W");
             return;
         }
         var sellData = sellForm.getData();

@@ -169,7 +169,7 @@ pageEncoding="UTF-8" session="false" %>
             <div headerAlign="center">车辆信息
                 <div property="columns">
                     <div field="id" visible=false>ID</div>
-                    <div field="orgid" width="120" headerAlign="center" allowSort=false>所在分店</div>
+                    <div field="orgid" width="120" headerAlign="center" allowSort=false visible="false">所在分店</div>
                     <div field="carNo" width="90" headerAlign="center" allowSort=false>车牌号</div>
                     <div field="carBrandId" width="100" headerAlign="center" allowSort=false>品牌</div>
                     <div field="carModel" width="250" headerAlign="center" allowSort=false>车型</div>

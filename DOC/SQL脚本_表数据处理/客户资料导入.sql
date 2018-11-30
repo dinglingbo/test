@@ -5,7 +5,15 @@
 
 11.30数据同步
 
+1、复制并删除原有的
+com_app_function
+com_cap_resauth
+
 */
+
+/*
+*/
+
 
 
 

@@ -648,7 +648,7 @@ function addItem()
 			techDeductTypeName:techDeductTypeName,
 			techDeductValue:item.techDeductValue,
 			truePrice:item.unitPrice,
-			trueAmt:item.amt
+			trueAmt:item.amt,
 		};
 		rightItemGrid.addRow(packageItem);
 		countj();

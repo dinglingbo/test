@@ -175,6 +175,10 @@
       <process:from type="query" pattern="reference">part/name</process:from>
       <process:to type="query">data/partName</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">part/unit</process:from>
+      <process:to type="query">data/unit</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="481" y="186"/>

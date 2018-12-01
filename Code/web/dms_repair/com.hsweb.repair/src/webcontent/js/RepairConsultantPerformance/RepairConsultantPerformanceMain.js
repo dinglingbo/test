@@ -17,6 +17,8 @@ var orgHash = {};
 var mtAdvisorIdHash = {};
 var carBrandHash = {};
 var insuranceHash = {};
+var sRecordDate = null;
+var eRecordDate = null;
 $(document).ready(function (v)
 {
 	advancedSearchWin = nui.get("advancedSearchWin");
@@ -24,8 +26,8 @@ $(document).ready(function (v)
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
     mtAdvisorIdEl = nui.get("mtAdvisorId");
-    var date = new Date();
-    nui.get("eRecordDate").setValue(date);
+    sRecordDate = nui.get("sRecordDate");
+    eRecordDate = nui.get("eRecordDate");
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {
@@ -36,7 +38,129 @@ $(document).ready(function (v)
         memList = mtAdvisorIdEl.getData();
         //nui.get("checkManId").setData(memList);
     });
+    quickSearch(0);
 });
+
+var searchByDateBtnTextHash = ["本日","昨日","本周","上周","本月","上月","本年","上年"];
+var currType = 0;
+function quickSearch(type) {
+    currType = type;
+    var btn = nui.get("menunamestatus");
+    if(btn)
+    {
+        var text = searchByDateBtnTextHash[type];
+        btn.setText(text);
+    }
+    onSearch();
+}
+
+function onSearch()
+{
+    var d = currType;
+    if (d == 0) {
+    	/* params.today = 1;
+        params.startDate = getNowStartDate();
+        params.endDate = addDate(getNowEndDate(), 1);*/
+        sRecordDate.setValue(getNowStartDate());
+        eRecordDate.setValue(getNowStartDate());
+    } else if (d == 1) {
+    	/*params.yesterday = 1;
+        params.startDate = getPrevStartDate();
+        params.endDate = addDate(getPrevEndDate(), 1);*/
+        sRecordDate.setValue(getPrevStartDate());
+        eRecordDate.setValue(getPrevEndDate());
+        
+    } else if (d == 2) {
+    	/*params.thisWeek = 1;
+        params.startDate = getWeekStartDate();
+        params.endDate = addDate(getWeekEndDate(), 1);*/
+        sRecordDate.setValue(getWeekStartDate());
+        eRecordDate.setValue(getWeekEndDate());
+    } else if (d == 3) {
+      /*params.lastWeek = 1;
+        params.startDate = getLastWeekStartDate();
+        params.endDate = addDate(getLastWeekEndDate(), 1);*/
+        sRecordDate.setValue(getLastWeekStartDate());
+        eRecordDate.setValue(getLastWeekEndDate());
+        
+    } else if (d == 4) {
+    	/* params.thisMonth = 1;
+        params.startDate = getMonthStartDate();
+        params.endDate = addDate(getMonthEndDate(), 1);*/
+        sRecordDate.setValue(getMonthStartDate());
+        eRecordDate.setValue(getMonthEndDate());
+        
+    } else if (d == 5) {
+    	/*params.lastMonth = 1;
+        params.startDate = getLastMonthStartDate();
+        params.endDate = addDate(getLastMonthEndDate(), 1);*/
+        sRecordDate.setValue(getLastMonthStartDate());
+        eRecordDate.setValue(getLastMonthEndDate());
+    }else if (d == 6) {
+    	/* params.lastMonth = 1;
+        params.startDate = getYearStartDate();
+        params.endDate = getYearEndDate();*/
+        sRecordDate.setValue(getYearStartDate());
+        eRecordDate.setValue(getYearEndDate());
+    }else if (d == 7) {
+    	/*params.lastMonth = 1;
+        params.startDate = getPrevYearStartDate();
+        params.endDate = getPrevYearEndDate();*/
+        sRecordDate.setValue(getPrevYearStartDate());
+        eRecordDate.setValue(getPrevYearEndDate());
+    }
+    doSearch();
+}
+
+function doSearch() {
+   var params = getSearchParams();
+    params.orgid = currOrgid;
+    grid.load({
+        token:token,
+        params: params
+    });
+}
+
+function getSearchParams()
+{
+    var params = {};
+    /*switch (currType) {
+        case 0:
+            params.today = 1;
+            break;
+        case 1:
+            params.yesterday = 1;
+            break;
+        case 2:
+            params.thisWeek = 1;
+            break;
+        case 3:
+            params.lastWeek = 1;
+            break;
+        case 4:
+            params.thisMonth = 1;
+            break;
+        case 5:
+            params.lastMonth = 1;
+            break;
+        case 6:
+            params.thisYear = 1;
+            break;
+        case 7:
+            params.lastYear = 1;
+            break;
+        default:
+            break;
+    }*/
+	params.startDate = sRecordDate.getValue();
+    params.endDate = addDate(eRecordDate.getValue(), 1);
+    params.mtAdvisorId = nui.get("mtAdvisorId").getValue();
+   // params = getAnayType(params);
+    return params;
+   
+}
+
+
 function advancedSearch()
 {
     advancedSearchWin.show();
@@ -74,22 +198,7 @@ function onAdvancedSearchClear()
 {
     advancedSearchForm.clear();
 }
-var searchByDateBtnTextHash = ["本日","昨日","本周","上周","本月","上月","本年","上年"];
-var currType = 0;
-function quickSearch(type) {
-    var params = {};
-    currType = type;
 
-    var btn = nui.get("menunamestatus");
-    if(btn)
-    {
-        var text = searchByDateBtnTextHash[type];
-        btn.setText(text);
-    }
-    onSearch();
-}
-var currAnayType = 1;
-var analysisByDateBtnTextHash = ["按分店","按维修顾问","按品牌","按客户来源","按业务类型","按维修类型","按来厂次数"];
 function quickSearch1(type)
 {
     currAnayType = type;
@@ -102,6 +211,10 @@ function quickSearch1(type)
     }
     onSearch();
 }
+
+var currAnayType = 1;
+var analysisByDateBtnTextHash = ["按分店","按维修顾问","按品牌","按客户来源","按业务类型","按维修类型","按来厂次数"];
+
 function getAnayType(params)
 {
     switch (currAnayType)
@@ -133,90 +246,8 @@ function getAnayType(params)
     }
     return params;
 }
-function getSearchParams()
-{
-    var params = {};
-    switch (currType) {
-        case 0:
-            params.today = 1;
-            break;
-        case 1:
-            params.yesterday = 1;
-            break;
-        case 2:
-            params.thisWeek = 1;
-            break;
-        case 3:
-            params.lastWeek = 1;
-            break;
-        case 4:
-            params.thisMonth = 1;
-            break;
-        case 5:
-            params.lastMonth = 1;
-            break;
-        case 6:
-            params.thisYear = 1;
-            break;
-        case 7:
-            params.lastYear = 1;
-            break;
-        default:
-            break;
-    }
-    params = getAnayType(params);
-    return params;
-}
-function onSearch()
-{
-    var params = getSearchParams();
-    var d = currType;
-    if (d == 0) {
-        params.today = 1;
-        params.startDate = getNowStartDate();
-        params.endDate = addDate(getNowEndDate(), 1);
-    } else if (d == 1) {
-        params.yesterday = 1;
-        params.startDate = getPrevStartDate();
-        params.endDate = addDate(getPrevEndDate(), 1);
-        
-    } else if (d == 2) {
-        params.thisWeek = 1;
-        params.startDate = getWeekStartDate();
-        params.endDate = addDate(getWeekEndDate(), 1);
-        
-    } else if (d == 3) {
-        params.lastWeek = 1;
-        params.startDate = getLastWeekStartDate();
-        params.endDate = addDate(getLastWeekEndDate(), 1);
-        
-    } else if (d == 4) {
-        params.thisMonth = 1;
-        params.startDate = getMonthStartDate();
-        params.endDate = addDate(getMonthEndDate(), 1);
-        
-    } else if (d == 5) {
-        params.lastMonth = 1;
-        params.startDate = getLastMonthStartDate();
-        params.endDate = addDate(getLastMonthEndDate(), 1);
-    }else if (d == 6) {
-        params.lastMonth = 1;
-        params.startDate = getYearStartDate();
-         params.endDate = getYearEndDate();
-    }else if (d == 7) {
-        params.lastMonth = 1;
-        params.startDate = getPrevYearStartDate();
-        params.endDate = getPrevYearEndDate();
-    }
-    doSearch(params);
-}
-function doSearch(params) {
-    params.orgid = currOrgid;
-    grid.load({
-        token:token,
-        params: params
-    });
-}
+
+
 function query(){
 	var params = {};
 	params.mtAdvisorId = nui.get("mtAdvisorId").value;

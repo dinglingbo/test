@@ -27,30 +27,31 @@ pageEncoding="UTF-8" session="false" %>
 </style> 
 </head>
 <body>
-    <div class="nui-toolbar">
+    <div class="nui-toolbar" id="toolbar1">
         <label style="font-family:Verdana;">快速查询：</label>
         <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">今日计划跟进客户</a>
         <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
-            <li iconCls="" onclick="quickSearch(1)" id="type0">今日计划跟进客户</li>
-            <li iconCls="" onclick="quickSearch(2)" id="type0">新流失客户</li>
-            <li iconCls="" onclick="quickSearch(3)" id="type1">流失超过半年客户</li>
-            <li iconCls="" onclick="quickSearch(4)" id="type2">流失超过一年的客户</li>
+            <li iconCls="" onclick="quickSearch(1)" id="type1">今日计划跟进客户</li>
+            <li iconCls="" onclick="quickSearch(2)" id="type2">新流失客户</li>
+            <li iconCls="" onclick="quickSearch(3)" id="type3">流失超过半年客户</li>
+            <li iconCls="" onclick="quickSearch(4)" id="type4">流失超过一年的客户</li>
+            <li iconCls="" onclick="quickSearch(5)" id="type5">所有客户</li>
         </ul>
         <label style="font-family:Verdana;">车牌号：</label>
         <input class="nui-textbox" name="tcarNo" id="tcarNo">
-        <label style="font-family:Verdana;">流失超过(天)：</label>
-        <input class="nui-textbox" name="tlost" id="tlost" style="width: 80px;">
+        <label style="font-family:Verdana;">流失天数：</label>
+        <input class="nui-textbox" name="slost" id="slost" style="width: 60px;">
+        <label style="font-family:Verdana;">至</label>
+        <input class="nui-textbox" name="elost" id="elost" style="width: 60px;">
         <a class="nui-button" plain="true" onclick="quickSearch(0)" iconcls="" ><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
-        <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="visit()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;回访</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a> -->
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="SetData()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a>
-        <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a>
+        <!-- <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a> -->
     </div>
 
     <div class="nui-fit">
@@ -62,12 +63,20 @@ pageEncoding="UTF-8" session="false" %>
 
         <div property="columns">
             <div type="indexcolumn">序号</div>
+            <div field="serviceCode" width="120" headerAlign="center" align="center">工单号</div>
             <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
-            <div field="carModel" width="150" headerAlign="center"align="center">车型</div>
-            <div field="carVin" width="130" headerAlign="center"align="center">厂牌号(VIN)</div>
-            <div field="chainComeTimes" width="70" headerAlign="center"align="center">来厂次数</div>
-            <div field="mtAdvisorName" width="70" headerAlign="center" align="center">维修顾问</div>
-            <div field="careDueDdate" width="70" headerAlign="center" align="center">计划回访日期</div>
+            <div field="carModel" name="carModel" width="200px" headerAlign="center"  header="品牌/车型"></div>
+            <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
+            <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>
+            <div field="guestMobile" name="guestMobile" width="100px" headerAlign="center" header="客户手机"></div>
+            <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
+            <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div> 
+            <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
+            <div field="serviceTypeName" name="serviceTypeName" width="100px" headerAlign="center" header="业务类型"></div>
+            <!--<div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div> -->
+            <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="开单日期"></div>
+            <!-- <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计完工日期"></div> -->
+            <!-- <div field="mtAdvisor" width="70" headerAlign="center" align="center">维修顾问</div> -->
             <div field="leaveDays" width="70" headerAlign="center" align="center">离厂天数</div>
         </div>
     </div> 

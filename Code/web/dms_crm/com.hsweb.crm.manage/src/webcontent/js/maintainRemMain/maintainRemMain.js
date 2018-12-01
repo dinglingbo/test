@@ -202,7 +202,7 @@ function sendInfo(){
 }
 nui.open({
     url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
-    title: "发送短信", width: 655, height: 386,
+    title: "发送短信", width: 655, height: 280,
     onload: function () {
        var iframe = this.getIFrameEl();
        iframe.contentWindow.setData();
@@ -218,7 +218,7 @@ nui.open({
 function addRow() {
     nui.open({
         url: webPath + contextPath + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
-        title: "新增预约", width: 655, height: 300,
+        title: "新增预约", width: 655, height: 400,
         onload: function () {
             var iframe = this.getIFrameEl();
             var data = {};

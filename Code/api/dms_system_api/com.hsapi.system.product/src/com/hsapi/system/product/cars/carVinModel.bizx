@@ -25,8 +25,9 @@
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link2</targetConnections>
     <targetConnections>link3</targetConnections>
-    <targetConnections>link9</targetConnections>
-    <location x="646" y="144"/>
+    <targetConnections>link10</targetConnections>
+    <targetConnections>link12</targetConnections>
+    <location x="732" y="144"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -41,7 +42,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="648" y="180"/>
+    <location x="734" y="180"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -195,10 +196,10 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="str2Map" displayName="str2Map" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
-    <location x="422" y="255"/>
+    <location x="450" y="255"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -213,9 +214,79 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="408" y="291"/>
+    <location x="436" y="291"/>
     <figSize height="17" width="50"/>
     <node>invokePojo2</node>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="getModelByOpenApiVin" displayName="getModelByOpenApiVin" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">d/id</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link9</targetConnections>
+    <location x="584" y="255"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.sysService.getModelByOpenApiVin</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="vin" type="query" value="String" valueType="Primitive" pattern="reference">vin</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="data" type="query" value="com.alibaba.fastjson.JSON" valueType="Java">d</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="527" y="290"/>
+    <figSize height="17" width="141"/>
+    <node>subprocess0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="705" y="255"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="703" y="291"/>
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link11</targetConnections>
+    <location x="625" y="180"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">d/id</process:from>
+      <process:to type="query">data/carModelId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <location x="623" y="216"/>
+    <figSize height="17" width="32"/>
+    <node>assign3</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -228,6 +299,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="retData" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="result"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="true" name="rs"/>
+    <process:variable anyType="com.alibaba.fastjson.JSON" description="" historyStateLocation="client" isArray="false" name="d"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="vin" primitiveType="String"/>

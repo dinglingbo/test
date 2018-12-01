@@ -470,6 +470,7 @@ function onParseUnderpanNo()
         if(data.errCode == "S")
         {
         	var carVinModel = data.data.SuitCar||[];//list[0];
+        	var carModelId = data.data.carModelId;
             carVinModel = carVinModel[0]||{};
             carVinModel.vin = vin;
             var carModelInfo = "品牌:"+carVinModel.carBrandName+"\n";
@@ -481,6 +482,9 @@ function onParseUnderpanNo()
             name2 = name2?(name2+" "):"";
             var name3 = carVinModel.name||"";
             nui.get("carModel").setValue(name1 + name2 + name3);
+            nui.get("carBrandId").setValue("");
+            nui.get("carModelId").setValue(carVinModel.id);
+            nui.get("carModelIdLy").setValue(carModelId);
         }
     });
 }

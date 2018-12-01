@@ -9,6 +9,7 @@ $(document).ready(function(){
 	form=new nui.Form('#form');
 	nui.get('outQty').enabled=false;
     mtAdvisorIdEl = nui.get("mtAdvisorId");
+   
     returnRemark=nui.get('returnRemark');
     
     initMember("mtAdvisorId",function(){
@@ -21,7 +22,7 @@ $(document).ready(function(){
         var text = mtAdvisorIdEl.getText();
 //        nui.get("mtAdvisor").setValue(text);
     });
-   
+;
     document.onkeyup = function(event) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下

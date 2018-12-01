@@ -10,9 +10,9 @@ $(document).ready(function(){
 	form=new nui.Form('#form');
 
     mtAdvisorIdEl = nui.get("mtAdvisorId");
-
+    
     initMember("mtAdvisorId",function(){
-        memList = mtAdvisorIdEl.getData();
+        memList = mtAdvisorIdEl.getData();   
         mtAdvisorIdEl.focus();
     });
     
@@ -20,7 +20,8 @@ $(document).ready(function(){
         var text = mtAdvisorIdEl.getText();
 
     });
- 
+    
+  
     document.onkeyup = function(event) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -62,7 +63,8 @@ function SetData(params) {
         resultData=params.data;
     }
     nui.get('outQty').setValue(1);
-    
+    mtAdvisorIdEl.setValue(currEmpId);
+    mtAdvisorIdEl.setText(currUserName);
     data=params.data;
     
 }
@@ -97,7 +99,7 @@ function partToOut() {
 	var pickType = '耗材出库-领料';
 	
 	var sellUnitPrice = data.enterPrice;
-	var sellAmt = data.outQty * sellUnitPrice;
+	var sellAmt = parseFloat(data.outQty * sellUnitPrice).toFixed(2);
 	if(data.rootId==0){
 		data.rootId=data.id;
 	}

@@ -118,7 +118,17 @@ $(document).ready(function(){
         var column = e.column;
         onOut();
     });
+    
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
 
+        if ((keyCode == 27)) { // ESC
+        	onCancel();
+        }
+
+    }
 });
 
 
@@ -192,6 +202,7 @@ function setInitData(params){
     					data.carModel=mainRow.carModel;
     					data.mtAdvisorId=mainRow.mtAdvisorId;
     					data.mtAdvisor=mainRow.mtAdvisor;
+    					data.sureMtMan =mainRow.sureMtMan;
 
                         billForm.setData(data);
 //                        nui.ajax({
@@ -422,6 +433,10 @@ function  savepartOutRtn(data){
     		repairOutGrid.load({params:outParams,token:token});
     	 	advancedPartWin.show();
     	}
+    }
+    
+    function onCancel(){
+    	advancedPartWin.hide();
     }
 //    function onPrint(e){
 //        var main = billForm.getData();

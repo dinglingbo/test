@@ -120,7 +120,7 @@ function quickSearch(e){
 	var  p = null;
 	if(e == 1){//我接待的车
 		p ={
-			mtAdvisorId:currUserId
+			mtAdvisorId:currEmpId
 		};
 	}
 	if(e == 2){//所有车辆

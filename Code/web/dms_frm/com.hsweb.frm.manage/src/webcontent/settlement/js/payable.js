@@ -133,7 +133,7 @@ function settleOK() {
 			var seletText = Sel.options[index].text;
 		}
 		for(var j =1;j<typeList.length;j++){
-			var dtype = typeList[j].split(".");
+			var dtype = typeList[j].split("p");
 			var typeF = dtype[0].substring(0,1);
 			if(typeF==i){
 				var deductible1 = dtype[1];
@@ -266,7 +266,7 @@ function settleOK() {
 									CloseWindow("saveSuccess");
 				
 								} else {
-									showMsg(data.errMsg || "结算失败!", "w");
+									showMsg(data.errMsg || "结算失败!", "W");
 								}
 							},
 							error : function(jqXHR, textStatus, errorThrown) {
@@ -296,7 +296,7 @@ function  scount(){
 			}else{
 				var dk = parseFloat(document.getElementById(j+"02010"+i).value);
 				count= count+dk;
-				type=type+","+j+"02010"+i+"."+dk;
+				type=type+","+j+"02010"+i+"p"+dk;
 			}
 		}
 	}

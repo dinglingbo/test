@@ -31,11 +31,11 @@ $(document).ready(function(){
 
 	gridCar = nui.get("gridCar");
 	gridCar.setUrl(gridCarUrl);
-	gridCar.load();
+	quickSearch(2);
 
 	gridCar.on("rowdblclick",function(e){
-		/*var record = e.record;
-		SetData(record);*/
+		var record = e.record;
+		SetData();
 	});
 	
 	document.onkeyup = function(event) {
@@ -89,38 +89,33 @@ function mtAdvisorChanged(e){
 
 }
 
-function visit() {
-    var row = gridCar.getSelected();
-    if(row){
-        
-        SetData(row);
-    }
-}
-
-
-
-function SetData(rowData){ 
-	mini.open({
-		url: webPath + contextPath + "/manage/visitMgr/visitMainDetail.jsp?token="+ token,
-		title: "回访信息", 
-		width: 680, height: 360,
-		onload: function () {
-			var iframe = this.getIFrameEl(); 
-			iframe.contentWindow.setData(rowData);
-		},
-		ondestroy: function (action) {
-			gridCar.reload();
-		}
-	});
+function SetData(){
+	var row = gridCar.getSelected();
+	if(row){
+		mini.open({
+			url: webPath + contextPath + "/manage/visitMgr/visitMainDetail.jsp?token="+ token,
+			title: "电话回访", 
+			width: 680, height: 330,
+			onload: function () {
+				var iframe = this.getIFrameEl(); 
+				iframe.contentWindow.setData(row);
+			},
+			ondestroy: function (action) {
+				gridCar.reload();
+			}
+		});
+	}else{
+		showMsg("请选择一条记录","W");
+	}
 }
 
 
 
 function quickSearch(e){
-	var  p = null;
+	var  p = {};
 	if(e == 1){//我接待的车
 		p ={
-			mtAdvisorId:currUserId
+			mtAdvisorId:currEmpId
 		};
 	}
 	if(e == 2){//所有车辆
@@ -131,6 +126,7 @@ function quickSearch(e){
 			carNo:tcarNo_ctrl.value
 		};
 	}
+	p.type = 1;//客户回访
 	gridCar.load({params:p,token:token});
 }
 

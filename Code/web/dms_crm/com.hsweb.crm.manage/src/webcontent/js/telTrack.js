@@ -242,11 +242,12 @@ function addRow() {
         title: "新增预约", width: 655, height: 400,
         onload: function () {
             var iframe = this.getIFrameEl();
-            var data = row;
+            var data = {};
             data.mtAdvisorId = currEmpId;
             data.mtAdvisor = currUserName;
-            data.contactorName = data.guestName;
-            data.contactorTel = data.mobile;
+            data.contactorName = row.guestName;
+            data.contactorTel = row.mobile;
+            data.carBrandId = row.carBrandId;
             var param = { action: "add", data: data };
             iframe.contentWindow.SetData(param);
         },

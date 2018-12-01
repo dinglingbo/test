@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.80"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.82"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -212,7 +212,7 @@
     </div>
 
     <div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
-    dataField="list"  allowCellSelect="true" 
+    dataField="list"  allowCellSelect="true"  oncellcommitedit="onCellCommitEdit"
     url=""  showModified="false"
     allowCellEdit="true" ShowHGridLines="false" ShowVGridLines="false" >
     <div property="columns">
@@ -238,7 +238,7 @@
         <div type="checkboxcolumn" field="settleType" name="settleType" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center" value="1"><strong>下次处理</strong></div>
         <div type="checkboxcolumn" field="nosettleType" name="nosettleType" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center"><strong>本次处理</strong></div>
         <div field="careDueMileage" name="careDueMileage" width="30" vtype="float" headerAlign="center" align="center"><strong>下次保养里程</strong>
-        	<input property="editor" class="nui-textbox" style="width:100%;" allowInput="true"/>  
+        	<input property="editor" class="nui-textbox" style="width:100%;" allowInput="true" vtype="float"/>  
         </div>
         <div field="careDueDate" name="careDueDate" width="30" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm""><strong>下次保养时间</strong>
         	<input property="editor" class="nui-datepicker tabwidth" name="" id="" dateFormat="yyyy-MM-dd HH:mm"" format="yyyy-MM-dd HH:mm"/>

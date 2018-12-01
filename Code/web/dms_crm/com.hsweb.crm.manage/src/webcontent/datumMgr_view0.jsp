@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@include file="/common/sysCommon.jsp" %>
+<%@include file="/common/commonRepair.jsp"%>
 <html>
 <!--
   - Author(s): Guine
@@ -20,88 +20,80 @@ pageEncoding="UTF-8" session="false" %>
 <body>
 
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
-        <!--style="white-space:nowrap;"-->
-        <label style="font-family:Verdana;" title="点击清空条件"><span onclick="clearQueryForm()">快速查询：</span></label>
-        <a class="nui-menubutton " iconCls="" menu="#popupMenu1" value="-1" id="assignStatus">所有</a>
-        <ul id="popupMenu1" class="nui-menu" style="display:none;">
-            <li  onclick="setMenu1(this, assignStatus, -1)" id="typeAll">所有</li>
-            <li  onclick="setMenu1(this, assignStatus, 0)" id="type0">未分配</li>
-            <li  onclick="setMenu1(this, assignStatus, 1)" id="type1">已分配</li>
-            <li  onclick="setMenu1(this, assignStatus, 2)" id="type2">今日待跟踪</li>
-        </ul>
-        <input name="color"
-        id="color"
-        class="nui-combobox width2"
-        textField="name"
-        visible="false"
-        valueField="customid"
-        emptyText="请选择..."
-        url=""
-        allowInput="false"
-        showNullItem="false"
-        nullItemText="请选择..."/>
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <label style="font-family:Verdana;" title="点击清空条件"><span onclick="clearQueryForm()">快速查询：</span></label>
+                    <a class="nui-menubutton " iconCls="" menu="#popupMenu1" value="-1" id="assignStatus">所有</a>
+                    <ul id="popupMenu1" class="nui-menu" style="display:none;">
+                        <li  onclick="setMenu1(this, assignStatus, -1)" id="typeAll">所有</li>
+                        <li  onclick="setMenu1(this, assignStatus, 0)" id="type0">未分配</li>
+                        <li  onclick="setMenu1(this, assignStatus, 1)" id="type1">已分配</li>
+                        <li  onclick="setMenu1(this, assignStatus, 2)" id="type2">今日待跟踪</li>
+                    </ul>
+                    <input name="color"
+                    id="color"
+                    class="nui-combobox width2"
+                    textField="name"
+                    visible="false"
+                    valueField="customid"
+                    emptyText="请选择..."
+                    url=""
+                    allowInput="false"
+                    showNullItem="false"
+                    nullItemText="请选择..."/>
 
-        <input name="orgid"
-        id="query_orgid"
-        visible="false"
-        class="nui-combobox width2"
-        textField="orgname"
-        valueField="orgid"
-        emptyText="请选择..."
-        allowInput="false"
-        valueFromSelect="true"
-        showNullItem="false"
-        nullItemText="请选择..."/>
+                    <input name="orgid"
+                    id="query_orgid"
+                    visible="false"
+                    class="nui-combobox width2"
+                    textField="orgname"
+                    valueField="orgid"
+                    emptyText="请选择..."
+                    allowInput="false"
+                    valueFromSelect="true"
+                    showNullItem="false"
+                    nullItemText="请选择..."/>
 
-        <label style="font-family:Verdana;">跟踪状态：</label>
-        <input name="visitStatus"
-        id="visitStatus"
-        class="nui-combobox width2"
-        textField="name"
-        valueField="customid"
-        emptyText="请选择..."
-        allowInput="false"
-        valueFromSelect="true"
-        showNullItem="true"
-        nullItemText="请选择..."/>
+                    <label style="font-family:Verdana;">跟踪状态：</label>
+                    <input name="visitStatus"
+                    id="visitStatus"
+                    class="nui-combobox width2"
+                    textField="name"
+                    valueField="customid"
+                    emptyText="请选择..."
+                    allowInput="false"
+                    valueFromSelect="true"
+                    showNullItem="true"
+                    nullItemText="请选择..."/>
 
-        <label style="font-family:Verdana;">车牌号：</label>
-        <input class="nui-textbox width1" name="carNo" id="carNo" enabled="true"/>
-        <!--
-        <label style="font-family:Verdana;">来厂状态：</label>
-        <input name="isCome"
-            id="isCome"
-            required="true"
-            class="nui-combobox width1"
-            textField="name"
-            valueField="customid"
-            emptyText="请选择..."
-            allowInput="false"
-            valueFromSelect="true"
-            showNullItem="false"
-            nullItemText="请选择..."/>
-        -->
-        <a class="nui-button"  plain="true" onclick="query(0)" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-        <a class="nui-button"  plain="true" onclick="moreQuery()" id="" enabled="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
-        <li class="separator"></li>
-        <a class="nui-button"  plain="true" onclick="updateField('visitStatus', '060701')" id="add" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;设为继续跟踪</a>
-        <a class="nui-button"  plain="true" onclick="updateField('visitStatus', '060702')" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;设为结束跟踪</a>
+                    <label style="font-family:Verdana;">车牌号：</label>
+                    <input class="nui-textbox width1" name="carNo" id="carNo" enabled="true"/>
 
-        <li class="separator"></li>
-        <label style="font-family:Verdana;">分配给：</label>
-        <input name="tracker"
-        id="tracker"
-        class="nui-combobox width1"
-        textField="empName"
-        valueField="empId"
-        emptyText="请选择..."
-        allowInput="false"
-        valueFromSelect="true"
-        showNullItem="false"
-        nullItemText="请选择..."/>
-        <a class="nui-button"  plain="true" onclick="assignTracker()" id="add" enabled="true"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
-        <li class="separator"></li>
-        <a class="nui-button"  plain="true" onclick="editClient()" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改客户资料</a>
+                    <a class="nui-button"  plain="true" onclick="query(0)" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <a class="nui-button"  plain="true" onclick="moreQuery()" id="" enabled="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+                    <li class="separator"></li>
+                    <a class="nui-button"  plain="true" onclick="updateField('visitStatus', '060701')" id="add" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;设为继续跟踪</a>
+                    <a class="nui-button"  plain="true" onclick="updateField('visitStatus', '060702')" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;设为结束跟踪</a>
+
+                    <li class="separator"></li>
+                    <label style="font-family:Verdana;">分配给：</label>
+                    <input name="tracker"
+                    id="tracker"
+                    class="nui-combobox width1"
+                    textField="empName"
+                    valueField="empId"
+                    emptyText="请选择..."
+                    allowInput="false"
+                    valueFromSelect="true"
+                    showNullItem="false"
+                    nullItemText="请选择..."/>
+                    <a class="nui-button"  plain="true" onclick="assignTracker()" id="add" enabled="true"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
+                    <li class="separator"></li>
+                    <a class="nui-button"  plain="true" onclick="editClient()" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改客户资料</a>
+                </td>
+            </tr>
+        </table>
     </div>
     <div class="nui-fit">
 
@@ -206,7 +198,7 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 </div>
 </div>
-</div><!--splitter-->
+</div>
 </div>
 </body>
 </html>

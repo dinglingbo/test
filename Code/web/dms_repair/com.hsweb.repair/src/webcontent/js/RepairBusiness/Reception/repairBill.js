@@ -838,7 +838,11 @@ function setInitData(params){
                         data.mobile = contactor.mobile;
                         data.carModel = car.carModel;
                         data.carModelIdLy = car.carModelIdLy||"";
-
+                        data.insureCompName = car.insureCompName || "";
+                        data.insureDueDate = car.insureDueDate || "";
+                        data.insureNo = car.insureNo || "";
+                        
+                        
                         $("#guestNameEl").html(guest.fullName);
                         $("#showCarInfoEl").html(data.carNo);
                         $("#guestTelEl").html(guest.mobile);
@@ -850,6 +854,7 @@ function setInitData(params){
                         doSearchMemCard(fguestId);
                         
                         billForm.setData(data);
+                        insuranceForm.setData(data);
                         var status = data.status||0;
                         var isSettle = data.isSettle||0;
                         doSetStyle(status, isSettle);

@@ -11,7 +11,7 @@
 -->
 <head>
     <title>新增客户档案</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.17"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.18"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -157,6 +157,8 @@
             <input class="nui-hidden" name="id" />
             <input class="nui-hidden" name="guestId" />
             <input class="nui-hidden" name="carBrandId" id="carBrandId" />
+            <input class="nui-hidden" name="carModelId" id="carModelId"/>
+            <input class="nui-hidden" name="carModelIdLy" id="carModelIdLy"/>
             <input class="nui-hidden" name="insureCompName" id="insureCompName" />
             <table class="nui-form-table" style="width:100%;">
                 <tr>

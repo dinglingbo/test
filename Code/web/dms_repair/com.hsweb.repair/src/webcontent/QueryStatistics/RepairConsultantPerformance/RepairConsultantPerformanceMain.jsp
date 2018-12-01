@@ -108,25 +108,25 @@
 					<div field="itemSubtot" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">实营金额</div>
 				</div>
 			</div>
-			<div header="配件成本信息" headerAlign="center">
+			<!-- <div header="配件成本信息" headerAlign="center">
 				<div property="columns">
 					<div field="partSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">销售金额</div>
 					<div field="partTrueCost" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">配件成本</div>
 					<div field="partAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">配件销售加点</div>
 				</div>
-			</div>
+			</div> -->
 			<div header="毛利信息" headerAlign="center">
 				<div property="columns">
 					<div field="mtAmt" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">毛利</div>
 					<div field="partManageExp" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">毛利率</div>
 				</div>
 			</div>
-			<div header="运营毛利信息" headerAlign="center">
+			<!-- <div header="运营毛利信息" headerAlign="center">
 				<div property="columns">
 					<div field="mtAmt" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">运营毛利</div>
 					<div field="partManageExp" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">运营毛利率</div>
 				</div>
-			</div>
+			</div> -->
 			<div header="其他信息" headerAlign="center">
 				<div property="columns">
 					<div field="mtAmt" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">整单优惠率</div>

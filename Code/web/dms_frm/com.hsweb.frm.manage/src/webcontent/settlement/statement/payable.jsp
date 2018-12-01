@@ -11,7 +11,7 @@
 
 <head>
 	<title>应付结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.0.5"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.0.8"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -401,7 +401,7 @@
 							border-radius: 5px;
 							line-height: 2;
 							text-decoration: none;" 
-							href="javascript:void(0)" onclick="settleOK()">微信结算</a>
+							href="javascript:void(0)" onclick="noPay()">转结算</a>
 					</td>
 					<td >
 						<a id="btnsettle" style="    width: 120px;

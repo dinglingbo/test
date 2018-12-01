@@ -29,7 +29,7 @@ function save(){
 					carId:careRows[i].carId,
 					visitMode : visitMode,
 					visitContent:visitContent,
-					visitId:currUserId,
+					visitId:currEmpId,
 					visitMan:currUserName
 		};
 	}

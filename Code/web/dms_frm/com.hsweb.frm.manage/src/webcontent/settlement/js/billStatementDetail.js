@@ -994,7 +994,7 @@ function setInitExportData(main, detail){
         tr.append(tds.replace("[typeCode]", detail[i].typeCode?detail[i].typeCode:"")
                      .replace("[billAmt]", detail[i].billAmt?detail[i].billAmt:"")
                      .replace("[orderMan]", detail[i].orderMan?detail[i].orderMan:"")
-                     .replace("[billDate]", detail[i].billDate?detail[i].billDate:"")
+                     .replace("[billDate]", detail[i].billDate?format(detail[i].billDate, 'yyyy-MM-dd HH:mm:ss'):"")
                      .replace("[remark]", detail[i].remark?detail[i].remark:"")
                      .replace("[billServiceId]", detail[i].billServiceId?detail[i].billServiceId:""));
         tableExportContent.append(tr);

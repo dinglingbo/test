@@ -12,7 +12,7 @@
 <head>
 <title>特别关怀</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    	<script src="<%=request.getContextPath()%>/manage/js/Care.js?v=1.0.5">
+    	<script src="<%=request.getContextPath()%>/manage/js/Care.js?v=1.0.6">
 	</script>
     
 </head>

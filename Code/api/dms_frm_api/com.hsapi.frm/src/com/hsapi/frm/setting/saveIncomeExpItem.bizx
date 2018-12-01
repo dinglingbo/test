@@ -109,7 +109,7 @@
     <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hs.common.unify.saveEntity</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">DB06_MYSQL_WB_FRM</process:inputVariable>
+        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">frm</process:inputVariable>
         <process:inputVariable id="1" name="data" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">data</process:inputVariable>
         <process:inputVariable id="2" name="forceInsert" type="literal" value="Boolean" valueType="Primitive" pattern="reference">false</process:inputVariable>
       </process:inputVariables>

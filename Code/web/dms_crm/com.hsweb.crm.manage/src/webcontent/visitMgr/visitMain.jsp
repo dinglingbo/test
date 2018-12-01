@@ -6,14 +6,14 @@ pageEncoding="UTF-8" session="false" %>
 <!-- 
   - Author(s): Administrator
   - Date: 2018-10-22 15:07:42
-  - Description: 
+  - Description:  
 --> 
 <head>  
     <title>工单回访</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.3.0" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.4" type="text/javascript"></script>
     <style type="text/css">
     body { 
         margin: 0; 
@@ -40,8 +40,8 @@ pageEncoding="UTF-8" session="false" %>
         <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="visit()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;回访</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-send fa-lg"></span>&nbsp;发送短信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a> -->
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="SetData()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>

@@ -21,6 +21,11 @@ function setData(data){
 	guestData = data;
 	zongAmt = parseFloat(data[0].nowAmt);
 	typeUrl =  data[0].typeUrl;
+	if(typeUrl==2){
+		$("#wxbtnsettle").show();
+	}else{
+		$("#wxbtnsettle").hide();
+	}
 	var rechargeBalaAmt = 0;
 	document.getElementById('carNo').innerHTML = data[0].carNo;
 	document.getElementById('guest').innerHTML = data[0].guestName;
@@ -128,7 +133,7 @@ function settleOK() {
 			var seletText = Sel.options[index].text;
 		}
 		for(var j =1;j<typeList.length;j++){
-			var dtype = typeList[j].split(".");
+			var dtype = typeList[j].split("p");
 			var typeF = dtype[0].substring(0,1);
 			if(typeF==i){
 				var deductible1 = dtype[1];
@@ -261,7 +266,7 @@ function settleOK() {
 									CloseWindow("saveSuccess");
 				
 								} else {
-									showMsg(data.errMsg || "结算失败!", "w");
+									showMsg(data.errMsg || "结算失败!", "W");
 								}
 							},
 							error : function(jqXHR, textStatus, errorThrown) {
@@ -291,7 +296,7 @@ function  scount(){
 			}else{
 				var dk = parseFloat(document.getElementById(j+"02010"+i).value);
 				count= count+dk;
-				type=type+","+j+"02010"+i+"."+dk;
+				type=type+","+j+"02010"+i+"p"+dk;
 			}
 		}
 	}
@@ -309,4 +314,44 @@ function CloseWindow(action) {
 		return window.CloseOwnerWindow(action);
 	else
 		return window.close();
+}
+
+
+function noPay(){
+		var json = {
+				serviceId:guestData[0].serviceId,
+				remark:nui.get("txtreceiptcomment").getValue(),
+			};
+	    nui.confirm("是否转入预结算？", "友情提示",function(action){
+		       if(action == "ok"){
+				    nui.mask({
+				        el : document.body,
+					    cls : 'mini-mask-loading',
+					    html : '处理中...'
+				    });
+		    		nui.ajax({
+		    			url : apiPath + repairApi + '/com.hsapi.repair.repairService.settlement.preReturnSettle.biz.ext',
+		    			type : "post",
+		    			data : json,
+				        cache : false,
+				        contentType : 'text/json',
+		    			success : function(data) {
+		    				nui.unmask(document.body);
+		    				if(data.errCode=="S"){  					
+		    					CloseWindow("ok");
+		    				}else{
+		    					nui.alert(data.errMsg,"提示");
+		    				}
+
+		    			},
+		    			error : function(jqXHR, textStatus, errorThrown) {
+		    				// nui.alert(jqXHR.responseText);
+		    				console.log(jqXHR.responseText);
+		    			}
+		    		});	
+		     }else {
+					return;
+			 }
+		});
+
 }

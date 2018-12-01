@@ -14,8 +14,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="59" y="368"/>
-    <figSize height="20" width="31"/>
+    <location x="62" y="368"/>
+    <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tTransactionBegin" id="transactionbegin0" name="事务开始" displayName="事务开始" collapsed="false" type="transactionbegin">
@@ -35,8 +35,8 @@
     <nodeLabel>transactionbegin0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionbegin0label" name="label" nodeType="label">
-    <location x="192" y="368"/>
-    <figSize height="20" width="61"/>
+    <location x="198" y="368"/>
+    <figSize height="17" width="49"/>
     <node>transactionbegin0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getJVMDate" displayName="getJVMDate" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -59,8 +59,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="322" y="368"/>
-    <figSize height="20" width="91"/>
+    <location x="331" y="368"/>
+    <figSize height="17" width="72"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getNowYear" displayName="getNowYear" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -83,8 +83,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="463" y="368"/>
-    <figSize height="20" width="92"/>
+    <location x="473" y="368"/>
+    <figSize height="17" width="73"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="getNowMonth" displayName="getNowMonth" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -106,8 +106,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="597" y="368"/>
-    <figSize height="20" width="109"/>
+    <location x="609" y="368"/>
+    <figSize height="17" width="85"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" type="assign">
@@ -136,8 +136,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="749" y="368"/>
-    <figSize height="20" width="31"/>
+    <location x="752" y="368"/>
+    <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" grouped="false" type="assign">
@@ -187,8 +187,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="924" y="294"/>
-    <figSize height="20" width="40"/>
+    <location x="928" y="294"/>
+    <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
@@ -204,8 +204,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="1619" y="294"/>
-    <figSize height="20" width="31"/>
+    <location x="1622" y="294"/>
+    <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
@@ -224,8 +224,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="1214" y="338"/>
-    <figSize height="20" width="40"/>
+    <location x="1218" y="338"/>
+    <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tTransactionRollback" id="transactionrollback0" name="事务回滚" displayName="事务回滚" type="transactionrollback">
@@ -239,8 +239,8 @@
     <nodeLabel>transactionrollback0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionrollback0label" name="label" nodeType="label">
-    <location x="1349" y="338"/>
-    <figSize height="20" width="61"/>
+    <location x="1355" y="338"/>
+    <figSize height="17" width="49"/>
     <node>transactionrollback0</node>
   </nodes>
   <nodes xsi:type="process:tTransactionCommit" id="transactioncommit0" name="事务提交" displayName="事务提交" type="transactioncommit">
@@ -254,8 +254,8 @@
     <nodeLabel>transactioncommit0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit0label" name="label" nodeType="label">
-    <location x="1458" y="202"/>
-    <figSize height="20" width="61"/>
+    <location x="1464" y="202"/>
+    <figSize height="17" width="49"/>
     <node>transactioncommit0</node>
   </nodes>
   <nodes xsi:type="process:tTransactionCommit" id="transactioncommit1" name="事务提交1" displayName="事务提交" type="transactioncommit">
@@ -269,8 +269,8 @@
     <nodeLabel>transactioncommit1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactioncommit1label" name="label" nodeType="label">
-    <location x="1494" y="430"/>
-    <figSize height="20" width="70"/>
+    <location x="1501" y="430"/>
+    <figSize height="17" width="56"/>
     <node>transactioncommit1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" grouped="false" type="assign">
@@ -320,8 +320,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="909" y="442"/>
-    <figSize height="20" width="40"/>
+    <location x="913" y="442"/>
+    <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="保存因收" displayName="saveEntity" collapsed="false" type="subprocess">
@@ -340,20 +340,20 @@
     <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hs.common.unify.saveEntity</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">DB06_MYSQL_WB_FRM</process:inputVariable>
+        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">frm</process:inputVariable>
         <process:inputVariable id="1" name="data" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">f</process:inputVariable>
         <process:inputVariable id="2" name="forceInsert" type="literal" value="Boolean" valueType="Primitive" pattern="reference">false</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="data" type="query" value="commonj.sdo.DataObject" valueType="Java">f</process:outputVariable>
-        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="1255" y="441"/>
-    <figSize height="20" width="61"/>
+    <location x="1261" y="441"/>
+    <figSize height="17" width="49"/>
     <node>subprocess4</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess5" name="保存因收1" displayName="saveEntity" collapsed="false" type="subprocess">
@@ -372,20 +372,20 @@
     <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hs.common.unify.saveEntity</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">DB06_MYSQL_WB_FRM</process:inputVariable>
+        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">frm</process:inputVariable>
         <process:inputVariable id="1" name="data" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">f</process:inputVariable>
         <process:inputVariable id="2" name="forceInsert" type="literal" value="Boolean" valueType="Primitive" pattern="reference">false</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="data" type="query" value="commonj.sdo.DataObject" valueType="Java">f</process:outputVariable>
-        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="1103" y="232"/>
-    <figSize height="20" width="70"/>
+    <location x="1110" y="232"/>
+    <figSize height="17" width="56"/>
     <node>subprocess5</node>
   </nodes>
   <topRuler/>

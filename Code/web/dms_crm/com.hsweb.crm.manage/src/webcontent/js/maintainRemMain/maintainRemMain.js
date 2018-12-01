@@ -202,7 +202,7 @@ function sendInfo(){
 }
 nui.open({
     url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
-    title: "发送短信", width: 655, height: 386,
+    title: "发送短信", width: 655, height: 280,
     onload: function () {
        var iframe = this.getIFrameEl();
        iframe.contentWindow.setData();

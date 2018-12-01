@@ -4,10 +4,10 @@
 <meta http-equiv="x-ua-compatible" content="IE=8;" />
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="tgetMenuDatagetext/html; charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<%@include file="/common/sysCommon.jsp" %>
-	<title>汽车后市场云平台</title>
+	<title>车道商户版</title>
 	  
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/common/nui/themes/scripts/boot.js" type="text/javascript"></script>
@@ -22,7 +22,14 @@
     <script src="<%=request.getContextPath()%>/common/nui/themes/res/third-party/scrollbar/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
 
 	<style type="text/css">
-    
+    .navbar-brand
+{
+    width:210px;
+    background:#367ea8;/* 20180708#fff */
+    cursor:default;
+    font-size: 20px;
+    font-weight: bold;    
+}
     #_sys_tip_msg_ {
         z-index: 9999;
         position: fixed;
@@ -65,19 +72,26 @@
         height: auto;
     }
     
+    #toolData{
+    	width: 1600px;
+    }
+    
+    .menu{
+    	padding-top: 40px;
+    }
  
 </style>
 </head>
 <body>
     
 
-<div class="sidebar">
-    <div id="mainMenu"></div>
+<div id="toolData" class="sidebar">
+    <div id="mainMenu" style="overflow-y:auto; overflow-x:hidden; width:400px !important; height:1000px;"></div>
 </div>
 
 <div class="container">
     <div class="navbar">
-        <div class="navbar-brand">管理系统</div>
+        <div class="navbar-brand">车道商户版管理系统</div>
         <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
@@ -108,7 +122,7 @@
                      <li><a href="javascript:updateEmployee();"><i class="fa fa-pencil-square-o"></i> 个人设置</a></li> 
                     <!--  <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
                     <!-- <li><a href="#"><i class="fa fa-eye "></i> 用户信息</a></li> -->
-                    <li><a href="<%=request.getContextPath()%>/coframe/auth/wlogin/logout.jsp"><i class="fa fa-user"></i> 退出登录</a></li>
+                    <li><a href="<%=request.getContextPath()%>/coframe/auth/qlogin/logout.jsp"><i class="fa fa-user"></i> 退出登录</a></li>
                 </ul>
             </li>
         </ul>
@@ -340,7 +354,7 @@
         new MenuPop(menu);
 
         $.ajax({
-            url:  defDomin + "/org.gocom.components.coframe.auth.LoginManager.getMenuData.biz.ext",
+            url:  defDomin + "/com.hsapi.system.tenant.permissions.getMenuData.biz.ext",//defDomin + "/org.gocom.components.coframe.auth.LoginManager.getMenuData.biz.ext",
             type: "POST",
             success: function(text){
                 var treeNodes = text.treeNodes;

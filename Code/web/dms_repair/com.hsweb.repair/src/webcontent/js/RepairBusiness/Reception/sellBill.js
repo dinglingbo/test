@@ -641,7 +641,7 @@ function saveMaintain(callback,unmaskcall){
     }
     data.billTypeId = 3;
     data.serviceTypeId = 1 ;
-    data.mtAdvisorId = currUserId;
+    data.mtAdvisorId = currEmpId;
     data.mtAdvisor = currUserName;
     var params = {
         data:{
@@ -1189,7 +1189,7 @@ function saveBatch(){
 	    }
 	    data.billTypeId = 3;
 	    data.serviceTypeId = 1 ;
-	    data.mtAdvisorId = currUserId;
+	    data.mtAdvisorId = currEmpId;
 	    data.mtAdvisor = currUserName;
 	    var json = nui.encode({
 			"maintain" : data,

@@ -21,7 +21,7 @@ var searchNameEl = null;
 var billForm = null;
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var mainGridUrl =  baseUrl + "com.hsapi.repair.repairService.query.getRpsPartByServiceId.biz.ext";
-var repairOutGridUrl =  partUrl + "com.hsapi.repair.repairService.query.queryRepairOut.biz.ext";
+var repairOutGridUrl =  baseUrl + "com.hsapi.repair.repairService.query.queryRepairOut.biz.ext";
 var fserviceId = 0;
 var returnSignData = [{id:0,text:"未归库"},{id:1,text:"已归库"}];
 $(document).ready(function(){
@@ -249,7 +249,13 @@ function setInitData(params){
 
 function THSave(){
 
-	var rows = repairOutGrid.getChanges('modified');;
+	var rows = repairOutGrid.getChanges('modified');
+	 for(var i=0;i<rows.length;i++){
+     	if(!rows[i].outQty2 || rows[i].outQty2==="0" ){
+     		rows.splice(i,1);
+     		i=i-1;
+     	}
+     }
 	var mainData = mainGrid.getData();
 	for(var i=0;i<mainData.length;i++){
 		for(var j=0;j<rows.length;j++){
@@ -303,6 +309,8 @@ function  savepartOutRtn(data){
             paramsData.serviceCode = mainRow.serviceCode;
             paramsData.carNo = mainRow.carNO;
             paramsData.vin = mainRow.carVin;
+            paramsData.guestId = mainRow.guestId;
+            paramsData.guestName = mainRow.guestFullName;
             paramsData.partId = data[i].partId;
             paramsData.partCode = data[i].partCode;
             paramsData.oemCode = data[i].oemCode;
@@ -353,9 +361,11 @@ function  savepartOutRtn(data){
             			mainGrid.load({serviceId:mid,token:token},function(){
             				vaildUpdate();
             			});
-            			repairOutGrid.load({params:outParams,token:token});           			
+            			
+            			repairOutGrid.load({params:outParams,token:token}); 
+            			advancedPartWin.hide();
             		}else{
-            			showMsg('归库失败!','E');
+            			showMsg(text.errMsg ||'归库失败!','W');
             		}
             	}
             });

@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-var partApiUrl  = apiPath +frmApi + "/";
+var partApiUrl  = apiPath +partApi + "/";
 var rightGridUrl = partApiUrl+"com.hsapi.part.invoice.settle.queryPJStatementList.biz.ext";
 var getDetailPartUrl=partApiUrl+"com.hsapi.part.invoice.settle.getPJStatementDetailById.biz.ext";
 var advancedSearchWin = null;

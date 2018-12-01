@@ -122,15 +122,15 @@
                 <input property="editor" class="nui-textbox" vtype="float"/> 
             </div> 
             <div field="billTypeId" width="55px" headerAlign="center" align="center" allowSort="true" header="票据类型"></div>
-            <div field="storeId" width="60" headerAlign="center" align="center"  allowSort="true" header="仓库"></div>
+            <div field="storeId" width="90" headerAlign="center" align="center"  allowSort="true" header="仓库"></div>
             <div field="storeShelf" align="left" width="55px" headerAlign="center" align="center" allowSort="true" header="仓位"></div>
-            <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-            <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
+            <div field="partBrandId" name="partBrandId" width="90" headerAlign="center" header="品牌"></div>
+            <div field="applyCarModel" name="applyCarModel" width="190" headerAlign="center" header="车型"></div>
             <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
             <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
             <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
             <div field="serviceCode" align="left" width="120px" headerAlign="center" align="center" allowSort="true" header="入库单号"></div>
-            <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
+            <div field="fullName" name="fullName" width="300" headerAlign="center" header="配件全称"></div> 
             <div field="partId" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件id"></div> 
             <div field="partNameId" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件nameid"></div>         
             <div field="partFullName" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件fullname"></div>         

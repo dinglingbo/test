@@ -16,7 +16,7 @@ var amountEl = null;
 var onetInAmt = 0;
 var netInAmt = 0;
 var zongAmt = 0;//总金额
-var typeUrl = 0;//不同工单URL不同   1销售开单
+var typeUrl = 0;//不同工单URL不同   1销售开单  2退货开单
 var settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ;
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
@@ -83,6 +83,8 @@ function setData(params){
 	typeUrl = params.typeUrl||0;
 	if(typeUrl==1){
 		settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.salesSettle.biz.ext" ;
+	}else if(typeUrl==2){
+		settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.returnSettle.biz.ext" ;
 	}else{
 		settlementUrl = baseUrl+ "com.hsapi.repair.repairService.settlement.receiveSettle.biz.ext" ;
 	}
@@ -346,8 +348,49 @@ function onChanged() {
 
 //转预结算
 function noPay(){
-	var PrefAmt = nui.get("PrefAmt").getValue()||0;
-	doNoPay(fserviceId,PrefAmt);
+	if(typeUrl==2){
+		var PrefAmt = nui.get("PrefAmt").getValue()||0;
+		var json = {
+				allowanceAmt:PrefAmt,
+				serviceId:fserviceId,
+				remark:nui.get("txtreceiptcomment").getValue(),
+			};
+	    nui.confirm("是否转入预结算？", "友情提示",function(action){
+		       if(action == "ok"){
+				    nui.mask({
+				        el : document.body,
+					    cls : 'mini-mask-loading',
+					    html : '处理中...'
+				    });
+		    		nui.ajax({
+		    			url : apiPath + repairApi + '/com.hsapi.repair.repairService.settlement.preReturnSettle.biz.ext',
+		    			type : "post",
+		    			data : json,
+				        cache : false,
+				        contentType : 'text/json',
+		    			success : function(data) {
+		    				nui.unmask(document.body);
+		    				if(data.errCode=="S"){  					
+		    					CloseWindow("ok");
+		    				}else{
+		    					nui.alert(data.errMsg,"提示");
+		    				}
+
+		    			},
+		    			error : function(jqXHR, textStatus, errorThrown) {
+		    				// nui.alert(jqXHR.responseText);
+		    				console.log(jqXHR.responseText);
+		    			}
+		    		});	
+		     }else {
+					return;
+			 }
+		});
+	}else{
+		var PrefAmt = nui.get("PrefAmt").getValue()||0;
+		doNoPay(fserviceId,PrefAmt);
+	}
+
 }
 
 //结算

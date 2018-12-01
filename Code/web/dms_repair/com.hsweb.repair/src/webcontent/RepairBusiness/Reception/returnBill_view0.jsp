@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-销售单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnBill.js?v=1.3.14"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnBill.js?v=1.3.18"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -145,7 +145,7 @@
         <input class="nui-hidden" name="identity"/>
         <input class="nui-hidden" name="billTypeId"/>
         <input class="nui-hidden" name="status"/>
-        <input class="nui-hidden" name="isSettle"/>
+        <input class="nui-hidden" name="isSettle" id="isSettle"/>
         <input class="nui-hidden" name="addr" />
         <input class="nui-hidden" name="serviceCode" />
         <table  style="width: 100%;border-spacing: 0px 5px;"> 

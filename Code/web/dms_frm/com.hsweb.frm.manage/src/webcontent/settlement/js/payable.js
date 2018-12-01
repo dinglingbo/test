@@ -5,6 +5,7 @@ var netInAmt = 0;
 var tableNum = 0;
 var form = null;
 var type = null;
+var typeUrl = 0;//结算逻辑流，2退货
 var typeList = {};
 var zongAmt = 0;//实时填写的结算金额
 var guestData = null;
@@ -19,6 +20,7 @@ $(document).ready(function (){
 function setData(data){
 	guestData = data;
 	zongAmt = parseFloat(data[0].nowAmt);
+	typeUrl =  data[0].typeUrl;
 	var rechargeBalaAmt = 0;
 	document.getElementById('carNo').innerHTML = data[0].carNo;
 	document.getElementById('guest').innerHTML = data[0].guestName;
@@ -139,102 +141,140 @@ function settleOK() {
 
 
 		var count = scount();
-/*		if(count==0){
-			nui.alert("请选择结算账户,并填写结算金额","提示");
-			return;
-		}*/
 		if(count!=zongAmt){
 			nui.alert("付款金额和应付金额不一致，请重新确认！","提示");
 			return;
 		}
-		var account = {};
-		var accountDetailList = [];
-		var rRPAmt = 0; // 应收金额
-		var rTrueAmt = 0; // 实收应收
-		var rVoidAmt = 0; // 优惠金额
-		var rNoCharOffAmt = 0; // 未结金额
-		var pRPAmt = 0; // 应付金额
-		var pTrueAmt = 0; // 实付金额
-		var pVoidAmt = 0; // 免付金额
-		var pNoCharOffAmt = 0; // 未结金额
-		var rpAmt = 0; // 合计金额
-		var pAmount = 0;
-		var rAmount = 0;
-		var s1 = 0; // 合计收
-		var s2 = 0; // 合计付
-		account.guestId = guestData[0].guestId;
-		account.guestName = guestData[0].guestName;
-		account.itemQty = 1;
-		account.remark = nui.get('txtreceiptcomment').getValue();
-		accountDetail.billRpId = guestData[0].id;
-		accountDetail.billMainId = guestData[0].billMainId;
-		accountDetail.billServiceId = guestData[0].billServiceId;
-		accountDetail.billTypeId = guestData[0].billTypeId;
-		var noCharOffAmt = guestData[0].noCharOffAmt || 0; // 已结金额
-		var rpAmt = guestData[0].rpAmt || 0; // 应结金额
-		var nowAmt = guestData[0].nowAmt || 0;
-		var nowVoidAmt = guestData[0].nowVoidAmt || 0;
-		accountDetail.rpDc = -1;
-		nowAmt = parseFloat(nowAmt);
-		nowVoidAmt = parseFloat(nowVoidAmt);
-		pRPAmt += rpAmt;
-		pTrueAmt += nowAmt;
-		pVoidAmt += nowVoidAmt;
-		pNoCharOffAmt += noCharOffAmt;
-		s1 += (nowAmt + nowVoidAmt);
-		accountDetail.charOffAmt = nowAmt;
-		accountDetail.voidAmt = nowVoidAmt;
-		if(guestData[0].nowAmt!=(count)){
-			nui.alert("结算金额与应收金额不一致","提示");
-			return;
+		
+		if(typeUrl==2){
+			var json = {
+					accountTypeList : accountTypeList,
+					serviceId:guestData[0].serviceId,
+					remark:nui.get("txtreceiptcomment").getValue(),
+					payAmt:zongAmt
+				};
+		    nui.confirm("是否确定结算？", "友情提示",function(action){
+			       if(action == "ok"){
+					    nui.mask({
+					        el : document.body,
+						    cls : 'mini-mask-loading',
+						    html : '处理中...'
+					    });
+			    		nui.ajax({
+			    			url : baseUrl+ "com.hsapi.repair.repairService.settlement.returnSettle.biz.ext",
+			    			type : "post",
+			    			data : json,
+					        cache : false,
+					        contentType : 'text/json',
+			    			success : function(data) {
+			    				nui.unmask(document.body);
+			    				if(data.errCode=="S"){  					
+			    					CloseWindow("ok");
+			    				}else{
+			    					nui.alert(data.errMsg,"提示");
+			    				}
+
+			    			},
+			    			error : function(jqXHR, textStatus, errorThrown) {
+			    				// nui.alert(jqXHR.responseText);
+			    				console.log(jqXHR.responseText);
+			    			}
+			    		});	
+			     }else {
+						return;
+				 }
+			});
+		}else{
+			var account = {};
+			var accountDetailList = [];
+			var rRPAmt = 0; // 应收金额
+			var rTrueAmt = 0; // 实收应收
+			var rVoidAmt = 0; // 优惠金额
+			var rNoCharOffAmt = 0; // 未结金额
+			var pRPAmt = 0; // 应付金额
+			var pTrueAmt = 0; // 实付金额
+			var pVoidAmt = 0; // 免付金额
+			var pNoCharOffAmt = 0; // 未结金额
+			var rpAmt = 0; // 合计金额
+			var pAmount = 0;
+			var rAmount = 0;
+			var s1 = 0; // 合计收
+			var s2 = 0; // 合计付
+			account.guestId = guestData[0].guestId;
+			account.guestName = guestData[0].guestName;
+			account.itemQty = 1;
+			account.remark = nui.get('txtreceiptcomment').getValue();
+			accountDetail.billRpId = guestData[0].id;
+			accountDetail.billMainId = guestData[0].billMainId;
+			accountDetail.billServiceId = guestData[0].billServiceId;
+			accountDetail.billTypeId = guestData[0].billTypeId;
+			var noCharOffAmt = guestData[0].noCharOffAmt || 0; // 已结金额
+			var rpAmt = guestData[0].rpAmt || 0; // 应结金额
+			var nowAmt = guestData[0].nowAmt || 0;
+			var nowVoidAmt = guestData[0].nowVoidAmt || 0;
+			accountDetail.rpDc = -1;
+			nowAmt = parseFloat(nowAmt);
+			nowVoidAmt = parseFloat(nowVoidAmt);
+			pRPAmt += rpAmt;
+			pTrueAmt += nowAmt;
+			pVoidAmt += nowVoidAmt;
+			pNoCharOffAmt += noCharOffAmt;
+			s1 += (nowAmt + nowVoidAmt);
+			accountDetail.charOffAmt = nowAmt;
+			accountDetail.voidAmt = nowVoidAmt;
+			if(guestData[0].nowAmt!=(count)){
+				nui.alert("结算金额与应收金额不一致","提示");
+				return;
+			}
+
+			accountDetailList.push(accountDetail);
+
+			account.rpDc = -1;
+			account.settleType = "应付";
+			account.voidAmt = pVoidAmt;
+			account.trueCharOffAmt = pTrueAmt;
+			account.charOffAmt = pVoidAmt + pTrueAmt;
+			
+			var list={balaTypeCode:"020107",charOffAmt:deductible,settAccountId:"274"};
+			accountTypeList.push(list);
+
+			  nui.confirm("确定结算吗？", "友情提示",function(action){
+			       if(action == "ok"){
+						nui.mask({
+							el : document.body,
+							cls : 'mini-mask-loading',
+							html : '数据处理中...'
+						});
+						nui.ajax({
+							url : settleAuditUrl,
+							type : "post",
+							data : JSON.stringify({
+								account : account,
+								accountDetailList : accountDetailList,
+								accountTypeList : accountTypeList,
+								token : token
+							}),
+							success : function(data) {
+								nui.unmask(document.body);
+								data = data || {};
+								if (data.errCode == "S") {
+									CloseWindow("saveSuccess");
+				
+								} else {
+									showMsg(data.errMsg || "结算失败!", "w");
+								}
+							},
+							error : function(jqXHR, textStatus, errorThrown) {
+								// nui.alert(jqXHR.responseText);
+								console.log(jqXHR.responseText);
+							}
+						});
+			     }else {
+						return;
+				 }
+				 }); 
 		}
 
-		accountDetailList.push(accountDetail);
-
-		account.rpDc = -1;
-		account.settleType = "应付";
-		account.voidAmt = pVoidAmt;
-		account.trueCharOffAmt = pTrueAmt;
-		account.charOffAmt = pVoidAmt + pTrueAmt;
-		
-		var list={balaTypeCode:"020107",charOffAmt:deductible,settAccountId:"274"};
-		accountTypeList.push(list);
-
-		  nui.confirm("确定结算吗？", "友情提示",function(action){
-		       if(action == "ok"){
-					nui.mask({
-						el : document.body,
-						cls : 'mini-mask-loading',
-						html : '数据处理中...'
-					});
-					nui.ajax({
-						url : settleAuditUrl,
-						type : "post",
-						data : JSON.stringify({
-							account : account,
-							accountDetailList : accountDetailList,
-							accountTypeList : accountTypeList,
-							token : token
-						}),
-						success : function(data) {
-							nui.unmask(document.body);
-							data = data || {};
-							if (data.errCode == "S") {
-								CloseWindow("saveSuccess");
-			
-							} else {
-								showMsg(data.errMsg || "结算失败!", "w");
-							}
-						},
-						error : function(jqXHR, textStatus, errorThrown) {
-							// nui.alert(jqXHR.responseText);
-							console.log(jqXHR.responseText);
-						}
-					});
-		     }else {
-					return;
-			 }
-			 }); 
 
 
 

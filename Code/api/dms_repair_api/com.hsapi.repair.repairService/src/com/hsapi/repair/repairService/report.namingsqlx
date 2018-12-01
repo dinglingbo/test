@@ -1262,7 +1262,7 @@
            SUM(b.card_times_amt) cardTimesAmt
            FROM rps_maintain a  LEFT JOIN  rps_settlement b ON a.id = b.service_id
            WHERE a.is_settle = 1 
-            GROUP BY a.mt_advisor_id
+           GROUP BY a.mt_advisor_id
          ) A
          where 1=1
          <isNotEmpty prepend="and" property="mtAdvisorId"> 
@@ -1274,8 +1274,8 @@
 		 <isNotEmpty prepend="and" property="endDate"> 
 		      A.outDate &lt;= #endDate#
 		 </isNotEmpty>  	
-			
     </select>
+    
     <select id="queryPopulation" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
     	    a.member_group_id memberGroupId,

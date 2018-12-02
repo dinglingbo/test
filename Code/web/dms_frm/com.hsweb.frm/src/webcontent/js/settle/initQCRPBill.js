@@ -263,7 +263,7 @@ function audit(){
         return;
     }
 
-    var data = mainGrid.getData();
+    var data = mainGrid.getSelected();
     if(data) {
         nui.mask({
             el : document.body,
@@ -292,6 +292,8 @@ function audit(){
                 console.log(jqXHR.responseText);
             }
         });
+    }else{
+    	showMsg("请选择审核行!","W");
     }
 }
 function refresh(){

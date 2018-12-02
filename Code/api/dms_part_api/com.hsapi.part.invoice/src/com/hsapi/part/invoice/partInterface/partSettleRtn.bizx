@@ -125,12 +125,12 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="dc" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
         <process:inputVariable id="1" name="storeId" type="query" value="Long" valueType="Primitive" pattern="reference">outTemp/storeId</process:inputVariable>
-        <process:inputVariable id="2" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">outTemp/serviceCode</process:inputVariable>
+        <process:inputVariable id="2" name="serviceId" type="query" value="String" valueType="Primitive" pattern="reference">temp/serviceCode</process:inputVariable>
         <process:inputVariable id="3" name="billMainId" type="query" value="Long" valueType="Primitive" pattern="reference">outTemp/serviceId</process:inputVariable>
         <process:inputVariable id="4" name="billDetailId" type="query" value="Long" valueType="Primitive" pattern="reference">outTemp/id</process:inputVariable>
         <process:inputVariable id="5" name="billTypeId" type="query" value="String" valueType="Primitive" pattern="reference">temp/billTypeId</process:inputVariable>
-        <process:inputVariable id="6" name="guestId" type="query" value="Long" valueType="Primitive" pattern="reference">outTemp/guestId</process:inputVariable>
-        <process:inputVariable id="7" name="guestName" type="query" value="String" valueType="Primitive" pattern="reference">outTemp/guestName</process:inputVariable>
+        <process:inputVariable id="6" name="guestId" type="query" value="Long" valueType="Primitive" pattern="reference">temp/guestId</process:inputVariable>
+        <process:inputVariable id="7" name="guestName" type="query" value="String" valueType="Primitive" pattern="reference">temp/guestName</process:inputVariable>
         <process:inputVariable id="8" name="partId" type="query" value="Long" valueType="Primitive" pattern="reference">outTemp/partId</process:inputVariable>
         <process:inputVariable id="9" name="partCode" type="query" value="String" valueType="Primitive" pattern="reference">outTemp/partCode</process:inputVariable>
         <process:inputVariable id="10" name="partName" type="query" value="String" valueType="Primitive" pattern="reference">outTemp/partName</process:inputVariable>

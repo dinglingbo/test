@@ -3,17 +3,20 @@
 */
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
-var gridCarUrl = apiPath + crmApi +"/com.hsapi.crm.svr.visit.queryLoseGuestByDay.biz.ext";
+var gridCarUrl = apiPath + crmApi+"/com.hsapi.crm.svr.visit.queryCrmVisitMainList.biz.ext";
 
 var gridCar = null;
 var tcarNo_ctrl = null;
-var tlost_ctrl = null;
+var slost_ctrl = null;
+var elost_ctrl = null;
 var loseParam_ctrl = null;
+var form = null;
 
 $(document).ready(function(){
-
+	form = new nui.Form("#toolbar1");   
 	tcarNo_ctrl = nui.get("tcarNo");
-	tlost_ctrl = nui.get("tlost");
+	slost_ctrl = nui.get("slost");
+	elost_ctrl = nui.get("elost");
 	loseParam_ctrl = nui.get("loseParam");
 	setLoseParams();
 
@@ -22,11 +25,11 @@ $(document).ready(function(){
 	
 	gridCar = nui.get("gridCar");
 	gridCar.setUrl(gridCarUrl);
-	gridCar.load();
+	quickSearch(1);
 
 	gridCar.on("rowdblclick",function(e){
 		var record = e.record;
-		SetData(record);
+		SetData();
 	});
 	
 	document.onkeyup = function(event) {
@@ -38,7 +41,13 @@ $(document).ready(function(){
         	quickSearch(0);
         }
 
-    }
+    };
+
+    gridCar.on("drawcell", function (e) { 
+    	if(e.field == "serviceCode"){
+    		e.cellHtml ='<a href="##" onclick="openOrderDetail('+"'"+e.record.id+"'"+')">'+e.record.serviceCode+'</a>';
+    	}
+    });
 
 });
 
@@ -49,72 +58,71 @@ function mtAdvisorChanged(e){
 }
 
 
-function visit() {
-    var row = gridCar.getSelected();
-    if(row){
-        
-        SetData(row);
-    }
-}
 
-
-function SetData(rowData){ 
-    mini.open({
-        url: webPath + contextPath + "/manage/visitMgr/visitLoseMainDetail.jsp?token="+ token,
-        title: "回访信息", 
-        width: 750, height: 400,
-        onload: function () {
-            var iframe = this.getIFrameEl(); 
-            iframe.contentWindow.setData(rowData);
-        },
-        ondestroy: function (action) {
-            gridCar.reload();
-        }
-    });
+function SetData(){ 
+	var row = gridCar.getSelected();
+	if(row){
+		mini.open({
+			url: webPath + contextPath + "/manage/visitMgr/visitLoseMainDetail.jsp?token="+ token,
+			title: "电话回访", 
+			width: 750, height: 370,
+			onload: function () {
+				var iframe = this.getIFrameEl(); 
+				iframe.contentWindow.setData(row);
+			},
+			ondestroy: function (action) {
+				gridCar.reload();
+			}
+		});
+	}else{
+		showMsg("请选择一条记录","W");
+	}
 }
 
 
 
 function quickSearch(e){
 
-	var  p = null;
+	var  p = {};
 	if(e == 0){//车牌号
 		p = {
 			carNo:tcarNo_ctrl.value,
-			sloseDay:tlost_ctrl.value,
+			sLeaveDays:slost_ctrl.value,
+			eLeaveDays:elost_ctrl.value,
 		};
 	}
 	if(e == 1){//今日计划跟进客户
-		p ={
-			loseDay:120
-		};
+		slost_ctrl.setValue(0);
+		elost_ctrl.setValue(120);
 	}
 	if(e == 2){//新流失客户
-		p ={
-			sloseDay:120,
-			eloseDay:180
-		};
+		slost_ctrl.setValue(120);
+		elost_ctrl.setValue(180);
 	}
 	if(e == 3){//流失超过半年客户
-		p = {
-			sloseDay:182
-		};
+		slost_ctrl.setValue(180);
+		elost_ctrl.setValue(360);
 	}
-		if(e == 4){//流失超过一年的客户
-			p = {
-				sloseDay:365
-			};
-		}
-		gridCar.load({params:p,token:token});
+	if(e == 4){//流失超过一年的客户
+		slost_ctrl.setValue(360);
 	}
+	if(e == 5){//所有流失的客户
+		slost_ctrl.setValue(0);
+	}
+	p.type = 2;//流失回访
+	p.sLeaveDays = slost_ctrl.value;
+	p.eLeaveDays = elost_ctrl.value;
+	p.carNo = tcarNo_ctrl.value;
+	gridCar.load({params:p,token:token});
+}
 
-	function WindowComplianDetail(){
-		nui.open({
-			url: webBaseUrl + "manage/complainDetail.jsp?token="+token,
-			title:"投诉登记",
-			height:"500px",
-			width:"650px",
-			onload:function(){
+function WindowComplianDetail(){
+	nui.open({
+		url: webBaseUrl + "manage/complainDetail.jsp?token="+token,
+		title:"投诉登记",
+		height:"500px",
+		width:"650px",
+		onload:function(){
 			//var iframe = this.getIFrameEl(); 
 			//iframe.contentWindow.SetData("th"); 
 		},
@@ -129,53 +137,55 @@ function quickSearch(e){
         }
 
     });
-	}
+}
 
 
 
 function WindowrepairHistory(){
 	var row = gridCar.getSelected();
 	var params = {
-			carId : row.carId,
-			guestId : row.guestId
+		carId : row.carId,
+		guestId : row.guestId
 	};
 	if(row.id){
 		doShowCarInfo(params);
 	}
 }
 
-	function setLoseParams(){
-		nui.ajax({
-			url:apiPath + crmApi +"/com.hsapi.crm.svr.visit.queryRemindParams.biz.ext",
-			type:"post",
-			async: false,
-			data:{
-				token:token
-			},
-			success:function(text){
-				if(text.errCode == "S"){
-					var tdata = text.data;
-					if(tdata.length == 1){
-						loseParam_ctrl.setValue(tdata[0].param9);
-					}else if(tdata.length > 1 ){
-						showMsg("未设置流失客户相关参数！","W");
-					}else{}
-				}
-
+function setLoseParams(){
+	nui.ajax({
+		url:apiPath + crmApi +"/com.hsapi.crm.svr.visit.queryRemindParams.biz.ext",
+		type:"post",
+		async: false,
+		data:{
+			token:token
+		},
+		success:function(text){
+			if(text.errCode == "S"){
+				var tdata = text.data;
+				if(tdata.length == 1){
+					loseParam_ctrl.setValue(tdata[0].param9);
+				}else if(tdata.length > 1 ){
+					showMsg("未设置流失客户相关参数！","W");
+				}else{}
 			}
-		});
-	}
+
+		}
+	});
+}
 
 
-	function openOrderDetail(){
+function openOrderDetail(serviceId){
 	var row = gridCar.getSelected();
 	var data = {};
-	data.id = row.lastServiceId;
-
+	data.id = row.serviceId;
+	if(serviceId){
+		data.id = serviceId;
+	}
 	if(data.id){
 		var item={};
 		item.id = "11111";
-	    item.text = "工单详情页";
+		item.text = "工单详情页";
 		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow";
 		item.iconCls = "fa fa-cog";
 		window.parent.activeTabAndInit(item,data);
@@ -183,19 +193,19 @@ function WindowrepairHistory(){
 }
 
 function sendInfo(){
-    var row = gridCar.getSelected();
-        if (row == undefined) {
-        showMsg("请选中一条数据","W");
-        return;
-    }
-    nui.open({
-        url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
-        title: "发送短信", width: 655, height: 386,
-        onload: function () {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.setData();
-        },
-        ondestroy: function (action) {
+	var row = gridCar.getSelected();
+	if (row == undefined) {
+		showMsg("请选中一条数据","W");
+		return;
+	}
+	nui.open({
+		url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
+		title: "发送短信", width: 655, height: 386,
+		onload: function () {
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.setData();
+		},
+		ondestroy: function (action) {
             //重新加载
             //query(tab);
         }

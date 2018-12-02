@@ -159,6 +159,38 @@ $(document).ready(function ()
             if (editor.isValid() == false) {
                 showMsg("请输入有效数字！","W");
                 e.cancel = true;
+            }else{
+            	if (e.field == "amt") {
+        			var amt = e.value;
+        			if (e.value == null || e.value == '') {
+        				e.value = 0;
+        				amt = 0;
+        			} else if (e.value < 0) {
+        				e.value = 0;
+        				amt = 0;
+        			}
+        		}
+            	if (e.field == "rtnCompRate") {
+        			var rtnCompRate = e.value;
+        			if (e.value == null || e.value == '') {
+        				e.value = 0;
+        				rtnCompRate = 0;
+        			} else if (e.value < 0) {
+        				e.value = 0;
+        				rtnCompRate = 0;
+        			}
+        		}
+            	if (e.field == "rtnGuestRate") {
+        			var rtnGuestRate = e.value;
+        			if (e.value == null || e.value == '') {
+        				e.value = 0;
+        				rtnGuestRate = 0;
+        			} else if (e.value < 0) {
+        				e.value = 0;
+        				rtnGuestRate = 0;
+        			}
+        		}
+
             }
 
         }

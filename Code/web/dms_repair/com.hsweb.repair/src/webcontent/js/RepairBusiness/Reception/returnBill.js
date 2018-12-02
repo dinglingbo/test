@@ -654,7 +654,7 @@ function saveMaintain(callback,unmaskcall){
     }
     data.billTypeId = 5;
     data.serviceTypeId = 1 ;
-    data.mtAdvisorId = currUserId;
+    data.mtAdvisorId = currEmpId;
     data.mtAdvisor = currUserName;
     var params = {
         data:{
@@ -1122,7 +1122,7 @@ function saveBatch(){
 	    }
 	    data.billTypeId = 5;
 	    data.serviceTypeId = 1 ;
-	    data.mtAdvisorId = currUserId;
+	    data.mtAdvisorId = currEmpId;
 	    data.mtAdvisor = currUserName;
 	    var json = nui.encode({
 			"maintain" : data,
@@ -1331,7 +1331,6 @@ function onDrawSummaryCell(e){
 }
 //转结算(可能有问题)
 //转结算
-payUrl = webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token="+token;
 function pay(){	
 	var main = billForm.getData();
 	if(main.isSettle == 1){
@@ -1343,14 +1342,13 @@ function pay(){
 	     return;
 	}
 	nui.open({
-		url:payUrl,
+		url:webPath + contextPath +"/com.hsweb.frm.manage.payable.flow?token="+token,
 		width:"100%",
 		height:"100%",
 		//加载完之后
 		onload: function(){	
 			//把值传递到支付页面
-		    var iframe = this.getIFrameEl();
-		    var data = {
+/*		    var data = {
 		    	"itemPrefAmt":0,
 		    	"itemSubtotal":0,
 		    	"packagePrefAmt":0,
@@ -1359,31 +1357,32 @@ function pay(){
 		    	"partSubtotal":total,
 		    	"mtAmt":total,
 		    	"ycAmt":0
-		    };
-		    var params = {
+		    };*/
+		    var params = [{
 		    	"carNo":main.carNo,
 		    	"guestId":main.guestId,
 		    	"guestName":main.guestFullName,
 		    	"serviceId":main.id,
-		    	"data":data,
+		    	"nowAmt":total,
 		    	"typeUrl" : 2
-		    };
-		    iframe.contentWindow.setData(params);			
+		    }];
+            var iframe = this.getIFrameEl();
+            iframe.contentWindow.setData(params);			
 		},
-	   ondestroy : function(action) {
-           if(action == "ok"){
-           	nui.get("isSettle").setValue(1);
-               showMsg("结算成功!","S");
-           }else if(action == "onok"){
-           	nui.get("isSettle").setValue(1);
-               showMsg("转预结算成功!","S");
-           }else{
-               if(data.errCode){
-                   showMsg("结算失败!","W");
-                   return;
-               }
-           }
-	}
+		   ondestroy : function(action) {
+	           if(action == "ok"){
+	           	nui.get("isSettle").setValue(1);
+	               showMsg("结算成功!","S");
+	           }else if(action == "onok"){
+	           	nui.get("isSettle").setValue(1);
+	               showMsg("转预结算成功!","S");
+	           }else{
+	               if(data.errCode){
+	                   showMsg("结算失败!","W");
+	                   return;
+	               }
+	           }
+		}
 	});		
 }
 

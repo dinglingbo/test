@@ -28,7 +28,6 @@ pageEncoding="UTF-8" session="false" %>
 <body>
    
     <div class="nui-fit" id="form1">
-        <div id="p1" class="nui-panel" title="请填写回访内容" iconCls="" style="width:100%;height:100%;"buttons="">
           <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
            <table style="width:80%;">
                <tr>
@@ -74,7 +73,6 @@ pageEncoding="UTF-8" session="false" %>
             </td>
         </tr>
     </table>
-</div>
 </div>
 <script type="text/javascript">
     nui.parse();

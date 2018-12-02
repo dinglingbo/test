@@ -12,7 +12,7 @@
 <title>保养提醒统计</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=crmDomain%>/query/stat/js/maintainRemind.js?v=1.0" type="text/javascript"></script> 
+    <script src="<%=crmDomain%>/query/stat/js/maintainRemind.js?v=1.1" type="text/javascript"></script> 
 </head>
 <body>
 

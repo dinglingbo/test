@@ -357,6 +357,9 @@ function  savepartOutRtn(data,childdata){
             paramsData.trueCost = data.trueCost;
             paramsData.sellUnitPrice = data.sellUnitPrice; 
             paramsData.sellAmt = data.sellAmt;
+            paramsData.guestId = mainRow.guestId;
+            paramsData.guestName = mainRow.guestFullName;
+            
             if(!paramsData.partNameId){
             	paramsData.partNameId = "0";
             }

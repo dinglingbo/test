@@ -879,6 +879,29 @@ function addNew(){
 
 }
 
+function onCellCommitEdit(e){
+	var editor = e.editor;
+	var record = e.record;
+	var row = e.row;
+
+	editor.validate();
+	if (editor.isValid() == false) {
+		showMsg("请输入数字!","W");
+		e.cancel = true;
+	}else{
+		if (e.field == "careDueMileage") {
+			var careDueMileage = e.value;
+			if (e.value == null || e.value == '') {
+				e.value = 0;
+				careDueMileage = 0;
+			} else if (e.value < 0) {
+				e.value = 0;
+				careDueMileage = 0;
+			}
+		}
+		
+	}
+}
 function lastCheckModel(){
 	var fromData=billForm.getData();
 	var params={};

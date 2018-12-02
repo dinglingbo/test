@@ -106,6 +106,16 @@ $(document).ready(function ()
             }else{
                 e.cellHtml = "未结算";
             }
+        }else if(e.field == "guestMobile"){
+        	var value = e.value
+        	value = "" + value;
+        	var reg=/(\d{3})\d{4}(\d{4})/;
+        	var value = value.replace(reg, "$1****$2");
+        	e.cellHtml = value;
+        }else if(e.field == "serviceCode"){
+        	e.cellHtml ='<a href="##" onclick="edit('+e.record._uid+')">'+e.record.serviceCode+'</a>';
+        }else if(e.field == "carNo"){
+        	e.cellHtml ='<a href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
         }
     });
     
@@ -230,6 +240,16 @@ $(document).ready(function ()
 function onAdvancedAddCancel(){
 	advancedAddWin.hide();
 	advancedAddForm.setData([]);
+}
+function showCarInfo(row_uid){
+	var row = mainGrid.getRowByUID(row_uid);
+	if(row){
+		var params = {
+				carId : row.carId,
+				guestId : row.guestId
+		};
+		doShowCarInfo(params);
+	}
 }
 var statusHash = {
     "0" : "报价",
@@ -419,8 +439,12 @@ function add(){
     window.parent.activeTabAndInit(item,params);
 
 }
-function edit(){
-    var row = mainGrid.getSelected();
+function edit(row_uid){
+	if(!row_uid){
+		var row = mainGrid.getSelected();
+	}else{
+		var row = mainGrid.getRowByUID(row_uid);
+	}
     if(!row) return;
     var item={};
     item.id = "3000";

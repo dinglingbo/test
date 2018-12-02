@@ -730,18 +730,12 @@
 				a.care_due_date as careDueDate,
 				a.prev_advisor_name as preAdvisorName,
 				c.mobile as mobile,
-				e.id as serviceId,
-				e.service_code serviceCode,
 				b.car_model_id as carModelId,
 				b.car_brand_id as carBrandId
 			FROM
 				rpb_car_extend a
 			INNER JOIN rpb_car b ON a.car_id = b.id
 			INNER JOIN wb_common.com_guest c on c.id=b.guest_id
-			left JOIN rpb_remind_param d on b.orgid=d.orgid
-			LEFT JOIN (
-			SELECT * FROM(SELECT id,car_id,service_code from rps_maintain  order by record_date desc)p GROUP  BY p.car_id 
-			) e on b.id=e.car_id
 			
 			WHERE 1=1
 			<isNotEmpty prepend="and" property="orgid">

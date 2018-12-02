@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
   <title>首页</title> 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.74"></script>
+    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.75"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css" rel="stylesheet" type="text/css" />
@@ -116,8 +116,8 @@ pageEncoding="UTF-8" session="false" %>
                         <div id="guestBoardGrid" dataField="data" class="nui-datagrid" style="width:100%;height:100%;" borderstyle="border:0;" showColumns="true" showpager="false" > 
                             <div property="columns">
                                 <div field="carNo" name="business" width="80px" headeralign="center" align="center"><strong>车牌号</strong></div>
-                                <div field="recordDate" name="recordDate" width="120px" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" align="center"><strong>接车时间</strong></div>
-                                <div field="planFinishDate" name="planFinishDate" width="120px" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" align="center"><strong>预计完工时间</strong></div>
+                                <div field="enterDate" name="enterDate" width="120px" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" align="center"><strong>进厂时间</strong></div>
+                                <div field="planFinishDate" name="planFinishDate" width="120px" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" align="center"><strong>预计交车时间</strong></div>
                                 <div field="status" name="status" width="80px" headeralign="center" align="center"><strong>施工状态</strong></div>
                             </div>
                         </div>

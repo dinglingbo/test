@@ -13,7 +13,6 @@
                 <input class="nui-hidden" name="contactorId"/>
                 <input class="nui-hidden" name="carId"/>
                 <input class="nui-hidden" name="status"/>
-                <input class="nui-hidden" name="carVin"/>
                 <input class="nui-hidden" name="drawOutReport"/>
                 <input class="nui-hidden" name="contactorName"/>
                 <input class="nui-hidden" name="carModel"/>
@@ -31,8 +30,14 @@
                         <td class="title" >
                            <label>品牌/车型：</label>
                         </td>
-                        <td class="" colspan="3">
+                        <td class="" colspan="1">
                             <input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/>
+                        </td>
+                        <td class="title" >
+                           <label>车架号(VIN)：</label>
+                        </td>
+                        <td class="" colspan="1">
+                            <input  class="nui-textbox" name="carVin" id="carVin" enabled="false" width="100%"/>
                         </td>
                         <td class="title required">
                             <label>业务类型：</label>
@@ -95,10 +100,10 @@
                                <label class="title">(上次里程：<span id="lastComeKilometers">0</span>)</label>
                           </td>
                         <td class="title required">
-                            <label>进厂日期：</label>
+                            <label>进厂时间：</label>
                         </td>
                         <td>
-                            <input id="enterDate" name="enterDate" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
+                            <input id="enterDate" name="enterDate" enabled="false" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
                             <input id="recordDate" name="recordDate" class="nui-datepicker" visible="false" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
                         </td>
                         <td class="title required">

@@ -75,8 +75,8 @@
 	    <div id="workShopBoardGrid" class="nui-datagrid" allowRowSelect="false" showLoading="false" dataField="list" enableHotTrack="false" allowCellWrap="true" showPager="false" style="height:100%;width:100%;">
 	        <div property="columns">
 	            <div field="carNo" width="100" headerAlign="center" align="center">车牌号</div>
-	            <div field="enterDate" width="100" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" align="center">接车时间</div>
-	            <div field="planFinishDate" width="100" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" align="center">预计完工时间</div>
+	            <div field="enterDate" width="100" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" align="center">进厂时间</div>
+	            <div field="planFinishDate" width="100" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" align="center">预计交车时间</div>
 	            <div field="mtAdvisor" width="100" headerAlign="center" align="center">服务顾问</div>
 	            <div field="sureMtMan" width="100" headerAlign="center" align="center">施工员</div>
 	            <div field="name" width="120" headerAlign="center" align="center">维修项目</div>

@@ -400,7 +400,7 @@
                     </tr> -->
                     <tr>
                         <td class="left" id="carNo" style="margin-left: 0px;">车牌号：</td>
-                        <td class="left" id="carModel" >车型/品牌：</td>
+                        <td class="left" id="carModel" >品牌/车型：</td>
                     </tr>
                     <tr>
                         <td class="left"id="mtAdvisor" width="100px">服务顾问：</td>
@@ -459,6 +459,7 @@
 
 	<script type="text/javascript">
 	var guestId=null;
+	var data = [];
 	$(document).ready(function (){
 		$("#print").click(function () {
             $(".print_btn").hide();
@@ -483,13 +484,30 @@
         }
 	function SetData(params){
 		document.getElementById("comp").innerHTML = params.comp;
+		var dictids= ['DDT20130703000051'];
+		$.ajaxSettings.async = false;
+		$.post(params.sysUrl+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictids="+dictids+"&token="+params.token,{},function(text){
+    		   if(text.data){
+    		     data = text.data;
+    		   }
+	        });//com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id=
 		$.ajaxSettings.async = false;//设置为同步执行
-        $.post(params.baseUrl+"com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext?id="+params.serviceId+"&token="+params.token,{},function(text){
-        	if(text.errCode == "S"){
-        		var maintain = text.maintain;
+        $.post(params.baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext?params/rid="+params.serviceId+"&token="+params.token,{},function(text){
+        	if(text.list.length > 0){
+        	   var maintain = text.list[0];
+        	   var enterOilMass = maintain.enterOilMass || "0";
+	        	var name = "0";
+        	   for(var i = 0;i<data.length;i++){
+			        if(data[i].customid == enterOilMass){
+			           name = data[i].name;
+			           break;
+			        }
+	        	}
+	        	var engineNo = maintain.engineNo;
         		var carNo = maintain.carNo;
         		var carVin = maintain.carVin;
         		var enterDate = maintain.enterDate || "";
+        		var carModel = maintain.carModel || "";
         		if(enterDate){
         			enterDate = enterDate.replace(/-/g,"/");
         			enterDate = new Date(enterDate);
@@ -504,9 +522,12 @@
         			planFinishDate = new Date(planFinishDate);
         			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:MM");
         		}
-        		var faultPhen = maintain.faultPhen;
+        		var faultPhen = maintain.faultPhen || "";
         		var serviceCode = maintain.serviceCode;
         		var remark = maintain.remark || "";
+        		document.getElementById("engineNo").innerHTML = document.getElementById("engineNo").innerHTML + engineNo; 
+        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
+        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;
         		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
         		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
         		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;

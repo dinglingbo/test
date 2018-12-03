@@ -203,6 +203,12 @@ $(document).ready(function () {
 		value = e.value;
 		var record = e.record;
 		var uid = record._uid;
+		if(field=="packageName"){
+            var billPackageId = record.billPackageId || 0;
+            if(billPackageId != 0){
+            	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
+            }
+		}
 		if(field == "rate"){
 			if(value){
 				e.cellHtml = value + "%";
@@ -221,7 +227,6 @@ $(document).ready(function () {
 			}else{
 				e.cellHtml = "--"
 			}
-			
 		}
 	});
 	/*rpsItemGrid.on("cellendedit",function(e){
@@ -240,6 +245,12 @@ $(document).ready(function () {
 		row = e.row;
 		var record = e.record;
 		var uid = record._uid;
+		if(field=="itemName"){
+            var billItemId = record.billItemId||0;
+            if(billItemId != 0){
+            	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
+            }
+		}
 		if(field == "rate"){
 			if(value){
 				e.cellHtml = value + "%";
@@ -259,14 +270,6 @@ $(document).ready(function () {
 				e.cellHtml = ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
 			}
 			
-		}
-		if(field == "itemName"){
-			e.cellHtml = e.value;
-			/*if(row.billItemId == 0){
-                e.cellHtml = '<a href="javascript:showMorePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' + e.value;	
-            }else{
-            	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
-            }*/
 		}
 	});
 });

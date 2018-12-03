@@ -722,7 +722,7 @@
 				b.guest_id as guestId,
 				c.full_name as guestName,
 				DATEDIFF(now(),a.last_leave_date) as leaveDays,
-				DATE_SUB(a.care_due_date,INTERVAL d.param1 day) as finalRemindDay,
+				a.care_last_date as careLastDate,
 				a.chain_come_times as chainComeTimes,
 				a.last_come_date as lastComeDate,
 				a.first_come_date as firstComeDate,

@@ -76,9 +76,15 @@ function init(callback)
         addEditCustomerPage.unmask();
         callback && callback();
     };
-    initInsureComp("insureCompCode",function(){
+/*    initInsureComp("insureCompCode",function(){
         hash.initInsureComp = true;
         checkComplete();
+    });*/
+    initInsureComp("annualInspectionCompCode",function(){
+        hash.initInsureComp = true;
+        checkComplete();
+    	var inlist = nui.get("annualInspectionCompCode").getData();
+    	nui.get("insureCompCode").setData(inlist);
     });
     initDicts({
         //carSpec:CAR_SPEC,//车辆规格
@@ -369,7 +375,12 @@ function onInsureChange(e){
 	var shortName = row.shortName;
 	nui.get('insureCompName').setValue(shortName);
 }
-
+function onannualInsureChange(e){
+	//var value = e.value;
+	var row = e.selected;
+	var shortName = row.shortName;
+	nui.get('annualInspectionCompName').setValue(shortName);
+}
 function getCarModel(callBack) {
 	nui.open({
 		targetWindow : window,
@@ -518,7 +529,10 @@ function addCarList(){
 				carModel : car.carModel,
 				engineNo :car.engineNo,
 				annualVerificationDueDate :car.annualVerificationDueDate,
-				insureCompCode:car.insureCompCode,	
+				insureCompCode:car.insureCompCode,
+				insureCompName:car.insureCompName,
+				annualInspectionCompCode :car.annualInspectionCompCode,
+				annualInspectionCompName :car.annualInspectionCompName,
 				annualInspectionNo:car.annualInspectionNo,
 				annualInspectionDate:car.annualInspectionDate,
 				insureNo:car.insureNo,

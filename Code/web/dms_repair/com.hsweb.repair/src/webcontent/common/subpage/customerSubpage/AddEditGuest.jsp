@@ -11,7 +11,7 @@
 -->
 <head>
     <title>新增客户档案</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.19"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.30"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -107,13 +107,13 @@
                         <label>初次领证时间：</label>
                     </td>
                     <td>
-                        <input name="licenseRecordDate" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input name="licenseRecordDate" allowInput="false" class="nui-datepicker" format="yyyy-MM-dd" width="100%" />
                     </td>
                     <td class="form_label">
                         <label>驾照到期日期：</label>
                     </td>
                     <td>
-                        <input name="licenseOverDate" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input name="licenseOverDate" allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
                     </td>
                 </tr>
                 <tr>
@@ -127,7 +127,7 @@
                         <label>生日：</label>
                     </td>
                     <td>
-                        <input name="birthday" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input name="birthday" allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
                     </td>
                 </tr>
                 <tr>
@@ -160,6 +160,7 @@
             <input class="nui-hidden" name="carModelId" id="carModelId"/>
             <input class="nui-hidden" name="carModelIdLy" id="carModelIdLy"/>
             <input class="nui-hidden" name="insureCompName" id="insureCompName" />
+            <input class="nui-hidden" name="annualInspectionCompName" id="annualInspectionCompName" />
             <table class="nui-form-table" style="width:100%;">
                 <tr>
                     <td class="form_label required">
@@ -210,18 +211,10 @@
                         <label>年审到期：</label>
                     </td>
                     <td>
-                        <input name="annualVerificationDueDate" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input name="annualVerificationDueDate" format="yyyy-MM-dd" allowInput="false" class="nui-datepicker" width="100%" />
                     </td>
                 </tr>
-                <tr>
-                    <td class="form_label">
-                        <label>保险公司：</label>
-                    </td>
-                    <td colspan="3">
-                        <input class="nui-combobox" name="insureCompCode" id="insureCompCode" valueField="id" textField="fullName" width="100%" onvaluechanged="onInsureChange"
-                        />
-                    </td>
-                </tr>
+
                 <tr>
                     <td class="form_label">
                         <label>商业险单号：</label>
@@ -233,7 +226,16 @@
                         <label>商业险到期：</label>
                     </td>
                     <td>
-                        <input name="annualInspectionDate" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input name="annualInspectionDate" format="yyyy-MM-dd" allowInput="false" class="nui-datepicker" width="100%" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form_label">
+                        <label>商业险投保公司：</label>
+                    </td>
+                    <td colspan="3">
+                        <input class="nui-combobox" name="annualInspectionCompCode" id="annualInspectionCompCode" valueField="id" textField="fullName" width="100%" onvaluechanged="onannualInsureChange"
+                        />
                     </td>
                 </tr>
                 <tr>
@@ -247,7 +249,16 @@
                         <label>交强险到期：</label>
                     </td>
                     <td>
-                        <input name="insureDueDate" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input name="insureDueDate" allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                    </td>
+                </tr>
+                 <tr>
+                    <td class="form_label">
+                        <label>交强险投保公司：</label>
+                    </td>
+                    <td colspan="3">
+                        <input class="nui-combobox" name="insureCompCode" id="insureCompCode" valueField="id" textField="fullName" width="100%" onvaluechanged="onInsureChange"
+                        />
                     </td>
                 </tr>
                 <tr>
@@ -255,13 +266,13 @@
                         <label>生产日期：</label>
                     </td>
                     <td>
-                        <input name="produceDate" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input name="produceDate" allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
                     </td>
-                    <td class="form_label">
+                    <td class="form_label"> 
                         <label>上牌日期：</label>
                     </td>
                     <td>
-                        <input name="firstRegDate" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input name="firstRegDate" allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
                     </td>
                 </tr>
                 <tr>
@@ -270,7 +281,7 @@
                         <label>发证日期：</label>
                     </td>
                     <td>
-                        <input id="issuingDate" name="issuingDate" allowInput="false" class="nui-datepicker" width="100%" />
+                        <input id="issuingDate" name="issuingDate" format="yyyy-MM-dd" allowInput="false" class="nui-datepicker" width="100%" />
                     </td>
 
                     <!--   <td class="form_label" >
@@ -416,28 +427,35 @@
                                         车型信息
                                     </div>
                                     <div field="engineNo" allowSort="true" align="left" headerAlign="center" width="">发动机号</div>
-                                    <div field="annualVerificationDueDate" allowSort="true" align="left" headerAlign="center" width="">
+                                    <div field="annualVerificationDueDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
                                         年审到期
                                     </div>
+                                   
+                                    <div field="insureNo" allowSort="true" align="left" headerAlign="center" width="">
+                                        交强险单号
+                                    </div>
+                                    <div field="annualInspectionDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
+                                        交强险到期
+                                    </div>
                                     <div field="insureCompName" allowSort="true" align="left" headerAlign="center" width="">
-                                        保险公司
+                                      交强险投保公司
                                     </div>
                                     <div field="annualInspectionNo" allowSort="true" align="left" headerAlign="center" width="">
                                         商业险单号
                                     </div>
-                                    <div field="annualInspectionDate" allowSort="true" align="left" headerAlign="center" width="">
+                                    <div field="annualInspectionDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
                                         商业险到期
                                     </div>
-                                    <div field="produceDate" allowSort="true" align="left" headerAlign="center" width="">
+                                    <div field="annualInspectionCompName" allowSort="true" align="left" headerAlign="center" width="">
+                                        商业险投保公司
+                                    </div>
+                                    <div field="produceDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
                                         生产日期
                                     </div>
-                                    <div field="produceDate" allowSort="true" align="left" headerAlign="center" width="">
-                                        生产日期
-                                    </div>
-                                    <div field="firstRegDate" allowSort="true" align="left" headerAlign="center" width="">
+                                    <div field="firstRegDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
                                         上牌日期
                                     </div>
-                                    <div field="issuingDate" allowSort="true" align="left" headerAlign="center" width="">
+                                    <div field="issuingDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
                                         发证日期
                                     </div>
                                 </div>

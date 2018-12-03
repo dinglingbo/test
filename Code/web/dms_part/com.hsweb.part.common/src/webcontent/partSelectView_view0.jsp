@@ -106,7 +106,6 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 		                     selectOnLoad="true"
 		                     pageSize="50"
 		                     sortMode="client"
-		                     allowCellWrap="true"
 		                     showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
 		                    <div property="columns">
 		                        <div header="基础信息" headerAlign="center">

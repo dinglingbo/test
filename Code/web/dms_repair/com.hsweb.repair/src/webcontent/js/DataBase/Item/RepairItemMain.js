@@ -70,7 +70,9 @@ $(document).ready(function()
 			case "type":
 				if(typeHash && typeHash[e.value])
 				{
-					e.cellHtml = typeHash[e.value].name||"";
+					if(typeHash[e.value] && typeHash[e.value].name) {
+						e.cellHtml = typeHash[e.value].name||"";
+					}
 				}
 				break;
 		}
@@ -97,7 +99,9 @@ $(document).ready(function()
 	rightGrid.on("drawcell", function (e) {
         switch (e.field) {
             case "serviceTypeId":
-                e.cellHtml = servieTypeHash[e.value].name;
+            	if(servieTypeHash[e.value] && servieTypeHash[e.value].name) {
+					e.cellHtml = servieTypeHash[e.value].name||"";
+				}
                 break;
             default:
                 break;

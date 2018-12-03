@@ -333,6 +333,7 @@ function onParseUnderpanNo()
         {
             //var list = data.rs||[];
             var carVinModel = data.data.SuitCar||[];//list[0];
+            var carModelId = data.data.carModelId;
             carVinModel = carVinModel[0]||{};
             carVinModel.vin = vin;
          //   nui.get("carBrandId").setValue(carVinModel.carBrandId);

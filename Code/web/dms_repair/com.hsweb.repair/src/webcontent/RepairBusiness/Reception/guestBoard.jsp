@@ -75,8 +75,8 @@
 	   	  allowRowSelect="false" showPager="false" style="height:100%;width:100%;">
 	        <div property="columns">
 	            <div field="carNo" width="100" headerAlign="center" align="center">车牌号</div>
-	            <div field="recordDate"  width="100" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" align="center">接车时间</div>
-	            <div field="planFinishDate" width="100"  headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" align="center">预计完工时间</div>
+	            <div field="enterDate"  width="100" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" align="center">进厂时间</div>
+	            <div field="planFinishDate" width="100"  headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" align="center">预计交车时间</div>
 	            <div field= "status" width="100" headerAlign="center" align="center">服务进程</div>
 	            <div field= "mtAdvisor" width="100" headerAlign="center" align="center">服务顾问</div>
 		        <!-- <div field= "status" width="100" headerAlign="center" align="center">服务顾问电话</div> -->

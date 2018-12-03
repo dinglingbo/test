@@ -199,9 +199,15 @@
                 <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>  
                 <td class="title" >
                       <label>品牌/车型：</label>
-                  </td>
-                 <td class="" colspan="3"><input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/></td>
+                 </td>
+                <td class="" colspan="1"><input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/></td>
     
+                <td class="title" >
+                   <label>车架号(VIN)：</label>
+                </td>
+                <td class="" colspan="1">
+                    <input  class="nui-textbox" name="carVin" id="carVin" enabled="false" width="100%"/>
+                </td>
                 <td class="title required" >
                     <label>业务类型：</label>
                 </td>
@@ -235,7 +241,7 @@
                     nullItemText="请选择..." width="100%"/>
                
                 </td>
-                <td class="title">开单时间：</td> 
+                <td class="title">进厂时间：</td> 
                 <td class="">
                     <input id="recordDate"
                     name="recordDate"

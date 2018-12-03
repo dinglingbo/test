@@ -17,7 +17,7 @@ com_cap_resauth
 
 /*
 */
-
+[WBStandard]
 
 
 

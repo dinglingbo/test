@@ -135,7 +135,7 @@
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName" enabled="false" style="width:100%" />
                 </td>
-                <td class="tbtext">客户电话:</td>
+                <td class="tbtext">客户手机:</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" enabled="false" style="width:100%"/>
                 </td>

@@ -150,7 +150,7 @@
                                     <input property="editor" vtype="float" class="nui-textbox" />
                                 </div>
                                 <div field="remark" visible="false" width="80"
-                                headerAlign="center" allowSort="true" header="备注">
+                                headerAlign="center" allowSort="false" header="备注">
                                 <input property="editor" class="nui-textbox" />
                             </div>
                         </div>
@@ -162,9 +162,9 @@
                             <!--                                          <div field="stockQty" width="50" headerAlign="center" header="库存数量"> -->
                                 <!--                                       </div> -->
                                 <div field="comOemCode" width="60" headerAlign="center"
-                                allowSort="true" header="OEM码"></div>
+                                allowSort="false" header="OEM码"></div>
                                 <div field="comSpec" width="100" headerAlign="center"
-                                allowSort="true" header="规格/方向/颜色"></div>
+                                allowSort="false" header="规格/方向/颜色"></div>
                             </div>
                         </div>
                     </div>

@@ -242,7 +242,7 @@
                                       <div field="exhibitQty" name="exhibitQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="盈亏数量"></div>
                                       <div field="exhibitAmt" name="exhibitAmt" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="盈亏金额"></div>
                                       <div field="sysPrice" name="sysPrice" numberFormat="0.0000" width="60" headerAlign="center" header="系统成本"></div>
-                                      <div field="remark" visible="false" width="80" headerAlign="center" allowSort="true" header="备注">
+                                      <div field="remark" visible="false" width="80" headerAlign="center" allowSort="false" header="备注">
                                         <input property="editor" class="nui-textbox"/>
                                       </div>
                                   </div>
@@ -251,8 +251,8 @@
                                   <div property="columns">
                                       <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="缺货数量">
                                       </div>
-                                      <div field="comOemCode" width="60" headerAlign="center" allowSort="true" header="OEM码"></div>   
-                                      <div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                                                        
+                                      <div field="comOemCode" width="60" headerAlign="center" allowSort="false" header="OEM码"></div>   
+                                      <div field="comSpec" width="100" headerAlign="center" allowSort="false" header="规格/方向/颜色"></div>                                                        
                                   </div>
                               </div>
                           </div>

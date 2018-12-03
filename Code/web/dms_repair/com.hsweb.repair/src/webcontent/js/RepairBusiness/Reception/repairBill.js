@@ -838,7 +838,7 @@ function setInitData(params){
                         data.mobile = contactor.mobile;
                         data.carModel = car.carModel;
                         data.carModelIdLy = car.carModelIdLy||"";
-                        data.insureCompName = car.insureCompName || "";
+                        data.insureCompName = car.insureCompName || "";insuranceName
                         data.insureDueDate = car.insureDueDate || "";
                         data.insureNo = car.insureNo || "";
                         

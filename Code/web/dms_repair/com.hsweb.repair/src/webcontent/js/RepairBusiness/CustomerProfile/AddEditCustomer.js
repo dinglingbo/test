@@ -566,7 +566,19 @@ function isVehicleNumber(vehicleNumber) {
     return result;
 }
 
-
+function onChanged(id){
+	if(id=="fullName"){
+		fullName = nui.get("fullName").value;
+		nui.get("shortName").setValue(fullName);
+		
+	}
+	if(id=="mobile"){
+		mobile = nui.get("mobile").value;
+		
+	}
+	
+	
+}
 
 
 

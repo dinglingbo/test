@@ -47,6 +47,8 @@ function init(callback)
     initInsureComp("insureCompCode",function(){
         hash.initInsureComp = true;
         checkComplete();
+    	var inlist = nui.get("insureCompCode").getData();
+    	nui.get("annualInspectionCompCode").setData(inlist);
     });
     initDicts({
         //carSpec:CAR_SPEC,//车辆规格

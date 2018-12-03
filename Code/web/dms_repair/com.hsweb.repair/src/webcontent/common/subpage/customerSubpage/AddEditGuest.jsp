@@ -11,7 +11,7 @@
 -->
 <head>
     <title>新增客户档案</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.30"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.31"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -409,7 +409,7 @@
                             </table>
                         </div>
                         <div class="nui-fit">
-                            <div id="cardatagrid" class="nui-datagrid" style="width: 100%;height:100%" showPager="false" sortMode="client" allowCellEdit="true"
+                            <div id="cardatagrid" class="nui-datagrid" style="width: 100%;height:100%" showPager="false" sortMode="client" allowCellEdit="true" onrowdblclick="eaidCar()"
                                 allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true">
                                 <div property="columns">
 
@@ -478,7 +478,7 @@
                             </table>
                         </div>
                         <div class="nui-fit">
-                            <div id="contactdatagrid" class="nui-datagrid" style="width: 100%;height:100%" showPager="false" sortMode="client" allowCellEdit="true"
+                            <div id="contactdatagrid" class="nui-datagrid" style="width: 100%;height:100%" showPager="false" sortMode="client" allowCellEdit="true" onrowdblclick="eaidContact()"
                                 allowCellSelect="true" multiSelect="true"  editNextOnEnterKey="true" onDrawCell="onDrawCell">
                                 <div property="columns">
 

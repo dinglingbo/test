@@ -103,7 +103,7 @@
                               <label>进厂里程：</label>
                           </td>
                           <td >
-                               <input class="nui-Spinner" minValue="0" maxValue="100000000" width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
+                               <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="100000000"  width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
                                <label class="title">(上次里程：<span id="lastComeKilometers">0</span>)</label>
                           </td>
                         

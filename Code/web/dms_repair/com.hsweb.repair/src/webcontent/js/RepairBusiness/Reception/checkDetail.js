@@ -159,15 +159,16 @@ $(document).ready(function ()
         var field = e.field;
         var record = e.record;
         var column = e.column;
-        var row={status:-1};
-        var nrow={nostatus:-1};
-        var row2={status:1};
-        var nrow2={nostatus:1};
+        var row={status:-1,nosettleType :1,settleType :1};
+        var nrow={status:1,nostatus:-1,nosettleType :0,settleType:-1};
+        var row2={status:0,nosettleType :0,settleType :-1};
+        var nrow2={status:0,settleType :-1};
         
-        var row3={settleType:0};
-        var nrow3 ={nosettleType :0};
-        var row4={settleType:1};
-        var nrow4 ={nosettleType :1};
+        var row3={status:-1,nostatus:1,settleType:1};
+        var nrow3 ={status:-1,nostatus:1,nosettleType :0};
+        var row4={status:-1,nostatus:1,settleType:0};
+        var nrow4 ={status:-1,nostatus:1,nosettleType :1};
+        var nrow5 ={status:1,settleType :-1 ,nosettleType :0}
         if(field == "status"){
             if(record.status == 1){
                 mainGrid.updateRow(record,nrow);
@@ -183,19 +184,27 @@ $(document).ready(function ()
             }
         }
         if(field == "settleType"){
-            if(record.settleType == 1){
-                mainGrid.updateRow(record,nrow3);
-            }else{
-                mainGrid.updateRow(record,nrow4);
-            }
+        	if(record.status!=1){
+	            if(record.settleType == 0 ){
+	                mainGrid.updateRow(record,nrow3);
+	            }else{
+	                mainGrid.updateRow(record,nrow4);
+	            }
+        	}else{
+        		mainGrid.updateRow(record,nrow5);
+        	}
         }
         
         if(field == "nosettleType"){
-            if(record.nosettleType == 1){
-                mainGrid.updateRow(record,row3);
-            }else{
-                mainGrid.updateRow(record,row4);
-            }
+        	if( record.status!=1){
+	            if(record.nosettleType == 1 &&  record.status!=1){
+	                mainGrid.updateRow(record,row3);
+	            }else{
+	                mainGrid.updateRow(record,row4);
+	            }
+        	}else{
+        		mainGrid.updateRow(record,nrow5);
+        	}
         }
 
 
@@ -205,9 +214,10 @@ $(document).ready(function ()
         var field = e.field;
         var record = e.record;
         var column = e.column;
-        var row2={settleType:1};
+        var row2={status:0,settleType:-1};
         var row3={nostatus:1};
         var row4={nosettleType:1};
+        var row5={settleType :0};
         if(actionType == "new"){
             var row=mainGrid.findRow(function(row){
                 mainGrid.updateRow(row,row2);
@@ -215,13 +225,14 @@ $(document).ready(function ()
         }else{
             var row=mainGrid.findRow(function(row){
                 if(row.status == -1){
-
                    mainGrid.updateRow(row,row3);
+                   if(row.settleType == 0){
+                      mainGrid.updateRow(row,row5);
+                   }else{
+                	   mainGrid.updateRow(row,row4);
+                   }
                 }
-                if(row.settleType == 0){
-
-                    mainGrid.updateRow(row,row4);
-                }
+                
             });
         }
 
@@ -641,6 +652,10 @@ function saveDetail(){ //√  isCheckMain == "N"
         tem.checkRemark=grid_all[i].checkRemark;
         tem.status = grid_all[i].status;
         tem.settleType=grid_all[i].settleType;
+        if(tem.settleType==undefined ){
+        	tem.settleType=-1;
+        }
+        
         tem.remark = grid_all[i].remark;
         tem.careDueMileage=grid_all[i].careDueMileage;
         tem.careDueDate=grid_all[i].careDueDate;
@@ -819,6 +834,10 @@ function saveDetailB(){
         tem.checkRemark=grid_all[i].checkRemark;
         tem.status = grid_all[i].status;
         tem.settleType=grid_all[i].settleType;
+        if(tem.settleType==undefined ){
+        	tem.settleType=-1;
+        }
+        
         tem.remark = grid_all[i].remark;
         tem.careDueMileage=grid_all[i].careDueMileage;
         tem.careDueDate=grid_all[i].careDueDate;
@@ -883,24 +902,26 @@ function onCellCommitEdit(e){
 	var editor = e.editor;
 	var record = e.record;
 	var row = e.row;
-
-	editor.validate();
-	if (editor.isValid() == false) {
-		showMsg("请输入数字!","W");
-		e.cancel = true;
-	}else{
-		if (e.field == "careDueMileage") {
-			var careDueMileage = e.value;
-			if (e.value == null || e.value == '') {
-				e.value = 0;
-				careDueMileage = 0;
-			} else if (e.value < 0) {
-				e.value = 0;
-				careDueMileage = 0;
+	if(editor!=null){
+		editor.validate();
+		if (editor.isValid() == false) {
+			showMsg("请输入数字!","W");
+			e.cancel = true;
+		}else{
+			if (e.field == "careDueMileage") {
+				var careDueMileage = e.value;
+				if (e.value == null || e.value == '') {
+					e.value = 0;
+					careDueMileage = 0;
+				} else if (e.value < 0) {
+					e.value = 0;
+					careDueMileage = 0;
+				}
 			}
+			
 		}
-		
 	}
+	
 }
 function lastCheckModel(){
 	var fromData=billForm.getData();

@@ -1470,7 +1470,7 @@
 		INNER JOIN wb_common.com_guest c ON a.guest_id = c.id
 		INNER JOIN wb_common.com_attribute d ON b.part_id = d.id
 		
-		WHERE service_id in
+		WHERE b.service_id in
 		(SELECT id FROM rps_maintain WHERE bill_type_id =3)
 		
 		<dynamic>

@@ -286,8 +286,7 @@
 			}
 		} */
 		
-		if(window.parent!=window
-			&& ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
+		if(window.parent!=window && ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
 			window.parent.backToLogin();
 		}else{
 		//	debugger;

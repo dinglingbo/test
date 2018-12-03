@@ -54,7 +54,12 @@
 	String protocolUrl = request.getContextPath() + "/coframe/auth/qlogin/protocolUrl.jsp";
  %> 
 <style type="text/css">
+html{
+	height:100% !important;
+}
+
 body { 
+
 	min-width: 1200px;
 	background-color: #0B57AB;
 	background-image:-webkit-linear-gradient( 90deg, #87F1F2, #0B57AB ); 
@@ -148,8 +153,8 @@ body {
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	width: 250px;
-	height: 250px;
+	width: 300px;
+	height: 270px;
 }
 .imgbox .max_img img{ 
 	width: 100%;
@@ -295,7 +300,7 @@ a {
 	<div class="login" id="loginBox">
 		<div class="loginTitle">
 			<div class="weixinbox">
-				<img src="images/weixin-min-img.png"  />
+				<img src="images/weixin-min-img.png" />
 				<div class="weixin_max_img">
 					<img src="images/xiongying.jpg"  />
 				</div>
@@ -325,9 +330,9 @@ a {
 
 		<div class="app">
 			<div class="imgbox">
-				<img src="images/app-min-img.png"  />
+				<img src="images/app-min-img.png" onclick="changeShow();"  />
 				<div class="max_img">
-					<img src="images/xiongying.jpg"  />
+					<img src="images/xiongying.jpg"  onclick="changeHide();"  />
 				</div>
 			</div>
 			<div class="wu">还没帐号？  <span class="blue" id="register">立即注册</span></div>
@@ -385,17 +390,23 @@ $(function () {
 	$("#sentCode").click(sendMsg);
 	
 	//放大APP二维码
-	$(".imgbox").mousemove(maxImg).mouseout(function (){
+/* 	$(".imgbox").mousemove(maxImg).mouseout(function (){
 		$(".max_img").hide();
-	});
-	$(".weixinbox").mousemove(function() {
+	}); */
+ 	$(".weixinbox").mousemove(function(){
 		$(".weixin_max_img").show();
 	}).mouseout(function (){
 		$(".weixin_max_img").hide();
-	});
+	}); 
 });
 
+function changeShow(){
+	$(".max_img").show();
+}
 
+function changeHide(){
+	$(".max_img").hide();
+}
 //显示登录框
 function openLogin() {
 	$("#registerBox").hide();

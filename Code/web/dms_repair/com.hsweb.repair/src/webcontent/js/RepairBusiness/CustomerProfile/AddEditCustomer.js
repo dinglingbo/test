@@ -47,6 +47,8 @@ function init(callback)
     initInsureComp("insureCompCode",function(){
         hash.initInsureComp = true;
         checkComplete();
+    	var inlist = nui.get("insureCompCode").getData();
+    	nui.get("annualInspectionCompCode").setData(inlist);
     });
     initDicts({
         //carSpec:CAR_SPEC,//车辆规格
@@ -566,7 +568,19 @@ function isVehicleNumber(vehicleNumber) {
     return result;
 }
 
-
+function onChanged(id){
+	if(id=="fullName"){
+		fullName = nui.get("fullName").value;
+		nui.get("shortName").setValue(fullName);
+		
+	}
+	if(id=="mobile"){
+		mobile = nui.get("mobile").value;
+		
+	}
+	
+	
+}
 
 
 

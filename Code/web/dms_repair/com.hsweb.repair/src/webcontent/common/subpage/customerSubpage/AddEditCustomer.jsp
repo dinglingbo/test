@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.2.9"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.2"></script>
 <style type="text/css">
 
 table {
@@ -212,18 +212,7 @@ table {
                                     <input name="annualVerificationDueDate" allowInput="false" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="form_label">
-                                    <label>保险公司：</label>
-                                </td>
-                                <td colspan="3">
-                                    <input class="nui-combobox" name="insureCompCode" id="insureCompCode"
-                                           valueField="id"
-                                           textField="fullName"
-                                           width="100%"
-                                           onvaluechanged="onInsureChange"/>
-                                </td>
-                            </tr>
+
                             <tr>
                                 <td class="form_label">
                                     <label>商业险单号：</label>
@@ -238,6 +227,15 @@ table {
                                     <input name="annualInspectionDate" allowInput="false" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
+			                <tr>
+			                    <td class="form_label">
+			                        <label>商业险投保公司：</label>
+			                    </td>
+			                    <td colspan="3">
+			                        <input class="nui-combobox" name="annualInspectionCompCode" id="annualInspectionCompCode" valueField="id" textField="fullName" width="100%" onvaluechanged="onannualInsureChange"
+			                        />
+			                    </td>
+			                </tr>
                             <tr>
                                 <td class="form_label">
                                     <label>交强险单号：</label>
@@ -252,6 +250,15 @@ table {
                                     <input name="insureDueDate" allowInput="false" class="nui-datepicker" width="100%"/>
                                 </td>
                             </tr>
+			               <tr>
+			                    <td class="form_label">
+			                        <label>交强险投保公司：</label>
+			                    </td>
+			                    <td colspan="3">
+			                        <input class="nui-combobox" name="insureCompCode" id="insureCompCode" valueField="id" textField="fullName" width="100%" onvaluechanged="onInsureChange"
+			                        />
+			                    </td>
+			                </tr>
                             <tr>
                                 <td class="form_label">
                                     <label>生产日期：</label>

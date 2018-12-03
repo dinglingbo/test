@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.20"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.21"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -205,7 +205,7 @@
 		     >
     <div property="columns">
     	 <div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
-         <div field="orderIndex"  headerAlign="center" allowSort="false" visible="true" width="20" name="num">序号</div>
+         <div field="orderIndex"  headerAlign="center" allowSort="false" visible="true" width="20" name="num"  align="right">序号</div>
         <div header="套餐信息">
             <div property="columns">
              
@@ -219,7 +219,7 @@
                      <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
                 <div field="rate" headerAlign="center"
-                     allowSort="false" visible="true" width="60" header="优惠率" align="center">
+                     allowSort="false" visible="true" width="60" header="优惠率%" align="center">
                      <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
                 <div field="amt" headerAlign="center"
@@ -247,7 +247,7 @@
 		     >
     <div property="columns">
     	<div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>
-        <div field="orderIndex" name="orderIndex" headerAlign="center" allowSort="false" visible="true" width="20">序号</div>
+        <div field="orderIndex" name="orderIndex" headerAlign="center" allowSort="false" visible="true" width="20" align="right">序号</div>
         <div header="项目信息">
             <div property="columns">
                 
@@ -260,7 +260,7 @@
                 <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
-                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率
+                <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率%
                     <input property="editor" vtype="float" class="nui-textbox"/>
                 </div>
                 <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额

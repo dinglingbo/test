@@ -291,7 +291,7 @@
 		}else{
 		//	debugger;
 			showMsg("登录超时，正在跳转！", "E");
-            window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
+            window.top.location.href = sysDomain + "/coframe/auth/qlogin/login.jsp";			
 		}
 	}
 

@@ -31,7 +31,7 @@
 
                 <div field="rate" headerAlign="center" name="pkgRate"
                      allowSort="false" visible="true" width="60" header="" align="center">
-                           优惠率<a href="javascript:setPkgRate()" title="批量设置优化率" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+                           优惠率%<a href="javascript:setPkgRate()" title="批量设置优化率" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                      <input property="editor"  width="60%" vtype="float"  class="nui-textbox"  onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
                 </div>
                  <div field="subtotal" headerAlign="center" name="pkgSubtotal"

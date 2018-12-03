@@ -326,12 +326,16 @@ $(document).ready(function ()
         var rowIndex = e.rowIndex;
 
         switch (e.field) {
-            case "prdtName":
-                var cardDetailId = record.cardDetailId||0;
-                if(cardDetailId>0){
-                    e.cellHtml = e.value + "<font color='red'>(预存)</font>";
-                }
-                break;
+        	case "prdtName":
+	            var cardDetailId = record.cardDetailId||0;
+	            var billPackageId = record.billPackageId || 0;
+	            if(cardDetailId>0){
+	                e.cellHtml = e.value + "<font color='red'>(预存)</font>";
+	            }
+	            if(billPackageId != 0){
+	            	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
+	            }
+	            break;
             case "serviceTypeId":
                 var type = record.type||0;
                 if(type>1){

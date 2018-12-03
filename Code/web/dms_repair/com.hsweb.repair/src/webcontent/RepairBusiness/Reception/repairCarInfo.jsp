@@ -33,6 +33,13 @@
                         <td class="" colspan="1">
                             <input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/>
                         </td>
+                        <td class="title required">
+                            <label >进厂时间：</label>
+                        </td>
+                        <td style="width:15%">
+                            <input id="enterDate" name="enterDate" enabled="false" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
+                            <input id="recordDate" name="recordDate" class="nui-datepicker" visible="false" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
+                        </td>
                         <td class="title" >
                            <label>车架号(VIN)：</label>
                         </td>
@@ -56,7 +63,9 @@
                                    valueFromSelect="true"
                                    nullItemText="请选择..."/>
                         </td>
-                        <td class="title required">
+                    </tr>
+                    <tr>
+                    <td class="title required">
                             <label>服务顾问：</label>
                         </td>
                         <td>
@@ -73,8 +82,6 @@
                                    valueFromSelect="true"
                                    nullItemText="请选择..."/>
                         </td>
-                    </tr>
-                    <tr>
                         <td class="title required">
                             <label>进厂油量：</label>
                         </td>
@@ -96,16 +103,10 @@
                               <label>进厂里程：</label>
                           </td>
                           <td >
-                               <input class="nui-Spinner" minValue="0" maxValue="100000000" width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
+                               <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="100000000"  width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
                                <label class="title">(上次里程：<span id="lastComeKilometers">0</span>)</label>
                           </td>
-                        <td class="title required">
-                            <label>进厂时间：</label>
-                        </td>
-                        <td>
-                            <input id="enterDate" name="enterDate" enabled="false" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
-                            <input id="recordDate" name="recordDate" class="nui-datepicker" visible="false" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
-                        </td>
+                        
                         <td class="title required">
                             <label>预计交车：</label>
                         </td>
@@ -190,11 +191,36 @@
               <table style="width: 100%;height: 60px;">
                   <input class="nui-hidden" name="id"/>
                   <tr>
-                      <td class="title ">
-                          <label>保险公司：</label>
+                      <td class="title" style="width:100px">
+                          <label>商业险投保公司：</label>
                       </td>
                       <td >
-                          <input class="nui-textbox" enabled="false" width="100%" id="insuranceName" name="insuranceName"/>
+                          <input class="nui-textbox" enabled="false" width="100%" id="annualInspectionCompName" name="annualInspectionCompName"/>
+                      </td>
+                      <td class="title" style="width: 100px">
+                          <label>商业险单号：</label>
+                      </td>
+                      <td >
+                          <input class="nui-textbox" enabled="false" width="100%" id="annualInspectionNo" name="annualInspectionNo"/>
+                      </td>
+                      <td class="title" style="width: 100px">
+                          <label>商业险到期：</label>
+                      </td>
+                      <td width="">
+                          <input name="annualInspectionDate"
+                                 id="annualInspectionDate"
+                                 width="100%"
+                                 showTime="false"
+                                 enabled="false"
+                                 class="nui-datepicker" format="yyyy-MM-dd"/>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="title ">
+                          <label>交强险投保公司：</label>
+                      </td>
+                      <td >
+                          <input class="nui-textbox" enabled="false" width="100%" id="insureCompName" name="insureCompName"/>
                       </td>
                       <td class="title" style="width: 100px">
                           <label>交强险单号：</label>

@@ -389,7 +389,8 @@ function getSearchParam() {
     var params = {};
     if(advancedSearchWin.visible){//document.getElementById("advancedMore").style.display=='block'
         params.sRecordDate = beginDateEl.getValue();
-        params.eRecordDate = endDateEl.getValue();
+        var eRecordDate = endDateEl.getValue();
+        params.eRecordDate = addDate(eRecordDate,1);
         //params.sPlanFinishDate = nui.get("sPlanFinishDate").getValue();
         //params.ePlanFinishDate = nui.get("ePlanFinishDate").getValue();
         params.serviceTypeIdList = serviceTypeIds.getValue();

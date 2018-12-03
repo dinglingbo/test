@@ -327,8 +327,12 @@ $(document).ready(function ()
         switch (e.field) {
             case "prdtName":
                 var cardDetailId = record.cardDetailId||0;
+                var billPackageId = record.billPackageId || 0;
                 if(cardDetailId>0){
                     e.cellHtml = e.value + "<font color='red'>(预存)</font>";
+                }
+                if(billPackageId != 0){
+                	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
                 }
                 break;
             case "serviceTypeId":
@@ -838,10 +842,11 @@ function setInitData(params){
                         data.mobile = contactor.mobile;
                         data.carModel = car.carModel;
                         data.carModelIdLy = car.carModelIdLy||"";
-                        data.insureCompName = car.insureCompName || "";insuranceName
+                        data.insureCompName = car.insureCompName || "";
                         data.insureDueDate = car.insureDueDate || "";
                         data.insureNo = car.insureNo || "";
-                        
+                        data.idNo = contactor.idNo;
+                        data.remark = contactor.remark;
                         
                         $("#guestNameEl").html(guest.fullName);
                         $("#showCarInfoEl").html(data.carNo);

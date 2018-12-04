@@ -72,6 +72,19 @@
 			font{
 				color: #8B4513;
 			}
+			div.gun1{
+					margin-top: 20px;
+					margin-left: 20px;
+					position: absolute;
+					display: block;
+					width: 250px;
+					height: 130px;
+					background-color: #FFF;
+					padding-bottom: 20px;	
+            		border: 2px solid;
+            		border-radius: 25px;
+            		border: 1px solid;
+				}
 			div.gun{
 					margin-top: 20px;
 					margin-left: 20px;
@@ -106,7 +119,7 @@
 		</script>
 </head>
 	<body>
-		<div class="gun">
+		<div class="gun1">
 			<a class="zuo" href="javascript:hideForecastBox();" style="" >
 				<span class="fa fa-angle-left fa-4x "></span>
 			</a>

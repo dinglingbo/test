@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.82"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.26"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -235,7 +235,7 @@
             textfield="content" valuefield="content"  dataField="list" allowInput="true"/>  
 
         </div>
-        <div type="checkboxcolumn" field="settleType" name="settleType" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center" value="1"><strong>下次处理</strong></div>
+        <div type="checkboxcolumn" field="settleType" name="settleType" trueValue="0" falseValue="1"  width="30" headerAlign="center" align="center" value="-1"><strong>下次处理</strong></div>
         <div type="checkboxcolumn" field="nosettleType" name="nosettleType" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center"><strong>本次处理</strong></div>
         <div field="careDueMileage" name="careDueMileage" width="30" vtype="float" headerAlign="center" align="center"><strong>下次保养里程</strong>
         	<input property="editor" class="nui-textbox" style="width:100%;" allowInput="true" vtype="float"/>  

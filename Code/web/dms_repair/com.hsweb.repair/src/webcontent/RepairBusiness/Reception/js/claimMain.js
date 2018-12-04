@@ -376,12 +376,13 @@ function getSearchParam() {
     var params = {};
     if(advancedSearchWin.visible){//document.getElementById("advancedMore").style.display=='block'
         params.sRecordDate = beginDateEl.getValue();
-        params.eRecordDate = endDateEl.getValue();
+        var eRecordDate = endDateEl.getValue();
+        params.eRecordDate = addDate(eRecordDate,1);
         params.sPlanFinishDate = nui.get("sPlanFinishDate").getValue();
-        params.ePlanFinishDate = nui.get("ePlanFinishDate").getValue();
+        var ePlanFinishDate = nui.get("ePlanFinishDate").getValue();
+        params.ePlanFinishDate = addDate(ePlanFinishDate,1);
         params.serviceTypeIdList = serviceTypeIds.getValue();
     }
-    
     params.mtAuditorId = mtAdvisorIdEl.getValue();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();

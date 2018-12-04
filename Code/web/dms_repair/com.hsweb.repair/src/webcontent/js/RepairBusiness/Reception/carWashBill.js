@@ -38,6 +38,7 @@
  var pkgRateEl = null;
  var itemRateEl = null;
  var partRateEl = null;
+ var carSellPointInfo = null;
 
  var advancedMorePartWin = null;
  var advancedCardTimesWin = null;
@@ -46,6 +47,7 @@
  var cardTimesGrid = null;
  var advancedMemCardWin = null;
  var memCardGrid = null;
+ var carSellPointGrid = null;
  var sellForm = null;
  var carCheckInfo = null;
  var checkMainData = null;
@@ -103,11 +105,23 @@ $(document).ready(function ()
     advancedPkgRateSetWin = nui.get("advancedPkgRateSetWin");
     advancedItemPartRateSetWin = nui.get("advancedItemPartRateSetWin");
     carCheckInfo = nui.get("carCheckInfo");
+    carSellPointInfo = nui.get("carSellPointInfo");
     cardTimesGrid = nui.get("cardTimesGrid");
     cardTimesGrid.setUrl(cardTimesGridUrl);
     advancedMemCardWin = nui.get("advancedMemCardWin");
     memCardGrid = nui.get("memCardGrid");
     memCardGrid.setUrl(memCardGridUrl);
+    carSellPointGrid = nui.get("carSellPointGrid");
+    var data = [{prdtName:'保养到期提醒',amt:'3850',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'保养到期提醒'},
+                {prdtName:'商业险到期提醒',amt:'2600',status:'未联系',creator:'杨超越',doTimes:'2018-12-15',type:'商业险到期提醒'},
+                {prdtName:'交强险到期提醒',amt:'3460',status:'未联系',creator:'杨超越',doTimes:'2018-12-26',type:'交强险到期提醒'},
+                {prdtName:'更换机油',amt:'360',status:'意向明确',creator:'杨超越',doTimes:'2018-12-05',type:'车况检查'},
+                {prdtName:'更换轮胎',amt:'5500',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-08',type:'车况检查'},
+                {prdtName:'储值卡到期',amt:'1000',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'储值卡到期'},
+                {prdtName:'贴膜',amt:'50',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'},
+                {prdtName:'镀金',amt:'330',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'},
+                {prdtName:'更换机油',amt:'35',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'}];
+    carSellPointGrid.setData(data);
 
     pkgRateEl = nui.get("pkgRateEl");
     itemRateEl = nui.get("itemRateEl");
@@ -326,12 +340,16 @@ $(document).ready(function ()
         var rowIndex = e.rowIndex;
 
         switch (e.field) {
-            case "prdtName":
-                var cardDetailId = record.cardDetailId||0;
-                if(cardDetailId>0){
-                    e.cellHtml = e.value + "<font color='red'>(预存)</font>";
-                }
-                break;
+        	case "prdtName":
+	            var cardDetailId = record.cardDetailId||0;
+	            var billPackageId = record.billPackageId || 0;
+	            if(cardDetailId>0){
+	                e.cellHtml = e.value + "<font color='red'>(预存)</font>";
+	            }
+	            if(billPackageId != 0){
+	            	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
+	            }
+	            break;
             case "serviceTypeId":
                 var type = record.type||0;
                 if(type>1){
@@ -563,6 +581,12 @@ $(document).ready(function ()
                 var st = row.modifyDate;
                 e.cellHtml = AddMonthNumsDate(st,e.value);
             }
+        }
+    });
+    carSellPointGrid.on("drawcell",function(e)
+    {
+        if(e.field == 'cardTimesOpt'){
+            e.cellHtml = '<a class="optbtn" href="javascript:void()">查看</a>';
         }
     });
 
@@ -1856,6 +1880,28 @@ function showCarCheckInfo(){
     SearchCheckMain(changeCheckInfoTab);
     advancedCardTimesWin.hide();
     advancedMemCardWin.hide();
+}
+
+
+function showSellPoint() {
+	showCarSellPointInfo();
+}
+
+function showCarSellPointInfo(){
+    if(!fguestId || carSellPointInfo.visible) {
+        advancedMemCardWin.hide();
+        carCheckInfo.hide();
+        advancedCardTimesWin.hide();
+        carSellPointInfo.hide();
+        return;
+    }
+
+    var atEl = document.getElementById("carSellInfoEl");  
+    carSellPointInfo.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
+    advancedCardTimesWin.hide();
+    carCheckInfo.hide();
+    advancedMemCardWin.hide();
+    //SearchCheckMain(changeCheckInfoTab);
 }
 
 /*function showHealth(){

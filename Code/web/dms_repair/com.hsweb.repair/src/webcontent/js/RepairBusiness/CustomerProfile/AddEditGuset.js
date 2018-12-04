@@ -36,14 +36,14 @@ $(document).ready(function()
         nui.get("carModel").enable();
     }
 	
-	nui.get("identity").focus();
+	nui.get("name").focus();
 	document.onkeyup=function(event){
         
 		var e=event||window.event;
         var keyCode=e.keyCode||e.which;//38向上 40向下
-
         if((keyCode==27))  {  //ESC
             onCancel();
+            
         }
       };
 	
@@ -76,9 +76,15 @@ function init(callback)
         addEditCustomerPage.unmask();
         callback && callback();
     };
-    initInsureComp("insureCompCode",function(){
+/*    initInsureComp("insureCompCode",function(){
         hash.initInsureComp = true;
         checkComplete();
+    });*/
+    initInsureComp("annualInspectionCompCode",function(){
+        hash.initInsureComp = true;
+        checkComplete();
+    	var inlist = nui.get("annualInspectionCompCode").getData();
+    	nui.get("insureCompCode").setData(inlist);
     });
     initDicts({
         //carSpec:CAR_SPEC,//车辆规格
@@ -251,7 +257,7 @@ function onOk()
             data = data||{};
             if(data.errCode == "S")
             {
-                showMsg("保存成功");
+                showMsg("保存成功","S");
                 resultGuest = data.retData;
                 nui.get("guestId").setValue(resultGuest.guestId);
                 //CloseWindow("ok");
@@ -369,7 +375,12 @@ function onInsureChange(e){
 	var shortName = row.shortName;
 	nui.get('insureCompName').setValue(shortName);
 }
-
+function onannualInsureChange(e){
+	//var value = e.value;
+	var row = e.selected;
+	var shortName = row.shortName;
+	nui.get('annualInspectionCompName').setValue(shortName);
+}
 function getCarModel(callBack) {
 	nui.open({
 		targetWindow : window,
@@ -431,7 +442,7 @@ function onChanged(id){
 function addCar() {
 	var id = basicInfoForm.getData().id;
 	if(id==""||id==null){
-		showMsg("请先保存上面的客户信息!","W");
+		showMsg("请先保存客户信息!","W");
 		return;
 	}
 	nui.get("carNo").enable();
@@ -443,7 +454,7 @@ function addCar() {
 function addContact() {
 	var id = basicInfoForm.getData().id;
 	if(id==""||id==null){
-		showMsg("请先保存上面的客户信息!","W");
+		showMsg("请先保存客户信息!","W");
 		return;
 	}
 	contactview.show();
@@ -462,7 +473,7 @@ function addCarList(){
 	var updContactList = [];
 	var car = carInfoFrom.getData();
 	if(car.carNo==""||car.vin==""){
-		showMsg("车牌号和车架号(Vin)不能为空!","W");
+		showMsg("车牌号和车架号(VIN)不能为空!","W");
 		return;
 	}else{
 
@@ -470,7 +481,7 @@ function addCarList(){
     	guest.id = resultGuest.guestId;
     for(key in basicRequiredField){
         if(!nui.get(key).value){
-            showMsg(basicRequiredField[key]+"不能为空", "W");
+            showMsg(basicRequiredField[key]+"不能为空!", "W");
             return;
         }
     }
@@ -508,7 +519,7 @@ function addCarList(){
             data = data||{};
             if(data.errCode == "S")
             {
-                showMsg("保存成功");
+                showMsg("保存成功","S");
                 resultCar = data.retData;
                 var newRow = {
             	id : resultCar.carId,
@@ -518,7 +529,10 @@ function addCarList(){
 				carModel : car.carModel,
 				engineNo :car.engineNo,
 				annualVerificationDueDate :car.annualVerificationDueDate,
-				insureCompCode:car.insureCompCode,	
+				insureCompCode:car.insureCompCode,
+				insureCompName:car.insureCompName,
+				annualInspectionCompCode :car.annualInspectionCompCode,
+				annualInspectionCompName :car.annualInspectionCompName,
 				annualInspectionNo:car.annualInspectionNo,
 				annualInspectionDate:car.annualInspectionDate,
 				insureNo:car.insureNo,
@@ -606,7 +620,7 @@ function addContactList(){
             data = data||{};
             if(data.errCode == "S")
             {
-                showMsg("保存成功");
+                showMsg("保存成功","S");
                 resultContact = data.retData;
         		var newRow = {
         				id:resultContact.contactorId,

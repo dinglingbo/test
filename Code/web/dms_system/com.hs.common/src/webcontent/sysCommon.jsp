@@ -286,13 +286,12 @@
 			}
 		} */
 		
-		if(window.parent!=window
-			&& ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
+		if(window.parent!=window && ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
 			window.parent.backToLogin();
 		}else{
 		//	debugger;
 			showMsg("登录超时，正在跳转！", "E");
-            window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
+            window.top.location.href = sysDomain + "/coframe/auth/qlogin/login.jsp";			
 		}
 	}
 

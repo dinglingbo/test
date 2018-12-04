@@ -53,12 +53,12 @@ pageEncoding="UTF-8" session="false" %>
 
         <div property="columns">
             <div type="indexcolumn" width="30">序号</div>
-            <div field="serviceCode" width="120" headerAlign="center" align="center">工单号</div>
+<!--             <div field="serviceCode" width="120" headerAlign="center" align="center">工单号</div> -->
             <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
             <div field="carModel" width="170" headerAlign="center"align="center">车型</div>
             <div field="guestName" width="70" headerAlign="center"align="center">客户名称</div>
             <div field="leaveDays" width="70" headerAlign="center"align="center">离厂天数</div>
-            <div field="finalRemindDay" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后提醒时间</div>
+            <div field="careLastDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后提醒时间</div>
             <div field="chainComeTimes" width="90" headerAlign="center"align="center">连锁来厂次数</div>
             <div field="lastComeDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后进厂时间</div>
             <div field="firstComeDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">首次来厂时间</div>

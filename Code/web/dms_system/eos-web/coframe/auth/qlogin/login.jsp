@@ -54,7 +54,12 @@
 	String protocolUrl = request.getContextPath() + "/coframe/auth/qlogin/protocolUrl.jsp";
  %> 
 <style type="text/css">
+html{
+	height:100% !important;
+}
+
 body { 
+
 	min-width: 1200px;
 	background-color: #0B57AB;
 	background-image:-webkit-linear-gradient( 90deg, #87F1F2, #0B57AB ); 
@@ -148,8 +153,8 @@ body {
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	width: 250px;
-	height: 250px;
+	width: 300px;
+	height: 270px;
 }
 .imgbox .max_img img{ 
 	width: 100%;
@@ -257,8 +262,7 @@ a {
 <div class="login_box">
 	<form method="post"	name="registerForm" onsubmit="return register();" action="">
 	<div class="login" id="registerBox">
-		<div class="title">注册</div>
-		
+		<div class="title">注册</div>	
 		<label>
 			<p ><span id="errorP" style="font-size:15px;color:red"></span></p>
 			<input type="text" id="registercompname" name="registercompname" value="" placeholder="请输入公司名" maxlength="11" />
@@ -276,9 +280,6 @@ a {
 		</label>
 		
 		<label>
-<!-- 			<div class="checkbox_box">
-				<input type="checkbox" checked="checked" /><div class="show-box"></div>
-			</div> -->
 			<font size="2">注册即同意</font><span class="blue">
 					<a target="_blank" href="<%=privacyUrl%>"><span class="blue" id="privacy"  >隐私政策</span></a>&nbsp;<span style="color:#999">/</span>
 					<a  target="_blank" href="<%=protocolUrl%>"><span class="blue"  id="protocol" >用户协议</span></a>
@@ -295,7 +296,7 @@ a {
 	<div class="login" id="loginBox">
 		<div class="loginTitle">
 			<div class="weixinbox">
-				<img src="images/weixin-min-img.png"  />
+				<img src="images/weixin-min-img.png" />
 				<div class="weixin_max_img">
 					<img src="images/xiongying.jpg"  />
 				</div>
@@ -325,9 +326,9 @@ a {
 
 		<div class="app">
 			<div class="imgbox">
-				<img src="images/app-min-img.png"  />
+				<img src="images/app-min-img.png" onclick="changeShow();"  />
 				<div class="max_img">
-					<img src="images/xiongying.jpg"  />
+					<img src="images/xiongying.jpg"  onclick="changeHide();"  />
 				</div>
 			</div>
 			<div class="wu">还没帐号？  <span class="blue" id="register">立即注册</span></div>
@@ -385,17 +386,23 @@ $(function () {
 	$("#sentCode").click(sendMsg);
 	
 	//放大APP二维码
-	$(".imgbox").mousemove(maxImg).mouseout(function (){
+/* 	$(".imgbox").mousemove(maxImg).mouseout(function (){
 		$(".max_img").hide();
-	});
-	$(".weixinbox").mousemove(function() {
+	}); */
+ 	$(".weixinbox").mousemove(function(){
 		$(".weixin_max_img").show();
 	}).mouseout(function (){
 		$(".weixin_max_img").hide();
-	});
+	}); 
 });
 
+function changeShow(){
+	$(".max_img").show();
+}
 
+function changeHide(){
+	$(".max_img").hide();
+}
 //显示登录框
 function openLogin() {
 	$("#registerBox").hide();

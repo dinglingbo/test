@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
   <title>首页</title> 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.75"></script>
+    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.76"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css" rel="stylesheet" type="text/css" />
@@ -108,7 +108,8 @@ pageEncoding="UTF-8" session="false" %>
                     <i class="fa fa-eye fa-lg-custom fa-fw"></i>
                 <span >
                     <a onclick="showGuestBoard()" style="cursor: pointer;">客户休息区看板</a>丨
-                    <a onclick="showWorkShopBoard()" style="cursor: pointer;">维修车间看板</a>
+                    <a onclick="showWorkShopBoard()" style="cursor: pointer;">维修车间看板</a>丨
+                    <a onclick="showPartLogisticsBoard()" style="cursor: pointer;">配件物流看板</a>
                 </span>
                 </div>
                 <div class="nui-fit">
@@ -146,7 +147,7 @@ pageEncoding="UTF-8" session="false" %>
 
         <div  id=""  class="main_child_left">
             <div class="vpanel" >
-                <div class="vpanel_heading" ><i class="fa fa-th-list fa-lg-custom fa-fw"></i> <span >消息提醒</span><i class="fa fa-refresh fa-lg-custom fa-fw" style="float:right;margin-right:10px;"></i></div>
+                <div class="vpanel_heading" ><i class="fa fa-th-list fa-lg-custom fa-fw"></i> <span >销售机会</span><i class="fa fa-refresh fa-lg-custom fa-fw" style="float:right;margin-right:10px;"></i></div>
                 <div class="nui-fit">
                     <div class="nui-fit">
 						<div style="padding:10px 10px 10px 10px;">
@@ -297,13 +298,23 @@ pageEncoding="UTF-8" session="false" %>
                 <div class="nui-fit">
                     <div  style="padding:10px 10px 10px 10px;">
                      <ul id="newul" > 
-                        <li><a target="_blank" href="https://list.tmall.com/search_product.htm?q=%CD%E6%BE%DF%B3%B5&user_id=725677994&type=p&cat=50514008&spm=a3204.7084717.a2227oh.d100&from=chaoshi.index.pc_1_searchbutton">
+                        <li><a target="_blank" href="https://baike.baidu.com/item/%E4%B8%8A%E6%B5%B7%E4%BD%B3%E9%85%8D%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/18239743">
                             <i class="fa fa-hand-o-right fa-fw"></i>
-                             今年买车看这里
-                        	</a></li>
-                            <li><a target="_blank" href="http://fontawesome.dashgame.com/">图标</a></li>
-                            <li><a target="_blank" href="http://www.baidu.com">百度</a></li>
-                            <li><a target="_blank" href="http://www.miniui.com/demo/">MINIUI</a></li>
+                            	 马牌CT1167促销，300送30
+                        	</a>
+                        </li>
+                       <li >
+                       		<a target="_blank" href="https://baike.baidu.com/item/%E4%B8%8A%E6%B5%B7%E4%BD%B3%E9%85%8D%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/18239743"><i class="fa fa-hand-o-right fa-fw"></i>小糸灯具促销（不享受客户年度合同返利）</a>
+                       </li>
+                       <li >
+                       		<a target="_blank" href="http://www.baidu.com"><i class="fa fa-hand-o-right fa-fw"></i>12灯具热系统促销</a>
+                       	</li>
+                       <li >
+                       		<a target="_blank" href="https://baike.baidu.com/item/%E4%B8%8A%E6%B5%B7%E4%BD%B3%E9%85%8D%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/18239743"><i class="fa fa-hand-o-right fa-fw"></i>马勒变速箱滤芯器5点促销</a>
+                       </li>
+                       <li >
+                       		<a target="_blank" href="https://baike.baidu.com/item/%E4%B8%8A%E6%B5%B7%E4%BD%B3%E9%85%8D%E7%94%B5%E5%AD%90%E5%95%86%E5%8A%A1%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/18239743"><i class="fa fa-hand-o-right fa-fw"></i>隆丰滞销处理（不享受客户年度合同返利）</a>
+                       </li>
 
                     </ul>
 

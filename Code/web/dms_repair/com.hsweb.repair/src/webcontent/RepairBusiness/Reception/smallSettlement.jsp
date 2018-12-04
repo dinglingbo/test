@@ -267,17 +267,19 @@
 	                   if(text.errCode == "S"){
 	                     if(data.length>0){
 	                         for(var i = 0 , l = data.length ; i < l ; i ++){
+	                            var subtotal = "";
 	                   			var prdtName = data[i].prdtName;
 	                   			if(data[i].billPackageId == 0){
 	                   				document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML) + parseFloat(data[i].subtotal);
 	                   				document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(data[i].subtotal);
+	                   			    subtotal = data[i].subtotal;
 	                   			}else{
 	                   				prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;"+prdtName;
 	                   			}
 	                   			var tr = $("<tr></tr>");
 				    			tr.append(
 				    				tds.replace("[name]",prdtName)
-				    				.replace("[sal]",data[i].subtotal));
+				    				.replace("[sal]",subtotal));
 				    			tBody.append(tr);
 	                   		}
 	                   		document.getElementById("money").innerHTML = parseFloat(document.getElementById("money").innerHTML).toFixed(2);

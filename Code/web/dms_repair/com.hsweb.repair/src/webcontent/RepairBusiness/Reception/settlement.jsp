@@ -511,8 +511,9 @@
 	    					var rate = data[i].rate;
 	    					rate = rate + "%";
 	    					if(data[i].billPackageId != 0){
-	    						prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;"+prdtName;
+	    						prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+prdtName;
 	    						orderIndex = "";
+	    						
 	    					}else{
 	    						if(params.type){
 	    							j++;
@@ -549,10 +550,10 @@
 					    				tds.replace("[orderIndex]",orderIndex)
 					    				.replace("[prdtName]",prdtName)
 					    				.replace("[qty]",data[i].qty || 1)
-					    				.replace("[uintPrice]",data[i].uintPrice || "")
-					    				.replace("[amt]",data[i].amt)
-					    				.replace("[rate]",rate)
-					    				.replace("[subtotal]",data[i].subtotal));
+					    				.replace("[uintPrice]", "")
+					    				.replace("[amt]","")
+					    				.replace("[rate]","")
+					    				.replace("[subtotal]",""));
 					    			tBody.append(tr); 
 	    					}
 			    			getSubtotal();
@@ -610,7 +611,7 @@
     						itemTime = data[i].qty || "";
     						itemName = data[i].prdtName || "";
     						if(data[i].pid != 0 ){
-    						   itemName = "&nbsp;&nbsp;&nbsp;&nbsp;" + itemName;
+    						   itemName = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + itemName;
     						   document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML) + parseFloat(data[i].subtotal);
     					    }else{
     						   document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);

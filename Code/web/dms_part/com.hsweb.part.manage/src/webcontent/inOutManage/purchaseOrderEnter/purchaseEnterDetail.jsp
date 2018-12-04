@@ -293,24 +293,24 @@
                                     <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">
                                       <input property="editor" vtype="float" class="nui-textbox"/>
                                     </div>
-                                    <div field="remark" width="100" headerAlign="center" allowSort="true">
+                                    <div field="remark" width="100" headerAlign="center" allowSort="false">
                         备注<input property="editor" class="nui-textbox"/>
                         </div>
                                 </div>
                             </div>
                             <div header="辅助信息" headerAlign="center">
                                 <div property="columns">
-                                    <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="true">
+                                    <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="false">
                         仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
                                       url=""
                                       onvaluechanged="" emptyText=""  vtype="required"
                                       /> 
                         </div>  
-                        <div field="storeShelf" width="60" headerAlign="center" allowSort="true">
+                        <div field="storeShelf" width="60" headerAlign="center" allowSort="false">
                               仓位<input property="editor" class="nui-textbox"/>
                               </div>  
-                      <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" allowSort="true" header="OEM码"></div> 
-                      <div field="comSpec" allowSelect="false" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>                             
+                      <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" allowSort="false" header="OEM码"></div> 
+                      <div field="comSpec" allowSelect="false" width="100" headerAlign="center" allowSort="false" header="规格/方向/颜色"></div>                             
                                 </div>
                             </div>
                         </div>

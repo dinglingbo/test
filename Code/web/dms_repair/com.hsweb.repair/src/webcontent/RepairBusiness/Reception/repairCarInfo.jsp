@@ -24,21 +24,21 @@
                 <input class="nui-hidden" name="carModelIdLy"/>
                 <tr>
                         <td class="title required">
-                            <label>车牌号：</label>
+                            <label>车&nbsp;牌&nbsp;&nbsp;号：</label>
                         </td>
                         <td class="" ><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
-                        <td class="title" >
-                           <label>品牌/车型：</label>
-                        </td>
-                        <td class="" colspan="1">
-                            <input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/>
-                        </td>
                         <td class="title required">
                             <label >进厂时间：</label>
                         </td>
                         <td style="width:15%">
                             <input id="enterDate" name="enterDate" enabled="false" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
                             <input id="recordDate" name="recordDate" class="nui-datepicker" visible="false" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
+                        </td>
+                        <td class="title" >
+                           <label>品牌车型：</label>
+                        </td>
+                        <td class="" colspan="1">
+                            <input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/>
                         </td>
                         <td class="title" >
                            <label>车架号(VIN)：</label>
@@ -65,23 +65,6 @@
                         </td>
                     </tr>
                     <tr>
-                    <td class="title required">
-                            <label>服务顾问：</label>
-                        </td>
-                        <td>
-                            <input name="mtAdvisorId"
-                                   id="mtAdvisorId"
-                                   class="nui-combobox width1"
-                                   textField="empName"
-                                   valueField="empId"
-                                   emptyText="请选择..."
-                                   url=""
-                                   allowInput="true"
-                                   showNullItem="false"
-                                   width="100%"
-                                   valueFromSelect="true"
-                                   nullItemText="请选择..."/>
-                        </td>
                         <td class="title required">
                             <label>进厂油量：</label>
                         </td>
@@ -112,6 +95,23 @@
                         </td>
                         <td>
                             <input id="planFinishDate" name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm" nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" width="100%"/>
+                        </td>
+                    	<td class="title required">
+                            <label>服&nbsp;务&nbsp;&nbsp;顾&nbsp;问：</label>
+                        </td>
+                        <td>
+                            <input name="mtAdvisorId"
+                                   id="mtAdvisorId"
+                                   class="nui-combobox width1"
+                                   textField="empName"
+                                   valueField="empId"
+                                   emptyText="请选择..."
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="100%"
+                                   valueFromSelect="true"
+                                   nullItemText="请选择..."/>
                         </td>
                         <td class="title">
                             <label>备注：</label>

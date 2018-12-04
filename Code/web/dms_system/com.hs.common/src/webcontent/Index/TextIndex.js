@@ -212,6 +212,9 @@ function showWorkShopBoard(){
     //document.getElementById("gridWorkShopBoard").style.display ='block';
     window.open(webBaseUrl+"com.hsweb.RepairBusiness.workshopBoard.flow?token="+token); 
 }
+function showPartLogisticsBoard(){
+    window.open(webBaseUrl+"com.hsweb.part.manage.partLogistics.flow?token="+token); 
+}
 function queryTodayData(callback) {
     var p = {
         startDate: getNowStartDate(),

@@ -32,12 +32,14 @@ var searchNameEl = null;
 var servieIdEl = null;
 var searchKeyEl = null;
 var carCheckInfo = null;
+var carSellPointInfo = null;
 //var rpsPartGrid = null;
 
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
 var packageDetailGrid = null;
 var packageDetailGridForm = null;
+var carSellPointGrid = null;;
 var FItemRow = {};
 var pkgRateEl = null;
 var itemRateEl = null;
@@ -106,8 +108,20 @@ $(document).ready(function ()
     advancedPkgRateSetWin = nui.get("advancedPkgRateSetWin");
     advancedItemPartRateSetWin = nui.get("advancedItemPartRateSetWin");
     carCheckInfo = nui.get("carCheckInfo");
+    carSellPointInfo = nui.get("carSellPointInfo");
     cardTimesGrid = nui.get("cardTimesGrid");
     cardTimesGrid.setUrl(cardTimesGridUrl);
+    carSellPointGrid = nui.get("carSellPointGrid");
+    var data = [{prdtName:'保养到期提醒',amt:'3850',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'保养到期提醒'},
+                {prdtName:'商业险到期提醒',amt:'2600',status:'未联系',creator:'杨超越',doTimes:'2018-12-15',type:'商业险到期提醒'},
+                {prdtName:'交强险到期提醒',amt:'3460',status:'未联系',creator:'杨超越',doTimes:'2018-12-26',type:'交强险到期提醒'},
+                {prdtName:'更换机油',amt:'360',status:'意向明确',creator:'杨超越',doTimes:'2018-12-05',type:'车况检查'},
+                {prdtName:'更换轮胎',amt:'5500',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-08',type:'车况检查'},
+                {prdtName:'储值卡到期',amt:'1000',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'储值卡到期'},
+                {prdtName:'贴膜',amt:'50',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'},
+                {prdtName:'镀金',amt:'330',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'},
+                {prdtName:'更换机油',amt:'35',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'}];
+    carSellPointGrid.setData(data);
     advancedMemCardWin = nui.get("advancedMemCardWin");
     memCardGrid = nui.get("memCardGrid");
     memCardGrid.setUrl(memCardGridUrl);
@@ -567,6 +581,12 @@ $(document).ready(function ()
                 var st = row.modifyDate;
                 e.cellHtml = AddMonthNumsDate(st,e.value);
             }
+        }
+    });
+    carSellPointGrid.on("drawcell",function(e)
+    {
+        if(e.field == 'cardTimesOpt'){
+            e.cellHtml = '<a class="optbtn" href="javascript:void()">查看</a>';
         }
     });
 
@@ -3134,6 +3154,27 @@ function showCarCheckInfo(){
     advancedMemCardWin.hide();
     MemSelectCancel(1);
     SearchCheckMain(changeCheckInfoTab);
+}
+
+function showSellPoint() {
+	showCarSellPointInfo();
+}
+
+function showCarSellPointInfo(){
+    if(!fguestId || carSellPointInfo.visible) {
+        advancedMemCardWin.hide();
+        carCheckInfo.hide();
+        advancedCardTimesWin.hide();
+        carSellPointInfo.hide();
+        return;
+    }
+
+    var atEl = document.getElementById("carSellInfoEl");  
+    carSellPointInfo.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
+    advancedCardTimesWin.hide();
+    carCheckInfo.hide();
+    advancedMemCardWin.hide();
+    //SearchCheckMain(changeCheckInfoTab);
 }
 
 //结算界面关掉之后，还是可以再次结算？？

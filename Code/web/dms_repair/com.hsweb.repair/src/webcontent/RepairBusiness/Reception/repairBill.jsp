@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.9.38"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.9.40"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -203,6 +203,13 @@
                         <label id="cardPackageEl" style="font-family:Verdana;color:blue;"><a id="showCardTimesEl" href="javascript:showCardTimes()">次卡套餐(0)</a></label>
                         <label id="clubCardEl" style="font-family:Verdana;color:blue;"><a id="showCardEl" href="javascript:showCard()">储值卡(0)</a></label>
                         <label id="creditEl" style="font-family:Verdana;color:#578ccd;">挂账:0</label>
+                    </div>
+                </td>
+                <td>
+                    <div >
+                        <span id="carSellInfoEl" >
+                            <a href="javascript:showSellPoint()" class="healthview" >销售机会(9)</a>&nbsp;
+                        </span>
                     </div>
                 </td>
             </tr>
@@ -491,6 +498,46 @@
         <a class="nui-button  mini-button-info" iconCls="" plain="false" onclick="MemSelectCancel(1)" id="">
             取消
         </a>
+    </div>
+</div>
+
+
+
+<div id="carSellPointInfo" class="nui-window"
+    title="" style="width:700px;height:200px;"
+    showModal="false"
+    showHeader="false"
+    allowResize="false"
+    allowDrag="false">
+	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100%;">
+                <a class="nui-button" iconCls="" plain="true" onclick="showCarSellPointInfo()" id="auditBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增销售机会</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="showCarSellPointInfo()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="nui-fit">
+          <div id="carSellPointGrid" class="nui-datagrid" style="width:100%;height:95%;"
+               selectOnLoad="true"
+               showPager="false"
+               dataField="data"
+               idField="id"
+               allowCellSelect="true"
+               editNextOnEnterKey="true"
+               url="">
+              <div property="columns">
+                  <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="项目"></div>
+                  <div field="amt" name="amt" width="50" headerAlign="center" header="金额"></div>
+                  <div field="status" name="status" width="50" headerAlign="center" header="阶段"></div>
+                  <div field="creator" name="creator" width="50" headerAlign="center" header="创建人"></div>
+                  <div field="doTimes" name="doTimes" width="50" headerAlign="center" header="预计成单时间"></div>
+                  <div field="type" name="type" width="50" headerAlign="center" header="机会类型"></div>
+                  <div field="cardTimesOpt" name="cardTimesOpt" width="50" headerAlign="center"  header="操作" align="center"></div>
+              </div>
+          </div>
     </div>
 </div>
 

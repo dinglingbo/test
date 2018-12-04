@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.23"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.24"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -195,10 +195,17 @@
         <input class="nui-hidden" name="isSettle" id="isSettle"/>
         <table   style="width: 100%;border-spacing: 0px 5px;"> 
             <tr>   
-                <td class="title required">车牌号：</td> 
-                <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>  
+                <td class="title required">车&nbsp;牌&nbsp;&nbsp;号：</td> 
+                <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
+                <td class="title">进厂时间：</td> 
+                <td class="">
+                    <input id="recordDate"
+                    name="recordDate"
+                    allowInput="false" format="yyyy-MM-dd HH:mm"
+                    class="nui-datepicker" enabled="false" width="100%"/>
+                </td>  
                 <td class="title" >
-                      <label>品牌/车型：</label>
+                      <label>品牌车型：</label>
                  </td>
                 <td class="" colspan="1"><input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/></td>
     
@@ -240,13 +247,6 @@
                     valueFromSelect="true"
                     nullItemText="请选择..." width="100%"/>
                
-                </td>
-                <td class="title">进厂时间：</td> 
-                <td class="">
-                    <input id="recordDate"
-                    name="recordDate"
-                    allowInput="false" format="yyyy-MM-dd HH:mm"
-                    class="nui-datepicker" enabled="false" width="100%"/>
                 </td>
             </tr>
             <tr> 
@@ -315,6 +315,13 @@
                         <label id="cardPackageEl" style="font-family:Verdana;color:blue;"><a id="showCardTimesEl" href="javascript:showCardTimes()">次卡套餐(0)</a></label>
                         <label id="clubCardEl" style="font-family:Verdana;color:blue;"><a id="showCardEl" href="javascript:showCard()">储值卡(0)</a></label>
                         <label id="creditEl" style="font-family:Verdana;color:#578ccd;">挂账:0</label>
+                    </div>
+                </td>
+                <td>
+                    <div >
+                        <span id="carSellInfoEl" >
+                            <a href="javascript:showSellPoint()" class="healthview" >销售机会(9)</a>&nbsp;
+                        </span>
                     </div>
                 </td>
             </tr>
@@ -636,6 +643,46 @@ allowDrag="false">
 
 
 </div> 
+
+
+
+<div id="carSellPointInfo" class="nui-window"
+    title="" style="width:700px;height:200px;"
+    showModal="false"
+    showHeader="false"
+    allowResize="false"
+    allowDrag="false">
+	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100%;">
+                <a class="nui-button" iconCls="" plain="true" onclick="showCarSellPointInfo()" id="auditBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增销售机会</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="showCarSellPointInfo()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="nui-fit">
+          <div id="carSellPointGrid" class="nui-datagrid" style="width:100%;height:95%;"
+               selectOnLoad="true"
+               showPager="false"
+               dataField="data"
+               idField="id"
+               allowCellSelect="true"
+               editNextOnEnterKey="true"
+               url="">
+              <div property="columns">
+                  <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="项目"></div>
+                  <div field="amt" name="amt" width="50" headerAlign="center" header="金额"></div>
+                  <div field="status" name="status" width="50" headerAlign="center" header="阶段"></div>
+                  <div field="creator" name="creator" width="50" headerAlign="center" header="创建人"></div>
+                  <div field="doTimes" name="doTimes" width="50" headerAlign="center" header="预计成单时间"></div>
+                  <div field="type" name="type" width="50" headerAlign="center" header="机会类型"></div>
+                  <div field="cardTimesOpt" name="cardTimesOpt" width="50" headerAlign="center"  header="操作" align="center"></div>
+              </div>
+          </div>
+    </div>
+</div>
 
 <script type="text/javascript">
  nui.parse();

@@ -104,6 +104,16 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">maintain/enterDate</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link38</targetConnections>
     <targetConnections>link39</targetConnections>
     <location x="1410" y="491"/>
@@ -189,6 +199,7 @@
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
+    <targetConnections>link8</targetConnections>
     <location x="1514" y="491"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
@@ -701,7 +712,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign20label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">WXD</process:from>
+      <process:from type="literal" pattern="reference">ZHD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -720,7 +731,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign21label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">CLD</process:from>
+      <process:from type="literal" pattern="reference">CCD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -733,13 +744,14 @@
     <sourceConnections xsi:type="process:tLink" id="link47" name="link47" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign22</sourceNode>
       <targetNode>subprocess0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link49</targetConnections>
     <location x="1031" y="566"/>
     <size height="28" width="28"/>
     <nodeLabel>assign22label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">XMD</process:from>
+      <process:from type="literal" pattern="reference">XCD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -758,7 +770,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign23label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">SXD</process:from>
+      <process:from type="literal" pattern="reference">XSD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -777,7 +789,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign24label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">JCD</process:from>
+      <process:from type="literal" pattern="reference">LPD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -785,6 +797,25 @@
     <location x="1027" y="741"/>
     <figSize height="17" width="39"/>
     <node>assign24</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="1410" y="593"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">maintain/enterDate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="1408" y="629"/>
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
   </nodes>
   <topRuler/>
   <leftRuler>

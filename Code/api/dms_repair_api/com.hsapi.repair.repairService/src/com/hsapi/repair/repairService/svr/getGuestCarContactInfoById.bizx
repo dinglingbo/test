@@ -50,12 +50,20 @@
       <process:to type="query">cond1/_expr[1]/guestId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond1/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbContactor</process:from>
       <process:to type="query">cond2/_entity</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">guestId</process:from>
       <process:to type="query">cond2/_expr[1]/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond2/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">guestId</process:from>
@@ -239,7 +247,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject">main</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -287,6 +295,7 @@
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" type="transition">
       <sourceNode>assign3</sourceNode>

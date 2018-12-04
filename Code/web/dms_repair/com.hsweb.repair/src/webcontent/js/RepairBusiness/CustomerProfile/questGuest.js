@@ -13,6 +13,20 @@ $(document).ready(function(v){
     grid.on("drawcell",onDrawCell);
     queryForm = new nui.Form("#queryForm");
 
+    grid.on("rowdblclick",function(e){
+    	onchoice();
+	});
+    
+    nui.get("mobile").focus();
+	document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;//38向上 40向下
+
+        if((keyCode==27))  {  //ESC
+        	onClose();
+        	
+        }
+      };
     init();
 
 });
@@ -22,16 +36,13 @@ function init(){
     nui.mask({
         html: '数据加载中..'
     });
-
-
-        nui.unmask();
-        onSearch();
-
-
+    nui.unmask();
+    onSearch();
 
 }
-
-
+function onenterSearch(e){
+	onSearch();
+}
  
 function doSearch(params)
 {
@@ -72,4 +83,8 @@ function CloseWindow(action)
 {
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
     else window.close();
+}
+
+function onClose(){
+	window.CloseOwnerWindow();	
 }

@@ -34,7 +34,7 @@
                 <table style="width:100%;">
                     <tr>
                         <td style="width:100%;">
-                            <a class="nui-button" onclick="addContactList()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+                            <a class="nui-button" onclick="addContactList()" plain="true" style="width: 60px;" ><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
                             <a class="nui-button" onclick="onClose(1)" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
                         </td>
                     </tr>
@@ -311,7 +311,7 @@
                             </td>
                             <td>
                                 <input class="nui-hidden" name="id" id="guestId" />
-                                <input class="nui-textbox" id="fullName" name="fullName" width="100%" onvaluechanged="onChanged(this.id)" />
+                                <input class="nui-textbox" id="fullName" name="fullName" width="200px" onvaluechanged="onChanged(this.id)" />
                             </td>
                             <td class="form_label required">
                                 <label>手机号码：</label>
@@ -326,7 +326,7 @@
                             </td>
                             <td>
                                 <input class="nui-combobox" data="[{value:'0',text:'男',},{value:'1',text:'女'},]" textField="text" valueField="value" name="sex"
-                                    value="0" />
+                                    value="0"  width="200px"/>
                             </td>
                             <td class="form_label ">
                                 <label>客户简称：</label>
@@ -341,7 +341,7 @@
                             </td>
                             <td>
                                 <input class="nui-combobox" data="[{value:'0',text:'农历',},{value:'1',text:'阳历'},]" textField="text" valueField="value" name="birthdayType"
-                                    value="0" />
+                                    value="0"  width="200px"/>
                             </td>
                             <td class="form_label ">
                                 <label>生日日期：</label>
@@ -359,7 +359,7 @@
                                     class="nui-combobox" width="32%" />
 
                                 <input name="cityId" id="cityId" valueField="code" textField="name" emptyText="市/县" onValuechanged="initCityByParent('areaId', e.value || -1)"
-                                    class="nui-combobox" width="32%" />
+                                    class="nui-combobox" width="33%" />
 
                                 <input name="areaId" id="areaId" valueField="code" textField="name" emptyText="乡/镇" class="nui-combobox" width="33%" />
 

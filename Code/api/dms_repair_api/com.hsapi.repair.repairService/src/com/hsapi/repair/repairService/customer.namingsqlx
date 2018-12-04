@@ -24,6 +24,7 @@
 			a.annual_verification_due_date annualVerificationDueDate,
 			a.insure_comp_code insureCompCode,
 			a.insure_comp_name insureCompName,
+			a.insure_due_date insureDueDate,
 			b.addr addr,
 			c.last_come_date lastComeDate,
 			c.last_leave_date lastLeaveDate,
@@ -33,6 +34,7 @@
 			a.color color,
 			c.chain_come_times chainComeTimes,
 			b.mobile mobile,
+			c.mt_advisor_name mtAdvisorName,
 			ifnull( DATEDIFF( now( ), c.last_leave_date ), 0 ) leaveDay
 		FROM
 			wb_common.com_guest b
@@ -131,9 +133,11 @@
 			a.id carId,
 			a.orgid orgid,
 			a.car_no carNo,
-			a.insure_comp_name insuranceName,
+			a.insure_comp_name insureCompName,
 			a.insure_no insureNo,
 			a.insure_due_date insureDueDate,
+			a.annual_inspection_comp_name annualInspectionCompName,
+			a.annual_inspection_no annualInspectionNo,
 			a.guest_id guestId,
 			b.full_name guestFullName,
 			b.mobile as guestMobile,
@@ -144,7 +148,6 @@
 			a.annual_inspection_date annualInspectionDate,
 			a.annual_verification_due_date annualVerificationDueDate,
 			a.insure_comp_code insureCompCode,
-			a.insure_comp_name insureCompName,
 			b.addr addr,
 			a.recorder recorder,
 			a.record_date recordDate,

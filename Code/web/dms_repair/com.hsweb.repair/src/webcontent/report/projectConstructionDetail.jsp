@@ -90,7 +90,7 @@ body {
     var webBaseUrl = webPath + contextPath + "/";
     var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
     var grid = nui.get("grid");
-    var gridUrl = 'com.hsapi.repair.repairService.report.queryItemTotalDetailReport.biz.ext';
+    var gridUrl = apiPath + repairApi+'/com.hsapi.repair.repairService.report.queryItemTotalDetailReport.biz.ext';
     var form=new nui.Form("#form1");
     var startDateEl = nui.get("startDate");
     var endDateEl = nui.get("endDate");

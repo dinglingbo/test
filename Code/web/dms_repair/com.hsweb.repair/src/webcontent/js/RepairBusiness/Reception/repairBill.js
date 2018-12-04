@@ -845,6 +845,9 @@ function setInitData(params){
                         data.insureCompName = car.insureCompName || "";
                         data.insureDueDate = car.insureDueDate || "";
                         data.insureNo = car.insureNo || "";
+                        data.annualInspectionCompName = car.annualInspectionCompName || "";
+                        data.annualInspectionNo = car.annualInspectionNo || "";
+                        data.annualInspectionDate = car.annualInspectionDate || "";
                         data.idNo = contactor.idNo;
                         data.remark = contactor.remark;
                         

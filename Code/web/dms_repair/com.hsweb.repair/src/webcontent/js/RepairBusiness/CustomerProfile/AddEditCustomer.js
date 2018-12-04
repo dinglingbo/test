@@ -61,6 +61,18 @@ function init(callback)
     });
     
     initProvince("provice");
+    nui.get("fullName").focus();
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;//38向上 40向下
+
+        if((keyCode==27))  {  //ESC
+            onCancel();
+        }
+     
+    }
+    
+    
 }
 var carList = [{}];
 var carHash = {};
@@ -102,7 +114,7 @@ function setCarByIdx(idx)
         //carList[currCarIdx].carModel = nui.get("carModelId").getText();
         carList[currCarIdx].isChanged = carInfoFrom.isChanged();
         currCarIdx = idx;
-        updateCarBtnState()
+        updateCarBtnState();
     }
 }
 function preCar()
@@ -204,6 +216,12 @@ var resultData = {};
 var saveUrl = baseUrl+"com.hsapi.repair.repairService.crud.saveCustomerInfo.biz.ext";
 function onOk()
 {
+	var carNo = nui.get("carNo").getValue();
+	var falge = isVehicleNumber(carNo);
+	if(!falge){
+		showMsg("请输入正确的车牌号","W");
+		return;
+	}
     var guest = basicInfoForm.getData();
     guest.guestType = "01020103";
     carList[currCarIdx] = carInfoFrom.getData();
@@ -395,7 +413,7 @@ function setData(data)
                         		carInfoFrom.setData(carList[i]);
                         	}
                             //nui.get("carModelId").setText(carList[0].carModel);
-                            carList[i] = carInfoFrom.getData();
+                            //carList[i] = carInfoFrom.getData();
                             //carList[i].carModel = nui.get("carModelId").getText();
                             carHash[carList[i].id] = JSON.stringify(carList[i]);
                         }
@@ -408,7 +426,7 @@ function setData(data)
                         		count = 1;
                         	}
                         	
-                            contactList[i] = contactInfoForm.getData();
+                           // contactList[i] = contactInfoForm.getData();
                             contactHash[contactList[i].id] = JSON.stringify(contactList[i]);
                         }
                         if(count==0){
@@ -550,14 +568,14 @@ function setCarModel(data){
     nui.get("carModel").setValue(data.carModel);
 }
 
-function onCarNoChanged(e){
+/*function onCarNoChanged(e){
 	var falge = isVehicleNumber(e.value);
 	if(!falge){
 		nui.get("#carNo").setValue("");
 		showMsg("请输入正确的车牌号","W");
 		return;
 	}
-}
+}*/
 
 function isVehicleNumber(vehicleNumber) {
     var result = false;

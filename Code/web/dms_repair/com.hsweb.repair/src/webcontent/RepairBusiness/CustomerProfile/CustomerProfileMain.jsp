@@ -75,7 +75,7 @@
 
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="20" allowcellwrap="true"
-		 onselectionchanged="selectionChanged"  frozenStartColumn="0" frozenEndColumn="6" totalCount="page.count" onrowdblclick="edit()"
+		 onselectionchanged="selectionChanged"  frozenStartColumn="0" frozenEndColumn="5" totalCount="page.count" onrowdblclick="edit()"
 		 virtualColumns="true">
 			<div property="columns">
 				<div width="30" type="indexcolumn">序号</div>
@@ -85,10 +85,9 @@
 						<div field="carModel" headerAlign="center"  width="200px">品牌/车型</div>
 						<div field="vin" headerAlign="center"   visible="true" width="130px">车架号（VIN）</div>
 						<div field="annualInspectionDate"  headerAlign="center" dateFormat="yyyy-MM-dd"  visible="true"
-						 width="80px">保险到期</div>
-						<div field="annualVerificationDueDate"  headerAlign="center" dateFormat="yyyy-MM-dd"  visible="true"
-						 width="80px">年审日期</div>
-						<div field="insureCompName"  headerAlign="center"  visible="true" width="80px">保险公司</div>
+						 width="80px">商业险到期</div>
+						<div field="insureDueDate"  headerAlign="center" dateFormat="yyyy-MM-dd"  visible="true"
+						 width="80px">交强险到期</div>
 					</div>
 				</div>
 				<div header="客户信息" headerAlign="center">
@@ -100,7 +99,7 @@
 						 visible="true" width="100px">最后来厂日期</div>
 						<div name="lastLeaveDate" field="lastLeaveDate"  dateFormat="yyyy-MM-dd" headerAlign="center" 
 						 visible="true" width="100px">最后离厂日期</div>
-						<div name="isDisabled" field="isDisabled" headerAlign="center"   visible="true" width="70px">营销员</div>
+						<div name="mtAdvisorName" field="mtAdvisorName" headerAlign="center"   visible="true" width="70px">服务顾问</div>
 						<div name="recorder" field="recorder" headerAlign="center"   visible="true" width="70px">建档人</div>
 						<div name="recordDate" field="recordDate" dateFormat="yyyy-MM-dd"  headerAlign="center"  visible="true"
 						 width="100">建档日期
@@ -114,7 +113,7 @@
 						<div name="engineNo" field="engineNo" headerAlign="center"   visible="true" width="120px">发动机号</div>
 						<div name="produceDate" field="produceDate"  dateFormat="yyyy-MM-dd" headerAlign="center" 
 						 visible="true" width="80px">生产年份</div>
-						<div name="color" field="color" headerAlign="center"   visible="true" width="50px">颜色</div>
+						<!-- <div name="color" field="color" headerAlign="center"   visible="true" width="50px">颜色</div> -->
 					</div>
 				</div>
 

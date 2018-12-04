@@ -130,7 +130,7 @@ function onRateValidation(e){
 				if (!reg.test(e.value)) {
 					e.errorText = "请设置提成并输入大于等于0的整数或者保留两位小数";
 					e.isValid = false;
-					showMsg("请设置提成并输入大于0的整数或者保留两位小数","W");
+					showMsg("请设置提成并输入大于0的整数或者保留两位小数!","W");
 				}
 			}
 		}else {
@@ -143,7 +143,7 @@ function onRateValidation(e){
 					if (!reg.test(e.value)) {
 						e.errorText = "请设置提成并输入0~100的数,最多可保留两位小数";
 						e.isValid = false;
-						showMsg("请设置提成并输入0~100的数,最多可保留两位小数","W");
+						showMsg("请设置提成并输入0~100的数,最多可保留两位小数!","W");
 					}
 				}
 			}
@@ -158,7 +158,7 @@ function onRateValidation(e){
 				if (!reg.test(e.value)) {
 					e.errorText = "请设置提成并输入大于等于0的整数或者保留两位小数";
 					e.isValid = false;
-					showMsg("请设置提成并输入大于0的整数或者保留两位小数","W");
+					showMsg("请设置提成并输入大于0的整数或者保留两位小数!","W");
 				}
 			}
 		}else {
@@ -171,7 +171,7 @@ function onRateValidation(e){
 					if (!reg.test(e.value)) {
 						e.errorText = "请设置提成并输入0~100的数,最多可保留两位小数";
 						e.isValid = false;
-						showMsg("请设置提成并输入0~100的数,最多可保留两位小数","W");
+						showMsg("请设置提成并输入0~100的数,最多可保留两位小数!","W");
 					}
 				}
 			}
@@ -186,7 +186,7 @@ function onRateValidation(e){
 				if (!reg.test(e.value)) {
 					e.errorText = "请设置提成并输入大于等于0的整数或者保留两位小数";
 					e.isValid = false;
-					showMsg("请设置提成并输入大于0的整数或者保留两位小数","W");
+					showMsg("请设置提成并输入大于0的整数或者保留两位小数!","W");
 				}
 			}
 		}else {
@@ -199,7 +199,7 @@ function onRateValidation(e){
 					if (!reg.test(e.value)) {
 						e.errorText = "请设置提成并输入0~100的数,最多可保留两位小数";
 						e.isValid = false;
-						showMsg("请设置提成并输入0~100的数,最多可保留两位小数","W");
+						showMsg("请设置提成并输入0~100的数,最多可保留两位小数!","W");
 					}
 				}
 			}
@@ -522,7 +522,7 @@ function save()
 		{
 			console.log(jqXHR.responseText);
 			nui.unmask();
-			showMsg("网络出错",'W');
+			showMsg("网络出错",'E');
 		}
 	});
 }

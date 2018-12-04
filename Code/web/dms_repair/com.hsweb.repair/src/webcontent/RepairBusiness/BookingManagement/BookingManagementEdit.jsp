@@ -10,7 +10,7 @@
 
 <head>
     <title>预约管理</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=2.7.1"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=2.7.2"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -67,7 +67,7 @@
                         </td>
                         <td>
                             <input class="nui-buttonedit" id="carNo" name="carNo" textname="carNo" emptyText="请输入或选择..." onbuttonclick="selectCustomer" selectOnFocus="true" 
-                            required="true" onenter="onenterSelect(this.value)"  onvaluechanged="onCarNoChanged"/>
+                            required="true" onenter="onenterSelect(this.value)"  />
                             <input class="nui-textbox" id="carId" name="carId" visible="false" />
                             <input class="nui-textbox" id="guestId" name="guestId" visible="false" /> 
                             <input class="nui-textbox" id="contactorId" name="contactorId" visible="false" />                          
@@ -99,7 +99,7 @@
                             <label><font color="red">业务类型：</font></label>
                         </td>
                         <td>
-                            <input class="nui-combobox" id="serviceTypeId" name="serviceTypeId" textField="name" valueField="id" required="true"/>
+                            <input class="nui-combobox" id="serviceTypeId" name="serviceTypeId" textField="name" valueField="id" required="true" />
 
                         </td>
                         <td class="form_label">

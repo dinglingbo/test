@@ -31,7 +31,7 @@ table {
 			<table class="table">
 				<tr>
 					<label>手机号码：</label>
-						<input class="nui-textbox" name="mobile" /> 
+						<input class="nui-textbox" name="mobile" onenter="onenterSearch(this.value)" id="mobile"/> 
 						<a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search"></span>&nbsp;查询</a>
 						<a class="nui-button" iconCls="" plain="true" onclick="onchoice()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
 					</td>

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
-<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -12,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>积分兑换管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    
+    <%@include file="/common/commonRepair.jsp"%>
 </head>
 <body>
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">

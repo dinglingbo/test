@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
-<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -12,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>精准抓客</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    
+     <%@include file="/common/commonRepair.jsp"%>
 </head>
 <body>
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
@@ -21,10 +20,10 @@ pageEncoding="UTF-8" session="false" %>
                 <td>
                     <label>内容分类：</label>
                     <input class="nui-combobox" name="" id="" enabled="true"/>
-                    <label>标题：</label>
-                    <input class="nui-textbox" name="" id="" enabled="true"/>
                     <label>操作类型：</label>
                     <input class="nui-combobox" name="" id="" enabled="true"/>
+                    <label>标题：</label>
+                    <input class="nui-textbox" name="" id="" enabled="true"/>
                     <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 </td>
             </tr>

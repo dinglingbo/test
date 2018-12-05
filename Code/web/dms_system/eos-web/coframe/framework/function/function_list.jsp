@@ -28,7 +28,7 @@
 	<div class="nui-fit" style="padding:0px 5px 5px 5px;">
 		<input id="parentgroupid" name="parentgroupid" class="nui-hidden" />
 	    <div id="functiongrid" class="nui-datagrid" style="width:100%;height:100%;" 
-	    url="org.gocom.components.coframe.framework.FunctionManager.queryFunction.biz.ext" onselectionchanged="selectionChanged" idField="funccode" allowResize="false"
+	    url="" onselectionchanged="selectionChanged" idField="funccode" allowResize="false"
 	    sizeList="[10,20,50,100]" multiSelect="true" onrowdblclick="edit()">
 		    <div property="columns">
 		        <div type="checkcolumn" ></div>
@@ -44,7 +44,10 @@
 		var grid = nui.get("functiongrid");
         var parentgroupid = <%=StringUtil.htmlFilter(request.getParameter("realId")) %>;
 		document.getElementById("parentgroupid").value = parentgroupid;
-		var data = {funcgroupid:parentgroupid};
+		var data = {funcgroupid:parentgroupid,token:token};
+		//org.gocom.components.coframe.framework.FunctionManager.queryFunction.biz.ext
+		var url = apiPath + sysApi + '/com.hsapi.system.tenant.permissions.queryApplication.biz.ext';
+        grid.setUrl(url);
         grid.load(data);
 		
         function add() {
@@ -100,14 +103,15 @@
             var nodes = [];
             
             for(var i=0; i<rows.length;i++){
-            	nodes.push({realId:rows[i].funccode,type:"function"});
+            	nodes.push({funccode:rows[i].funccode,type:"function"});//realId
             }
+            //"org.gocom.components.coframe.framework.ApplicationManager.deleteApplications.biz.ext",
             if (rows.length > 0) {
                 nui.confirm("确定删除选中记录？","删除确认",function(action){
 	            	if(action!="ok") return;
-                    var json = nui.encode({nodes:nodes});
+                    var json = nui.encode({nodes:nodes,token:token});
                     $.ajax({
-                         url: "org.gocom.components.coframe.framework.ApplicationManager.deleteApplications.biz.ext",
+                         url: apiPath + sysApi + "/com.hsapi.system.tenant.permissions.deleteApplications.biz.ext",
 		                type: 'POST',
 		                data: json,
 		                cache: false,

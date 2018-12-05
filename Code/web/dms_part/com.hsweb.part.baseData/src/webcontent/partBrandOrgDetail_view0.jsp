@@ -9,7 +9,7 @@
 -->
 <head>
 <title>新增关注品牌</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/partBrandMgr/partBrandOrgDetail.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/partBrandMgr/partBrandOrgDetail.js?v=1.0.3"></script>
 <style type="text/css">
 
 
@@ -43,20 +43,23 @@
         <table style="width:100%;">
             <tr>
                 <td style="white-space:nowrap;">
-                    <a class="nui-button" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                     <a class="nui-button" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                      <a class="nui-button" onclick="onCancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
                 </td>
             </tr>
         </table>
     </div>
+    <!-- 
+         onrowdblclick="editPartBrand"
+         rowdblclick="save()" 
+    -->
     <div class="nui-fit">
         <div id="brandGrid" class="nui-datagrid" style="width:100%;height:100%;"
                 showPager="false"
                 ondrawcell="onDrawCell"
                 dataField="brands"
-                onrowdblclick="editPartBrand"
                 selectOnLoad="true"
-                sortMode="client" rowdblclick="save()"
+                sortMode="client" 
                 multiSelect="true"
                 url="">
             <div property="columns">

@@ -40,7 +40,7 @@ function onRenderer(e) {
 }
 function refresh(){
 	doSearch();
-	showMsg("刷新成功!","S ");
+	showMsg("刷新成功!","S");
 }
 function onDrawCell(e){
 	//nui.alert(1);
@@ -92,8 +92,6 @@ function add(){
 	}
 
 	showEditModal(newRow, newRow, 'add');
-
-	
 }
 function edit(){
 	var row = mainGrid.getSelected();
@@ -150,7 +148,7 @@ function disablePlay(isDisabled){
 						undisableEl.setVisible(true);
 					}
 				} else {
-					showMsg(data.errMsg || "操作失败!","W");
+					showMsg(data.errMsg || "操作失败!","E");
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {

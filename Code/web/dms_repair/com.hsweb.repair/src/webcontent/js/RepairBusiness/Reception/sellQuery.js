@@ -5,7 +5,7 @@ var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainLis
 var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
 var beginDateEl = null;
 var endDateEl = null;
-var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"VIN码"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
 var brandList = [];
 var brandHash = {};
 var servieTypeList = [];
@@ -229,4 +229,6 @@ function getSearchParam() {
     return params;
 }
 
-
+function carNoSearch(){
+	onSearch();
+}

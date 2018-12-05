@@ -9,7 +9,7 @@
             <table style="width:100%;">
                 <tr>
                     <td style="width:100%;text-align:left;">
-                        <input id="stationName" width="150px" emptyText="工位名称" class="nui-textbox"/>
+                        <input id="stationName" width="150px" emptyText="工位名称" class="nui-textbox" onenter="queryStationName"/>
                         <a class="nui-button" plain="true" onclick="queryStation" id="stationBtn">
                             <span class="fa fa-search fa-lg"></span>&nbsp;查询
                         </a>

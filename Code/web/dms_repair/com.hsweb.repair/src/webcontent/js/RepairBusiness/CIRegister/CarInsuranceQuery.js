@@ -44,6 +44,13 @@
         var row = e.record;
 
     });  
+    document.onkeyup=function(event){
+	    var e=event||window.event;
+	    var keyCode=e.keyCode||e.which;
+        if((keyCode==27))  {  //ESC
+        	advancedSearchWin.hide();
+	   };
+     };
     quickSearch(4);
 }); 
 
@@ -63,9 +70,13 @@
     var data = advancedSearchForm.getData();
     data.startDate = dateObj.startDate;
     data.endDate = dateObj.endDate;
-    
-    beginDateEl.setValue(dateObj.startDate);
-    endDateEl.setValue(dateObj.endDate);
+    if(type==2){
+    	beginDateEl.setValue(addDate(dateObj.startDate,1));
+        endDateEl.setValue(addDate(dateObj.endDate,1));
+    }else{
+    	beginDateEl.setValue(dateObj.startDate);
+        endDateEl.setValue(dateObj.endDate);
+    }
     advancedSearchForm.setData(data);
     var params = getSearchParams();
     doSearch(params);
@@ -145,4 +156,10 @@ function onShowRowDetail(e) {
     	serviceId:serviceId,
         token: token
     });
+}
+function carNoSearch(){
+	onSearch();
+}
+function guestNameSearch(){
+	onSearch();
 }

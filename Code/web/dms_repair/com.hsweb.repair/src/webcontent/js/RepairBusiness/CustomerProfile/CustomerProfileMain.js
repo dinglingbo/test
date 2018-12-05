@@ -356,7 +356,7 @@ function history()
 	var row = grid.getSelected();
 	if(!row || !row.guestId)
     {
-		showMsg("请选中一条数据");
+		showMsg("请选中一条数据","W");
         return;
     }
     nui.open({

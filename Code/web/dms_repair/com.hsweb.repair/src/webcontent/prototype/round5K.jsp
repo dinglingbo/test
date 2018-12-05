@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>短信触达</title>
+<title>圆心5K</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     	<style>
@@ -75,8 +75,8 @@
 				line-height: 2;
 			}
 			span.xiao{
-				margin-top: 40px;
-				font-size: 15px;
+				margin-top: 30px;
+				font-size: 14px;
 				font-weight:bold;
 				text-align:center;
 				float: left;
@@ -84,27 +84,51 @@
 			}
 			span.da{
 				margin-top: 20px;
-				font-size: 35px;
+				font-size: 30px;
 				font-weight:bolder;
 				text-align:center;
 				float: left;
 				width: 100%;
 			}
+			span.zhong{
+				margin-top: 20px;
+				font-size: 20px;
+				font-weight:bolder;
+				text-align:center;
+				float: left;
+				width: 100%;
+			}
+			span.texiao{
+				margin-top: 20px;
+				font-size: 10px;
+				font-weight:bolder;
+				text-align:center;
+				float: left;
+				width: 100%;
+				color: #836FFF;
+			}
 			a {
-					margin-top: 50px;
+					margin-top: 25px;
 					cursor: pointer;
 				}
 			font{
 				color: #8B4513;
+			}
+			input{
+				border:0.5px solid #FF4040;
+				width: 300px;
+				height: 35px;
+				
 			}
 		</style>
 </head>
 <body>
 	<div>
 		<span class="xiao">Individualization 个性化标签筛选</span></br>
-		<span class="da">在此创建个性化的短信推送计划</span></br>
-		<span class="xiao">通过标签筛选和短信内容的筛选，批量选定客户向手机号进行推送，点击推送前，我们将为你估算本次的推</br>
-				送成本，点击推送后短信立即发送，客户将受到来自 958798 的号码推送的消息内容。</br>
+		<span class="da">圆心5K 为您精准匹配推送对象</span></br>
+		<span class="xiao">通过距离自己门店周边5公里范围内的客户进行筛选，最后针对其他个性标签内容筛选，批量选定客户的手机</br>
+							号进行推送，点击推送前，我们将为您估算本次推送的推送成本，点击推送后，短信立即发送，客户将收到来自</br>
+							958796的号码推送的信息内容
 		</span>
 			<table align="center">
 				<tr>
@@ -118,19 +142,25 @@
 			</table>
 			<table align="center">
 				<tr>
+					<td width="50%" align="center">上海</td>
 					<td>
-						<a id="one"  class="am" onclick="">
-							<span class="fa fa-rebel fa-4x" style="margin-top: 50px;"></span></br>
-							<span ><font>近期活动</font></span></br>
-							<span >含总部和门店自己创建的标准模板</span></br>
-						</a>
+						<input type="text"  value="选择门店.." onfocus="if (value =='选择门店..'){value =''}"onblur="if (value ==''){value='选择门店..'}">
 					</td>
-					<td>
-						<a id="two" class="am"  onclick="" style="margin-left:50px;">
-							<span class="fa fa-edit fa-4x " style="margin-top: 50px;"></span></br>
-							<span ><font >个性编辑</font></span></br>
-							<span >自己创建个性化内容</span></br>
-						</a>
+
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<img src="images/11.jpg" width="620px" height="250px" text-align="center"/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<span class="zhong">已为您搜索到9876名客户</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<a><span class="texiao">保存并添加其他标签筛选 <span class="fa fa-angle-right fa-2x" style="margin-left: 10px"></span></span></a>
 					</td>
 				</tr>
 			</table>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商管理</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.1.4"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.1.5"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;

@@ -280,7 +280,7 @@ function disablePartQuality(){
                         showMsg("禁用成功","S");
                     }
                     else{
-                        showMsg(data.errMsg||"禁用失败","W");
+                        showMsg(data.errMsg||"禁用失败","E");
                     }
                 });
             }
@@ -311,7 +311,7 @@ function enablePartQuality(){
                         showMsg("启用成功","S");
                     }
                     else{
-                        showMsg(data.errMsg||"启用失败","W");
+                        showMsg(data.errMsg||"启用失败","E");
                     }
                 });
             }
@@ -343,7 +343,7 @@ function disablePartBrand()
                         showMsg("禁用成功","S");
                     }
                     else{
-                        showMsg(data.errMsg||"禁用失败","W");
+                        showMsg(data.errMsg||"禁用失败","E");
                     }
                 });
             }
@@ -375,7 +375,7 @@ function enablePartBrand()
                         showMsg("启用成功","S");
                     }
                     else{
-                        showMsg(data.errMsg||"启用失败","W");
+                        showMsg(data.errMsg||"启用失败","E");
                     }
                 });
             }
@@ -461,7 +461,7 @@ function delLocalBrand()
                 loadBottom();
             }
             else{
-                showMsg(data.errMsg||"处理失败","W");
+                showMsg(data.errMsg||"处理失败","E");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
@@ -496,7 +496,7 @@ function saveLocalBrand(){
                 loadBottom();
             }
             else{
-                showMsg(data.errMsg||"保存失败","W");
+                showMsg(data.errMsg||"保存失败","E");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

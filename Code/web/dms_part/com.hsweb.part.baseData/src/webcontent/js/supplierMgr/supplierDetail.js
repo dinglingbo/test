@@ -152,13 +152,13 @@ function onOk()
 
     var reg=/^[1](3|4|5|7|8)\d{9}$/;
     if(data.mobile.length!=11 ||!reg.test(data.mobile) ){
-    	showMsg("请输入正确的联系人手机号码");
+    	showMsg("请输入正确的联系人手机号码","W");
     	return;
     }
     
     if(data.contactorTel.length>0){    	
     	if(data.contactorTel.length!=11 ||!reg.test(data.contactorTel) ){
-    		showMsg("请输入正确的业务员手机号码");
+    		showMsg("请输入正确的业务员手机号码","W");
     		return;
     	}
     }
@@ -189,7 +189,7 @@ function onOk()
                 CloseWindow("ok");
             }
             else{
-                showMsg(data.errMsg||"保存失败","W");
+                showMsg(data.errMsg||"保存失败","E");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

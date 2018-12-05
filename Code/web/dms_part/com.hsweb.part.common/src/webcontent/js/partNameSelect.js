@@ -35,7 +35,6 @@ $(document).ready(function(v)
             window.CloseOwnerWindow("");
             break; 
         }
-
         /*if((keyCode==83)&&(event.shiftKey))  {  
             onOk();  
         } 
@@ -44,6 +43,9 @@ $(document).ready(function(v)
             onCancel();
         }  */
     }
+    grid.on("rowdblclick",function(){
+    	onOk();
+    });
 });
 function onDrawNode(e)
 {
@@ -139,7 +141,7 @@ function onOk()
     var node = grid.getSelected();
     if(node)
     {
-        console.log(node);
+       // console.log(node);
         resultData = {
             partName:node
         };
@@ -157,4 +159,7 @@ function CloseWindow(action)
 }
 function onCancel(e) {
     CloseWindow("cancel");
+}
+function searchPartName(){
+	onSearch();
 }

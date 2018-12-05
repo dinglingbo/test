@@ -426,13 +426,13 @@ function saveNewBill(data,billTypeId){
                 upGrid.reload();
             } else {
                 nui.unmask();
-                showMsg(data.errMsg || "开单失败","W"); 
+                showMsg(data.errMsg || "开单失败","E"); 
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
             nui.unmask();
             console.log(jqXHR.responseText);
-            showMsg("网络出错，保存失败","W");           
+            showMsg("网络出错，保存失败","E");           
         }
     });
 }
@@ -475,13 +475,13 @@ function updateRpspreBookStatus(action) {
                 upGrid.reload();
             } else {
                 nui.unmask();
-                showMsg(data.errMsg || "保存失败","W"); 
+                showMsg(data.errMsg || "保存失败","E"); 
             }
         },
         error: function(jqXHR, textStatus, errorThrown) {
             nui.unmask();
             console.log(jqXHR.responseText);
-            showMsg("网络出错，保存失败","W");           
+            showMsg("网络出错，保存失败","E");           
         }
     });
 }

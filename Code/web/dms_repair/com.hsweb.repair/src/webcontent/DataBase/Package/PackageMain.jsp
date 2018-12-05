@@ -11,7 +11,7 @@
 -->
 <head>
 <title>本店套餐</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=2.5.8"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=2.5.9"></script>
 
 </head>
 

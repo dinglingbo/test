@@ -9,7 +9,7 @@
 -->
 <head>
 <title>预约设置</title>
-<script src="<%=webPath + contextPath%>/repair/cfg/js/appointmentParamsSet.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/appointmentParamsSet.js?v=1.0.5"></script>
 <link href="<%=webPath + contextPath%>/repair/cfg/css/appoint.css" rel="stylesheet"	type="text/css" />
 <style type="text/css">
 .table-label {
@@ -97,7 +97,7 @@
                 <td class="required" style="text-align: right">项目折扣</td>
                 <td >
                     <input class="nui-spinner" minValue="0" maxValue="100" id="prdtRateEdit"
-                        showButton="false" format="0" changeOnMousewheel="true">&nbsp;&nbsp;%
+                        showButton="false" format="0"  changeOnMousewheel="true" >&nbsp;&nbsp;%
                 </td>
             </tr>
         </table>
@@ -107,6 +107,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

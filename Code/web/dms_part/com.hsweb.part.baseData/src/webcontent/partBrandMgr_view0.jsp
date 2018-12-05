@@ -17,8 +17,6 @@
 </style>
 </head>
 <body>
-
-
 <div>
 <div class="nui-splitter"
         id="splitter"

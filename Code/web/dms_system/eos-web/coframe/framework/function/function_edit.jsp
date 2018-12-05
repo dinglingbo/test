@@ -114,10 +114,10 @@
 
             form.validate();
             if (form.isValid() == false) return;
-
+			o.token = token;
             var json = nui.encode(o);
             $.ajax({
-                url: "org.gocom.components.coframe.framework.FunctionManager.updateFunction.biz.ext",
+                url: apiPath + sysApi + "/com.hsapi.system.tenant.permissions.updateFunction.biz.ext",//"org.gocom.components.coframe.framework.FunctionManager.updateFunction.biz.ext",
                 type: 'POST',
                 data: json,
                 cache: false,
@@ -138,9 +138,9 @@
         function SetData(data) {
             //跨页面传递的数据对象，克隆后才可以安全使用
                 data = nui.clone(data);
-				var json = nui.encode({template:data});
+				var json = nui.encode({template:data,token:token});
                 $.ajax({
-                    url: "org.gocom.components.coframe.framework.FunctionManager.getFunction.biz.ext",
+                    url: apiPath + sysApi + "/com.hsapi.system.tenant.permissions.getFunction.biz.ext",//"org.gocom.components.coframe.framework.FunctionManager.getFunction.biz.ext",
                     type: 'POST',
 	                data: json,
 	                cache: false,
@@ -188,9 +188,9 @@
         	if(e.value == tempFuncCode) return;
         	if(e.isValid){
         		var data = {funccode:e.value};
-        		var json = nui.encode({template:data});
+        		var json = nui.encode({template:data,token:token});
 	        	$.ajax({
-                    url: "org.gocom.components.coframe.framework.FunctionManager.validateFunction.biz.ext",
+                    url: apiPath + sysApi + "/com.hsapi.system.tenant.permissions.validateFunction.biz.ext",//"org.gocom.components.coframe.framework.FunctionManager.validateFunction.biz.ext",
                     type: 'POST',
 	                data: json,
 	                cache: false,

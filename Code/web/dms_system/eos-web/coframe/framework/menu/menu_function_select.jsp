@@ -45,7 +45,7 @@
 	</div>
     <div class="nui-fit"style="padding:5px">
         <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;" 
-            url="org.gocom.components.coframe.framework.FunctionManager.queryFunction.biz.ext" onrowdblclick="onOk" pageSize="15" idField="funccode" allowResize="false">
+            url="" onrowdblclick="onOk" pageSize="15" idField="funccode" allowResize="false">
             <div property="columns">
                 <div type="checkcolumn"></div>
                 <div field="funccode" width="100" headerAlign="center" allowSort="true">功能编号</div>    
@@ -66,11 +66,14 @@
     nui.parse();
 
     var grid = nui.get("grid1");
-
-    grid.load();
+    //org.gocom.components.coframe.framework.FunctionManager.queryFunction.biz.ext
+    var url = apiPath + sysApi + "/com.hsapi.system.tenant.permissions.queryApplication.biz.ext";
+	grid.setUrl(url);
+    grid.load({token:token});
 	var form = new nui.Form("#form1"); 
 	function search() {
 		var data = form.getData(false,false);      //获取表单多个控件的数据
+		data.token = token;
         grid.load(data);
     }
     

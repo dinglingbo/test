@@ -110,27 +110,11 @@
                onrowdblclick=""
                allowCellSelect="true"
                editNextOnEnterKey="true"
-               allowCellWrap = true
+               allowCellWrap = "false"
                onshowrowdetail="onShowRowDetail"
                url="">
               <div property="columns">
                   <div type="indexcolumn">序号</div>
-                  
-                  <div header="业务信息" headerAlign="center">
-	                  <div property="columns" >
-		                  <div field="carNo" name="carNO" width="95" headerAlign="center" header="车牌"></div>
-		                  <div field="carBrandId" name="carBrandId" width="80" headerAlign="center" header="品牌"></div>
-		                  <div field="carModel" name="carModel" width="380" headerAlign="center" header="车型"></div>
-		                  <div field="carVin" name="carVin" width="140" headerAlign="center" header="VIN码"></div>
-		                  <div field="guestFullName" name="guestFullName" width="60" headerAlign="center" header="客户姓名"></div>
-<!-- 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div> -->
-		                  <div field="mtAdvisor" name="mtAdvisor" width="70" headerAlign="center" header="服务顾问"></div>
-		                  <div field="serviceTypeId" name="serviceTypeId" width="60" headerAlign="center" header="业务类型"></div> 
-		                  <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
-		                  <div field="sureMtDate" name="sureMtDate" width="100" headerAlign="center" header="维修日期" dateFormat="yyyy-MM-dd"></div>
-		                  <div field="outDate" name="outDate" width="100" headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd"></div>
-	                  </div>
-                  </div>
                   <div header="提成信息" headerAlign="center">
 	                  <div property="columns" >	                  
 		                  <div field="worker" name="worker" width="70" headerAlign="center" header="姓名"></div>
@@ -138,6 +122,22 @@
 		                  <div field="techDeductValue" name="techDeductValue" width="60" headerAlign="center" header="施工提成"></div>
 		                  <div field="advisorDeductValue" name="advisorDeductValue" width="60" headerAlign="center" header="服务提成"></div>
 		                  <div field="totalDeductAmt" name="totalDeductAmt" width="60" headerAlign="center" header="总提成"></div>
+	                  </div>
+                  </div>
+                  
+                  <div header="业务信息" headerAlign="center">
+	                  <div property="columns" >
+		                  <div field="carNo" name="carNO" width="60" headerAlign="center" header="车牌号"></div>
+		                  <div field="enterDate" name="enterDate" width="80" headerAlign="center" header="进厂时间" dateFormat="yyyy-MM-dd"></div>
+		                  <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
+		                  <div field="carBrandId" name="carBrandId" width="80" headerAlign="center" visible="false" header="品牌"></div>
+		                  <div field="carModel" name="carModel" width="150" headerAlign="center" header="品牌车型"></div>
+		                  <div field="carVin" name="carVin" width="140" headerAlign="center" header="VIN码"></div>
+		                  <div field="guestFullName" name="guestFullName" width="60" headerAlign="center" header="客户姓名"></div>
+<!-- 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div> -->
+		                  <div field="mtAdvisor" name="mtAdvisor" width="70" headerAlign="center" header="服务顾问"></div>
+		                  <div field="serviceTypeId" name="serviceTypeId" width="60" headerAlign="center" header="业务类型"></div> 
+		                  <div field="outDate" name="outDate" width="100" headerAlign="center" header="出厂时间" dateFormat="yyyy-MM-dd"></div>
 	                  </div>
                   </div>
               </div>

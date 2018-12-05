@@ -118,7 +118,8 @@ if (typeof japi === 'undefined') {
 
   japi.sign = {
     sign: sign,
-    verify: verify
+    verify: verify,
+    sortJoin: sortJoin
   }
 
 })();

@@ -45,7 +45,7 @@
     String currentLanguage = request.getLocale().getLanguage().toLowerCase();
 %>
 
-<script src="<%=contextPath%>/common/nui/nui.js?v=1.0.0" type="text/javascript"></script>
+<script src="<%=contextPath%>/common/nui/nui.js?v=1.0.1" type="text/javascript"></script>
 <script src="<%=contextPath%>/common/nui/locale/zh_CN.js" type="text/javascript"></script>
 <script type="text/javascript">
 	var contextPath = "<%=contextPath%>";
@@ -300,8 +300,6 @@
 <script src="<%=webPath + contextPath%>/common/js/sysCommon.js?v=1.0.3" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/constantDef.js?v=1.1" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/init.js?v=1.9" type="text/javascript"></script>
-<script src="<%=webPath + contextPath%>/common/js/jsCryptoJS.js?v=1.0" type="text/javascript"></script>
-<script src="<%=webPath + contextPath%>/common/js/settleCenter.js?v=1.1" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/date.js?v=1.7" type="text/javascript"></script>
 <link href="<%=webPath + contextPath%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
 <link href="<%=webPath + contextPath%>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">

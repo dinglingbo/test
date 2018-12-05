@@ -107,7 +107,7 @@
         var serviceTypeIdEl = nui.get("serviceTypeId");
     var servieTypeList = [];
     var servieTypeHash = {};
-    var gridUrl = 'com.hsapi.repair.repairService.report.queryItemTotalReport.biz.ext';
+    var gridUrl = apiPath + repairApi+'/com.hsapi.repair.repairService.report.queryItemTotalReport.biz.ext';
     grid1.setUrl(gridUrl);
     var params ={
         groupByType:2 // 0按日期分组  1业务类型  2工时项目

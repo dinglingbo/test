@@ -729,9 +729,13 @@ function doSetMainInfo(car){
     maintain.sex = car.sex;
     maintain.idNo = car.idNo;
     maintain.remark = car.remark;
-    maintain.insuranceName = car.insuranceName;
-    maintain.insureNo = car.insureNo;
-    maintain.insureDueDate = car.insureDueDate;
+    maintain.insureCompName = car.insureCompName || "";
+    maintain.insureNo = car.insureNo || "";
+    maintain.insureDueDate = car.insureDueDate || "";
+    maintain.annualInspectionCompName = car.annualInspectionCompName || "";
+    maintain.annualInspectionNo = car.annualInspectionNo || "";
+    maintain.annualInspectionDate = car.annualInspectionDate || "";
+  
     //maintain.lastComeKilometers = car.lastComeKilometers;
     $("#lastComeKilometers").html(car.lastComeKilometers);
     mpackageRate = 0;
@@ -865,6 +869,9 @@ function setInitData(params){
                         data.insureCompName = car.insureCompName || "";
                         data.insureDueDate = car.insureDueDate || "";
                         data.insureNo = car.insureNo || "";
+                        data.annualInspectionCompName = car.annualInspectionCompName || "";
+                        data.annualInspectionNo = car.annualInspectionNo || "";
+                        data.annualInspectionDate = car.annualInspectionDate || "";
                         data.idNo = contactor.idNo;
                         data.remark = contactor.remark;
                         

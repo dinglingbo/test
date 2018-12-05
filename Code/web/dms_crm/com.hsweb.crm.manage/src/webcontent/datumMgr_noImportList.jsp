@@ -12,7 +12,6 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    
 </head>
 <body>
 
@@ -148,9 +147,6 @@ if((keyCode==27)) { //ESC
 onCancel();
 }
 };
-
-
-
 
 
 function onCancel() {

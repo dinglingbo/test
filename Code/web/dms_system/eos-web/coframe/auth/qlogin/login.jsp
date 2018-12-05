@@ -262,8 +262,7 @@ a {
 <div class="login_box">
 	<form method="post"	name="registerForm" onsubmit="return register();" action="">
 	<div class="login" id="registerBox">
-		<div class="title">注册</div>
-		
+		<div class="title">注册</div>	
 		<label>
 			<p ><span id="errorP" style="font-size:15px;color:red"></span></p>
 			<input type="text" id="registercompname" name="registercompname" value="" placeholder="请输入公司名" maxlength="11" />
@@ -281,9 +280,6 @@ a {
 		</label>
 		
 		<label>
-<!-- 			<div class="checkbox_box">
-				<input type="checkbox" checked="checked" /><div class="show-box"></div>
-			</div> -->
 			<font size="2">注册即同意</font><span class="blue">
 					<a target="_blank" href="<%=privacyUrl%>"><span class="blue" id="privacy"  >隐私政策</span></a>&nbsp;<span style="color:#999">/</span>
 					<a  target="_blank" href="<%=protocolUrl%>"><span class="blue"  id="protocol" >用户协议</span></a>

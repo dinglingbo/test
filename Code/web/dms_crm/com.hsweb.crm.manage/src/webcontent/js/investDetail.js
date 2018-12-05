@@ -1,6 +1,6 @@
 var investForm = null;
 var baseUrl = apiPath + crmApi + "/";
-var hash = [{id:1,text:"潜在客户"},{id:2,text: "回访来厂"}, {id:3,text:"流失回厂"}];
+var hash = [{id:1,text:"首次到店"},{id:2,text: "再次回厂"}, {id:3,text:"流失召回"}];
 $(document).ready(function(){
 	investForm = new nui.Form("#investForm");
 	
@@ -14,9 +14,9 @@ $(document).ready(function(){
         }
 
     }
-	initMember("visitId",function(){
-		nui.get("visitId").focus();
-	});
+    initMember("visitId",function(){
+      nui.get("visitId").focus();
+  });
 });
 
 function setData(data){
@@ -51,8 +51,8 @@ function save(){
 	if(!checkFrm()){
         return false;
     }
-	var data = investForm.getData();
-	nui.mask({
+    var data = investForm.getData();
+    nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
         html: '正在加载...'
@@ -111,15 +111,17 @@ function carNoChange(){
             		nui.get("ok").disable();
             		return;
             	}else{
+                    var guestT = guestType(result.data.carId);
                     nui.get("serviceCode").setValue(result.data.serviceCode);
                     nui.get("serviceId").setValue(result.data.id);
                     nui.get("carId").setValue(result.data.carId);
                     nui.get("guestId").setValue(result.data.guestId);
+                    nui.get("carType").setValue(guestT);
                     nui.get("ok").enable();
-            	}
+                }
 
             } else {
-				showMsg(result.errMsg || "工单号生成失败!","E");
+                showMsg(result.errMsg || "工单号生成失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -127,4 +129,46 @@ function carNoChange(){
             console.log(jqXHR.responseText);
         }
     });
+}
+
+
+function carInfo(carId){
+    var data = {};
+    nui.ajax({
+        url : apiPath + repairApi + "/com.hsapi.repair.repairService.query.getcarInfoByCarId.biz.ext",
+        type : "post",
+        async: false,
+        data : {
+            carId:carId,
+            token:token
+        },
+        success : function(result) {
+            if (result.errCode == "S") {
+                data = result.data;
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
+    return data;
+}
+
+function guestType(carId){
+    var gType = -1;
+    var data = carInfo(carId);
+    var leaveDate = new Date(data.lastLeaveDate);
+    var today = new Date();
+    var num = ((today - leaveDate) / (1000 * 60 * 60 * 24)).toFixed(0);
+    var chainComeTimes = data.chainComeTimes || 0;//到点消费次数
+    if(chainComeTimes == 1){
+        gType = 1;
+    }
+    if(chainComeTimes > 1 && 0<=num <= 180){
+        gType = 2;
+    }
+    if(chainComeTimes > 1 && num > 180){
+        gType = 3;
+    }
+    return gType;
 }

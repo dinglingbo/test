@@ -149,7 +149,7 @@
                                 <div type="indexcolumn" headerAlign="center" allowSort="true" width="30">序号</div>
                                 <div field="modifier" headerAlign="center" allowSort="true" visible="true" width="100">跟进人 </div>
                                 <div field="scoutContent" headerAlign="center" allowSort="true" visible="true" width="300">跟进内容 </div>
-                                <div field="scoutDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" visible="true" width="100">跟进日期 </div>
+                                <div field="scoutDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" visible="true" width="100">跟进时间 </div>
                                 <div field="scoutMode" headerAlign="center" allowSort="true" visible="true" width="100">跟进方式 </div>
                                 <div field="isUsabled" headerAlign="center" allowSort="true" visible="true" width="100">跟进结果 </div>
                                 <div field="nextScoutDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" visible="true" width="100">下次跟进时间</div>

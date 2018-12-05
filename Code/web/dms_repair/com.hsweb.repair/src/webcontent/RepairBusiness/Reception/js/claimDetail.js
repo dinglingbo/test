@@ -717,9 +717,13 @@ function doSetMainInfo(car){
     maintain.sex = car.sex;
     maintain.idNo = car.idNo;
     maintain.remark = car.remark;
-    maintain.insuranceName = car.insuranceName;
-    maintain.insureNo = car.insureNo;
-    maintain.insureDueDate = car.insureDueDate;
+    maintain.insureCompName = car.insureCompName || "";
+    maintain.insureNo = car.insureNo || "";
+    maintain.insureDueDate = car.insureDueDate || "";
+    maintain.annualInspectionCompName = car.annualInspectionCompName || "";
+    maintain.annualInspectionNo = car.annualInspectionNo || "";
+    maintain.annualInspectionDate = car.annualInspectionDate || "";
+        
     mpackageRate = 0;
     mitemRate = 0;
     mpartRate = 0;
@@ -846,6 +850,14 @@ function setInitData(params){
                         data.contactorName = contactor.name;
                         data.mobile = contactor.mobile;
                         data.carModel = car.carModel;
+                        data.insureCompName = car.insureCompName || "";
+                        data.insureDueDate = car.insureDueDate || "";
+                        data.insureNo = car.insureNo || "";
+                        data.annualInspectionCompName = car.annualInspectionCompName || "";
+                        data.annualInspectionNo = car.annualInspectionNo || "";
+                        data.annualInspectionDate = car.annualInspectionDate || "";
+                        data.idNo = contactor.idNo;
+                        data.remark = contactor.remark;
                         xyguest.guestId = data.guestId;
                         xyguest.guestFullName = guest.fullName;
                         xyguest.carId = data.carId;
@@ -863,7 +875,7 @@ function setInitData(params){
                         doSearchMemCard(fguestId);
                         
                         billForm.setData(data);
-
+                        insuranceForm.setData(data);
                         var status = data.status||0;
                         var isSettle = data.isSettle||0;
                         doSetStyle(status, isSettle);

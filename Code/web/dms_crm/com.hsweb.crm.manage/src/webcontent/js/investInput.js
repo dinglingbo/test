@@ -150,7 +150,7 @@ function onDeleteClick(){
 }
 
 function onDrawcell(e) {
-	var hash = new Array("潜在客户", "回访来厂", "流失回厂");
+	var hash = new Array("首次到店", "再次回厂", "流失召回");
     if(e.field == "auditSign"){
         for(var i=0;i<gAuditSign.length;i++){
             if(e.value == gAuditSign[i].id){

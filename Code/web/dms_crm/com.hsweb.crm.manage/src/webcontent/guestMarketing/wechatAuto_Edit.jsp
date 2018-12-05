@@ -26,7 +26,37 @@
             </table>
         </div>
 
-
+<div class="nui-fit">
+  <table style="width:100%;">
+    <tr>
+        <td class="tbtext"><label>幻灯名称：</label></td>
+        <td><input class="nui-combobox tbinput" name="" style=""></td>
+    </tr>
+    <tr>
+        <td class="tbtext"><label>连接地址：</label></td>
+        <td><input class="nui-combobox tbinput" name="" style=""></td>
+    </tr>
+        <tr>
+        <td class="tbtext"><label>排序：</label></td>
+        <td><input class="nui-combobox tbinput" name="" style=""></td>
+    </tr>
+    <tr>
+        <td class="tbtext"><label>是否显示：</label></td>
+        <td>
+            <input type="radio" name="colors" id="red">显示
+            <input type="radio" name="colors" id="blue">不显示
+        </td>
+    </tr>
+    <tr>
+        <td class="tbtext"><label>略缩图：</label></td>
+        <td><input class="nui-combobox tbinput" name="" style=""></td>
+    </tr>
+    <tr>
+        <td class="tbtext"><label>预览：</label></td>
+        <td><input class="nui-combobox tbinput" name="" style=""></td>
+    </tr>
+</table>
+</div>
 	<script type="text/javascript">
     	nui.parse();
     </script>

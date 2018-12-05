@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
-<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -12,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
   <title>关键字回复</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-
+<%@include file="/common/commonRepair.jsp"%>
 </head>
 <body>
   <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
@@ -46,7 +45,7 @@ pageEncoding="UTF-8" session="false" %>
 
          <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
          <li class="separator"></li>
-         <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+         <a class="nui-button" iconCls="" plain="true" onclick="newEvent()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
          <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
          <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
        </tr>
@@ -152,6 +151,20 @@ pageEncoding="UTF-8" session="false" %>
     menunamedate.setText(queryname);
     //doSearch(params);
   }
+
+          function newEvent(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/wechat/keywordReply_edit.jsp",
+             title: "新增关键字",
+             width: 700, 
+             height: 300,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
+
 
 </script>
 </body>

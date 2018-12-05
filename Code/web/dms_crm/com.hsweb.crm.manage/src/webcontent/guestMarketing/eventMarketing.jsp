@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
-<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -9,10 +8,10 @@ pageEncoding="UTF-8" session="false" %>
   - Description:
 -->
 <head>
-    <title>短信营销</title>
+    <title>活动营销</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    
+     <%@include file="/common/commonRepair.jsp"%>
 </head>
 <body>
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
@@ -23,13 +22,14 @@ pageEncoding="UTF-8" session="false" %>
                     <input class="nui-textbox" name="" id="" enabled="true"/>
                     <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <li class="separator"></li>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="newEvent()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                     <li class="separator"></li>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;活动记录</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;中奖记录</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;奖品设置</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;活动记录</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;中奖记录</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;奖品设置</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;推文/发布</a>
                 </td>
             </tr>
         </table>
@@ -48,8 +48,6 @@ pageEncoding="UTF-8" session="false" %>
         ondrawcell=""
         >
         <div property="columns">
-
-            <div field="" name="" width="80" headerAlign="center" header="操作"></div>
             <div type="checkcolumn" ></div>    
             <div field="" name="" width="80" headerAlign="center" header="门店"></div>
             <div field="" name="" width="80" headerAlign="center" header="活动编码"></div>
@@ -70,6 +68,18 @@ pageEncoding="UTF-8" session="false" %>
 
 <script type="text/javascript">
    nui.parse();
+   function newEvent(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/eventAdd.jsp",
+             title: "新增活动",
+             width: 900, 
+             height: 600,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
 </script>
 </body>
 </html>

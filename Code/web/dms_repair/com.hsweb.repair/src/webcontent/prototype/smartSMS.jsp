@@ -110,7 +110,7 @@
 						</div>
 					</td>
 					<td>
-						<div class="bei" style="background:url(images/12.jpg) no-repeat 10px center;">
+						<div class="bei" style="background:url='<%=webPath + contextPath%>/repair/prototype/images/12.jpg' no-repeat 10px center;">
 							<div class="qian" >
 								<span class="da">客户到店</span></br>
 								<a><span class="xiao">编辑</span></a>
@@ -118,7 +118,7 @@
 						</div>
 					</td>
 					<td>
-						<div class="bei" style="background:url(images/12.jpg) no-repeat 10px center;">
+						<div class="bei" style="background:url(<%=webPath + contextPath%>/repair/prototype/images/12.jpg) no-repeat 10px center;">
 							<div class="qian" >
 								<span class="da">报价成功</span></br>
 								<a><span class="xiao">编辑</span></a>
@@ -128,7 +128,7 @@
 				</tr>
 								<tr>
 					<td>
-						<div class="bei" style="background:url(images/12.jpg) no-repeat 0px center;">
+						<div class="bei" style="background:url(<%=webPath + contextPath%>/repair/prototype/images/12.jpg) no-repeat 0px center;">
 							<div class="qian" >
 								<span class="da">维修等待</span></br>
 								<a><span class="xiao">编辑</span></a>
@@ -136,7 +136,7 @@
 						</div>
 					</td>
 					<td>
-						<div class="bei" style="background:url(images/12.jpg) no-repeat 10px center;">
+						<div class="bei" style="background:url(<%=webPath + contextPath%>/repair/prototype/images/12.jpg) no-repeat 10px center;">
 							<div class="qian" >
 								<span class="da">结算点评</span></br>
 								<a><span class="xiao">编辑</span></a>
@@ -144,7 +144,7 @@
 						</div>
 					</td>
 					<td>
-						<div class="bei" style="background:url(images/12.jpg) no-repeat 10px center;">
+						<div class="bei" style="background:url(<%=webPath + contextPath%>/repair/prototype/images/12.jpg) no-repeat 10px center;">
 							<div class="qian" >
 								<span class="da">离厂关怀</span></br>
 								<a><span class="xiao">编辑</span></a>
@@ -154,7 +154,7 @@
 				</tr>
 								<tr>
 					<td>
-						<div class="bei" style="background:url(images/12.jpg) no-repeat 0px center;">
+						<div class="bei" style="background:url(<%=webPath + contextPath%>/repair/prototype/images/12.jpg) no-repeat 0px center;">
 							<div class="qian" >
 								<span class="da">修后提醒</span></br>
 								<a><span class="xiao">编辑</span></a>
@@ -162,7 +162,7 @@
 						</div>
 					</td>
 					<td>
-						<div class="bei" style="background:url(images/12.jpg) no-repeat 10px center;">
+						<div class="bei" style="background:url(<%=webPath + contextPath%>/repair/prototype/images/12.jpg) no-repeat 10px center;">
 							<div class="qian" >
 								<span class="da">离厂90天</span></br>
 								<a><span class="xiao">编辑</span></a>

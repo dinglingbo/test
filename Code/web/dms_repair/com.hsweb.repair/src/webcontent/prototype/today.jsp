@@ -119,7 +119,7 @@
 				}
 
 				.fw {
-					margin-top: 10px;
+					
 					margin-left: 15px;
 				}
 
@@ -140,7 +140,7 @@
 					position: absolute;
 					display: block;
 					width: 330px;
-					height: 600px;
+					height: 500px;
 					background-color: #FFF;
 					top: 0px;
 					right: 0px;
@@ -713,7 +713,7 @@
 											</tr>
 											<tr>
 												<td colspan="2">
-													<img src="images/ditu.jpg" width="250px" height="100px"/>
+													<img src="<%=webPath + contextPath%>/repair/prototype/images/ditu.png" width="250px" height="100px"/>
 												</td>
 											</tr>
 										</table>
@@ -751,7 +751,7 @@
 										<table class="guestT">
 											<tr>
 												<td colspan="2">
-													<img src="images/ditu.jpg" width="250px" height="100px"/>
+													<img src="<%=webPath + contextPath%>/repair/prototype/images/ditu.jpg" width="250px" height="100px"/>
 												</td>
 											</tr>
 										</table>
@@ -803,7 +803,7 @@
 											</tr>
 											<tr>
 												<td colspan="4">
-													<img src="images/chudian.jpg" width="280px" height="200px"/>
+													<img src="<%=webPath + contextPath%>/repair/prototype/images/chudian.jpg" width="280px" height="200px"/>
 												</td>
 											</tr>
 										</table>
@@ -851,16 +851,16 @@
 											</tr>
 											<tr>
 												<td>
-													<a><img src="images/1.jpg" width="70px" height="80px"/></a>
+													<a><img src="<%=webPath + contextPath%>/repair/prototype/images/1.jpg" width="70px" height="80px"/></a>
 												</td>
 												<td>
-													<a><img src="images/2.jpg" width="70px" height="80px"/></a>
+													<a><img src="<%=webPath + contextPath%>/repair/prototype/images/2.jpg" width="70px" height="80px"/></a>
 												</td>
 												<td>
-													<a><img src="images/3.jpg" width="70px" height="80px"/></a>
+													<a><img src="<%=webPath + contextPath%>/repair/prototype/images/3.jpg" width="70px" height="80px"/></a>
 												</td>
 												<td>
-													<a><img src="images/4.jpg" width="70px" height="80px"/></a>
+													<a><img src="<%=webPath + contextPath%>/repair/prototype/images/4.jpg" width="70px" height="80px"/></a>
 												</td>
 											</tr>
 											<tr>
@@ -870,16 +870,16 @@
 											</tr>
 											<tr>
 												<td>
-													<a><img src="images/5.jpg" width="70px" height="80px"/></a>
+													<a><img src="<%=webPath + contextPath%>/repair/prototype/images/5.jpg" width="70px" height="80px"/></a>
 												</td>
 												<td>
-													<a><img src="images/6.jpg" width="70px" height="80px"/></a>
+													<a><img src="<%=webPath + contextPath%>/repair/prototype/images/6.jpg" width="70px" height="80px"/></a>
 												</td>
 												<td>
-													<a><img src="images/7.jpg" width="70px" height="80px"/></a>
+													<a><img src="<%=webPath + contextPath%>/repair/prototype/images/7.jpg" width="70px" height="80px"/></a>
 												</td>
 												<td>
-													<a><img src="images/8.jpg" width="70px" height="80px"/></a>
+													<a><img src="<%=webPath + contextPath%>/repair/prototype/images/8.jpg" width="70px" height="80px"/></a>
 												</td>
 											</tr>
 											<tr>
@@ -889,13 +889,13 @@
 											</tr>
 											<tr>
 												<td>
-													<a><img src="images/1.jpg" width="70px" height="80px"/></a>
+													<a><img src="<%=webPath + contextPath%>/repair/prototype/images/1.jpg" width="70px" height="80px"/></a>
 												</td>
 												<td>
-													<a><img src="images/2.jpg" width="70px" height="80px"/></a>
+													<a><img src="<%=webPath + contextPath%>/repair/prototype/images/2.jpg" width="70px" height="80px"/></a>
 												</td>
 												<td>
-													<a><img src="images/3.jpg" width="70px" height="80px"/></a>
+													<a><img src="<%=webPath + contextPath%>/repair/prototype/images/3.jpg" width="70px" height="80px"/></a>
 												</td>
 												<td>
 													
@@ -909,10 +909,10 @@
 											</tr>
 											<tr>
 												<td>
-													<a><img src="images/1.jpg" width="70px" height="80px"/></a>
+													<a><img src="<%=webPath + contextPath%>/repair/prototype/images/1.jpg" width="70px" height="80px"/></a>
 												</td>
 												<td>
-													<a><img src="images/2.jpg" width="70px" height="80px"/></a>
+													<a><img src="<%=webPath + contextPath%>/repair/prototype/images/2.jpg" width="70px" height="80px"/></a>
 												</td>
 												<td>
 													

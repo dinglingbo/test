@@ -59,7 +59,10 @@ $(document).ready(function(v) {
 			if (tgradeHash[e.value]) {
 				e.cellHtml = tgradeHash[e.value].name || "";
 			}
-		} else {
+		}else if("isInternal" == field) {
+			e.cellHtml = e.value == 1 ? "是" : "否";
+		}
+		else {
 			onDrawCell(e);
 		}
 	});

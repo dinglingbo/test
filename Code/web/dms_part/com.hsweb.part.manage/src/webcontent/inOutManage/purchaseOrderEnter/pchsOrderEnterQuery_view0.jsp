@@ -95,7 +95,7 @@
          sizeList="[1000,5000,10000]"
          showSummaryRow="true">
         <div property="columns">
-            <div type="indexcolumn">序号</div>
+            <div width="40" type="indexcolumn">序号</div>
             <div header="采购信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
@@ -112,8 +112,8 @@
                     <div allowSort="true" field="comPartCode" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true"width="100" field="comPartName" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
-                    <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
+                    <div allowSort="true" field="partBrandId" width="80" headerAlign="center" header="品牌"></div>
+                    <div allowSort="true" field="applyCarModel" width="120" headerAlign="center" header="车型"></div>
                     <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
                 </div>
             </div>

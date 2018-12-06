@@ -331,7 +331,15 @@ function ValueChanged(e) {
     var sdata = e.selected;
     checkMainName.setValue(sdata.name);
     mainGrid.setUrl(mainGridUrl);
-    mainGrid.load({mainId:sdata.id,token:token});
+    mainGrid.load({mainId:sdata.id,token:token},function(data){
+    	var list =data.data;
+    	if(list.length==0){
+    		showMsg("该检查模板无检查项目,请添加检查项目","W");
+    		nui.get('checkMainId').setValue("");
+    		nui.get('checkMainId').setText("");
+    		return;
+    	}
+    });
 }
 
 function newCheckMainMore(){
@@ -687,6 +695,11 @@ function saveDetail(){ //√  isCheckMain == "N"
             mainData.checkMainName = checkMainName.value;
         }
     }
+    nui.mask({
+    	el : document.body,
+		cls : 'mini-mask-loading',
+        html:'保存中..'
+    });
     nui.ajax({
         url : baseUrl + "com.hsapi.repair.repairService.crud.saveCheckDetail.biz.ext",
         type : "post",
@@ -758,7 +771,11 @@ function saveCheckMain(){//isCheckMain == "Y"
 		}
 	}
     var mdata = billForm.getData();
-    mdata.checkPoint=100;
+    nui.mask({
+    	el : document.body,
+		cls : 'mini-mask-loading',
+        html:'保存中..'
+    });
     nui.ajax({
         url : baseUrl + "com.hsapi.repair.repairService.repairInterface.saveCheckMainA.biz.ext",
         type : "post",
@@ -768,11 +785,17 @@ function saveCheckMain(){//isCheckMain == "Y"
         },
         success : function(data) {
             if(data.errCode == "S"){
+            	nui.unmask();
                 var mainData = data.mainData;
                 nui.get("id").setValue(mainData.id);
                 billForm.setData(mainData);
                 $("#servieIdEl").html(mainData.serviceCode);
-                saveDetailB();
+                if(gridData.length<=0){
+                    showMsg(data.errMsg || "保存成功","S");
+                }
+                else{
+                	saveDetailB();
+                }
             }else{
                 showMsg(data.errMsg,"E");
             }
@@ -797,6 +820,11 @@ function finish(){
 		showMsg('请先保存查车开单!',"W");
 		return;
 	}
+	 nui.mask({
+		 	el : document.body,
+			cls : 'mini-mask-loading',
+	        html:'处理中..'
+	    });
 	nui.ajax({
         url : baseUrl + "com.hsapi.repair.repairService.repairInterface.saveCheckMainA.biz.ext",
         type : "post",
@@ -806,12 +834,13 @@ function finish(){
             token : token
         },
         success : function(data) {
+        	nui.unmask();
             if(data.errCode == "S"){
                 var mainData = data.mainData;
                 nui.get("id").setValue(mainData.id);
                 billForm.setData(mainData);
                 $("#servieIdEl").html(mainData.serviceCode);
-                showMsg("保存成功","S");
+                showMsg(data.errMsg ||"保存成功","S");
             }else{
                 showMsg(data.errMsg,"E");
             }
@@ -850,6 +879,11 @@ function saveDetailB(){
         }
         gridData.push(tem);
     }
+    nui.mask({
+    	el : document.body,
+		cls : 'mini-mask-loading',
+        html:'保存中..'
+    });
     nui.ajax({
         url : baseUrl + "com.hsapi.repair.repairService.crud.saveCheckDetail.biz.ext",
         type : "post",
@@ -859,6 +893,7 @@ function saveDetailB(){
             token : token
         },
         success : function(data) {
+        	nui.unmask();
             if(data.errCode == "S"){
                 actionType = 'edit';
                 mainGrid.setUrl(baseUrl + "com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
@@ -868,11 +903,13 @@ function saveDetailB(){
                 showMsg("保存成功!","S");
             }
             else{
+            	nui.unmask();
             	showMsg(data.errMsg,"E");
             	return;
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
+        	nui.unmask();
             console.log(jqXHR.responseText);
         }
     });

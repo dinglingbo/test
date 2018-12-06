@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.9.41"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.9.44"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -100,14 +100,14 @@
                 <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
                     style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
                     id="search_key" url="" value="carNo"   searchField="key" 
-                    dataField="list" placeholder="请输入...">     
+                    dataField="list" placeholder="请输入..." >     
                     <div property="columns">
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
                         <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
                         <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
                         <div header="联系人名称" field="contactName" width="30" headerAlign="center"></div>
                         <div header="联系人手机" field="mobile" width="60" headerAlign="center"></div>
-                        <div header="VIN" field="vin" width="70" headerAlign="center"></div>
+                        <div header="车架号(VIN)" field="vin" width="70" headerAlign="center"></div>
                     </div>
                 </div>
                 <input id="search_name"
@@ -202,7 +202,7 @@
                         <!-- <label id="basicDataEl" style="font-family:Verdana;color:blue;"><a id="showBasicDataEl" href="javascript:showBasicData()">产品录入</a></label> -->
                         <label id="cardPackageEl" style="font-family:Verdana;color:blue;"><a id="showCardTimesEl" href="javascript:showCardTimes()">次卡套餐(0)</a></label>
                         <label id="clubCardEl" style="font-family:Verdana;color:blue;"><a id="showCardEl" href="javascript:showCard()">储值卡(0)</a></label>
-                        <label id="creditEl" style="font-family:Verdana;color:#578ccd;">挂账:0</label>
+                        <label id="creditEl" style="font-family:Verdana;color:#578ccd;">挂账:0</label><span>&nbsp;&nbsp;</span>
                     </div>
                 </td>
                 <td>

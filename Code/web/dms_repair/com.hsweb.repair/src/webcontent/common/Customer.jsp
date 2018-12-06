@@ -26,7 +26,7 @@ table {
             <tr>
                 <td class="">
                     <label>查询选项：</label>
-                    <input class="nui-combobox" valueFromSelect="true" id="key" name="key" value="lcarNo"/>
+                    <input class="nui-combobox"  id="key" name="key" value="lcarNo"/>
                     <label>查询值：</label>
                     <input class="nui-textbox" name="value" id = "setValue"  onenter="onenterSearch(this.value)"/>
                     <div class="nui-radiobuttonlist"

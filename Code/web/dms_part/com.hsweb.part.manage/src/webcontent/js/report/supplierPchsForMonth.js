@@ -215,7 +215,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
-	initGrid(beginDateEl.getValue(), endDateEl.getValue());
+	initGrid(beginDateEl.getFormValue(), endDateEl.getFormValue());
 
     rightGrid.load({
         params:params,
@@ -247,11 +247,11 @@ function initGrid(startDate, endDate){
 	var columnList = getYearMonthList(startDate, endDate);
 	var columnsObj = {};
 	var columnsList = [];
-	columnsList.push({type: "indexcolumn", header: "序号" });
-	columnsList.push({field: "supplierCode",width:"60", summaryType:"count", headerAlign: "center", allowSort: true, header: "供应商编码"});
-    columnsList.push({field: "shortName",width:"60", headerAlign: "center", allowSort: true, header: "供应商简称"});
-    columnsList.push({field: "supplierType",width:"60", headerAlign: "center", allowSort: true, header: "供应商分类"});
-    columnsList.push({field: "fullName",width:"60", headerAlign: "center", allowSort: true, header: "供应商全称"});
+	columnsList.push({type: "indexcolumn",width:"40" ,header: "序号" });
+	columnsList.push({field: "supplierCode",width:"80", summaryType:"count", headerAlign: "center", allowSort: true, header: "供应商编码"});
+    columnsList.push({field: "shortName",width:"80", headerAlign: "center", allowSort: true, header: "供应商简称"});
+    columnsList.push({field: "supplierType",width:"70", headerAlign: "center", allowSort: true, header: "供应商分类"});
+    columnsList.push({field: "fullName",width:"120", headerAlign: "center", allowSort: true, header: "供应商全称"});
 	if(columnList && columnList.length > 0){
 		for (i = 0; i < columnList.length; i++) {
 			var yearMonthObj = columnList[i];

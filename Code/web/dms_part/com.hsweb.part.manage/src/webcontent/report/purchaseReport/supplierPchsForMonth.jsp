@@ -4,7 +4,7 @@
 
 <head>
 <title>供应商采购汇总按月排行</title>
-<script src="<%=webPath + contextPath%>/manage/js/report/supplierPchsForMonth.js?v=1.1.6"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/supplierPchsForMonth.js?v=1.1.11"></script>
 </head>
 
 <body>
@@ -52,7 +52,7 @@
         sizeList="[10,20,50]" allowAlternating="true" 
           url="" dataField="supplierList" idField="guestId" 
                 ondrawcell="onRightGridDraw" sortMode="client"
-                showSummaryRow="true"
+                showSummaryRow="true"allowCellWrap = true
         parentField="parentId">
         <div property="columns" width="10">
             <div header="   ">

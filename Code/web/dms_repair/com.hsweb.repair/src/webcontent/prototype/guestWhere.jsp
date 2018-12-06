@@ -119,7 +119,7 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<img src="images/11.jpg" width="620px" height="250px" text-align="center"/>
+						<img src="<%=webPath + contextPath%>/repair/prototype/images/11.jpg" width="620px" height="250px" text-align="center"/>
 					</td>
 				</tr>
 				<tr>

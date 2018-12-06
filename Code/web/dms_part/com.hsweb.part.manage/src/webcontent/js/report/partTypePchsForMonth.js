@@ -207,7 +207,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
-	initGrid(beginDateEl.getValue(), endDateEl.getValue());
+	initGrid(beginDateEl.getFormValue(), endDateEl.getFormValue());
 
     rightGrid.load({
         params:params,
@@ -239,8 +239,8 @@ function initGrid(startDate, endDate){
 	var columnList = getYearMonthList(startDate, endDate);
 	var columnsObj = {};
 	var columnsList = [];
-	columnsList.push({type: "indexcolumn", header: "序号" });
-	columnsList.push({field: "carTypeIdF",width:"60", summaryType:"count", headerAlign: "center", allowSort: true, header: "配件类型"});
+	columnsList.push({type: "indexcolumn",width:"40", header: "序号" });
+	columnsList.push({field: "carTypeIdF",width:"80", summaryType:"count", headerAlign: "center", allowSort: true, header: "配件类型"});
 	if(columnList && columnList.length > 0){
 		for (i = 0; i < columnList.length; i++) {
 			var yearMonthObj = columnList[i];
@@ -258,8 +258,8 @@ function initGrid(startDate, endDate){
 					        	{field: orderAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库金额"},
 					        	{field: orderRtnQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货数量"},
 					        	{field: orderRtnAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货金额"},
-					        	{field: trueQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库数量"},
-					        	{field: trueAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额"}
+					        	{field: trueQtyColumnName, width: 90, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库数量"},
+					        	{field: trueAmtColumnName, width: 90, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额"}
 				          	]}
 			           ]};
 			columnsList.push(obj);

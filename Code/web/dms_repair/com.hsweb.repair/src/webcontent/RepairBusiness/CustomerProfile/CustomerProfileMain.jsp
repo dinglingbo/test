@@ -11,7 +11,7 @@
 -->
 <head>
 	<title>客户档案</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.0"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.1"></script>
 	<style type="text/css">
 		table {
 			font-size: 12px;
@@ -75,8 +75,8 @@
 
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="20" allowcellwrap="true"
-		 onselectionchanged="selectionChanged"  frozenStartColumn="0" frozenEndColumn="5" totalCount="page.count" onrowdblclick="edit()"
-		 virtualColumns="true">
+		 onselectionchanged="selectionChanged"   totalCount="page.count" onrowdblclick="edit()"
+		>
 			<div property="columns">
 				<div width="30" type="indexcolumn">序号</div>
 				<div header="车辆信息" headerAlign="center">

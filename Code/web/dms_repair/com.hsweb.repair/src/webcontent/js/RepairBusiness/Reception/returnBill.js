@@ -469,12 +469,12 @@ function setInitData(params){
                         loadDetail(p3);
 
                     }else{
-                        showMsg("数据加载失败,请重新打开工单!","W");
+                        showMsg("数据加载失败,请重新打开工单!","E");
                     }
     
                 }, function(){});
             }else{
-                showMsg('数据加载失败!','W');
+                showMsg('数据加载失败!','E');
             }
         }, function(){
             nui.unmask(document.body);
@@ -559,7 +559,7 @@ function save(){
                     loadDetail(p3);
 
                 }else{
-                    showMsg("数据加载失败,请重新打开工单!","W");
+                    showMsg("数据加载失败,请重新打开工单!","E");
                 }
 
             }, function(){});           
@@ -620,7 +620,7 @@ function saveNoShowMsg(){
                     loadDetail(p3);
 
                 }else{
-                    showMsg("数据加载失败,请重新打开工单!","W");
+                    showMsg("数据加载失败,请重新打开工单!","E");
                 }
 
             }, function(){});           
@@ -670,7 +670,7 @@ function saveMaintain(callback,unmaskcall){
             callback && callback(main);
         } else {
             unmaskcall && unmaskcall();
-            showMsg(data.errMsg || "保存单据失败","W");
+            showMsg(data.errMsg || "保存单据失败","E");
         }
     }, function(){
         unmaskcall && unmaskcall();
@@ -680,7 +680,7 @@ function saveMaintain(callback,unmaskcall){
 function addPrdt(data){
     var main = billForm.getData();
     if(!main.id){
-        showMsg("请先保存工单!","E");
+        showMsg("请先保存工单!","W");
         return;
     }
     var type = data.type;
@@ -734,7 +734,7 @@ function addPrdt(data){
                         }
                     }, function(){});
                 }else{
-                    showMsg(errMsg||"添加预存信息失败!","W");
+                    showMsg(errMsg||"添加预存信息失败!","E");
                     return;
                 }
             });
@@ -778,7 +778,7 @@ function addPrdt(data){
                     }
                 }, function(){});
             }else{
-                showMsg(errMsg||"添加预存信息失败!","W");
+                showMsg(errMsg||"添加预存信息失败!","E");
                 return;
             }
         });
@@ -787,7 +787,7 @@ function addPrdt(data){
 function checkPrdt(data){
     var main = billForm.getData();
     if(!main.id){
-        showMsg("请先保存工单!","E");
+        showMsg("请先保存工单!","W");
         return;
     }
     var type = data.type||-1;
@@ -1139,7 +1139,7 @@ function saveBatch(){
 				var returnJson = nui.decode(text);
 				nui.unmask(document.body);
 				if (returnJson.errCode == "S") {
-					showMsg("保存成功");
+					showMsg("保存成功","S");
 					data = returnJson.data;
 					 var params = {
 				                data:{
@@ -1179,7 +1179,7 @@ function saveBatch(){
 			                    billForm.setData(data);
 
 			                }else{
-			                    showMsg("数据加载失败,请重新打开工单!","W");
+			                    showMsg("数据加载失败,请重新打开工单!","E");
 			                }
 
 			            }, function(){});
@@ -1187,7 +1187,7 @@ function saveBatch(){
 				} else {
 					//数据改回原本来的数据
 					rpsPartGrid.reject();
-					showMsg(returnJson.errMsg);
+					showMsg(returnJson.errMsg || "保存失败","E");
 				}
 			}
 		});    
@@ -1228,7 +1228,7 @@ function saveBatch(){
 													
 				} else {
 					//rpsPartGrid.reject();
-					showMsg(returnJson.errMsg,"W");
+					showMsg(returnJson.errMsg || "保存失败","E");
 				}
 			}
 		});
@@ -1309,7 +1309,7 @@ function finish(){
 				showMsg("确认开单成功","S");
 				
 			} else {
-				showMsg(returnJson.errMsg,"E");
+				showMsg(returnJson.errMsg || "确认开单失败","E");
 			}
 				
 		}
@@ -1334,11 +1334,11 @@ function onDrawSummaryCell(e){
 function pay(){	
 	var main = billForm.getData();
 	if(main.isSettle == 1){
-        showMsg("此单已结算!","W");
+        showMsg("工单已结算!","W");
         return;
     }
 	if(main.status != 2){
-		 showMsg("此单未归库，不能结算!","W");
+		 showMsg("工单未归库，不能结算!","W");
 	     return;
 	}
 	nui.open({
@@ -1378,7 +1378,7 @@ function pay(){
 	               showMsg("转预结算成功!","S");
 	           }else{
 	               if(data.errCode){
-	                   showMsg("结算失败!","W");
+	                   showMsg("结算失败!","E");
 	                   return;
 	               }
 	           }

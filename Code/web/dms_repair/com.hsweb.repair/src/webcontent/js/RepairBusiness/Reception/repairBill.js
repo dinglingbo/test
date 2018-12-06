@@ -813,7 +813,7 @@ function setInitData(params){
                                 var Amt = account.accountAmt || 0;
                                 $("#creditEl").html("挂账:"+Amt);
                             } else {
-                                showMsg(data.errMsg || "获取挂账信息失败","W");
+                                showMsg(data.errMsg || "获取挂账信息失败","E");
                             }
                         },
                         error : function(jqXHR, textStatus, errorThrown) {
@@ -1056,7 +1056,7 @@ function save(){
                             var Amt = account.accountAmt || 0;
                             $("#creditEl").html("挂账:"+Amt);
                         } else {
-                            showMsg(data.errMsg || "获取挂账信息失败","W");
+                            showMsg(data.errMsg || "获取挂账信息失败","E");
                         }
                     },
                     error : function(jqXHR, textStatus, errorThrown) {
@@ -1129,7 +1129,7 @@ function save(){
                     loadDetail(p1, p2, p3);
 
                 }else{
-                    showMsg("数据加载失败,请重新打开工单!","W");
+                    showMsg("数据加载失败,请重新打开工单!","E");
                 }
 
             }, function(){});
@@ -1164,7 +1164,7 @@ function saveNoshowMsg(callback){
                             var Amt = account.accountAmt || 0;
                             $("#creditEl").html("挂账:"+Amt);
                         } else {
-                            showMsg(data.errMsg || "获取挂账信息失败","W");
+                            showMsg(data.errMsg || "获取挂账信息失败","E");
                         }
                     },
                     error : function(jqXHR, textStatus, errorThrown) {
@@ -1236,7 +1236,7 @@ function saveNoshowMsg(callback){
                     loadDetail(p1, p2, p3);
                     callback && callback();
                 }else{
-                    showMsg("数据加载失败,请重新打开工单!","W");
+                    showMsg("数据加载失败,请重新打开工单!","E");
                 }
 
             }, function(){});
@@ -1286,7 +1286,7 @@ function saveMaintain(callback,unmaskcall){
             callback && callback(main);
         } else {
             unmaskcall && unmaskcall();
-            showMsg(data.errMsg || "保存单据失败","W");
+            showMsg(data.errMsg || "保存单据失败","E");
         }
     }, function(){
         unmaskcall && unmaskcall();
@@ -1352,7 +1352,7 @@ function sureMT(){
                 doSetStyle(status, isSettle);
                 showMsg("确定维修成功!","S");
             }else{
-                showMsg(errMsg||"确定维修失败!","W");
+                showMsg(errMsg||"确定维修失败!","E");
                 nui.unmask(document.body);
             }
         }, function(){
@@ -1388,7 +1388,7 @@ function finish(){
                     showMsg("完工成功!","S");
                 }else{
                     if(data.errCode){
-                        showMsg("完工失败!","W");
+                        showMsg("完工失败!","E");
                         return;
                     }
                 }
@@ -1408,7 +1408,7 @@ function unfinish(){
             return;
         }
         if(data.status != 2){
-            showMsg("工单未完工,不能返单!!","W");
+            showMsg("工单未完工,不能返单!","W");
             return;
         }
         
@@ -1437,7 +1437,7 @@ function unfinish(){
                 doSetStyle(status, isSettle);
                 showMsg("返单成功!","S");
             }else{
-                showMsg(errMsg||"返单失败!","W");
+                showMsg(errMsg||"返单失败!","E");
             }
             nui.unmask(document.body);
         }, function(){
@@ -1474,7 +1474,7 @@ function loadMaintain(callback,unmaskcall){
                 callback && callback(main);
             } else {
                 unmaskcall && unmaskcall();
-                showMsg(data.errMsg || "保存单据失败","W");
+                showMsg(data.errMsg || "保存单据失败","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -1563,7 +1563,7 @@ function addPrdt(data){
                         }
                     }, function(){});
                 }else{
-                    showMsg(errMsg||"添加预存信息失败!","W");
+                    showMsg(errMsg||"添加预存信息失败!","E");
                     return;
                 }
             });
@@ -1605,7 +1605,7 @@ function addPrdt(data){
                     }
                 }, function(){});
             }else{
-                showMsg(errMsg||"添加套餐失败!","W");
+                showMsg(errMsg||"添加套餐失败!","E");
                 return;
             }
         });
@@ -1644,7 +1644,7 @@ function addPrdt(data){
                     }
                 }, function(){});
             }else{
-                showMsg(errMsg||"添加项目信息失败!","W");
+                showMsg(errMsg||"添加项目信息失败!","E");
                 return;
             }
         });
@@ -1653,7 +1653,7 @@ function addPrdt(data){
 function checkPrdt(data){
     var main = billForm.getData();
     if(!main.id){
-        showMsg("请先保存工单!","E");
+        showMsg("请先保存工单!","W");
         return;
     }
     var type = data.type||-1;
@@ -1755,7 +1755,7 @@ function deletePackRow(row_uid){
 
             rpsPackageGrid.removeRows(rows);
         }else{
-            showMsg(errMsg||"删除套餐信息失败!","W");
+            showMsg(errMsg||"删除套餐信息失败!","E");
             return;
         }
     });
@@ -1769,11 +1769,11 @@ function deleteItemRow(row_uid){
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("本工单已完工,不能删除项目!","W");
+        showMsg("工单已完工,不能删除项目!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能删除项目!","W");
+        showMsg("工单已结算,不能删除项目!","W");
         return;
     }
 
@@ -1813,7 +1813,7 @@ function deleteItemRow(row_uid){
             });
         	rpsItemGrid.removeRows(rows);
         }else{
-            showMsg(errMsg||"删除项目信息失败!","W");
+            showMsg(errMsg||"删除项目信息失败!","E");
             return;
         }
     });
@@ -1864,7 +1864,7 @@ function deletePartRow(row_uid){
                 rpsItemGrid.removeRow(row);
             }
         }else{
-            showMsg(errMsg||"删除配件信息失败!","W");
+            showMsg(errMsg||"删除配件信息失败!","E");
             return;
         }
     });
@@ -2065,7 +2065,7 @@ function surePkgRateSetWin(){
 
                     advancedPkgRateSetWin.hide();
                 }else{
-                    showMsg(errMsg||"批量修改优惠率失败!!","W");
+                    showMsg(errMsg||"批量修改优惠率失败!!","E");
                 }
                 nui.unmask(document.body);
             }, function(){
@@ -2154,7 +2154,7 @@ function sureItemPartRateSetWin(){
 
                     advancedItemPartRateSetWin.hide();
                 }else{
-                    showMsg(errMsg||"批量修改优惠率失败!!","W");
+                    showMsg(errMsg||"批量修改优惠率失败!","E");
                 }
                 nui.unmask(document.body);
             }, function(){
@@ -2343,7 +2343,7 @@ function addCardTimesToBill(){
                     }
                 }, function(){});
             }else{
-                showMsg(errMsg||"添加预存信息失败!","W");
+                showMsg(errMsg||"添加预存信息失败!","E");
                 return;
             }
         });
@@ -2503,7 +2503,7 @@ function updateRpsPackage(row_uid){
                 }else{
                 	rpsPackageGrid.reject();
                     rpsPackageGrid.accept();
-                    showMsg(errMsg||"修改数据失败!","W");
+                    showMsg(errMsg||"修改数据失败!","E");
                     return;
                 }
             });
@@ -2613,7 +2613,7 @@ function updateRpsItem(row_uid){
                 }else{
                 	rpsItemGrid.reject();
                     rpsItemGrid.accept();
-                    showMsg(errMsg||"修改数据失败!","W");
+                    showMsg(errMsg||"修改数据失败!","E");
                     return;
                 }
             });
@@ -2720,7 +2720,7 @@ function updateItemRpsPart(row_uid){
                 }else{
                 	rpsItemGrid.reject();
                 	rpsItemGrid.accept();
-                    showMsg(errMsg||"修改数据失败!","W");
+                    showMsg(errMsg||"修改数据失败!","E");
                     return;
                 }
             });
@@ -2846,7 +2846,7 @@ function addToBillPackage(row, callback, unmaskcall){
             callback && callback(res);
         }else{
             unmaskcall && unmaskcall();
-            showMsg(errMsg||"添加套餐失败!","W");
+            showMsg(errMsg||"添加套餐失败!","E");
             return;
         }
     },function(){
@@ -2874,7 +2874,7 @@ function delFromBillPackage(data, callback){
         if(errCode == 'S'){   
             callback && callback();
         }else{
-            showMsg(errMsg||"删除套餐信息失败!","W");
+            showMsg(errMsg||"删除套餐信息失败!","E");
             return;
         }
     });
@@ -2906,7 +2906,7 @@ function addToBillItem(row, callback, unmaskcall){
             callback && callback(res);
         }else{
             unmaskcall && unmaskcall();
-            showMsg(errMsg||"添加项目失败!","W");
+            showMsg(errMsg||"添加项目失败!","E");
             return;
         }
     },function(){
@@ -2933,7 +2933,7 @@ function delFromBillItem(data, callback){
         if(errCode == 'S'){   
             callback && callback();
         }else{
-            showMsg(errMsg||"删除项目信息失败!","W");
+            showMsg(errMsg||"删除项目信息失败!","E");
             return;
         }
     });
@@ -3015,11 +3015,11 @@ function choosePart(row_uid){
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("本工单已完工,不能添加配件!","W");
+        showMsg("工单已完工,不能添加配件!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("此单已结算,不能添加配件!","W");
+        showMsg("工单已结算,不能添加配件!","W");
         return;
     }
     advancedMorePartWin.hide();
@@ -3071,7 +3071,7 @@ function addToBillPart(row, callback, unmaskcall){
             callback && callback(res);
         }else{
             unmaskcall && unmaskcall();
-            showMsg(errMsg||"添加配件失败!","W");
+            showMsg(errMsg||"添加配件失败!","E");
             return;
         }
     },function(){
@@ -3097,7 +3097,7 @@ function delFromBillPart(data, callback){
         if(errCode == 'S'){   
             callback && callback();
         }else{
-            showMsg(errMsg||"删除配件信息失败!","W");
+            showMsg(errMsg||"删除配件信息失败!","E");
             return;
         }
     });
@@ -3230,7 +3230,7 @@ function pay(){
                     showMsg("转预结算成功!","S");
                 }else{
                     if(data.errCode){
-                        showMsg("结算失败!","W");
+                        showMsg("结算失败!","E");
                         return;
                     }
                 }
@@ -3999,7 +3999,7 @@ function MemSelectOk(){
     var form = new nui.Form("#show2");
     form.validate();
     if (form.isValid() == false) {
-        showMsg("请先选择派工人！","W");
+        showMsg("请先选择派工人!","W");
         return;
     }
     SaveCheckMain();
@@ -4033,7 +4033,7 @@ function changeCheckInfoTab(resultdata) {
 
     var data = billForm.getData();
     if(!data.id){
-        showMsg("请先保存工单!","E");
+        showMsg("请先保存工单!","W");
         return;
     }
 
@@ -4081,7 +4081,7 @@ function changeCheckInfoTab(resultdata) {
 function SaveCheckMain() {
     var data = billForm.getData();
     if(!data.id){
-        showMsg("请先保存工单!","E");
+        showMsg("请先保存工单!","W");
         return;
     }
     if(isRecord == "0"){

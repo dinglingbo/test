@@ -157,7 +157,7 @@ $(document).ready(function ()
         if(column.field == "amt" ||column.field == "rtnCompRate" ||column.field == "rtnGuestRate"){
             editor.validate();
             if (editor.isValid() == false) {
-                showMsg("请输入有效数字！","W");
+                showMsg("请输入有效数字!","W");
                 e.cancel = true;
             }else{
             	if (e.field == "amt") {
@@ -424,7 +424,7 @@ function setInitData(params){
 //            }
 
         }else{
-            showMsg("数据加载失败,请重新打开工单!","W");
+            showMsg("数据加载失败,请重新打开工单!","E");
         }
 
     }, function(){
@@ -517,14 +517,14 @@ function saveData(e){
     if(tid){
         var main = searchMainData(tid);
             if(main.status != 0){
-            showMsg("该工单已转入预结算或已结算，不能再进行此操作！","W");
+            showMsg("该工单已转入预结算或已结算，不能再进行此操作!","W");
             return false;
         }
     }
     var data = basicInfoForm.getData();
     basicInfoForm.validate();
     if(basicInfoForm.isValid()==false){
-		showMsg("本次里程请填写正整数！","W");
+		showMsg("本次里程请填写正整数!","W");
 		return false;
 	}
     for ( var key in requiredField) {
@@ -551,7 +551,7 @@ function saveData(e){
 	        	detailGrid.load({serviceId:mainData.id,token:token});
 	        	
 	        	if(e == 1){
-	        		showMsg("保存成功！","S");
+	        		showMsg("保存成功!","S");
 	        		$("#servieIdEl").html(mainData.serviceCode);
 	        	}
             }else{
@@ -580,12 +580,12 @@ function saveData(e){
 function pay() {
     var tid = nui.get("id").value;
     if(!tid){
-        showMsg("请先保存工单！","W");
+        showMsg("请先保存工单!","W");
         return;
     }
     var main = searchMainData(tid);
         if(main.status != 0){
-        showMsg("该工单已转入预结算或已结算，不能再进行此操作！","W");
+        showMsg("该工单已转入预结算或已结算，不能再进行此操作!","W");
         return;
     }
     var msg = null;

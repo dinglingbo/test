@@ -59,7 +59,7 @@
 	height: 250px;
 	position: relative;
 	overflow: hidden;
-	background:#CCC;
+	background:#c3a928;
 }
 
 .img {
@@ -141,7 +141,7 @@
 	background-color: #fff
 }
 
-			span.xiao{
+		.xiao{
 				margin-top: 20px;
 				font-size: 35px;
 				font-weight:bolder;
@@ -150,13 +150,16 @@
 				width: 100%;
 			}
 
- a {
- float: left;
+ .abiao {
+ 		float: left;
 		margin-left:25%;
 		margin-top: 25px;
 		cursor: pointer;
 	} 
-	div.card{
+	a{
+		cursor: pointer;
+	}
+	.card{
 		background:#919191;
 		width: 20%;
 		height: 30px;
@@ -173,9 +176,12 @@
 	.tu{
 		color: #CCC
 	}
-		.biao{
+	.biao{
 		margin-top:40px;
-		color: #CCC
+		color: #ee5a22;
+		font-size: 15px;
+		font-weight:bolder;
+		 position: relative;
 	}
 </style>
     
@@ -183,11 +189,11 @@
 <body>
 
 		<div >
-			<a ><span class=" fa fa-angle-left fa-2x  " ><font size="5" style="margin-left: 15px;padding-bottom:10px;">华胜官方活动</font></span></a>
+			<a class="abiao"><span class=" fa fa-angle-left fa-2x  " ><font size="5" style="margin-left: 15px;padding-bottom:10px;">华胜官方活动</font></span></a>
 		</div>
 <div class="banner" align="center">
-		<img class="change pre" src="images/left.jpg">
-		<img class="change next" src="images/right.jpg">
+		<img class="change pre" src="<%=webPath + contextPath%>/repair/prototype/images/left.jpg">
+		<img class="change next" src="<%=webPath + contextPath%>/repair/prototype/images/right.jpg">
 		<div class="cirbox">
 			<div class="cir cr"></div>
 			<div class="cir"></div>
@@ -197,13 +203,13 @@
 			
 		</div>
 		<div class="cirbox1">
-			<div class="card"><font color="#CCC" size="4" style="padding-bottom:10px;">机油卡</font></div>
+			<div class="card"><font color="#f9e70b" size="4" style="padding-bottom:10px;">机油卡</font></div>
 		</div>
 		<div class="imgbox">
-			<img class="img im" src="images/1.jpg">
-			<img class="img" src="images/2.jpg">
-			<img class="img" src="images/3.jpg">
-			<img class="img" src="images/4.jpg">
+			<img class="img im" src="<%=webPath + contextPath%>/repair/prototype/images/1.jpg">
+			<img class="img" src="<%=webPath + contextPath%>/repair/prototype/images/2.jpg">
+			<img class="img" src="<%=webPath + contextPath%>/repair/prototype/images/3.jpg">
+			<img class="img" src="<%=webPath + contextPath%>/repair/prototype/images/4.jpg">
 		</div>
 
 			
@@ -219,28 +225,28 @@
 						<div style="background:#919191;width: 120px;height: 90px" align="center">
 							<span class="tu">>100万</span></br>
 							<span class="tu">平台</span></br>
-							<a style="margin-left: 80px"><span class="fa fa-lock fa-2x tu"></span></a>
+							<a class="abiao" style="margin-left: 80px"><span class="fa fa-lock fa-2x tu"></span></a>
 						</div>
 					</td>
 										<td>
 						<div style="background:#919191;width: 120px;height: 90px" align="center">
-							<span class="tu">>100万</span></br>
-							<span class="tu">平台</span></br>
-							<a style="margin-left: 80px"><span class="fa fa-lock fa-2x tu"></span></a>
+							<span class="tu">>10万</span></br>
+							<span class="tu">区域</span></br>
+							<a class="abiao" style="margin-left: 80px"><span class="fa fa-lock fa-2x tu"></span></a>
 						</div>
 					</td>
 										<td>
 						<div style="background:#919191;width: 120px;height: 90px" align="center">
-							<span class="tu">>100万</span></br>
-							<span class="tu">平台</span></br>
-							<a style="margin-left: 80px"><span class="fa fa-lock fa-2x tu"></span></a>
+							<span class="tu">>0.5万</span></br>
+							<span class="tu">门店</span></br>
+							<a class="abiao" style="margin-left: 80px"><span class="fa fa-lock fa-2x tu"></span></a>
 						</div>
 					</td>
 										<td>
-						<div style="background:#919191;width: 120px;height: 90px" align="center">
-							<span class="tu">>100万</span></br>
+						<div style="background:#ee5a22;width: 120px;height: 90px" align="center">
+							<span class="tu"><font color="#000"><万</font></span></br>
 							<span class="tu">平台</span></br>
-							<a style="margin-left: 80px"><span class="fa fa-lock fa-2x tu"></span></a>
+							<a class="abiao" style="margin-left: 80px"><span class="fa fa-unlock fa-2x tu"></span></a>
 						</div>
 					</td>
 				</tr>
@@ -253,57 +259,58 @@
 			<table>
 				<tr>
 					<td>
-						<div style="background:#919191;width: 120px;height: 90px" align="center">
-							<span class="biao">会员类型</span></br>
+						<div style="background:#EEEED1;width: 120px;height: 90px" align="center">
+							<a onclick="memberType()"><span class="biao" style="width: 120px;height: 90px">会员类型</span></a>
 						</div>
+						
 					</td>
 										<td>
-						<div style="background:#919191;width: 120px;height: 90px" align="center">
-							<span class="biao">厂牌车型</span></br>
+						<div style="background:#EEEED1;width: 120px;height: 90px" align="center">
+							<a onclick="memberType()"><span class="biao">厂牌车型</span></br></a>
 							
 						</div>
 					</td>
 										<td>
-						<div style="background:#919191;width: 120px;height: 90px" align="center">
-							<span class="biao">客户类型</span></br>
+						<div style="background:#EEEED1;width: 120px;height: 90px" align="center">
+							<a onclick="memberType()"><span class="biao">客户类型</span></br></a>
 						</div>
 					</td>
 										<td>
-						<div style="background:#919191;width: 120px;height: 90px" align="center">
-							<span class="biao">保养到期</span></br>
+						<div style="background:#EEEED1;width: 120px;height: 90px" align="center">
+							<a onclick="memberType()"><span class="biao">保养到期</span></br></a>
 						</div>
 					</td>
 					<td>
-						<div style="background:#919191;width: 120px;height: 90px" align="center">
-							<span class="biao">报价未修</span></br>
+						<div style="background:#EEEED1;width: 120px;height: 90px" align="center">
+							<a onclick="memberType()"><span class="biao">报价未修</span></br></a>
 						</div>
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<div style="background:#919191;width: 120px;height: 90px" align="center">
-							<span class="biao">会员类型</span></br>
+						<div style="background:#EEEED1;width: 120px;height: 90px" align="center">
+							<a onclick="memberType()"><span class="biao">会员类型</span></br></a>
 						</div>
 					</td>
 										<td>
-						<div style="background:#919191;width: 120px;height: 90px" align="center">
-							<span class="biao">厂牌车型</span></br>
+						<div style="background:#EEEED1;width: 120px;height: 90px" align="center">
+							<a onclick="memberType()"><span class="biao">厂牌车型</span></br></a>
 							
 						</div>
 					</td>
-										<td>
-						<div style="background:#919191;width: 120px;height: 90px" align="center">
-							<span class="biao">客户类型</span></br>
+					<td>
+						<div style="background:#EEEED1;width: 120px;height: 90px" align="center">
+							<a onclick="memberType()"><span class="biao">客户类型</span></br></a>
 						</div>
 					</td>
 										<td>
-						<div style="background:#919191;width: 120px;height: 90px" align="center">
-							<span class="biao">保养到期</span></br>
+						<div style="background:#EEEED1;width: 120px;height: 90px" align="center">
+							<a onclick="memberType()"><span class="biao">保养到期</span></br></a>
 						</div>
 					</td>
 					<td>
-						<div style="background:#919191;width: 120px;height: 90px" align="center">
-							<span class="biao">报价未修</span></br>
+						<div style="background:#EEEED1;width: 120px;height: 90px" align="center">
+							<a onclick="memberType()"><span class="biao">报价未修</span></br></a>
 						</div>
 					</td>
 				</tr>
@@ -336,6 +343,22 @@ function play(){index++
 if(index>3){index=0}
 $('.img').eq(index).fadeIn(1000).siblings().fadeOut(1000)
 $('.cir').eq(index).addClass('cr').siblings().removeClass('cr')}});});
+
+
+		function memberType(){
+				 nui.open({
+			         url: webPath + contextPath + "/com.hsweb.RepairBusiness.membersChoose.flow?token="+token,
+			         title: '近期活动',
+			         width: 800, height: 580,
+			         onload: function () {
+
+			         },
+			         ondestroy: function (action)
+			         {
+
+			         }
+     });
+		}
     </script>
 
 </body>

@@ -114,10 +114,11 @@
 			
             form.validate();
             if (form.isValid() == false) return;
-
+            o.token = token;
+			//"org.gocom.components.coframe.framework.FunctionManager.saveFunction.biz.ext",
             var json = nui.encode(o);
             $.ajax({
-                url: "org.gocom.components.coframe.framework.FunctionManager.saveFunction.biz.ext",
+                url: apiPath + sysApi + "/com.hsapi.system.tenant.permissions.updateFunction.biz.ext",
                 type: 'POST',
                 data: json,
                 cache: false,
@@ -163,9 +164,9 @@
       		}
         	if(e.isValid){
         		var data = {funccode:e.value};
-        		var json = nui.encode({template:data});
+        		var json = nui.encode({template:data,token:token});
 	        	$.ajax({
-                    url: "org.gocom.components.coframe.framework.FunctionManager.validateFunction.biz.ext",
+                    url: apiPath + sysApi + "/com.hsapi.system.tenant.permissions.validateFunction.biz.ext",//"org.gocom.components.coframe.framework.FunctionManager.validateFunction.biz.ext",
                     type: 'POST',
 	                data: json,
 	                cache: false,

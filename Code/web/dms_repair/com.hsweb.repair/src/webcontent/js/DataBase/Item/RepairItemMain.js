@@ -52,6 +52,7 @@ $(document).ready(function()
 		params.type = customid;
 		doSearch(params);
 	});
+	
 	//右边区域
 	rightGrid = nui.get("rightGrid");
 	rightGrid.setUrl(rightGridUrl);
@@ -113,9 +114,18 @@ $(document).ready(function()
         var keyCode=e.keyCode||e.which;//38向上 40向下
 
         if((keyCode==27))  {  //ESC
-            onCancel();
+            if(isOpenWin==1){
+                onCancel();
+            }
+           
         }
       };
+	tree1.on("rowclick",function(e){
+		nui.get("editItemType").enable();
+	});
+	rightGrid.on("rowclick",function(e){
+		nui.get("editItemType").disable();
+	});
 });
 function onClear(){
 	queryForm.clear();
@@ -358,7 +368,7 @@ function onAdvancedAddOk(){
 				onAdvancedAddCancel();
 				
 			} else {
-				showMsg(data.errMsg || "保存失败!","W");
+				showMsg(data.errMsg || "保存失败!","E");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

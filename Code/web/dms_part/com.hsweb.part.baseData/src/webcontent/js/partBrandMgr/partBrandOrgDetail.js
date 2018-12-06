@@ -49,7 +49,10 @@ $(document).ready(function(v)
 
 
     });
-
+    
+    brandGrid.on("rowdblclick",function(){
+    	save();
+    });
 
 });
 function setInitData(data)
@@ -102,7 +105,7 @@ function save()
                 CloseWindow("ok");
             }
             else{
-                showMsg(data.errMsg||"保存失败","W");
+                showMsg(data.errMsg||"保存失败","E");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

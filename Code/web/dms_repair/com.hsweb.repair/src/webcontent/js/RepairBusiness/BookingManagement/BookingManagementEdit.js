@@ -69,12 +69,6 @@ function init() {
 
 function onenterSelect(e){
 	 var carNo = e;
-	 var falge = isVehicleNumber(carNo);
-		if(!falge){
-			nui.get("carNo").setText("");
-			showMsg("请输入正确的车牌号","W");
-			return;
-		}
 	 openCustomerWindow(carNo,function (v) {
 	        basicInfoForm = new nui.Form("#basicInfoForm");	
 	        var main = basicInfoForm.getData();
@@ -173,6 +167,12 @@ function SetData(params) {
 
 
 function onOk() {
+	var carNo = nui.get("carNo").getValue();
+	var falge = isVehicleNumber(carNo);
+	if(!falge){
+		showMsg("请输入正确的车牌号","W");
+		return;
+	}
 	basicInfoForm = new nui.Form("#basicInfoForm");	
     var main = basicInfoForm.getData();
     if (!main || main == undefined) return;
@@ -207,7 +207,7 @@ function onOk() {
     }
 
     if(!main.contactorName){
-        showMsg("客户名称不能为空!");
+        showMsg("客户名称不能为空!","W");
         return;
     }
     
@@ -249,7 +249,8 @@ function onClose() {
 }
 	
 function selectCustomer() {
-    openCustomerWindow(null,function (v) {
+	var carNo = nui.get("carNo").getText();
+    openCustomerWindow(carNo,function (v) {
         basicInfoForm = new nui.Form("#basicInfoForm");	
         var main = basicInfoForm.getData();
         main.guestId = v.guestId;
@@ -405,14 +406,14 @@ function CloseWindow(action)
 		window.close();
 }
 
-function onCarNoChanged(e){
+/*function onCarNoChanged(e){
 	var falge = isVehicleNumber(e.value);
 	if(!falge){
 		nui.get("carNo").setText("");
 		showMsg("请输入正确的车牌号","W");
 		return;
 	}
-}
+}*/
 
 function isVehicleNumber(vehicleNumber) {
     var result = false;

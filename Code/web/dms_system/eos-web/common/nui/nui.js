@@ -31,18 +31,18 @@ window['nui_model']=window['nui_model']||'min';
 
 
 //miniui
-document.write('<script src="' + bootPATH + 'jquery/jquery-1.6.2.min.js" type="text/javascript"></sc' + 'ript>');
+document.write('<script src="' + bootPATH + 'jquery/jquery-1.6.2.min.js" type="text/javascript"></script>');
 //document.write('<script src="' + bootPATH + 'jquery-1.8.1.min.js" type="text/javascript"></sc' + 'ript>');
 //document.write('<script src="' + bootPATH + 'jquery-1.9.js" type="text/javascript"></sc' + 'ript>');
 
 //默认加载min
 if(nui_model=='debug'){
-	document.write('<script src="' + bootPATH + 'nui-debug.js" type="text/javascript" ></sc' + 'ript>');
+	document.write('<script src="' + bootPATH + 'nui-debug.js" type="text/javascript" ></script>');
 }else if(nui_model=='source'){
-	document.write('<script src="' + bootPATH + 'nui-source.js" type="text/javascript" ></sc' + 'ript>');
-	document.write('<script src="' + bootPATH + 'source/ext/nui-ext.js" type="text/javascript" ></sc' + 'ript>');
+	document.write('<script src="' + bootPATH + 'nui-source.js" type="text/javascript" ></script>');
+	document.write('<script src="' + bootPATH + 'source/ext/nui-ext.js" type="text/javascript" ></script>');
 }else{
-	document.write('<script src="' + bootPATH + 'nui-min.js" type="text/javascript" ></sc' + 'ript>');
+	document.write('<script src="' + bootPATH + 'nui-min.js" type="text/javascript" ></script>');
 	//document.write('<script src="' + bootPATH + 'source/ext/nui-ext.js" type="text/javascript" ></sc' + 'ript>');
 }
 document.write('<link href="' + bootPATH + 'themes/default/miniui.css" rel="stylesheet" type="text/css" />');

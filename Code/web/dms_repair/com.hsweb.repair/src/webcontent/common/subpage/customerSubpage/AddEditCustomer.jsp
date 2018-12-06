@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.2"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.3"></script>
 <style type="text/css">
 
 table {
@@ -74,7 +74,7 @@ table {
                         <td>
                             <input class="nui-combobox" data="[{value:'0',text:'男',},{value:'1',text:'女'},]"
 						textField="text" valueField="value" name="sex"
-						value="0"  />
+						value="0"  width="100%" />
                         </td>
                         <td class="form_label ">
                             <label>客户简称：</label>
@@ -90,7 +90,7 @@ table {
                         <td>
                             <input class="nui-combobox" data="[{value:'0',text:'农历',},{value:'1',text:'阳历'},]"
 						textField="text" valueField="value" name="birthdayType"
-						value="0"  />
+						value="0"  width="100%"/>
                         </td>
                         <td class="form_label ">
                             <label>生日日期：</label>
@@ -119,7 +119,7 @@ table {
                                textField="name"
                                emptyText = "市/县"
                                onValuechanged="initCityByParent('areaId', e.value || -1)"
-                               class="nui-combobox" width="32%"/>
+                               class="nui-combobox" width="33%"/>
                                
                             <input name="areaId"
                                id="areaId"
@@ -161,11 +161,11 @@ table {
                                     <label>车牌号：</label>
                                 </td>
                                 <td colspan="3">
-                                    <input class="nui-textbox" name="carNo" id="carNo" onvaluechanged="onCarNoChanged"/>
+                                    <input class="nui-textbox" name="carNo" id="carNo"/>
                                     
-                                        <a class="nui-button" iconCls="icon-upgrade" id="preCarBtn" onclick="preCar()" style="margin-right:10px;"></a>
-                                        <a class="nui-button" iconCls="icon-downgrade" id="nextCarBtn" onclick="nextCar()" style="margin-right:10px;"></a>
-                                        <a class="nui-button" iconCls="icon-add" onclick="addCar()"></a>
+                                        <a class="nui-button" iconCls="icon-upgrade" id="preCarBtn" onclick="preCar()" style="margin-right:10px;" tooltip="上一个"></a>
+                                        <a class="nui-button" iconCls="icon-downgrade" id="nextCarBtn" onclick="nextCar()" style="margin-right:10px;" tooltip="下一个"></a>
+                                        <a class="nui-button" iconCls="icon-add" onclick="addCar()" tooltip="新增"></a>
                                 </td>
                             </tr>
                             <tr>
@@ -299,34 +299,31 @@ table {
                     <div class="form" id="contactInfoForm">
                         <input class="nui-hidden" name="id"/>
                         <input class="nui-hidden" name="guestId"/>
+                    
 					<table class="nui-form-table" style="width:100%;">
                 <tr>
                     <td class="form_label required">
                         <label>姓名：</label>
                     </td>
-                    <td>
-                        <input class="nui-textbox" id="name" name="name" width="100%" />
+                    <td colspan="3">
+                        <input class="nui-textbox" id="name" name="name" width="160px" />
+                        <a class="nui-button" iconCls="icon-upgrade" id="preContactBtn" onclick="preContact()" style="margin-right:10px;" tooltip="上一个"></a>
+                        <a class="nui-button" iconCls="icon-downgrade" id="nextContactBtn" onclick="nextContact()" style="margin-right:10px;" tooltip="下一个"></a>
+                        <a class="nui-button" iconCls="icon-add" onclick="addContact()" tooltip="新增"></a>
                     </td>
+                </tr>
+                <tr>
                     <td class="form_label required">
                         <label>手机：</label>
                     </td>
                     <td>
                         <input class="nui-textbox" id="mobile2" name="mobile" width="100%" />
                     </td>
-                </tr>
-                <tr>
-
                     <td class="form_label required">
                         <label>身份：</label>
                     </td>
                     <td>
                         <input class="nui-combobox" name="identity" id="identity" valueField="customid" textField="name" width="100%" value="0" />
-                    </td>
-                    <td class="form_label required">
-                        <label>来源：</label>
-                    </td>
-                    <td>
-                        <input class="nui-combobox" name="source" id="source" valueField="customid" textField="name" width="100%" value="0" />
                     </td>
                 </tr>
                 <tr>
@@ -337,11 +334,11 @@ table {
                         <input class="nui-combobox" id="sex" name="sex" data="[{id:0,text:'男'},{id:1,text:'女'},{id:2,text:'未知'}]" width="100%" value="0"
                         />
                     </td>
-					<td class="form_label">
-                        <label>身份证号码：</label>
+                    <td class="form_label required">
+                        <label>来源：</label>
                     </td>
                     <td>
-                        <input class="nui-textbox" name="idNo" width="100%" />
+                        <input class="nui-combobox" name="source" id="source" valueField="customid" textField="name" width="100%" value="0" />
                     </td>
                 </tr>
                  <tr>
@@ -388,6 +385,15 @@ table {
                 </tr>
                 <tr>
                     <td class="form_label">
+                        <label>身份证号码：</label>
+                    </td>
+                    <td colspan="3">
+                        <input class="nui-textbox" name="idNo" width="100%" />
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="form_label">
                         <label>备注：</label>
                     </td>
                     <td colspan="3">
@@ -395,11 +401,7 @@ table {
                     </td>
                 </tr>
             </table>
-                        <div style="text-align:right;padding:10px;margin-top:0">
-                            <a class="nui-button" iconCls="icon-upgrade" id="preContactBtn" onclick="preContact()" style="margin-right:10px;"></a>
-                            <a class="nui-button" iconCls="icon-downgrade" id="nextContactBtn" onclick="nextContact()" style="margin-right:10px;"></a>
-                            <a class="nui-button" iconCls="icon-add" onclick="addContact()"></a>
-                        </div>
+                        
                     </div>
                 </div>
             </div>

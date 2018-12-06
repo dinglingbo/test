@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partMgr.js?v=1.0.16"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partMgr.js?v=1.0.17"></script>
 <style type="text/css">
 </style>
 </head>
@@ -101,7 +101,9 @@
                              allowCellWrap="true"
                              pageSize="50"
                              sortMode="client"
-                             showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
+                             showFilterRow="false" allowCellSelect="true" allowCellEdit="false"
+                             onrowclick="onNoShow"
+                             >
                             <div property="columns">
                                 <div header="基础信息" headerAlign="center">
                                     <div property="columns">

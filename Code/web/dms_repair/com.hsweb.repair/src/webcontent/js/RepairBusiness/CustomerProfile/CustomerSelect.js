@@ -56,8 +56,8 @@ function init()
             text:"车型"
         },
         {
-            id:"underpanNo",
-            text:"底盘号"
+            id:"carVin",
+            text:"车架号(VIN)"
         },
         {
             id:"mobile",
@@ -110,7 +110,7 @@ function addOrEdit(guest)
     nui.open({
         url:"com.hsweb.repair.DataBase.AddEditCustomer.flow",
         title:title,
-        width:500,
+        width:560,
         height:630,
         onload:function(){
             var iframe = this.getIFrameEl();

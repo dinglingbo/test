@@ -78,6 +78,14 @@ $(document).ready(function(v) {
 	}, function() {
 		initComp("orgId");
 	});
+
+    document.onkeyup=function(event){
+	    var e=event||window.event;
+		var keyCode=e.keyCode||e.which;
+	    if((keyCode==27))  {  //ESC
+	        advancedSearchWin.hide();
+		 };
+	  };
 });
 function onSearch() {
 	search();

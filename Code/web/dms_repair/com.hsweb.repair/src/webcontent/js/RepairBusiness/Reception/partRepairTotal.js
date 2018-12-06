@@ -152,7 +152,7 @@ function doSearch(params)
 {
     var tab = mainTabs.getActiveTab();
     if(tab.name == "clientGridTab"){
-    	params.groupType="a.guest_id";
+    	params.groupType="a.service_type_id";
         clientGrid.load({
             params:params,
             token:token
@@ -170,14 +170,12 @@ function doSearch(params)
             token:token
         });  
     }else if(tab.name == "partTypeGridTab"){
-    	params.groupType="a.service_type_id";
+    	params.groupType="d.part_type_id";
         partTypeGrid.load({
             params:params,
             token:token
         });  
     }
-	
-
 }
 function onDrawCell(e) {
     var row = e.row;

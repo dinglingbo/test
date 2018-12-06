@@ -178,13 +178,13 @@
 											format="0.00"
 											value="0" maxValue="1000000000"
 											changeOnMousewheel="true" showButton="false"
-											width="100%" inputStyle="text-align:right;" />
+											width="100%" inputStyle="text-align:right;" selectOnFocus="true"/>
 								</td>
 								<td class="form_label">
 									<label>单价：</label>
 								</td>
 								<td colspan="1">
-									<input class="nui-spinner" name="unitPrice" id="unitPrice" format="0.00" value="0" maxValue="1000000000"
+									<input class="nui-spinner" name="unitPrice" id="unitPrice" format="0.00" value="0" maxValue="1000000000" selectOnFocus="true"
 									onvaluechanged="calc('unitPrice')"	changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
 								</td>
 							</tr>            
@@ -193,7 +193,7 @@
 									<label>金额：</label>
 								</td>
 								<td colspan="1">
-									<input class="nui-spinner" name="amt" id="amt" format="0.00" value="0" maxValue="1000000000"
+									<input class="nui-spinner" name="amt" id="amt" format="0.00" value="0" maxValue="1000000000" selectOnFocus="true"
 									onvaluechanged="calc('amt')"	changeOnMousewheel="true" showButton="false" width="100%" inputStyle="text-align:right;"/>
 								</td>
 							</tr>

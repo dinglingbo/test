@@ -9,7 +9,7 @@
 -->
 <head>
 <title>选择车型</title>
-<script src="<%= request.getContextPath() %>/commonRepair/js/carModelSelect.js?v=1.0.3"></script>
+<script src="<%= request.getContextPath() %>/commonRepair/js/carModelSelect.js?v=1.0.4"></script>
 <style type="text/css">
 table {
 	font-size: 12px;
@@ -41,7 +41,7 @@ table {
                     <tr>
                         <td>
                             <label>车型名称</label>
-                            <input class="nui-textbox" name="carModel"/>
+                            <input class="nui-textbox" name="carModel" onenter="searchOnenter" id="carModel"/>
                             <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
                         </td>

@@ -84,13 +84,14 @@ function SetData(params){
         	params:json,
         	token:token
         },
+        async:false,
         success: function (text) {
             var list = nui.decode(text.list);
             form.setData(list[0]);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR.responseText);
-            showMsg("网络出错", "W");
+            showMsg("网络出错", "E");
         }
     });
     var pa = {
@@ -109,12 +110,12 @@ function SetData(params){
         },
         success: function (data) {
         	var contactList = data.contactList||[{}];
-            var form = new nui.Form("#editForm4");
-            form.setData(contactList[0]);
+            var form1 = new nui.Form("#editForm4");
+            form1.setData(contactList[0]);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR.responseText);
-            showMsg("网络出错", "W");
+            showMsg("网络出错", "E");
         }
     });
 

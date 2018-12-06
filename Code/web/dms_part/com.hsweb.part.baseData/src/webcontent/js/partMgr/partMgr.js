@@ -421,7 +421,7 @@ function savePart(part,successTip,errorTip)
             }
             else{
             	nui.unmask();
-                showMsg(data.errMsg||errorTip||"保存失败","W");
+                showMsg(data.errMsg||errorTip||"保存失败","E");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
@@ -454,4 +454,15 @@ function importGuest(){
             onSearch();
         }
     });
+}
+
+function onNoShow(e){
+	var row = e.record||partGrid.getSelected();
+    if(!row)
+    {
+        return;
+    }
+    nui.get("editBtn").disable();
+    nui.get("disableBtn").disable();
+    nui.get("enableBtn").disable();
 }

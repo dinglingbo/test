@@ -12,7 +12,7 @@
 <head> 
     <title>维修出库详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.28"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.35"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -55,6 +55,9 @@
         margin-left: 5px;
         margin-right: 5px;
     }
+    a { 
+	    text-decoration: none;
+	}
 </style>
 </head>
 
@@ -184,7 +187,7 @@
 <div style="height:10px;width:100%"></div>
 
 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
-dataField="data"   multiSelect="false" 
+dataField="data"   multiSelect="false" allowCellWrap = true
 url=""  showModified="false"
 allowCellEdit="true" >
 <div property="columns">
@@ -203,8 +206,8 @@ allowCellEdit="true" >
         <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"></div>
         <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
         <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center"></div>
-        <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center">
-        </div>   
+        <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center"></div>
+        <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>   
 
     </div>
 </div> 
@@ -214,7 +217,7 @@ allowCellEdit="true" >
 <div style="height:10px;width:100%"></div>
 
 <div id="repairOutGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
-dataField="data"  allowCellSelect="true" multiSelect="false" 
+dataField="data"  allowCellSelect="true" multiSelect="false" allowCellWrap = true
 url=""  showModified="false"
 allowCellEdit="true"  >
 <div property="columns">
@@ -231,7 +234,7 @@ allowCellEdit="true"  >
         <div field="trueUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本单价"></div>
         <div field="trueCost" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本金额"></div>
         
-		<div field="storeId" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="仓库"></div>
+		<div field="storeId" headerAlign="center" allowSort="false" visible="true" width="70" align="center" header="仓库"></div>
         <div field="returnSign" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="是否归库" renderer="onGenderRenderer"></div>
         <div field="pickMan" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料人"></div>
         <div field="pickDate" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="领料日期" dateFormat="yyyy-MM-dd"></div>
@@ -240,7 +243,7 @@ allowCellEdit="true"  >
         <div field="returnMan" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="归库人"></div>
         <div field="returnDate" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="归库日期" dateFormat="yyyy-MM-dd"></div>
         <div field="returnRemark" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="归库备注"></div>
-
+		<div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
 
     </div>
 </div>

@@ -230,7 +230,7 @@ function onOk()
                 CloseWindow("ok");
             }
             else{
-                showMsg(data.errMsg||"保存失败","W");
+                showMsg(data.errMsg||"保存失败","E");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
@@ -348,7 +348,7 @@ function onButtonEdit()
 {
     partName = null;
     nui.open({
-        targetWindow: window,
+//        targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.common.partNameSelect.flow?token="+token,
         title: "配件名称查询",
         width:900, height: 650,

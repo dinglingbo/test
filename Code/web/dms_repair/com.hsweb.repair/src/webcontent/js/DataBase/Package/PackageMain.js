@@ -595,7 +595,7 @@ function selectItem(callback)
 	nui.open({
 		targetWindow: window,
 		url: "com.hsweb.repair.DataBase.RepairItemMain.flow",
-		title: "选择项目", width: 930, height: 560,
+		title: "选择项目", width: 950, height: 560,
 		allowDrag:true,
 		allowResize:true,
 		onload: function ()

@@ -66,7 +66,7 @@ function onOk()
                 CloseWindow("ok");
             }
             else{
-                showMsg(data.errMsg||"保存失败","W");
+                showMsg(data.errMsg||"保存失败","E");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

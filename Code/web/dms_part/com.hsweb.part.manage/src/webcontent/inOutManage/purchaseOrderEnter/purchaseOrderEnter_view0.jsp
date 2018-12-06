@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购入库</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/purchaseOrderEnter.js?v=1.0.29"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/purchaseOrderEnter.js?v=1.0.30"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -47,7 +47,7 @@ body .mini-grid-row-selected{
 
 
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:300px;"
+     title="高级查询" style="width:450px;height:350px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">

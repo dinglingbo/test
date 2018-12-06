@@ -100,7 +100,7 @@
 		</style>
 </head>
 <body>
-	<dir>
+	<div>
 		<span class="xiao">Individualization 个性化标签筛选</span></br>
 		<span class="da">在此创建个性化的短信推送计划</span></br>
 		<span class="xiao">通过标签筛选和短信内容的筛选，批量选定客户向手机号进行推送，点击推送前，我们将为你估算本次的推</br>
@@ -134,7 +134,7 @@
 					</td>
 				</tr>
 			</table>
-	</dir>
+	</div>
 
 
 

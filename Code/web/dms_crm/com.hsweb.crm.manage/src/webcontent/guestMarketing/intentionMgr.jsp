@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
- <%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -13,6 +12,7 @@ pageEncoding="UTF-8" session="false" %>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <script type="text/javascript" src="<%=request.getContextPath()%>/common/nui/echarts.min.js"></script>
+   <%@include file="/common/commonRepair.jsp"%>
     <style type="text/css">   
     html, body{
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
@@ -53,7 +53,7 @@ pageEncoding="UTF-8" session="false" %>
              <input class="nui-textbox" name="" id="" enabled="true"/>
              <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
              <li class="separator"></li>
-             <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+             <a class="nui-button" iconCls="" plain="true" onclick="newEvent()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
              <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
              <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;营销方案</a>
              <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;分配销售顾问</a>
@@ -362,6 +362,20 @@ pageEncoding="UTF-8" session="false" %>
       myChartB.resize(); 
     };
   }
+
+
+            function newEvent(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/intentionMgr_edit.jsp",
+             title: "添加评论",
+             width: 700, 
+             height: 450,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
 
 </script>
 </body>

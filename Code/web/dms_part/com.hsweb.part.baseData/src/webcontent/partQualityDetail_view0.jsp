@@ -44,7 +44,7 @@ body {
 <body>
 
 <div id="basicInfoForm" class="form">
-      <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+      <!-- <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
         <table style="width:80%;">
             <tr>
                 <td style="width:80%;">
@@ -53,7 +53,7 @@ body {
                 </td>
             </tr>
         </table>
-    </div>
+    </div> -->
     <input class="nui-hidden" name="id"/>
     <div class="row">
         <span class="title title-width1 required">品质编码：</span>
@@ -64,10 +64,10 @@ body {
         <input name="name" class="nui-textbox width1"/>
     </div>
 </div>
-<!-- <div style="text-align:center;padding:10px;"> -->
-<!--     <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a> -->
-<!--     <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a> -->
-<!-- </div> -->
+ <div style="text-align:center;padding:10px;">
+     <a class="mini-button" onclick="onOk" style="width:60px;margin-right:20px;">确定</a> 
+    <a class="mini-button" onclick="onCancel" style="width:60px;">取消</a>
+ </div> 
 
 </body>
 </html>

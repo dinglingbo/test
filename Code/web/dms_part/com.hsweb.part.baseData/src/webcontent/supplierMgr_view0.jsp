@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商管理</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.1.4"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.1.5"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -74,6 +74,7 @@
          onrowdblclick="onRowDblClick"
          onrowclick="onGridRowClick"
          sortMode="client"
+         allowCellWrap = true
          frozenStartColumn="0"
          frozenEndColumn="7">
         <div property="columns">
@@ -83,9 +84,9 @@
                 <div property="columns">
                     <!-- <div allowSort="true" field="orgid" width="100" headerAlign="center" header="店名"></div> -->
                     <div type="checkcolumn" >选择</div>
-                    <div allowSort="true" field="shortName" width="80" headerAlign="center" header="供应商简称"></div>
-                    <div allowSort="true" field="fullName" width="100" headerAlign="center" header="供应商全称"></div>
-                    <div allowSort="true" field="tel" width="100" headerAlign="center" header="电话"></div>
+                    <div allowSort="true" field="shortName" width="140" headerAlign="center" header="供应商简称"></div>
+                    <div allowSort="true" field="fullName" width="240" headerAlign="center" header="供应商全称"></div>
+                    <div allowSort="true" field="tel" width="140" headerAlign="center" header="电话"></div>
                     <div allowSort="true" field="supplierType" width="100" headerAlign="center" header="供应商类型"></div>
                     <div allowSort="true" field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>
                 </div>
@@ -117,7 +118,7 @@
             </div>
             <div header="操作信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="modifier" width="70" headerAlign="center">最后操作人</div>
+                    <div allowSort="true" field="modifier" width="100" headerAlign="center">最后操作人</div>
                     <div allowSort="true" field="modifyDate" width="135" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm">最后操作时间</div>
                     <div allowSort="true" field="isDisabled" width="30" headerAlign="center" align="center">禁用</div>
                     <div allowSort="true" field="code" width="120" headerAlign="center">供应商编码</div>

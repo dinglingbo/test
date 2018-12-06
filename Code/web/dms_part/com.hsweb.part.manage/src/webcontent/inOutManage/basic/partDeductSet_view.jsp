@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false" %>
 -->
 <head>
 	<title>配件提成设置</title>
-	<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partDeductSet.js?v=1.0.3"></script>
+	<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partDeductSet.js?v=1.0.4"></script>
 
 	<style type="text/css">
 	.table-label {
@@ -66,6 +66,7 @@ pageEncoding="UTF-8" session="false" %>
 		selectOnLoad="true"
 		sortMode="client"
 		totalField="page.count"
+		allowCellWrap = true
 		url="">
 		<div property="columns">
 			<div type="indexcolumn" width="20">序号</div>

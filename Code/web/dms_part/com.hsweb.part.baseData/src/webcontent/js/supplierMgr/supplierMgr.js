@@ -78,6 +78,14 @@ $(document).ready(function(v) {
 	}, function() {
 		initComp("orgId");
 	});
+
+    document.onkeyup=function(event){
+	    var e=event||window.event;
+		var keyCode=e.keyCode||e.which;
+	    if((keyCode==27))  {  //ESC
+	        advancedSearchWin.hide();
+		 };
+	  };
 });
 function onSearch() {
 	search();
@@ -139,8 +147,8 @@ function addSuplier() {
 						+ "/com.hsweb.part.baseData.supplierDetail.flow?token="
 						+ token,
 				title : "供应商资料",
-				width : 530,
-				height : 480,
+				width : 550,
+				height : 520,
 				allowDrag : true,
 				allowResize : false,
 				onload : function() {

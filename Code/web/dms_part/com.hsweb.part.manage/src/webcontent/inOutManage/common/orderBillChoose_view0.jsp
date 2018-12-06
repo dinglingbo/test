@@ -8,7 +8,7 @@
 -->
 <head>
 <title>业务单选择</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/orderBillChoose.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/orderBillChoose.js?v=1.0.4"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -64,6 +64,7 @@
                   
                   <span class="separator"></span>
                   <a class="nui-button" iconCls="" plain="true" onclick="addStatement()"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                  <a class="nui-button" iconCls="" plain="true" onclick="CloseWindow('cancle')"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                   <input class="nui-combobox" name="billTypeId" id="billTypeId"
                        emptyText="票据类型" data="" width="60px" visible="false" />
                   <input class="nui-combobox" name="settleTypeId" id="settleTypeId" 
@@ -109,20 +110,21 @@
            ondrawcell="onDrawCell"
            sortMode="client"
            url=""
+           allowCellWrap = true
            showSummaryRow="true">
           <div property="columns">
               <div type="indexcolumn">序号</div>
-              <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="comPartCode" width="140" headerAlign="center" header="配件编码"></div>
               <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-              <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
-              <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-              <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+              <div allowSort="true" field="comOemCode" width="140" headerAlign="center" header="OEM码"></div>
+              <div allowSort="true" field="comPartBrandId" width="160" headerAlign="center" header="品牌"></div>
+              <div allowSort="true" field="comApplyCarModel" width="160" headerAlign="center" header="车型"></div>
               <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
-              <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+              <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div>
               <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="采购数量"></div>
               <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="采购单价"></div>
               <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="采购金额"></div>
-              <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
+              <div allowSort="true" field="remark" width="80" headerAlign="center" header="备注"></div>
           </div>
       </div>
   </div>

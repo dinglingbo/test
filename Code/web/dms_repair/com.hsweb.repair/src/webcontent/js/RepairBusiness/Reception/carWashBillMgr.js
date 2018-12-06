@@ -12,7 +12,7 @@ var getRpsItemUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPar
 var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
 var beginDateEl = null;
 var endDateEl = null;
-var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"VIN码"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
 var brandList = [];
 var brandHash = {};
 var servieTypeList = [];
@@ -485,7 +485,7 @@ function finish(){
     }
 
     if(row.status == 2){
-        showMsg("本工单已经完工!","W");
+        showMsg("工单已完工!","W");
         return;
     }
     var params = {
@@ -501,7 +501,7 @@ function finish(){
                 showMsg("完工成功!","S");
             }else{
                 if(data.errCode){
-                    showMsg("完工失败!","W");
+                    showMsg("完工失败!","E");
                     return;
                 }
             }
@@ -517,11 +517,11 @@ function unfinish(){
 
     var isSettle = row.isSettle||0;
     if(isSettle == 1){
-        showMsg("本工单已经结算,不能返工!","W");
+        showMsg("工单已结算,不能返工!","W");
         return;
     }
     if(row.status != 2){
-        showMsg("本工单未未完工,不能返工!!","W");
+        showMsg("工单未完工,不能返工!","W");
         return;
     }
     
@@ -544,7 +544,7 @@ function unfinish(){
             mainGrid.updateRow(row, newRow);
             showMsg("返工成功!","S");
         }else{
-            showMsg(errMsg||"返工失败!","W");
+            showMsg(errMsg||"返工失败!","E");
         }
         nui.unmask(document.body);
     }, function(){
@@ -566,7 +566,7 @@ function del(){
     }
 
     if(row.status != 0){
-        showMsg("本工单不能删除!","W");
+        showMsg("工单不能删除!","W");
         return;
     }
     nui.mask({
@@ -588,7 +588,7 @@ function del(){
             mainGrid.removeRow(row);
             showMsg("删除成功!","S");
         }else{
-            showMsg(errMsg||"删除失败!","W");
+            showMsg(errMsg||"删除失败!","E");
         }
         nui.unmask(document.body);
     }, function(){

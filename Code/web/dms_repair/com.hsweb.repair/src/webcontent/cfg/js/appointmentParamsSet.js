@@ -66,6 +66,14 @@ $(document).ready(function(v) {
                 break;
             }
     });
+    
+    document.onkeyup=function(event){
+	    var e=event||window.event;
+	    var keyCode=e.keyCode||e.which;
+        if((keyCode==27))  {  //ESC
+        	advancedDeductWin.hide();
+	   };
+     };
 });
 function loadParams(){
     nui.mask({
@@ -130,6 +138,7 @@ function bind() {
         current = li;
         var time = li.find("font").text();
         var discount = li.find("span[name=comment]").attr("discount");
+        discount = discount*10;
         $("#timeIdEdit").text(time);
         //$("#txtdiscount").val(discount);
         prdtRateEditEl.setValue(discount);
@@ -162,7 +171,8 @@ function setTimeList(start, end, interval){
 
     if (parseInt(start) > parseInt(end)&&end!=0) {
         showMsg('开始时间不能大于结束时间','W');
-        return false;
+        timeEndEl.setValue(start);
+        //return false;
     }
     $(".sjd").empty();
     end=end==0?24:end;
@@ -193,7 +203,10 @@ function gettime() {
     $(".sjd li[name=time]").each(function () {
         var item = {timeId: "00:00", prdtRate: 0, status: 0 };
         item.timeId = $(this).find("font").text() + ":00";
-        item.prdtRate = $(this).find("span[name=comment]").attr("discount")||"";
+        //var prdtRate = $(this).find("span[name=comment]").attr("discount")||0;
+       // item.prdtRate = parseFloat(prdtRate);
+        var prdtRate = $(this).find("span[name=comment]").attr("discount")||"";
+        item.prdtRate = prdtRate*10;
         if ($(this).hasClass("hui")) {
             item.status = 1;
         }
@@ -209,6 +222,7 @@ function advancedDeductCancel(){
 }
 function advancedDeductOk(){
     var discount = prdtRateEditEl.getValue();
+    discount = Math.round(discount);
     discount=discount/10;
     if (discount == "") {
         showMsg('请输入项目折扣','W');
@@ -271,6 +285,14 @@ function saveParams(){
             return;
         }
     }
+    
+    var start = timeStartEl.getValue();
+    var end = timeEndEl.getValue();
+    if(start==end){
+    	 showMsg("预约时间段相同，不能保存!", "W");
+         return;
+    }
+    
     if(data.timeStart){
         data.timeStart = data.timeStart + ":00";
     }
@@ -313,7 +335,7 @@ function saveParams(){
                 basicInfoForm.setData(params);
                 basicNoticeForm.setData(params);
 			} else {
-				showMsg(data.errMsg || "保存失败!","W");
+				showMsg(data.errMsg || "保存失败!","E");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -396,7 +418,7 @@ function saveStation(){
 				showMsg("保存成功!","S");
                 queryStation();
 			} else {
-				showMsg(data.errMsg || "保存失败!","W");
+				showMsg(data.errMsg || "保存失败!","E");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -404,4 +426,7 @@ function saveStation(){
 		}
 	});
 
+}
+function queryStationName(){
+	queryStation();
 }

@@ -963,8 +963,8 @@ function addDetail(part) {
 				url : webPath+contextPath+"/com.hsweb.part.manage.detailQPAPopOperate.flow?token="+token,
 
 				title : "采购订单数量金额",
-				width : 430,
-				height : 210,
+				width : 540,
+				height : 240,
 				allowDrag : true,
 				allowResize : false,
 				onload : function() {

@@ -66,6 +66,7 @@ pageEncoding="UTF-8" session="false" %>
 		selectOnLoad="true"
 		sortMode="client"
 		totalField="page.count"
+		allowCellWrap = true
 		url="">
 		<div property="columns">
 			<div type="indexcolumn" width="20">序号</div>

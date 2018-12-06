@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.4.7"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.4.13"></script>
 <style type="text/css">
 
 .title {
@@ -239,5 +239,8 @@
     </div>
 </div>
 
+<script type="text/javascript">
+
+</script>
 </body>
 </html>

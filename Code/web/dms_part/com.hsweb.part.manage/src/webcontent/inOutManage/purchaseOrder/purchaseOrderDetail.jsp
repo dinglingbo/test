@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false" %>
+  pageEncoding="UTF-8" session="false" %>
     
 
 <style type="text/css">
@@ -10,7 +10,7 @@
         <tr>
             <td style="width:100%;">
 <!--                 <span class="separator"></span> -->
-				<span  id="bServiceId" style="">订单号：新采购订单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span  id="bServiceId" style="">订单号：新采购订单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <!-- <a class="nui-button" iconCls="icon-edit" plain="true" onclick="editInbound()" id="editEnterMainBtn">修改</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
@@ -35,11 +35,7 @@
         </tr>
     </table>
 </div>
-<div class="nui-fit">
 
-
-          
-           <div class="nui-fit"> 
               <fieldset id="fd1" style="width:98%;">
                   <legend><span>采购订单信息</span></legend>
                   <div class="fieldset-body">
@@ -53,9 +49,9 @@
                           <input class="nui-hidden" name="taxSign" id="taxSign"/>
                           <input class="nui-hidden" name="orderAmt" id="orderAmt"/>
                           <input class="nui-hidden" name="auditSign" id="auditSign"/>
-                      	  <input class="nui-hidden" name="billStatusId" id="billStatusId"/>
-                      	  <input class="nui-hidden" name="guestFullName" id="guestFullName"/>
-                      	  <input class="nui-hidden" name="serviceId" id="serviceId"/>
+                          <input class="nui-hidden" name="billStatusId" id="billStatusId"/>
+                          <input class="nui-hidden" name="guestFullName" id="guestFullName"/>
+                          <input class="nui-hidden" name="serviceId" id="serviceId"/>
                           <input class="nui-textbox" visible="false" width="100%" id="isInner" name="isInner"/>
                           <table style="width: 100%;">
                               <tr>
@@ -78,21 +74,21 @@
                                   </td>
                                   <td colspan="1" style="width:15%">
                                       <input class="nui-combobox" 
-		                                      id="orderMan" 
-		                                      name="orderMan" 
-		                                      textField="empName"
-				                              valueField="empId"
-				                              emptyText="请选择..."
-				                              url=""
-				                              required="true"
-				                              allowInput="true"
-				                              valueFromSelect="false"
-		                                      width="100%">
+                                          id="orderMan" 
+                                          name="orderMan" 
+                                          textField="empName"
+                                      valueField="empId"
+                                      emptyText="请选择..."
+                                      url=""
+                                      required="true"
+                                      allowInput="true"
+                                      valueFromSelect="false"
+                                          width="100%">
                                   </td>
                                   <td class="title required">
                                       <label>订货日期：</label>
                                   </td>
-                                  <td width="120">
+                                  <td width="150">
                                       <input name="createDate"
                                              id="createDate"
                                              width="100%"
@@ -102,7 +98,7 @@
                                   <td class="title required" style="width:8%;">
                                       <label>预计到货日期：</label>
                                   </td>
-                                  <td width="200">
+                                  <td width="160">
                                       <input name="planArriveDate"
                                              id="planArriveDate"
                                              width="100%"
@@ -161,21 +157,16 @@
                                   <td colspan="3">
                                       <input class="nui-textbox" width="100%" id="remark" name="remark"/>
                                   </td>
-<!--                                   <td class="title" width="120"> -->
-<!--                                       <label>订单号：</label> -->
-<!--                                   </td> -->
-<!--                                   <td> -->
-<!--                                       <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新采购订单"/> -->
-<!--                                   </td> -->
+
                               </tr>
                           </table>
                       </div>
                      
                   </div>
                 </fieldset>
-                 <div class="nui-fit"> 
-	                <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-	                	<a class="nui-button" plain="true" iconCls="" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
+   
+                  <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+                    <a class="nui-button" plain="true" iconCls="" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
                     </div>
                     <div class="nui-fit">
                     <div id="rightGrid" class="nui-datagrid" 
@@ -204,7 +195,7 @@
                             <div header="采购订单明细" headerAlign="center">
                                 <div property="columns">
                                     <div field="operateBtn" name="operateBtn" align="center" width="50" headerAlign="center" header="操作"></div>
-                                    <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码">
+                                    <div field="comPartCode" name="comPartCode" width="180" headerAlign="center" header="配件编码">
                                         <input property="editor" class="nui-textbox" />
                                     </div>
                                     <div field="comPartName" headerAlign="center" header="配件名称">
@@ -249,9 +240,6 @@
                         </div>
                     </div>
                     </div>
-                </div> 
-          </div> 
 
-</div>
 
 

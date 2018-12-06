@@ -246,7 +246,7 @@
 	                	<a class="nui-button" plain="true" iconCls="" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
 	                </div> 
                     <div id="rightGrid" class="nui-datagrid" 
-                         style="width:100%;height:93%;"
+                         style="width:100%;height:78%;"
                          selectOnLoad="true"
                          showPager="false"
                          dataField="pjPchsOrderDetailList"
@@ -267,7 +267,7 @@
                          editNextOnEnterKey="true"
                          url="">
                         <div property="columns">
-                            <div type="indexcolumn">序号</div>
+                            <div width="35" type="indexcolumn">序号</div>
                             <div header="采购入库明细" headerAlign="center">
                                 <div property="columns">
                                     <div field="operateBtn" name="operateBtn" align="center" width="50" headerAlign="center" header="操作"></div>

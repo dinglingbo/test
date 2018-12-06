@@ -1,6 +1,8 @@
+
 /**
  * Created by Administrator on 2018/3/21.
  */
+
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;

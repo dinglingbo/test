@@ -76,7 +76,7 @@
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="20" allowcellwrap="true"
 		 onselectionchanged="selectionChanged"  frozenStartColumn="0" frozenEndColumn="6" totalCount="page.count" onrowdblclick="edit()"
-		 virtualColumns="true">
+		 virtualColumns="false">
 			<div property="columns">
 				<div width="30" type="indexcolumn">序号</div>
 				<div header="车辆信息" headerAlign="center">

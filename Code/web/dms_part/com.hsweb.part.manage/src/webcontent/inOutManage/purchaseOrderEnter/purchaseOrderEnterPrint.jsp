@@ -10,12 +10,28 @@
 -->
 <head>
 <style type="text/css">
-table{
-	margin-top:10px;
-	font-size:16px;
-	word-wrap: break-word; word-break: break-all;
+
+/*dom显示高度的设置*/
+
+html, body {
+    height: 100%;
+}
+#query-table {
+    height: 100%;
 }
 
+/*打印高度的设置*/
+@media print {
+    html, body {
+        height: inherit;
+    }
+    #query-table {
+        height: inherit;
+    }
+    #queryTable {
+        height: inherit !important;
+    }
+}
 #tbody td{
 	text-align:center;
 }
@@ -142,8 +158,8 @@ table{
     
 </head>
 <body>
-	<div style="margin: 0 10px;" class="printny">
-        <div class="nui-fit" height="100%">
+	<div id="query-table" style="margin: 0 10px;overflow: scroll;" class="printny">
+  
         	<div>
         		<div align="center" class="print_btn">
 			     	<a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
@@ -175,7 +191,7 @@ table{
 				  </tr>
 				</table>
         	</div> 
-            <div>
+            <div id="queryTable" style="height: auto;">
 				<table id="tbody" width="100%"  border="1" style="border: 1px solid #151515; border-collapse:collapse;">
 					<tbody>
                         <tr>
@@ -223,7 +239,7 @@ table{
 				  </tr>
 				</table>
             </div>
-        </div>
+
        </div>
 	<script type="text/javascript">
 		var date=new Date();
@@ -235,6 +251,7 @@ table{
     		$('#currUserName').text("打印人:"+currUserName);
 			$("#print").click(function () {
 	            $(".print_btn").hide();
+	             document.getElementById("query-table").style.overflow="hidden"
 	            window.print();
 	        }); 
 	         document.onkeyup = function(event) {

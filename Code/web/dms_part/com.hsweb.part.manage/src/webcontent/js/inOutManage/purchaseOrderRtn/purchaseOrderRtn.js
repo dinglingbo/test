@@ -971,13 +971,13 @@ function add()
                     basicInfoForm.reset();
                     rightGrid.clearRows();
                     
-                    var newRow = { serviceId: '新采退退货', auditSign: 0};
+                    var newRow = { serviceId: '新采购退货单', auditSign: 0};
 //                    leftGrid.addRow(newRow, 0);
 //                    leftGrid.clearSelect(false);
 //                    leftGrid.select(newRow, false);
 //                    
 //                    nui.get("serviceId").setValue("新采购退货");
-                    $('#bServiceId').text("订单号: 新采购订单");
+                    $('#bServiceId').text("订单号: 新采购退货单");
                     nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
                     nui.get("createDate").setValue(new Date());
 
@@ -1012,13 +1012,13 @@ function add()
         basicInfoForm.reset();
         rightGrid.clearRows();
         
-        var newRow = { serviceId: '新采购退货', auditSign: 0};
+        var newRow = { serviceId: '新采购退货单', auditSign: 0};
 //        leftGrid.addRow(newRow, 0);
 //        leftGrid.clearSelect(false);
 //        leftGrid.select(newRow, false);
         
 //        nui.get("serviceId").setValue("新采购退货");
-    	$('#bServiceId').text("订单号: 新采购订单");
+    	$('#bServiceId').text("订单号: 新采购退货单");
         nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
         nui.get("createDate").setValue(new Date());
         

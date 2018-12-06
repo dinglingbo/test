@@ -9,11 +9,35 @@
   - Description:
 -->
 <head>
-<style type="text/css">
-table{
-	margin-top:10px;
-	font-size:16px;
-	word-wrap: break-word; word-break: break-all;
+
+<title>采购退货打印</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js"  type="text/javascript"></script>    
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>    
+<%--     <link href="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/mian.css" rel="stylesheet" type="text/css" />  --%>
+    
+    <style type="text/css">
+
+/*dom显示高度的设置*/
+
+html, body {
+    height: 100%;
+}
+#query-table {
+    height: 100%;
+}
+
+/*打印高度的设置*/
+@media print {
+    html, body {
+        height: inherit;
+    }
+    #query-table {
+        height: inherit;
+    }
+    #queryTable {
+        height: inherit !important;
+    }
 }
 
 #tbody td{
@@ -135,15 +159,11 @@ table{
 	width:4%;
 }
 </style>
-<title>采购退货打印</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js"  type="text/javascript"></script>    
-    
 </head>
 <body>
-	<div style="margin: 0 10px;" class="printny">
-        <div class="nui-fit" height="100%">
-        	<div>
+	<div id="query-table" style="margin: 0 10px;overflow: scroll;" class="printny" >
+<!--         <div class="nui-fit" height="100%"> -->
+        	<div id="queryTable" >
         		<div align="center" class="print_btn">
 			      <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
 			      <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
@@ -174,8 +194,8 @@ table{
 				  </tr>
 				</table>
         	</div> 
-            <div>
-				<table id="tbody" width="100%"  border="1" style="border: 1px solid #151515; border-collapse:collapse;">
+            <div id="queryTable" style="height: auto;">
+				<table id="tbody" class="ybk" width="100%"  border="1" style="border: 1px solid #151515; border-collapse:collapse; ">
 					<tbody>
                         <tr>
                         	<td id="index">序号</td>
@@ -193,13 +213,15 @@ table{
 							<td id="storehouse">仓库</td>
 							<td id="storeShelf">仓位</td>
 						</tr>
-                        <tbody id="tbodyId">
+                        <tbody id="tbodyId" >
 						</tbody>
+					
                     </tbody>
 				</table>
 			</div>
-            <div>
-            	<table id="" width="100%">
+			 
+            <div >
+            	<table id="" class="" width="100%">
 				  <tr>
 				    <td id="sum">合计</td>
 				    <td id="sumOrderQty" >合计</td>
@@ -222,7 +244,7 @@ table{
 				  </tr>
 				</table>
             </div>
-        </div>
+<!--         </div> -->
        </div>
 	<script type="text/javascript">
 		var date=new Date();
@@ -234,6 +256,7 @@ table{
     		$('#currUserName').text("打印人:"+currUserName);
 			$("#print").click(function () {
 	            $(".print_btn").hide();
+	            document.getElementById("query-table").style.overflow="hidden"
 	            window.print();
 	        }); 
 	        document.onkeyup = function(event) {
@@ -261,7 +284,9 @@ table{
     		$('#settleTypeId').text("结算方式:"+formParms.settleTypeId);
 			var data= detailParms;
 			var tBody = $("#tbodyId");
+		
 			tBody.empty();
+
 			var tds='<td align="center">[index]</td>'+
 					'<td align="center">[comPartCode]</td>'+
 					'<td align="center">[comOemCode]</td>'+
@@ -277,7 +302,7 @@ table{
 					'<td align="center">[storehouse]</td>'+
 					'<td align="center">[storeShelf]</td>';
 				for(var i = 0; i < data.length; i++ ){ 
-					var tr=$("<tr></tr>");
+					var tr=$("<tr  ></tr>");
 					tr.append(
 						tds.replace("[index]",i+1 ||"")
 							.replace("[comPartCode]",data[i].comPartCode ||"")
@@ -293,7 +318,8 @@ table{
 							.replace("[remark]",data[i].remark ||"")
 							.replace("[storehouse]",data[i].storehouse ||"")
 							.replace("[storeShelf]",data[i].storeShelf ||""));
-					tBody.append(tr);
+
+						tBody.append(tr);
 					sumOrderQty +=parseFloat(data[i].orderQty);
 					sumOrderAmt +=parseFloat(data[i].orderAmt);
 				}

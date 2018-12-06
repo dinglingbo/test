@@ -8,7 +8,7 @@
 -->
 <head>
 <title>配件资料</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partDetail.js?v=1.0.19"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/partMgr/partDetail.js?v=1.0.21"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -186,7 +186,7 @@
                        valueField="id"
                        emptyText="请选择..."
                        url=""
-                       
+                       width="150px"
                        allowInput="true"
                        showNullItem="false"
                        popupHeight="100%"

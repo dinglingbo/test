@@ -10,7 +10,7 @@
 -->
 <head>
 <title>销售开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnMain.js?v=1.2.3"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnMain.js?v=1.2.4"></script>
 <style type="text/css">
 
 .title {
@@ -69,7 +69,7 @@
                     </ul>
                     
                     <span class="separator"></span>
-                    <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+                    <input class="nui-combobox" id="search-type" width="93" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onenterCarNo(this.value)"/>
                     <label class="form_label">退货日期&nbsp;从：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>

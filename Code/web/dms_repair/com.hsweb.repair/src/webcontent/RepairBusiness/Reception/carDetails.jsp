@@ -39,14 +39,14 @@
         <div id="editForm4" style="padding:5px;">
         <table class="nui-form-table" style="width:99%">
                         <tr>
-                            <td class="form_label required">
+                            <td class="form_label required" align="right">
                                 <label>客户名称：</label>
                             </td>
                             <td>
                                 <input class="nui-hidden" name="id" id="guestId" />
                                 <input class="nui-textbox" id="name" name="name" width="100%" onvaluechanged="onChanged(this.id)" />
                             </td>
-                            <td class="form_label required">
+                            <td class="form_label required" align="right">
                                 <label>手机号码：</label>
                             </td>
                             <td>
@@ -54,14 +54,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="form_label">
+                            <td class="form_label" align="right">
                                 <label>性别：</label>
                             </td>
                             <td>
                                 <input class="nui-combobox" data="[{value:'0',text:'男',},{value:'1',text:'女'},]" textField="text" valueField="value" name="sex"
-                                    value="0" />
+                                    value="0"  width="100%"/>
                             </td>
-                            <td class="form_label ">
+                            <td class="form_label " align="right">
                                 <label>客户简称：</label>
                             </td>
                             <td>
@@ -69,14 +69,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="form_label">
+                            <td class="form_label" align="right">
                                 <label>生日类型：</label>
                             </td>
                             <td>
                                 <input class="nui-combobox" data="[{value:'0',text:'农历',},{value:'1',text:'阳历'},]" textField="text" valueField="value" name="birthdayType"
-                                    value="0" />
+                                    value="0" width="100%"/>
                             </td>
-                            <td class="form_label ">
+                            <td class="form_label " align="right">
                                 <label>生日日期：</label>
                             </td>
                             <td>
@@ -84,7 +84,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="form_label">
+                            <td class="form_label" align="right">
                                 <label>备注：</label>
                             </td>
                             <td colspan="3">
@@ -100,18 +100,18 @@
                 
                 <table style="width:100%;" border="0" cellspacing="0" cellpadding="2px">
                     <tr>
-                        <td style="width:80px;" align="right">车牌号：</td>
+                        <td style="width:80px;" align="right" >车牌号：</td>
                         <td style="width:150px;">
                             <input class="nui-textbox" id="carNo" name="carNo" width="100%" allowInput="false"/>                   
                         </td>
-                        <td style="width:80px;"align="right">VIN码：</td>
+                        <td style="width:80px;"align="right">车架号(VIN)：</td>
                         <td style="width:150px;">
                             <input class="nui-textbox" id="carVin" name="carVin" width="100%" allowInput="false"/>                      
                         </td>
                     </tr>
                     <tr>
 
-                        <td style="width:80px;"align="right">车型：</td>
+                        <td style="width:80px;"align="right">品牌/车型：</td>
                         <td style="width:150px;">
                             <input class="nui-textbox" id="carModel" name="carModel" width="100%" allowInput="false"/>        
                         </td>
@@ -148,11 +148,11 @@
                 
                 <table style="width:100%;" border="0" cellspacing="0" cellpadding="2px">
                     <tr>
-                        <td style="width:100px;" align="right">当前里程(KM)：</td>
+                        <td style="width:100px;" align="right">当前里程：</td>
                         <td style="width:120px;">
                             <input class="nui-textbox" name="enterKilometers" width="100%" allowInput="false"/>
                         </td>
-                        <td style="width:120px;"align="right">建议保养里程(KM)：</td>
+                        <td style="width:120px;"align="right">建议保养里程：</td>
                         <td style="width:120px;">
                            <input class="nui-textbox" name="" width="100%" allowInput="false"/>
                         </td>
@@ -190,8 +190,6 @@
                             <input class="nui-textbox" name="annualInspectionNo" width="100%" allowInput="false"/>
                         </td>
                     </tr>
-
-
                 </table>
             </div>
         </fieldset>
@@ -231,11 +229,11 @@
         <div id="mainGrid1" class="nui-datagrid" style="width:100%;height:190px;" selectOnLoad="true" showPager="true" 
             totalField="page.count"  dataField="data" onrowdblclick="" allowCellSelect="true" url="">
             <div property="columns">
-                	<div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌"></div>
+                	<div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号"></div>
 	                <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>
 	                <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
-	                <div field="contactName" name="contactName" width="65" headerAlign="center" header="送修人姓名"></div>
-                  	<div field="contactMobile" name="contactMobile" width="80" headerAlign="center" header="送修人手机"></div>
+	                <div field="contactName" name="contactName" width="65" headerAlign="center" header="联系人姓名"></div>
+                  	<div field="contactMobile" name="contactMobile" width="80" headerAlign="center" header="联系人手机"></div>
                   	<div field="mtAdvisor" name="mtAdvisor" width="70" headerAlign="center" header="服务顾问"></div>
 	                <div field="serviceCode" name="serviceCode" width="120" headerAlign="center" header="工单号"></div>
                     <div field="recordDate" name="recordDate" width="110" headerAlign="center" header="开单日期" dateFormat="yyyy-MM-dd HH:mm"></div>

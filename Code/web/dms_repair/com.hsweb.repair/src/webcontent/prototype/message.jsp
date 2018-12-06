@@ -119,7 +119,7 @@
 			<table align="center">
 				<tr>
 					<td>
-						<a id="one"  class="am" onclick="">
+						<a id="one"  class="am" onclick="activity()">
 							<span class="fa fa-rebel fa-4x" style="margin-top: 50px;"></span></br>
 							<span ><font>近期活动</font></span></br>
 							<span >含总部和门店自己创建的标准模板</span></br>
@@ -151,12 +151,38 @@
 						document.getElementById("one").setAttribute("class", "n");
 						
 					}else if(e==2){
+						
 						document.getElementById(color).setAttribute("class", "m");
 						color = "two";
 						document.getElementById("two").setAttribute("class", "n");
-						
+				nui.open({
+			         url: webPath + contextPath + "/com.hsweb.RepairBusiness.round5K.flow?token="+token,
+			         title: '圆心5K',
+			         width: "100%", height: "100%",
+			         onload: function () {
+
+			         },
+			         ondestroy: function (action)
+			         {
+
+			         }
+     });
 					}
 				}
+		function activity(){
+				 nui.open({
+			         url: webPath + contextPath + "/com.hsweb.RepairBusiness.activity.flow?token="+token,
+			         title: '近期活动',
+			         width: "100%", height: "100%",
+			         onload: function () {
+
+			         },
+			         ondestroy: function (action)
+			         {
+
+			         }
+     });
+		}
     </script>
 </body>
 </html>

@@ -9,7 +9,7 @@
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-beanutils-1.8.0.jar"/>
 	<classpathentry kind="con" path="com.primeton.studio.workbench.serverPath"/>
 	<classpathentry kind="con" path="com.primeton.studio.workbench.libraries"/>
-	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/fastjson-1.1.32.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/fastjson-1.1.32.jar" sourcepath="C:/Users/Administrator/.m2/repository/com/alibaba/fastjson/1.1.32/fastjson-1.1.32-sources.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/json.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/spring-core-4.3.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/ezmorph-1.0.3.jar"/>
@@ -34,5 +34,6 @@
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.hsweb.system.llq/bin" path="com.hsweb.system.llq/src"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.hsweb.system.llqv2/bin" path="com.hsweb.system.llqv2/src"/>
 	<classpathentry excluding="**/**.SpringXml|**/**.bizlet|**/**.bizx|**/**.bpsdirx|**/**.bpsrelyx|**/**.bpsresx|**/**.componentType|**/**.compositex|**/**.datasetx|**/**.eosComponentType|**/**.flowx|**/**.namingsqlx|**/**.workflowx|**/**.wsdl|**/**.xsd|**/.copyarea.db" kind="src" output="com.hsweb.system.tenant/bin" path="com.hsweb.system.tenant/src"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/commons-codec-1.11.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

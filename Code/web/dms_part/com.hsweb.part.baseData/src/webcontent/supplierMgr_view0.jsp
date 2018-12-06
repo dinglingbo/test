@@ -76,7 +76,7 @@
          sortMode="client"
          allowCellWrap = true
          frozenStartColumn="0"
-         frozenEndColumn="7">
+         frozenEndColumn="11">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <!--<div type="checkcolumn" ></div>-->
@@ -129,7 +129,7 @@
     </div>
 </div>
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:420px;height:210px;"
+     title="高级查询" style="width:520px;height:240px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">
@@ -145,7 +145,7 @@
             <tr>
                 <td class="table-label">供应商全称:</td>
                 <td colspan="3">
-                    <input name="fullName" class="nui-textbox" style="width:100%;"/>
+                    <input name="fullName" class="nui-textbox" style="width:95%;"/>
                 </td>
             </tr>
             <tr>
@@ -184,7 +184,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="table-label">是否禁用:</td>
+                <td class="table-label" >是否禁用:</td>
                 <td>
                     <input class="nui-checkbox" name="isDisabled" trueValue="1" falseValue="0"/>
                 </td>

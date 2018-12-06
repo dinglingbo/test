@@ -18,6 +18,8 @@ pageEncoding="UTF-8" session="false" %>
         <table style="width:100%;">
             <tr>
                 <td>
+
+
                     <label>幻灯名称：</label>
                     <input class="nui-textbox" name="" id="" enabled="true"/>
                     <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
@@ -26,7 +28,7 @@ pageEncoding="UTF-8" session="false" %>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                     <li class="separator"></li>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;禁用</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
                 </td>
             </tr>
         </table>
@@ -35,7 +37,7 @@ pageEncoding="UTF-8" session="false" %>
     <div class="nui-fit">
         <div id="investGrid" class="nui-datagrid" style="width:100%;height:100%;"
         pageSize="50"
-        multiSelect="false"
+        multiSelect="true"
         totalField="page.count"
         sizeList=[20,50,100,200]
         dataField="list"
@@ -47,9 +49,10 @@ pageEncoding="UTF-8" session="false" %>
         <div property="columns">
 
             <div type="checkcolumn" ></div>    
-            <div field="" name="" width="80" headerAlign="center" header="名称"></div>
-            <div field="" name="" width="80" headerAlign="center" header="类型"></div>
-            <div field="" name="" width="80" headerAlign="center" header="跟新时间" dateFormat="yyyy-MM-dd HH:mm"></div>
+            <div field="" name="" width="80" headerAlign="center" header="幻灯名称"></div>
+            <div field="" name="" width="80" headerAlign="center" header="缩略图"></div>
+            <div field="" name="" width="80" headerAlign="center" header="图片" ></div>
+            <div field="" name="" width="80" headerAlign="center" header="排序" ></div>
         </div>
 
 

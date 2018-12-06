@@ -43,7 +43,6 @@ pageEncoding="UTF-8" session="false" %>
         >
         <div property="columns">
 
-            <div field="carNo" name="carNo" width="80" headerAlign="center" header="操作"></div>
             <div type="checkcolumn" ></div>    
             <div field="serviceCode" name="serviceCode" width="80" headerAlign="center" header="ID"></div>
             <div field="visitMan" name="visitMan" width="80" headerAlign="center" header="标题"></div>

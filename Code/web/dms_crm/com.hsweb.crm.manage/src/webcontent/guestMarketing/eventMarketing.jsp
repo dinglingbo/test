@@ -26,10 +26,10 @@ pageEncoding="UTF-8" session="false" %>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                     <li class="separator"></li>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;活动记录</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;中奖记录</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;奖品设置</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;推文/发布</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="eventRecord()" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;活动记录</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="prizeReocord()" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;中奖记录</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="prizeSetting()" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;奖品设置</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="eventTW()" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;推文/发布</a>
                 </td>
             </tr>
         </table>
@@ -73,13 +73,68 @@ pageEncoding="UTF-8" session="false" %>
              url: webPath + contextPath  + "/manage/guestMarketing/eventAdd.jsp",
              title: "新增活动",
              width: 900, 
-             height: 600,
+             height: 620,
              onload: function () {
              },
              ondestroy: function (action) {
              }
          });
    }
+
+      function eventRecord(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/eventRecord.jsp",
+             title: "活动记录",
+             width: 950, 
+             height: 320,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
+
+      function prizeReocord(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/eventPrizeRecord.jsp",
+             title: "中奖纪录",
+             width: 950, 
+             height: 320,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
+
+      function prizeSetting(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/eventPrizeSetting.jsp",
+             title: "奖品设置",
+             width: 900, 
+             height: 320,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
+
+
+
+      function eventTW(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/event_Tuiwen.jsp",
+             title: "推文生成",
+             width: 500, 
+             height: 150,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
+
 </script>
 </body>
 </html>

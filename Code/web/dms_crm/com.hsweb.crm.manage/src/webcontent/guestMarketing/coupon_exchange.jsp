@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<!-- 
+<!--
   - Author(s): Administrator
-  - Date: 2018-12-05 14:49:04
+  - Date: 2018-12-03 18:34:32
   - Description:
 -->
 <head>
-    <title>Title</title>
+    <title>意向回访</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
@@ -18,7 +17,7 @@ pageEncoding="UTF-8" session="false" %>
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
     }
     .tbtext {
-        float: right;
+
         width: 90px;
         text-align: right;
     }
@@ -40,31 +39,24 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 <div class="nui-fit">
   <table style="width:100%;">
-
     <tr>
-        <td class="tbtext"><label>微信相应类型：</label></td>
+        <td class="tbtext"><label>勾兑人：</label></td>
         <td><input class="nui-combobox tbinput" name="" style=""></td>
-</tr>
-         <tr>
-        <td class="tbtext"><label>微信响应回复：</label></td>
+        <td class="tbtext"><label>勾兑时间：</label></td>
         <td><input class="nui-combobox tbinput" name="" style=""></td>
     </tr>
-    <!-- <tr>
-        <td class="tbtext"><label>是否启用：</label></td>
-        <td>
-            <input type="radio" name="colors" id="red">启用
-            <input type="radio" name="colors" id="blue">不启用
-        </td>
-    </tr> -->
+    <tr>
+        <td class="tbtext"><label>勾兑商户：</label></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
+        <td class="tbtext"><label>勾兑门店：</label></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
+    </tr>
 
 </table>
 </div>
 
 <script type="text/javascript">
    nui.parse();
-
-
-
 </script>
 </body>
 </html>

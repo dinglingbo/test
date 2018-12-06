@@ -45,7 +45,7 @@ pageEncoding="UTF-8" session="false" %>
 
                  <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                  <li class="separator"></li>
-                 <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;导出</a>
+                 <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-refresh fa-lg"></span>&nbsp;同步微信</a>
          </tr>
      </table>
  </div>

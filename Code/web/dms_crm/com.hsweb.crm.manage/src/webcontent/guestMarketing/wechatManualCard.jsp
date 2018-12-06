@@ -23,6 +23,7 @@
                     <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <li class="separator"></li>
                     <a class="nui-button" iconCls="" plain="true" onclick="newEvent()" id="addBtn"><span class="fa fa-credit-card fa-lg"></span>&nbsp;手动派券</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="list()" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;派券记录</a>
                 </td>
             </tr>
         </table>
@@ -42,7 +43,6 @@
         >
         <div property="columns">
 
-            <div field="carNo" name="carNo" width="80" headerAlign="center" header="操作"></div>
             <div field="carNo" name="carNo" width="80" headerAlign="center" header="ID"></div>
             <div field="serviceCode" name="serviceCode" width="135" headerAlign="center" header="卡券名字"></div>
             <div field="visitMan" name="visitMan" width="80" headerAlign="center" header="派发人"></div>
@@ -72,8 +72,22 @@
              nui.open({
              url: webPath + contextPath  + "/manage/guestMarketing/wechatManual_edit.jsp",
              title: "新增卡券",
-             width: 900, 
-             height: 600,
+             width: "60%", 
+             height: "100%",
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
+
+
+               function list(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/couponPushList.jsp",
+             title: "派券记录",
+             width: "100%", 
+             height: "100%",
              onload: function () {
              },
              ondestroy: function (action) {

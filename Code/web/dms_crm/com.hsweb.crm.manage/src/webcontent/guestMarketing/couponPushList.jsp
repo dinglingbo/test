@@ -47,6 +47,8 @@ pageEncoding="UTF-8" session="false" %>
                  <li class="separator"></li>
                  <a class="nui-button" iconCls="" plain="true" onclick="newEvent()" id="addBtn"><span class="fa fa-diamond fa-lg"></span>&nbsp;勾兑</a>
                  <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;批量审核</a>
+                 <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消审核</a>
+                 <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-trash fa-lg"></span>&nbsp;作废</a>
                  <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a>
              </td>
          </tr>
@@ -68,17 +70,25 @@ pageEncoding="UTF-8" session="false" %>
     <div property="columns">
 
         <div type="checkcolumn" ></div>    
-        <div field="serviceCode" name="serviceCode" width="80" headerAlign="center" header="ID"></div>
-        <div field="visitMan" name="visitMan" width="80" headerAlign="center" header="标题"></div>
-        <div field="carType" name="carType" width="80" headerAlign="center" header="卡券编号"></div>
-        <div field="carType" name="carType" width="80" headerAlign="center" header="库存"></div>
+        <div field="serviceCode" name="serviceCode" width="80" headerAlign="center" header="派发人"></div>
+        <div field="visitMan" name="visitMan" width="80" headerAlign="center" header="派发门店"></div>
+        <div field="carType" name="carType" width="80" headerAlign="center" header="卡券码"></div>
+        <div field="carType" name="carType" width="80" headerAlign="center" header="卡券名称"></div>
+        <div field="carType" name="carType" width="80" headerAlign="center" header="车牌号"></div>
+        <div field="carType" name="carType" width="80" headerAlign="center" header="车架号"></div>
+        <div field="carType" name="carType" width="80" headerAlign="center" header="品牌"></div>
+        <div field="carType" name="carType" width="80" headerAlign="center" header="车型"></div>
+        <div field="carType" name="carType" width="80" headerAlign="center" header="车系"></div>
+        <div field="carType" name="carType" width="80" headerAlign="center" header="手机号"></div>
+        <div field="carType" name="carType" width="80" headerAlign="center" header="状态"></div>
         <div field="carType" name="carType" width="80" headerAlign="center" header="价钱"></div>
-        <div field="carType" name="carType" width="80" headerAlign="center" header="优惠说明"></div>
-        <div field="carType" name="carType" width="80" headerAlign="center" header="审核人"></div>
-        <div field="auditSign" name="auditSign" width="80" headerAlign="center" header="审核时间" dateFormat="yyyy-MM-dd HH:mm"></div>
-        <div field="auditOpinion" name="auditOpinion" width="80" headerAlign="center" header="审核状态"></div>
-        <div field="remark" name="remark" width="80" headerAlign="center" header="略缩图"></div>
-        <div field="recorder" name="recorder" width="80" headerAlign="center" header="图片"></div>
+        <div field="auditSign" name="auditSign" width="80" headerAlign="center" header="有效日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+        <div field="auditSign" name="auditSign" width="80" headerAlign="center" header="派发时间" dateFormat="yyyy-MM-dd HH:mm"></div>
+        <div field="auditOpinion" name="auditOpinion" width="80" headerAlign="center" header="勾兑人"></div>
+        <div field="remark" name="remark" width="80" headerAlign="center" header="勾兑商户"></div>
+        <div field="recorder" name="recorder" width="80" headerAlign="center" header="勾兑门店"></div>
+        <div field="recorder" name="recorder" width="80" headerAlign="center" header="获取来源"></div>
+        <div field="recorder" name="recorder" width="80" headerAlign="center" header="勾兑时间"></div>
         <div field="recorder" name="recorder" width="80" headerAlign="center" header="类型"></div>
     </div>
 </div>

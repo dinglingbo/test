@@ -27,7 +27,7 @@ pageEncoding="UTF-8" session="false" %>
 </head>
 <body>
 
-   <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+   <div class="nui-toolbar" style="padding:0px;">
     <table style="width:80%;">
         <tr>
             <td style="width:80%;">
@@ -44,7 +44,7 @@ pageEncoding="UTF-8" session="false" %>
         <td><input class="nui-combobox tbinput" name="" style=""></td>
     </tr>
     <tr>
-        <td class="tbtext"><label>连接地址：</label></td>
+        <td class="tbtext"><label>链接地址：</label></td>
         <td><input class="nui-combobox tbinput" name="" style=""></td>
     </tr>
         <tr>
@@ -59,12 +59,12 @@ pageEncoding="UTF-8" session="false" %>
         </td>
     </tr>
     <tr>
-        <td class="tbtext"><label>略缩图：</label></td>
+        <td class="tbtext"><label>上传图片：</label></td>
         <td><input class="nui-combobox tbinput" name="" style=""></td>
     </tr>
     <tr>
         <td class="tbtext"><label>预览：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td></td>
     </tr>
 </table>
 </div>

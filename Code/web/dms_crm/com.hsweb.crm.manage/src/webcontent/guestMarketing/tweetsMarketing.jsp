@@ -22,9 +22,10 @@ pageEncoding="UTF-8" session="false" %>
                     <input class="nui-textbox" name="" id="" enabled="true"/>
                     <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <li class="separator"></li>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-tablet fa-lg"></span>&nbsp;推送详情</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-file fa-lg"></span>&nbsp;wechat素材</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="push()" id="addBtn"><span class="fa fa-toggle-right fa-lg"></span>&nbsp;推送</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="list()" id="addBtn"><span class="fa fa-tablet fa-lg"></span>&nbsp;推送详情</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="file()" id="addBtn"><span class="fa fa-file fa-lg"></span>&nbsp;wechat素材</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                 </td>
             </tr>
@@ -60,6 +61,61 @@ pageEncoding="UTF-8" session="false" %>
 
 <script type="text/javascript">
  nui.parse();
+
+
+               function push(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/tweets_push.jsp",
+             title: "推文推送",
+             width: 950, 
+             height: 400,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
+
+                  function list(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/tweetsPushList.jsp",
+             title: "推送列表",
+             width: 950, 
+             height: 400,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
+
+                  function edit(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/tweets_edit.jsp",
+             title: "添加推文",
+             width: 700, 
+             height: 370,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
+
+
+                     function file(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/wechatFile.jsp",
+             title: "微信素材",
+             width: 950, 
+             height: 400,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
+
 </script>
 </body>
 </html>

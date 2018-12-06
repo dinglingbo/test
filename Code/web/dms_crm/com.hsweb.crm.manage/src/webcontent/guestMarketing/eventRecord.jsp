@@ -8,13 +8,13 @@ pageEncoding="UTF-8" session="false" %>
   - Description:
 -->
 <head>
-  <title>内容列表</title>
+  <title>积分明细</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
 <%@include file="/common/commonRepair.jsp"%>
 </head>
 <body>
-  <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
+  <div class="nui-toolbar" style="padding:2px;border-bottom: 0" id="queryForm">
     <table style="width:100%;">
       <tr>
         <td>
@@ -33,21 +33,15 @@ pageEncoding="UTF-8" session="false" %>
            <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
            <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
          </ul>
-         创建时间:
+         签到时间:
          <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" /> 至
          <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
-         <label>文章标题：</label>
-         <input class="nui-combobox" name="" id="" enabled="true"/>
-         <label>文章分类：</label>
+         <label>订单分类：</label>
          <input class="nui-textbox" name="" id="" enabled="true"/>
+         <label>手机号：</label>
+         <input class="nui-combobox" name="" id="" enabled="true"/>
 
          <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-         <li class="separator"></li>
-         <a class="nui-button" iconCls="" plain="true" onclick="newEvent()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-         <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-         <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
-         <li class="separator"></li>
-         <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
        </tr>
      </table>
    </div>
@@ -67,12 +61,16 @@ pageEncoding="UTF-8" session="false" %>
     <div property="columns">
       <div type="checkcolumn" ></div>    
       <div type="indexcolumn" headerAlign="center" header="序号"></div>
-      <div field="" name="" width="80" headerAlign="center" header="文章标题"></div>
-      <div field="" name="" width="80" headerAlign="center" header="文章分类"></div>
-      <div field="" name="" width="80" headerAlign="center" header="略缩图"></div>
-      <div field="" name="" width="80" headerAlign="center" header="图片"></div>
-      <div field="" name="" width="80" headerAlign="center" header="创建时间" dateFormat="yyyy-MM-dd HH:mm"></div>
-      <div field="" name="" width="80" headerAlign="center" header="状态" ></div>
+      <div field="" name="" width="80" headerAlign="center" header="门店"></div>
+      <div field="" name="" width="80" headerAlign="center" header="活动名称"></div>
+      <div field="" name="" width="80" headerAlign="center" header="参与时间"></div>
+      <div field="" name="" width="80" headerAlign="center" header="活动类型"></div>
+      <div field="" name="" width="80" headerAlign="center" header="昵称"></div>
+      <div field="" name="" width="80" headerAlign="center" header="手机号"></div>
+      <div field="" name="" width="80" headerAlign="center" header="报名时间" dateFormat="yyyy-MM-dd HH:mm"></div>
+      <div field="" name="" width="80" headerAlign="center" header="签到时间" dateFormat="yyyy-MM-dd HH:mm"></div>
+      <div field="" name="" width="80" headerAlign="center" header="中奖奖品" ></div>
+      <div field="" name="" width="80" headerAlign="center" header="备注" ></div>
     </div>
   </div>
 
@@ -152,19 +150,6 @@ pageEncoding="UTF-8" session="false" %>
     //doSearch(params);
   }
 
-
-            function newEvent(){
-             nui.open({
-             url: webPath + contextPath  + "/manage/wechat/contentList_edit.jsp",
-             title: "新增文章",
-             width: 800, 
-             height: 440,
-             onload: function () {
-             },
-             ondestroy: function (action) {
-             }
-         });
-   }
 
 
 </script>

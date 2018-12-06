@@ -54,10 +54,14 @@ pageEncoding="UTF-8" session="false" %>
              <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
              <li class="separator"></li>
              <a class="nui-button" iconCls="" plain="true" onclick="newEvent()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-             <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
-             <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;营销方案</a>
-             <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;分配销售顾问</a>
-             <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-mail-forward fa-lg"></span>&nbsp;战败</a>
+             <a class="nui-button" iconCls="" plain="true" onclick="newEvent()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+             <a class="nui-button" iconCls="" plain="true" onclick="program()" id="addBtn"><span class="fa fa-reorder fa-lg"></span>&nbsp;营销方案</a>
+             <a class="nui-button" iconCls="" plain="true" onclick="mem()" id="addBtn"><span class="fa fa-group fa-lg"></span>&nbsp;分配销售顾问</a>
+             <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-user-times fa-lg"></span>&nbsp;战败</a>
+             <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-user fa-lg"></span>&nbsp;取消战败</a>
+             <li class="separator"></li>
+             <a class="nui-button" iconCls="" plain="true" onclick="visit()" id="addBtn"><span class="fa fa-volume-control-phone fa-lg"></span>&nbsp;跟踪</a>
+             <a class="nui-button" iconCls="" plain="true" onclick="visitList()" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;跟踪记录</a>
            </td>
          </tr>
        </table>
@@ -76,9 +80,8 @@ pageEncoding="UTF-8" session="false" %>
       ondrawcell=""
       >
       <div property="columns">
-        <div type="indexcolumn" headerAlign="center" header="序号"></div>
-        <div field="" name="" width="80" headerAlign="center" header="操作"></div>
         <div type="checkcolumn" ></div>    
+        <div type="indexcolumn" headerAlign="center" header="序号"></div>
         <div field="" name="" width="80" headerAlign="center" header="门店"></div>
         <div field="" name="" width="80" headerAlign="center" header="品牌"></div>
         <div field="" name="" width="80" headerAlign="center" header="车型"></div>
@@ -167,14 +170,14 @@ pageEncoding="UTF-8" session="false" %>
             <div  id="t2"  style="float:left;width: 49.5%; height: 100%;"> 
    
                 <div class="nui-fit">
-                    <div id="lindChatA" style="width:580px;height:250px;"></div>
+                    <div id="lindChatA" style="width:580px;height:230px;"></div>
                 </div>
             </div>
             <div  id="t4"  style="float:left;width: 1%; height: 100%;"></div>
             <div  id="t3"  style="float:left;width: 49%; height: 100%;">       
   
                 <div class="nui-fit">
-                    <div id="lindChatB" style="width:580px;height:250px;"></div>
+                    <div id="lindChatB" style="width:580px;height:230px;"></div>
                 </div>
             </div>
 
@@ -284,7 +287,7 @@ pageEncoding="UTF-8" session="false" %>
         xAxis : [
         {
           type : 'category',
-          data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          data : ['昂科威', '新昂科威18T', '商务车', '更多', '', '', ''],
           axisTick: {
             alignWithLabel: true
           }
@@ -297,7 +300,7 @@ pageEncoding="UTF-8" session="false" %>
         ],
         series : [
         {
-          name:'数量',
+          name:'车型数量',
           type:'bar',
           barWidth: '60%',
           data:[10, 52, 200, 334, 390, 330, 220]
@@ -346,7 +349,7 @@ pageEncoding="UTF-8" session="false" %>
         ],
         series : [
         {
-          name:'数量',
+          name:'意向统计',
           type:'bar',
           barWidth: '60%',
           data:[10, 52, 100, 134]
@@ -369,13 +372,67 @@ pageEncoding="UTF-8" session="false" %>
              url: webPath + contextPath  + "/manage/guestMarketing/intentionMgr_edit.jsp",
              title: "添加评论",
              width: 700, 
-             height: 450,
+             height: 350,
              onload: function () {
              },
              ondestroy: function (action) {
              }
          });
    }
+
+            function program(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/marketingProgram.jsp",
+             title: "营销方案",
+             width: 900, 
+             height: 500,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
+
+
+            function mem(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/selectMember.jsp",
+             title: "分配销售顾问",
+             width: 620, 
+             height: 250,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
+
+               function visit(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/intention_visit.jsp",
+             title: "跟踪回访",
+             width: 650, 
+             height: 370,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
+
+                  function visitList(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/intention_visitRecord.jsp",
+             title: "跟踪记录",
+             width: 720, 
+             height: 300,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
+
 
 </script>
 </body>

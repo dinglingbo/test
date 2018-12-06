@@ -69,7 +69,7 @@ $(document).ready(function(v)
 function getSearchParams(){
     var params = {};
     params.storeId=nui.get('storehouse').getValue(); 
-    params.startDate=nui.get("startDate").getValue().substr(0, 10);
+    params.startDate=nui.get("startDate").getFormValue();
     params.endDate=addDate(endDateEl.getValue(),1);
     return params;
 }

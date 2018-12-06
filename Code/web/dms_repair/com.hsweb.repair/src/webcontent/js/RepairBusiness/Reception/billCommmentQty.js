@@ -74,8 +74,8 @@ function getSearchParams(){
     if(type=="bad"){
     	params.bad=1;
     }
-    params.sRecordDate=nui.get("sRecordDate").getValue().substr(0, 10);
-    params.eRecordDate=nui.get("eRecordDate").getValue().substr(0, 10);
+    params.sRecordDate=nui.get("sRecordDate").getFormValue();
+    params.eRecordDate=nui.get("eRecordDate").getFormValue();
     return params;
 }
 var currType = 2;

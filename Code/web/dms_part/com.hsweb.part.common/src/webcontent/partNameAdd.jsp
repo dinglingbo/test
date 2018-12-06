@@ -64,6 +64,15 @@
 
 	<script type="text/javascript">
     	nui.parse();
+    	var partTypeList=[];
+    	var typeHash={};
+    	 getAllPartType(function(data) {
+	        partTypeList = data.partTypes;
+	        partTypeList.forEach(function(v) {
+	            typeHash[v.id] = v;
+	        });
+	    });
+    	
     </script>
 </body>
 </html>

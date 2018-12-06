@@ -32,7 +32,7 @@
     <div class="nui-splitter"
          allowResize="false"
          style="width:100%;height:100%;">
-        <div size="210" showCollapseButton="false">
+        <div size="250" showCollapseButton="false">
             <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;text-align: center;">
                 <span>系统分类</span>
             </div>
@@ -61,7 +61,7 @@
                      sortMode="client"
                      showFilterRow="false" allowCellSelect="true" allowCellEdit="true">
                     <div property="columns">
-                        <div type="indexcolumn">序号</div>
+                        <div type="indexcolumn" width="40">序号</div>
                         <div header="配件名称" headerAlign="center">
                             <div property="columns">
                                 <div allowSort="true" field="name" headerAlign="center" header="标准名称"></div>

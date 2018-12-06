@@ -209,7 +209,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
-	initGrid(beginDateEl.getValue(), endDateEl.getValue());
+	initGrid(beginDateEl.getFormValue(), endDateEl.getFormValue());
 
     rightGrid.load({
         params:params,

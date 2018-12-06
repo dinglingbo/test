@@ -93,14 +93,14 @@
          sizeList="[1000,5000,10000]"
          showSummaryRow="true">
         <div property="columns">
-            <div type="indexcolumn">序号</div>
+            <div width="40" type="indexcolumn">序号</div>
             <div header="退货信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="130" summaryType="count" headerAlign="center" header="退货单号"></div>
                     <div field="guestFullName" width="220" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="退货员"></div>
                     <div field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="storeId" width="80" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="storeId" width="100" headerAlign="center" header="仓库"></div>
                     <div allowSort="true" width="120"field="createDate" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                 </div>
             </div>
@@ -108,9 +108,9 @@
                 <div property="columns">
                     <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="comPartName" width="120"headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
-                    <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
+                    <div allowSort="true" field="comOemCode" width="180" headerAlign="center" header="OEM码"></div>
+                    <div allowSort="true" field="partBrandId" width="80" headerAlign="center" header="品牌"></div>
+                    <div allowSort="true" field="applyCarModel" width="190" headerAlign="center" header="车型"></div>
                     <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
                 </div>
             </div>

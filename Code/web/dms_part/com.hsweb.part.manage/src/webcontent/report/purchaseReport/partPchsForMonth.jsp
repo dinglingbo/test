@@ -4,7 +4,7 @@
 
 <head>
 <title>配件采购汇总按月排行</title>
-<script src="<%=webPath + contextPath%>/manage/js/report/partPchsForMonth.js?v=1.1.4"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/partPchsForMonth.js?v=1.1.7"></script>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
                 </ul>
 
         <label style="font-family:Verdana;">开始日期 从：</label>
-                <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+                <input class="nui-datepicker" id="beginDate" allowInput="false" width="130px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <label style="font-family:Verdana;">至</label>
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <span class="separator"></span> 
@@ -51,12 +51,12 @@
         sizeList="[10,20,50]" allowAlternating="true" 
           url="" dataField="partList" idField="partId" 
                 ondrawcell="onRightGridDraw" sortMode="client"
-                showSummaryRow="true"
+                showSummaryRow="true" allowCellWrap = true
         parentField="parentId">
         <div property="columns" width="10">
             <div header="   ">
               <div property="columns" width="10">
-                <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >配件编码</div>
+                <div field="partBrandId" allowSort="true" headerAlign="center"width="100"  >配件编码</div>
                 <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >配件名称</div>
                 <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >品质</div>
                 <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >品牌</div>

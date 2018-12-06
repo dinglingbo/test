@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商管理</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.1.5"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.1.7"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -86,6 +86,7 @@
                     <div type="checkcolumn" >选择</div>
                     <div allowSort="true" field="shortName" width="140" headerAlign="center" header="供应商简称"></div>
                     <div allowSort="true" field="fullName" width="240" headerAlign="center" header="供应商全称"></div>
+                    <div allowSort="true" field="isInternal" width="100" headerAlign="center" header="是否内部供应商"></div>
                     <div allowSort="true" field="tel" width="140" headerAlign="center" header="电话"></div>
                     <div allowSort="true" field="supplierType" width="100" headerAlign="center" header="供应商类型"></div>
                     <div allowSort="true" field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>

@@ -1718,7 +1718,8 @@
 			) AS grossRate,
 			(a.true_cost / a.sell_amt) AS costRate,
 			a.pick_man AS pickMan,
-			a.pick_date AS pickDate
+			a.pick_date AS pickDate,
+			b.out_date as outDate
 		FROM
 			pj_repair_out a
 		INNER JOIN wb_repair.rps_maintain b ON a.service_id = b.id

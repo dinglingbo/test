@@ -268,7 +268,20 @@
     </div>
 </div>
 
-
+<script type="text/javascript">
+	nui.parse();
+	var t =null;
+	$(document).ready(function(v){
+	
+	t =nui.get("partNameAndPY");
+});
+	function onSearch(){
+	 
+	var tt = t.getValue();
+	nui.alert(tt);
+	
+	}
+</script>
 
 </body>
 </html>

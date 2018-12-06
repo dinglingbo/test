@@ -81,7 +81,7 @@
                 </tr>
                 <tr class="htr">
                     <td class=" right fwidtha required">上级分类:</td>
-                    <td ><input id="parentId" name="parentId" width="100%" class="nui-combobox" textField="name" valueField="id"     dataField="" url="" valueFromSelect="true" allowinput="true"></td>
+                    <td ><input id="parentId" name="parentId" width="100%" class="nui-combobox" textField="name" valueField="id"   popupHeight="80%"  dataField="" url="" valueFromSelect="true" allowinput="true"></td>
                 </tr>
             </table>
 

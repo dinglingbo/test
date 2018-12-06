@@ -11,7 +11,7 @@
 -->
 <head>
 <title>客户储值卡消费记录</title>
-<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreConsumeQuery.js?v=1.1.9"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/StoreConsumeQuery.js?v=1.1.10"></script>
 <style type="text/css">
 html,body {
 	margin: 0;

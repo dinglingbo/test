@@ -11,7 +11,7 @@
 <title>导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/getPartInfoImoprt.js?v=1.0.6"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/getPartInfoImoprt.js?v=1.0.9"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -86,13 +86,12 @@
 	    <table style="width:100%;">
 	        <tr>
 	            <td style="width:100%;">
-					<a href="javascript:;" class="file">点击这里选择文件
+					<a href="javascript:;" class="file" id="file">点击这里选择文件
 					    <input type="file" name="" id="" onchange="importf(this)">
 					</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="clear()" id="saveBtn"><span class="fa fa-trash fa-lg"></span>&nbsp;清空</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="close()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
-	                <input class="nui-hidden" name="esc" id="esc"/>
 				</td>
 	        </tr>
 	    </table>

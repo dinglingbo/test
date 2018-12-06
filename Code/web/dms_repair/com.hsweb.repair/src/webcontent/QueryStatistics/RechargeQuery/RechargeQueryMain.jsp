@@ -11,7 +11,7 @@
 -->
 <head>
 <title>储蓄卡充值查询</title>
-<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/RechargeQueryMain.js?v=1.0.0"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RechargeQuery/RechargeQueryMain.js?v=1.0.2"></script>
 <style type="text/css">
 html,body {
 	margin: 0;

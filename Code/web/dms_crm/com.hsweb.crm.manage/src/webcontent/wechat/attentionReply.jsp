@@ -51,7 +51,7 @@ pageEncoding="UTF-8" session="false" %>
    <div class="nui-fit">
     <div id="investGrid" class="nui-datagrid" style="width:100%;height:100%;"
     pageSize="50"
-    multiSelect="false"
+    multiSelect="true"
     totalField="page.count"
     sizeList=[20,50,100,200]
     dataField="list"
@@ -149,9 +149,9 @@ pageEncoding="UTF-8" session="false" %>
 
           function newEvent(){
              nui.open({
-             url: webPath + contextPath  + "/manage/wechat/keywordReply_edit.jsp",
-             title: "新增关键字",
-             width: 700, 
+             url: webPath + contextPath  + "/manage/wechat/attentionReply_edit.jsp",
+             title: "新增关注回复",
+             width: 350, 
              height: 150,
              onload: function () {
              },

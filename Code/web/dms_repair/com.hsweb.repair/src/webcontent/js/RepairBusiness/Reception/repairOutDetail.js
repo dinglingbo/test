@@ -70,6 +70,7 @@ $(document).ready(function(){
 	});
 	
     mainGrid.on("drawcell", function (e) {
+        var ll = '<a  href="javascript:LLSave()">领料</a>';
     	var value = e.value;
         if (e.field == "serviceTypeId") {
             if (servieTypeHash && servieTypeHash[e.value]) {
@@ -82,17 +83,23 @@ $(document).ready(function(){
         		value = (value * 100).toFixed(2);
         		e.cellHtml = value + '%';
         	}
+        }else if(e.field == "action"){
+        	 e.cellHtml = ll;
         }
     });
     
     repairOutGrid.on("drawcell", function (e) {
+        var th = '<a  href="javascript:THSave()">退货</a>';
         if (e.field == "storeId") {
         	if (storeHash[e.value]) {
 				e.cellHtml = storeHash[e.value].name || "";
 			} else {
 				e.cellHtml = "";
 			}
+        }else if(e.field == "action"){
+        	 e.cellHtml = th;
         }
+        
     });
 
 
@@ -396,15 +403,8 @@ function  savepartOutRtn(data,childdata){
     }
 
     function memberSelect(row){
-    	var count=0;
-    	var mainGridData=mainGrid.getData();
-    	for(var i=0;i<mainGridData.length;i++){
-    		if(mainGridData[i].qty==mainGridData[i].pickQty){
-    			count++;
-    			
-    		}
-    	}
-    	if(count==mainGridData.length){
+
+    	if(status==2){
     		showMsg("本工单已完工,配件不能归库","W");
     		return;
     	}

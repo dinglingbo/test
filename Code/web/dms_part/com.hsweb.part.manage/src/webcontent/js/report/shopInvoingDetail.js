@@ -68,7 +68,7 @@ function getSearchParams(){
     params.partBrandId=nui.get("partBrandId").getValue();
     params.guestName=nui.get("guestName").getValue();
     params.operator=nui.get("operatorId").getText();
-    params.OstartDate=startDateEl.getValue().substr(0, 10);;
+    params.OstartDate=startDateEl.getFormValue();;
     params.OendDate=addDate(endDateEl.getValue(),1);
     return params;
 }

@@ -35,6 +35,7 @@ $(document).ready(function(v)
             window.CloseOwnerWindow("");
             break; 
         }
+
         /*if((keyCode==83)&&(event.shiftKey))  {  
             onOk();  
         } 
@@ -43,9 +44,6 @@ $(document).ready(function(v)
             onCancel();
         }  */
     }
-    grid.on("rowdblclick",function(){
-    	onOk();
-    });
 });
 function onDrawNode(e)
 {
@@ -141,7 +139,7 @@ function onOk()
     var node = grid.getSelected();
     if(node)
     {
-       // console.log(node);
+        console.log(node);
         resultData = {
             partName:node
         };
@@ -160,6 +158,31 @@ function CloseWindow(action)
 function onCancel(e) {
     CloseWindow("cancel");
 }
-function searchPartName(){
-	onSearch();
+
+function addPartName(){
+	
+	nui.open({
+		url : webPath+ partDomain+ "/commonPart/partNameAdd.jsp?token"+ token,
+		title : "新增配件名称",
+		width : 425,
+		height : 300,
+		allowDrag : false,
+		allowResize : false,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var params = {
+				data : row
+			};
+
+			iframe.contentWindow.SetData(params);
+		},
+		ondestroy : function(action) {
+			if (action == 'ok') {
+
+				onSearch();
+				morePartSearch();
+
+			}
+		}
+	});
 }

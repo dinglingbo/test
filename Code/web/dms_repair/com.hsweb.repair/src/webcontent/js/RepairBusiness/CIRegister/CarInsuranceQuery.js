@@ -85,8 +85,8 @@ function getSearchParams()
 {
     var params = {};
     var data = advancedSearchForm.getData();
-    params.startDate = beginDateEl.getValue().substr(0,10);
-    params.endDate = addDate(endDateEl.getValue().substr(0,10),1);
+    params.startDate = beginDateEl.getFormValue();
+    params.endDate = addDate(endDateEl.getFormValue(),1);
     params.carNo = nui.get("carNo-search").getValue();
     params.guestFullName = nui.get("guestName").getValue();
     params.isSettle=1;

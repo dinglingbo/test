@@ -25,7 +25,7 @@ $(document).ready(function(v)
 	
 	advancedTipWin = nui.get("advancedTipWin");
 	advancedTipForm  = new nui.Form("#advancedTipForm");
-	nui.get('esc').focus();
+	nui.get('auditBtn').focus();
 	
 	document.ondragstart = function() {
 	    return false;

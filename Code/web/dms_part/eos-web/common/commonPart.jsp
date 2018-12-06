@@ -4,7 +4,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%> 
 <%@include file="/common/sysCommon.jsp"%> 
-<link href="<%=webPath + contextPath %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="<%=webPath + contextPath %>/common/nui/res/fonts/font-awesome/css/font-awesome.min.css?v=1.0.0" rel="stylesheet">
 
 <script type="text/javascript">
 <% IMUODataContext muo = DataContextManager.current()

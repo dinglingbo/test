@@ -25,8 +25,8 @@ $(document).ready(function (v)
 function getSearchParams()
 {
     var params = {};
-    params.startDate = nui.get("startDate").getValue().substr(0,10);
-    params.endDate = nui.get("endDate").getValue().substr(0,10);
+    params.startDate = nui.get("startDate").getFormValue();
+    params.endDate = nui.get("endDate").getFormValue();
     var data=nui.get("data").getValue();
     var search=nui.get("search").getValue();
     if(data==0){

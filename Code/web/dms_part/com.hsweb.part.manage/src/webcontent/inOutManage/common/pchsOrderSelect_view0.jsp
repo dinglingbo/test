@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购订单选择</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/pchsOrderSelect.js?v=1.0.8"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/pchsOrderSelect.js?v=1.0.11"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -75,9 +75,9 @@
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 
                 <span class="separator"></span> 
-                <input id="billStatusId" width="65px" emptyText="状态" textField="name" valueField="id" valuefromselect="true" allowInput="true" class="nui-combobox"/>
+                <input id="billStatusId" width="75px" emptyText="状态" textField="name" valueField="id" valuefromselect="true" allowInput="true" class="nui-combobox"/>
                 <input id="serviceId" width="100px" emptyText="订单号" class="nui-textbox"/>
-                <input id="serviceMan" width="50px" emptyText="业务员" class="nui-textbox"/>
+                <input id="serviceMan" name="serviceMan"  width="100px" emptyText="业务员" class="nui-combobox" textField="empName" showNullItem="true" valueField="empName" allowInput="true" emptyText="请选择..."/>
                 <input id="searchGuestId" class="nui-buttonedit"
                         emptyText="请选择供应商..."
                         onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />

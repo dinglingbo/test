@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件名称查询</title>
-<script src="<%=webPath + contextPath%>/commonPart/js/partNameSelect.js?v=1.0.6"></script>
+<script src="<%=webPath + contextPath%>/commonPart/js/partNameSelect.js?v=1.0.7"></script>
 <style type="text/css">
 </style>
 </head>
@@ -19,10 +19,11 @@
     <table style="width:100%;">
         <tr>
             <td style="white-space:nowrap;">
-                <input class="nui-textbox" width="200" id="searchKey" onenter="searchPartName"/>
+                <input class="nui-textbox" width="200" id="searchKey"/>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="addPartName()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增配件名称</a>
             </td>
         </tr>
     </table>

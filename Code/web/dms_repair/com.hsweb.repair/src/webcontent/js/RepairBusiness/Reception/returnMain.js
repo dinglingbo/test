@@ -5,7 +5,7 @@ var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainLis
 var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
 var beginDateEl = null;
 var endDateEl = null;
-var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"VIN码"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
 var brandList = [];
 var brandHash = {};
 var servieTypeList = [];
@@ -257,15 +257,15 @@ function out(){
 	if(row)
 	{
 		if(row.isSettle == 1){
-	        showMsg("此单已结算!","W");
+	        showMsg("工单已结算!","W");
 	        return;
 	    }
 		if(row.status==0){
-			showMsg("此单需审核才能出库!","W");
+			showMsg("工单需审核才能出库!","W");
 	        return;
 		}
 		if(row.status==2){
-			showMsg("此单已出库!","W");
+			showMsg("工单已出库!","W");
 	        return;
 		}
 		var json = nui.encode({
@@ -283,7 +283,7 @@ function out(){
 				var returnJson = nui.decode(text);
 				if (returnJson.errCode == "S") {
 					b = 1;
-					showMsg("出库成功");
+					showMsg("出库成功","S");
 					//表示退货单
 				    /*gsparams.billTypeId = 5;
 				    mainGrid.load({
@@ -310,11 +310,11 @@ function pay(){
 	if(row)
 	{
 		if(row.isSettle == 1){
-	        showMsg("此单已结算!","W");
+	        showMsg("工单已结算!","W");
 	        return;
 	    }
 		if(row.status != 2){
-			 showMsg("此单未归库，不能结算!","W");
+			 showMsg("工单未归库，不能结算!","W");
 		     return;
 		}
 		nui.open({
@@ -373,11 +373,11 @@ function finish(){
 	var isSettle = main.isSettle||0;
     
     if(isSettle == 1){
-        showMsg("此单已结算,不能审核!","W");
+        showMsg("工单已结算,不能审核!","W");
         return;
     }
 	if(main.status==1){
-		showMsg("此单已审核,不能重复审核!","W");
+		showMsg("工单已审核,不能重复审核!","W");
         return;
 	} 
 	
@@ -395,7 +395,7 @@ function finish(){
 		success : function(text) {
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == "S") {
-				showMsg("审核成功");
+				showMsg("审核成功","S");
 				var gsparams = {};
 				/*gsparams.billTypeId = 5;
 			    mainGrid.load({
@@ -405,7 +405,7 @@ function finish(){
 				quickSearch(1);
 				
 			} else {
-				showMsg(returnJson.errMsg,"W");
+				showMsg(returnJson.errMsg || "审核失败","E");
 			}
 				
 		}

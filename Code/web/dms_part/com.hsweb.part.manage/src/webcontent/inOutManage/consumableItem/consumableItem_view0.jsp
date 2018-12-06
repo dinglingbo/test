@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>耗材出库</title>
-    <script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.39"></script>
+    <script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.48"></script>
     <style type="text/css">
     html,body {
        margin: 0;
@@ -89,9 +89,9 @@ pageEncoding="UTF-8" session="false"%>
                 allowCellWrap = true
                 >
                 <div property="columns">
-                   <div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
-                   <div type="indexcolumn">序号</div>
-                   <div field="partCode" name="partCode" width="90" headerAlign="center" header="配件编码"></div>
+                   <div type="checkcolumn" width="40" class="mini-radiobutton" header="选择"></div>
+                   <div type="indexcolumn" width="40">序号</div>
+                   <div field="partCode" name="partCode" width="120" headerAlign="center" header="配件编码"></div>
                    <div field="oemCode" name="oemCode" width="190" headerAlign="center" header="OEM码"></div>
                    <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
                    <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" headerAlign="center" header="库存数量"></div>
@@ -99,13 +99,13 @@ pageEncoding="UTF-8" session="false"%>
                    <div allowSort="true" visible="false"  datatype="float" width="60" field="outQty" headerAlign="center" header="出库数量">
                        <input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                    </div>
-                   <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
-                   <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
+                   <div field="enterPrice" width="60px" headerAlign="center" allowSort="true" header="库存单价"></div>
+                   <div field="billTypeId" align="left" width="60px" headerAlign="center" allowSort="true" header="票据类型"></div>
                    <div field="storeId" name="storeId"  id="storeId" width="100" headerAlign="center" allowSort="true" header="仓库"></div>
                    <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
                    <div field="partBrandId" name="partBrandId" width="70" headerAlign="center" header="品牌"></div>
                    <div field="applyCarModel" name="applyCarModel" width="200" headerAlign="center" header="车型"></div>
-                   <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
+                   <div field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
                    <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="150px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
                    <div field="guestName" width="280px" headerAlign="center" allowSort="true" header="供应商"></div>  
 

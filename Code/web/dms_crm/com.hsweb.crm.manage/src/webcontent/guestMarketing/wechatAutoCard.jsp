@@ -66,10 +66,10 @@ pageEncoding="UTF-8" session="false" %>
 
             function newEvent(){
              nui.open({
-             url: webPath + contextPath  + "/manage/guestMarketing/wechatManual_edit.jsp",
-             title: "新增卡券",
-             width: 900, 
-             height: 600,
+             url: webPath + contextPath  + "/manage/guestMarketing/wechatAuto_Edit.jsp",
+             title: "自动派券",
+             width: 600, 
+             height: 280,
              onload: function () {
              },
              ondestroy: function (action) {

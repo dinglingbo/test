@@ -44,16 +44,18 @@ pageEncoding="UTF-8" session="false" %>
     <tr>
         <td class="tbtext"><label>微信相应类型：</label></td>
         <td><input class="nui-combobox tbinput" name="" style=""></td>
-        <td class="tbtext"><label>微信相应回复：</label></td>
+</tr>
+         <tr>
+        <td class="tbtext"><label>微信响应回复：</label></td>
         <td><input class="nui-combobox tbinput" name="" style=""></td>
     </tr>
-    <tr>
+    <!-- <tr>
         <td class="tbtext"><label>是否启用：</label></td>
         <td>
             <input type="radio" name="colors" id="red">启用
             <input type="radio" name="colors" id="blue">不启用
         </td>
-    </tr>
+    </tr> -->
 
 </table>
 </div>

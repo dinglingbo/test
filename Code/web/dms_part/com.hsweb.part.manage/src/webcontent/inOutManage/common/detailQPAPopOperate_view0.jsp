@@ -12,7 +12,7 @@
 <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/detailQPAPopOperate.js?v=2.0.0"></script>
 <style type="text/css">
 .title {
-	width: 60px;
+	width: 80px;
 	text-align: right;
 }
 

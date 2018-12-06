@@ -30,6 +30,9 @@ var guestId = null;
 var gpartId = 0;
 var detail = null;
 var serviceId = null;
+var sCreateDateEl=null;
+var eCreateDateEl =null;
+
 $(document).ready(function(v) {
 
 	queryInfoForm = new nui.Form("#queryInfoForm").getData(false, false);
@@ -38,6 +41,8 @@ $(document).ready(function(v) {
 	grid.load(queryInfoForm);
 	grid.setUrl(gridUrl);
 	grid.on("drawcell", onDrawCell);
+	sCreateDateEl=nui.get("sCreateDate");
+	eCreateDateEl=nui.get("eCreateDate");
 	getNowFormatDate();
 
 	onSearch();
@@ -50,6 +55,7 @@ $(document).ready(function(v) {
 	sortTypeEl = nui.get("sortType");
 	sortTypeEl.setData(sortTypeList);
 	tempIdEl = nui.get("tempId");
+
 
 	enterGrid.on("selectionchanged", function(e) {
 		var row = enterGrid.getSelected();
@@ -233,8 +239,8 @@ function getSearchParams() {
 	var params = {};
 	params.returnSign=0;
 	params.billTypeId='050207';
-	params.sCreateDate = nui.get("sCreateDate").getValue().substr(0, 10);
-	params.eCreateDate = nui.get("eCreateDate").getValue().substr(0, 10);
+	params.sCreateDate = sCreateDateEl.getText();
+	params.eCreateDate = eCreateDateEl.getText();
 	params.pickMan = nui.get('pickMan1').getText();
 	return params;
 }
@@ -437,7 +443,7 @@ function onOut() {
 		nui.open({
 			url : webPath+ partDomain+ "/manage/inOutManage/common/fastPartForConsumableAdd.jsp?token"+ token,
 			title : "领料",
-			width : 450,
+			width : 460,
 			height : 300,
 			allowDrag : false,
 			allowResize : false,
@@ -468,7 +474,7 @@ function onBlack() {
 		nui.open({
 			url : webPath+ partDomain+ "/manage/inOutManage/common/fastPartForConsumableAdd2.jsp?token"+ token,
 			title : "归库",
-			width : 440,
+			width : 475,
 			height : 300,
 			allowDrag : false,
 			allowResize : false,

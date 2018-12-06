@@ -116,8 +116,8 @@ function getAnayType(params)
 function getSearchParams()
 {
     var params = {};
-    params.startDate = nui.get("startDate").getValue().substr(0,10);
-    params.endDate = nui.get("endDate").getValue().substr(0,10);
+    params.startDate = nui.get("startDate").getFormValue();
+    params.endDate = nui.get("endDate").getFormValue();
     params = getAnayType(params);
     return params;
 }

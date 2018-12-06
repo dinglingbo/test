@@ -2233,7 +2233,7 @@ function addPchsOrder(type)
 	nui.open({
 		targetWindow: window,
 		url: webPath+contextPath+"/com.hsweb.part.manage.pchsOrderSelect.flow?token="+token,
-		title: title, width: 930, height: 560,
+		title: title, width: 1000, height: 560,
 		allowDrag:true,
 		allowResize:true,
 		onload: function ()

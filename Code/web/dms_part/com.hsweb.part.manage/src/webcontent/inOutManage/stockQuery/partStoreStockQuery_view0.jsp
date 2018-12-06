@@ -89,29 +89,29 @@
          sizeList="[1000,2000,5000]"
          showSummaryRow="true">
         <div property="columns">
-            <div type="indexcolumn">序号</div>
+            <div type="indexcolumn"  width="40">序号</div>
             <div header="库存信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码"></div>
-                    <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
+                    <div allowSort="true" field="comPartName" width="150" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="comOemCode" width="150"headerAlign="center" header="OEM码"></div>
-                    <div allowSort="true" field="partBrandId" width="80" headerAlign="center" header="品牌"></div>
+                    <div allowSort="true" field="partBrandId" width="90" headerAlign="center" header="品牌"></div>
                     <div allowSort="true" field="applyCarModel" width="200" headerAlign="center" header="品牌/车型"></div>
                     <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
-                    <div allowSort="true" field="storeId" width="80" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="storeId" width="100" headerAlign="center" header="仓库"></div>
                     <div allowSort="true" field="shelf" width="60" headerAlign="center" header="仓位"></div>
                 </div>
             </div>
             <div header="数量金额" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
-                    <div allowSort="true" datatype="float" field="costPrice" width="60" headerAlign="center" header="库存单价"></div>
-                    <div allowSort="true" datatype="float" field="stockAmt" summaryType="sum" width="60" headerAlign="center" header="库存金额"></div>
+                    <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="70" headerAlign="center" header="库存数量"></div>
+                    <div allowSort="true" datatype="float" field="costPrice" width="70" headerAlign="center" header="库存单价"></div>
+                    <div allowSort="true" datatype="float" field="stockAmt" summaryType="sum" width="70" headerAlign="center" header="库存金额"></div>
                 </div>
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" field="orderQty" visible="false" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
+                    <div allowSort="true" datatype="float" field="orderQty" visible="false" summaryType="sum" width="70" headerAlign="center" header="开单数量"></div>
                     <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
                     <div allowSort="true" datatype="float" field="onRoadQty" visible="false" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
                     <div allowSort="true" field="lastEnterDate" headerAlign="center" header="最近入库日期"  width="120" dateFormat="yyyy-MM-dd HH:mm"></div>

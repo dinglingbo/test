@@ -10,7 +10,7 @@
 	<title>车道商户版</title>
 	  
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <script src="<%=request.getContextPath()%>/common/nui/themes/scripts/boot.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/common/nui/boot.js" type="text/javascript"></script>
 
 	<link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.css" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.js" type="text/javascript"></script>
@@ -18,8 +18,8 @@
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/tabs.css" rel="stylesheet" type="text/css" />
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/frame.css" rel="stylesheet" type="text/css" />
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css" rel="stylesheet" type="text/css" />
-    <link href="<%=request.getContextPath()%>/common/nui/themes/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
-    <script src="<%=request.getContextPath()%>/common/nui/themes/res/third-party/scrollbar/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
+    <link href="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+    <script src="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
 
 	<style type="text/css">
     .navbar-brand
@@ -154,6 +154,7 @@
 </html>
 
 <script>
+
     var defDomin = "<%=request.getContextPath()%>";
     var baseUrl = apiPath + repairApi + "/";
     var mainTabs = mini.get("mainTabs");

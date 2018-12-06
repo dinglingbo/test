@@ -3,7 +3,8 @@
 mini_debugger = true;                                   //
 
 var skin = getCookie("miniuiSkin") || 'cupertino';            //skin cookie   cupertino
-var mode = getCookie("miniuiMode") || 'medium';               //mode cookie     medium     
+var mode = getCookie("miniuiMode") || 'default';               //mode cookie     medium     
+ 
 
 //miniui
 document.write('<script src="' + bootPATH + 'jquery.min.js" type="text/javascript"></sc' + 'ript>');
@@ -16,10 +17,10 @@ document.write('<link href="' + bootPATH + '../res/css/common.css" rel="styleshe
 document.write('<script src="' + bootPATH + '../res/js/common.js" type="text/javascript" ></sc' + 'ript>');
 
 //skin
-if (skin) document.write('<link href="' + bootPATH + 'miniui/themes/' + skin + '/skin.css" rel="stylesheet" type="text/css" />');
+if (skin && skin != "default") document.write('<link href="' + bootPATH + 'miniui/themes/' + skin + '/skin.css" rel="stylesheet" type="text/css" />');
 
 //mode
-if (mode) document.write('<link href="' + bootPATH + 'miniui/themes/default/' + mode + '-mode.css" rel="stylesheet" type="text/css" />');
+if (mode && mode != "default") document.write('<link href="' + bootPATH + 'miniui/themes/default/' + mode + '-mode.css" rel="stylesheet" type="text/css" />');
 
 //icon
 document.write('<link href="' + bootPATH + 'miniui/themes/icons.css" rel="stylesheet" type="text/css" />');

@@ -82,7 +82,7 @@
 	                valueFromSelect="true"
 	                nullItemText="请选择领料人"
 				/>
-				<input class="nui-textbox" id="remark" required="true" name="remark" emptyText="请填写备注" width="120" />
+				<input class="nui-textbox" id="remark"  name="remark" emptyText="请填写备注" width="120" />
 				<span class="separator"></span>
                   <a class="nui-button" iconCls="" plain="true" onclick="onOk">
                       <span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
@@ -279,10 +279,10 @@
         	showMsg("请选择领料人!","W");
         	return;
         }
-        if(!remark){
-        	showMsg("请填写备注!","W");
-        	return;
-        }
+//         if(!remark){
+//         	showMsg("请填写备注!","W");
+//         	return;
+//         }
         if(data.length > 0){
 
             for (var i = 0; i < data.length; i++) {

@@ -15,6 +15,7 @@ var orderTypeId = 1;
 var brandHash = {};
 var brandList = [];
 var storehouse = null;
+var storehouseHash={};
 var billTypeIdEl = null;
 var settleTypeIdEl = null;
 var billTypeIdHash = {};
@@ -73,6 +74,13 @@ $(document).ready(function(v)
     getStorehouse(function(data)
     {
         storehouse = data.storehouse||[];
+        storehouse.forEach(function(v)
+            {
+                if(v && v.id)
+                {
+                    storehouseHash[v.id] = v;
+                }
+            });
     });
 
     getAllPartBrand(function(data) {
@@ -152,9 +160,9 @@ function onDrawCell(e)
             }
             break;
         case "storeId":
-            if(storehouse && storehouse[e.value])
+            if(storehouseHash && storehouseHash[e.value])
             {
-                e.cellHtml = storehouse[e.value].name;
+                e.cellHtml = storehouseHash[e.value].name;
             }
             break;
         case "accountSign":

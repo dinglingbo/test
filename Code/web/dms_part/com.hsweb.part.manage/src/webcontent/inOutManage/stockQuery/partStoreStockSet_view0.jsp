@@ -94,16 +94,16 @@
          sizeList="[1000,2000,5000]"
          showSummaryRow="true">
         <div property="columns">
-            <div type="indexcolumn">序号</div>
+            <div width="40" type="indexcolumn">序号</div>
             <div header="库存信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码"></div>
-                    <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
+                    <div allowSort="true" field="comPartName" width="150"headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="comOemCode"width="150" headerAlign="center" header="OEM码"></div>
                     <div allowSort="true" field="partBrandId" width="80" headerAlign="center" header="品牌"></div>
                     <div allowSort="true" field="applyCarModel" width="200" headerAlign="center" header="品牌/车型"></div>
                     <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
-                    <div allowSort="true" field="storeId" width="80" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="storeId" width="100" headerAlign="center" header="仓库"></div>
                     <div allowSort="true" field="shelf" width="60" headerAlign="center" header="仓位">
                         <input property="editor" class="nui-textbox"/>
                     </div>

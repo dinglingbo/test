@@ -1,6 +1,7 @@
 /**
  * Created by Administrator on 2018/3/21.
  */
+ 
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
@@ -38,6 +39,7 @@ var prdtTypeHash = {
 };
 $(document).ready(function ()
 {
+	nui.parse();
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
     beginDateEl = nui.get("sRecordDate");

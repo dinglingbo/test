@@ -147,8 +147,8 @@ function addSuplier() {
 						+ "/com.hsweb.part.baseData.supplierDetail.flow?token="
 						+ token,
 				title : "供应商资料",
-				width : 530,
-				height : 480,
+				width : 550,
+				height : 520,
 				allowDrag : true,
 				allowResize : false,
 				onload : function() {

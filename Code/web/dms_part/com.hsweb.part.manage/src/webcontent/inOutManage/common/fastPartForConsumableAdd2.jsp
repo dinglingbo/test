@@ -15,7 +15,7 @@
     <style type="text/css">
 
    	#returnRemark.mini-textbox{
-   		width: 310px;
+   		width: 360px;
    	}
    	#returnRemark.mini-textbox-border{
    		width:303px;

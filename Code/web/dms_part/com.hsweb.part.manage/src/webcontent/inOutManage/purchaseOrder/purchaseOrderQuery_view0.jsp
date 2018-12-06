@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购订单查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderQuery.js?v=1.0.4"></script>
+<%-- <script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderQuery.js?v=1.0.4"></script> --%>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -268,7 +268,20 @@
     </div>
 </div>
 
-
+<script type="text/javascript">
+	nui.parse();
+	var t =null;
+	$(document).ready(function(v){
+	
+	t =nui.get("partNameAndPY");
+});
+	function onSearch(){
+	 
+	var tt = t.getValue();
+	nui.alert(tt);
+	
+	}
+</script>
 
 </body>
 </html>

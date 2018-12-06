@@ -94,6 +94,10 @@ $(document).ready(function(v)
         if ((keyCode == 27)) { // ESC
             CloseWindow('cancle');
         }
+        
+        if ((keyCode == 13)) { // Enter
+        	onSearch();
+        }
 
     }
     getAllPartBrand(function(data)
@@ -105,6 +109,9 @@ $(document).ready(function(v)
         });
     });
     
+    initMember("serviceMan",function(){
+		memList = nui.get('serviceMan').getData();
+  });
     var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
     initDicts(dictDefs, function(){
         var billTypeIdList = nui.get("billTypeId").getData();
@@ -208,7 +215,7 @@ function selectSupplier(elId)
 {
     supplier = null;
     nui.open({
-        targetWindow: window,
+//        targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "供应商资料", width: 980, height: 560,
         allowDrag:true,

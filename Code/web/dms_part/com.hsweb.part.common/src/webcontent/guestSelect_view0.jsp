@@ -68,7 +68,7 @@
         <div showCollapseButton="false" style="border-right:0;border-left:0;">
             <div class="nui-fit">
                 <div id="datagrid1" class="nui-datagrid" allowResize="true" style="width:100%;height:100%;"
-                     url=""  idField="id" multiSelect="true"
+                     url=""  idField="id" multiSelect="true" allowCellWrap = true
                      pageSize="20"
                      dataField="guest"
                      totalField="page.count"
@@ -83,8 +83,8 @@
                         <div header="往来基本信息" headerAlign="center">
                             <div property="columns">
                                 <div allowSort="true" field="shortName" width="80" headerAlign="center" header="简称"></div>
-                                <div allowSort="true" field="fullName" width="100" headerAlign="center" header="全称"></div>
-                                <div allowSort="true" field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>
+                                <div allowSort="true" field="fullName" width="200" headerAlign="center" header="全称"></div>
+                                <div allowSort="true" field="advantageCarbrandId" width="200" headerAlign="center" header="优势品牌/产品"></div>
                                 <div allowSort="true" field="billTypeId" width="80" headerAlign="center" header="票据类型"></div>
                                 <div allowSort="true" field="settTypeId" width="100" headerAlign="center" header="结算方式"></div>
                                 <div allowSort="true" field="manager" width="100" headerAlign="center" header="联系人"></div>
@@ -102,7 +102,7 @@
     </div>
 </div>
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:250px;"
+     title="高级查询" style="width:456px;height:290px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">

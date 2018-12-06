@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+	<%@include file="/common/sysCommon.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -14,11 +14,35 @@
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
    <style type="text/css">
 
-
+    body,
+				div,
+				dl,
+				dt,
+				dd,
+				ul,
+				ol,
+				li,
+				h1,
+				h2,
+				h3,
+				h4,
+				h5,
+				h6,
+				p ,
+				select{
+					margin: 0;
+					padding: 0;
+					font-family: "微软雅黑", "宋体", "黑体", Arial, simsun, Verdana, Lucida, Helvetica, sans-serif;
+					font-size: 14px;
+					font-style: normal;
+					font-weight: normal;
+					font-variant: normal;
+					list-style-type: none;
+				}
 .banner {
-	width: 50%;
+	width: 100%;
 	height: 250px;
-	position: relative;
+	position: relative;	
 	overflow: hidden;
 	cursor: pointer
 }
@@ -27,7 +51,15 @@
 	width: 50%;
 	height: 250px;
 	position: relative;
-	overflow: hidden
+	overflow: hidden;
+	background:#E3E3E3;
+}
+.card {
+	width: 50%;
+	height: 250px;
+	position: relative;
+	overflow: hidden;
+	background:#CCC;
 }
 
 .img {
@@ -35,8 +67,8 @@
 	height:150px;
 	position: absolute;
 	display: none;
-	left: 50%;
-	
+	left: 40%;
+	margin-top: 40px;
 }
 
 .im {
@@ -59,15 +91,24 @@
 }
 
 .pre {
-	left: 1%
+	left: 35%
 }
 
 .next {
-	right: 1%
+	right: 35%
 }
 
 .cirbox {
 	width: 88px;
+	position: absolute;
+	bottom: 15px;
+	z-index: 10;
+	left: 50%;
+	margin-left: -44px;
+	cursor: pointer
+}
+.cirbox1 {
+	width: 50%;
 	position: absolute;
 	bottom: 15px;
 	z-index: 10;
@@ -99,30 +140,176 @@
 .cr:hover {
 	background-color: #fff
 }
+
+			span.xiao{
+				margin-top: 20px;
+				font-size: 35px;
+				font-weight:bolder;
+				text-align:center;
+				float: left;
+				width: 100%;
+			}
+
+ a {
+ float: left;
+		margin-left:25%;
+		margin-top: 25px;
+		cursor: pointer;
+	} 
+	div.card{
+		background:#919191;
+		width: 20%;
+		height: 30px;
+		margin-right: 50px;
+	}
+	.da{
+				margin-top: 20px;
+				font-size: 20px;
+				font-weight:bolder;
+				text-align:center;
+				float: left;
+				margin-left:25%;
+			}
+	.tu{
+		color: #CCC
+	}
+		.biao{
+		margin-top:40px;
+		color: #CCC
+	}
 </style>
     
 </head>
 <body>
-<div class="banner" align="center">
-<img class="change pre" src="images/left.jpg">
-<img class="change next" src="images/right.jpg">
-<div class="cirbox">
-<div class="cir cr"></div>
-<div class="cir"></div>
-<div class="cir"></div>
-<div class="cir"></div>
-</div>
-<div class="imgbox">
-<img class="img im" src="images/1.jpg">
-<img class="img" src="images/2.jpg">
-<img class="img" src="images/3.jpg">
-<img class="img" src="images/4.jpg">
 
+		<div >
+			<a ><span class=" fa fa-angle-left fa-2x  " ><font size="5" style="margin-left: 15px;padding-bottom:10px;">华胜官方活动</font></span></a>
+		</div>
+<div class="banner" align="center">
+		<img class="change pre" src="images/left.jpg">
+		<img class="change next" src="images/right.jpg">
+		<div class="cirbox">
+			<div class="cir cr"></div>
+			<div class="cir"></div>
+			<div class="cir"></div>
+			<div class="cir"></div>
+			
+			
+		</div>
+		<div class="cirbox1">
+			<div class="card"><font color="#CCC" size="4" style="padding-bottom:10px;">机油卡</font></div>
+		</div>
+		<div class="imgbox">
+			<img class="img im" src="images/1.jpg">
+			<img class="img" src="images/2.jpg">
+			<img class="img" src="images/3.jpg">
+			<img class="img" src="images/4.jpg">
+		</div>
+
+			
 </div>
-<span style="margin-bottom: 1px">可推送的客户资料</span>
-</div>
-<div>
-</div>
+
+		<div style="width: 100%;height: 70px" >
+			<span class="da" >可推送的客户资料</span>
+		</div>
+		<div style="width: 100%;height: 80px" align="center" >
+			<table>
+				<tr>
+					<td>
+						<div style="background:#919191;width: 120px;height: 90px" align="center">
+							<span class="tu">>100万</span></br>
+							<span class="tu">平台</span></br>
+							<a style="margin-left: 80px"><span class="fa fa-lock fa-2x tu"></span></a>
+						</div>
+					</td>
+										<td>
+						<div style="background:#919191;width: 120px;height: 90px" align="center">
+							<span class="tu">>100万</span></br>
+							<span class="tu">平台</span></br>
+							<a style="margin-left: 80px"><span class="fa fa-lock fa-2x tu"></span></a>
+						</div>
+					</td>
+										<td>
+						<div style="background:#919191;width: 120px;height: 90px" align="center">
+							<span class="tu">>100万</span></br>
+							<span class="tu">平台</span></br>
+							<a style="margin-left: 80px"><span class="fa fa-lock fa-2x tu"></span></a>
+						</div>
+					</td>
+										<td>
+						<div style="background:#919191;width: 120px;height: 90px" align="center">
+							<span class="tu">>100万</span></br>
+							<span class="tu">平台</span></br>
+							<a style="margin-left: 80px"><span class="fa fa-lock fa-2x tu"></span></a>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div style="width: 100%;height: 70px" >
+			<span class="da" >选择个性化推送标签</span>
+		</div>
+		<div style="width: 100%;height: 80px" align="center" >
+			<table>
+				<tr>
+					<td>
+						<div style="background:#919191;width: 120px;height: 90px" align="center">
+							<span class="biao">会员类型</span></br>
+						</div>
+					</td>
+										<td>
+						<div style="background:#919191;width: 120px;height: 90px" align="center">
+							<span class="biao">厂牌车型</span></br>
+							
+						</div>
+					</td>
+										<td>
+						<div style="background:#919191;width: 120px;height: 90px" align="center">
+							<span class="biao">客户类型</span></br>
+						</div>
+					</td>
+										<td>
+						<div style="background:#919191;width: 120px;height: 90px" align="center">
+							<span class="biao">保养到期</span></br>
+						</div>
+					</td>
+					<td>
+						<div style="background:#919191;width: 120px;height: 90px" align="center">
+							<span class="biao">报价未修</span></br>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div style="background:#919191;width: 120px;height: 90px" align="center">
+							<span class="biao">会员类型</span></br>
+						</div>
+					</td>
+										<td>
+						<div style="background:#919191;width: 120px;height: 90px" align="center">
+							<span class="biao">厂牌车型</span></br>
+							
+						</div>
+					</td>
+										<td>
+						<div style="background:#919191;width: 120px;height: 90px" align="center">
+							<span class="biao">客户类型</span></br>
+						</div>
+					</td>
+										<td>
+						<div style="background:#919191;width: 120px;height: 90px" align="center">
+							<span class="biao">保养到期</span></br>
+						</div>
+					</td>
+					<td>
+						<div style="background:#919191;width: 120px;height: 90px" align="center">
+							<span class="biao">报价未修</span></br>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+
 
 	<script type="text/javascript">
 

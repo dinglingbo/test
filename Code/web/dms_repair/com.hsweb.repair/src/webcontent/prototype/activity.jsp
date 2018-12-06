@@ -48,26 +48,23 @@
 				width: 100%;
 			}
 			span{	
-					color:D3D3D3;
+					color:7B7B7B;
 					margin-top: 20px;
 					margin-left: 25px;
 					position: relative;
 				}
-			span{	
-					color:D3D3D3;
-					margin-left: 210px;
-				}
+
 			a{
 				cursor: pointer;
 			}
 			font{
-				color: #8B4513;
-			}
+				color: #E0E0E0
+							}
 			div.gun{
 					display: block;
-					width: 250px;
+					width: 280px;
 					height: 130px;
-					background-color: #FFF;
+					background-color: #CFCFCF;
 					padding-bottom: 20px;	
             		border: 2px solid;
             		border-radius: 25px;
@@ -79,6 +76,16 @@
 					position: relative;
 					width: 150px;
 					height: 100px;
+				}
+				.zuo{
+					float: left;
+					margin-left: 0px;
+					margin-top: 30px;
+				}
+				.you{
+					float: right;
+					margin-right: 15px;
+					margin-top: 30px;
 				}
 		</style>
 </head>
@@ -144,8 +151,92 @@
 					</div>
 				</td>
 			</tr>
-		</table>
+			<tr>
+				<td>
+					<div class="gun">
+						<a class="zuo" href="javascript:hideForecastBox();"  >
+							<span class="fa fa-angle-left fa-4x "></span>
+						</a>
+						<a><img id="img" src="images/9.jpg" onclick="changeImg(this.id)"></img></a>
+						<a class="you" href="javascript:hideForecastBox();" >
+							<span class="fa fa-angle-right fa-4x "></span>
+						</a>
+						<span class="guns">轮胎无忧卡</span>
+					</div>
+				</td>
 
+				<td>
+					<div class="gun">
+						<a class="zuo" href="javascript:hideForecastBox();" style="" >
+							<span class="fa fa-angle-left fa-4x " ></span>
+						</a>
+						<a><img id="img" src="images/9.jpg" onclick="changeImg(this.id)"></img></a>
+						<a class="you" href="javascript:hideForecastBox();" >
+							<span class="fa fa-angle-right fa-4x "></span>
+						</a>
+						<span class="guns">轮胎无忧卡</span>
+					</div>
+				</td>
+
+				<td>
+					<div class="gun">
+						<a class="zuo" href="javascript:hideForecastBox();" style="" >
+							<span class="fa fa-angle-left fa-4x "></span>
+						</a>
+						<a><img id="img" src="images/9.jpg" onclick="changeImg(this.id)"></img></a>
+						<a class="you" href="javascript:hideForecastBox();" >
+							<span class="fa fa-angle-right fa-4x "></span>
+						</a>
+						<span class="guns">轮胎无忧卡</span>
+					</div>
+				</td>
+
+				<td>
+					<div class="gun">
+						<a class="zuo" href="javascript:hideForecastBox();" style="" >
+							<span class="fa fa-angle-left fa-4x "></span>
+						</a>
+						<a><img id="img" src="images/9.jpg" onclick="changeImg(this.id)"></img></a>
+						<a class="you" href="javascript:hideForecastBox();" >
+							<span class="fa fa-angle-right fa-4x "></span>
+						</a>
+						<span class="guns">轮胎无忧卡</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+<span class="xiao">本店活动</span></br>
+		<table>
+			<tr>
+				<td>
+					<div class="gun">
+						<a class="zuo" href="javascript:hideForecastBox();"  >
+							<span class="fa fa-angle-left fa-4x "></span>
+						</a>
+						<a><img id="img" src="images/9.jpg" onclick="changeImg(this.id)"></img></a>
+						<a class="you" href="javascript:hideForecastBox();" >
+							<span class="fa fa-angle-right fa-4x "></span>
+						</a>
+						<span class="guns">轮胎无忧卡</span>
+					</div>
+				</td>
+
+				<td>
+					<div class="gun">
+						<a class="zuo" href="javascript:hideForecastBox();" style="" >
+							<span class="fa fa-angle-left fa-4x " ></span>
+						</a>
+						<a><img id="img" src="images/9.jpg" onclick="changeImg(this.id)"></img></a>
+						<a class="you" href="javascript:hideForecastBox();" >
+							<span class="fa fa-angle-right fa-4x "></span>
+						</a>
+						<span class="guns">轮胎无忧卡</span>
+					</div>
+				</td>
+
+
+			</tr>
+		</table>
 		
 		
 		

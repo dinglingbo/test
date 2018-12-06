@@ -71,7 +71,7 @@
             function newEvent(){
              nui.open({
              url: webPath + contextPath  + "/manage/guestMarketing/wechatManual_edit.jsp",
-             title: "新增卡券",
+             title: "派发卡券",
              width: "60%", 
              height: "100%",
              onload: function () {

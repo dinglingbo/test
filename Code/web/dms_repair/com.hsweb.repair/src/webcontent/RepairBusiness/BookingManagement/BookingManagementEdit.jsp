@@ -62,7 +62,7 @@
                 <table style="border-collapse:separate; border-spacing:0px 10px;">
                     <tr>
 
-                        <td class="form_label">
+                        <td class="form_label" >
                             <label>车牌号：</label>
                         </td>
                         <td>

@@ -387,7 +387,7 @@
                 <tbody>
                     <tr>
                         <td class="left" width="33.3%" id="carNo">车牌号：</td>
-                        <td class="left" width="33.3%" id="carNo">品牌/车型：</td>
+                        <td class="left" width="33.3%" id="carModel">品牌/车型：</td>
                             <td class="left" id="carVin">车架号(VIN)：</td>
                     </tr>
                     <tr>
@@ -406,7 +406,7 @@
                     <tbody>
                         <tr>
                             <td width="30" height="35" align="center">序号</td>
-                            <td width="300" align="center">检查部位</td>
+                            <td width="300" align="center">检查项目</td>
                             <td align="center" >状态良好</td>
                             <td align="center" >下次保养</td>
                             <td align="center">急需处理</td>
@@ -459,10 +459,12 @@
         $.post(params.baseUrl+"com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext?id="+params.serviceId+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
         		var maintain = text.list[0];
+        		var car = text.car;
         		var carNo = maintain.carNo;
         		var carVin = maintain.carVin;
         		var enterKilometers = maintain.enterKilometers;
         		var guestId = maintain.guestId;
+        		var carModel = car.carModel;
         		/* var enterDate = maintain.enterDate || "";
         		if(enterDate){
         			enterDate = enterDate.replace(/-/g,"/");
@@ -484,6 +486,7 @@
         		//document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
         		document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML + guestId;
         		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
+        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel;
         		//document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
         		//document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate;
         		//document.getElementById("faultPhen").innerHTML = document.getElementById("faultPhen").innerHTML + faultPhen; 

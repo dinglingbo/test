@@ -266,7 +266,7 @@ function onDrawCell(e) {
 function addRow() {
     nui.open({
         url: webPath + contextPath + "/com.hsweb.RepairBusiness.BookingManagementEdit.flow?token="+token,
-        title: "新增预约", width: 655, height: 386,
+        title: "新增预约", width: 680, height: 386,
         onload: function () {
             var iframe = this.getIFrameEl();
             var data = {};

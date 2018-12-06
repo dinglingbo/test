@@ -91,7 +91,7 @@ pageEncoding="UTF-8" session="false"%>
                 showClose="false"
                 allowInput="true"/>
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
-                <label style="font-family:Verdana;">工单号:</label>
+                <label style="font-family:Verdana;">工单号：</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
             </td>      
             <td style="text-align:right;">
@@ -123,16 +123,16 @@ pageEncoding="UTF-8" session="false"%>
     <input class="nui-hidden" name="saleMans" id="saleMans"/>
     <table  style="width: 100%;border-spacing: 0px 5px;"> 
         <tr>
-            <td class="title required">车牌号:</td> 
+            <td class="title required">车牌号：</td> 
             <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
 
-            <td class="title required">手机号:</td> 
+            <td class="title required">手机号：</td> 
             <td class=""><input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="100%"/></td>
 
-            <td class="title required" style="color:red">本次里程:</td> 
+            <td class="title required" style="color:red">本次里程：</td> 
             <td class=""><input  class="nui-textbox" name="enterKilometers" vtype="int;range:0,100000000" id="enterKilometers" enabled="true" width="100%"/></td>
 
-            <td class="title">开单时间:</td> 
+            <td class="title">开单时间：</td> 
             <td class="">
                 <input id="recordDate"
                 name="recordDate"
@@ -142,7 +142,7 @@ pageEncoding="UTF-8" session="false"%>
 
         </tr>
         <tr>   
-            <td class="title required">客户名称:</td> 
+            <td class="title required">客户名称：</td> 
             <td class=""><input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="100%"/></td>
          
             <td class="title required" style="color:red">
@@ -163,15 +163,15 @@ pageEncoding="UTF-8" session="false"%>
                 nullItemText="请选择..." width="100%"/>
             </td>
 
-            <td class="title required">车辆/品牌:</td> 
+            <td class="title required">车辆/品牌：</td> 
             <td class="" colspan="3"><input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/></td>
 			
         </tr>
         
         <tr>   
-            <td class="title required" style="color:red">保险公司:</td> 
+            <td class="title required" style="color:red">保险公司：</td> 
             <td class=""><input class="nui-combobox" id="insureCompName" name="insureCompName" emptyText="选择保险公司" dataField="list" valueField="fullName" textField="fullName" showNullItem="true" nullItemText="请选择..."popupWidth="200" onvaluechanged="insuranceChange" width="100%"/></td>
-            <td class="title required" style="color:red">销售人员:</td> 
+            <td class="title required" style="color:red">销售人员：</td> 
             <td class=""><input class="nui-combobox" id="saleManIds" name="saleManIds" emptyText="选择销售人员" dataField="data" valueField="empId" textField="empName" showNullItem="true" nullItemText="请选择..." multiSelect="true" onvaluechanged="saleManChange" width="100%"/></td>
 
             <td class="title required" style="color:red">
@@ -182,28 +182,28 @@ pageEncoding="UTF-8" session="false"%>
     			至 <input id="endDate" name="endDate" class="nui-datepicker" value="" format="yyyy-MM-dd "width="43%"/> &nbsp;&nbsp;
             </td>
 
-            <td class="title required" style="color:red">保费收取方式:</td> 
+            <td class="title required" style="color:red;width:100px">保费收取方式：</td> 
             <td class=""><input  class="nui-combobox" name="settleTypeId" id="settleTypeId" valueField="id" textField="name" data="settleTypeIdList" dataField="settleTypeIdList" width="100%"/></td>
 			
         </tr>
     </table>
 </div>
 
-<div style="text-align:center;" >
+<div style="text-align:center;height:30px" >
     <table border="0" align="center" cellpadding="0" cellspacing="0" >
         <tr>
             <td>
             </td>
             <td>
                 <span id="wechatTag" class="fa fa-wechat fa-lg healthview"></span>&nbsp;
-                <label style="font-family:Verdana;">客户名称:</label>
+                <label style="font-family:Verdana;">客户名称：</label>
                 <label id="guestInfo" style="font-family:Verdana;"><a id="guestNameEl" href="javascript:checkGuest()"></a></label>&nbsp;
-                <label style="font-family:Verdana;">客户手机:</label>
+                <label style="font-family:Verdana;">客户手机：</label>
                 <label id="guestTelEl" style="font-family:Verdana;"></label>&nbsp;
             </td>
             <td>
                 <div id="guestInfo">
-                    <label style="font-family:Verdana;">车牌号:</label>
+                    <label style="font-family:Verdana;">车牌号：</label>
                     <label id="guestCarEl" style="font-family:Verdana;">
                 </div>
             </td>

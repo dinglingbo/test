@@ -62,7 +62,7 @@
             </div>
 	<div id="mainTabs" class="nui-tabs" name="mainTabs"
 		activeIndex="0" 
-		style="width:100%; height:80%;" 
+		style="width:100%; height:85%;" 
 		plain="false" >
 		
 		<div title="项目设置" id="itemTab" name="itemTab" >

@@ -71,7 +71,7 @@ function saveShare(){
 			if (data.errCode == "S") {
                 parent.showMsg("保存成功!","S");
 			} else {
-				parent.showMsg(data.errMsg || "保存失败!","W");
+				parent.showMsg(data.errMsg || "保存失败!","E");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {

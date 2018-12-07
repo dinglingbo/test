@@ -32,8 +32,8 @@
                 </td>
             	<th class="nui-form-label"><label for="appfunction.ischeck$text">是否验证权限：</label></th>
                 <td>
-                	<input id="appfunction.ischeck" class="nui-dictcombobox nui-form-input" name="appfunction.ischeck" value="1" 
-                    valueField="dictID" textField="dictName" dictTypeId="COF_YESORNO"/>
+                	<input id="appfunction.ischeck" class="nui-combobox nui-form-input" name="appfunction.ischeck" value="1" 
+                    valueField="dictID" textField="dictName" data="COF_YESORNO"/>
                 </td>
             </tr>
             <tr>
@@ -74,6 +74,8 @@
 </div>
     <script type="text/javascript">
         nui.parse();
+        var COF_YESORNO =[{dictID:"0",dictName:"否"},{dictID:"1",dictName:"是"}];
+    	var COF_APPTYPE =[{dictID:"0",dictName:"本地"},{dictID:"1",dictName:"远程"}];
         var form = new nui.Form("form1");
         
         function onButtonEdit(){

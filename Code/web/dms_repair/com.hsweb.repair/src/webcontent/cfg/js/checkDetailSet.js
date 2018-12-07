@@ -109,11 +109,12 @@ function onOk(){
 			nui.unmask();
 			data = data||{};
 			if(data.errCode == "S")
-			{
+			{	
+				parent.parent.showMsg( data.errMsg ||"保存成功!","S");
 				CloseWindow("ok");
 			}
 			else{
-				showMsg(data.errMsg||"保存失败","W");
+				parent.parent.showMsg(data.errMsg ||"保存失败!","W");
 			}
 		},
 		error:function(jqXHR, textStatus, errorThrown)

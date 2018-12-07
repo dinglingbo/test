@@ -505,7 +505,7 @@ function carChange(){
             url: webPath + contextPath + "/com.hsweb.RepairBusiness.carChange.flow?token="+token,
             title: "车牌车主变更", 
             width: 550, 
-            height: 300,
+            height: 320,
             allowDrag:true,
             allowResize:true,
             onload: function () {

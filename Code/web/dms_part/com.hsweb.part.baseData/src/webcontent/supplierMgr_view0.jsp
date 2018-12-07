@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商管理</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.1.5"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.1.7"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -76,7 +76,7 @@
          sortMode="client"
          allowCellWrap = true
          frozenStartColumn="0"
-         frozenEndColumn="7">
+         frozenEndColumn="11">
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <!--<div type="checkcolumn" ></div>-->
@@ -86,6 +86,7 @@
                     <div type="checkcolumn" >选择</div>
                     <div allowSort="true" field="shortName" width="140" headerAlign="center" header="供应商简称"></div>
                     <div allowSort="true" field="fullName" width="240" headerAlign="center" header="供应商全称"></div>
+                    <div allowSort="true" field="isInternal" width="100" headerAlign="center" header="是否内部供应商"></div>
                     <div allowSort="true" field="tel" width="140" headerAlign="center" header="电话"></div>
                     <div allowSort="true" field="supplierType" width="100" headerAlign="center" header="供应商类型"></div>
                     <div allowSort="true" field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>
@@ -128,7 +129,7 @@
     </div>
 </div>
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:420px;height:210px;"
+     title="高级查询" style="width:520px;height:240px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">
@@ -144,7 +145,7 @@
             <tr>
                 <td class="table-label">供应商全称:</td>
                 <td colspan="3">
-                    <input name="fullName" class="nui-textbox" style="width:100%;"/>
+                    <input name="fullName" class="nui-textbox" style="width:95%;"/>
                 </td>
             </tr>
             <tr>
@@ -183,7 +184,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="table-label">是否禁用:</td>
+                <td class="table-label" >是否禁用:</td>
                 <td>
                     <input class="nui-checkbox" name="isDisabled" trueValue="1" falseValue="0"/>
                 </td>

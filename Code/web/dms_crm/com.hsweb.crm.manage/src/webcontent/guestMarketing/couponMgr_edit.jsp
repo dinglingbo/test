@@ -30,7 +30,7 @@ pageEncoding="UTF-8" session="false" %>
 <body>
 
     <div class="nui-fit">
- <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+ <div class="nui-toolbar" style="padding:0px;">
     <table style="width:80%;">
         <tr>
             <td style="width:80%;">
@@ -44,21 +44,21 @@ pageEncoding="UTF-8" session="false" %>
   <table style="width:100%;">
     <tr>
         <td class="tbtext"><label>卡券名称：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
         <td class="tbtext"><label>库存：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
     </tr>
     <tr>
         <td class="tbtext"><label>市场价：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
         <td class="tbtext"><label>优惠说明：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
     </tr>
     <tr>
         <td class="tbtext"><label>适用说明：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
         <td class="tbtext"><label>有效期天数：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
     </tr>
     <tr>
         <td class="tbtext"><label>自动审核：</label></td>

@@ -42,15 +42,15 @@
       <table style="width:100%;">
         <tr>
             <td class="tbtext"><label>客户名称：</label></td>
-            <td><input class="nui-combobox tbinput" name="" style=""></td>
+            <td><input class="nui-textbox tbinput" name="" style=""></td>
             <td class="tbtext"><label>联系人：</label></td>
-            <td><input class="nui-combobox tbinput" name="" style=""></td>
+            <td><input class="nui-textbox tbinput" name="" style=""></td>
         </tr>
                 <tr>
             <td class="tbtext"><label>手机：</label></td>
-            <td><input class="nui-combobox tbinput" name="" style=""></td>
+            <td><input class="nui-textbox tbinput" name="" style=""></td>
             <td class="tbtext"><label>电话：</label></td>
-            <td><input class="nui-combobox tbinput" name="" style=""></td>
+            <td><input class="nui-textbox tbinput" name="" style=""></td>
         </tr>
                 <tr>
             <td class="tbtext"><label>品牌：</label></td>
@@ -60,27 +60,27 @@
         </tr>
                         <tr>
             <td class="tbtext"><label>颜色：</label></td>
-            <td><input class="nui-combobox tbinput" name="" style=""></td>
+            <td><input class="nui-textbox tbinput" name="" style=""></td>
             <td class="tbtext"><label>客户来源：</label></td>
             <td><input class="nui-combobox tbinput" name="" style=""></td>
         </tr>
                         <tr>
             <td class="tbtext"><label>意向级别：</label></td>
             <td><input class="nui-combobox tbinput" name="" style=""></td>
-            <td class="tbtext"><label>跟踪事件：</label></td>
-            <td><input class="nui-combobox tbinput" name="" style=""></td>
+            <td class="tbtext"><label>跟踪时间：</label></td>
+            <td><input class="nui-datepicker tbinput" name="" style=""></td>
         </tr>
 
                                 <tr>
             <td class="tbtext"><label>计划购买：</label></td>
-            <td><input class="nui-combobox tbinput" name="" style=""></td>
+            <td><input class="nui-datepicker tbinput" name="" style=""></td>
             <td class="tbtext"><label>销售顾问：</label></td>
             <td><input class="nui-combobox tbinput" name="" style=""></td>
         </tr>
 
                                 <tr>
             <td class="tbtext"><label>评价内容：</label></td>
-            <td colspan="3"><input class="nui-textarea tbinput" name="" style="width:100%;height:200px;"></td>
+            <td colspan="3"><input class="nui-textarea tbinput" name="" style="width:100%;height:100px;"></td>
         </tr>
     </table>
 </div>

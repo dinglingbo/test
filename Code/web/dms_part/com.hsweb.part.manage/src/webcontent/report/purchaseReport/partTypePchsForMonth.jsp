@@ -4,7 +4,7 @@
 
 <head>
 <title>配件类型汇总按月排行</title>
-<script src="<%=webPath + contextPath%>/manage/js/report/partTypePchsForMonth.js?v=1.1.2"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/partTypePchsForMonth.js?v=1.1.7"></script>
 </head>
 
 <body>
@@ -51,8 +51,8 @@
         sizeList="[10,20,50]" allowAlternating="true" 
           url="" dataField="typeList" idField="carTypeIdF" 
                 ondrawcell="onRightGridDraw" sortMode="client"
-                showSummaryRow="true"
-        parentField="parentId">
+                showSummaryRow="true"     allowCellWrap = true   
+        parentField="parentId"> 
         <div property="columns" width="10">
             <div header="   ">
               <div property="columns" width="10">

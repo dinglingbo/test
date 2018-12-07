@@ -71,9 +71,9 @@ function onOk(){
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg("保存成功!","S");
+            	showMsg(data.errMsg || "保存成功!","S");
             } else {
-                showMsg(data.errMsg || "保存失败!","E");
+            	showMsg(data.errMsg || "保存失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {

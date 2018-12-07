@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修项目</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.16" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.17" type="text/javascript"></script>
 
 </head>
 <body>
@@ -41,7 +41,7 @@
 				<div class="form" id="queryForm">
 					<table class="table" id="table1">
 						<tr>
-							<td>
+							<td >
 								<label style="font-family: Verdana;;font-size: 12px;">业务类型：</label>
 								<input name="serviceTypeId"
 										id="serviceTypeId"
@@ -53,7 +53,9 @@
 										allowInput="true"
 										showNullItem="false"
 										valueFromSelect="true"
-										nullItemText="请选择..."/>
+										nullItemText="请选择..."
+										width="120px"
+										/>
 								<!-- <label style="font-family: Verdana;;font-size: 12px;">工种：</label>
 								<input id="itemKind"
 										name="itemKind"

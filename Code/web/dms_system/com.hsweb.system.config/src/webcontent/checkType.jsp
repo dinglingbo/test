@@ -17,8 +17,9 @@
 </head>
 <body>
 
-<div style="width: 80%; height: 10%; margin-left: 10%; margin-top: 1%;">
-	<input  class="nui-button" onclick="save" text="保存"  style="float:left; margin-top: 10px;"></input>		
+<div style="width: 80%; height: 10%; margin-left: 5px; margin-top: 1%;">
+	<input  class="nui-button" onclick="addR" text="新增"  style="float:center; margin-top: 10px;"></input>	
+	<input  class="nui-button" onclick="save" text="保存"  style="float:center; margin-top: 10px;"></input>	
 </div>
 <div id="dgGrid" class="nui-datagrid" style="width:100%;height:100%;"
 	 dataField="data" sortMode="client" allowCellSelect="true" allowCellEdit="true" showpager="false"

@@ -50,7 +50,7 @@ pageEncoding="UTF-8" session="false" %>
     </tr>
     <tr>
       <td class="tbtext"><label>优惠券：</label></td>
-      <td colspan="3"><input class="nui-combobox " name="" style="width:400px;">
+      <td colspan="3"><input class="nui-combobox " name="" style="width:390px;">
         <a class="nui-button" iconCls="" plain="false" onclick=""><span class="fa fa-close fa-lg"></span>&nbsp;选择优惠券</a>
 
       </td>

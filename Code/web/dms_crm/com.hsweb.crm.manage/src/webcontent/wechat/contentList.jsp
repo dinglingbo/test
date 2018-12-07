@@ -47,7 +47,7 @@ pageEncoding="UTF-8" session="false" %>
          <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
          <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
          <li class="separator"></li>
-         <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;禁用</a>
+         <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
        </tr>
      </table>
    </div>

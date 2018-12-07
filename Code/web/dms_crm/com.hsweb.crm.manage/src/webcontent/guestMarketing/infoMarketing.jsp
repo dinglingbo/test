@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>短信营销</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-     <%@include file="/common/commonRepair.jsp"%>
+    <%@include file="/common/commonRepair.jsp"%>
 </head>
 <body>
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
@@ -25,6 +25,9 @@ pageEncoding="UTF-8" session="false" %>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+                    <li class="separator"></li>
+                    <a class="nui-button" iconCls="" plain="true" onclick="push()" id="addBtn"><span class="fa fa-toggle-right fa-lg"></span>&nbsp;推送</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="list()" id="addBtn"><span class="fa fa-tablet fa-lg"></span>&nbsp;推送详情</a>
                 </td>
             </tr>
         </table>
@@ -59,7 +62,34 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 
 <script type="text/javascript">
- nui.parse();
+   nui.parse();
+
+
+   function push(){
+       nui.open({
+           url: webPath + contextPath  + "/manage/guestMarketing/tweets_push.jsp",
+           title: "短信推送",
+           width: 950, 
+           height: 400,
+           onload: function () {
+           },
+           ondestroy: function (action) {
+           }
+       });
+   }
+
+   function list(){
+       nui.open({
+           url: webPath + contextPath  + "/manage/guestMarketing/tweetsPushList.jsp",
+           title: "推送列表",
+           width: 950, 
+           height: 400,
+           onload: function () {
+           },
+           ondestroy: function (action) {
+           }
+       });
+   }
 </script>
 </body>
 </html>

@@ -3,7 +3,7 @@ pageEncoding="UTF-8" session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
-  - Author(s): Administrator
+  - Author(s): Administrator 
   - Date: 2018-12-03 16:59:41
   - Description:
 -->
@@ -47,8 +47,7 @@ pageEncoding="UTF-8" session="false" %>
                    <div id="" name="" class="nui-checkbox" readOnly="false" text="三级" ></div>
                    <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                    <li class="separator"></li>
-                   <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;同步微信</a>
-                   <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-mail-forward fa-lg"></span>&nbsp;取消关注</a>
+                   <a class="nui-button" iconCls="" plain="true" onclick="newEvent()" id="addBtn"><span class="fa fa-list fa-lg"></span>&nbsp;查看积分明细</a>
                </td>
            </tr>
        </table>
@@ -155,6 +154,20 @@ pageEncoding="UTF-8" session="false" %>
     menunamedate.setText(queryname);
     //doSearch(params);
 }
+
+
+          function newEvent(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/wechat/integralList.jsp",
+             title: "积分明细",
+             width: 950, 
+             height: 400,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
 
 </script>
 </body>

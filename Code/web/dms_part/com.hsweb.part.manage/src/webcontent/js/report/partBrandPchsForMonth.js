@@ -192,7 +192,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
-	initGrid(beginDateEl.getValue(), endDateEl.getValue());
+	initGrid(beginDateEl.getFormValue(), endDateEl.getFormValue());
 
     rightGrid.load({
         params:params,
@@ -218,7 +218,7 @@ function initGrid(startDate, endDate){
 	var columnsObj = {};
 	var columnsList = [];
 	columnsList.push({type: "indexcolumn", header: "序号" });
-	columnsList.push({field: "partBrandId",width:"60", summaryType:"count", headerAlign: "center", allowSort: true, header: "配件品牌"});
+	columnsList.push({field: "partBrandId",width:"80", summaryType:"count", headerAlign: "center", allowSort: true, header: "配件品牌"});
 	if(columnList && columnList.length > 0){
 		for (i = 0; i < columnList.length; i++) {
 			var yearMonthObj = columnList[i];

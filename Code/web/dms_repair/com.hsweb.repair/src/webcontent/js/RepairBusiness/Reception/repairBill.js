@@ -179,7 +179,7 @@ $(document).ready(function ()
                 return;
             }
         }
-    });
+    });//valuechanged
     searchKeyEl.on("valuechanged",function(e){
         var item = e.selected;
         if(fserviceId){
@@ -4299,7 +4299,9 @@ function chooseContactor(){
          }
      });
 }
-
+function ceshi(e){
+	var b = e.value;
+}
 
 
 

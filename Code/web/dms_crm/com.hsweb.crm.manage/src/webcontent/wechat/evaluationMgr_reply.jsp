@@ -18,7 +18,7 @@
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
     }
     .tbtext {
-   
+
         width: 70px;
         text-align: right;
     }
@@ -42,37 +42,28 @@
       <table style="width:100%;">
         <tr>
             <td class="tbtext"><label>门店：</label></td>
-            <td><input class="nui-combobox tbinput" name="" style=""></td>
-            <td class="tbtext"><label>类型：</label></td>
-            <td><input class="nui-combobox tbinput" name="" style=""></td>
+            <td><input class="nui-combobox tbinput" name="" style=""enabled="false"></td>
+                        <td class="tbtext"><label>微信昵称：</label></td>
+            <td><input class="nui-textbox tbinput" name="" style=""enabled="false"></td>
         </tr>
                 <tr>
-            <td class="tbtext"><label>微信昵称：</label></td>
-            <td><input class="nui-textbox tbinput" name="" style=""></td>
             <td class="tbtext"><label>手机：</label></td>
-            <td><input class="nui-textbox tbinput" name="" style=""></td>
+            <td><input class="nui-textbox tbinput" name="" style=""enabled="false"></td>
+                        <td class="tbtext"><label>评分：</label></td>
+            <td><input class="nui-textbox tbinput" name="" style=""enabled="false"></td>
         </tr>
                 <tr>
-            <td class="tbtext"><label>评分：</label></td>
-            <td><input class="nui-textbox tbinput" name="" style=""></td>
             <td class="tbtext"><label>评价时间：</label></td>
-            <td><input class="nui-datepicker tbinput" name="" style=""></td>
+            <td><input class="nui-datepicker tbinput" name="" style=""enabled="false"></td>
         </tr>
                         <tr>
-            <td class="tbtext"><label>微信头像：</label></td>
-            <td></td>
-            <td class="tbtext"><label>预览：</label></td>
-            <td></td>
-        </tr>
-                        <tr>
-            <td class="tbtext"><label>商品图片：</label></td>
-            <td></td>
-            <td class="tbtext"><label>上传：</label></td>
-            <td></td>
+            <td class="tbtext"><label>初次评价内容：</label></td>
+            <td colspan="3"><input class="nui-textarea tbinput" name="" style="width:100%;height:100px;" enabled="false"></td>
         </tr>
 
+
                                 <tr>
-            <td class="tbtext"><label>评价内容：</label></td>
+            <td class="tbtext"><label>回复评价：</label></td>
             <td colspan="3"><input class="nui-textarea tbinput" name="" style="width:100%;height:100px;"></td>
         </tr>
     </table>

@@ -12,6 +12,7 @@ pageEncoding="UTF-8" session="false" %>
   <title>优惠券</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
   <style type="text/css">
   *{padding: 0;margin: 0;}
   body {

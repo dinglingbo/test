@@ -76,7 +76,7 @@
         </tr>
     </table>
 </div>
-<div class="nui-fit">
+<!-- <div class="nui-fit"> -->
   <div class="nui-splitter"
        id="splitter"
        allowResize="true"
@@ -316,7 +316,7 @@
                         </div>
                     </div>
                 </div>
-          </div>
+<!--           </div> -->
               
 <!--       </div> -->
   </div>

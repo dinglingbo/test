@@ -39,20 +39,12 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">serviceCode</process:from>
-      <process:to type="query">params/serviceCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">carNo</process:from>
-      <process:to type="query">params/carNo</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">auditSign</process:from>
-      <process:to type="query">params/auditSign</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">params/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">true</process:from>
+      <process:to type="query">page/isCount</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -91,14 +83,10 @@
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-10-11 10:41:35" date="2018-10-11Z" description="" name="queryInvestList" version="7.0.0.0"/>
-  <process:variables>
-    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
-  </process:variables>
+  <process:variables/>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" name="serviceCode" primitiveType="String"/>
-    <process:input description="" isArray="false" name="carNo" primitiveType="String"/>
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
-    <process:input description="" isArray="false" name="auditSign" primitiveType="String"/>
+    <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>

@@ -76,7 +76,7 @@
                         <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
                         <div header="联系人名称" field="contactName" width="30" headerAlign="center"></div>
                         <div header="联系人手机" field="mobile" width="60" headerAlign="center"></div>
-                        <div header="VIN" field="vin" width="70" headerAlign="center"></div>
+                        <div header="车架号(VIN)" field="vin" width="70" headerAlign="center"></div>
                     </div>
                 </div>
                 <input id="search_name"
@@ -92,6 +92,8 @@
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn" name="addBtn" style="display: none;">新增客户</a>
                 <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
+                 <li class="separator"></li>
+                <a class="nui-button" onclick="onPrint(5)" plain="true" style="align:right">打印领料单</a>
             </td>     
             <td style="text-align:left;">
             <!-- 
@@ -134,34 +136,34 @@
         nullItemText="请选择..."/>
         <table  style=" left:0;right:0;margin: 0 auto; width:100%;"> 
 
-            <tr>
-                <td class="tbtext">客户名称:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName" style="width:100%" allowInput="false"/>
-                </td>
-                <td class="tbtext">客户手机:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" style="width:100%" allowInput="false"/>
-                </td>
-	            <td class="tbtext">联系人:</td>
-	            <td class="tbCtrl">
-	                <input class="nui-textbox tabwidth" name="contactorName" id="contactorName"style="width:100%" allowInput="false"/>
-	            </td>
-	            <td class="tbtext">联系方式:</td>
-	            <td class="tbCtrl">
-	                <input class="nui-textbox tabwidth" " name="mobile" id="mobile" style="width:100%" allowInput="false"/>
-	            </td>
-                <!-- 
-                <td class="tbtext">级别:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" />
-                </td>
-                <td class="tbtext">会员卡:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth"  name="cardType" id ="cardType"/>
-                </td>
-            -->
-        </tr> 
+<!--             <tr> -->
+<!--                 <td class="tbtext">客户名称:</td> -->
+<!--                 <td class="tbCtrl"> -->
+<!--                     <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName" style="width:100%" allowInput="false"/> -->
+<!--                 </td> -->
+<!--                 <td class="tbtext">客户手机:</td> -->
+<!--                 <td class="tbCtrl"> -->
+<!--                     <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" style="width:100%" allowInput="false"/> -->
+<!--                 </td> -->
+<!-- 	            <td class="tbtext">联系人:</td> -->
+<!-- 	            <td class="tbCtrl"> -->
+<!-- 	                <input class="nui-textbox tabwidth" name="contactorName" id="contactorName"style="width:100%" allowInput="false"/> -->
+<!-- 	            </td> -->
+<!-- 	            <td class="tbtext">联系方式:</td> -->
+<!-- 	            <td class="tbCtrl"> -->
+<!-- 	                <input class="nui-textbox tabwidth" " name="mobile" id="mobile" style="width:100%" allowInput="false"/> -->
+<!-- 	            </td> -->
+<!--                 
+<!--                 <td class="tbtext">级别:</td> -->
+<!--                 <td class="tbCtrl"> -->
+<!--                     <input class="nui-textbox tabwidth" /> -->
+<!--                 </td> -->
+<!--                 <td class="tbtext">会员卡:</td> -->
+<!--                 <td class="tbCtrl"> -->
+<!--                     <input class="nui-textbox tabwidth"  name="cardType" id ="cardType"/> -->
+<!--                 </td> -->
+<!--             --> 
+<!--         </tr>  -->
         <tr>
             <td class="tbtext">车牌号:</td>
             <td class="tbCtrl">
@@ -171,7 +173,7 @@
             <td class="tbCtrl">
                 <input class="nui-textbox tabwidth" name="mtAdvisor" id="mtAdvisor"style="width:100%" allowInput="false"/>
             </td>
-            <td class="tbtext">VIN码:</td>
+            <td class="tbtext">车架号(VIN):</td>
             <td class="tbCtrl">
                 <input class="nui-textbox tabwidth" id="carVin" name="carVin"style="width:100%" allowInput="false"/>
             </td>
@@ -250,11 +252,11 @@ allowCellEdit="true"  >
 </div>
 </div>
 
-<div style="width:100%;margin-top: 10px;">
-    <a class="nui-button" onclick="LLSave()" plain="false">领料</a>
-    <a class="nui-button" onclick="THSave()" plain="false">退货</a>
-    <a class="nui-button" onclick="onPrint(5)" plain="false">打印领料单</a>
-</div>
+<!-- <div style="width:100%;margin-top: 10px;"> -->
+<!--     <a class="nui-button" onclick="LLSave()" plain="false">领料</a> -->
+<!--     <a class="nui-button" onclick="THSave()" plain="false">退货</a> -->
+<!--     <a class="nui-button" onclick="onPrint(5)" plain="false">打印领料单</a> -->
+<!-- </div> -->
 </div>
 
 <script type="text/javascript">

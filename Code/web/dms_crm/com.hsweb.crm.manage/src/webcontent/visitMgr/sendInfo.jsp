@@ -17,12 +17,12 @@ pageEncoding="UTF-8" session="false" %>
 </head>
 <body>
   <div class="nui-fit" id="form1">
-      <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+      <div class="nui-toolbar" style="padding:0px;">
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
 
-                    <a class="nui-button" onclick="save()" plain="true" style="width: ;"><span class="fa fa-commenting fa-lg"></span>&nbsp;发送</a>
+                    <a class="nui-button" onclick="save()" id="save" plain="true" style="width: ;"><span class="fa fa-commenting fa-lg"></span>&nbsp;发送</a>
                     <a class="nui-button" onclick="selectModel()" plain="true" style="width: ;"><span class="fa fa-navicon fa-lg"></span>&nbsp;选择短信模板</a>
                     <a class="nui-button" onclick="onClear()" plain="true" style="width: ;"><span class="fa fa-trash fa-lg"></span>&nbsp;清空内容</a>
                     <a class="nui-button" onclick="onClose()" plain="true"  style="width: ;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
@@ -61,7 +61,7 @@ pageEncoding="UTF-8" session="false" %>
     var visitContent = nui.get("visitContent");
 
 
-    visitContent.focus();
+    nui.get("save").focus();
     document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;//38向上 40向下
@@ -70,6 +70,7 @@ pageEncoding="UTF-8" session="false" %>
             onClose();
         }
     };
+
 
     function save(){
         //验证
@@ -87,7 +88,7 @@ function onClear(){
     function selectModel() {
         nui.open({
             url: webPath + contextPath + "/com.hsweb.crm.basic.smsTpl.flow?token="+token,
-            title: "选择短信模板", width: 1000, height: 400,
+            title: "选择短信模板", width: 1100, height: 400,
             onload: function () {
                 var iframe = this.getIFrameEl();
                 iframe.contentWindow.setData();

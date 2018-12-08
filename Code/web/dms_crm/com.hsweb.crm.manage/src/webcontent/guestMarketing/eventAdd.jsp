@@ -18,7 +18,7 @@ pageEncoding="UTF-8" session="false" %>
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
     }
     .tbtext {
-        float: right;
+      
         width: 90px;
         text-align: right;
     }

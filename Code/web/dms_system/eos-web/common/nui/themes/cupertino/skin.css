@@ -8,7 +8,7 @@ body, .mini-popup, .mini-toolbar, .separator, .mini-panel-border, .mini-pager,
 .mini-splitter-border, .mini-splitter .mini-splitter-pane1, .mini-splitter .mini-splitter-pane2,
 .mini-layout-border, .mini-layout-region,
 .mini-menu, .mini-menu-border, .mini-menu-horizontal .mini-menu-border
-.mini-grid-border, .mini-grid-footer, .mini-grid-pager, .mini-grid-filterRow,
+.mini-grid-border, .mini-grid-footer, .mini-grid-pager, .mini-grid-filterRow, .mini-grid-groupCell, .mini-grid-summaryCell,
 .mini-listbox-border,
 .mini-progressbar-border,
 .mini-calendar, .mini-calendar-footer, .mini-calendar-menu,
@@ -19,7 +19,7 @@ body, .mini-popup, .mini-toolbar, .separator, .mini-panel-border, .mini-pager,
 body .mini-pager-num
 {
     border-color:#aed0ea;
-    /*background:#f2f5f7;*/
+    background:#f2f5f7;
     color:#362b36
 }
 
@@ -30,7 +30,7 @@ body .mini-pager-num
 .mini-outlookbar .mini-outlookbar-groupHeader, .mini-outlookbar-expand .mini-outlookbar-groupHeader, .mini-outlookbar-view2 .mini-outlookbar-groupHeader,
 .mini-layout-region-header, .mini-layout-proxy,
 .mini-calendar-header,
-.mini-tabs-scrollCt,
+.mini-tabs-scrollCt, 
 .mini-tabs .mini-tabs-space, .mini-tabs .mini-tabs-space2
 {
     border-color:#aed0ea;
@@ -169,7 +169,11 @@ fieldset
     border-color:#bab9bd;
 }
 
-.mini-grid-cell, .mini-listbox-item td
+.mini-grid-row-alt {
+    background-color: #f0f3f5;
+}
+
+.mini-grid-cell, .mini-listbox-item td, .mini-grid-detailCell, .mini-grid-summaryCell
 {
     border-color:#e6e6e6;
 }
@@ -179,7 +183,7 @@ html body .mini-grid .mini-grid-cell-selected
     background:#199ce0;
 }
 
-.mini-grid-header-over
+.mini-grid-header-over, .mini-grid-column-trigger
 {
     background:#e4f1fb;
 }
@@ -205,7 +209,8 @@ html body .mini-grid .mini-grid-cell-selected
 .mini-grid-row-selected .mini-grid-cell-inner > .mini-icon , 
 .mini-grid-row-selected .mini-grid-cell-inner > * > .mini-icon, 
 .mini-grid-cell-selected > .mini-icon , 
-.mini-grid-cell-selected > * > .mini-icon
+.mini-grid-cell-selected > * > .mini-icon,
+.mini-grid-row-selected .mini-tree-nodeshow > .mini-icon
 {      
     color: #fff;
 }

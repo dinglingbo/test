@@ -5,7 +5,7 @@ pageEncoding="UTF-8" session="false" %>
     width: 100%;
 }
 </style>
- <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+ <div class="nui-toolbar" style="padding:0px;">
     <table style="width:80%;">
         <tr>
             <td style="width:80%;">

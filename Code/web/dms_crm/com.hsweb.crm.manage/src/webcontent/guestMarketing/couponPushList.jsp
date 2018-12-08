@@ -49,6 +49,7 @@ pageEncoding="UTF-8" session="false" %>
                  <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;批量审核</a>
                  <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消审核</a>
                  <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-trash fa-lg"></span>&nbsp;作废</a>
+                 <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-undo fa-lg"></span>&nbsp;取消作废</a>
                  <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a>
              </td>
          </tr>

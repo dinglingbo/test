@@ -19,9 +19,9 @@ $(document).ready(function(v)
     }
 });
 var requiredField = {
-    chargeMan:"仓库管理员",
+//    chargeMan:"仓库管理员",
     name:"仓库名称",
-    chargeTel:"管理员电话"
+//    chargeTel:"管理员电话"
 };
 var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveStorehouse.biz.ext";
 function onOk()
@@ -32,22 +32,22 @@ function onOk()
     {
         if(!data[key] || data[key].trim().length==0)
         {
-            showMsg(requiredField[key]+"不能为空","W");
+            parent.parent.showMsg(requiredField[key]+"不能为空","W");
             return;
         }
     }
-    var reg=/^[1](3|4|5|7|8)\d{9}$/;
-    if(data.chargeTel.length!=11 ||!reg.test(data.chargeTel) ){
-    	showMsg("请输入正确的手机号码");
-    	return;
-    }
+//    var reg=/^[1](3|4|5|7|8)\d{9}$/;
+//    if(data.chargeTel.length!=11 ||!reg.test(data.chargeTel) ){
+//    	parent.parent.showMsg("请输入正确的手机号码");
+//    	return;
+//    }
 
     basicInfoForm.validate();
 
     if (basicInfoForm.isValid() == false)
     {
         var errorTexts = basicInfoForm.getErrorTexts();
-        showMsg(errorTexts,"W");
+        parent.parent.showMsg(errorTexts,"W");
         return;
     }
  
@@ -70,11 +70,11 @@ function onOk()
             data = data||{};
             if(data.errCode == "S")
             {
-                showMsg("保存成功","S");
+                parent.parent.showMsg("保存成功","S");
                 CloseWindow("ok");
             }
             else{
-                showMsg(data.errMsg||"保存失败","W");
+                parent.parent.showMsg(data.errMsg||"保存失败","W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

@@ -62,7 +62,7 @@
                     </ul>
 
 
-                    <label style="font-family:Verdana;">创建日期 从：</label>
+                    <label style="font-family:Verdana;">移仓日期 从：</label>
                     <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                     <label style="font-family:Verdana;">至</label>
                     <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
@@ -132,13 +132,12 @@
         <!--             <div header="订单信息" headerAlign="center"> -->
             <div type="indexcolumn" width="20">序号</div>
             <div type="expandcolumn" width="15" ><span class="fa fa-plus fa-lg"></span></div>
-
+			<div field="auditSign" width="60" headerAlign="center" header="状态"></div>
             <div allowSort="true" field="serviceId" width="100" summaryType="count" headerAlign="center" header="订单单号"></div>
             <div allowSort="true" field="storeId" width="90" headerAlign="center" header="移出仓库"></div>
             <div allowSort="true" field="receiveStoreId" width="90" headerAlign="center" header="移入仓库"></div>
             <div allowSort="true" field="createDate" headerAlign="center" header="移仓日期" dateFormat="yyyy-MM-dd HH:mm"></div>
             <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
-            <div field="auditSign" width="60" headerAlign="center" header="状态"></div>
             <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
             <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
         </div>
@@ -163,12 +162,12 @@
        <div field="comPartCode" name="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
        <div field="comPartName" headerAlign="center" header="配件名称"></div>
        <div field="comPartBrandId" id="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-       <div field="comApplyCarModel" id="comApplyCarModel" width="140" headerAlign="center" header="车型"></div>
        <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
        <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量"></div>
        <div field="orderQty" name="stockOutQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="缺货数量"></div>
        <div field="comOemCode" width="100" headerAlign="center" allowSort="true" header="OEM码"></div>
        <div field="comSpec" width="100" headerAlign="center" allowSort="true" header="规格/方向/颜色"></div>
+       <div field="comApplyCarModel" id="comApplyCarModel" width="140" headerAlign="center" header="品牌车型"></div>
    </div>
 </div>
 </div>

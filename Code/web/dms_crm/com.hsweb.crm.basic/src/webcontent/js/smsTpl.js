@@ -11,7 +11,7 @@ $(document).ready(function(v){
     	e.data.token = token;
     });
     query();
-
+    initMember("recorder",function(){ });
     nui.get("content").focus();
     document.onkeyup=function(event){
         var e=event||window.event;

@@ -325,6 +325,7 @@
     <location x="570" y="145"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="fisRpAccountDetial" iterableElement="accountDetail"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -336,6 +337,7 @@
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopend0</sourceNode>
       <targetNode>subprocess2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link14</targetConnections>
     <location x="666" y="145"/>

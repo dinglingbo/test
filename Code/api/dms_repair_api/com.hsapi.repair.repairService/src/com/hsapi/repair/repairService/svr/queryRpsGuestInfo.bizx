@@ -340,6 +340,10 @@
       <process:from type="query" pattern="reference">guest/rechargeBalaAmt</process:from>
       <process:to type="query">data/rechargeBalaAmt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">guest/carModelIdLy</process:from>
+      <process:to type="query">data/carModelIdLy</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="553" y="186"/>

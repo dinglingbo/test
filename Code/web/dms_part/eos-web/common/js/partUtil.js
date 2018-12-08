@@ -314,12 +314,16 @@ function getLocationListByStoreId(storeId, callback) {
 		});
 		return;
 	}
-	var params = {};
-	params.storeId = storeId;
+//	var params = {};
+//	params.storeId = storeId;
 	doPost({
 		url : getLocationListByStoreIdUrl,
 		type : "post",
-		data : JSON.stringify(params),
+		data : {
+			storeId :storeId,
+			token :token
+		},
+		async: false,
 		success : function(data) {
 			if (data && data.locationList) {
 				var list = data.locationList;
@@ -353,6 +357,8 @@ function getCompBillNO(billTypeCode, callback) {
 		}
 	});
 }
+
+
 var dictField = ["enterTypeId","settType","settTypeId","billTypeId","managerDuty","guestType","supplierType"];
 dictField.push("backReasonId");
 var insureField = ["insureCompCode","insuranceSaliComany","insuranceBizComany"];

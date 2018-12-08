@@ -30684,7 +30684,7 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node7" name="RpbCar" nodeType="table" displayName="RpbCar" author="Administrator" instanceClass="" table="rpb_car" genStrategy="native">
+  <nodes xsi:type="model:PEntityNode" id="node7" name="RpbCar" nodeType="table" displayName="RpbCar" author="Administrator" instanceClass="" table="rpb_car" genStrategy="assigned">
     <location x="60" y="11130"/>
     <size height="678" width="150"/>
     <figSize height="20" width="150"/>

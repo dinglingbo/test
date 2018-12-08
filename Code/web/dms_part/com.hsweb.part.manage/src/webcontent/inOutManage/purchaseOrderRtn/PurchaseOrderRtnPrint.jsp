@@ -38,6 +38,10 @@ html, body {
     #queryTable {
         height: inherit !important;
     }
+     @page {
+      size: auto;  /* auto is the initial value */
+      margin: 0mm; /* this affects the margin in the printer settings */
+    }
 }
 
 #tbody td{
@@ -56,14 +60,20 @@ html, body {
 	padding-left:45px;
 }
 #currOrgName{
-	padding-left:80px;
+/* 	padding-left:80px; */
+	padding-top:20px;
 }
 #type{
 	padding-right:165px;
+	padding-top:20px;
 }
 #serviceId{
-	padding-right:110px;
+	padding-right:165px;
 }
+#nowDate{
+	padding-right:160px;
+}
+
 #border1 td{
 	border-bottom: 1px black solid !important;
 	height :35px;
@@ -169,18 +179,20 @@ html, body {
 			      <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
 			    </div>
         		<table id="" width="100%">
-				  <tr style="font-size:25px;">
+				  <tr style="font-size:25px">
 				    <td id="currOrgName"></td>
-				    <td id="type" colspan="2" style="text-align: right;" id="">采购退货</td>
+				    <td></td>
+				    <td id="type" colspan="2" style="text-align: right;" class="" >采购退货</td>
 				  </tr>
 				  <tr>
-				    <td id="address">地址:</td>
-				    <td colspan="2" style="text-align: right" id="serviceId">No:</td>
+				  	<td id="mobile">电话:</td>
+				    <td  id="address">地址:</td>
+				    <td colspan="2" style="text-align: right" id="serviceId"  class="" >No:</td>
 				  </tr>
 				  <tr id="border1">
-				    <td id="mobile">电话:</td>
-				    <td id="createDate">订单日期:</td>
-				    <td id="nowDate">打印日期:</td>
+				    <td id="createDate" align="left">订单日期:</td>
+				    <td ></td>
+				    <td colspan="2" id="nowDate" align="right"  class="" >打印日期:</td>
 				  </tr>
 				  <tr>
 				    <td id="guestFullName">供应商:</td>
@@ -189,7 +201,7 @@ html, body {
 				  </tr>
 				  <tr>
 				    <td id="">地址</td>
-				    <td id="rtnReasonId">退货原因:</td>
+				    <td id="billTypeId">票据类型:</td>
 				    <td id="settleTypeId">结算方式:</td>
 				  </tr>
 				</table>

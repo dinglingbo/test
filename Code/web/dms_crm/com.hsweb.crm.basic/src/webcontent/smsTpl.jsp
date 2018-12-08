@@ -26,7 +26,7 @@ pageEncoding="UTF-8" session="false" %>
                 <label style="font-family:Verdana;">短信内容：</label>
                 <input class="nui-textbox" name="content" id="content" enabled="true"/>
                 <label style="font-family:Verdana;">创建人：</label>
-                <input class="nui-textbox" name="recorder" id="recorder" enabled="true"/>
+                <input class="nui-combobox" name="recorder" id="recorder" enabled="true" textField="empName" valueField="empName" allowInput="true"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="add" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增模板</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改模板</a>
@@ -51,7 +51,7 @@ pageEncoding="UTF-8" session="false" %>
                 style="width:100%;height:100%;border: 0;">
                 <ul id="tree1" class="nui-tree" 
                 url="<%=apiPath + sysApi%>/com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130902000005&page/length=200&token=<%=token%>" 
-                style="width:95%;height:95%;padding:5px;" 
+                style="width:100%;height:100%;" 
                 showTreeIcon="false" 
                 dataField="data" 
                 textField="name" 
@@ -59,7 +59,7 @@ pageEncoding="UTF-8" session="false" %>
                 resultAsTree="false" 
                 parentField="dictid" 
                 showTreeLines="true" 
-                onNodedblclick="onNodeDbClick"
+                onNodeclick="onNodeDbClick"
                 allowDrag="true">
             </ul>
         </div>

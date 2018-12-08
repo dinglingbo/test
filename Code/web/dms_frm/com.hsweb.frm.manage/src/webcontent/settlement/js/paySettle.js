@@ -1,6 +1,7 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
+var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + frmApi + "/";// window._rootUrl||"http://127.0.0.1:8080/default/";
 var partBaseUrl = apiPath + partApi + "/";
 var rightGridUrl = baseUrl
@@ -1674,4 +1675,25 @@ function doSettle() {
 		showMsg("请选择单据!", "W");
 		return;
 	}
+}
+
+function openOrderDetail(){
+	var row = pRightGrid.getSelected();
+	if(row){
+		var data={};
+		data.id=row.billMainId;
+
+		if(data.id){
+			var item={};
+			item.id = "11111";
+		    item.text = "应付详情页";
+			item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+data.id;
+			item.iconCls = "fa fa-cog";
+			window.parent.activeTabAndInit(item,data);
+		}	
+	}else{
+		showMsg("请选择单据!", "W");
+		return;
+	}
+
 }

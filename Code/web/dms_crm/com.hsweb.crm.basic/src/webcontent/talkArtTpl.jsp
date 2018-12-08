@@ -26,8 +26,8 @@
                 <label style="font-family:Verdana;">主题：</label>
                 <input class="nui-textbox" name="topic" id="topic" enabled="true"/>
                 <label style="font-family:Verdana;">创建人：</label>
-                <input class="nui-textbox" name="recorder" id="recorder" enabled="true"/>
-                <a class="nui-button" iconCls="" plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                <input class="nui-combobox" name="recorder" id="recorder" enabled="true" textField="empName" valueField="empName" allowInput="true"/>
+                <a class="nui-button" iconCls="" plain="true" onclick="query(0)" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="editgroup">
                     <a class="nui-button" iconCls="" plain="true" onclick="add()" id="add" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增话术</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改话术</a>
@@ -59,7 +59,7 @@
                         resultAsTree="false" 
                         parentField="dictid" 
                         showTreeLines="true" 
-                        onNodedblclick="onNodeDbClick"
+                        onNodeclick="onNodeDbClick"
                         allowDrag="true">
                     </ul>
                 </div>
@@ -85,7 +85,7 @@
                          url="<%=apiPath + crmApi%>/com.hsapi.crm.basic.crmBasic.getTalkArtList.biz.ext"
                          showSummaryRow="true">
                         <div property="columns">
-                            <div type="indexcolumn" width="20">序号</div>
+                            <div type="indexcolumn" width="20" headerAlign="center" >序号</div>
                             <div headerAlign="center">基本信息
                                 <div property="columns">
                                     <div field="id" visible=false>ID</div>

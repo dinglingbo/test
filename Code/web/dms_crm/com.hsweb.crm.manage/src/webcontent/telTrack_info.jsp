@@ -35,7 +35,7 @@ pageEncoding="UTF-8" session="false" %>
    init();
 
 
-nui.get("scoutContent").focus();
+nui.get("saveScout").focus();
 document.onkeyup=function(event){
 var e=event||window.event;
 var keyCode=e.keyCode||e.which;//38向上 40向下

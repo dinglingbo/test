@@ -357,7 +357,10 @@ function selectSupplier(elId)
 function onDrawCell(e)
 {
     switch (e.field)
-    {
+    {	
+    	case "serviceId":
+    		e.cellHtml ='<a href="##" onclick="edit()">'+e.value+'</a>';
+    		break;
 	    case "partBrandId":
 	        if(partBrandIdHash && partBrandIdHash[e.value])
 	        {

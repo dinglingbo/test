@@ -85,42 +85,7 @@ body .mini-grid-row-selected{
                                                  placeholder="请选择供应商"
                                                  selectOnFocus="true" />
                                       </td>
-                                      <td class="title required" >
-                                          <label>退货员：</label>
-                                      </td>
-                                      <td colspan="1">
-                                           <input class="nui-combobox" 
-                                        id="orderMan" 
-                                        name="orderMan" 
-                                        textField="empName"
-                                    valueField="empId"
-                                    emptyText="请选择..."
-                                    url=""
-                                    required="true"
-                                    allowInput="true"
-                                    valueFromSelect="false"
-                                        width="100%">
-                                      </td>
-                                      <td class="title required" style="width:7%">
-                                          <label>退货日期：</label>
-                                      </td>
-                                      <td width="120">
-                                          <input name="createDate"
-                                                 id="createDate"
-                                                 width="100%"
-                                                 enabled="false"
-                                                 showTime="true"
-                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
-                                      </td>
-                                      <td class="title" style="width:7%">
-                                          <label>采退单号：</label>
-                                      </td>
-                                      <td>
-                                          <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新销售订单"/>
-                                      </td>
-                                  </tr>
-                                  <tr>
-                                      <td class="title required" style="width:7%">
+                                       <td class="title required" style="width:6%">
                                       <label>退货原因：</label>
                                   </td>
                                   <td>
@@ -138,7 +103,7 @@ body .mini-grid-row-selected{
                                              onvaluechanged=""
                                              nullItemText="请选择..."/>
                                   </td>
-                                      <td class="title required" style="width:7%">
+                                      <td class="title required" style="width:6%">
                                           <label>结算方式：</label>
                                       </td>
                                       <td>
@@ -158,6 +123,42 @@ body .mini-grid-row-selected{
                                                  nullItemText="请选择..."/>
                                       </td>
                                       
+                                      <td class="title required" >
+                                          <label>退货员：</label>
+                                      </td>
+                                      <td colspan="1">
+                                           <input class="nui-combobox" 
+                                        id="orderMan" 
+                                        name="orderMan" 
+                                        textField="empName"
+                                    valueField="empId"
+                                    emptyText="请选择..."
+                                    url=""
+                                    required="true"
+                                    allowInput="true"
+                                    valueFromSelect="false"
+                                        width="100%">
+                                      </td>
+                                      
+                                  </tr>
+                                  <tr>
+                                     <td class="title" style="width:6%">
+                                          <label>创建日期：</label>
+                                      </td>
+                                      <td width="140">
+                                          <input name="createDate"
+                                                 id="createDate"
+                                                 width="100%"
+                                                 enabled="false"
+                                                 showTime="true"
+                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
+                                      </td>
+                                      <td class="title" style="width:6%">
+                                          <label>采退单号：</label>
+                                      </td>
+                                      <td>
+                                          <input class="nui-textbox" width="100%" id="serviceId" name="serviceId" enabled="false" placeholder="新销售订单"/>
+                                      </td>
                                       <td class="title">
                                         <label>状态：</label>
                                     </td>

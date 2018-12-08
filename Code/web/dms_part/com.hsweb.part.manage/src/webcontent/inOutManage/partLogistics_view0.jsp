@@ -12,6 +12,16 @@
 <title>配件物流看板</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
       <style type="text/css">
+            .mini-grid-cell{
+      		    font-size: 18px;
+      }
+      
+            .mini-grid-headerCell-inner {
+    word-break: break-all;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    overflow: hidden;
+}
 .select-row{
    background:#8c8c8c;
 }
@@ -34,7 +44,7 @@
 
  body .mini-grid-headerCell-nowrap{
       color: white;
-    font-size: 18px;
+    font-size: 30px;
  }
 
  html body .mini-grid-row-selected {
@@ -57,12 +67,12 @@
 <body >
 
 <div class="nui-fit" style="background-color: #000">
-	<div style="height: 40px;background-color: #fa8c16">
+	<div style="height: 60px;background-color: #fa8c16">
 		<table style="width: 100%;line-height: 2;">
 			<tr>
-			  <td style="width: 33%;text-align: center;font-size: 16px;font-weight: bold;color: #fff">配件物流看板</td>
-			  <td style="width: 33%;text-align: center;font-size: 16px;font-weight: bold;color: #fff" id="clock">2018年7月3日20:57:53</td>
-			  <td style="width: 33%;text-align: right;font-size: 16px;font-weight: bold;color: #fff">
+			  <td style="width: 33%;text-align: center;font-size: 26px;font-weight: bold;color: #fff">配件物流看板</td>
+			  <td style="width: 33%;text-align: center;font-size: 26px;font-weight: bold;color: #fff" id="clock">2018年7月3日20:57:53</td>
+			  <td style="width: 33%;text-align: right;font-size: 26px;font-weight: bold;color: #fff">
 			  	  <a class="nui-button" id="full" onclick="fullScreen()" > <span class="fa fa-arrows-alt fa-lg"></span></a>
 				  <a class="nui-button" id="exit" onclick="exitScreen()" ><span class="fa fa-compress fa-lg"></span></a>
 			  </td>
@@ -74,13 +84,13 @@
 	    <div id="partLogisticsGrid" class="nui-datagrid" dataField="data" showLoading="false" enableHotTrack="false" 
 	   	  allowRowSelect="false" showPager="false" style="height:100%;width:100%;">
 	        <div property="columns">
-	            <div field="carNo" width="100" headerAlign="center" align="center">车牌号</div>
-	            <div field="partName" width="100" headerAlign="center" align="center">配件名称</div>
-	            <div field="partCode" width="100" headerAlign="center" align="center">配件编码</div>
-	            <div field="guestName" width="100" headerAlign="center" align="center">供应商</div>
+	            <div field="carNo" width="60" headerAlign="center" align="center">车牌号</div>
+	            <div field="partName" width="80" headerAlign="center" align="center">配件名称</div>
+	            <div field="partCode" width="80" headerAlign="center" align="center">配件编码</div>
+	            <div field="guestName" width="130" headerAlign="center" align="center">供应商</div>
 	            <div field="planArriveDate" width="100"  headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" align="center">预计到货时间</div>
-	            <div field= "qty" width="100" headerAlign="center" align="center">数量</div>
-	            <div field= "status" width="100" headerAlign="center" align="center">状态</div>
+	            <div field= "qty" width="40" headerAlign="center" align="center">数量</div>
+	            <div field= "status" width="40" headerAlign="center" align="center">状态</div>
 	        </div>
 	        
 	    </div>
@@ -97,7 +107,7 @@
 				partName: '变速箱转速传感器',
 				partCode: '095927321B',
 				guestName: '广州市鸿泽运汽车贸易有限公司',
-				planArriveDate: '2018-12-04 12:50',
+				planArriveDate: '12月04日 12:50',
 				qty: '3',
 				status: '待收货'
 			},
@@ -106,7 +116,7 @@
 				partName: '水箱温度传感器卡环',
 				partCode: '06J121142',
 				guestName: '广州市鸿泽运汽车贸易有限公司',
-				planArriveDate: '2018-12-05 12:50',
+				planArriveDate: '12月05日 12:50',
 				qty: '1',
 				status: '分拣中'
 			},
@@ -115,7 +125,7 @@
 				partName: '漆面水晶镀膜套装',
 				partCode: 'YH-223021',
 				guestName: '广州鸿辉汽车用品有限公司',
-				planArriveDate: '2018-12-05 12:50',
+				planArriveDate: '12月05日 12:50',
 				qty: '3',
 				status: '分拣中'
 			},
@@ -124,7 +134,7 @@
 				partName: 'ABS泵支架',
 				partCode: '1154652',
 				guestName: '广州鸿辉汽车用品有限公司',
-				planArriveDate: '2018-12-06 13:40',
+				planArriveDate: '12月06日 13:40',
 				qty: '3',
 				status: '分拣中'
 			},
@@ -133,7 +143,7 @@
 				partName: '机油滤清器',
 				partCode: 'A2701800109',
 				guestName: '广州长荣行汽车配件有限公司',
-				planArriveDate: '2018-12-05 14:50',
+				planArriveDate: '12月05日 14:50',
 				qty: '3',
 				status: '分拣中'
 			},
@@ -142,7 +152,7 @@
 				partName: '火花塞',
 				partCode: '0242235776',
 				guestName: '广州长荣行汽车配件有限公司',
-				planArriveDate: '2018-12-06 12:50',
+				planArriveDate: '12月06日 12:50',
 				qty: '3',
 				status: '已出库'
 			},
@@ -151,7 +161,7 @@
 				partName: '制动蹄片',
 				partCode: '0986AB3987',
 				guestName: '长沙恒信奥迪汽车销售服务有限公司',
-				planArriveDate: '2018-12-04 13:30',
+				planArriveDate: '12月04日 13:30',
 				qty: '3',
 				status: '已出库'
 			},
@@ -160,7 +170,7 @@
 				partName: '	轮胎',
 				partCode: '409778',
 				guestName: '长沙恒信奥迪汽车销售服务有限公司',
-				planArriveDate: '2018-12-02 9:42',
+				planArriveDate: '12月02日  9:42',
 				qty: '3',
 				status: '分拣中'
 			}
@@ -195,7 +205,7 @@
 				var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
 					e.cellHtml = time;
 				}
-				if (e.field == "planFinishDate") {
+				if (e.field == "planArriveDate") {
 					if(e.cellHtml!=""&&e.cellHtml!=null){
 						var str =e.cellHtml.split(" "); 
 						var qian = str[0].split("-");

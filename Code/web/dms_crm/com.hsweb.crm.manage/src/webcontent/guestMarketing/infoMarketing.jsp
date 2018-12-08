@@ -22,7 +22,7 @@ pageEncoding="UTF-8" session="false" %>
                     <input class="nui-textbox" name="" id="" enabled="true"/>
                     <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <li class="separator"></li>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                     <li class="separator"></li>
@@ -47,7 +47,6 @@ pageEncoding="UTF-8" session="false" %>
         >
         <div property="columns">
 
-            <div field="carNo" name="carNo" width="80" headerAlign="center" header="操作"></div>
             <div type="checkcolumn" ></div>    
             <div field="serviceCode" name="serviceCode" width="80" headerAlign="center" header="ID"></div>
             <div field="visitMan" name="visitMan" width="80" headerAlign="center" header="标题"></div>
@@ -63,6 +62,19 @@ pageEncoding="UTF-8" session="false" %>
 
 <script type="text/javascript">
    nui.parse();
+
+   function edit(){
+       nui.open({
+           url: webPath + contextPath  + "/manage/guestMarketing/infoMarketing_edit.jsp",
+           title: "新增短信",
+           width: 950, 
+           height: "100%",
+           onload: function () {
+           },
+           ondestroy: function (action) {
+           }
+       });
+   }
 
 
    function push(){

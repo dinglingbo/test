@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>资料管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.22"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/datumMgr.js?v=1.0.26"></script>
     <style type="text/css">
 
 
@@ -65,10 +65,11 @@ pageEncoding="UTF-8" session="false" %>
                     allowInput="false"
                     valueFromSelect="true"
                     showNullItem="true"
-                    nullItemText="请选择..."/>
+                    nullItemText="请选择..."
+                    style="width:130px;"/>
 
                     <label style="font-family:Verdana;">车牌号：</label>
-                    <input class="nui-textbox width1" name="carNo" id="carNo" enabled="true"/>
+                    <input class="nui-textbox width1" name="carNo" id="carNo" enabled="true" style="width:100px;"/>
 
                     <a class="nui-button"  plain="true" onclick="query(0)" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button"  plain="true" onclick="moreQuery()" id="" enabled="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
@@ -87,7 +88,8 @@ pageEncoding="UTF-8" session="false" %>
                     allowInput="false"
                     valueFromSelect="true"
                     showNullItem="false"
-                    nullItemText="请选择..."/>
+                    nullItemText="请选择..."
+                    style="width:100px;"/>
                     <a class="nui-button"  plain="true" onclick="assignTracker()" id="add" enabled="true"><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
                     <li class="separator"></li>
                     <a class="nui-button"  plain="true" onclick="editClient()" id="" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改客户资料</a>
@@ -105,7 +107,7 @@ pageEncoding="UTF-8" session="false" %>
                     showFooter="false"
                     style="width:100%;height:60%;border: 0;">
                     <ul id="tree1" class="nui-tree"
-                    style="width:100%;height:95%;padding:5px;"
+                    style="width:100%;height:100%;"
                     showTreeIcon="false"
                     dataField="rs"
                     textField="nameCn"
@@ -113,7 +115,7 @@ pageEncoding="UTF-8" session="false" %>
                     resultAsTree="false"
                     parentField=""
                     showTreeLines="true"
-                    onNodedblclick="onType1DbClick"
+                    onnodeclick="onType1DbClick"
                     allowDrag="true">
                 </ul>
             </div>
@@ -122,7 +124,7 @@ pageEncoding="UTF-8" session="false" %>
             showFooter="false"
             style="width:100%;height:40%;border: 0;">
             <ul id="tree2" class="nui-tree"
-            style="width:100%;height:95%;padding:5px;"
+            style="width:100%;height:100%;"
             showTreeIcon="false"
             dataField="data"
             textField="empName"
@@ -130,7 +132,7 @@ pageEncoding="UTF-8" session="false" %>
             resultAsTree="false"
             parentField=""
             showTreeLines="true"
-            onNodedblclick="onType2DbClick"
+            onnodeclick="onType2DbClick"
             allowDrag="true">
         </ul>
     </div>
@@ -153,11 +155,10 @@ pageEncoding="UTF-8" session="false" %>
         sortMode="client"
         idField="id"
         multiSelect="true"
-        allowCellWrap = true
-        showSummaryRow="true">
+        allowCellWrap = true>
         <div property="columns">
             <div type="checkcolumn" width="25"></div>
-            <div type="indexcolumn" width="30" summaryType="count">序号</div>
+            <div type="indexcolumn" width="40" summaryType="count">序号</div>
             <div headerAlign="center">车辆信息
                 <div property="columns">
                     <div field="id" visible=false>ID</div>

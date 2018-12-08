@@ -28,7 +28,7 @@ pageEncoding="UTF-8" session="false" %>
 </head>
 <body>
 
-<div class="nui-toolbar" style="padding:0px;border-bottom:0;" id="queryForm">
+<div class="nui-toolbar" style="padding:0px;" id="queryForm">
     <table style="width:100%;">
         <tr>
         	<td>

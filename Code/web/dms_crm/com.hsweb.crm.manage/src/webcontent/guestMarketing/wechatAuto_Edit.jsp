@@ -29,7 +29,7 @@ pageEncoding="UTF-8" session="false" %>
     </style>
 </head>
 <body>
- <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+ <div class="nui-toolbar" style="padding:0px;">
   <table style="width:80%;">
     <tr>
       <td style="width:80%;">
@@ -44,36 +44,36 @@ pageEncoding="UTF-8" session="false" %>
   <table style="width:100%;">
     <tr>
       <td class="tbtext"><label>条件：</label></td>
-      <td ><input class="nui-combobox tbinput" name="" style=""></td>
+      <td ><input class="nui-textbox tbinput" name="" style=""></td>
       <td class="tbtext"><label>条件金额：</label></td>
-      <td><input class="nui-combobox tbinput" name="" style=""></td>
+      <td><input class="nui-textbox tbinput" name="" style=""></td>
     </tr>
     <tr>
       <td class="tbtext"><label>优惠券：</label></td>
       <td colspan="3"><input class="nui-combobox " name="" style="width:390px;">
-        <a class="nui-button" iconCls="" plain="false" onclick=""><span class="fa fa-close fa-lg"></span>&nbsp;选择优惠券</a>
+        <a class="nui-button" iconCls="" plain="false" onclick="newEvent()"><span class="fa fa-close fa-lg"></span>&nbsp;选择优惠券</a>
 
       </td>
     </tr>
     <tr>
       <td class="tbtext"><label>名称：</label></td>
-      <td><input class="nui-combobox tbinput" name="" style=""></td>
+      <td><input class="nui-textbox tbinput" name="" style=""></td>
             <td class="tbtext"><label>总数量：</label></td>
-      <td><input class="nui-combobox tbinput" name="" style=""></td>
+      <td><input class="nui-textbox tbinput" name="" style=""></td>
     </tr>
 
     <tr>
       <td class="tbtext"><label>已派数量：</label></td>
-      <td><input class="nui-combobox tbinput" name="" style=""></td>
+      <td><input class="nui-textbox tbinput" name="" style=""></td>
             <td class="tbtext"><label>单次赠送数量：</label></td>
-      <td><input class="nui-combobox tbinput" name="" style=""></td>
+      <td><input class="nui-textbox tbinput" name="" style=""></td>
     </tr>
 
     <tr>
       <td class="tbtext"><label>开始时间：</label></td>
-      <td><input class="nui-combobox tbinput" name="" style=""></td>
+      <td><input class="nui-datepicker tbinput" name="" style=""></td>
             <td class="tbtext"><label>结束时间：</label></td>
-      <td><input class="nui-combobox tbinput" name="" style=""></td>
+      <td><input class="nui-datepicker tbinput" name="" style=""></td>
     </tr>
 
     <tr>
@@ -87,6 +87,21 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 <script type="text/javascript">
  nui.parse();
+
+
+
+             function newEvent(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/coupon.jsp",
+             title: "优惠券",
+             width: 800, 
+             height: 450,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
 </script>
 </body>
 </html>

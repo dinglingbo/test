@@ -45,7 +45,9 @@
                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                </ul>
-               <span class="separator"></span>
+               			点评日期 从:<input class="nui-datepicker" id="sRecordDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
+			至:<input class="nui-datepicker" id="eRecordDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+
              	<input class="nui-textbox" width="100px" id="carNo" name="carNo" selectOnFocus="true" enabled="true" emptyText="车牌号"/>
                 <input class="nui-textbox" width="100px" id="mobile" emptyText="手机"  selectOnFocus="true" name="mobile"/>
                	<input id="point"
@@ -71,18 +73,14 @@
                     valueField="name"
                     valueFromSelect="true"
                     emptyText="业务类型"
-                    url=""
+                    url="" 
                     style="display:none;"
                     allowInput="true"
                     showNullItem="false"
                     nullItemText="业务类型"/>
-                       
-			点评日期 从:<input class="nui-datepicker" id="sRecordDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
-			至:<input class="nui-datepicker" id="eRecordDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
-                <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-            </td>
-            
-        </td>
+                   <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+
+</td>
     </tr>
 </table>
 </div>
@@ -98,11 +96,9 @@
     totalField="page.count" 
     sizeList=[50,100,500,1000] 
      onrowdblclick="" 
-     allowCellWrap = true
-    frozenStartColumn="0"
-    frozenEndColumn="0">
+     allowCellWrap = true>
     <div property="columns">
-        <div type="indexcolumn">序号</div>
+        <div type="indexcolumn" width="40" headerAlign="center">序号</div>
         <div header="基本信息" headerAlign="center">
             <div property="columns">
             	<div allowSort="true" field="serviceCode" width="130" headerAlign="center" header="业务单号"></div>

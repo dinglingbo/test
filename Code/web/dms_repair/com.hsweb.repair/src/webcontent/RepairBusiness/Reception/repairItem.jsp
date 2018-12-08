@@ -39,7 +39,7 @@
                 </div>
                 <div field="workers" headerAlign="center"
                      allowSort="false" visible="true" width="80" header="施工员" name="workers" align="center">
-                    <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
+                    <div id="combobox2" property="editor" class="mini-combobox" style="width:300px;"  popupWidth="100" textField="empName" valueField="empName" 
                     url="" data="memList" value="" multiSelect="true"  showClose="true" oncloseclick="onCloseClick" onvaluechanged="onitemworkerChanged" >     
                     <!-- <div property="columns">
                         <div header="ID" field="id"></div>

@@ -10,7 +10,6 @@
     <title>项目施工汇总报表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
     <%@include file="/common/commonRepair.jsp"%>
     <style type="text/css">
     body { 
@@ -138,7 +137,7 @@ quickSearch(3);
         }
         
         var data= form.getData();
-    	data.endDate = data.endDate.substr(0,10) +" 23:59:59";
+    	data.endDate = formatDate(data.endDate) +" 23:59:59";
         data.groupByType = cType;
         updateGridColoumn(cType);
         grid1.load({params:data,token :token});

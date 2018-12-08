@@ -70,6 +70,12 @@
         <isNotEmpty prepend="and" property="auditSign">
         	(a.audit_sign = #auditSign#)
         </isNotEmpty>
+                    <isNotEmpty prepend="and" property="startDate">  
+                (a.record_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (a.record_date &lt;=  #endDate#)
+            </isNotEmpty>
 	</select>
 	<select id="queryComplainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT

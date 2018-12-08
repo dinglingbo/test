@@ -85,9 +85,11 @@
         $(document).ready(function(v) {
 			form = new nui.Form("#table1");
 			mtAdvisorIdEl = nui.get("mtAdvisorId");
-			
+		
 			initMember("mtAdvisorId",function(){
 	            memList = mtAdvisorIdEl.getData();
+				mtAdvisorIdEl.setValue(currEmpId);
+    			mtAdvisorIdEl.setText(currUserName);
 	        });
 	
 			mtAdvisorIdEl.on("valueChanged",function(e){

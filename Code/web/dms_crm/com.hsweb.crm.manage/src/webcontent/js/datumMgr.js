@@ -56,7 +56,7 @@ dgGrid.load({token :token});
            memHash[v.empId] = v;
        });
         nui.get("tree2").setData(memList);
-        query1();
+        tracker.setData(memList);//设置营销员下拉数据
     });
     
     init();
@@ -93,22 +93,14 @@ function init(){
     var data = getQueryValue();
     if(e == 0){
     	data = queryForm.getData();
+        tree1.selectNode(null);
+tree2.selectNode(null);
     }
     params.p = data;
-
-//    dgGrid.load(params,null,function(){
-//        //失败;
-//        showMsg("数据加载失败！");
-//    });
-
 dgGrid.load({p:params.p,token:token});
 
 }
 
-function query1(){
-
-    tracker.setData(memList);//设置营销员下拉数据
-}
 function clearQueryForm(){
     queryForm.setData({});
     currType1Node = null;//品牌
@@ -173,7 +165,7 @@ function onType2DbClick(e){
 function updateField(field, value){
     var rows = dgGrid.getSelecteds();
     if(rows.length==0){
-        showMsg("请选择记录数据！","W");
+        showMsg("请选中一条记录","W");
         return;
     }
     var params = [];
@@ -265,7 +257,8 @@ function moreQuery(){
     nui.get("carNo").setValue(null);
     nui.open({
         url: webPath + contextPath + "/manage/datumMgr_search.jsp?token="+ token,
-        title: "更多查询", width: 520, height: 180,
+        title: "更多查询", width: 520, height: 240,
+        //allowResize:false,
         onload: function () { 
             var iframe = this.getIFrameEl();
             //var data = { action: "edit", id: row.id };

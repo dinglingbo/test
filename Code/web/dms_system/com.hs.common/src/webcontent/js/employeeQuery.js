@@ -115,7 +115,7 @@ function edit(action) {
 
     var url = webPath + contextPath + "/com.hs.common.employeeEdit.flow?token="+token;
     var width = 680;
-    var height = 430;
+    var height = 630;
     if(currCompType == 'PART'){
         url = webPath + contextPath + "/com.hs.common.partEmployeeEdit.flow?token="+token;
         height = 250;

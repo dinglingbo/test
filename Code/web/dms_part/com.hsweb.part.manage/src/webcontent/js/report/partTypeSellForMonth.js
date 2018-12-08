@@ -240,7 +240,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
-	initGrid(beginDateEl.getValue(), endDateEl.getValue());
+	initGrid(beginDateEl.getFormValue(), endDateEl.getFormValue());
     params.startDate = beginDateEl.getValue();
     params.endDate = endDateEl.getValue();
 

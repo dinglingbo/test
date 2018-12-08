@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
   <title>首页</title> 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.76"></script>
+    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.77"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css" rel="stylesheet" type="text/css" />
@@ -59,7 +59,7 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="toRepairOut()">
                             <i class="fa fa-imdb fa-4x  fa-inverse"></i>
-                            <p>维修出库</p> 
+                            <p>配件领料</p> 
                         </a>
                     </div>
                 </div>

@@ -268,7 +268,7 @@ function generateSellOrder(mainId){
 
                 searchBill();
             }else {
-                showMsg(data.errMsg || "保存失败!","W");
+                showMsg(data.errMsg || "保存失败!","E");
             }
 
         },

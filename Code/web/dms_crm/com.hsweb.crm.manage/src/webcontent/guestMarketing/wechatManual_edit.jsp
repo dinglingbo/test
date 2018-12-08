@@ -12,13 +12,13 @@ pageEncoding="UTF-8" session="false" %>
   <title>优惠券</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-   <%@include file="/common/commonRepair.jsp"%>
-   <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+  <%@include file="/common/commonRepair.jsp"%>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
   <style type="text/css">
   *{padding: 0;margin: 0;}
-      html, body{
-        margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
-    }
+  html, body{
+    margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
+  }
   body {
     font: 12px/150% tahoma,arial,Microsoft YaHei,Hiragino Sans GB,"\u5b8b\u4f53",sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -207,20 +207,20 @@ pageEncoding="UTF-8" session="false" %>
 </head>
 <body>
  <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
-    <table style="width:80%;">
-        <tr>
-            <td style="width:80%;">
-                <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
-                <li class="separator"></li>
-                <div id="" name="" class="mini-checkbox" readOnly="false" text="是否发送短信" onvaluechanged=""></div>
-            </td>
-        </tr>
-    </table>
+  <table style="width:80%;">
+    <tr>
+      <td style="width:80%;">
+        <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+        <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+        <li class="separator"></li>
+        <div id="" name="" class="mini-checkbox" readOnly="false" text="是否发送短信" onvaluechanged=""></div>
+      </td>
+    </tr>
+  </table>
 </div>
 
 
-  <div class="" id="main">
+<div class="" id="main">
 <!--         <p>暂无记录</p>
 -->
 <div id="newslist">
@@ -244,11 +244,63 @@ pageEncoding="UTF-8" session="false" %>
 
 
 
+<div class="nui-fit">
+
+ <div id="tabs1" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="true">
+  <div title="绑定用户" >
+   <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
+    <table style="width:100%;">
+      <tr>
+        <td>
+         关注时间:
+         <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd"  /> 至
+         <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" />
+         <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+       </td>
+     </tr>
+   </table>
+ </div>
  <div class="nui-fit">
-
-
   <div style="height:100%;width: 100%;">
     <div id="investGrid" class="nui-datagrid" style="width:100%;height:100%;"
+    pageSize="50"
+    totalField="page.count"
+    sizeList=[20,50,100,200]
+    dataField="list"
+    onrowdblclick=""
+    allowCellSelect="true"
+    allowCellWrap = true
+    ondrawcell=""
+    multiSelect="true" 
+    >
+    <div property="columns">
+      <div type="checkcolumn" ></div>    
+      <div field="" name="" width="80" headerAlign="center" header="手机号"></div>
+      <div field="" name="" width="80" headerAlign="center" header="微信昵称"></div>
+      <div field="" name="" width="80" headerAlign="center" header="关注时间"></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div title="车辆选择" >
+ <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
+  <table style="width:100%;">
+    <tr>
+      <td>
+
+       <label>车牌号：</label>
+       <input class="nui-combobox" name="" id="" enabled="true"/>
+       <label>客户名称：</label>
+       <input class="nui-combobox" name="" id="" enabled="true"/>
+       <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+     </td>
+   </tr>
+ </table>
+</div>
+<div class="nui-fit">
+  <div style="height:100%;width: 100%;">
+    <div id="" class="nui-datagrid" style="width:100%;height:100%;"
     pageSize="50"
     totalField="page.count"
     sizeList=[20,50,100,200]
@@ -269,6 +321,53 @@ pageEncoding="UTF-8" session="false" %>
     </div>
   </div>
 </div>
+
+</div>
+
+
+
+</div>
+
+
+<div title="导入手机号" >
+ <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
+  <table style="width:100%;">
+    <tr>
+      <td>
+
+        <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-reply fa-lg"></span>&nbsp;导入</a>
+     </td>
+   </tr>
+ </table>
+</div>
+<div class="nui-fit">
+  <div style="height:100%;width: 100%;">
+    <div id="" class="nui-datagrid" style="width:100%;height:100%;"
+    pageSize="50"
+    totalField="page.count"
+    sizeList=[20,50,100,200]
+    dataField="list"
+    onrowdblclick=""
+    allowCellSelect="true"
+    allowCellWrap = true
+    ondrawcell=""
+    multiSelect="true" 
+    >
+    <div property="columns">
+      <div type="checkcolumn" ></div>    
+       <div type="indexcolumn" headerAlign="center" header="序号"></div>
+      <div field="" name="" width="80" headerAlign="center" header="手机号"></div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+</div>
+</div>
+
 </div>
 
 <script type="text/javascript">
@@ -531,27 +630,27 @@ $("#newslist .container").prepend(list);
 
 
 
-    function check(e) {
-        $(e).find('.check').addClass('weui-icon-checked');
-        var title = $(e).attr('data-title');
-        var id = $(e).attr('data-index');
-        parent.$("#title").html(title);
-        parent.$("#title").val(title);
-        parent.$("#mark").val(id);
-        parent.$('.coupon_title').val(title);
+function check(e) {
+  $(e).find('.check').addClass('weui-icon-checked');
+  var title = $(e).attr('data-title');
+  var id = $(e).attr('data-index');
+  parent.$("#title").html(title);
+  parent.$("#title").val(title);
+  parent.$("#mark").val(id);
+  parent.$('.coupon_title').val(title);
         //var num = parent.layer.getFrameIndex(window.name); //获取窗口索引
         //parent.layer.close(num);
 
-    }
+      }
 
-    $('.w').click(function(){
+      $('.w').click(function(){
         $('.w').find('.check').removeClass('weui-icon-checked');
         $(this).find('.check').addClass('weui-icon-checked');
         //$('#title').html($(this).attr('data-title'));
         //$('#mark').val($(this).attr('data-index'))
-    })
+      });
 
 
-</script>
-</body>
-</html>
+    </script>
+  </body>
+  </html>

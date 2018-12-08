@@ -42,11 +42,11 @@ pageEncoding="UTF-8" session="false" %>
                  <input class="nui-textbox" name="" id="" enabled="true"/>
                  <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                  <li class="separator"></li>
-                                <a class="nui-button" iconCls="" plain="true" onclick="" id=""><span class="fa fa-plus fa-lg"></span>&nbsp;设置</a>
+                                <a class="nui-button" iconCls="" plain="true" onclick="newEvent()" id=""><span class="fa fa-cog fa-lg"></span>&nbsp;设置</a>
                                 <a class="nui-button" iconCls="" plain="true" onclick="" id=""><span class="fa fa-remove  fa-lg"></span>&nbsp;删除</a>
                                                  <li class="separator"></li>
-                 <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;运行</a>
-                 <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;停止</a>
+                 <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-play fa-lg"></span>&nbsp;运行</a>
+                 <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-pause fa-lg"></span>&nbsp;停止</a>
          </tr>
      </table>
  </div>
@@ -153,6 +153,20 @@ pageEncoding="UTF-8" session="false" %>
     menunamedate.setText(queryname);
     //doSearch(params);
 }
+
+
+               function newEvent(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/wechat/pushTask_setting.jsp",
+             title: "设置",
+             width: 500, 
+             height: 300,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
 
 </script>
 </body>

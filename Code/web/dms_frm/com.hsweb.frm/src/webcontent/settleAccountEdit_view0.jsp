@@ -83,7 +83,7 @@
                     </tr>
                 </table>
             </div>
-        <table class="tmargin">
+        <table class="tmargin" style="white-space:nowrap;">
             <tr class="htr">
                 <td class=" right fwidtha required">账户编码:</td>
                 <td ><input id="code" name="code" width="100%" class="nui-textbox" ></td>

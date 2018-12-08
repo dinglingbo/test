@@ -662,7 +662,7 @@ function save() {
 			
 				}
 			} else {
-				showMsg(data.errMsg || "保存失败!","W");
+				showMsg(data.errMsg || "保存失败!","E");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -1372,7 +1372,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 
 							}
 						} else {
-							showMsg(data.errMsg || (str+"失败!"),"W");
+							showMsg(data.errMsg || (str+"失败!"),"E");
 						}
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
@@ -1441,7 +1441,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 
 							}
 						} else {
-							showMsg(data.errMsg || (str+"失败!"),"W");
+							showMsg(data.errMsg || (str+"失败!"),"E");
 						}
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
@@ -1519,7 +1519,7 @@ function orderEnter(mainId) {
 					}
 
 					} else {
-						showMsg(data.errMsg || "入库失败!","W");
+						showMsg(data.errMsg || "入库失败!","E");
 					}
 				},
 				error : function(jqXHR, textStatus, errorThrown) {
@@ -1883,7 +1883,7 @@ function onAdvancedAddOk(){
 						}
 						
 					} else {
-						showMsg(data.errMsg || "添加数据失败!","W");
+						showMsg(data.errMsg || "添加数据失败!","E");
 					}
 				},
 				error : function(jqXHR, textStatus, errorThrown) {
@@ -2024,7 +2024,7 @@ function unAudit()
 				setEditable(true);
                 
             } else {
-				showMsg(data.errMsg || "审核失败!","W");
+				showMsg(data.errMsg || "审核失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {

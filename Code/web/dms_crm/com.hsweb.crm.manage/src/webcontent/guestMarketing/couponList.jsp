@@ -45,7 +45,7 @@ pageEncoding="UTF-8" session="false" %>
                  <input class="nui-textbox" name="" id="" enabled="true"/>
                  <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                  <li class="separator"></li>
-                 <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-arrows-h fa-lg"></span>&nbsp;勾兑</a>
+                 <a class="nui-button" iconCls="" plain="true" onclick="newEvent()" id="addBtn"><span class="fa fa-diamond fa-lg"></span>&nbsp;勾兑</a>
                  <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;批量审核</a>
                  <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a>
              </td>
@@ -160,6 +160,18 @@ pageEncoding="UTF-8" session="false" %>
 }
 
 
+    function newEvent(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/guestMarketing/coupon_exchange.jsp",
+             title: "优惠券勾兑",
+             width: 500, 
+             height: 200,
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
 
 
 </script>

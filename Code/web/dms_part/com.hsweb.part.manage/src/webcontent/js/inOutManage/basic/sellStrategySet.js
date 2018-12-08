@@ -146,7 +146,7 @@ function onSaveNode(){
                 straGrid.reload();
                 
             } else {
-                showMsg(data.errMsg || "保存失败!","W");
+                showMsg(data.errMsg || "保存失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -287,7 +287,7 @@ function saveStraGuest(){
                 rightGuestGrid.reload();
                 
             } else {
-                showMsg(data.errMsg || "保存失败!","W");
+                showMsg(data.errMsg || "保存失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -508,7 +508,7 @@ function saveStraPart(){
                 rightPartGrid.reload();
                 
             } else {
-                showMsg(data.errMsg || "保存失败!","W");
+                showMsg(data.errMsg || "保存失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -576,7 +576,7 @@ function saveUnifyPart(){
                 rightUnifyGrid.reload();
                 
             } else {
-                showMsg(data.errMsg || "保存失败!","W");
+                showMsg(data.errMsg || "保存失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {

@@ -28,7 +28,7 @@ pageEncoding="UTF-8" session="false" %>
 </style>
 </head>
 <body>
- <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+ <div class="nui-toolbar" style="padding:0px;">
     <table style="width:80%;">
         <tr>
             <td style="width:80%;">
@@ -48,7 +48,7 @@ pageEncoding="UTF-8" session="false" %>
         <td class="tbtext"><label>标题：</label></td>
         <td><input class="nui-combobox tbinput" name="" style=""></td>
         <td class="tbtext"><label>关键字：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
     </tr>
     <tr>
         <td class="tbtext"><label>匹配模式：</label></td>

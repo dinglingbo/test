@@ -46,7 +46,7 @@ body {
      结算日期:
      <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" /> 至
      <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
-     <input class="nui-textbox"  id="serviceCode" name="serviceCode" emptytext="工单号">
+     <input class="nui-textbox" id="serviceCode" name="serviceCode" emptytext="工单号">
      <input class="nui-textbox" id="carNo" name="carNo"emptytext="车牌号">
      <input class="nui-textbox" id="itemName" name="itemName"emptytext="项目名称">
      <input class="nui-textbox" id="mtAdvisor"name="mtAdvisor" emptytext="服务顾问">
@@ -61,7 +61,7 @@ body {
     allowcellwrap="true" style="width:100%;height:100%;"
     totalField="page.count">
     <div property="columns">
-        <div field="serviceCode"  name="serviceCode" headeralign="center" width="110" align="center">工单号</div>
+        <div field="serviceCode"  name="serviceCode" headeralign="center" width="130" align="center">工单号</div>
         <div field="serviceTypeId"  name="serviceTypeId" headeralign="center" width="100" align="center">业务类型</div>
         <div field="itemName"  name="itemName" headeralign="center" width="100" align="center">项目名称</div>
         <div field="carNo"  name="carNo" headeralign="center" width="100" align="center">车牌号</div>

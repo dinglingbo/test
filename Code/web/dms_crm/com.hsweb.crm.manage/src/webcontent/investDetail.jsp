@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="nui-fit">
-    	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+    	<div class="nui-toolbar" style="padding:2px;">
 	        <table >
 	            <tr>
 	                <td>

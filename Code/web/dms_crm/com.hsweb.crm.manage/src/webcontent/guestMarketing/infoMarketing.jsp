@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>短信营销</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-     <%@include file="/common/commonRepair.jsp"%>
+    <%@include file="/common/commonRepair.jsp"%>
 </head>
 <body>
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;" id="queryForm">
@@ -22,9 +22,12 @@ pageEncoding="UTF-8" session="false" %>
                     <input class="nui-textbox" name="" id="" enabled="true"/>
                     <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <li class="separator"></li>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+                    <li class="separator"></li>
+                    <a class="nui-button" iconCls="" plain="true" onclick="push()" id="addBtn"><span class="fa fa-toggle-right fa-lg"></span>&nbsp;推送</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="list()" id="addBtn"><span class="fa fa-tablet fa-lg"></span>&nbsp;推送详情</a>
                 </td>
             </tr>
         </table>
@@ -44,7 +47,6 @@ pageEncoding="UTF-8" session="false" %>
         >
         <div property="columns">
 
-            <div field="carNo" name="carNo" width="80" headerAlign="center" header="操作"></div>
             <div type="checkcolumn" ></div>    
             <div field="serviceCode" name="serviceCode" width="80" headerAlign="center" header="ID"></div>
             <div field="visitMan" name="visitMan" width="80" headerAlign="center" header="标题"></div>
@@ -59,7 +61,47 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 
 <script type="text/javascript">
- nui.parse();
+   nui.parse();
+
+   function edit(){
+       nui.open({
+           url: webPath + contextPath  + "/manage/guestMarketing/infoMarketing_edit.jsp",
+           title: "新增短信",
+           width: 950, 
+           height: "100%",
+           onload: function () {
+           },
+           ondestroy: function (action) {
+           }
+       });
+   }
+
+
+   function push(){
+       nui.open({
+           url: webPath + contextPath  + "/manage/guestMarketing/tweets_push.jsp",
+           title: "短信推送",
+           width: 950, 
+           height: 400,
+           onload: function () {
+           },
+           ondestroy: function (action) {
+           }
+       });
+   }
+
+   function list(){
+       nui.open({
+           url: webPath + contextPath  + "/manage/guestMarketing/tweetsPushList.jsp",
+           title: "推送列表",
+           width: 950, 
+           height: 400,
+           onload: function () {
+           },
+           ondestroy: function (action) {
+           }
+       });
+   }
 </script>
 </body>
 </html>

@@ -29,7 +29,7 @@ pageEncoding="UTF-8" session="false" %>
 </head>
 <body>
 
- <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+ <div class="nui-toolbar" style="padding:0px;">
     <table style="width:80%;">
         <tr>
             <td style="width:80%;">
@@ -45,23 +45,23 @@ pageEncoding="UTF-8" session="false" %>
         <td class="tbtext"><label>文章分类：</label></td>
         <td><input class="nui-combobox tbinput" name="" style=""></td>
         <td class="tbtext"><label>文章标题：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
     </tr>
     <tr>
         <td class="tbtext"><label>简单描述：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
         <td class="tbtext"><label>URL地址：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
     </tr>
     <tr>
-        <td class="tbtext"><label>略缩图：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td class="tbtext"><label>上传图片：</label></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
         <td class="tbtext"><label>预览：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td></td>
     </tr>
     <tr>
         <td class="tbtext"><label>排序：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
     </tr>
    <tr  style="height: 200px;">
     <td class="tbtext"><label>文章分享：</label></td>

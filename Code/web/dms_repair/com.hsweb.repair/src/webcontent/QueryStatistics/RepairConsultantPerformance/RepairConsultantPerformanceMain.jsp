@@ -83,10 +83,10 @@
 		 pageSize="20"
 		 showPager="true"
 		 allowCellWrap = true
-		 totalCount="page.count" allowSortColumn="true" virtualScroll="true" virtualColumns="true"
+		 totalCount="page.count" allowSortColumn="true" virtualScroll="true"  
 		 frozenStartColumn="0" >
 		<div property="columns">
-			<div type="indexcolumn" headerAlign="center" allowSort="true" width="30px">序号</div>
+			<div type="indexcolumn" headerAlign="center" allowSort="true" width="50px">序号</div>
 			<!-- <div header="维度" headerAlign="center">
 				<div property="columns">
 					<div field="groupName" name="groupName" headerAlign="center" allowSort="true" visible="true" width="150">按分店分析</div>
@@ -95,17 +95,17 @@
 			
 			<div header="基本信息" headerAlign="center">
 				<div property="columns">
-				    <div field="mtAdvisor" headerAlign="center" allowSort="true" visible="true" width="90px" align="right">服务顾问</div>
-					<div field="compTimes" headerAlign="center" allowSort="true" visible="true" width="70px" align="right">首次到店车辆数</div>
-					<div field="times" headerAlign="center" allowSort="true" visible="true" width="70px" align="right">结算车次</div>
+				    <div field="mtAdvisor" headerAlign="center" allowSort="true" visible="true" width="190" align="right">服务顾问</div>
+					<div field="compTimes" headerAlign="center" allowSort="true" visible="true" width="100" align="right">首次到店车辆数</div>
+					<div field="times" headerAlign="center" allowSort="true" visible="true" width="100" align="right">结算车次</div>
 				</div>
 			</div>
 			<div header="维修金额信息" headerAlign="center">
 				<div property="columns">
-					<div field="packageSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">套餐小计</div>
-					<div field="itemSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">项目小计</div>
-					<div field="partSubtotal" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">配件小计</div>
-					<div field="itemSubtot" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">实营金额</div>
+					<div field="packageSubtotal" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">套餐小计</div>
+					<div field="itemSubtotal" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">项目小计</div>
+					<div field="partSubtotal" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">配件小计</div>
+					<div field="itemSubtot" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">实营金额</div>
 				</div>
 			</div>
 			<!-- <div header="配件成本信息" headerAlign="center">
@@ -115,10 +115,10 @@
 					<div field="partAmt" headerAlign="center" allowSort="true" visible="true" width="60px" datatype="float" align="right">配件销售加点</div>
 				</div>
 			</div> -->
-			<div header="毛利信息" headerAlign="center">
+			<div header="毛利信息" headerAlign="center" >
 				<div property="columns">
-					<div field="mtAmt" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">毛利</div>
-					<div field="partManageExp" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">毛利率</div>
+					<div field="mtAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">毛利</div>
+					<div field="partManageExp" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">毛利率</div>
 				</div>
 			</div>
 			<!-- <div header="运营毛利信息" headerAlign="center">
@@ -129,9 +129,9 @@
 			</div> -->
 			<div header="其他信息" headerAlign="center">
 				<div property="columns">
-					<div field="mtAmt" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">整单优惠率</div>
-					<div field="partManageExp" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">单客值</div>
-				    <div field="cardTimesAmt" headerAlign="center" allowSort="true" visible="true" width="70px" datatype="float" align="right">预存抵扣</div>
+					<div field="mtAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">整单优惠率</div>
+					<div field="partManageExp" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">单客值</div>
+				    <div field="cardTimesAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">预存抵扣</div>
 				</div>
 			</div>
 		</div>

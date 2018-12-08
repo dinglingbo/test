@@ -13,10 +13,26 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    
+    <style type="text/css">
+    .form_table{
+        width:100%;
+        table-layout: fixed;
+        border-right : 15px;
+    }
+
+    .form_table tr{
+        height:30px; 
+    }
+
+    .tbtext{
+        text-align: right;
+        width:80px;
+    }
+
+</style>
 </head>
 <body>
-   <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+ <div class="nui-toolbar" style="padding:0px;">
     <table style="width:100%;">
         <tr>
             <td style="width:100%;">
@@ -26,32 +42,34 @@ pageEncoding="UTF-8" session="false" %>
         </tr>
     </table>
 </div>
+
 <div class="nui-fit" id="form1">
-    <table style="width:100%;">
+    <table class="form_table">
         <tr>
-            <td style="width: 70px;">客户名称：</td>
-            <td style=""><input class="nui-textbox" name="guestName"id="guestName" style="width: 100%"></td>
-            <td style="width: 80px;">手机号：</td>
-            <td style=""><input class="nui-textbox" name="mobile" style="width: 100%"></td>
+            <td class="tbtext">客户名称：</td>
+            <td  ><input class="nui-textbox nui-form-input" name="guestName"id="guestName" style="width: 100%"></td>
+            <td class="tbtext">手机号：</td>
+            <td ><input class="nui-textbox" name="mobile" style="width: 100%"></td>
         </tr>
 
-        <tr>
-            <td style="width: ;">品牌：</td>
-            <td style=""><input class="nui-textbox" name="carBrandId" style="width: 100%"></td>
-            <td style="width: ;">车架号(VIN)：</td>
-            <td style=""><input class="nui-textbox" name="vin" style="width: 100%"></td>
+        <tr class="odd">
+            <td class="tbtext">品牌：</td>
+            <td ><input class="nui-combobox" id="carBrandId" name="carBrandId"  textField="nameCn"
+               valueField="nameCn" popupheight="100px;" style="width: 100%" allowInput="true"></td>
+               <td class="tbtext">车架号(VIN)：</td>
+               <td ><input class="nui-textbox" name="vin" style="width: 100%"></td>
+           </tr> 
+           <tr>
+            <td class="tbtext">车型：</td>
+            <td ><input class="nui-textbox" name="carModel" style="width: 100%"></td>
+            <td class="tbtext">发动机号：</td>
+            <td ><input class="nui-textbox" name="engineNo" style="width: 100%"></td>
         </tr>
         <tr>
-            <td style="width: ;">车型：</td>
-            <td style=""><input class="nui-textbox" name="carModel" style="width: 100%"></td>
-            <td style="width: ;">发动机号：</td>
-            <td style=""><input class="nui-textbox" name="engineNo" style="width: 100%"></td>
+            <td class="tbtext">地址：</td>
+            <td colspan="3" ><input class="nui-textbox" name="address" style="width: 100%"></td>
         </tr>
-        <tr>
-            <td style="width: ;">地址：</td>
-            <td colspan="3" style=""><input class="nui-textbox" name="address" style="width: 100%"></td>
-        </tr>
-    </table>
+    </table> 
 
 </div>
 
@@ -59,7 +77,7 @@ pageEncoding="UTF-8" session="false" %>
     nui.parse();
     var form = new nui.Form("#form1");
 
-
+    initCarBrand("carBrandId");//车辆品牌s
     nui.get("guestName").focus();
     document.onkeyup=function(event){
         var e=event||window.event;

@@ -456,7 +456,7 @@ function addDetail() {
 	oldAmt = null;
 	sellAmt = null;
 	nui.open({
-		targetWindow : window,
+		//targetWindow : window,
 		url : webPath + contextPath
 				+ "/com.hsweb.part.common.partSelectView.flow?token=" + token,
 		title : "配件选择",
@@ -509,7 +509,7 @@ function selectPackage() {
 	oldAmt = null;
 	sellAmt = null;
 	nui.open({
-		targetWindow : window,
+		//targetWindow : window,
 		url : webPath + contextPath
 				+ "/com.hsweb.repair.DataBase.packageList.flow?token=" + token,
 		title : "本店套餐",
@@ -563,13 +563,13 @@ function selectItem(callback) {
 	oldAmt = null;
 	sellAmt = null;
 	nui.open({
-		targetWindow : window,
+		//targetWindow : window,
 		url : webPath + contextPath
 				+ "/com.hsweb.repair.DataBase.RepairItemMain.flow?token="
 				+ token,
 		title : "维修项目",
 		width : 1000,
-		height : 560,
+		height : 550,
 		allowDrag : true,
 		allowResize : true,
 		onload : function() {

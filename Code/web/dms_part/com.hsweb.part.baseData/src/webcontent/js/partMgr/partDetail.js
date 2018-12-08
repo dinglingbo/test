@@ -351,7 +351,7 @@ function onButtonEdit()
 //        targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.common.partNameSelect.flow?token="+token,
         title: "配件名称查询",
-        width:900, height: 650,
+        width:940, height: 650,
         allowDrag:true,
         allowResize:true,
         onload: function ()

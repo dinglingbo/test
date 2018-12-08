@@ -369,9 +369,9 @@
                 </isNotEmpty>
             </dynamic>  
         )M
-    	
-        
+  		group by M.id
         ORDER BY M.operateDate DESC
+       
     </select>
     
     <resultMap class="commonj.sdo.DataObject" id="pjPchsOrderDetailList">

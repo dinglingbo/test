@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.26"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.34"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -23,8 +23,8 @@
         overflow: hidden;
     }
     .tbtext {
-        float: right;
-        width: 80px;
+         width: 80px;
+         text-align: right;
     }
 
     .vpanel {
@@ -93,7 +93,7 @@
                 showClose="false"
                 allowInput="true"/>
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
-                <label style="font-family:Verdana;">工单号:</label>
+                <label style="font-family:Verdana;">工单号：</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
             </td>    
             <td style="text-align:right;">
@@ -131,34 +131,34 @@
         <table style=" left:0;right:0;margin: 0 auto; width:100%">
 			
             <tr>
-                <td class="tbtext">客户名称:</td>
+                <td class="tbtext">客户名称：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName" enabled="false" style="width:100%" />
                 </td>
-                <td class="tbtext">客户手机:</td>
+                <td class="tbtext">客户手机：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" enabled="false" style="width:100%"/>
                 </td>
 
-                <td class="tbtext">车牌号:</td>
+                <td class="tbtext">车牌号：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="carNo" id="carNo"enabled="false" style="width:100%"/>
                 </td>
 
-                <td class="tbtext" style="color: red;">检查模板:</td>
+                <td class="tbtext" style="color: red;">检查模板：</td>
                 <td class="tbCtrl">
                     <input class="nui-combobox tabwidth"  id="checkMainId" name="checkMainId" 
                     dataField="list" valueField="id" textField="name" onvaluechanged="ValueChanged" style="width:100%"/>
                     <input class="nui-combobox tabwidth"  id="checkMainName" name="checkMainName" visible="false" style="width:100%"/>
                 </td>
 
-                <td class="tbtext">上次检查时间:</td>
+                <td class="tbtext" style="width:100px">上次检查时间：</td>
                 <td class="tbCtrl">
                     <input class="nui-datepicker tabwidth" enabled="false" name="lastChekDate" id="lastChekDate" format="yyyy-MM-dd" style="width:100%"/>
                 </td>
             </tr> 
             <tr>
-                <td class="tbtext">上次检查里程:</td>
+                <td class="tbtext" style="width:100px">上次检查里程：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" enabled="false" name="lastKilometers" id="lastKilometers" style="width:100%"/>
                 </td>
@@ -167,16 +167,16 @@
 <!--                 <td class="tbCtrl"> -->
 <!--                     <input class="nui-textbox tabwidth" name="" id=""/> -->
 <!--                 </td> -->
-                <td class="tbtext">上次检查得分:</td>
+                <td class="tbtext" style="width:100px">上次检查得分：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" enabled="false" name="lastPoint" id="lastPoint" style="width:100%"/>
                 </td>
                 
-                <td class="tbtext" style="color: red;">本次里程:</td>
+                <td class="tbtext" style="color: red;">本次里程：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" vtype="float;range:0,100000000" name="enterKilometers" id="enterKilometers" style="width:100%"/>
                 </td>
-                <td class="tbtext" style="color: red;">服务顾问:</td>
+                <td class="tbtext" style="color: red;">服务顾问：</td>
                 <td >
 
                     <input name="mtAdvisorId"
@@ -193,7 +193,7 @@
                     nullItemText="请选择..."/>
 
                 </td>
-                <td colspan="3" class="tbtext" >本次检查得分:</td>
+                <td  class="tbtext" style="width:100px">本次检查得分：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="checkPoint" id="checkPoint" enabled="false" style="width:100%"/>
                 </td>

@@ -18,7 +18,7 @@ pageEncoding="UTF-8" session="false" %>
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
     }
     .tbtext {
-        float: right;
+      
         width: 90px;
         text-align: right;
     }
@@ -31,7 +31,7 @@ pageEncoding="UTF-8" session="false" %>
     <div id="tabs1" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="true">
         <div title="现场活动" >
     <div class="nui-fit">
- <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+ <div class="nui-toolbar" style="padding:0px;">
     <table style="width:80%;">
         <tr>
             <td style="width:80%;">
@@ -47,37 +47,37 @@ pageEncoding="UTF-8" session="false" %>
         <td class="tbtext"><label>门店：</label></td>
         <td><input class="nui-combobox tbinput" name="" style=""></td>
         <td class="tbtext"><label>活动开始时间：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-datepicker tbinput" name="" style=""></td>
     </tr>
     <tr>
         <td class="tbtext"><label>活动名称：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
         <td class="tbtext"><label>活动结束时间：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-datepicker tbinput" name="" style=""></td>
     </tr>
     <tr>
         <td class="tbtext"><label>总人数：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
         <td class="tbtext"><label>获奖对象：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
     </tr>
     <tr>
         <td class="tbtext"><label>活动编码：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
         <td class="tbtext"><label>是否签到：</label></td>
         <td><input class="nui-combobox tbinput" name="" style=""></td>
     </tr>
     <tr>
         <td class="tbtext"><label>活动地址：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
         <td class="tbtext"><label>是否抽奖：</label></td>
         <td><input class="nui-combobox tbinput" name="" style=""></td>
     </tr>
     <tr>
         <td class="tbtext"><label>经度：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
         <td class="tbtext"><label>纬度：</label></td>
-        <td><input class="nui-combobox tbinput" name="" style=""></td>
+        <td><input class="nui-textbox tbinput" name="" style=""></td>
     </tr>
     <tr>
         <td class="tbtext"><label>是否收费：</label></td>
@@ -113,7 +113,7 @@ pageEncoding="UTF-8" session="false" %>
         <div title="大转盘"  >
 
 <div class="nui-fit">
-               <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+               <div class="nui-toolbar" style="padding:0px;">
             <table style="width:80%;">
                 <tr>
                     <td style="width:80%;">
@@ -180,7 +180,7 @@ pageEncoding="UTF-8" session="false" %>
 
 
 <div class="nui-fit">
-               <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+               <div class="nui-toolbar" style="padding:0px;">
             <table style="width:80%;">
                 <tr>
                     <td style="width:80%;">

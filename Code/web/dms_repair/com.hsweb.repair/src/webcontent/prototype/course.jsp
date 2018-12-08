@@ -69,9 +69,11 @@
 					cursor: pointer;
 				}
 
-			div.bei{
+			.bei{
 				width: 230px;
 				height: 180px;
+				background:url=('<%=webPath + contextPath%>/repair/prototype/images/12.jpg' );
+				
 			}
 
 		</style>
@@ -103,7 +105,7 @@
 				<table align="center">
 					<tr>
 						<td>
-							<div class="bei" style="background:url(images/13.jpg) no-repeat 0px center;">
+							<div class="bei" style="">
 								<a></a>
 							</div>
 						</td>

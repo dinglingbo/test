@@ -9,7 +9,7 @@
 
 <head>
 	<title>应收账款管理</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.5.3"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.5.4"></script>
 	<style type="text/css">
 		.title {
 			width: 90px;
@@ -138,6 +138,8 @@
 							class="fa fa-check fa-lg"></span>&nbsp;结算</a> -->
 						<a class="nui-button" iconCls="" plain="true" onclick="doSettle()">
 							<span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
+						<a class="nui-button" iconCls="" plain="true" onclick="openOrderDetail()">
+							<span class="fa fa-search fa-lg"></span>&nbsp;详情</a>
 						<a class="nui-button" iconCls="" plain="true" onclick="doDelete()">
 							<span class="fa fa-trash fa-lg"></span>&nbsp;作废</a>
 					</td>

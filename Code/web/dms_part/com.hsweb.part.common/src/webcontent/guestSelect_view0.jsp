@@ -9,7 +9,7 @@
 -->
 <head>
 <title>往来单位选择界面</title>
-<script src="<%=webPath + contextPath%>/commonPart/js/guestSelect.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/commonPart/js/guestSelect.js?v=1.0.5"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -78,12 +78,13 @@
                      frozenStartColumn="0"
                      frozenEndColumn="0">
                     <div property="columns">
-                        <div type="indexcolumn">序号</div>
+                        <div width="40" type="indexcolumn">序号</div>
                         <!--<div type="checkcolumn" ></div>-->
                         <div header="往来基本信息" headerAlign="center">
                             <div property="columns">
                                 <div allowSort="true" field="shortName" width="80" headerAlign="center" header="简称"></div>
                                 <div allowSort="true" field="fullName" width="200" headerAlign="center" header="全称"></div>
+                                <div allowSort="true" field="isInternal" width="110" headerAlign="center" header="是否内部供应商"></div>
                                 <div allowSort="true" field="advantageCarbrandId" width="200" headerAlign="center" header="优势品牌/产品"></div>
                                 <div allowSort="true" field="billTypeId" width="80" headerAlign="center" header="票据类型"></div>
                                 <div allowSort="true" field="settTypeId" width="100" headerAlign="center" header="结算方式"></div>

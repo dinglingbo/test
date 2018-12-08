@@ -10,6 +10,15 @@ $(document).ready(function(v) {
 	item = nui.get("#item");
 	part = nui.get("#part");
 	form = new nui.Form("#dataform1");
+	nui.get('item').focus();
+	document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;//38向上 40向下
+
+        if((keyCode==27))  {  //ESC
+            onCancel();
+        }
+	 };
 });
 
 function setData(data) {
@@ -49,4 +58,16 @@ function setData(data) {
 			}
 		}
 	});
+}
+function onCancel() {
+	CloseWindow("cancel");
+}
+
+function CloseWindow(action) {
+	if (action == "close") {
+
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
 }

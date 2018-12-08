@@ -4,7 +4,7 @@
 
 <head>
 <title>品牌采购汇总按月排行</title>
-<script src="<%=webPath + contextPath%>/manage/js/report/partBrandPchsForMonth.js?v=1.6.7"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/partBrandPchsForMonth.js?v=1.6.9"></script>
 </head>
 
 <body>
@@ -49,7 +49,7 @@
 				sizeList="[10,20,50]" allowAlternating="true" 
 			    url="" dataField="brandList" idField="partBrandId" 
                 ondrawcell="onRightGridDraw" sortMode="client"
-                showSummaryRow="true"
+                showSummaryRow="true" allowCellWrap = true
 				parentField="parentId">
 				<div property="columns" width="10">
 				 		<div header="   ">

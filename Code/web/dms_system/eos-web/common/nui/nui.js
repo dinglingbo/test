@@ -1,4 +1,4 @@
-__CreateJSPath = function (js) {
+﻿__CreateJSPath = function (js) {
     var scripts = document.getElementsByTagName("script");
     var path = "";
     for (var i = 0, l = scripts.length; i < l; i++) {
@@ -25,39 +25,44 @@ __CreateJSPath = function (js) {
 var bootPATH = __CreateJSPath("nui.js");
 
 //debugger,此变量用来区别ajax请求是否弹出alert来提示交互错误
-mini_debugger = false;   
+mini_debugger = false;                                           //
 
 window['nui_model']=window['nui_model']||'min';
 
+var skin = getCookie("miniuiSkin") || 'cupertino';             //skin cookie   cupertino
+var mode = getCookie("miniuiMode") || 'default';                 //mode cookie     medium
 
 //miniui
-document.write('<script src="' + bootPATH + 'jquery/jquery-1.6.2.min.js" type="text/javascript"></script>');
+document.write('<script src="' + bootPATH + 'jquery/jquery-1.6.2.min.js" type="text/javascript"></sc' + 'ript>');
 //document.write('<script src="' + bootPATH + 'jquery-1.8.1.min.js" type="text/javascript"></sc' + 'ript>');
 //document.write('<script src="' + bootPATH + 'jquery-1.9.js" type="text/javascript"></sc' + 'ript>');
 
 //默认加载min
 if(nui_model=='debug'){
-	document.write('<script src="' + bootPATH + 'nui-debug.js" type="text/javascript" ></script>');
+	document.write('<script src="' + bootPATH + 'nui-debug.js" type="text/javascript" ></sc' + 'ript>');
 }else if(nui_model=='source'){
-	document.write('<script src="' + bootPATH + 'nui-source.js" type="text/javascript" ></script>');
-	document.write('<script src="' + bootPATH + 'source/ext/nui-ext.js" type="text/javascript" ></script>');
+	document.write('<script src="' + bootPATH + 'nui-source.js" type="text/javascript" ></sc' + 'ript>');
+	document.write('<script src="' + bootPATH + 'source/ext/nui-ext.js" type="text/javascript" ></sc' + 'ript>');
 }else{
-	document.write('<script src="' + bootPATH + 'nui-min.js" type="text/javascript" ></script>');
+	//document.write('<script src="' + bootPATH + 'nui-min.js" type="text/javascript" ></sc' + 'ript>');
 	//document.write('<script src="' + bootPATH + 'source/ext/nui-ext.js" type="text/javascript" ></sc' + 'ript>');
+	
+	document.write('<script src="' + bootPATH + 'miniui.js" type="text/javascript" ></sc' + 'ript>');
+	document.write('<script src="' + bootPATH + 'nui-proxy.js" type="text/javascript" ></script>');
 }
+document.write('<link href="' + bootPATH + 'res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />');
 document.write('<link href="' + bootPATH + 'themes/default/miniui.css" rel="stylesheet" type="text/css" />');
 document.write('<link href="' + bootPATH + 'themes/default/nui-ext.css" rel="stylesheet" type="text/css" />');
 document.write('<link href="' + bootPATH + 'themes/icons.css" rel="stylesheet" type="text/css" />');
 
-
 //skin
-var skin = getCookie("miniuiSkin");
-if (skin) {
-    //document.write('<link href="' + bootPATH + 'miniui/themes/' + skin + '/skin.css" rel="stylesheet" type="text/css" />');
-    document.write('<link href="' + bootPATH + 'themes/' + skin + '/skin.css" rel="stylesheet" type="text/css" />');
-}
+if (skin && skin != "default") document.write('<link href="' + bootPATH + 'themes/' + skin + '/skin.css" rel="stylesheet" type="text/css" />');
 
+//mode
+if (mode && mode != "default") document.write('<link href="' + bootPATH + 'themes/default/' + mode + '-mode.css" rel="stylesheet" type="text/css" />');
 
+//icon
+document.write('<link href="' + bootPATH + 'themes/icons.css" rel="stylesheet" type="text/css" />');
 
 ////////////////////////////////////////////////////////////////////////////////////////
 function getCookie(sName) {

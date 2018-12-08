@@ -136,7 +136,7 @@
             <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
             <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
             <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-            <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
+            <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
             <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
             <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div> 
         </div>

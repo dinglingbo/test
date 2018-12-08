@@ -79,7 +79,7 @@ table {
                            name="carBrandId" id="carBrandId"/>
                 </td>
                 <td>
-                    <label>车型：</label>
+                    <label>品牌车型：</label>
                 </td>
                 <td>
                     <input class="nui-textbox" enabled="false" name="carModel" id="carModel"/>

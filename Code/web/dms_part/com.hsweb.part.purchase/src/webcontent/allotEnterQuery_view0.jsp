@@ -90,7 +90,7 @@
                     <div allowSort="true" field="partCode" width="60" headerAlign="center" header="零件编码"></div>
                     <div allowSort="true" field="partName" headerAlign="center" header="零件名称"></div>
                     <div allowSort="true" field="partBrandName" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
+                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
                 </div>
             </div>

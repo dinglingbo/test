@@ -27,8 +27,8 @@
             <tr class="odd">
             	<th class="nui-form-label"><label for="appfunction.ismenu$text">是否定义为菜单：</label></th>
                 <td>
-                	<input id="appfunction.ismenu" class="nui-dictcombobox nui-form-input" name="appfunction.ismenu" value="1" 
-                    valueField="dictID" textField="dictName" dictTypeId="COF_YESORNO"/>
+                	<input id="appfunction.ismenu" class="nui-combobox nui-form-input" name="appfunction.ismenu" value="1" 
+                    valueField="dictID" textField="dictName" data="COF_YESORNO"/>
                 </td>
             	<th class="nui-form-label"><label for="appfunction.ischeck$text">是否验证权限：</label></th>
                 <td>
@@ -39,7 +39,7 @@
             <tr>
                 <th class="nui-form-label"><label for="resType$text">功能类型：</label></th>
                 <td>
-                    <input id="resType" class="nui-dictcombobox nui-form-input" name="appfunction.functype" value="flow" 
+                    <input id="resType" class="nui-combobox nui-form-input" name="appfunction.functype" value="flow" 
                     valueField="dictID" textField="dictName" dictTypeId="COF_FUNCTYPE"/>
                 </td>
             </tr>

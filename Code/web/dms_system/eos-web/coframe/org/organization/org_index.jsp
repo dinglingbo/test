@@ -59,7 +59,7 @@
 				<td class="tit">机构状态：</td>
 				<td>
 					<input name="criteria._expr[5].status" data="data" valueField="dictID" textField="dictName" 
-						class="nui-dictcombobox" emptyText="全部" dictTypeId="COF_ORGSTATUS" style="width:95%"
+						class="nui-combobox" emptyText="全部" dictTypeId="COF_ORGSTATUS" style="width:95%"
 						showNullItem="true" nullItemText="全部"/>
 					<input class="nui-hidden" name="criteria._expr[5]._op" value="="/>
 				</td>
@@ -71,14 +71,14 @@
 				<td class="tit">机构等级：</td>
 				<td>
 					<input name="criteria._expr[3].orgdegree" data="data"  valueField="dictID" textField="dictName" 
-						class="nui-dictcombobox" emptyText="全部" dictTypeId="COF_ORGDEGREE" style="width:95%"
+						class="nui-combobox" emptyText="全部" dictTypeId="COF_ORGDEGREE" style="width:95%"
 						showNullItem="true" nullItemText="全部"/>
 					<input class="nui-hidden" name="criteria._expr[3]._op" value="="/>
 				</td>
 				<td class="tit">机构类型：</td>
 				<td>
 					<input name="criteria._expr[4].orgtype" data="data"  valueField="dictID" textField="dictName" 
-						class="nui-dictcombobox" emptyText="全部" nullItemText="全部" dictTypeId="COF_ORGTYPE" style="width:95%"
+						class="nui-combobox" emptyText="全部" nullItemText="全部" dictTypeId="COF_ORGTYPE" style="width:95%"
 						showNullItem="true" nullItemText="全部"/>
 					<input class="nui-hidden" name="criteria._expr[4]._op" value="="/>
 				</td>

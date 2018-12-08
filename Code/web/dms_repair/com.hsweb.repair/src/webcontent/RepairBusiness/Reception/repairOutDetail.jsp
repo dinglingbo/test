@@ -94,6 +94,7 @@
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
                  <li class="separator"></li>
                 <a class="nui-button" onclick="onPrint(5)" plain="true" style="align:right">打印领料单</a>
+                <a class="nui-button" onclick="" plain="true" style="align:right"><span class="fa fa-check fa-lg"></span>&nbsp;一键领料</a>
             </td>     
             <td style="text-align:left;">
             <!-- 
@@ -169,6 +170,10 @@
             <td class="tbCtrl">
                 <input class="nui-textbox tabwidth" name="carNo" id="carNo" style="width:100%" allowInput="false"/>
             </td>
+            <td class="tbtext">预计交车:</td>
+            <td class="tbCtrl">
+                <input class="nui-datepicker tabwidth" name="planFinishDate" id="planFinishDate" style="width:100%" allowInput="false"/>
+            </td>
             <td class="tbtext">服务顾问:</td>
             <td class="tbCtrl">
                 <input class="nui-textbox tabwidth" name="mtAdvisor" id="mtAdvisor"style="width:100%" allowInput="false"/>
@@ -177,7 +182,7 @@
             <td class="tbCtrl">
                 <input class="nui-textbox tabwidth" id="carVin" name="carVin"style="width:100%" allowInput="false"/>
             </td>
-            <td class="tbtext">车型:</td>
+            <td class="tbtext">品牌车型:</td>
             <td class="tbCtrl">
                 <input class="nui-textbox tabwidth" name="carModel" id="carModel" style="width:100%" allowInput="false"/>
             </td>

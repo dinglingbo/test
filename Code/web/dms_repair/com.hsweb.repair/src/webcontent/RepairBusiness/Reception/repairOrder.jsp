@@ -389,7 +389,7 @@
                         <td class="left" id="tel">联系电话：</td>
                     </tr>
                     <tr>
-                        <td class="left">车型：</td>
+                        <td class="left">品牌车型：</td>
                         <td class="left"id="enterKilometers">公里数：</td>
                         <td class="left"id="mtAdvisor">服务顾问：</td>
                     </tr>
@@ -400,7 +400,7 @@
                     </tr> -->
                     <tr>
                         <td class="left" id="carNo" style="margin-left: 0px;">车牌号：</td>
-                        <td class="left" id="carModel" >品牌/车型：</td>
+                        <td class="left" id="carModel" >品牌车型：</td>
                     </tr>
                     <tr>
                         <td class="left"id="mtAdvisor" width="100px">服务顾问：</td>

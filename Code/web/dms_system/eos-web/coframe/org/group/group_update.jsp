@@ -25,14 +25,14 @@
 				<th class="nui-form-label"><label for="groupname$text">工作组名称：</label></th>
 				<td><input id="groupname" class="nui-textbox nui-form-input" name="orgGroup.groupname"  vtype="maxLength:50" required="true"/></td>
 				<th class="nui-form-label"><label for="groupstatus$text">工作组状态：</label></th>
-				<td><input id="groupstatus" name="orgGroup.groupstatus" data="data" valueField="dictID" textField="dictName" class="nui-dictcombobox nui-form-input" emptyText="请选择" dictTypeId="COF_ORGSTATUS" />
+				<td><input id="groupstatus" name="orgGroup.groupstatus" data="data" valueField="dictID" textField="dictName" class="nui-combobox nui-form-input" emptyText="请选择" dictTypeId="COF_ORGSTATUS" />
 				</td>
 			</tr>					
 			<tr class="odd">
 				<th class="nui-form-label"><label for="groupParentname$text">上级工作组：</label></th>
 				<td><input id="groupParentname" class="nui-textbox nui-form-input" name="orgGroup.orgGroup.groupname" allowInput="false" /></td>
 				<th class="nui-form-label"><label for="grouptype$text">工作组类型：</label></th>
-				<td><input id="grouptype" name="orgGroup.grouptype" data="data" valueField="dictID" textField="dictName" class="nui-dictcombobox nui-form-input" emptyText="请选择" dictTypeId="COF_ORGTYPE" />
+				<td><input id="grouptype" name="orgGroup.grouptype" data="data" valueField="dictID" textField="dictName" class="nui-combobox nui-form-input" emptyText="请选择" dictTypeId="COF_ORGTYPE" />
 				</td>
 			</tr>					
 			<tr>

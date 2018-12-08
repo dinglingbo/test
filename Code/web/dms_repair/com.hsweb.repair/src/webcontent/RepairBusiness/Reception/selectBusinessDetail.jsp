@@ -67,7 +67,7 @@
                 		<div field="serviceCode" width="80" headerAlign="center" align="center" header="业务单号"></div>
                 		<div field="carNo" width="80" headerAlign="center" align="center" header="车牌号"></div>
                 		<div field="" width="80" headerAlign="center" align="center" header="车辆厂牌"></div>
-                		<div field="carModel" width="80" headerAlign="center" align="center" header="车型"></div>
+                		<div field="carModel" width="80" headerAlign="center" align="center" header="品牌车型"></div>
                 		<div field="mtAdvisor" width="80" headerAlign="center" align="center" header="维修顾问"></div>
                 		<div field="" width="80" headerAlign="center" align="center" header="质检员"></div>
                 		<div field="guestFullName" width="80" headerAlign="center" align="center" header="客户名称"></div>

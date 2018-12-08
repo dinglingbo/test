@@ -65,7 +65,7 @@ table {
 			</tr>
 			<tr>
 				<td class="form_label">
-					<span>车型：</span>
+					<span>品牌车型：</span>
 				</td>
 				<td colspan="1">
 					<input class="nui-textbox" name="carModel" width="100%"/>

@@ -81,7 +81,7 @@ pageEncoding="UTF-8" session="false"%>
                     <div field="id" headeralign="center" allowsort="true" visible="false" width="80px">主键</div>
                     <div field="carNo" headeralign="center" allowsort="true" visible="true" width="90px">车牌号</div>
                     <!-- <div field="carBrandId" headeralign="center" allowsort="true" visible="true" width="80px">品牌</div> -->
-                    <div field="carModel" headeralign="center" allowsort="true" visible="true" width="230px">品牌/车型</div>
+                    <div field="carModel" headeralign="center" allowsort="true" visible="true" width="230px">品牌车型</div>
                     <div field="carVin" headeralign="center" allowsort="true" visible="true" width="130px">车架号(VIN)</div>
                     <div field="guestName" headeralign="center" allowsort="true" visible="true" width="80px">客户名称</div>
 <!--                     <div field="mobile" headeralign="center" allowsort="true" visible="true" width="100px">客户手机</div> -->

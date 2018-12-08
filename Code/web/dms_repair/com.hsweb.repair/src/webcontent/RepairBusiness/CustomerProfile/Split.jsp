@@ -60,7 +60,7 @@
 					        	品牌
 					        </div>
 					        <div field="carModel" width="50px" headerAlign="center" allowSort="true">
-					        	车型
+					        	品牌车型
 					        </div>
 					        <div field="vin" width="120px" headerAlign="center" allowSort="true">
 					        	底盘号

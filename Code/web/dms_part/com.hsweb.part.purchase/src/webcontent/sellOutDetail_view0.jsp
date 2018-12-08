@@ -48,7 +48,7 @@
                 <input name="partBrandName" class="nui-textbox" enabled="false" width="100%"/>
             </td>
             <td class="title">
-                <label>车型</label>
+                <label>品牌车型</label>
             </td>
             <td colspan="1">
                 <input name="applyCarModel" class="nui-textbox" enabled="false" width="100%"/>

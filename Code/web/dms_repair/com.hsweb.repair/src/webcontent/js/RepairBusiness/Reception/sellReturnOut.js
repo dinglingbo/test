@@ -40,6 +40,9 @@ $(document).ready(function ()
 	settleWin = nui.get("settleWin");
     mainGrid.on("drawcell", function (e) {
 	    var out = '<a  href="javascript:repairOut()">&nbsp;&nbsp;&nbsp;&nbsp;归库</a>';//class="icon-collapse"
+	    if(e.field == "serviceCode"){
+	    	 e.cellHtml = '<a id="service" href="javascript:repairOut()">'+e.value+'</a>';
+	    }
 	    if(e.field == "action"){
 	        e.cellHtml = out +"&nbsp;&nbsp;&nbsp;";
 	    }
@@ -53,7 +56,7 @@ $(document).ready(function ()
                 e.cellHtml = "未结算";
             }
         }
-        
+             
     });
     
     mainGrid.on("celldblclick",function(e){

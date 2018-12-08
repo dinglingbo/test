@@ -211,7 +211,7 @@ html, body {
 							<td id="comOemCode">OEM码</td>
 							<td id="comPartName">配件名称</td>
 							<td id="comPartBrandId">品牌</td>
-							<td id="comApplyCarModel">车型</td>
+							<td id="comApplyCarModel">品牌车型</td>
 							<td id="comSpec">规格</td>
 							<td id="comUnit">单位</td>
 							<td id="orderQty">数量</td>

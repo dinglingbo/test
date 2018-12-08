@@ -96,7 +96,7 @@
                 </textarea>
             </div>
             <div class="row">
-                <span class="title title-width1 ">车型：</span>
+                <span class="title title-width1 ">品牌车型：</span>
                 <input class="nui-hidden" id="_carModel" name="carModel"/>
                 <input name="carModelId"
                        id="carModelId"

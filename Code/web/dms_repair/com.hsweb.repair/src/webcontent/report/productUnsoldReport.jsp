@@ -60,7 +60,7 @@ body {
             <div field="partName"  name="" headeralign="center" align="center" width="100">配件名称 </div>
             <div field="oemCode"  name="" headeralign="center" align="center" width="100">OEM码 </div>
             <div field="partBrandId"  name="" headeralign="center" align="center" width="100">品牌 </div>
-            <div field="applyCarModel"  name="" headeralign="center" align="center" width="150">车型 </div>
+            <div field="applyCarModel"  name="" headeralign="center" align="center" width="150">品牌车型 </div>
             <div field="enterUnitId"  name="" headeralign="center" align="center" width="100">单位 </div>
             <div field="carTypeIdF"  name="" headeralign="center" align="center" width="100">配件分类一级 </div>
             <div field="carTypeIdS"  name="" headeralign="center" align="center" width="100">配件分类二级 </div>

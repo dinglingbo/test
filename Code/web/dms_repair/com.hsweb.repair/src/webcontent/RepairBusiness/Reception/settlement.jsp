@@ -225,7 +225,7 @@
                 </tr>
                 <tr>
                     <td height="24" id="carNo">&nbsp;车牌：</td>
-                    <td id="carModel">&nbsp;品牌/车型： </td>
+                    <td id="carModel">&nbsp;品牌车型： </td>
                     <td id="carVin">&nbsp;车架号：</td>
                 </tr>
                 <tr>

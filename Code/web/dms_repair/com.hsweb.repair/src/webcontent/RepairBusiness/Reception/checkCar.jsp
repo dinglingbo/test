@@ -387,7 +387,7 @@
                 <tbody>
                     <tr>
                         <td class="left" width="33.3%" id="carNo">车牌号：</td>
-                        <td class="left" width="33.3%" id="carModel">品牌/车型：</td>
+                        <td class="left" width="33.3%" id="carModel">品牌车型：</td>
                             <td class="left" id="carVin">车架号(VIN)：</td>
                     </tr>
                     <tr>

@@ -60,7 +60,7 @@ pageEncoding="UTF-8" session="false" %>
                <td ><input class="nui-textbox" name="vin" style="width: 100%"></td>
            </tr> 
            <tr>
-            <td class="tbtext">车型：</td>
+            <td class="tbtext">品牌车型：</td>
             <td ><input class="nui-textbox" name="carModel" style="width: 100%"></td>
             <td class="tbtext">发动机号：</td>
             <td ><input class="nui-textbox" name="engineNo" style="width: 100%"></td>

@@ -42,7 +42,7 @@
             <div property="columns">
                 <div field="" name="" headeralign="center" align="center">车牌号</div>
                 <div field="" id="" name="" headeralign="center" align="center">VIN</div>
-                <div field="" id="" name="" headeralign="center" align="center">车型</div>
+                <div field="" id="" name="" headeralign="center" align="center">品牌车型</div>
                 <div field="" id="" name="" headeralign="center" align="center">客户名称</div>
                 <div field="" id="" name="" headeralign="center" align="center">手机号</div>
                 <div field="" id="" name="" headeralign="center" align="center">上次服务时间</div>

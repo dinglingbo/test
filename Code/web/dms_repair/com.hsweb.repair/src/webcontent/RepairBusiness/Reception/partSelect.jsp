@@ -125,7 +125,7 @@
             <div field="storeId" width="90" headerAlign="center" align="center"  allowSort="true" header="仓库"></div>
             <div field="storeShelf" align="left" width="55px" headerAlign="center" align="center" allowSort="true" header="仓位"></div>
             <div field="partBrandId" name="partBrandId" width="90" headerAlign="center" header="品牌"></div>
-            <div field="applyCarModel" name="applyCarModel" width="190" headerAlign="center" header="车型"></div>
+            <div field="applyCarModel" name="applyCarModel" width="190" headerAlign="center" header="品牌车型"></div>
             <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
             <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
             <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  

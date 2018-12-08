@@ -124,7 +124,7 @@ pageEncoding="UTF-8" session="false" %>
             </tr>
             <tr>
 
-                <td><span class="title title-width1 ">车型：</span></td>
+                <td><span class="title title-width1 ">品牌车型：</span></td>
                 <input class="nui-hidden" id="_carModel" name="carModel"/>
                 <td><input name="carModelId"
                     id="carModelId"

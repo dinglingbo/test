@@ -70,7 +70,7 @@
                         </div>
                         <div header="车辆信息" headerAlign="center">
                             <div property="columns">
-                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">车型</div>
+                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">品牌车型</div>
                                 <div field="underpanNo" headerAlign="center" allowSort="true" visible="true" width="">底盘号</div>
                                 <div field="insureDueDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">保险到期</div>
                                 <div field="annualInspectionDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">年审日期</div>
@@ -114,7 +114,7 @@
                         </div>
                         <div header="车辆信息" headerAlign="center">
                             <div property="columns">
-                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">车型</div>
+                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">品牌车型</div>
                                 <div field="underpanNo" headerAlign="center" allowSort="true" visible="true" width="">底盘号</div>
                                 <div field="insureDueDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">保险到期</div>
                                 <div field="annualInspectionDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">年审日期</div>
@@ -158,7 +158,7 @@
                     </div>
                     <div header="车辆信息" headerAlign="center">
                         <div property="columns">
-                            <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">车型</div>
+                            <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">品牌车型</div>
                             <div field="underpanNo" headerAlign="center" allowSort="true" visible="true" width="">底盘号</div>
                             <div field="insureDueDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">保险到期</div>
                             <div field="annualInspectionDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">年审日期</div>
@@ -202,7 +202,7 @@
                         </div>
                         <div header="车辆信息" headerAlign="center">
                             <div property="columns">
-                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">车型</div>
+                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">品牌车型</div>
                                 <div field="underpanNo" headerAlign="center" allowSort="true" visible="true" width="">底盘号</div>
                                 <div field="insureDueDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">保险到期</div>
                                 <div field="annualInspectionDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">年审日期</div>
@@ -247,7 +247,7 @@
                         </div>
                         <div header="车辆信息" headerAlign="center">
                             <div property="columns">
-                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">车型</div>
+                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">品牌车型</div>
                                 <div field="underpanNo" headerAlign="center" allowSort="true" visible="true" width="">底盘号</div>
                                 <div field="insureDueDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">保险到期</div>
                                 <div field="annualInspectionDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">年审日期</div>
@@ -292,7 +292,7 @@
                         </div>
                         <div header="车辆信息" headerAlign="center">
                             <div property="columns">
-                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">车型</div>
+                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">品牌车型</div>
                                 <div field="underpanNo" headerAlign="center" allowSort="true" visible="true" width="">底盘号</div>
                                 <div field="insureDueDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">保险到期</div>
                                 <div field="annualInspectionDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">年审日期</div>
@@ -337,7 +337,7 @@
                         </div>
                         <div header="车辆信息" headerAlign="center">
                             <div property="columns">
-                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">车型</div>
+                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">品牌车型</div>
                                 <div field="underpanNo" headerAlign="center" allowSort="true" visible="true" width="">底盘号</div>
                                 <div field="insureDueDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">保险到期</div>
                                 <div field="annualInspectionDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">年审日期</div>
@@ -382,7 +382,7 @@
                         </div>
                         <div header="车辆信息" headerAlign="center">
                             <div property="columns">
-                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">车型</div>
+                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">品牌车型</div>
                                 <div field="underpanNo" headerAlign="center" allowSort="true" visible="true" width="">底盘号</div>
                                 <div field="insureDueDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">保险到期</div>
                                 <div field="annualInspectionDate" headerAlign="center" allowSort="true" visible="true" width="80" dateFormat="yyyy-MM-dd">年审日期</div>

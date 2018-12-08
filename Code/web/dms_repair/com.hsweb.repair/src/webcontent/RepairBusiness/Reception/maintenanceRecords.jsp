@@ -63,7 +63,7 @@
                 		<div field="" width="80" headerAlign="center" align="center" header="店号"></div>
                 		<div field="" width="80" headerAlign="center" align="center" header="车牌号"></div>
                 		<div field="" width="80" headerAlign="center" align="center" header="厂牌"></div>
-                		<div field="" width="80" headerAlign="center" align="center" header="车型"></div>
+                		<div field="" width="80" headerAlign="center" align="center" header="品牌车型"></div>
                 		<div field="" width="80" headerAlign="center" align="center" header="工单号"></div>
                 		<div field="" width="80" headerAlign="center" align="center" header="业务类型"></div>
                 		<div field="" width="80" headerAlign="center" align="center" header="进厂里程"></div>
@@ -284,7 +284,7 @@
 		        	<tr>
 		        		<td align="right">底盘号：</td>
 		        		<td colspan="3"><input class="nui-textbox" style="width:100%"/></td>
-		        		<td align="right">车型：</td>
+		        		<td align="right">品牌车型：</td>
 		        		<td colspan="3"><input class="nui-textbox"style="width:100%"/></td>
 		        	</tr>
 		        	<tr>

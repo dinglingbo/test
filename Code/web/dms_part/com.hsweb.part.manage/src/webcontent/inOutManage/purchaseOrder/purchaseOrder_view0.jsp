@@ -85,7 +85,7 @@ body .mini-grid-row-selected{
                 <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
                 <div field="name" name="name" width="100" headerAlign="center" header="配件名称"></div>
                 <div field="partBrandId" name="partBrandId" width="100" headerAlign="center" header="品牌"></div>
-                <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌/车型"></div>
+                <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
                 <div allowSort="true" datatype="float" name="outableQty" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
                 <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
                 <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
@@ -145,7 +145,7 @@ body .mini-grid-row-selected{
         <tr>  
             <td colspan="1" align="center">配件编码</td>
             <td colspan="1" align="center">配件全称</td>
-            <td colspan="1" align="center">车型</td>
+            <td colspan="1" align="center">品牌车型</td>
             <td colspan="1" align="center">单位</td>
             <td colspan="1" align="center">数量</td>
             <td colspan="1" align="center">单价</td>

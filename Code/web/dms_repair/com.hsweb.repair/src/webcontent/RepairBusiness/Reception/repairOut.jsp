@@ -19,6 +19,9 @@
 a { 
     text-decoration: none;
 }
+ a#service{
+	text-decoration:underline
+}
 .form_label {
     width: 72px; 
     text-align: right;
@@ -352,6 +355,10 @@ a {
     if(column.field == "action"){
         e.cellHtml = ll +"&nbsp;&nbsp;" + th;
     }
+    if(column.field == "serviceCode"){
+       e.cellHtml ='<a id="service" href="##" onclick="newrepairOut('+"'ll'"+ ')">'+e.value+'</a>';
+    }
+
 });
 
 /*function edit() {

@@ -53,7 +53,7 @@
                 <td style="white-space:nowrap;">
                     <label style="font-family:Verdana;">仓位：</label>
                     <input class="nui-textbox" width="100" name="storeLocation"/>
-                    <label style="font-family:Verdana;">车型：</label>
+                    <label style="font-family:Verdana;">品牌车型：</label>
                     <input class="nui-textbox" width="100" name="applyCarModel"/>
                     <label style="font-family:Verdana;">品牌：</label>
                     <input id="carBrand"
@@ -149,7 +149,7 @@
                         </div>
                         <div header="其他信息" headerAlign="center">
                             <div property="columns">
-                                <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" allowSort="true" header="车型"></div>
+                                <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" allowSort="true" header="品牌车型"></div>
                                 <div allowSort="true" field="carTypeIdF" width="60" headerAlign="center" allowSort="true" header="一级分类"></div>
                                 <div allowSort="true" field="carTypeIdS" width="60" headerAlign="center" allowSort="true" header="二级分类"></div>
                                 <div allowSort="true" field="carTypeIdT" width="60" headerAlign="center" allowSort="true" header="三级分类"></div>

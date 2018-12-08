@@ -197,7 +197,7 @@ function returnFormSet(){
 				doSearch();
 			}
 			else{
-				parent.showMsg("保存失败!","W");
+				parent.showMsg("保存失败!","E");
 			}
 	
 		},

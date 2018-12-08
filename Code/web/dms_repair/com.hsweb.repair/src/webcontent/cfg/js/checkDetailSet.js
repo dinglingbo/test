@@ -114,7 +114,7 @@ function onOk(){
 				CloseWindow("ok");
 			}
 			else{
-				parent.parent.showMsg(data.errMsg ||"保存失败!","W");
+				parent.parent.showMsg(data.errMsg ||"保存失败!","E");
 			}
 		},
 		error:function(jqXHR, textStatus, errorThrown)

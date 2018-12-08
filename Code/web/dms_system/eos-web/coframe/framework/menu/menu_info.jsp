@@ -44,8 +44,8 @@
             <tr>
             	<th class="nui-form-label"><label for="appmenu.isleaf$text">是否为叶子菜单：</label></th>
                 <td> 
-                	<input id="appmenu.isleaf" class="nui-dictcombobox nui-form-input" name="appmenu.isleaf" value="0" 
-                   		 valueField="dictID" textField="dictName" dictTypeId="COF_YESORNO"  onvaluechanged="menuTypeChange"/> 
+                	<input id="appmenu.isleaf" class="nui-combobox nui-form-input" name="appmenu.isleaf" value="0" 
+                   		 valueField="dictID" textField="dictName" data="COF_YESORNO"  onvaluechanged="menuTypeChange"/> 
                 </td>
            		<th class="nui-form-label"><label for="test1$text">功能资源：</label></th>
                 <td>
@@ -62,6 +62,8 @@
 </div>
 <script type="text/javascript">
         nui.parse();
+        var COF_YESORNO =[{dictID:"0",dictName:"否"},{dictID:"1",dictName:"是"}];
+    	var COF_APPTYPE =[{dictID:"0",dictName:"本地"},{dictID:"1",dictName:"远程"}];
         var form = new nui.Form("form1");
         var menuid = "<%= StringUtil.htmlFilter(request.getParameter("id")) %>";
         var json = nui.encode({template:{menuid:menuid}});
@@ -114,7 +116,8 @@
         
         function SaveData() {
             var o = form.getData(true,true);            
-
+			var COF_YESORNO =[{dictID:"0",dictName:"否"},{dictID:"1",dictName:"是"}];
+    		var COF_APPTYPE =[{dictID:"0",dictName:"本地"},{dictID:"1",dictName:"远程"}];
             form.validate();
             if (form.isValid() == false) return;
 

@@ -68,10 +68,11 @@
     var cloudPartApi   = "<%=cloudPartApi%>";
     var crmApi   = "<%=crmApi%>";
     var frmApi   = "<%=frmApi%>";
-	
+
 	$(function(){
 		nui.context='<%=contextPath %>';
 		nui.parse();
+
 	})
     
     <%
@@ -211,6 +212,7 @@
 	var currRepairEntrustPrintContent = "<%=repairEntrustPrintContent %>";
 	var currRepairPchsRtnFlag = "<%=repairPchsRtnFlag %>";
 	var currRepairDefaultStore = "<%=repairDefaultStore %>";
+	
     //alert("token=" + token);
     
     /* var _sysMsg_;

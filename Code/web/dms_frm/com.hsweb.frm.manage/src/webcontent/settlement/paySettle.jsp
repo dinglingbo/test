@@ -8,7 +8,7 @@
 -->
 <head>
 <title>应付账款管理</title>
-    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.1.3"></script> 
+    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.1.4"></script> 
     <style type="text/css">
 .title {
     width: 90px;
@@ -124,8 +124,10 @@
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" visible="false" plain="true" onclick="doBalance()"><span class="fa fa-check fa-lg"></span>&nbsp;确认对账</a>
+<!--                 <a class="nui-button" iconCls="" plain="true" onclick="doSettle()"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
+                						<a class="nui-button" iconCls="" plain="true" onclick="openOrderDetail()">
+							<span class="fa fa-search fa-lg"></span>&nbsp;详情</a> -->
                  <a class="nui-button" iconCls="" plain="true" onclick="doDelete()"><span class="fa fa-trash fa-lg"></span>&nbsp;作废</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="doSettle()"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
             </td>
         </tr>
     </table>

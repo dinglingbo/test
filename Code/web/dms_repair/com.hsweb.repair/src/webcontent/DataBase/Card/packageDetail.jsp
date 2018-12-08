@@ -12,7 +12,7 @@
 <head>
 <title>套餐明细</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/packageDetail.js?v=1.1.6"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/packageDetail.js?v=1.1.7"></script>
 </head>
 <body>
 		<fieldset
@@ -25,7 +25,7 @@
 			<table style="width: 100%; table-layout: fixed;"
 				class="nui-form-table">
 				<tr>
-					<td class="form_label" style="width: 15%;" align="right">套餐名称:</td>
+					<td class="form_label" style="width: 15%;" align="right" >套餐名称:</td>
 					<td colspan="1" style="width: 35%;"><input class="nui-textbox"
 						name="name" readonly="readonly"/></td>
 					<td class="form_label" style="width: 13%;" align="right">套餐类型:</td>

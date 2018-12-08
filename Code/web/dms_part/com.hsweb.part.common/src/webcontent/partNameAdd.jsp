@@ -44,16 +44,16 @@
 					<td style="padding-left:50px">别名:<input  class="nui-textbox" id="namecn" name="namecn" type="text" width="80%"></td>
 		        </tr>
 		        <tr>
-					<td>配件一级分类:<input  popupHeight="90%" class="nui-combobox" id="namestd" name="namestd" type="text" width="70%"></td>
+					<td>配件一级分类:<input  popupHeight="90%" class="nui-combobox" id="cartypef" name="cartypef" type="text" width="70%"></td>
 		        </tr>
 		        <tr>
-					<td>配件二级分类:<input  popupHeight="90%" class="nui-combobox" id="namecn" name="namecn" type="text" width="70%"></td>
+					<td>配件二级分类:<input  popupHeight="90%" class="nui-combobox" id="cartypes" name="cartypes" type="text" width="70%"></td>
 		        </tr>
 		        <tr>
-					<td>配件三级分类:<input popupHeight="90%" class="nui-combobox" id="namestd" name="namestd" type="text" width="70%"></td>				
+					<td>配件三级分类:<input popupHeight="90%" class="nui-combobox" id="cartypet" name="cartypet" type="text" width="70%"></td>				
 		        </tr>
 		        <tr>
-					<td style="padding-left:25px">补充说明:<input  class="nui-textbox" id="namestd" name="namestd" type="text" width="75%"></td>				
+					<td style="padding-left:25px">补充说明:<input  class="nui-textbox" id="direction" name="direction" type="text" width="75%"></td>				
 		        </tr>
 		        <tr>
 		        	<td>(方向方位等其他补充)</td>
@@ -64,15 +64,38 @@
 
 	<script type="text/javascript">
     	nui.parse();
+    	var form=null;
     	var partTypeList=[];
     	var typeHash={};
-    	 getAllPartType(function(data) {
-	        partTypeList = data.partTypes;
-	        partTypeList.forEach(function(v) {
-	            typeHash[v.id] = v;
-	        });
-	    });
-    	
+		$(document).ready(function(){
+    		form = new nui.Form("#form");
+    		nui.get('namestd').focus();
+    		getAllPartType(function(data) {
+		        partTypeList = data.partTypes;
+		        partTypeList.forEach(function(v) {
+		            typeHash[v.id] = v;
+		        });
+		        console.log(typeHash);
+		    });	
+		     document.onkeyup = function(event) {
+		        var e = event || window.event;
+		        var keyCode = e.keyCode || e.which;// 38向上 40向下
+		        
+		
+		        if ((keyCode == 27)) { //ESC
+		            CloseWindow('cancle');
+		        }
+		    }
+	   });
+    	 
+    	function CloseWindow(action){
+			    if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+			    else window.close();
+			}
+    	function SetData(params){
+    		nui.get('namestd').setValue(params.namestd);
+    		nui.get('namestd').focus();
+    	}
     </script>
 </body>
 </html>

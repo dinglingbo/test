@@ -161,6 +161,7 @@ function onCancel(e) {
 
 function addPartName(){
 	
+	var namestd =nui.get('searchKey').getValue();
 	nui.open({
 		url : webPath+ partDomain+ "/commonPart/partNameAdd.jsp?token"+ token,
 		title : "新增配件名称",
@@ -171,7 +172,7 @@ function addPartName(){
 		onload : function() {
 			var iframe = this.getIFrameEl();
 			var params = {
-				data : row
+				namestd : namestd
 			};
 
 			iframe.contentWindow.SetData(params);

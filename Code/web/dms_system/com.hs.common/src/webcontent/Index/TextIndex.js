@@ -143,7 +143,7 @@ function addCustomer(){
 function toRepairOut(){
     var item={};
     item.id = "2091";
-    item.text = "维修出库";
+    item.text = "配件领料";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairOut.flow?token="+token,
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);

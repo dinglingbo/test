@@ -108,12 +108,10 @@
                                 <div header="基础信息" headerAlign="center">
                                     <div property="columns">
                                         <div type="indexcolumn">序号</div>
-                                        <div allowSort="true" field="name" name="name" width="100px" headerAlign="center" allowSort="true">名称</div>
-                                        <div  allowSort="true" field="fullName" name="fullName" width="250px" headerAlign="center" allowSort="true">全称</div>
-                                        <div allowSort="true" field="isDisabled" width="50px" headerAlign="center">状态</div>
+                                        <div allowSort="true" field="name" name="name" width="100px" headerAlign="center" allowSort="true">名称</div>           
+                                        <div allowSort="true" field="code" name="code" width="90px" headerAlign="center" allowSort="true">编码</div>
                                         <div allowSort="true" field="qualityTypeId" width="60px" headerAlign="center">品质</div>
                                         <div allowSort="true" field="partBrandId" width="70px" headerAlign="center">品牌</div>
-                                        <div allowSort="true" field="code" name="code" width="90px" headerAlign="center" allowSort="true">编码</div>
                                         <div allowSort="true" field="unit" width="35px" headerAlign="center" allowSort="true">单位</div>
                                     </div>
                                 </div>
@@ -138,6 +136,8 @@
                                 </div> -->
                                 <div header="辅助信息" headerAlign="center">
                                     <div property="columns">
+                                    	<div  allowSort="true" field="fullName" name="fullName" width="250px" headerAlign="center" allowSort="true">全称</div>
+                                        <div allowSort="true" field="isDisabled" width="50px" headerAlign="center">状态</div>
                                     	<div allowSort="true" field="remark" width="60" headerAlign="center" allowSort="true">备注</div>
                                     
                                         <div allowSort="true" field="queryCode" width="130" headerAlign="center" allowSort="true">助记码</div>
@@ -177,11 +177,10 @@
                                     <div property="columns">
                                          <div type="indexcolumn">序号</div>
                                         <div allowSort="true" field="name" name="name" width="100px" headerAlign="center" allowSort="true">名称</div>
-                                        <div  allowSort="true" field="fullName" name="fullName" width="120px" headerAlign="center" allowSort="true">全称</div>
-                                        <div allowSort="true" field="isDisabled" width="50px" headerAlign="center">状态</div>
+                                        <div allowSort="true" field="code" name="code" width="90px" headerAlign="center" allowSort="true">编码</div>
+               
                                         <div allowSort="true" field="qualityTypeId" width="60px" headerAlign="center">品质</div>
                                         <div allowSort="true" field="partBrandId" width="70px" headerAlign="center">品牌</div>
-                                        <div allowSort="true" field="code" name="code" width="90px" headerAlign="center" allowSort="true">编码</div>
                                         <div allowSort="true" field="unit" width="30px" headerAlign="center" allowSort="true">单位</div>
                                     </div>
                                 </div>
@@ -206,6 +205,9 @@
                                 </div>
                                 <div header="辅助信息" headerAlign="center">
                                     <div property="columns">
+                                    	<div  allowSort="true" field="fullName" name="fullName" width="180px" headerAlign="center" allowSort="true">全称</div>
+                                        <div allowSort="true" field="isDisabled" width="50px" headerAlign="center">状态</div>
+                                        <div allowSort="true" field="remark" width="60" headerAlign="center" allowSort="true">备注</div>
                                         <div allowSort="true" field="queryCode" width="100" headerAlign="center" allowSort="true">助记码</div>
 
                                         <div allowSort="true" field="namePy" width="255" headerAlign="center" allowSort="true">拼音</div>

@@ -97,7 +97,7 @@
     <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
         <tr>            
             <td>
-                <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
+                <div class="nui-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
                     style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
                     id="search_key" url="" value="carNo"   searchField="key" 
                     dataField="list" placeholder="请输入...">     

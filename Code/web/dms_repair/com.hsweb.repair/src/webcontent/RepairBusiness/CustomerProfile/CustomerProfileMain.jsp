@@ -204,7 +204,7 @@
 						 textField="nameCn" />
 					</td>
 					<td class="" width="30">
-						<label>车型:</label>
+						<label>品牌车型:</label>
 					</td>
 					<td colspan="1">
 						<input class="nui-combobox" name="carModelId" width="100%" id="carModelId" valueField="carModelId" textField="carModel"

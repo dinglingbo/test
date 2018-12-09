@@ -8,7 +8,7 @@
 -->
 <head>
 <title>应付账款管理</title>
-    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.1.3"></script> 
+    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.1.4"></script> 
     <style type="text/css">
 .title {
     width: 90px;
@@ -124,8 +124,10 @@
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" visible="false" plain="true" onclick="doBalance()"><span class="fa fa-check fa-lg"></span>&nbsp;确认对账</a>
+<!--                 <a class="nui-button" iconCls="" plain="true" onclick="doSettle()"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
+                						<a class="nui-button" iconCls="" plain="true" onclick="openOrderDetail()">
+							<span class="fa fa-search fa-lg"></span>&nbsp;详情</a> -->
                  <a class="nui-button" iconCls="" plain="true" onclick="doDelete()"><span class="fa fa-trash fa-lg"></span>&nbsp;作废</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="doSettle()"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
             </td>
         </tr>
     </table>
@@ -248,7 +250,7 @@
               <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
               <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
               <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-              <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+              <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
               <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
               <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
               <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
@@ -278,7 +280,7 @@
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
             <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-            <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+            <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
             <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
             <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
             <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="采购数量"></div>
@@ -309,7 +311,7 @@
               <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
               <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
               <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-              <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+              <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
               <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
               <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
               <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="数量"></div>
@@ -340,7 +342,7 @@
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
             <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-            <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+            <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
             <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
             <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
             <div allowSort="true" datatype="float" field="sellQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
@@ -372,7 +374,7 @@
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
             <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-            <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+            <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
             <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
             <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
             <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>

@@ -279,7 +279,7 @@
                                         <input class="nui-textbox" name="carVin" enabled="false"/>
                                     </td>
                                     <td class="form_label">
-                                        <label>车型：</label>
+                                        <label>品牌车型：</label>
                                     </td>
                                     <td colspan="3">
                                         <input class="nui-textbox" name="carModel" style="width: 100%" enabled="false"/>
@@ -337,7 +337,7 @@
                                         <input class="nui-textbox" name="name"/>
                                         <label>拼音：</label>
                                         <input class="nui-textbox" name="pyName"/>
-                                        <label>车型：</label>
+                                        <label>品牌车型：</label>
                                         <input class="nui-textbox" name="carModel"/>
                                         <a class="nui-button" iconCls="icon-search" onclick="onSearchItem()" plain="true">查询</a>
                                         <a class="nui-button" id="change" iconCls="icon-ok" onclick="selectItem()" plain="true">选择</a>
@@ -852,7 +852,7 @@
                                     <div property="columns">
                                         <div field="stockLocation" headerAlign="center" allowSort="true" visible="true" header="仓位"></div>
                                         <div field="" headerAlign="center" allowSort="true" visible="true" header="类型"></div>
-                                        <div field="carModel" headerAlign="center" allowSort="true" visible="true" header="车型"></div>
+                                        <div field="carModel" headerAlign="center" allowSort="true" visible="true" header="品牌车型"></div>
                                         <div field="unit" headerAlign="center" allowSort="true" visible="true" header="单位"></div>
                                     </div>
                                 </div>

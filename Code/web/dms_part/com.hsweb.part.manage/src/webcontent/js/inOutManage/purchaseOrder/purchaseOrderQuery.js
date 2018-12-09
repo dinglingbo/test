@@ -61,6 +61,7 @@ $(document).ready(function(v)
                 storehouseHash[v.id] = v;
             }
         });
+        
         var dictIdList = [];
         dictIdList.push('DDT20130703000008');//票据类型
         dictIdList.push('DDT20130703000035');//结算方式

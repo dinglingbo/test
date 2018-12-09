@@ -42,7 +42,7 @@ pageEncoding="UTF-8" session="false" %>
                     <input class="nui-textbox" name="" id="" enabled="true"/>
                     <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <li class="separator"></li>
-                    <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="newEvent()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                     <li class="separator"></li>
@@ -147,6 +147,20 @@ pageEncoding="UTF-8" session="false" %>
     menunamedate.setText(queryname);
     //doSearch(params);
   }
+
+
+               function newEvent(){
+             nui.open({
+             url: webPath + contextPath  + "/manage/wechat/menuSetting_edit.jsp",
+             title: "菜单设置",
+             width: 950, 
+             height: "100%",
+             onload: function () {
+             },
+             ondestroy: function (action) {
+             }
+         });
+   }
 
 </script>
 </body>

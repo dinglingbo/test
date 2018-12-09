@@ -105,7 +105,7 @@ pageEncoding="UTF-8" session="false" %>
             <tr>
                 <td><span class="title title-width1 ">车架号(VIN)：</span></td>
                 <td colspan="3"><input id="vin" name="vin" class="nui-textbox width4" required="false"/>
-                    <a class="nui-button" iconCls="icon-find" plain="true" onclick="carVinModel()" id="query">解析</a></td>
+                    <a class="nui-button" iconCls="" plain="true" onclick="carVinModel()" id="query"><span class="fa fa-binoculars fa-lg"></span>&nbsp;解析</a></td>
 
                 </tr>            
                 <tr>
@@ -124,7 +124,7 @@ pageEncoding="UTF-8" session="false" %>
             </tr>
             <tr>
 
-                <td><span class="title title-width1 ">车型：</span></td>
+                <td><span class="title title-width1 ">品牌车型：</span></td>
                 <input class="nui-hidden" id="_carModel" name="carModel"/>
                 <td><input name="carModelId"
                     id="carModelId"

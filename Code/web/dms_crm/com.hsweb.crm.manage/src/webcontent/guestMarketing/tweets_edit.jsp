@@ -31,7 +31,7 @@ pageEncoding="UTF-8" session="false" %>
   <div id="tabs1" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="true">
     <div title="文本消息" >
 
-     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+     <div class="nui-toolbar" style="padding:0px;">
         <table style="width:80%;">
             <tr>
                 <td style="width:80%;">
@@ -64,7 +64,7 @@ pageEncoding="UTF-8" session="false" %>
 <div title="图片消息" >
 
 
- <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+ <div class="nui-toolbar" style="padding:0px;">
     <table style="width:80%;">
         <tr>
             <td style="width:80%;">
@@ -97,7 +97,7 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 
 <div title="图文消息" >
-    <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+    <div class="nui-toolbar" style="padding:0px;">
         <table style="width:80%;">
             <tr>
                 <td style="width:80%;">
@@ -157,7 +157,7 @@ pageEncoding="UTF-8" session="false" %>
 
 <div title="活动消息" >
 
-    <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+    <div class="nui-toolbar" style="padding:0px;">
         <table style="width:80%;">
             <tr>
                 <td style="width:80%;">
@@ -210,7 +210,7 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 </div>
 
-<div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+<div class="nui-toolbar" style="padding:0px;">
     <table style="width:80%;">
         <tr>
             <td style="width:80%;">

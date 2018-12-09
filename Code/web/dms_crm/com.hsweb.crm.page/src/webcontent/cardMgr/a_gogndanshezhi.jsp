@@ -68,7 +68,7 @@
             <div class="nui-checkbox" text="VIN" ></div>
             <div class="nui-checkbox" text="车辆品牌" ></div>
             <div class="nui-checkbox" text="车系" ></div>
-            <div class="nui-checkbox" text="车型" ></div>
+            <div class="nui-checkbox" text="品牌车型" ></div>
         </td>
     </tr>
 

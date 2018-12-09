@@ -50,19 +50,19 @@
         </td>
         <th class="nui-form-label"><label for="user.status$text">用户状态：</label></th>
         <td>
-          <input id="user.status" class="nui-dictcombobox nui-form-input" name="user.status" value="1"
+          <input id="user.status" class="nui-combobox nui-form-input" name="user.status" value="1"
           valueField="dictID" textField="dictName" dictTypeId="COF_USERSTATUS"/>
         </td>
       </tr>
       <tr>
         <th class="nui-form-label"><label for="user.authmode$text">认证模式：</label></th>
         <td>
-          <input id="user.authmode" class="nui-dictcombobox nui-form-input" name="user.authmode" value="local"
+          <input id="user.authmode" class="nui-combobox nui-form-input" name="user.authmode" value="local"
           valueField="dictID" textField="dictName" dictTypeId="COF_AUTHMODE"/>
         </td>
         <th class="nui-form-label"><label for="user.menutype$text">菜单风格：</label></th>
         <td>
-          <input id="user.menutype" class="nui-dictcombobox nui-form-input" name="user.menutype" value="default"
+          <input id="user.menutype" class="nui-combobox nui-form-input" name="user.menutype" value="default"
           valueField="dictID" textField="dictName" dictTypeId="COF_SKINLAYOUT"/>
         </td>
       </tr>

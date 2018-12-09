@@ -1,6 +1,6 @@
 var investGrid = null;
 var baseUrl = apiPath + crmApi + "/"; 
-	var queryInvestListUrl = baseUrl+"com.hsapi.crm.svr.svr.queryInvestList.biz.ext";
+var queryInvestListUrl = baseUrl+"com.hsapi.crm.svr.svr.queryInvestList.biz.ext";
 var gAuditSign=[{
 	"id":0,
 	"text":"未审核"
@@ -23,6 +23,7 @@ var brandList=[];
 var brandHash={};
 var serviceList=[];
 var serviceHash={};
+var currType = 2;
 $(document).ready(function(){
 	investGrid = nui.get("investGrid");
 	investGrid.setUrl(queryInvestListUrl);
@@ -45,16 +46,89 @@ $(document).ready(function(){
         	search();
         }
     }
-	search();
+    quickSearch(2);
 });
 
+
+
+
+function quickSearch(type){
+    //var params = getSearchParams();
+    var params = {};
+    var queryname = "本日";
+    switch (type)
+    {
+      case 0:
+      params.today = 1;
+      params.startDate = getNowStartDate();
+      params.endDate = addDate(getNowEndDate(), 1);
+      queryname = "本日";
+      break;
+      case 1:
+      params.yesterday = 1;
+      params.startDate = getPrevStartDate();
+      params.endDate = addDate(getPrevEndDate(), 1);
+      queryname = "昨日";
+      break;
+      case 2:
+      params.thisWeek = 1;
+      params.startDate = getWeekStartDate();
+      params.endDate = addDate(getWeekEndDate(), 1);
+      queryname = "本周";
+      break;
+      case 3:
+      params.lastWeek = 1;
+      params.startDate = getLastWeekStartDate();
+      params.endDate = addDate(getLastWeekEndDate(), 1);
+      queryname = "上周";
+      break;
+      case 4:
+      params.thisMonth = 1;
+      params.startDate = getMonthStartDate();
+      params.endDate = addDate(getMonthEndDate(), 1);
+      queryname = "本月";
+      break;
+      case 5:
+      params.lastMonth = 1;
+      params.startDate = getLastMonthStartDate();
+      params.endDate = addDate(getLastMonthEndDate(), 1);
+      queryname = "上月";
+      break;
+
+      case 10:
+      params.thisYear = 1;
+      params.startDate = getYearStartDate();
+      params.endDate = getYearEndDate();
+      queryname="本年";
+      break;
+      case 11:
+      params.lastYear = 1;
+      params.startDate = getPrevYearStartDate();
+      params.endDate = getPrevYearEndDate();
+      queryname="上年";
+      break;
+      default:
+      break;
+  }
+  currType = type;
+  nui.get('startDate').setValue(params.startDate);
+  nui.get('endDate').setValue(addDate(params.endDate,-1));
+  var menunamedate = nui.get("menunamedate");
+  menunamedate.setText(queryname);
+    //doSearch(params);
+    search();
+}
+
+
 function search(){
-	investGrid.load({
-		serviceCode:nui.get("serviceCode").getValue(),
-		carNo:nui.get("carNo").getValue(),
-		auditSign:nui.get("auditSign").getValue(),
-		"page/isCount":true
-	});
+    var p={
+        serviceCode:nui.get("serviceCode").getValue(),
+        carNo:nui.get("carNo").getValue(),
+        auditSign:nui.get("auditSign").getValue(),
+        startDate:nui.get('startDate').getFormValue(),
+        endDate:nui.get('endDate').getFormValue()+" 23:59:59"
+    };
+    investGrid.load({params:p});
 }
 
 
@@ -100,27 +174,27 @@ function onDeleteClick(){
 }
 
 function onDrawcell(e) {
-		var hash = new Array("潜在客户", "回访来厂", "流失回厂");
-    if(e.field == "auditSign"){
-        for(var i=0;i<gAuditSign.length;i++){
-            if(e.value == gAuditSign[i].id){
-                e.cellHtml = gAuditSign[i].text;
-            }
+  var hash = new Array("潜在客户", "回访来厂", "流失回厂");
+  if(e.field == "auditSign"){
+    for(var i=0;i<gAuditSign.length;i++){
+        if(e.value == gAuditSign[i].id){
+            e.cellHtml = gAuditSign[i].text;
         }
     }
-    if (e.field == "carBrandId") {
-        if (brandHash && brandHash[e.value]) {
-            e.cellHtml = brandHash[e.value].name;
-        }
+}
+if (e.field == "carBrandId") {
+    if (brandHash && brandHash[e.value]) {
+        e.cellHtml = brandHash[e.value].name;
     }
-    if (e.field == "serviceTypeId") {
-        if (serviceHash && serviceHash[e.value]) {
-            e.cellHtml = serviceHash[e.value].name;
-        }
+}
+if (e.field == "serviceTypeId") {
+    if (serviceHash && serviceHash[e.value]) {
+        e.cellHtml = serviceHash[e.value].name;
     }
-    if (e.field == "carType") {
-            e.cellHtml = hash[e.value-1];
-    }
+}
+if (e.field == "carType") {
+    e.cellHtml = hash[e.value-1];
+}
 }
 
 function onRowclick(e){
@@ -169,7 +243,7 @@ function onAuditClick(auditSign){
 }
 
 function trackDetail(){
-        var data = investGrid.getSelected();
+    var data = investGrid.getSelected();
     if(data == null){
         showMsg("请先选择一条数据","W");
         return;
@@ -183,11 +257,11 @@ function trackDetail(){
         onload: function () {
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setData(data);
-         },
-         ondestroy: function (action) {
-             if(action == "ok"){
-                 search();
-             }
-         }
-    });
+        },
+        ondestroy: function (action) {
+           if(action == "ok"){
+               search();
+           }
+       }
+   });
 }

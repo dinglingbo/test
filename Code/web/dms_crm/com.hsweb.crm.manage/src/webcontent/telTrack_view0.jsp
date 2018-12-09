@@ -56,7 +56,8 @@
                     allowInput="false"
                     valueFromSelect="true"
                     showNullItem="true"
-                    nullItemText="请选择..."/>
+                    nullItemText="请选择..."
+                    style="width:130px;"/>
                 <input class="nui-combobox"
 	                  id="member"
 	                  name="member"
@@ -78,7 +79,7 @@
 	                  valueFromSelect="false"
 	                  width="100px">
                 <label style="font-family:Verdana;">车牌号：</label>
-                <input class="nui-textbox" name="carNo" id="query_carno" enabled="true"/>
+                <input class="nui-textbox" name="carNo" id="query_carno" enabled="true"style="width:100px;"/>
 
                <!--  <label style="font-family:Verdana;">手机号：</label>
                 <input class="nui-textbox" name="mobile" id="query_mobile" enabled="true"/> -->
@@ -88,7 +89,8 @@
                     name="nextScoutDate"
                     class="nui-datepicker width2"
                     dateFormat="yyyy-MM-dd"
-                    emptyText="请选择日期" alwaysView="true"/>
+                    emptyText="请选择日期" alwaysView="true"
+                    style="width:100px;"/>
                 <a class="nui-button"  plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <li class="separator"></li>
                 <a class="nui-button"  plain="true" onclick="telInfo()" id="" enabled="true"><span class="fa fa-phone fa-lg"></span>&nbsp;电话跟踪</a>
@@ -123,16 +125,16 @@
                         showSummaryRow="true">
                         <div property="columns">
                             <div type="checkcolumn" width="20"></div>
-                            <div type="indexcolumn" width="30" summaryType="count">序号</div>
+                            <div type="indexcolumn" width="40" summaryType="count">序号</div>
                             <div headerAlign="center">车辆信息
                                 <div property="columns">
                                     <div field="id" visible=false>ID</div>
                                     <div field="orgid" width="100" headerAlign="center" allowSort=false>所在分店</div>
                                     <div field="carNo" width="80" headerAlign="center" allowSort=false>车牌号</div>
                                     <div field="carBrandId" width="100" headerAlign="center">品牌</div>
-                                    <div field="carModel" width="250" headerAlign="center">车型</div>
+                                    <div field="carModel" width="250" headerAlign="center">品牌车型</div>
                                     <div field="vin" width="150" headerAlign="center" allowSort=false>车架号(VIN)</div>
-                                    <div field="firstRegDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
+                                    <div field="firstRegDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>上牌日期</div>
                                     <div field="annualInspectionDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
                                     <div field="recorder" width="80" headerAlign="center" allowSort=false>建档人</div>
                                     <div field="recordDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>建档日期</div>

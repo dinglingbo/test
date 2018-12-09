@@ -27,7 +27,7 @@
                         <input class="nui-textbox" width="100" id="search-code" name="code" />
                         <label style="font-family:Verdana;">名称：</label>
                         <input class="nui-textbox" width="100" id="search-name" name="name" />
-                        <label style="font-family:Verdana;">车型：</label>
+                        <label style="font-family:Verdana;">品牌车型：</label>
                         <input class="nui-textbox" width="100" id="search-applyCarModel" name="applyCarModel" />
                         <label style="font-family:Verdana;">拼音：</label>
                         <input class="nui-textbox" width="100" id="search-namePy" name="namePy" />
@@ -100,7 +100,7 @@
 
                                                 <div allowSort="true" field="model" width="60" headerAlign="center" allowSort="true">型号</div>
 
-                                                <div allowSort="true" field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
+                                                <div allowSort="true" field="applyCarModel" width="70" headerAlign="center" allowSort="true">品牌车型</div>
                                                 <div allowSort="true" field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
                                                 <div allowSort="true" field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>
                                                 <div allowSort="true" field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>
@@ -157,7 +157,7 @@
 
                                                 <div allowSort="true" field="model" width="60" headerAlign="center" allowSort="true">型号</div>
 
-                                                <div allowSort="true" field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
+                                                <div allowSort="true" field="applyCarModel" width="70" headerAlign="center" allowSort="true">品牌车型</div>
                                                 <div allowSort="true" field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
                                                 <div allowSort="true" field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>
                                                 <div allowSort="true" field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>

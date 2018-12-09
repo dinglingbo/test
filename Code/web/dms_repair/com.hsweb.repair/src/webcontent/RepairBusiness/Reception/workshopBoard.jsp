@@ -12,7 +12,16 @@
 <title>维修车间看板</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <style type="text/css">
-
+      .mini-grid-cell{
+      		    font-size: 18px;
+      }
+      
+            .mini-grid-headerCell-inner {
+    word-break: break-all;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    overflow: hidden;
+}
 .select-row{
    background:#8c8c8c;
 }
@@ -35,7 +44,7 @@
 
  body .mini-grid-headerCell-nowrap{
       color: white;
-    font-size: 18px;
+    font-size: 30px;
  }
 
  html body .mini-grid-row-selected {
@@ -58,12 +67,12 @@
 <body >
 
 <div class="nui-fit" style="background-color: #000">
-	<div style="height: 40px;background-color: #fa8c16">
+	<div style="height: 60px;background-color: #fa8c16">
 		<table style="width: 100%;line-height: 2;">
 			<tr>
-			  <td style="width: 33%;text-align: center;font-size: 16px;font-weight: bold;color: #fff">维修车间看板</td>
-			  <td style="width: 33%;text-align: center;font-size: 16px;font-weight: bold;color: #fff" id="clock">2018年7月3日20:57:53</td>
-			  <td style="width: 33%;text-align: right;font-size: 16px;font-weight: bold;color: #fff">
+			  <td style="width: 33%;text-align: center;font-size: 26px;font-weight: bold;color: #fff">维修车间看板</td>
+			  <td style="width: 33%;text-align: center;font-size: 26px;font-weight: bold;color: #fff" id="clock">2018年7月3日20:57:53</td>
+			  <td style="width: 33%;text-align: right;font-size: 26px;font-weight: bold;color: #fff">
 			  <a class="nui-button" id="full" onclick="fullScreen()" > <span class="fa fa-arrows-alt fa-lg"></span></a>
 			  <a class="nui-button" id="exit" onclick="exitScreen()" ><span class="fa fa-compress fa-lg"></span></a>
 			  </td>
@@ -74,13 +83,14 @@
 	<div class="nui-fit" style="background-color: #000">
 	    <div id="workShopBoardGrid" class="nui-datagrid" allowRowSelect="false" showLoading="false" dataField="list" enableHotTrack="false" allowCellWrap="true" showPager="false" style="height:100%;width:100%;">
 	        <div property="columns">
-	            <div field="carNo" width="100" headerAlign="center" align="center">车牌号</div>
+	            <div field="carNo" width="80" headerAlign="center" align="center">车牌号</div>
 	            <div field="enterDate" width="100" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" align="center">进厂时间</div>
-	            <div field="planFinishDate" width="100" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" align="center">预计交车时间</div>
-	            <div field="mtAdvisor" width="100" headerAlign="center" align="center">服务顾问</div>
-	            <div field="sureMtMan" width="100" headerAlign="center" align="center">施工员</div>
+	            <div field="planFinishDate" width="100" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" align="center">预计交车</div>
+	            <div field="syDate" width="100"  headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" align="center">剩余交车</div>
+	            <div field="mtAdvisor" width="70" headerAlign="center" align="center">服务顾问</div>
+	            <div field="sureMtMan" width="70" headerAlign="center" align="center">施工员</div>
 	            <div field="name" width="120" headerAlign="center" align="center">维修项目</div>
-	            <div field="status" width="100" headerAlign="center" align="center">施工状态</div>
+	            <div field="status" width="70" headerAlign="center" align="center">施工状态</div>
 	
 	        </div>
 	    </div>
@@ -127,6 +137,39 @@
 						var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
 						e.cellHtml = time;
 					}
+				}
+								if (e.field == "syDate") {
+					if(e.record.enterDate!=null&&e.record.planFinishDate!=null){
+						var date1= new Date(e.record.enterDate);  //开始时间
+				        var date2 = new Date(e.record.planFinishDate);    //结束时间
+				        var date3 = date2.getTime() - new Date(date1).getTime();   //时间差的毫秒数      
+				 
+				        //------------------------------
+				 
+				        //计算出相差天数
+				        var days=Math.floor(date3/(24*3600*1000));
+				 
+				        //计算出小时数
+				 
+				        var leave1=date3%(24*3600*1000);    //计算天数后剩余的毫秒数
+				        var hours=Math.floor(leave1/(3600*1000));
+				        //计算相差分钟数
+				        var leave2=leave1%(3600*1000);        //计算小时数后剩余的毫秒数
+				        var minutes=Math.floor(leave2/(60*1000));
+				        if(minutes<0){
+				        	days=days-days-days;
+				        	hours=hours-hours-hours;
+				        	minutes=minutes-minutes-hours;
+				        	e.cellHtml=("超时"+days+"天 "+hours+"时 "+minutes+" 分");
+				        }else{
+				        	e.cellHtml=(days+"天 "+hours+"时 "+minutes+" 分");
+				        }
+					}else{
+						e.cellHtml="/";
+					}
+
+					
+
 				}
 				if (e.field == "name") {
 					var name ="";

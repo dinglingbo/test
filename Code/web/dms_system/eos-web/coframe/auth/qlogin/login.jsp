@@ -3,11 +3,13 @@
 <%@page pageEncoding="UTF-8"%>
 <%@page import="com.primeton.cap.AppUserManager"%>
 <%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 
 <title>车道商户版</title>
+<script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
 <meta charset="utf-8">
 <meta name="keywords" content="汽修达人管理平台"/>
 <meta name="description" content="汽修达人管理平台"/>
@@ -60,29 +62,31 @@ html{
 
 body { 
 
-	min-width: 1200px;
+	min-width: 98%;
+	min-height: 97%;
 	background-color: #0B57AB;
 	background-image:-webkit-linear-gradient( 90deg, #87F1F2, #0B57AB ); 
     background-image:linear-gradient( 90deg, #87F1F2, #0B57AB ); 	
 }
 
 .login_box{
-	max-width: 1200px;
-	height: 600px;
+	max-width: 100%;
+	height: 97vh;
 	background-image: url(images/bg.png);
 	background-repeat: no-repeat;
 	background-position:center center;
 	margin: 0 auto;
 	position: relative;
+	
 }
 .login_box .login {
 	position: absolute;
 	display: block;
 	width: 380px;
 	background-color: #FFF;
-	top: 130px;
-	right: 80px;
-	padding-bottom: 20px;
+	top: 30%;
+	right: 15%;
+	padding-bottom: 30px;
 	
 	
 }
@@ -121,6 +125,13 @@ body {
 }
 .login_box .login label ~ label {
 	margin-top: 15px;
+}
+.login_box .login input.yzm {
+	background-color: #F0F0F0;
+	border: 0;
+	width: 40%;
+	border-radius: 0;
+	height: 34px;
 }
 .login_box .login input {
 	background-color: #F0F0F0;
@@ -259,6 +270,9 @@ a {
 
 </head>
 <body>
+
+
+
 <div class="login_box">
 	<form method="post"	name="registerForm" onsubmit="return register();" action="">
 	<div class="login" id="registerBox">
@@ -292,7 +306,8 @@ a {
 		<div class="you" >已经有帐号？  <span class="blue" id="login">登录</span></div>
 	</div>
 </form>	
-<form method="post"	name="loginForm"  action="<%=url%>">	
+<form method="post"	name="loginForm"  action="login.jsp">
+<%-- <form method="post"	name="loginForm"  action="<%=url%>"> --%>	
 	<div class="login" id="loginBox">
 		<div class="loginTitle">
 			<div class="weixinbox">
@@ -312,10 +327,15 @@ a {
 		</label>
 		<label>
 			
-			<input type="password" d="password" name="password" value="" class="password_val" placeholder="密码" maxlength="20" />
+			<input type="password" id="password" name="password" value="" class="password_val" placeholder="密码" maxlength="20" />
 		</label>
 		<label>
-			<div class="sing" id="loginJump"><input  type="submit" value="登录" class="button" /></div>
+			
+		   	 <input type="text" class="yzm" name="code"  id="code" placeholder="验证码" maxlength="9" />
+		  	<a href="javascript:reload();"> <img src="../img.jsp" "></a>
+		</label>
+		<label>
+			<div  class="sing" id="loginJump"><input  type="submit" value="登录" class="button" /></div>
 		</label>
 <!-- 		<label>
 			<div class="checkbox_box">
@@ -338,8 +358,44 @@ a {
 <div class="com_text">Copyright © 2014-2018 广州信绘通信息科技有限公司  版权所有: 粤ICP备10036501号-1 </div>
 </div>
 <script src="jquery-1.9.1.min.js?ver=1.01"></script>
-<!-- <script src="login.js?ver=2.0.1"></script>  -->
+
 <script type="text/javascript">
+nui.parse();
+	<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+  <%
+  	String incode = (String)request.getParameter("code"); 
+  	String userI = (String)request.getParameter("userId");
+  	String passW = (String)request.getParameter("password");
+  	String rightcode = (String)session.getAttribute("rCode"); 
+  	System.out.println(incode);
+  	System.out.println(rightcode);
+  	int count = 0;
+  		if(incode != "" && rightcode != ""){
+	  		if(incode != null && rightcode != null){
+		  		if(incode.equals(rightcode)){
+		  		%>
+		  		
+				loginTest("<%=userI%>","<%=passW%>");
+		
+		  		<% 
+		
+		  		}else{
+		  		%>
+		  		
+		  		$("#error").html('验证码输入不正确，请重新输入!');
+		  		<% 
+		
+		  		}
+		  	}
+  		}
+
+ 
+
+  %>
 	   <% 
 	     	Object result = request.getAttribute("result");
 	     	String userName = (String)request.getAttribute("userId");
@@ -369,7 +425,7 @@ a {
 	     		out.println("showError('')");
 	     	}
 		  %>
-		  
+		 var  msgCode = "";
 $(function () {
 	//显示登录框
 	$("#login").click(openLogin);
@@ -377,7 +433,7 @@ $(function () {
 	$("#register").click(openRegister);
 	
 	//登录
-	$("#loginJump").click(loginTest);
+	//$("#loginJump").click(loginTest);
 	
 	//注册registered
 	$("#registered").click(registered);
@@ -538,7 +594,7 @@ function register(){
 	 	 });
 	 	 
  //登录验证
-function loginTest() {
+function loginTest(user,pass) {
 	var loginData = {
 			clientId: 'e7402717-528f-4179-a1b2-a7d52ddff9e4',
 			serialNumber: '6f4ae8f5586d43ed99ee1457e5ca41c7',
@@ -548,8 +604,10 @@ function loginTest() {
 		},
 		memory = $("#memory").prop("checked");
 		
-		loginData.loginName = $(".accountNo").val().trim();
-		loginData.password = $(".password_val").val().trim();
+/* 		loginData.loginName = $(".accountNo").val().trim();
+		loginData.password = $(".password_val").val().trim(); */
+		loginData.loginName = user;
+		loginData.password = pass;
 		
 	if (!loginData.loginName) {
 		//Dialog.popup('请输入帐号！');
@@ -566,7 +624,7 @@ function loginTest() {
 	}
 
 	
-	document.loginForm.submit();
+	window.location.href="<%=url%>?userId="+loginData.loginName+"&&password="+loginData.password;
 	
 	 
 }
@@ -598,8 +656,16 @@ function login(){
 }
 
 
+	 function reload(){
+	 	history.go(0);
+	 }
+
+
 
 </script>
+
+
+
 
 </body>
 </html>

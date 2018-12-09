@@ -6,6 +6,7 @@ var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:808
 //		+ "com.hsapi.part.invoice.svr.queryPjPchsOrderMainList.biz.ext";
 var rightGridUrl = baseUrl
 		+ "com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
+var storeShelf = baseUrl+"com.hsapi.part.baseDataCrud.crud.getSorehouseLocation.biz.ext";
 //var advancedSearchWin = null;
 var advancedMorePartWin = null;
 var advancedAddWin = null;
@@ -38,7 +39,7 @@ var cityList = [];
 var advancedTipWin = null;
 var autoNew = 0;
 var memList=[];
-
+var storeShelfList=[];
 // 单据状态
 var AuditSignList = [ {
 	customid : '0',
@@ -108,8 +109,12 @@ $(document).ready(function(v) {
     	if (e.keyCode == 13) {
             addNewRow(true);
         }
+   $("#planArriveDate").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            addNewRow(true);
+        }
+    })
 
-        
     	
 	});
 	
@@ -662,7 +667,7 @@ function save() {
 			
 				}
 			} else {
-				showMsg(data.errMsg || "保存失败!","W");
+				showMsg(data.errMsg || "保存失败!","E");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -902,9 +907,11 @@ function getPartInfo(params){
 //				addNewRow(false);
 				
 				nui.confirm("是否添加配件?", "友情提示", function(action) {
+		
 					if (action == "ok") {
 						addOrEditPart(row);
-					}else{
+					}
+					else{
 						return;
 					}
 					});
@@ -1372,7 +1379,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 
 							}
 						} else {
-							showMsg(data.errMsg || (str+"失败!"),"W");
+							showMsg(data.errMsg || (str+"失败!"),"E");
 						}
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
@@ -1441,7 +1448,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 
 							}
 						} else {
-							showMsg(data.errMsg || (str+"失败!"),"W");
+							showMsg(data.errMsg || (str+"失败!"),"E");
 						}
 					},
 					error : function(jqXHR, textStatus, errorThrown) {
@@ -1519,7 +1526,7 @@ function orderEnter(mainId) {
 					}
 
 					} else {
-						showMsg(data.errMsg || "入库失败!","W");
+						showMsg(data.errMsg || "入库失败!","E");
 					}
 				},
 				error : function(jqXHR, textStatus, errorThrown) {
@@ -1580,8 +1587,8 @@ function setGuestInfo(params) {
 
 					nui.get("billTypeId").setValue(billTypeIdV);
 					nui.get("settleTypeId").setValue(settTypeIdV);
-
-					addNewRow(true);
+					nui.get('planArriveDate').focus();
+//					addNewRow(true);
 					
 				} else {
 					var el = nui.get('guestId');
@@ -1883,7 +1890,7 @@ function onAdvancedAddOk(){
 						}
 						
 					} else {
-						showMsg(data.errMsg || "添加数据失败!","W");
+						showMsg(data.errMsg || "添加数据失败!","E");
 					}
 				},
 				error : function(jqXHR, textStatus, errorThrown) {
@@ -2024,7 +2031,7 @@ function unAudit()
 				setEditable(true);
                 
             } else {
-				showMsg(data.errMsg || "审核失败!","W");
+				showMsg(data.errMsg || "审核失败!","E");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -2088,7 +2095,7 @@ function addImportRtnList(partList,msg){
 				orderQty : orderQty,
 				orderPrice : orderPrice,
 				orderAmt : orderQty * orderPrice,
-				storeId : FStoreId,
+				storeId : part.storeId,
 				comOemCode : part.oemCode,
 				comSpec : part.spec,
 				partCode : part.partCode,
@@ -2230,4 +2237,13 @@ function setInitData(params){
 		formJson = nui.encode(basicInfoForm.getData());
 		add();	
 	}
+}
+
+function onStoreChange(e){
+	var value = e.value;
+	getLocationListByStoreId(value,function(data) {
+		storeShelfList = data.locationList || [];
+		nui.get('storeShelf').setData(storeShelfList);
+
+	});
 }

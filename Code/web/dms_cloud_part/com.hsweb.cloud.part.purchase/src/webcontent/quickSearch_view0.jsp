@@ -111,7 +111,7 @@
 								<div field="partBrandId" width="70" headerAlign="center">品牌</div>
 								<div field="partName" width="80" headerAlign="center" allowSort="true">名称</div>
 								<div field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
-								<div field="applyCarModel" width="120" headerAlign="center" allowSort="true">车型</div>
+								<div field="applyCarModel" width="120" headerAlign="center" allowSort="true">品牌车型</div>
 								<div field="spec" width="60" headerAlign="center" allowSort="true">规格</div>
 								<div field="qualityTypeId" width="60" headerAlign="center">品质</div>
   
@@ -185,7 +185,7 @@
 					<div field="partBrandId" width="70" headerAlign="center">品牌</div>
 					<div field="partName" width="80" headerAlign="center" allowSort="true">名称</div>
 					<div field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
-					<div field="applyCarModel" width="120" headerAlign="center" allowSort="true">车型</div>
+					<div field="applyCarModel" width="120" headerAlign="center" allowSort="true">品牌车型</div>
 					<div field="spec" width="60" headerAlign="center" allowSort="true">规格</div>
 					<div field="qualityTypeId" width="60" headerAlign="center">品质</div>
 

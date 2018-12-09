@@ -96,7 +96,7 @@
                     <div allowSort="true" field="partCode" width="121" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="partFullName" width="200" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
+                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
                     <div allowSort="true" type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="含税" trueValue="1" falseValue="0"></div>
                     <div allowSort="true" field="taxRate" width="40" headerAlign="center" header="票点"></div>

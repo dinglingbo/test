@@ -89,6 +89,7 @@
     <location x="210" y="154"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="insList" iterableElement="tmp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -531,6 +532,7 @@
     <sourceConnections xsi:type="process:tLink" id="link27" name="link27" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
       <targetNode>loopstart0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="135" y="151"/>
@@ -545,7 +547,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">guest</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">

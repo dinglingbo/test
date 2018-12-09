@@ -152,7 +152,7 @@ table {
                                      width="15%">车系
                                 </div>
                                 <div field="carModel" headerAlign="center" allowSort="true"
-                                     width="50%">车型
+                                     width="50%">品牌车型
                                 </div>
                                 <div field="isDisabled" headerAlign="center" allowSort="true"
                                      visible="true" width="20%">是否禁用

@@ -36,7 +36,7 @@
 				<td class="tit">工作组类型：</td>
 				<td>
 					<input name="criteria._expr[2].grouptype" data="data"  valueField="dictID" textField="dictName" 
-						class="nui-dictcombobox" emptyText="全部" nullItemText="全部" dictTypeId="COF_ORGTYPE" style="width:95%"
+						class="nui-combobox" emptyText="全部" nullItemText="全部" dictTypeId="COF_ORGTYPE" style="width:95%"
 						showNullItem="true" nullItemText="全部"/>
 					<input class="nui-hidden" name="criteria._expr[2]._op" value="="/>
 				</td>
@@ -44,7 +44,7 @@
 				<td class="tit">工作组状态：</td>
 				<td>
 					<input name="criteria._expr[3].groupstatus" data="data" valueField="dictID" textField="dictName" 
-						class="nui-dictcombobox" emptyText="全部" dictTypeId="COF_ORGSTATUS" style="width:95%"
+						class="nui-combobox" emptyText="全部" dictTypeId="COF_ORGSTATUS" style="width:95%"
 						showNullItem="true" nullItemText="全部"/>
 					<input class="nui-hidden" name="criteria._expr[3]._op" value="="/>
 				</td>

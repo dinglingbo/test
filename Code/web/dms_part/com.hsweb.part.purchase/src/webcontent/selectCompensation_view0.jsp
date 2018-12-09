@@ -137,7 +137,7 @@
                    <div header="其他" headerAlign="center">
 	                  <div property="columns" >
 		                 <!--  <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div> -->
-		                  <div field="carModel" name="carModel" width="330" headerAlign="center" header="品牌/车型"></div>
+		                  <div field="carModel" name="carModel" width="330" headerAlign="center" header="品牌车型"></div>
 		                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="车架号(VIN)"></div>
 		                  <div field="sureMtDate" name="sureMtDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="维修日期"></div>
 		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="完工日期"></div>

@@ -48,7 +48,7 @@ pageEncoding="UTF-8" session="false" %>
         ondrawcell=""
         >
         <div property="columns">
-            <div type="checkcolumn" ></div>    
+            <div type="checkcolumn" ></div>
             <div field="" name="" width="80" headerAlign="center" header="门店"></div>
             <div field="" name="" width="80" headerAlign="center" header="活动编码"></div>
             <div field="" name="" width="80" headerAlign="center" header="活动名称"></div>
@@ -72,7 +72,7 @@ pageEncoding="UTF-8" session="false" %>
              nui.open({
              url: webPath + contextPath  + "/manage/guestMarketing/eventAdd.jsp",
              title: "新增活动",
-             width: 900, 
+             width: 900,
              height: 620,
              onload: function () {
              },
@@ -85,7 +85,7 @@ pageEncoding="UTF-8" session="false" %>
              nui.open({
              url: webPath + contextPath  + "/manage/guestMarketing/eventRecord.jsp",
              title: "活动记录",
-             width: 950, 
+             width: 950,
              height: 320,
              onload: function () {
              },

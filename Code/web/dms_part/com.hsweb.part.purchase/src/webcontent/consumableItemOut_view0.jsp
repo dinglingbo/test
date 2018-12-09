@@ -159,7 +159,7 @@
                             <div field="partCode" width="60" headerAlign="center" header="配件编码"></div>
                             <div field="partName" headerAlign="center" header="配件名称"></div>
                             <div field="partBrandName" width="60" headerAlign="center" header="品牌"></div>
-                            <div field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
+                            <div field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
                             <div field="unit" width="40" headerAlign="center" header="单位"></div>
                             <div field="outQty" width="40" headerAlign="center" header="数量"></div>
                             <!--<div type="checkboxcolumn" field="taxSign" width="40" headerAlign="center" header="含税" trueValue="1" falseValue="0"></div>-->

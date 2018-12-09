@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveCustomerInfo" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据手机号判断客户是否已经存在" title="Administrator&#x9;18-9-6 上午8:49">
-    <location x="90" y="-20"/>
-    <size height="100" width="391"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据手机号判断客户是否已经存在&#xD;&#xA;&#xD;&#xA;考虑到APP端，扫车牌后输入手机号，&#xD;&#xA;如果客户新增且车辆信息也是新增，需要判断客户信息是否已经存在" title="Administrator&#x9;18-9-6 上午8:49">
+    <location x="45" y="-3"/>
+    <size height="123" width="481"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -234,7 +234,7 @@
       <targetNode>assign13</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -652,13 +652,13 @@
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign11" name="赋值11" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值11" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign11</sourceNode>
       <targetNode>assign8</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -700,7 +700,7 @@
       <targetNode>assign12</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

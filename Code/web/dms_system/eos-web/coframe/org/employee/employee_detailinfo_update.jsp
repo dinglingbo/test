@@ -71,13 +71,13 @@
 				<td class="nui-form-label"><label for="otel$text">办公室电话：</label></td>
 				<td><input id="otel" name="employee.otel" class="nui-textbox nui-form-input"  vtype="phone;rangeLength:0,20"/></td>
 				<td class="nui-form-label"><label for="party$text">政治面貌：</label></td>
-				<td><input id="party" name="employee.party" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-dictcombobox nui-form-input" dictTypeId="COF_PARTYVISAGE" /></td>
+				<td><input id="party" name="employee.party" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-combobox nui-form-input" dictTypeId="COF_PARTYVISAGE" /></td>
 			</tr>
 			<tr class="odd">
 				<td class="nui-form-label"><label for="major$text">直接主管：</label></td>
 				<td><input id="major" name="employee.major" allowInput="false" showClose="true" oncloseclick="onCloseClick" onbuttonclick="selectMajor" class="nui-buttonEdit nui-form-input" /></td>
 				<td class="nui-form-label"><label for="degree$text">职级：</label></td>
-				<td><input id="degree" name="employee.degree" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-dictcombobox nui-form-input" dictTypeId="COF_EMPLEVEL" /></td>
+				<td><input id="degree" name="employee.degree" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-combobox nui-form-input" dictTypeId="COF_EMPLEVEL" /></td>
 			</tr>			
 			<tr>
 				<td class="nui-form-label"><label for="orgidlist$text">可管理机构：</label></td> 

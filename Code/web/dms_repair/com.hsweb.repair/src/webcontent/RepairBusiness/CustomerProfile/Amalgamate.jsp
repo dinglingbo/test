@@ -50,7 +50,7 @@
 					</tr>
 					<tr style="display: block; margin: 3px 0">
 						<td class="form_label" width="70px">
-							<span style="margin-left: 10px;">车型：</span>
+							<span style="margin-left: 10px;">品牌车型：</span>
 						</td>
 						<td colspan="1">
 							<input class="nui-textbox" name="brand.carBrandZh" width="180px" allowInput="false"/>
@@ -112,7 +112,7 @@
 					</tr>
 					<tr style="display: block; margin: 3px 0">
 						<td class="form_label" width="70px">
-							<span style="margin-left: 10px;">车型：</span>
+							<span style="margin-left: 10px;">品牌车型：</span>
 						</td>
 						<td colspan="1">
 							<input class="nui-textbox" name="brand.carBrandZh" width="180px" allowInput="false"/>

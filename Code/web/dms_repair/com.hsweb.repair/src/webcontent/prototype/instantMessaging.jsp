@@ -213,7 +213,7 @@
 		<table style="width:100%">
 			<tr>
 				<td>
-					<div name="editor" id="editor" rows="1000" cols="80" style="width:100%">
+					<div name="editor" id="editor" rows="1000" cols="80" style="width:100%" oncelleditenter="enter()"> 
 						<span class="xiazi">张女士，请问有什么需要帮助的？</span>
 					</div>
 				</td>
@@ -228,7 +228,9 @@
 	<script type="text/javascript">
     	nui.parse();
     	var editor = KindEditor.create('#editor');
-    	
+    	function enter(){
+    		alert("1111");
+    	}
     </script>
 </body>
 </html>

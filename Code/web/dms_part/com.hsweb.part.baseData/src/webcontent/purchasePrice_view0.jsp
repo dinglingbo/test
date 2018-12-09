@@ -65,7 +65,7 @@
                 <div property="columns">
                     <div field="brand_name" width="80" headerAlign="center" header="品牌" allowSort="true"></div>
                     <div field="cat_name" width="80" headerAlign="center" header="类型" allowSort="true"></div>
-                    <div field="CarSuit" width="100" headerAlign="center" header="车型" allowSort="true"></div>
+                    <div field="CarSuit" width="100" headerAlign="center" header="品牌车型" allowSort="true"></div>
                 </div>
             </div>
         </div>

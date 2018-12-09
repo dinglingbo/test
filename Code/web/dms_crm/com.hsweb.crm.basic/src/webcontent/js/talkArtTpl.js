@@ -11,7 +11,7 @@ $(document).ready(function(v){
     dgGrid.on("beforeload",function(e){
     	e.data.token = token;
     });
-    nui.get('recorder').focus();
+    nui.get('query').focus();
     document.onkeyup = function(event) {
         var e = event || window.event;
         var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -28,17 +28,18 @@ $(document).ready(function(v){
     initDicts({
         tree1: "DDT20130725000001"//话术类型
     });
+    initMember("recorder",function(){ });
     query();
 });
 
 /*
  *查询
  **/
-function query(){
+function query(e){
     var data = queryForm.getData();
     var params = {};
     params.p = data;
-    if(currTypeNode){
+    if(currTypeNode && e != 0){
         params.p.typeId = currTypeNode.customid;
     }
     //param.token = token;

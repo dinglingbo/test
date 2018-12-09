@@ -26,8 +26,8 @@
                     <input class="nui-textbox" emptyText="编码" width="100" id="search-code" name="code"/>
                     <!-- <label style="font-family:Verdana;">名称：</label> -->
                     <input class="nui-textbox" emptyText="名称" width="100" id="search-name" name="name"/>
-                    <!-- <label style="font-family:Verdana;">车型：</label> -->
-                    <input class="nui-textbox" emptyText="车型" width="100" id="search-applyCarModel" name="applyCarModel"/>
+                    <!-- <label style="font-family:Verdana;">品牌车型：</label> -->
+                    <input class="nui-textbox" emptyText="品牌车型" width="100" id="search-applyCarModel" name="applyCarModel"/>
                     <!-- <label style="font-family:Verdana;">拼音：</label> -->
                     <input class="nui-textbox" emptyText="拼音" width="60" id="search-namePy" name="namePy"/>
                     <!-- <label style="font-family:Verdana;">品牌：</label> -->
@@ -103,7 +103,7 @@
 
                                 <div field="position_name" width="60" headerAlign="center" allowSort="true">型号</div>
 
-                                <div field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
+                                <div field="applyCarModel" width="70" headerAlign="center" allowSort="true">品牌车型</div>
                                 <div field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
                                 <div field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>
                                 <div field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>

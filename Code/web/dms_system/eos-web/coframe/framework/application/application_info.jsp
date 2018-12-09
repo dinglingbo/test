@@ -42,13 +42,13 @@
 	            <tr>
 	                <th class="nui-form-label"><label for="appapplication.apptype$text">应用类别：</label></th>
 	                <td> 
-	                	<input id="appapplication.apptype" class="nui-dictcombobox nui-form-input" name="appapplication.apptype" 
-                   		 valueField="dictID" textField="dictName" dictTypeId="COF_APPTYPE" onvaluechanged="appTypeChange"/>
+	                	<input id="appapplication.apptype" class="nui-combobox nui-form-input" name="appapplication.apptype" 
+                   		 valueField="dictID" textField="dictName" data="COF_APPTYPE" onvaluechanged="appTypeChange"/>
 	                </td>
 	                <th class="nui-form-label"><label for="appapplication.isopen$text">是否开通：</label></th>
 	                <td> 
-	                	<input id="appapplication.isopen" class="nui-dictcombobox nui-form-input" name="appapplication.isopen" value="1" 
-                   		 valueField="dictID" textField="dictName" dictTypeId="COF_YESORNO"/>   
+	                	<input id="appapplication.isopen" class="nui-combobox nui-form-input" name="appapplication.isopen" value="1" 
+                   		 valueField="dictID" textField="dictName" data="COF_YESORNO"/>   
 	                </td>
 	            </tr>
 	            <tr class="odd">
@@ -84,6 +84,8 @@
 	</div>
     <script type="text/javascript">
     	var combo_protocoltype = [{id:"http",text:"http"},{id:"https",text:"https"}];
+    	var COF_YESORNO =[{dictID:"0",dictName:"否"},{dictID:"1",dictName:"是"}];
+    	var COF_APPTYPE =[{dictID:"0",dictName:"本地"},{dictID:"1",dictName:"远程"}];
         nui.parse();
         var form = new nui.Form("form1");
         var appid = "<%= StringUtil.htmlFilter(request.getParameter("realId")) %>";

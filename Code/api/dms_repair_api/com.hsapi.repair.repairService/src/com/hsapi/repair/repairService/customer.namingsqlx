@@ -144,6 +144,7 @@
 			a.car_model_id carModelId,
 			a.car_model carModel,
 			a.car_brand_id carBrandId,
+			a.car_model_id_ly as carModelIdLy,
 			a.engine_no engineNo,
 			a.annual_inspection_date annualInspectionDate,
 			a.annual_verification_due_date annualVerificationDueDate,
@@ -195,6 +196,10 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carVin">  
                 (a.vin like '%$carVin$%')
+            </isNotEmpty>
+           
+            <isNotEmpty prepend="and" property="guestMobile">  
+                (b.mobile = #guestMobile#)
             </isNotEmpty>
            
             <isNotEmpty prepend="and" property="mobile">  

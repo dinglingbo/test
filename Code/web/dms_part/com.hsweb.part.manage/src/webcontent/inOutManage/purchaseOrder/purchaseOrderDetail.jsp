@@ -16,7 +16,8 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <!-- <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn">取消</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a>
+                
                 <!-- <a class="nui-menubutton " menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
                 <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
@@ -25,10 +26,10 @@
                 </ul> -->
 
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="unAudit()" id="uAuditBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
+<!--                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a> -->
                 <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>       
             </td>
@@ -69,48 +70,10 @@
                                              placeholder="请选择供应商"
                                              selectOnFocus="true" />
                                   </td>
-                                  <td class="title required">
-                                      <label>采购员：</label>
-                                  </td>
-                                  <td colspan="1" style="width:15%">
-                                      <input class="nui-combobox" 
-                                          id="orderMan" 
-                                          name="orderMan" 
-                                          textField="empName"
-                                      valueField="empId"
-                                      emptyText="请选择..."
-                                      url=""
-                                      required="true"
-                                      allowInput="true"
-                                      valueFromSelect="false"
-                                          width="100%">
-                                  </td>
-                                  <td class="title required">
-                                      <label>订货日期：</label>
-                                  </td>
-                                  <td width="150">
-                                      <input name="createDate"
-                                             id="createDate"
-                                             width="100%"
-                                             showTime="true"
-                                             class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
-                                  </td>
-                                  <td class="title required" style="width:8%;">
-                                      <label>预计到货日期：</label>
-                                  </td>
-                                  <td width="160">
-                                      <input name="planArriveDate"
-                                             id="planArriveDate"
-                                             width="100%"
-                                             showTime="true"
-                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
-                                  </td>
-                              </tr>
-                              <tr>
-                                  <td class="title required">
+                                  <td class="title required" style="width:6%">
                                       <label>票据类型：</label>
                                   </td>
-                                  <td>
+                                  <td >
                                       <input name="billTypeId"
                                              id="billTypeId"
                                              class="nui-combobox width1"
@@ -126,7 +89,7 @@
                                              nullItemText="请选择..."
                                              onvalidation="onComboValidation"/>
                                   </td>
-                                  <td class="title required">
+                                  <td class="title required" style="width:6%">
                                       <label>结算方式：</label>
                                   </td>
                                   <td>
@@ -144,6 +107,45 @@
                                              width="100%"
                                              nullItemText="请选择..."
                                              onvalidation="onComboValidation"/>
+                                  </td>
+                                  
+                                  <td class="title required" style="width:8%;">
+                                      <label>预计到货日期：</label>
+                                  </td>
+                                  <td width="160">
+                                      <input name="planArriveDate"
+                                             id="planArriveDate"
+                                             width="100%"
+                                             showTime="true"
+                                             class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
+                                  </td>
+                              </tr>
+                              <tr>           
+                                  <td class="title required">
+                                      <label>采购员：</label>
+                                  </td>
+                                  <td colspan="1" style="width:15%">
+                                      <input class="nui-combobox" 
+                                          id="orderMan" 
+                                          name="orderMan" 
+                                          textField="empName"
+                                      valueField="empId"
+                                      emptyText="请选择..."
+                                      url=""
+                                      required="true"
+                                      allowInput="true"
+                                      valueFromSelect="false"
+                                          width="100%">
+                                  </td>
+                                  <td class="title">
+                                      <label>创建日期：</label>
+                                  </td>
+                                  <td width="150">
+                                      <input name="createDate"
+                                             id="createDate"
+                                             width="100%"
+                                             showTime="true"
+                                             class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
                                   </td>
                                   <td class="title">
                                       <label>状态：</label>
@@ -202,7 +204,7 @@
                                         <!-- <input property="editor" class="nui-textbox" data="codeList" valueField="code" textField="code"/> -->
                                     </div>
                                     <div field="comPartBrandId" id="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-                                    <div field="comApplyCarModel" id="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+                                    <div field="comApplyCarModel" id="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
                                     <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
                                 </div>
                             </div>
@@ -227,11 +229,11 @@
                                   <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="false">
                         仓库<input  property="editor" enabled="true"  id="storehouse" name="storehouse" dataField="storehouse" allowInput="false" class="nui-combobox" valueField="id" textField="name" data="storehouse"
                                       url=""
-                                      onvaluechanged="" emptyText=""  vtype="required"
+                                      onvaluechanged="onStoreChange" emptyText=""  vtype="required"
                                       /> 
                         </div>    
                         <div field="storeShelf" width="60" headerAlign="center" allowSort="false">
-                              仓位<input property="editor" class="nui-textbox"/>
+                              仓位<input id="storeShelf" name="storeShelf"  property="editor" class="nui-combobox" textField="name" valueField="name" dataField="storeShelfList" data="storeShelfList" onvaluechanged="" allowInput="true"/>
                               </div>  
                       <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" allowSort="false" header="OEM码"></div> 
                       <div field="comSpec" allowSelect="false" width="100" headerAlign="center" allowSort="false" header="规格/方向/颜色"></div>                             

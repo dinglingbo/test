@@ -80,7 +80,7 @@ table {
                 </tr>
                 <tr>
                     <td class="form_label">
-                        <label>车型：</label>
+                        <label>品牌车型：</label>
                     </td>
                     <td colspan="3">
                         <input class="nui-buttonedit" name="carModelId" id="carModelId" onclick="selectCarModel('carModelId','carBrandId')" width="100%"/>

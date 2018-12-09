@@ -42,7 +42,7 @@
             <tr>  
                 <td colspan="3" align="center">配件编码</td>
                 <td colspan="3" align="center">配件全称</td>
-                <td colspan="3" align="center">车型</td>
+                <td colspan="3" align="center">品牌车型</td>
                 <td colspan="3" align="center">单位</td>
                 <td colspan="3" align="center">数量</td>
                 <td colspan="3" align="center">单价</td>

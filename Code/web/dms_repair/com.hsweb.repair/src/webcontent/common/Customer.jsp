@@ -91,7 +91,7 @@ table {
                         车牌号
                     </div>
                     <div field="carModel" width="115" headerAlign="center" allowSort="true">
-                        品牌/车型
+                        品牌车型
                     </div>
                     <div field="chainComeTimes" width="65" headerAlign="center" allowSort="true">
                         来厂次数

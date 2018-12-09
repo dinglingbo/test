@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.25"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.26"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -137,6 +137,7 @@
                 <span class="separator"></span> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="sureMT()" id="addBtn"><span class="fa fa-car fa-lg"></span>&nbsp;确定开单</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
 <!--                 <a class="nui-button" iconCls="" plain="true" onclick="unfinish()" id="addBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a> -->
@@ -281,7 +282,7 @@
                 </td>
                 <td class="title required">进厂里程：</td> 
                 <td >
-                     <input class="nui-Spinner" minValue="0" maxValue="100000000" width="45%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
+                     <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="100000000" width="45%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
                      <label class="title">(上次里程：<span id="lastComeKilometers">0</span>)</label>
                 </td>
                 <!-- <td class=""><input  class="nui-textbox" name="enterKilometers" width="100%"/></td> -->

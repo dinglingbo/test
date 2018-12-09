@@ -118,7 +118,7 @@
 
 
 									<div field="billAmt" allowSort="true" headerAlign="center"
-										width="70">车型</div>
+										width="70">品牌车型</div>
 									<div field="recorder" allowSort="true" headerAlign="center"
 										width="70">品牌</div>
 									<div field="recordDate" allowSort="true" headerAlign="center"

@@ -502,9 +502,10 @@ function SetData(params){
        var sumAmt = 0;
        var date = new Date();
        var data = [];
+       var recordDate = format(params.recordDate, "yyyy-MM-dd HH:mm");
        $("#guestName").html(params.guestFullName);
        $("#guestAdd").html(params.addr);
-       $("#recordDate").html(params.recordDate);
+       $("#recordDate").html(recordDate);
        $("#phone").html(params.guestMobile); 
        $("#shippingAdd").html(params.addr); 
        $("#serviceCode").html(params.serviceCode);

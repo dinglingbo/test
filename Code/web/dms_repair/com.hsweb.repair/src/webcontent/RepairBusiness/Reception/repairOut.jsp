@@ -19,6 +19,9 @@
 a { 
     text-decoration: none;
 }
+ a#service{
+	text-decoration:underline
+}
 .form_label {
     width: 72px; 
     text-align: right;
@@ -108,7 +111,7 @@ a {
         <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
 <!--         <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div> -->
         <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
-        <div field="carModel" name="carModel" width="130" headerAlign="center" align="center">品牌/车型</div>
+        <div field="carModel" name="carModel" width="130" headerAlign="center" align="center">品牌车型</div>
         <div field="billTypeId" name="billTypeId" width="30" headerAlign="center" align="center">工单类型</div>
         <div field="serviceTypeName" name="serviceTypeName" width="80" headerAlign="center" align="center">业务类型</div>
 <!--         <div field="isSettle" name="isSettle" width="30" headerAlign="center" align="center">结算状态</div> -->
@@ -352,6 +355,10 @@ a {
     if(column.field == "action"){
         e.cellHtml = ll +"&nbsp;&nbsp;" + th;
     }
+    if(column.field == "serviceCode"){
+       e.cellHtml ='<a id="service" href="##" onclick="newrepairOut('+"'ll'"+ ')">'+e.value+'</a>';
+    }
+
 });
 
 /*function edit() {

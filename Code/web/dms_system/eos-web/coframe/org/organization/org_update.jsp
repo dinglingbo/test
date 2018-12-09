@@ -31,14 +31,14 @@
 				<th class="nui-form-label"><label for="orgParentname$text">上级机构：</label></th>
 				<td><input id="orgParentname" class="nui-textbox nui-form-input" name="orgOrganization.orgOrganization.orgname" allowInput="false" /></td>
 				<th class="nui-form-label"><label for="orgtype$text">机构类型：</label></th>
-				<td><input id="orgtype" name="orgOrganization.orgtype" data="data" valueField="dictID" textField="dictName" class="nui-dictcombobox nui-form-input" emptyText="请选择" dictTypeId="COF_ORGTYPE" /></td>
+				<td><input id="orgtype" name="orgOrganization.orgtype" data="data" valueField="dictID" textField="dictName" class="nui-combobox nui-form-input" emptyText="请选择" dictTypeId="COF_ORGTYPE" /></td>
 			</tr>					
 			<tr>
 				<th class="nui-form-label"><label for="orgdegree$text">机构等级：</label></th>
-				<td><input id="orgdegree" name="orgOrganization.orgdegree" data="data" valueField="dictID" textField="dictName" class="nui-dictcombobox nui-form-input" emptyText="请选择" dictTypeId="COF_ORGDEGREE" />
+				<td><input id="orgdegree" name="orgOrganization.orgdegree" data="data" valueField="dictID" textField="dictName" class="nui-combobox nui-form-input" emptyText="请选择" dictTypeId="COF_ORGDEGREE" />
 				</td>
 				<th class="nui-form-label"><label for="status$text">机构状态：</label></th>
-				<td><input id="status" name="orgOrganization.status" data="data" valueField="dictID" textField="dictName" class="nui-dictcombobox nui-form-input" emptyText="请选择" dictTypeId="COF_ORGSTATUS" />
+				<td><input id="status" name="orgOrganization.status" data="data" valueField="dictID" textField="dictName" class="nui-combobox nui-form-input" emptyText="请选择" dictTypeId="COF_ORGSTATUS" />
 			</tr>	
 			<tr class="odd">
 				<th class="nui-form-label"><label for="sortno$text">排列顺序：</label></th>

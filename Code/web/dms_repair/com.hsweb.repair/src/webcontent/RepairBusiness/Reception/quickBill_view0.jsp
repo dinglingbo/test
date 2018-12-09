@@ -10,7 +10,7 @@
 -->
 <head>
 <title>闪电开单模板</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/quickBill.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/quickBill.js?v=1.0.1"></script>
 <style type="text/css">
 
 .title {
@@ -47,6 +47,8 @@
 <body>
 
 <div class="nui-fit">
+    <input id="carBrandList" class="nui-combobox" visible="false" />
+    <input id="carSeriesList" class="nui-combobox" visible="false" />
     <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
         <table class="table" id="table1">
             <tr>
@@ -111,6 +113,8 @@
                   <div field="modelName" name="modelName" width="120px" headerAlign="center" header="模板名称"></div>
                   <div field="billTypeId" name="billTypeId" width="80" headerAlign="center"  header="开单类型"></div>
                   <div field="serviceTypeId" name="serviceTypeId" width="80px" headerAlign="center" header="业务类型"></div>
+                  <div field="carBrandId" headerAlign="center" allowSort="true" visible="true" width="40">品牌 </div>
+                  <div field="carSeriesId" headerAlign="center" allowSort="true" visible="true" width="120">车系 </div>
                   <div field="recordDate" name="recordDate" width="80px" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                   <div field="remark" name="remark" width="200px" headerAlign="center" header="备注"></div>
               </div>

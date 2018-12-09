@@ -103,7 +103,7 @@
             <div property="columns">
             	<div allowSort="true" field="serviceCode" width="130" headerAlign="center" header="业务单号"></div>
             	<div allowSort="true" field="carNo" width="100" headerAlign="center" header="车牌号"></div>
-   				<div allowSort="true" field="carModel" width="250" headerAlign="center" header="品牌/车型"></div>
+   				<div allowSort="true" field="carModel" width="250" headerAlign="center" header="品牌车型"></div>
                 <div allowSort="true" field="chainComeTimes" width="80" headerAlign="center" header="来厂次数"></div>
                 <div allowSort="true" field="recorder" width="60" headerAlign="center"  header="点评人"></div>
                 <div allowSort="true" field="recordDate" width="130" headerAlign="center"dateFormat="yyyy-MM-dd HH:mm"  header="点评时间"></div>

@@ -96,7 +96,7 @@
                     <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
+                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
                     <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
                     <div allowSort="true" field="shelf" width="60" headerAlign="center" header="仓位"></div>
@@ -229,7 +229,7 @@
             <td colspan="1" align="center">配件名称</td>
             <td colspan="1" align="center">OEM码</td>
             <td colspan="1" align="center">品牌</td>
-            <td colspan="1" align="center">车型</td>
+            <td colspan="1" align="center">品牌车型</td>
             <td colspan="1" align="center">单位</td>
             <td colspan="1" align="center">仓库</td>
             <td colspan="1" align="center">仓位</td>

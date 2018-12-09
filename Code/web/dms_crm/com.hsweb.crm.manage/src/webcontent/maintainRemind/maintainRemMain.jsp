@@ -55,7 +55,7 @@ pageEncoding="UTF-8" session="false" %>
             <div type="indexcolumn" width="30">序号</div>
 <!--             <div field="serviceCode" width="120" headerAlign="center" align="center">工单号</div> -->
             <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
-            <div field="carModel" width="170" headerAlign="center"align="center">车型</div>
+            <div field="carModel" width="170" headerAlign="center"align="center">品牌车型</div>
             <div field="guestName" width="70" headerAlign="center"align="center">客户名称</div>
             <div field="leaveDays" width="70" headerAlign="center"align="center">离厂天数</div>
             <div field="careLastDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后提醒时间</div>
@@ -67,7 +67,7 @@ pageEncoding="UTF-8" session="false" %>
             <div field="preAdvisorName" width="70" headerAlign="center" align="center">营销员</div>
             <div field="mobile" visible="false" width="70" headerAlign="center" align="center">手机号</div>
             <div field="carBrandId" visible="false" width="70" headerAlign="center" align="center">品牌</div>
-            <div field="carBrandId" visible="false" width="70" headerAlign="center" align="center">车型</div>
+            <div field="carBrandId" visible="false" width="70" headerAlign="center" align="center">品牌车型</div>
         </div>
     </div> 
 </div> 

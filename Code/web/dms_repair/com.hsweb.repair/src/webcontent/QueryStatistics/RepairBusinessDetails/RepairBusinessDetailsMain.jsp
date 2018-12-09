@@ -78,7 +78,7 @@
             <div header="基本信息" headerAlign="center">
                 <div property="columns">
                     <div field="carBrandId" headerAlign="center" allowSort="true" visible="true" width="60px">品牌</div>
-                    <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="70px">车型</div>
+                    <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="70px">品牌车型</div>
                     <div field="checker" headerAlign="center" allowSort="true" visible="true" width="50px">质检员</div>
                     <div field="guestName" headerAlign="center" allowSort="true" visible="true" width="80px">客户名称</div>
                     <div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true" width="60px">业务类型</div>

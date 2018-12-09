@@ -548,7 +548,6 @@ $(document).ready(function ()
         }
     });
     
-    
     cardTimesGrid.on("drawcell",function(e)
     {
         if(e.field == "prdtType" && prdtTypeHash[e.value])

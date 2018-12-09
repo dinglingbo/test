@@ -23,7 +23,7 @@
 					        </td>
 							<td  class="tit">应用类别：</td>
 							<td>
-								<input class="nui-dictcombobox" name="criteria/_expr[2]/apptype" valueField="dictID" emptyText="全部" textField="dictName" showNullItem="true" nullItemText="全部" dictTypeId="COF_APPTYPE"/>
+								<input class="nui-combobox" name="criteria/_expr[2]/apptype" valueField="dictID" emptyText="全部" textField="dictName" showNullItem="true" nullItemText="全部" data="COF_APPTYPE"/>
 								<input type="hidden" class="nui-hidden" name="criteria/_expr[2]/_op" value="="/>
 					        </td>
 					        <td class="btn-wrap"><a class="nui-button" style="width:60px;" iconCls="icon-search" onclick="search()">查询</a></td>

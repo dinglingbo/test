@@ -62,7 +62,7 @@ table {
                     <div field="carBrandName" headerAlign="center" allowSort="true" visible="true" header="品牌"></div>
                     <div field="carFactoryName" headerAlign="center" allowSort="true" visible="true" header="厂商"></div>
                     <div field="carSeriesName" headerAlign="center" allowSort="true" visible="true" header="车系"></div>
-                    <div field="carModel" headerAlign="center" allowSort="true" visible="true" header="车型"></div>
+                    <div field="carModel" headerAlign="center" allowSort="true" visible="true" header="品牌车型"></div>
                     <div field="remark" headerAlign="center" allowSort="true" visible="true" header="备注"></div>
                     <div field="id" headerAlign="center" allowSort="true" visible="true" header="车型ID"></div>
                 </div>

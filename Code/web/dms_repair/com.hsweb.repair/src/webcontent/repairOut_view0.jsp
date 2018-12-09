@@ -163,7 +163,7 @@
                                 </tr>
                                 <tr>
                                     <td class="form_label">
-                                        <label>车型：</label>
+                                        <label>品牌车型：</label>
                                     </td>
                                     <td colspan="1">
                                         <input class="nui-textbox" name="carModel" enabled="false"/>
@@ -297,7 +297,7 @@
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <label>车型：</label>
+                                                    <label>品牌车型：</label>
                                                 </td>
                                                 <td>
                                                     <input name="carModel"
@@ -352,7 +352,7 @@
                                                     <div field="partBrandId" width="100" header="品牌" headerAlign="center"></div>
                                                     <div field="guestFullName" width="100" allowSort="true" header="供应商" headerAlign="center"></div>
                                                     <div field="storeLocation" width="100" header="仓位"></div>
-                                                    <div field="applyCarModel" width="100" allowSort="true" header="车型" headerAlign="center"></div>
+                                                    <div field="applyCarModel" width="100" allowSort="true" header="品牌车型" headerAlign="center"></div>
                                                     <div field="partTypeId" width="100" allowSort="true" header="类别" headerAlign="center"></div>
                                                     <div field="produceFactory" width="100" allowSort="true" header="生产厂家" headerAlign="center"></div>
                                                     <div field="detailRemark" width="100" allowSort="true" header="入库分配" headerAlign="center"></div>

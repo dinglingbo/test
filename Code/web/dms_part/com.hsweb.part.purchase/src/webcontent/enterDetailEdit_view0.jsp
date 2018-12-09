@@ -49,7 +49,7 @@
 				<td class="title"><label>品牌</label></td>
 				<td><input name="partBrand" class="nui-textbox" enabled="false"
 					width="100%" /></td>
-				<td class="title"><label>车型</label></td>
+				<td class="title"><label>品牌车型</label></td>
 				<td><input name="carType" class="nui-textbox width1"
 					enabled="false" width="100%" /></td>
 			</tr>

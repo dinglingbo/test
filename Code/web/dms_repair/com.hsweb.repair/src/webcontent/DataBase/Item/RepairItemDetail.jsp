@@ -152,7 +152,7 @@
 											width="100%" popupHeight="100%"/>
 								</td>
 								<td class="form_label">
-									<label>车型：</label>
+									<label>品牌车型：</label>
 								</td>
 								<td colspan="1">
 									<input class="nui-combobox" name="carModelId" id="carModelId"

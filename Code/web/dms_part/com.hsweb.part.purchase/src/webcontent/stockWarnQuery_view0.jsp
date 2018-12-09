@@ -61,7 +61,7 @@
                     <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="partName" width="100" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="100" headerAlign="center" header="车型"></div>
+                    <div allowSort="true" field="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="carTypeNameF" width="100" headerAlign="center" header="类型"></div>
                     <div allowSort="true" field="stockLocation" width="100" headerAlign="center" header="存入仓位"></div>
                     <div allowSort="true" datatype="float" field="suggestPrice" width="100" headerAlign="center" header="建议售价" align="right"></div>

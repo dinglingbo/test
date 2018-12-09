@@ -32,7 +32,7 @@
             </td>
             <td class="form_label"><%=I18nUtil.getMessage(request, "bps.bizform.Gender") %>:</td>
             <td colspan="1">
-              <input class="nui-dictcombobox" dictTypeId="gender" name="ooperator.gender"/>
+              <input class="nui-combobox" dictTypeId="gender" name="ooperator.gender"/>
             </td>
           </tr>
           <tr>

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单模板设置详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/addQuickBill.js?v=1.0.11"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/addQuickBill.js?v=1.0.12"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -107,17 +107,17 @@
         <table  style=" left:0;right:0;margin: 0 auto;width:100%"> 
             <tr>   
                 <td class="title required">模板名称:</td> 
-                <td class="" style="width:12%;"><input  class="nui-textbox" name="modelName" id="modelName" style="width:100%;"/></td>
+                <td class="" style="width:10%;"><input  class="nui-textbox" name="modelName" id="modelName" style="width:100%;"/></td>
                  <td class="title required">
                     <label>开单类型:</label>
                 </td>
-                <td class="" style="width:12%;">
+                <td class="" style="width:8%;">
                     <input class="nui-combobox" id="billTypeId" name="billTypeId" data="[{id:1,text:'综合'},{id:2,text:'洗美'},{id:3,text:'理赔'}]" width="100%" value="1"/>
                 </td>
                 <td class="title required">
                     <label>业务类型:</label>
                 </td>
-                <td class="" style="width:12%;">
+                <td class="" style="width:8%;">
                     <input name="serviceTypeId"
                         id="serviceTypeId"
                         class="nui-combobox width1"
@@ -130,8 +130,20 @@
                         valueFromSelect="true"
                         nullItemText="请选择..." style="width:100%;"/>
                 </td>
+                <td class="title" >
+                  <label>品牌：</label>
+	            </td>
+	            <td style="width:8%;">
+	                 <input class="nui-combobox"  id="carBrandId" name="carBrandId" allowInput="true" valueField="id" textField="name" onvaluechanged="onCarBrandChange"  />
+	            </td>
+	            <td class="title">
+	                  <label>车系：</label>
+	             </td>
+	             <td style="width:12%;">
+	                 <input class="nui-combobox"  id="carSeriesId" name="carSeriesId" allowInput="true" textField="name" valueField="id" width="100%"/>
+	             </td>
                 <td class="title">创建日期:</td> 
-                <td class="" style="width:12%;">
+                <td class="" style="width:8%;">
                     <input id="recordDate"
                     name="recordDate"
                     allowInput="false" format="yyyy-MM-dd"

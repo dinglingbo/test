@@ -67,6 +67,7 @@ $(document).ready(function(v)
         var rowIndex = e.rowIndex;
         
         switch (e.field) {
+
             case "storeId":
                 if(storehouseHash && storehouseHash[e.value])
                 {
@@ -324,6 +325,9 @@ function onDrawCell(e)
 {
     switch (e.field)
     {
+	    case "serviceId":
+			e.cellHtml ='<a href="##" onclick="edit()">'+e.value+'</a>';
+			break;
 	    case "partBrandId":
 	        if(partBrandIdHash && partBrandIdHash[e.value])
 	        {

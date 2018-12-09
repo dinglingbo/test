@@ -71,7 +71,7 @@
                            valueField="id"/>
                 </td>
                 <td class="form_label">
-                    <label>车型：</label>
+                    <label>品牌车型：</label>
                 </td>
                 <td>
                     <input class="nui-textbox" name="carModel"/>

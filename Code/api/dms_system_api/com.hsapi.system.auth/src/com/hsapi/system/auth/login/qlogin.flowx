@@ -12,7 +12,7 @@
         <process:parameter anyType="javax.servlet.http.HttpServletRequest" description="" historyStateLocation="client" isArray="false" name="req"/>
       </process:inputParameters>
     </sourceConnections>
-    <location x="60" y="134"/>
+    <location x="-15" y="134"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -26,7 +26,7 @@
     <process:returns/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="62" y="170"/>
+    <location x="-13" y="170"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>

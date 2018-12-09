@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.beanutils.BeanMap;
 
 import com.alibaba.fastjson.JSONObject;
+import com.eos.data.datacontext.IMapContextFactory;
+import com.eos.data.datacontext.ISessionMap;
 import com.eos.data.datacontext.UserObject;
 import com.eos.system.annotation.Bizlet;
 
@@ -416,6 +418,34 @@ public class Utils {
 		return map;
 
 	}
+	
+	/*
+	 * @Bizlet("")
+		public static void method() {
+		
+		IMapContextFactory contextFactory = com.primeton.ext.common.muo.MUODataContextHelper
+		.getMapContextFactory();
+		ISessionMap sessionMap = contextFactory.getSessionMap();
+		Object sessionRoot = sessionMap.getRootObject();
+		System.out.println(sessionRoot);
+		IRequestMap requestMap = contextFactory.getRequestMap();
+		Object requestRoot = requestMap.getRootObject();
+		System.out.println(requestRoot);
+		IApplicationMap applicationMap = contextFactory.getApplicationMap();
+		Object applicationRoot = applicationMap.getRootObject();
+		System.out.println(applicationRoot);
+		}
+	 * */
+	@Bizlet("")
+	public static String getSessionInfo() {
+		IMapContextFactory contextFactory = com.primeton.ext.common.muo.MUODataContextHelper
+				.getMapContextFactory();
+		ISessionMap sessionMap = contextFactory.getSessionMap();
+		Object sessionRoot = sessionMap.getRootObject();
+		System.out.println(sessionRoot);
+		
+		return "0";
+	}
 
 	/*
 	 * @Bizlet("") public static String obj2json(UserObject obj) { try { String
@@ -447,7 +477,11 @@ public class Utils {
 
 		Float retailPrice = 20603.0f;
 		System.out.println(Math.round(retailPrice * 1.16 * 100) / 100.0);
+		
+		getSessionInfo();
 
 	}
+	
+	
 
 }

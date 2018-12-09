@@ -82,6 +82,7 @@
 							textField="text" valueField="value"
 							data="[{value:'0',text:'启用',},{value:'1',text:'禁用'}]" value="0">
 						</div>
+					</td>
 				</tr>
 				<tr>
 					<td class="form_label" id="isSharex" align="right">是否共享:</td>

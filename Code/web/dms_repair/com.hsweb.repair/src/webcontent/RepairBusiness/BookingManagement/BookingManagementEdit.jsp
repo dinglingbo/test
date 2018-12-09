@@ -118,7 +118,7 @@
                             <input class="nui-combobox" name="prebookCategory" id="prebookCategory" textField="name" valueField="id" />
                         </td>
 
-                                                <td class="form_label">
+                         <td class="form_label">
                             <label>品牌：</label>
                         </td>
                         <td>

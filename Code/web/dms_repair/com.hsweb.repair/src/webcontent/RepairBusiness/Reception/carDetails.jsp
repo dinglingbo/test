@@ -111,7 +111,7 @@
                     </tr>
                     <tr>
 
-                        <td style="width:80px;"align="right">品牌/车型：</td>
+                        <td style="width:80px;"align="right">品牌车型：</td>
                         <td style="width:150px;">
                             <input class="nui-textbox" id="carModel" name="carModel" width="100%" allowInput="false"/>        
                         </td>

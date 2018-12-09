@@ -231,6 +231,14 @@ $(document).ready(function ()
         	advancedSearchWin.hide();
 	   };
      };
+     mainGrid.on("rowclick",function(e){
+     	var record = e.record;
+     	if(record.status>0){
+     		nui.get("deletBtn").setVisible(false);
+     	}else{
+     		nui.get("deletBtn").setVisible(true);
+     	}
+     });
    /* var statusList = "0,1,2,3";
     var p = {statusList:statusList};
     doSearch(p);*/

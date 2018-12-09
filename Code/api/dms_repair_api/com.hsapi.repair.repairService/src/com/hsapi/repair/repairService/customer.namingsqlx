@@ -163,7 +163,8 @@
 		    d.birthday_type as birthdayType,
             d.birthday,
             d.sex,
-            d.id_no as idNo
+            d.id_no as idNo,
+            d.wechatOpenId wechatOpenId
 		FROM
 			rpb_car a
 			inner join wb_common.com_guest b on (a.guest_id = b.id)

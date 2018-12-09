@@ -1161,6 +1161,8 @@
 	        a.service_type_id serviceTypeId,
 	        a.model_name modelName,
 	        a.remark remark,
+	        a.car_series_id carSeriesId,
+	        a.car_brand_id carBrandId,
 	        a.recorder recorder,
 	        a.record_date recordDate,
 	        a.modifier modifier,

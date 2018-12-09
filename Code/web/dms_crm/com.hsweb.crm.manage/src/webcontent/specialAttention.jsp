@@ -54,7 +54,7 @@
 										<div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
 										<div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
 										<div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
-										<div field="carModel" headerAlign="center" allowSort="true" width="100px">品牌/车型</div>
+										<div field="carModel" headerAlign="center" allowSort="true" width="100px">品牌车型</div>
 										<div field="annualInspectionCompName" headerAlign="center" allowSort="true" width="100px">保险公司</div>
 										<div field="annualStatus" headerAlign="center" allowSort="true" width="60px">状态</div>
 										<div field="annualInspectionDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="50px">
@@ -83,7 +83,7 @@
 									<div field="carId" headerAlign="center" allowSort="true" visible="false">carId</div>
 									<div field="guestId" headerAlign="center" allowSort="true" visible="false">guestId</div>
 									<div field="carNo" headerAlign="center" allowSort="true" width="100px">车牌号</div>
-									<div field="carModel" headerAlign="center" allowSort="true" width="100px">品牌/车型</div>
+									<div field="carModel" headerAlign="center" allowSort="true" width="100px">品牌车型</div>
 									<div field="insureCompName" headerAlign="center" allowSort="true" width="100px">保险公司</div>
 									<div field="insureStatus" headerAlign="center" allowSort="true" width="60px">状态</div>
 									<div field="insureDueDate" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort="true" width="50px">

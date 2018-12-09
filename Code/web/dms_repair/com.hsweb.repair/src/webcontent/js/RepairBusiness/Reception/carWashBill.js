@@ -612,7 +612,9 @@ $(document).ready(function ()
 	    // if((keyCode==113))  {  
 		// 	addMorePart();
 		// } 
-
+	    /*if((keyCode==27))  {  //ESC
+        	cardTimesGrid.hide();
+	   };*/
 	}
 });
 

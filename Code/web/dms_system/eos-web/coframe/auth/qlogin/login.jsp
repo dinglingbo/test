@@ -277,33 +277,35 @@ a {
 	<form method="post"	name="registerForm" onsubmit="return register();" action="">
 	<div class="login" id="registerBox">
 		<div class="title">注册</div>	
-		<label>
+		<label style="width:100%">
 			<p ><span id="errorP" style="font-size:15px;color:red"></span></p>
 			<input type="text" id="registercompname" name="registercompname" value="" placeholder="请输入公司名" maxlength="11" />
 		</label>
-		<label>
+		<label style="width:100%">
 			<input type="text" id="registername" name="registername" value="" placeholder="请输入用户名" maxlength="20" />
 		</label>
-		<label>
+		<label style="width:100%">
 			<input type="text" class="number" id="phone" name="phone" value="" placeholder="手机号码" maxlength="11" />
 		</label>
 		
-		<label>
+		<label style="width:100%">
 			<input class="min" type="text" id="authcode" name="authcode" value="" placeholder="请输入验证码" maxlength="11" />
 			<a href="javascript:sendMsg();" id="getKeyWorld" text-decoration="none";><span class="blue" >获取验证码</span></a>
 		</label>
 		
-		<label>
+		<label style="width:100%">
 			<font size="2">注册即同意</font><span class="blue">
 					<a target="_blank" href="<%=privacyUrl%>"><span class="blue" id="privacy"  >隐私政策</span></a>&nbsp;<span style="color:#999">/</span>
 					<a  target="_blank" href="<%=protocolUrl%>"><span class="blue"  id="protocol" >用户协议</span></a>
 			</span>
 			
 		</label>
-		<label>
+		<label style="width:100%">
 			<div class="sing"><input id="registered" type="submit" value="注册" class="button" /></div>
 		</label>
-		<div class="you" >已经有帐号？  <span class="blue" id="login">登录</span></div>
+		<div class="app">
+			<div class="you" >已经有帐号？  <span class="blue" id="login">登录</span></div>
+		</div>
 	</div>
 </form>	
 <form method="post"	name="loginForm"  action="login.jsp">
@@ -321,20 +323,20 @@ a {
 				<span>为了保障您顺畅的使用，建议使用谷歌/火孤/360浏览器</span>
 			</div>
 		</div>
-		<label>
+		<label style="width:100%">
 		<p  class="errorC"><span id="error" style="font-size:15px;color:red"></span></p>
 			<input type="text" id="userId" name="userId" value="" class="accountNo" placeholder="用户名" maxlength="11" />
 		</label>
-		<label>
+		<label style="width:100%">
 			
 			<input type="password" id="password" name="password" value="" class="password_val" placeholder="密码" maxlength="20" />
 		</label>
-		<label>
+		<label style="width:100%">
 			
-		   	 <input type="text" class="yzm" name="code"  id="code" placeholder="验证码" maxlength="9" />
-		  	<a href="javascript:reload();"> <img src="../img.jsp" "></a>
+		   	 <input type="text" class="yzm" name="code"  id="code" style="width:60%" placeholder="验证码" maxlength="9" />
+		  	 <span><img id="loginImgVeri" src="../img.jsp" style="vertical-align:middle;"></span><a href="javascript:reload();"> 换一张</a>
 		</label>
-		<label>
+		<label style="width:100%">
 			<div  class="sing" id="loginJump"><input  type="submit" value="登录" class="button" /></div>
 		</label>
 <!-- 		<label>
@@ -470,11 +472,9 @@ function openRegister() {
 	$("#loginBox").hide();
 }
 function maxImg() {
-	console.log(2314);
 	$(".max_img").show();
 }
 function weixiMmaxImg() {
-	console.log(2314);
 	$(".weixin_max_img").show();
 }
 		  
@@ -624,7 +624,7 @@ function loginTest(user,pass) {
 	}
 
 	
-	window.location.href="<%=url%>?userId="+loginData.loginName+"&&password="+loginData.password;
+	window.location.href="<%=url%>?userId="+loginData.loginName+"&password="+loginData.password;
 	
 	 
 }
@@ -657,7 +657,8 @@ function login(){
 
 
 	 function reload(){
-	 	history.go(0);
+	 	//history.go(0);
+	 	document.getElementById("loginImgVeri").src="../img.jsp?rnd=" + Math.random();
 	 }
 
 

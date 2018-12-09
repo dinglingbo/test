@@ -319,7 +319,7 @@ a {
         if(row){ 
             var item={};
             item.id = "checkDetail";
-            item.text = "配件领料详情";
+            item.text = "配件出库详情";
             item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/repairOutDetail.jsp";
             item.iconCls = "fa fa-file-text";
             //window.parent.activeTab(item);

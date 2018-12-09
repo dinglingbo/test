@@ -88,11 +88,11 @@
 
                             <span class="separator"></span>
                             <label>车牌号：</label>
-                            <input class="nui-textbox" id="carNo" name="carNo" onenter="doSearch()" width="120px"/>
+                            <input class="nui-textbox" id="carNo" name="carNo" onenter="doSearch()" width="80px"/>
                             <label>手机号：</label>
                             <input class="nui-textbox" id="contactorTel" name="contactorTel" onenter="doSearch()" width="100px"/>
                             <label >服务顾问：</label>
-                            <input class="nui-combobox" id="mtAdvisorList" name="mtAdvisorList" showNullItem="true" value="" width="100px" textField="empName" valueField="empId" onvalueChanged="doSearch()""
+                            <input class="nui-combobox" id="mtAdvisorList" name="mtAdvisorList" showNullItem="true" value="" width="80px" textField="empName" valueField="empId" onvalueChanged="doSearch()""
                             />
                             <label class="form_label" width="140px"><span id="setDate" >预约创建日期</span>&nbsp;从：</label>
 	                        <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>

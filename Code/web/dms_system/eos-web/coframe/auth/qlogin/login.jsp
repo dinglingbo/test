@@ -657,7 +657,6 @@ function login(){
 
 
 	 function reload(){
-	 	//history.go(0);
 	 	document.getElementById("loginImgVeri").src="../img.jsp?rnd=" + Math.random();
 	 }
 

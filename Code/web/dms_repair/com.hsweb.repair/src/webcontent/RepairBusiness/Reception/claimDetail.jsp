@@ -197,7 +197,7 @@
                     <span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp;
                     <label style="font-family:Verdana;">客户名称:</label>
                     <label id="guestInfo" style="font-family:Verdana;"><a id="guestNameEl" href="javascript:checkGuest()"></a></label>&nbsp;
-                    <label style="font-family:Verdana;">客户手机:</label>
+                    <label style="font-family:Verdana;">手机:</label>
                     <label id="guestTelEl" style="font-family:Verdana;"></label>&nbsp;
                 </td>
                 <td>

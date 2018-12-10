@@ -2862,7 +2862,9 @@ function choosePackage(){
       	}
        saveNoshowMsg();
     }
-    doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, function(text){
+    var param = {};
+    param.carModelIdLy = main.carModelIdLy;  
+    doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
         main = billForm.getData();
         var p1 = { 
     		interType: "package",

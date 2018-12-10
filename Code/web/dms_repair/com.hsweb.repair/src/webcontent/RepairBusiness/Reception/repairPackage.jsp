@@ -71,12 +71,12 @@
 </div>
 <div style="text-align:center;">
     <span id="carHealthEl" >
-        <a href="javascript:choosePackage()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择本地套餐</a>
+        <a href="javascript:choosePackage()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择维修套餐</a>
     </span>
-    <span>&nbsp;</span>
+    <!--<span>&nbsp;</span>
     <span id="carHealthEl" >
         <a href="javascript:showBasicData('pkg')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择标准套餐</a>
-    </span>
+    </span>-->
 </div>
 <div id="packageDetailGridForm" style="display:none;">
     <div id="packageDetailGrid" class="nui-datagrid"

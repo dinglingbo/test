@@ -2792,8 +2792,10 @@ function choosePackage(){
         showMsg("工单已结算,不能添加套餐!","W");
         return;
     }
-                                                       
-    doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, function(text){
+
+    var param = {};
+    param.carModelIdLy = main.carModelIdLy;                                          
+    doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
         main = billForm.getData();
         var p1 = { 
     		interType: "package",

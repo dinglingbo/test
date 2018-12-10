@@ -38,19 +38,19 @@
 		<div id="form" class="nui-form" style="width:100%; height:100%;">
 	        <table style="width:90%;">
 		        <tr>
-					<td  style="padding-left:25px">标准名称:<input  class="nui-textbox" id="namestd" name="namestd" type="text" width="75%"></td>
+					<td  style="padding-left:25px">标准名称:<input class="nui-textbox" id="namestd" name="namestd" type="text" width="75%"></td>
 		        </tr>
 		         <tr>
 					<td style="padding-left:50px">别名:<input  class="nui-textbox" id="namecn" name="namecn" type="text" width="80%"></td>
 		        </tr>
 		        <tr>
-					<td>配件一级分类:<input  popupHeight="90%" class="nui-combobox" id="cartypef" name="cartypef" valueField="" textField="" data="" width="70%"></td>
+					<td>配件一级分类:<input datatype="int"   popupHeight="90%" class="nui-combobox" onvaluechanged="CarTypeIdFChange" id="cartypef" name="cartypef" valueField="id" textField="name" data="carTypeIdF" width="70%"></td>
 		        </tr>
 		        <tr>
-					<td>配件二级分类:<input  popupHeight="90%" class="nui-combobox" id="cartypes" name="cartypes" valueField="" textField="" data="" width="70%"></td>
+					<td>配件二级分类:<input datatype="int"   popupHeight="90%" class="nui-combobox" onvaluechanged="CarTypeIdSChange"id="cartypes" name="cartypes" valueField="id" textField="name" data="carTypeIdS" width="70%"></td>
 		        </tr>
 		        <tr>
-					<td>配件三级分类:<input popupHeight="90%" class="nui-combobox" id="cartypet" name="cartypet" valueField="" textField="" data="" width="70%"></td>				
+					<td>配件三级分类:<input datatype="int"  popupHeight="90%" class="nui-combobox" id="cartypet" name="cartypet" valueField="id" textField="name" data="carTypeIdT" width="70%"></td>				
 		        </tr>
 		        <tr>
 					<td style="padding-left:25px">补充说明:<input  class="nui-textbox" id="direction" name="direction" type="text" width="75%"></td>				
@@ -66,16 +66,31 @@
     	nui.parse();
     	var form=null;
     	var partTypeList=[];
+    	var carTypeIdF=[];
+    	var carTypeIdS=[];
+    	var carTypeIdT=[];
     	var typeHash={};
+    	var partUrl = apiPath + partApi + "/";
 		$(document).ready(function(){
     		form = new nui.Form("#form");
     		nui.get('namestd').focus();
     		getAllPartType(function(data) {
 		        partTypeList = data.partTypes;
+		        for(var i=0;i<partTypeList.length;i++){
+			        if(partTypeList[i].typelevel==1){
+			        	carTypeIdF.push(partTypeList[i]);
+			        }
+// 			        if(partTypeList[i].typelevel==2){
+// 			        	carTypeIdS.push(partTypeList[i]);
+// 			        }
+// 			        if(partTypeList[i].typelevel==3){
+// 			        	carTypeIdT.push(partTypeList[i]);
+// 			        }
+		        }
+		        
 		        partTypeList.forEach(function(v) {
 		            typeHash[v.id] = v;
 		        });
-		        console.log(typeHash);
 		    });	
 		     document.onkeyup = function(event) {
 		        var e = event || window.event;
@@ -95,18 +110,60 @@
     	function SetData(params){
     		nui.get('namestd').setValue(params.namestd);
     		nui.get('namestd').focus();
+    		nui.get('cartypef').setData(carTypeIdF);
+    		nui.get('cartypes').setData(carTypeIdS);
+    		nui.get('cartypet').setData(carTypeIdT);
     	}
     	function CarTypeIdFChange(e){
     	 	var value=e.value;
     	 	nui.get('cartypes').setData([]);
     	 	nui.get('cartypet').setData([]);
-    	 	
+    	 	for(var i=0;i<partTypeList.length;i++){
+    	 		if(partTypeList[i].parentId==value){
+    	 			carTypeIdS.push(partTypeList[i]);
+    	 		}
+    	 	}
+    	 	nui.get('cartypes').setData(carTypeIdS);
     	}
     	
     	function CarTypeIdSChange(e){
     	 	var value=e.value;
     	 	nui.get('cartypet').setData([]);
+    	 	for(var i=0;i<partTypeList.length;i++){
+    	 		if(partTypeList[i].parentId==value){
+    	 			carTypeIdT.push(partTypeList[i]);
+    	 		}
+    	 	}
+    	 	nui.get('cartypet').setData(carTypeIdT);
     	 	
+    	}
+    	function onOk(){
+    		var data=form.getData();
+    		data.name=data.namestd;
+    		nui.mask({
+	            el: document.body,
+	            cls: 'mini-mask-loading',
+	            html: '数据处理中...'
+	        });
+            nui.ajax({
+            	url:partUrl + "com.hsapi.part.common.svr.savePartName.biz.ext",
+            	type:"post",
+            	data:JSON.stringify({
+						data : data,					
+						token: token
+					}),
+            	success:function(text){
+            		var errCode = text.errCode;
+            		nui.unmask(document.body);
+            		if(errCode == "S"){
+            			showMsg(text.errMsg||'保存成功!','S');
+            			CloseWindow("ok");
+            		}else{
+            			showMsg(text.errMsg ||'保存失败!','W');
+            		}
+            	}
+            });
+        
     	}
     </script>
 </body>

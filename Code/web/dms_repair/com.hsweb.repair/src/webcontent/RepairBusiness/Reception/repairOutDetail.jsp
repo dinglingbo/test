@@ -12,7 +12,7 @@
 <head> 
     <title>维修出库详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.35"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.43"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -93,7 +93,7 @@
                 <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
                  <li class="separator"></li>
-                <a class="nui-button" onclick="onPrint(5)" plain="true" style="align:right">打印领料单</a>
+                <a class="nui-button" iconCls="" onclick="onPrint(5)" plain="true" style="align:right"><span class="fa fa-print fa-lg"></span>&nbsp;打印领料单</a>
                 <a class="nui-button" onclick="" plain="true" style="align:right"><span class="fa fa-check fa-lg"></span>&nbsp;一键领料</a>
             </td>     
             <td style="text-align:left;">
@@ -172,7 +172,11 @@
             </td>
             <td class="tbtext">预计交车:</td>
             <td class="tbCtrl">
-                <input class="nui-datepicker tabwidth" name="planFinishDate" id="planFinishDate" style="width:100%" allowInput="false"/>
+                <input class="nui-datepicker tabwidth" name="planFinishDate" dateFormat="yyyy-MM-dd HH:mm" format="yyyy-MM-dd HH:mm" id="planFinishDate" style="width:100%" allowInput="false"/>
+            </td>
+            <td class="tbtext">距离交车时间:</td>
+            <td class="tbCtrl">
+                <input class="nui-textbox tabwidth" name="timeDaff"  id="timeDaff" style="width:100%" allowInput="false"/>
             </td>
             <td class="tbtext">服务顾问:</td>
             <td class="tbCtrl">

@@ -13,7 +13,6 @@ pageEncoding="UTF-8" session="false" %>
       <table style="width:100%;">
         <tr>
             <td>
-
                     <label style="font-family:Verdana;">快速查询：</label>
                     <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
                     <ul id="popupMenuDate" class="nui-menu" style="display:none;">
@@ -97,7 +96,7 @@ pageEncoding="UTF-8" session="false" %>
             <div property="columns">
                 <div field="compComeTimes" name="compComeTimes" width="80" headerAlign="center" header="分店来厂次数"></div>
                 <div field="chainComeTimes" name="chainComeTimes" width="80" headerAlign="center" header="连锁来厂次数"></div>
-                <div field="carBrandId" name="carBrandId" width="80" headerAlign="center" header="品牌"></div>
+            
                 <div field="carModel" name="carModel" width="280" headerAlign="center" header="品牌车型"></div>
                 <div field="engineNo" name="engineNo" width="130" headerAlign="center" header="发动机号"></div>
                 <div field="vin" name="vin" width="180" headerAlign="center" header="车架号(VIN)"></div>

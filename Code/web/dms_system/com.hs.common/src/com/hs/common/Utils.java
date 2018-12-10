@@ -3,7 +3,9 @@
  */
 package com.hs.common;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -475,11 +477,26 @@ public class Utils {
 		 * System.out.println(Utils.obj2json(map));
 		 */
 
-		Float retailPrice = 20603.0f;
-		System.out.println(Math.round(retailPrice * 1.16 * 100) / 100.0);
+		//Float retailPrice = 20603.0f;
+		//System.out.println(Math.round(retailPrice * 1.16 * 100) / 100.0);
 		
-		getSessionInfo();
+		//getSessionInfo();
+		
+		SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat format2 = new SimpleDateFormat("HHmmss");
+		Date date = new Date();
+		System.out.println(format1.format(date));
 
+		System.out.println(format2.format(date));
+		
+		JSONObject jsonObj = new JSONObject();
+		Map <String, String> ingredients = new HashMap <String, String>();
+		ingredients.put("apples", "3kg");
+		ingredients.put("sugar", "1kg");
+		ingredients.put("pastry", "2.4kg");
+		ingredients.put("bestEaten", "outdoors");
+		jsonObj.put("ingredients", ingredients);
+		System.out.println(jsonObj);
 	}
 	
 	

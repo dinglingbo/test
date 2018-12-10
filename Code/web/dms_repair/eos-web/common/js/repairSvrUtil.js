@@ -446,7 +446,6 @@ function doSelectPart(itemId,dock, dodelck, docck, callback) {
 
 function doSelectItem(dock, dodelck, docck, callback) {
 	nui.open({
-		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemMain.flow?token=" + token,
 		title : "维修项目",
 		width : 1000,
@@ -472,9 +471,8 @@ function doSelectItem(dock, dodelck, docck, callback) {
 	});
 }
 
-function doSelectPackage(dock, dodelck, docck, callback) {
+function doSelectPackage(dock, dodelck, docck, params, callback) {
 	nui.open({
-		targetWindow : window,
 		url : webPath + contextPath + "/repair/DataBase/Card/packageList.jsp?token=" + token,
 		title : "套餐项目",
 		width : 1000,
@@ -485,10 +483,10 @@ function doSelectPackage(dock, dodelck, docck, callback) {
 			var iframe = this.getIFrameEl();
 			var list = [];
 			var params = {
-				list : list
+				carModelIdLy : params.carModelIdLy
 			};
 
-            iframe.contentWindow.setViewData(dock, dodelck, docck);
+            iframe.contentWindow.setViewData(dock, dodelck, docck, params);
 		},
 		ondestroy : function(action) {
             var iframe = this.getIFrameEl();

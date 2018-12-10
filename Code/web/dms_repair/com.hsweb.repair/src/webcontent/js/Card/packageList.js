@@ -18,6 +18,7 @@ var tree =null;
 var packageGrid = null;
 var treeHash={};
 var isChooseClose = 1;//默认选择后就关闭窗体
+var carModelIdLy = null;
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
@@ -48,10 +49,12 @@ $(document).ready(function(v) {
 	typeGrid.on("rowclick",function(e){
 		grid.show();
 		packageGrid.hide();
+		nui.get("lookInfo").show();
 	});
 	typeGrid2.on("rowclick",function(e){
 		grid.hide();
 		packageGrid.show();
+		nui.get("lookInfo").hide();
 	});
 	typeGrid2.on("rowdblclick",function(e){
 		var row = e.row;
@@ -77,9 +80,15 @@ $(document).ready(function(v) {
         }
     });
 	
-	//基本套餐
+
+	packageGrid.on("rowdblclick",function(e){
+		
+		loadStdPKG();
+	});
+	//标准套餐类型
     typeGrid2.load({
     	noShowParent:"1",
+    	type: "01",
         token: token
     });
 	nui.get("pkgName").focus();
@@ -92,6 +101,17 @@ $(document).ready(function(v) {
         }
       };
 });
+
+function loadStdPKG() {
+	var p = {};
+	p.carModelId = carModelIdLy;
+	p.name = nui.get('pkgName').getValue();
+	p.packageName = nui.get('pkgName').getValue();
+	packageGrid.load({
+		p:p,
+		token:token
+	});
+}
 
 function getDataAll(){
 	var row = grid.getSelecteds();
@@ -227,12 +247,13 @@ function setData(data) {
 	nui.get("selectBtn").show();
 }
 
-function setViewData(ck, delck, cck){
+function setViewData(ck, delck, cck, params){
 	
 	isChooseClose = 0;
 	callback = ck;
 	delcallback = delck;
 	ckcallback = cck;
+	carModelIdLy = params.carModelIdLy||"";
 	grid.setWidth("70%");
 	tempGrid.setStyle("display:inline");
 	document.getElementById("splitDiv").style.display="";

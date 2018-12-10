@@ -11,7 +11,7 @@
   --%>
 <head>
 <title>套餐操作</title>
-<script src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.3.7"></script>
+<script src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.3.9"></script>
 
 </head>
 
@@ -46,7 +46,7 @@
 							style="width: 100%; height: 50%;float:left;" multiSelect="false" >
 							<div property="columns">
 								<div field="name" headerAlign="center" allowSort="true" allowSort="false"
-									visible="true">基本套餐类型</div>
+									visible="true">标准套餐类型</div>
 						    </div> 
 				         </div>
 					</div>
@@ -71,7 +71,7 @@
 												class="fa fa-search fa-lg"></span>&nbsp; 查询
 										</a> <a id="selectBtn" class="nui-button" onclick="edit()" plain="true"><span
 												class="fa fa-check fa-lg"></span>&nbsp;选择 </a>
-																		<a class="nui-button" onclick="look" plain="true"> <span
+																		<a class="nui-button" id="lookInfo" onclick="look" plain="true"> <span
 												class="fa fa-search fa-lg"></span>&nbsp; 查看详细信息
 										</a>
 					
@@ -84,7 +84,7 @@
 						<div class="nui-fit">
 							<div id="datagrid1" dataField="package1" class="nui-datagrid"
 								pageSize="20" onDrawCell="onDrawCell"
-								onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true"
+								onrowclick="" allowSortColumn="true"
 								style="width: 70%; height: 100%;float:left;"multiSelect="false" >
 								<div property="columns">
 									<div type="indexcolumn">序号</div>

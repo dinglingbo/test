@@ -2107,6 +2107,7 @@ function closePkgWorkersSetWin(){
 
 //施工员
 function setPkgWorkers(){
+	nui.get("combobox4").setText("");
     var main =  billForm.getData();
     if(!main.id){
         return;
@@ -2138,6 +2139,10 @@ function surePkgWorkersSetWin(){
             var isSettle = data.isSettle||0;
             if(isSettle == 1){
                 showMsg("工单已结算,不能修改!","W");
+                return;
+            }
+            if(workerIdsBat=="" || workerIdsBat==null){
+            	showMsg("请选择施工员!","W");
                 return;
             }
             serviceId = data.id||0;
@@ -2187,8 +2192,6 @@ function surePkgWorkersSetWin(){
 function closePkgSaleMansSetWin(){
 	advancedPkgSaleMansSetWin.hide();
 }
-
-
 function setPkgSaleMans(){
     var main =  billForm.getData();
     if(!main.id){
@@ -2462,6 +2465,7 @@ function closeItemWorkersSetWin(){
 }
 
 function setItemWorkers(){
+	nui.get("combobox4").setText("");
     var main =  billForm.getData();
     if(!main.id){
         return;
@@ -2495,6 +2499,10 @@ function sureItemWorkersSetWin(){
                 showMsg("工单已结算,不能修改!","W");
                 return;
             }
+            if(workerIdsBat=="" || workerIdsBat==null){
+            	showMsg("请选择施工员!","W");
+                return;
+            }
             serviceId = data.id||0;
             nui.mask({
                 el: document.body,
@@ -2502,24 +2510,25 @@ function sureItemWorkersSetWin(){
                 html: '处理中...'
             });
             var params = {
-                data:{
-                    serviceId:data.id||0,
-                    workerIdsBat:workerIdsBat,
-                    workerNamesBat:workerNamesBat
-                }
-            };
-            svrSetItemWorkersBatch(params, function(data){
+                    data:{
+                        serviceId:data.id||0,
+                        workerIds:workerIdsBat,
+                        workers:workerNamesBat,
+                        type:"item"
+                    }
+                };
+            svrSetWorkersBatch(params, function(data){
                 data = data||{};
                 var errCode = data.errCode||"";
                 var errMsg = data.errMsg||"";
                 if(errCode == 'S'){
-                    var p1 = {
-                        interType: "package",
+                    var p2 = {
+                        interType: "item",
                         data:{
                             serviceId: serviceId||0
                         }
                     }
-                    var p2 = {
+                    var p1 = {
                     }
                     var p3 = {
                     }
@@ -2536,7 +2545,6 @@ function sureItemWorkersSetWin(){
         }
     } 
 }
-
 
 function onworkerChanged(e){
     var obj = e.sender;

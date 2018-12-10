@@ -31,20 +31,20 @@ $(document).ready(function(v){
 function init() {
 	
 	//品牌
-    initCarBrand("carBrandId", function () {
-        var data = nui.get("carBrandId").getData();
-        data.forEach(function (v) {
-            carBrandHash[v.id] = v;
-        });
-    });
+//    initCarBrand("carBrandId", function () {
+//        var data = nui.get("carBrandId").getData();
+//        data.forEach(function (v) {
+//            carBrandHash[v.id] = v;
+//        });
+//    });
 
-    initCarSeries("carSeriesId", "", function () {
-        var data = nui.get("carSeriesId").getData();
-        data.forEach(function (v) {
-        	//车系信息
-            carSeriesHash[v.id] = v;
-        });
-    });
+//    initCarSeries("carSeriesId", "", function () {
+//        var data = nui.get("carSeriesId").getData();
+//        data.forEach(function (v) {
+//        	//车系信息
+//            carSeriesHash[v.id] = v;
+//        });
+//    });
 
     //服务顾问
     initMember("mtAdvisorId", function () {
@@ -81,6 +81,7 @@ function onenterSelect(e){
 	        main.carSeriesId = v.carSeriesId;
 	        main.contactorId = v.contactorId;
 	        main.contactorTel = v.mobile;
+	        main.carModel = v.carModel;
 	        var params = {};
 	        params.data = main;
 	        SetData(params);
@@ -135,14 +136,14 @@ function SetData(params) {
     basicInfoForm = new nui.Form("#basicInfoForm");
     basicInfoForm.setData(params.data);
 
-    if(params.data.carBrandId){
-        initCarSeries("carSeriesId", params.data.carBrandId, function () {
-            var data = nui.get("carSeriesId").getData();
-            data.forEach(function (v) {
-                carSeriesHash[v.id] = v;
-            });
-        });
-    }
+//    if(params.data.carBrandId){
+//        initCarSeries("carSeriesId", params.data.carBrandId, function () {
+//            var data = nui.get("carSeriesId").getData();
+//            data.forEach(function (v) {
+//                carSeriesHash[v.id] = v;
+//            });
+//        });
+//    }
     
     //预约时间处理
     var predictComeDate = params.data.predictComeDate;
@@ -258,6 +259,7 @@ function selectCustomer() {
         main.carId = v.carId;
         main.carNo = v.carNo;
         /*main.carVin = v.vin;*/
+        main.carModel = v.carModel;
         main.carBrandId = v.carBrandId;
         main.carSeriesId = v.carSeriesId;
         main.contactorId = v.contactorId;

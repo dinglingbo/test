@@ -286,24 +286,6 @@ function svrSetPkgRateBatch(params, callback, unmaskcall){
 	});
 }
 
-//套餐销售员
-var svrSetPkgSaleMansBatchUrl = window._rootRepairUrl + "";
-function svrSetPkgSaleMansBatch(params, callback, unmaskcall){
-    var data = params.data||{};
-    doPost({
-		url : svrSetPkgSaleMansBatchUrl,
-		data : data,
-		success : function(data) {
-			callback && callback(data);
-			unmaskcall && unmaskcall(null);
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR.responseText);
-			unmaskcall && unmaskcall(null);
-		}
-	});
-}
-
 //批量设置施工员
 var svrSetPkgWorkersBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setItemWorkersBatch.biz.ext";
 function svrSetWorkersBatch(params, callback, unmaskcall){
@@ -322,6 +304,23 @@ function svrSetWorkersBatch(params, callback, unmaskcall){
 	});
 }
 
+//套餐销售员
+var svrSetPkgSaleMansBatchUrl = window._rootRepairUrl + "";
+function svrSetPkgSaleMansBatch(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrSetPkgSaleMansBatchUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
 
 //批量设置工时或是配件优惠率
 var svrSetItemPartRateBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setItemPartRateBatch.biz.ext";
@@ -447,7 +446,6 @@ function doSelectPart(itemId,dock, dodelck, docck, callback) {
 
 function doSelectItem(dock, dodelck, docck, callback) {
 	nui.open({
-		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemMain.flow?token=" + token,
 		title : "维修项目",
 		width : 1000,
@@ -473,9 +471,8 @@ function doSelectItem(dock, dodelck, docck, callback) {
 	});
 }
 
-function doSelectPackage(dock, dodelck, docck, callback) {
+function doSelectPackage(dock, dodelck, docck, params, callback) {
 	nui.open({
-		targetWindow : window,
 		url : webPath + contextPath + "/repair/DataBase/Card/packageList.jsp?token=" + token,
 		title : "套餐项目",
 		width : 1000,
@@ -486,10 +483,10 @@ function doSelectPackage(dock, dodelck, docck, callback) {
 			var iframe = this.getIFrameEl();
 			var list = [];
 			var params = {
-				list : list
+				carModelIdLy : params.carModelIdLy
 			};
 
-            iframe.contentWindow.setViewData(dock, dodelck, docck);
+            iframe.contentWindow.setViewData(dock, dodelck, docck, params);
 		},
 		ondestroy : function(action) {
             var iframe = this.getIFrameEl();

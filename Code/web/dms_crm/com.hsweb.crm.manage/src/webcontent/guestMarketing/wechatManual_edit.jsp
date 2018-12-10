@@ -608,7 +608,7 @@ $(data.rows).each(function(k,v) {
   '<br><span style=";width: 7rem;display: inline-block;">库存：'+v.stock+'</span>' +
   '<span style="">有效天数：'+v.expire_date+'</span></div><div class="range-item" style="margin-top: 10px;">' +
   '优惠说明：'+v.offer_desc+'</div><div class="range-item">适用说明：'+v.suitable_desc+'</div></div>\n' +
-  '</div><span id="" class="check"></span></div></div>'
+  '</div><span id="" class="check"></span></div></div>';
 });
 
 
@@ -624,7 +624,7 @@ $(data.rows).each(function(k,v) {
   '<br><span style=";width: 7rem;display: inline-block;">库存：'+v.stock+'</span>' +
   '<span style="">有效天数：'+v.expire_date+'</span></div><div class="range-item" style="margin-top: 10px;">' +
   '优惠说明：'+v.offer_desc+'</div><div class="range-item">适用说明：'+v.suitable_desc+'</div></div>\n' +
-  '</div><span id="" class="check"></span></div></div>'
+  '</div><span id="" class="check"></span></div></div>';
 });
 $("#newslist .container").prepend(list);
 

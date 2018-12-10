@@ -49,20 +49,20 @@ $(document).ready(function (v) {
 });
 
 function init() {
-    initCarBrand("carBrandList", function () {
-        var data = nui.get("carBrandList").getData();
-        data.forEach(function (v) {
-            carBrandHash[v.id] = v;
-        });
-    });
-
-    
-    initCarSeries("carSeriesList", "", function () {
-        var data = nui.get("carSeriesList").getData();
-        data.forEach(function (v) {
-            carSeriesHash[v.id] = v;
-        });
-    });
+//    initCarBrand("carBrandList", function () {
+//        var data = nui.get("carBrandList").getData();
+//        data.forEach(function (v) {
+//            carBrandHash[v.id] = v;
+//        });
+//    });
+//
+//    
+//    initCarSeries("carSeriesList", "", function () {
+//        var data = nui.get("carSeriesList").getData();
+//        data.forEach(function (v) {
+//            carSeriesHash[v.id] = v;
+//        });
+//    });
 
     initMember("mtAdvisorList", function () {
         var data = nui.get("mtAdvisorList").getData();

@@ -12,7 +12,7 @@
         <select id="queryVisitMainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
             	SELECT
 			a.id AS id,
-			a.guest_id AS guestId,
+			a.guest_id AS guestId, 
 			a.service_code AS serviceCode,
 			a.enter_date AS enterDate,
 			c.full_name AS guestFullName,

@@ -3,6 +3,7 @@
  */
 var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryPackage.biz.ext";
+var typeGrid2Url = apiPath + repairApi +"/com.hsapi.system.product.items.getPrdtType.biz.ext";
 var grid = null;
 var sti = "";
 var resultData = {};
@@ -13,13 +14,19 @@ var callback = null;
 var delcallback = null;
 var ckcallback = null;
 var typeGrid = null;
+var tree =null;
+var packageGrid = null;
+var treeHash={};
 var isChooseClose = 1;//默认选择后就关闭窗体
+var carModelIdLy = null;
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
 
 	typeGrid = nui.get("typeGrid");
-	
+	packageGrid = nui.get("packageGrid");
+	typeGrid2 = nui.get("typeGrid2");
+	typeGrid2.setUrl(typeGrid2Url);
 	grid.on("beforeload",function(e){
         e.data.token = token;
 	});
@@ -36,6 +43,20 @@ $(document).ready(function(v) {
 	    });
 	});
 	typeGrid.on("rowdblclick",function(e){
+		var row = e.row;
+		search(row.id);
+	});
+	typeGrid.on("rowclick",function(e){
+		grid.show();
+		packageGrid.hide();
+		nui.get("lookInfo").show();
+	});
+	typeGrid2.on("rowclick",function(e){
+		grid.hide();
+		packageGrid.show();
+		nui.get("lookInfo").hide();
+	});
+	typeGrid2.on("rowdblclick",function(e){
 		var row = e.row;
 		search(row.id);
 	});
@@ -58,6 +79,18 @@ $(document).ready(function(v) {
 			tempGrid.removeRow(row);
         }
     });
+	
+
+	packageGrid.on("rowdblclick",function(e){
+		
+		loadStdPKG();
+	});
+	//标准套餐类型
+    typeGrid2.load({
+    	noShowParent:"1",
+    	type: "01",
+        token: token
+    });
 	nui.get("pkgName").focus();
 	document.onkeyup=function(event){
         var e=event||window.event;
@@ -67,8 +100,18 @@ $(document).ready(function(v) {
             onCancel();
         }
       };
-
 });
+
+function loadStdPKG() {
+	var p = {};
+	p.carModelId = carModelIdLy;
+	p.name = nui.get('pkgName').getValue();
+	p.packageName = nui.get('pkgName').getValue();
+	packageGrid.load({
+		p:p,
+		token:token
+	});
+}
 
 function getDataAll(){
 	var row = grid.getSelecteds();
@@ -204,12 +247,13 @@ function setData(data) {
 	nui.get("selectBtn").show();
 }
 
-function setViewData(ck, delck, cck){
+function setViewData(ck, delck, cck, params){
 	
 	isChooseClose = 0;
 	callback = ck;
 	delcallback = delck;
 	ckcallback = cck;
+	carModelIdLy = params.carModelIdLy||"";
 	grid.setWidth("70%");
 	tempGrid.setStyle("display:inline");
 	document.getElementById("splitDiv").style.display="";

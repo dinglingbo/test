@@ -14,8 +14,9 @@ var callback = null;
 var delcallback = null;
 var ckcallback = null;
 var typeGrid = null;
-var typeGrid2 =null;
+var tree =null;
 var packageGrid = null;
+var treeHash={};
 var isChooseClose = 1;//默认选择后就关闭窗体
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
@@ -24,7 +25,7 @@ $(document).ready(function(v) {
 	typeGrid = nui.get("typeGrid");
 	packageGrid = nui.get("packageGrid");
 	typeGrid2 = nui.get("typeGrid2");
-    typeGrid2.setUrl(typeGrid2Url);
+	typeGrid2.setUrl(typeGrid2Url);
 	grid.on("beforeload",function(e){
         e.data.token = token;
 	});
@@ -45,13 +46,16 @@ $(document).ready(function(v) {
 		search(row.id);
 	});
 	typeGrid.on("rowclick",function(e){
-		
 		grid.show();
 		packageGrid.hide();
 	});
 	typeGrid2.on("rowclick",function(e){
 		grid.hide();
 		packageGrid.show();
+	});
+	typeGrid2.on("rowdblclick",function(e){
+		var row = e.row;
+		search(row.id);
 	});
 	//双击
 	grid.on("rowdblclick",function(e){
@@ -87,11 +91,7 @@ $(document).ready(function(v) {
             onCancel();
         }
       };
-
 });
-
-
-
 
 function getDataAll(){
 	var row = grid.getSelecteds();

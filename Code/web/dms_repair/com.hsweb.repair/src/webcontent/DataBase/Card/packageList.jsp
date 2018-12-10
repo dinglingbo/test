@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
 	<div class="nui-fit">
 		<div class="nui-splitter" style="width:100%;height:100%;"
 			borderStyle="border:0"
@@ -32,15 +31,24 @@
 									visible="true">本地套餐类型</div>
 						     </div> 
 					    </div>
-					    
-					   <!-- <div id="typeGrid2" dataField="rs" class="nui-datagrid"
+					    <!--  <div class="nui-toolbar" >
+								<label>套餐类型</label>
+							</div>
+							<div class="nui-fit">
+								<ul id="tree" class="nui-tree" url="" style="width: 100%;height:50%;"
+									dataField="rs" showTreeIcon="true" textField="name" expandOnLoad="0"
+									idField="id" ajaxData="setToken" parentField="" resultAsTree="false">
+								</ul>
+							</div> -->
+						 
+					   <div id="typeGrid2" dataField="rs" class="nui-datagrid"
 							showPager="false" showHGridLines="false" allowSortColumn="false"
 							style="width: 100%; height: 50%;float:left;" multiSelect="false" >
 							<div property="columns">
 								<div field="name" headerAlign="center" allowSort="true" allowSort="false"
 									visible="true">基本套餐类型</div>
 						    </div> 
-				         </div> -->
+				         </div>
 					</div>
 				</div>
 			</div>

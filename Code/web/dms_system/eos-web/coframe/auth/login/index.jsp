@@ -4,15 +4,15 @@
 <meta http-equiv="x-ua-compatible" content="IE=8;" />
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="tgetMenuDatagetext/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<%@include file="/common/sysCommon.jsp" %>
-	<title>车道商户版</title>
-	  
+    <meta http-equiv="Content-Type" content="tgetMenuDatagetext/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <%@include file="/common/sysCommon.jsp" %>
+    <title>车道商户版</title>
+      
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/common/nui/boot.js" type="text/javascript"></script>
 
-	<link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.css" rel="stylesheet" type="text/css" />
+    <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.css" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menu/menu.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/common/nui/themes/frame3/res/menupop.js" type="text/javascript"></script>
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/tabs.css" rel="stylesheet" type="text/css" />
@@ -21,7 +21,7 @@
     <link href="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
 
-	<style type="text/css">
+    <style type="text/css">
     .navbar-brand
 {
     width:210px;
@@ -73,18 +73,54 @@
     }
     
     #toolData{
-    	width: 1600px;
+        width: 1600px;
     }
     
     .menu{
-    	padding-top: 40px;
+        padding-top: 40px;
     }
  
 </style>
 </head>
 <body>
     
-
+<div id="advancedOrgWin" class="nui-window"
+     title="公司选择" style="width:430px;height:350px;"
+     showModal="true"
+     showHeader="false"
+     allowResize="false"
+     style="padding:2px;border-bottom:0;"
+     allowDrag="true">
+     <div class="nui-toolbar" >
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100%;">
+                    <input class="nui-textbox" id="orgName" name="orgName" emptyText="请输入公司名">
+                    <a class="nui-button" iconCls="" plain="true" onclick="searchOrg()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="addOrg" id=""><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onOrgClose" id=""><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="nui-fit">
+          <div id="moreOrgGrid" class="nui-datagrid" style="width:100%;height:95%;"
+               selectOnLoad="true"
+               showPager="false"
+               dataField="orgList"
+               onrowdblclick="addOrg"
+               allowCellSelect="true"
+               editNextOnEnterKey="true"
+               allowCellWrap = true
+               url="">
+              <div property="columns">
+                <div type="indexcolumn" headerAlign="center"  width="25">序号</div>
+                <div field="orgid" name="orgid" width="" align="center"  visible="false" headerAlign="center" header="公司Id"></div>
+                <div field="orgname" name="orgname" width="" align="center"  headerAlign="center" header="公司全称"></div>
+              </div>
+          </div>
+    </div>
+</div>
 <div id="toolData" class="sidebar">
     <div id="mainMenu" style="overflow-y:auto; overflow-x:hidden; width:400px !important; height:1000px;"></div>
 </div>
@@ -95,27 +131,29 @@
         <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
-	        <li class="dropdown">
-	            <a class="dropdown-toggle userinfo" style="padding-top: 18px;">
-	                    <i class="fa fa-align-justify"></i><span id="currOrgName">公司</span><i class="fa fa-angle-down"></i>
-	            </a>
-	            <ul class="dropdown-menu pull-right" id="orgsname">
-	                <!-- <li>
-	                    <a href="javascript:openGuestOrder();"><i class="fa fa-pencil-square-o"></i> 待处理客户订单</a>
-	                </li>
-	                <li>
-	                    <a href="javascript:openSellOrder();"><i class="fa fa-pencil-square-o"></i> 待收货单</a>
-	                </li> -->
-	            </ul>
-	        </li>
+            <li class="dropdown">
+                <a class="" onClick="OrgShow()" style="padding-top: 18px;">
+<!--                        <i class="fa fa-align-justify"></i> -->
+                        <span id="currOrgName">公司</span>
+<!--                        <i class="fa fa-angle-down"></i> -->
+                </a>
+                <ul class="dropdown-menu pull-right" id="orgsname">
+                    <!-- <li>
+                        <a href="javascript:openGuestOrder();"><i class="fa fa-pencil-square-o"></i> 待处理客户订单</a>
+                    </li>
+                    <li>
+                        <a href="javascript:openSellOrder();"><i class="fa fa-pencil-square-o"></i> 待收货单</a>
+                    </li> -->
+                </ul>
+            </li>
             <li class="dropdown">
                 <!--<a class="dropdown-toggle userinfo">
                     <img class="user-img" src="res/images/user.jpg" />个人资料<i class="fa fa-angle-down"></i>
                 </a>-->
                 <a class="dropdown-toggle userinfo" style="padding-top: 18px;">
-	                <!--<img class="user-img" src="res/images/user.jpg" />-->
-	                <span id="currUserName">当前登录人:</span><i class="fa fa-angle-down"></i>
-	            </a>
+                    <!--<img class="user-img" src="res/images/user.jpg" />-->
+                    <span id="currUserName">当前登录人:</span><i class="fa fa-angle-down"></i>
+                </a>
                 <ul class="dropdown-menu pull-right">
                    <!--  <li id="orgName" ><a href="#">所属：</a></li> -->
                      <li><a href="javascript:myMessage();"><i class="fa fa-comments-o"></i> 我的消息</a></li>
@@ -127,7 +165,7 @@
             </li>
         </ul>
     </div>
-
+    
     <div class="main">
         <div id="mainTabs" class="mini-tabs indexTabs" activeIndex="0" style="width:100%;height:100%;" plain="false"
                 buttons="#tabsButtons" arrowPosition="side" ontabload="ontabload">
@@ -144,10 +182,10 @@
     </div>
 </div>
 <form id="toggleRole" role="form" method="post" action="">
-	<input type="hidden" name="_eosFlowAction" value="toggleOrg">
-	<input type="hidden" name="operatorId" value="" id="operatorId">
-	<input type="hidden" name="orgid" value="" id="orgid">
-</form>	
+    <input type="hidden" name="_eosFlowAction" value="toggleOrg">
+    <input type="hidden" name="operatorId" value="" id="operatorId">
+    <input type="hidden" name="orgid" value="" id="orgid">
+</form> 
 
 
 </body>
@@ -160,6 +198,40 @@
     var mainTabs = mini.get("mainTabs");
     var loadingV = false;
     var obj = {};
+    var advancedOrgWin = null;
+    var moreOrgGrid =null;
+    var moreOrgGridUrl=apiPath + sysApi + "/com.hsapi.system.auth.LoginManager.getOrgList.biz.ext";
+    var show=0;
+    
+    function OrgShow(){
+        advancedOrgWin.show();
+        show=1;
+    }
+    
+    function onOrgClose(){
+        advancedOrgWin.hide();
+        show=0;
+    }
+    function addOrg(){ 
+        var orgid=moreOrgGrid.getSelected().orgid;
+        changeOrgs(orgid);
+        advancedOrgWin.hide();
+    }
+    function searchOrg(){
+    	var orgName=nui.get('orgName').value;
+    	if(!orgName){
+    		 moreOrgGrid.load({userId:currUserId,token :token});
+    	}
+    	var data=moreOrgGrid.getData();
+    	var list =[];
+    	for(var i=0;i<data.length;i++){
+    		if(orgName==data[i].orgname){
+    			list.push(data[i]);
+    		}
+    	}
+    	moreOrgGrid.clearRows();
+    	moreOrgGrid.addRows(list);
+    }
     function activeTab(item) {
         var tabs = mini.get("mainTabs");
         var tab = tabs.getTab(item.id);
@@ -171,14 +243,14 @@
     }
     
     function ontabload(){
-	    if(loadingV){
-    		if(obj){
-    			doInitTab(obj);
-    			obj = {};
-    			loadingV = false;
-    		}
-    	}
-	}
+        if(loadingV){
+            if(obj){
+                doInitTab(obj);
+                obj = {};
+                loadingV = false;
+            }
+        }
+    }
 
     function activeTabAndInit(item,params) {
         var tabs = mini.get("mainTabs");
@@ -190,21 +262,21 @@
             
             tabs.activeTab(tab);
         
-        	obj = params;
-        	//doInitTab(params);
+            obj = params;
+            //doInitTab(params);
         }else{
-        	tabs.activeTab(tab);
-        	doInitTab(params);
+            tabs.activeTab(tab);
+            doInitTab(params);
         }
     }
     
     function doInitTab(params){
-    	var tabs = mini.get("mainTabs");
-    	var tab = tabs.getActiveTab();
-    	var iframe = tabs.getTabIFrameEl(tab);
-    	if(iframe.contentWindow && iframe.contentWindow.setInitData){
-    		iframe.contentWindow.setInitData(params);
-    	}
+        var tabs = mini.get("mainTabs");
+        var tab = tabs.getActiveTab();
+        var iframe = tabs.getTabIFrameEl(tab);
+        if(iframe.contentWindow && iframe.contentWindow.setInitData){
+            iframe.contentWindow.setInitData(params);
+        }
     }
     
     function toClose(){
@@ -227,68 +299,68 @@
         var tab = tabs.getActiveTab();
          
         if(tab.name == "index") {
-        	tab.url = defDomin + "/common/Index/TextIndex.jsp";
+            tab.url = defDomin + "/common/Index/TextIndex.jsp";
         }
         tabs.loadTab(tab.url, tab);
     }
     
     function myMessage(){
-    	nui.open({
-			url: defDomin + "/stat.myMessage.flow?token="+token,
-			title:"我的消息",
-			width: "570px",
-			height: "400px"
-		});
+        nui.open({
+            url: defDomin + "/stat.myMessage.flow?token="+token,
+            title:"我的消息",
+            width: "570px",
+            height: "400px"
+        });
     }
     
     function updatePassWord(){
-    	nui.open({
-			url: defDomin + "/coframe/rights/user/update_password.jsp",
-			title:"修改密码",
-			width: "370px",
-			height: "200px"
-		});
+        nui.open({
+            url: defDomin + "/coframe/rights/user/update_password.jsp",
+            title:"修改密码",
+            width: "370px",
+            height: "200px"
+        });
     }
     function updateEmployee(){
-	var queryEmployeeUrl = baseUrl+"com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
-	nui.ajax({
-		url : queryEmployeeUrl,
-		type : "post",
-		cache : false,
-		data : JSON.stringify({
-			params: { 
-            	orgid : currOrgId,
-            	empid : currEmpId
+    var queryEmployeeUrl = baseUrl+"com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
+    nui.ajax({
+        url : queryEmployeeUrl,
+        type : "post",
+        cache : false,
+        data : JSON.stringify({
+            params: { 
+                orgid : currOrgId,
+                empid : currEmpId
             },
             token:token
         }),
-		success : function(text) {
-			var list = text.rs||{};
-			if(list.length==0){
-				showMsg("此用户无法修改","W");
-			}else{
-				    nui.open({
-				        url: webPath + contextPath + "/com.hs.common.homePageEmployeeEdit.flow?token="+token,
-				        width: 680,         //宽度
-				        height: 230,        //高度
-				        title: "员工信息",      //标题 组织编码选择
-				        allowResize:true,
-				        onload: function () {
-				            var iframe = this.getIFrameEl();
-				            iframe.contentWindow.SetInitData(list[0]);
-				        },
-				        ondestroy: function (action) {  //弹出页面关闭前
-				            if (action == "ok") {       //如果点击“确定”
-				                search();
-				            }
-				        }
-				    });	
-			}
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR.responseText);
-		}
-	});
+        success : function(text) {
+            var list = text.rs||{};
+            if(list.length==0){
+                showMsg("此用户无法修改","W");
+            }else{
+                    nui.open({
+                        url: webPath + contextPath + "/com.hs.common.homePageEmployeeEdit.flow?token="+token,
+                        width: 680,         //宽度
+                        height: 230,        //高度
+                        title: "员工信息",      //标题 组织编码选择
+                        allowResize:true,
+                        onload: function () {
+                            var iframe = this.getIFrameEl();
+                            iframe.contentWindow.SetInitData(list[0]);
+                        },
+                        ondestroy: function (action) {  //弹出页面关闭前
+                            if (action == "ok") {       //如果点击“确定”
+                                search();
+                            }
+                        }
+                    }); 
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
     }
     
 
@@ -314,20 +386,21 @@
     //launchFullScreen(document.getElementById("videoElement")); // 某个页面元素
     
     // 判断浏览器种类
-	function exitFullscreen() {
-	  if(document.exitFullscreen) {
-	    document.exitFullscreen();
-	  } else if(document.mozCancelFullScreen) {
-	    document.mozCancelFullScreen();
-	  } else if(document.webkitExitFullscreen) {
-	    document.webkitExitFullscreen();
-	  }
-	}
-	// 退出全屏模式!
-	//exitFullscreen();
+    function exitFullscreen() {
+      if(document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if(document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if(document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      }
+    }
+    // 退出全屏模式!
+    //exitFullscreen();
 
     $(function () {
-
+        
+     
         //menu
         var menu = new Menu("#mainMenu", {
             itemclick: function (item) {
@@ -435,11 +508,11 @@
         });
         
         $(".dropdown-toggle").click(function (event) {
-       	    if($(this).next().attr("id") == "orgsname"){
-       	    	$("#orgsname").empty();
-       	    	setOrgList();
-       	    	
-       	    }
+            if($(this).next().attr("id") == "orgsname"){
+                $("#orgsname").empty();
+                setOrgList();
+                
+            }
         
             $(this).parent().addClass("open");
             return false;
@@ -449,9 +522,9 @@
             $(".dropdown").removeClass("open");
         });
         window.onbeforeunload = function () {
-	        return "离开此网站?";
-	        //return null;
-	    };
+            return "离开此网站?";
+            //return null;
+        };
 
        //document.getElementById('orgName').innerHTML = '<a href="#">所属：'+currOrgName+'</a>';
         
@@ -468,12 +541,31 @@
             success: function(text){
             }
         });
+
+       //org
+        advancedOrgWin = mini.get("advancedOrgWin");
+        moreOrgGrid = mini.get("moreOrgGrid");
+        moreOrgGrid.setUrl(moreOrgGridUrl);
+        moreOrgGrid.load({userId:currUserId,token :token});
+        document.onkeyup = function(event) {
+	        var e = event || window.event;
+	        var keyCode = e.keyCode || e.which;// 38向上 40向下
+	        if ((keyCode == 13)) { // F9
+	        	if(show==1){
+	        		searchOrg();
+	        	}
+	        }
+	        if ((keyCode == 27)) { // F9
+	        	onOrgClose();
+	        }
+	    }
+
     });
     
     //切换角色
     function changeOrgs(orgid) {
         if (orgid != currOrgId) {
-        	$("#toggleRole")[0].action = "com.hsapi.system.auth.login.wlogin.flow";
+            $("#toggleRole")[0].action = "com.hsapi.system.auth.login.wlogin.flow";
             $("#operatorId").val(currUserId);
             $("#orgid").val(orgid);
             $("#toggleRole")[0].submit();
@@ -491,7 +583,7 @@
     }
     
     function setOrgList(){
-    	$.ajax({
+        $.ajax({
             url:  apiPath + sysApi + "/com.hsapi.system.auth.LoginManager.getOrgList.biz.ext?userId="+currUserId,
             type: "POST",
             data : JSON.stringify({
@@ -500,7 +592,7 @@
             success: function(text){
                 var orgList = text.orgList;
                 if(orgList && orgList.length>0){
-                	if(orgList.length>16){
+                    if(orgList.length>16){
                         $("#orgsname").attr("style", "position:absolute; height:400px; overflow:auto;");
                     }
                     
@@ -516,50 +608,50 @@
                 }
             }
         });
-    	
+        
     }
     
     var _sysMsg_index;
-	//提示成功信息	
-	function showMsgBox_index(message, life) {
-		var time = 3000;
-		if (life) {
-			time = life;
-		}
-		
-		_sysMsg_index = message;
+    //提示成功信息    
+    function showMsgBox_index(message, life) {
+        var time = 3000;
+        if (life) {
+            time = life;
+        }
+        
+        _sysMsg_index = message;
         $("#_sys_tip_msg_").remove();
         
         if ($("#_sys_tip_msg_").text().length > 0) {
-	    	var msg = "<span>" + message + "</span>";
-	        $("#_sys_tip_msg_").empty().append(msg);
-	    } else {
-			var msg = "<div id='_sys_tip_msg_'><span>" + message + "</span></div>";
-			$("body").append(msg);
-	    }
-		
-		//$("#_sys_tip_msg_").fadeIn(1000);
+            var msg = "<span>" + message + "</span>";
+            $("#_sys_tip_msg_").empty().append(msg);
+        } else {
+            var msg = "<div id='_sys_tip_msg_'><span>" + message + "</span></div>";
+            $("body").append(msg);
+        }
+        
+        //$("#_sys_tip_msg_").fadeIn(1000);
   
-		setTimeout($("#_sys_tip_msg_").stop().delay(1000).fadeOut(time), time);
-	};
-	
-	//提示错误信息
-	function showIndexMsg(message, msgType) {
-		showMsgBox_index(message, 2000);
+        setTimeout($("#_sys_tip_msg_").stop().delay(1000).fadeOut(time), time);
+    };
+    
+    //提示错误信息
+    function showIndexMsg(message, msgType) {
+        showMsgBox_index(message, 2000);
         if(msgType){
             $("#_sys_tip_msg_ span").addClass(msgType);
         }
         if((""+message).length < 36){
             $("#_sys_tip_msg_ span").addClass("small");
         }
-	};
+    };
     
     function showIndexError(message) {
-		showMsgBox_index(message, "E");
-	};
+        showMsgBox_index(message, "E");
+    };
     
     function showIndexWarn(message) {
-		showMsgBox_index(message, "W");
-	};
+        showMsgBox_index(message, "W");
+    };
 
 </script>

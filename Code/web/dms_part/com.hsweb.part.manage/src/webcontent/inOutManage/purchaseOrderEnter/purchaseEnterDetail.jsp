@@ -304,11 +304,11 @@
                                     <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="false">
                         仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
                                       url=""
-                                      onvaluechanged="" emptyText=""  vtype="required"
+                                     onvaluechanged="onStoreChange" emptyText=""  vtype="required"
                                       /> 
                         </div>  
                         <div field="storeShelf" width="60" headerAlign="center" allowSort="false">
-                              仓位<input property="editor" class="nui-textbox"/>
+                             仓位<input id="storeShelf" name="storeShelf"  property="editor" class="nui-combobox" textField="name" valueField="name" dataField="storeShelfList" data="storeShelfList" onvaluechanged="" allowInput="true"/>
                               </div>  
                       <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" allowSort="false" header="OEM码"></div> 
                       <div field="comSpec" allowSelect="false" width="100" headerAlign="center" allowSort="false" header="规格/方向/颜色"></div>                             

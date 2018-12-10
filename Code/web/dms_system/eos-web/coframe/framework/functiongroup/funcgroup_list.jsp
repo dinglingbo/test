@@ -51,7 +51,7 @@
                 url: "<%=request.getContextPath() %>/coframe/framework/functiongroup/funcgroup_add.jsp",
                 title: "新增功能组", 
                 width: 400, 
-                height: 100,
+                height: 130,
                 allowResize:false,
                 onload: function () {
                 	var id = document.getElementById("appid").value;
@@ -75,7 +75,7 @@
                     url: "<%=request.getContextPath() %>/coframe/framework/functiongroup/funcgroup_edit.jsp",
                     title: "编辑功能组", 
                     width: 400, 
-                    height: 100,
+                    height: 130,
                     allowResize:false,
                     onload: function () {
                         var iframe = this.getIFrameEl();

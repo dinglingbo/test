@@ -168,7 +168,7 @@
             url: "<%=request.getContextPath() %>/coframe/framework/functiongroup/funcgroup_add.jsp",
             title: "新增功能组", 
             width: 400, 
-            height: 100,
+            height: 130,
             allowResize:false,
             onload: function () {
             	var node = tree.getSelectedNode();
@@ -193,7 +193,7 @@
             url: "<%=request.getContextPath() %>/coframe/framework/subfunctiongroup/subfuncgroup_add.jsp",
             title: "新增子功能组",
             width: 400,
-            height: 100,
+            height: 120,
             allowResize:false,
             onload: function () {
             	var node = tree.getSelectedNode();
@@ -218,7 +218,7 @@
             url: "<%=request.getContextPath() %>/coframe/framework/function/function_add.jsp",
             title: "新增功能", 
             width: 600, 
-            height: 355,
+            height: 375,
             onload: function () {
             	var node = tree.getSelectedNode();
             	var id = node.realId;
@@ -242,7 +242,7 @@
             url: "<%=request.getContextPath() %>/coframe/framework/application/application_edit.jsp",
             title: "编辑应用", 
             width: 550, 
-            height: 345,
+            height: 365,
             onload: function () {
             	var node = tree.getSelectedNode();
            		var data = {appid:node.realId,type:"application"};
@@ -265,7 +265,7 @@
             url: "<%=request.getContextPath() %>/coframe/framework/functiongroup/funcgroup_edit.jsp",
             title: "编辑功能组", 
             width: 400, 
-            height: 100,
+            height: 120,
             allowResize:false,
             onload: function () {
                 var node = tree.getSelectedNode();
@@ -289,7 +289,7 @@
             url: "<%=request.getContextPath() %>/coframe/framework/subfunctiongroup/subfuncgroup_edit.jsp",
             title: "编辑子功能组",
             width: 400,
-            height: 100,
+            height: 120,
             allowResize:false,
             onload: function () {
                 var node = tree.getSelectedNode();
@@ -313,7 +313,7 @@
             url: "<%=request.getContextPath() %>/coframe/framework/function/function_edit.jsp",
             title: "编辑功能", 
             width: 600, 
-            height: 355,
+            height: 375,
             onload: function () {
                 var node = tree.getSelectedNode();
            		var data = {funccode:node.realId,type:"function"};

@@ -55,7 +55,7 @@
                 url: "<%=request.getContextPath() %>/coframe/framework/function/function_add.jsp",
                 title: "新增功能", 
                 width: 600, 
-            	height: 355,
+            	height: 375,
                 onload: function () {
                 	var id = document.getElementById("parentgroupid").value;
                 	var data = {parentgroupid:id};
@@ -78,7 +78,7 @@
                     url: "<%=request.getContextPath() %>/coframe/framework/function/function_edit.jsp",
                     title: "编辑功能", 
                     width: 600, 
-           			height: 355,
+           			height: 375,
                     onload: function () {
                         var iframe = this.getIFrameEl();
                         var data = row;

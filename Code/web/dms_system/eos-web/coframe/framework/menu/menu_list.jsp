@@ -51,7 +51,7 @@
                 url: "<%=request.getContextPath() %>/coframe/framework/menu/menu_add.jsp",
                 title: "新增菜单",
                 width: 600,
-                height: 167,
+                height: 197,
                 onload: function () {
                 	var id = document.getElementById("parentmenuid").value;
                 	var data = {parentmenuid:id};
@@ -74,7 +74,7 @@
                     url: "<%=request.getContextPath() %>/coframe/framework/menu/menu_edit.jsp",
                     title: "编辑菜单",
                     width: 600,
-                	height: 167,
+                	height: 197,
                     onload: function () {
                         var iframe = this.getIFrameEl();
                         var data = row;

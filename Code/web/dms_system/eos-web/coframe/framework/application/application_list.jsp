@@ -80,7 +80,7 @@
                 url: "<%=request.getContextPath() %>/coframe/framework/application/application_add.jsp",
                 title: "新增应用", 
                 width: 550, 
-            	height: 345,
+            	height: 375,
                 ondestroy: function (action) {
                     if(action=="ok"){
                     	parent.refresh();
@@ -97,7 +97,7 @@
                     url: "<%=request.getContextPath() %>/coframe/framework/application/application_edit.jsp",
                     title: "编辑应用", 
                     width: 550, 
-           			height: 345,
+           			height: 375,
                     allowResize:false,
                     onload: function () {
                         var iframe = this.getIFrameEl();

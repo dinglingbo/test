@@ -354,6 +354,14 @@ $(document).ready(function ()
                     e.cellHtml = servieTypeHash[e.value].name;
                 }
                 break;
+            case "qty":
+           	    var type = record.type||0;
+                if(type==1){
+                    e.cellHtml = "--";
+                }else{
+                    e.cellHtml = e.value;
+                }
+                break;
             case "saleMan":
                 var type = record.type||0;
                 var cardDetailId = record.cardDetailId||0;

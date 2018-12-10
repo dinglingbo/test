@@ -44,7 +44,7 @@
                 <th class="nui-form-label"><label for="resType$text">功能类型：</label></th>
                 <td>
                     <input id="resType" class="nui-combobox nui-form-input" name="appfunction.functype" value="flow" 
-                    valueField="dictID" textField="dictName" dictTypeId="COF_FUNCTYPE"/>
+                    valueField="dictID" textField="dictName" data="COF_FUNCTYPE"/>
                 </td>
             </tr>
             <tr class="odd">
@@ -75,10 +75,13 @@
     </div>
  </div>
 	<script type="text/javascript">
+		var COF_YESORNO =[{dictID:"0",dictName:"否"},{dictID:"1",dictName:"是"}];
+    	var COF_APPTYPE =[{dictID:"0",dictName:"本地"},{dictID:"1",dictName:"远程"}];
+    	var COF_FUNCTYPE =[{dictID:"flow",dictName:"页面流"},{dictID:"form",dictName:"表单"},
+    					{dictID:"order",dictName:"其他"},{dictID:"page",dictName:"页面"},{dictID:"startprocess",dictName:"启动流程"}];
         nui.parse();
         var form = new nui.Form("form1");
-        var COF_YESORNO =[{dictID:"0",dictName:"否"},{dictID:"1",dictName:"是"}];
-    	var COF_APPTYPE =[{dictID:"0",dictName:"本地"},{dictID:"1",dictName:"远程"}];
+ 
         var functionid = "<%= StringUtil.htmlFilter(request.getParameter("realId")) %>";
         var json = nui.encode({template:{funccode:functionid}});
         var tempFuncCode = "";

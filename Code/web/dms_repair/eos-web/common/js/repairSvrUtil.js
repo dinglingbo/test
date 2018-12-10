@@ -305,7 +305,7 @@ function svrSetPkgSaleMansBatch(params, callback, unmaskcall){
 }
 
 //批量设置施工员
-var svrSetPkgWorkersBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setItemWorkersBatch";
+var svrSetPkgWorkersBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setItemWorkersBatch.biz.ext";
 function svrSetWorkersBatch(params, callback, unmaskcall){
     var data = params.data||{};
     doPost({

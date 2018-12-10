@@ -131,8 +131,7 @@
                                     <div field="id" visible=false>ID</div>
                                     <div field="orgid" width="100" headerAlign="center" allowSort=false>所在分店</div>
                                     <div field="carNo" width="80" headerAlign="center" allowSort=false>车牌号</div>
-                                    <div field="carBrandId" width="100" headerAlign="center">品牌</div>
-                                    <div field="carModel" width="250" headerAlign="center">车型</div>
+                                    <div field="carModel" width="250" headerAlign="center">品牌车型</div>
                                     <div field="vin" width="150" headerAlign="center" allowSort=false>车架号(VIN)</div>
                                     <div field="firstRegDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>上牌日期</div>
                                     <div field="annualInspectionDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>

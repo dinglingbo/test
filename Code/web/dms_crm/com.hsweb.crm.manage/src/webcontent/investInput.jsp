@@ -95,7 +95,7 @@ pageEncoding="UTF-8" session="false" %>
     <div property="columns">
       <div field="compComeTimes" name="compComeTimes" width="80" headerAlign="center" header="分店来厂次数"></div>
       <div field="chainComeTimes" name="chainComeTimes" width="80" headerAlign="center" header="连锁来厂次数"></div>
-      <div field="carBrandId" name="carBrandId" width="100" headerAlign="center" header="品牌"></div>
+    
       <div field="carModel" name="carModel" width="280" headerAlign="center" header="品牌车型"></div>
       <div field="engineNo" name="engineNo" width="130" headerAlign="center" header="发动机号"></div>
       <div field="vin" name="vin" width="180" headerAlign="center" header="车架号(VIN)"></div>

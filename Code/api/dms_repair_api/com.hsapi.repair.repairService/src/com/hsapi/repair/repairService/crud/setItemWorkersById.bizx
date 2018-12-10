@@ -53,6 +53,10 @@
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">d</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="197" y="186"/>
@@ -452,22 +456,23 @@
       <sourceNode>loopend0</sourceNode>
       <targetNode>invokePojo6</targetNode>
     </sourceConnections>
-    <targetConnections>link25</targetConnections>
-    <location x="1356" y="153"/>
+    <targetConnections>link35</targetConnections>
+    <location x="1386" y="153"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
-    <location x="1344" y="185"/>
+    <location x="1374" y="185"/>
     <figSize height="17" width="49"/>
     <node>loopend0</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
     <location x="1000" y="45"/>
-    <size height="257" width="381"/>
+    <size height="257" width="411"/>
     <chidren>loopend0</chidren>
     <chidren>loopstart0</chidren>
     <chidren>group1</chidren>
+    <chidren>assign11</chidren>
   </nodes>
   <nodes xsi:type="process:tLoopStart" description="" id="loopstart1" name="循环1" displayName="循环" grouped="true" type="loopstart" matchedName="loopend1" loopType="iterate">
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
@@ -488,7 +493,7 @@
   <nodes xsi:type="process:tLoopEnd" id="loopend1" name="循环结束1" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart1">
     <sourceConnections xsi:type="process:tLink" id="link25" name="link25" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopend1</sourceNode>
-      <targetNode>loopend0</targetNode>
+      <targetNode>assign11</targetNode>
     </sourceConnections>
     <targetConnections>link24</targetConnections>
     <location x="1281" y="151"/>
@@ -524,8 +529,8 @@
         <process:inputVariable id="0" name="empid" type="query" value="String" valueType="Primitive" pattern="reference">t</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
         <process:outputVariable id="2" name="weight" type="query" value="Int" valueType="Primitive">weight</process:outputVariable>
       </process:outputVariables>
     </process:flow>
@@ -731,6 +736,25 @@
     <figSize height="17" width="39"/>
     <node>assign10</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值11" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign11</sourceNode>
+      <targetNode>loopend0</targetNode>
+    </sourceConnections>
+    <targetConnections>link25</targetConnections>
+    <location x="1335" y="151"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign11label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">i</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
+    <location x="1330" y="187"/>
+    <figSize height="17" width="39"/>
+    <node>assign11</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-12-10 13:24:31" date="2018-12-10Z" description="" name="setItemWorkersById" version="7.0.0.0"/>
@@ -746,6 +770,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="t" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="weight" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="i" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

@@ -25,18 +25,26 @@
 				<div class="nui-fit">
 					<div class="nui-fit">
 						<div id="typeGrid" dataField="data" class="nui-datagrid"
-							showPager="false" showHGridLines="false"
-							style="width: 100%; height: 100%;float:left;" multiSelect="false" >
+							showPager="false" showHGridLines="true" allowSortColumn="false"
+							style="width: 100%; height: 50%;float:left;" multiSelect="false" >
+							 <div property="columns">
+								<div field="name" headerAlign="center" allowSort="true" allowSort="false"
+									visible="true">本地套餐类型</div>
+						     </div> 
+					    </div>
+					    
+					   <!-- <div id="typeGrid2" dataField="rs" class="nui-datagrid"
+							showPager="false" showHGridLines="false" allowSortColumn="false"
+							style="width: 100%; height: 50%;float:left;" multiSelect="false" >
 							<div property="columns">
-								<div field="name" headerAlign="center" allowSort="true"
-									visible="true">套餐类型</div>
-						  </div>
-						</div>
+								<div field="name" headerAlign="center" allowSort="true" allowSort="false"
+									visible="true">基本套餐类型</div>
+						    </div> 
+				         </div> -->
 					</div>
 				</div>
 			</div>
 			<div showCollapseButton="false">
-
 					<div id="queryform" class="nui-form">
 							<div class="nui-toolbar">
 								<input class="nui-textbox" id="expense" visible="false"/>
@@ -65,13 +73,11 @@
 							</div>
 						</div>
 						
-					
 						<div class="nui-fit">
-							
 							<div id="datagrid1" dataField="package1" class="nui-datagrid"
 								pageSize="20" onDrawCell="onDrawCell"
 								onrowclick="onLeftSeriesGridRowClick" allowSortColumn="true"
-								style="width: 100%; height: 100%;float:left;"multiSelect="false" >
+								style="width: 70%; height: 100%;float:left;"multiSelect="false" >
 								<div property="columns">
 									<div type="indexcolumn">序号</div>
 									<div type="checkcolumn" visible="false" id="checkcolumn" name="checkcolumn"></div>
@@ -90,8 +96,23 @@
 										allowSort="true" visible="false">状态</div>
 							  </div>
 							</div>
-							
-							
+						   <div class="nui-datagrid" style="width:70%;height:100%;float:left;display:none;"
+							     id="packageGrid"
+								 dataField="rs"
+								 idField="id"
+								 showPager="true"
+								 totalField="page.count"
+								 pageSize="20"
+								 allowSortColumn="true"
+								 sortMode="client">
+								<div property="columns">
+									<div type="indexcolumn">序号</div>
+										<div field="PackageName" width="180" headerAlign="center" allowSort="true" header="套餐名称"></div>
+									   <div field="PackageAmt" width="100" headerAlign="center" allowSort="true" header="套餐金额"></div>
+									  <div field="Package4SAmt" width="100" headerAlign="center" allowSort="true" header="市场金额"></div>
+							    </div>
+			                 </div>
+					  
 							
 							<div id="splitDiv" style="float:left;width:1%;height:100%;display:none"></div>
 								<div id="tempGrid" class="nui-datagrid" style="float:left;width:29%;height:100%;display:none"
@@ -125,16 +146,6 @@
 
 	</div>
 
-
-
-
-	
-	
-	
-	
-	
-	 
-	 
 
 </body>
 </html>

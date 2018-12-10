@@ -3,6 +3,7 @@
  */
 var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryPackage.biz.ext";
+var typeGrid2Url = apiPath + repairApi +"/com.hsapi.system.product.items.getPrdtType.biz.ext";
 var grid = null;
 var sti = "";
 var resultData = {};
@@ -13,13 +14,17 @@ var callback = null;
 var delcallback = null;
 var ckcallback = null;
 var typeGrid = null;
+var typeGrid2 =null;
+var packageGrid = null;
 var isChooseClose = 1;//默认选择后就关闭窗体
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
 
 	typeGrid = nui.get("typeGrid");
-	
+	packageGrid = nui.get("packageGrid");
+	typeGrid2 = nui.get("typeGrid2");
+    typeGrid2.setUrl(typeGrid2Url);
 	grid.on("beforeload",function(e){
         e.data.token = token;
 	});
@@ -38,6 +43,15 @@ $(document).ready(function(v) {
 	typeGrid.on("rowdblclick",function(e){
 		var row = e.row;
 		search(row.id);
+	});
+	typeGrid.on("rowclick",function(e){
+		
+		grid.show();
+		packageGrid.hide();
+	});
+	typeGrid2.on("rowclick",function(e){
+		grid.hide();
+		packageGrid.show();
 	});
 	//双击
 	grid.on("rowdblclick",function(e){
@@ -58,6 +72,12 @@ $(document).ready(function(v) {
 			tempGrid.removeRow(row);
         }
     });
+	
+	//基本套餐
+    typeGrid2.load({
+    	noShowParent:"1",
+        token: token
+    });
 	nui.get("pkgName").focus();
 	document.onkeyup=function(event){
         var e=event||window.event;
@@ -69,6 +89,9 @@ $(document).ready(function(v) {
       };
 
 });
+
+
+
 
 function getDataAll(){
 	var row = grid.getSelecteds();

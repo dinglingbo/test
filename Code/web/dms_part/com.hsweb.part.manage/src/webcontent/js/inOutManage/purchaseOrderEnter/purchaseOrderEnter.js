@@ -34,6 +34,7 @@ var partShow = 0;
 var qucikAddShow=0;
 var autoNew = 0;
 var memList=[];
+var storeShelfList=[];
 
 // 单据状态
 var AuditSignList = [ {
@@ -2455,4 +2456,13 @@ function addOrEditPart(row)
         }
     });
 
+}
+
+function onStoreChange(e){
+	var value = e.value;
+	getLocationListByStoreId(value,function(data) {
+		storeShelfList = data.locationList || [];
+		nui.get('storeShelf').setData(storeShelfList);
+
+	});
 }

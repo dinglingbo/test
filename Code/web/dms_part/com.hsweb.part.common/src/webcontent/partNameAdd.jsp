@@ -44,13 +44,13 @@
 					<td style="padding-left:50px">别名:<input  class="nui-textbox" id="namecn" name="namecn" type="text" width="80%"></td>
 		        </tr>
 		        <tr>
-					<td>配件一级分类:<input  popupHeight="90%" class="nui-combobox" id="cartypef" name="cartypef" type="text" width="70%"></td>
+					<td>配件一级分类:<input  popupHeight="90%" class="nui-combobox" id="cartypef" name="cartypef" valueField="" textField="" data="" width="70%"></td>
 		        </tr>
 		        <tr>
-					<td>配件二级分类:<input  popupHeight="90%" class="nui-combobox" id="cartypes" name="cartypes" type="text" width="70%"></td>
+					<td>配件二级分类:<input  popupHeight="90%" class="nui-combobox" id="cartypes" name="cartypes" valueField="" textField="" data="" width="70%"></td>
 		        </tr>
 		        <tr>
-					<td>配件三级分类:<input popupHeight="90%" class="nui-combobox" id="cartypet" name="cartypet" type="text" width="70%"></td>				
+					<td>配件三级分类:<input popupHeight="90%" class="nui-combobox" id="cartypet" name="cartypet" valueField="" textField="" data="" width="70%"></td>				
 		        </tr>
 		        <tr>
 					<td style="padding-left:25px">补充说明:<input  class="nui-textbox" id="direction" name="direction" type="text" width="75%"></td>				
@@ -95,6 +95,18 @@
     	function SetData(params){
     		nui.get('namestd').setValue(params.namestd);
     		nui.get('namestd').focus();
+    	}
+    	function CarTypeIdFChange(e){
+    	 	var value=e.value;
+    	 	nui.get('cartypes').setData([]);
+    	 	nui.get('cartypet').setData([]);
+    	 	
+    	}
+    	
+    	function CarTypeIdSChange(e){
+    	 	var value=e.value;
+    	 	nui.get('cartypet').setData([]);
+    	 	
     	}
     </script>
 </body>

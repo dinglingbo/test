@@ -61,9 +61,9 @@
     </div>
 </div>
 <script type="text/javascript">
-        nui.parse();
         var COF_YESORNO =[{dictID:"0",dictName:"否"},{dictID:"1",dictName:"是"}];
     	var COF_APPTYPE =[{dictID:"0",dictName:"本地"},{dictID:"1",dictName:"远程"}];
+        nui.parse();
         var form = new nui.Form("form1");
         var menuid = "<%= StringUtil.htmlFilter(request.getParameter("id")) %>";
         var json = nui.encode({template:{menuid:menuid}});

@@ -31,7 +31,7 @@ import commonj.sdo.DataObject;
  *
  */
 @Bizlet("电子档案对接")
-public class syncElectronicArchives {
+public class SyncElectronicArchives {
 	
 	/*
 	 * http://218.13.12.75:81/api/getAccessToken.ashx?

@@ -172,7 +172,7 @@
 		                              <td>
 		                                  <input allowInput="false" class="nui-textbox" width="100%" id="AuditSign" name="AuditSign"/>
 		                              </td>
-                                      <td class="title required" style="width:7%">
+                                      <td class="title" style="width:7%">
                                           <label>盘点日期：</label>
                                       </td>
                                       <td width="120">

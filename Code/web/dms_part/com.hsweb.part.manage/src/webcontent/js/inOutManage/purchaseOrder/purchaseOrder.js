@@ -1011,7 +1011,10 @@ function addDetail(part) {
 								rightGrid.removeRow(row[i]);
 							}
 						}
+						var e={value:enterDetail.storeId};
 						rightGrid.addRow(enterDetail);
+						nui.get("storehouse").doValueChanged();
+			
 					}
 				}
 			});
@@ -1097,7 +1100,10 @@ function addInsertRow(value,row) {
 		};
 
 		if(row){
+			var e={value :newRow.storeId};
 			rightGrid.updateRow(row,newRow);
+			nui.get("storehouse").doValueChanged();
+	
 			//rightGrid.beginEditCell(row, "comUnit");
 		}else{
 			rightGrid.addRow(newRow);
@@ -1373,7 +1379,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 
 								// 保存成功后重新加载数据
 //								leftRow.billStatusId=2;
-								ainAndDetailInfo(leftRow);
+								loadMainAndDetailInfo(leftRow);
 								$('#bServiceId').text("订单号："+leftRow.serviceId);
 
 
@@ -1741,7 +1747,10 @@ function addSelectPart(){
 		partShow = 0;
 
 		if(rightGrid.getSelected()){
+			var e={value:newRow.storeId};
 			rightGrid.updateRow(rightGrid.getSelected(),newRow);
+			nui.get("storehouse").doValueChanged();
+
 		}else{
 			rightGrid.addRow(newRow);
 		}
@@ -1764,7 +1773,6 @@ function onPartClose(){
 }
 function OnrpMainGridCellBeginEdit(e){
     var field=e.field; 
-    var editor = e.editor;
     var row = e.row;
     var column = e.column;
     var editor = e.editor;
@@ -1778,6 +1786,15 @@ function OnrpMainGridCellBeginEdit(e){
 		e.cancel = true;
 		morePartGrid.focus();
 	}
+
+    if (field == "storeShelf") {
+        var value = e.record.storeId;
+        getLocationListByStoreId(value,function(data) {
+			storeShelfList = data.locationList || [];
+			nui.get('storeShelf').setData(storeShelfList);
+
+		});
+        }
 
 }
 function addMorePart(){
@@ -1836,6 +1853,7 @@ function addOrEditPart(row)
             if(action == "ok")
             {	
             	addInsertRow(enterDetail.comPartCode,row);
+            	
             }
         }
     });
@@ -2239,11 +2257,5 @@ function setInitData(params){
 	}
 }
 
-function onStoreChange(e){
-	var value = e.value;
-	getLocationListByStoreId(value,function(data) {
-		storeShelfList = data.locationList || [];
-		nui.get('storeShelf').setData(storeShelfList);
 
-	});
-}
+

@@ -84,7 +84,7 @@ pageEncoding="UTF-8" session="false" %>
         <div type="indexcolumn" headerAlign="center" header="序号"></div>
         <div field="" name="" width="80" headerAlign="center" header="门店"></div>
         <div field="" name="" width="80" headerAlign="center" header="品牌"></div>
-        <div field="" name="" width="80" headerAlign="center" header="车型"></div>
+        <div field="" name="" width="80" headerAlign="center" header="品牌车型"></div>
         <div field="" name="" width="80" headerAlign="center" header="客户名称"></div>
         <div field="" name="" width="80" headerAlign="center" header="联系人"></div>
         <div field="" name="" width="80" headerAlign="center" header="手机"></div>

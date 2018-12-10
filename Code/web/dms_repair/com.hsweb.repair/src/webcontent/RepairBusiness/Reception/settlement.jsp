@@ -192,14 +192,14 @@
                             
                         </div>
                     </td>
-                    <td width="65" height="50px">
+                    <!-- <td width="65" height="50px">
                             <div style="float: right; text-align: center;">
                                 <div id="qrcode">
                                     	<img src="https://photo.harsonserver.com/20180910115313857.jpg">
                             </div>
                                 扫码支付
                             </div>
-                    </td>
+                    </td> -->
                 </tr>
             </tbody>
         </table>
@@ -225,7 +225,7 @@
                 </tr>
                 <tr>
                     <td height="24" id="carNo">&nbsp;车牌：</td>
-                    <td id="carModel">&nbsp;品牌/车型： </td>
+                    <td id="carModel">&nbsp;品牌车型： </td>
                     <td id="carVin">&nbsp;车架号：</td>
                 </tr>
                 <tr>

@@ -223,9 +223,19 @@ $(document).ready(function ()
         }
     });
     
+    mainGrid.on("rowclick",function(e){
+    	var record = e.record;
+    	if(record.status>0){
+    		nui.get("deletBtn").setVisible(false);
+    	}else{
+    		nui.get("deletBtn").setVisible(true);
+    	}
+    });
+    
     mainGrid.on("rowdblclick",function(e){
 		edit();
 	});
+   
     document.onkeyup=function(event){
 	    var e=event||window.event;
 	    var keyCode=e.keyCode||e.which;

@@ -390,7 +390,7 @@
                         <td class="left" id="contactMobile">联系电话：</td> -->
                         
                         <td class="left" id="carNo" style="margin-left: 0px;">车牌号：</td>
-                        <td class="left" id="carModel" >车型/品牌：</td>
+                        <td class="left" id="carModel" >品牌车型/品牌：</td>
                     </tr>
                     <tr>
                         <!-- <td class="left" width="33.3%" id="guestFullName">客户名称：</td>
@@ -402,7 +402,7 @@
                     </tr>
                    <!--  <tr>
                     	<td class="left"id="mtAdvisor">服务顾问：</td>
-                        <td class="left" id="carModel">车型/品牌：</td>
+                        <td class="left" id="carModel">品牌车型/品牌：</td>
                         <td class="left">进厂时间：<span class="left" style="width: 33.33%" id="enterDate"></span></td>
                     </tr> -->
                     <tr>

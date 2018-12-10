@@ -130,7 +130,7 @@ table {
                             </tr>
                             <tr>
                                 <td class="form_label">
-                                    <label>车型：</label>
+                                    <label>品牌车型：</label>
                                 </td>
                                 <td colspan="5">
                                     <input class="nui-combobox"

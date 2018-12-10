@@ -1,3 +1,3 @@
 <%
-	response.sendRedirect(request.getContextPath()+"/coframe/auth/qlogin/login.jsp");
+	response.sendRedirect(request.getContextPath()+"/coframe/auth/login/login.jsp");
 %>

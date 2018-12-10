@@ -38,7 +38,7 @@
 				<td class="nui-form-label" style="white-space:nowrap"><label for="priority$text"><%=I18nUtil.getMessage(request, "bps.bizform.Priority") %>:</label></td>
 				<td><input id="priority"  name="priority" class="nui-textbox asLabel" readOnly="true"/></td>
 				<td class="nui-form-label" style="white-space:nowrap"><label for="currentState$text"><%=I18nUtil.getMessage(request, "bps.bizform.CurrentState") %>:</label></td>
-				<td><input id="currentState"  name="currentState" class="nui-dictcombobox asLabel" dictTypeId="WFDICT_WorkItemState" readOnly="true"/></td>
+				<td><input id="currentState"  name="currentState" class="nui-combobox asLabel" dictTypeId="WFDICT_WorkItemState" readOnly="true"/></td>
 			</tr>
 			<tr>
 				<td class="nui-form-label" style="white-space:nowrap"><label for="limitNumDesc$text"><%=I18nUtil.getMessage(request, "bps.bizform.LimitNumDesc") %>:</label></td>
@@ -48,7 +48,7 @@
 			</tr>
 			<tr>
 				<td class="nui-form-label" style="white-space:nowrap"><label for="isTimeOut$text"><%=I18nUtil.getMessage(request, "bps.bizform.TimeOutFlag") %>:</label></td>
-				<td><input id="isTimeOut"  name="isTimeOut" class="nui-dictcombobox asLabel" dictTypeId="WFDICT_YN" readOnly="true"/></td>
+				<td><input id="isTimeOut"  name="isTimeOut" class="nui-combobox asLabel" dictTypeId="WFDICT_YN" readOnly="true"/></td>
 				<td class="nui-form-label" style="white-space:nowrap"><label for="timeOutNumDesc$text"><%=I18nUtil.getMessage(request, "bps.bizform.TimeOutNumber") %>:</label></td>
 				<td><input id="timeOutNumDesc"  name="timeOutNumDesc" class="nui-textbox asLabel" readOnly="true"/></td>
 			</tr>	

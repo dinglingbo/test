@@ -39,7 +39,7 @@
             <tr>
                 <th class="nui-form-label"><label for="resType$text">功能类型：</label></th>
                 <td>
-                    <input id="resType" class="nui-dictcombobox nui-form-input" name="appfunction.functype" value="flow" 
+                    <input id="resType" class="nui-combobox nui-form-input" name="appfunction.functype" value="flow" 
                     valueField="dictID" textField="dictName" dictTypeId="COF_FUNCTYPE"/>
                 </td>
             </tr>

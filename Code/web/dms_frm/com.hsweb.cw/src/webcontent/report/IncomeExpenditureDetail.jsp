@@ -79,7 +79,7 @@
                 </td>
                 <td style="width: 60px;"></td>
                 <td>
-                    车型
+                    品牌车型
                     <input class="nui-textbox" style="width:100%">
                 </td>
                 <td style="width: 60px;"></td>

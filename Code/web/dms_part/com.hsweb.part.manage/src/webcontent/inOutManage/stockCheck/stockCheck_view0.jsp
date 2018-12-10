@@ -225,7 +225,7 @@
                                       </div>
                                       <div field="comPartName" headerAlign="center" header="配件名称"></div>
                                       <div field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-                                      <div field="comApplyCarModel" width="60" headerAlign="center" header="车型"></div>
+                                      <div field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
                                       <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
                                   </div>
                               </div>
@@ -419,7 +419,7 @@
         <tr>  
             <td colspan="1" align="center">配件编码</td>
             <td colspan="1" align="center">配件全称</td>
-            <td colspan="1" align="center">车型</td>
+            <td colspan="1" align="center">品牌车型</td>
             <td colspan="1" align="center">单位</td>
             <td colspan="1" align="center">系统数量</td>
             <td colspan="1" align="center">实盘数量</td>

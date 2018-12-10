@@ -105,7 +105,7 @@
                   <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>
                   <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div> 
                   <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌" visible="false"></div>           
-                  <div field="carModel" name="carModel" width="180" headerAlign="center" header="车型" visible="false"></div>
+                  <div field="carModel" name="carModel" width="180" headerAlign="center" header="品牌车型" visible="false"></div>
                   <div field="partAmt" name="partAmt" width="80" headerAlign="center" header="金额"></div>
                   <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div> 
                   <div field="status" name="status" width="50" headerAlign="center" header="状态"></div> 

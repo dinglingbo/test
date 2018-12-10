@@ -512,27 +512,7 @@
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">优惠:</process:from>
-      <process:to type="query">msg</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">msg+allowanceAmt</process:from>
-      <process:to type="query">msg</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">errMsg+msg</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="literal" pattern="reference">结算金额与应结金额不一致</process:from>
-      <process:to type="query">msg</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">抵扣:</process:from>
-      <process:to type="query">msg</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">msg+cardPayAmt</process:from>
       <process:to type="query">msg</process:to>
     </process:copy>
     <process:copy>
@@ -1581,14 +1561,6 @@
     <location x="885" y="206"/>
     <size height="28" width="28"/>
     <nodeLabel>assign30label</nodeLabel>
-    <process:copy>
-      <process:from type="expression" pattern="reference">netinAmt-allowanceAmt</process:from>
-      <process:to type="query">netinAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">netinAmt+receiveAmt</process:from>
-      <process:to type="query">netinAmt</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">settlement/totalDeductAmt</process:from>
       <process:to type="query">totalDeductAmt</process:to>

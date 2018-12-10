@@ -168,7 +168,7 @@ table {
                          allowSort="true" visible="true" width="80px">厂牌
                     </div>
                     <div field="carModel" headerAlign="center"
-                         allowSort="true" visible="true" width="80px">车型
+                         allowSort="true" visible="true" width="80px">品牌车型
                     </div>
                 </div>
             </div>

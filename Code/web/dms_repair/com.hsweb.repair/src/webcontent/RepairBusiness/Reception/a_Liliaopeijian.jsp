@@ -176,7 +176,7 @@ pageEncoding="UTF-8" session="false" %>
     <tr>   
         <td class="tbtext">车牌</td> 
         <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
-        <td class="tbtext">车型</td> 
+        <td class="tbtext">品牌车型</td> 
         <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>
         <td class="tbtext">VIN码</td> 
         <td class="tbCtrl"><input  class="nui-textbox tabwidth" /></td>

@@ -73,7 +73,7 @@
                         <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
                         <div header="送修人名称" field="contactName" width="30" headerAlign="center"></div>
                         <div header="送修人手机" field="mobile" width="60" headerAlign="center"></div>
-                        <div header="VIN" field="vin" width="70" headerAlign="center"></div>
+                        <div header="车架号(VIN)" field="vin" width="70" headerAlign="center"></div>
                     </div>
                 </div>
                 <input id="search_name"
@@ -150,7 +150,7 @@
                     <input class="nui-textbox tabwidth"  name="cardType" id ="cardType"/>
                 </td>
             -->
-            <td class="tbtext">车型:</td>
+            <td class="tbtext">品牌车型:</td>
             <td colspan="3" class="tbCtrl">
                 <input class="nui-textbox tabwidth" name="carModel" id="carModel" width="100%" allowInput="false"/>
             </td>
@@ -163,7 +163,7 @@
             
         </tr> 
         <tr>
-           <td class="tbtext">VIN码:</td>
+           <td class="tbtext">车架号(VIN):</td>
             <td class="tbCtrl">
                 <input class="nui-textbox tabwidth" id="carVin" name="carVin"  width="100%" allowInput="false"/>
             </td>

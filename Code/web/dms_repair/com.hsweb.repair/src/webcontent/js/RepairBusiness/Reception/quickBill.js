@@ -3,6 +3,8 @@ var baseUrl = apiPath + repairApi + "/";
 var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryRpbBillModelList.biz.ext";
 var mainGrid = null;
 var servieTypeHash = {};
+var carBrandHash = [];
+var carSeriesHash = [];
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"项目",
@@ -21,12 +23,27 @@ $(document).ready(function ()
     var date = new Date();
     var etartDate = mini.get("eRecordDate");
     etartDate.setValue(date);   
+   
+    initCarBrand("carBrandList", function () {
+        var data = nui.get("carBrandList").getData();
+        data.forEach(function (v) {
+            carBrandHash[v.id] = v;
+        });
+    });
+    initCarSeries("carSeriesList", "", function () {
+        var data = nui.get("carSeriesList").getData();
+        data.forEach(function (v) {
+            carSeriesHash[v.id] = v;
+        });
+    });
+
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {
             servieTypeHash[v.id] = v;
         });
     });
+   
     mainGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -38,6 +55,16 @@ $(document).ready(function ()
             case "serviceTypeId":
                 e.cellHtml = servieTypeHash[e.value].name;
                 break;
+            case "carBrandId":
+            	if(carBrandHash[e.value]){
+            		e.cellHtml = carBrandHash[e.value].name;
+            	};
+            	break;
+            case "carSeriesId":
+            	if(carSeriesHash[e.value]){
+            		e.cellHtml = carSeriesHash[e.value].name;
+            	};
+            	break;
             default:
                 break;
         }

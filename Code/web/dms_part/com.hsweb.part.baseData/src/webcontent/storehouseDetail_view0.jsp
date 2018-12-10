@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/storehouseMgr/storehouseDetail.js?v=1.1.5"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/storehouseMgr/storehouseDetail.js?v=1.1.8"></script>
 <style type="text/css">
 .row {
 	margin-top: 5px;
@@ -55,12 +55,12 @@
             <span class="title title-width2 required">仓库名称：</span>
             <input name="name" id="name" class="nui-textbox width1"/>
         </div>
-        <div class="row">
-            <span class="title title-width2 required">仓库管理员：</span>
-            <input name="chargeMan" class="nui-textbox width1"/>
-            <span class="title title-width2 required">管理员电话：</span>
-            <input name="chargeTel" class="nui-textbox width1"id="mobile"/>
-        </div>
+<!--         <div class="row"> -->
+<!--             <span class="title title-width2 required">仓库管理员：</span> -->
+<!--             <input name="chargeMan" class="nui-textbox width1"/> -->
+<!--             <span class="title title-width2 required">管理员电话：</span> -->
+<!--             <input name="chargeTel" class="nui-textbox width1"id="mobile"/> -->
+<!--         </div> -->
         <div class="row">
             <span class="title title-width2">是否禁用：</span>
             <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0"/>

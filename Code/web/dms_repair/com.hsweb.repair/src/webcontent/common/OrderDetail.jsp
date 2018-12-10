@@ -197,7 +197,7 @@
                 <td class=""><input  class="nui-textbox" name="enterDate" id="enterDate" format="yyyy-MM-dd" class="nui-datepicker"enabled="false" width="100%" /></td>
                 <td class="title">预计交车时间:</td> 
                 <td class=""><input  class="nui-textbox" name="planFinishDate" id="planFinishDate" format="yyyy-MM-dd" class="nui-datepicker" enabled="false" width="100%"/></td>
-                <td class="title">品牌/车型:</td> 
+                <td class="title">品牌车型:</td> 
                 <td class=""><input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/></td>
                 <td class="title">开单时间:</td> 
                 <td class="">

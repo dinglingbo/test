@@ -97,7 +97,7 @@
                     <div field="partCode" width="80" headerAlign="center" allowSort="true">配件编码</div>
                     <div field="partName" width="80" headerAlign="center" allowSort="true">配件名称</div>
                     <div field="partBrandId" width="70" headerAlign="center" allowSort="true">品牌</div>
-                    <div field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
+                    <div field="applyCarModel" width="70" headerAlign="center" allowSort="true">品牌车型</div>
                     <div field="fullName" width="120" headerAlign="center" allowSort="true">价格</div>
                 </div>
             </div>

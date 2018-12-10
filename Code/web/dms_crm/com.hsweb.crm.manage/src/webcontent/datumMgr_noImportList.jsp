@@ -51,7 +51,7 @@ pageEncoding="UTF-8" session="false" %>
                             品牌
                         </div>
                         <div field="carModel" width="250" headerAlign="center" allowSort=false>
-                            车型
+                            品牌车型
                         </div>
                         <div field="vin" width="160" headerAlign="center" allowSort=false>
                             车架号(VIN)

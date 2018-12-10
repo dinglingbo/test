@@ -42,8 +42,8 @@
 	            <tr>
 	                <th class="nui-form-label"><label for="appapplication.apptype$text">应用类别：</label></th>
 	                <td> 
-	                	<input id="appapplication.apptype" class="nui-dictcombobox nui-form-input" name="appapplication.apptype" 
-                   		 valueField="dictID" textField="dictName" dictTypeId="COF_APPTYPE" onvaluechanged="appTypeChange"/>
+	                	<input id="appapplication.apptype" class="nui-combobox nui-form-input" name="appapplication.apptype" 
+                   		 valueField="dictID" textField="dictName" data="COF_APPTYPE" onvaluechanged="appTypeChange"/>
 	                </td>
 	                <th class="nui-form-label"><label for="appapplication.isopen$text">是否开通：</label></th>
 	                <td> 

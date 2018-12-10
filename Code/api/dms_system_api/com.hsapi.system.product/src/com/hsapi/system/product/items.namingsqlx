@@ -3,7 +3,7 @@
 <sqlMap>
     <!--产品分组-->
     <select id="getPrdtType" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT id, parentId, customId = code, typeId, carBrandId, hsid, name = (code + ' ' + name) 
+    	SELECT id, parentId, customId = code, typeId, carBrandId, hsid, name
 		FROM dbo.ST_PrdtType 
 		where 
 			<isNull property="carBrandId">

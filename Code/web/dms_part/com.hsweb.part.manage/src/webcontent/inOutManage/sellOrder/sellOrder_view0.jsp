@@ -277,7 +277,7 @@ body .mini-grid-row-selected{
 
                                 <div field="position_name" width="60" headerAlign="center" allowSort="true">型号</div>
 
-                                <div field="carModelName" width="70" headerAlign="center" allowSort="true">车型</div>
+                                <div field="carModelName" width="70" headerAlign="center" allowSort="true">品牌车型</div>
                                 <div field="fullName" width="120" headerAlign="center" allowSort="true">全称</div>
                             </div>
                         </div>
@@ -310,7 +310,7 @@ body .mini-grid-row-selected{
                       <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
                       <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
                       <div field="partBrandId" name="partBrandId" width="100" headerAlign="center" header="品牌"></div>
-                      <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="车型"></div>
+                      <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
                       <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div>
                   </div>
                 </div>
@@ -360,7 +360,7 @@ body .mini-grid-row-selected{
         <tr>  
             <td colspan="1" align="center">配件编码</td>
             <td colspan="1" align="center">配件全称</td>
-            <td colspan="1" align="center">车型</td>
+            <td colspan="1" align="center">品牌车型</td>
             <td colspan="1" align="center">单位</td>
             <td colspan="1" align="center">数量</td>
             <td colspan="1" align="center">单价</td>

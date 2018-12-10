@@ -17,7 +17,8 @@ var advancedTipForm = null;
 
 var brandHash = {};
 var brandList = [];
-
+var storehouse = null;
+var storeHash = {};
 $(document).ready(function(v)
 {
 
@@ -30,6 +31,14 @@ $(document).ready(function(v)
 	document.ondragstart = function() {
 	    return false;
 	};
+	getStorehouse(function(data) {
+		storehouse = data.storehouse || [];
+		if(storehouse && storehouse.length>0){
+			storehouse.forEach(function(v) {
+				storeHash[v.id] = v;
+			});
+		}
+	});
 	 document.onkeyup = function(event) {
         var e = event || window.event;
         var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -93,14 +102,21 @@ function fixdata(data) { //文件流转BinaryString
 
 function sure() {
 	var data = mainGrid.getData();
+	
 	var partList = [];
 	if (data) {
 		//alert(data.length);
 		for (var i = 0; i < data.length; i++) {
+			for(var j=0;j<storehouse.length;j++){
+				if(data[i].仓库 == storehouse[j].name){
+					data[i].仓库 = storehouse[j].id;
+				}
+			}
 			var newRow = {
 				partCode : (data[i].配件编码||"").replace(/\s+/g, ""),
 				orderQty : (data[i].数量||"").replace(/\s+/g, ""),
 				orderPrice : (data[i].单价||"").replace(/\s+/g, ""),
+				storeId	: (data[i].仓库||""),
 				shelf : (data[i].仓位||"").replace(/\s+/g, ""),
 				remark : (data[i].备注||"").replace(/\s+/g, "")
 			};

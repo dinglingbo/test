@@ -17,6 +17,8 @@ var lastItemRate = null;
 var lastItemUnitPrice = null;
 var lastPkgSubtotal = null;
 var lastPkgRate = null;
+var carBrandHash = [];
+var carSeriesHash = [];
 /*document.onmousemove = function(e){
     if(advancedMorePartWin.visible){
         var mx = e.pageX;
@@ -48,7 +50,20 @@ $(document).ready(function () {
             servieTypeHash[v.id] = v;
         });
     });
-	
+	//品牌
+	initCarSeries("carSeriesId", "", function () {
+	        var data = nui.get("carSeriesId").getData();
+	        data.forEach(function (v) {
+	        	//车系信息
+	            carSeriesHash[v.id] = v;
+	        });
+	});
+    initCarBrand("carBrandId", function () {
+        var data = nui.get("carBrandId").getData();
+        data.forEach(function (v) {
+            carBrandHash[v.id] = v;
+        });
+    });	
 	rpsPackageGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -179,12 +194,30 @@ function add(){
 	nui.get("billTypeId").setValue(1);
 	
 }
+function onCarBrandChange(e){     
+    initCarSeries("carSeriesId", e.value, function () {
+        var data = nui.get("carSeriesId").getData();
+        data.forEach(function (v) {
+            carSeriesHash[v.id] = v;
+        });
+    });
+}
 
 function setInitData(params){
 	var data = params.data;
+	
 	if(!data.id){
 		add();
 	}else{
+		
+		if(data.carBrandId){
+	        initCarSeries("carSeriesId", data.carBrandId, function () {
+	            var data2 = nui.get("carSeriesId").getData();
+	            data2.forEach(function (v) {
+	                carSeriesHash[v.id] = v;
+	            });
+	        });
+	    }
 		//设置表格值
 		billForm.setData(data);
 		

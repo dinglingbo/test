@@ -82,7 +82,7 @@ pageEncoding="UTF-8" session="false"%>
         <div field="guestName" headeralign="center" allowsort="true" visible="true" width="80px">姓名</div>
         <div field="status" headeralign="center" allowsort="true" visible="true" width="40px">状态</div>
         <div field="insureCompName" headeralign="center" allowsort="true" visible="true" width="100px">保险公司</div>
-        <div field="carModel" headeralign="center" allowsort="true" visible="true" width="180px">品牌/车型</div>
+        <div field="carModel" headeralign="center" allowsort="true" visible="true" width="180px">品牌车型</div>
         <div field="serviceCode" headeralign="center" allowsort="true" visible="true" width="80px">工单号</div>
 		<div field="recordDate" headeralign="center" allowsort="true" visible="true" dateFormat="yyyy-MM-dd HH:mm" width="100px">开单日期</div>
     </div>

@@ -68,7 +68,7 @@ table {
                     <div field="carNo" headerAlign="center" allowSort="true" visible="true" width="70">车牌号</div>
                     <div field="insuranceMan" headerAlign="center" allowSort="true" visible="true" width="70px">被保险人</div>
                     <div field="carBrandId" headerAlign="center" allowSort="true" visible="true" width="60px">品牌</div>
-                    <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="60px">车型</div>
+                    <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="60px">品牌车型</div>
                     <div field="insuranceType" headerAlign="center" allowSort="true" visible="true" width="60px">保险类型</div>
                 </div>
             </div>

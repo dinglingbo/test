@@ -3,30 +3,44 @@
 <%@page pageEncoding="UTF-8"%>
 <%@page import="com.primeton.cap.AppUserManager"%>
 <%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<title>汽车后市场云服务</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
-<link href="<%= request.getContextPath() %>/coframe/auth/login/css/style_n.css" rel='stylesheet' type='text/css' />
-<link href="<%= request.getContextPath() %>/coframe/auth/login/css/index.css" rel='stylesheet' type='text/css' />
-<%
+
+<title>车道商户版</title>
+<script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
+<meta charset="utf-8">
+<meta name="keywords" content="汽修达人管理平台"/>
+<meta name="description" content="汽修达人管理平台"/>
+<meta name="author" content="shenzhi"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="apple-mobile-web-app-title" content="汽修达人管理平台"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="format-detection" content="telephone=no, address=no, email=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+ <%
    String contextPath=request.getContextPath();
    String url = null;
    String loginUrl = "org.gocom.components.coframe.auth.login.login.flow";
    loginUrl = "com.hsapi.system.auth.login.login.flow";
-   String regUrl = "com.hsapi.system.auth.login.register.flow";
+   String regUrl = "com.hsapi.system.auth.login.registerOfm.flow";
    
    HttpSecurityConfig securityConfig = new HttpSecurityConfig();
    boolean isOpenSecurity = securityConfig.isOpenSecurity();
+
+   String ip = securityConfig.getHost();
+   String https_port = securityConfig.getHttps_port();
+ 		 
    if(isOpenSecurity){
    		boolean isAllInHttps = securityConfig.isAllInHttps();
    		if(!isAllInHttps){
-   			String ip = securityConfig.getHost();
-   			String https_port = securityConfig.getHttps_port();
    			url = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + loginUrl;
    			regUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + regUrl;
+
    		}else{
    			url = loginUrl;
    		}
@@ -38,349 +52,324 @@
 	String apiPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
 	String sysApi = Env.getContributionConfig("system", "url", "apiDomain", "SYS");
 	String sendUrl = apiPath + sysApi + "/com.hsapi.system.tenant.register.sendMsg.biz.ext";
- %>
-<script type="text/javascript" src="<%= request.getContextPath() %>/coframe/auth/login/js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="<%= request.getContextPath() %>/coframe/auth/login/js/index.js?v=1.0.0"></script>
+	String privacyUrl = request.getContextPath() + "/coframe/auth/login/privacyUrl.jsp";
+	String protocolUrl = request.getContextPath() + "/coframe/auth/login/protocolUrl.jsp";
+ %> 
 <style type="text/css">
-html,body {
-	height: 100%;
-	width: 100%;
-	min-width:1200px;
-	min-height:530px;
+html{
+	height:100% !important;
 }
 
-.pic { /* 页面logo图片 */
-	background-image: url(images/sign-inbg_01.png);
+body { 
+
+	min-width: 98%;
+	min-height: 97%;
+	background-color: #0B57AB;
+	background-image:-webkit-linear-gradient( 90deg, #87F1F2, #0B57AB ); 
+    background-image:linear-gradient( 90deg, #87F1F2, #0B57AB ); 	
+}
+
+.login_box{
+	max-width: 100%;
+	height: 97vh;
+	background-image: url(images/bg.png);
 	background-repeat: no-repeat;
-	background-size: 100% 100%;
+	background-position:center center;
+	margin: 0 auto;
+	position: relative;
+	
+}
+.login_box .login {
+	position: absolute;
+	display: block;
+	width: 380px;
+	background-color: #FFF;
+	top: 30%;
+	right: 15%;
+	padding-bottom: 30px;
+	
+	
 }
 
-.rmenu {
-	font-size: 14px;
-	/* font-weight: bold; */
-	text-align: left;
-	margin: 0;
-	padding-left: 25px;
-	height: 18px;
-	color: #fff;
-	width: auto;
-	margin-left: 20px;
-	margin-top: 20px;
-	background-size: 50%;
-	float: left;
-}
 
-.lmenu {
+.login_box .login .title {
+	padding: 20px 0 15px;
 	font-size: 18px;
-	font-weight: bold;
-	text-align: left;
-	margin: 0;
-	padding-left: 25px;
+	text-align: center;
 	height: 40px;
-	color: #fff;
-	width: auto;
-	margin-left: 20px;
-	margin-top: 20px;
-	background-size: 50%;
+}
+.login_box .login .loginTitle {
+	height: 10px;
+	padding-left: 30px;
+	height: 80px;
+}
+.login_box .login .loginTitle .log {
+	float: left;
+	font-size: 25px;
+	text-align: left;
+	padding-top: 10px;
+}
+.login_box .login .loginTitle .log span {
+	display: block;
+	font-size: 10px;
+	color: #A5A5A5;
+}
+.login_box .login .loginTitle .weixinbox {
+	float: right;
+}
+.login_box .login label {
+	padding: 0 30px;
+	width: 80%;
+	margin: 0;
 	float: left;
 }
-
-#getKeyWorld {
-	width: 80px;
-	border: none;
-	outline: none;
-	height: 50px;
-	line-height: 50px;
-	font-size: 16px;
-	/* position: absolute; */
-	right: 10px;
-	top: 0px;
+.login_box .login label ~ label {
+	margin-top: 15px;
+}
+.login_box .login input.yzm {
+	background-color: #F0F0F0;
+	border: 0;
+	width: 40%;
+	border-radius: 0;
+	height: 34px;
+}
+.login_box .login input {
+	background-color: #F0F0F0;
+	border: 0;
+	width: 100%;
+	border-radius: 0;
+	height: 34px;
+}
+.login_box .login input[type="checkbox"] {
+	background-color: #F0F0F0;
+	border: 0;
+	width: initial;
+	border-radius: 0;
+	height: 34px;
+}
+.login_box .login .app {
+	float: left;
+	display: block;
+	margin-top: 10px;
+	width: 80%;
+	padding: 0 30px;
+}
+.imgbox{
+	float: left;
+	position: relative;
+	cursor: pointer;
+}
+.imgbox .max_img{
+	display: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 300px;
+	height: 270px;
+}
+.imgbox .max_img img{ 
+	width: 100%;
+	height: 100%;
 }
 
-.title {
+.login_box .login .app > .you{
+	float: right;
+	color: #A5A5A5;
+}
+.login_box .login input.min { width: initial;}
 
-		font-size: 1.5em;
-height:50px;
-	color: #0091e6;
+.login_box .login .button {
+	background-color: #95B93D;
+	height: 34px;
+	line-height: 34px;
 	text-align: center;
-    line-height: 50px;
-    	border-radius: 4px;
-	-webkit-border-radius: 4px;
-	-o-border-radius: 4px;
-	-moz-border-radius: 4px;
+	color: #FFF;
+	cursor: pointer;
 }
-.title  a{
-font-size: 18px;;
-color: #0091e6;
-
-    	border-radius: 4px;
-	-webkit-border-radius: 4px;
-	-o-border-radius: 4px;
-	-moz-border-radius: 4px;
-    display: inline-block;
-    float: left;
-width:50%;
-text-align:center;
+.login_box .blue { color: #0050FB;cursor: pointer;font-size: 14px;}
+.login_box .wu {
+	text-align: center;	
+	margin-top: 20px;
+	
 }
-
-
-.login-error{margin-bottom:15px; padding-left:62px; color:#ff4107;}
-
+.login_box .you {
+	text-align: center;	
+	margin-top: 20px;
+	width: 350px;
+	
+}
+#registerBox{display: none;
+}
+.weixin_img {
+	display: block;
+	width: 45px;
+	height: 47px;
+	position: absolute;
+	top: 0;
+	right: -33px;
+	cursor: pointer;
+}
+.weixin_max_img {
+	z-index: 9999;
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0px;
+	width: 250px;
+	height: 250px;
+}
+.weixin_max_img img {width: 100%; height: 100%;}
+.checkbox_box {
+	display: inline-block;
+	position: relative;
+  	cursor: pointer;
+  	width: 16px;
+    height: 16px;
+}
+.checkbox_box > input {
+	cursor: pointer;
+	display: none;
+}
+.checkbox_box > input:checked + .show-box {
+	background: #94B83C;
+}
+.checkbox_box .show-box {
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 2px;
+    border: 1px solid #E5E5E5;
+    background: #FFF;
+  }
+.checkbox_box .show-box:before {
+      content: ''; 
+      position: absolute;
+      top: 2px;
+      left: 6px;
+      width: 3px;
+      height: 8px;
+      border: solid #FFF;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+}
+a {
+     text-decoration: none;
+}
+.com_text {
+  position: absolute;
+  left: 0;
+  width:100%;
+  bottom: 20px;
+  text-align: center;
+  color: #FFF;
+  font-size:13px;
+  }
 </style>
+
 </head>
-<%
-	String original_url=null;
-	Object objAttr=request.getAttribute("original_url");
-	if(objAttr != null){
-		original_url=StringUtil.htmlFilter((String)objAttr);
-	}
- %>
 <body>
-	<div id="t1" style="width: 100%; height: 100%;">
-		<div id="t2" class="pic" style="float: left; width: 75%; height: 100%;">
-			<div
-				style="height: 25px; margin: 40px 0px 0px 60px; color: #1D92F1; background: url(images/sign-in0529-01_03.png) no-repeat left center; background-size: contain;"></div>
-		</div>
-		<div id="t3" style="float: left; width: 25%; height: 100%; background-color: #1D92F1">
-			<div style="height: 18px;">
-				<div class="rmenu"
-					style="background: url(images/sign-in0529-01_09.png) no-repeat left center; background-size: contain;">
-					<span> 
-						<a id="t_a_favorite" href="" onclick="addFavorite()" >加入收藏</a> 
-					</span>
-				</div>
-				<div class="rmenu"
-					style="background: url(images/sign-in0529-01_11.png) no-repeat left center; background-size: contain;">
-					<span>  
-						<a id="t_a_favorite" href="" onclick="" >QQ群</a> 
-					</span>
-				</div>
-				<div class="rmenu"
-					style="background: url(images/sign-in0529-01_06.png) no-repeat left center; background-size: contain;">
-					<span>  
-						<a id="t_a_favorite" href="" onclick="" href="javascript:void(0)" onMouseOut="hideImg()"  onmouseover="showImg()">微信公众号</a> 
-						<div id="wxImg" style="width:70px;height:70px;background: url(images/wepic.png) no-repeat center center;display:none;position:absolute;background-size: contain;"></div>
-					</span>
-				</div>
-			</div>
-		</div>
-		<div style="clear: both"></div>
-		<!-- 注释：清除float产生浮动 -->
-	</div>
-	<div id="actForm1" class="main" style="z-index: 999; left: 65%; position: absolute; top: 3em;">
-		<div class="login">
-					<div class="inset">
-				<!--start-main-->
-							<div class="title">
-						<a id="t_a_login1" href="javascript:viod(0)" onclick="T_LoginType(1)" >
-								登录
-							</a>
-							<a id="t_a_login2"  href="javascript:viod(0)" onclick="T_LoginType(2)" style="background-color:#f0f0f0;" > 微信认证登录
-						</a> 
-						</div>
-<div id="div_login1"  class="con">
-				<form method="post"	name="loginForm" onsubmit="return login();" action="<%=url%>">
-						<p id="error"  ></p>
-						<div>
-						<!-- <span> <label> 账号/邮箱 </label> </span>  -->
-						<span> <input id="userId" name="userId" type="text" class="textbox" placeholder="请输入账号/邮箱" />
-						</span>
-					</div>
-					<div>
-						<!-- <span> <label> 密码 </label> </span>  -->
-						<span> <input id="password" name="password" type="password" class="text" placeholder="请输入密码" />
-						<input id="password1" name="password1" type="text" class="textbox" placeholder="请输入密码" style="display:none"/>
-							<a id="pwdBtn" href="##" class="pwdBtnShow" isshow="true" style="margin-top:-45px;">
-						<i class="i_icon" style="background-position: -60px -93px;"></i>
-					</a>
-						</span>
-					</div>
-					<div class="rememberField" style="font-size: 8px; width: 100%; margin-top: 10px">
-						<span class="checkboxPic check_chk" tabindex="-1" isshow="false"> <i class="i_icon"></i>
-						</span> <label class="pointer"> 7天内自动登录 </label> <a href="##"
-							style="color: red; float: right; text-decoration: underline;"> 忘记密码? </a>
-					</div>
-					<div class="sign" style="margin-top: 40px;">
-						<input type="submit" value="登录" class="submit" />
-					</div>
-					<div style="margin: 20px 0px 10px 0px">
-						<span style="margin-top: 10px; font-size: 10px;" align="center"> 还没有账号? <a
-							id="a_registered" href="javascript:viod(0)" onclick="changeTab(1)"
-							style="display: inline-block; text-decoration: underline;"> 注册 </a>
-						</span>
-					</div>
-				</form>
-				</div>
-				<div id="div_login2"  class="con" style="display:none">
-					<div id="inwxpic" style="margin: 60px 0px 50px 50px;width:200px;height:200px;background: url(images/wepic.png) no-repeat center center;position:absolute;background-size:contain;"></div>
-				</div>
-			</div>
-		</div>
-		<!--//end-main-->
-	</div>
-	<div id="actForm2" class="main"
-		style="z-index: 999; left: 65%; position: absolute; top: 0; display: none;">
-		<div class="login">
-			<div class="inset" >
-										<div class="title">
-								<a style="width:100%;bottom:0">注册</a>
-						</div>
-<div class="con" style="padding-top:0px;">
-				<form method="post"	name="registerForm" onsubmit="return register();" action="">
-					<p id="errorP"  ></p>
-					<div>
-						<span> <input id="registercompname" name="registercompname" type="text" class="text" placeholder="请输入公司名" />
-						</span>
-					</div>
-					<div>
-						<span> <input id="registername" name="registername" type="text" class="text" placeholder="请输入用户名" />
-						</span>
-					</div>
-					<div>
-						<span> <input id="phone" name="phone" type="text" class="textbox" placeholder="手机号码" />
-						</span>
-					</div>
-					<div>
-						<span> <input id="authcode" name="authcode" type="text" class="text" placeholder="请输入验证码" style="width: 200px;" /> <a
-							href="javascript:sendMsg();" id="getKeyWorld" class="linkABlue"> 获取验证码 </a>
-						</span>
-					</div>
-					<!-- <div>
-						<div class="select">
-							<select name='make'>
-								<option>请选省份</option>
-								<option>111
-								<option>2222</option>
-								<option>333</option>
-								</option>
-							</select>
-						</div>
-					</div>
-					<div>
-						<div class="select">
-							<select name='make'>
-								<option>请选择区域</option>
-							</select> 
-						</div>
-					</div> -->
-					<div class="rememberField" style="font-size: 8px">
-						<span class="checkboxPic check_chk" tabindex="-1" isshow="false"> <i class="i_icon"></i>
-						</span> <label class="pointer"> 我已阅读并接受 </label> <a href="https://www.baidu.com/" target="_blank"
-							class="linkABlue"> 《思配TM云平台用户注册协议》 </a>
-					</div>
-					<div class="sign">
-						<input type="submit" value="注册" class="submit" />
-					</div>
-					<div>
-						<span style="margin-top: 10px; font-size: 10px;" align="center"> 已经有账号? <a id="a_login"
-							href="javascript:viod(0)" onclick="changeTab(2)"
-							style="display: inline-block; text-decoration: underline;"> 登录 </a>
-						</span>
-					</div>
-				</form>
-			</div>
+
+
+
+<div class="login_box">
+	<form method="post"	name="registerForm" onsubmit="return register();" action="">
+	<div class="login" id="registerBox">
+		<div class="title">注册</div>	
+		<label style="width:100%">
+			<p ><span id="errorP" style="font-size:15px;color:red"></span></p>
+			<input type="text" id="registercompname" name="registercompname" value="" placeholder="请输入公司名" maxlength="11" />
+		</label>
+		<label style="width:100%">
+			<input type="text" id="registername" name="registername" value="" placeholder="请输入用户名" maxlength="20" />
+		</label>
+		<label style="width:100%">
+			<input type="text" class="number" id="phone" name="phone" value="" placeholder="手机号码" maxlength="11" />
+		</label>
+		
+		<label style="width:100%">
+			<input class="min" type="text" id="authcode" name="authcode" value="" placeholder="请输入验证码" maxlength="11" />
+			<a href="javascript:sendMsg();" id="getKeyWorld" text-decoration="none";><span class="blue" >获取验证码</span></a>
+		</label>
+		
+		<label style="width:100%">
+			<font size="2">注册即同意</font><span class="blue">
+					<a target="_blank" href="<%=privacyUrl%>"><span class="blue" id="privacy"  >隐私政策</span></a>&nbsp;<span style="color:#999">/</span>
+					<a  target="_blank" href="<%=protocolUrl%>"><span class="blue"  id="protocol" >用户协议</span></a>
+			</span>
+			
+		</label>
+		<label style="width:100%">
+			<div class="sing"><input id="registered" type="submit" value="注册" class="button" /></div>
+		</label>
+		<div class="app">
+			<div class="you" >已经有帐号？  <span class="blue" id="login">登录</span></div>
 		</div>
 	</div>
-	
-</body>
-  <%
- 	request.getSession().invalidate();
- 	Cookie[] cookies = request.getCookies();
- 	if(cookies != null){
- 		for(int i=0;i<cookies.length;i++){
- 			if(StringUtil.equals("jsessioinid", cookies[i].getName())){
- 				cookies[i].setMaxAge(0);
- 			}
- 		}
- 	
- 	}
-  %>
-</html>
-<script>
-		var msgCode = null;
-		function T_LoginType(e){
-			if (e == 1) {
-				
-				$("#t_a_login1").css("background-color","#fff");
-				$("#t_a_login2").css("background-color","#f0f0f0");
-				$("#div_login1").show();
-				$("#div_login2").hide();
-			}
-			if (e == 2) {
-				$("#t_a_login1").css("background-color","#f0f0f0");
-				$("#t_a_login2").css("background-color","#fff");
-				$("#div_login1").hide();
-				$("#div_login2").show();
-				$("#div_login2").css("height","340px");
-			}
-		}
+</form>	
+<!--<form method="post"	name="loginForm"  action="login.jsp">-->
+<form method="post"	name="loginForm" onsubmit="return login();"  action="<%=url%>">	
+	<div class="login" id="loginBox">
+		<div class="loginTitle">
+			<div class="weixinbox">
+				<img src="images/weixin-min-img.png" />
+				<div class="weixin_max_img">
+					<img src="images/xiongying.jpg"  />
+				</div>
+			</div>		
+			<div class="log">
+				欢迎登录车道商户版
+				<span>为了保障您顺畅的使用，建议使用谷歌/火孤/360浏览器</span>
+			</div>
+		</div>
+		<label style="width:100%">
+		<p  class="errorC"><span id="error" style="font-size:15px;color:red"></span></p>
+			<input type="text" id="userId" name="userId" value="" class="accountNo" placeholder="用户名" maxlength="11" />
+		</label>
+		<label style="width:100%">
+			
+			<input type="password" id="password" name="password" value="" class="password_val" placeholder="密码" maxlength="20" />
+		</label>
+		<label style="width:100%">
+			
+		   	 <input type="text" class="yzm" name="code"  id="code" style="width:60%" placeholder="验证码" maxlength="9" />
+		  	 <span><img id="loginImgVeri" src="../img.jsp" style="vertical-align:middle;"></span><a href="javascript:reload();"> 换一张</a>
+		</label>
+		<label style="width:100%">
+			<div  class="sing" id="loginJump"><input  type="submit" value="登录" class="button" /></div>
+		</label>
+<!-- 		<label>
+			<div class="checkbox_box">
+				<input type="checkbox" id="memory" checked="checked" /><div class="show-box"></div>
+			</div>
+			登录即同意 <span class="blue">隐私政策/用户协议</span>
+		</label> -->
 
-	
-		function changeTab(e) {
-			if (e == 1) {
-				$("#actForm1").hide();
-				$("#actForm2").show();
-			}
-			if (e == 2) {
-				$("#actForm1").show();
-				$("#actForm2").hide();
-			}
+		<div class="app">
+			<div class="imgbox">
+				<img src="images/app-min-img.png" onclick="changeShow();"  />
+				<div class="max_img">
+					<img src="images/xiongying.jpg"  onclick="changeHide();"  />
+				</div>
+			</div>
+			<div class="wu">还没帐号？  <span class="blue" id="register">立即注册</span></div>
+		</div>	
+	</div>
+</form>
+<div class="com_text">Copyright © 2014-2018 广州信绘通信息科技有限公司  版权所有: 粤ICP备10036501号-1 </div>
+</div>
+<script src="jquery-1.9.1.min.js?ver=1.01"></script>
 
-		}
+<script type="text/javascript">
+nui.parse();
+	<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 
-		function  showImg(){
-			document.getElementById("wxImg").style.display='block';
-		}
-		function hideImg(){
-			document.getElementById("wxImg").style.display='none';
-		}
-
-		function addFavorite() {
-			var url = window.location;
-			var title = document.title;
-			var ua = navigator.userAgent.toLowerCase();
-			if (ua.indexOf("360se") > -1) {
-				alert("由于360浏览器功能限制，请按 Ctrl+D 手动收藏！");
-			}else if (ua.indexOf("msie 8") > -1) {
-				window.external.AddToFavoritesBar(url, title); //IE8
-			}else if (document.all) {
-				try{
-					window.external.addFavorite(url, title);
-				}catch(e){
-					alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
-				}
-			}else if (window.sidebar) {
-				window.sidebar.addPanel(title, url, "");}else {alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');
-			}
-		}
-
-
-		if(window.top!=window){
-			window.top.location = window.location;
-		 }
-	  
-	     //var form = new nui.Form("#form1");
-	     
-	     $("#userId").focus();
-	     
-	     function onCheckUserId(e){
-	       if (e.isValid) {
-	         if(e.value==""){
-	           e.errorText = "用户名不能为空";
-	           e.isValid = false;
-	         }
-	       }
-	     }
-	     
-	     function onCheckPassword(e){
-	       if (e.isValid) {
-	         if(e.value==""){
-	           e.errorText = "密码不能为空";
-	           e.isValid = false;
-	         }
-	       }
-	     }
-	     <% 
+  
+	   <% 
 	     	Object result = request.getAttribute("result");
 	     	String userName = (String)request.getAttribute("userId");
 	     	if (userName==null)userName="";
@@ -402,6 +391,8 @@ text-align:center;
 			     	out.println("showError('密码已过期！')");
 			     }else if(resultCode == -3){
 	      			out.println("showError('查询用户信息失败，请联系系统管理员检查数据库连接！')");
+	     		 }else if(resultCode == -4){
+	      			out.println("showError('验证码输入不正确，请重新输入！')");
 	     		 }else{
 	      			out.println("showError('未知的异常，请联系系统管理员！')");
 	     		 }
@@ -409,75 +400,91 @@ text-align:center;
 	     		out.println("showError('')");
 	     	}
 		  %>
-	      function showError(msg){
-	      	 //$("#error").html(msg);
-	      	 if(msg){
-		      	$("#error").addClass("errorC");
-		      	$("#error").html(msg);
-	      	 }else{
-	      	 	$("#error").addClass("error");
-		      	$("#error").html("");
-	      	 }
-	      }
+		 var  msgCode = "";
+$(function () {
+	//显示登录框
+	$("#login").click(openLogin);
+	//显示注册框
+	$("#register").click(openRegister);
+	
+	//登录
+	//$("#loginJump").click(loginTest);
+	
+	//注册registered
+	$("#registered").click(registered);
+	
+	//发送验证码
+	$("#sentCode").click(sendMsg);
+	
+	//放大APP二维码
+/* 	$(".imgbox").mousemove(maxImg).mouseout(function (){
+		$(".max_img").hide();
+	}); */
+ 	$(".weixinbox").mousemove(function(){
+		$(".weixin_max_img").show();
+	}).mouseout(function (){
+		$(".weixin_max_img").hide();
+	}); 
+});
 
-	    $("#userId").focus(function(){
-			$("#error").removeClass("errorC");
-			$("#error").html("");
-		});
-		$("#password").focus(function(){
-			$("#error").removeClass("errorC");
-			$("#error").html("");
-		});
-	      
-	      //获取键盘 Enter 键事件并响应登录
-	     function keyboardLogin(e){
-	       login();
-	     }
-	     function login(){
-	     	//var form = new nui.Form("#form1");
-	        //form.validate();
-	        //if (form.isValid() == false) 
-	        	//return false;
+function changeShow(){
+	$(".max_img").show();
+}
 
-	        if($(".pwdBtnShow").attr("isshow")=="false")
-			{
-				$("#password").val($("#password1").val());
-			}
-	        
-	        document.loginForm.submit();
-	     }
-	     function register(){
-	     	var phone = $("#phone").val();
-	     	var registername = $("#registername").val();
-	     	var registercompname = $("#registercompname").val();
-	     	var code = $("#authcode").val();
-	     	if(!phone){
-	     		$("#errorP").addClass("errorC");
-		      	$("#errorP").html("请输入手机号");
-		      	return false;
-	     	}
-	     	if(!registername){
-	     		$("#errorP").addClass("errorC");
-		      	$("#errorP").html("请输入用户名");
-		      	return false;
-	     	}
-	     	if(!registercompname){
-	     		$("#errorP").addClass("errorC");
-		      	$("#errorP").html("请输入公司名");
-		      	return false;
-	     	}
-	     	if(code != msgCode){
-	     		$("#errorP").addClass("errorC");
-		      	$("#errorP").html("验证码输入错误");
-		      	return false;
-	     	}
+function changeHide(){
+	$(".max_img").hide();
+}
+//显示登录框
+function openLogin() {
+	$("#registerBox").hide();
+	$("#loginBox").show();
+}
+//显示注册框
+function openRegister() {
+	$("#registerBox").show();
+	$("#loginBox").hide();
+}
+function maxImg() {
+	$(".max_img").show();
+}
+function weixiMmaxImg() {
+	$(".weixin_max_img").show();
+}
+		  
+  function showError(msg){
+  	 if(msg){
+      	$("#error").html(msg);
+  	 }
+  } 
+  
+ //注册    
+function register(){
+ 	var phone = $("#phone").val();
+ 	var registername = $("#registername").val();
+ 	var registercompname = $("#registercompname").val();
+ 	var code = $("#authcode").val();
+     	if(!registercompname){
+	      	$("#errorP").html("请输入公司名");
+	      	return false;
+     	}
+     	if(!registername){
+	      	$("#errorP").html("请输入用户名");
+	      	return false;
+     	}
+     	if(!phone){
+	      	$("#errorP").html("请输入手机号");
+	      	return false;
+     	}
 
-
-			document.registerForm.action="<%=regUrl%>"
-	        document.registerForm.submit();        
-	        
-	     }
-	     	 <% 
+     	if(code != msgCode){
+	      	$("#errorP").html("验证码输入错误");
+	      	return false;
+     	}
+	document.registerForm.action="<%=regUrl%>"
+    document.registerForm.submit();        
+    
+ }
+ 			 <% 
 	        	String errCode = (String)request.getAttribute("errCode");
 	        	String errMsg = (String)request.getAttribute("errMsg");
 	        	if(errCode=="E"){
@@ -490,29 +497,29 @@ text-align:center;
 	        %>
 
 	     $("#phone").focus(function(){
-			$("#errorP").removeClass("errorC");
 			$("#errorP").html("");
 		 });
 		 $("#authcode").focus(function(){
-			$("#errorP").removeClass("errorC");
 			$("#errorP").html("");
 		 });
 		 $("#registername").focus(function(){
-			$("#errorP").removeClass("errorC");
 			$("#errorP").html("");
 		 });
 		 $("#registercompname").focus(function(){
-			$("#errorP").removeClass("errorC");
 			$("#errorP").html("");
 		 });
 
 		 function showRegisterError(msg){
 	      	 alert(msg);
 	      }
-
-	      function sendMsg(){
+	      
+	       function sendMsg(){
 			var params={};
 			params.phone=$("#phone").val();
+			if(!params.phone){
+		      	$("#errorP").html("请输入手机号");
+		      	return false;
+	     	}
 		    $.ajax({
 		        url : "<%=sendUrl%>",
 		        contentType: "application/json;charset=utf-8",
@@ -558,7 +565,96 @@ text-align:center;
 	 		$("#password").val("<%=password %>");
 	 		$("#password1").val("<%=password %>");
 	 	 });
+	 	 
+ //登录验证
+function loginTest(user,pass) {
+	var loginData = {
+			clientId: 'e7402717-528f-4179-a1b2-a7d52ddff9e4',
+			serialNumber: '6f4ae8f5586d43ed99ee1457e5ca41c7',
+			clientSecret: "9bb02289-3cbc-46b3-90f0-a6b8f89db2ba",
+			phoneType: 'pc',
+			platform: 25
+		},
+		memory = $("#memory").prop("checked");
+		
+/* 		loginData.loginName = $(".accountNo").val().trim();
+		loginData.password = $(".password_val").val().trim(); */
+		loginData.loginName = user;
+		loginData.password = pass;
+		
+	if (!loginData.loginName) {
+		//Dialog.popup('请输入帐号！');
+		$("#error").html('请输入帐号！');
+		showError('请输入帐号！');
+		//$(".accountNo").focus();
+		return false;
+	}
+	if (!loginData.password) {
+		//Dialog.popup('请输入密码！');
+		$("#error").html('请输入密码！');
+		$(".password_val").focus();
+		return false;
+	}
+
+	
+	window.location.href="<%=url%>?userId="+loginData.loginName+"&password="+loginData.password;
+	
+	 
+}
 
 
-	</script>
+$("#userId").focus(function(){
+	$("#error").html("");
+});
+$("#password").focus(function(){
+	$("#error").html("");
+});
+ 
+ //获取键盘 Enter 键事件并响应登录
+function keyboardLogin(e){
+  login();
+}
+function login(){
+	//var form = new nui.Form("#form1");
+   //form.validate();
+   //if (form.isValid() == false) 
+   	//return false;
+   	
+   	var userId = $("#userId").val();
+ 	var password = $("#password").val();
+ 	var code = $("#code").val();
+     	if(!userId){
+	      	$("#error").html("请输入用户名");
+	      	return false;
+     	}
+     	if(!password){
+	      	$("#error").html("请输入密码");
+	      	return false;
+     	}
+     	if(!code){
+	      	$("#error").html("请输入验证码");
+	      	return false;
+     	}
 
+   if($(".pwdBtnShow").attr("isshow")=="false")
+	{
+		$("#password").val($("#password1").val());
+	}
+  
+    document.loginForm.submit();
+}
+
+
+	 function reload(){
+	 	document.getElementById("loginImgVeri").src="../img.jsp?rnd=" + Math.random();
+	 }
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

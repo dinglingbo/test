@@ -82,7 +82,7 @@
 				<div header="车辆信息" headerAlign="center">
 					<div property="columns">
 						<div field="carNo" headerAlign="center"   visible="true" width="80">车牌号</div>
-						<div field="carModel" headerAlign="center"  width="200px">品牌/车型</div>
+						<div field="carModel" headerAlign="center"  width="200px">品牌车型</div>
 						<div field="vin" headerAlign="center"   visible="true" width="130px">车架号（VIN）</div>
 						<div field="annualInspectionDate"  headerAlign="center" dateFormat="yyyy-MM-dd"  visible="true"
 						 width="80px">商业险到期</div>
@@ -204,7 +204,7 @@
 						 textField="nameCn" />
 					</td>
 					<td class="" width="30">
-						<label>车型:</label>
+						<label>品牌车型:</label>
 					</td>
 					<td colspan="1">
 						<input class="nui-combobox" name="carModelId" width="100%" id="carModelId" valueField="carModelId" textField="carModel"

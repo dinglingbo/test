@@ -13,20 +13,20 @@ pageEncoding="UTF-8" session="false" %>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <%@include file="/common/commonRepair.jsp"%>
 
-  <style type="text/css"> 
+  <style type="text/css">  
   html, body{
     margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
-  }
-  .tbtext {
+}
+.tbtext {
     font-size:14px;
     width: 72px;
 
     /* text-align: right;
-       */  }
-  .tbinput{
+*/  }
+.tbinput{
     width: 100%
-  }
- 
+}
+
 
 .btn {
     display: inline-block;
@@ -55,108 +55,131 @@ pageEncoding="UTF-8" session="false" %>
     border-color: rgb(26, 179, 148);
 }
 
- .control-label {
+.control-label {
     padding-top: 7px;
     margin-bottom: 0px;
     text-align: right;
 }
+.tags{
+    display: inline-block;
+    background: #1ab394;
+    color: #fff;
+    margin: 2px 0;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+
+.smsExplain{
+    position: absolute;
+    left: 0px;
+    top: 3px;
+    width: 255px;
+    padding: 5px;
+    font-size: 10px;
+    background-color: white;
+}
+
 </style>
 </head>
 <body>
 
 
-    <div class="nui-fit">
-      <div  id="t1">  
+  <div class="nui-fit">
+    <div  id="t1">  
 
-        <div  id="t2"  style="float:left;width: 40%; height: 100%;">       
+      <div  id="t2"  style="float:left;width: 40%; height: 100%;">       
 
 
         <div style="background-image: url('<%=request.getContextPath()%>/manage/css/pic/mobile.png');width: 344px;height: 615px;position: relative;">
-            <div style="position: absolute;bottom: 170px;left: 46px; width: 82px;" zcdrel="maincd1">
+          <div style="position: absolute;bottom: 170px;left: 46px; width: 82px;" zcdrel="maincd1">
 
-            <div style="position: absolute;bottom: 0px;left: 0px;">
-              <textarea id="Smscontent" name="" style="width:255px;height: 365px;"></textarea>
-            </div>
-            <div style="position: absolute;bottom: 0px;left: 0px;width:255px;height: 50px;">
-            </div>
+            <div style="position: absolute;bottom: -2px;left: 0px;">
+              <div contenteditable="true" id="Smscontent" style="width:255px;height: 309px;resize:none"></div>
 
-        </div>
-
- </div>
-
-
-    </div>
-    <div  id="t3"  style="float:left;width: 60%; height: 570px;">       
-
-      <div class="nui-fit">
-
- <div class="nui-toolbar" style="padding:0px;">
-    <table style="width:80%;">
-        <tr>
-            <td style="width:80%;">
-                <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
-            </td>
-        </tr>
-    </table>
-</div>
-        <table style="width:100%;height:; margin-top:20px; ">
-
-          <tr >
-             <td class="tbtext"><label>短信名称：</label></td>
-
-             <td ><input class="nui-textbox tbinput" name="" ></td>
-          </tr>
-                    <tr >
-             <td class="tbtext"><label>短信类型：</label></td>
-
-             <td ><input class="nui-combobox " name="" style="width:50%"></td>
-          </tr>
-          <!-- <tr >
-             <td colspan="2"><label>常用字段：</label></td>
-          </tr>           -->
-          <tr >
-             <td colspan="2">
-              <label class="tbtext">常用字段：</label>
-                                    <div class="form-group" style="height:;    margin-bottom: 0px;display: inline-table;border-radius: 25px;">
-                                <div class="form-group" style="margin: 10px;">
-                                    <label class="control-label" style="text-align: center;">车主类:</label>
-                                    <h4>
-                                        <span class="btn btn-primary tagText" data-text="[车主]">车主</span>
-                                        <span class="btn btn-primary tagText" data-text="[姓名]">姓名</span>
-                                        <span class="btn btn-primary tagText" data-text="[生日]">生日</span>
-                                        <span class="btn btn-primary tagText" data-text="[车牌号]">车牌号</span>
-                                        <span class="btn btn-primary tagText" data-text="[保险到期]">保险到期</span>
-                                        <span class="btn btn-primary tagText" data-text="[年审到期]">年审到期</span>
-                                        <span class="btn btn-primary tagText" data-text="[驾驶证到期]">驾驶证到期</span>
-                                    </h4>
-                                </div>
-         
-                                <div class="form-group" style="margin: 10px;">
-                                    <label class="control-label" style="text-align: center;">本公司:</label>
-                                    <h4>
-                                        <span class="btn btn-primary tagText" data-text="[电话]">电话</span>
-                                        <span class="btn btn-primary tagText" data-text="[手机]">手机</span>
-                                        <span class="btn btn-primary tagText" data-text="[地址]">地址</span>
-                                    </h4>
-                                </div>
-                            </div>
-
-
-
-             </td>
-          </tr>          
-
-
-        </table>
-
+              <!-- <textarea id="Smscontent" name="" style="width:255px;height: 309px;resize:none"></textarea> -->
+          </div>
+          <div class="smsExplain">单条短信限制<strong style="color:red;">60</strong>个字符，如超过60字符时则按 短信字数/60 计算短信条数</div>
+          <div style="position: absolute;bottom: 0px;left: 0px;width:255px;height: 50px;">
+          </div>
 
       </div>
 
+  </div>
+
+
+</div>
+<div  id="t3"  style="float:left;width: 60%; height: 570px;">       
+
+    <div class="nui-fit">
+
+     <div class="nui-toolbar" style="padding:0px;">
+      <table style="width:80%;">
+        <tr>
+          <td style="width:80%;">
+            <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="onCancel"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+        </td>
+    </tr>
+</table>
+</div>
+<table style="width:100%;height:; margin-top:20px; ">
+
+  <tr >
+   <td class="tbtext"><label>短信名称：</label></td>
+
+   <td ><input class="nui-textbox tbinput" name="" ></td>
+</tr>
+<tr >
+   <td class="tbtext"><label>短信类型：</label></td>
+
+   <td ><input class="nui-combobox " name="" style="width:50%"></td>
+</tr>
+          <!-- <tr >
+             <td colspan="2"><label>常用字段：</label></td>
+         </tr>           -->
+         <tr >
+             <td colspan="2">
+              <label class="tbtext">常用字段：</label>
+              <div class="form-group" style="height:;    margin-bottom: 0px;display: inline-table;border-radius: 25px;">
+                <div class="form-group" style="margin: 10px;">
+                  <label class="control-label" style="text-align: center;">车主类:</label>
+                  <h4>
+                    <span class="btn btn-primary tagText" data-text="[车主]">车主</span>
+                    <span class="btn btn-primary tagText" data-text="[姓名]">姓名</span>
+                    <span class="btn btn-primary tagText" data-text="[生日]">生日</span>
+                    <span class="btn btn-primary tagText" data-text="[车牌号]">车牌号</span>
+                    <span class="btn btn-primary tagText" data-text="[保险到期]">保险到期</span>
+                    <span class="btn btn-primary tagText" data-text="[年审到期]">年审到期</span>
+                    <span class="btn btn-primary tagText" data-text="[驾驶证到期]">驾驶证到期</span>
+                </h4>
+            </div>
+
+            <div class="form-group" style="margin: 10px;">
+              <label class="control-label" style="text-align: center;">本公司:</label>
+              <h4>
+                <span class="btn btn-primary tagText" data-text="[电话]">电话</span>
+                <span class="btn btn-primary tagText" data-text="[手机]">手机</span>
+                <span class="btn btn-primary tagText" data-text="[地址]">地址</span>
+            </h4>
+        </div>
+    </div>
+
+
+
+</td>
+</tr>          
+
+
+</table>
+
 
 </div>
 
-    </div>
+
+</div>
+
+</div>
 
 
 </div>
@@ -227,28 +250,28 @@ pageEncoding="UTF-8" session="false" %>
       break;
       default:
       break;
-    }
-    currType = type;
+  }
+  currType = type;
     //startDateEl.setValue(params.startDate);
     //endDateEl.setValue(addDate(params.endDate,-1));
     //var menunamedate = nui.get("menunamedate");
     //menunamedate.setText(queryname);
     //doSearch(params);
-  }
+}
 
 
 (function ($) {
     $.fn.extend({
-        insertAtCaret: function (myValue) {
-            var $t = $(this)[0];
-            if (document.selection) {
-                this.focus();
-                sel = document.selection.createRange();
-                sel.text = myValue;
-            }else if ($t.selectionStart || $t.selectionStart == '0') {
-                    var startPos = $t.selectionStart;
-                    var endPos = $t.selectionEnd;
-                    var scrollTop = $t.scrollTop;
+      insertAtCaret: function (myValue) {
+        var $t = $(this)[0];
+        if (document.selection) {
+          this.focus();
+          sel = document.selection.createRange();
+          sel.text = myValue;
+      }else if ($t.selectionStart || $t.selectionStart == '0') {
+          var startPos = $t.selectionStart;
+          var endPos = $t.selectionEnd;
+          var scrollTop = $t.scrollTop;
                     //$t.html($t.value.substring(0, startPos) + myValue + $t.value.substring(endPos, $t.value.length));
                     $t.value = $t.value.substring(0, startPos) + myValue + $t.value.substring(endPos, $t.value.length);
                     this.focus();
@@ -260,21 +283,21 @@ pageEncoding="UTF-8" session="false" %>
                     $(this).append(myValue)
                     this.focus();
                 }
-        }
-    })
+            }
+        })
 })(jQuery);
 
 
 
 
-            $(".tagText").click(function () {
+$(".tagText").click(function () {
 
-                $("#Smscontent").focus();
-                var txt=$(this).attr('data-text');
+    $("#Smscontent").focus();
+    var txt=$(this).attr('data-text');
                 //console.log(txt)
                 var l=$("#Smscontent").text().replace(' ','').length;
-                //var value='<span class="tags" contenteditable="false">'+txt+'</span>&nbsp;';
-                var value = txt;
+                var value='<span class="tags" contenteditable="false">'+txt+'</span>&nbsp;';
+                //var value = txt;
                 $("#Smscontent").insertAtCaret(value);
 
                 /*if ((l+txt.length)<=50) {
@@ -282,10 +305,16 @@ pageEncoding="UTF-8" session="false" %>
                     $("#Smscontent").insertAtCaret(value);
                     // $("strong").text(50-(l+txt.length));
                 }*/
-                
-                
-                
+
+
+
             });
+
+$(document).on('click','#Smscontent .tags', function(event) {
+    event.preventDefault();
+    $(this).remove();
+});
+
 
 
 </script>

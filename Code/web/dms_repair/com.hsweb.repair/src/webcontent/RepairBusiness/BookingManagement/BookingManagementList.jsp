@@ -143,7 +143,7 @@
                                 <div field="status" headerAlign="center" allowSort="true" visible="true" width="40" id="updStatus">状态 </div>
                                 <div field="prebookSource" headerAlign="center" allowSort="true" visible="true" width="40">预约来源</div>
                                 <div field="carNo" headerAlign="center" allowSort="true" visible="true" width="40">车牌号 </div>
-                                <div field="carBrandId" headerAlign="center" allowSort="true" visible="true" width="40">品牌车型 </div>
+                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="40">品牌车型 </div>
                                 <div field="predictComeDate" headerAlign="center" allowSort="true" dateformat="yyyy-MM-dd HH:mm" visible="true" width="60">预计来厂 </div>
                                 <div field="Time" headerAlign="center" allowSort="true" dateformat="yyyy-MM-dd HH:mm" visible="true" width="60">距离来厂时间</div>
                                 <div field="contactorName" headerAlign="center" allowSort="true" visible="true" width="60">客户名称 </div>

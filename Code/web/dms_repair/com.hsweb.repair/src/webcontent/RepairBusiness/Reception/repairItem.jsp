@@ -37,10 +37,11 @@
                 </div>
                 <div field="amt"  name="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">项目总金额
                 </div>
-                <div field="workers" headerAlign="center"
-                     allowSort="false" visible="true" width="80" header="施工员" name="workers" align="center">
-                    <div id="combobox2" property="editor" class="mini-combobox" style="width:300px;"  popupWidth="100" textField="empName" valueField="empName" 
-                    url="" data="memList" value="" multiSelect="true"  showClose="true" oncloseclick="onCloseClick" onvaluechanged="onitemworkerChanged" >     
+               <div field="workers" headerAlign="center"
+                     allowSort="false" visible="true" width="60" header="" align="center" name="workers">
+                                            施工员 <a href="javascript:setItemWorkers()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+                    <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
+                    url="" data="memList" value="" multiSelect="true"  showClose="true" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" >     
                     <!-- <div property="columns">
                         <div header="ID" field="id"></div>
                         <div header="名称" field="empName"></div>
@@ -51,7 +52,8 @@
                      allowSort="false" visible="false" width="80" header="施工员" align="center">
                 </div>                
                 <div field="saleMan" headerAlign="center"
-                     allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan">
+                     allowSort="false" visible="true" width="50" header="" align="center" name="saleMan">
+                      销售员<a href="javascript:setItemSaleMan()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                      <input  property="editor" enabled="true" dataField="memList" 
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
                              url="" onvaluechanged="onitemsalemanChanged" emptyText=""  vtype="required"/> 
@@ -133,3 +135,79 @@
         </table>
     </div>
 </div>   
+
+<div id="advancedItemWorkersSetWin" class="nui-window"
+     title="批量设置工时施工员" style="width:350px;height:200px;"
+     showModal="true"
+     showHeader="false"
+     allowResize="false"
+     allowDrag="true">
+    <div class="nui-fit">
+        <table style="width: 100%;height: 100%;">
+            <tr >
+                <td colspan="2"  style="text-align: left;">
+                    <label style="color: #9e9e9e;">批量设置套餐施工员</label>
+                </td>
+            </tr>
+            <tr >
+                <td style="text-align: right;">
+                    工时施工员：
+                </td>
+                <td >
+                 <div id="combobox4" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
+                    url="" data="memList" value="" multiSelect="true"  showClose="true"  onvaluechanged="onworkerChangedBat" > 
+                 </div>  
+                 </td>  
+            </tr>
+            <tr >
+                <td colspan="2" style="text-align: center;">
+                    <a class="nui-button"  plain="false" onclick="sureItemWorkersSetWin()" id="pkgOk">确定</a>
+                    <a class="nui-button"  plain="false" onclick="closeItemWorkersSetWin()">取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div> 
+
+<div id="advancedItemPartSaleManSetWin" class="nui-window"
+     title="批量设置销售员" style="width:300px;height:150px;"
+     showModal="true"
+     showHeader="false"
+     allowResize="false"
+     allowDrag="true">
+    <div class="nui-fit">
+        <table style="width: 100%;height: 100%;">
+            <tr >
+                <td colspan="2"  style="text-align: left;">
+                    <label style="color: #9e9e9e;">批量设置销售员</label>
+                </td>
+            </tr>
+            <tr >
+                <td style="text-align: right;">
+                    工时销售员：
+                </td>
+                <td >
+                   <input  property="editor" enabled="true" dataField="memList" id="ItemSale1"
+                             class="nui-combobox" valueField="empName" textField="empName" data="memList"
+                             url=""  emptyText=""  vtype="required"  onvaluechanged="saleManIdBat" oncloseclick="onCloseClick"/> 
+                 </td>
+            </tr> 
+            <tr >
+                <td style="text-align: right;">
+                    配件销售员：
+                </td>
+                <td >
+                   <input  property="editor" enabled="true" dataField="memList" id="ItemSale2"
+                             class="nui-combobox" valueField="empName" textField="empName" data="memList"
+                             url=""  emptyText="" onvaluechanged="saleManIdBat2"  vtype="required" oncloseclick="onCloseClick"/> 
+                 </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <a class="nui-button"  plain="false" onclick="sureItemPartSaleManSetWin()" id="itemOk">确定</a>
+                    <a class="nui-button"  plain="false" onclick="closeItemPartSaleManSetWin()">取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>  

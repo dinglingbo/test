@@ -286,6 +286,43 @@ function svrSetPkgRateBatch(params, callback, unmaskcall){
 	});
 }
 
+//套餐销售员
+var svrSetPkgSaleMansBatchUrl = window._rootRepairUrl + "";
+function svrSetPkgSaleMansBatch(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrSetPkgSaleMansBatchUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
+//批量设置施工员
+var svrSetPkgWorkersBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setItemWorkersBatch";
+function svrSetWorkersBatch(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrSetPkgWorkersBatchUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
+
+
 //批量设置工时或是配件优惠率
 var svrSetItemPartRateBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setItemPartRateBatch.biz.ext";
 function svrSetItemPartRateBatch(params, callback, unmaskcall){

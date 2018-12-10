@@ -154,7 +154,7 @@
 function getSearchParam(){
 	var params = form.getData();
     params.orgid = currOrgId;
-    params.sRecordDate = beginDateEl.getValue().substr(0,10);
+    params.sRecordDate = beginDateEl.getFormValue().substr(0,10);
     params.eRecordDate = addDate(endDateEl.getValue(),1);
     return params;
 }

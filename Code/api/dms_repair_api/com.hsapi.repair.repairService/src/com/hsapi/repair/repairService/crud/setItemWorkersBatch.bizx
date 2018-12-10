@@ -51,7 +51,7 @@
       <targetNode>assign0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -333,7 +333,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsItem" name="itemList"/>
-    <process:input description="" isArray="false" name="workerIds" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="workerIds" primitiveType="String"/>
     <process:input description="" isArray="false" name="workers" primitiveType="String"/>
     <process:input description="all,package,item" isArray="false" name="type" primitiveType="String"/>
   </process:inputs>

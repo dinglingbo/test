@@ -23,7 +23,7 @@
 			<div class="nui-fit">
 				<div class="nui-toolbar"
 					 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
-					<span>项目类型</span>
+					<span>本地项目类型</span>
 				</div>
 				<div class="nui-fit">
 				<div style="width: 100%; height: 40%;">
@@ -37,10 +37,10 @@
 			
 			    
 				<div class="nui-toolbar"
-					 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
-					<span>基本项目类型</span>
+					 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;display:none;">
+					<span>标准项目类型</span>
 				</div>
-				<div style="width: 100%; height: 40%;">
+				<div style="width: 100%; height: 40%;display:none;">
 					<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
 						dataField="rs" showTreeIcon="true" textField="name" expandOnLoad="0"
 						idField="id" ajaxData="setRoleId" parentField="" resultAsTree="false">

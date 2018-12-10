@@ -11,7 +11,7 @@
   --%>
 <head>
 <title>套餐操作</title>
-<script src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.3.9"></script>
+<script src="<%=request.getContextPath()%>/repair/js/Card/packageList.js?v=1.3.10"></script>
 
 </head>
 
@@ -69,7 +69,7 @@
 											class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
 											<a class="nui-button" onclick="search()" plain="true"> <span
 												class="fa fa-search fa-lg"></span>&nbsp; 查询
-										</a> <a id="selectBtn" class="nui-button" onclick="edit()" plain="true"><span
+										</a> <a id="selectBtn" class="nui-button" onclick="choose()" plain="true"><span
 												class="fa fa-check fa-lg"></span>&nbsp;选择 </a>
 																		<a class="nui-button" id="lookInfo" onclick="look" plain="true"> <span
 												class="fa fa-search fa-lg"></span>&nbsp; 查看详细信息

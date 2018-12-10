@@ -3183,6 +3183,7 @@ function choosePackage(){
     }   
     var param = {};
     param.carModelIdLy = main.carModelIdLy;
+    param.serviceId = main.id;
     doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
         main = billForm.getData();
         var p1 = { 

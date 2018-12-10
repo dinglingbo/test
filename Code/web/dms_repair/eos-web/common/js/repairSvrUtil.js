@@ -444,7 +444,7 @@ function doSelectPart(itemId,dock, dodelck, docck, callback) {
 
 
 
-function doSelectItem(dock, dodelck, docck, callback) {
+function doSelectItem(dock, dodelck, docck, param, callback) {
 	nui.open({
 		url : webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemMain.flow?token=" + token,
 		title : "维修项目",
@@ -454,9 +454,9 @@ function doSelectItem(dock, dodelck, docck, callback) {
 		allowResize : true,
 		onload : function() {
 			var iframe = this.getIFrameEl();
-			var list = [];
 			var params = {
-				list : list
+				carModelIdLy : param.carModelIdLy,
+				serviceId: param.serviceId
 			};
             iframe.contentWindow.setData(params);//显示该显示的功能
             iframe.contentWindow.setViewData(dock, dodelck, docck);
@@ -471,7 +471,7 @@ function doSelectItem(dock, dodelck, docck, callback) {
 	});
 }
 
-function doSelectPackage(dock, dodelck, docck, params, callback) {
+function doSelectPackage(dock, dodelck, docck, param, callback) {
 	nui.open({
 		url : webPath + contextPath + "/repair/DataBase/Card/packageList.jsp?token=" + token,
 		title : "套餐项目",
@@ -481,9 +481,9 @@ function doSelectPackage(dock, dodelck, docck, params, callback) {
 		allowResize : true,
 		onload : function() {
 			var iframe = this.getIFrameEl();
-			var list = [];
 			var params = {
-				carModelIdLy : params.carModelIdLy
+				carModelIdLy : param.carModelIdLy,
+				serviceId: param.serviceId
 			};
 
             iframe.contentWindow.setViewData(dock, dodelck, docck, params);
@@ -572,7 +572,7 @@ function addPackage(data,callback){
 function doFinishWork(params,callback){
 	nui.open({
         url: webPath + contextPath +"/com.hsweb.RepairBusiness.checkFinish.flow?token="+token,
-        title: "出车&完工", width: 700, height: 400, allowDrag:false, allowResize:false,
+        title: "完工", width: 700, height: 400, allowDrag:false, allowResize:false,
         onload: function () {
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setData(params);

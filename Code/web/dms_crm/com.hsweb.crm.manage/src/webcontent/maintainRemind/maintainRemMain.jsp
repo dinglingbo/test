@@ -56,6 +56,7 @@ pageEncoding="UTF-8" session="false" %>
 <!--             <div field="serviceCode" width="120" headerAlign="center" align="center">工单号</div> -->
             <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
             <div field="carModel" width="170" headerAlign="center"align="center">品牌车型</div>
+            <div field="careDueDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center" align="center">保养到期时间</div>
             <div field="guestName" width="70" headerAlign="center"align="center">客户名称</div>
             <div field="leaveDays" width="70" headerAlign="center"align="center">离厂天数</div>
             <div field="careLastDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后提醒时间</div>
@@ -63,7 +64,6 @@ pageEncoding="UTF-8" session="false" %>
             <div field="lastComeDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后进厂时间</div>
             <div field="firstComeDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">首次来厂时间</div>
             <div field="lastLeaveDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后离厂时间</div>
-            <div field="careDueDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center" align="center">保养到期时间</div>
             <div field="preAdvisorName" width="70" headerAlign="center" align="center">营销员</div>
             <div field="mobile" visible="false" width="70" headerAlign="center" align="center">手机号</div>
             <div field="carBrandId" visible="false" width="70" headerAlign="center" align="center">品牌</div>

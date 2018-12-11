@@ -9,9 +9,9 @@
 -->
 <head>
 <title>检查项目设置</title>
-<script src="<%=webPath + contextPath%>/repair/cfg/js/checkDetailSet.js?v=1.0.8"></script>
-<script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
 <%@include file="/common/commonPart.jsp"%>
+<script src="<%=webPath + contextPath%>/repair/cfg/js/checkDetailSet.js?v=1.0.12"></script>
+
 <style type="text/css">
 .title {
 	text-align: right;

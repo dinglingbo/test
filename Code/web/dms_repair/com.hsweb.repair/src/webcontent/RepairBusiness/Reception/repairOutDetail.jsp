@@ -23,7 +23,8 @@
         overflow: hidden;
     }
     .tbtext {
-        float: right;
+        text-align: center;
+        width:80px;
     } 
 
     .vpanel {

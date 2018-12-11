@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.34"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.45"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -131,11 +131,11 @@
         <table style=" left:0;right:0;margin: 0 auto; width:100%">
 			
             <tr>
-                <!-- <td class="tbtext">客户名称：</td>
+                 <td class="tbtext">客户名称：</td>
                 <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName" enabled="false" style="width:100%" />
+                    <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName" enabled="false" style="width:100% ;disaply:none;" />
                 </td>
-                <td class="tbtext">客户手机：</td>
+                <!-- <td class="tbtext">客户手机：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" enabled="false" style="width:100%"/>
                 </td> -->

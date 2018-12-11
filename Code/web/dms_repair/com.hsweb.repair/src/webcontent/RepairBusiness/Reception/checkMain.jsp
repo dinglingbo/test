@@ -125,6 +125,22 @@
   beginDateEl = nui.get("sRecordDate");
   endDateEl = nui.get("eRecordDate");
   var searchFlag=0;
+	if(searchFlag==0){	
+		quickSearch(2);
+	}
+  	mainGrid.on("drawcell",function(e){
+        switch (e.field)
+        {
+            case "serviceCode":
+                e.cellHtml='<a href="##" onclick="edit()">'+e.value+'</a>';
+                break;
+            default:
+                break;
+        }
+
+    });
+  	
+  
 //   var date = new Date();
 //   var sdate = new Date();
 //   sdate.setMonth(date.getMonth()-3);
@@ -148,9 +164,8 @@
 
     });
 }*/
-	if(searchFlag==0){	
-		quickSearch(2);
-	}
+	
+	
 function getSearchParam(){
 	var params = form.getData();
     params.orgid = currOrgId;

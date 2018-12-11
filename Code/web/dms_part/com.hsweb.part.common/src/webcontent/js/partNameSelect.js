@@ -25,7 +25,14 @@ $(document).ready(function(v)
 //        e.data.token = token;
 //    });
     //console.log("xxx");
+    grid.on("rowdblclick", function(e) {
+		var row = grid.getSelected();
+		var rowc = nui.clone(row);
+		if (!rowc)
+			return;
+		onOk();
 
+	});
     document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;

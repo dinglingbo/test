@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.3"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.4"></script>
 <style type="text/css">
 
 table {
@@ -29,16 +29,10 @@ table {
 </style>
 </head>
 <body>
-<div class="nui-splitter"
-     id="addEditCustomerPage"
-     style="width:100%;height:100%;" vertical="true"
-     borderStyle="border:0;"
-     handlerSize="0"
-     allowResize="false">
-    <div size="220" showCollapseButton="false" style="border:0;">
+
         <div class="nui-panel" showToolbar="false" title="客户信息" showFooter="false"
              borderStyle="border:0;"
-             style="width:100%;height:100%;">
+             style="width:100%;">
               <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
                     <table style="width:100%;">
                         <tr>
@@ -142,11 +136,10 @@ table {
                 </table>
             </div>
         </div>
-    </div>
-    <div showCollapseButton="false" style="border:0;">
+
         <div class="nui-fit">
             <div class="nui-tabs" activeIndex="0"
-                 style="width:100%;height: 85%;">
+                 style="width:100%;">
                 <div title="车辆信息" showCloseButton="false">
                     <div class="form" id="carInfoFrom">
                         <input class="nui-hidden" name="id"/>
@@ -162,10 +155,10 @@ table {
                                 </td>
                                 <td colspan="3">
                                     <input class="nui-textbox" name="carNo" id="carNo"/>
-                                    
-                                        <a class="nui-button" iconCls="icon-upgrade" id="preCarBtn" onclick="preCar()" style="margin-right:10px;" tooltip="上一个"></a>
-                                        <a class="nui-button" iconCls="icon-downgrade" id="nextCarBtn" onclick="nextCar()" style="margin-right:10px;" tooltip="下一个"></a>
-                                        <a class="nui-button" iconCls="icon-add" onclick="addCar()" tooltip="新增"></a>
+                                     
+                                        <a class="nui-button" iconCls="" id="preCarBtn" onclick="preCar()" style="margin-right:10px;" tooltip="上一个" plain="true"><span class="fa fa-chevron-left fa-lg"></span></a>
+                                        <a class="nui-button" iconCls="" id="nextCarBtn" onclick="nextCar()" style="margin-right:10px;" tooltip="下一个" plain="true"><span class="fa fa-chevron-right fa-lg"></span></a>
+                                        <a class="nui-button" iconCls="" onclick="addCar()" tooltip="新增" plain="true"><span class="fa fa-plus fa-lg"></span></a>
                                 </td>
                             </tr>
                             <tr>
@@ -307,9 +300,9 @@ table {
                     </td>
                     <td colspan="3">
                         <input class="nui-textbox" id="name" name="name" width="160px" />
-                        <a class="nui-button" iconCls="icon-upgrade" id="preContactBtn" onclick="preContact()" style="margin-right:10px;" tooltip="上一个"></a>
-                        <a class="nui-button" iconCls="icon-downgrade" id="nextContactBtn" onclick="nextContact()" style="margin-right:10px;" tooltip="下一个"></a>
-                        <a class="nui-button" iconCls="icon-add" onclick="addContact()" tooltip="新增"></a>
+                        <a class="nui-button" iconCls="" id="preContactBtn" onclick="preContact()" style="margin-right:10px;" tooltip="上一个" plain="true"><span class="fa fa-chevron-left fa-lg"></span></a>
+                        <a class="nui-button" iconCls="" id="nextContactBtn" onclick="nextContact()" style="margin-right:10px;" tooltip="下一个" plain="true"><span class="fa fa-chevron-right fa-lg"></span></a>
+                        <a class="nui-button" iconCls="" onclick="addContact()" tooltip="新增" plain="true"><span class="fa fa-plus fa-lg"></span></a>
                     </td>
                 </tr>
                 <tr>
@@ -410,7 +403,6 @@ table {
 <!--                 <a class="nui-button" onclick="onCancel" style="width:60px;">取消</a> -->
 <!--             </div> -->
         </div>
-    </div>
-</div>
+
 </body>
 </html>

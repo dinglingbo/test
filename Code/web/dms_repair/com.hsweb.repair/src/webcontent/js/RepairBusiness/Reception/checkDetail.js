@@ -132,9 +132,24 @@ $(document).ready(function ()
         }
 
     });
+    
+//    mainGrid.on("drawcell",function(e){
+//        switch (e.field)
+//        {
+//            case "remark":
+//                e.value="";
+//                break;
+//            case "checkRemark" :
+//            	e.value=e.record.remark;
+//            default:
+//                break;
+//        }
+//
+//    });
 
     mainGrid.on("cellbeginedit",function(e){
         var record = e.record;
+        var remark=e.record.remark;
         var field = e.field;
         var value = e.value;
         var editor = e.editor;
@@ -143,6 +158,7 @@ $(document).ready(function ()
         }else{
 
             if (field == "remark") {
+            	
                 var id = null;
                 if(checkMainId.enabled){
                     id = record.id;
@@ -152,6 +168,9 @@ $(document).ready(function ()
                 var url = baseUrl + "com.hsapi.repair.baseData.query.queryCheckModelDetailContent.biz.ext?checkId=" + id;
                 editor.setUrl(url);
             }
+//            if(field =="checkRemark"){
+//            	e.value=remark;
+//            }
         }
     });
 
@@ -333,6 +352,12 @@ function ValueChanged(e) {
     mainGrid.setUrl(mainGridUrl);
     mainGrid.load({mainId:sdata.id,token:token},function(data){
     	var list =data.data;
+    	for(var i=0;i<list.length;i++){
+    		list[i].checkRemark=list[i].remark;
+    		list[i].remark=null;
+    	}
+    	mainGrid.clearRows();
+    	mainGrid.setData(list);
     	if(list.length==0){
     		showMsg("该检查模板无检查项目,请添加检查项目","W");
     		nui.get('checkMainId').setValue("");
@@ -602,7 +627,7 @@ function saveb(){
 		return;
 	}
 	
-	if(!(nui.get('guestFullName').value) && !(nui.get('search_name').value)){
+	if(!(nui.get('search_name').value)){
 		showMsg("请先添加客户","W");
 		return;
 	}

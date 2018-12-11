@@ -160,7 +160,7 @@ function checkRow(){
 function onPartButtonEdit()
 {
     nui.open({
-        targetWindow: window,
+//        targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.common.partNameSelect.flow?token="+token,
         title: "配件名称查询",
         width:900, height: 650,
@@ -186,10 +186,10 @@ function onPartButtonEdit()
 function onItemButtonEdit()
 {
     nui.open({
-        targetWindow: window,
+//        targetWindow: window,
         url: webPath+contextPath+"/repair/DataBase/Item/RepairItemMain.jsp?token="+token,
         title: "项目查询",
-        width:900, height: 650,
+        width:1000, height: 650,
         allowDrag:true,
         allowResize:true,
         onload: function ()

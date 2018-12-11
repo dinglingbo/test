@@ -29,10 +29,10 @@
     	<table style="width:100%;">
                 <tr>
                 <td style="width:100%;">
-                	<a class="nui-button" iconCls="icon-save" onclick="saveTree" title="保存"></a>
+                	<a class="nui-button" iconCls="" onclick="saveTree" plain="true"><span class="fa fa-save fa-lg"></span>&nbsp;保存 </a>
                 	<span class="separator"></span>
-			        <a class="nui-button" iconCls="icon-expand" onclick="expandAll()" title="全部展开"></a>
-					<a class="nui-button" iconCls="icon-collapse" onclick="collapseAll()" title="全部折叠"></a>
+			        <a class="nui-button" iconCls="" onclick="expandAll()" tooltip="全部展开" plain="true"><span class="fa fa-expand fa-lg"></span></a>
+					<a class="nui-button" iconCls="" onclick="collapseAll()" tooltip="全部折叠" plain="true"><span class="fa fa-compress fa-lg"></span></a>
                 </td>
                 <td style="white-space:nowrap;">
                 	<input id="key" class="nui-textbox" style="width:100px;" onenter="onKeyEnter" emptyText="请输入查询条件" />

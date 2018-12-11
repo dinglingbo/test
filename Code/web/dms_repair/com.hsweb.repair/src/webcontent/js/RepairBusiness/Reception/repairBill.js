@@ -2316,11 +2316,6 @@ function sureItemPartSaleManSetWin(){
                 return;
             }
             serviceId = data.id||0;
-            nui.mask({
-                el: document.body,
-                cls: 'mini-mask-loading',
-                html: '处理中...'
-            });
            
             if(saleManIdBat){
             	if(saleManIdBat2){
@@ -2359,6 +2354,11 @@ function sureItemPartSaleManSetWin(){
             		return;
             	}
             }
+            nui.mask({
+                el: document.body,
+                cls: 'mini-mask-loading',
+                html: '处理中...'
+            });
             svrSetPkgSaleMansBatch(params, function(data){
                 data = data||{};
                 var errCode = data.errCode||"";

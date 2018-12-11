@@ -75,7 +75,7 @@
                 <span class="separator"></span> 
 
 
-                <input id="serviceId" width="120px" emptyText="订单单号" class="nui-textbox"/>
+                <input id="serviceId" width="120px" emptyText="退货单号" class="nui-textbox"/>
 
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择供应商..."
@@ -110,10 +110,10 @@
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-            <div header="订单信息" headerAlign="center">
+            <div header="退货信息" headerAlign="center">
                 <div property="columns">
                 	<div field="auditSign" width="60" headerAlign="center" header="状态"></div>
-                    <div allowSort="true" field="serviceId" width="130" summaryType="count" headerAlign="center" header="订单单号"></div>
+                    <div allowSort="true" field="serviceId" width="130" summaryType="count" headerAlign="center" header="退货单号"></div>
                     <div field="guestFullName" width="190" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
@@ -138,9 +138,9 @@
 <!--             </div> -->
             <div header="数量金额" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="60" headerAlign="center" header="订单数量"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="60" headerAlign="center" header="退货数量"></div>
 <!--                     <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="订单单价"></div> -->
-                    <div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="订单金额"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="退货金额"></div>
 
                 </div>
             </div>

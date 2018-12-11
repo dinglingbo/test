@@ -71,6 +71,13 @@
     	var carTypeIdT=[];
     	var typeHash={};
     	var partUrl = apiPath + partApi + "/";
+    	var requiredField = {
+			namestd : "标准名称",
+			namecn : "别名",
+			cartypef : "配件一级分类",
+			cartypes : "配件二级分类"
+		};
+    	
 		$(document).ready(function(){
     		form = new nui.Form("#form");
     		nui.get('namestd').focus();
@@ -80,12 +87,7 @@
 			        if(partTypeList[i].typelevel==1){
 			        	carTypeIdF.push(partTypeList[i]);
 			        }
-// 			        if(partTypeList[i].typelevel==2){
-// 			        	carTypeIdS.push(partTypeList[i]);
-// 			        }
-// 			        if(partTypeList[i].typelevel==3){
-// 			        	carTypeIdT.push(partTypeList[i]);
-// 			        }
+
 		        }
 		        
 		        partTypeList.forEach(function(v) {
@@ -139,6 +141,15 @@
     	}
     	function onOk(){
     		var data=form.getData();
+    		for ( var key in requiredField) {
+				if (!data[key] || $.trim(data[key]).length == 0) {
+					showMsg(requiredField[key] + "不能为空!","W");
+					//如果检测到有必填字段未填写，切换到主表界面
+		//			mainTabs.activeTab(billmainTab);
+		
+					return;
+				}
+			}
     		data.name=data.namestd;
     		nui.mask({
 	            el: document.body,

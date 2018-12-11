@@ -661,7 +661,7 @@ function onRightGridDraw(e)
             }
             if(e.value == 1)
             {
-                e.cellHtml = '<a style="color:green;">盘盈</a>';
+                e.cellHtml = '<a style="color:orange;">盘盈</a>';
             }
             break;
         case "operateBtn":
@@ -700,12 +700,12 @@ function audit()
         showMsg(msg,"W");
         return;
     }
-    //审核时，判断是否存在缺货信息
-    var msg = checkRightData();
-    if(msg){
-        showMsg(msg,"W");
-        return;
-    }
+//    //审核时，判断是否存在缺货信息
+//    var msg = checkRightData();
+//    if(msg){
+//        showMsg(msg,"W");
+//        return;
+//    }
 
     data = getMainData();
 
@@ -1501,11 +1501,12 @@ function setInitExportData(main, detail){
             var tr = $("<tr></tr>");
             var dc = row.dc;
             var exhState = "";
-            var color = 'green';
+            var color = 'orange';
             var tdst = "";
 
             if(dc==1){
                 exhState = "盘盈";
+                tdst.replace("[dc]", exhState).replace("orange", color);
                 tdst = tds.replace("[comPartCode]", detail[i].comPartCode?detail[i].comPartCode:"")
                          .replace("[comFullName]", detail[i].comFullName?detail[i].comFullName:"")
                          .replace("[comApplyCarModel]", detail[i].comApplyCarModel?detail[i].comApplyCarModel:"")

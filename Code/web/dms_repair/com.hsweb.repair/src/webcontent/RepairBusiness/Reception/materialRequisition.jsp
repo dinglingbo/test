@@ -217,9 +217,9 @@
 
         #title {
             font-size: 24px;
-            margin: 15px 0 10px;
+            margin: 20px 0 5px;
             font-weight: 800;
-            text-align: center;
+            text-align: right;
         }
 
         .table {
@@ -369,6 +369,15 @@
             margin: 0 auto;
             display: none;
         }
+        @media print {
+		    html, body {
+		        height: inherit;
+		    }
+		    @page {
+		      size: auto;  /* auto is the initial value */
+		      margin: 0mm; /* this affects the margin in the printer settings */
+		    }
+	    }
     </style>
     <div class="print_btn">
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
@@ -376,11 +385,15 @@
     </div>
     <div id="print-container">
         <div class="company-info">
-            <h3><span id="comp"></span></h3>
+<!--             <h3><span id="comp"></span></h3> -->
         </div>
-        <h1 id="title">领料单</h1>
+        <!-- <h1 id="title">领料单</h1> -->
+        <div style="font-size:25px; margin: 25px 0 15px;"> <span id="currOrgName"></span><span style="float:right;padding-right:165px;">领料单</span></div>
         <div class="content">
-            <h5>单据编号：<span id="serviceCode"></span></h5>
+            <div><span>电话：</span>
+            <span style="float:center;padding-left:205px;">地址:</span>
+             <span style="float:center;padding-left:205px;" id="nowDate">打印日期:</span>
+            <span id="serviceCode"style="float:right;padding-right:85px;">单据单号：</span></div>
             <hr />
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
                 <tbody>
@@ -389,8 +402,9 @@
                         <td class="left" width="33.3%" id="carNo">车牌号：</td>
                         <td class="left" id="contactMobile">联系电话：</td> -->
                         
-                        <td class="left" id="carNo" style="margin-left: 0px;">车牌号：</td>
-                        <td class="left" id="carModel" >品牌车型/品牌：</td>
+                        <td class="left" id="carNo" width="20%"style="margin-left: 0px;">车牌号：</td>
+                        <td class="left" id="carModel" width="50%">品牌车型/品牌：</td>
+                         <td  ></td>
                     </tr>
                     <tr>
                         <!-- <td class="left" width="33.3%" id="guestFullName">客户名称：</td>
@@ -399,20 +413,21 @@
                         
                         <td class="left"id="mtAdvisor" width="100px">服务顾问：</td>
                         <td class="left" id ="carVin" width="200px">车架号(VIN)：</td>
+                        <td class="left" id ="engineNo">发动机号：</td>
                     </tr>
                    <!--  <tr>
                     	<td class="left"id="mtAdvisor">服务顾问：</td>
                         <td class="left" id="carModel">品牌车型/品牌：</td>
                         <td class="left">进厂时间：<span class="left" style="width: 33.33%" id="enterDate"></span></td>
                     </tr> -->
-                    <tr>
-                        <td class="left" id ="engineNo">发动机号：</td>
-                        <td class="left">进厂时间：<span class="left"  id="enterDate"></span></td>
-                     </tr>
-                     <tr>
-                        <td class="left" id="planFinishDate">预计完工时间：</td>
-                        <td >&nbsp;进厂里程：<span id="enterKilometers"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;油量：<span id="enterOilMass"></span></td>
-                    </tr>
+<!--                     <tr> -->
+<!--                         <td class="left" id ="engineNo">发动机号：</td> -->
+<!--                         <td class="left">进厂时间：<span class="left"  id="enterDate"></span></td> -->
+<!--                      </tr> -->
+<!--                      <tr> -->
+<!--                         <td class="left" id="planFinishDate">预计完工时间：</td> -->
+<!--                         <td >&nbsp;进厂里程：<span id="enterKilometers"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;油量：<span id="enterOilMass"></span></td> -->
+<!--                     </tr> -->
                    
                 </tbody>
             </table>
@@ -423,9 +438,9 @@
                     <tbody>
                         <tr>
                             <td width="30" height="35" align="center">序号</td>
-                            <td align="center">仓库</td>
-                            <td align="center" >配件编号</td>
                             <td align="center" width = "200px">配件名称</td>
+                            <td align="center" >配件编码</td>
+                            <td align="center">仓库</td>
                             <td align="center">数量</td>
                             <td align="center">单位</td>
                             <td align="center" width = "100px">领料日期</td>
@@ -462,6 +477,7 @@
 	var storeHouse = null;
 	var data = [];
 	$(document).ready(function (){
+		$('#currOrgName').text(currOrgName);
 		$("#print").click(function () {
             $(".print_btn").hide();
             window.print();
@@ -484,6 +500,8 @@
             else window.close();
         }
 	function SetData(params){
+		var date=new Date();
+		var nowDate=format(date,"yyyy-MM-dd HH:mm");
 	    $.ajaxSettings.async = false;
 	    $.post(params.partApiUrl+"com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext?"+"&token="+params.token,{},function(text){
     		    if(text.storehouse){
@@ -521,7 +539,7 @@
 	        		           break;
 	        		        }
 	        		}
-	            var enterKilometers = list.enterKilometers || "0";
+// 	            var enterKilometers = list.enterKilometers || "0";
         		var planFinishDate = list.planFinishDate || "";
         		if(planFinishDate){
         			planFinishDate = planFinishDate.replace(/-/g,"/");
@@ -529,26 +547,27 @@
         			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm");
         		}
         		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML+ serviceCode;
+        		document.getElementById("nowDate").innerHTML = document.getElementById("nowDate").innerHTML+ nowDate;
         		//document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
         		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
         		//document.getElementById("contactMobile").innerHTML = document.getElementById("contactMobile").innerHTML + contactMobile;
         		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
         		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel;
-        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
-        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;
-        		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
+//         		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
+//         		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;
+//         		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
         		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
         		document.getElementById("engineNo").innerHTML = document.getElementById("engineNo").innerHTML + engineNo;
-        		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate; 
+//         		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate; 
         });//http://127.0.0.1:8080/default/
        
         $.post(baseUrl+"com.hsapi.repair.repairService.query.queryRepairOutPart.biz.ext?serviceId="+params.serviceId+"&retunSign=0",{},function(text){
             	var tBody = $("#tbodyId");
 				tBody.empty();
 				var tds = '<td align="center">[id]</td>' +
-				"<td align='center'>[storeHouseName]</td>"+
-    			"<td align='center'>[partCode]</td>"+
     			"<td align='center'>[partFullName]</td>"+ 
+    			"<td align='center'>[partCode]</td>"+
+				"<td align='center'>[storeHouseName]</td>"+
     			"<td align='center'>[outQty]</td>"+
     			"<td align='center'>[unit]</td>"+
                 "<td align='center'>[pickDate]</td>"+
@@ -571,9 +590,9 @@
         			var tr = $("<tr></tr>");
         			tr.append(
 				    				tds.replace("[id]",i +1)
-				    				.replace("[storeHouseName]",data[i].storeHouseName || "")
-				    				.replace("[partCode]",data[i].partCode)
 				    				.replace("[partFullName]",data[i].partFullName)
+				    				.replace("[partCode]",data[i].partCode)
+				    				.replace("[storeHouseName]",data[i].storeHouseName || "")
 				    				.replace("[outQty]",data[i].outQty)
 				    				.replace("[unit]",data[i].unit || "")
 				    				.replace("[pickDate]",format(data[i].pickDate, "yyyy-MM-dd HH:mm") || "")

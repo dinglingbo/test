@@ -213,6 +213,7 @@
     
     function OrgShow(){
         advancedOrgWin.show();
+        moreOrgGrid.focus();
         show=1;
     }
     
@@ -560,7 +561,7 @@
 	        var keyCode = e.keyCode || e.which;// 38向上 40向下
 	        if ((keyCode == 13)) { // F9
 	        	if(show==1){
-	        		searchOrg();
+	        		addOrg();
 	        	}
 	        }
 	        if ((keyCode == 27)) { // F9

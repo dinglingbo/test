@@ -178,7 +178,7 @@ html, body {
 				  <tr style="font-size:25px">
 				    <td id="currOrgName"></td>
 				    <td></td>
-				    <td id="type" colspan="2" style="text-align: right;" class="" >入库订单</td>
+				    <td id="type" colspan="2" style="text-align: right;" class="" >入库单</td>
 				  </tr>
 				  <tr>
 				  	<td id="mobile">电话:</td>

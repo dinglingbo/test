@@ -37,7 +37,7 @@
     </table>
 </div>
 
-              <fieldset id="fd1" style="width:98%;">
+              <fieldset id="fd1" style="width:99.5%;">
                   <legend><span>采购订单信息</span></legend>
                   <div class="fieldset-body">
                   

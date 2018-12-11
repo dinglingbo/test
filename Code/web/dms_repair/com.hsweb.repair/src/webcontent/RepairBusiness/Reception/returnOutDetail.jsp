@@ -12,7 +12,7 @@
 <head> 
     <title>归库单</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.35"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnOutDetail.js?v=1.0.36"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -132,14 +132,18 @@
         <table  style="width:100%; left:0;right:0;margin: 0 auto;"> 
 
             <tr>
+            	<td class="tbtext">车牌:</td>
+	            <td class="tbCtrl">
+	                <input class="nui-textbox tabwidth" name="carNo" id="carNo"  width="100%" allowInput="false"/>
+	            </td>
                 <td class="tbtext">车主:</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName" width="100%" allowInput="false" />
                 </td>
-                <td class="tbtext">车主电话:</td>
-                <td class="tbCtrl">
-                    <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" width="100%" allowInput="false"/>
-                </td>
+<!--                 <td class="tbtext">车主电话:</td> -->
+<!--                 <td class="tbCtrl"> -->
+<!--                     <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" width="100%" allowInput="false"/> -->
+<!--                 </td> -->
                 <!-- 
                 <td class="tbtext">级别:</td>
                 <td class="tbCtrl">
@@ -152,18 +156,9 @@
             -->
             <td class="tbtext">品牌车型:</td>
             <td colspan="3" class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="carModel" id="carModel" width="100%" allowInput="false"/>
+                <input class="nui-textbox tabwidth" name="carBrandModel" id="carBrandModel" width="100%" allowInput="false"/>
             </td>
-             
-            <td class="tbtext">车牌:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="carNo" id="carNo"  width="100%" allowInput="false"/>
-            </td>
-
-            
-        </tr> 
-        <tr>
-           <td class="tbtext">车架号(VIN):</td>
+ 			<td class="tbtext">车架号(VIN):</td>
             <td class="tbCtrl">
                 <input class="nui-textbox tabwidth" id="carVin" name="carVin"  width="100%" allowInput="false"/>
             </td>
@@ -183,19 +178,41 @@
                 nullItemText="请选择..."/>
 
             </td>
-            <td class="tbtext">服务技师:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="sureMtMan" id="sureMtMan"  width="100%"/ allowInput="false">
-            </td>
-            <td class="tbtext">联系人:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" name="contactorName" id="contactorName" width="100%"/ allowInput="false">
-            </td>
-            <td class="tbtext">联系方式:</td>
-            <td class="tbCtrl">
-                <input class="nui-textbox tabwidth" " name="mobile" id="mobile"  width="100%"/ allowInput="false">
-            </td>
-        </tr>
+        </tr> 
+<!--         <tr> -->
+<!--            <td class="tbtext">车架号(VIN):</td> -->
+<!--             <td class="tbCtrl"> -->
+<!--                 <input class="nui-textbox tabwidth" id="carVin" name="carVin"  width="100%" allowInput="false"/> -->
+<!--             </td> -->
+<!--             <td class="tbtext">服务顾问:</td> -->
+<!--             <td class="tbCtrl"> -->
+<!--                 <input name="mtAdvisorId" -->
+<!--                 id="mtAdvisorId" -->
+<!--                 class="nui-combobox width1" -->
+<!--                 textField="empName"  -->
+<!--                 valueField="empId" -->
+<!--                 emptyText="请选择..." -->
+<!--                 url="" -->
+<!--                 width="100%" -->
+<!--                 allowInput="false" -->
+<!--                 showNullItem="false" -->
+<!--                 valueFromSelect="true" -->
+<!--                 nullItemText="请选择..."/> -->
+
+<!--             </td> -->
+<!--             <td class="tbtext">服务技师:</td> -->
+<!--             <td class="tbCtrl"> -->
+<!--                 <input class="nui-textbox tabwidth" name="sureMtMan" id="sureMtMan"  width="100%"/ allowInput="false"> -->
+<!--             </td> -->
+<!--             <td class="tbtext">联系人:</td> -->
+<!--             <td class="tbCtrl"> -->
+<!--                 <input class="nui-textbox tabwidth" name="contactorName" id="contactorName" width="100%"/ allowInput="false"> -->
+<!--             </td> -->
+<!--             <td class="tbtext">联系方式:</td> -->
+<!--             <td class="tbCtrl"> -->
+<!--                 <input class="nui-textbox tabwidth" " name="mobile" id="mobile"  width="100%"/ allowInput="false"> -->
+<!--             </td> -->
+<!--         </tr> -->
 
 
     </table>

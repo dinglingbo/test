@@ -199,7 +199,7 @@ function setInitData(params){
     					data.guestMobile = guest.mobile;
     					data.contactorName = contactor.name;
     					data.mobile = contactor.mobile;
-    					data.carModel=mainRow.carModel;
+    					data.carBrandModel=mainRow.carBrandModel;
     					data.mtAdvisorId=mainRow.mtAdvisorId;
     					data.mtAdvisor=mainRow.mtAdvisor;
     					data.sureMtMan =mainRow.sureMtMan;

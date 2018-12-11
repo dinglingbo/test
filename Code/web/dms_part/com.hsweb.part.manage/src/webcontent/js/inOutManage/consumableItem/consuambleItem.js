@@ -475,7 +475,7 @@ function onBlack() {
 			url : webPath+ partDomain+ "/manage/inOutManage/common/fastPartForConsumableAdd2.jsp?token"+ token,
 			title : "归库",
 			width : 475,
-			height : 300,
+			height : 270,
 			allowDrag : false,
 			allowResize : false,
 			onload : function() {

@@ -11,7 +11,7 @@
 <head>
 <title>领料归库</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd2.js?v=1.0.11"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/fastPartForConsumableAdd2.js?v=1.0.13"></script>
     <style type="text/css">
 
    	#returnRemark.mini-textbox{
@@ -83,9 +83,9 @@
 			<tr id="return">
 				<td style="" >归库原因ID:<input  class="nui-combobox" id="returnReasonId" name="returnReasonId" type="text"  popupHeight="85%"></td>
 			</tr id="return">
-			<tr id="return">
-				<td style="padding-left: 13px;" colspan="2">归库原因:<input required="true"  class="nui-textarea" id="returnRemark" name="returnRemark" type="text" ></td>
-			</tr id="return">
+<!-- 			<tr id="return"> -->
+<!-- 				<td style="padding-left: 13px;" colspan="2">归库原因:<input required="true"  class="nui-textarea" id="returnRemark" name="returnRemark" type="text" ></td> -->
+<!-- 			</tr id="return"> -->
 <!-- 			<tr  id="return"align="center"> -->
 <!-- 				<td  colspan="2"> -->
 <!-- 				<a class="nui-button" iconCls="" plain="false" onclick="CloseWindow('cancle')">关闭</a> -->

@@ -26,6 +26,7 @@ var billStatusHash = {
     "2":"已过账",
     "3":"已取消"
 };
+var UpOrDownList=[{id:0,"name" :"低于下限"},{id:1,"name" :"高于上限"}]
 $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
@@ -102,22 +103,30 @@ function getSearchParam(){
         params.outableQtyGreaterThanZero = 1;
     }*/
     var showZero = nui.get("showAll").getValue();
+//    var showUp=nui.get('showUp').getValue();
+//    var showDown=nui.get('showDown').getValue();
+    var upOrDown=nui.get('upOrDown').getValue();
     if(showZero == 0){
         params.notShowAll = 1;
     }
-
+    if(upOrDown == 1){
+        params.showUp = 1;
+    }
+    if(upOrDown ==0){
+    	 params.showDown = 1;
+    }
     params.partNameAndPY = nui.get("comPartNameAndPY").getValue();
 	params.partCode = (nui.get("comPartCode").getValue()).replace(/\s+/g, "");
 	params.partBrandId = nui.get("partBrandId").getValue();
 	params.storeId = nui.get("storeId").getValue();
 	params.storeShelf = nui.get("storeShelf").getValue();
-	params.partId = nui.get("partId").getValue();
+	params.partId = nui.get("partId").getValue(); 
     return params;
 }
 function onSearch(){
 	var params = getSearchParam();
-
-    doSearch(params);
+	doSearch(params);
+   
 }
 function doSearch(params)
 {
@@ -127,6 +136,7 @@ function doSearch(params)
         params:params,
         token:token
     });
+    
 }
 function advancedSearch()
 {
@@ -203,6 +213,18 @@ function onDrawCell(e)
 {
     switch (e.field)
     {
+    	case "wain" :
+    		if(e.record.upLimit){
+    			if(e.record.stockQty>e.record.upLimit){
+        			e.cellHtml = "<span style='color : red'>高<span>";
+        		}
+    		}
+    		if(e.record.downLimit){
+    			if(e.record.stockQty<e.record.downLimit){
+        			e.cellHtml = "<span style='color : orange'>低<span>";
+        		}
+    		}	
+    		break;
 	    case "partBrandId":
 	        if(partBrandIdHash && partBrandIdHash[e.value])
 	        {

@@ -10,7 +10,7 @@
 -->
 <head>
 <title>退货归库</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellReturnOut.js?v=1.0.30"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellReturnOut.js?v=1.0.36"></script>
 <style type="text/css">
 
 .title {
@@ -58,7 +58,7 @@ a {
                 <td>
                     <label style="font-family:Verdana;">快速查询：</label>
                     
-                    <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+                    <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本月</a>
 
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
@@ -74,7 +74,7 @@ a {
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul>
                 
-				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
+				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">待归库</a>
 
                 <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
                 	<li iconCls="" onclick="quickSearch(14)" id="type14">所有</li>

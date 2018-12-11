@@ -192,6 +192,6 @@ var requiredField = {
 
 		outQty : "出库数量",
 		pickMan : "领料人",
-		remark : "出库原因"
+//		remark : "出库原因"
 
 	};

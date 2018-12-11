@@ -11,7 +11,7 @@
 <head>
 <title>车辆详情</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.2" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.3" type="text/javascript"></script>
 </head>
 <style type="text/css">
         body { 
@@ -113,7 +113,7 @@
 
                         <td style="width:80px;"align="right">品牌车型：</td>
                         <td style="width:150px;">
-                            <input class="nui-textbox" id="carModel" name="carModel" width="100%" allowInput="false"/>        
+                            <input class="nui-textbox" id="carBrandModel" name="carBrandModel" width="100%" allowInput="false"/>        
                         </td>
                         <td style="width:80px;"align="right">发动机号：</td>
                         <td style="width:150px;">

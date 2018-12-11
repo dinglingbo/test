@@ -1396,6 +1396,10 @@ function finish(){
             showMsg("工单已完工!","W");
             return;
         }
+        if(data.status == 0){
+            showMsg("工单未施工!","W");
+            return;
+        }
         var params = {
             serviceId:data.id||0
         };

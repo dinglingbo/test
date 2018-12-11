@@ -33,6 +33,7 @@
 <input class="nui-hidden" id="guestId"name="guestId"/>
 <div id="editForm1" style="width:100%;height:100%;">
 
+    
     <div >
     <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:30%;">
     	 <legend>客户信息</legend>

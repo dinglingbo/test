@@ -37,7 +37,7 @@ public class MenuUtil {
 			//查询用户对应的角色
 			DataObject criteria = com.eos.foundation.data.DataObjectUtil
 					.createDataObject("com.primeton.das.criteria.criteriaType");
-        	criteria.set("_entity", "com.hsapi.system.data.sys.CapPartyauth");
+        	criteria.set("_entity", "com.hsapi.system.data.sys.ComCapPartyauth");
         	criteria.set("_expr[1]/partyId", userId);
         	criteria.set("_expr[1]/_op", "=");
 	    	DataObject[] result = com.eos.foundation.database.DatabaseUtil

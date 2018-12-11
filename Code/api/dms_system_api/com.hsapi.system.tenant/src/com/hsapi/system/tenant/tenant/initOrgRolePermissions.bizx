@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="initOrgRolePermissions.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="初始子公司&#xD;&#xA;1、根据com_company新增组织机构org_organization&#xD;&#xA;2、当天添加人新增到org_emporg且配置管理员角色(查询模版角色)&#xD;&#xA;3、添加当前用户到cap_partyauth（添加管理员角色）&#xD;&#xA;4、角色权限，资源cap_resauth&#xD;&#xA;5、初始往来单位com_guest&#xD;&#xA;6、初始仓库com_store&#xD;&#xA;7、不用添加员工信息和用户信息（需要切换到新增的机构添加员工）" title="Administrator&#x9;18-6-14 上午10:51">
-    <location x="22" y="4"/>
-    <size height="162" width="406"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="初始子公司&#xD;&#xA;1、根据com_company新增组织机构org_organization&#xD;&#xA;2、当天添加人新增到org_emporg且配置管理员角色(查询模版角色)&#xD;&#xA;3、添加当前用户到cap_partyauth（添加管理员角色）&#xD;&#xA;4、角色权限，资源cap_resauth&#xD;&#xA;5、初始往来单位com_guest&#xD;&#xA;6、初始仓库com_store&#xD;&#xA;7、不用添加员工信息和用户信息（需要切换到新增的机构添加员工）&#xD;&#xA;&#xD;&#xA;目前只取管理员角色 15  对应的角色资源  com_cap_resauth" title="Administrator&#x9;18-6-14 上午10:51">
+    <location x="57" y="-65"/>
+    <size height="246" width="406"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link57" name="link57" displayName="link0" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
-      <targetNode>invokePojo0</targetNode>
+      <targetNode>assign3</targetNode>
     </sourceConnections>
     <location x="30" y="217"/>
     <size height="28" width="28"/>
@@ -17,29 +17,6 @@
     <location x="32" y="253"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
-  </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getJVMDate" displayName="getJVMDate" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo0</sourceNode>
-      <targetNode>assign3</targetNode>
-    </sourceConnections>
-    <targetConnections>link57</targetConnections>
-    <location x="120" y="217"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo0label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.common.utils.DateUtil.getJVMDate</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables/>
-    <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="java.util.Date" valueType="Java">operateDate</process:outputVariable>
-    </process:outputVariables>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="95" y="253"/>
-    <figSize height="17" width="72"/>
-    <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -52,10 +29,14 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link11</targetConnections>
+    <targetConnections>link57</targetConnections>
     <location x="273" y="217"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">operateDate</process:to>
+    </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">comCompany/tenantId</process:from>
       <process:to type="query">tmpOrgOrganization/tenantId</process:to>
@@ -69,11 +50,11 @@
       <process:to type="query">tmpOrgOrganization/orgcode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">tmpOrgOrganization/createtime</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:from type="query" pattern="reference">operateDate</process:from>
       <process:to type="query">tmpOrgOrganization/lastupdate</process:to>
     </process:copy>
     <process:copy>
@@ -172,7 +153,7 @@
       <process:to type="query">tmpPartyauth/roleType</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">comCompany/tel</process:from>
+      <process:from type="query" pattern="reference">userId</process:from>
       <process:to type="query">tmpPartyauth/partyId</process:to>
     </process:copy>
     <process:copy>
@@ -625,8 +606,8 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">roleCount</process:leftOperand>
-          <process:rightOperand type="literal">0</process:rightOperand>
+          <process:leftOperand type="query">roleTemp/roleId</process:leftOperand>
+          <process:rightOperand type="literal">15</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -729,7 +710,6 @@
     <location x="893" y="220"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart2label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="tCapResauth" iterableElement="resauthTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart2label" name="label" nodeType="label">
@@ -1227,6 +1207,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.system.data.sys.ComCompany" name="comCompany"/>
     <process:input description="PART,REPAIR" isArray="false" name="type" primitiveType="String"/>
+    <process:input description="" isArray="false" name="userId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

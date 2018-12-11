@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修项目</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.0" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.2" type="text/javascript"></script>
 
 </head>
 <body>
@@ -37,16 +37,16 @@
 			
 			    
 				<div class="nui-toolbar"
-					 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;display:none;">
+					 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
 					<span>标准项目类型</span>
 				</div>
-				<div style="width: 100%; height: 40%;display:none;">
+				<div style="width: 100%; height: 50%;">
 					<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
 						dataField="rs" showTreeIcon="true" textField="name" expandOnLoad="0"
 						idField="id" ajaxData="setRoleId" parentField="" resultAsTree="false">
 					</ul>
 			    </div>
-		  </div>
+		   </div>
 		</div>
 	</div>
 		<div showCollapseButton="false">
@@ -56,7 +56,7 @@
 					<table class="table" id="table1">
 						<tr>
 							<td >
-								<label style="font-family: Verdana;;font-size: 12px;">业务类型：</label>
+								<label style="font-family: Verdana;font-size: 12px;" id="serviceLabel">业务类型：</label>
 								<input name="serviceTypeId"
 										id="serviceTypeId"
 										class="nui-combobox"
@@ -68,20 +68,8 @@
 										showNullItem="false"
 										valueFromSelect="true"
 										nullItemText="请选择..."
-										width="120px"
+										width="80px"
 										/>
-								<!-- <label style="font-family: Verdana;;font-size: 12px;">工种：</label>
-								<input id="itemKind"
-										name="itemKind"
-										class="nui-combobox width1"
-										textField="name"
-										valueField="customid"
-										emptyText="请选择..."
-										url=""
-										allowInput="false"
-										showNullItem="false"
-										nullItemText="请选择..."/> -->										
-								<!-- <label style="font-family: Verdana;;font-size: 12px;">品牌：</label> -->
 								<input id="carBrandId"
 										name="carBrandId"
 										class="nui-combobox width1"
@@ -93,37 +81,19 @@
 										allowInput="false"
 										showNullItem="false"
 										nullItemText="请选择..."/>
-								<!-- <input id="costType" visible="false"
-										name="costType"
-										class="nui-combobox width1"
-										textField="name"
-										valueField="customid"/> -->
-								<label style="font-family: Verdana;;font-size: 12px;">项目名称：</label>
-								<input class="nui-textbox" id="search-name" name="name" onenter="onSearch()" />
-								<label style="font-family: Verdana;;font-size: 12px;">项目编码：</label>
-								<input class="nui-textbox" id="search-code" name="code" onenter="onSearch()"/>
+								<label style="font-family: Verdana;font-size: 12px;">项目名称：</label>
+								<input class="nui-textbox" width="100px" id="search-name" name="name" onenter="onSearch()" />
+								<label style="font-family: Verdana;font-size: 12px;" id="itemCodeLabel">项目编码：</label>
+								<input class="nui-textbox" width="100px" id="search-code" name="code" onenter="onSearch()"/>
 								<span class="separator"></span>
 								<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 								<a class="nui-button" plain="true" iconCls="" onclick="onClear()"><span class="fa fa-trash-o"></span>&nbsp;清空</a>
+							<a class="nui-button" id="selectBtn" iconCls="" onclick="choose()" plain="true" visible="true"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
 							</td>
 							
 						</tr>
 					</table>
 				</div>
-			</div>
-			<div class="nui-toolbar"  style="border-bottom: 0; padding: 0px; height: 30px;">
-				<table style="width: 100%">
-					<tr>
-						<td style="width: 100%">
-							<a class="nui-button" id="add" iconCls="" onclick="add()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增项目</a>
-							<a class="nui-button" id="update" iconCls="" onclick="edit()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改项目</a>
-							<span class="separator" id="sep"></span>
-			 				<a class="nui-button" id="addItemType" iconCls="" onclick="addItemType()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增类型</a> 
-							<a class="nui-button" id="editItemType" iconCls="" onclick="editItemType()" plain="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改类型</a>
-							<a class="nui-button" id="selectBtn" iconCls="" onclick="onOk()" plain="true" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
-						</td>
-					</tr>
-				</table>
 			</div>
 			<div class="nui-fit">
 				<div id="rightGrid"
@@ -151,14 +121,12 @@
 						<div field="unitPrice" headerAlign="center" allowSort="true" width="50px">单价</div>
 						<div field="amt" headerAlign="center" allowSort="true" width="50px">金额</div>
 						<div field="code" headerAlign="center" width="50px">项目编码</div>
-						<div field="isDisabled" name="isDisabled" headerAlign="center" allowSort="true" width="50px">是否禁用</div>
-						<div field="isShare" name="isShare" headerAlign="center" allowSort="true" width="50px">是否共享</div>
 							
 					</div>
 				</div>
                 
                
-		        <div class="nui-datagrid" style="float:left;width: 70%; height: 100%;display:none;"
+		        <div class="nui-datagrid" style="float:left;width: 70%; height: 100%;display:none"
 					 id="itemGrid"
 					 dataField="rs"
 					 showPager="true"
@@ -171,13 +139,13 @@
 						   	<div field="AStandTime" width="40" headerAlign="center" allowSort="true" header="工时"></div>
 						    <div field="AStandSum" width="40" headerAlign="center" allowSort="true" header="项目金额"></div>
 							<div field="Amt4S" width="40" headerAlign="center" allowSort="true" header="市场金额"></div>
-							<div field="ItemKind" width="40" headerAlign="center" allowSort="true" header="工种"></div>
+							<div field="ItemKind" width="40" headerAlign="center" visible="false" allowSort="true" header="工种"></div>
 					</div>
 				</div>           
                 
                 
-				<div id="splitDiv" style="float:left;width:1%;height:100%;display:none"></div>
-				<div id="tempGrid" class="nui-datagrid" style="float:left;width:29%;height:100%;display:none"
+				<div id="splitDiv" style="float:left;width:1%;height:100%;"></div>
+				<div id="tempGrid" class="nui-datagrid" style="float:left;width:29%;height:100%"
 					showPager="false"
 					pageSize="1000"
 					selectOnLoad="true"

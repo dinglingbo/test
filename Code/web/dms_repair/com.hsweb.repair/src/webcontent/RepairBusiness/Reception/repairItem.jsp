@@ -68,12 +68,12 @@
 </div>
 <div style="text-align:center;">
     <span id="carHealthEl" >
-        <a href="javascript:chooseItem()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择本地项目</a>
+        <a href="javascript:chooseItem()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择维修项目</a>
     </span>
-    <span>&nbsp;</span>
+    <!--<span>&nbsp;</span>
     <span id="carHealthEl" >
         <a href="javascript:showBasicData('item')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择标准项目</a>
-    </span>
+    </span>-->
 </div>
 
 <div id="advancedMorePartWin" class="nui-window"

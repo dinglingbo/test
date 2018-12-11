@@ -184,7 +184,7 @@ function edit() {
 		}
 	}
 }
-var stdPkgUrl = apiPath + sysApi + "/com.hsapi.repair.repairService.crud.insStdPackage.biz.ext";
+var stdPkgUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.insStdPackage.biz.ext";
 function selectStdPkg(row) {    
    if(!row.id) return;
    nui.mask({

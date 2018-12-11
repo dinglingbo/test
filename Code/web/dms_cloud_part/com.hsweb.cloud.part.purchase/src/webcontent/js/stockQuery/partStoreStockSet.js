@@ -26,6 +26,7 @@ var billStatusHash = {
     "2":"已过账",
     "3":"已取消"
 };
+
 $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
@@ -100,11 +101,12 @@ function getSearchParam(){
     {
         params.outableQtyGreaterThanZero = 1;
     }*/
+  
     var showZero = nui.get("showAll").getValue();
     if(showZero == 0){
         params.notShowAll = 1;
     }
-
+   
     params.partNameAndPY = nui.get("comPartNameAndPY").getValue();
 	params.partCode = (nui.get("comPartCode").getValue()).replace(/\s+/g, "");
 	params.partBrandId = nui.get("partBrandId").getValue();

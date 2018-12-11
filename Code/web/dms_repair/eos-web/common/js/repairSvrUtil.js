@@ -304,12 +304,12 @@ function svrSetWorkersBatch(params, callback, unmaskcall){
 	});
 }
 
-//套餐销售员
-var svrSetPkgSaleMansBatchUrl = window._rootRepairUrl + "";
+//批量设置销售员
+var svrSetSaleMansBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setSalersBatch.biz.ext";
 function svrSetPkgSaleMansBatch(params, callback, unmaskcall){
     var data = params.data||{};
     doPost({
-		url : svrSetPkgSaleMansBatchUrl,
+		url : svrSetSaleMansBatchUrl,
 		data : data,
 		success : function(data) {
 			callback && callback(data);
@@ -443,10 +443,10 @@ function doSelectPart(itemId,dock, dodelck, docck, callback) {
 }
 
 
-
+//com.hsweb.repair.DataBase.RepairItemMain.flow
 function doSelectItem(dock, dodelck, docck, param, callback) {
 	nui.open({
-		url : webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemMain.flow?token=" + token,
+		url : webPath + contextPath + "/com.hsweb.repair.DataBase.itemChoose.flow?token=" + token,
 		title : "维修项目",
 		width : 1000,
 		height : 560,

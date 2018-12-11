@@ -51,10 +51,10 @@ var advancedMorePartWin = null;
 var advancedCardTimesWin = null;
 var advancedPkgRateSetWin = null;
 var advancedPkgWorkersSetWin = null;
-var advancedItemPartRateSetWin = null;
 var advancedPkgSaleMansSetWin = null;
 var advancedItemWorkersSetWin = null;
 var advancedItemPartSaleManSetWin = null;
+var advancedItemPartRateSetWin = null;
 var cardTimesGrid = null;
 var advancedMemCardWin = null;
 var memCardGrid = null;
@@ -318,7 +318,10 @@ $(document).ready(function ()
         nui.get("combobox3").setData(memList);
         nui.get("pkgSale").setData(memList);
         nui.get("combobox4").setData(memList);
+        nui.get("ItemSale1").setData(memList);
+        nui.get("ItemSale2").setData(memList);
     });
+    
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {
@@ -583,7 +586,7 @@ $(document).ready(function ()
             e.cellHtml = balaTimes - canUseTimes;
         }
         if(e.field == 'cardTimesOpt'){
-            e.cellHtml = '<a class="optbtn" href="javascript:addCardTimesToBill()">添加</a>';
+            e.cellHtml = '<a class="optbtn" href="javascript:addCardTimesToBill()">选择</a>';
         }
     });
     memCardGrid.on("drawcell",function(e)
@@ -1347,7 +1350,7 @@ function sureMT(){
         return;
     }else{
         if(data.status != 0){
-            showMsg("工单已确定维修!","W");
+            showMsg("工单已施工!","W");
             return;
         }
         var params = {
@@ -1372,9 +1375,9 @@ function sureMT(){
                 var status = main.status||0;
                 var isSettle = main.isSettle||0;
                 doSetStyle(status, isSettle);
-                showMsg("确定维修成功!","S");
+                showMsg("转施工成功!","S");
             }else{
-                showMsg(errMsg||"确定维修失败!","E");
+                showMsg(errMsg||"转施工失败!","E");
                 nui.unmask(document.body);
             }
         }, function(){
@@ -1391,6 +1394,10 @@ function finish(){
     }else{
         if(data.status == 2){
             showMsg("工单已完工!","W");
+            return;
+        }
+        if(data.status == 0){
+            showMsg("工单未施工!","W");
             return;
         }
         var params = {
@@ -2107,7 +2114,7 @@ function closePkgWorkersSetWin(){
 
 //施工员
 function setPkgWorkers(){
-	nui.get("combobox4").setText("");
+	nui.get("combobox3").setText("");
     var main =  billForm.getData();
     if(!main.id){
         return;
@@ -2236,8 +2243,9 @@ function surePkgSaleMansSetWin(){
             var params = {
                 data:{
                     serviceId:data.id||0,
-                    saleManNameBat:saleManNameBat,
-                    saleManIdBat:saleManIdBat
+                    saleMan:saleManNameBat,
+                    saleManId:saleManIdBat,
+                    type:"package"
                 }
             };
             svrSetPkgSaleMansBatch(params, function(data){
@@ -2268,7 +2276,7 @@ function surePkgSaleMansSetWin(){
         }
     } 
 }
-//批量设置工时销售员
+//批量设置配件工时销售员
 function setItemSaleMan(){
     var main =  billForm.getData();
     if(!main.id){
@@ -2279,6 +2287,10 @@ function setItemSaleMan(){
             showMsg("工单已完工,不能修改!","W");
             return;
         }else{
+        	/*saleManIdBat="";
+        	saleManBat="";
+        	saleManIdBat2="";
+        	saleManBat2="";*/
         	advancedItemPartSaleManSetWin.show();
         }
     }
@@ -2309,23 +2321,45 @@ function sureItemPartSaleManSetWin(){
                 cls: 'mini-mask-loading',
                 html: '处理中...'
             });
-            var rate1 = itemRateEl.getValue()||0;
-            rate1 = rate1/100;
-            rate1 = rate1.toFixed(4);
-            var rate2 = partRateEl.getValue()||0;
-            rate2 = rate2/100;
-            rate2 = rate2.toFixed(4);
-            var p = {
-                irate: rate1,
-                prate: rate2
-            };
-            var params = {
-                data:{
-                    serviceId:data.id||0,
-                    params: p
-                }
-            };
-            svrSetItemPartSaleManBatch(params, function(data){
+           
+            if(saleManIdBat){
+            	if(saleManIdBat2){
+            		var params = {
+                            data:{
+                                serviceId:data.id||0,
+                                saleMan: saleManNameBat,
+                                saleManId: saleManIdBat,
+                                partSaleMan:saleManNameBat2,
+                                partSaleManId:saleManIdBat2,
+                                type:"itemPart"
+                            }
+                        };
+            	}else{
+            		var params = {
+                            data:{
+                                serviceId:data.id||0,
+                                saleMan: saleManNameBat,
+                                saleManId: saleManIdBat,
+                                type:"item"
+                            }
+                        };
+            	}
+            }else{
+            	if(saleManIdBat2){
+            		var params = {
+                            data:{
+                                serviceId:data.id||0,
+                                partSaleMan:saleManNameBat2,
+                                partSaleManId:saleManIdBat2,
+                                type:"part"
+                            }
+                        };
+            	}else{
+            		showMsg("请选择销售员","W");
+            		return;
+            	}
+            }
+            svrSetPkgSaleMansBatch(params, function(data){
                 data = data||{};
                 var errCode = data.errCode||"";
                 var errMsg = data.errMsg||"";
@@ -2349,7 +2383,7 @@ function sureItemPartSaleManSetWin(){
 
                     advancedItemPartSaleManSetWin.hide();
                 }else{
-                    showMsg(errMsg||"批量修改优惠率失败!","E");
+                    showMsg(errMsg||"批量修改销售员失败!","E");
                 }
                 nui.unmask(document.body);
             }, function(){
@@ -2358,7 +2392,6 @@ function sureItemPartSaleManSetWin(){
         }
     } 
 }
-
 
 function setItemPartRate(){
     var main =  billForm.getData();
@@ -3138,7 +3171,10 @@ function chooseItem(){
       	}
 	  saveNoshowMsg();
     }
-	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, function(text){
+    var param = {};
+    param.carModelIdLy = main.carModelIdLy;
+    param.serviceId = main.id;
+	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
 		    main = billForm.getData();
 	        var p1 = { }
 	        var p2 = {
@@ -4701,7 +4737,7 @@ function onworkerChangedBat(e){
 }
 var saleManIdBat = "";
 var saleManNameBat = "";
-function onsalemanChangedBat(e){
+function saleManChangedBat(e){
 	saleManNameBat = e.value;
     var row = e.selected;
     var saleManId = 0;
@@ -4716,7 +4752,7 @@ function onsalemanChangedBat(e){
 
 var saleManIdBat2 = "";
 var saleManNameBat2 = "";
-function onsalemanChangedBat2(e){
+function saleManChangedBatP(e){
 	saleManNameBat2 = e.value;
     var row = e.selected;
     var saleManId = 0;

@@ -26,13 +26,13 @@
     <process:returns/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="59" y="170"/>
-    <figSize height="20" width="31"/>
+    <location x="62" y="170"/>
+    <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="192" y="21"/>
-    <figSize height="20" width="61"/>
+    <location x="198" y="21"/>
+    <figSize height="17" width="49"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="验证登录" displayName="login" type="subprocess">
@@ -72,8 +72,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="191" y="170"/>
-    <figSize height="20" width="61"/>
+    <location x="197" y="170"/>
+    <figSize height="17" width="49"/>
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" description="" id="end1" name="主页" displayName="结束" type="end" contextPath="" method="forward" uri="" variableUri="false">
@@ -85,8 +85,8 @@
     <process:returns/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="749" y="169"/>
-    <figSize height="20" width="31"/>
+    <location x="752" y="169"/>
+    <figSize height="17" width="25"/>
     <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="setUserOrgInfo" displayName="setUserOrgInfo" type="subprocess">
@@ -113,8 +113,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="263" y="170"/>
-    <figSize height="20" width="112"/>
+    <location x="274" y="170"/>
+    <figSize height="17" width="91"/>
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tView" description="" id="view0" name="视图" displayName="redirect.jsp" type="view" contextPath="" method="forward" uri="/coframe/auth/login/redirect.jsp">
@@ -141,8 +141,8 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="view0label" name="label" nodeType="label">
-    <location x="567" y="170"/>
-    <figSize height="20" width="31"/>
+    <location x="570" y="170"/>
+    <figSize height="17" width="25"/>
     <node>view0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="setToggleUserOrgInfo" displayName="setToggleUserOrgInfo" type="subprocess">
@@ -168,8 +168,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="500" y="65"/>
-    <figSize height="20" width="164"/>
+    <location x="516" y="65"/>
+    <figSize height="17" width="132"/>
     <node>subprocess2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -194,8 +194,8 @@
     <nodeLabel>assign0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="329" y="66"/>
-    <figSize height="20" width="31"/>
+    <location x="332" y="66"/>
+    <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -219,8 +219,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="459" y="171"/>
-    <figSize height="20" width="40"/>
+    <location x="463" y="171"/>
+    <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
   <topRuler/>

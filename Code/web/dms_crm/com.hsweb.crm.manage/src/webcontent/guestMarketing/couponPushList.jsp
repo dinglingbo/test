@@ -177,6 +177,7 @@ pageEncoding="UTF-8" session="false" %>
              title: "优惠券勾兑",
              width: 500, 
              height: 200,
+             allowResize:false,
              onload: function () {
              },
              ondestroy: function (action) {

@@ -6,6 +6,11 @@ var grid1 = null;
 var grid2 = null;
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid2 = null;
+var prdtTypeHash = {
+	    "1":"套餐",
+	    "2":"项目",
+	    "3":"配件"
+};
 $(document).ready(function () {
     mainGrid1 = nui.get("mainGrid1");
     form = new nui.Form("#editForm1");
@@ -50,6 +55,16 @@ $(document).ready(function () {
                   tip.setContent(val);
               }
 
+          }
+      });
+      
+      grid1.on("drawcell", function (e) {
+          switch (e.field) {
+              case "prdtType":
+            	  e.cellHtml = prdtTypeHash[e.value];
+            	  break;
+              default:
+                  break;
           }
       });
 });
@@ -118,6 +133,6 @@ function SetData(params){
             showMsg("网络出错", "E");
         }
     });
-
+   
 }
 

@@ -68,12 +68,12 @@
 </div>
 <div style="text-align:center;">
     <span id="carHealthEl" >
-        <a href="javascript:chooseItem()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择本地项目</a>
+        <a href="javascript:chooseItem()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择维修项目</a>
     </span>
-    <span>&nbsp;</span>
+    <!--<span>&nbsp;</span>
     <span id="carHealthEl" >
         <a href="javascript:showBasicData('item')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择标准项目</a>
-    </span>
+    </span>-->
 </div>
 
 <div id="advancedMorePartWin" class="nui-window"
@@ -189,7 +189,7 @@
                 <td >
                    <input  property="editor" enabled="true" dataField="memList" id="ItemSale1"
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url=""  emptyText=""  vtype="required"  onvaluechanged="saleManIdBat" oncloseclick="onCloseClick"/> 
+                             url=""  emptyText=""  vtype="required"  onvaluechanged="saleManChangedBat" oncloseclick="onCloseClick"/> 
                  </td>
             </tr> 
             <tr >
@@ -199,7 +199,7 @@
                 <td >
                    <input  property="editor" enabled="true" dataField="memList" id="ItemSale2"
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url=""  emptyText="" onvaluechanged="saleManIdBat2"  vtype="required" oncloseclick="onCloseClick"/> 
+                             url=""  emptyText="" onvaluechanged="saleManChangedBatP"  vtype="required" oncloseclick="onCloseClick"/> 
                  </td>
             </tr>
             <tr>

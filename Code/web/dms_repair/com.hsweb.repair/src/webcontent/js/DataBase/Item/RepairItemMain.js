@@ -6,20 +6,17 @@ var rightGrid = null;
 var typeHash = {};
 var advancedAddWin = null;
 var advancedAddForm = null;
-var isOpenWin = 0;
+var isOpenWin = 0;  
 var tempGrid = null;
 var xs = 0;
 var isChooseClose = 1;//默认选择后就关闭窗体
 var servieTypeList = [];
 var servieTypeHash = {};
-var treeHash={};
-var tree = null;
-var itemGrid = null;
 $(document).ready(function()
 {
 	queryForm = new nui.Form("#queryForm");
 	tree1 = nui.get("tree1");
-	itemGrid = nui.get("itemGrid");
+	
 	advancedAddWin = nui.get("advancedAddWin");
 	advancedAddForm  = new nui.Form("#advancedAddForm");
 	tempGrid = nui.get("tempGrid");
@@ -129,72 +126,7 @@ $(document).ready(function()
 	rightGrid.on("rowclick",function(e){
 		nui.get("editItemType").disable();
 	});
-	init();
-	tree1.on("nodeclick",function(e){
-		itemGrid.show();
-    	rightGrid.hide();
-    });
 });
-
-function init()
-{
-    var treeUrl = baseUrl+"com.hsapi.system.product.items.getHotWord.biz.ext";
-    tree = nui.get("tree");
-    tree.on("load",function(e)
-    {
-        var list = tree.getList();
-        treeHash = {};
-        list.forEach(function(v){
-            treeHash[v.id] = v;
-        });
-    });
-  //  tree.on("beforeload",function(e){
-//    	var types = "01";
-//    	if(type == "pkg"){
-//    		types = "01";
-//    	}else if(type == "item"){
-//    		types = "02";
-//    	}
-//    	e.data.type = "02";
-//    });
- //   tree.setUrl(treeUrl);
-    tree.on("preload",function(e){
-    	tree.setData([]);
-    	var data = e.result.rs||[];
-    	var rs = [];
-    	for(var i = 0; i<data.length; i++){
-    		var row = data[i];
-    		var customId = row.customId||"";
-    		var indexCus = customId.indexOf("01");
-    		if(indexCus == 0){
-    			rs.push(row);
-    		}
-    	}
-    	tree.setData(rs);
-    });
-    tree.on("nodedblclick",function(e)
-    {
-        var node = e.node;
-        var nodeList = tree.getAncestors(node);
- 
-        if(nodeList.length<0)
-        {
-            return;
-        }
-        var carInfo = carInfoForm.getData();
-        var params = {
-            carModelId:carInfo.carModelId
-        };
-        params.partName = node.name;
-        doSearchItem(params);
-
-    });
-    tree.on("nodeclick",function(e){
-    	rightGrid.show();
-    	itemGrid.hide();
-    });
-}
-
 function onClear(){
 	queryForm.clear();
 }

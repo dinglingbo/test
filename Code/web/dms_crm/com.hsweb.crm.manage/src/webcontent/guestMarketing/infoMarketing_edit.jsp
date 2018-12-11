@@ -280,7 +280,7 @@ pageEncoding="UTF-8" session="false" %>
                     $t.scrollTop = scrollTop;
                 } else {
                     // this.value += myValue;
-                    $(this).append(myValue)
+                    $(this).append(myValue);
                     this.focus();
                 }
             }

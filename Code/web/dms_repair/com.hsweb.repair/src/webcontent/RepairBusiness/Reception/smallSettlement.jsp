@@ -78,6 +78,8 @@
 <div class="print_btn">
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
+        <a   iconCls="" onclick="sendInfo()">发送</a>
+        <a   iconCls="" onclick="sendInfo()">发送微信</a>
 </div>
 <div style="height:5px"></div>
 <table width="380" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -102,7 +104,7 @@
                             <td height="20" id="carNo">车牌：</td>
                         </tr>
                         <tr>
-                            <td height="20" id="enterDate">进厂时间：</td>
+                            <td height="20" id="outDate">结算时间：</td>
                         </tr>
                     </table>
                 </div>
@@ -159,14 +161,14 @@
                         <tr>
                             <td height="40">签名：</td>
                         </tr>
-                            <tr>
+                           <!--  <tr>
                                 <td height="200" align="center" style="border-top: 1px #999 dashed;" width="200">
                                     <div id="qrcode">
                                     	<img src="https://photo.harsonserver.com/20180910115313857.jpg">
                                     </div>
                                     <p>扫码支付</p>
                                 </td>
-                            </tr>
+                            </tr> -->
                     </table>
                 </div>
             </td>
@@ -212,14 +214,14 @@
                    		var mtAdvisor = maintain.mtAdvisor || "";
                    		var guestId = maintain.guestId || "";
                    		var carNo = maintain.carNo || "";
-                   		var enterDate = maintain.enterDate || "";
-                   		if(enterDate){
-	        			   enterDate = format(enterDate, "yyyy-MM-dd HH:mm");
+                   		var outDate = maintain.outDate || "";
+                   		if(outDate){
+	        			   outDate = format(outDate, "yyyy-MM-dd HH:mm");
 	        		    }
                    		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML+ mtAdvisor;
                    		document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML+ guestId;
                    		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML+ carNo;
-                   		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML+ enterDate;
+                   		document.getElementById("outDate").innerHTML = document.getElementById("outDate").innerHTML+ outDate; 
                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

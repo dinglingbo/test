@@ -400,7 +400,7 @@
                     </tr> -->
                     <tr>
                         <td class="left" id="carNo" style="margin-left: 0px;">车牌号：</td>
-                        <td class="left" id="carModel" >品牌车型：</td>
+                        <td class="left" id="carBrandModel" >品牌车型：</td>
                     </tr>
                     <tr>
                         <td class="left"id="mtAdvisor" width="100px">服务顾问：</td>
@@ -507,7 +507,7 @@
         		var carNo = maintain.carNo;
         		var carVin = maintain.carVin;
         		var enterDate = maintain.enterDate || "";
-        		var carModel = maintain.carModel || "";
+        		var carBrandModel = maintain.carBrandModel || "";
         		if(enterDate){
         			enterDate = enterDate.replace(/-/g,"/");
         			enterDate = new Date(enterDate);
@@ -526,7 +526,7 @@
         		var serviceCode = maintain.serviceCode;
         		var remark = maintain.remark || "";
         		document.getElementById("engineNo").innerHTML = document.getElementById("engineNo").innerHTML + engineNo; 
-        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
+        		document.getElementById("carBrandModel").innerHTML = document.getElementById("carBrandModel").innerHTML + carBrandModel; 
         		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;
         		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
         		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;

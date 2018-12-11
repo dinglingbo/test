@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	<%-- <%@ include file="/common/commonRepair.jsp"%> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -178,6 +177,8 @@
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a href="javascript:box_setup_open()">修改</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()">发送短信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()">发送微信</a>
      </div>
      
        <!-- <div showCollapseButton="false" style="border:0; text-align: center;" class="print_hide">
@@ -226,7 +227,7 @@
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
              <tr>
                 <td>地址：<span id="guestAddr"></span></td>
-             <!--<td align="right" id="enterDate" >进厂时间：</td>-->
+             <td align="right" id="outDate" >结算时间：</td>
             </tr> 
             <tr>
                 <td>电话：<span id="phone"></span></td>
@@ -244,7 +245,7 @@
                 </tr>
                 <tr>
                     <td height="24" id="carNo">&nbsp;车牌：</td>
-                    <td id="carModel">&nbsp;品牌车型： </td>
+                    <td id="carBrandModel">&nbsp;品牌车型： </td>
                     <td id="carVin">&nbsp;车架号：</td>
                 </tr>
                 <tr>
@@ -407,6 +408,8 @@
         	document.getElementById("cash1").innerHTML = money;
     		money = transform(money+"");
     		document.getElementById("money").innerHTML = money;
+    		document.getElementById("cash1").innerHTML = parseFloat(document.getElementById("cash1").innerHTML).toFixed(2);
+
         }
         function SetData(params){
 	        var date = new Date();
@@ -440,12 +443,15 @@
 	        		var list = text.list[0];
 	        		var carNo = list.carNo || "";
 	        		var carVin = list.carVin || "";
-	        		var enterDate = list.enterDate || "";
+	        		var outDate = list.outDate || "";
+	        		
 	        		var drawOutReport = list.drawOutReport || "";
-	        		if(enterDate){
-	        			enterDate = enterDate.replace(/-/g,"/");
-	        			enterDate = new Date(enterDate);
-	        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm");
+	        		if(outDate){
+	        			outDate = outDate.replace(/-/g,"/");
+	        			outDate = new Date(outDate);
+	        			outDate = format(outDate, "yyyy-MM-dd HH:mm");
+	        		}else{
+	        		  outDate='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 	        		}
 	        		var guestFullName = list.guestFullName || "";
 	        		var enterOilMass = list.enterOilMass || "0";
@@ -467,7 +473,7 @@
 	        		}
 	        		var serviceCode = list.serviceCode || "";
 	        		var guestDesc = list.guestDesc || "";
-	        		var carModel = list.carModel || "";
+	        		var carBrandModel = list.carBrandModel || "";
 	        		var faultPhen = list.faultPhen || "";
 	        		var solveMethod = list.solveMethod || "";
 	        		var guestAddr = list.guestAddr || "";
@@ -482,13 +488,13 @@
 	        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
 	        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
-	        		//document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
+	        		document.getElementById("outDate").innerHTML = document.getElementById("outDate").innerHTML + outDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
 	        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;
 	        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
 	        		document.getElementById("guestDesc").innerHTML = document.getElementById("guestDesc").innerHTML + guestDesc; 
-	        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
+	        		document.getElementById("carBrandModel").innerHTML = document.getElementById("carBrandModel").innerHTML + carBrandModel; 
 	        		document.getElementById("faultPhen").innerHTML = document.getElementById("faultPhen").innerHTML + faultPhen; 
 	        		document.getElementById("solveMethod").innerHTML = document.getElementById("solveMethod").innerHTML + solveMethod; 
 	        		document.getElementById("guestAddr").innerHTML = document.getElementById("guestAddr").innerHTML + guestAddr;

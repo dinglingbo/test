@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>质检&完工</title>
+<title>完工</title>
 <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/checkFinish.js?v=1.0.7"></script>
 <style type="text/css">
 
@@ -55,45 +55,43 @@
                     <a class="nui-button"  onclick="finish()" id = "readyPay" plain="true"><span class="fa fa-check fa-lg" ></span>&nbsp;完工</a>
                     <!-- <a class="nui-button"  onclick="noPayOk()" id = "noPayOk" >保存</a>  -->
                     <a class="nui-button"  onclick="onCancel()" id = "payOk" plain="true"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a> 
-                    <a class="nui-button"  onclick="SelectReport()" id = "SelectReport" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;出车报告模板</a>
                 </td>
                 <td align="left"><span id="checkDescribe" style="color:red;"></span></td>
             </tr>
         </table>
 	</div>
   </div>
+  <div>
     <div id="itemGrid"
         dataField="data"
         class="nui-datagrid"
-        style="width: 100%; height: 100px;"
+        style="width: 50%; height: 230px;float:left"
         showPager="false"
         allowSortColumn="true">
         <div property="columns">
-            <div headerAlign="center" type="indexcolumn" width="10">序号</div>
+            <div headerAlign="center" type="indexcolumn" width="20">序号</div>
             <div field="itemName" headerAlign="center" allowSort="true" visible="true" width="60">项目名称</div>
             <div field="workers" headerAlign="center" allowSort="true" visible="true" width="60" datatype="int" align="center">施工员</div>
-            <div field="status" headerAlign="center" allowSort="true" visible="true" width="60" datatype="int" align="center">是否完工</div>
+            <div field="status" headerAlign="center" allowSort="true" visible="true" width="40" datatype="int" align="center">是否完工</div>
             <!-- <div field="unitPrice" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">是否合格</div>
             <div field="amt" headerAlign="center" allowSort="true" visible="true" width="80" datatype="float" align="right">备注</div> -->
         </div>
     </div>
-   
-   
     <div id="partGrid"
         dataField="data"
         class="nui-datagrid"
-        style="width: 100%; height: 100px;"
+        style="width: 50%; height: 230px;"
         showPager="false"
         allowSortColumn="true">
         <div property="columns">
-            <div headerAlign="center" type="indexcolumn" width="10">序号</div>
+            <div headerAlign="center" type="indexcolumn" width="15">序号</div>
             <div field="partName" headerAlign="center" allowSort="true" visible="true" width="60">配件名称</div>
-            <div field="qty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="center">数量</div>
+            <div field="qty" headerAlign="center" allowSort="true" visible="true" width="15" datatype="float" align="center">数量</div>
             <div field="pickQty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="center">已领取</div>
             <div field="notPickQty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="center">未领取</div>
-            
         </div>
     </div>
+  </div> 
     <div class="nui-fit">
      <div class="form" id="basicInfoForm" >
         <input name="id" class="nui-hidden"/>
@@ -101,6 +99,8 @@
             <tr>
                 <td  style="text-align:left">
                     <label >出车报告：</label>
+                 <a class="nui-button"  onclick="SelectReport()" id = "SelectReport" plain="true"><span class="fa fa-check fa-lg"></span>&nbsp;选择出车报告</a>
+                    
                 </td>
             </tr>
             <tr>

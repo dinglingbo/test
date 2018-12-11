@@ -38,7 +38,9 @@
                            <label>品牌车型：</label>
                         </td>
                         <td class="" colspan="1">
-                            <input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/>
+                             <input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/>
+<!--                             <input  class="nui-textbox" name="carBrandModel" id="carBrandModel" enabled="false" width="100%"/>
+ -->                           
                         </td>
                         <td class="title" >
                            <label>车架号(VIN)：</label>

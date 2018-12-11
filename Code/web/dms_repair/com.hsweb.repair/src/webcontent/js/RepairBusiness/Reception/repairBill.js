@@ -586,7 +586,7 @@ $(document).ready(function ()
             e.cellHtml = balaTimes - canUseTimes;
         }
         if(e.field == 'cardTimesOpt'){
-            e.cellHtml = '<a class="optbtn" href="javascript:addCardTimesToBill()">添加</a>';
+            e.cellHtml = '<a class="optbtn" href="javascript:addCardTimesToBill()">选择</a>';
         }
     });
     memCardGrid.on("drawcell",function(e)
@@ -1350,7 +1350,7 @@ function sureMT(){
         return;
     }else{
         if(data.status != 0){
-            showMsg("工单已确定维修!","W");
+            showMsg("工单已施工!","W");
             return;
         }
         var params = {
@@ -1375,9 +1375,9 @@ function sureMT(){
                 var status = main.status||0;
                 var isSettle = main.isSettle||0;
                 doSetStyle(status, isSettle);
-                showMsg("确定维修成功!","S");
+                showMsg("转施工成功!","S");
             }else{
-                showMsg(errMsg||"确定维修失败!","E");
+                showMsg(errMsg||"转施工失败!","E");
                 nui.unmask(document.body);
             }
         }, function(){
@@ -1394,6 +1394,10 @@ function finish(){
     }else{
         if(data.status == 2){
             showMsg("工单已完工!","W");
+            return;
+        }
+        if(data.status == 0){
+            showMsg("工单未施工!","W");
             return;
         }
         var params = {

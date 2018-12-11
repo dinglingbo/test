@@ -289,7 +289,7 @@ function onDrawCell(e) {
             	s = s + minutes + '分';
             }
         	if(record.isOpenBill){
-        		s = "已开单";
+        		s = "已到店";
         	}else{
         		s = "<font color='red'>已超时"+s+"</font>"
         	}

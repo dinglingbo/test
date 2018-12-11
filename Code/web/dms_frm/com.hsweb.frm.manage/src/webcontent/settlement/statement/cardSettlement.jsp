@@ -424,10 +424,10 @@
 						<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 					</td>
 					<td >
-						<input type="checkbox" id="settlesendwx" checked="checked">微信通知车主
+						<input type="checkbox" id="settlesendwx" checked="checked">微信通知客户
 					</td>
 					<td >
-						<input type="checkbox" id="settlesenddx">短信通知车主
+						<input type="checkbox" id="settlesenddx">短信通知客户
 					</td>
 					<td >
 						<label style="font-family:Verdana;">实收金额：</label>

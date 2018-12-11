@@ -584,7 +584,7 @@ $(document).ready(function ()
             e.cellHtml = balaTimes - canUseTimes;
         }
         if(e.field == 'cardTimesOpt'){
-            e.cellHtml = '<a class="optbtn" href="javascript:addCardTimesToBill()">添加</a>';
+            e.cellHtml = '<a class="optbtn" href="javascript:addCardTimesToBill()">选择</a>';
         }
     });
     memCardGrid.on("drawcell",function(e)
@@ -1301,7 +1301,7 @@ function sureMT(){
         return;
     }else{
         if(dataForm.status != 0){
-            showMsg("工单已确定维修!","W");
+            showMsg("工单已开单!","W");
             return;
         }
         var params = {
@@ -1349,6 +1349,10 @@ function finish(){
     }else{
         if(dataForm.status == 2){
             showMsg("工单已完工!","W");
+            return;
+        }
+        if(data.status == 0){
+            showMsg("工单未施工!","W");
             return;
         }
         var params = {

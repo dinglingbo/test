@@ -24,7 +24,7 @@
 				<div class="nui-toolbar"
 					 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
 					<span>项目类型</span>
-				</div>
+				</div> 
 				<div class="nui-fit">
 					<ul id="tree1" class="nui-tree" url="" style="width: 100%;"
 						dataField="data"

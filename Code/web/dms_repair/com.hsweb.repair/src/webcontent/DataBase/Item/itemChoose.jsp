@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修项目</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.1" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.2" type="text/javascript"></script>
 
 </head>
 <body>
@@ -88,7 +88,7 @@
 								<span class="separator"></span>
 								<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 								<a class="nui-button" plain="true" iconCls="" onclick="onClear()"><span class="fa fa-trash-o"></span>&nbsp;清空</a>
-							<a class="nui-button" id="selectBtn" iconCls="" onclick="onOk()" plain="true" visible="true"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
+							<a class="nui-button" id="selectBtn" iconCls="" onclick="choose()" plain="true" visible="true"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
 							</td>
 							
 						</tr>
@@ -121,8 +121,6 @@
 						<div field="unitPrice" headerAlign="center" allowSort="true" width="50px">单价</div>
 						<div field="amt" headerAlign="center" allowSort="true" width="50px">金额</div>
 						<div field="code" headerAlign="center" width="50px">项目编码</div>
-						<div field="isDisabled" name="isDisabled" headerAlign="center" allowSort="true" width="50px">是否禁用</div>
-						<div field="isShare" name="isShare" headerAlign="center" allowSort="true" width="50px">是否共享</div>
 							
 					</div>
 				</div>
@@ -141,7 +139,7 @@
 						   	<div field="AStandTime" width="40" headerAlign="center" allowSort="true" header="工时"></div>
 						    <div field="AStandSum" width="40" headerAlign="center" allowSort="true" header="项目金额"></div>
 							<div field="Amt4S" width="40" headerAlign="center" allowSort="true" header="市场金额"></div>
-							<div field="ItemKind" width="40" headerAlign="center" allowSort="true" header="工种"></div>
+							<div field="ItemKind" width="40" headerAlign="center" visible="false" allowSort="true" header="工种"></div>
 					</div>
 				</div>           
                 

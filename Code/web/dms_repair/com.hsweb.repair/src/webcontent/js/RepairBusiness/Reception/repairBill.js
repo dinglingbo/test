@@ -3167,7 +3167,10 @@ function chooseItem(){
       	}
 	  saveNoshowMsg();
     }
-	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, function(text){
+    var param = {};
+    param.carModelIdLy = main.carModelIdLy;
+    param.serviceId = main.id;
+	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
 		    main = billForm.getData();
 	        var p1 = { }
 	        var p2 = {

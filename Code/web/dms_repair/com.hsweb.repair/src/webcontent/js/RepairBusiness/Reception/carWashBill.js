@@ -733,6 +733,7 @@ function doSetMainInfo(car){
     maintain.carId = car.id;
     maintain.carNo = car.carNo;
     maintain.carVin = car.vin;
+    maintain.carModelIdLy = car.carModelIdLy||"";
     maintain.engineNo = car.engineNo;
     maintain.contactorId = car.contactorId;
     maintain.contactorName = car.contactName;
@@ -868,6 +869,7 @@ function setInitData(params){
                         data.contactorName = contactor.name;
                         data.mobile = contactor.mobile;
                         data.carModel = car.carModel;
+                        data.carModelIdLy = car.carModelIdLy||"";
                         $("#guestNameEl").html(data.guestFullName);
                         $("#showCarInfoEl").html(data.carNo);
                         $("#guestTelEl").html(guest.mobile);
@@ -1081,6 +1083,7 @@ function save(){
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
                     data.carModel = car.carModel;
+                    data.carModelIdLy = car.carModelIdLy||"";
                     billForm.setData(data);
                     var status = data.status||0;
                     var isSettle = data.isSettle||0;
@@ -1190,6 +1193,7 @@ function saveNoshowMsg(callback){
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
                     data.carModel = car.carModel;
+                    data.carModelIdLy = car.carModelIdLy||"";
                     billForm.setData(data);
                     nui.get("contactorName").setText(contactor.name);
                     var status = data.status||0;
@@ -3148,7 +3152,10 @@ function chooseItem(){
     	}
 	  saveNoshowMsg();
     }
-	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, function(text){
+    var param = {};
+    param.carModelIdLy = main.carModelIdLy;
+    param.serviceId = main.id;
+	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
 		    main = billForm.getData();
 	        var p1 = { }
 	        var p2 = {
@@ -3188,7 +3195,8 @@ function choosePackage(){
     }
 
     var param = {};
-    param.carModelIdLy = main.carModelIdLy;                                          
+    param.carModelIdLy = main.carModelIdLy;   
+    param.serviceId = main.id;                                       
     doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
         main = billForm.getData();
         var p1 = { 

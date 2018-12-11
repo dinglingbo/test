@@ -1,6 +1,7 @@
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
 var treeUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDictTypeTree.biz.ext";
+var itemGridUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getItem.biz.ext";
 var tree1 = null;
 var rightGrid = null;
 var typeHash = {};
@@ -15,11 +16,14 @@ var servieTypeHash = {};
 var treeHash={};
 var tree = null;
 var itemGrid = null;
+var carModelIdLy = null;
+var serviceId = null;
 $(document).ready(function()
 {
 	queryForm = new nui.Form("#queryForm");
 	tree1 = nui.get("tree1");
 	itemGrid = nui.get("itemGrid");
+	itemGrid.setUrl(itemGridUrl);
 	advancedAddWin = nui.get("advancedAddWin");
 	advancedAddForm  = new nui.Form("#advancedAddForm");
 	tempGrid = nui.get("tempGrid");
@@ -44,6 +48,10 @@ $(document).ready(function()
 		params.type = customid;
 		doSearch(params);
 	});
+	itemGrid.on("rowdblclick",function(e){
+		var row = e.row;
+		selectStdItem(row);
+	});
 	
 	//右边区域
 	rightGrid = nui.get("rightGrid");
@@ -51,12 +59,7 @@ $(document).ready(function()
 	rightGrid.on("drawcell",onDrawCell);
 	onSearch();
 	rightGrid.on("rowdblclick",function(e){
-		if(isOpenWin==1){
-			onOk();
-		}else{
-			
-			edit();
-		}	
+		onOk();	
 	});
     rightGrid.on("drawcell",function(e){
 		switch (e.field){
@@ -161,11 +164,9 @@ $(document).ready(function()
         {
             return;
         }
-        var carInfo = carInfoForm.getData();
         var params = {
-            carModelId:carInfo.carModelId
+        	partName:node.name
         };
-        params.partName = node.name;
         doSearchItem(params);
 
     });
@@ -186,7 +187,15 @@ $(document).ready(function()
 function setRoleId(){
 	return {"token":token};
 }
-
+function doSearchItem(params)
+{
+    params.itemName = params.name||"";
+    params.carModelId = carModelIdLy;
+    itemGrid.load({
+    	token:token,
+        p:params
+    });
+}
 function onClear(){
 	queryForm.clear();
 }
@@ -197,15 +206,20 @@ function getSearchParams()
 }
 function onSearch()
 {
-	var params = getSearchParams();
-	doSearch(params);
+	if(itemGrid.visible) {
+		var params = {
+			name: nui.get("search-name").getValue()
+		}
+		doSearchItem(params);
+	}else {
+		var params = getSearchParams();
+		doSearch(params);
+	}
 }
 function doSearch(params)
 {
 	params.orgid = currOrgId;
-	if(isOpenWin == 1){
-		params.isDisabled = 0;
-	}
+	params.isDisabled = 0;
 	rightGrid.load({
 		token:token,
 		params:params
@@ -261,6 +275,9 @@ function setData(data)
 	list = data.list||[];
 
 	isOpenWin = 1;
+
+	carModelIdLy = data.carModelIdLy||"";
+	serviceId = data.serviceId;
 }
 var callback = null;
 var delcallback = null;
@@ -281,7 +298,18 @@ function getDataAll(){
 	var row = rightGrid.getSelecteds();
 	return row;
 }
-
+function choose() {
+	if(itemGrid.visible) {
+		var row = itemGrid.getSelected();
+		if(!row){
+			showMsg("请选择一个项目", "W");
+			return;
+		}
+		selectStdItem(row);
+	}else {
+		onOk();
+	}
+}
 function onOk()
 {
 	if(nui.get("state").value){
@@ -290,48 +318,68 @@ function onOk()
 		var row = rightGrid.getSelected();
 		if(row)
 		{
-			if(ckcallback){
-				var rs = ckcallback(row);
-				if(rs){
-					showMsg("此项目已添加,请返回查看!","W");
-					return;
-				}else{
-					if(callback){
-						nui.mask({
-							el: document.body,
-							cls: 'mini-mask-loading',
-							html: '处理中...'
-						});
+			if(callback){
+				nui.mask({
+					el: document.body,
+					cls: 'mini-mask-loading',
+					html: '处理中...'
+				});
 
-						callback(row,function(data){
-							if(data){
-								data.check = 1;
-								tempGrid.addRow(data);
-							}
-						},function(){
-							nui.unmask(document.body);
-						})
+				callback(row,function(data){
+					if(data){
+						data.check = 1;
+						tempGrid.addRow(data);
 					}
-				}
-			}else{
-				if(callback){
-					callback(row,function(data){
-						if(data){
-							data.check = 1;
-							tempGrid.addRow(data);
-						}
-					})
-				}
-			}
-			resultData.item = row;
-			if(isChooseClose == 1){
-				CloseWindow("ok");
+				},function(){
+					nui.unmask(document.body);
+				});
 			}
 		}
 		else{
 			showMsg("请选择一个项目", "W");
 		}
 	}
+}
+var stdItemUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.insStdItem.biz.ext";
+function selectStdItem(row) {    
+   if(!row.ItemID) return;
+   nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+   });
+   
+   var insItem = {
+   		itemId:row.ItemID,
+     }
+   	var json = nui.encode({
+   		"insItem":insItem,
+   		"serviceId":serviceId,
+   		token:token
+   	});
+	nui.ajax({
+		url : stdItemUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			var returnJson = nui.decode(text);
+			if (returnJson.errCode == "S") {
+				nui.unmask(document.body);
+				var data = returnJson.data;
+				if(data){
+					data.check = 1;
+					tempGrid.addRow(data);
+				}
+				
+			} else {
+				showMsg(returnJson.errMsg||"添加项目失败!","E");
+				nui.unmask(document.body);
+		    }
+		}
+	 });
+
 }
 function CloseWindow(action)
 {

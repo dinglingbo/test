@@ -358,6 +358,14 @@ $(document).ready(function ()
                     e.cellHtml = servieTypeHash[e.value].name;
                 }
                 break;
+            case "qty":
+           	var type = record.type||0;
+                if(type==1){
+                    e.cellHtml = "--";
+                }else{
+                    e.cellHtml = e.value;
+                }
+                break;
             case "saleMan":
                 var type = record.type||0;
                 var cardDetailId = record.cardDetailId||0;
@@ -612,7 +620,9 @@ $(document).ready(function ()
 	    // if((keyCode==113))  {  
 		// 	addMorePart();
 		// } 
-
+	    /*if((keyCode==27))  {  //ESC
+        	cardTimesGrid.hide();
+	   };*/
 	}
 });
 
@@ -2782,8 +2792,10 @@ function choosePackage(){
         showMsg("工单已结算,不能添加套餐!","W");
         return;
     }
-                                                       
-    doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, function(text){
+
+    var param = {};
+    param.carModelIdLy = main.carModelIdLy;                                          
+    doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
         main = billForm.getData();
         var p1 = { 
     		interType: "package",

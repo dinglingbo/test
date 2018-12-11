@@ -250,7 +250,7 @@
                                 <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
                                 <div allowSort="true" field="partName" headerAlign="center" header="配件名称"></div>
                                 <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                                <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="车型"></div>
+                                <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
                                 <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
                                 <div allowSort="true" datatype="int" field="enterQty" width="40" headerAlign="center" header="数量" summaryType="sum"></div>
                             </div>

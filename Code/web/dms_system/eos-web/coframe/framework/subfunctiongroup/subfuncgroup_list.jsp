@@ -51,7 +51,7 @@
                 url: "<%=request.getContextPath() %>/coframe/framework/subfunctiongroup/subfuncgroup_add.jsp",
                 title: "新增子功能组",
                 width: 400,
-                height: 100,
+                height: 130,
                 allowResize:false,
                 onload: function () {
                 	var id = document.getElementById("parentgroupid").value;
@@ -75,7 +75,7 @@
                     url: "<%=request.getContextPath() %>/coframe/framework/subfunctiongroup/subfuncgroup_edit.jsp",
                     title: "编辑子功能组",
                     width: 400,
-	                height: 100,
+	                height: 130,
 	                allowResize:false,
                     onload: function () {
                         var iframe = this.getIFrameEl();

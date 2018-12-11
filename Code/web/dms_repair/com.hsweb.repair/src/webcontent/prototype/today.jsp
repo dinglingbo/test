@@ -665,7 +665,7 @@
 											</tr>
 											<tr>
 												<td width="150px">
-													车型
+													品牌车型
 												</td>
 												<td>
 													<input name="" id="" value="宝马523i">

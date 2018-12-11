@@ -30,7 +30,7 @@ function onOk()
     {
         if(!data[key] || data[key].trim().length==0)
         {
-            showMsg(requiredField[key]+"不能为空","W");
+            parent.parent.showMsg(requiredField[key]+"不能为空","W");
             return;
         }
     }
@@ -38,7 +38,7 @@ function onOk()
     if (basicInfoForm.isValid() == false)
     {
         var errorTexts = basicInfoForm.getErrorTexts();
-        showMsg(errorTexts,"W");
+        parent.parent.showMsg(errorTexts,"W");
         return;
     }
     var start = parseInt(data.startIndex);
@@ -57,6 +57,8 @@ function onOk()
     console.log(storeLocations);
     //return;
     nui.mask({
+    	el : document.body,
+        cls : 'mini-mask-loading',
         html:'保存中...'
     });
     nui.ajax({
@@ -72,11 +74,11 @@ function onOk()
             data = data||{};
             if(data.errCode == "S")
             {
-                showMsg("保存成功","S");
+                parent.parent.showMsg("保存成功","S");
                 CloseWindow("ok");
             }
             else{
-                showMsg(data.errMsg||"保存失败","W");
+                parent.parent.showMsg(data.errMsg||"保存失败","W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

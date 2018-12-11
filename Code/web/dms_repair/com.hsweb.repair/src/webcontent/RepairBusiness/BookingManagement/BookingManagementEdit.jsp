@@ -10,7 +10,7 @@
 
 <head>
     <title>预约管理</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=2.7.2"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=2.7.3"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -118,18 +118,26 @@
                             <input class="nui-combobox" name="prebookCategory" id="prebookCategory" textField="name" valueField="id" />
                         </td>
 
-                                                <td class="form_label">
-                            <label>品牌：</label>
+                         <td class="form_label">
+                            <label>品牌车型：</label>
                         </td>
                         <td>
-                            <input class="nui-combobox" id="carBrandId" name="carBrandId" allowInput="true" valueField="id" textField="name" onvaluechanged="onCarBrandChange"  />
+                            <input class="nui-textbox" id="carModel" name="carModel" allowInput="true"   />
                         </td>
-                        <td class="form_label">
+                        <td class="form_label" >
+                            <label>预约项目：</label>
+                        </td>
+                        <td>
+                            <input class="nui-buttonedit" id="itemName" name="itemName" textname="itemName" onbuttonclick="selectCustomer" 
+                            onenter="onenterSelect(this.value)"  />
+                            <input class="nui-textbox" id="itemId" name="itemId" visible="false" />                        
+                        </td>
+                        <!--<td class="form_label">
                             <label>车系：</label>
                         </td>
                         <td>
                             <input class="nui-combobox" id="carSeriesId" name="carSeriesId" allowInput="true" textField="name" valueField="id" />
-                        </td>
+                        </td>-->
                         <td>
                             <input class="nui-textbox" name="id" id="id" visible="false" />
                         </td>

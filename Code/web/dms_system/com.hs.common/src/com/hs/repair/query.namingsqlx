@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    
+	<select id="queryRpsMaintain" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
+		select id, car_id as carId, car_no as carNo, car_vin as carVin, enter_date as enterDate, 
+		       out_date as outDate, fault_phen as faultPhen, enter_kilometers as enterKilometers
+		from wb_repair.rps_maintain 
+		where orgid = #orgid# and is_settle = 1 
+		      and out_date &gt;= #startDate# and out_date &lt; #endDate#
+	</select>
+	
+	<select id="queryRpsItem" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
+		select a.service_id as serviceId, a.item_name as itemName, a.item_time as itemItem
+		from wb_repair.rps_item a
+		inner join wb_repair.rps_maintain b
+		on a.service_id = b.id
+		where b.orgid = #orgid# and b.is_settle = 1 
+		      and b.out_date &gt;= #startDate# and b.out_date &lt; #endDate#
+	</select>
+	
+	<select id="queryRpsPart" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
+		select a.service_id as serviceId, a.part_code as partCode, a.part_name as partName, a.qty
+		from wb_repair.rps_part a
+		inner join wb_repair.rps_maintain b
+		on a.service_id = b.id
+		where b.orgid = #orgid# and b.is_settle = 1 
+		      and b.out_date &gt;= #startDate# and b.out_date &lt; #endDate#
+	</select>
+	
+</sqlMap>

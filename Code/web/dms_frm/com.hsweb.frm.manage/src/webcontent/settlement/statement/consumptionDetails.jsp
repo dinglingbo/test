@@ -93,7 +93,7 @@ html,body {
 					<div property="columns">
 						<div type="indexcolumn" headerAlign="center" width="30">序号</div>
 						<div field="carNo" headerAlign="center" allowSort="true" width="70px">车牌</div>
-						<div field="carModel" headerAlign="center" allowSort="true" width="220px">品牌/车型</div>
+						<div field="carModel" headerAlign="center" allowSort="true" width="220px">品牌车型</div>
 						<div field="carVin" headerAlign="center" allowSort="true" width="120px">车架号(VIN)</div>
 						<div field="serviceTypeName" name = "serviceTypeName" headerAlign="center" allowSort="true" width="60px">业务类型</div>
 						<div field="mtAdvisor" headerAlign="center" allowSort="true" width="60px">服务顾问</div>

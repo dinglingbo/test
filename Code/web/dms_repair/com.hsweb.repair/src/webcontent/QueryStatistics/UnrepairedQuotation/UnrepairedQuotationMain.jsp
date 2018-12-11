@@ -91,7 +91,7 @@ table {
                         <div header="基本信息" headerAlign="center">
                             <div property="columns">
                                 <div field="carBrandId" headerAlign="center" allowSort="true" visible="true" width="">品牌</div>
-                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">车型</div>
+                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="">品牌车型</div>
                                 <div field="contactorName" headerAlign="center" allowSort="true" visible="true" width="">客户名称</div>
                                 <div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true" width="">业务类型</div>
                                 <div field="mtType" headerAlign="center" allowSort="true" visible="true" width="">维修类型</div>

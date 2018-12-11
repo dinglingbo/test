@@ -23,11 +23,11 @@
             </tr>
             <tr>
                 <th class="nui-form-label"><label for="rules.rulesType$text">规则类型：</label></th>
-                <td><input id="rulesType" name="rules.rulesType" class="nui-dictcombobox nui-form-input" value="prohibit" valueField="dictID" textField="dictName" dictTypeId="COFRAME_RULES_TYPE" /></td>
+                <td><input id="rulesType" name="rules.rulesType" class="nui-combobox nui-form-input" value="prohibit" valueField="dictID" textField="dictName" dictTypeId="COFRAME_RULES_TYPE" /></td>
             </tr>    
             <tr class="odd">
                 <th class="nui-form-label"><label for="rules.enabled$text">是否生效：</label></th>
-                <td><input id="enabled" name="rules.enabled" class="nui-dictcombobox nui-form-input" value="Y" valueField="dictID" textField="dictName" dictTypeId="COFRAME_RULES_ENABLE" /></td>
+                <td><input id="enabled" name="rules.enabled" class="nui-combobox nui-form-input" value="Y" valueField="dictID" textField="dictName" dictTypeId="COFRAME_RULES_ENABLE" /></td>
             </tr>
             <tr>
                 <th class="nui-form-label"><label for="rules.remark$text">备  注：</label></th>

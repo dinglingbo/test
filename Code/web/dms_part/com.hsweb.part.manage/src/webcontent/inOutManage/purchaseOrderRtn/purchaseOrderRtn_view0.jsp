@@ -233,7 +233,7 @@ body .mini-grid-row-selected{
                                       </div>
                                       <div field="comPartName" headerAlign="center" header="配件名称"></div>
                                       <div field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-                                      <div field="comApplyCarModel" width="60" headerAlign="center" header="品牌/车型"></div>
+                                      <div field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
                                       <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
                                   </div>
                               </div>

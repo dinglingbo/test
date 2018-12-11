@@ -55,7 +55,7 @@
                 <tr>
             <td class="tbtext"><label>品牌：</label></td>
             <td><input class="nui-combobox tbinput" name="" style=""></td>
-            <td class="tbtext"><label>车型：</label></td>
+            <td class="tbtext"><label>品牌车型：</label></td>
             <td><input class="nui-combobox tbinput" name="" style=""></td>
         </tr>
                         <tr>

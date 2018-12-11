@@ -45,7 +45,7 @@
 
                         <div field="position_name" width="60" headerAlign="center" allowSort="true">型号</div>
 
-                        <div field="applyCarModel" width="70" headerAlign="center" allowSort="true">车型</div>
+                        <div field="applyCarModel" width="70" headerAlign="center" allowSort="true">品牌车型</div>
                         <div field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
                         <div field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>
                         <div field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>

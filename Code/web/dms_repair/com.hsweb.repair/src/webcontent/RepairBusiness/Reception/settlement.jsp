@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-	
+	<%-- <%@ include file="/common/commonRepair.jsp"%> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -9,12 +9,13 @@
   - Description:
 -->
 <head>
-<title>结算单</title>
+<title></title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>  
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js"  type="text/javascript"></script>    
     <link href="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/mian.css" rel="stylesheet" type="text/css" /> 
+    
 </head>
 <style>
 	        table, td {
@@ -49,6 +50,7 @@
 	            text-align: center;
 	            width: 100%;
 	            padding: 30px 0 20px 0;
+	            border:0px solid red; 
 	        }
 
             .print_btn a {
@@ -144,7 +146,7 @@
  <div class="popbox" style="height:420px; width:480px; margin:-210px 0 0 -240px; display:none">
         <h2><a class="close2" href="javascript:box_setup_close()" title="关闭">&nbsp;</a>修改</h2>
         <div style="padding-top:15px; margin:0 15px;">
-            <table width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <table  width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr>
                         <td class="color999" width="76" height="46">单据编号：</td>
@@ -172,16 +174,33 @@
         </div>
         <div class="boxbtn"><ul><a href="javascript:box_setup_close()" class="qc">取消</a><a href="javascript:save()" id="btn_save">保存</a></ul></div>
 </div>
-    <div class="print_btn">
+    <div class="print_btn" >
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a href="javascript:box_setup_open()">修改</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
-    </div>
-    <div style="margin: 0 10px;" class="printny">
+     </div>
+     
+       <!-- <div showCollapseButton="false" style="border:0; text-align: center;" class="print_hide">
+        	 <div class="nui-toolbar" style="padding:0px;border-bottom:0;white-space: nowrap;">
+	            <table  style="width:100%;">
+	                <tr>
+	                    <td style="width:80%;text-align: center;">
+	                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="SetData()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
+                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+	                    </td>
+	                </tr>
+	            </table>
+	        </div>
+	     </div> -->
+	     
+        <div style="margin: 0 10px;" class="printny">
         <div class="company-info">
             <h3><span id="comp"></span></h3>
         </div>
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <table  width="100%" border="0" cellspacing="0" cellpadding="0">
             <tbody>
                 <tr>
                     <td>
@@ -192,23 +211,23 @@
                             
                         </div>
                     </td>
-                    <td width="65" height="50px">
+                    <!-- <td width="65" height="50px">
                             <div style="float: right; text-align: center;">
                                 <div id="qrcode">
                                     	<img src="https://photo.harsonserver.com/20180910115313857.jpg">
                             </div>
                                 扫码支付
                             </div>
-                    </td>
+                    </td> -->
                 </tr>
             </tbody>
         </table>
         <div style="border-bottom: 1px #333 solid; height: 2px; margin-bottom: 10px;">&nbsp;</div>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
+             <tr>
                 <td>地址：<span id="guestAddr"></span></td>
-                <td align="right" id="enterDate">进厂时间：</td>
-            </tr>
+             <!--<td align="right" id="enterDate" >进厂时间：</td>-->
+            </tr> 
             <tr>
                 <td>电话：<span id="phone"></span></td>
                     <td align="right" >打印时间：<span id="date"></span></td>
@@ -217,7 +236,7 @@
         </table>
 
         <div style="padding-top: 10px;">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
+            <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
                     <td height="24" width="33%" id="guestFullName">&nbsp;客户名称：</td>
                     <td width="33%" id="mtAdvisor">&nbsp;服务顾问：</td>
@@ -225,7 +244,7 @@
                 </tr>
                 <tr>
                     <td height="24" id="carNo">&nbsp;车牌：</td>
-                    <td id="carModel">&nbsp;品牌/车型： </td>
+                    <td id="carModel">&nbsp;品牌车型： </td>
                     <td id="carVin">&nbsp;车架号：</td>
                 </tr>
                 <tr>
@@ -361,6 +380,7 @@
 		$(document).ready(function (){
 			$("#print").click(function () {
 	            $(".print_btn").hide();
+	            $(".print_hide").hide();
 	            window.print();
 	        }); 
 	      
@@ -462,7 +482,7 @@
 	        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
 	        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
-	        		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
+	        		//document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
 	        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;

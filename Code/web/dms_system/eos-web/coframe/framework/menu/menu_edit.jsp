@@ -60,17 +60,18 @@
     </div>
 </div>
 <script type="text/javascript">
+	    var COF_YESORNO =[{dictID:"0",dictName:"否"},{dictID:"1",dictName:"是"}];
+    	var COF_APPTYPE =[{dictID:"0",dictName:"本地"},{dictID:"1",dictName:"远程"}];
         nui.parse();
         var form = new nui.Form("form1");
-        var COF_YESORNO =[{dictID:"0",dictName:"否"},{dictID:"1",dictName:"是"}];
-    	var COF_APPTYPE =[{dictID:"0",dictName:"本地"},{dictID:"1",dictName:"远程"}];
+   
         function onButtonEdit(){
 	   		var btnEdit = this;
 	    	nui.open({
                 url: "<%=request.getContextPath() %>/coframe/framework/menu/menu_function_select.jsp",
                 title: "选择功能调用入口", 
                 width: 800, 
-                height: 480,
+                height: 510,
                 allowResize:false,
                 ondestroy: function (action) {
                     //grid.reload();

@@ -23,7 +23,7 @@
 					        </td>
 							<td  class="tit">应用类别：</td>
 							<td>
-								<input class="nui-dictcombobox" name="criteria/_expr[2]/apptype" valueField="dictID" emptyText="全部" textField="dictName" showNullItem="true" nullItemText="全部" dictTypeId="COF_APPTYPE"/>
+								<input class="nui-combobox" name="criteria/_expr[2]/apptype" valueField="dictID" emptyText="全部" textField="dictName" showNullItem="true" nullItemText="全部" data="COF_APPTYPE"/>
 								<input type="hidden" class="nui-hidden" name="criteria/_expr[2]/_op" value="="/>
 					        </td>
 					        <td class="btn-wrap"><a class="nui-button" style="width:60px;" iconCls="icon-search" onclick="search()">查询</a></td>
@@ -68,6 +68,8 @@
 		var grid = nui.get("appgrid");
 	    grid.load();
 	    var form = new nui.Form("#form1"); 
+	    var COF_YESORNO =[{dictID:"0",dictName:"否"},{dictID:"1",dictName:"是"}];
+    	var COF_APPTYPE =[{dictID:"0",dictName:"本地"},{dictID:"1",dictName:"远程"}];
         function search() {
 			var data = form.getData(false,false);      //获取表单多个控件的数据
             grid.load(data);
@@ -78,7 +80,7 @@
                 url: "<%=request.getContextPath() %>/coframe/framework/application/application_add.jsp",
                 title: "新增应用", 
                 width: 550, 
-            	height: 345,
+            	height: 375,
                 ondestroy: function (action) {
                     if(action=="ok"){
                     	parent.refresh();
@@ -95,7 +97,7 @@
                     url: "<%=request.getContextPath() %>/coframe/framework/application/application_edit.jsp",
                     title: "编辑应用", 
                     width: 550, 
-           			height: 345,
+           			height: 375,
                     allowResize:false,
                     onload: function () {
                         var iframe = this.getIFrameEl();

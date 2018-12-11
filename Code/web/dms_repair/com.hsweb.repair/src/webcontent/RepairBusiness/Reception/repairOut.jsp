@@ -19,6 +19,9 @@
 a { 
     text-decoration: none;
 }
+ a#service{
+	text-decoration:underline
+}
 .form_label {
     width: 72px; 
     text-align: right;
@@ -319,7 +322,7 @@ a {
         if(row){ 
             var item={};
             item.id = "checkDetail";
-            item.text = "配件领料详情";
+            item.text = "配件出库详情";
             item.url = webPath + contextPath + "/repair/RepairBusiness/Reception/repairOutDetail.jsp";
             item.iconCls = "fa fa-file-text";
             //window.parent.activeTab(item);
@@ -352,6 +355,10 @@ a {
     if(column.field == "action"){
         e.cellHtml = ll +"&nbsp;&nbsp;" + th;
     }
+    if(column.field == "serviceCode"){
+       e.cellHtml ='<a id="service" href="##" onclick="newrepairOut('+"'ll'"+ ')">'+e.value+'</a>';
+    }
+
 });
 
 /*function edit() {

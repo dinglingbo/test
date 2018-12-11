@@ -92,7 +92,7 @@
                                 name="orderMan" textField="empName" valueField="empId"
                                 emptyText="请选择..." url="" required="true" allowInput="true"
                                 valueFromSelect="false" width="100%"></td>
-                                <td class="title required" style="width: 7%"><label>移仓日期：</label>
+                                <td class="title" style="width: 7%"><label>移仓日期：</label>
                                 </td>
                                 <td width="120"><input name="createDate" id="createDate"
                                     width="100%" enabled="false" showTime="true"
@@ -137,7 +137,7 @@
                                     <div field="comPartBrandId" width="60" headerAlign="center"
                                     header="品牌"></div>
                                     <div field="comApplyCarModel" width="100" headerAlign="center"
-                                    header="品牌/车型"></div>
+                                    header="品牌车型"></div>
                                     <div field="comUnit" name="comUnit" width="40"
                                     headerAlign="center" header="单位"></div>
                                 </div>
@@ -326,7 +326,7 @@ allowDrag="true">
         <tr>  
             <td colspan="1" align="center">配件编码</td>
             <td colspan="1" align="center">配件全称</td>
-            <td colspan="1" align="center">车型</td>
+            <td colspan="1" align="center">品牌车型</td>
             <td colspan="1" align="center">单位</td>
             <td colspan="1" align="center">数量</td>
             <td colspan="1" align="center">缺货数量</td>

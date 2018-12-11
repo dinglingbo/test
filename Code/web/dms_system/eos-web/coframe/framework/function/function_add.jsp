@@ -27,20 +27,20 @@
             <tr class="odd">
             	<th class="nui-form-label"><label for="appfunction.ismenu$text">是否定义为菜单：</label></th>
                 <td>
-                	<input id="appfunction.ismenu" class="nui-dictcombobox nui-form-input" name="appfunction.ismenu" value="1" 
-                    valueField="dictID" textField="dictName" dictTypeId="COF_YESORNO"/>
+                	<input id="appfunction.ismenu" class="nui-combobox nui-form-input" name="appfunction.ismenu" value="1" 
+                    valueField="dictID" textField="dictName" data="COF_YESORNO" />
                 </td>
             	<th class="nui-form-label"><label for="appfunction.ischeck$text">是否验证权限：</label></th>
                 <td>
                 	<input id="appfunction.ischeck" class="nui-combobox nui-form-input" name="appfunction.ischeck" value="1" 
-                    valueField="dictID" textField="dictName" data="COF_YESORNO"/>
+                    valueField="dictID" textField="dictName" data="COF_YESORNO" />
                 </td>
             </tr>
             <tr>
                 <th class="nui-form-label"><label for="resType$text">功能类型：</label></th>
                 <td>
-                    <input id="resType" class="nui-dictcombobox nui-form-input" name="appfunction.functype" value="flow" 
-                    valueField="dictID" textField="dictName" dictTypeId="COF_FUNCTYPE"/>
+                    <input id="resType" class="nui-combobox nui-form-input" name="appfunction.functype" value="flow" 
+                    valueField="dictID" textField="dictName" data="COF_FUNCTYPE"/>
                 </td>
             </tr>
             <tr class="odd">
@@ -73,11 +73,12 @@
     </div>
 </div>
     <script type="text/javascript">
-        nui.parse();
-        var COF_YESORNO =[{dictID:"0",dictName:"否"},{dictID:"1",dictName:"是"}];
+       	var COF_YESORNO =[{dictID:"0",dictName:"否"},{dictID:"1",dictName:"是"}];
     	var COF_APPTYPE =[{dictID:"0",dictName:"本地"},{dictID:"1",dictName:"远程"}];
-        var form = new nui.Form("form1");
-        
+    	var COF_FUNCTYPE =[{dictID:"flow",dictName:"页面流"},{dictID:"form",dictName:"表单"},
+    					{dictID:"order",dictName:"其他"},{dictID:"page",dictName:"页面"},{dictID:"startprocess",dictName:"启动流程"}];
+        nui.parse();
+        var form = new nui.Form("form1");  
         function onButtonEdit(){
 	   		var btnEdit = this;
 	    	nui.open({

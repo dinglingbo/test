@@ -76,7 +76,7 @@
                         <div field="status" headerAlign="center" allowSort="true" visible="true" header="进程"></div>
                         <div field="serviceCode" headerAlign="center" allowSort="true" visible="true" header="工单号"></div>
                         <div field="carBrandId" headerAlign="center" allowSort="true" visible="true" header="品牌"></div>
-                        <div field="carModel" headerAlign="center" allowSort="true" visible="true" header="车型"></div>
+                        <div field="carModel" headerAlign="center" allowSort="true" visible="true" header="品牌车型"></div>
                         <div field="mtAdvisor" headerAlign="center" allowSort="true" visible="true" header="维修顾问"></div>
                         <div field="enterDate" headerAlign="center" allowSort="true" visible="true" header="进厂时间" dateFormat="yyyy-MM-dd"></div>
                         <div field="planFinishDate" headerAlign="center" allowSort="true" visible="true" header="预计交车时间" dateFormat="yyyy-MM-dd"></div>

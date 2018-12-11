@@ -168,4 +168,36 @@
 	</update>
 	
 	
+	<update id="updateItemWorkers" parameterClass="java.util.HashMap">
+		update rps_item set worker_ids = #workerIds#, workers = #workers#, 
+		                    modifier = #modifier#, modify_date = SYSDATE()
+		where service_id = #serviceId# 
+			<isNotEmpty prepend="" property="type"> 
+                <isEqual prepend="and" property="type" compareValue="package">
+					ifnull(bill_package_id, 0) &gt; 0
+				</isEqual>
+                <isEqual prepend="and" property="type" compareValue="item">
+					ifnull(bill_package_id, 0) = 0
+				</isEqual>
+            </isNotEmpty>
+
+	</update>
+	
+	<update id="deleteItemWorkers" parameterClass="java.util.HashMap">
+		DELETE a
+		from rps_item_workers a
+		inner join rps_item b
+		on a.main_id = b.id
+		where b.service_id = #serviceId#
+
+			<isNotEmpty prepend="" property="type"> 
+                <isEqual prepend="and" property="type" compareValue="package">
+					ifnull(b.bill_package_id, 0) &gt; 0
+				</isEqual>
+                <isEqual prepend="and" property="type" compareValue="item">
+					ifnull(b.bill_package_id, 0) = 0
+				</isEqual>
+            </isNotEmpty>
+	</update>
+	
 </sqlMap>

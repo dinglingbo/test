@@ -37,7 +37,7 @@ table {
                 </td>
                 <td>
                     <input class="nui-combobox" emptyText="请选择..." value="serviceCode"
-                           data="[{id:'serviceCode',text:'工单号'},{id:'carNo',text:'车牌号'},{id:'guestName',text:'客户名称'},{id:'carModel',text:'车型'},{id:'underpanNo',text:'底盘号'},{id:'mobile',text:'手机号'}]"
+                           data="[{id:'serviceCode',text:'工单号'},{id:'carNo',text:'车牌号'},{id:'guestName',text:'客户名称'},{id:'carModel',text:'品牌车型'},{id:'underpanNo',text:'底盘号'},{id:'mobile',text:'手机号'}]"
                            id="queryField"/>
                 </td>
                 <td>
@@ -78,7 +78,7 @@ table {
             <div header="辅助信息" headerAlign="center">
                 <div property="columns">
                     <div field="carBrandId" headerAlign="center" allowSort="true" visible="true" header="品牌"></div>
-                    <div field="carModel" headerAlign="center" allowSort="true" visible="true" header="车型"></div>
+                    <div field="carModel" headerAlign="center" allowSort="true" visible="true" header="品牌车型"></div>
                     <div field="checker" headerAlign="center" allowSort="true" visible="true" header="质检员"></div>
                     <div field="contactorName" headerAlign="center" allowSort="true" visible="true" header="客户名称"></div>
                     <div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true" header="业务类型"></div>

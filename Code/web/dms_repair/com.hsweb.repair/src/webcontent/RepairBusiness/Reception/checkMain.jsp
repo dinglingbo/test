@@ -107,7 +107,7 @@
     <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
     <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
     <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
-    <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">品牌/车型</div>
+    <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">品牌车型</div>
     <div field="mtAdvisor" name="mtAdvisor" width="40" headerAlign="center" align="center">维修顾问</div>
     <div field="recordDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">查车日期</div>
 </div>
@@ -154,7 +154,7 @@
 function getSearchParam(){
 	var params = form.getData();
     params.orgid = currOrgId;
-    params.sRecordDate = beginDateEl.getValue().substr(0,10);
+    params.sRecordDate = beginDateEl.getFormValue().substr(0,10);
     params.eRecordDate = addDate(endDateEl.getValue(),1);
     return params;
 }

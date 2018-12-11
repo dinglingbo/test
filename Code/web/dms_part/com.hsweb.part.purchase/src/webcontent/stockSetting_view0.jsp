@@ -115,7 +115,7 @@
                                 <div field="partFullName" width="80" headerAlign="center" allowSort="true" header="配件全称"></div>
                                 <div field="qualityTypeId" width="80" headerAlign="center" allowSort="true" header="品质"></div>
                                 <div field="partBrandId" width="80" headerAlign="center" allowSort="true" header="品牌"></div>
-                                <div field="applyCarModel" width="80" headerAlign="center" allowSort="true" header="车型"></div>
+                                <div field="applyCarModel" width="80" headerAlign="center" allowSort="true" header="品牌车型"></div>
                             </div>
                         </div>
                         <div header="库存信息" headerAlign="center">

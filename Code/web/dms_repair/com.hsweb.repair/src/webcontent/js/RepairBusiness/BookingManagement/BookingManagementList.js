@@ -46,25 +46,23 @@ $(document).ready(function (v) {
         onupGridSelectionchanged();
     });
     
-    
-
 });
 
 function init() {
-    initCarBrand("carBrandList", function () {
-        var data = nui.get("carBrandList").getData();
-        data.forEach(function (v) {
-            carBrandHash[v.id] = v;
-        });
-    });
-
-    
-    initCarSeries("carSeriesList", "", function () {
-        var data = nui.get("carSeriesList").getData();
-        data.forEach(function (v) {
-            carSeriesHash[v.id] = v;
-        });
-    });
+//    initCarBrand("carBrandList", function () {
+//        var data = nui.get("carBrandList").getData();
+//        data.forEach(function (v) {
+//            carBrandHash[v.id] = v;
+//        });
+//    });
+//
+//    
+//    initCarSeries("carSeriesList", "", function () {
+//        var data = nui.get("carSeriesList").getData();
+//        data.forEach(function (v) {
+//            carSeriesHash[v.id] = v;
+//        });
+//    });
 
     initMember("mtAdvisorList", function () {
         var data = nui.get("mtAdvisorList").getData();
@@ -157,13 +155,21 @@ function doSearch() {
 /*
  * 快速查找要关联后面的查询条件
  * */
-function getSearchParam() {
+function getSearchParam(){
     var params = {};
     params.mtAdvisorId = nui.get("mtAdvisorList").getValue();
     params.carNo = nui.get("carNo").getValue();
     params.contactorTel = nui.get("contactorTel").getValue();
+    var radiobuttonlist = nui.get("radiobuttonlist");
+	var value = radiobuttonlist.getValue();
+	if(value=="1"){
+		params.predictComeDate = 1;
+	}else{
+		params.recordDate = 1;
+	}
     params.startDate = beginDateEl.getValue();
     params.endDate = addDate(endDateEl.getValue(), 1); 
+    
     var status = menuBtnStatusQuickSearch.getValue();
     if(status == 0 || status == 1 || status == 2){
         params.status = status;
@@ -232,7 +238,7 @@ function onupGridSelectionchanged(e) {
 //只执行一次
 function onDrawCell(e) {
     var field = e.field;
-
+    var record = e.record;
     if (field == "serviceTypeId" && serviceTypeHash[e.value]) {
         e.cellHtml = serviceTypeHash[e.value].name;
     } else if (field == "carBrandId" && carBrandHash[e.value]) {
@@ -260,13 +266,76 @@ function onDrawCell(e) {
     		e.cellHtml = prebookSourceHash[1].name;
     	}
     	
+    }else if(field == "Time"){
+    	var startTime = new Date(); // 开始时间
+        var endTime = record.predictComeDate; // 结束时间
+        var usedTime = endTime - startTime; // 相差的毫秒数
+        var s = "";
+
+        if(usedTime<0){
+        	usedTime = 0 - usedTime;
+        	var days = Math.floor(usedTime / (24 * 3600 * 1000)); // 计算出天数
+        	if(days>0){
+        		s = days + '天';
+        	}
+            var leavel = usedTime % (24 * 3600 * 1000); // 计算天数后剩余的时间
+            var hours = Math.floor(leavel / (3600 * 1000)); // 计算剩余的小时数
+            if(hours>0){
+            	s = s + hours + '小时';
+            }
+            var leavel2 = leavel % (3600 * 1000); // 计算剩余小时后剩余的毫秒数
+            var minutes = Math.floor(leavel2 / (60 * 1000)); // 计算剩余的分钟数
+            if(minutes>0){
+            	s = s + minutes + '分';
+            }
+        	if(record.isOpenBill){
+        		s = "已开单";
+        	}else{
+        		s = "<font color='red'>已超时"+s+"</font>"
+        	}
+        }else{
+        	
+        	var days = Math.floor(usedTime / (24 * 3600 * 1000)); // 计算出天数
+        	if(days>0){
+        		s = days + '天';
+        	}
+            var leavel = usedTime % (24 * 3600 * 1000); // 计算天数后剩余的时间
+            var hours = Math.floor(leavel / (3600 * 1000)); // 计算剩余的小时数
+            if(hours>0){
+            	s = s + hours + '小时';
+            }
+            var leavel2 = leavel % (3600 * 1000); // 计算剩余小时后剩余的毫秒数
+            var minutes = Math.floor(leavel2 / (60 * 1000)); // 计算剩余的分钟数
+            if(minutes>0){
+            	s = s + minutes + '分';
+            }
+        	
+        	s = "<font color='green'>"+s+"</font>"
+        }
+        e.cellHtml = s;
+    }else if(field == "contactorTel"){
+    	var value = e.value
+    	value = "" + value;
+    	var reg=/(\d{3})\d{4}(\d{4})/;
+        value = value.replace(reg, "$1****$2");
+    	if(e.value){
+    		if(record.isOpenBill==1){
+        		e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"+value;
+        	}else{
+        		e.cellHtml = "<span  id='wechatTag1' class='fa fa-wechat fa-lg'></span>"+value;
+
+        	}
+    	}else{
+    		e.cellHtml="";
+    	}
+    	
     }
 }
 
 function addRow() {
     nui.open({
         url: webPath + contextPath + "/com.hsweb.RepairBusiness.BookingManagementEdit.flow?token="+token,
-        title: "新增预约", width: 680, height: 386,
+        title: "新增预约", width: 750, height: 386,
         onload: function () {
             var iframe = this.getIFrameEl();
             var data = {};
@@ -289,7 +358,7 @@ function editRow() {
     }
     nui.open({
         url: webPath + contextPath + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
-        title: "修改", width: 655, height: 386,
+        title: "修改", width: 680, height: 386,
         onload: function () {
             var iframe = this.getIFrameEl();
             var param = { action: "edit", data: row };
@@ -508,4 +577,17 @@ function callBill() {
         	}
         }
     });   
+}
+function setDate(){
+	var radiobuttonlist = nui.get("radiobuttonlist");
+	var value = radiobuttonlist.getValue();
+	if(value=="1"){
+		document.getElementById("setDate").innerHTML = "预计来厂日期";
+	}else{
+		document.getElementById("setDate").innerHTML = "预约创建日期";
+	}
+	//quickSearch(menuBtnDateQuickSearch, 0, '本日')"
+	var data = ['本日','昨日','本周','上周','本月','上月'];
+	var d = menuBtnDateQuickSearch.getValue();
+	quickSearch(menuBtnDateQuickSearch,d,data[d]);
 }

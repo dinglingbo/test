@@ -80,7 +80,7 @@ pageEncoding="UTF-8" session="false"%>
           <div field="" name="" width="40" headerAlign="center" align="center" >预约号</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >预约门店</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >到店时间</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >车型</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >品牌车型</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >联系人</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >联系电话</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >服务顾问</div>

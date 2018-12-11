@@ -167,7 +167,7 @@ fieldset {
                                         <div field="partCode" width="" headerAlign="center" header="零件编码" allowSort="true"></div>
                                         <div field="partName" width="" headerAlign="center" header="零件名称" allowSort="true"></div>
                                         <div field="partBrandName" width="" headerAlign="center" header="品牌" allowSort="true"></div>
-                                        <div field="applyCarModel" width="" headerAlign="center" header="车型 " allowSort="true"></div>
+                                        <div field="applyCarModel" width="" headerAlign="center" header="品牌车型 " allowSort="true"></div>
                                         <div field="unit" width="" headerAlign="center" header="单位" allowSort="true"></div>
                                         <div field="storeLocation" width="" headerAlign="center" header="仓位" allowSort="true"></div>
                                     </div>

@@ -131,20 +131,27 @@
         <table style=" left:0;right:0;margin: 0 auto; width:100%">
 			
             <tr>
-                <td class="tbtext">客户名称：</td>
+                <!-- <td class="tbtext">客户名称：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName" enabled="false" style="width:100%" />
                 </td>
                 <td class="tbtext">客户手机：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" enabled="false" style="width:100%"/>
-                </td>
+                </td> -->
 
                 <td class="tbtext">车牌号：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="carNo" id="carNo"enabled="false" style="width:100%"/>
                 </td>
-
+                 <td class="tbtext" >品牌车型：</td>
+                    <td class="tbCtrl" >
+                       <input  class="nui-textbox" name="carBrandModel" id="carModel" enabled="false" width="100%"/>
+                    </td>      
+                  <td class="title" > 车架号(VIN)：</td>
+                  <td class="tbCtrl" >
+                   <input  class="nui-textbox" name="carVin" id="carVin" enabled="false" width="100%"/>
+                  </td>             
                 <td class="tbtext" style="color: red;">检查模板：</td>
                 <td class="tbCtrl">
                     <input class="nui-combobox tabwidth"  id="checkMainId" name="checkMainId" 
@@ -176,7 +183,7 @@
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" vtype="float;range:0,100000000" name="enterKilometers" id="enterKilometers" style="width:100%"/>
                 </td>
-                <td class="tbtext" style="color: red;">服务顾问：</td>
+                <td class="tbtext" style="color: red;">查车技师：</td>
                 <td >
 
                     <input name="mtAdvisorId"
@@ -237,10 +244,10 @@
         </div>
         <div type="checkboxcolumn" field="settleType" name="settleType" trueValue="0" falseValue="1"  width="30" headerAlign="center" align="center" value="-1"><strong>下次处理</strong></div>
         <div type="checkboxcolumn" field="nosettleType" name="nosettleType" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center"><strong>本次处理</strong></div>
-        <div field="careDueMileage" name="careDueMileage" width="30" vtype="float" headerAlign="center" align="center"><strong>下次保养里程</strong>
+        <div field="careDueMileage" name="careDueMileage" width="30" vtype="float" headerAlign="center" align="center"><strong>下次处理时间</strong>
         	<input property="editor" class="nui-textbox" style="width:100%;" allowInput="true" vtype="float"/>  
         </div>
-        <div field="careDueDate" name="careDueDate" width="30" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm""><strong>下次保养时间</strong>
+        <div field="careDueDate" name="careDueDate" width="30" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm""><strong>下次处理里程</strong>
         	<input property="editor" class="nui-datepicker tabwidth" name="" id="" dateFormat="yyyy-MM-dd HH:mm"" format="yyyy-MM-dd HH:mm"/>
         </div>
     </div>

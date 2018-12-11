@@ -46,13 +46,13 @@
 				</tr>		
 				<tr class="odd">
 					<td class="nui-form-label"><label for="gender$text">性别：</label></td>
-					<td><input id="gender" name="employee.gender" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-dictcombobox" dictTypeId="COF_GENDER" /></td>
+					<td><input id="gender" name="employee.gender" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-combobox" dictTypeId="COF_GENDER" /></td>
 					<td class="nui-form-label"><label for="birthdate$text">出生日期：</label></td>
 					<td><input id="birthdate" name="employee.birthdate" class="nui-datepicker" /></td>
 				</tr>				
 				<tr>
 					<td class="nui-form-label"><label for="cardtype$text">证件类型：</label></td>
-					<td><input id="cardtype" name="employee.cardtype" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-dictcombobox" dictTypeId="COF_CARDTYPE" /></td>
+					<td><input id="cardtype" name="employee.cardtype" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-combobox" dictTypeId="COF_CARDTYPE" /></td>
 					<td class="nui-form-label"><label for="cardno$text">证件号码：</label></td>
 					<td><input id="cardno" name="employee.cardno" class="nui-textbox" vtype="maxLength:20"/></td>
 				</tr>				
@@ -65,7 +65,7 @@
 				</tr>				
 				<tr>
 					<td class="nui-form-label"><label for="empstatus$text">人员状态：</label></td>
-					<td><input id="empstatus" name="employee.empstatus" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-dictcombobox" dictTypeId="COF_EMPSTATUS" /></td>
+					<td><input id="empstatus" name="employee.empstatus" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-combobox" dictTypeId="COF_EMPSTATUS" /></td>
 					<td class="nui-form-label"><label for="mobileno$text">手机号码：</label></td>
 					<td><input id="mobileno" name="employee.mobileno" class="nui-textbox" vtype="maxLength:14" /></td>
 				</tr>		
@@ -88,15 +88,15 @@
 							<td class="nui-form-label"><label for="userId$text">用户登录名：</label></td>
 							<td><input id="userId" class="nui-textbox" name="user.userId" required="true" vtype="maxLength:30" /></td>
 							<td class="nui-form-label"><label for="userstatus$text">用户状态：</label></td>
-							<td><input id="userstatus" name="user.status" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-dictcombobox" dictTypeId="COF_USERSTATUS" value="1"/></td>
+							<td><input id="userstatus" name="user.status" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-combobox" dictTypeId="COF_USERSTATUS" value="1"/></td>
 						</tr>
 						<tr class="odd">
 							<td class="nui-form-label"><label for="authmode$text">认证模式：</label></td>
 							<td>
-							<input id="user.authmode" class="nui-dictcombobox nui-form-input" name="user.authmode" value="local"
+							<input id="user.authmode" class="nui-combobox nui-form-input" name="user.authmode" value="local"
           						valueField="dictID" textField="dictName" dictTypeId="COF_AUTHMODE"/>
           						<!-- 
-<input id="authmode" name="user.authmode" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-dictcombobox" dictTypeId="COF_AUTHMODE" value="local"/>
+<input id="authmode" name="user.authmode" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-combobox" dictTypeId="COF_AUTHMODE" value="local"/>
 							 	-->
 							</td>
 							<td class="nui-form-label"><label for="invaldate$text">密码失效日期：</label></td>
@@ -111,7 +111,7 @@
 						</tr>
 						<tr class="odd">
 					        <td class="nui-form-label"><label for="menutype$text">菜单风格：</label></td>
-							<td colspan="3"><input id="menutype" name="user.menutype" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-dictcombobox" dictTypeId="COF_SKINLAYOUT" value="default"/></td>
+							<td colspan="3"><input id="menutype" name="user.menutype" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-combobox" dictTypeId="COF_SKINLAYOUT" value="default"/></td>
 						</tr>
 					</table>
 		        </div>
@@ -158,13 +158,13 @@
 					<td class="nui-form-label"><label for="otel$text">办公室电话：</label></td>
 					<td><input id="otel" name="employee.otel" class="nui-textbox nui-form-input"  vtype="phone;rangeLength:0,20"  /></td>
 					<td class="nui-form-label"><label for="party$text">政治面貌：</label></td>
-					<td><input id="party" name="employee.party" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-dictcombobox nui-form-input" dictTypeId="COF_PARTYVISAGE" /></td>
+					<td><input id="party" name="employee.party" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-combobox nui-form-input" dictTypeId="COF_PARTYVISAGE" /></td>
 				</tr>
 				<tr class="odd">
 					<td class="nui-form-label"><label for="major$text">直接主管：</label></td>
 					<td><input id="major" name="employee.major" allowInput="false" showClose="true" oncloseclick="onCloseClick" class="nui-buttonEdit nui-form-input" onbuttonclick="selectMajor"/></td>
 					<td class="nui-form-label"><label for="degree$text">职级：</label></td>
-					<td><input id="degree" name="employee.degree" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-dictcombobox nui-form-input" dictTypeId="COF_EMPLEVEL" /></td>
+					<td><input id="degree" name="employee.degree" data="data" emptyText="请选择" valueField="dictID" textField="dictName" class="nui-combobox nui-form-input" dictTypeId="COF_EMPLEVEL" /></td>
 				</tr>			
 				<tr>
 					<td class="nui-form-label"><label for="orgidlist$text">可管理机构：</label></td> 

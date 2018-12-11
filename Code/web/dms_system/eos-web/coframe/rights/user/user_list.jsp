@@ -24,7 +24,7 @@
 	        </td>
 	        <td class="tit">&nbsp;&nbsp;用户状态：</td>
 	        <td>
-	          <input class="nui-dictcombobox" valueField="dictID" textField="dictName" emptyText="全部"
+	          <input class="nui-combobox" valueField="dictID" textField="dictName" emptyText="全部"
 	           dictTypeId="COF_USERSTATUS" name="criteria._expr[2].status" showNullItem="true" nullItemText="全部"/>
 	          <input class="nui-hidden" name="criteria._expr[2]._op" value="="/>
 	        </td>

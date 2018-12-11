@@ -64,7 +64,7 @@ table {
 						   valueField="id" textField="nameCn"/>
 				</td>
 				<td>
-					<label>车型：</label>
+					<label>品牌车型：</label>
 				</td>
 				<td colspan="3">
 					<input class="nui-combobox" name="carModelId" id="carModelId"
@@ -92,7 +92,7 @@ table {
 					<input class="nui-textbox asLabel" readOnly="true" name="carLineName"/>
 				</td>
 				<td>
-					<label>车型：</label>
+					<label>品牌车型：</label>
 				</td>
 				<td class="point">
 					<input class="nui-textbox asLabel" readOnly="true" name="carModelName"/>
@@ -180,7 +180,7 @@ table {
 						<div header="" headerAlign="center">
 							<div property="columns">
 								<div field="ItemKind" width="40" headerAlign="center" allowSort="true" header="工种"></div>
-								<!--<div field="carModelName" width="120" headerAlign="center" allowSort="true" header="车型"></div>-->
+								<!--<div field="carModelName" width="120" headerAlign="center" allowSort="true" header="品牌车型"></div>-->
 								<!--<div field="typeId" width="80" headerAlign="center" allowSort="true" header="项目类型"></div>-->
 								<!--<div field="factoryName" width="150" headerAlign="center" allowSort="true" header="参考名称"></div>
 								<div field="useCount" width="70" headerAlign="center" allowSort="true" header="使用频率"></div>-->

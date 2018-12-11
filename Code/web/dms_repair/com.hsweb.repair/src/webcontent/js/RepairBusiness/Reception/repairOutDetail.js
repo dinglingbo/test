@@ -219,6 +219,10 @@ function setInitData(params){
     					data.contactorName = contactor.name;
     					data.mobile = contactor.mobile;
     					data.carModel=mainRow.carModel;
+    					if(mainRow.planFinishDate){
+    						
+    						data.timeDaff=timeDiff(mainRow.planFinishDate);
+    					}
                         //$("#guestNameEl").html(guest.guestFullName);
                         //$("#showCarInfoEl").html(data.carNo);
                         //$("#guestTelEl").html(guest.mobile);
@@ -462,4 +466,49 @@ function  savepartOutRtn(data,childdata){
             showMsg("请先保存工单,再打印!","W");
             return;
         }
+    }
+    
+    function timeDiff(planFinishDate){
+    	var startTime = new Date(); // 开始时间
+        var endTime = planFinishDate; // 结束时间
+        var usedTime = endTime - startTime; // 相差的毫秒数
+        var s = "";
+
+        if(usedTime<0){
+        	usedTime = 0 - usedTime;
+        	var days = Math.floor(usedTime / (24 * 3600 * 1000)); // 计算出天数
+        	if(days>0){
+        		s = days + '天';
+        	}
+            var leavel = usedTime % (24 * 3600 * 1000); // 计算天数后剩余的时间
+            var hours = Math.floor(leavel / (3600 * 1000)); // 计算剩余的小时数
+            if(hours>0){
+            	s = s + hours + '小时';
+            }
+            var leavel2 = leavel % (3600 * 1000); // 计算剩余小时后剩余的毫秒数
+            var minutes = Math.floor(leavel2 / (60 * 1000)); // 计算剩余的分钟数
+            if(minutes>0){
+            	s = s + minutes + '分';
+            }
+            $('#timeDaff').attr("color","red");
+            return s="已超时"+s;
+        }else{
+        	usedTime =  usedTime;
+        	var days = Math.floor(usedTime / (24 * 3600 * 1000)); // 计算出天数
+        	if(days>0){
+        		s = days + '天';
+        	}
+            var leavel = usedTime % (24 * 3600 * 1000); // 计算天数后剩余的时间
+            var hours = Math.floor(leavel / (3600 * 1000)); // 计算剩余的小时数
+            if(hours>0){
+            	s = s + hours + '小时';
+            }
+            var leavel2 = leavel % (3600 * 1000); // 计算剩余小时后剩余的毫秒数
+            var minutes = Math.floor(leavel2 / (60 * 1000)); // 计算剩余的分钟数
+            if(minutes>0){
+            	s = s + minutes + '分';
+            }
+            return s;
+        }
+        
     }

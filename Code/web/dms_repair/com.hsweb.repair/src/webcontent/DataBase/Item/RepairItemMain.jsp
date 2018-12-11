@@ -23,9 +23,10 @@
 			<div class="nui-fit">
 				<div class="nui-toolbar"
 					 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
-					<span>项目类型</span>
+					<span>本地项目类型</span>
 				</div>
 				<div class="nui-fit">
+				<div style="width: 100%; height: 40%;">
 					<ul id="tree1" class="nui-tree" url="" style="width: 100%;"
 						dataField="data"
 						resultAsTree="false"
@@ -33,8 +34,21 @@
 						textField="name" idField="id" parentField="dictid">
 					</ul>
 				</div>
-			</div>
+			
+			    
+				<div class="nui-toolbar"
+					 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;display:none;">
+					<span>标准项目类型</span>
+				</div>
+				<div style="width: 100%; height: 40%;display:none;">
+					<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
+						dataField="rs" showTreeIcon="true" textField="name" expandOnLoad="0"
+						idField="id" ajaxData="setRoleId" parentField="" resultAsTree="false">
+					</ul>
+			    </div>
+		  </div>
 		</div>
+	</div>
 		<div showCollapseButton="false">
 			<div class="nui-toolbar" style="padding: 2px; border-bottom: 0;">
 				<input class="nui-textbox" id="state" visible="false"/>
@@ -115,7 +129,7 @@
 				<div id="rightGrid"
 					 dataField="list"
 					 class="nui-datagrid"
-					 style="float:left;width: 100%; height: 100%;"
+					 style="float:left;width: 70%; height: 100%;"
 					 url=""
 					 borderStyle="border:1"
 					 pageSize="50"
@@ -142,7 +156,26 @@
 							
 					</div>
 				</div>
-
+                
+               
+		        <div class="nui-datagrid" style="float:left;width: 70%; height: 100%;display:none;"
+					 id="itemGrid"
+					 dataField="rs"
+					 showPager="true"
+					 pageSize="20"
+					 totalField="page.count"
+					 allowSortColumn="true">
+					<div property="columns">
+						<div type="indexcolumn" width="35">序号</div>
+						   	<div field="ItemName" width="80" headerAlign="center" allowSort="true" header="项目名称"></div>
+						   	<div field="AStandTime" width="40" headerAlign="center" allowSort="true" header="工时"></div>
+						    <div field="AStandSum" width="40" headerAlign="center" allowSort="true" header="项目金额"></div>
+							<div field="Amt4S" width="40" headerAlign="center" allowSort="true" header="市场金额"></div>
+							<div field="ItemKind" width="40" headerAlign="center" allowSort="true" header="工种"></div>
+					</div>
+				</div>           
+                
+                
 				<div id="splitDiv" style="float:left;width:1%;height:100%;display:none"></div>
 				<div id="tempGrid" class="nui-datagrid" style="float:left;width:29%;height:100%;display:none"
 					showPager="false"

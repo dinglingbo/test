@@ -80,7 +80,7 @@ pageEncoding="UTF-8" session="false"%>
           <div field="" name="" width="40" headerAlign="center" align="center" >客户姓名</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >手机号码</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >车牌号</div>
-          <div field="" name="" width="40" headerAlign="center" align="center" >车型</div>
+          <div field="" name="" width="40" headerAlign="center" align="center" >品牌车型</div>
           <div field="" name="" width="40" headerAlign="center" align="center" >查车日期</div>
         </div>
       </div>

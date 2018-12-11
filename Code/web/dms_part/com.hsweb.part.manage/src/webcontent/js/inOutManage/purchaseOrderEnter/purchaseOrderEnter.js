@@ -34,6 +34,7 @@ var partShow = 0;
 var qucikAddShow=0;
 var autoNew = 0;
 var memList=[];
+var storeShelfList=[];
 
 // 单据状态
 var AuditSignList = [ {
@@ -1973,7 +1974,14 @@ function OnrpMainGridCellBeginEdit(e){
         //    morePartGrid.select(row,true);
         //}
 	}
+	if (field == "storeShelf") {
+        var value = e.record.storeId;
+        getLocationListByStoreId(value,function(data) {
+			storeShelfList = data.locationList || [];
+			nui.get('storeShelf').setData(storeShelfList);
 
+		});
+        }
 }
 function addMorePart(){
 	var row = leftGrid.getSelected();
@@ -2455,4 +2463,13 @@ function addOrEditPart(row)
         }
     });
 
+}
+
+function onStoreChange(e){
+	var value = e.value;
+	getLocationListByStoreId(value,function(data) {
+		storeShelfList = data.locationList || [];
+		nui.get('storeShelf').setData(storeShelfList);
+
+	});
 }

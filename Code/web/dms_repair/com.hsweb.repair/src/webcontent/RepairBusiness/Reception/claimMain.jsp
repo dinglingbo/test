@@ -10,7 +10,7 @@
 -->
 <head>
 <title>理赔开单</title>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/claimMain.js?v=1.1.7"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/claimMain.js?v=1.1.8"></script>
 <style type="text/css">
 
 .title {
@@ -66,13 +66,13 @@
                     <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
                         emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="80" valueFromSelect="true" onenter="onenterMtAdvisor(this.value)"/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+                    <!-- <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="finish()" id="addBtn"><span class="fa fa-check fa-lg"></span>&nbsp;完工</a>
                     <!-- <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="addBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a> -->
-                    <a class="nui-button" iconCls="" plain="true" onclick="del()" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="del()" id="deletBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                 </td>
             </tr>
         </table>
@@ -102,13 +102,13 @@
                   <div field="carNo" name="carNo" width="80px" headerAlign="center" header="车牌号"></div>
                   <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂时间"></div>
                   <div field="serviceTypeName" name="serviceTypeName" width="100px" headerAlign="center" header="业务类型"></div>
-                  <div field="carBrandId" name="carBrandId" width="70px" headerAlign="center"  header="品牌"></div>
+                  <div field="carBrandId" name="carBrandId" width="70px" headerAlign="center"  header="品牌车型"></div>
                   <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
                   <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>
-                  <div field="guestMobile" name="guestMobile" width="100px" headerAlign="center" header="客户手机"></div>
+                  <div field="guestMobile" name="guestMobile" width="100px" headerAlign="center" header="手机"></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
                   <div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div>
-                  <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计完工时间"></div>
+                  <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计交车时间"></div>
               </div>
           </div>
     </div>

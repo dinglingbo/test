@@ -25,6 +25,8 @@
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                              url="" onvaluechanged="onPkgTypeIdValuechanged" emptyText=""  vtype="required" /> 
                 </div>
+                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" name="itemItemTime">工时/数量
+                </div>
                 <div field="amt" headerAlign="center" name="pkgAmt"
                      allowSort="false" visible="true" width="60" header="原价" align="center">
                 </div>
@@ -39,9 +41,10 @@
                      <input  property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged"/>
                 </div>
                 <div field="workers" headerAlign="center"
-                     allowSort="false" visible="true" width="60" header="施工员" align="center" name="workers">
+                     allowSort="false" visible="true" width="60" header="" align="center" name="workers">
+                                            施工员 <a href="javascript:setPkgWorkers()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                     <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
-                    url="" data="memList" value="" multiSelect="true"  showClose="true" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" >     
+                    url="" data="memList" value="" multiSelect="true"  showClose="false" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" >     
                     <!-- <div property="columns">
                         <div header="ID" field="id"></div>
                         <div header="名称" field="empName"></div>
@@ -52,7 +55,8 @@
                      allowSort="false" visible="false" width="100" header="施工员" align="center">
                 </div>                
                 <div field="saleMan" headerAlign="center"
-                     allowSort="false" visible="true" width="50" header="销售员" align="center" name="saleMan">
+                     allowSort="false" visible="true" width="50" header="" align="center" name="saleMan">
+                     销售员<a href="javascript:setPkgSaleMans()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                      <input  property="editor" enabled="true" dataField="memList" 
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
                              url="" onvaluechanged="onsalemanChanged" emptyText=""  vtype="required"/> 
@@ -67,12 +71,12 @@
 </div>
 <div style="text-align:center;">
     <span id="carHealthEl" >
-        <a href="javascript:choosePackage()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择本地套餐</a>
+        <a href="javascript:choosePackage()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择维修套餐</a>
     </span>
-    <span>&nbsp;</span>
+    <!--<span>&nbsp;</span>
     <span id="carHealthEl" >
         <a href="javascript:showBasicData('pkg')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择标准套餐</a>
-    </span>
+    </span>-->
 </div>
 <div id="packageDetailGridForm" style="display:none;">
     <div id="packageDetailGrid" class="nui-datagrid"
@@ -127,5 +131,70 @@
         </table>
     </div>
 </div>   	
+
+<div id="advancedPkgWorkersSetWin" class="nui-window"
+     title="批量设置套餐施工员" style="width:300px;height:150px;"
+     showModal="true"
+     showHeader="false"
+     allowResize="false"
+     allowDrag="true">
+    <div class="nui-fit">
+        <table style="width: 100%;height: 100%;">
+            <tr >
+                <td colspan="2"  style="text-align: left;">
+                    <label style="color: #9e9e9e;">批量设置套餐施工员</label>
+                </td>
+            </tr>
+            <tr >
+                <td style="text-align: right;">
+                    套餐施工员：
+                </td>
+                <td >
+                 <div id="combobox3" property="editor" class="mini-combobox" style="width:200px;"  popupWidth="100" textField="empName" valueField="empName" 
+                    url="" data="memList" value="" multiSelect="true"  showClose="flase"  onvaluechanged="onworkerChangedBat" > 
+                 </div>  
+                 </td>  
+            </tr>
+            <tr >
+                <td colspan="2" style="text-align: center;">
+                    <a class="nui-button"  plain="false" onclick="surePkgWorkersSetWin()" id="pkgOk">确定</a>
+                    <a class="nui-button"  plain="false" onclick="closePkgWorkersSetWin()">取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div> 
+<div id="advancedPkgSaleMansSetWin" class="nui-window"
+     title="批量设置套餐销售员" style="width:350px;height:200px;"
+     showModal="true"
+     showHeader="false"
+     allowResize="false"
+     allowDrag="true">
+    <div class="nui-fit">
+        <table style="width: 100%;height: 100%;">
+            <tr >
+                <td colspan="2"  style="text-align: left;">
+                    <label style="color: #9e9e9e;">批量设置套餐销售员</label>
+                </td>
+            </tr>
+            <tr >
+                <td style="text-align: right;">
+                    套餐销售员：
+                </td>
+                <td >
+                   <input  property="editor" enabled="true" dataField="memList" id="pkgSale"
+                             class="nui-combobox" valueField="empName" textField="empName" data="memList"
+                             url="" onvaluechanged="onsalemanChangedBat" emptyText=""  vtype="required" oncloseclick="onCloseClick"/> 
+                 </td>  
+            </tr>
+            <tr >
+                <td colspan="2" style="text-align: center;">
+                    <a class="nui-button"  plain="false" onclick="surePkgSaleMansSetWin()" id="pkgOk">确定</a>
+                    <a class="nui-button"  plain="false" onclick="closePkgSaleMansSetWin()">取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div> 
 
 

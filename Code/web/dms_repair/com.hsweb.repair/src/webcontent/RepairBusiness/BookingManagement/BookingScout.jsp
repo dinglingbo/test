@@ -32,12 +32,18 @@
     
     <div style=" width: 100%;  ">
         <div showCollapseButton="false" style="border:0; ">
-        	 <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+        	 <div class="nui-toolbar" style="padding:0px;border-bottom:0;white-space: nowrap;">
 	            <table style="width:80%;">
 	                <tr>
 	                    <td style="width:80%;">
 	                        <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
 	                        <a class="nui-button" iconCls="" plain="true" onclick="onClose"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+	                        <span class="separator"></span>
+	                        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="SetData()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
+                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                            <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
 	                    </td>
 	                </tr>
 	            </table>

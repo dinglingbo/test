@@ -118,7 +118,7 @@
       <div showCollapseButton="false">
           
           <div class="nui-fit">
-              <fieldset id="fd1" style="width:97%;min-width:800px;height:100px;">
+              <fieldset id="fd1" style="width:99.5%;min-width:800px;height:100px;">
                   <legend><span>采购入库信息</span></legend>
                   <div class="fieldset-body">
                   

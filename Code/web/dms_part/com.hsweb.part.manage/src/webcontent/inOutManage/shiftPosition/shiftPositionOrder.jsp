@@ -54,7 +54,7 @@
 
 
      <div class="nui-fit">
-        <fieldset id="fd1" style="width: 97%; height: 60px;">
+        <fieldset id="fd1" style="width: 99.5%; height: 60px;">
             <legend>
                 <span>移仓信息</span>
             </legend>
@@ -140,11 +140,7 @@
                                     header="品牌车型"></div>
                                     <div field="comUnit" name="comUnit" width="40"
                                     headerAlign="center" header="单位"></div>
-                                </div>
-                            </div>
-                            <div header="数量金额信息" headerAlign="center">
-                                <div property="columns">
-                                    <div field="orderQty" name="orderQty" summaryType="sum"
+                                 <div field="orderQty" name="orderQty" summaryType="sum"
                                     numberFormat="0.00" width="50" headerAlign="center"
                                     header="数量">
                                     <input property="editor" vtype="float" class="nui-textbox" />
@@ -153,8 +149,13 @@
                                 headerAlign="center" allowSort="false" header="备注">
                                 <input property="editor" class="nui-textbox" />
                             </div>
-                        </div>
-                    </div>
+                                </div>
+                            </div>
+<!--                             <div header="数量金额信息" headerAlign="center"> -->
+<!--                                 <div property="columns"> -->
+                       
+<!--                         </div> -->
+<!--                     </div> -->
                     <div header="辅助信息" headerAlign="center">
                         <div property="columns">
                             <div field="stockOutQty" summaryType="sum" numberFormat="0.00"

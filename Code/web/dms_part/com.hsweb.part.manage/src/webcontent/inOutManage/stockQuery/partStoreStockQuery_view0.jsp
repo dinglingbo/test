@@ -8,7 +8,7 @@
 -->
 <head>
 <title>库存查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=2.2.3"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockQuery.js?v=2.2.20"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -64,11 +64,28 @@
                            allowInput="true"
                            showNullItem="false"
                            nullItemText="请选择..."/>
+                 
                 <input id="storeShelf" width="120px" emptyText="仓位" class="nui-textbox"/>
+                <input id="upOrDown"
+                           name="upOrDown"
+                           class="nui-combobox width1"
+                           textField="name"
+                           valueField="id"
+                           emptyText="库存上下限"
+                           url=""
+                           data="UpOrDownList"
+                           valueFromSelect="true"
+                           allowInput="true"
+                           showNullItem="true"
+                           nullItemText="请选择..."/>
                 <input id="partId" width="80px" visible="false" emptyText="配件ID" class="nui-textbox"/>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">显示零库存：</label>
                 <input class="nui-checkbox" id="showAll" trueValue="1" falseValue="0"/>
+<!--                 <label style="font-family:Verdana;">显示高于库存上限：</label> -->
+<!--                 <input class="nui-checkbox" id="showUp" trueValue="1" falseValue="0"/> -->
+<!--                 <label style="font-family:Verdana;">显示低于库存下限：</label> -->
+<!--                 <input class="nui-checkbox" id="showDown" trueValue="1" falseValue="0"/> -->
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
@@ -90,7 +107,7 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn"  width="40">序号</div>
-            <div header="库存信息" headerAlign="center">
+            <div header="配件信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="comPartName" width="150" headerAlign="center" header="配件名称"></div>
@@ -102,22 +119,23 @@
                     <div allowSort="true" field="shelf" width="60" headerAlign="center" header="仓位"></div>
                 </div>
             </div>
-            <div header="数量金额" headerAlign="center">
+            <div header="库存信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="70" headerAlign="center" header="库存数量"></div>
-                    <div allowSort="true" datatype="float" field="costPrice" width="70" headerAlign="center" header="库存单价"></div>
-                    <div allowSort="true" datatype="float" field="stockAmt" summaryType="sum" width="70" headerAlign="center" header="库存金额"></div>
+                    <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="70" headerAlign="center" header="数量"></div>
+                    <div allowSort="true" datatype="float" field="costPrice" width="70" headerAlign="center" header="单价"></div>
+                    <div allowSort="true" datatype="float" field="stockAmt" summaryType="sum" width="70" headerAlign="center" header="金额"></div>
+                    <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
                 </div>
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" datatype="float" field="orderQty" visible="false" summaryType="sum" width="70" headerAlign="center" header="开单数量"></div>
-                    <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
                     <div allowSort="true" datatype="float" field="onRoadQty" visible="false" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
                     <div allowSort="true" field="lastEnterDate" headerAlign="center" header="最近入库日期"  width="120" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="lastOutDate" headerAlign="center" header="最近出库日期" width="120" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="upLimit" width="60" headerAlign="center" header="库存上限"></div>
                     <div allowSort="true" field="downLimit" width="60" headerAlign="center" header="库存下限"></div>
+                    <div allowSort="true" field="wain" width="40" headerAlign="center" header="警戒"></div>
                     <div allowSort="true" field="remark" width="200" headerAlign="center" header="备注"></div>
                 </div>
             </div>

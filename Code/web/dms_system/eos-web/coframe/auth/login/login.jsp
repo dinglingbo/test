@@ -461,6 +461,12 @@ function weixiMmaxImg() {
 function register(){
  	var phone = $("#phone").val();
  	var registername = $("#registername").val();
+ 	var usern = /^[a-zA-Z0-9_]{1,}$/;
+ 	if (!registername.match(usern)) { 
+ 		$("#errorP").html("用户名只能由字母数字下划线组成");
+	    return false;
+ 	}
+ 	
  	var registercompname = $("#registercompname").val();
  	var code = $("#authcode").val();
      	if(!registercompname){
@@ -473,6 +479,11 @@ function register(){
      	}
      	if(!phone){
 	      	$("#errorP").html("请输入手机号");
+	      	return false;
+     	}
+
+     	if(!code){
+	      	$("#errorP").html("请输入验证码");
 	      	return false;
      	}
 

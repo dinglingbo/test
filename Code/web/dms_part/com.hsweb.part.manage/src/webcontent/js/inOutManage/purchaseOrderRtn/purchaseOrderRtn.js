@@ -469,7 +469,7 @@ function save() {
                    
                     //保存成功后重新加载数据
                     loadMainAndDetailInfo(leftRow);
-                    $('#bServiceId').text("订单号："+leftRow.serviceId);
+                    $('#bServiceId').text("采退单号："+leftRow.serviceId);
                     
                 }
             } else {
@@ -809,7 +809,7 @@ function audit()
 
                     //保存成功后重新加载数据
                     loadMainAndDetailInfo(leftRow);
-                    $('#bServiceId').text("订单号："+leftRow.serviceId);
+                    $('#bServiceId').text("采退单号："+leftRow.serviceId);
                     
 //                    rightGrid.setData([]);
 //					add();
@@ -977,7 +977,7 @@ function add()
 //                    leftGrid.select(newRow, false);
 //                    
 //                    nui.get("serviceId").setValue("新采购退货");
-                    $('#bServiceId').text("订单号: 新采购退货单");
+                    $('#bServiceId').text("采退单号: 新采购退货单");
                     nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
                     nui.get("createDate").setValue(new Date());
 
@@ -1018,7 +1018,7 @@ function add()
 //        leftGrid.select(newRow, false);
         
 //        nui.get("serviceId").setValue("新采购退货");
-    	$('#bServiceId').text("订单号: 新采购退货单");
+    	$('#bServiceId').text("采退单号: 新采购退货单");
         nui.get("billTypeId").setValue("010103");  //010101  收据   010102  普票  010103  增票
         nui.get("createDate").setValue(new Date());
         
@@ -1859,7 +1859,7 @@ function setInitData(params){
 		basicInfoForm.setData(params);
 		nui.get('orderMan').setText(params.orderMan);
 		nui.get('orderMan').setValue(params.orderManId);
-		$('#bServiceId').text("订单号："+params.serviceId);
+		$('#bServiceId').text("采退单号："+params.serviceId);
 		nui.get("guestId").setText(params.guestFullName);
 //		nui.get('storehouse').setValue(params.storeId);
 		

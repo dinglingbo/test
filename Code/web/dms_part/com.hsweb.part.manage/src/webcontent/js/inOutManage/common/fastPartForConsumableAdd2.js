@@ -14,7 +14,7 @@ $(document).ready(function(){
     
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
-        returnRemark.focus();
+        mtAdvisorIdEl.focus();
     });
 
 

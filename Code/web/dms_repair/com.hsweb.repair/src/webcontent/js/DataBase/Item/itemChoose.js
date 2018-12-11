@@ -56,7 +56,6 @@ $(document).ready(function()
 	//右边区域
 	rightGrid = nui.get("rightGrid");
 	rightGrid.setUrl(rightGridUrl);
-	rightGrid.on("drawcell",onDrawCell);
 	onSearch();
 	rightGrid.on("rowdblclick",function(e){
 		onOk();	
@@ -478,42 +477,5 @@ function onAdvancedAddOk(){
 	});
 
 }
-function onDrawCell(e) {
-	switch (e.field) {
-	case "isShare":
-		e.cellHtml = e.value == 1 ? "是" : "否";
-		break;
-	case "isDisabled":
-		e.cellHtml = e.value == 1 ? "是" : "否";
-		break;
-	case "orgid":
-		e.cellHtml = currOrgId == e.value? '本店' : '连锁';
-		break;
-	default:
-		break;
-	}
-
-}
-
-function showCheckcolumn(){
-	rightGrid.showColumn("checkcolumn");
-	nui.get("state").setValue(6);
-	nui.get("selectBtn").show();
-}
 
 
-//当选择列时
-function selectionChanged() {
-	var row = rightGrid.getSelected();
-	if(!row) return;
-	var orgid = row.orgid||0
-	if(currOrgId == orgid){
-		nui.get('update').setVisible(true);
-	}else{
-		nui.get('update').setVisible(false);
-	}
-	if(xs==1){
-		mini.get("update").setVisible(false);
-		mini.get("add").setVisible(false);
-	}
-}

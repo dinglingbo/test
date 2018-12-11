@@ -22,14 +22,18 @@ $(document).ready(function(v)
     });
     rightGrid.on("rowclick",onRowClick);
     rightGrid.on("load",function(){
-        onRowClick({});
+    	var data=rightGrid.getData();
+    	if(data.length>0){
+    		onRowClick({});
+    	}
+        
     });
     
 });
 function onRowClick(e)
 {
     var row = rightGrid.getSelected();
-    if(row.isDisabled)
+    if(row.isDisabled==1)
     {
         nui.get("disableBtn").hide();
         nui.get("enableBtn").show();

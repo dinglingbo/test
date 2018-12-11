@@ -99,7 +99,7 @@ $(document).ready(function ()
 //    var statusList = "1,2";
 //    var p = {statusList:statusList};
 //    doSearch(p);
-    quickSearch(4);
+    quickSearch(12);
 });
 var statusHash = {
     "0" : "草稿",
@@ -136,8 +136,10 @@ var currType = 2;
 function quickSearch(type){
     var params = getSearchParam();
     var querysign = 1;
-    var queryname = "本日";
-    var querystatusname = "所有";
+    var queryname = "本月";
+    var querystatusname = "待归库";
+    params.sRecordDate = getMonthStartDate();
+    params.eRecordDate = addDate(getMonthEndDate(), 1);
     switch (type)
     {
         case 0:

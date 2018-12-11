@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.67"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.68"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -42,7 +42,7 @@ body .mini-grid-row-selected{
         <tr>
 
             <td style="width:100%;">
-        <span  id="bServiceId" style="">订单号：新采退单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span  id="bServiceId" style="">采退单号：新采退单</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;退货</a>
@@ -54,7 +54,7 @@ body .mini-grid-row-selected{
 </div>
 
 
-                  <fieldset id="fd1" style="width:99%;height:85px;">
+                  <fieldset id="fd1" style="width:99.5%;height:85px;">
                       <legend><span>采购退货信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">

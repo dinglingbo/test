@@ -132,5 +132,31 @@
 		from wb_common.com_member
 		where TIMESTAMPDIFF(DAY, birthday, NOW()) = #ln# and orgid = #orgid#
 	</select>
+	
+	
+	<!--更新套餐使用次数-->
+	<update id="updatePackageUseTimes" parameterClass="java.util.HashMap">
+		update rpb_package a
+		inner join (
+		SELECT package_id, count(1) as ct
+		from rps_package 
+		where record_date &gt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')
+		group by package_id) b
+		on a.id = b.package_id
+		set a.use_times = ifnull(a.use_times,0) + b.ct
+	</update>
+	
+	<!--更新项目使用次数-->
+	<update id="updateItemUseTimes" parameterClass="java.util.HashMap">
+		update rpb_item a
+		inner join (
+		SELECT item_id, count(1) as ct
+		from rps_item
+		where ifnull(bill_package_id,0) = 0 
+		      and record_date &gt; DATE_FORMAT(NOW(),'%Y-%m-%d 00:00:00')
+		group by item_id) b
+		on a.id = b.item_id
+		set a.use_times = ifnull(a.use_times,0) + b.ct
+	</update>
 
 </sqlMap>

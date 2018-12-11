@@ -3,6 +3,8 @@
  */
 var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryPackage.biz.ext";
+var typeGrid2Url = apiPath + repairApi +"/com.hsapi.system.product.items.getPrdtType.biz.ext";
+var packageGridUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getPackage.biz.ext";
 var grid = null;
 var sti = "";
 var resultData = {};
@@ -13,13 +15,21 @@ var callback = null;
 var delcallback = null;
 var ckcallback = null;
 var typeGrid = null;
+var tree =null;
+var packageGrid = null;
+var treeHash={};
 var isChooseClose = 1;//默认选择后就关闭窗体
+var carModelIdLy = null;
+var serviceId = null;
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
 
 	typeGrid = nui.get("typeGrid");
-	
+	packageGrid = nui.get("packageGrid");
+	packageGrid.setUrl(packageGridUrl);
+	typeGrid2 = nui.get("typeGrid2");
+	typeGrid2.setUrl(typeGrid2Url);
 	grid.on("beforeload",function(e){
         e.data.token = token;
 	});
@@ -38,6 +48,20 @@ $(document).ready(function(v) {
 	typeGrid.on("rowdblclick",function(e){
 		var row = e.row;
 		search(row.id);
+	});
+	typeGrid.on("rowclick",function(e){
+		grid.show();
+		packageGrid.hide();
+		nui.get("lookInfo").show();
+	});
+	typeGrid2.on("rowclick",function(e){
+		grid.hide();
+		packageGrid.show();
+		nui.get("lookInfo").hide();
+	});
+	packageGrid.on("rowdblclick",function(e){
+		var row = e.row;
+		selectStdPkg(row);
 	});
 	//双击
 	grid.on("rowdblclick",function(e){
@@ -58,6 +82,19 @@ $(document).ready(function(v) {
 			tempGrid.removeRow(row);
         }
     });
+	
+
+	typeGrid2.on("rowdblclick",function(e){
+		var row = e.record;
+		var packageTypeId = row.id;
+		loadStdPKG(packageTypeId);
+	});
+	//标准套餐类型
+    typeGrid2.load({
+    	noShowParent:"1",
+    	type: "01",
+        token: token
+    });
 	nui.get("pkgName").focus();
 	document.onkeyup=function(event){
         var e=event||window.event;
@@ -67,12 +104,35 @@ $(document).ready(function(v) {
             onCancel();
         }
       };
-
 });
+
+function loadStdPKG(packageTypeId) {
+	var p = {};
+	p.carModelId = carModelIdLy;
+	p.name = nui.get('pkgName').getValue();
+	p.packageName = nui.get('pkgName').getValue();
+	p.packageTypeId = packageTypeId;
+	packageGrid.load({
+		p:p,
+		token:token
+	});
+}
 
 function getDataAll(){
 	var row = grid.getSelecteds();
 	return row;
+}
+function choose() {
+	if(packageGrid.visible) {
+		var row = packageGrid.getSelected();
+		if(!row){
+			showMsg("请选择一个套餐", "W");
+			return;
+		}
+		selectStdPkg(row);
+	}else {
+		edit();
+	}
 }
 // 选择
 function edit() {
@@ -120,9 +180,58 @@ function edit() {
 			}
 			
 		} else {
-			nui.alert("请选择一个套餐", "W");
+			showMsg("请选择一个套餐", "W");
 		}
 	}
+}
+var stdPkgUrl = apiPath + sysApi + "/com.hsapi.repair.repairService.crud.insStdPackage.biz.ext";
+function selectStdPkg(row) {    
+   if(!row.id) return;
+   nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '处理中...'
+   });
+   
+   var pkg = {
+   	 packageCarmtId:row.id,
+   	 serviceId:serviceId
+   }
+	var json = nui.encode({
+		"pkg":pkg,
+		token:token
+	});
+   var p1 = {
+           interType: "package",
+           data:{
+               serviceId: serviceId||0
+           }
+       };
+	var p2 = {};
+	var p3 = {};
+	nui.ajax({
+		url : stdPkgUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			var returnJson = nui.decode(text);
+			if (returnJson.errCode == "S") {
+				nui.unmask(document.body);
+				var data = returnJson.data;
+				if(data){
+					data.check = 1;
+					tempGrid.addRow(data);
+				}
+				
+			} else {
+				showMsg(returnJson.errMsg||"添加套餐失败!","E");
+				nui.unmask(document.body);
+		    }
+		}
+	 });
+
 }
 
 function CloseWindow(action) {
@@ -144,13 +253,17 @@ function refresh() {
 // 查询
 function search(serviceTypeId) {
 
-	var form = new nui.Form("#queryform");
-	var json = form.getData(false, false);
-	json.isDisabled = 0;
-	if(serviceTypeId){
-		json.serviceTypeId = serviceTypeId;
+	if(packageGrid.visible) {
+		loadStdPKG();
+	}else {
+		var form = new nui.Form("#queryform");
+		var json = form.getData(false, false);
+		json.isDisabled = 0;
+		if(serviceTypeId){
+			json.serviceTypeId = serviceTypeId;
+		}
+		grid.load(json);// grid查询
 	}
-	grid.load(json);// grid查询
 }
 
 // 重置查询条件
@@ -204,12 +317,14 @@ function setData(data) {
 	nui.get("selectBtn").show();
 }
 
-function setViewData(ck, delck, cck){
+function setViewData(ck, delck, cck, params){
 	
 	isChooseClose = 0;
 	callback = ck;
 	delcallback = delck;
 	ckcallback = cck;
+	carModelIdLy = params.carModelIdLy||"";
+	serviceId = params.serviceId;
 	grid.setWidth("70%");
 	tempGrid.setStyle("display:inline");
 	document.getElementById("splitDiv").style.display="";

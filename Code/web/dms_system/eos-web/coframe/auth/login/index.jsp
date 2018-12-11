@@ -18,8 +18,10 @@
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/tabs.css" rel="stylesheet" type="text/css" />
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/frame.css" rel="stylesheet" type="text/css" />
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css" rel="stylesheet" type="text/css" />
+    <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css" rel="stylesheet"	type="text/css" />
     <link href="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
+    
 
     <style type="text/css">
     .navbar-brand
@@ -79,13 +81,16 @@
     .menu{
         padding-top: 40px;
     }
+    .org_hover:hover{
+    	text-decoration:underline
+    }
  
 </style>
 </head>
 <body>
     
 <div id="advancedOrgWin" class="nui-window"
-     title="公司选择" style="width:430px;height:350px;"
+     title="公司选择" style="width:430px;height:340px;"
      showModal="true"
      showHeader="false"
      allowResize="false"
@@ -104,7 +109,7 @@
         </table>
     </div>
     <div class="nui-fit">
-          <div id="moreOrgGrid" class="nui-datagrid" style="width:100%;height:95%;"
+          <div id="moreOrgGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
                showPager="false"
                dataField="orgList"
@@ -112,11 +117,14 @@
                allowCellSelect="true"
                editNextOnEnterKey="true"
                allowCellWrap = true
+               allowCellSelect="true" 
+               multiSelect="false"
                url="">
               <div property="columns">
-                <div type="indexcolumn" headerAlign="center"  width="25">序号</div>
+              	<div type="checkcolumn" width="15" class="mini-radiobutton" header="选择"></div>
+                <div type="indexcolumn" headerAlign="center"  width="15">序号</div>
                 <div field="orgid" name="orgid" width="" align="center"  visible="false" headerAlign="center" header="公司Id"></div>
-                <div field="orgname" name="orgname" width="" align="center"  headerAlign="center" header="公司全称"></div>
+                <div field="orgname" name="orgname" width="" align="center"  headerAlign="center" header="公司名称"></div>
               </div>
           </div>
     </div>
@@ -132,9 +140,9 @@
             <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
             <li class="dropdown">
-                <a class="" onClick="OrgShow()" style="padding-top: 18px;">
+                <a  onClick="OrgShow()" style="padding-top: 18px; ">
 <!--                        <i class="fa fa-align-justify"></i> -->
-                        <span id="currOrgName">公司</span>
+                        <span  class="org_hover" id="currOrgName">公司</span>
 <!--                        <i class="fa fa-angle-down"></i> -->
                 </a>
                 <ul class="dropdown-menu pull-right" id="orgsname">

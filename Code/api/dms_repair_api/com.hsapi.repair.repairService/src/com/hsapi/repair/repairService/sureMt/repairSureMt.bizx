@@ -136,7 +136,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">维修单已经确定维修，不允许再次确定维修。</process:from>
+      <process:from type="literal" pattern="reference">本单已施工，不允许再次施工。</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -338,6 +338,7 @@
     <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess5</sourceNode>
       <targetNode>assign5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
     <location x="675" y="150"/>

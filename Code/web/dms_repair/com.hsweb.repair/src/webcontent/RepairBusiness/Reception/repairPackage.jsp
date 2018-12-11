@@ -44,7 +44,7 @@
                      allowSort="false" visible="true" width="60" header="" align="center" name="workers">
                                             施工员 <a href="javascript:setPkgWorkers()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                     <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
-                    url="" data="memList" value="" multiSelect="true"  showClose="true" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" >     
+                    url="" data="memList" value="" multiSelect="true"  showClose="false" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" >     
                     <!-- <div property="columns">
                         <div header="ID" field="id"></div>
                         <div header="名称" field="empName"></div>
@@ -71,12 +71,12 @@
 </div>
 <div style="text-align:center;">
     <span id="carHealthEl" >
-        <a href="javascript:choosePackage()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择本地套餐</a>
+        <a href="javascript:choosePackage()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择维修套餐</a>
     </span>
-    <span>&nbsp;</span>
+    <!--<span>&nbsp;</span>
     <span id="carHealthEl" >
         <a href="javascript:showBasicData('pkg')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择标准套餐</a>
-    </span>
+    </span>-->
 </div>
 <div id="packageDetailGridForm" style="display:none;">
     <div id="packageDetailGrid" class="nui-datagrid"
@@ -133,7 +133,7 @@
 </div>   	
 
 <div id="advancedPkgWorkersSetWin" class="nui-window"
-     title="批量设置套餐施工员" style="width:350px;height:200px;"
+     title="批量设置套餐施工员" style="width:300px;height:150px;"
      showModal="true"
      showHeader="false"
      allowResize="false"
@@ -150,8 +150,8 @@
                     套餐施工员：
                 </td>
                 <td >
-                 <div id="combobox3" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
-                    url="" data="memList" value="" multiSelect="true"  showClose="true"  onvaluechanged="onworkerChangedBat" > 
+                 <div id="combobox3" property="editor" class="mini-combobox" style="width:200px;"  popupWidth="100" textField="empName" valueField="empName" 
+                    url="" data="memList" value="" multiSelect="true"  showClose="flase"  onvaluechanged="onworkerChangedBat" > 
                  </div>  
                  </td>  
             </tr>
@@ -164,7 +164,6 @@
         </table>
     </div>
 </div> 
-
 <div id="advancedPkgSaleMansSetWin" class="nui-window"
      title="批量设置套餐销售员" style="width:350px;height:200px;"
      showModal="true"
@@ -185,7 +184,7 @@
                 <td >
                    <input  property="editor" enabled="true" dataField="memList" id="pkgSale"
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url="" onvaluechanged="onsalemanChangedBat" emptyText=""  vtype="required" oncloseclick="onCloseClick"/> 
+                             url="" onvaluechanged="saleManChangedBat" emptyText=""  vtype="required" oncloseclick="onCloseClick"/> 
                  </td>  
             </tr>
             <tr >

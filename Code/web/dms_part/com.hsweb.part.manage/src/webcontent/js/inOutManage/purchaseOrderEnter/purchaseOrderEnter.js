@@ -1974,7 +1974,14 @@ function OnrpMainGridCellBeginEdit(e){
         //    morePartGrid.select(row,true);
         //}
 	}
+	if (field == "storeShelf") {
+        var value = e.record.storeId;
+        getLocationListByStoreId(value,function(data) {
+			storeShelfList = data.locationList || [];
+			nui.get('storeShelf').setData(storeShelfList);
 
+		});
+        }
 }
 function addMorePart(){
 	var row = leftGrid.getSelected();

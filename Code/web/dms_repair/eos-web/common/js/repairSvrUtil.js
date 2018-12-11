@@ -286,24 +286,6 @@ function svrSetPkgRateBatch(params, callback, unmaskcall){
 	});
 }
 
-//套餐销售员
-var svrSetPkgSaleMansBatchUrl = window._rootRepairUrl + "";
-function svrSetPkgSaleMansBatch(params, callback, unmaskcall){
-    var data = params.data||{};
-    doPost({
-		url : svrSetPkgSaleMansBatchUrl,
-		data : data,
-		success : function(data) {
-			callback && callback(data);
-			unmaskcall && unmaskcall(null);
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR.responseText);
-			unmaskcall && unmaskcall(null);
-		}
-	});
-}
-
 //批量设置施工员
 var svrSetPkgWorkersBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setItemWorkersBatch.biz.ext";
 function svrSetWorkersBatch(params, callback, unmaskcall){
@@ -322,6 +304,23 @@ function svrSetWorkersBatch(params, callback, unmaskcall){
 	});
 }
 
+//批量设置销售员
+var svrSetSaleMansBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setSalersBatch.biz.ext";
+function svrSetPkgSaleMansBatch(params, callback, unmaskcall){
+    var data = params.data||{};
+    doPost({
+		url : svrSetSaleMansBatchUrl,
+		data : data,
+		success : function(data) {
+			callback && callback(data);
+			unmaskcall && unmaskcall(null);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+			unmaskcall && unmaskcall(null);
+		}
+	});
+}
 
 //批量设置工时或是配件优惠率
 var svrSetItemPartRateBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setItemPartRateBatch.biz.ext";
@@ -445,9 +444,8 @@ function doSelectPart(itemId,dock, dodelck, docck, callback) {
 
 
 
-function doSelectItem(dock, dodelck, docck, callback) {
+function doSelectItem(dock, dodelck, docck, param, callback) {
 	nui.open({
-		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemMain.flow?token=" + token,
 		title : "维修项目",
 		width : 1000,
@@ -456,9 +454,9 @@ function doSelectItem(dock, dodelck, docck, callback) {
 		allowResize : true,
 		onload : function() {
 			var iframe = this.getIFrameEl();
-			var list = [];
 			var params = {
-				list : list
+				carModelIdLy : param.carModelIdLy,
+				serviceId: param.serviceId
 			};
             iframe.contentWindow.setData(params);//显示该显示的功能
             iframe.contentWindow.setViewData(dock, dodelck, docck);
@@ -473,9 +471,8 @@ function doSelectItem(dock, dodelck, docck, callback) {
 	});
 }
 
-function doSelectPackage(dock, dodelck, docck, callback) {
+function doSelectPackage(dock, dodelck, docck, param, callback) {
 	nui.open({
-		targetWindow : window,
 		url : webPath + contextPath + "/repair/DataBase/Card/packageList.jsp?token=" + token,
 		title : "套餐项目",
 		width : 1000,
@@ -484,12 +481,12 @@ function doSelectPackage(dock, dodelck, docck, callback) {
 		allowResize : true,
 		onload : function() {
 			var iframe = this.getIFrameEl();
-			var list = [];
 			var params = {
-				list : list
+				carModelIdLy : param.carModelIdLy,
+				serviceId: param.serviceId
 			};
 
-            iframe.contentWindow.setViewData(dock, dodelck, docck);
+            iframe.contentWindow.setViewData(dock, dodelck, docck, params);
 		},
 		ondestroy : function(action) {
             var iframe = this.getIFrameEl();
@@ -575,7 +572,7 @@ function addPackage(data,callback){
 function doFinishWork(params,callback){
 	nui.open({
         url: webPath + contextPath +"/com.hsweb.RepairBusiness.checkFinish.flow?token="+token,
-        title: "出车&完工", width: 700, height: 400, allowDrag:false, allowResize:false,
+        title: "完工", width: 700, height: 400, allowDrag:false, allowResize:false,
         onload: function () {
             var iframe = this.getIFrameEl();
             iframe.contentWindow.setData(params);

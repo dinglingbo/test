@@ -92,7 +92,7 @@
                                 name="orderMan" textField="empName" valueField="empId"
                                 emptyText="请选择..." url="" required="true" allowInput="true"
                                 valueFromSelect="false" width="100%"></td>
-                                <td class="title required" style="width: 7%"><label>移仓日期：</label>
+                                <td class="title" style="width: 7%"><label>移仓日期：</label>
                                 </td>
                                 <td width="120"><input name="createDate" id="createDate"
                                     width="100%" enabled="false" showTime="true"

@@ -41,7 +41,7 @@
                      allowSort="false" visible="true" width="60" header="" align="center" name="workers">
                                             施工员 <a href="javascript:setItemWorkers()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                     <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
-                    url="" data="memList" value="" multiSelect="true"  showClose="true" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" >     
+                    url="" data="memList" value="" multiSelect="true"  showClose="false" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" >     
                     <!-- <div property="columns">
                         <div header="ID" field="id"></div>
                         <div header="名称" field="empName"></div>
@@ -137,7 +137,7 @@
 </div>   
 
 <div id="advancedItemWorkersSetWin" class="nui-window"
-     title="批量设置工时施工员" style="width:350px;height:200px;"
+     title="批量设置工时施工员" style="width:300px;height:150px;"
      showModal="true"
      showHeader="false"
      allowResize="false"
@@ -146,7 +146,7 @@
         <table style="width: 100%;height: 100%;">
             <tr >
                 <td colspan="2"  style="text-align: left;">
-                    <label style="color: #9e9e9e;">批量设置套餐施工员</label>
+                    <label style="color: #9e9e9e;">批量设置工时施工员</label>
                 </td>
             </tr>
             <tr >
@@ -154,8 +154,8 @@
                     工时施工员：
                 </td>
                 <td >
-                 <div id="combobox4" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
-                    url="" data="memList" value="" multiSelect="true"  showClose="true"  onvaluechanged="onworkerChangedBat" > 
+                 <div id="combobox4" property="editor" class="mini-combobox" style="width:200px;"  popupWidth="100" textField="empName" valueField="empName" 
+                    url="" data="memList" value="" multiSelect="true"  showClose="false"  onvaluechanged="onworkerChangedBat" > 
                  </div>  
                  </td>  
             </tr>
@@ -189,7 +189,7 @@
                 <td >
                    <input  property="editor" enabled="true" dataField="memList" id="ItemSale1"
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url=""  emptyText=""  vtype="required"  onvaluechanged="saleManIdBat" oncloseclick="onCloseClick"/> 
+                             url=""  emptyText=""  vtype="required"  onvaluechanged="saleManChangedBat" oncloseclick="onCloseClick"/> 
                  </td>
             </tr> 
             <tr >
@@ -199,7 +199,7 @@
                 <td >
                    <input  property="editor" enabled="true" dataField="memList" id="ItemSale2"
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url=""  emptyText="" onvaluechanged="saleManIdBat2"  vtype="required" oncloseclick="onCloseClick"/> 
+                             url=""  emptyText="" onvaluechanged="saleManChangedBatP"  vtype="required" oncloseclick="onCloseClick"/> 
                  </td>
             </tr>
             <tr>

@@ -280,6 +280,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link36</targetConnections>
+    <targetConnections>link39</targetConnections>
     <location x="135" y="80"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
@@ -723,7 +724,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link35</targetConnections>
-    <location x="61" y="81"/>
+    <location x="62" y="132"/>
     <size height="28" width="28"/>
     <nodeLabel>assign7label</nodeLabel>
     <process:copy>
@@ -732,15 +733,30 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="59" y="117"/>
+    <location x="60" y="168"/>
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="queryEntitiesByCriteriaEntity" displayName="queryEntitiesByCriteriaEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link35" name="link35" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>invokePojo6</sourceNode>
       <targetNode>assign7</targetNode>
-      <process:transitionCondition/>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">parts</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link39" name="link39" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo6</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link34</targetConnections>
     <location x="-15" y="81"/>
@@ -769,7 +785,7 @@
       <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link37</targetConnections>
-    <location x="61" y="165"/>
+    <location x="62" y="202"/>
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
     <process:copy>
@@ -782,7 +798,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="56" y="201"/>
+    <location x="57" y="238"/>
     <figSize height="17" width="39"/>
     <node>assign10</node>
   </nodes>

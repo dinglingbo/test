@@ -31,6 +31,10 @@ pageEncoding="UTF-8" session="false" %>
         </table>
     </div>
 
+
+
+
+
     <div class="nui-fit">
         <div id="investGrid" class="nui-datagrid" style="width:100%;height:100%;"
         pageSize="50"
@@ -71,9 +75,10 @@ pageEncoding="UTF-8" session="false" %>
     function newEvent(){
              nui.open({
              url: webPath + contextPath  + "/manage/guestMarketing/couponMgr_edit.jsp",
-             title: "添加评论",
-             width: 800, 
-             height: 450,
+             title: "新增优惠券",
+             width: 1000, 
+             height: 500,
+             allowResize:false,
              onload: function () {
              },
              ondestroy: function (action) {

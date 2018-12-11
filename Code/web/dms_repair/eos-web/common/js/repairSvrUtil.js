@@ -304,12 +304,12 @@ function svrSetWorkersBatch(params, callback, unmaskcall){
 	});
 }
 
-//套餐销售员
-var svrSetPkgSaleMansBatchUrl = window._rootRepairUrl + "";
+//批量设置销售员
+var svrSetSaleMansBatchUrl = window._rootRepairUrl + "com.hsapi.repair.repairService.crud.setSalersBatch.biz.ext";
 function svrSetPkgSaleMansBatch(params, callback, unmaskcall){
     var data = params.data||{};
     doPost({
-		url : svrSetPkgSaleMansBatchUrl,
+		url : svrSetSaleMansBatchUrl,
 		data : data,
 		success : function(data) {
 			callback && callback(data);

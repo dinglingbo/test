@@ -48,6 +48,10 @@ var advancedMorePartWin = null;
 var advancedCardTimesWin = null;
 var advancedPkgRateSetWin = null;
 var advancedItemPartRateSetWin = null;
+var advancedPkgWorkersSetWin = null;
+var advancedPkgSaleMansSetWin = null;
+var advancedItemWorkersSetWin = null;
+var advancedItemPartSaleManSetWin = null;
 var cardTimesGrid = null;
 var advancedMemCardWin = null;
 var memCardGrid = null;
@@ -108,6 +112,11 @@ $(document).ready(function ()
     advancedCardTimesWin = nui.get("advancedCardTimesWin");
     advancedPkgRateSetWin = nui.get("advancedPkgRateSetWin");
     advancedItemPartRateSetWin = nui.get("advancedItemPartRateSetWin");
+    advancedPkgWorkersSetWin = nui.get("advancedPkgWorkersSetWin");
+    advancedPkgSaleMansSetWin = nui.get("advancedPkgSaleMansSetWin");
+    advancedItemWorkersSetWin = nui.get("advancedItemWorkersSetWin");
+    advancedItemPartSaleManSetWin = nui.get("advancedItemPartSaleManSetWin");
+    
     carCheckInfo = nui.get("carCheckInfo");
     carSellPointInfo = nui.get("carSellPointInfo");
     cardTimesGrid = nui.get("cardTimesGrid");
@@ -300,6 +309,11 @@ $(document).ready(function ()
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
         nui.get("checkManId").setData(memList);
+        nui.get("combobox3").setData(memList);
+        nui.get("pkgSale").setData(memList);
+        nui.get("combobox4").setData(memList);
+        nui.get("ItemSale1").setData(memList);
+        nui.get("ItemSale2").setData(memList);
     });
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
@@ -2136,6 +2150,381 @@ function surePkgRateSetWin(){
         }
     } 
 }
+
+//施工员
+function closePkgWorkersSetWin(){
+    advancedPkgWorkersSetWin.hide();
+}
+
+//施工员
+function setPkgWorkers(){
+	nui.get("combobox3").setText("");
+    var main =  billForm.getData();
+    if(!main.id){
+        return;
+    }else{
+        var status = main.status||0;
+        if(status == 2){
+            showMsg("工单已完工,不能修改!","W");
+            return;
+        }else{
+        	workerIdsBat = "";
+        	workerNamesBat = "";
+            advancedPkgWorkersSetWin.show();
+        }
+    }
+}
+//施工员
+function surePkgWorkersSetWin(){
+    var data =  billForm.getData();
+    var serviceId = 0;
+    if(!data.id){
+        return;
+    }else{
+        var status = data.status||0;
+        if(status == 2){
+            showMsg("工单已完工,不能修改!","W");
+            advancedPkgRateSetWin.hide();
+            return;
+        }else{
+            var isSettle = data.isSettle||0;
+            if(isSettle == 1){
+                showMsg("工单已结算,不能修改!","W");
+                return;
+            }
+            if(workerIdsBat=="" || workerIdsBat==null){
+            	showMsg("请选择施工员!","W");
+                return;
+            }
+            serviceId = data.id||0;
+            nui.mask({
+                el: document.body,
+                cls: 'mini-mask-loading',
+                html: '处理中...'
+            });
+            var params = {
+                data:{
+                    serviceId:data.id||0,
+                    workerIds:workerIdsBat,
+                    workers:workerNamesBat,
+                    type:"package"
+                }
+            };
+            svrSetWorkersBatch(params, function(data){
+                data = data||{};
+                var errCode = data.errCode||"";
+                var errMsg = data.errMsg||"";
+                if(errCode == 'S'){
+                    var p1 = {
+                        interType: "package",
+                        data:{
+                            serviceId: serviceId||0
+                        }
+                    }
+                    var p2 = {
+                    }
+                    var p3 = {
+                    }
+                    loadDetail(p1, p2, p3);
+
+                    advancedPkgWorkersSetWin.hide();
+                }else{
+                    showMsg(errMsg||"批量修改施工员失败!!","E");
+                }
+                nui.unmask(document.body);
+            }, function(){
+                nui.unmask(document.body);
+            });
+        }
+    } 
+}
+
+//套餐销售员
+function closePkgSaleMansSetWin(){
+	advancedPkgSaleMansSetWin.hide();
+}
+function setPkgSaleMans(){
+    var main =  billForm.getData();
+    if(!main.id){
+        return;
+    }else{
+        var status = main.status||0;
+        if(status == 2){
+            showMsg("工单已完工,不能修改!","W");
+            return;
+        }else{
+        	saleManIdBat = "";
+        	saleManNameBat = "";
+            advancedPkgSaleMansSetWin.show();
+        }
+    }
+}
+
+function surePkgSaleMansSetWin(){
+    var data =  billForm.getData();
+    var serviceId = 0;
+    if(!data.id){
+        return;
+    }else{
+        var status = data.status||0;
+        if(status == 2){
+            showMsg("工单已完工,不能修改!","W");
+            advancedPkgRateSetWin.hide();
+            return;
+        }else{
+            var isSettle = data.isSettle||0;
+            if(isSettle == 1){
+                showMsg("工单已结算,不能修改!","W");
+                return;
+            }
+            serviceId = data.id||0;
+            nui.mask({
+                el: document.body,
+                cls: 'mini-mask-loading',
+                html: '处理中...'
+            });
+            
+            var params = {
+                data:{
+                    serviceId:data.id||0,
+                    saleMan:saleManNameBat,
+                    saleManId:saleManIdBat,
+                    type:"package"
+                }
+            };
+            svrSetPkgSaleMansBatch(params, function(data){
+                data = data||{};
+                var errCode = data.errCode||"";
+                var errMsg = data.errMsg||"";
+                if(errCode == 'S'){
+                    var p1 = {
+                        interType: "package",
+                        data:{
+                            serviceId: serviceId||0
+                        }
+                    }
+                    var p2 = {
+                    }
+                    var p3 = {
+                    }
+                    loadDetail(p1, p2, p3);
+
+                    advancedPkgSaleMansSetWin.hide();
+                }else{
+                    showMsg(errMsg||"批量修改销售员失败!!","E");
+                }
+                nui.unmask(document.body);
+            }, function(){
+                nui.unmask(document.body);
+            });
+        }
+    } 
+}
+
+//批量设置配件工时销售员
+function setItemSaleMan(){
+    var main =  billForm.getData();
+    if(!main.id){
+        return;
+    }else{
+        var status = main.status||0;
+        if(status == 2){
+            showMsg("工单已完工,不能修改!","W");
+            return;
+        }else{
+        	/*saleManIdBat="";
+        	saleManBat="";
+        	saleManIdBat2="";
+        	saleManBat2="";*/
+        	advancedItemPartSaleManSetWin.show();
+        }
+    }
+}
+function closeItemPartSaleManSetWin(){
+	advancedItemPartSaleManSetWin.hide();
+}
+function sureItemPartSaleManSetWin(){
+    var data =  billForm.getData();
+    var serviceId = 0;
+    if(!data.id){
+        return;
+    }else{
+        var status = data.status||0;
+        if(status == 2){
+            showMsg("工单已完工,不能修改!","W");
+            advancedItemPartSaleManSetWin.hide();
+            return;
+        }else{
+            var isSettle = data.isSettle||0;
+            if(isSettle == 1){
+                showMsg("工单已结算,不能修改!","W");
+                return;
+            }
+            serviceId = data.id||0;
+            nui.mask({
+                el: document.body,
+                cls: 'mini-mask-loading',
+                html: '处理中...'
+            });
+           
+            if(saleManIdBat){
+            	if(saleManIdBat2){
+            		var params = {
+                            data:{
+                                serviceId:data.id||0,
+                                saleMan: saleManNameBat,
+                                saleManId: saleManIdBat,
+                                partSaleMan:saleManNameBat2,
+                                partSaleManId:saleManIdBat2,
+                                type:"itemPart"
+                            }
+                        };
+            	}else{
+            		var params = {
+                            data:{
+                                serviceId:data.id||0,
+                                saleMan: saleManNameBat,
+                                saleManId: saleManIdBat,
+                                type:"item"
+                            }
+                        };
+            	}
+            }else{
+            	if(saleManIdBat2){
+            		var params = {
+                            data:{
+                            	 serviceId:data.id||0,
+                                 partSaleMan:saleManNameBat2,
+                                 partSaleManId:saleManIdBat2,
+                                 type:"part"
+                            }
+                        };
+            	}else{
+            		showMsg("请选择销售员","W");
+            		return;
+            	}
+            }
+            svrSetPkgSaleMansBatch(params, function(data){
+                data = data||{};
+                var errCode = data.errCode||"";
+                var errMsg = data.errMsg||"";
+                if(errCode == 'S'){
+                    
+                    var p1 = {
+                    }
+                    var p2 = {
+                        interType: "item",
+                        data:{
+                            serviceId: serviceId||0
+                        }
+                    }
+                    var p3 = {
+                        interType: "part",
+                        data:{
+                            serviceId: serviceId||0
+                        }
+                    }
+                    loadDetail(p1, p2, p3);
+
+                    advancedItemPartSaleManSetWin.hide();
+                }else{
+                    showMsg(errMsg||"批量修改销售员失败!","E");
+                }
+                nui.unmask(document.body);
+            }, function(){
+                nui.unmask(document.body);
+            });
+        }
+    } 
+}
+
+//工时施工员
+function closeItemWorkersSetWin(){
+    advancedItemWorkersSetWin.hide();
+}
+
+function setItemWorkers(){
+	nui.get("combobox4").setText("");
+    var main =  billForm.getData();
+    if(!main.id){
+        return;
+    }else{
+        var status = main.status||0;
+        if(status == 2){
+            showMsg("工单已完工,不能修改!","W");
+            return;
+        }else{
+        	workerIdsBat = "";
+        	workerNamesBat = "";
+            advancedItemWorkersSetWin.show();
+        }
+    }
+}
+
+function sureItemWorkersSetWin(){
+    var data =  billForm.getData();
+    var serviceId = 0;
+    if(!data.id){
+        return;
+    }else{
+        var status = data.status||0;
+        if(status == 2){
+            showMsg("工单已完工,不能修改!","W");
+            advancedPkgRateSetWin.hide();
+            return;
+        }else{
+            var isSettle = data.isSettle||0;
+            if(isSettle == 1){
+                showMsg("工单已结算,不能修改!","W");
+                return;
+            }
+            if(workerIdsBat=="" || workerIdsBat==null){
+            	showMsg("请选择施工员!","W");
+                return;
+            }
+            serviceId = data.id||0;
+            nui.mask({
+                el: document.body,
+                cls: 'mini-mask-loading',
+                html: '处理中...'
+            });
+            var params = {
+                    data:{
+                        serviceId:data.id||0,
+                        workerIds:workerIdsBat,
+                        workers:workerNamesBat,
+                        type:"item"
+                    }
+                };
+            svrSetWorkersBatch(params, function(data){
+                data = data||{};
+                var errCode = data.errCode||"";
+                var errMsg = data.errMsg||"";
+                if(errCode == 'S'){
+                    var p2 = {
+                        interType: "item",
+                        data:{
+                            serviceId: serviceId||0
+                        }
+                    }
+                    var p1 = {
+                    }
+                    var p3 = {
+                    }
+                    loadDetail(p1, p2, p3);
+
+                    advancedItemWorkersSetWin.hide();
+                }else{
+                    showMsg(errMsg||"批量修改施工员失败!!","E");
+                }
+                nui.unmask(document.body);
+            }, function(){
+                nui.unmask(document.body);
+            });
+        }
+    } 
+}
+
 function setItemPartRate(){
     var main =  billForm.getData();
     if(!main.id){
@@ -4314,4 +4703,62 @@ function chooseContactor(){
          }
      });
 }
+
+var workerIdsBat = "";
+var workerNamesBat = "";
+function onworkerChangedBat(e){
+	workerNamesBat = e.value;
+    var obj = e.sender;
+    var rows = e.selecteds;
+    var workerIds = "";
+    var workerIdList = [];
+    if(!rows || rows.length==0){
+        workerIds = "";
+    }else{
+        for(var i=0; i<rows.length; i++){
+            var row = rows[i];
+            var empId = row.empId;
+            workerIdList.push(empId);
+        }
+
+        if(workerIdList&&workerIdList.length>0){
+            workerIds = workerIdList.join(",");
+        }else{
+            workerIds = "";
+        }
+    }
+    workerIdsBat = workerIds;
+}
+
+var saleManIdBat = "";
+var saleManNameBat = "";
+function saleManChangedBat(e){
+	saleManNameBat = e.value;
+    var row = e.selected;
+    var saleManId = 0;
+    if(!row){
+        saleManId = 0;
+    }else{
+        saleManId = row.empId;
+    }
+    saleManIdBat = saleManId;
+}
+
+
+var saleManIdBat2 = "";
+var saleManNameBat2 = "";
+function saleManChangedBatP(e){
+	saleManNameBat2 = e.value;
+    var row = e.selected;
+    var saleManId = 0;
+    if(!row){
+        saleManId = 0;
+    }else{
+        saleManId = row.empId;
+    }
+    saleManIdBat2 = saleManId;
+}
+
+
+
 

@@ -184,7 +184,7 @@
                 <td >
                    <input  property="editor" enabled="true" dataField="memList" id="pkgSale"
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url="" onvaluechanged="onsalemanChangedBat" emptyText=""  vtype="required" oncloseclick="onCloseClick"/> 
+                             url="" onvaluechanged="saleManChangedBat" emptyText=""  vtype="required" oncloseclick="onCloseClick"/> 
                  </td>  
             </tr>
             <tr >

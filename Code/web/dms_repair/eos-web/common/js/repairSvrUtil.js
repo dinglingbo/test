@@ -443,10 +443,10 @@ function doSelectPart(itemId,dock, dodelck, docck, callback) {
 }
 
 
-
+//com.hsweb.repair.DataBase.RepairItemMain.flow
 function doSelectItem(dock, dodelck, docck, param, callback) {
 	nui.open({
-		url : webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemMain.flow?token=" + token,
+		url : webPath + contextPath + "/com.hsweb.repair.DataBase.itemChoose.flow?token=" + token,
 		title : "维修项目",
 		width : 1000,
 		height : 560,

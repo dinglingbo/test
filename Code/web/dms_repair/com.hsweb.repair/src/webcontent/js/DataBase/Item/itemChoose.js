@@ -31,22 +31,11 @@ $(document).ready(function()
 	data.forEach(function(v) {
 		typeHash[v.customid] = v;
 	});
-	// getDatadictionaries(parentId,function(data)
-	// {
-	// 	var list = data.list||[];
-	// 	tree1.loadList(list);
-	// });
-	// var parentId1 = "DDT20130703000057";
-	// getDatadictionaries(parentId1,function(data)
-	// {
-	// 	var list = data.list||[];
-	// 	var itemKind = nui.get("itemKind");
-	// 	itemKind.setData(list);
-	// });
+
 	 initCarBrand("carBrandId",function()
 	 {
 	 });
-    // initDicts({"costType": COST_TYPE});
+
 	tree1.on("nodedblclick",function(e)
 	{
 		var node = e.node;
@@ -123,22 +112,22 @@ $(document).ready(function()
            
         }
       };
-	tree1.on("rowclick",function(e){
-		nui.get("editItemType").enable();
-	});
-	rightGrid.on("rowclick",function(e){
-		nui.get("editItemType").disable();
-	});
-	init();
-	tree1.on("nodeclick",function(e){
-		itemGrid.show();
-    	rightGrid.hide();
-    });
-});
 
-function init()
-{
-    var treeUrl = baseUrl+"com.hsapi.system.product.items.getHotWord.biz.ext";
+	tree1.on("nodeclick",function(e){
+		itemGrid.hide();
+    	rightGrid.show();
+    	var serviceLabel =document.getElementById("serviceLabel");
+    	serviceLabel.style.display="";
+
+    	var itemCodeLabel =document.getElementById("itemCodeLabel");
+    	itemCodeLabel.style.display="";
+    	
+    	nui.get("serviceTypeId").setVisible(true);
+    	nui.get("search-code").setVisible(true);
+    	
+    });
+	
+	var hotUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getHotWord.biz.ext";
     tree = nui.get("tree");
     tree.on("load",function(e)
     {
@@ -148,16 +137,7 @@ function init()
             treeHash[v.id] = v;
         });
     });
-  //  tree.on("beforeload",function(e){
-//    	var types = "01";
-//    	if(type == "pkg"){
-//    		types = "01";
-//    	}else if(type == "item"){
-//    		types = "02";
-//    	}
-//    	e.data.type = "02";
-//    });
- //   tree.setUrl(treeUrl);
+    tree.setUrl(hotUrl);
     tree.on("preload",function(e){
     	tree.setData([]);
     	var data = e.result.rs||[];
@@ -190,9 +170,21 @@ function init()
 
     });
     tree.on("nodeclick",function(e){
-    	rightGrid.show();
-    	itemGrid.hide();
+    	rightGrid.hide();
+    	itemGrid.show();
+
+    	var serviceLabel =document.getElementById("serviceLabel");
+    	serviceLabel.style.display="none";
+
+    	var itemCodeLabel =document.getElementById("itemCodeLabel");
+    	itemCodeLabel.style.display="none";
+    	
+    	nui.get("serviceTypeId").setVisible(false);
+    	nui.get("search-code").setVisible(false);
     });
+});
+function setRoleId(){
+	return {"token":token};
 }
 
 function onClear(){
@@ -267,14 +259,7 @@ function getData()
 function setData(data)
 {
 	list = data.list||[];
-	//nui.get("add").hide();
-	nui.get("update").hide();
-	nui.get("addItemType").hide();
-	nui.get("editItemType").hide();
-	rightGrid.hideColumn("isDisabled");
-	rightGrid.hideColumn("isShare");
-	document.getElementById('sep').style.display = "none";  
-	nui.get("selectBtn").show();
+
 	isOpenWin = 1;
 }
 var callback = null;
@@ -288,8 +273,8 @@ function setViewData(ck, delck, cck){
 	delcallback = delck;
 	ckcallback = cck;
 	rightGrid.setWidth("70%");
-	tempGrid.setStyle("display:inline");
-	document.getElementById("splitDiv").style.display="";
+	//tempGrid.setStyle("display:inline");
+	//document.getElementById("splitDiv").style.display="";
 }
 
 function getDataAll(){

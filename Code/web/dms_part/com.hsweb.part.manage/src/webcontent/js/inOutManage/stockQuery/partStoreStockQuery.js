@@ -26,7 +26,7 @@ var billStatusHash = {
     "2":"已过账",
     "3":"已取消"
 };
-var UpOrDownList=[{id:0,"name" :"低于下限"},{id:1,"name" :"高于上限"}]
+var UpOrDownList=[{id:1,"name" :"低于下限"},{id:2,"name" :"高于上限"}]
 $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
@@ -109,10 +109,10 @@ function getSearchParam(){
     if(showZero == 0){
         params.notShowAll = 1;
     }
-    if(upOrDown == 1){
+    if(upOrDown == 2){
         params.showUp = 1;
     }
-    if(upOrDown ==0){
+    if(upOrDown ==1){
     	 params.showDown = 1;
     }
     params.partNameAndPY = nui.get("comPartNameAndPY").getValue();

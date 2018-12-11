@@ -8,7 +8,7 @@
 -->
 <head>
 <title>安全库存设置</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockSet.js?v=1.0.8"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockQuery/partStoreStockSet.js?v=1.0.14"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -65,14 +65,26 @@
                            showNullItem="false"
                            nullItemText="请选择..."/>
                 <input id="storeShelf" width="120px" emptyText="仓位" class="nui-textbox"/>
+                <input id="upOrDown"
+                           name="upOrDown"
+                           class="nui-combobox width1"
+                           textField="name"
+                           valueField="id"
+                           emptyText="库存上下限"
+                           url=""
+                           data="UpOrDownList"
+                           valueFromSelect="true"
+                           allowInput="true"
+                           showNullItem="true"
+                           nullItemText="请选择..."/>
                 <input id="partId" width="80px" visible="false" emptyText="配件ID" class="nui-textbox"/>
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">显示零库存：</label>
                 <input class="nui-checkbox" id="showAll" trueValue="1" falseValue="0"/>
-                   <label style="font-family:Verdana;">显示高于库存上限：</label>
-                <input class="nui-checkbox" id="showUp" trueValue="1" falseValue="0"/>
-                <label style="font-family:Verdana;">显示低于库存下限：</label>
-                <input class="nui-checkbox" id="showDown" trueValue="1" falseValue="0"/>
+<!--                    <label style="font-family:Verdana;">显示高于库存上限：</label> -->
+<!--                 <input class="nui-checkbox" id="showUp" trueValue="1" falseValue="0"/> -->
+<!--                 <label style="font-family:Verdana;">显示低于库存下限：</label> -->
+<!--                 <input class="nui-checkbox" id="showDown" trueValue="1" falseValue="0"/> -->
                 <span class="separator"></span>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>

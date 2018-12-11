@@ -87,8 +87,8 @@
             <div headerAlign="center" type="indexcolumn" width="15">序号</div>
             <div field="partName" headerAlign="center" allowSort="true" visible="true" width="60">配件名称</div>
             <div field="qty" headerAlign="center" allowSort="true" visible="true" width="15" datatype="float" align="center">数量</div>
-            <div field="pickQty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="center">已领取</div>
-            <div field="notPickQty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="center">未领取</div>
+            <div field="pickQty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="center">已出库</div>
+            <div field="notPickQty" headerAlign="center" allowSort="true" visible="true" width="20" datatype="float" align="center">未出库</div>
         </div>
     </div>
   </div> 

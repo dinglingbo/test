@@ -71,7 +71,7 @@
                     <a class="nui-button" iconCls="" plain="true" onclick="query"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 					<span class="separator"></span>
 					<a class="nui-button" plain="true" iconCls="" onclick="print()"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
-					<a class="nui-button" plain="true" iconCls="" onclick="export()"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</span>
+					<!-- <a class="nui-button" plain="true" iconCls="" onclick="export()"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</span> -->
 				</td>
 			</tr>
 		</table>

@@ -19,16 +19,18 @@ $(document).ready(function()
 });
 function init(callback)
 {
-	var addEditCustomerPage = nui.get("addEditCustomerPage");
     basicInfoForm = new nui.Form("#basicInfoForm");
     contactInfoForm = new nui.Form("#contactInfoForm");
     carInfoFrom = new nui.Form("#carInfoFrom");
     provice = nui.get("provice");
     cityId = nui.get("cityId");
     var hash = {};
-    addEditCustomerPage.mask({
-        html:'数据加载中..'
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
     });
+   
     var checkComplete = function()
     {
     	var keyList = ['initInsureComp','initDicts'];
@@ -41,7 +43,7 @@ function init(callback)
         }
         setContactByIdx(0);
         setCarByIdx(0);
-        addEditCustomerPage.unmask();
+        nui.unmask(document.body);
         callback && callback();
     };
     initInsureComp("insureCompCode",function(){

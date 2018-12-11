@@ -157,7 +157,7 @@ function addOrEdit(item){
 		url:webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemDetail.flow?token="+token,
 		title:"维修项目",
 		width:600,
-		height:400,
+		height:430,
 		allowResize:false,
 		onload: function()
 		{

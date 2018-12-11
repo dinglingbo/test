@@ -96,7 +96,7 @@
                         </td>
 
                         <td class="form_label">
-                            <label><font color="red">业务类型：</font></label>
+                            <label><font >业务类型：</font></label>
                         </td>
                         <td>
                             <input class="nui-combobox" id="serviceTypeId" name="serviceTypeId" textField="name" valueField="id" required="true" />

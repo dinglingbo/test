@@ -25,7 +25,7 @@
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                              url="" onvaluechanged="onPkgTypeIdValuechanged" emptyText=""  vtype="required" /> 
                 </div>
-                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" name="itemItemTime">工时/数量
+                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime">工时/数量
                 </div>
                 <div field="amt" headerAlign="center" name="pkgAmt"
                      allowSort="false" visible="true" width="60" header="原价" align="center">
@@ -165,7 +165,7 @@
     </div>
 </div> 
 <div id="advancedPkgSaleMansSetWin" class="nui-window"
-     title="批量设置套餐销售员" style="width:350px;height:200px;"
+     title="批量设置套餐销售员" style="width:300px;height:150px;"
      showModal="true"
      showHeader="false"
      allowResize="false"

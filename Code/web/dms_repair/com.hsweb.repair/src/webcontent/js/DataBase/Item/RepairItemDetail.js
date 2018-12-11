@@ -9,7 +9,7 @@ var servieTypeHash = {};
 var serviceTypeIdEl = null;
 var requiredField = {
 	name: "项目名称",
-	serviceTypeId: "业务类型",
+	//serviceTypeId: "业务类型",
 	type: "项目类型",
 	code: "项目编码"
 	//carModelId: "车型"
@@ -159,6 +159,10 @@ function onOk(){
             showMsg(requiredField[key]+"不能为空!", "W");
             return;
         }
+	}
+	if(!nui.get("serviceTypeId").getValue()) {
+		showMsg("业务类型不能为空!", "W");
+        return;
 	}
 
 	deductForm.validate();

@@ -3,7 +3,7 @@
  */
 var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryPackage.biz.ext";
-var typeGrid2Url = apiPath + repairApi +"/com.hsapi.system.product.items.getPrdtType.biz.ext";
+var typeGrid2Url = apiPath + sysApi +"/com.hsapi.system.product.items.getPrdtType.biz.ext";
 var packageGridUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getPackage.biz.ext";
 var grid = null;
 var sti = "";
@@ -33,6 +33,8 @@ $(document).ready(function(v) {
 	grid.on("beforeload",function(e){
         e.data.token = token;
 	});
+	
+	packageGrid.hide();
 	
 	var formData = new nui.Form("#queryform").getData(false, false);
 	grid.load(formData);

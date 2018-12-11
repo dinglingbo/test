@@ -5,12 +5,12 @@
     <select id="getPrdtType" parameterClass="HashMap" resultClass="HashMap">
     	SELECT id, parentId, customId = code, typeId, carBrandId, hsid, name
 		FROM dbo.ST_PrdtType 
-		where 
+		where 1 = 1
 			<isNull property="carBrandId">
-				ISNULL(carBrandId, '') = ''
+				and ISNULL(carBrandId, '') = ''
 			</isNull>
 			<isNotNull property="carBrandId">
-				ISNULL(carBrandId, #carBrandId#) = #carBrandId#
+				and ISNULL(carBrandId, #carBrandId#) = #carBrandId#
 			</isNotNull>
 			
 			<isNotNull property="type">

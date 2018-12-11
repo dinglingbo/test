@@ -416,7 +416,6 @@ function doShowCarInfo(params) {
 
 function doSelectPart(itemId,dock, dodelck, docck, callback) {
 	nui.open({
-		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.part.common.partSelectView.flow?token=" + token,
 		title : "配件管理",
 		width : 1000, 

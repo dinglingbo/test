@@ -27,6 +27,7 @@ $(document).ready(function()
 	advancedAddWin = nui.get("advancedAddWin");
 	advancedAddForm  = new nui.Form("#advancedAddForm");
 	tempGrid = nui.get("tempGrid");
+	itemGrid.hide();
 	
 	var parentId = "DDT20130703000063";
     tree1.setUrl(treeUrl+"?p/rootId=DDT20130703000063&token="+token);

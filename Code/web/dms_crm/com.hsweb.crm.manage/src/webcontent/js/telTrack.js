@@ -239,7 +239,7 @@ function addRow() {
     }
     nui.open({
         url: webPath + contextPath + "/repair/RepairBusiness/BookingManagement/BookingManagementEdit.jsp?token="+token,
-        title: "新增预约", width: 655, height: 400,
+        title: "新增预约", width: 750, height: 400,
         onload: function () {
             var iframe = this.getIFrameEl();
             var data = {};

@@ -47,7 +47,7 @@
 
     <div class="nui-fit" style=" width: 100%;  ">
         <div showCollapseButton="false" style="border:0; ">
-	     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+	     <div class="nui-toolbar" style="padding:0px;">
             <table style="width:80%;">
                 <tr>
                 <td style="width:80%;">

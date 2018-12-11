@@ -22,7 +22,7 @@
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                              url="" onvaluechanged="onValueChangedItemTypeId" emptyText=""  vtype="required"/> 
                 </div>
-                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" name="itemItemTime">工时/数量
+                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime">工时/数量
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedComQty" selectOnFocus="true"/>
                 </div>
                 <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
@@ -137,7 +137,7 @@
 </div>   
 
 <div id="advancedItemWorkersSetWin" class="nui-window"
-     title="批量设置工时施工员" style="width:300px;height:150px;"
+     title="批量设置项目施工员" style="width:300px;height:150px;"
      showModal="true"
      showHeader="false"
      allowResize="false"
@@ -146,12 +146,12 @@
         <table style="width: 100%;height: 100%;">
             <tr >
                 <td colspan="2"  style="text-align: left;">
-                    <label style="color: #9e9e9e;">批量设置工时施工员</label>
+                    <label style="color: #9e9e9e;">批量设置项目施工员</label>
                 </td>
             </tr>
             <tr >
                 <td style="text-align: right;">
-                    工时施工员：
+                   项目施工员：
                 </td>
                 <td >
                  <div id="combobox4" property="editor" class="mini-combobox" style="width:200px;"  popupWidth="100" textField="empName" valueField="empName" 
@@ -184,7 +184,7 @@
             </tr>
             <tr >
                 <td style="text-align: right;">
-                    工时销售员：
+                    项目销售员：
                 </td>
                 <td >
                    <input  property="editor" enabled="true" dataField="memList" id="ItemSale1"

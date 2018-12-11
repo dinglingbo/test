@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单模板设置详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/addQuickBill.js?v=1.0.12"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/addQuickBill.js?v=1.0.13"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     

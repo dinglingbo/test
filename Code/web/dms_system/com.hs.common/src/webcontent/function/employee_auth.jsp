@@ -32,13 +32,13 @@
 			<table id="employeeToolBar">
 				<tr>
 					<td style="width:1px;"></td>
-					<td style="width:60px;"><a id="btn_save" class="nui-button" iconCls="icon-save" onclick="saving();">保存</a></td>
+					<td style="width:60px;"><a id="btn_save" class="nui-button" iconCls="" onclick="saving();"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a></td>
 					<td></td>
-					<td style="width:60px; text-align:right;">机构名称：</td>
+					<td style="width:80px; text-align:right;">机构名称：</td>
 					<td style="width:100px;">
 						<input class="nui-textbox" id="orgname" name="orgname" emptyText="机构名称" style="width:100px;" />
 					</td>
-					<td style="width:60px; text-align:right;">员工姓名：</td>
+					<td style="width:80px; text-align:right;">员工姓名：</td>
 					<td style="width:100px;">
 						<input class="nui-textbox" id="empname" name="empname" emptyText="员工姓名" style="width:100px;" />
 					</td>

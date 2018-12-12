@@ -751,7 +751,6 @@ function doSetMainInfo(car){
     mitemRate = 0;
     mpartRate = 0;
 
-    $("#lastComeKilometers").html(car.lastComeKilometers);
     billForm.setData(maintain);
     nui.get("contactorName").setText(car.contactName);
     sendGuestForm.setData(maintain);
@@ -767,6 +766,31 @@ function doSetMainInfo(car){
     $("#guestNameEl").html(car.guestFullName);
     $("#showCarInfoEl").html(car.carNo);
     $("#guestTelEl").html(car.guestMobile);
+    if(car.id){
+    	var lastComeKilometersUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCarExtend.biz.ext";
+    	var json = nui.encode({
+    		carId:car.id,
+    		token:token
+    	});
+    	 //查找上次里程
+        nui.ajax({
+    		url : lastComeKilometersUrl,
+    		type : 'POST',
+    		data : json,
+    		cache : false,
+    		contentType : 'text/json',
+    		success : function(text) {
+    			var returnJson = nui.decode(text);
+    			if (returnJson.errCode == "S") {
+    				var data = returnJson.data;
+    				var lastComeKilometers = data.lastComeKilometers || 0;
+    				$("#lastComeKilometers").html(lastComeKilometers);
+    			} else {
+    				showMsg(returnJson.errMsg||"查询上次里程失败","E");
+    		    }
+    		}
+    	 });
+    }
 }
 
 function setInitData(params){

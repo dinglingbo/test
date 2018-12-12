@@ -103,7 +103,7 @@
     <div class="nui-toolbar" style="padding:2px;height:30px">
     <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
         <tr>            
-            <td>
+            <td >
                 <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
                     style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
                     id="search_key" url="" value="carNo"   searchField="key" 
@@ -122,7 +122,7 @@
                 class="nui-textbox"
                 emptyText="车牌号/客户名称/手机号/VIN码"
                 onbuttonclick="onSearchClick()"
-                width="200px"
+                width="500px"
                 visible="false"
                 enabled="false"
                 showClose="false"

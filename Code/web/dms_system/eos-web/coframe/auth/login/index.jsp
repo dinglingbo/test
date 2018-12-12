@@ -143,7 +143,7 @@
 	<div id="tu" style="overflow-y:auto;overflow-x:auto; width:800px; height:50px;">
     	<a><img class="icon" src="<%=webPath + contextPath%>/coframe/auth/images/icon.jpg" /></a>
     </div>
-    <div id="mainMenu" style="overflow-y:auto;overflow-x:auto; width:800px; height:600px;">
+    <div id="mainMenu" style="overflow:auto; width:800px;">
     	
     </div>
 </div>
@@ -216,6 +216,8 @@
 
 <script>
 
+
+document.getElementById("mainMenu").style.height = (document.documentElement.clientHeight-50) + 'px'
     var defDomin = "<%=request.getContextPath()%>";
     var baseUrl = apiPath + repairApi + "/";
     var mainTabs = mini.get("mainTabs");

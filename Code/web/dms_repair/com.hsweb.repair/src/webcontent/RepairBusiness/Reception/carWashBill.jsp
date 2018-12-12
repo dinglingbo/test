@@ -94,18 +94,54 @@
 
     .showhealthcss{color: #5a78a0;padding:3px 20px;border: 1px solid;}
 
+	#search{
+		font-size:15px;
+		left:200px;
+		top:-25px;
+		text-align:center;
+		z-index:2;
+		width: 140px;
+	    height: 35px;
+	    background: #368bf4;
+	    position: relative;
+	    -moz-border-radius: 12px;
+	    -webkit-border-radius: 12px;
+	    border-radius: 12px;
+	}
+/* 	#comment_bubble {
+    width: 140px;
+    height: 100px;
+    background: #088cb7;
+    position: relative;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+} */
+  
+#search:before {
+    content: "";
+    width: 0;
+    height: 0;
+    right: 100%;
+    top: 10px;
+    position: absolute;
+    border-top: 8px solid transparent;
+    border-right: 20px solid #368bf4;
+    border-bottom: 8px solid transparent;
+} 
+
 </style>
 </head>
 <body>
 
 
 
-    <div class="nui-toolbar" style="padding:2px;height:30px">
+    <div class="nui-toolbar" style="padding:2px;height:40px">
     <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
         <tr>            
-            <td >
+            <td style="height: 40px;">
                 <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
-                    style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
+                    style="width:350px;height: 40px !important;"  popupWidth="600" textField="text" valueField="id" 
                     id="search_key" url="" value="carNo"   searchField="key" 
                     dataField="list" placeholder="请输入...">     
                     <div property="columns">
@@ -119,10 +155,11 @@
                 </div>
                 <input id="search_name"
                 name="search_name"
-                class="nui-textbox"
+                class="nui-textbox aa"
                 emptyText="车牌号/客户名称/手机号/VIN码"
                 onbuttonclick="onSearchClick()"
-                width="500px"
+                width="200px"
+                height="50px"
                 visible="false"
                 enabled="false"
                 showClose="false"
@@ -130,6 +167,7 @@
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
                 <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
+                <div id="search">在这查找客户</div>
             </td>     
             <td style="text-align:right;">
                 <!-- <span id="carHealthEl" class="" style="font-family:Verdana;color:white;background:#62b900;padding:0px 8px;border-radius:90px;">车况:100</span>

@@ -27,7 +27,7 @@
     .navbar-brand
 {
     width:210px;
-    background:#367ea8;/* 20180708#fff */
+    background:#368bf4;/* 20180708#fff */
     cursor:default;
     font-size: 20px;
     font-weight: bold;    
@@ -65,6 +65,9 @@
     #_sys_tip_msg_ span.E {
         background-color: #FC4236;
     }
+    #tu{
+    	background-color: #2873b9;
+    }
     
     #_sys_tip_msg_ span.W {
         background-color: #FFCE42; /*#FFCE42  EAA000  F8D714**/
@@ -79,11 +82,17 @@
     }
     
     .menu{
-        padding-top: 40px;
+        padding-top: 0px;
     }
     .org_hover:hover{
     	text-decoration:underline
     }
+     .icon{
+    	width:80px;
+    	height:50px;
+    	float:left;
+		margin-left:0px;
+    } 
  
 </style>
 </head>
@@ -130,7 +139,12 @@
     </div>
 </div>
 <div id="toolData" class="sidebar">
-    <div id="mainMenu" style="overflow-y:auto; overflow-x:hidden; width:400px !important; height:1000px;"></div>
+	<div id="tu" style="overflow-y:hidden; overflow-x:hidden; width:400px !important; height:50px;">
+    	<a><img class="icon" src="<%=webPath + contextPath%>/coframe/auth/images/icon.jpg" /></a>
+    </div>
+    <div id="mainMenu" style="overflow-y:auto; overflow-x:hidden; width:400px !important; height:1000px;">
+    	
+    </div>
 </div>
 
 <div class="container">

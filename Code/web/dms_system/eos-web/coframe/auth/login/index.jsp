@@ -24,6 +24,10 @@
     
 
     <style type="text/css">
+	a {
+	cursor: pointer;
+	 color:black;
+}
     .navbar-brand
 {
     width:210px;
@@ -65,9 +69,6 @@
     #_sys_tip_msg_ span.E {
         background-color: #FC4236;
     }
-    #tu{
-    	background-color: #2873b9;
-    }
     
     #_sys_tip_msg_ span.W {
         background-color: #FFCE42; /*#FFCE42  EAA000  F8D714**/
@@ -79,6 +80,7 @@
     
     #toolData{
         width: 1600px;
+        heigth:1000px;
     }
     
     .menu{
@@ -90,8 +92,7 @@
      .icon{
     	width:80px;
     	height:50px;
-    	float:left;
-		margin-left:0px;
+    	overflow:auto;
     } 
  
 </style>
@@ -138,11 +139,11 @@
           </div>
     </div>
 </div>
-<div id="toolData" class="sidebar">
-	<div id="tu" style="overflow-y:hidden; overflow-x:hidden; width:400px !important; height:50px;">
+<div id="toolData" class="sidebar" >
+	<div id="tu" style="overflow-y:auto;overflow-x:auto; width:800px; height:50px;">
     	<a><img class="icon" src="<%=webPath + contextPath%>/coframe/auth/images/icon.jpg" /></a>
     </div>
-    <div id="mainMenu" style="overflow-y:auto; overflow-x:hidden; width:400px !important; height:1000px;">
+    <div id="mainMenu" style="overflow-y:auto;overflow-x:auto; width:800px; height:600px;">
     	
     </div>
 </div>

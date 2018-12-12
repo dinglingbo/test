@@ -416,3 +416,10 @@ function selectionChanged() {
 		mini.get("add").setVisible(false);
 	}
 }
+
+
+function setItemName(itemName){
+	mini.get("search-name").setValue(itemName);
+	isOpenWin = 1;
+	onSearch();
+}

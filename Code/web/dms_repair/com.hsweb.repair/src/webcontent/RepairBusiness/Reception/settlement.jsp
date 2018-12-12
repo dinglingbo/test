@@ -244,9 +244,9 @@
                     <td >&nbsp;进厂里程：<span id="enterKilometers"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;油量：<span id="enterOilMass"></span></td>
                 </tr>
                 <tr>
-                    <td height="24" id="carNo">&nbsp;车牌：</td>
+                    <td height="24" id="carNo">&nbsp;车牌号：</td>
                     <td id="carBrandModel">&nbsp;品牌车型： </td>
-                    <td id="carVin">&nbsp;车架号：</td>
+                    <td id="carVin">&nbsp;车架号(VIN)：</td>
                 </tr>
                 <tr>
                     

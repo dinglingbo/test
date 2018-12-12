@@ -4213,9 +4213,9 @@ function addExpenseAccount(){
 	if(data.id){
 		var item={};
 		item.id = "123321";
-	    item.text = "报销单";
+	    item.text = "报销单详情";
 		item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow?sourceServiceId="+data.id;
-		item.iconCls = "fa fa-cog";
+		item.iconCls = "fa fa-file-text";
 		window.parent.activeTabAndInit(item,data);
 		data.guestTel = $("#guestTelEl").text();
 		data.guestName = $("#guestNameEl").text();
@@ -4301,7 +4301,7 @@ function newCheckMain() {
     item.id = "checkPrecheckDetail";
     item.text = "查车单";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkDetail.flow";
-    item.iconCls = "fa fa-cog";
+    item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};
     params = {

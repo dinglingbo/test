@@ -112,10 +112,13 @@
 		       CarModelName, MakeTime, Remark, UseCount 
 		FROM dbo.vw_carmt_pkg_amt a WITH(NOLOCK) 
 		WHERE IsDisabled = 0 
-			
-		 	<isNotNull property="carModelId">
-				and CarModelID =  #carModelId#
+			<isNotNull property="carModelId">
+				and (a.CarModelID =  #carModelId# or a.CarModelID = '00000000')
 			</isNotNull>
+			
+			<isNull property="carModelId">
+				and ( a.CarModelID = '00000000' )
+			</isNull>
 			
 			<isNotNull property="packageTypeId">
 				AND packageTypeId = #packageTypeId#
@@ -167,12 +170,24 @@
     <!--getItem a.CarModelID =  '00009402' -->
     <select id="getItem" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT top 500 ItemID = a.ID, hsItemCode = 'hs' + ItemNameID, ItemNameID, b.TechType,  b.ServiceType, b.ItemKind, ItemName =  b.name,  ItemCode =  a.ItemCode,  Price = ItemPrice, AStandTime = ItemTime, 
-		         AStandSum = A.Amt, Amt4S, FactoryName = NULL, TypeID = NULL, MakeTime = NULL, b.UseCount, a.Remark 
+		         AStandSum = A.Amt, Amt4S, FactoryName = NULL, TypeID = NULL, MakeTime = NULL, b.UseCount, a.Remark, b.Business_Type as businessType 
 		 FROM wbstandard.dbo.ST_ItemCarModel a WITH(NOLOCK) INNER JOIN wbstandard.dbo.ST_ItemNameStd b WITH(NOLOCK) ON a.ItemNameID = b.ID 
 		 WHERE 1 = 1
 		 
 		 	<isNotNull property="carModelId">
-				and a.CarModelID =  #carModelId#
+				and (a.CarModelID =  #carModelId# or a.CarModelID = '00000000' )
+			</isNotNull>
+			
+			<isNull property="carModelId">
+				and ( a.CarModelID = '00000000' )
+			</isNull>
+			
+			<isNotNull property="businessTypes">
+				AND b.Business_Type in ($businessTypes$)
+			</isNotNull>
+			
+			<isNotNull property="businessType">
+				AND b.Business_Type =  #businessType#
 			</isNotNull>
 			
 			<isNotNull property="itemName">
@@ -186,6 +201,8 @@
 			<isNotNull property="partNameId">
 				AND b.PartNameID = #partNameId#
 			</isNotNull>
+			
+			ORDER BY b.UseCount DESC
 			
     </select>
     <select id="getItemById" parameterClass="HashMap" resultClass="HashMap">

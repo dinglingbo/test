@@ -284,7 +284,6 @@ function openCustomerWindow(carNo,callback) {
         	carNoEl.focus();
             if ("ok" == action) {
               var iframe = this.getIFrameEl();
-                //調用字界面的方法，返回子頁面的數據
                 var data = iframe.contentWindow.getData();
                 var guest = data.guest;
                 callback && callback(guest);
@@ -292,6 +291,38 @@ function openCustomerWindow(carNo,callback) {
         }
     });
 }
+
+function selectItem() {
+	var itemName = nui.get("itemName").getText();
+	openItemWindow(itemName,function (v) {
+        nui.get("itemName").setValue(v.name);
+        nui.get("itemName").setText(v.name);
+        nui.get("itemId").setValue(v.id);
+    });
+}
+function openItemWindow(itemName,callback) {
+    nui.open({
+        url: webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemMain.flow?token=" + token,
+        title: "项目选择", width: 1000, height: 560,
+        onload: function () {
+        	  var iframe = this.getIFrameEl();
+        	  iframe.contentWindow.setItemName(itemName);
+        },
+        ondestroy: function (action) {
+        	carNoEl.focus();
+            if ("ok" == action) {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                var item = data.item;
+                callback && callback(item);
+            }
+        }
+    });
+}
+
+
+
+
 
 function getServiceCode(callback) {
     var billTypeCode = "YYD";

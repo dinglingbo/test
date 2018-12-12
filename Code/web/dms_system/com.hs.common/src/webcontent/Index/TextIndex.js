@@ -93,12 +93,12 @@ $(document).ready(function(v) {
 });
 
 function toRepairBill(){
-    var item={};
+   var item={};
     item.id = "2000";
     item.text = "综合开单详情";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow?token="+token;
     item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
+    window.parent.activeTabAndInit(item);
 }
 function toCarWashBill(){//1
     var item={};
@@ -106,7 +106,7 @@ function toCarWashBill(){//1
     item.text = "洗美开单详情";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBill.flow?token="+token;
     item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
+    window.parent.activeTabAndInit(item);
 }
 function toSellBill(){
     var item={};
@@ -122,7 +122,7 @@ function toCarInsuranceDetail(){
     item.text = "保险开单详情";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CarInsuranceDetail.flow?token="+token;
     item.iconCls = "fa fa-car";
-    window.parent.activeTab(item);
+    window.parent.activeTabAndInit(item);
 }
 function addCustomer(){
     var title = "新增客户资料";

@@ -43,7 +43,7 @@ a {
 .navbar
 {
     height:50px;
-    background:#3c8dbc;/* 20180708#fff */
+    background:#368bf4;/* 20180708#fff */
     border-bottom:0;
 }
 
@@ -91,7 +91,7 @@ a {
 {
     /* 20180708 background:#fff;
     color:#333; */
-    background:#367fa9;
+    background:#368bf4;
 }
 
 .navbar-nav > li > a.userinfo

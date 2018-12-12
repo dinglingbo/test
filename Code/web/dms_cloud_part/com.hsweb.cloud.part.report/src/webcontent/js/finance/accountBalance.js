@@ -30,7 +30,7 @@ $(document).ready(function(v) {
 function doSearch() {
 	var params = {};
 	params.id = accountIdEl.getValue();
-	params.startDate = beginDateEl.getValue();
+	params.startDate = beginDateEl.getFormValue();
     params.endDate = endDateEl.getValue();
 
 	mainGrid.load({

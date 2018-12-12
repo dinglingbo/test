@@ -263,7 +263,7 @@ function doSearch(params) {
 }
 function getSearchParam() {
     var params = {};
-    params.sRecordDate = beginDateEl.getValue();
+    params.sRecordDate = beginDateEl.getFormValue();
     params.eRecordDate = addDate(endDateEl.getValue(),1);
     params.status=nui.get('status').getValue();
     if(params.status===""){

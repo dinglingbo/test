@@ -201,13 +201,13 @@ function getSearchParam(){
 	 params.serviceId = comServiceId.getValue(); 
  	 params.guestName=comSearchGuestId.getValue();
 	 params.endDate = searchEndDate.getValue();
-	 params.startDate = searchBeginDate.getValue();
+	 params.startDate = searchBeginDate.getFormValue();
 	// params.isDiffOrder = 0;
 	 
 	/* gsparams.guestName=comSearchGuestId.getValue();
 	 gsparams.serviceId = comServiceId.getValue();     
 	 gsparams.endDate = searchEndDate.getValue();
-	 gsparams.startDate = searchBeginDate.getValue();*/
+	 gsparams.startDate = searchBeginDate.getFormValue();*/
 	 return params;
 }
 var currType = 0;

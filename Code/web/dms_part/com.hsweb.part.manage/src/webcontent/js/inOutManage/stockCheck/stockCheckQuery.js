@@ -276,6 +276,9 @@ function onDrawCell(e)
 {
     switch (e.field)
     {
+	    case "serviceId":
+			e.cellHtml ='<a href="##" onclick="edit()">'+e.value+'</a>';
+			break;
 	    case "partBrandId":
 	        if(partBrandIdHash && partBrandIdHash[e.value])
 	        {
@@ -305,4 +308,17 @@ function onDrawCell(e)
         default:
             break;
     }
+}
+
+function edit(){
+    var row = rightGrid.getSelected();
+    if(!row) return; 
+    var item={};
+    item.id = "6400";
+    item.text = "盘点单详情";
+    item.url = webPath + contextPath + "/com.hsweb.part.manage.stockCheck.flow";
+    item.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    var params = row; 
+    window.parent.activeTabAndInit(item,params);
 }

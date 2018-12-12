@@ -84,7 +84,7 @@ function doSearch() {
     var params = {};
     params.rpType = -1;
    
-    params.sCreateDate = searchBeginDate.getValue();
+    params.sCreateDate = searchBeginDate.getFormValue();
     params.eCreateDate = searchEndDate.getValue();
     params.billStatus=searchStatus.getValue();
     mainGrid.load({

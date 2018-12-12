@@ -162,7 +162,7 @@ function getSearchParam(){
     params.auditSign=nui.get('auditSign').getValue();
     params.storeId=nui.get('storeId').getValue();
     params.endDate = addDate(searchEndDate.getValue(),1);
-	params.startDate = searchBeginDate.getValue();
+	params.startDate = searchBeginDate.getFormValue();
     return params;
 }
 var currType = 2;

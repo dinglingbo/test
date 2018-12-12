@@ -146,7 +146,7 @@ function getSearchParam(){
     params.guestId = comSearchGuestId.getValue();
     
     params.endDate = searchEndDate.getValue();
-    params.startDate = searchBeginDate.getValue();
+    params.startDate = searchBeginDate.getFormValue();
     params.billStatusId = billStatusIdEl.getValue();
     return params;
 }
@@ -175,7 +175,7 @@ function doSearch(params)
         });	
     }else if(tab.name == "sellOrderTab"){
         var p = {};
-        p.sAuditDate = searchBeginDate.getValue();
+        p.sAuditDate = searchBeginDate.getFormValue();
         p.eAuditDate = addDate(searchEndDate.getValue(), 1);
         p.serviceId = searchServiceId.getValue();
         p.orderMan = searchServiceMan.getValue();

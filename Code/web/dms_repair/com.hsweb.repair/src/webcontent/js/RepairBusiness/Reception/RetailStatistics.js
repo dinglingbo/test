@@ -146,7 +146,7 @@ function quickSearch(type){
 }
 function onSearch(){
 	var params = getSearchParam();
-    params.sRecordDate = beginDateEl.getValue();
+    params.sRecordDate = beginDateEl.getFormValue();
     params.eRecordDate = addDate(endDateEl.getValue(),1);
     
     doSearch(params);

@@ -150,7 +150,7 @@ function getSearchParam(){
     params.serviceId = comServiceId.getValue();
     params.auditSign=nui.get('auditSign').getValue();
     params.endDate = addDate(searchEndDate.getValue(),1);
-	params.startDate = searchBeginDate.getValue();
+	params.startDate = searchBeginDate.getFormValue();
 	params.storeId=nui.get('storeId').getValue();
     params.receiveStoreId=nui.get('receiveStoreId').getValue();
     return params;

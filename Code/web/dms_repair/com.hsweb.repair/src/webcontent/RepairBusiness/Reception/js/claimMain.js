@@ -383,7 +383,7 @@ function doSearch(params) {
 function getSearchParam() {
     var params = {};
     if(advancedSearchWin.visible){//document.getElementById("advancedMore").style.display=='block'
-        params.sRecordDate = beginDateEl.getValue();
+        params.sRecordDate = beginDateEl.getFormValue();
         var eRecordDate = endDateEl.getValue();
         params.eRecordDate = addDate(eRecordDate,1);
         params.sPlanFinishDate = nui.get("sPlanFinishDate").getValue();

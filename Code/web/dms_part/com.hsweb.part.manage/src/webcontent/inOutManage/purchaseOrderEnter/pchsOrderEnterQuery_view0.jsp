@@ -96,9 +96,9 @@
          showSummaryRow="true">
         <div property="columns">
             <div width="40" type="indexcolumn">序号</div>
-            <div header="采购信息" headerAlign="center">
+            <div header="入库信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
+                    <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="入库单号"></div>
                     <div field="guestFullName" width="250" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
@@ -119,9 +119,9 @@
             </div>
             <div header="数量单价" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="60" headerAlign="center" header="采购数量"></div>
-                    <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="采购单价"></div>
-                    <div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="采购金额"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="orderQty" width="60" headerAlign="center" header="入库数量"></div>
+                    <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="入库单价"></div>
+                    <div allowSort="true" datatype="float" summaryType="sum" field="orderAmt" width="60" headerAlign="center" header="入库金额"></div>
                     <div allowSort="true" field="detailRemark" width="120" headerAlign="center" header="备注"></div>
                 </div>
             </div>
@@ -197,7 +197,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="title">采购单号:</td>
+                <td class="title">入库单号:</td>
                 <td colspan="3">
                     <textarea class="nui-textarea" emptyText="" width="100%" style="height: 60px;" id="serviceIdList" name="serviceIdList"></textarea>
                 </td>
@@ -229,7 +229,8 @@
         </table>
         <div style="text-align:center;padding:10px;">
             <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
-            <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;">取消</a>
+            <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;margin-right:20px;">取消</a>
+            <a class="nui-button" onclick="ononAdvancedSearchClear" style="width:60px;">清除</a>
         </div>
     </div>
 </div>

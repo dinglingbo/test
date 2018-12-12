@@ -107,7 +107,7 @@ function getSearchParam(){
     	params.guestId = comSearchGuestId.getValue();
     }
 	params.endDate = addDate(searchEndDate.getValue(),1);
-	params.startDate = searchBeginDate.getValue();
+	params.startDate = searchBeginDate.getFormValue();
     return params;
 }
 var currType = 2;
@@ -215,24 +215,22 @@ function onAdvancedSearchOk()
     var i;
     if(searchData.sCreateDate)
     {
-        searchData.sCreateDate = searchData.sCreateDate.substr(0,10);
+        searchData.sCreateDate = searchData.sCreateDate;
     }
     if(searchData.eCreateDate)
     {
         var date = searchData.eCreateDate;
         searchData.eCreateDate = addDate(date, 1);
-        searchData.eCreateDate = searchData.eCreateDate.substr(0,10);
     }
     //审核日期
     if(searchData.sAuditDate)
     {
-        searchData.sAuditDate = searchData.sAuditDate.substr(0,10);
+        searchData.sAuditDate = searchData.sAuditDate;
     }
     if(searchData.eAuditDate)
     {
         var date = searchData.eAuditDate;
         searchData.eAuditDate = addDate(date, 1);
-        searchData.eAuditDate = searchData.eAuditDate.substr(0,10);
     }
     //供应商
     if(searchData.guestId)
@@ -277,6 +275,9 @@ function onAdvancedSearchCancel(){
     advancedSearchForm.clear();
     advancedSearchWin.hide();
 }
+function ononAdvancedSearchClear(){
+	advancedSearchForm.setData([]);
+}
 var supplier = null;
 function selectSupplier(elId)
 {
@@ -317,6 +318,9 @@ function onDrawCell(e)
 {
     switch (e.field)
     {
+	    case "serviceId":
+			e.cellHtml ='<a href="##" onclick="edit()">'+e.value+'</a>';
+			break;
 	    case "partBrandId":
 	        if(partBrandIdHash && partBrandIdHash[e.value])
 	        {
@@ -356,4 +360,19 @@ function onDrawCell(e)
         default:
             break;
     }
+}
+
+function edit(){
+    var row = rightGrid.getSelected();
+    row.id=row.mainId;
+    row.auditSign=1;
+    if(!row) return; 
+    var item={};
+    item.id = "6340";
+    item.text = "入库单";
+    item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrderEnter.flow";
+    item.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    var params = row; 
+    window.parent.activeTabAndInit(item,params);
 }

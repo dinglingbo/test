@@ -1590,7 +1590,8 @@
 			c.out_return_sign as outReturnSign,
 			c.pick_man as pickMan,
 			c.pick_date as pickDate,
-			d.out_date as outDate
+			d.out_date as outDate,
+			d.id as id
 			
 		FROM
 			wb_repair.rps_part a
@@ -1695,6 +1696,7 @@
    <select id="querySellOut" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     
 		SELECT
+			b.id as id,
 			b.service_code AS serviceCode,
 			b.car_no AS carNo,
 			a.part_code AS partCode,

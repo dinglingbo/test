@@ -167,7 +167,7 @@ function getSearchParam(){
 	}else{
 		params.recordDate = 1;
 	}
-    params.startDate = beginDateEl.getValue();
+    params.startDate = beginDateEl.getFormValue();
     params.endDate = addDate(endDateEl.getValue(), 1); 
     
     var status = menuBtnStatusQuickSearch.getValue();

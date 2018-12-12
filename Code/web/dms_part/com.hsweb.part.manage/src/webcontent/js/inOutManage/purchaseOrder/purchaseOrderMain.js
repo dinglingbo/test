@@ -181,7 +181,7 @@ function getSearchParam(){
     	params.guestId = comSearchGuestId.getValue();
     }
 	params.endDate = addDate(searchEndDate.getValue(),1);
-	params.startDate = searchBeginDate.getValue();
+	params.startDate = searchBeginDate.getFormValue();
 	params.isDiffOrder = 0;
     return params;
 }

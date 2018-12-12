@@ -22,7 +22,7 @@
 	height: 10px;
     line-height: 10px;
 }
-#table1 .roleLabel{
+#table1 .roleLabel{F
 	text-align: right;
 }
 #table1 .roleText{
@@ -34,13 +34,13 @@
 			<div id="form1">
 				<table id="table1" class="table">
 					<tr>
-						<td class="tit roleLabel" style="width:60px;">角色代码：</td>
+						<td class="tit roleLabel" style="width:80px;">角色代码：</td>
 						<td class="roleText" style="width:35%">
 							<input class="nui-textbox" name="criteria._expr[0].roleCode" style="width:90%;" />
 							<input class="nui-hidden" name="criteria._expr[0]._op" value="like" />
 							<input class="nui-hidden" name="criteria._expr[0]._likeRule" value="all" />
 						</td>
-						<td class="tit roleLabel" style="width:60px;">角色名称：</td>
+						<td class="tit roleLabel" style="width:80px;">角色名称：</td>
 						<td class="roleText" style="width:35%">
 							<input class="nui-textbox" name="criteria._expr[1].roleName" style="width:90%;"/>
 							<input class="nui-hidden" name="criteria._expr[1]._op" value="like" />

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.21"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.22"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -100,12 +100,12 @@
                 <span class="separator"></span> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <span class="separator"></span>
+                <a class="nui-button" plain="true" id="menuprint" onclick="onPrint(1)" ><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
-                <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
-
-                <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
+               <!-- <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                 <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="onPrint(1)" id="type11">打印报销单</li>
-                </ul>
+                </ul> -->
             </td>
         </tr>
     </table>
@@ -129,12 +129,15 @@
         <input class="nui-hidden" name="serviceCode"/>
         <input class="nui-hidden" name="sourceServiceId"/>
         <input class="nui-hidden" name="isSettle"/>
+        <input class="nui-hidden" name="guestDesc"/>
+        <input class="nui-hidden" name="faultPhen"/>
+        <input class="nui-hidden" name="solveMethod"/>
         <input id="enterDate" name="enterDate" class="nui-datepicker"visible="false"nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
         <table  style=" left:0;right:0;margin: 0 auto;width:100%"> 
             <tr>   
-                <td class="title required">车牌号:</td> 
+                <td class="title">车牌号:</td> 
                 <td class=""><input  class="nui-textbox" name="carNo" id="carNo" style="width:100%;"/></td>
-                <td class="title required">
+                <td class="title">
                     <label>业务类型:</label>
                 </td>
                 <td class="">
@@ -150,7 +153,7 @@
                         valueFromSelect="true"
                         nullItemText="请选择..." style="width:100%;"/>
                 </td>
-                <td class="title required">
+                <td class="title">
                     <label>服务顾问：</label>
                 </td>
                 <td>
@@ -171,14 +174,15 @@
                 <td class="title">备注:</td> 
                 <td class="" colspan=""><input  class="nui-textbox" name="remark" style="width:100%;"/></td>
             </tr>
-            <tr>   
-                <td class="title required">客户名称:</td> 
+            <tr>  
+               
+                <td class="title">客户名称:</td> 
                 <td class=""><input  class="nui-textbox" name="guestName" id="guestName" style="width:100%;"/></td>
-                <td class="title required">客户手机:</td> 
+                <td class="title">客户手机:</td> 
                 <td class=""><input  class="nui-textbox" name="guestTel" id="guestTel"  style="width:100%;"/></td>
-                <td class="title required">联系人名称:</td> 
+                <td class="title">联系人名称:</td> 
                 <td class=""><input  class="nui-textbox" name="contactorName" id="contactorName" style="width:100%;"/></td>
-                <td class="title required">联系人手机:</td> 
+                <td class="title">联系人手机:</td> 
                 <td class=""><input  class="nui-textbox" name="contactorTel" id="contactorTel" style="width:100%;"/></td>
                 <td class="title">开单时间:</td> 
                 <td class="">

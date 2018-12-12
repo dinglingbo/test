@@ -111,15 +111,16 @@
 								 totalField="page.count"
 								 pageSize="20"
 								 allowSortColumn="true"
-								 sortMode="client">
+								 sortMode="client"
+								 >
 								<div property="columns">
 									<div type="indexcolumn">序号</div>
-										<div field="PackageName" width="180" headerAlign="center" allowSort="true" header="套餐名称"></div>
-									   <div field="PackageAmt" width="100" headerAlign="center" allowSort="true" header="套餐金额"></div>
+									  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
+									  <div field="PackageName" width="180" headerAlign="center" allowSort="true" header="套餐名称"></div>
+									  <div field="PackageAmt" width="100" headerAlign="center" allowSort="true" header="套餐金额"></div>
 									  <div field="Package4SAmt" width="100" headerAlign="center" allowSort="true" header="市场金额"></div>
 							    </div>
 			                 </div>
-					  
 							
 							<div id="splitDiv" style="float:left;width:1%;height:100%;display:none"></div>
 								<div id="tempGrid" class="nui-datagrid" style="float:left;width:29%;height:100%;display:none"
@@ -145,14 +146,23 @@
 									   </div>
 								</div>
 					</div>
-							
-
 			</div>
-			  
 		</div>
-
 	</div>
-
-
+	    <div id="detailGrid_Form" style="display:none;">
+			<div id="packageDetail" class="nui-datagrid" style="width:555px;"
+				dataField="rs" showPager="false">
+				<div property="columns">
+					<div field="type" width="50" headerAlign="center" allowSort="true" header="类型"></div>
+					<div field="itemCode" visible="false" width="120" headerAlign="center" allowSort="true" header="项目/配件名称编码"></div>
+					<div field="itemName" width="150" headerAlign="center" allowSort="true" header="名称"></div>
+					<div field="itemKind" width="40" headerAlign="center" allowSort="true" header="工种"></div>
+					<div field="qty" width="60" headerAlign="center" allowSort="true" header="工时/数量"></div>
+					<div field="price" width="60" headerAlign="center" allowSort="true" header="单价"></div>
+					<div field="amt" width="60" headerAlign="center" allowSort="true" header="金额"></div>
+					<div field="partBrandId" visible="false" width="120" headerAlign="center" allowSort="true" header="配件品牌"></div>
+				</div>
+			</div>
+	    </div>	
 </body>
 </html>

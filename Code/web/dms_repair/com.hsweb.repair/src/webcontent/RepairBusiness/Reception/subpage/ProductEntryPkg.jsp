@@ -200,7 +200,7 @@ table {
 				</div>
 		  </div>
 		</div>
-		  <div id="detailGrid_Form" style="display:none;">
+		   <div id="detailGrid_Form" style="display:none;">
 					<div id="packageDetail" class="nui-datagrid" style="width:600px;"
 						dataField="rs" showPager="false">
 						<div property="columns">

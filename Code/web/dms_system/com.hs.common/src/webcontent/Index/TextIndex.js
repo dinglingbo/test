@@ -198,11 +198,12 @@ function toTimesCardList(){
 
 function toCardList(){
     var item={};
-    item.id = "";
+    item.id = "2108";
     item.text = "储值卡充值";
-    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CardUp.flow?token="+token
+    item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.cardList.flow?token="+token
     item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
+    var params = {};
+    window.parent.activeTabAndInit(item,params);
 }
 
 function toVisitMain(){

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.9.51"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=1.9.54"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -87,16 +87,18 @@
 
         .showhealthcss{color: #5a78a0;padding:3px 20px;border: 1px solid;}
 
+
+
     </style>
 </head>
 <body>
 
 
 
-<div class="nui-toolbar" style="padding:2px;height:30px">
+<div class="nui-toolbar" style="padding:2px;">
     <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
         <tr>            
-            <td>
+            <td height="50px">
                 <div class="nui-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
                     style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
                     id="search_key" url="" value="carNo"   searchField="key" 
@@ -112,10 +114,11 @@
                 </div>
                 <input id="search_name"
                 name="search_name"
-                class="nui-textbox"
+                class="nui-textbox aa"
                 emptyText="车牌号/客户名称/手机号/VIN码"
                 onbuttonclick="onSearchClick()"
                 width="200px"
+                height="50px"
                 visible="false"
                 enabled="false"
                 showClose="false"

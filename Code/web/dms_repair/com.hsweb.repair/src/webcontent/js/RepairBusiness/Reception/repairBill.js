@@ -4358,16 +4358,20 @@ function setEnterKilometers(e){
 function addExpenseAccount(){
 	var data = billForm.getData();
 	var data1 = sendGuestForm.getData();
+	var data2 = describeForm.getData();
 	if(data.id){
 		var item={};
 		item.id = "123321";
-	    item.text = "报销单";
+	    item.text = "报销单详情";
 		item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow?sourceServiceId="+data.id;
-		item.iconCls = "fa fa-cog";
+		item.iconCls = "fa fa-file-text";
 		data.guestTel = $("#guestTelEl").text();
 		data.guestName = $("#guestNameEl").text();
 		data.contactorTel = data1.mobile;
 		data.serviceCode = $("#servieIdEl").text();
+		data.guestDesc = data2.guestDesc;
+		data.faultPhen = data2.faultPhen;
+		data.solveMethod = data2.solveMethod;
 		window.parent.activeTabAndInit(item,data);
 	}else{
 		showMsg("请先保存后再进行操作!","W");
@@ -4383,7 +4387,7 @@ function openOrderDetail(){
 		item.id = "11111";
 	    item.text = "工单详情页";
 		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+data.id;
-		item.iconCls = "fa fa-cog";
+		item.iconCls = "fa fa-file-text";
 		window.parent.activeTabAndInit(item,data);
 	}
 }
@@ -4393,7 +4397,7 @@ function newCheckMain() {
     item.id = "checkPrecheckDetail";
     item.text = "查车单";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkDetail.flow";
-    item.iconCls = "fa fa-cog";
+    item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};
     params = { 

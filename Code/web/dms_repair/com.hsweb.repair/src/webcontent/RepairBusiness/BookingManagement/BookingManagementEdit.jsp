@@ -10,7 +10,7 @@
 
 <head>
     <title>预约管理</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=2.7.3"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=2.7.4"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -128,8 +128,8 @@
                             <label>预约项目：</label>
                         </td>
                         <td>
-                            <input class="nui-buttonedit" id="itemName" name="itemName" textname="itemName" onbuttonclick="selectCustomer" 
-                            onenter="onenterSelect(this.value)"  />
+                            <input class="nui-buttonedit" id="itemName" name="itemName" textname="itemName" onbuttonclick="selectItem" 
+                            onenter="selectItem"  />
                             <input class="nui-textbox" id="itemId" name="itemId" visible="false" />                        
                         </td>
                         <!--<td class="form_label">

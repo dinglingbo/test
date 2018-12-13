@@ -273,7 +273,7 @@
                 (a.status = #status#)
             </isNotEmpty>
             
-            <isNull prepend="and" property="predictComeDate">
+            <isNull prepend="" property="predictComeDate">
 	            <isNotEmpty prepend="and" property="startDate">  
 	                (a.record_date &gt;= #startDate#)
 	            </isNotEmpty>
@@ -281,7 +281,7 @@
 	                (a.record_date &lt; #endDate#)
 	            </isNotEmpty>
             </isNull>
-            <isNotNull prepend="and" property="predictComeDate">
+            <isNotNull prepend="" property="predictComeDate">
 	            <isNotEmpty prepend="and" property="startDate">  
 	                (a.predict_come_date &gt;= #startDate#)
 	            </isNotEmpty>

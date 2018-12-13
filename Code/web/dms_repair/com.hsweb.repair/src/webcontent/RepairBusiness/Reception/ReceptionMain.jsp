@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.4.9"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.4.10"></script>
 <style type="text/css">
 
 .title {
@@ -40,7 +40,12 @@
     margin-top: 20px;
     background-size: 50%;
 }
-
+     #wechatTag1{
+            color:#ccc;
+        }
+      #wechatTag{
+            color:#62b900;
+        }
 </style>
 
 </head>
@@ -115,7 +120,6 @@
 </div>
 
 <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
-
   <div  id="innerpackGrid" class="nui-datagrid"
 	    style="width:100%;height:100px;"
 	    dataField="data"

@@ -167,7 +167,7 @@ function getSearchParam(){
 	}else{
 		params.recordDate = 1;
 	}
-    params.startDate = beginDateEl.getValue();
+    params.startDate = beginDateEl.getFormValue();
     params.endDate = addDate(endDateEl.getValue(), 1); 
     
     var status = menuBtnStatusQuickSearch.getValue();
@@ -319,11 +319,10 @@ function onDrawCell(e) {
     	var reg=/(\d{3})\d{4}(\d{4})/;
         value = value.replace(reg, "$1****$2");
     	if(e.value){
-    		if(record.isOpenBill==1){
+    		if(record.openId>0){
         		e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"+value;
         	}else{
         		e.cellHtml = "<span  id='wechatTag1' class='fa fa-wechat fa-lg'></span>"+value;
-
         	}
     	}else{
     		e.cellHtml="";

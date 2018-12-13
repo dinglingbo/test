@@ -50,6 +50,17 @@ $(document).ready(function(v)
             partBrandIdHash[v.id] = v;
         });
     });
+    
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
+
+        if ((keyCode == 13)) { // ESC
+            onSearch();
+        }
+
+    }
     getStorehouse(function(data)
     {
         var storehouse = data.storehouse||[];
@@ -113,7 +124,7 @@ function getSearchParam(){
 	params.partNameAndPY = comPartNameAndPY.getValue();
 	params.guestId = comSearchGuestId.getValue();
 	params.endDate = addDate(searchEndDate.getValue(),1);
-	params.startDate = searchBeginDate.getValue();
+	params.startDate = searchBeginDate.getFormValue();
     return params;
 }
 var currType = 2;
@@ -310,6 +321,9 @@ function onDrawCell(e)
 {
     switch (e.field)
     {
+	    case "serviceId":
+			e.cellHtml ='<a href="##" onclick="edit()">'+e.value+'</a>';
+			break;
 	    case "partBrandId":
 	        if(partBrandIdHash && partBrandIdHash[e.value])
 	        {
@@ -349,4 +363,18 @@ function onDrawCell(e)
         default:
             break;
     }
+}
+
+
+function edit(){
+    var row = rightGrid.getSelected();
+    if(!row) return; 
+    var item={};
+    item.id = "6300";
+    item.text = "移仓单详情";
+    item.url = webPath + contextPath + "/com.hsweb.part.manage.shiftPosition.flow";
+    item.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    var params = row; 
+    window.parent.activeTabAndInit(item,params);
 }

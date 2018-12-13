@@ -74,9 +74,9 @@
               <div field="rpCode" allowSort="true" headerAlign="center"
                 width="120"  >退货数量</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >实际入库数量</div>
+                width="140"  >实际入库数量</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >实际入库金</div>
+                width="140"  >实际入库金额</div>
                 </div></div>
             <div header="2">
             <div property="columns" width="10">
@@ -89,7 +89,7 @@
               <div field="rpCode" allowSort="true" headerAlign="center"
                 width="120"  >实际入库数量</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >实际入库金</div>
+                width="140"  >实际入库金额</div>
                 </div></div></div></div>
               <div header="2018total">
               <div property="columns" width="10">
@@ -102,7 +102,7 @@
               <div field="rpCode" allowSort="true" headerAlign="center"
                 width="120"  >实际入库数量</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >实际入库金</div>
+                width="140"  >实际入库金额</div>
               
                 
             </div>

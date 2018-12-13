@@ -12,7 +12,19 @@ var brandHash = {};
 var brandList = [];
 var storehouse = null;
 var storeHash = {};
-var billTypeIdHash = {};
+var billTypeIdHash = {
+		"050101" :"采购入库",
+		"050201" :"采购退货",
+		"050103" :"盘盈入库",
+		"050203" :"盘亏出库",
+		"050106" : "配件领料",
+		"050206" :"配件归库",
+		"050107" : "耗材入库",
+		"050207" :"耗材归库",
+		"050104" :"移仓入库",
+		"050204" :"移仓出库",
+		"050108" :"退货归库"
+	};
 var settTypeIdHash = {};
 var outTypeIdHash = {};
 $(document).ready(function(v)
@@ -48,6 +60,11 @@ $(document).ready(function(v)
 	});
 	rightGrid.on("drawcell",function(e){
 		switch (e.field) {
+		case "billTypeId" :
+			if(billTypeIdHash[e.value]){
+				e.cellHtml = billTypeIdHash[e.value]|| "";
+			}			
+			break;
 		case "partBrandId":
 			if (brandHash[e.value]) {
 				e.cellHtml = brandHash[e.value].name || "";

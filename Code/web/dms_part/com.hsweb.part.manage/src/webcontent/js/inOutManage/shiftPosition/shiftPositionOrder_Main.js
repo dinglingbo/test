@@ -177,7 +177,7 @@ function getSearchParam(){
 //	params.guestId = comSearchGuestId.getValue();
 //	params.guestName=comSearchGuestId.getValue();
     params.endDate = addDate(searchEndDate.getValue(),1);
-	params.startDate = searchBeginDate.getValue();
+	params.startDate = searchBeginDate.getFormValue();
 //	params.isDiffOrder = 0;
     return params;
 }
@@ -519,7 +519,7 @@ function edit(){
     var item={};
     item.id = "6300";
     item.text = "移仓单详情";
-    item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrder.flow";
+    item.url = webPath + contextPath + "/com.hsweb.part.manage.shiftPosition.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = row; 

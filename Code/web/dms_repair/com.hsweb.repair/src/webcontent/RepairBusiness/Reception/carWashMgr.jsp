@@ -41,6 +41,12 @@
     background-size: 50%;
 }
 
+ #wechatTag1{
+            color:#ccc;
+        }
+ #wechatTag{
+            color:#62b900;
+        }
 </style>
 
 </head>

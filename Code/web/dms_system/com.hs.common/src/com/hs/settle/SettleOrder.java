@@ -18,6 +18,9 @@ import java.util.Map;
 import net.sf.json.JSONObject;
 
 import com.alibaba.fastjson.JSON;
+import com.eos.data.datacontext.DataContextManager;
+import com.eos.data.datacontext.IContextAttributable;
+import com.eos.data.datacontext.IMUODataContext;
 import com.eos.system.annotation.Bizlet;
 import com.google.gson.Gson;
 import com.harsons.hscp.common.util.AESCoderUtils;
@@ -35,11 +38,15 @@ import com.hs.common.Utils;
 @Bizlet("")
 public class SettleOrder {
 
+	@SuppressWarnings("unchecked")
 	@Bizlet("")
-	public static Map<String, Object> testToken(String url, String apiid){
-		url = url + "hscp/auth/token";
-		String param = "grant_type=password&app_id=" + apiid + "&login_id=000833&password=1";
-
+	public static Map<String, Object> getToken(String apiid, String loginId, String password){
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SETTLEAPI", "serverType");
+		String apiurl = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SETTLEAPI", envType);
+		String url = apiurl + "hscp/auth/token";
+		String param = "grant_type=password&app_id=" + apiid + "&login_id="+loginId+"&password="+password;
 
 		PrintWriter out = null;
 		BufferedReader in = null;
@@ -92,14 +99,23 @@ public class SettleOrder {
 		Gson gson = new Gson();
         Map<String, Object> map = new HashMap<String, Object>();
         map = gson.fromJson(result, map.getClass());
-        Object obj = map.get("data");
-        Map p = Utils.obj2Map(obj);
-        String access_token = (String) p.get("access_token");
-        System.out.println("access_token的值为:"+access_token);
-        System.out.println("map的值为:"+map);//"access_token":"WThIVDzzO9CdvQhoMfs"
+        Object code = map.get("code");
+        if(code.equals(0)||code.equals(0.0)) {
+        	Object obj = map.get("data");
+            Map p = Utils.obj2Map(obj);
+            String access_token = (String) p.get("access_token");
+            
+        	IMUODataContext muo = DataContextManager.current().getMUODataContext();
+        	Map<String, Object> attrMap = muo.getUserObject().getAttributes();
+        	attrMap.put("settAccessToken", access_token);
+        	
+        	//将结算中心access_token设置到muo
+        	muo.getUserObject().setAttributes(attrMap);
+        	
+        	//System.out.println("access_token的值为:"+access_token);
+        	
+        }
         
-		System.out.println("======获取TOKEN...======" + result);
-		
 		return map;
 	}
 	
@@ -152,19 +168,26 @@ public class SettleOrder {
 	}
 	
 	@Bizlet("")
-	public static Map testCreateOrder(String url, String access_token, String apikey) {
-		url = url + "hscp/pay/orders";
+	public static Map createOrder(String access_token, String apikey, String businessNo,
+			String businessType, String companyId, String customerId, String customerName,
+			String invoiceType, String payMethod, String receiptAmount, String receiptNo,
+			String receiptSummary) {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SETTLEAPI", "serverType");
+		String apiurl = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SETTLEAPI", envType);
+		String url = apiurl + "hscp/pay/orders";
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("businessNo", "686666");
-		map.put("businessType", "ERP");
-		map.put("companyId", "COM20100211000014");
-		map.put("customerId", "KH04136-20180400024");
-		map.put("customerName", "陈丽卿");
-		map.put("invoiceType", "NONE");
-		map.put("payMethod", "ALIPAY");
-		map.put("receiptAmount", "0.01");
-		map.put("receiptNo", "XSDDS00001");
-		map.put("receiptSummary", "0.01");
+		map.put("businessNo", businessNo);
+		map.put("businessType", businessType);
+		map.put("companyId", companyId);
+		map.put("customerId", customerId);
+		map.put("customerName", customerName);
+		map.put("invoiceType", invoiceType);
+		map.put("payMethod", payMethod);
+		map.put("receiptAmount", receiptAmount);
+		map.put("receiptNo", receiptNo);
+		map.put("receiptSummary", receiptSummary);
 		
 		JSONObject json = JSONObject.fromObject(map);
 		
@@ -198,9 +221,6 @@ public class SettleOrder {
 		
 		
 		try {
-            //传递参数
-            String Parma = "?cardType={}&cardID={}";
-
             URL urll = new URL(url);
             // 将url 以 open方法返回的urlConnection  连接强转为HttpURLConnection连接  (标识一个url所引用的远程对象连接)
             // 此时cnnection只是为一个连接对象,待连接中
@@ -244,7 +264,7 @@ public class SettleOrder {
             // 输出完成后刷新并关闭流
             dataout.flush();
             dataout.close(); // 重要且易忽略步骤 (关闭流,切记!)
-            //System.out.println(connection.getResponseCode());
+            System.out.println(access_token);
             // 连接发起请求,处理服务器响应  (从连接获取到输入流并包装为bufferedReader)
             BufferedReader bf = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
             String line;
@@ -260,12 +280,14 @@ public class SettleOrder {
             String str = sb.toString();
             System.out.println(sb.toString());
             
+            str = AESCoderUtils.decryptBase64(str, apikey);
+    		System.out.println("返回结果解密decodeData的值为:"+str);
+            
             Gson gson = new Gson();
             Map<String, String> resultMap = new HashMap<String, String>();
             resultMap = gson.fromJson(str, map.getClass());
-            String result = resultMap.get("encrypted_data");
-            String resultDecodeData = AESCoderUtils.decryptBase64(result, apikey);
-    		System.out.println("返回结果解密decodeData的值为:"+resultDecodeData);
+            //String result = resultMap.get("encrypted_data");
+           // String resultDecodeData = AESCoderUtils.decryptBase64(result, apikey);
     		
     		return resultMap;
         } catch (Exception e) {
@@ -335,20 +357,20 @@ public class SettleOrder {
 	}
 
 	public static void main(String[] args) {
-		/*String envType = Env.getContributionConfig("com.vplus.login",
+		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SETTLEAPI", "serverType");
-		envType = "TEST";
+		//envType = "TEST";
 		String apiurl = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SETTLEAPI", envType);
-		apiurl = "http://14.23.35.18:8080/";
+		//apiurl = "http://14.23.35.18:8080/";
 		String apiid = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SETTLEAPIID", envType);
-		apiid = "31370874921755649";
+		//apiid = "31370874921755649";
 		String apikey = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SETTLEAPIKEY", envType);
-		apikey = "NAropsvXehl0SMLcKCRls0xo9WITiVkb";
-		
-		System.out.println("======获取TOKEN开始======");
+		//apikey = "NAropsvXehl0SMLcKCRls0xo9WITiVkb";
+		System.out.println(apiurl);
+		/*System.out.println("======获取TOKEN开始======");
 		testToken(apiurl, apiid);
 		System.out.println("======获取TOKEN结束======");
 		

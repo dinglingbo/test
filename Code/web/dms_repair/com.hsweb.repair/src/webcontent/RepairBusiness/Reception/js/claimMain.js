@@ -87,6 +87,7 @@ $(document).ready(function ()
     // });
 
     mainGrid.on("drawcell", function (e) {
+    	var record = e.record;
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
         }else if (e.field == "carBrandId") {
@@ -108,7 +109,16 @@ $(document).ready(function ()
         	value = "" + value;
         	var reg=/(\d{3})\d{4}(\d{4})/;
         	var value = value.replace(reg, "$1****$2");
-        	e.cellHtml = value;
+        	//e.cellHtml = value;
+        	if(e.value){
+        		if(record.openId>0){
+            		e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"+value;
+            	}else{
+            		e.cellHtml = "<span  id='wechatTag1' class='fa fa-wechat fa-lg'></span>"+value;
+            	}
+        	}else{
+        		e.cellHtml="";
+        	}
         }else if(e.field == "serviceCode"){
         	e.cellHtml ='<a href="##" onclick="edit('+e.record._uid+')">'+e.record.serviceCode+'</a>';
         }else if(e.field == "carNo"){
@@ -383,7 +393,7 @@ function doSearch(params) {
 function getSearchParam() {
     var params = {};
     if(advancedSearchWin.visible){//document.getElementById("advancedMore").style.display=='block'
-        params.sRecordDate = beginDateEl.getValue();
+        params.sRecordDate = beginDateEl.getFormValue();
         var eRecordDate = endDateEl.getValue();
         params.eRecordDate = addDate(eRecordDate,1);
         params.sPlanFinishDate = nui.get("sPlanFinishDate").getValue();

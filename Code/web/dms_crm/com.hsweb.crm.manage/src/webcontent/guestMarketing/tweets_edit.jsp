@@ -25,10 +25,11 @@ pageEncoding="UTF-8" session="false" %>
     .tbinput{
         width: 100%
     }
+
 </style>
 </head>
 <body>
-  <div id="tabs1" class="mini-tabs" activeIndex="0" style="width:100%;height:100%;" plain="true">
+  <div id="tabs1" class="mini-tabs" activeIndex="1" style="width:100%;height:100%;" plain="true">
     <div title="文本消息" >
 
      <div class="nui-toolbar" style="padding:0px;">
@@ -42,7 +43,7 @@ pageEncoding="UTF-8" session="false" %>
         </table>
     </div>
     <div class="nui-fit">
-      <table style="width:100%;">
+      <table style="width:100%;line-height: 30px;">
 
 
 
@@ -75,7 +76,7 @@ pageEncoding="UTF-8" session="false" %>
     </table>
 </div>
 <div class="nui-fit">
-  <table style="width:100%;">
+  <table style="width:100%;line-height: 30px;">
 
 
 
@@ -87,7 +88,16 @@ pageEncoding="UTF-8" session="false" %>
 
     <tr>
         <td class="tbtext"><label>上传图片：</label></td>
-        <td >            <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;上传</a></td>
+        <td >            
+            <!-- <a class="nui-button" iconCls="" plain="true" onclick="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;上传</a> -->
+            <input id="upload" name="upload" class="nui-buttonedit" emptyText="请选择文件"  
+            selectOnFocus="true" style="width:400px;" />
+        <input type="file" style="padding:0;display: none;" name="file0" id="file0" multiple="multiple" />
+        </td>
+    </tr>
+        <tr >
+        <td class="tbtext"><label>预览：</label></td>
+        <td ><img src="" id="img0"  style="max-width: 400px;max-height: 200px;"></td>
     </tr>
 </table>
 </div>
@@ -108,7 +118,7 @@ pageEncoding="UTF-8" session="false" %>
         </table>
     </div>
     <div class="nui-fit">
-      <table style="width:100%;">
+      <table style="width:100%;line-height: 30px;">
 
 
 
@@ -168,7 +178,7 @@ pageEncoding="UTF-8" session="false" %>
         </table>
     </div>
     <div class="nui-fit">
-      <table style="width:100%;">
+      <table style="width:100%;line-height: 30px;">
 
 
 
@@ -221,7 +231,7 @@ pageEncoding="UTF-8" session="false" %>
     </table>
 </div>
 <div class="nui-fit">
-  <table style="width:100%;">
+  <table style="width:100%;line-height: 30px;">
 
     <tr>
         <td class="tbtext"><label>意向级别：</label></td>
@@ -249,6 +259,43 @@ pageEncoding="UTF-8" session="false" %>
 
 
 
+
+
+$("#file0").change(function(){
+    var file1 = this.files[0];
+    nui.get("upload").setText(file1.name);
+    var objUrl = getObjectURL(file1) ;
+    console.log("objUrl = "+objUrl) ;
+    if (objUrl) {
+        $("#img0").attr("src", objUrl) ;
+    }
+}) ;
+
+//建立一個可存取到該file的url
+function getObjectURL(file) {
+    var url = null ; 
+    if (window.createObjectURL!=undefined) { // basic
+        url = window.createObjectURL(file) ;
+    } else if (window.URL!=undefined) { // mozilla(firefox)
+        url = window.URL.createObjectURL(file) ;
+    } else if (window.webkitURL!=undefined) { // webkit or chrome
+        url = window.webkitURL.createObjectURL(file) ;
+    }
+    return url ;
+}
+
+    $('#upload').click(function(){
+    $('#file0').click();
+    });
+
+
+function onOk(){
+
+}
+
+function onCancel(){ 
+
+}
 </script>
 </body>
 </html>

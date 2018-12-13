@@ -59,7 +59,7 @@ $(document).ready(function(v)
 });
 function getSearchParams(){
     var params = {};
-    params.startDate=nui.get("startDate").getValue();
+    params.startDate=nui.get("startDate").getFormValue();
     params.endDate=addDate(nui.get("endDate").getValue(),1);
     var countWay = nui.get("countWay").getValue();
     if(countWay == 1)

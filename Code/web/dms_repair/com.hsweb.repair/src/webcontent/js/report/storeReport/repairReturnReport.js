@@ -3,7 +3,7 @@
  */
 //var baseUrl = apiPath + repairApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.repair.repairService.report.queryReturnOutList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.repair.repairService.report.queryRepairOutList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -88,12 +88,11 @@ $(document).ready(function(v)
 	document.onkeyup = function(event) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下
-		
 		if ((keyCode == 13)) { // F9
 			onSearch();
 		}
-
 	}
+	
     quickSearch(4);
 
 	getAllPartType(function(data){
@@ -110,6 +109,7 @@ function getSearchParams(){
     params.partName=nui.get("partName").getValue();
     params.partBrandId=nui.get("partBrandId").getValue();
     params.storeId=nui.get("storeId").getValue();
+    params.partTypeId=nui.get("partTypeId").value;
     params.sOutDate=nui.get("sOutDate").getValue();
     params.eOutDate=addDate(eOutDateEl.getValue(),1);
     return params;
@@ -188,6 +188,7 @@ function onSearch(){
 function doSearch(params)
 {
 	params.orgid = currOrgid;
+	params.returnSign = 1; //出库
     rightGrid.load({
         params:params,
         token :token     

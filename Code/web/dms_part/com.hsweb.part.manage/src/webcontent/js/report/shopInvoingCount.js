@@ -11,9 +11,10 @@ var rightGrid = null;
 var brandHash = {};
 var brandList = [];
 var storehouseHash = {};
-var billTypeIdHash = {};
+
 var settTypeIdHash = {};
 var outTypeIdHash = {};
+
 $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
@@ -30,6 +31,7 @@ $(document).ready(function(v)
 	
 	rightGrid.on("drawcell",function(e){
 		switch (e.field) {
+		
 		case "partBrandId":
 			if (brandHash[e.value]) {
 				e.cellHtml = brandHash[e.value].name || "";

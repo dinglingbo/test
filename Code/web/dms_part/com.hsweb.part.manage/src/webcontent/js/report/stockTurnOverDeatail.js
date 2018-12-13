@@ -11,7 +11,7 @@ var rightGrid = null;
 var brandHash = {};
 var brandList = [];
 var storehouseHash = {};
-var billTypeIdHash = {};
+
 var settTypeIdHash = {};
 var outTypeIdHash = {};
 var partTypeList=[];
@@ -41,6 +41,7 @@ $(document).ready(function(v)
 	
 	rightGrid.on("drawcell",function(e){
 		switch (e.field) {
+		
 		case "partBrandId":
 			if (brandHash[e.value]) {
 				e.cellHtml = brandHash[e.value].name || "";
@@ -82,7 +83,7 @@ function getSearchParams(){
     params.partCodeOrName=nui.get('partCodeOrName').getValue();
     params.partBrandId=nui.get('partBrandId').getValue();
     params.partTypeId=nui.get('partTypeId').getValue();
-    params.startDate=nui.get("startDate").getValue();
+    params.startDate=nui.get("startDate").getFormValue();
     params.endDate=addDate(endDateEl.getValue(),1);
     return params;
 }

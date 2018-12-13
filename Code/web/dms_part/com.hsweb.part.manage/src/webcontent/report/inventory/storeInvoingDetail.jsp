@@ -133,7 +133,7 @@
          <div header="其他信息" headerAlign="center">
             <div property="columns">
             	<div allowSort="true"  field="serviceId" width="150" headerAlign="center" header="业务单号"  align="left"></div>
-                <div allowSort="true"  field="billTypeId" width="60" headerAlign="center" header="操作类型"  align="left"></div>
+                <div allowSort="true"  field="billTypeId" width="90" headerAlign="center" header="操作类型"  align="left"></div>
                 <div allowSort="true"  field="operator" headerAlign="center" header="操作员" dataType="float" align="left"></div>
                 <div allowSort="true"  field="guestName" width="250" headerAlign="center" header="客户/供应商"  align="left"></div>
             </div>

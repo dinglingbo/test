@@ -257,7 +257,16 @@ $(document).ready(function(v) {
             typeHash[v.id] = v;
         });
     });
+    
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
 
+        if ((keyCode == 13)) { // F9
+            onSearch();
+        }
+    }
     var dictDefs ={"supplierType":SUPPLIER_TYPE};
     initDicts(dictDefs, function(){
         var data = nui.get("supplierType").getData();

@@ -59,7 +59,7 @@ function search(){
 	var guestName =  null;
 	var guestTelephone = null;
 	var cardName = null;
-	var startDate = nui.get("startDate").getValue();
+	var startDate = nui.get("startDate").getFormValue();
 	var endDate = nui.get("endDate").getValue();
 	endDate = addDate(endDate, 1);
     var type = nui.get("search-type").getValue();

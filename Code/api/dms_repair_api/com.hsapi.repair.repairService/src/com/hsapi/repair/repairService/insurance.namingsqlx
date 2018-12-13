@@ -31,16 +31,17 @@
 			a.rtn_comp_amt rtnCompAmt,
 			a.rtn_guest_amt rtnGuestAmt,
 			a.record_date recordDate,
-			b.car_model carModel,
+			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
 			b.vin carVin,
-			c.full_name guestName,
+			c.name guestName,
 			c.mobile,
 			b.engine_no engineNo,
-			b.car_brand_id carBrandId
+			b.car_brand_id carBrandId,
+			c.wechat_open_id as openId
 		FROM
 			rps_insurance_main a
 		INNER JOIN rpb_car b ON (a.car_id = b.id)
-		INNER JOIN wb_common.com_guest c ON (a.guest_id = c.id)
+		INNER JOIN rpb_contactor c ON (a.contactor_id = c.id)
 		where a.orgid = #orgid#
 		<dynamic>
 		

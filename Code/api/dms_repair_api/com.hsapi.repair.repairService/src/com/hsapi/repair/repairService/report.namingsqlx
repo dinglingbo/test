@@ -1887,4 +1887,131 @@
             
         </dynamic>  
 	</select>
+	
+	
+	  <!--配件维修出库明细查询-->
+    
+   <select id="queryPartOut" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    
+		SELECT
+			b.id as id,
+			b.service_code AS serviceCode,
+			b.car_no AS carNo,
+			a.part_code AS partCode,
+			a.part_name AS partName,
+			c.oem_code AS oemCode,
+			a.store_id AS storeId,
+			c.part_brand_id AS partBrandId,
+			c.apply_car_model AS applyCarModel,
+			c.unit AS unit,
+			c.car_type_id_f AS carTypeIdF,
+			c.car_type_id_s carTypeIdS,
+			c.car_type_id_t carTypeIdT,
+			c.spec AS spec,
+			a.sell_unit_price AS sellUnitPrice,
+			a.true_unit_price AS trueUnitPrice,
+			a.true_cost AS trueCost,
+			a.sell_amt AS sellAmt,
+			(a.sell_amt - a.true_cost) AS gross,
+			(
+				(a.sell_amt - a.true_cost) / a.sell_amt
+			) AS grossRate,
+			(a.true_cost / a.sell_amt) AS costRate,
+			a.pick_man AS pickMan,
+			a.pick_date AS pickDate,
+			b.out_date as outDate
+		FROM
+			pj_repair_out a
+		INNER JOIN wb_repair.rps_maintain b ON a.service_id = b.id
+		INNER JOIN wb_common.com_attribute c ON c.id = a.part_id
+		WHERE 1=1
+		AND b.`status` = 2
+		AND b.is_settle = 1
+		AND a.return_sign = #returnSign#
+		
+		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="storeId">  
+                (a.store_id = #storeId#)
+            </isNotEmpty>
+            
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">  
+                (b.enter_date &gt;= #sEnterDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">  
+                (b.enter_date &lt; #eEnterDate#)
+            </isNotEmpty>
+            <!--开单日期 -->
+            <isNotEmpty prepend="and" property="sRecordDate">  
+                (b.record_date &gt;= #sRecordDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">  
+                (b.record_date &lt; #eRecordDate#)
+            </isNotEmpty>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="sOutDate">  
+                (b.out_date &gt;= #sOutDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eOutDate">  
+                (b.out_date &lt; #eOutDate#)
+            </isNotEmpty>
+            <!--预计完工日期 -->
+            <isNotEmpty prepend="and" property="sPlanFinishDate">  
+                (b.plan_finish_date &gt;= #sPlanFinishDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="ePlanFinishDate">  
+                (b.plan_finish_date &lt; #ePlanFinishDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="billTypeId">  
+                (b.bill_type_id = #billTypeId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="serviceTypeId">  
+                (b.service_type_id = #serviceTypeId#)
+            </isNotEmpty>
+              <!--是否出库-->
+            <isNotEmpty prepend="and" property="isCheck">  
+                (b.is_check= #isCheck#)
+            </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="partBrandId">  
+                (c.part_brand_id = #partBrandId#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="partTypeId">  
+				c.car_type_id_f = #partTypeId# or c.car_type_id_s = #partTypeId# or c.car_type_id_t = #partTypeId#
+			</isNotEmpty>
+				
+            <isNotEmpty prepend="and" property="carTypeIdF">  
+               (c.car_type_id_f = #carTypeIdF#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdS">  
+                (c.car_type_id_s = #carTypeIdS#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carTypeIdT">  
+                (c.car_type_id_t = #carTypeIdT#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partId">  
+                (a.PART_ID = #partId#)
+            </isNotEmpty>
+  
+            <isNotEmpty prepend="and" property="partName">  
+                (a.part_name like '%$partName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partNameAndPY">  
+                (c.FULL_NAME like '%$partNameAndPY$%' or d.name_py like '%$partNameAndPY$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">  
+                (a.part_code like '%$partCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCodeList">  
+                (a.part_code in ($partCodeList$))
+            </isNotEmpty> 
+            
+        </dynamic>  
+	</select>
+	
 </sqlMap>

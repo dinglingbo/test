@@ -154,7 +154,7 @@ order by retc
    
         <select id="selectProductUnsold" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 select a.part_code as partCode, a.part_name as partName, c.oem_code as oemCode, c.part_brand_id as partBrandId, 
-       c.apply_car_model as applyCarModel, a.enter_unit_id as enterUnitId, 
+       c.apply_car_model as applyCarModel, a.enter_unit_id as enterUnitId,
        c.car_type_id_f as carTypeIdF, c.car_type_id_s as carTypeIdS, c.car_type_id_t as carTypeIdT, c.spec as spec, 
        a.store_id as storeId, a.outable_qty as outableQty,
        a.enter_price as enterPrice, a.outable_qty * a.enter_price as enterAmt, a.enter_date as enterDate,a.branch_stock_age branchStockAge
@@ -194,7 +194,7 @@ where b.orgid =#orgid#
             </isNotEmpty>        
             
             <isNotEmpty prepend="and" property="branchStockAge">  
-               a.branch_stock_age =  #branchStockAge#
+               a.branch_stock_age &gt;=  #branchStockAge#
             </isNotEmpty>    
             order by a.branch_stock_age desc,a.outable_qty desc
             

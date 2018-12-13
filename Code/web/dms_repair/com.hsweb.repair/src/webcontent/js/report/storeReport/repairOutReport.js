@@ -3,7 +3,7 @@
  */
 var baseUrl = apiPath + repairApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
-var rightGridUrl = baseUrl+"com.hsapi.repair.repairService.report.querySellOutList.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.repair.repairService.report.queryRepairOutList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -186,6 +186,7 @@ function onSearch(){
 function doSearch(params)
 {
 	params.orgid = currOrgid;
+	params.returnSign = 0; //出库
     rightGrid.load({
         params:params,
         token :token     

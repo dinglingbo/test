@@ -12,7 +12,6 @@ pageEncoding="UTF-8" session="false" %>
     <title>滞销产品统计分析</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
     <%@include file="/common/commonRepair.jsp"%>
 </head>
 <style type="text/css">
@@ -44,12 +43,16 @@ body {
         <input class="nui-textbox"  id="partCode" name="partCode" emptytext="配件编码">
         <input class="nui-textbox" id="partName" name="partName"emptytext="配件名称">
         <!-- <input class="nui-textbox" id=""emptytext="配件品牌"> -->
-        <input class="nui-textbox" id="storeId"name="storeId"emptytext="仓库">
-        <input class="nui-textbox" id="branchStockAge"name="branchStockAge" emptytext="滞销天数">
-        <input class="nui-textbox" emptytext="配件分类">
+        <input class="nui-combobox" id="storeId"name="storeId"emptytext="仓库" textField="name"
+        valueField="id" width="130px" showNullItem="true" nullItemText="请选择...">
 
+        <input class="nui-combobox" id="partTypeId" name="partTypeId"
+        textField="name"valueField="id"dataField="partTypes"
+        emptyText="配件分类"allowInput="true"valueFromSelect="false" 
+        width="130px" showNullItem="true" nullItemText="请选择...">
+              <input class="nui-textbox" id="branchStockAge"name="branchStockAge" emptytext="库龄超过天数" width="130px">  
         <a class="nui-button" iconcls=""  name="" onclick="Search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-        <a class="nui-button" iconcls=""  name="" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a>
+        <!-- <a class="nui-button" iconcls=""  name="" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a> -->
     </div>
 
     <div class="nui-fit">
@@ -59,7 +62,7 @@ body {
             <div field="partCode"  name="" headeralign="center" align="center" width="100">配件编码 </div>
             <div field="partName"  name="" headeralign="center" align="center" width="100">配件名称 </div>
             <div field="oemCode"  name="" headeralign="center" align="center" width="100">OEM码 </div>
-            <div field="partBrandId"  name="" headeralign="center" align="center" width="100">品牌 </div>
+            <!-- <div field="partBrandId"  name="" headeralign="center" align="center" width="100">品牌 </div> -->
             <div field="applyCarModel"  name="" headeralign="center" align="center" width="150">品牌车型 </div>
             <div field="enterUnitId"  name="" headeralign="center" align="center" width="100">单位 </div>
             <div field="carTypeIdF"  name="" headeralign="center" align="center" width="100">配件分类一级 </div>
@@ -70,7 +73,7 @@ body {
             <div field="outableQty"  name="" headeralign="center" align="center" width="100">数量 </div>
             <div field="enterPrice"  name="" headeralign="center" align="center" width="100">单价 </div>
             <div field="enterAmt"  name="" headeralign="center" align="center" width="100">金额  </div>
-            <div field="branchStockAge"  name="" headeralign="center" align="center" width="100">滞销天数  </div>
+            <div field="branchStockAge"  name="" headeralign="center" align="center" width="100">库龄  </div>
             <div field="enterDate"  name="" headeralign="center" align="center" width="100" dateFormat="yyyy-MM-dd">入库日期</div>
 
         </div>
@@ -87,10 +90,66 @@ body {
     var form=new nui.Form("#form1");
     var startDateEl = nui.get("startDate");
     var endDateEl = nui.get("endDate");
-    grid.setUrl(gridUrl);
+    var storehouse = null;
+    var storeHash = {};
+    var partTypeList=[];
+    var partTypeHash={};
+    grid.setUrl(gridUrl); 
     grid.load();
 
 quickSearch(0);
+
+
+    getStorehouse(function(data) {
+        storehouse = data.storehouse || [];
+        if(storehouse && storehouse.length>0){
+            nui.get('storeId').setData(storehouse);
+    
+            storehouse.forEach(function(v) {
+                storeHash[v.id] = v;
+            });
+        }
+    });
+
+        getAllPartType(function(data){
+        partTypeList=data.partTypes;
+        nui.get('partTypeId').setData(partTypeList);
+        partTypeList.forEach(function(v){
+            partTypeHash[v.id]=v;
+        });
+    });
+        //參考銷售出庫明細  sellOutQty.js
+    grid.on("drawcell",function(e){
+        switch (e.field) {
+         case "carTypeIdF":
+         case "carTypeIdS":
+         case "carTypeIdT":
+            if(partTypeHash[e.value])
+            {
+                e.cellHtml = partTypeHash[e.value].name||"";
+            }
+            else{
+                e.cellHtml = "";
+            }
+            break;
+         case "storeId" :
+             if(storeHash[e.value])
+                {
+                    e.cellHtml = storeHash[e.value].name||"";
+                }
+                else{
+                    e.cellHtml = "";
+                }
+             break;
+        default:
+            break;
+        }
+    });
+
+
+
+
+
     function Search() {
         var data= form.getData();
         var eDate = nui.get("endDate").getFormValue();
@@ -138,7 +197,7 @@ quickSearch(0);
     startDateEl.setValue(params.startDate);
     endDateEl.setValue(addDate(params.endDate,-1));
     var menunamedate = nui.get("menunamedate");
-    menunamedate.setText(queryname);
+    menunamedate.setText(queryname); 
             if(params.endDate){
                 params.endDate = params.endDate +" 23:59:59";
         }

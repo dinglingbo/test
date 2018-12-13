@@ -103,13 +103,13 @@
   <div property="columns">
 	<div width="10" type="indexcolumn">序号</div>
     <div field="id" name="id" visible="false">id</div>
-    <div field="serviceCode" name="serviceCode" width="40" headerAlign="center" align="center">单号</div>
-    <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
-    <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div>
     <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
     <div field="carModel" name="carModel" width="80" headerAlign="center" align="center">品牌车型</div>
-    <div field="mtAdvisor" name="mtAdvisor" width="40" headerAlign="center" align="center">维修顾问</div>
-    <div field="recordDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">查车日期</div>
+    <div field="carVin" name="carVin" width="80px" headerAlign="center" align="center" header="">车架号(VIN)</div>
+    <div field="checkMan" name="checkMan" width="40" headerAlign="center" align="center">查车技师</div>
+    <div field="checkManId" name="checkManId" width="40" headerAlign="center" align="center" visible="false">查车技师Id</div>
+    <div field="checkPoint" name="checkPoint" width="40" headerAlign="center" align="center">本次检查得分</div>
+    <div field="recordDate" name="recordDate" width="40" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">查车时间</div>
 </div>
 </div>
 </div>

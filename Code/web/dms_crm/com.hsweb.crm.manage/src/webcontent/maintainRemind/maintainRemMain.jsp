@@ -35,8 +35,13 @@ pageEncoding="UTF-8" session="false" %>
         <input class="nui-textbox" name="tmobile" id="tmobile">
         <a class="nui-button" plain="true" onclick="onSearch()" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;提醒</a>
+                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+        <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;提醒</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a> -->
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="addRow()"><span class="fa fa-wrench fa-lg"></span>&nbsp;预约登记</a>
         <a class="nui-button" iconCls="" plain="true" onclick="checkMtRecord()"><span class="fa fa-history fa-lg"></span>&nbsp;跟踪记录</a>
         <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remindDetail()"><span class="fa fa-list fa-lg"></span>&nbsp;跟踪明细</a> -->

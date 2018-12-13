@@ -244,10 +244,10 @@
         </div>
         <div type="checkboxcolumn" field="settleType" name="settleType" trueValue="0" falseValue="1"  width="30" headerAlign="center" align="center" value="-1"><strong>下次处理</strong></div>
         <div type="checkboxcolumn" field="nosettleType" name="nosettleType" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center"><strong>本次处理</strong></div>
-        <div field="careDueMileage" name="careDueMileage" width="30" vtype="float" headerAlign="center" align="center"><strong>下次处理时间</strong>
+        <div field="careDueMileage" name="careDueMileage" width="30" vtype="float" headerAlign="center" align="center"><strong>下次处理里程</strong>
         	<input property="editor" class="nui-textbox" style="width:100%;" allowInput="true" vtype="float"/>  
         </div>
-        <div field="careDueDate" name="careDueDate" width="30" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm""><strong>下次处理里程</strong>
+        <div field="careDueDate" name="careDueDate" width="30" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm""><strong>下次处理时间</strong>
         	<input property="editor" class="nui-datepicker tabwidth" name="" id="" dateFormat="yyyy-MM-dd HH:mm"" format="yyyy-MM-dd HH:mm"/>
         </div>
     </div>

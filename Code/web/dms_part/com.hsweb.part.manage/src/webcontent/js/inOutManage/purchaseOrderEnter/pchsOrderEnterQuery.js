@@ -42,6 +42,15 @@ $(document).ready(function(v)
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     //console.log("xxx");
+    document.onkeyup = function(event) {
+        var e = event || window.event;
+        var keyCode = e.keyCode || e.which;// 38向上 40向下
+        
+
+        if ((keyCode == 13)) { // F9
+            onSearch();
+        }
+    }
     getAllPartBrand(function(data)
     {
         var partBrandList = data.brand;

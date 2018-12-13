@@ -3,7 +3,7 @@ var baseUrl = apiPath + repairApi + "/";
 
  
 var mainGrid = null;
-var mtAdvisorIdEl = null;  
+var checkManIdEl = null;  
 var searchKeyEl = null; 
 var servieIdEl = null;
 var searchNameEl = null;
@@ -28,7 +28,7 @@ $(document).ready(function ()
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
     billForm = new nui.Form("#billForm");
-    mtAdvisorIdEl = nui.get("mtAdvisorId");
+    checkManIdEl = nui.get("checkManId");
     servieIdEl = nui.get("servieIdEl");
     searchKeyEl = nui.get("search_key");
     searchNameEl = nui.get("search_name");
@@ -86,13 +86,13 @@ $(document).ready(function ()
     	checkTypeList=nui.get('checkTypeA').getData(); 
 //    	nui.get('checkType').setData(checkTypeList);
     });
-    initMember("mtAdvisorId",function(){
-        memList = mtAdvisorIdEl.getData();
+    initMember("checkManId",function(){
+        memList = checkManIdEl.getData();
     });
 
-    mtAdvisorIdEl.on("valueChanged",function(e){
-        var text = mtAdvisorIdEl.getText();
-        nui.get("mtAdvisor").setValue(text);
+    checkManIdEl.on("valueChanged",function(e){
+        var text = checkManIdEl.getText();
+        nui.get("checkMan").setValue(text);
     });
 
     searchKeyEl.on("valuechanged",function(e){
@@ -328,8 +328,8 @@ function doSetMainInfo(car){
     maintain.carModel = car.carModel;
     maintain.billTypeId = 1;
     maintain.serviceTypeId = 3;
-    maintain.mtAdvisorId = currEmpId;
-    maintain.mtAdvisor = currUserName;
+    maintain.checkManId = currEmpId;
+    maintain.checkMan = currUserName;
     maintain.recordDate = now;
 
     mpackageRate = 0;
@@ -464,13 +464,14 @@ function isCheckMainY(){
                 temp.guestMobile = guest.mobile;
                 temp.contactorName = contactor.name;
                 temp.mobile = contactor.mobile;
+                temp.mtdvisor = currUserName;
+                temp.mtdvisorId = currEmpId;
                 billForm.setData(temp);
                 fguestId=temp.guestId;
                 if(!temp.lastKilometers ||!temp.lastPoint){
                 	
                 	lastCheckModel();
                 }
-                
                 if(mainParams.actionType == "view"){
                     billForm.setEnabled(false);
                     $("#saveData").hide();
@@ -615,7 +616,7 @@ function SearchCheckMain(sId) {
 
 var requiredField={
 	enterKilometers :"本次里程",
-	mtAdvisorId    	:"服务顾问"
+	checkManId    	:"查车人"
 };
 
 function saveb(){

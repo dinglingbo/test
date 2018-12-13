@@ -245,7 +245,7 @@
                 </tr>
                 <tr>
                     <td height="24" id="carNo">&nbsp;车牌号：</td>
-                    <td id="carBrandModel">&nbsp;品牌车型： </td>
+                    <td id="carModel">&nbsp;品牌车型： </td>
                     <td id="carVin">&nbsp;车架号(VIN)：</td>
                 </tr>
                 <tr>
@@ -473,7 +473,7 @@
 	        		}
 	        		var serviceCode = list.serviceCode || "";
 	        		var guestDesc = list.guestDesc || "";
-	        		var carBrandModel = list.carBrandModel || "";
+	        		var carModel = list.carModel || "";
 	        		var faultPhen = list.faultPhen || "";
 	        		var solveMethod = list.solveMethod || "";
 	        		var guestAddr = list.guestAddr || "";
@@ -494,7 +494,7 @@
 	        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;
 	        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
 	        		document.getElementById("guestDesc").innerHTML = document.getElementById("guestDesc").innerHTML + guestDesc; 
-	        		document.getElementById("carBrandModel").innerHTML = document.getElementById("carBrandModel").innerHTML + carBrandModel; 
+	        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
 	        		document.getElementById("faultPhen").innerHTML = document.getElementById("faultPhen").innerHTML + faultPhen; 
 	        		document.getElementById("solveMethod").innerHTML = document.getElementById("solveMethod").innerHTML + solveMethod; 
 	        		document.getElementById("guestAddr").innerHTML = document.getElementById("guestAddr").innerHTML + guestAddr;

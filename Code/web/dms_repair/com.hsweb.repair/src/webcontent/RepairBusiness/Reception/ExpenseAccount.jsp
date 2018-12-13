@@ -206,6 +206,7 @@
 		     showModified="false"
 		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true"
 		     oncellcommitedit="onCellCommitEditPkg"
+		     ondrawsummarycell="onDrawSummaryCellPack"
 		     >
     <div property="columns">
     	 <div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>

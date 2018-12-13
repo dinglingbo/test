@@ -312,7 +312,7 @@
 		    	<isNotEmpty prepend="" property="amt">   
 		            IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.amt END ), 0 ) purchaseEnter,
 					IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.amt END ), 0 ) purchaseOut,
-					IFNULL( ( CASE WHEN (a.bill_type_id='050206' and a.dc='1') THEN a.amt END ), 0 ) repairEnter,
+					IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.amt END ), 0 ) repairEnter,
 					IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) sellOut,
 					IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) sellEnter,
 					IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.amt END ), 0 ) repairOut,
@@ -320,13 +320,13 @@
 					IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.amt END ), 0 ) inventoryLoss,
 					IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.amt END ), 0 ) allotEnter,
 					IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.amt END ), 0 ) allotOut,
-					IFNULL( ( CASE WHEN  (a.bill_type_id='050207' and a.dc='1') THEN a.amt END ), 0 ) materialEnter,
+					IFNULL( ( CASE WHEN  (a.bill_type_id='050107' and a.dc='1') THEN a.amt END ), 0 ) materialEnter,
 					IFNULL( ( CASE WHEN  (a.bill_type_id='050207' and a.dc='-1') THEN a.amt END ), 0 ) materialOut
 		    	</isNotEmpty>
 		    	<isNotEmpty prepend="" property="qty">   
 		            IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.qty END ), 0 ) purchaseEnter,
 					IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.qty END ), 0 ) purchaseOut,
-					IFNULL( ( CASE WHEN (a.bill_type_id='050206' and a.dc='1') THEN a.qty END ), 0 ) repairEnter,
+					IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.qty END ), 0 ) repairEnter,
 					IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.qty END ), 0 ) sellOut,
 					IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.qty END ), 0 ) sellEnter,
 					IFNULL( ( CASE WHEN (a.bill_type_id='050206' and a.dc='-1') THEN a.qty END ), 0 ) repairOut,
@@ -334,7 +334,7 @@
 					IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.qty END ), 0 ) inventoryLoss,
 					IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.qty END ), 0 ) allotEnter,
 					IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.qty END ), 0 ) allotOut,
-					IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='1') THEN a.qty END ), 0 ) materialEnter,
+					IFNULL( ( CASE WHEN (a.bill_type_id='050107' and a.dc='1') THEN a.qty END ), 0 ) materialEnter,
 					IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1')THEN a.qty END ), 0 ) materialOut 
 		    	</isNotEmpty>  
 		    </dynamic>
@@ -565,7 +565,7 @@
 		SELECT
 			IFNULL( ( CASE a.bill_type_id WHEN '050101' THEN a.amt END ), 0 ) purchaseEnter,
 			IFNULL( ( CASE a.bill_type_id WHEN '050201' THEN a.amt END ), 0 ) purchaseOut,
-			IFNULL( ( CASE WHEN (a.bill_type_id='050206' and a.dc='1') THEN a.amt END ), 0 ) repairEnter,
+			IFNULL( ( CASE WHEN (a.bill_type_id='050106' and a.dc='1') THEN a.amt END ), 0 ) repairEnter,
 			IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) sellOut,
 			IFNULL( ( CASE a.bill_type_id WHEN '050108' THEN a.amt END ), 0 ) sellEnter,
 			IFNULL( ( CASE WHEN  (a.bill_type_id='050206' and a.dc='-1') THEN a.amt END ), 0 ) repairOut,
@@ -573,7 +573,7 @@
 			IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.amt END ), 0 ) inventoryLoss,
 			IFNULL( ( CASE a.bill_type_id WHEN '050104' THEN a.amt END ), 0 ) allotEnter,
 			IFNULL( ( CASE a.bill_type_id WHEN '050204' THEN a.amt END ), 0 ) allotOut,
-			IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='1') THEN a.amt END ), 0 ) materialEnter,
+			IFNULL( ( CASE WHEN (a.bill_type_id='050107' and a.dc='1') THEN a.amt END ), 0 ) materialEnter,
 			IFNULL( ( CASE WHEN (a.bill_type_id='050207' and a.dc='-1') THEN a.amt END ), 0 ) materialOut,
 		<dynamic>
 			<isNotEmpty prepend="" property="org">   

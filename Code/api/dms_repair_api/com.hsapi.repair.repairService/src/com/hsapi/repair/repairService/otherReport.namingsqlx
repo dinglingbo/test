@@ -196,6 +196,11 @@ where b.orgid =#orgid#
             <isNotEmpty prepend="and" property="branchStockAge">  
                a.branch_stock_age &gt;=  #branchStockAge#
             </isNotEmpty>    
+            
+             <isNotEmpty prepend="and" property="partTypeId">  
+				c.car_type_id_f = #partTypeId# or c.car_type_id_s = #partTypeId# or c.car_type_id_t = #partTypeId#
+			 </isNotEmpty>
+			 
             order by a.branch_stock_age desc,a.outable_qty desc
             
     </dynamic>    

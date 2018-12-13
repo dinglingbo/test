@@ -46,6 +46,10 @@
                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                </ul>
                <span class="separator"></span>
+             	  操作日期 从:
+                 <input class="nui-datepicker" id="OstartDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
+				至:
+                <input class="nui-datepicker" id="OendDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
              	<input class="nui-textbox" width="100px" id="partCodeOrName" name="partCodeOrNmae" selectOnFocus="true" enabled="true" emptyText="配件编码/名称"/>
                 <input class="nui-textbox" width="100px" id="morePartId" emptyText="内码"  selectOnFocus="true" name="morePartID"/>
                 <input class="nui-textbox" width="100px" id="guestName" emptyText="客户/供应商"  selectOnFocus="true" name="guestName"/>
@@ -73,10 +77,7 @@
                   valueFromSelect="false"
                   width="100px">
                 
-				操作日期 从:
-                 <input class="nui-datepicker" id="OstartDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
-				至:
-                <input class="nui-datepicker" id="OendDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+				
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>            
         </td>
     </tr>
@@ -129,7 +130,7 @@
         
          <div header="其他信息" headerAlign="center">
             <div property="columns">
-                <div allowSort="true"  field="billTypeId" width="60" headerAlign="center" header="操作类型" dataType="float" align="left"></div>
+                <div allowSort="true"  field="billTypeId" width="90" headerAlign="center" header="操作类型" dataType="float" align="left"></div>
                 <div allowSort="true"  field="operator" headerAlign="center" header="操作员" dataType="float" align="left"></div>
                 <div allowSort="true"  field="guestName" width="250" headerAlign="center" header="客户/供应商" dataType="float" align="left"></div>
             </div>

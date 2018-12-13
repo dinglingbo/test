@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryPrebookList.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="status  0待确认，1已确认，2已取消&#xD;&#xA;isOpenBill 是否开单&#xD;&#xA;isJudge 是否评价" title="Administrator&#x9;18-7-21 上午9:59">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="status  0待确认，1已确认，2已取消&#xD;&#xA;isOpenBill 是否开单&#xD;&#xA;isJudge 是否评价&#xD;&#xA;com.hsapi.repair.repairService.rpsQuery.queryRpsPrebook" title="Administrator&#x9;18-7-21 上午9:59">
     <location x="90" y="-30"/>
-    <size height="100" width="241"/>
+    <size height="100" width="466"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="link4" isDefault="true" type="transition">
@@ -232,7 +232,8 @@
       <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="419" y="329"/>
+    <targetConnections>link10</targetConnections>
+    <location x="390" y="320"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -245,7 +246,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="417" y="365"/>
+    <location x="388" y="356"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -412,6 +413,10 @@
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>end1</targetNode>
       <process:transitionCondition/>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="375" y="100"/>

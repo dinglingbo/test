@@ -556,6 +556,7 @@ function isCheckMainN(){
                     data.checkPoint = temp.checkPoint;
                     data.isFinish =temp.isFinish;
                     data.checkStatus=temp.checkStatus;
+                    data.checkPoint = temp.checkPoint;
                     billForm.setData(data);
                     
                     if(actionType == "view"){
@@ -673,7 +674,7 @@ function saveDetail(){ //√  isCheckMain == "N"
     //var mainGrid = nui.get("mainGrid");
     var mdata = billForm.getData();
     mainGrid.commitEdit();
-    var grid_all = mainGrid.getData(); //保存
+    var grid_all = mainGrid.getData(true); //保存
     var gridData = [];
     var detailid = null;
     for(var i=0;i<grid_all.length;i++){

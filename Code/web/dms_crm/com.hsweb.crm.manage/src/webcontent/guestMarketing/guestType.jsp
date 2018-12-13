@@ -20,60 +20,62 @@ pageEncoding="UTF-8" session="false" %>
     }
     
     .addyytime a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 40px -1px no-repeat; padding-right:22px; color:#888; text-decoration:none;}
-    .addyytime a.hui{padding-left: 10px;padding-right: 10px;height:36px;line-height:36px;border:1px #a6e0f5 solid;display:block;float:left;text-decoration:none;text-align:center;color:#00b4f6;border-radius:4px;margin:0 15px 15px 0;}
-    .addyytime a.hui{border:1px #e6e6e6 solid;color:#c8c8c8;background:#e6e6e6;}
-    .addyytime a.xz{ color:#fff !important; background:#5ab1ef;}
-    .addyytime a:link, a:visited { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; color: #555555; text-decoration: none; }
-    .addyytime a.hui:hover { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px;background-color: #9fe6b8; color: #FFF; text-decoration: none; }
-    .addyytime a .hui{text-decoration:none;transition:all .4s ease;}
+    .addyytime a.hui{padding-left: 10px;padding-right: 10px;height:36px;line-height:36px;border:1px #a6e0f5 solid;display:block;float:left;text-decoration:none;
+        text-align:center;color:#00b4f6;border-radius:4px;margin:0 15px 15px 0;}
+        .addyytime a.hui{border:1px #e6e6e6 solid;color:#c8c8c8;background:#e6e6e6;}
+        .addyytime a.xz{ color:#fff !important; background:#5ab1ef;}
+        .addyytime a:link, a:visited { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; color: #555555; text-decoration: none; }
+        .addyytime a.hui:hover { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px;background-color: #9fe6b8; color: #FFF; text-decoration: none; }
+        .addyytime a .hui{text-decoration:none;transition:all .4s ease;}
 
-    .tabletitle{
-        font-size: 18px;
-    }
-    .actionButton{
-        padding-left: 10px;
-        padding-right: 10px;
-        height:36px;
-        line-height:36px;
-        display:inline-block;
-        text-decoration:none;
-        text-align:center;
-        color:#FFF !important;
-        background-color:#1ab394;
-        border-radius:4px;
-        margin:0 15px 15px 0;
-    }
-    .actionButton:hover{
-        color:#FFF !important;
-    }
-</style>
-</head>
-<body>
+        #selectGuestType a{padding-left: 10px;padding-right: 10px;height:36px;line-height:36px;border:1px #a6e0f5 solid;display:block;float:left;text-decoration:none;
+            text-align:center;color:#00b4f6;border-radius:4px;margin:0 15px 15px 0;text-decoration:none;transition:all .4s ease;}
 
-  <div class="nui-fit">
-    <div  id="t1" style="width: 100%; height: 100%;">
+            .tabletitle{
+                font-size: 18px;
+            }
+            .actionButton{
+                padding-left: 10px;
+                padding-right: 10px;
+                height:36px;
+                line-height:36px;
+                display:inline-block;
+                text-decoration:none;
+                text-align:center;
+                color:#FFF !important;
+                background-color:#1ab394;
+                border-radius:4px;
+                margin:0 15px 15px 0;
+            }
+            .actionButton:hover{ 
+                color:#ffb980 !important;
+            }
+        </style>
+    </head>
+    <body>
 
-        <div  id="t2"  style="float:left;width: 40%; height: 100%;">
+      <div class="nui-fit">
+        <div  id="t1" style="width: 100%; height: 100%;">
 
-            <div class="nui-fit">
-                <div id="lindChatA" style="width:490px;height:530px;"></div>
+            <div  id="t2"  style="float:left;width: 40%; height: 100%;">
+
+                <div class="nui-fit">
+                    <div id="lindChatA" style="width:490px;height:530px;"></div>
+                </div>
             </div>
-        </div>
 
-        <div  id="t3"  style="float:left;width: 60%; height: 100%;">
-          <div class="addyytime" style="margin-top:26px;">
-            <table style="width:100%;height:100%;line-height: 30px;">
-                 <tr>
+            <div  id="t3"  style="float:left;width: 60%; height: 100%;">
+              <div class="addyytime" style="margin-top:26px;">
+                <table style="width:100%;height:100%;line-height: 30px;">
+                   <tr>
                     <td><span class="tabletitle">已选客户类型：</span></td>
-                
+                    
                 </tr> 
                 <tr style="height:38px;">
                     <td id="selectGuestType">
                         <a href='javascript:;' typeId='0'
                         style='border:0px;;color:#fff;margin-bottom:0px;background-color:#2ec7c9'>全 部</a>
-
                     </td>
-
                 </tr>
                 <tr>
                     <td><span class="tabletitle">筛选客户标签：</span></td>
@@ -86,36 +88,43 @@ pageEncoding="UTF-8" session="false" %>
                         <a href='javascript:;' itemid='2'name='type'class='hui'>保养到期客户</a>
                         <a href='javascript:;' itemid='3'name='type'class='hui'>年检到期客户</a>
                         <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审到期客户</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a>
+                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a> 
                         <a href='javascript:;' itemid='3'name='type'class='hui'>员工生日</a>
                     </td>
                 </tr>
-                <tr style="height:44px;">
-                    <td style="border-bottom:2px solid #CCC">
-                        <span class="tabletitle">统计：</span>
-                        <a href='javascript:;' itemid='1'name='act'class='actionButton' style="margin: 0;"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;统计</a>
-                        <span><span>共选中客户:</span><span style="color:#1890ff;font-size:30px;">349</span>
-                        <span>位</span></span>
-                    </td> 
-                </tr>
-                <tr>
-                    <td><span class="tabletitle">操作：</span></td>
-                </tr>
                 <tr>
                     <td>
-                        <!-- <a href='javascript:;' itemid='"+timeStr+"' class='hui'>"+timeStr+"</a> -->
-                        <a href='javascript:;' itemid='1'name='act'class='actionButton'><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-                        <a href='javascript:;' itemid='1'name='act'class='actionButton'><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-                        <a href='javascript:;' itemid='2'name='act'class='actionButton'><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
-                        <a href='javascript:;' itemid='3'name='act'class='actionButton'><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
-                    </td>
-                </tr>
-            </table>
-        </div>
+                       <span class="tabletitle">统计：</span>
+                   </td>
+               </tr>
+               <tr style="height:44px;">
+                <td style="border-bottom:2px solid #CCC;position: relative;">
+                 
+                    <a href='javascript:;' itemid='1'name='act'class='actionButton' style="margin: 0;"><span class="fa fa-circle-o-notch fa-lg"></span>&nbsp;统计</a>
+                    <span style="position: relative;bottom: -12px;margin-left:50px;">
+                        <span>共选中客户:</span><span style="color:#1890ff;font-size:30px;">349</span>
+                        <span>位</span>
+                    </span>
+                </td> 
+            </tr>
+            <tr>
+                <td><span class="tabletitle">操作：</span></td>
+            </tr>
+            <tr>
+                <td>
+                    <!-- <a href='javascript:;' itemid='"+timeStr+"' class='hui'>"+timeStr+"</a> -->
+                    <a href='javascript:;' itemid='1'name='act'class='actionButton'><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
+                    <a href='javascript:;' itemid='1'name='act'class='actionButton'><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+                    <a href='javascript:;' itemid='2'name='act'class='actionButton'><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+                    <a href='javascript:;' itemid='3'name='act'class='actionButton'><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
+                </td>
+            </tr>
+        </table>
     </div>
+</div>
 
-    <div style="clear: both"></div>
-    <!-- 注释：清除float产生浮动 -->
+<div style="clear: both"></div>
+<!-- 注释：清除float产生浮动 -->
 </div>
 </div>
 
@@ -124,8 +133,8 @@ pageEncoding="UTF-8" session="false" %>
 
     $("a[name=type]").click(function () {
         if(!$(this).hasClass("xz")){
-         $(this).addClass("xz");
-     }else{
+           $(this).addClass("xz");
+       }else{
         $(this).removeClass("xz");
     }
 });

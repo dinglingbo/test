@@ -25,7 +25,13 @@ $(document).ready(function(v)
     sOutDateEl =nui.get('sOutDate');
     eOutDateEl = nui.get('eOutDate');
     
-
+	document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		if ((keyCode == 13)) { // F9
+			onSearch();
+		}
+	}
     
 	getAllPartBrand(function(data) {
 		brandList = data.brand;
@@ -108,6 +114,7 @@ function getSearchParams(){
     params.partCode=nui.get("partCode").getValue();
     params.partName=nui.get("partName").getValue();
     params.partBrandId=nui.get("partBrandId").getValue();
+    params.partTypeId=nui.get("partTypeId").value;
     params.storeId=nui.get("storeId").getValue();
     params.sOutDate=nui.get("sOutDate").getFormValue();
     params.eOutDate=addDate(eOutDateEl.getValue(),1);

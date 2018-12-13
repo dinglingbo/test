@@ -9,7 +9,7 @@
 -->
 <head>
     <title>维修归库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairReturnReport.js?v=1.0.31"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairReturnReport.js?v=1.0.32"></script>
     <style type="text/css">
     .title {
       width: 60px;

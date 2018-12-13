@@ -277,6 +277,10 @@
       <process:from type="query" pattern="reference">maintain/solveMethod</process:from>
       <process:to type="query">data/solveMethod</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/serviceTypeId</process:from>
+      <process:to type="query">data/serviceTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="355" y="186"/>

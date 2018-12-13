@@ -1228,7 +1228,7 @@
     <figSize height="17" width="39"/>
     <node>assign25</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign26" name="赋值26" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign26" name="赋值26" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link66" name="link66" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign26</sourceNode>
       <targetNode>assign15</targetNode>

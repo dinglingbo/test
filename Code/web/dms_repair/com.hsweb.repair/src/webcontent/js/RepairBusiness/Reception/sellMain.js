@@ -191,7 +191,7 @@ function doSearch(params) {
 }
 function getSearchParam() {
     var params = {};
-    params.sRecordDate = beginDateEl.getValue();
+    params.sRecordDate = beginDateEl.getFormValue();
     params.eRecordDate = addDate(endDateEl.getValue(), 1);
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();

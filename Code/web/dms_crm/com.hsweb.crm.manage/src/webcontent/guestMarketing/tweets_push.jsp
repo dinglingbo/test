@@ -25,6 +25,10 @@ pageEncoding="UTF-8" session="false" %>
     .tbinput{
         width: 100%
     }
+
+    .boxWidth{
+        width: 110px;
+    }
 </style>
 </head>
 <body>
@@ -35,10 +39,10 @@ pageEncoding="UTF-8" session="false" %>
           <tr>
             <td>
              关注时间:
-             <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd"  /> 至
-             <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" />
+             <input class="nui-datepicker boxWidth" id="startDate" name="startDate" dateFormat="yyyy-MM-dd"  /> 至
+             <input class="nui-datepicker boxWidth" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" />
              <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-             <li class="separator"></li>
+             <li class="separator"></li> 
              <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-toggle-right fa-lg"></span>&nbsp;推送</a>
              <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
          </td>
@@ -74,11 +78,11 @@ pageEncoding="UTF-8" session="false" %>
       <tr>
         <td>
             <label>车牌号：</label>
-            <input class="nui-combobox" name="" id="" enabled="true"/>
+            <input class="nui-textbox boxWidth" name="" id="" enabled="true"/>
             <label>客户名称：</label>
-            <input class="nui-combobox" name="" id="" enabled="true"/>
+            <input class="nui-textbox boxWidth" name="" id="" enabled="true"/>
             <label>手机号：</label>
-            <input class="nui-combobox" name="" id="" enabled="true"/>
+            <input class="nui-textbox boxWidth" name="" id="" enabled="true"/>
             <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
             <li class="separator"></li>
             <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-toggle-right fa-lg"></span>&nbsp;推送</a>
@@ -119,12 +123,12 @@ pageEncoding="UTF-8" session="false" %>
             <tr>
                 <td>
                     更新时间:
-                    <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" /> 至
-                    <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd"  />
+                    <input class="nui-datepicker boxWidth" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" /> 至
+                    <input class="nui-datepicker boxWidth" id="endDate" name="endDate" dateFormat="yyyy-MM-dd"  />
                     <label>车牌号：</label>
-                    <input class="nui-combobox" name="" id="" enabled="true"/>
+                    <input class="nui-textbox boxWidth" name="" id="" enabled="true"/>
                     <label>客户名称：</label>
-                    <input class="nui-combobox" name="" id="" enabled="true"/>
+                    <input class="nui-textbox boxWidth" name="" id="" enabled="true"/>
                     <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <li class="separator"></li>
                     <a class="nui-button" iconCls="" plain="true" onclick="" id="addBtn"><span class="fa fa-toggle-right fa-lg"></span>&nbsp;推送</a>

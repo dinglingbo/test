@@ -126,7 +126,10 @@
 			a.is_settle as isSettle, a.service_type_id as serviceTypeId,
 			a.plan_finish_date as planFinishDate,
 			(select GROUP_CONCAT(DISTINCT worker) from wb_repair.rps_item_workers e 
-	       where e.service_id = a.id) as workers
+	       where e.service_id = a.id) as workers,
+			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = a.id) as serviceTypeName
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )

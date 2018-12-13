@@ -323,7 +323,6 @@ function onDrawCell(e) {
         		e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"+value;
         	}else{
         		e.cellHtml = "<span  id='wechatTag1' class='fa fa-wechat fa-lg'></span>"+value;
-
         	}
     	}else{
     		e.cellHtml="";

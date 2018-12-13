@@ -20,6 +20,7 @@ var settleWin = null;
 
 $(document).ready(function ()
 {
+	
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
     beginDateEl = nui.get("sRecordDate");
@@ -37,6 +38,7 @@ $(document).ready(function ()
 	settleAccountGrid = nui.get("settleAccountGrid");
 	settleWin = nui.get("settleWin");
     mainGrid.on("drawcell", function (e) {
+    	var record = e.record;
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
         }else if(e.field == "isSettle"){
@@ -45,6 +47,21 @@ $(document).ready(function ()
             }else{
                 e.cellHtml = "未结算";
             }
+        }else if(e.field == "guestMobile"){
+        	var value = e.value
+        	value = "" + value;
+        	var reg=/(\d{3})\d{4}(\d{4})/;
+        	var value = value.replace(reg, "$1****$2");
+        	//e.cellHtml = value;
+        	if(e.value){
+        		if(record.openId>0){
+            		e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"+value;
+            	}else{
+            		e.cellHtml = "<span  id='wechatTag1' class='fa fa-wechat fa-lg'></span>"+value;
+            	}
+        	}else{
+        		e.cellHtml="";
+        	}
         }
     });
 

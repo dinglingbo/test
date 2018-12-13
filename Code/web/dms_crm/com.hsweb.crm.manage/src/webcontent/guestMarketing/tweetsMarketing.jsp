@@ -42,13 +42,12 @@ pageEncoding="UTF-8" session="false" %>
         onrowdblclick=""
         allowCellSelect="true"
         allowCellWrap = true
-        ondrawcell=""
-        >
+        ondrawcell="">
         <div property="columns">
 
-            <div type="checkcolumn" ></div>    
+            <div type="checkcolumn" ></div>
             <div field="serviceCode" name="serviceCode" width="80" headerAlign="center" header="ID"></div>
-            <div field="visitMan" name="visitMan" width="80" headerAlign="center" header="标题"></div>
+            <div field="visitMan" name="visitMan" width="130" headerAlign="center" header="标题"></div>
             <div field="carType" name="carType" width="80" headerAlign="center" header="类型"></div>
             <div field="auditSign" name="auditSign" width="80" headerAlign="center" header="时间" dateFormat="yyyy-MM-dd HH:mm"></div>
             <div field="auditOpinion" name="auditOpinion" width="80" headerAlign="center" header="状态"></div>
@@ -93,7 +92,7 @@ pageEncoding="UTF-8" session="false" %>
              url: webPath + contextPath  + "/manage/guestMarketing/tweets_edit.jsp",
              title: "添加推文",
              width: 700, 
-             height: 370,
+             height: 390,
              onload: function () {
              },
              ondestroy: function (action) {

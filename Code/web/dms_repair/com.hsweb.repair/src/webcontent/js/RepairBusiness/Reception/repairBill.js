@@ -3158,7 +3158,7 @@ function updateItemRpsPart(row_uid){
         }
     }
 }
-
+var falg="Y";
 function chooseItem(){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
@@ -3171,28 +3171,30 @@ function chooseItem(){
         showMsg("工单已完工,不能添加项目!","W");
         return;
     }
-    
-    if(!main.id){
+    var data = billForm.getData();
+	var desData = describeForm.getData();
+	for(var v in desData){
+	      data[v] = desData[v];
+	 }
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+	        nui.get(key).focus();
+	        showMsg(requiredField[key] + "不能为空!","W");
+	        falg="N";
+			return;
+		}
+	 }
+	//判断进厂里程
+	var last =  $("#lastComeKilometers").text() || 0;
+    var enterKilometers = nui.get("enterKilometers").getValue();
+    if(enterKilometers < last){
+  	  showMsg("进厂里程不能小于上次里程","W");
+  	  return;
+  	}
+    if(!main.id || falg=="N"){
        // showMsg("请选择保存工单!","S");
        // return;
-    	 var data = billForm.getData();
-    	 var desData = describeForm.getData();
-    	 for(var v in desData){
-    	      data[v] = desData[v];
-    	 }
-    	for ( var key in requiredField) {
-    		if (!data[key] || $.trim(data[key]).length == 0) {
-    	          nui.get(key).focus();
-    	          showMsg(requiredField[key] + "不能为空!","W");
-    			return;
-    		}
-    	 }
-    	var last =  $("#lastComeKilometers").text() || 0;
-        var enterKilometers = nui.get("enterKilometers").getValue();
-        if(enterKilometers < last){
-      	  showMsg("进厂里程不能小于上次里程","W");
-      	  return;
-      	}
+      falg="Y";
 	  saveNoshowMsg();
     }
     var param = {};
@@ -3224,23 +3226,32 @@ function choosePackage(){
         showMsg("工单已结算,不能添加套餐!","W");
         return;
     }
-    if(!main.id){
-       // showMsg("请选择保存套餐!","S");
+    var data = billForm.getData();
+	var desData = describeForm.getData();
+	for(var v in desData){
+	      data[v] = desData[v];
+	 }
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+	        nui.get(key).focus();
+	        showMsg(requiredField[key] + "不能为空!","W");
+	        falg="N";
+			return;
+		}
+	 }
+	//判断进厂里程
+	var last =  $("#lastComeKilometers").text() || 0;
+    var enterKilometers = nui.get("enterKilometers").getValue();
+    if(enterKilometers < last){
+  	  showMsg("进厂里程不能小于上次里程","W");
+  	  return;
+  	}
+    if(!main.id || falg=="N"){
+       // showMsg("请选择保存工单!","S");
        // return;
-    	 var data = billForm.getData();
-    	 var desData = describeForm.getData();
-    	 for(var v in desData){
-    	      data[v] = desData[v];
-    	 }
-    	for ( var key in requiredField) {
-    		if (!data[key] || $.trim(data[key]).length == 0) {
-    	          nui.get(key).focus();
-    	          showMsg(requiredField[key] + "不能为空!","W");
-    			return;
-    		}
-    	 }
-       saveNoshowMsg();
-    }   
+      falg="Y";
+	  saveNoshowMsg();
+    }  
     var param = {};
     param.carModelIdLy = main.carModelIdLy;
     param.serviceId = main.id;

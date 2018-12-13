@@ -129,7 +129,15 @@ $(document).ready(function(v) {
 			brandHash[v.id] = v;
 		});
 	});
-	
+	 document.onkeyup = function(event) {
+	        var e = event || window.event;
+	        var keyCode = e.keyCode || e.which;// 38向上 40向下
+	        
+
+	        if ((keyCode == 13)) { // F9
+	            onSearch();
+	        }
+	    }
 	quickSearch(0);
 });
 function getSearchParam() {

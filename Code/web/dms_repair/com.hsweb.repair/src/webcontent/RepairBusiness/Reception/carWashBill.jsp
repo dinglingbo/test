@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.32"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.56"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -94,57 +94,90 @@
 
     .showhealthcss{color: #5a78a0;padding:3px 20px;border: 1px solid;}
 
-	#search{
-		font-size:15px;
-		left:200px;
-		top:-25px;
+/* 	#search{
+		 display: none; 
+		font-size:18px;
 		text-align:center;
-		z-index:2;
-		width: 140px;
-	    height: 35px;
-	    background: #368bf4;
-	    position: relative;
+		left:240px;
+		top:0px;
+		text-align:center;
+		z-index:999;
+		color: #671e1ebf;
+		width: 120px;
+	    height: 40px;
+	    background: #cac52afc;
+	    position: absolute;
 	    -moz-border-radius: 12px;
 	    -webkit-border-radius: 12px;
 	    border-radius: 12px;
-	}
-/* 	#comment_bubble {
+	} */
+ 	#comment_bubble {
+
     width: 140px;
     height: 100px;
-    background: #088cb7;
+    background: #78c800c2;
     position: relative;
     -moz-border-radius: 12px;
     -webkit-border-radius: 12px;
     border-radius: 12px;
-} */
+} 
   
-#search:before {
+/*  #search:before {
     content: "";
     width: 0;
     height: 0;
     right: 100%;
-    top: 10px;
+    top: 12px;
     position: absolute;
     border-top: 8px solid transparent;
-    border-right: 20px solid #368bf4;
+    border-right: 18px solid #cac52afc;
     border-bottom: 8px solid transparent;
-} 
+}   */
+.tishi{
+	margin-top: 5px;
+}
+
+.btn .mini-buttonedit{
+	height:36px;
+}
+.btn .aa{
+	height:36px;
+	width: 350px;
+}
+.btn .mini-buttonedit .mini-corner-all{
+	height:33px;
+	background: #368bf447;
+}
+.btn .aa .mini-corner-all{
+	height:33px;
+}
+.mini-corner-all .nui-textbox{
+	height:30px;
+}
+.btn .mini-corner-all .mini-buttonedit-input{
+	font-size: 16px;
+	margin-top: 8px;
+}
 
 </style>
 </head>
 <body>
 
+  
 
-
-    <div class="nui-toolbar" style="padding:2px;height:40px">
+    <div class="nui-toolbar" style="padding:2px;height:48px;position: relative;">
+<!--     <div id="search">
+    <div style="height:10px;"></div>
+    <span class="tishi">在这查找客户</span>
+    </div> -->
     <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
-        <tr>            
-            <td style="height: 40px;">
-                <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
-                    style="width:350px;height: 40px !important;"  popupWidth="600" textField="text" valueField="id" 
-                    id="search_key" url="" value="carNo"   searchField="key" 
+        <tr >            
+            <td class="btn" >
+                <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)" 
+                    style="width:350px;height: 50px !important;"  popupWidth="600" textField="text" valueField="id" 
+                    id="search_key" url="" value="carNo"   searchField="key"  
                     dataField="list" placeholder="请输入...">     
-                    <div property="columns">
+                    <div property="columns" id="qwer" name="qwer">
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
                         <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
                         <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
@@ -158,17 +191,17 @@
                 class="nui-textbox aa"
                 emptyText="车牌号/客户名称/手机号/VIN码"
                 onbuttonclick="onSearchClick()"
-                width="200px"
-                height="50px"
                 visible="false"
                 enabled="false"
+                font-size="16px"
                 showClose="false"
                 allowInput="true"/>
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
                 <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
-                <div id="search">在这查找客户</div>
+                
             </td>     
+          
             <td style="text-align:right;">
                 <!-- <span id="carHealthEl" class="" style="font-family:Verdana;color:white;background:#62b900;padding:0px 8px;border-radius:90px;">车况:100</span>
                 <a class="nui-button" iconCls="" plain="false" onclick="" id="addBtn">查看详情</a>

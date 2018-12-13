@@ -186,6 +186,7 @@ $(document).ready(function ()
         }
     });
     searchKeyEl.on("valuechanged",function(e){
+    	 
         var item = e.selected;
         if(fserviceId){
             return;
@@ -999,7 +1000,7 @@ function add(){
     fserviceId = 0;
 
 
-    document.getElementById("formIframe").contentWindow.doSetCardTimes([]);
+    //document.getElementById("formIframe").contentWindow.doSetCardTimes([]);
     $("#lastComeKilometers").html("0");
     $("#servieIdEl").html("");
     $("#showCardTimesEl").html("次卡套餐(0)");
@@ -1011,7 +1012,6 @@ function add(){
 
     nui.get("ExpenseAccount").setVisible(true);
     nui.get("ExpenseAccount1").setVisible(false);
-
 }
 function save(){
 	
@@ -3148,6 +3148,7 @@ function updateItemRpsPart(row_uid){
         }
     }
 }
+var  falg="Y";
 function chooseItem(){
 	var main = billForm.getData();
     var isSettle = main.isSettle||0;
@@ -3160,24 +3161,30 @@ function chooseItem(){
         showMsg("工单已完工,不能添加项目!","W");
         return;
     }
-    var main = billForm.getData();
-    var isSettle = main.isSettle||0;
-    if(!main.id){
+    var data = billForm.getData();
+	var desData = describeForm.getData();
+	for(var v in desData){
+	      data[v] = desData[v];
+	 }
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+	        nui.get(key).focus();
+	        showMsg(requiredField[key] + "不能为空!","W");
+	        falg="N";
+			return;
+		}
+	 }
+	//判断进厂里程
+	var last =  $("#lastComeKilometers").text() || 0;
+    var enterKilometers = nui.get("enterKilometers").getValue();
+    if(enterKilometers < last){
+  	  showMsg("进厂里程不能小于上次里程","W");
+  	  return;
+  	}
+    if(!main.id || falg=="N"){
        // showMsg("请选择保存工单!","S");
        // return;
-    	var data = billForm.getData();
-        for ( var key in requiredField) {
-          if (!data[key] || $.trim(data[key]).length == 0) {
-            showMsg(requiredField[key] + "不能为空!","W");
-            return;
-        }
-      }
-      var last =  $("#lastComeKilometers").text() || 0;
-      var enterKilometers = nui.get("enterKilometers").getValue();
-      if(enterKilometers < last){
-    	  showMsg("进厂里程不能小于上次里程","W");
-    	  return;
-    	}
+      falg="Y";
 	  saveNoshowMsg();
     }
     var param = {};
@@ -3200,18 +3207,6 @@ function chooseItem(){
 function choosePackage(){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
-    if(!main.id){
-       // showMsg("请选择保存套餐!","S");
-       // return;
-    	var data = billForm.getData();
-        for ( var key in requiredField) {
-          if (!data[key] || $.trim(data[key]).length == 0) {
-            showMsg(requiredField[key] + "不能为空!","W");
-            return;
-        }
-      }
-       saveNoshowMsg();
-    }
     var status = main.status||0;
     if(status == 2){
         showMsg("工单已完工,不能添加套餐!","W");
@@ -3221,7 +3216,32 @@ function choosePackage(){
         showMsg("工单已结算,不能添加套餐!","W");
         return;
     }
-
+    var data = billForm.getData();
+	var desData = describeForm.getData();
+	for(var v in desData){
+	      data[v] = desData[v];
+	 }
+	for ( var key in requiredField) {
+		if (!data[key] || $.trim(data[key]).length == 0) {
+	        nui.get(key).focus();
+	        showMsg(requiredField[key] + "不能为空!","W");
+	        falg="N";
+			return;
+		}
+	 }
+	//判断进厂里程
+	var last =  $("#lastComeKilometers").text() || 0;
+    var enterKilometers = nui.get("enterKilometers").getValue();
+    if(enterKilometers < last){
+  	  showMsg("进厂里程不能小于上次里程","W");
+  	  return;
+  	}
+    if(!main.id || falg=="N"){
+       // showMsg("请选择保存工单!","S");
+       // return;
+      falg="Y";
+	  saveNoshowMsg();
+    }
     var param = {};
     param.carModelIdLy = main.carModelIdLy;   
     param.serviceId = main.id;                                       
@@ -4716,5 +4736,24 @@ function saleManChangedBatP(e){
     }
     saleManIdBat2 = saleManId;
 }
-
-
+/*
+function transferImages(){
+	document.getElementById("search").style.display="block";
+	
+	var i=500;
+    var search = document.getElementById("search");
+    search.style.top = '6px';
+    search.style.position='absolute';    
+    var timer = setInterval(
+        function(){
+            if(search.style.left=='200px')
+                clearInterval(timer);
+        i = i-10;
+        search.style.left = i+'px';
+        },60);  
+    
+    setTimeout(
+    		function(){
+    			document.getElementById("search").style.display="none";
+    			},2500);
+}*/

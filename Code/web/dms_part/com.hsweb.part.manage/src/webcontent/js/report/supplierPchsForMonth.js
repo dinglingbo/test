@@ -208,7 +208,7 @@ function quickSearch(type){
 }
 function onSearch(){
 	var params = getSearchParam();
-    params.startDate = beginDateEl.getValue();
+    params.startDate = beginDateEl.getFormValue();
     params.endDate = addDate(endDateEl.getValue(),1);
 
     doSearch(params);

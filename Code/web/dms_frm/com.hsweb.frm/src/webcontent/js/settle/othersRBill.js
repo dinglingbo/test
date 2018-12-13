@@ -71,7 +71,7 @@ function doSearch() {
  
   
    
-    params.sCreateDate = searchBeginDate.getValue();
+    params.sCreateDate = searchBeginDate.getFormValue();
     params.eCreateDate = searchEndDate.getValue();
     params.billStatus=searchStatus.getValue();
     mainGrid.load({

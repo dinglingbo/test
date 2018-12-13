@@ -749,7 +749,6 @@ function doSetMainInfo(car){
     maintain.mtAdvisor = currUserName;
     maintain.recordDate = now;
 
-    $("#lastComeKilometers").html(car.lastComeKilometers);  
     mpackageRate = 0;
     mitemRate = 0;
     mpartRate = 0;
@@ -765,6 +764,31 @@ function doSetMainInfo(car){
     $("#guestNameEl").html(car.guestFullName);
     $("#showCarInfoEl").html(car.carNo);
     $("#guestTelEl").html(car.guestMobile);
+    if(car.id){
+    	var lastComeKilometersUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCarExtend.biz.ext";
+    	var json = nui.encode({
+    		carId:car.id,
+    		token:token
+    	});
+    	 //查找上次里程
+        nui.ajax({
+    		url : lastComeKilometersUrl,
+    		type : 'POST',
+    		data : json,
+    		cache : false,
+    		contentType : 'text/json',
+    		success : function(text) {
+    			var returnJson = nui.decode(text);
+    			if (returnJson.errCode == "S") {
+    				var data = returnJson.data;
+    				var lastComeKilometers = data.lastComeKilometers || 0;
+    				$("#lastComeKilometers").html(lastComeKilometers);
+    			} else {
+    				showMsg(returnJson.errMsg||"查询上次里程失败","E");
+    		    }
+    		}
+    	 });
+    }
 }
 
 function setInitData(params){
@@ -4213,9 +4237,9 @@ function addExpenseAccount(){
 	if(data.id){
 		var item={};
 		item.id = "123321";
-	    item.text = "报销单";
+	    item.text = "报销单详情";
 		item.url =webBaseUrl+  "com.hsweb.print.ExpenseAccount.flow?sourceServiceId="+data.id;
-		item.iconCls = "fa fa-cog";
+		item.iconCls = "fa fa-file-text";
 		window.parent.activeTabAndInit(item,data);
 		data.guestTel = $("#guestTelEl").text();
 		data.guestName = $("#guestNameEl").text();
@@ -4301,7 +4325,7 @@ function newCheckMain() {
     item.id = "checkPrecheckDetail";
     item.text = "查车单";
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkDetail.flow";
-    item.iconCls = "fa fa-cog";
+    item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};
     params = {

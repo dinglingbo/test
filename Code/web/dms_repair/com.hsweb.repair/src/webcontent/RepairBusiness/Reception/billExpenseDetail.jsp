@@ -10,7 +10,7 @@
 -->
 <head>
 <title>费用登记</title>
-<script src ="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/billExpenseDetail.js?v=1.0.1">
+<script src ="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/billExpenseDetail.js?v=1.0.2">
 </script>
 <style type="text/css">
 .vpanel_heading {
@@ -45,8 +45,8 @@ a.optbtn {
                 <table style="width:100%;">
                     <tr>
                         <td style="width:100%;">
-                            <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
-                            <a class="nui-button" onclick="onCancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                            <a class="nui-button" onclick="onOk()" plain="true" style="width: 60px;" id="onOk"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                            <a class="nui-button" onclick="onCancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
                         </td>
                     </tr>
                 </table>

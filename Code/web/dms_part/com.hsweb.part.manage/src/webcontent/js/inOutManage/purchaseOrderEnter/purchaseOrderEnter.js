@@ -585,30 +585,27 @@ function onAdvancedSearchOk() {
 	var i;
 	// 订货日期
 	if (searchData.sOrderDate) {
-		searchData.sOrderDate = searchData.sOrderDate.substr(0, 10);
+		searchData.sOrderDate = searchData.sOrderDate;
 	}
 	if (searchData.eOrderDate) {
 		var date = searchData.eOrderDate;
 		searchData.eOrderDate = addDate(date, 1);
-		searchData.eOrderDate = searchData.eOrderDate.substr(0, 10);
 	}
 	// 创建日期
 	if (searchData.sCreateDate) {
-		searchData.sCreateDate = searchData.sCreateDate.substr(0, 10);
+		searchData.sCreateDate = formatDate(searchData.sCreateDate);
 	}
 	if (searchData.eCreateDate) {
 		var date = searchData.eCreateDate;
 		searchData.eCreateDate = addDate(date, 1);
-		searchData.eCreateDate = searchData.eCreateDate.substr(0, 10);
 	}
 	// 审核日期
 	if (searchData.sAuditDate) {
-		searchData.sAuditDate = searchData.sAuditDate.substr(0, 10);
+		searchData.sAuditDate = formatDate(searchData.sAuditDate);
 	}
 	if (searchData.eAuditDate) {
 		var date = searchData.eAuditDate;
 		searchData.eAuditDate = addDate(date, 1);
-		searchData.eAuditDate = searchData.eAuditDate.substr(0, 10);
 	}
 	// 供应商
 	if (searchData.guestId) {
@@ -2473,3 +2470,46 @@ function onStoreChange(e){
 
 	});
 }
+
+function setInitData(params){
+	if(params.id){
+//		basicInfoForm.setData(params);
+//		nui.get('orderMan').setText(params.orderMan);
+//		nui.get('orderMan').setValue(params.orderManId);
+//		$('#bServiceId').text("订单号："+params.serviceId);
+//		nui.get("guestId").setText(params.guestFullName);
+//		nui.get('storehouse').setValue(params.storeId);
+		
+//		if(StatusHash)
+//	       {
+//				var text=StatusHash[params.billStatusId];
+//				nui.get('AbillStatusId').setValue(text);
+//	       }
+//		
+//		var mainId=params.id;
+//		var auditSign=params.auditSign;
+		if(params.id){	
+			var data={};
+			data.id=params.id;
+			data.auditSign=params.auditSign;
+			doSearch(data);
+		}
+		if(params.billStatusId == 0){
+			
+			document.getElementById("fd1").disabled = false;
+			nui.get("guestId").enable();
+		}
+		if(params.billStatusId != 0){
+			
+			document.getElementById("fd1").disabled = true;
+			nui.get("guestId").disable();
+		}
+	}else{
+		formJson = nui.encode(basicInfoForm.getData());
+		add();	
+	}
+}
+
+
+
+

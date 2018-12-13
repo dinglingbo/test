@@ -227,7 +227,8 @@
         </table>
         <div style="text-align:center;padding:10px;">
             <a class="nui-button" onclick="onAdvancedSearchOk" style="width:60px;margin-right:20px;">确定</a>
-            <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;">取消</a>
+            <a class="nui-button" onclick="onAdvancedSearchCancel" style="width:60px;margin-right:20px;">取消</a>
+            <a class="nui-button" onclick="ononAdvancedSearchClear" style="width:60px;">清除</a>
         </div>
     </div>
 </div>

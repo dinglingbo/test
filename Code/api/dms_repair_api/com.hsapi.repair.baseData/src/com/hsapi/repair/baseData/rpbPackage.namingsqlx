@@ -44,6 +44,11 @@
                 (a.is_disabled = #isDisabled#)
             </isNotEmpty>
             
+            
+            <isNotEmpty prepend="and" property="serviceTypeIds">  
+                (a.service_type_id in ($serviceTypeIds$))
+            </isNotEmpty>
+            
             <isNotEmpty prepend="and" property="serviceTypeId">  
                 (a.service_type_id = #serviceTypeId#)
             </isNotEmpty>

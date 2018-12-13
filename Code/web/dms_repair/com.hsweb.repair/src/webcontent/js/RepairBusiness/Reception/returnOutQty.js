@@ -48,6 +48,9 @@ $(document).ready(function(v)
 	
 	rightGrid.on("drawcell",function(e){
 		switch (e.field) {
+		case "serviceCode":
+			e.cellHtml ='<a href="##" onclick="editSell()">'+e.value+'</a>';
+			break;
 		case "outReturnSign":
 				e.cellHtml="已归库";
 			break;
@@ -189,4 +192,19 @@ function doSearch(params)
         params:params,
         token :token     
     });
+}
+
+function editSell(){
+    var row = rightGrid.getSelected();
+    if(!row) return;
+    var part={};
+    part.id = "5200";
+    part.text = "退货开单详情";
+    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.returnBill.flow?token="+token;
+    part.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    var params = {
+        id: row.id
+    };
+    window.parent.activeTabAndInit(part,params);
 }

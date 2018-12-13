@@ -24,10 +24,14 @@
     
 
     <style type="text/css">
+	a {
+	cursor: pointer;
+	 color:black;
+}
     .navbar-brand
 {
     width:210px;
-    background:#367ea8;/* 20180708#fff */
+    background:#368bf4;/* 20180708#fff */
     cursor:default;
     font-size: 20px;
     font-weight: bold;    
@@ -76,14 +80,20 @@
     
     #toolData{
         width: 1600px;
+        heigth:1000px;
     }
     
     .menu{
-        padding-top: 40px;
+        padding-top: 0px;
     }
     .org_hover:hover{
     	text-decoration:underline
     }
+     .icon{
+    	width:80px;
+    	height:50px;
+    	overflow:auto;
+    } 
  
 </style>
 </head>
@@ -129,8 +139,13 @@
           </div>
     </div>
 </div>
-<div id="toolData" class="sidebar">
-    <div id="mainMenu" style="overflow-y:auto; overflow-x:hidden; width:400px !important; height:1000px;"></div>
+<div id="toolData" class="sidebar" >
+	<div id="tu" style="overflow-y:auto;overflow-x:auto; width:800px; height:50px;">
+    	<a><img class="icon" src="<%=webPath + contextPath%>/coframe/auth/images/icon.jpg" /></a>
+    </div>
+    <div id="mainMenu" style="overflow:auto; width:800px;">
+    	
+    </div>
 </div>
 
 <div class="container">
@@ -201,6 +216,8 @@
 
 <script>
 
+
+document.getElementById("mainMenu").style.height = (document.documentElement.clientHeight-50) + 'px'
     var defDomin = "<%=request.getContextPath()%>";
     var baseUrl = apiPath + repairApi + "/";
     var mainTabs = mini.get("mainTabs");

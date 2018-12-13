@@ -140,8 +140,8 @@
 							<span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
 						<a class="nui-button" iconCls="" plain="true" onclick="openOrderDetail()">
 							<span class="fa fa-search fa-lg"></span>&nbsp;详情</a>
-						<a class="nui-button" iconCls="" plain="true" onclick="doDelete()">
-							<span class="fa fa-trash fa-lg"></span>&nbsp;作废</a>
+<!-- 						<a class="nui-button" iconCls="" plain="true" onclick="doDelete()">
+							<span class="fa fa-trash fa-lg"></span>&nbsp;作废</a> -->
 					</td>
 				</tr>
 			</table>

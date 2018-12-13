@@ -5,7 +5,9 @@ var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryCard.biz.ext";
 var sysnUrl = webPath + contextPath + "/com.hsweb.repair.DataBase.cardSync.flow?token="+token;
 var grid = null;
+var assistant = 0;
 var xs = 0;
+var xyguest = {};
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
@@ -254,4 +256,9 @@ function setData(data)
 {
 	xyguest= data;
 	assistant = 1;//判断是主页面还是open页面。用于双击触发事件
+}
+
+function setInitData(){
+	setStely();
+	assistant=1;
 }

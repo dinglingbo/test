@@ -5,6 +5,7 @@ var gridUrl = apiPath + repairApi
 		+ "/com.hsapi.repair.baseData.crud.queryPackage.biz.ext";
 var typeGrid2Url = apiPath + sysApi +"/com.hsapi.system.product.items.getPrdtType.biz.ext";
 var packageGridUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getPackage.biz.ext";
+var packageDetailUrl = apiPath + sysApi +"/com.hsapi.system.product.items.getPkgDetail.biz.ext";
 var grid = null;
 var sti = "";
 var resultData = {};
@@ -21,6 +22,8 @@ var treeHash={};
 var isChooseClose = 1;//默认选择后就关闭窗体
 var carModelIdLy = null;
 var serviceId = null;
+var detailGrid_Form = null;
+var packageDetail = null;
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
@@ -30,6 +33,20 @@ $(document).ready(function(v) {
 	packageGrid.setUrl(packageGridUrl);
 	typeGrid2 = nui.get("typeGrid2");
 	typeGrid2.setUrl(typeGrid2Url);
+	detailGrid_Form = document.getElementById("detailGrid_Form");
+	packageDetail = nui.get("packageDetail");
+    
+    packageDetail.setUrl(packageDetailUrl);
+    packageGrid.on("showrowdetail",function(e)
+    {
+        var grid = e.sender;
+        var row = e.record;
+        var td = grid.getRowDetailCellEl(row);
+        td.appendChild(detailGrid_Form);
+        detailGrid_Form.style.display = "block";
+        packageDetail.clearRows();
+        loadPackageDetailByPkgId(row.id,function(){});
+    });
 	grid.on("beforeload",function(e){
         e.data.token = token;
 	});
@@ -370,3 +387,17 @@ function setValueData(){
 function onCancel() {
     CloseWindow("cancel");
 }
+
+function loadPackageDetailByPkgId(pkgId,callback)
+{
+    packageDetail.load({
+        pkgCarMtId:pkgId
+    },callback);
+}
+
+
+
+
+
+
+

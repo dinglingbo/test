@@ -109,6 +109,10 @@
       <process:to type="query">guest/tenantId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">01020103</process:from>
+      <process:to type="query">guest/guestType</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">add</process:from>
       <process:to type="query">type</process:to>
     </process:copy>

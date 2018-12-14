@@ -302,14 +302,6 @@
       <process:from type="query" pattern="reference">data</process:from>
       <process:to type="query">mainData</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">S</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">保存成功！</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
     <location x="483" y="246"/>
@@ -501,6 +493,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">new Date()</process:from>
       <process:to type="query">d</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">保存成功!</process:from>
+      <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">

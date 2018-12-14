@@ -56,9 +56,7 @@ pageEncoding="UTF-8" session="false" %>
 
       <div class="nui-fit">
         <div  id="t1" style="width: 100%; height: 100%;">
-
             <div  id="t2"  style="float:left;width: 40%; height: 100%;">
-
                 <div class="nui-fit">
                     <div id="lindChatA" style="width:490px;height:530px;"></div>
                 </div>
@@ -69,7 +67,6 @@ pageEncoding="UTF-8" session="false" %>
                 <table style="width:100%;height:100%;line-height: 30px;">
                    <tr>
                     <td><span class="tabletitle">已选客户类型：</span></td>
-                    
                 </tr> 
                 <tr style="height:38px;">
                     <td id="selectGuestType">

@@ -114,7 +114,7 @@
 
                         <td style="width:80px;"align="right">品牌车型：</td>
                         <td style="width:150px;">
-                            <input class="nui-textbox" id="carBrandModel" name="carBrandModel" width="100%" allowInput="false"/>        
+                            <input class="nui-textbox" id="carModel" name="carModel" width="100%" allowInput="false"/>        
                         </td>
                         <td style="width:80px;"align="right">发动机号：</td>
                         <td style="width:150px;">

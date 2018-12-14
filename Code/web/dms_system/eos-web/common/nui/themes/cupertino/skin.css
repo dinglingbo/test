@@ -12,7 +12,7 @@ body, .mini-popup, .mini-toolbar, .separator, .mini-panel-border, .mini-pager,
 .mini-listbox-border,
 .mini-progressbar-border,
 .mini-calendar, .mini-calendar-footer, .mini-calendar-menu,
-.mini-tabs-bodys, .mini-tabs .mini-tabs-space, .mini-tabs .mini-tabs-space2, .mini-tabs .mini-tab-active,
+.mini-tabs-bodys, .mini-tabs .mini-tabs-space, .mini-tabs .mini-tabs-space2, /* .mini-tabs .mini-tab-active, xiong*/
 .mini-textbox-border,
 .mini-buttonedit-border,
 .mini-textboxlist-border, .mini-tooltip-inner,
@@ -190,7 +190,8 @@ html body .mini-grid .mini-grid-cell-selected
 
 .mini-tabs-header-top .mini-tab-active
 {
-    border-bottom-color:#f2f5f7;
+    /* border-bottom-color:#f2f5f7;xiong */
+    background: #42485b33;
 }
 .mini-tabs-header-bottom .mini-tab-active
 {

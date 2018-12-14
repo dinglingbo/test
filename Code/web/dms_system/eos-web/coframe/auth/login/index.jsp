@@ -266,6 +266,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
             tab = tabs.addTab(tab);
         }
         tabs.activeTab(tab);
+        tabs.updateTab(tab,{title:item.text})
     }
     
     function ontabload(){
@@ -292,6 +293,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
             //doInitTab(params);
         }else{
             tabs.activeTab(tab);
+            tabs.updateTab(tab,{title:item.text})
             doInitTab(params);
         }
     }

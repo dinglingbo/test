@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.46"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.50"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -148,7 +148,7 @@
                 </td>
                  <td class="tbtext" >品牌车型：</td>
                     <td class="tbCtrl" >
-                       <input  class="nui-textbox" name="carBrandModel" id="carModel" enabled="false" width="100%"/>
+                       <input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/>
                     </td>      
                   <td class="title" > 车架号(VIN)：</td>
                   <td class="tbCtrl" >

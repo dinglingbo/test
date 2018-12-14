@@ -160,7 +160,7 @@ function sure() {
 
 			for ( var key in requiredField) {
 				if (!newRow[key] || $.trim(newRow[key]).length == 0) {
-					showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
+					parent.parent.showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
 					return;
 				}
 			}
@@ -208,15 +208,15 @@ function saveEnterPart(partList){
 					var errMsg = data.errMsg;
 					if(errMsg){
 						//nui.get("fastCodeList").setValue(errMsg);
-						showMsg(errMsg,"S");
+						parent.parent.showMsg(errMsg,"S");
 					}else{
-						showMsg("导入成功!","S");
+						parent.parent.showMsg("导入成功!","S");
 					}
 				} else {
 					//nui.get("fastCodeList").setValue(data.errMsg);
 					var noImportList = data.noImportList;
 					var l = noImportList.length;
-					showMsg(l+"条导入失败!","W");
+					parent.parent.showMsg(l+"条导入失败!","W");
 					showNoImportList(noImportList);
 				}
 			},

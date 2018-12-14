@@ -9,9 +9,12 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Hex;
 
+import com.eos.system.annotation.Bizlet;
+
 /**
  *  AES加解密类
  */
+
 public class AESCoderUtils {
     private static String CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";
     private static String KEY_ALGORITHM = "AES";
@@ -60,6 +63,7 @@ public class AESCoderUtils {
         return Hex.encodeHexString(bytes);
     }*/
 
+    @Bizlet("")
     public static String decryptBase64(String context, String key) {
         if (context == null) return null;
         try {
@@ -71,6 +75,7 @@ public class AESCoderUtils {
         }
     }
 
+    @Bizlet("")
     public static String encryptBase64(String context, String key) {
         byte[] bytes = encrypt(context, key);
         return Base64.getEncoder().encodeToString(bytes);

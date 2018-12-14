@@ -420,35 +420,36 @@
                                         客户ID
                                     </div>
                                     <div field="carNo" allowSort="true" align="left" summaryType="count" headerAlign="center" width="">车牌号</div>
-                                    <div field="vin" allowSort="true" align="left" headerAlign="center" width="" dataType="int">
+                                    <div field="vin" allowSort="true" align="left" headerAlign="center" width="160px" dataType="int">
                                         车架号(VIN)
                                     </div>
-                                    <div field="carModel" allowSort="true" align="left" headerAlign="center" width="" dataType="int">
+                                    <div field="carModel" allowSort="true" align="left" headerAlign="center" width="160px" dataType="int">
                                         车型信息
                                     </div>
-                                    <div field="engineNo" allowSort="true" align="left" headerAlign="center" width="">发动机号</div>
+                                    
                                     <div field="annualVerificationDueDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
                                         年审到期
+                                    </div>
+                                     <div field="annualInspectionDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
+                                        交强险到期
+                                    </div>
+                                    <div field="annualInspectionDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
+                                        商业险到期
                                     </div>
                                    
                                     <div field="insureNo" allowSort="true" align="left" headerAlign="center" width="">
                                         交强险单号
                                     </div>
-                                    <div field="annualInspectionDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
-                                        交强险到期
-                                    </div>
+                                   
                                     <div field="insureCompName" allowSort="true" align="left" headerAlign="center" width="">
                                       交强险投保公司
                                     </div>
-                                    <div field="annualInspectionNo" allowSort="true" align="left" headerAlign="center" width="">
-                                        商业险单号
-                                    </div>
-                                    <div field="annualInspectionDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
-                                        商业险到期
-                                    </div>
+           
+                             
                                     <div field="annualInspectionCompName" allowSort="true" align="left" headerAlign="center" width="">
                                         商业险投保公司
                                     </div>
+                                     <div field="engineNo" allowSort="true" align="left" headerAlign="center" width="">发动机号</div>
                                     <div field="produceDate" allowSort="true" dateFormat="yyyy-MM-dd" align="left" headerAlign="center" width="">
                                         生产日期
                                     </div>

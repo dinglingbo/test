@@ -12,7 +12,7 @@
 <title>资料管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/AddTelTrackGuest.js?v=1.0.16"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/AddTelTrackGuest.js?v=1.0.17"></script>
     <style type="text/css">
 
     .file {
@@ -77,7 +77,7 @@
                          allowCellWrap = true
                          showSummaryRow="true">
                         <div property="columns">
-                            <div type="checkcolumn" width="25"></div>
+                            <!-- <div type="checkcolumn" width="25"></div> -->
                             <div type="indexcolumn" width="30" summaryType="count">序号</div>
                             <div headerAlign="center">车辆信息
                                 <div property="columns">
@@ -86,7 +86,7 @@
                                     <div field="carNo" width="90" headerAlign="center" allowSort=false>车牌号</div>
                                     <div field="carBrandId" width="100" headerAlign="center" allowSort=false>品牌</div>
                                     <div field="carModel" width="250" headerAlign="center" allowSort=false>品牌车型</div>
-                                    <div field="vin" width="160" headerAlign="center" allowSort=false>车架号(VIN)</div>
+                                    <div field="vin" width="160" headerAlign="center" allowSort=false>车架号</div>
                                     <div field="engineNo" width="160" headerAlign="center" allowSort=false>发动机号</div>
                                     <div field="color" width="160" headerAlign="center" allowSort=false>颜色</div>
                                     <div field="firstRegDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
@@ -117,6 +117,5 @@
                         </div>
                     </div>
                 </div>
-
 </body>
 </html>

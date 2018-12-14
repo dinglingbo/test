@@ -40,6 +40,7 @@ import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
+import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
@@ -674,6 +675,43 @@ public class HttpUtils {
 		}
 		return result;
 	}
+	
+	@Bizlet("推送短信")
+	public static String send(String phones, String message) {
+		final String USER_NAME = "harsons";
+		final String PASSWORD = "harsons123";
+		HttpClient client =  new DefaultHttpClient();
+		HttpPost method = null;
+		String errCode="S";
+		try {
+			method = new HttpPost(
+					"http://yzh.tushi106.com:6062/public/sms.action");
+			String submitXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><messages><account>"
+					+ USER_NAME
+					+ "</account><password>"
+					+ PASSWORD
+					+ "</password><message><phones>"
+					+ phones
+					+ "</phones><content>"
+					+ message
+					+ "</content><subcode></subcode><sendtime></sendtime></message></messages>";
+			StringEntity stringEntity = new StringEntity(submitXml,"UTF-8");  
+			stringEntity.setContentType("text/xml"); 
+			method.setEntity(stringEntity);
+			HttpResponse httpResponse =client.execute(method);
+			HttpEntity responseEntity = httpResponse.getEntity();
+			String result = EntityUtils.toString(responseEntity,"UTF-8");
+			System.out.println(result);
+		} catch (Exception e) {
+			e.printStackTrace();
+			errCode="E";
+			return errCode;
+		}finally {
+			method.releaseConnection();
+		}
+		return errCode;
+	}
+	
 
 	/**
 	 * post form

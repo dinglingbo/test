@@ -537,14 +537,19 @@ function register(){
 		        data : JSON.stringify({params:params}),
 		        type : "post",
 		        success : function(data) {
-		        	if(data.data.Code=="OK")
+		           if(data.errCode=="S"){
+		              if(data.data.Code=="OK")
 		        		{
 		        		msgCode=data.data.msgCode;
 		        		settime(60);
 		        		}
-		        	else {
+		        	  else {
 		        		alert(data.data.Message);
-		        	}
+		        	 }
+		           }else{
+		               alert(data.errMsg || "注册失败");
+		           }
+		        	
 		        	
 		        },
 		        error : function(jqXHR, textStatus, errorThrown) {

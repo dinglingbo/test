@@ -18,7 +18,7 @@
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
-  <nodes xsi:type="process:tEnd" description="" id="end0" name="登录界面" displayName="结束" type="end" contextPath="" method="forward" uri="/coframe/auth/qlogin/login.jsp" variableUri="false">
+  <nodes xsi:type="process:tEnd" description="" id="end0" name="登录界面" displayName="结束" type="end" contextPath="" method="forward" uri="/coframe/auth/login/login.jsp" variableUri="false">
     <targetConnections>link4</targetConnections>
     <location x="377" y="134"/>
     <size height="28" width="28"/>

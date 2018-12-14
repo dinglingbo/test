@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUillLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/commonRepair.jsp"%>
 
 <html>  
@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.46"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.50"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -148,7 +148,7 @@
                 </td>
                  <td class="tbtext" >品牌车型：</td>
                     <td class="tbCtrl" >
-                       <input  class="nui-textbox" name="carBrandModel" id="carModel" enabled="false" width="100%"/>
+                       <input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/>
                     </td>      
                   <td class="title" > 车架号(VIN)：</td>
                   <td class="tbCtrl" >
@@ -161,13 +161,13 @@
                     <input class="nui-combobox tabwidth"  id="checkMainName" name="checkMainName" visible="false" style="width:100%"/>
                 </td>
 
-                <td class="tbtext" style="width:100px">上次检查里程：</td>
+                <td class="tbtext" style="width:100px">上次检查时间：</td>
                 <td class="tbCtrl">
                     <input class="nui-datepicker tabwidth" enabled="false" name="lastChekDate" id="lastChekDate" format="yyyy-MM-dd" style="width:100%"/>
                 </td>
             </tr> 
             <tr>
-                <td class="tbtext" style="width:100px">上次检查时间：</td>
+                <td class="tbtext" style="width:100px">上次检查里程：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" enabled="false" name="lastKilometers" id="lastKilometers" style="width:100%"/>
                 </td>
@@ -246,11 +246,11 @@
         </div>
         <div type="checkboxcolumn" field="settleType" name="settleType" trueValue="0" falseValue="1"  width="30" headerAlign="center" align="center" value="-1"><strong>下次处理</strong></div>
         <div type="checkboxcolumn" field="nosettleType" name="nosettleType" trueValue="1" falseValue="0"  width="30" headerAlign="center" align="center"><strong>本次处理</strong></div>
-        <div field="careDueMileage" name="careDueMileage" width="30" vtype="float" headerAlign="center" align="center"><strong>下次处理时间</strong>
+        <div field="careDueMileage" name="careDueMileage" width="30" vtype="float" headerAlign="center" align="center"><strong>下次处理里程</strong>
         	<input property="editor" class="nui-textbox" style="width:100%;" allowInput="true" vtype="float"/>  
         </div>
-        <div field="careDueDate" name="careDueDate" width="30" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm""><strong>下次处理里程</strong>
-        	<input property="editor" class="nui-datepicker tabwidth" name="" id="" dateFormat="yyyy-MM-dd HH:mm"" format="yyyy-MM-dd HH:mm"/>
+        <div field="careDueDate" name="careDueDate" width="30" headerAlign="center" align="center" dateFormat="yyyy-MM-dd""><strong>下次处理时间</strong>
+        	<input property="editor" class="nui-datepicker tabwidth" name="" id="" dateFormat="yyyy-MM-dd"" format="yyyy-MM-dd"/>
         </div>
     </div>
 </div>

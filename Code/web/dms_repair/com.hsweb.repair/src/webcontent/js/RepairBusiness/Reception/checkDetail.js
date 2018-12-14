@@ -428,7 +428,8 @@ function isCheckMainY(){
         var p = {
             data:{
                 guestId: temp.guestId||0,
-                contactorId: temp.contactorId||0
+                contactorId: temp.contactorId||0,
+                carId:temp.carId || 0,
             }
         };
 
@@ -436,6 +437,7 @@ function isCheckMainY(){
             var errCode = text.errCode||"";
             var guest = text.guest||{};
             var contactor = text.contactor||{};
+            var car = text.car||{};
             if(errCode == 'S'){
                 $("#servieIdEl").html(temp.serviceCode);
                 var carNo = temp.carNo||"";
@@ -464,8 +466,9 @@ function isCheckMainY(){
                 temp.guestMobile = guest.mobile;
                 temp.contactorName = contactor.name;
                 temp.mobile = contactor.mobile;
-                temp.mtdvisor = currUserName;
-                temp.mtdvisorId = currEmpId;
+                temp.carModel = car.carModel;
+                temp.mtdvisor = nui.get("mtdvisor").value;
+                temp.mtdvisorId = nui.get("mtdvisorId").value;;
                 billForm.setData(temp);
                 fguestId=temp.guestId;
                 if(!temp.lastKilometers ||!temp.lastPoint){
@@ -512,13 +515,15 @@ function isCheckMainN(){
             var p = {
                 data:{
                     guestId: data.guestId||0,
-                    contactorId: data.contactorId||0
+                    contactorId: data.contactorId||0,
+                    carId:data.carId || 0,
                 }
             };
             getGuestContactorCar(p, function(text){
                 var errCode = text.errCode||"";
                 var guest = text.guest||{};
                 var contactor = text.contactor||{};
+                var car = text.car||{};
                 if(errCode == 'S'){
                     $("#servieIdEl").html(data.serviceCode);
                     var carNo = data.carNo||"";
@@ -549,6 +554,7 @@ function isCheckMainN(){
                     data.guestMobile = guest.mobile;
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
+                    data.carModel = car.carModel;
                     data.enterKilometers = temp.enterKilometers;
                     data.lastKilometers = temp.lastKilometers;
                     data.lastPoint = temp.lastPoint;
@@ -629,6 +635,12 @@ function saveb(){
 		return;
 	}
 	
+	var lastKilometers =data.lastKilometers;
+	var enterKilometers =data.enterKilometers;
+	if(enterKilometers <=lastKilometers){
+		showMsg("本次里程不能小于上次里程","W");
+		return;
+	}
 	if(!(nui.get('search_name').value)){
 		showMsg("请先添加客户","W");
 		return;
@@ -742,6 +754,8 @@ function saveDetail(){ //√  isCheckMain == "N"
             actionType = 'edit'; 
             nui.get("id").setValue(mainParams.cmId);
             $("#servieIdEl").html(data.data.serviceCode);
+            var temp = SearchCheckMain(mainParams.id);
+            billForm.setData(temp);
             mainGrid.setUrl(baseUrl + "com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
             mainGrid.load({mainId:mainParams.row.id,token:token});
             nui.unmask(document.body);
@@ -923,6 +937,8 @@ function saveDetailB(){
         	nui.unmask();
             if(data.errCode == "S"){
                 actionType = 'edit';
+                var temp = SearchCheckMain(mainParams.id);
+                billForm.setData(temp);
                 mainGrid.setUrl(baseUrl + "com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
                 mainGrid.load({mainId:mmid,token:token});
                 nui.unmask(document.body);
@@ -952,7 +968,10 @@ function addNew(){
     sk.style.display = "";
     searchKeyEl.focus();
     searchKeyEl.setValue("");//点增加给输入框个值，防止触发不了onchanged方法，不能放入客户
-    billForm.setData([]);
+    var temp={};
+    temp.mtdvisor = currUserName;
+    temp.mtdvisorId = currEmpId;
+    billForm.setData(temp);
     mainGrid.setData([]);
     nui.get('checkMainId').setEnabled(true);
     fguestId = 0;
@@ -966,6 +985,8 @@ function onCellCommitEdit(e){
 	var editor = e.editor;
 	var record = e.record;
 	var row = e.row;
+    var settleType=e.record.settleType;
+    var enterKilometers =nui.get('enterKilometers').value;
 	if(editor!=null){
 		editor.validate();
 		if (editor.isValid() == false) {
@@ -974,12 +995,32 @@ function onCellCommitEdit(e){
 		}else{
 			if (e.field == "careDueMileage") {
 				var careDueMileage = e.value;
-				if (e.value == null || e.value == '') {
+				 var settleType=e.record.settleType;
+				if (e.value == null || e.value == '' || settleType==1 || settleType== -1) {
 					e.value = 0;
 					careDueMileage = 0;
-				} else if (e.value < 0) {
+					showMsg("请选择下次处理!","W");
+					return;
+				}
+				if(e.value<=enterKilometers){
 					e.value = 0;
 					careDueMileage = 0;
+					showMsg('下次处理里程不能比本次里程少!',"W");
+					return;
+				}
+				if (e.value < 0) {
+					e.value = 0;
+					careDueMileage = 0;
+					showMsg("请输入正确的里程数!","W");
+					return;
+				}
+			}
+			if(e.field == 'careDueDate'){
+				var careDueDate =e.value;
+				if(settleType==1 || settleType== -1){
+					e.value='';
+					careDueDate = '';
+					showMsg("请选择下次处理!","W");
 				}
 			}
 			

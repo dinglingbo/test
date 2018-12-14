@@ -236,10 +236,10 @@
 			a.service_type_id as serviceTypeId,
 			a.mt_advisor_id as mtAdvisorId,
 			a.mt_advisor as mtAdvisor,
-			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
+			SUBSTRING_INDEX(a.car_model,' ',2) as carModel,
 			a.contactor_id as contactorId,
-			c.`name` as contactorName,
-			c.mobile as contactorTel,
+			a.contactor_name as contactorName,
+			a.contactor_tel as contactorTel,
 			a.predict_come_date as predictComeDate,
 			a.prebook_source as prebookSource,
 			a.prebook_category as prebookCategory,
@@ -264,8 +264,7 @@
 			c.wechat_open_id as openId
 			FROM
 				rps_prebook a
-				inner JOIN rpb_car b ON ( a.car_id = b.id )
-				inner join rpb_contactor c on (a.contactor_id = c.id)
+				left join rpb_contactor c on (a.contactor_id = c.id)
 			WHERE 1 = 1
 			and a.orgid = #orgid#
 		<dynamic>
@@ -292,10 +291,10 @@
             
             
             <isNotEmpty prepend="and" property="contactorName">  
-                (c.`name` like '%$contactorName$%')
+                (a.contactor_name like '%$contactorName$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="contactorTel">  
-                (c.mobile like '%$contactorTel$%')
+                (a.contactor_tel like '%$contactorTel$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="mtAuditorId">
                 (a.mt_advisor_id = #mtAuditorId#)

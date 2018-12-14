@@ -304,7 +304,7 @@
                                     <div type="comboboxcolumn" field="storeId" width="60" headerAlign="center" allowSort="false">
                         仓库<input  property="editor" enabled="true" name="storehouse" dataField="storehouse" class="nui-combobox" valueField="id" textField="name" data="storehouse"
                                       url=""
-                                     onvaluechanged="onStoreChange" emptyText=""  vtype="required"
+                                     onvaluechanged="" emptyText=""  vtype="required"
                                       /> 
                         </div>  
                         <div field="storeShelf" width="60" headerAlign="center" allowSort="false">

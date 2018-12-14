@@ -280,14 +280,15 @@ public class SettleOrder {
             String str = sb.toString();
             System.out.println(sb.toString());
             
-            str = AESCoderUtils.decryptBase64(str, apikey);
-    		System.out.println("返回结果解密decodeData的值为:"+str);
+            
             
             Gson gson = new Gson();
             Map<String, String> resultMap = new HashMap<String, String>();
             resultMap = gson.fromJson(str, map.getClass());
             //String result = resultMap.get("encrypted_data");
-           // String resultDecodeData = AESCoderUtils.decryptBase64(result, apikey);
+            //String resultDecodeData = AESCoderUtils.decryptBase64(result, apikey);
+            //str = AESCoderUtils.decryptBase64(str, apikey);
+    		//System.out.println("返回结果解密decodeData的值为:"+str);
     		
     		return resultMap;
         } catch (Exception e) {

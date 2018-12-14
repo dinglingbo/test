@@ -392,9 +392,10 @@
         <div class="content">
             <div><span>电话：</span>
             <span style="float:center;padding-left:205px;">地址:</span>
-             <span style="float:center;padding-left:405px;" id="nowDate">打印日期:</span>
-            <span id="serviceCode"style="float:right;padding-right:85px;">单据单号：</span></div>
+             <span style="float:center;margin-left:330px;" id="nowDate">打印日期:</span>
+            <span id="serviceCode"style="float:right;padding-right:85px;">单据单号：</span>
             <hr />
+            </div>
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
                 <tbody>
                     <tr>
@@ -403,7 +404,7 @@
                         <td class="left" id="contactMobile">联系电话：</td> -->
                         
                         <td class="left" id="carNo" width="20%"style="margin-left: 0px;">车牌号：</td>
-                        <td class="left" id="carModel" width="50%">品牌车型/品牌：</td>
+                        <td class="left" id="carModel" width="50%">品牌车型：</td>
                          <td  ></td>
                     </tr>
                     <tr>

@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.56"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.59"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -157,8 +157,13 @@
 .btn .mini-corner-all .mini-buttonedit-input{
 	font-size: 16px;
 	margin-top: 8px;
+	
 }
-
+.btn .mini-corner-all .mini-textbox-input{
+	font-size: 14px;
+	margin-top: 8px;
+	
+}
 </style>
 </head>
 <body>
@@ -175,9 +180,9 @@
             <td class="btn" >
                 <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)" 
                     style="width:350px;height: 50px !important;"  popupWidth="600" textField="text" valueField="id" 
-                    id="search_key" url="" value="carNo"   searchField="key"  
+                    id="search_key" url="" value="carNo"   searchField="key"  howNullItem="true" allowInput="true"
                     dataField="list" placeholder="请输入...">     
-                    <div property="columns" id="qwer" name="qwer">
+                    <div property="columns" >
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
                         <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
                         <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>

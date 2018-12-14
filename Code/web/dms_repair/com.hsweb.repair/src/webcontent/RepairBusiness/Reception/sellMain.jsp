@@ -10,7 +10,7 @@
 -->
 <head>
 <title>销售开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellMain.js?v=1.3.6"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellMain.js?v=1.3.7"></script>
 <style type="text/css">
 
 .title {
@@ -101,8 +101,8 @@
               <div property="columns">
                   <div type="indexcolumn">序号</div>
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-                  <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>
-                  <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
+                  <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
+                  <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
                   <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌" visible="false"></div>           
                   <div field="carModel" name="carModel" width="180" headerAlign="center" header="品牌车型" visible="false"></div>
                   <div field="partAmt" name="partAmt" width="40" headerAlign="center" header="金额"></div>

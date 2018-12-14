@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.4.10"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.4.11"></script>
 <style type="text/css">
 
 .title {
@@ -109,8 +109,8 @@
                   <div field="serviceTypeName" name="serviceTypeName" width="100px" headerAlign="center" header="业务类型"></div>
                   <div field="carBrandId" name="carBrandId" width="70px" headerAlign="center"  header="品牌车型"></div>
                   <div field="carVin" name="carVin" width="135px" headerAlign="center" header="车架号(VIN)"></div>
-                  <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>
-                  <div field="guestMobile" name="guestMobile" width="100px" headerAlign="center" header="手机"></div>
+                  <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
+                  <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
                   <div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div>
                   <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计交车时间"></div>

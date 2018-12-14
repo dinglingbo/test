@@ -975,8 +975,56 @@ function onCellCommitEditPkg(e) {
 	}
 }
 
+/*var sumPkgSubtotal = 0;
+var sumPkgPrefAmt = 0;
+var sumItemSubtotal = 0;
+var sumItemPrefAmt = 0;
+var sumPartSubtotal = 0;
+var sumPartPrefAmt = 0;
+function onDrawSummaryCellPack(e){ 	
+	  var rows = e.data;
+	  sumPkgSubtotal = 0;
+	  sumPkgPrefAmt = 0;
+	  var sumPkgAmt = 0;
+	  if(e.field == "subtotal") 
+	  {   
+		  for (var i = 0; i < rows.length; i++)
+		  {
+			  if(rows[i].billPackageId=="0"){
+				  sumPkgSubtotal += parseFloat(rows[i].subtotal);
+				  sumPkgAmt  += parseFloat(rows[i].amt);
+			  }
+		  }
+	  }
+}
 
+function onDrawSummaryCellItem(e){
+	  var rows = e.data;
+	  sumItemSubtotal = 0;
+	  sumItemPrefAmt = 0;
+	  sumPartSubtotal = 0;
+	  sumPartPrefAmt = 0;
+	  // || e.field == "amt"
+	  if(e.field == "subtotal") 
+	  {   
+		  for (var i = 0; i < rows.length; i++)
+		  {
+			  if(rows[i].cardDetailId>0){
+				  gsAmt=gsAmt+rows[i].subtotal;
+			  }
+			 if(rows[i].billItemId=="0"){
+				 sumItemSubtotal += parseFloat(rows[i].subtotal);
+				 sumItemAmt  += parseFloat(rows[i].amt); 
+			 }else{
+				 sumPartSubtotal += parseFloat(rows[i].subtotal);
+				 sumPartAmt  += parseFloat(rows[i].amt); 
+			 }
+			   
+		  }
+	  }
+}
 
+*/
 
 
 

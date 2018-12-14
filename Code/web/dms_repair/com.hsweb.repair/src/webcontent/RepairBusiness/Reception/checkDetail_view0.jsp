@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUillLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/commonRepair.jsp"%>
 
 <html>  
@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.45"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.46"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -77,15 +77,15 @@
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
                         <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
                         <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
-                        <div header="送修人名称" field="contactName" width="30" headerAlign="center"></div>
-                        <div header="送修人手机" field="mobile" width="60" headerAlign="center"></div>
-                        <div header="VIN" field="vin" width="70" headerAlign="center"></div>
+                        <div header="联系人名称" field="contactName" width="30" headerAlign="center"></div>
+                        <div header="联系人手机" field="mobile" width="60" headerAlign="center"></div>
+                        <div header="车架号(VIN)" field="vin" width="70" headerAlign="center"></div>
                     </div>
                 </div>
                 <input id="search_name"
                 name="search_name"
                 class="nui-textbox"
-                emptyText="车牌号/客户名称/手机号/VIN码"
+                emptyText="车牌号/客户名称/手机号/车架号(VIN)"
                 onbuttonclick="onSearchClick()"
                 width="200px"
                 visible="false"
@@ -112,7 +112,9 @@
     <div id="billForm" class="form">
         <input class="nui-hidden" name="id" id="id"/>
         <input class="nui-hidden" name="guestId"/>
-        <input class="nui-hidden" name="mtAdvisor" id="mtAdvisor"/>
+        <input class="nui-hidden" name="checkMan" id="checkMan"/>
+        <input class="nui-hidden" name="mtdvisorId" id="mtdvisorId"/>
+        <input class="nui-hidden" name="mtdvisor" id="mtdvisor"/>
         <input class="nui-hidden" name="contactorId"/>
         <input class="nui-hidden" name="carId"/>
         <input class="nui-hidden" name="carVin"/>
@@ -131,10 +133,10 @@
         <table style=" left:0;right:0;margin: 0 auto; width:100%">
 			
             <tr>
-                 <td class="tbtext">客户名称：</td>
+                <!--  <td class="tbtext">客户名称：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="guestFullName" id="guestFullName" enabled="false" style="width:100% ;disaply:none;" />
-                </td>
+                </td> -->
                 <!-- <td class="tbtext">客户手机：</td>
                 <td class="tbCtrl">
                     <input class="nui-textbox tabwidth" name="guestMobile" id="guestMobile" enabled="false" style="width:100%"/>
@@ -186,8 +188,8 @@
                 <td class="tbtext" style="color: red;">查车技师：</td>
                 <td >
 
-                    <input name="mtAdvisorId"
-                    id="mtAdvisorId"
+                    <input name="checkManId"
+                    id="checkManId"
                     class="nui-combobox width1"
                     textField="empName"
                     valueField="empId"
@@ -247,8 +249,8 @@
         <div field="careDueMileage" name="careDueMileage" width="30" vtype="float" headerAlign="center" align="center"><strong>下次处理里程</strong>
         	<input property="editor" class="nui-textbox" style="width:100%;" allowInput="true" vtype="float"/>  
         </div>
-        <div field="careDueDate" name="careDueDate" width="30" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm""><strong>下次处理时间</strong>
-        	<input property="editor" class="nui-datepicker tabwidth" name="" id="" dateFormat="yyyy-MM-dd HH:mm"" format="yyyy-MM-dd HH:mm"/>
+        <div field="careDueDate" name="careDueDate" width="30" headerAlign="center" align="center" dateFormat="yyyy-MM-dd""><strong>下次处理时间</strong>
+        	<input property="editor" class="nui-datepicker tabwidth" name="" id="" dateFormat="yyyy-MM-dd"" format="yyyy-MM-dd"/>
         </div>
     </div>
 </div>

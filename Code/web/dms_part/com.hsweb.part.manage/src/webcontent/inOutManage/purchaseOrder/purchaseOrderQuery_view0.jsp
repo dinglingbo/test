@@ -8,10 +8,10 @@
 -->
 <head>
 <title>采购订单查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderQuery.js?v=1.0.9"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderQuery.js?v=1.0.10"></script>
 <style type="text/css">
 .title {
-	width: 90px;
+	width: 90px; 
 	text-align: right;
 }
 

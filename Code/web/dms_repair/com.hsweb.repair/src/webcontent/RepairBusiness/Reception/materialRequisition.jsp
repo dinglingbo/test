@@ -393,8 +393,9 @@
             <div><span>电话：</span>
             <span style="float:center;padding-left:205px;">地址:</span>
              <span style="float:center;padding-left:405px;" id="nowDate">打印日期:</span>
-            <span id="serviceCode"style="float:right;padding-right:85px;">单据单号：</span></div>
+            <span id="serviceCode"style="float:right;padding-right:85px;">单据单号：</span>
             <hr />
+            </div>
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
                 <tbody>
                     <tr>

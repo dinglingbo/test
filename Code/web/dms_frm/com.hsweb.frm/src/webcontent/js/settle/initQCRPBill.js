@@ -77,7 +77,7 @@ function addGuest(){
                 isSupplier: 1,
                 isClient: 1
             };
-            iframe.contentWindow.setData(params);
+           // iframe.contentWindow.setData(params);
         },
         ondestroy: function (action)
         {

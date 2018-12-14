@@ -110,7 +110,7 @@ $(document).ready(function ()
             }else{
                 e.cellHtml = "未结算";
             }
-        }else if(e.field == "guestMobile"){
+        }else if(e.field == "contactMobile"){
         	var value = e.value;
         	value = "" + value;
         	var reg=/(\d{3})\d{4}(\d{4})/;

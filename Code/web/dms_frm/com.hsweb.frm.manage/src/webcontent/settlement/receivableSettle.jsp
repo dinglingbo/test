@@ -128,9 +128,9 @@
 							<span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 						<input id="proId" width="120px" visible="false" emptyText="业务单号" class="nui-combobox" />
 						<span class="separator"></span>
-						<a class="nui-button" plain="true" onclick="advancedSearch()">
+<!-- 						<a class="nui-button" plain="true" onclick="advancedSearch()">
 							<span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
-						<span class="separator"></span>
+						<span class="separator"></span> -->
 						<a class="nui-button" iconCls="" visible="false" plain="true" onclick="doBalance()">
 							<span class="fa fa-check fa-lg"></span>&nbsp;确认对账</a>
 						<!-- 							<a class="nui-button"

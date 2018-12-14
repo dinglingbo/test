@@ -428,7 +428,8 @@ function isCheckMainY(){
         var p = {
             data:{
                 guestId: temp.guestId||0,
-                contactorId: temp.contactorId||0
+                contactorId: temp.contactorId||0,
+                carId:temp.carId || 0,
             }
         };
 
@@ -436,6 +437,7 @@ function isCheckMainY(){
             var errCode = text.errCode||"";
             var guest = text.guest||{};
             var contactor = text.contactor||{};
+            var car = text.car||{};
             if(errCode == 'S'){
                 $("#servieIdEl").html(temp.serviceCode);
                 var carNo = temp.carNo||"";
@@ -464,8 +466,9 @@ function isCheckMainY(){
                 temp.guestMobile = guest.mobile;
                 temp.contactorName = contactor.name;
                 temp.mobile = contactor.mobile;
-                temp.mtdvisor = currUserName;
-                temp.mtdvisorId = currEmpId;
+                temp.carModel = car.carModel;
+                temp.mtdvisor = nui.get("mtdvisor").value;
+                temp.mtdvisorId = nui.get("mtdvisorId").value;;
                 billForm.setData(temp);
                 fguestId=temp.guestId;
                 if(!temp.lastKilometers ||!temp.lastPoint){
@@ -512,13 +515,15 @@ function isCheckMainN(){
             var p = {
                 data:{
                     guestId: data.guestId||0,
-                    contactorId: data.contactorId||0
+                    contactorId: data.contactorId||0,
+                    carId:data.carId || 0,
                 }
             };
             getGuestContactorCar(p, function(text){
                 var errCode = text.errCode||"";
                 var guest = text.guest||{};
                 var contactor = text.contactor||{};
+                var car = text.car||{};
                 if(errCode == 'S'){
                     $("#servieIdEl").html(data.serviceCode);
                     var carNo = data.carNo||"";
@@ -549,6 +554,7 @@ function isCheckMainN(){
                     data.guestMobile = guest.mobile;
                     data.contactorName = contactor.name;
                     data.mobile = contactor.mobile;
+                    data.carModel = car.carModel;
                     data.enterKilometers = temp.enterKilometers;
                     data.lastKilometers = temp.lastKilometers;
                     data.lastPoint = temp.lastPoint;
@@ -962,7 +968,10 @@ function addNew(){
     sk.style.display = "";
     searchKeyEl.focus();
     searchKeyEl.setValue("");//点增加给输入框个值，防止触发不了onchanged方法，不能放入客户
-    billForm.setData([]);
+    var temp={};
+    temp.mtdvisor = currUserName;
+    temp.mtdvisorId = currEmpId;
+    billForm.setData(temp);
     mainGrid.setData([]);
     nui.get('checkMainId').setEnabled(true);
     fguestId = 0;

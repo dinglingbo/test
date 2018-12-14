@@ -248,6 +248,7 @@ function addRow() {
             data.contactorName = row.guestName;
             data.contactorTel = row.mobile;
             data.carBrandId = row.carBrandId;
+            data.carNo = row.carNo;
             var param = { action: "add", data: data };
             iframe.contentWindow.SetData(param);
         },

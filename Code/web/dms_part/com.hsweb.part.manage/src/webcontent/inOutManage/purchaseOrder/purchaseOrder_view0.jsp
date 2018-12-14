@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购订单</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrder.js?v=1.0.14"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrder.js?v=1.0.19"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -161,7 +161,7 @@ body .mini-grid-row-selected{
     </table>  
     <a href="" id="tableExportA"></a>
 </div>  
-
+    
 <div id="advancedTipWin" class="nui-window"
         title="未成功导入配件" style="width:400px;height:200px;"
         showModal="true"

@@ -175,6 +175,7 @@ function addOrEdit(item){
 		{
 	    	if(action == "ok")
 			{
+	    		showMsg("保存成功","S");
 	    		rightGrid.reload();
 	    	}	
 		}

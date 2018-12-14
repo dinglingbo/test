@@ -57,7 +57,7 @@
 				SUM(a.recharge_amt) AS amt
 			FROM
 				wb_repair.rpb_card_stored a
-			INNER JOIN wb_repair.rps_card_stored b ON a.id = b.card_id
+			INNER JOIN wb_repair.rps_stored_record as b ON a.id = b.card_id
 			WHERE
 				(a.orgid =#orgid# OR a.is_share = 1)
 				AND a.tenant_id = #tenantId#
@@ -82,7 +82,7 @@
 				SUM(a.sell_amt) AS amt
 			FROM
 				wb_repair.rpb_card_times a
-			INNER JOIN wb_repair.rps_card_times b ON a.id = b.card_id
+			INNER JOIN wb_repair.rps_card_times as b ON a.id = b.card_id
 			WHERE
 				(a.orgid = #orgid# OR a.is_share = 1)AND a.tenant_id = #tenantId#
 			AND a.STATUS = 0

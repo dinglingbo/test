@@ -22,11 +22,11 @@
             <td style="white-space:;"><!--nowrap-->
                 <label style="font-family:Verdana;">快速查询：</label>
                 <label style="font-family:Verdana;">话术来源：</label>
-                <input class="nui-textbox" name="source" id="source" enabled="true"/>
+                <input class="nui-textbox" name="source" id="source" enabled="true" style="width:120px;"/>
                 <label style="font-family:Verdana;">主题：</label>
-                <input class="nui-textbox" name="topic" id="topic" enabled="true"/>
+                <input class="nui-textbox" name="topic" id="topic" enabled="true" style="width:120px;"/>
                 <label style="font-family:Verdana;">创建人：</label>
-                <input class="nui-combobox" name="recorder" id="recorder" enabled="true" textField="empName" valueField="empName" allowInput="true"/>
+                <input class="nui-combobox" name="recorder" id="recorder" enabled="true" textField="empName" valueField="empName" allowInput="true" style="width:120px;"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="query(0)" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="editgroup">
                     <a class="nui-button" iconCls="" plain="true" onclick="add()" id="add" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增话术</a>

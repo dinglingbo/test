@@ -180,7 +180,7 @@
             <td class="btn" >
                 <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)" 
                     style="width:350px;height: 50px !important;"  popupWidth="600" textField="text" valueField="id" 
-                    id="search_key" url="" value="carNo"   searchField="key"  howNullItem="true" allowInput="true"
+                    id="search_key" url="" value="carNo"   searchField="key"  howNullItem="true" allowInput="true" autoFill="true"
                     dataField="list" placeholder="请输入...">     
                     <div property="columns" >
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>

@@ -32,11 +32,7 @@ function setData(){
 		success : function(data) {
 			if (data && data.card) {
 				cardType=data.card;
-				for(var i =0;i<cardType.length;i++){
-					cardType[i].cAmt=0;
-					cardType[i].rAmt=0;
 
-				}
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -53,11 +49,6 @@ function setData(){
 		success : function(data) {
 			if (data && data.timesCard) {
 				timesCardType=data.timesCard;
-				for(var i =0;i<timesCardType.length;i++){
-					timesCardType[i].cAmt=0;
-					timesCardType[i].rAmt=0;
-
-				}
 				queryC(getYearStartDate(),getYearEndDate());
 			}
 		},
@@ -69,6 +60,17 @@ function setData(){
 }
 
 function settleOK(e){
+	for(var i =0;i<cardType.length;i++){
+		cardType[i].amt=0;
+		cardType[i].num=0;
+
+	}
+	for(var i =0;i<timesCardType.length;i++){
+		timesCardType[i].amt=0;
+		timesCardType[i].num=0;
+
+	}
+
 	if(e==1){
 		queryC(getNowStartDate(),getNowStartDate());
 		document.getElementById(color).setAttribute("class", "m");
@@ -82,7 +84,7 @@ function settleOK(e){
 		document.getElementById("thisWeek").setAttribute("class", "n");
 		
 	}else if(e==3){
-		queryC(getMonthStartDate(),getMonthStartDate());
+		queryC(getMonthStartDate(),getMonthEndDate());
 		document.getElementById(color).setAttribute("class", "m");
 		color = "thisMonth";
 		document.getElementById("thisMonth").setAttribute("class", "n");
@@ -111,7 +113,7 @@ function queryC(startDate,endDate){
 		data : {
 			params:{
 					startDate:startDate,
-					endDate:endDate+"23:59:59"
+					endDate: addDate(endDate, 1)
 				},
 			token: token
 		},
@@ -168,10 +170,6 @@ function open(cardType){
 		cardNum[i]=cardType[i].num;
 
 	}
-
-
-
-
 
 	option = {
 			title : {
@@ -327,3 +325,8 @@ function open2(timesCardType){
 			var orgChart1 = echarts.init(document.getElementById('timesCard'));
 			            orgChart1.setOption(option);
 }
+
+
+
+
+

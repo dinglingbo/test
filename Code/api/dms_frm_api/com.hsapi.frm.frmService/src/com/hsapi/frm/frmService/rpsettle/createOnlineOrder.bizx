@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="createOnlineOrder.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="对接结算中心：创建支付订单  fis_rp_bill_online， 调用线上订单接口创建接口&#xD;&#xA;接口调用失败后需要回滚&#xD;&#xA;第一次接口时需要登录&#xD;&#xA;调用时提示超时需要登录  000833&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;map.put(&quot;businessNo&quot;, &quot;686666&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;businessType&quot;, &quot;ERP&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;companyId&quot;, &quot;COM20100211000014&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;customerId&quot;, &quot;KH04136-20180400024&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;customerName&quot;, &quot;陈丽卿&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;invoiceType&quot;, &quot;NONE&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;payMethod&quot;, &quot;ALIPAY&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;receiptAmount&quot;, &quot;0.01&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;receiptNo&quot;, &quot;XSDDS00001&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;receiptSummary&quot;, &quot;0.01&quot;);" title="Administrator&#x9;18-12-13 下午3:05">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="对接结算中心：创建支付订单  fis_rp_bill_online， 调用线上订单接口创建接口&#xD;&#xA;接口调用失败后需要回滚&#xD;&#xA;第一次接口时需要登录&#xD;&#xA;调用时提示超时需要登录  000833  013118&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;map.put(&quot;businessNo&quot;, &quot;686666&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;businessType&quot;, &quot;ERP&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;companyId&quot;, &quot;COM20100211000014&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;customerId&quot;, &quot;KH04136-20180400024&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;customerName&quot;, &quot;陈丽卿&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;invoiceType&quot;, &quot;NONE&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;payMethod&quot;, &quot;ALIPAY&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;receiptAmount&quot;, &quot;0.01&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;receiptNo&quot;, &quot;XSDDS00001&quot;);&#xD;&#xA;&#x9;&#x9;map.put(&quot;receiptSummary&quot;, &quot;0.01&quot;);" title="Administrator&#x9;18-12-13 下午3:05">
     <location x="-285" y="-45"/>
     <size height="361" width="348"/>
   </nodes>
@@ -46,7 +46,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="apiid" type="literal" value="java.lang.String" valueType="Java" pattern="reference">31370874921755649</process:inputVariable>
-      <process:inputVariable id="1" name="loginId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">013118</process:inputVariable>
+      <process:inputVariable id="1" name="loginId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">000833</process:inputVariable>
       <process:inputVariable id="2" name="password" type="literal" value="java.lang.String" valueType="Java" pattern="reference">1</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>

@@ -188,7 +188,7 @@ function toStockCheck(){
 }
 function toTimesCardList(){
     var item={};
-    item.id = "2107";
+    item.id = "2107-1";
     item.text = "计次卡销售";
     item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.timesCardList.flow?token="+token;
     item.iconCls = "fa fa-file-text";
@@ -198,7 +198,7 @@ function toTimesCardList(){
 
 function toCardList(){
     var item={};
-    item.id = "2108";
+    item.id = "2108-1";
     item.text = "储值卡充值";
     item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.cardList.flow?token="+token
     item.iconCls = "fa fa-file-text";

@@ -374,9 +374,9 @@ function edit(){
     var row = mainGrid.getSelected();
     if(!row) return;
     var item={};
-    item.id = "2000";
-    item.text = "综合开单详情";
-    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow";
+    item.id = "4000";
+    item.text = "理赔开单详情";
+    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.claimDetail.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {

@@ -10,7 +10,7 @@
 -->
 <head>
 <title>理赔开单查询</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectCompensation.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectCompensation.js?v=1.0.4"></script>
 <style type="text/css">
 
 .title {

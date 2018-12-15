@@ -56,9 +56,11 @@ $(document).ready(function (){
 				if (returnJson.errCode == "S") {
 				    nui.unmask(document.body);
 					showMsg(returnJson.errMsg || "发送成功","S");
+					CloseWindow("ok");
 				} else {
 					nui.unmask(document.body);
 					showMsg(returnJson.errMsg || "发送失败","E");
+					
 				}
 			}
 		});

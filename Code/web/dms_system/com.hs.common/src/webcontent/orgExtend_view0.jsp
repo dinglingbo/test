@@ -66,7 +66,7 @@
 
 			<div class="nui-fit">
 				<div id="datagrid1" class="nui-datagrid gridborder" style="width: 100%; height: 100%;" url="" idField="id" allowResize="true" onrowdblclick="edit('edit')"
-				 dataField="rs" onselectionchanged="changebutton" sizeList="[20,30,50,100]" pageSize="20" allowCellWrap="true">
+				 dataField="rs" onselectionchanged="changebutton" sizeList="[20,30,50,100]" pageSize="20" allowCellWrap="true" totalField="page.count">
 					<div property="columns">
 						<div type="checkcolumn">选择</div>
 						<div field="orgid" width="120" headerAlign="center" align="center" visible="false">企业ID</div>

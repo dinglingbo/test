@@ -99,13 +99,13 @@ function setData(data)
 	{//项目类型
 		var typeList = data.typeList;
 		var typeItemList = [];
-		for(var i=0; i<typeList.length; i++){
+/*		for(var i=0; i<typeList.length; i++){
 			var type = typeList[i].type;
 			if(type == 'item'){
 				typeItemList.push(typeList[i]);
 			}
-		}
-		nui.get("type").setData(typeItemList);
+		}*/
+		nui.get("type").setData(typeList);
 	}
 	if(data.carBrandIdList)
 	{//品牌

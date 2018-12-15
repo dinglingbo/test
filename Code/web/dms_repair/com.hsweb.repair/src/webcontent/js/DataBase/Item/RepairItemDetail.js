@@ -105,7 +105,7 @@ function setData(data)
 				typeItemList.push(typeList[i]);
 			}
 		}*/
-		nui.get("type").setData(typeItemList);
+		nui.get("type").setData(typeList);
 	}
 	if(data.carBrandIdList)
 	{//品牌

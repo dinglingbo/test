@@ -232,6 +232,7 @@ function getSearchParam() {
 
 	params.sCreateDate = searchBeginDate.getFormValue();
 	params.eCreateDate = searchEndDate.getValue();
+	params.settleStatus = nui.get("settleStatus").getValue();
 	return params;
 }
 var currType = 2;

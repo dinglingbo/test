@@ -13,6 +13,7 @@ encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/team/save
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/UpdateMainStatusAndRpsPart.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/checkContactorExists.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/insRpsCardTimes.bizx.eosdebug=UTF-8
+encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/insRpsItemList.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/saveCheckDetail.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/saveCustomerInfo.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/saveRpsMaintain.bizx.eosdebug=UTF-8

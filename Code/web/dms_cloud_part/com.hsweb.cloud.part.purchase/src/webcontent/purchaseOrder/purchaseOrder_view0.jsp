@@ -18,6 +18,7 @@
 
 .title.required {
   color: red;
+  width :6%;
 }
 .title.tip {
   color: blue;

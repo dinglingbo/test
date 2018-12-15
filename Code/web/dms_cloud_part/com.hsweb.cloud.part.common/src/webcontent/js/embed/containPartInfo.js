@@ -248,7 +248,7 @@ function getSearchParams()
 function onSearch()
 {
     if(!checkConditions()){
-        showMsg("请输入查询条件!","W");
+        parent.showMsg("请输入查询条件!","W");
         return;
     }
     var params = getSearchParams();
@@ -282,7 +282,7 @@ function addOrEditPart(row)
         targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.baseData.partDetail.flow?token=" + token,
         title: "配件资料",
-        width: 740, height: 250,
+        width: 480, height: 350,
         allowDrag:true,
         allowResize:false,
         onload: function ()
@@ -397,7 +397,7 @@ function onGridSelectionChanged(){
 }
 function openGeneratePop(partList, type, title){
     nui.open({
-        targetWindow : window,
+//        targetWindow : window,
         url : webPath+contextPath+"/com.hsweb.cloud.part.common.shopCarPop.flow?token="+token,
         title : title,
         width : 600,
@@ -428,7 +428,7 @@ function addPchsOrder(){
         openGeneratePop(rows, "pchsOrder", "新增采购订单");
 
     }else{
-        showMsg("请选择配件信息!","W");
+        parent.showMsg("请选择配件信息!","W");
         return;
     }
 }
@@ -439,7 +439,7 @@ function addSellOrder(){
         openGeneratePop(rows, "sellOrder", "新增销售订单");
 
     }else{
-        showMsg("请选择配件信息!","W");
+        parent.showMsg("请选择配件信息!","W");
         return;
     }
 }
@@ -450,7 +450,7 @@ function addPchsShop(){
         openGeneratePop(rows, "pchsCart", "添加采购车");
 
     }else{
-        showMsg("请选择配件信息!","W");
+        parent.showMsg("请选择配件信息!","W");
         return;
     }
 
@@ -462,7 +462,7 @@ function addSellShop(){
         openGeneratePop(rows, "sellCart", "添加销售车");
 
     }else{
-        showMsg("请选择配件信息!","W");
+        parent.showMsg("请选择配件信息!","W");
         return;
     }
 

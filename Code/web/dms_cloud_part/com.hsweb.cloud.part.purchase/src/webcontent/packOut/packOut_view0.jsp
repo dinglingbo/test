@@ -12,7 +12,7 @@
 <script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
-  width: 60px;
+  width: 70px;
   text-align: right;
 }
 
@@ -124,7 +124,7 @@
             
 
              <div class="nui-fit">
-                  <fieldset id="fd1" style="width:95%;height:90px;">
+                  <fieldset id="fd1" style="width:99.5%;height:120px;">
                       <legend><span>打包发货信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">

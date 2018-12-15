@@ -12,7 +12,7 @@
 <script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderEnter/purchaseOrderEnter.js?v=1.0.8"></script>
 <style type="text/css">
 .title {
-  width: 60px;
+  width: 70px;
   text-align: right;
 }
 
@@ -48,7 +48,7 @@ body .mini-grid-row-selected{
 
 
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:300px;"
+     title="高级查询" style="width:416px;height:320px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">

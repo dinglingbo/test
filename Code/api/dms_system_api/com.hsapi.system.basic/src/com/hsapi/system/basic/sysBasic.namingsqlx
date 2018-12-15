@@ -13,4 +13,18 @@
 		FROM vw_user_position 
 		WHERE operatorId = #operatorId#
     </select>
+    
+    <select id="getUserOrg" parameterClass="HashMap" resultClass="com.hsapi.system.data.sys.VwUserOrg">
+    	SELECT
+			realComp,ORGID,ORGCODE,ORGNAME,`STATUS`,ISLEAF,TENANT_ID,OPERATORID,USERID,EMPNAME
+		FROM
+			vw_user_org
+		WHERE
+	    operatorId = #operatorId#
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgidOrName">
+            	(orgid = #orgidOrName# or orgname like '%$orgidOrName$%')
+            </isNotEmpty>
+        </dynamic>
+    </select>
 </sqlMap>

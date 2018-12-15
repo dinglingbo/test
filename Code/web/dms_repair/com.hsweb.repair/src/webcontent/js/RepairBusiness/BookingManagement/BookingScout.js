@@ -90,4 +90,20 @@ function onDrawDate(e) {
         e.allowSelect = false;
     }
 }
-
+//发送短信
+function sendInfo(){
+	var data = basicInfoForm.getData();
+	var phones = data.contactorTel || "";
+	nui.open({
+		url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
+		title: "发送短信", width: 655, height: 386,
+		onload: function () {
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.setPhones(phones);
+		},
+		ondestroy: function (action) {
+            //重新加载
+            //query(tab);
+        }
+    });
+}

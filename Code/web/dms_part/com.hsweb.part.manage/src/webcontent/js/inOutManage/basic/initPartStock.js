@@ -27,6 +27,11 @@ $(document).ready(function(v)
 
     basicInfoForm = new nui.Form("#basicInfoForm");
 
+    initMember("orderManId",function(){
+        memList = nui.get('orderManId').getData();
+        nui.get('orderManId').setValue(currEmpId);
+        nui.get('orderManId').setText(currUserName);
+    });
 
     //绑定表单
     //var db = new nui.DataBinding();
@@ -218,6 +223,8 @@ function add()
         
     nui.get("serviceId").setValue("期初入库");
     nui.get("enterTypeId").setValue("050105");
+    nui.get('orderManId').setValue(currEmpId);
+    nui.get('orderManId').setText(currUserName);
     
 }
 function calcTaxPriceInfo(taxSign, taxRate)
@@ -254,6 +261,7 @@ function getMainData()
 {
     var data = basicInfoForm.getData();
     //汇总明细数据到主表
+    data.orderMan=nui.get('orderManId').getText();
     data.isFinished = 0;
     data.enterTypeId = '050105';
     data.auditSign = 0;

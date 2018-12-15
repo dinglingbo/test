@@ -175,7 +175,7 @@ var supplier = null;
 function selectSupplier(elId) {
     supplier = null;
     nui.open({
-        targetWindow : window,
+//        targetWindow : window,
         url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title : "往来单位资料",
         width : 980,
@@ -295,7 +295,7 @@ function onCellCommitEdit(e) {
 
     editor.validate();
     if (editor.isValid() == false) {
-        showMsg("请输入数字!","W");
+        parent.showMsg("请输入数字!","W");
         e.cancel = true;
     }
 }
@@ -321,13 +321,13 @@ function generateOrderByBatch(main,detail,type){
             nui.unmask(document.body);
             var errCode = data.errCode;
             if(errCode == "S"){
-                showMsg("操作成功!","S");
+                parent.parent.showMsg("操作成功!","S");
                 if(type == "pchsOrder" || type == "sellOrder"){
                     //更新采购车或是销售车的状态
                 }
                 CloseWindow("ok");
             } else {
-                showMsg(data.errMsg || "操作失败!","W");
+                parent.showMsg(data.errMsg || "操作失败!","W");
             }
 
         },
@@ -341,13 +341,13 @@ function onOk()
 {
     var data = batchInfoForm.getData();
     if(!data.guestId){
-        showMsg("请选择往来单位!","W");
+        parent.showMsg("请选择往来单位!","W");
         return;
     }
 
     var detail = mainGrid.getData();
     if(detail.length <= 0){
-        showMsg("明细为空!","W");
+        parent.showMsg("明细为空!","W");
         return;
     }
 

@@ -346,12 +346,12 @@ function onAdvancedSearchOk() {
 	btnEdit2Name = nui.get("btnEdit2").getText();
 	var i;
 	if (searchData.sCreateDate) {
-		searchData.sCreateDate = searchData.sCreateDate.substr(0, 10);
+		searchData.sCreateDate = formatDate(searchData.sCreateDate);
 	}
 	if (searchData.eCreateDate) {
 		var date = searchData.eCreateDate;
 		searchData.eCreateDate = addDate(date, 1);
-		searchData.eCreateDate = searchData.eCreateDate.substr(0, 10);
+		
 	}
 	// 审核日期
 	if (searchData.sBalanceDate) {

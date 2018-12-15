@@ -12,6 +12,7 @@
 <title>Title</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>  
     
 </head>
@@ -200,6 +201,8 @@
             else window.close();
         }
     	function SetData(params){
+    	    token1 =  params.token;
+            webUrl = params.webUrl;
     		nui.ajax({
                 url: params.baseUrl+"com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext",
                 type : "post",
@@ -244,6 +247,7 @@
                    if(text.errCode == "S"){
                    		var fullName = guest.fullName || "";
                    		var mobile = guest.mobile || "";
+                   		phones = mobile;
                    		document.getElementById("guestId").innerHTML =  guestName.replace(/[0-9]/ig,"") + fullName;
                    		document.getElementById("mobile").innerHTML = document.getElementById("mobile").innerHTML+ mobile;
                    }
@@ -369,6 +373,27 @@
 	                }
             	}); */
     	}
+    	
+   var token1 =null; 
+   var webUrl =null;
+   var phones = null;
+   function sendInfo(){
+	nui.open({
+		//url: webUrl+"com.hsweb.crm.manage.sendInfo.flow?token="+token1,
+		url:"http://127.0.0.1:8080/default/com.hsweb.crm.manage.sendInfo.flow",
+		title: "发送短信", width: 655, height: 386,
+		onload: function () {
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.setPhones(phones);
+		},
+		ondestroy: function (action) {
+            //重新加载
+            //query(tab);
+        }
+    });
+  }
+    	
+    	
     </script>
 </body>
 </html>

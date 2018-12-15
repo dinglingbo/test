@@ -92,11 +92,11 @@ function sure() {
 			var taxSignStr = data[i].是否含税;
 			var taxSign = taxSignStr == "是" ? 1 : 0;
 			var partBrandId = (data[i].品牌||"").replace(/\s+/g, "");
-
+			
 			if(brandHash && brandHash[partBrandId]){
 				partBrandId = brandHash[partBrandId].id;
 			}else{
-				showMsg("第"+(i+1)+"行记录的品牌信息有误!","W");
+				parent.showMsg("第"+(i+1)+"行记录的品牌信息有误!","W");
 				return;
 			}
 
@@ -168,12 +168,12 @@ function saveEnterPart(partList){
 							nui.get("fastCodeList").setValue(parts);
 							advancedTipWin.show();
 						}
-						//showMsg(errMsg,"S");
+						//parent.showMsg(errMsg,"S");
 	                }else{
-						showMsg("导入成功!","S");
+						parent.showMsg("导入成功!","S");
 	                }
 	            } else {
-					showMsg(data.errMsg || "导入失败!","W");
+					parent.showMsg(data.errMsg || "导入失败!","W");
 	            }
 	        },
 	        error : function(jqXHR, textStatus, errorThrown) {

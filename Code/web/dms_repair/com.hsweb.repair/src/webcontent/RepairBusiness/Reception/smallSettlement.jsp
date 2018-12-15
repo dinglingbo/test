@@ -79,8 +79,8 @@
 <div class="print_btn">
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
-        <a   iconCls="" onclick="sendInfo()">发送</a>
-        <a   iconCls="" onclick="sendInfo()">发送微信</a>
+        <a  style="background:#999999" iconCls="" onclick="sendInfo()">发送短信</a>
+        <a  style="background:#999999" iconCls="" onclick="sendInfo()">发送微信</a>
 </div>
 <div style="height:5px"></div>
 <table width="380" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -96,13 +96,10 @@
                             <td height="20" id="guestId">客户：</td>
                         </tr>
                         <tr>
-                             <td height="20" id="mobile">电话：</td>
+                            <td height="20" id="mtAdvisor">服务顾问：</td>
                         </tr>
                         <tr>
-                            <td height="20" id="mtAdvisor">顾问：</td>
-                        </tr>
-                        <tr>
-                            <td height="20" id="carNo">车牌：</td>
+                            <td height="20" id="carNo">车牌号：</td>
                         </tr>
                         <tr>
                             <td height="20" id="outDate">结算时间：</td>
@@ -113,7 +110,7 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0" id="showPkg">
                         <thead>
                             <tr>
-			                    <td  width="240" bgcolor="#f8f8f8"><b>套餐项目(包含项目和配件)</b></td>
+			                    <td  width="240" bgcolor="#f8f8f8"><b>套餐项目(包含工时配件)</b></td>
 			                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
                             </tr>
                         </thead>
@@ -149,7 +146,7 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     	<tr>
                     		<td>
-                    			套餐：<span id="prdt">0</span>&nbsp;&nbsp;&nbsp;&nbsp;项目：<span id="item">0</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0</span>
+                    			套餐：<span id="prdt">0</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0</span>
                     		</td>
                     	</tr>
                         <tr>
@@ -249,7 +246,7 @@
                    		var mobile = guest.mobile || "";
                    		phones = mobile;
                    		document.getElementById("guestId").innerHTML =  guestName.replace(/[0-9]/ig,"") + fullName;
-                   		document.getElementById("mobile").innerHTML = document.getElementById("mobile").innerHTML+ mobile;
+                   		//document.getElementById("mobile").innerHTML = document.getElementById("mobile").innerHTML+ mobile;
                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {

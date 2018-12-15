@@ -179,8 +179,8 @@
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a href="javascript:box_setup_open()">修改</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()">发送短信</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo1()">发送微信</a>
+        <a plain="true" iconCls="" plain="false" onclick="sendInfo()">发送短信</a>
+        <a style="background:#999999" plain="true" iconCls="" plain="false" onclick="sendInfo1()">发送微信</a>
      </div>
      
        <!-- <div showCollapseButton="false" style="border:0; text-align: center;" class="print_hide">
@@ -201,40 +201,46 @@
 	     
         <div style="margin: 0 10px;" class="printny">
         <div class="company-info">
-            <h3><span id="comp"></span></h3>
+        	
+            
+            <table  width="100%" border="0" cellspacing="0" cellpadding="0">
+	            <tbody>
+	                <tr>
+	                	<td rowspan="2" style="width: 133px;">
+	                     	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
+	                    </td>
+	                    <td>
+	                        <div style="font-size: 20px; font-family: 微软雅黑;">&nbsp;&nbsp;<span id="comp"></span></div>
+	                    </td>
+	                    <td rowspan="2" style="width: 300px;">
+	                        <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename"></span></b></div>
+	                        <div style="padding-top: 2px; font-size: 16px;">
+	                          №:<span id="serviceCode"></span>  
+	                        </div>
+	                    </td>
+	                </tr>
+	                <tr>
+	                	<td>
+	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜</br>
+	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜
+	                	</td>
+	                </tr>
+	            </tbody>
+	        </table>
+	        
         </div>
-        <table  width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tbody>
-                <tr>
-                    <td>
-                            <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename">维修结算单</span></b></div>
-                        
-                        <div style="padding-top: 2px; font-size: 16px;">
-                            单号：<span id="serviceCode"></span>
-                            
-                        </div>
-                    </td>
-                    <!-- <td width="65" height="50px">
-                            <div style="float: right; text-align: center;">
-                                <div id="qrcode">
-                                    	<img src="https://photo.harsonserver.com/20180910115313857.jpg">
-                            </div>
-                                扫码支付
-                            </div>
-                    </td> -->
-                </tr>
-            </tbody>
-        </table>
+        
         <div style="border-bottom: 1px #333 solid; height: 2px; margin-bottom: 10px;">&nbsp;</div>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
              <tr>
                 <td>地址：<span id="guestAddr"></span></td>
-             <td align="right" id="outDate" >结算时间：</td>
+                <td  id="openBank" style="width: 300px;">开户银行：</td>
+                <td  style="width: 300px;">打印时间：<span id="date"></span></td>
             </tr> 
             <tr>
                 <td>电话：<span id="phone"></span></td>
-                    <td align="right" >打印时间：<span id="date"></span></td>
-
+                <td  id="bankNo" >银行账号：</td>
+             	<td  id="enterDate" >进厂时间：</td>
             </tr>
         </table>
 
@@ -260,7 +266,7 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPkg">
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8"><b></b></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"><b>套餐项目(含项目/配件)</b></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8"><b>套餐项目(含工时配件)</b></td>
                     <td width="60" align="center" bgcolor="#f8f8f8"><b>数量</b></td>
                     <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
                     <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
@@ -421,14 +427,22 @@
 	        if(params.name){
 	        	document.getElementById("spstorename").innerHTML = params.name;
 	        	//维修结算单没有这段话
-	        	if(params.name == "维修结算单"){
+	        	if(params.name == "结账单"){
+	        	   document.getElementById("spstorename").innerHTML = "结账单";
 	        	   document.getElementById("show").innerHTML = params.currRepairSettPrintContent||"";
 	        	}else if(params.name == "报价单"){
+	        	   $("#enterDate").hide();
+	        	   document.getElementById("spstorename").innerHTML = "报价单";
 	        	   document.getElementById("show").innerHTML = params.currRepairEntrustPrintContent||"";
 	        	}
 	        }
 	        document.getElementById("comp").innerHTML = params.comp;
 	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
+	        //document.getElementById("pdate").innerHTML = document.getElementById("pdate").innerHTML + format(date, "yyyy-MM-dd HH:mm");
+	        
+	        document.getElementById("openBank").innerHTML = params.bankName;
+	        document.getElementById("bankNo").innerHTML = params.bankAccountNumber;
+	        
 	        $.ajaxSettings.async = false;//设置为同步执行
 	        var url = null;
 	        if(params.type){
@@ -450,15 +464,15 @@
 	        		phones = list.contactMobile || "";
 	        		var carNo = list.carNo || "";
 	        		var carVin = list.carVin || "";
-	        		var outDate = list.outDate || "";
+	        		var enterDate = list.enterDate || "";
 	        		
 	        		var drawOutReport = list.drawOutReport || "";
-	        		if(outDate){
-	        			outDate = outDate.replace(/-/g,"/");
-	        			outDate = new Date(outDate);
-	        			outDate = format(outDate, "yyyy-MM-dd HH:mm");
+	        		if(enterDate){
+	        			enterDate = enterDate.replace(/-/g,"/");
+	        			enterDate = new Date(enterDate);
+	        			enterDate = format(enterDate, "yyyy-MM-dd HH:mm");
 	        		}else{
-	        		  outDate='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+	        		  enterDate='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 	        		}
 	        		var guestFullName = list.guestFullName || "";
 	        		var enterOilMass = list.enterOilMass || "0";
@@ -495,7 +509,7 @@
 	        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
 	        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
-	        		document.getElementById("outDate").innerHTML = document.getElementById("outDate").innerHTML + outDate;
+	        		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
 	        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>理赔开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.6.14"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.6.15"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -150,8 +150,8 @@
                 <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="onPrint(1)" id="type11">打印报价单</li>
                     <li iconCls="" onclick="onPrint(2)" id="type11">打印派工单</li>
-                    <li iconCls="" onclick="onPrint(3)" id="type11">打印结算单</li>
-                    <li iconCls="" onclick="onPrint(4)" id="type11">打印结算单(小票)</li>
+                    <li iconCls="" onclick="onPrint(3)" id="type11">打印结账单</li>
+                    <li iconCls="" onclick="onPrint(4)" id="type11">打印结账单(小票)</li>
                     <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
                 </ul>
 

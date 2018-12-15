@@ -415,6 +415,8 @@
 
         }
         function SetData(params){
+            token1 =  params.token;
+            webUrl = params.webUrl;
 	        var date = new Date();
 	        if(params.name){
 	        	document.getElementById("spstorename").innerHTML = params.name;
@@ -603,7 +605,6 @@
         	}else{
         		url_two = "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext?serviceId=";
         	}
-        	 token1 =  params.token;
         	 $.post(params.baseUrl+url_two+params.serviceId+"&token="+params.token,{},function(text){//工时
         	   
 	        	if(text.errCode == "S"){
@@ -734,17 +735,12 @@
     		$(".boxbg").hide();
         	$(".popbox").hide();
     	}
-    	//发送短信
-   /*  //应用地址
-	String contextPath1=request.getContextPath();
-	//api地址
-	String apiPath1 = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); 
-	//web地址
-	String webPath1 = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort(); */
-	var token1 =null; 
-function sendInfo(){
+   var token1 =null; 
+   var webUrl =null;
+   function sendInfo(){
 	nui.open({
-		url: "http://127.0.0.1:8080/default/com.hsweb.crm.manage.sendInfo.flow",
+		url: webUrl+"com.hsweb.crm.manage.sendInfo.flow?token="+token1,
+		//url:"http://127.0.0.1:8080/default/com.hsweb.crm.manage.sendInfo.flow",
 		title: "发送短信", width: 655, height: 386,
 		onload: function () {
 			var iframe = this.getIFrameEl();
@@ -755,7 +751,7 @@ function sendInfo(){
             //query(tab);
         }
     });
-}
+  }
     	
     	
     </script>

@@ -688,6 +688,7 @@ function doPrint(params){
 		partApiUrl:apiPath + partApi + "/",
 		baseUrl: apiPath + repairApi + "/",
 		sysUrl: apiPath + sysApi + "/",
+		webUrl:webPath + contextPath + "/",
 		token : token
 	};
 	if(source == 1){  //打印报价单

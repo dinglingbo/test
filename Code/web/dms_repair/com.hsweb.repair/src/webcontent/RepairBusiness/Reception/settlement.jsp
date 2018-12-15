@@ -177,8 +177,8 @@
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a href="javascript:box_setup_open()">修改</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()">发送短信</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()">发送微信</a>
+        <a class="nui-button" style="background:#999999" plain="true" iconCls="" plain="false" onclick="sendInfo()">发送短信</a>
+        <a class="nui-button" style="background:#999999" plain="true" iconCls="" plain="false" onclick="sendInfo()">发送微信</a>
      </div>
      
        <!-- <div showCollapseButton="false" style="border:0; text-align: center;" class="print_hide">

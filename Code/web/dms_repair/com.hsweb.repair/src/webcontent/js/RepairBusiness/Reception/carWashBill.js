@@ -3162,10 +3162,10 @@ function chooseItem(){
         return;
     }
     var data = billForm.getData();
-	var desData = describeForm.getData();
-	for(var v in desData){
-	      data[v] = desData[v];
-	 }
+	//var desData = describeForm.getData();
+	//for(var v in desData){
+	 //     data[v] = desData[v];
+	 //}
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 	        nui.get(key).focus();
@@ -3217,10 +3217,10 @@ function choosePackage(){
         return;
     }
     var data = billForm.getData();
-	var desData = describeForm.getData();
-	for(var v in desData){
-	      data[v] = desData[v];
-	 }
+	//var desData = describeForm.getData();
+	//for(var v in desData){
+	//      data[v] = desData[v];
+	// }
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 	        nui.get(key).focus();

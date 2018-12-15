@@ -369,7 +369,6 @@
                 </isNotEmpty>
             </dynamic>  
         )M
-  		group by M.id
         ORDER BY M.operateDate DESC
        
     </select>
@@ -1487,7 +1486,6 @@
                 </isNotEmpty> 
             </dynamic>  
 		
-		GROUP BY A.id
         ORDER BY A.OPERATE_DATE DESC
         
     </select>
@@ -1629,7 +1627,6 @@
                 </isNotEmpty> 
             </dynamic>  
         
-        GROUP BY A.id
         ORDER BY A.OPERATE_DATE DESC
         
     </select>

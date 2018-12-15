@@ -1,387 +1,320 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
-    <%@include file="/common/sysCommon.jsp"%>
+ <%@include file="/common/sysCommon.jsp"%>
 
-        <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-        <html>
-        <!-- 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<!-- 
   - Author(s): Administrator
   - Date: 2018-05-27 15:11:00
   - Description:
--->
+--> 
+<head>
+    <title>门店信息</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  	<script src="<%=webPath + contextPath%>/common/js/orgExtendEdit.js?v=1.9.8" type="text/javascript"></script>
 
-        <head>
-            <title>门店信息</title>
-            <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/common/js/orgExtendEdit.js?v=1.9.8" type="text/javascript"></script>
+  <style type="text/css">
+    body {
+       margin: 0;
+       padding: 0;
+       border: 0;
+       width: 100%;
+       height: 100%;
+       overflow: hidden;
+   }
 
-            <style type="text/css">
-            
-				
-				    
-			
-                .form_label {
-                    width: 80px;
-                    text-align: right;
-                }
-            </style>
-        </head>
+    /*body.back{background:LightSteelBlue;}*/
+   table
+   {
 
-        <body class="back">
-            <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+    border-collapse:collapse;
+    table-layout:fixed;
+    font-weight:bold;
+    left:0;right:0;   
+    margin:0 auto;
+    padding:1px 0px 1px 0px;
+
+
+}
+.pic { /* 页面logo图片 */
+background-image: <%-- url(<%=request.getContextPath()%>/eos/A/jsp/Main.png) --%>;
+background-repeat: no-repeat;
+background-size: 100% 100%;
+border-radius: 4px;
+}
+
+table tr
+{
+  height:40px; 
+} 
+table tr td span
+{
+  width:10px;
+  display: inline-block;
+}
+
+.tabwidth{
+    width:800px;
+}
+.tbtext{
+    float: right; 
+    line-height: 40px;
+}
+.mini-textbox{
+    height: 28px;
+    display: inline;
+}
+.mini-textbox-border{ 
+    height: 25px;
+} 
+.mini-textbox-input{/* 输入框的里面的高度 */
+    height: 24px;
+}
+
+.mini-buttonedit {
+    height: 28px;
+}
+
+.mini-buttonedit-border {
+    height: 25px;
+}
+
+.mini-buttonedit-input {
+    height: 24px;
+}
+.mini-buttonedit-buttons{
+    top:3px;
+    right: 10px;
+}
+.mini-buttonedit-button{
+    border-left:0px;
+}
+
+.mini-buttonedit-button-pressed, .mini-buttonedit-popup .mini-buttonedit-button {
+    background: #fff;
+    color: #333333;
+    border-width: 0px;
+     border-left: 0px;
+}
+
+.mini-buttonedit-popup .mini-buttonedit-button
+{
+    background: #fff;
+    border-width:0px;
+    border-left: 0px ;
+}
+
+.mini-buttonedit-button-hover,
+.mini-buttonedit-hover .mini-buttonedit-button
+{
+    color:#333;     
+    background:#fff;
+    border-width:0px;
+    border-left: 0px ;
+}
+.checkboxwidth{
+    width: 65px;
+    margin-left:20px;
+}
+.textboxwidth{
+    width:200px;
+}
+.inline{
+    width:320px ;
+    display:inline-block !important;
+} 
+</style> 
+</head> 
+<body class="back">
+    <div class="nui-fit">  
+        <div class="form"id="basicInfoForm" name="basicInfoForm" style="width:950px;height:100%;left:0;right:0;margin: 0 auto;">
+        		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
                 <table style="width:100%;">
                     <tr>
                         <td style="width:100%;">
-                            <a class="nui-button" onclick="save('no')" plain="true" style="width: 60px;">
-                                <span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                            <a class="nui-button" onclick="Oncancel()" plain="true" style="width: 60px;">
-                                <span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
+                            <a class="nui-button" onclick="save(no)" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
+                            <a class="nui-button" onclick="Oncancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
                         </td>
                     </tr>
                 </table>
             </div>
-            <div class="nui-fit">
-                <div class="nui-panel" showToolbar="false" title="变更信息" showFooter="false" style="width:100%;">
-                    <div class="form" id="basicInfoForm" name="basicInfoForm">
-                        <table style="line-height: 2;">
-                            <tr>
-                                <td class="form_label required">
-                                    <label>LOGO图片：</label>
-                                </td>
-                                <td colspan="1" class="tabwidth">
-                                    <div class="pic" style="width:64px;height:64px;border:1px solid #ccc; "></div>
-                                </td>
+           <table >
 
-                            </tr>
+            <tr >
+                <td class="tbtext">LOGO图片<span></span>   
+</td>
+                <td  colspan="5" class="tabwidth"><div class="pic"  style="width:64px;height:64px;border:1px solid #ccc; "></div></td>
+				
+            </tr> 
 
-                            <tr>
-                                <td class="form_label required">
-                                    <label>
-                                        <font color="red">企业号:</font>
-                                    </label>
-                                </td>
-                                <td>
-                                    <input class="nui-textbox" width="120px" name="code" id="code" vtype="maxLength:5" />
-                                    <input class="nui-hidden" name="orgid" id="orgid" />
-                                </td>
-                                <td class="form_label required">
-                                    <label>
-                                        <font color="red">公司全称:</font>
-                                    </label>
-                                </td>
-                                <td>
-                                    <input class="nui-textbox " width="120px" name="name" id="name" />
-                                </td>
-                                <td class="form_label required">
-                                    <label>
-                                        <font color="red">公司简称:</font>
-                                    </label>
-                                </td>
-                                <td>
-                                    <input class="nui-textbox " width="120px" name="shortName" id="shortName" />
-                                </td>
-                            </tr>
+            <tr>
+                <td class="tbtext">企业号<span style="color:red">*</span></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" name="code" id="code" vtype="maxLength:5"/></td>
+				<td><input class="nui-textbox tabwidth" name="orgid" id="orgid" visible="false"/></td>
+            </tr>    
+            
+            <tr>
+                <td class="tbtext">公司全称<span style="color:red">*</span></td>
+                <td colspan="3"><input class="nui-textbox tabwidth" name="name" id="name"/></td>
+                <td class="tbtext">公司简称<span style="color:red">*</span></td>
+                <td><input class="nui-textbox tabwidth" name="shortName" id="shortName"/></td>
 
-                            <tr>
-                                <td class="form_label required">
-                                    <label>
-                                        <font color="red">省份:</font>
-                                    </label>
-                                </td>
-                                <td>
-                                    <input class="nui-combobox textboxwidth" width="120px" name="provinceId" id="provinceId" valueFromSelect="true" allowinput="true" valueField="code"
-                                        textField="name" data="list" onvaluechanged="onProvinceChange" />
-                                </td>
-                                <td class="form_label required">
-                                    <label>
-                                        <font color="red">城市:</font>
-                                    </label>
-                                </td>
-                                <td>
-                                    <input class="nui-combobox textboxwidth" width="120px" name="cityId" id="cityId" onvaluechanged="onCityChange" valueFromSelect="true" allowinput="true"
-                                        valueFromSelect="true" allowinput="true" valueField="code" textField="name" />
-                                </td>
-                                <td class="form_label required">
-                                    <label>
-                                        <font color="red">地区:</font>
-                                    </label>
-                                </td>
-                                <td>
-                                    <input class="nui-combobox textboxwidth" width="120px" name="countyId" valueFromSelect="true" valueField="code" textField="name" allowinput="true"
-                                        id="countyId" valueFromSelect="true" allowinput="true" onvaluechanged="onCountyChange"
-                                    />
-                                </td>
+            </tr>               
 
-                            </tr>
+		
+            <tr>
+                <td style="width:100px;text-align:right;" class="tbtext">省份<span style="color:red">*</span></td>
+                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="provinceId" id="provinceId" valueFromSelect="true" allowinput="true" valueField="code" textField="name" data="list" onvaluechanged="onProvinceChange" /></td>
+                <td style="width:100px;text-align:right;"class="tbtext">城市<span style="color:red">*</span></td>
+                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="cityId" id="cityId" onvaluechanged="onCityChange" valueFromSelect="true" allowinput="true" valueFromSelect="true" allowinput="true" valueField="code" textField="name" /></td>
+                <td style="width:100px;text-align:right;"class="tbtext">地区<span style="color:red">*</span></td>
+                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="countyId" valueFromSelect="true" valueField="code" textField="name" allowinput="true" id="countyId" valueFromSelect="true" allowinput="true" onvaluechanged="onCountyChange"/></td>
 
-                            <tr>
-                                <td class="form_label required">
-                                    <label>
-                                        <font color="red">纤细地址:</font>
-                                    </label>
-                                </td>
-                                <td colspan="5">
-                                    <input class="nui-textbox tabwidth" width="355px"  name="streetAddress" id="streetAddress" onvaluechanged="onStreetChange" />
-                                </td>
+            </tr> 
 
-                            </tr>
-                            <tr>
-                                <td class="form_label required">
-                                    <label>
-                                        组合地址:
-                                    </label>
-                                </td>
-                                <td colspan="5">
-                                    <input class="nui-textbox tabwidth" width="595px" enabled="false" name="address" id="address" />
-                                </td>
+            <tr>
+                <td class="tbtext">详细地址<span style="color:red">*</span></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" name="streetAddress" id="streetAddress" onvaluechanged="onStreetChange"/></td>
 
-                            </tr>
+            </tr>
+            <tr>
+                <td class="tbtext">组合地址<span></span></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" enabled="false" name="address" id="address"/></td>
 
-                            <tr>
-                                <td class="form_label required">
-                                    <label>
-                                        经度:
-                                    </label>
-                                </td>
-                                <td>
-                                    <input class="nui-textbox inline " width="120px" style="" name="longitude" id="longitude" />
-                                </td>
-                                <td class="form_label required">
-                                    <label>
-                                        纬度:
-                                    </label>
-                                </td>
-                                <td>
-                                    <input class="nui-textbox inline" width="120px" style="margin-left: 10px;" name="latitude" id="latitude" />
-                                </td>
-							       <td class="form_label required">
-                                    <label>
-                                        <font color="red">开店日期:</font>
-                                    </label>
-                                </td>
-                                <td>
-                                    <input class="nui-datepicker tabwidth" width="120px" enabled="true" format="yyyy-MM-dd HH:mm" name="softOpenDate" id="softOpenDate" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="form_label required">
-                                    <label>
-                                        开户银行:
-                                    </label>
-                                </td>
-                                <td>
-                                    <input class="nui-textbox inline " width="120px" style="" name="bankName" id="bankName" />
-                                    <td class="form_label required">
-                                        <label>
-                                            银行账号:
-                                        </label>
-                                    </td>
-                                    <td>
-                                    <input class="nui-textbox inline" width="120px" style="margin-left: 10px;" name="bankAccountNumber" id="bankAccountNumber" />
-                                </td>
-								                               <td class="form_label required">
-                                    <label>
-                                        <font color="red">公司电话:</font>
-                                    </label>
-                                </td>
-                                <td>
-                                    <input class="nui-textbox tabwidth" width="120px" name="tel" id="tel" onvalidation="onMobileValidation" />
-                                </td>
-                            </tr>
+            </tr>
+
+            <tr>
+                <td class="tbtext">经度<span style="color:red" ></span></td>
+                <td colspan="5" ><input class="nui-textbox inline " style="" name="longitude" id="longitude"/>
+                    <span style="width:450px;float: right;text-align: right;">纬度<input class="nui-textbox inline" style="margin-left: 10px;" name="latitude" id="latitude"/></span>
+                </td>
+
+            </tr>
+                        <tr>
+                <td class="tbtext">开户银行<span style="color:red" ></span></td>
+                <td colspan="5" ><input class="nui-textbox inline " style="" name="bankName" id="bankName"/>
+                    <span style="width:450px;float: right;text-align: right;">银行账号<input class="nui-textbox inline" style="margin-left: 10px;" name="bankAccountNumber" id="bankAccountNumber"/></span>
+                </td>
+
+            </tr>
+            <tr>
+                <td class="tbtext">开店日期<span style="color:red">*</span></td>
+                <td colspan="5"><input class="nui-datepicker tabwidth" enabled="true" format="yyyy-MM-dd hh:MM" name="softOpenDate" id="softOpenDate"/></td>
+
+            </tr>           
+            <tr>
+                <td class="tbtext">公司电话<span style="color:red">*</span></td>
+                <td colspan="4"><input class="nui-textbox tabwidth" name="tel" id="tel" onvalidation="onMobileValidation"/></td>
+            </tr>           
+            <tr>
+                <td class="tbtext">网站<span></span></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" id="webaddress" name="webaddress"/></td>
+
+            </tr>         
+            <tr>
+                <td class="tbtext">报表标题<span></span></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" name="reportTitle" id="reportTitle"/></td>
+
+            </tr>
+
+            <tr>
+                <td class="tbtext">主修品牌<span></span></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" name="mainBrandId" id="mainBrandId"/></td>
+
+            </tr>
 
 
-                            <tr>
-                                <td class="form_label required">
-                                    <label>
-                                        网站:
-                                    </label>
-                                </td>
-                                <td colspan="5">
-                                    <input class="nui-textbox tabwidth" width="590px" id="webaddress" name="webaddress" />
-                                </td>
+            <tr>
+                <td class="tbtext">救援电话<span></span></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" name="rescueTel" id="rescueTel"/></td>
 
-                            </tr>
-                            <tr>
-                                <td class="form_label required">
-                                    <label>
-                                        报表标题:
-                                    </label>
-                                </td>
-                                <td colspan="5">
-                                    <input class="nui-textbox tabwidth" width="590px" name="reportTitle" id="reportTitle" />
-                                </td>
+            </tr>           
+            
+            <tr>
+                <td class="tbtext">广告语1<span></span></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" name="slogan1" id="slogan1"/></td>
 
-                            </tr>
+            </tr>           
+            <tr>
+                <td class="tbtext">广告语2<span></span></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" name="slogan2" id="slogan2"/></td>
 
-                            <tr>
-                                <td class="form_label required">
-                                    <label>
-                                       主修品牌:
-                                    </label>
-                                </td>
-                                <td colspan="5">
-                                    <input class="nui-textbox tabwidth" width="590px" name="mainBrandId" id="mainBrandId" />
-                                </td>
+            </tr>
 
-                            </tr>
+            <tr>
+                <td class="tbtext">电子档案对接省份<span style="color:red"></span></td>
+                <td colspan="5" ><input class="nui-textbox inline " style="" name="eRecordProvince" id="eRecordProvince" />
+                    <span style="width:450px;float: right;text-align: right;">电子档案维修厂编号<input class="nui-textbox inline" style="margin-left: 10px;" name="eRecordRepairNo" id="eRecordRepairNo"/></span>
+                </td>
 
 
-                            <tr>
-                                <td class="form_label required">
-                                    <label>
-                                       救援电话:
-                                    </label>
-                                </td>
-                                <td colspan="5">
-                                    <input class="nui-textbox tabwidth" width="590px" name="rescueTel" id="rescueTel" />
-                                </td>
+            </tr>
 
-                            </tr>
-
-                            <tr>
-                                <td class="form_label required">
-                                    <label>
-                                        广告语1:
-                                    </label>
-                                </td>
-                                <td colspan="5">
-                                    <input class="nui-textbox tabwidth" width="590px" name="slogan1" id="slogan1" />
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td class="form_label required">
-                                    <label>
-                                      广告语2:
-                                    </label>
-                                </td>
-                                <td colspan="5">
-                                    <input class="nui-textbox tabwidth" width="590px" name="slogan2" id="slogan2" />
-                                </td>
-
-                            </tr>
-
-                            <tr>
-                                <td class="form_label required" colspan="2">
-                                    <label>
-                                        电子档案对接省份:
-                                    </label>
-                                </td>
-                                <td >
-                                    <input class="nui-textbox inline "  width="120px" style="" name="eRecordProvince" id="eRecordProvince" />
-                                </td>
-                                <td class="form_label required" colspan="2">
-                                    <label>电子档案维修厂编号:</label>
-                                </td>
-                                <td>
-                                    <input class="nui-textbox inline"  width="120px" style="margin-left: 10px;" name="eRecordRepairNo" id="eRecordRepairNo" />
-                                </td>
+            <tr>
+                <td class="tbtext">电子档案用户名<span style="color:red"></span></td>
+                <td colspan="5" ><input class="nui-textbox inline " style="" name="eRecordUser" id="eRecordUser"/>
+                    <span style="width:450px;float: right;text-align: right;">电子档案密码<input class="nui-textbox inline" style="margin-left: 10px;" name="eRecordPwd" id="eRecordPwd"/></span>
+                </td>
 
 
-                            </tr>
-
-                            <tr>
-                                <td class="form_label required" colspan="2">
-                                    <label>电子档案用户名:</label>
-                                </td>
-
-                                <td>
-                                    <input class="nui-textbox inline " width="120px" style="" name="eRecordUser" id="eRecordUser" />
-                                </td>
-                                <td class="form_label required" colspan="2">
-                                    <label>
-                                        电子档案密码:
-                                    </label>
-                                </td>
-                                <td>
-                                    <input class="nui-textbox inline" width="120px" style="margin-left: 10px;" name="eRecordPwd" id="eRecordPwd" />
-                                </td>
+            </tr>
 
 
-                            </tr>
+            <tr>
+                <td class="tbtext">备注<span></span></td>
+                <td colspan="5"><input class="nui-textbox tabwidth"/></td>
+
+            </tr>
 
 
-                            <tr>
-                                <td class="form_label required">
-                                    <label>
-                                        备注:
-                                    </label>
-                                </td>
+            <tr>
+                <td class="tbtext">建档人<span style="color:red" ></span></td>
+                <td colspan="5" ><input class="nui-textbox inline " readonly="readonly" style="" name="recorder" id="recorder" enabled="false" />
+                    <span style="width:450px;float: right;text-align: right;">建档日期<input class="nui-textbox inline" readonly="readonly" style="margin-left: 10px;" name="recordDate" id="recordDate" enabled="false"/></span>
+                </td>
 
-                                <td colspan="5">
-                                    <input class="nui-textbox tabwidth"  width="590px"/>
-                                </td>
+            </tr>
+            
 
-                            </tr>
+            <tr>
+                <td class="tbtext">最后操作人<span style="color:red"></span></td>
+                <td colspan="5" ><input class="nui-textbox inline " style="" name="modifier" id="modifier" readonly="readonly" enabled="false"/>
+                    <span style="width:450px;float: right;text-align: right;">最后操作日期<input readonly="readonly" class="nui-textbox inline" style="margin-left: 10px;" name="modifyDate" id="modifyDate" enabled="false"/></span>
+                </td>
 
+            </tr>
+        </table>
+   
+    </div>
+</div> 
+<script type="text/javascript">
+  nui.parse();
+      function ajaxFileUpload() {
+        
+        var inputFile = $("#file1 > input:file")[0];
 
-                            <tr>
-                                <td class="form_label required">
-                                    <label>
-                                        建档人:
-                                    </label>
-                                </td>
-                                <td>
-                                    <input class="nui-textbox inline " width="120px" readonly="readonly" style="" name="recorder" id="recorder" enabled="false" />
-                                </td>
-                                <td class="form_label required">
-                                    <label>建档日期:</label>
-                                </td>
-                                <td>
-                                    <input class="nui-textbox inline" width="120px" readonly="readonly" style="margin-left: 10px;" name="recordDate" id="recordDate" enabled="false"
-                                    />
-                                </td>
+        $.ajaxFileUpload({
+            url: 'upload.aspx',                 //用于文件上传的服务器端请求地址
+            fileElementId: inputFile,               //文件上传域的ID
+            //data: { a: 1, b: true },            //附加的额外参数
+            dataType: 'text',                   //返回值类型 一般设置为json
+            success: function (data, status)    //服务器成功响应处理函数
+            {
+                alert("上传成功: " + data);
 
-                            </tr>
+            },
+            error: function (data, status, e)   //服务器响应失败处理函数
+            {
+                alert(e);
+            },
+            complete: function () {
+                var jq = $("#file1 > input:file");
+                jq.before(inputFile);
+                jq.remove();
+            }
+        });
+    }
 
-
-                            <tr>
-                                <td class="form_label required">
-                                    <label>最后操作人:</label>
-                                </td>
-
-                                <td>
-                                    <input class="nui-textbox inline " width="120px" style="" name="modifier" id="modifier" readonly="readonly" enabled="false" />
-                                </td>
-                                <td class="form_label required">
-                                    <label>最后操作日期:</label>
-                                </td>
-                                <td>
-                                <input readonly="readonly" class="nui-textbox inline" width="120px" style="margin-left: 10px;" name="modifyDate" id="modifyDate" enabled="false"/>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <script type="text/javascript">
-                nui.parse();
-                function ajaxFileUpload() {
-
-                    var inputFile = $("#file1 > input:file")[0];
-
-                    $.ajaxFileUpload({
-                        url: 'upload.aspx',                 //用于文件上传的服务器端请求地址
-                        fileElementId: inputFile,               //文件上传域的ID
-                        //data: { a: 1, b: true },            //附加的额外参数
-                        dataType: 'text',                   //返回值类型 一般设置为json
-                        success: function (data, status)    //服务器成功响应处理函数
-                        {
-                            alert("上传成功: " + data);
-
-                        },
-                        error: function (data, status, e)   //服务器响应失败处理函数
-                        {
-                            alert(e);
-                        },
-                        complete: function () {
-                            var jq = $("#file1 > input:file");
-                            jq.before(inputFile);
-                            jq.remove();
-                        }
-                    });
-                }
-
-            </script>
-        </body>
-
-        </html>
+</script>
+</body>
+</html>

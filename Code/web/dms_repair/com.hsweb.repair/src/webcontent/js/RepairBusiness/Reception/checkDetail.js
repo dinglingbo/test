@@ -97,7 +97,9 @@ $(document).ready(function ()
 
     searchKeyEl.on("valuechanged",function(e){
         var item = e.selected;
-
+        if(!item){
+    		item = e.sender.listbox.oOolo0;
+    	}
         if(fserviceId){
             return;
         }

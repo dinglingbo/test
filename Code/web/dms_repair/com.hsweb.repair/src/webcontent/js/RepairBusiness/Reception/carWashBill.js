@@ -78,6 +78,7 @@
     "2":"项目",
     "3":"配件"
 };
+ var chang = 0;
 //document.onmousemove = function(e){
 //
 //    if(advancedMorePartWin.visible){
@@ -143,6 +144,7 @@ $(document).ready(function ()
     searchKeyEl = nui.get("search_key");
     searchKeyEl.setUrl(guestInfoUrl);
     searchKeyEl.on("beforeload",function(e){
+    	chang = 1;
         if(fserviceId){
             e.cancel = true;
             return;
@@ -186,8 +188,10 @@ $(document).ready(function ()
         }
     });
     searchKeyEl.on("valuechanged",function(e){
-    	 
-        var item = e.selected;
+    	var item = e.selected;
+    	if(!item){
+    		item = e.sender.listbox.oOolo0;
+    	}
         if(fserviceId){
             return;
         }
@@ -206,6 +210,8 @@ $(document).ready(function ()
             }
 
         }
+       if(chang){
+        chang = 0;
         checkRpsMaintain(params, function(text){
             var data = text.data||[];
             if(data && data.length>0){
@@ -296,6 +302,7 @@ $(document).ready(function ()
                     doSetMainInfo(item);
                 }
             });
+       }
 
     }
 });

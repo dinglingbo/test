@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
+<%@include file="/common/common.jsp"%>
 <%@include file="/common/commonRepair.jsp"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -10,9 +12,8 @@ pageEncoding="UTF-8" session="false" %>
 -->
 <head>
     <title>发送短信</title>
+    <script src="<%=request.getContextPath()%>/manage/js/visitMgr/sendInfo.js?v=1.0.3"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-
-</script>
 
 </head>
 <body>
@@ -55,66 +56,8 @@ pageEncoding="UTF-8" session="false" %>
 
 
 <script type="text/javascript">
-    nui.parse();
-    var webBaseUrl = webPath + contextPath + "/";
-    var form1 = new nui.Form("#form1");
-    var visitContent = nui.get("visitContent");
+   // nui.parse();
 
-
-    nui.get("save").focus();
-    document.onkeyup=function(event){
-        var e=event||window.event;
-        var keyCode=e.keyCode||e.which;//38向上 40向下
-
-        if((keyCode==27)) { //ESC
-            onClose();
-        }
-    };
-
-
-    function save(){
-        //验证
-        if(!formValidate(form1)){
-            showMsg("请输入短信内容!","W");
-            return ;
-        }
-    }
-
-function onClear(){
-    visitContent.setValue(null);
-}
-
-
-    function selectModel() {
-        nui.open({
-            url: webPath + contextPath + "/com.hsweb.crm.basic.smsTpl.flow?token="+token,
-            title: "选择短信模板", width: 1100, height: 400,
-            onload: function () {
-                var iframe = this.getIFrameEl();
-                iframe.contentWindow.setData();
-            },
-            ondestroy: function (action) {
-                if(action == "ok"){
-                    var iframe = this.getIFrameEl();
-                    var data = iframe.contentWindow.getData();
-                    visitContent.setValue(data.content);
-                }
-            }
-        });
-    }
-
-
-    function CloseWindow(action) {
-        if (action == "close") {
-        } else if (window.CloseOwnerWindow)
-        return window.CloseOwnerWindow(action);
-        else
-            return window.close();
-    }
-
-    function onClose(){
-        window.CloseOwnerWindow();  
-    }
 </script>
 </body>
 </html>

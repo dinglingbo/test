@@ -149,19 +149,19 @@ function onOk(){
 	if(data.id){
 		var orgid = data.orgid||0;
 		if(orgid != currOrgId){
-			showMsg("只能修改本店项目!","W");
+			parent.showMsg("只能修改本店项目!","W");
 			return;
 		}
 	}
 	for(var key in requiredField){
 		if(!data[key] || data[key].trim().length==0)
         {
-            showMsg(requiredField[key]+"不能为空!", "W");
+            parent.showMsg(requiredField[key]+"不能为空!", "W");
             return;
         }
 	}
 	if(!nui.get("serviceTypeId").getValue()) {
-		showMsg("业务类型不能为空!", "W");
+		parent.showMsg("业务类型不能为空!", "W");
         return;
 	}
 
@@ -195,14 +195,14 @@ function onOk(){
 				CloseWindow("ok");
 			}
 			else{
-				showMsg(data.errMsg||"保存失败", "E");
+				parent.showMsg(data.errMsg||"保存失败", "E");
 			}
 		},
 		error:function(jqXHR, textStatus, errorThrown)
 		{
 			console.log(jqXHR.responseText);
 			nui.unmask();
-			showMsg("网络出错", "E");
+			parent.showMsg("网络出错", "E");
 		}
 	});
 }
@@ -229,7 +229,7 @@ function onRateValidation(e){
 				if (!reg.test(e.value)) {
 					e.errorText = "请输入大于等于0的整数或者保留两位小数";
 					e.isValid = false;
-					showMsg("请输入大于0的整数或者保留两位小数!","W");
+					parent.showMsg("请输入大于0的整数或者保留两位小数!","W");
 				}
 			}
 		}else {
@@ -242,7 +242,7 @@ function onRateValidation(e){
 					if (!reg.test(e.value)) {
 						e.errorText = "请输入0~100的数,最多可保留两位小数";
 						e.isValid = false;
-						showMsg("请输入0~100的数,最多可保留两位小数!","W");
+						parent.showMsg("请输入0~100的数,最多可保留两位小数!","W");
 					}
 				}
 			}
@@ -257,7 +257,7 @@ function onRateValidation(e){
 				if (!reg.test(e.value)) {
 					e.errorText = "请输入大于等于0的整数或者保留两位小数";
 					e.isValid = false;
-					showMsg("请输入大于0的整数或者保留两位小数!","W");
+					parent.showMsg("请输入大于0的整数或者保留两位小数!","W");
 				}
 			}
 		}else {
@@ -270,7 +270,7 @@ function onRateValidation(e){
 					if (!reg.test(e.value)) {
 						e.errorText = "请输入0~100的数,最多可保留两位小数";
 						e.isValid = false;
-						showMsg("请输入0~100的数,最多可保留两位小数!","W");
+						parent.showMsg("请输入0~100的数,最多可保留两位小数!","W");
 					}
 				}
 			}
@@ -285,7 +285,7 @@ function onRateValidation(e){
 				if (!reg.test(e.value)) {
 					e.errorText = "请输入大于等于0的整数或者保留两位小数";
 					e.isValid = false;
-					showMsg("请输入大于0的整数或者保留两位小数!","W");
+					parent.showMsg("请输入大于0的整数或者保留两位小数!","W");
 				}
 			}
 		}else {
@@ -298,7 +298,7 @@ function onRateValidation(e){
 					if (!reg.test(e.value)) {
 						e.errorText = "请输入0~100的数,最多可保留两位小数";
 						e.isValid = false;
-						showMsg("请输入0~100的数,最多可保留两位小数!","W");
+						parent.showMsg("请输入0~100的数,最多可保留两位小数!","W");
 					}
 				}
 			}

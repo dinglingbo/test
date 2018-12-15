@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
+	<%-- <%@include file="/common/sysCommon.jsp"%> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -10,6 +11,7 @@
 <head>
 <title></title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
 	<script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>  
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js"  type="text/javascript"></script>    
@@ -177,8 +179,8 @@
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a href="javascript:box_setup_open()">修改</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
-        <a class="nui-button" style="background:#999999" plain="true" iconCls="" plain="false" onclick="sendInfo()">发送短信</a>
-        <a class="nui-button" style="background:#999999" plain="true" iconCls="" plain="false" onclick="sendInfo()">发送微信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()">发送短信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo1()">发送微信</a>
      </div>
      
        <!-- <div showCollapseButton="false" style="border:0; text-align: center;" class="print_hide">
@@ -377,6 +379,7 @@
 		var url_two = null;
 		var url_three = null;
 		var data = [];
+		var phones = "";
 		//尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准
 		$(document).ready(function (){
 			$("#print").click(function () {
@@ -412,6 +415,8 @@
 
         }
         function SetData(params){
+            token1 =  params.token;
+            webUrl = params.webUrl;
 	        var date = new Date();
 	        if(params.name){
 	        	document.getElementById("spstorename").innerHTML = params.name;
@@ -440,7 +445,9 @@
 	         });
 	        $.post(params.baseUrl+url+params.serviceId+"&token="+params.token,{},function(text){
 	        	if(text.list.length > 0){
+	        	   
 	        		var list = text.list[0];
+	        		phones = list.contactMobile || "";
 	        		var carNo = list.carNo || "";
 	        		var carVin = list.carVin || "";
 	        		var outDate = list.outDate || "";
@@ -599,6 +606,7 @@
         		url_two = "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext?serviceId=";
         	}
         	 $.post(params.baseUrl+url_two+params.serviceId+"&token="+params.token,{},function(text){//工时
+        	   
 	        	if(text.errCode == "S"){
 	        	    var data = {};
 	        	    if(params.type){
@@ -727,6 +735,25 @@
     		$(".boxbg").hide();
         	$(".popbox").hide();
     	}
+   var token1 =null; 
+   var webUrl =null;
+   function sendInfo(){
+	nui.open({
+		url: webUrl+"com.hsweb.crm.manage.sendInfo.flow?token="+token1,
+		//url:"http://127.0.0.1:8080/default/com.hsweb.crm.manage.sendInfo.flow",
+		title: "发送短信", width: 655, height: 386,
+		onload: function () {
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.setPhones(phones);
+		},
+		ondestroy: function (action) {
+            //重新加载
+            //query(tab);
+        }
+    });
+  }
+    	
+    	
     </script>
 </body>
 </html>

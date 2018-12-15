@@ -28,6 +28,7 @@ var mitemRate = 0;
 var mpartRate = 0;
 var x = 0;
 var y = 0;
+var chang = 0;
 var prdtTypeHash = {
     "1":"套餐",
     "2":"项目",
@@ -62,6 +63,7 @@ $(document).ready(function ()
     searchKeyEl = nui.get("search_key");
     searchKeyEl.setUrl(guestInfoUrl);
     searchKeyEl.on("beforeload",function(e){
+    	chang = 1;
         if(fserviceId){
             e.cancel = true;
             return;
@@ -108,6 +110,9 @@ $(document).ready(function ()
         if(fserviceId){
             return;
         }
+        if(!item){
+    		item = e.sender.listbox.oOolo0;
+    	}
         if (item) { 
 
             var carNo = item.carNo||"";
@@ -122,91 +127,93 @@ $(document).ready(function ()
                 var params = {	
                 	"params":data
                 };
-            checkRpsMaintain(params, function(text){
-                var data = text.data||[];
-                if(data && data.length>0){
-                    nui.showMessageBox({
-                        showHeader: true,
-                        width: 255,
-                        title: "工单",
-                        buttons: ["继续", "查看"],
-                        message: "该客户存在未结算记录",
-                        iconCls: "mini-messagebox-warning",
-                        callback: function (action) {
-                            if(action == "继续"){
-                                var sk = document.getElementById("search_key");
-                                sk.style.display = "none";
-                                searchNameEl.setVisible(true);
-                                
-                                if(tel){
-                                    tel = "/"+tel;
-                                }
-                                if(guestName){
-                                    guestName = "/"+guestName;
-                                }
-                                if(carVin){
-                                    carVin = "/"+carVin;
-                                }
-                                var t = carNo + tel + guestName + carVin;
-                                searchNameEl.setValue(t);
-                                doSetMainInfo(item);
-                            }else if(action == "查看"){
-                            	var list = data[0];
-                            	var opt={};
-                                opt.iconCls="fa fa-desktop";
-                            	if(list.billTypeId == "0"){
-                                    opt.id="2082";
-                                    opt.text="综合开单";
-                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.ReceptionMain.flow";
-                            	}
-                            	if(list.billTypeId == "2"){
-                                    opt.id="2083";
-                                    opt.text="洗车开单";
-                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBillMgr.flow";
-                            	}
-                            	if(list.billTypeId == "4"){
-                                    opt.id="2084";
-                                    opt.text="理赔开单";
-                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.claimMain.flow";
-                            	}
-                            	if(list.billTypeId == "3"){
-                                    opt.id="2087";
-                                    opt.text="销售开单";
-                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.sellMain.flow";
-                            	}
-                            	if(list.billTypeId == "5"){
-                                    opt.id="2088";
-                                    opt.text="退货开单";
-                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.sellReturn.flow";
-                            	}
-                            	var params = {
-                                        type: 'view',
-                                        carNo: carNo
-                                    };
-                               window.parent.activeTabAndInit(opt,params);
-                            }
-                        }
-                    });
-                }else{
-                    var sk = document.getElementById("search_key");
-                    sk.style.display = "none";
-                    searchNameEl.setVisible(true);
-                    
-                    if(tel){
-                        tel = "/"+tel;
-                    }
-                    if(guestName){
-                        guestName = "/"+guestName;
-                    }
-                    if(carVin){
-                        carVin = "/"+carVin;
-                    }
-                    var t = carNo + tel + guestName + carVin;
-                    searchNameEl.setValue(t);
-                     doSetMainInfo(item);
-                }
+            if(chang){
+               chang = 0;
+               checkRpsMaintain(params, function(text){
+	                var data = text.data||[];
+	                if(data && data.length>0){
+	                    nui.showMessageBox({
+	                        showHeader: true,
+	                        width: 255,
+	                        title: "工单",
+	                        buttons: ["继续", "查看"],
+	                        message: "该客户存在未结算记录",
+	                        iconCls: "mini-messagebox-warning",
+	                        callback: function (action) {
+	                            if(action == "继续"){
+	                                var sk = document.getElementById("search_key");
+	                                sk.style.display = "none";
+	                                searchNameEl.setVisible(true);
+	                                
+	                                if(tel){
+	                                    tel = "/"+tel;
+	                                }
+	                                if(guestName){
+	                                    guestName = "/"+guestName;
+	                                }
+	                                if(carVin){
+	                                    carVin = "/"+carVin;
+	                                }
+	                                var t = carNo + tel + guestName + carVin;
+	                                searchNameEl.setValue(t);
+	                                doSetMainInfo(item);
+	                            }else if(action == "查看"){
+	                            	var list = data[0];
+	                            	var opt={};
+	                                opt.iconCls="fa fa-desktop";
+	                            	if(list.billTypeId == "0"){
+	                                    opt.id="2082";
+	                                    opt.text="综合开单";
+	                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.ReceptionMain.flow";
+	                            	}
+	                            	if(list.billTypeId == "2"){
+	                                    opt.id="2083";
+	                                    opt.text="洗车开单";
+	                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBillMgr.flow";
+	                            	}
+	                            	if(list.billTypeId == "4"){
+	                                    opt.id="2084";
+	                                    opt.text="理赔开单";
+	                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.claimMain.flow";
+	                            	}
+	                            	if(list.billTypeId == "3"){
+	                                    opt.id="2087";
+	                                    opt.text="销售开单";
+	                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.sellMain.flow";
+	                            	}
+	                            	if(list.billTypeId == "5"){
+	                                    opt.id="2088";
+	                                    opt.text="退货开单";
+	                                    opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.sellReturn.flow";
+	                            	}
+	                            	var params = {
+	                                        type: 'view',
+	                                        carNo: carNo
+	                                    };
+	                               window.parent.activeTabAndInit(opt,params);
+	                            }
+	                        }
+	                    });
+	                }else{
+	                    var sk = document.getElementById("search_key");
+	                    sk.style.display = "none";
+	                    searchNameEl.setVisible(true);
+	                    
+	                    if(tel){
+	                        tel = "/"+tel;
+	                    }
+	                    if(guestName){
+	                        guestName = "/"+guestName;
+	                    }
+	                    if(carVin){
+	                        carVin = "/"+carVin;
+	                    }
+	                    var t = carNo + tel + guestName + carVin;
+	                    searchNameEl.setValue(t);
+	                     doSetMainInfo(item);
+	                }
             });
-            
+          }
         }
     });
     document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号/VIN码)");

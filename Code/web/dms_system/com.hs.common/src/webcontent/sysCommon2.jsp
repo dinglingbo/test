@@ -140,7 +140,7 @@
 <script src="<%=contextPath%>/common/js/init.js?v=1.0" type="text/javascript"></script>
 <script src="<%=contextPath%>/common/js/date.js?v=1.1" type="text/javascript"></script>
 <link href="<%=contextPath%>/common/nui/themes/blue2010/skin.css" rel="stylesheet"	type="text/css" />
-<link href="<%=webPath + contextPath %>/common/nui/themes/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="<%=webPath + contextPath %>/common/nui/res/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <style type="text/css">
     html, body
     {

@@ -12,7 +12,7 @@
 <script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.1"></script>
 <style type="text/css">
 .title {
-	width: 60px;
+	width: 70px;
 	text-align: right;
 }
 
@@ -128,7 +128,7 @@ body .mini-grid-row-selected{
             
 
              <div class="nui-fit">
-                  <fieldset id="fd1" style="width:95%;height:70px;">
+                  <fieldset id="fd1" style="width:99.5%;height:100px;">
                       <legend><span>采购退货信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">

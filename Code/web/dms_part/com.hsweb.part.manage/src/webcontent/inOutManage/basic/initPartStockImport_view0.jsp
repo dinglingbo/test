@@ -11,7 +11,7 @@
 <title>期初库存导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/initPartStockImport.js?v=2.0.5"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/initPartStockImport.js?v=2.0.6"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;

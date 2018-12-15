@@ -124,6 +124,11 @@ $(document).ready(function()
 		nui.get("editItemType").enable();
 	});
 	rightGrid.on("rowclick",function(e){
+		if(e.row.isShare==1){
+			nui.get("update").disable();
+		}else{
+			nui.get("update").enable();
+		}
 		nui.get("editItemType").disable();
 	});
 });

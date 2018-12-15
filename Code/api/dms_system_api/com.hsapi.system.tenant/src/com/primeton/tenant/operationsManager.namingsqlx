@@ -51,4 +51,52 @@
 		GROUP BY a.tenant_id
 		
 	 </select>
+	 
+	 <select id="queryCompany" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			orgid as orgid,
+			tenant_id as tenantId,
+			code as code,
+			name as name,
+			short_name as shortName,
+			province_id as provinceId,
+			city_id as cityId,
+			county_id as countyId,
+			street_address as streetAddress,
+			address as address,
+			longitude as longitude,
+			latitude as latitude,
+			tel as tel,
+			fax as fax,
+			bank_name as bankName,
+			bank_account_number as bankAccountNumber,
+			main_brand_id as mainBrandId,
+			webaddress as webaddress,
+			logo_img as logoImg,
+			soft_open_date as softOpenDate,
+			rescue_tel as rescueTel,
+			slogan1 as slogan1,
+			slogan2 as slogan2,
+			e_record_province as eRecordProvince,
+			e_record_repair_no as eRecordRepairNo,
+			e_record_user as eRecordUser,
+			remark as remark,
+			e_record_pwd as eRecordPwd,
+			recorder as recorder,
+			record_date as recordDate,
+			modifier as modifier,
+			modify_date as modifyDate
+		FROM
+			wb_common.com_company a
+		WHERE a.tenant_id = #tenantId#
+		<dynamic>
+			<isNotEmpty prepend="and" property="name">  
+                (a.code like '%$name$%' or a.name like '%$name$%' or a.short_name like '%$name$%')
+            </isNotEmpty>
+
+
+        </dynamic> 			
+		ORDER BY
+			record_date DESC
+	</select>
 </sqlMap>

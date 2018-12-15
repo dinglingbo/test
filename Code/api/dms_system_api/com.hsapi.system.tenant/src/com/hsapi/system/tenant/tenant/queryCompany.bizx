@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryCompany.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.baseData.query.queryCompany&#xD;&#xA;" title="Administrator&#x9;18-12-15 下午5:53">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.primeton.tenant.operationsManager.queryCompany&#xD;&#xA;" title="Administrator&#x9;18-12-15 下午5:53">
     <location x="366" y="395"/>
     <size height="100" width="505"/>
   </nodes>
@@ -25,7 +25,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.system.data.sys.ComCompany[]" name="rs" type="query" valueType="DataObject">rs</process:return>
+      <process:return id="0" language="java.util.HashMap[]" name="rs" type="query" valueType="Java">rs</process:return>
       <process:return id="1" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
     </process:returns>
   </nodes>
@@ -74,7 +74,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">DB02_ORA_WB_COMMON</process:inputVariable>
-      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.baseData.query.queryCompany</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.primeton.tenant.operationsManager.queryCompany</process:inputVariable>
       <process:inputVariable id="2" name="pageCond" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">page</process:inputVariable>
       <process:inputVariable id="3" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">params</process:inputVariable>
     </process:inputVariables>
@@ -98,7 +98,7 @@
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.system.data.sys.ComCompany" name="rs"/>
+    <process:output anyType="java.util.HashMap" description="" isArray="true" name="rs"/>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>

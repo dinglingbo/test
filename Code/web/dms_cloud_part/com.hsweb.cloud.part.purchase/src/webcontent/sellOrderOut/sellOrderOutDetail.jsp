@@ -94,7 +94,7 @@
             
 
              <div class="nui-fit">
-                  <fieldset id="fd1" style="width:95%;height:70px;">
+                  <fieldset id="fd1" style="width:99.5%;height:100px;">
                       <legend><span>销售出库信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">

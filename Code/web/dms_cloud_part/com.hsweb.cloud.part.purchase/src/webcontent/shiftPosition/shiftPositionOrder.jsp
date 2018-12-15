@@ -12,7 +12,7 @@
 <script src="<%=webPath + contextPath%>/purchase/js/shiftPosition/shiftPositionOrder.js?v=1.1.0"></script>
 <style type="text/css">
 .title {
-	width: 60px;
+	width: 70px;
 	text-align: right;
 }
 
@@ -122,7 +122,7 @@
             
 
              <div class="nui-fit">
-                  <fieldset id="fd1" style="width:95%;height:60px;">
+                  <fieldset id="fd1" style="width:99.5%;height:60px;">
                       <legend><span>移仓信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">

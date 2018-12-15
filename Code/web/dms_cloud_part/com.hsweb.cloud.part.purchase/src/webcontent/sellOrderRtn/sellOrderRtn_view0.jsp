@@ -12,7 +12,7 @@
 <script src="<%=webPath + contextPath%>/purchase/js/sellOrderRtn/sellOrderRtn.js?v=1.0.8"></script>
 <style type="text/css">
 .title {
-	width: 60px;
+	width: 70px;
 	text-align: right;
 }
 
@@ -59,7 +59,7 @@
 
 
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:330px;"
+     title="高级查询" style="width:416px;height:350px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">

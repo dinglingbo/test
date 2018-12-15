@@ -91,7 +91,7 @@
       <div showCollapseButton="false">
           
           <div class="nui-fit">
-              <fieldset id="fd1" style="width:95%;height:70px;">
+              <fieldset id="fd1" style="width:99.5%;height:100px;">
                   <legend><span>销售退货信息</span></legend>
                   <div class="fieldset-body">
                   

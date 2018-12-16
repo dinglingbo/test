@@ -134,7 +134,7 @@
               <div property="columns">
               	<div type="checkcolumn" width="15" class="mini-radiobutton" header="选择"></div>
 <!--                 <div type="indexcolumn" headerAlign="center"  width="15">店号</div> -->
-                <div field="orgid" name="orgid" width="15" align="center"  visible="true" headerAlign="center" header="店号"></div>
+                <div field="orgcode" name="orgcode" width="15" align="center"  visible="true" headerAlign="center" header="店号"></div>
                 <div field="orgname" name="orgname" width="" align="center"  headerAlign="center" header="公司名称"></div>
               </div>
           </div>

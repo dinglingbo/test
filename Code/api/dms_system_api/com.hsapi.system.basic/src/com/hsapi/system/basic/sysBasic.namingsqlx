@@ -20,11 +20,12 @@
 		FROM
 			vw_user_org
 		WHERE
-	    operatorId = #operatorId#
+	    operatorId = #operatorId# and TENANT_ID =  #TENANTID# 
 		<dynamic>
             <isNotEmpty prepend="and" property="orgidOrName">
-            	(orgid = #orgidOrName# or orgname like '%$orgidOrName$%')
+            	(orgcode like '%$orgidOrName$%' or orgname like '%$orgidOrName$%')
             </isNotEmpty>
         </dynamic>
+        ORDER BY  CREATETIME DESC
     </select>
 </sqlMap>

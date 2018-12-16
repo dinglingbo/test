@@ -3196,7 +3196,7 @@ function chooseItem(){
     }
     var param = {};
     param.carModelIdLy = main.carModelIdLy;
-    param.serviceId = main.id;
+    param.serviceId = "xm"+main.id;//洗美开单默认查询洗美项目
 	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
 		    main = billForm.getData();
 	        var p1 = { }
@@ -3251,7 +3251,7 @@ function choosePackage(){
     }
     var param = {};
     param.carModelIdLy = main.carModelIdLy;   
-    param.serviceId = main.id;                                       
+    param.serviceId = "xm"+main.id;//  洗美开单                                     
     doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
         main = billForm.getData();
         var p1 = { 

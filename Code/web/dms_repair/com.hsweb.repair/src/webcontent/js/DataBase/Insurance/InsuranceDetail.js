@@ -113,7 +113,7 @@ function onOk() {
     console.log(data);
     for (var key in requiredField) {
         if (!data[key] || data[key].trim().length == 0) {
-            showMsg(requiredField[key] + "不能为空","W");
+            parent.showMsg(requiredField[key] + "不能为空","W");
             return;
         }
     }
@@ -132,18 +132,18 @@ function onOk() {
             data = data||{};
             if(data.errCode == "S")
             {
-                showMsg("保存成功", "S");
+                parent.showMsg("保存成功", "S");
                 CloseWindow("ok");
             }
             else{
-                showMsg(data.errMsg || "保存失败", "W");
+                parent.showMsg(data.errMsg || "保存失败", "W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown)
         {
             console.log(jqXHR.responseText);
             nui.unmask();
-            showMsg("网络出错", "W");
+            parent.showMsg("网络出错", "W");
         }
     });
 }

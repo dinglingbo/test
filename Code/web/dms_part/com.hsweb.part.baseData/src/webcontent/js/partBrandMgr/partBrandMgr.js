@@ -103,7 +103,7 @@ function addOrEditPartBrand(brand)
     {
        if(brand.orgid != currOrgid)
         {
-        	showMsg("不允许修改!","W");
+        	parent.showMsg("不允许修改!","W");
             return;
         }
         title = "品牌编辑";
@@ -277,10 +277,10 @@ function disablePartQuality(){
                         leftGrid.updateRow(row,row);
                         nui.get("disabledLeft").hide();
                         nui.get("enabledLeft").show();
-                        showMsg("禁用成功","S");
+                        parent.showMsg("禁用成功","S");
                     }
                     else{
-                        showMsg(data.errMsg||"禁用失败","E");
+                        parent.showMsg(data.errMsg||"禁用失败","E");
                     }
                 });
             }
@@ -308,10 +308,10 @@ function enablePartQuality(){
                         leftGrid.updateRow(row,row);
                         nui.get("disabledLeft").show();
                         nui.get("enabledLeft").hide();
-                        showMsg("启用成功","S");
+                        parent.showMsg("启用成功","S");
                     }
                     else{
-                        showMsg(data.errMsg||"启用失败","E");
+                        parent.showMsg(data.errMsg||"启用失败","E");
                     }
                 });
             }
@@ -340,10 +340,10 @@ function disablePartBrand()
                         rightGrid.updateRow(row,row);
                         nui.get("disabledRight").hide();
                         nui.get("enabledRight").show();
-                        showMsg("禁用成功","S");
+                        parent.showMsg("禁用成功","S");
                     }
                     else{
-                        showMsg(data.errMsg||"禁用失败","E");
+                        parent.showMsg(data.errMsg||"禁用失败","E");
                     }
                 });
             }
@@ -372,10 +372,10 @@ function enablePartBrand()
                         rightGrid.updateRow(row,row);
                         nui.get("disabledRight").show();
                         nui.get("enabledRight").hide();
-                        showMsg("启用成功","S");
+                        parent.showMsg("启用成功","S");
                     }
                     else{
-                        showMsg(data.errMsg||"启用失败","E");
+                        parent.showMsg(data.errMsg||"启用失败","E");
                     }
                 });
             }
@@ -457,11 +457,11 @@ function delLocalBrand()
             rs = rs||{};
             if(rs.errCode == "S")
             {
-                showMsg("处理成功","S");
+                parent.showMsg("处理成功","S");
                 loadBottom();
             }
             else{
-                showMsg(data.errMsg||"处理失败","E");
+                parent.showMsg(data.errMsg||"处理失败","E");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
@@ -492,11 +492,11 @@ function saveLocalBrand(){
             rs = rs||{};
             if(rs.errCode == "S")
             {
-                showMsg("保存成功","S");
+                parent.showMsg("保存成功","S");
                 loadBottom();
             }
             else{
-                showMsg(data.errMsg||"保存失败","E");
+                parent.showMsg(data.errMsg||"保存失败","E");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

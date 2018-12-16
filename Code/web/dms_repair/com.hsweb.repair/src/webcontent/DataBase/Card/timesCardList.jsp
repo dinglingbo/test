@@ -11,7 +11,7 @@
 <head>
 <title>计次卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.4.2">
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.4.3">
 	</script>
 </head>
 <body>

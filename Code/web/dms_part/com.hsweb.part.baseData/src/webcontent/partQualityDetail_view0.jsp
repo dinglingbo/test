@@ -9,7 +9,7 @@
 -->
 <head>
 <title>jsp auto create</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/partBrandMgr/partQualityDetail.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/partBrandMgr/partQualityDetail.js?v=1.0.6"></script>
 <style type="text/css">
 body {
 	padding: 10px;

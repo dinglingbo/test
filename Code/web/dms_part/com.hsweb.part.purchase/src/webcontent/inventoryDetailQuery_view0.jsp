@@ -69,7 +69,7 @@
                 <div class="nui-radiobuttonlist"
                      repeatItems="2"
                      id="countWay"
-                     width="100"
+                     width="200px"
                      style="position: absolute;top: 4px;display: inline-table;"
                      textField="text" valueField="id" value="1" data="[{id:1,text:'金额'},{id:2,text:'数量'}]">
                 </div>

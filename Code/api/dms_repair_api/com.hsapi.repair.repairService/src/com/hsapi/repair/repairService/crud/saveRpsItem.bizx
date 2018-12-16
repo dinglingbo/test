@@ -195,12 +195,12 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link42</targetConnections>
-    <location x="224" y="144"/>
+    <location x="226" y="144"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionbegin0label" name="label" nodeType="label">
-    <location x="214" y="180"/>
+    <location x="216" y="180"/>
     <figSize height="17" width="49"/>
     <node>transactionbegin0</node>
   </nodes>

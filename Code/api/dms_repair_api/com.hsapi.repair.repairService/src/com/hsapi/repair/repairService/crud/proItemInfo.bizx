@@ -92,7 +92,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -837,7 +837,7 @@
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign11" name="赋值11" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值11" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign11</sourceNode>
       <targetNode>assign8</targetNode>

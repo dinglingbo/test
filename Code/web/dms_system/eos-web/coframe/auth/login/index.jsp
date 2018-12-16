@@ -134,7 +134,7 @@
               <div property="columns">
               	<div type="checkcolumn" width="15" class="mini-radiobutton" header="选择"></div>
 <!--                 <div type="indexcolumn" headerAlign="center"  width="15">店号</div> -->
-                <div field="orgcode" name="orgcode" width="15" align="center"  visible="true" headerAlign="center" header="店号"></div>
+                <div field="orgcode" name="orgid" width="15" align="center"  visible="true" headerAlign="center" header="企业号"></div>
                 <div field="orgname" name="orgname" width="" align="center"  headerAlign="center" header="公司名称"></div>
               </div>
           </div>
@@ -229,6 +229,15 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     var moreOrgGridUrl=apiPath + sysApi + "/com.hsapi.system.basic.organization.getUserOrg.biz.ext";
     var show=0;
     
+/*     $(document).ready(function(v) {
+    moreOrgGrid = nui.get("moreOrgGrid");
+    moreOrgGrid.on("drawcell", function (e){
+    	if(e.field=="orgname"){
+    		e.cellHtml = e.row.orgcode+e.row.orgname;
+    	}
+    });
+    
+}); */
     function OrgShow(){
     	searchOrg();
         advancedOrgWin.show();

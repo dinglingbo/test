@@ -753,6 +753,8 @@ function onPrint(e){
             comp : currOrgName,
             baseUrl : baseUrl,
             type : 1,
+            bankName: bankName,
+            bankAccountNumber: bankAccountNumber,
             token : token
         };
 	if(main.id){

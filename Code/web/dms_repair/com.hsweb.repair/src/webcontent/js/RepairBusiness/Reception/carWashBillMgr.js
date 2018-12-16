@@ -271,7 +271,7 @@ function showCarInfo(row_uid){
 	}
 }
 var statusHash = {
-    "0" : "报价",
+    "0" : "开单",
     "1" : "施工",
     "2" : "完工",
     "3" : "待结算",
@@ -326,7 +326,7 @@ function quickSearch(type) {
             break;
         case 1:
             params.status = 0;  //报价
-            queryname = "报价";
+            queryname = "开单";
             break;
         case 2:
             params.status = 1;  //施工
@@ -362,7 +362,7 @@ function onSearch()
         case "所有在厂":
             params.isSettle = 0;
             break;
-        case "报价":
+        case "开单":
             params.status = 0;  //报价
             break;
         case "施工":

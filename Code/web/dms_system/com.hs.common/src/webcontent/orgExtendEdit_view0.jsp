@@ -11,7 +11,7 @@
 <head>
     <title>门店信息</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  	<script src="<%=webPath + contextPath%>/common/js/orgExtendEdit.js?v=1.9.8" type="text/javascript"></script>
+  	<script src="<%=webPath + contextPath%>/common/js/orgExtendEdit.js?v=2.0.0" type="text/javascript"></script>
 
   <style type="text/css">
     body {
@@ -127,17 +127,18 @@ table tr td span
 </head> 
 <body class="back">
     <div class="nui-fit">  
-        <div class="form"id="basicInfoForm" name="basicInfoForm" style="width:950px;height:100%;left:0;right:0;margin: 0 auto;">
-        		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+    <div class="nui-toolbar" style="padding:0px;">
                 <table style="width:100%;">
                     <tr>
                         <td style="width:100%;">
-                            <a class="nui-button" onclick="save(no)" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</ a>
-                            <a class="nui-button" onclick="Oncancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                            <a class="nui-button" onclick="save('no')" plain="true" style="width: 60px;"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                            <a class="nui-button" onclick="Oncancel()" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</a>
                         </td>
                     </tr>
                 </table>
             </div>
+        <div class="form"id="basicInfoForm" name="basicInfoForm" style="width:950px;height:100%;left:0;right:0;margin: 0 auto;">
+        		     
            <table >
 
             <tr >
@@ -164,11 +165,11 @@ table tr td span
 		
             <tr>
                 <td style="width:100px;text-align:right;" class="tbtext">省份<span style="color:red">*</span></td>
-                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="provinceId" id="provinceId" valueFromSelect="true" allowinput="true" valueField="code" textField="name" data="list" onvaluechanged="onProvinceChange" /></td>
+                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="provinceId" id="provinceId"  allowinput="true" valueField="code" textField="name" data="list" onvaluechanged="onProvinceChange" /></td>
                 <td style="width:100px;text-align:right;"class="tbtext">城市<span style="color:red">*</span></td>
-                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="cityId" id="cityId" onvaluechanged="onCityChange" valueFromSelect="true" allowinput="true" valueFromSelect="true" allowinput="true" valueField="code" textField="name" /></td>
+                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="cityId" id="cityId" onvaluechanged="onCityChange"  allowinput="true"  allowinput="true" valueField="code" textField="name" /></td>
                 <td style="width:100px;text-align:right;"class="tbtext">地区<span style="color:red">*</span></td>
-                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="countyId" valueFromSelect="true" valueField="code" textField="name" allowinput="true" id="countyId" valueFromSelect="true" allowinput="true" onvaluechanged="onCountyChange"/></td>
+                <td style="width:200px;text-align:left;"><input class="nui-combobox textboxwidth" name="countyId"  valueField="code" textField="name" allowinput="true" id="countyId" allowinput="true" onvaluechanged="onCountyChange"/></td>
 
             </tr> 
 
@@ -211,11 +212,7 @@ table tr td span
                 <td colspan="5"><input class="nui-textbox tabwidth" id="webaddress" name="webaddress"/></td>
 
             </tr>         
-            <tr>
-                <td class="tbtext">报表标题<span></span></td>
-                <td colspan="5"><input class="nui-textbox tabwidth" name="reportTitle" id="reportTitle"/></td>
 
-            </tr>
 
             <tr>
                 <td class="tbtext">主修品牌<span></span></td>

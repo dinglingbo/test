@@ -89,6 +89,8 @@
     String compTel = ""; 
     String isMaster = "";
     String empId = "";
+    String bankName = "";
+    String bankAccountNumber = "";
 	Map attr=new HashMap();
 	Object billParamsObj = null;
 	Map billParams = new HashMap();
@@ -137,6 +139,12 @@
                 }
                 if(attr.get("compTel") != null){
                 	compTel = attr.get("compTel").toString();
+                }
+                if(attr.get("bankName") != null){
+                	bankName = attr.get("bankName").toString();
+                }
+                if(attr.get("bankAccountNumber") != null){
+                	bankAccountNumber = attr.get("bankAccountNumber").toString();
                 }
                 
                 if(attr.get("billParams") != null){
@@ -205,6 +213,8 @@
     var token = "<%=token %>";
     var currCompAddress = "<%=compAddress %>";
     var currCompTel = "<%=compTel %>";
+    var currBankName = "<%=bankName %>";
+    var currBankAccountNumber = "<%=bankAccountNumber %>";
     var currRepairBillQrcodeFlag = "<%=repairBillQrcodeFlag %>";
 	var currRepairBillCmodelFlag = "<%=repairBillCmodelFlag %>";
 	var currRepairSettorderPrintShow = "<%=repairSettorderPrintShow %>";

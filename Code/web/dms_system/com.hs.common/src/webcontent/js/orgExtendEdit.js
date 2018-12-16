@@ -56,6 +56,8 @@ function SetInitData(data) {
 
 
     
+    var form = new nui.Form("#basicInfoForm");
+    form.setData(data);  
 
     setInitRegionData(provinceEl, null);
     if(data && data.provinceId){
@@ -65,8 +67,6 @@ function SetInitData(data) {
         setInitRegionData(countyEl, data.cityId);    
     }
     
-    var form = new nui.Form("#basicInfoForm");
-    form.setData(data);  
 }
 
 var requiredField = {

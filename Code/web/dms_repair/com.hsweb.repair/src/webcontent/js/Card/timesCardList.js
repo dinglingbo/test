@@ -86,7 +86,7 @@ function edit() {
 			}
 		});
 	} else {
-		nui.alert("请选中一条记录", "提示");
+		showMsg("请选中一条记录!", "W");
 	}
 }
 

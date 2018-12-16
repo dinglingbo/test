@@ -10,6 +10,8 @@
 <title>采购入库</title>
 <script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/purchaseOrderEnter.js?v=1.0.38"></script>
 <style type="text/css">
+
+
 .title {
   width: 60px;
   text-align: right;
@@ -40,10 +42,10 @@ body .mini-grid-row-selected{
 </head>
 <body>
 
-<!-- <div class="nui-fit"> -->
+
     <!--采购入库信息-->
     <%@include file="/manage/inOutManage/purchaseOrderEnter/purchaseEnterDetail.jsp" %>
-<!-- </div> -->
+
 
 
 <div id="advancedSearchWin" class="nui-window"

@@ -124,10 +124,10 @@
 					 sortMode="client"
 					 showPageSize="true"  
 					 allowSortColumn="true"
-					 selectOnLoad="true"
+					 selectOnLoad="false"
 					 allowCellSelect="true"
 					 onDrawCell="onDrawCell"
-					 showFilterRow="false">
+					 showFilterRow="false" >
 					<div property="columns" >
 						<div type="indexcolumn">序号</div>
 						<div type="checkcolumn" name="checkcolumn" visible="false"></div>

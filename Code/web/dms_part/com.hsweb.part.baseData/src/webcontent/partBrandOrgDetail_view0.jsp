@@ -9,7 +9,7 @@
 -->
 <head>
 <title>新增关注品牌</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/partBrandMgr/partBrandOrgDetail.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/partBrandMgr/partBrandOrgDetail.js?v=1.0.4"></script>
 <style type="text/css">
 
 

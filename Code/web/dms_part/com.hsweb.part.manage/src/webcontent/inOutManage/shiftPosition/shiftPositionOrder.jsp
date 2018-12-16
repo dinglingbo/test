@@ -53,7 +53,7 @@
 
 
 
-     <div class="nui-fit">
+<!--      <div class="nui-fit"> -->
         <fieldset id="fd1" style="width: 99.5%; height: 60px;">
             <legend>
                 <span>移仓信息</span>
@@ -173,7 +173,7 @@
             </div>
         </div>
     </div>
-</div>
+<!-- </div> -->
 </div>
 
 <div id="advancedSearchWin" class="nui-window"

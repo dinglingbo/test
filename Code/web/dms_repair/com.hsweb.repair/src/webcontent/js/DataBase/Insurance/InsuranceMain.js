@@ -21,7 +21,7 @@ $(document).ready(function (v)
         edit();
 
     });
-    onSearch(2);
+    onSearch(0);
 });
 function onRowClick(e)
 {
@@ -72,7 +72,7 @@ function addOrEditInsurance(comguest)
         targetWindow: window,
         url: "com.hsweb.repair.DataBase.InsuranceDetail.flow",
         allowResize:false,
-        title: title, width: 600, height: 360,
+        title: title, width: 600, height: 400,
         onload: function ()
         {
             var iframe = this.getIFrameEl();

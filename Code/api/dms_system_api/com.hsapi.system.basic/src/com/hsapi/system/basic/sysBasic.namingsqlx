@@ -23,7 +23,7 @@
 	    operatorId = #operatorId#
 		<dynamic>
             <isNotEmpty prepend="and" property="orgidOrName">
-            	(orgid = #orgidOrName# or orgname like '%$orgidOrName$%')
+            	(orgcode like '%$orgidOrName$%' or orgname like '%$orgidOrName$%')
             </isNotEmpty>
         </dynamic>
     </select>

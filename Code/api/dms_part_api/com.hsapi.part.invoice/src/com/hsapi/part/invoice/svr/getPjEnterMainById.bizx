@@ -16,7 +16,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.part.data.pts.XPjEnterMain" name="main" type="query" valueType="DataObject">main</process:return>
+      <process:return id="0" language="com.hsapi.part.data.pts.PjEnterMain" name="main" type="query" valueType="DataObject">main</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">

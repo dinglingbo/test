@@ -689,8 +689,10 @@ function doPrint(params){
 		baseUrl: apiPath + repairApi + "/",
 		sysUrl: apiPath + sysApi + "/",
 		webUrl:webPath + contextPath + "/",
-        bankName: bankName,
-        bankAccountNumber: bankAccountNumber,
+        bankName: currBankName,
+        bankAccountNumber: currBankAccountNumber,
+        currCompAddress: currCompAddress,
+        currCompTel: currCompTel,
 		token : token
 	};
 	if(source == 1){  //打印报价单

@@ -144,7 +144,7 @@
                 	bankName = attr.get("bankName").toString();
                 }
                 if(attr.get("bankAccountNumber") != null){
-                	compTel = attr.get("bankAccountNumber").toString();
+                	bankAccountNumber = attr.get("bankAccountNumber").toString();
                 }
                 
                 if(attr.get("billParams") != null){
@@ -213,8 +213,8 @@
     var token = "<%=token %>";
     var currCompAddress = "<%=compAddress %>";
     var currCompTel = "<%=compTel %>";
-    var bankName = "<%=bankName %>";
-    var bankAccountNumber = "<%=bankAccountNumber %>";
+    var currBankName = "<%=bankName %>";
+    var currBankAccountNumber = "<%=bankAccountNumber %>";
     var currRepairBillQrcodeFlag = "<%=repairBillQrcodeFlag %>";
 	var currRepairBillCmodelFlag = "<%=repairBillCmodelFlag %>";
 	var currRepairSettorderPrintShow = "<%=repairSettorderPrintShow %>";

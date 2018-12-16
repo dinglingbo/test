@@ -221,8 +221,8 @@
 	                </tr>
 	                <tr>
 	                	<td>
-	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜</br>
-	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜
+	                	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜</br>
+	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜-->
 	                	</td>
 	                </tr>
 	            </tbody>
@@ -440,9 +440,12 @@
 	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
 	        //document.getElementById("pdate").innerHTML = document.getElementById("pdate").innerHTML + format(date, "yyyy-MM-dd HH:mm");
 	        
-	        document.getElementById("openBank").innerHTML = params.bankName;
-	        document.getElementById("bankNo").innerHTML = params.bankAccountNumber;
+	        document.getElementById("openBank").innerHTML = document.getElementById("openBank").innerHTML + params.bankName;
+	        document.getElementById("bankNo").innerHTML = document.getElementById("bankNo").innerHTML + params.bankAccountNumber;
 	        
+	        document.getElementById("guestAddr").innerHTML = params.currCompAddress;
+    		document.getElementById("phone").innerHTML = params.currCompTel;
+    		
 	        $.ajaxSettings.async = false;//设置为同步执行
 	        var url = null;
 	        if(params.type){
@@ -726,8 +729,8 @@
 	        $(".popbox").show();
 	        document.getElementById("txtno").value = document.getElementById("serviceCode").innerHTML;
     		document.getElementById("txtstorename").value = document.getElementById("comp").innerHTML;
-    		document.getElementById("txtaddress").value = document.getElementById("guestAddr").innerHTML;
-    		document.getElementById("txtphoneno").value = document.getElementById("phone").innerHTML;
+    		//document.getElementById("txtaddress").value = document.getElementById("guestAddr").innerHTML;
+    		//document.getElementById("txtphoneno").value = document.getElementById("phone").innerHTML;
     		if(document.getElementById("date").innerHTML.length > 16){
     			var value = document.getElementById("date").innerHTML.substring(0, document.getElementById("date").innerHTML.length-3);
     			document.getElementById("meeting").value = value.replace(" ","T");

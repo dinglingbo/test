@@ -79,16 +79,87 @@
             text-decoration: none;
             border-radius: 5px;
         }
+        
+                   /* 	#search{
+		 display: none; 
+		font-size:18px;
+		text-align:center;
+		left:240px;
+		top:0px;
+		text-align:center;
+		z-index:999;
+		color: #671e1ebf;
+		width: 120px;
+	    height: 40px;
+	    background: #cac52afc;
+	    position: absolute;
+	    -moz-border-radius: 12px;
+	    -webkit-border-radius: 12px;
+	    border-radius: 12px;
+	} */
+ 	#comment_bubble {
+
+    width: 140px;
+    height: 100px;
+    background: #78c800c2;
+    position: relative;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+} 
+  
+/*  #search:before {
+    content: "";
+    width: 0;
+    height: 0;
+    right: 100%;
+    top: 12px;
+    position: absolute;
+    border-top: 8px solid transparent;
+    border-right: 18px solid #cac52afc;
+    border-bottom: 8px solid transparent;
+}   */
+.tishi{
+	margin-top: 5px;
+}
+
+.btn .mini-buttonedit{
+	height:36px;
+}
+.btn .aa{
+	height:36px;
+	width: 350px;
+}
+.btn .mini-buttonedit .mini-corner-all{
+	height:33px;
+	background: #368bf447;
+}
+.btn .aa .mini-corner-all{
+	height:33px;
+}
+.mini-corner-all .nui-textbox{
+	height:30px;
+}
+.btn .mini-corner-all .mini-buttonedit-input{
+	font-size: 16px;
+	margin-top: 8px;
+	
+}
+.btn .mini-corner-all .mini-textbox-input{
+	font-size: 14px;
+	margin-top: 8px;
+	
+}
 
     </style>
 </head>
 <body>
-<div class="nui-toolbar" style="padding:2px;height:30px">
+<div class="nui-toolbar" style="padding:2px;height:48px;position: relative;">
     <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
         <tr>            
-            <td>
+            <td class="btn">
                 <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
-                    style="width:200px;"  popupWidth="600" textField="text" valueField="id" 
+                    style="width:350px;height: 50px !important;"  popupWidth="600" textField="text" valueField="id" 
                     id="search_key" url="" value="carNo"   searchField="key" 
                     dataField="list" placeholder="请输入...">     
                     <div property="columns">
@@ -102,10 +173,9 @@
                 </div>
                 <input id="search_name"
                 name="search_name"
-                class="nui-textbox"
+                class="nui-textbox aa"
                 emptyText="车牌号/客户名称/手机号/VIN码"
                 onbuttonclick="onSearchClick()"
-                width="200px"
                 visible="false"
                 enabled="false"
                 showClose="false"

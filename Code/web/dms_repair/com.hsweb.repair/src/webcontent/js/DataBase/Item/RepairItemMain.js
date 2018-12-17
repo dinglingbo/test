@@ -61,7 +61,7 @@ $(document).ready(function()
 	rightGrid.on("rowdblclick",function(e){
 		if(isOpenWin==1){
 			onOk();
-		}else{
+		}else if(e.record.isShare == 0){
 			
 			edit();
 		}	
@@ -161,7 +161,7 @@ function addOrEdit(item){
 		targetWindow: window,
 		url:webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemDetail.flow?token="+token,
 		title:"维修项目",
-		width:600,
+		width:630,
 		height:430,
 		allowResize:false,
 		onload: function()

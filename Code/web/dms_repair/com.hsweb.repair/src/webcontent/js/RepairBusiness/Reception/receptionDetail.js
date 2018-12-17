@@ -1658,7 +1658,7 @@ function save() {
 function getSureMtCode(callback) {
     callback = callback || function () {
         };
-    var billTypeCode = "WXD";
+    var billTypeCode = "ZHD";
     getCompBillNO(billTypeCode, function (data) {
         data = data || {};
         var code = data.serviceno;

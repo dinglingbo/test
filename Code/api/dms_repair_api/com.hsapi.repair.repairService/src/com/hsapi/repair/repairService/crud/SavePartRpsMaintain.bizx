@@ -344,6 +344,7 @@
     <targetConnections>link47</targetConnections>
     <targetConnections>link48</targetConnections>
     <targetConnections>link52</targetConnections>
+    <targetConnections>link13</targetConnections>
     <location x="1215" y="519"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
@@ -885,12 +886,22 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" type="transition">
+      <sourceNode>assign19</sourceNode>
+      <targetNode>assign27</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">billTypeId</process:leftOperand>
+          <process:rightOperand type="literal">5</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="888" y="479"/>
     <size height="28" width="28"/>
     <nodeLabel>assign19label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">WXD</process:from>
+      <process:from type="literal" pattern="reference">ZHD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -909,7 +920,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign20label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">WXD</process:from>
+      <process:from type="literal" pattern="reference">ZHD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -928,7 +939,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign21label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">CLD</process:from>
+      <process:from type="literal" pattern="reference">CCD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -947,7 +958,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign22label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">XMD</process:from>
+      <process:from type="literal" pattern="reference">XCD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -966,7 +977,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign23label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">SXD</process:from>
+      <process:from type="literal" pattern="reference">XSD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -985,7 +996,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign24label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">JCD</process:from>
+      <process:from type="literal" pattern="reference">LPD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>
@@ -1057,6 +1068,25 @@
     <location x="1568" y="470"/>
     <figSize height="17" width="39"/>
     <node>assign26</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign27" name="赋值27" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign27</sourceNode>
+      <targetNode>subprocess0</targetNode>
+    </sourceConnections>
+    <targetConnections>link11</targetConnections>
+    <location x="1036" y="723"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign27label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">THD</process:from>
+      <process:to type="query">billTypeCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign27label" name="label" nodeType="label">
+    <location x="1031" y="759"/>
+    <figSize height="17" width="39"/>
+    <node>assign27</node>
   </nodes>
   <topRuler/>
   <leftRuler>

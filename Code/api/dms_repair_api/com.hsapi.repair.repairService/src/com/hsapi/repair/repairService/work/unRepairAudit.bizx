@@ -193,16 +193,6 @@
       <targetNode>invokePojo3</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link43" name="link43" displayName="连接线" type="transition">
-      <sourceNode>invokePojo1</sourceNode>
-      <targetNode>assign13</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">balaAuditSign</process:leftOperand>
-          <process:rightOperand type="literal">0</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link22</targetConnections>
     <location x="589" y="105"/>
     <size height="28" width="22"/>
@@ -345,7 +335,6 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
-    <targetConnections>link44</targetConnections>
     <location x="1286" y="105"/>
     <size height="28" width="28"/>
     <nodeLabel>transactioncommit0label</nodeLabel>
@@ -572,7 +561,7 @@
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="sendPost" displayName="sendPost" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="sendPost" displayName="" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="link64" isDefault="true" type="transition">
       <sourceNode>invokePojo6</sourceNode>
       <targetNode>invokePojo7</targetNode>
@@ -854,21 +843,6 @@
     <location x="155" y="238"/>
     <figSize height="17" width="39"/>
     <node>assign18</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign13" name="赋值12" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link44" name="link44" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign13</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
-    </sourceConnections>
-    <targetConnections>link43</targetConnections>
-    <location x="881" y="-15"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign13label</nodeLabel>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
-    <location x="876" y="21"/>
-    <figSize height="17" width="39"/>
-    <node>assign13</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
     <targetConnections>link24</targetConnections>

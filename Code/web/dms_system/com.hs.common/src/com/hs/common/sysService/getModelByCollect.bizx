@@ -174,6 +174,7 @@
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="link14" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
     <location x="373" y="164"/>
@@ -218,7 +219,9 @@
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="547" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-12-03 11:36:26" date="2018-12-03Z" description="" name="getModelByCollect" version="7.0.0.0"/>
   <process:variables>

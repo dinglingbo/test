@@ -210,37 +210,37 @@
 	                     	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
 	                    </td>
 	                    <td>
-	                        <div style="font-size: 20px; font-family: 微软雅黑;">&nbsp;&nbsp;<span id="comp"></span></div>
+	                        <div style="font-size: 18px; font-family: 黑体;">&nbsp;&nbsp;<span id="comp"></span></div>
 	                    </td>
-	                    <td rowspan="2" style="width: 300px;">
-	                        <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename"></span></b></div>
-	                        <div style="padding-top: 2px; font-size: 16px;">
+	                    <td rowspan="2" style="">
+	                        <div style="font-size: 20px; font-family: 华文中宋;"><b><span id="spstorename"></span></b></div>
+	                        <div style="padding-top: 2px; font-size: 16px;font-family: Arial;">
 	                          №:<span id="serviceCode"></span>  
 	                        </div>
 	                    </td>
 	                </tr>
-	                <tr>
+	               <!-- <tr>
 	                	<td>
-	                	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜</br>
-	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜-->
+	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜</br>
+	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜
 	                	</td>
-	                </tr>
+	                </tr>-->
 	            </tbody>
 	        </table>
 	        
         </div>
         
-        <div style="border-bottom: 1px #333 solid; height: 2px; margin-bottom: 10px;">&nbsp;</div>
+        <!-- <div style="border-bottom: 1px #333 solid; height: 2px; margin-bottom: 10px;">&nbsp;</div> -->
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
              <tr>
-                <td>地址：<span id="guestAddr"></span></td>
-                <td  id="openBank" style="width: 300px;">开户银行：</td>
-                <td  style="width: 300px;">打印时间：<span id="date"></span></td>
+                <td style="font-size:8px;" >地址：<span id="guestAddr"></span></td>
+                <td style="font-size:8px;"  id="openBank" style="">开户银行：</td>
+                <td style="font-size:8px;">打印时间：<span id="date"></span></td>
             </tr> 
             <tr>
-                <td>电话：<span id="phone"></span></td>
-                <td  id="bankNo" >银行账号：</td>
-             	<td  id="enterDate" >进厂时间：</td>
+                <td style="font-size:8px;">电话：<span id="phone"></span></td>
+                <td style="font-size:8px;" id="bankNo" >银行账号：</td>
+             	<td style="font-size:8px;" id="enterDate" >进厂时间：</td>
             </tr>
         </table>
 
@@ -265,14 +265,25 @@
         <div style="height: 12px;"></div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPkg">
                 <tr>
-                    <td width="40" align="center" bgcolor="#f8f8f8"><b></b></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"><b>套餐项目(含工时配件)</b></td>
-                    <td width="60" align="center" bgcolor="#f8f8f8"><b>数量</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
-                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>优惠率</b></td>
-                    <td width="80" align="center" bgcolor="#f8f8f8"><b>小计</b></td>
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:16px;font-weight: bold;">套餐项目(含工时配件)</td>
                     
+                    
+                    <td width="60" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">数量</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
+                    
+                </tr>
+                <tr>
+                	<td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
                 </tr>
                 <tbody id="tbodyId">
 				</tbody>
@@ -280,13 +291,22 @@
         <div style="height: 12px;" id="space1"></div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showItem">
                 <tr>
-                    <td width="40" align="center" bgcolor="#f8f8f8"><b></b></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"><b>项目名称</b></td>
-                    <td width="60" align="center" bgcolor="#f8f8f8"><b>工时/数量</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
-                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>优惠率</b></td>
-                    <td width="80" align="center" bgcolor="#f8f8f8"><b>小计</b></td>
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">项目名称</td>
+                    <td width="60" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">工时/数量</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
+                </tr>
+                <tr>
+                	<td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
                 </tr>
                 <tbody id="tbodyId2">
 				</tbody>
@@ -341,17 +361,15 @@
                     </div> -->
                      <span style="margin-left: 0px;">优惠金额：<span id="yh">0</span>元</span>
                 </td>
-                <td height="36" colspan="2" style="border:0px">
+                <td height="36" colspan="2" style="border:0px;font-family: Arial; font-size:16px;font-weight: bold;">
                     <div style="float: left; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
-                            <b style="font-size: 16px;">小计</b>：
-                            <font style="font-size: 15px; font-weight: bold;">
-                                <span id="cash1"></span>
-                            </font>元
+                            <font style="font-size: 16px; font-weight: bold;">
+                                小计：<span id="cash1"></span>元
+                            </font>
                         </span>
-                        <b style="font-size: 16px;">大写</b>：
-                        <font style="font-size: 15px; font-weight: bold;">
-                            <span id="money"></span>
+                        <font style="font-size: 16px; font-weight: bold;">
+                            大写：<span id="money"></span>
                         </font>
                     </div>
                 </td>

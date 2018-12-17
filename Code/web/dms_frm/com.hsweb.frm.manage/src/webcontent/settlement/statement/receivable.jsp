@@ -470,7 +470,7 @@
 						<label style="font-family:Verdana;">实收金额：</label>
 						<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 					</td>
-					<td >
+<!-- 					<td >
 						<a id="wxbtnsettle" style="    width: 120px;
 							height: 40px;
 							font-size: 18px;
@@ -482,7 +482,7 @@
 							line-height: 2;
 							text-decoration: none;" 
 							href="javascript:void(0)" onclick="settleOK()">微信结算</a>
-					</td>
+					</td> -->
 					<td >
 						<a id="btnsettle" style="    width: 120px;
 							height: 40px;

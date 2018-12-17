@@ -20,7 +20,7 @@
 		FROM
 			vw_user_org
 		WHERE
-	    operatorId = #operatorId# and TENANT_ID =  #TENANTID# 
+	    operatorId = #operatorId#
 		<dynamic>
             <isNotEmpty prepend="and" property="orgidOrName">
             	(orgcode like '%$orgidOrName$%' or orgname like '%$orgidOrName$%')

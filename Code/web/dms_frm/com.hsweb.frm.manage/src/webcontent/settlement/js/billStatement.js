@@ -199,7 +199,7 @@ function getSearchParam(){
 	    params.auditSign=0;
 	  }
 	 params.serviceId = comServiceId.getValue(); 
- 	 params.guestName=comSearchGuestId.getValue();
+ 	 params.guestId=comSearchGuestId.getValue();
 	 params.endDate = searchEndDate.getValue();
 	 params.startDate = searchBeginDate.getFormValue();
 	// params.isDiffOrder = 0;
@@ -433,7 +433,7 @@ function selectSupplier(elId)
                 var value = supplier.id;
                 var text = supplier.fullName;
                 var el = nui.get(elId);
-                el.setValue(text);
+                el.setValue(value);
                 el.setText(text);
             }
         }

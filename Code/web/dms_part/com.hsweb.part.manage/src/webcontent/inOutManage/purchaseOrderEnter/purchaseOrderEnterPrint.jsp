@@ -21,6 +21,15 @@ html, body {
 }
 
 /*打印高度的设置*/
+
+html, body {
+    height: 100%;
+}
+#query-table {
+    height: 100%;
+}
+
+/*打印高度的设置*/
 @media print {
     html, body {
         height: inherit;
@@ -31,14 +40,31 @@ html, body {
     #queryTable {
         height: inherit !important;
     }
-     @page {
+    @page {
       size: auto;  /* auto is the initial value */
       margin: 0mm; /* this affects the margin in the printer settings */
     }
 }
+
 #tbody td{
 	text-align:center;
 }
+table{
+	 width: 100%;
+        max-width: 100%;
+        border-spacing: 0;
+        border-collapse: collapse;
+        background-color: transparent;
+}
+table, td {
+        font-family: Tahoma, Geneva, sans-serif;
+        font-size: 12px;
+        color: #000;
+    }
+table#ybk td{
+    
+	border: 1px solid #000;
+	}
 #sum{
 	padding-left: 80px;
 	width:350px;
@@ -51,10 +77,10 @@ html, body {
 #sumOrderAmt{
 	padding-left:85px;
 }
-#currOrgName{
+ #currOrgName{
 /* 	padding-left:80px; */
 	padding-top:20px;
-}
+} 
 #type{
 	padding-right:165px;
 	padding-top:20px;
@@ -63,26 +89,30 @@ html, body {
 	padding-right:145px;
 }
 #nowDate{
+	padding-right:150px;
+}
+#guestAddr{
 	padding-right:118px;
 }
-#border1 td{
-	border-bottom: 1px black solid !important;
+#border1 tr{
+/* 	border-bottom: 1px black solid !important; */
+	height :35px;
+	
+
+}
+#border2 tr{
+/* 	border-bottom: 1px black solid !important; */
+/* 	border-top: 1px black solid !important; */
 	height :35px;
 
 }
-#border2 td{
-	border-bottom: 1px black solid !important;
-	border-top: 1px black solid !important;
+#border3 tr{
+ 	border-bottom: 1px black solid !important; 
 	height :35px;
 
 }
-#border3 td{
-	border-bottom: 1px black solid !important;
-	height :35px;
-
-}
-#border4 td{
-	border-bottom: 1px black solid !important;
+#border4{
+	border-bottom: 1px black solid !important; 
 	height :35px;
 
 }
@@ -160,6 +190,12 @@ html, body {
 #index{
 	width:4%;
 }
+hr {
+        margin: 8px 0;
+        border: 0;
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #ffffff;
+    }
 </style>
 <title>采购入库打印</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -174,25 +210,41 @@ html, body {
 			     	<a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
 			     	<a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
 			    </div>
+        		<div style="height:20px;"></div>
         		<table id="" width="100%">
-				  <tr style="font-size:25px">
-				    <td id="currOrgName"></td>
-				    <td></td>
-				    <td id="type" colspan="2" style="text-align: right;" class="" >入库单</td>
-				  </tr>
+				   <tr>
+	            	<td rowspan="2" style="width: 133px;">
+	                 	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
+	                </td>
+	                <td>
+	                    <div style="font-size: 20px; font-family: 微软雅黑;">&nbsp;&nbsp;<span id="currOrgName"></span></div>
+	                </td>
+	                <td rowspan="2" style="width: 300px;">
+	                    <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename"></span></b></div>
+	                    <div style="padding-top: 2px; font-size: 16px;">
+	                      №:<span id="serviceId"></span>  
+	                    </div>
+	                </td>
+	            </tr>
+	            </table>
+	            
+	            <hr/>
+	            <table width="100%">
 				  <tr>
-				  	<td id="mobile">电话:</td>
-				    <td  id="address">地址:</td>
-				    <td colspan="2" style="text-align: right" id="serviceId"  class="" >No:</td>
+				  	<td id="phone">电话:</td>
+				    <td  id="guestAddr" align="right">地址:</td>
+<!-- 				    <td colspan="2" style="text-align: right" id="serviceId"  class="" >No:</td> -->
 				  </tr>
 				  <tr id="border1">
 				    <td id="createDate" align="left">订单日期:</td>
-				    <td ></td>
 				    <td colspan="2" id="nowDate" align="right"  class="" >打印日期:</td>
 				  </tr>
+				</table>
+				<hr/>
+				<table id="ybk" width="100%">
 				  <tr>
-				    <td id="guestFullName">供应商:</td>
-				    <td id="">联系人:</td>
+				    <td width="33.3%" id="guestFullName">供应商:</td>
+				    <td width="33.3%"id="">联系人:</td>
 				    <td id="">联系方式:</td>
 				  </tr>
 				  <tr>
@@ -202,6 +254,7 @@ html, body {
 				  </tr>
 				</table>
         	</div> 
+        	<hr />
             <div id="queryTable" style="height: auto;">
 				<table id="tbody" width="100%"  border="1" style="border: 1px solid #151515; border-collapse:collapse;">
 					<tbody>
@@ -233,16 +286,19 @@ html, body {
 				    <td id="sumOrderQty" >合计</td>
 				    <td id="sumOrderAmt"></td>
 				  </tr>
+				  <tr><td  colspan="3"><hr/></td></tr>
 				  <tr id="border2">
 				    <td id="currUserName">打印人：系统管理员</td>
 				    <td id="">送货人：</td>
 				    <td id="">收货人：</td>
 				  </tr>
+				  <tr><td  colspan="3"><hr/></td></tr>
 				  <tr colspan="3" id="border3">
 				    <td id="remark1">备注</td>
 				    <td></td>
 				    <td></td>
 				  </tr>
+				  <tr><td  colspan="3"><hr/></td></tr>
 				   <tr colspan="3" id="border4">
 				    <td id="">注(白联仓库   红联财务  黄联供应商)</td>
 				    <td></td>
@@ -282,6 +338,10 @@ html, body {
             else window.close();
         }
     	function SetData(mainParams,detailParms,formParms){
+    		document.getElementById("spstorename").innerHTML = "入库单";
+    		document.getElementById("guestAddr").innerHTML = "地址："+currCompAddress;
+	   		document.getElementById("phone").innerHTML ="电话："+currCompTel;
+       		$('#guestFullName').text("供应商:"+formParms.guestFullName);
        		$('#guestFullName').text("供应商:"+mainParams.guestFullName);
        		$('#createDate').text("入库日期："+format(mainParams.createDate,"yyyy-MM-dd HH:mm"));
        		$('#serviceId').text("No:"+mainParams.serviceId);

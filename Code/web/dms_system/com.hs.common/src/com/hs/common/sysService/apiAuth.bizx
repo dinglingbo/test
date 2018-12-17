@@ -482,13 +482,13 @@
   <process:info author="Guine" createTime="2017-07-31 15:36:41" date="2017-07-31Z" description="ERP登录验证接口" name="erpAuth" version="7.0.0.0"/>
   <process:variables>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="param"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="msg" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="posiId" primitiveType="Long"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="token" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tokenKey" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="userInfo" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="operatorId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="userKey" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="msg" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="url" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">

@@ -321,7 +321,9 @@
             font-size: 12px;
             color: #000;
         }
-
+		table#ybk td{
+			border: 1px solid #000;
+		}
         .print_btn {
             text-align: center;
             width: 100%;
@@ -374,14 +376,46 @@
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
     </div>
     <div id="print-container">
-        <div class="company-info">
-            <h3><span id="comp"></span></h3>
-        </div>
-        <h1 id="title">派工单</h1>
-        <div class="content">
-            <h5>单据编号：<span id="serviceCode"></span></h5>
+            <table  width="100%" border="0" cellspacing="0" cellpadding="0">
+	            <tbody>
+	                <tr>
+	                	<td rowspan="2" style="width: 133px;">
+	                     	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
+	                    </td>
+	                    <td>
+	                        <div style="font-size: 20px; font-family: 微软雅黑;">&nbsp;&nbsp;<span id="comp"></span></div>
+	                    </td>
+	                    <td rowspan="2" style="width: 300px;">
+	                        <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename"></span></b></div>
+	                        <div style="padding-top: 2px; font-size: 16px;">
+	                          №:<span id="serviceCode"></span>  
+	                        </div>
+	                    </td>
+	                </tr>
+	                <tr>
+	                	<td>
+	                	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜</br>
+	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜-->
+	                	</td>
+	                </tr>
+	            </tbody>
+	        </table>
             <hr />
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
+              <table width="100%" border="0" cellspacing="0" cellpadding="0">
+             <tr>
+                <td>地址：<span id="guestAddr"></span></td>
+<!--                 <td  id="openBank" style="width: 300px;">开户银行：</td> -->
+                <td  style="width: 300px;">打印时间：<span id="date"></span></td>
+            </tr> 
+            <tr>
+                <td>电话：<span id="phone"></span></td>
+<!--                 <td  id="bankNo" >银行账号：</td> -->
+             	<td  id="enterDate" >进厂时间：</td>
+            </tr>
+        </table>
+    
+        <div style=" height: 2px; margin-bottom: 10px;">&nbsp;</div>
+            <table width="100%" style="" id="ybk"class="table theader">
                 <tbody>
                     <!-- <tr>
                         <td class="left" width="33.3%" id="guestId">客户名称：</td>
@@ -399,25 +433,25 @@
                         <td class="left" id="planFinishDate">预计完工时间：</td>
                     </tr> -->
                     <tr>
-                        <td class="left" id="carNo" style="margin-left: 0px;">车牌号：</td>
-                        <td class="left" id="carModel" >品牌车型：</td>
+                        <td class="left" id="carNo" style="margin-left: 0px;"width="33.3%">车牌号：</td>
+                        <td class="left" id="carModel"width="33.3%" >品牌车型：</td>
+                        <td class="left"id="mtAdvisor" width="33.3%">服务顾问：</td>
                     </tr>
-                    <tr>
-                        <td class="left"id="mtAdvisor" width="100px">服务顾问：</td>
-                        <td class="left" id ="carVin" width="200px">车架号(VIN)：</td>
-                    </tr>
-                  
-                    <tr>
+                    <tr>   
+                        <td class="left" id ="carVin" width="33.3%">车架号(VIN)：</td>
                         <td class="left" id ="engineNo">发动机号：</td>
                         <td class="left">进厂时间：<span class="left"  id="enterDate"></span></td>
-                     </tr>
+                    </tr>
+                  
+            
                      <tr>
                         <td class="left" id="planFinishDate">预计完工时间：</td>
                         <td >&nbsp;进厂里程：<span id="enterKilometers"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;油量：<span id="enterOilMass"></span></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
-            <hr />
+    
             <h5 style="padding-top: 20px;">施工项目</h5>
             <div style="padding: 10px 0">
                 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table tlist mt10" style="table-layout: fixed;">
@@ -437,7 +471,7 @@
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader" style="margin-top: 15px;">
                 <tbody>
                     <tr>
-                        <td width="50%" height="30" class="left" style="font-size: 14px;">质检员：</td>
+                       <td width="50%" height="30" class="left" style="font-size: 14px;">质检员：</td>
                         <td class="left" width="50%" style="font-size: 14px;">质检员签字：</td>
                     </tr>
                 </tbody>
@@ -460,6 +494,7 @@
 	<script type="text/javascript">
 	var guestId=null;
 	var data = [];
+	var date=new Date();
 	$(document).ready(function (){
 		$("#print").click(function () {
             $(".print_btn").hide();
@@ -484,6 +519,13 @@
         }
 	function SetData(params){
 		document.getElementById("comp").innerHTML = params.comp;
+		document.getElementById("spstorename").innerHTML = "派工单";
+		document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
+// 		document.getElementById("openBank").innerHTML = document.getElementById("openBank").innerHTML + params.bankName;
+//         document.getElementById("bankNo").innerHTML = document.getElementById("bankNo").innerHTML + params.bankAccountNumber;
+        
+        document.getElementById("guestAddr").innerHTML = params.currCompAddress;
+		document.getElementById("phone").innerHTML = params.currCompTel;
 		var dictids= ['DDT20130703000051'];
 		$.ajaxSettings.async = false;
 		$.post(params.sysUrl+"com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictids="+dictids+"&token="+params.token,{},function(text){

@@ -297,7 +297,7 @@ pageEncoding="UTF-8" session="false"%>
 <!-- </div>    -->
 
 <div class="nui-fit">
-    <div id="detailGrid" datafield="list" class="nui-datagrid" style="width: 100%; height:118px;" 
+    <div id="detailGrid" datafield="list" class="nui-datagrid" style="width: 100%; height:126px;" 
     showpager="false" sortmode="client" allowcelledit="true" allowcellselect="true" 
     showSummaryRow="true" showModified ="false" ondrawsummarycell="drawSummaryCell">
     <div property="columns"> 

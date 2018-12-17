@@ -84,6 +84,7 @@ function changed(e){
 	}
 	
 }
+var falg = null;
 function onOk() {
 	form.validate();
     if (form.isValid() == false) return;
@@ -92,7 +93,8 @@ function onOk() {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 			if( key == "periodValidity" && set.checked ){
 				//跳过本次循环，执行下一次循环,把有效期赋值为-1
-				input.setValue("-1");
+				//input.setValue("-1");
+				falg = 1;
 				continue;
 			}
 			showMsg(requiredField[key] + "不能为空!", "W");
@@ -133,6 +135,10 @@ function saveData() {
 	if (form.isValid() == false)
 		return;
 	var data = form.getData(false, true);
+	//设置有效期的值
+	if(falg == 1){
+		data.periodValidity = -1;
+	}
 	// var json = nui.encode(data);//变成json格式
 	var list = contentGrid.getChanges("modified");
 	for (var i=0;i<list.length;i++){

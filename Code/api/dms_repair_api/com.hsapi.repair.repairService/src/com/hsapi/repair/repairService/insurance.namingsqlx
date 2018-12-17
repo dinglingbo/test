@@ -55,6 +55,10 @@
 	            (c.full_name like '%$guestFullName$%')
 	        </isNotEmpty>
 
+					<isNotEmpty prepend="and" property="serviceCode">  
+	            (a.service_code like '%$serviceCode$%')
+	        </isNotEmpty>
+
 	        <isNotEmpty prepend="and" property="carNo">  
 	            (b.car_no like '%$carNo$%')
 	        </isNotEmpty>

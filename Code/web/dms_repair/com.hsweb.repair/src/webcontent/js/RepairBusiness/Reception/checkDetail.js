@@ -728,6 +728,7 @@ function saveDetail(){ //√  isCheckMain == "N"
             lastKilometers:mdata.lastKilometers,
             lastPoint:mdata.lastPoint,
             checkMan:mdata.checkMan,
+            checkManId:mdata.checkManId,
             checkPoint:mdata.checkPoint,
 
         };

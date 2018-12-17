@@ -10,7 +10,7 @@
 
 <head>
     <title>预约管理</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=2.7.5"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=2.7.6"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -31,8 +31,6 @@
         .addyytime a:link, a:visited { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; color: #555555; text-decoration: none; }
         .addyytime a:hover { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; color: #df0024; text-decoration: none; }
         .addyytime a {text-decoration:none;transition:all .4s ease;}
-
-    
 
     </style>
 

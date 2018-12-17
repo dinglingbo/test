@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>结算账户</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountSet.js?v=1.0.8"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountSet.js?v=1.0.10"></script>
     <style type="text/css">
     body {
         margin: 0;

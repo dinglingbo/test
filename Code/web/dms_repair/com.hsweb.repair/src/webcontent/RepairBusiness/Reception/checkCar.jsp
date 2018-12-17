@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="/common/commonRepair.jsp"%>
 <html>
+
 <!-- 
   - Author(s): localhost
   - Date: 2018-09-07 23:33:56
@@ -239,7 +241,7 @@
             }
 
         hr {
-            margin: 4px 0;
+            margin: 8px 0;
             border: 0;
             border-top: 1px solid #333;
             border-bottom: 1px solid #ffffff;
@@ -325,7 +327,10 @@
             font-size: 12px;
             color: #000;
         }
-
+		
+		table#ybk td{
+			border: 1px solid #000;
+		}
         .print_btn {
             text-align: center;
             width: 100%;
@@ -379,11 +384,50 @@
     </div>
     <div id="print-container">
         <div class="company-info">
-            <h3><span id="comp"></span></h3>
+<!--             <h3><span id="comp"></span></h3> -->
         </div>
-        <h1 id="title">车辆检测报告</h1>
+            <table  width="100%" border="0" cellspacing="0" cellpadding="0">
+	            <tbody>
+	                <tr>
+	                	<td rowspan="2" style="width: 133px;">
+	                     	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
+	                    </td>
+	                    <td>
+	                        <div style="font-size: 20px; font-family: 微软雅黑;">&nbsp;&nbsp;<span id="comp"></span></div>
+	                    </td>
+	                    <td rowspan="2" style="width: 300px;">
+	                        <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename"></span></b></div>
+	                        <div style="padding-top: 2px; font-size: 16px;">
+<!-- 	                          №:<span id="serviceCode"></span>   -->
+	                        </div>
+	                    </td>
+	                </tr>
+	                <tr>
+	                	<td>
+	                	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜</br>
+	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜-->
+	                	</td>
+	                </tr>
+	            </tbody>
+	        </table>
+         <hr />
+       
+        <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+	             <tr>
+	                <td>地址：<span id="guestAddr"></span></td>
+	<!--                 <td  id="openBank" style="width: 300px;">开户银行：</td> -->
+	                <td  style="width: 300px;">打印时间：<span id="date"></span></td>
+	            </tr> 
+	            <tr>
+	                <td>电话：<span id="phone"></span></td>
+	<!--                 <td  id="bankNo" >银行账号：</td> -->
+	             	<td  id="enterDate" >进厂时间：</td>
+	            </tr>
+	        </table>
+<!-- 	    <hr /> -->
         <div class="content">
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
+        	<div style="height :10px;"></div>
+            <table width="100%" id="ybk" border="0" cellpadding="0" cellspacing="0" class="table theader">
                 <tbody>
                     <tr>
                         <td class="left" width="33.3%" id="carNo">车牌号：</td>
@@ -397,9 +441,9 @@
                     </tr>
                 </tbody>
             </table>
-            <hr />
-            <h1 id="title1">检测建议</h1>
-            <hr/>
+<!--             <hr /> -->
+<!--             <h1 id="title1">检测建议</h1> -->
+<!--             <hr/> -->
             <h5 style="padding-top: 20px;">检测部位</h5>
             <div style="padding: 10px 0">
                 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table tlist mt10" style="table-layout: fixed;">
@@ -419,7 +463,11 @@
             </div>
             <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader" style="margin-top: 15px;">
                 <tbody>
+                	<tr>
+                		<td style="font-size: 14px;">客户描述:</td>
+                	</tr>
                     <tr>
+                    	
                         <td width="50%" height="30" class="left" style="font-size: 14px;">检查人：</td>
                         <td class="left" width="30%" style="font-size: 14px;">检查时间：</td>
                         <td class="left" width="30%" style="font-size: 14px;">客户签字：</td>
@@ -455,15 +503,21 @@
         }
 	function SetData(params){
 		// params.baseUrl params.serviceId params.token 
+		var date = new Date();
+		document.getElementById("comp").innerHTML = currOrgName;
+		document.getElementById("spstorename").innerHTML = "车辆检查报告";
+		document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
+		document.getElementById("guestAddr").innerHTML = currCompAddress;
+		document.getElementById("phone").innerHTML = currCompTel;
         $.ajaxSettings.async = false;//设置为同步执行
         $.post(params.baseUrl+"com.hsapi.repair.repairService.repairInterface.queryCheckMainbyServiceId.biz.ext?id="+params.serviceId+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){
         		var maintain = text.list[0];
         		var car = text.car;
-        		var carNo = maintain.carNo;
-        		var carVin = maintain.carVin;
-        		var enterKilometers = maintain.enterKilometers;
-        		var guestId = maintain.guestId;
+        		var carNo = maintain.carNo || "";
+        		var carVin = maintain.carVin || "";
+        		var enterKilometers = maintain.enterKilometers || "";
+        		var guestId = maintain.guestId || "";
         		var carModel = car.carModel;
         		/* var enterDate = maintain.enterDate || "";
         		if(enterDate){
@@ -483,8 +537,8 @@
         		var remark = maintain.remark || "";  */
         		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
         		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
-        		//document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
-        		document.getElementById("guestId").innerHTML = document.getElementById("guestId").innerHTML + guestId;
+//         		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
+        		document.getElementById("guestId").innerHTML = (document.getElementById("guestId").innerHTML + guestId) || "";
         		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
         		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel;
         		//document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
@@ -500,8 +554,12 @@
         		var guest = text.guest;
         		var fullName = guest.fullName;
            		var tel = guest.mobile;
-           		document.getElementById("guestId").innerHTML =  guestId.replace(/[0-9]/ig,"") + fullName;
-           		document.getElementById("tel").innerHTML = document.getElementById("tel").innerHTML+ tel;
+           		if(fullName){
+           			document.getElementById("guestId").innerHTML = ( guestId.replace(/[0-9]/ig,"") + fullName) || "";
+           		}
+           		if(tel){
+           			document.getElementById("tel").innerHTML = (document.getElementById("tel").innerHTML+ tel) || "";
+           		}
         	}
         });
         $.post(params.baseUrl+"com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext?mainId="+params.serviceId+"&token="+params.token,{},function(text){

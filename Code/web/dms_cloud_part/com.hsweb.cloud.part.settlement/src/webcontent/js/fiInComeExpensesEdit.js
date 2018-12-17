@@ -32,6 +32,8 @@ $(document).ready(function(v) {
 		parentidEl.setData(listHash);
 
 	});
+	
+	
 });
 function SetData(row, newRow){
 	rowT = row;
@@ -125,3 +127,4 @@ function saveType(type){
 	});
 	
 }
+

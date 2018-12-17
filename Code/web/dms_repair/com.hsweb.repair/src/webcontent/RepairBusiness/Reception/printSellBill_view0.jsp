@@ -240,6 +240,10 @@
         line-height: 20px;
         font-weight: bold;
     }
+    
+    table#ybk td{
+		border: 1px solid #000;
+		}
 
     hr {
         margin: 4px 0;
@@ -402,21 +406,57 @@
     <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
 </div>
 <div id="print-container">
-    <h1 id="title">
-    配件销售单
-</h1>
-<div class="content">
+    <table  width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+            	<td rowspan="2" style="width: 133px;">
+                 	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
+                </td>
+                <td>
+                    <div style="font-size: 20px; font-family: 微软雅黑;">&nbsp;&nbsp;<span id="comp"></span></div>
+                </td>
+                <td rowspan="2" style="width: 300px;">
+                    <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename"></span></b></div>
+                    <div style="padding-top: 2px; font-size: 16px;">
+                      №:<span id="serviceCode"></span>  
+                    </div>
+                </td>
+            </tr>
+            <tr>
+            	<td>
+            	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜</br>
+            	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜-->
+            	</td>
+            </tr>
+        </tbody>
+    </table>
     <hr />
-    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
+     <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+             <tr>
+                <td>地址：<span id="guestAddr"></span></td>
+<!--                 <td  id="openBank" style="width: 300px;">开户银行：</td> -->
+                <td  style="width: 300px;">打印时间：<span id="date"></span></td>
+            </tr> 
+            <tr>
+                <td>电话：<span id="phone"></span></td>
+<!--                 <td  id="bankNo" >银行账号：</td> -->
+<!--              	<td  id="enterDate" >进厂时间：</td> -->
+            </tr>
+        </table>
+<div class="content" >
+<!--     <hr /> -->
+	<div style="height :15px;"></div>
+    <table width="100%" border="0" id="ybk" cellpadding="0" cellspacing="0" class="table theader">
         <tbody>
             <tr>
                 <td width="25%" height="20" class="left">客户：<span id="guestName"></span></td>
-                <td height="20" class="left">联系电话：<span id="phone"></span></td>
+                <td height="20" class="left">联系电话：<span id="guestMobile"></span></td>
                 <td width="25%" class="left">开单日期：<span id="recordDate"></span></td>
             </tr>
             <tr>   
-                <td class="left">收货地址：<span id="shippingAdd"></td>
-                <td class="left">单号：<span id="serviceCode"></td>
+                <td colspan="3" class="left">收货地址：<span id="shippingAdd"></td>
+              
+<!--                 <td class="left">单号：<span id="serviceCode"></td> -->
             </tr>
         </tbody>
     </table>
@@ -438,11 +478,11 @@
     <div>
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
             <tbody>
-                <tr>
-                    <td width="20%" height="20">制单人:<span id="currUserName"></span></td>
-                    <td width="20%">打印时间：<span id="date"></span></td>
-                    <td width="33%" align="right"><b style="font-size:16px;">合计</b>： <font style="font-size:16px; font-weight:bold;"><span id = "amt"></span></font> 元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size:16px;">大写</b>：<font style="font-size:16px; font-weight:bold;"><span id = "Damt"></span></font></td>
-                </tr>
+<!--                 <tr> -->
+<!--                     <td width="20%" height="20">制单人:<span id="currUserName"></span></td> -->
+<!--                     <td width="20%">打印时间：<span id="date"></span></td> -->
+<!--                     <td width="33%" align="right"><b style="font-size:16px;">合计</b>： <font style="font-size:16px; font-weight:bold;"><span id = "amt"></span></font> 元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style="font-size:16px;">大写</b>：<font style="font-size:16px; font-weight:bold;"><span id = "Damt"></span></font></td> -->
+<!--                 </tr> -->
                 <tr>
 
                     <td colspan="3" class="left" height="25">备注：</td>
@@ -466,14 +506,14 @@
             </tbody>
         </table>
     </div>
-    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
-        <tbody>
-            <tr>
-                <td height="20" class="left">公司地址:<span id = "currCompAddress"></span></td>
-                <td  class="right">联系电话：<span id = "currCompTel"></td>
-            </tr>
-        </tbody>
-    </table>
+<!--     <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader"> -->
+<!--         <tbody> -->
+<!--             <tr> -->
+<!--                 <td height="20" class="left">公司地址:<span id = "currCompAddress"></span></td> -->
+<!--                 <td  class="right">联系电话：<span id = "currCompTel"></td> -->
+<!--             </tr> -->
+<!--         </tbody> -->
+<!--     </table> -->
 </div>
 </div>
 <script type="text/javascript">
@@ -504,10 +544,15 @@ function SetData(params){
        var sumAmt = 0;
        var date = new Date();
        var data = [];
+       document.getElementById("comp").innerHTML = currOrgName;
+       document.getElementById("spstorename").innerHTML = "配件销售单";
+       document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
+	   document.getElementById("guestAddr").innerHTML = currCompAddress;
+	   document.getElementById("phone").innerHTML = currCompTel;
        $("#guestName").html(params.guestFullName);
        $("#guestAdd").html(params.addr);
        $("#recordDate").html(format(params.recordDate, "yyyy-MM-dd HH:mm"));
-       $("#phone").html(params.guestMobile); 
+       $("#guestMobile").html(params.guestMobile); 
        $("#shippingAdd").html(params.addr); 
        $("#serviceCode").html(params.serviceCode);
        $.post(params.baseUrl+"com.hsapi.repair.repairService.query.getRpsPartByServiceId.biz.ext?serviceId="+params.id+"&token="+params.token,{},function(text){

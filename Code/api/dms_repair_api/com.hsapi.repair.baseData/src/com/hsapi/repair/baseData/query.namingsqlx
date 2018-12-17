@@ -24,11 +24,13 @@
 			a.recorder AS recorder,
 			a.record_date AS recordDate,
 			a.modifier AS modifier,
-			a.modify_date AS modifyDate
+			a.modify_date AS modifyDate,
+			a.is_cal_times isCalTimes,
+			a.use_times useTimes
 		FROM
 			wb_repair.rpb_part a 
-			INNER JOIN  wb_common.com_attribute b on a.part_id =b.id
-		<!--	LEFT JOIN  wb_part.pj_part_price c on a.part_id= c.part_id -->
+			<!-- INNER JOIN  wb_common.com_attribute b on a.part_id =b.id
+			LEFT JOIN  wb_part.pj_part_price c on a.part_id= c.part_id -->
 		where 1=1
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">  

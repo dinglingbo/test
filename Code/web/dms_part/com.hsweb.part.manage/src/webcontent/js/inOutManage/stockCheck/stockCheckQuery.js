@@ -312,7 +312,7 @@ function onDrawCell(e)
             }
             if(e.value == 1)
             {
-                e.cellHtml = '<a style="color:green;">盘盈</a>';
+                e.cellHtml = '<a style="color:orange;">盘盈</a>';
             }
             break;
         default:

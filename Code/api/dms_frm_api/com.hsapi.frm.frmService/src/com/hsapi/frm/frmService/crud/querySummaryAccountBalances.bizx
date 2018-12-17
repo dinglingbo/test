@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="querySummaryAccountBalances.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="com.hsapi.frm.frmSetting.querySummaryAccountBalances" title="Administrator&#x9;18-12-17 下午4:50">
+    <location x="111" y="15"/>
+    <size height="100" width="550"/>
+  </nodes>
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.frm.frmSetting.querySummaryAccountBalances&#xD;&#xA;com.hsapi.frm.frmSetting.querySummaryAccountBalances" title="Administrator&#x9;18-11-15 上午10:04">
     <location x="328" y="392"/>
     <size height="100" width="633"/>
@@ -39,7 +43,7 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>

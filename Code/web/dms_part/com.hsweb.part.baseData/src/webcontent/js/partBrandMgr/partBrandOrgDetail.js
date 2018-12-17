@@ -101,11 +101,11 @@ function save()
             rs = rs||{};
             if(rs.errCode == "S")
             {
-                showMsg("保存成功","S");
+                parent.showMsg("保存成功","S");
                 CloseWindow("ok");
             }
             else{
-                showMsg(data.errMsg||"保存失败","E");
+                parent.showMsg(data.errMsg||"保存失败","E");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

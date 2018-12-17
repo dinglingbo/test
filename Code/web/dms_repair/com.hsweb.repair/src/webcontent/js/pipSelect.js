@@ -163,15 +163,7 @@ function init()
     partGrid = nui.get("partGrid");
     partGrid.on("rowdblclick",function(e)
     {
-        var row = e.record;
-        // brandPartGrid.load({
-        //     partId:row.id,
-        //     token:token,
-        // });
-    });
-    partGrid.on("rowdblclick",function(e)
-    {
-        onOk();
+        //onOk();
     });
     partGrid.on("beforeload",function(e)
     {

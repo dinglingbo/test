@@ -78,6 +78,7 @@
     "2":"项目",
     "3":"配件"
 };
+ var chang = 0;
 //document.onmousemove = function(e){
 //
 //    if(advancedMorePartWin.visible){
@@ -143,6 +144,7 @@ $(document).ready(function ()
     searchKeyEl = nui.get("search_key");
     searchKeyEl.setUrl(guestInfoUrl);
     searchKeyEl.on("beforeload",function(e){
+    	chang = 1;
         if(fserviceId){
             e.cancel = true;
             return;
@@ -186,8 +188,10 @@ $(document).ready(function ()
         }
     });
     searchKeyEl.on("valuechanged",function(e){
-    	 
-        var item = e.selected;
+    	var item = e.selected;
+    	if(!item){
+    		item = e.sender.listbox.oOolo0;
+    	}
         if(fserviceId){
             return;
         }
@@ -206,6 +210,8 @@ $(document).ready(function ()
             }
 
         }
+       if(chang){
+        chang = 0;
         checkRpsMaintain(params, function(text){
             var data = text.data||[];
             if(data && data.length>0){
@@ -296,6 +302,7 @@ $(document).ready(function ()
                     doSetMainInfo(item);
                 }
             });
+       }
 
     }
 });
@@ -3162,10 +3169,10 @@ function chooseItem(){
         return;
     }
     var data = billForm.getData();
-	var desData = describeForm.getData();
-	for(var v in desData){
-	      data[v] = desData[v];
-	 }
+	//var desData = describeForm.getData();
+	//for(var v in desData){
+	 //     data[v] = desData[v];
+	 //}
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 	        nui.get(key).focus();
@@ -3189,7 +3196,7 @@ function chooseItem(){
     }
     var param = {};
     param.carModelIdLy = main.carModelIdLy;
-    param.serviceId = main.id;
+    param.serviceId = "xm"+main.id;//洗美开单默认查询洗美项目
 	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
 		    main = billForm.getData();
 	        var p1 = { }
@@ -3217,10 +3224,10 @@ function choosePackage(){
         return;
     }
     var data = billForm.getData();
-	var desData = describeForm.getData();
-	for(var v in desData){
-	      data[v] = desData[v];
-	 }
+	//var desData = describeForm.getData();
+	//for(var v in desData){
+	//      data[v] = desData[v];
+	// }
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
 	        nui.get(key).focus();
@@ -3244,7 +3251,7 @@ function choosePackage(){
     }
     var param = {};
     param.carModelIdLy = main.carModelIdLy;   
-    param.serviceId = main.id;                                       
+    param.serviceId = "xm"+main.id;//  洗美开单                                     
     doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
         main = billForm.getData();
         var p1 = { 

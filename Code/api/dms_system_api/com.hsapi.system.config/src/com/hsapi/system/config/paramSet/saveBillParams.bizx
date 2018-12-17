@@ -111,8 +111,6 @@
     <chidren>invokePojo1</chidren>
     <chidren>invokePojo2</chidren>
     <chidren>assign18</chidren>
-    <chidren>invokePojo3</chidren>
-    <chidren>assign19</chidren>
     <chidren>assign20</chidren>
     <chidren>assign21</chidren>
   </nodes>
@@ -602,7 +600,7 @@
       <process:inputVariable id="2" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -776,7 +774,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="queryEntitiesByCriteriaEntity" displayName="queryEntitiesByCriteriaEntity" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link41" name="link41" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
-      <targetNode>assign19</targetNode>
+      <targetNode>assign18</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link42" name="link42" displayName="连接线" type="transition">
@@ -815,7 +813,7 @@
       <sourceNode>assign18</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
-    <targetConnections>link46</targetConnections>
+    <targetConnections>link41</targetConnections>
     <location x="447" y="267"/>
     <size height="28" width="28"/>
     <nodeLabel>assign18label</nodeLabel>
@@ -827,76 +825,11 @@
       <process:from type="query" pattern="reference">keyidId</process:from>
       <process:to type="query">temp/keyidId</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">billParamsList/remark</process:from>
-      <process:to type="query">temp/remark</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
     <location x="442" y="303"/>
     <figSize height="17" width="39"/>
     <node>assign18</node>
-  </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="queryEntitiesByCriteriaEntity1" displayName="queryEntitiesByCriteriaEntity" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link46" name="link46" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo3</sourceNode>
-      <targetNode>assign18</targetNode>
-    </sourceConnections>
-    <targetConnections>link47</targetConnections>
-    <location x="404" y="267"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo3label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.queryEntitiesByCriteriaEntity</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">DB02_ORA_WB_COMMON</process:inputVariable>
-      <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">cond2</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">billParamsList</process:outputVariable>
-    </process:outputVariables>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="331" y="303"/>
-    <figSize height="17" width="169"/>
-    <node>invokePojo3</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign19" name="赋值19" displayName="赋值" grouped="true" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link47" name="link47" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign19</sourceNode>
-      <targetNode>invokePojo3</targetNode>
-    </sourceConnections>
-    <targetConnections>link41</targetConnections>
-    <location x="351" y="267"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign19label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.ComParams</process:from>
-      <process:to type="query">cond2/_entity</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">keyidId</process:from>
-      <process:to type="query">cond2/_expr[1]/keyidId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond2/_expr[1]/_op</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">cond2/_expr[2]/orgid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cond2/_expr[2]/_op</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
-    <location x="346" y="303"/>
-    <figSize height="17" width="39"/>
-    <node>assign19</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign20" name="赋值20" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link49" name="link49" displayName="连接线" isDefault="true" type="transition">
@@ -970,8 +903,6 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComParams" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="keyidId" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.ComParams" name="billParamsList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond2"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="commonj.sdo.DataObject" description="" isArray="true" name="billParams"/>

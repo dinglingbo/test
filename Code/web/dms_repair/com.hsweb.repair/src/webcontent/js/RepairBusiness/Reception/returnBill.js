@@ -32,7 +32,7 @@ var prdtTypeHash = {
     "2":"项目",
     "3":"配件"
 };
-
+var chang = 0;
 $(document).ready(function ()
 {
     billForm = new nui.Form("#billForm");
@@ -61,6 +61,7 @@ $(document).ready(function ()
     searchKeyEl = nui.get("search_key");
     searchKeyEl.setUrl(guestInfoUrl);
     searchKeyEl.on("beforeload",function(e){
+    	chang = 1;
         if(fserviceId){
             e.cancel = true;
             return;
@@ -104,6 +105,9 @@ $(document).ready(function ()
     });
     searchKeyEl.on("valuechanged",function(e){
         var item = e.selected;
+        if(!item){
+    		item = e.sender.listbox.oOolo0;
+    	}
         if(fserviceId){
             return;
         }
@@ -121,7 +125,9 @@ $(document).ready(function ()
                 var params = {	
                 	"params":data
                 };
-            checkRpsMaintain(params, function(text){
+           if(chang){
+        	    chang = 0;
+                checkRpsMaintain(params, function(text){
                 var data = text.data||[];
                 if(data && data.length>0){
                     nui.showMessageBox({
@@ -205,7 +211,7 @@ $(document).ready(function ()
                      doSetMainInfo(item);
                 }
             });
-            
+           } 
         }
     });
     document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号/VIN码)");

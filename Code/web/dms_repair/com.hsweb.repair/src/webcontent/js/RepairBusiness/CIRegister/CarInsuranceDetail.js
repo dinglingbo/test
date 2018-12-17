@@ -90,6 +90,9 @@ $(document).ready(function ()
         if(fserviceId){
             return;
         }
+        if(!item){
+    		item = e.sender.listbox.oOolo0;
+    	}
         if (item) {
 
             var carNo = item.carNo||"";

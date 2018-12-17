@@ -8,7 +8,7 @@
 -->
 <head>
 <title>期初库存</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/initPartStock.js?v=2.0.3"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/initPartStock.js?v=2.0.10"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -50,7 +50,7 @@
 		        </tr>
 		    </table>
 		</div>
-                <fieldset id="fd1" style="width:95%;height: 60px;">
+                <fieldset id="fd1" style="width:99.5%;height: 60px;">
                     <legend><span>期初库存信息</span></legend>
                     <div class="fieldset-body">
                     
@@ -61,6 +61,7 @@
                             <input class="nui-hidden" name="versionNo"/>
                             <input class="nui-hidden" name="guestId"/>
                             <input class="nui-hidden" id="enterTypeId" name="enterTypeId"/>
+                            <input class="nui-hidden" id="orderMan" name="orderMan"/>
                             <table style="width: 100%;">
                                 <tr>
                                     <td class="title required" style="width:6%">
@@ -79,11 +80,20 @@
                                                width="100%"
                                                nullItemText="请选择..."/>
                                     </td>
-                                    <td class="title ">
+                                    <td class="title required ">
                                         <label>业务员：</label>
                                     </td>
                                     <td colspan="1">
-                                        <input class="nui-textbox" id="orderMan" name="orderMan" width="100%">
+                                       <input class="nui-combobox" 
+                                          id="orderManId" 
+                                          name="orderManId" 
+                                          textField="empName"
+                                      valueField="empId"
+                                      emptyText="请选择..."
+                                      url=""
+                                      allowInput="true"
+                                      valueFromSelect="false"
+                                          width="100%">
                                     </td>
                                     <td class="title" style="width:6%">
                                         <label>入库单号：</label>

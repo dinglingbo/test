@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.59"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.63"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -180,7 +180,7 @@
             <td class="btn" >
                 <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)" 
                     style="width:350px;height: 50px !important;"  popupWidth="600" textField="text" valueField="id" 
-                    id="search_key" url="" value="carNo"   searchField="key"  howNullItem="true" allowInput="true"
+                    id="search_key" url="" value="carNo"   searchField="key"  howNullItem="true" allowInput="true" autoFill="true"
                     dataField="list" placeholder="请输入...">     
                     <div property="columns" >
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
@@ -224,10 +224,9 @@
                 <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
 
                 <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="onPrint(1)" id="type11">打印报价单</li>
                     <li iconCls="" onclick="onPrint(2)" id="type11">打印派工单</li>
-                    <li iconCls="" onclick="onPrint(3)" id="type11">打印结算单</li>
-                    <li iconCls="" onclick="onPrint(4)" id="type11">打印结算单(小票)</li>
+                    <li iconCls="" onclick="onPrint(3)" id="type11">打印结账单</li>
+                    <li iconCls="" onclick="onPrint(4)" id="type11">打印结账单(小票)</li>
                     <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
                 </ul>
 

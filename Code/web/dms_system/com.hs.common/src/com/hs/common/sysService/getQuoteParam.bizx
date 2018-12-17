@@ -298,7 +298,7 @@
       <process:partner type="literal">this.apiAuth</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="loginName" type="literal" value="String" valueType="Primitive" pattern="reference">000dlb</process:inputVariable>
-        <process:inputVariable id="1" name="pw" type="literal" value="String" valueType="Primitive" pattern="reference">1</process:inputVariable>
+        <process:inputVariable id="1" name="pw" type="literal" value="String" valueType="Primitive" pattern="reference">000dlb</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -363,7 +363,7 @@
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign5" name="赋值7" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值7" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link28" name="link28" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
       <targetNode>assign2</targetNode>

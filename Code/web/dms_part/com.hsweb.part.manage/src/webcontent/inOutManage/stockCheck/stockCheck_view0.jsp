@@ -121,7 +121,7 @@
 <!--         <div showCollapseButton="false"> -->
             
 
-             <div class="nui-fit">
+<!--              <div class="nui-fit"> -->
                   <fieldset id="fd1" style="width:97%;height:60px;">
                       <legend><span>盘点信息</span></legend>
                       <div class="fieldset-body">
@@ -258,7 +258,7 @@
                           </div>
                       </div>
                 </div>
-              </div>
+<!--               </div> -->
 
 
 

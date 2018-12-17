@@ -73,6 +73,7 @@
                 <!-- <a class="nui-button" iconCls="icon-undo" plain="true" onclick="cancelEditInbound()" id="cancelEditEnterMainBtn">取消</a> -->
                 <a class="nui-button" iconCls="icon-ok" plain="true" onclick="audit()" id="auditBtn">审核</a>
                 <a class="nui-button" iconCls="icon-print" plain="true" onclick="print()" id="printBtn">打印</a>
+                
             </td>
         </tr>
     </table>
@@ -568,6 +569,8 @@
         </div>
     </div>
 </div>
+
+
 
 </body>
 </html>

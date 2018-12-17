@@ -688,6 +688,11 @@ function doPrint(params){
 		partApiUrl:apiPath + partApi + "/",
 		baseUrl: apiPath + repairApi + "/",
 		sysUrl: apiPath + sysApi + "/",
+		webUrl:webPath + contextPath + "/",
+        bankName: currBankName,
+        bankAccountNumber: currBankAccountNumber,
+        currCompAddress: currCompAddress,
+        currCompTel: currCompTel,
 		token : token
 	};
 	if(source == 1){  //打印报价单
@@ -699,11 +704,11 @@ function doPrint(params){
 		p.name = "派工单";
 	}else if(source == 3){  //打印结算单
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;
-		p.name = "维修结算单";
+		p.name = "结账单";
 		p.currRepairSettPrintContent = currRepairSettPrintContent;
 	}else if(source == 4){  //打印小票
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.smallSettlement.flow?token="+token;
-		p.name = "维修结算单";
+		p.name = "结账单";
 	}else if(source == 5){  //打印领料单
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.materialRequisition.flow?token="+token;
 		p.name = "领料单";

@@ -169,13 +169,13 @@ function onAdvancedSearchOk()
     //审核日期
     if(searchData.sAuditDate)
     {
-        searchData.sAuditDate = searchData.sAuditDate.substr(0,10);
+        searchData.sAuditDate = formatDate(searchData.sAuditDate);
     }
     if(searchData.eAuditDate)
     {
         var date = searchData.eAuditDate;
         searchData.eAuditDate = addDate(date, 1);
-        searchData.eAuditDate = searchData.eAuditDate.substr(0,10);
+        
     }
     //供应商
     if(searchData.guestId)

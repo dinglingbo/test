@@ -100,7 +100,7 @@
 <body>
     
 <div id="advancedOrgWin" class="nui-window"
-     title="公司选择" style="width:430px;height:340px;"
+     title="公司选择" style="width:530px;height:340px;"
      showModal="true"
      showHeader="false"
      allowResize="false"
@@ -110,7 +110,8 @@
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                    <input class="nui-textbox" id="orgName" name="orgName" emptyText="请输入公司名">
+<!--                 	 <input class="nui-textbox" id="orgId" name="orgId" width="100px" emptyText="请输入店号"> -->
+                    <input class="nui-textbox" id="orgidOrName" name="orgidOrName" width="160px" emptyText="请输入店号或公司名">
                     <a class="nui-button" iconCls="" plain="true" onclick="searchOrg()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="addOrg" id=""><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="onOrgClose" id=""><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
@@ -132,8 +133,8 @@
                url="">
               <div property="columns">
               	<div type="checkcolumn" width="15" class="mini-radiobutton" header="选择"></div>
-                <div type="indexcolumn" headerAlign="center"  width="15">序号</div>
-                <div field="orgid" name="orgid" width="" align="center"  visible="false" headerAlign="center" header="公司Id"></div>
+<!--                 <div type="indexcolumn" headerAlign="center"  width="15">店号</div> -->
+                <div field="orgcode" name="orgid" width="15" align="center"  visible="true" headerAlign="center" header="企业号"></div>
                 <div field="orgname" name="orgname" width="" align="center"  headerAlign="center" header="公司名称"></div>
               </div>
           </div>
@@ -225,10 +226,20 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     var obj = {};
     var advancedOrgWin = null;
     var moreOrgGrid =null;
-    var moreOrgGridUrl=apiPath + sysApi + "/com.hsapi.system.auth.LoginManager.getOrgList.biz.ext";
+    var moreOrgGridUrl=apiPath + sysApi + "/com.hsapi.system.basic.organization.getUserOrg.biz.ext";
     var show=0;
     
+/*     $(document).ready(function(v) {
+    moreOrgGrid = nui.get("moreOrgGrid");
+    moreOrgGrid.on("drawcell", function (e){
+    	if(e.field=="orgname"){
+    		e.cellHtml = e.row.orgcode+e.row.orgname;
+    	}
+    });
+    
+}); */
     function OrgShow(){
+    	searchOrg();
         advancedOrgWin.show();
         moreOrgGrid.focus();
         show=1;
@@ -236,6 +247,8 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     
     function onOrgClose(){
         advancedOrgWin.hide();
+        moreOrgGrid.setData([]);
+        nui.get('orgidOrName').setValue("");
         show=0;
     }
     function addOrg(){ 
@@ -244,19 +257,11 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
         advancedOrgWin.hide();
     }
     function searchOrg(){
-    	var orgName=nui.get('orgName').value;
-    	if(!orgName){
-    		 moreOrgGrid.load({userId:currUserId,token :token});
-    	}
-    	var data=moreOrgGrid.getData();
-    	var list =[];
-    	for(var i=0;i<data.length;i++){
-    		if(orgName==data[i].orgname){
-    			list.push(data[i]);
-    		}
-    	}
-    	moreOrgGrid.clearRows();
-    	moreOrgGrid.addRows(list);
+    	var params={};
+    	var orgidOrName=nui.get('orgidOrName').value;
+    	params.orgidOrName=orgidOrName;
+    	moreOrgGrid.load({params:params,token :token});
+
     }
     function activeTab(item) {
         var tabs = mini.get("mainTabs");
@@ -574,7 +579,8 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
         advancedOrgWin = mini.get("advancedOrgWin");
         moreOrgGrid = mini.get("moreOrgGrid");
         moreOrgGrid.setUrl(moreOrgGridUrl);
-        moreOrgGrid.load({userId:currUserId,token :token});
+        var params={};
+        moreOrgGrid.load({params:params,token :token});
         document.onkeyup = function(event) {
 	        var e = event || window.event;
 	        var keyCode = e.keyCode || e.which;// 38向上 40向下

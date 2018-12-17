@@ -124,6 +124,11 @@ $(document).ready(function()
 		nui.get("editItemType").enable();
 	});
 	rightGrid.on("rowclick",function(e){
+		if(e.row.isShare==1){
+			nui.get("update").disable();
+		}else{
+			nui.get("update").enable();
+		}
 		nui.get("editItemType").disable();
 	});
 });
@@ -175,6 +180,7 @@ function addOrEdit(item){
 		{
 	    	if(action == "ok")
 			{
+	    		showMsg("保存成功","S");
 	    		rightGrid.reload();
 	    	}	
 		}

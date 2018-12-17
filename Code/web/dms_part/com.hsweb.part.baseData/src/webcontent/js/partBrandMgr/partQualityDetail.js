@@ -42,7 +42,7 @@ function onOk()
     {
         if(!data[key] || data[key].trim().length==0)
         {
-            showMsg(requiredField[key]+"不能为空","W");
+            parent.showMsg(requiredField[key]+"不能为空","W");
             return;
         }
     }
@@ -62,11 +62,11 @@ function onOk()
             data = data||{};
             if(data.errCode == "S")
             {
-                showMsg("保存成功","S");
+                parent.showMsg("保存成功","S");
                 CloseWindow("ok");
             }
             else{
-                showMsg(data.errMsg||"保存失败","E");
+                parent.showMsg(data.errMsg||"保存失败","E");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){

@@ -10,7 +10,7 @@
 -->
 <head>
 <title>洗车开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/carWashBillMgr.js?v=1.2.6"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/carWashBillMgr.js?v=1.2.7"></script>
 <style type="text/css">
 
 .title {
@@ -61,7 +61,7 @@
                      <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">所有在厂</a>
                     <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
                         <li iconCls="" onclick="quickSearch(0)" id="type0">所有在厂</li>
-                        <li iconCls="" onclick="quickSearch(1)" id="type0">报价</li>
+                        <li iconCls="" onclick="quickSearch(1)" id="type0">开单</li>
                         <li iconCls="" onclick="quickSearch(2)" id="type1">施工</li>
                         <li iconCls="" onclick="quickSearch(3)" id="type2">完工</li>
                         <li iconCls="" onclick="quickSearch(4)" id="type0">待结算</li>

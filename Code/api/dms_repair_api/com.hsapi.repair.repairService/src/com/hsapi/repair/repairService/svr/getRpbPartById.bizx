@@ -45,16 +45,6 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" type="transition">
-      <sourceNode>assign0</sourceNode>
-      <targetNode>assign1</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="LE">
-          <process:leftOperand type="query">packageId</process:leftOperand>
-          <process:rightOperand type="literal">0</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link17</targetConnections>
     <location x="201" y="150"/>
     <size height="28" width="28"/>
@@ -95,7 +85,6 @@
       <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <targetConnections>link7</targetConnections>
     <location x="313" y="240"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -350,7 +339,6 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbPart" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="len" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="salesDeductValue" primitiveType="Double"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbBusinessDeduct" name="bDeduct"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.ComAttribute" name="part"/>
   </process:variables>

@@ -45,11 +45,11 @@ html, body {
 	text-align:left;
 }
 #sumOrderQty{
-	width:320px;
+	width:400px;
 	text-align:right;
 }
 #sumOrderAmt{
-	padding-left:45px;
+	padding-left:85px;
 }
 #currOrgName{
 /* 	padding-left:80px; */

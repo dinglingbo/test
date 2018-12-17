@@ -277,7 +277,17 @@ function setData(data)
 	isOpenWin = 1;
 
 	carModelIdLy = data.carModelIdLy||"";
-	serviceId = data.serviceId;
+	if(isNaN(data.serviceId)){
+		var xm = (data.serviceId).split("m");
+		serviceId = xm[1];
+		var params={
+				serviceTypeId: "3"
+		}
+		doSearch(params);
+	}else{
+		serviceId = data.serviceId;
+	}
+	
 }
 var callback = null;
 var delcallback = null;
@@ -292,6 +302,7 @@ function setViewData(ck, delck, cck){
 	rightGrid.setWidth("70%");
 	//tempGrid.setStyle("display:inline");
 	//document.getElementById("splitDiv").style.display="";
+
 }
 
 function getDataAll(){

@@ -75,7 +75,7 @@ function save(){
 					nui.unmask(document.body);
 					data = data || {};
 					if (data.errCode == "S") {
-						showMsg("导入成功!","S");
+						showMsg("保存成功!","S");
 						
 						doSearch();
 					} else {
@@ -86,6 +86,8 @@ function save(){
 					console.log(jqXHR.responseText);
 				}
 			});
+		}else{
+			showMsg("没有修改数据,请勿保存!","W");
 		}
 		
 	}

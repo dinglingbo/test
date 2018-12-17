@@ -528,7 +528,7 @@ function onInsureChange(e){
 
 function getCarModel(callBack) {
 	nui.open({
-		targetWindow : window,
+		//targetWindow : window,
 		url : "com.hsweb.repair.common.carModelSelect.flow",
 		title : "选择车型",
 		width : 900,

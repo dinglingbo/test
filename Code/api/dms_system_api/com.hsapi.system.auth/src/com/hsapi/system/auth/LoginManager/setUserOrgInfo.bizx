@@ -166,6 +166,14 @@
       <process:to type="query">m:userObject/attributes/displayBillTag</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">comp/bankName</process:from>
+      <process:to type="query">m:userObject/attributes/bankName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/bankAccountNumber</process:from>
+      <process:to type="query">m:userObject/attributes/bankAccountNumber</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>
@@ -553,7 +561,7 @@
       <targetNode>invokePojo4</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
-          <process:code>1=1</process:code>
+          <process:code>1==1</process:code>
         </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>

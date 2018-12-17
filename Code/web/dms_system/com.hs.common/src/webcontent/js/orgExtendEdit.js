@@ -53,7 +53,10 @@ function SetInitData(data) {
         data.modifyDate = format(data.modifyDate, 'yyyy-MM-dd');
     }
 
-	var form = new nui.Form("#basicInfoForm");
+
+
+    
+    var form = new nui.Form("#basicInfoForm");
     form.setData(data);  
 
     setInitRegionData(provinceEl, null);
@@ -63,6 +66,7 @@ function SetInitData(data) {
     if(data && data.cityId){
         setInitRegionData(countyEl, data.cityId);    
     }
+    
 }
 
 var requiredField = {

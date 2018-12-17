@@ -12,6 +12,7 @@
 <title>Title</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"  type="text/javascript"></script>  
     
 </head>
@@ -78,8 +79,8 @@
 <div class="print_btn">
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
-        <a   iconCls="" onclick="sendInfo()">发送</a>
-        <a   iconCls="" onclick="sendInfo()">发送微信</a>
+        <a  style="background:#999999" iconCls="" onclick="sendInfo()">发送短信</a>
+        <a  style="background:#999999" iconCls="" onclick="sendInfo()">发送微信</a>
 </div>
 <div style="height:5px"></div>
 <table width="380" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -95,13 +96,10 @@
                             <td height="20" id="guestId">客户：</td>
                         </tr>
                         <tr>
-                             <td height="20" id="mobile">电话：</td>
+                            <td height="20" id="mtAdvisor">服务顾问：</td>
                         </tr>
                         <tr>
-                            <td height="20" id="mtAdvisor">顾问：</td>
-                        </tr>
-                        <tr>
-                            <td height="20" id="carNo">车牌：</td>
+                            <td height="20" id="carNo">车牌号：</td>
                         </tr>
                         <tr>
                             <td height="20" id="outDate">结算时间：</td>
@@ -112,7 +110,7 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0" id="showPkg">
                         <thead>
                             <tr>
-			                    <td  width="240" bgcolor="#f8f8f8"><b>套餐项目(包含项目和配件)</b></td>
+			                    <td  width="240" bgcolor="#f8f8f8"><b>套餐项目(包含工时配件)</b></td>
 			                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
                             </tr>
                         </thead>
@@ -148,7 +146,7 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     	<tr>
                     		<td>
-                    			套餐：<span id="prdt">0</span>&nbsp;&nbsp;&nbsp;&nbsp;项目：<span id="item">0</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0</span>
+                    			套餐：<span id="prdt">0</span>&nbsp;&nbsp;&nbsp;&nbsp;工时：<span id="item">0</span>&nbsp;&nbsp;&nbsp;&nbsp;配件：<span id="part">0</span>
                     		</td>
                     	</tr>
                         <tr>
@@ -200,6 +198,8 @@
             else window.close();
         }
     	function SetData(params){
+    	    token1 =  params.token;
+            webUrl = params.webUrl;
     		nui.ajax({
                 url: params.baseUrl+"com.hsapi.repair.repairService.sureMt.getRpsMaintainById.biz.ext",
                 type : "post",
@@ -244,8 +244,9 @@
                    if(text.errCode == "S"){
                    		var fullName = guest.fullName || "";
                    		var mobile = guest.mobile || "";
+                   		phones = mobile;
                    		document.getElementById("guestId").innerHTML =  guestName.replace(/[0-9]/ig,"") + fullName;
-                   		document.getElementById("mobile").innerHTML = document.getElementById("mobile").innerHTML+ mobile;
+                   		//document.getElementById("mobile").innerHTML = document.getElementById("mobile").innerHTML+ mobile;
                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -369,6 +370,27 @@
 	                }
             	}); */
     	}
+    	
+   var token1 =null; 
+   var webUrl =null;
+   var phones = null;
+   function sendInfo(){
+	nui.open({
+		//url: webUrl+"com.hsweb.crm.manage.sendInfo.flow?token="+token1,
+		url:"http://127.0.0.1:8080/default/com.hsweb.crm.manage.sendInfo.flow",
+		title: "发送短信", width: 655, height: 386,
+		onload: function () {
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.setPhones(phones);
+		},
+		ondestroy: function (action) {
+            //重新加载
+            //query(tab);
+        }
+    });
+  }
+    	
+    	
     </script>
 </body>
 </html>

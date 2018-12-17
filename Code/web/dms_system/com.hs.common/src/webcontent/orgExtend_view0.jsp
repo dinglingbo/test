@@ -11,7 +11,7 @@
 <head>
 	<title>门店管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<script src="<%=webPath + contextPath%>/common/js/orgExtendQuery.js?v=1.9.6" type="text/javascript"></script>
+	<script src="<%=webPath + contextPath%>/common/js/orgExtendQuery.js?v=1.9.7" type="text/javascript"></script>
 	<style type="text/css">
 		body {
 			margin: 0;
@@ -45,6 +45,7 @@
 <body>
 	<div class="nui-fit">
 		<div style="width: 100%; height: 100%; left: 0; right: 0; margin: 0 auto;">
+			
 			<div class="nui-toolbar">
 				<input class="nui-combobox" id="provinceId" visible="false" textField="name" url="" valueField="code" />
 				<input class="nui-combobox" id="cityId" visible="false" textField="name" url="" valueField="code" />
@@ -65,7 +66,7 @@
 
 			<div class="nui-fit">
 				<div id="datagrid1" class="nui-datagrid gridborder" style="width: 100%; height: 100%;" url="" idField="id" allowResize="true" onrowdblclick="edit('edit')"
-				 dataField="rs" onselectionchanged="changebutton" sizeList="[20,30,50,100]" pageSize="20" allowCellWrap="true">
+				 dataField="rs" onselectionchanged="changebutton" sizeList="[20,30,50,100]" pageSize="20" allowCellWrap="true" totalField="page.count">
 					<div property="columns">
 						<div type="checkcolumn">选择</div>
 						<div field="orgid" width="120" headerAlign="center" align="center" visible="false">企业ID</div>

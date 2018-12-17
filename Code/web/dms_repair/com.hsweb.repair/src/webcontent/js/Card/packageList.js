@@ -24,6 +24,7 @@ var carModelIdLy = null;
 var serviceId = null;
 var detailGrid_Form = null;
 var packageDetail = null;
+var ximeiUrl=0;
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
@@ -337,16 +338,23 @@ function setData(data) {
 }
 
 function setViewData(ck, delck, cck, params){
-	
 	isChooseClose = 0;
 	callback = ck;
 	delcallback = delck;
 	ckcallback = cck;
 	carModelIdLy = params.carModelIdLy||"";
-	serviceId = params.serviceId;
 	grid.setWidth("70%");
 	tempGrid.setStyle("display:inline");
 	document.getElementById("splitDiv").style.display="";
+	if(isNaN(params.serviceId)){
+		var xm = (params.serviceId).split("m");
+		serviceId = xm[1];
+		ximeiUrl = 1;
+		search(3);
+	}else{
+		serviceId = params.serviceId;
+	}
+
 }
 
 //查看详情

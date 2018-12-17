@@ -73,7 +73,7 @@
 						style="width:calc(100% - 20px);">
 						<table class="nui-form-table" border=0>
 							<tr>
-								<td class="form_label required">
+								<td class="form_label required" style="width:30px">
 									<label>项目名称：</label>
 								</td>
 								<td>
@@ -120,14 +120,17 @@
 									<label id="isShareTd">是否共享：</label>
 								</td>
 								<td colspan="1">
-									
-									<input id="isShare" name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
+								<input id="isShare" name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
 								<label id="isDisabledTd">是否禁用：</label>
-								
-					
+								   <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
+								<label id="isCalTimes">是否启用计数：</label>								
+									<input name="isCalTimes" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
+								</td>
+								<!-- <td colspan="1">
+								<label id="isDisabledTd">是否启用计数：</label>								
 									<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
 								</td>
-								
+								 -->
 								<td class="form_label">
 									<label>品牌：</label>
 								</td>

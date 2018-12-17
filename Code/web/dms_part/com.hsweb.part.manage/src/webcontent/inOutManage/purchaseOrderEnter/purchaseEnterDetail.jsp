@@ -248,7 +248,7 @@
 	                </div> 
 	                <div class="nui-fit">
                     <div id="rightGrid" class="nui-datagrid" 
-                         style="width:100%;height:78%;"
+                         style="width:100%;height:100%;"
                          selectOnLoad="true"
                          showPager="false"
                          dataField="pjPchsOrderDetailList"

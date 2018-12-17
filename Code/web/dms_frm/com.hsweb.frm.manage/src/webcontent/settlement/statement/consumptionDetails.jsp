@@ -40,9 +40,9 @@ html,body {
 						<tr>
 							<td>
 							<input name="serviceTypeId" id="serviceTypeId" visible="false" class="nui-combobox" textField="name" valueField="id"/>
-								   <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
+								   <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
 	                   			   <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="search()" />
-									办卡日期: <input id="startDate" class="mini-datepicker" required="true" />—至—
+									办卡日期: <input id="startDate" class="mini-datepicker" required="true" />-至-
 									         <input id="endDate" class="mini-datepicker" required="true" /> 
 									<a class="nui-button" onclick="search()" plain="true"> <span class="fa fa-search fa-lg"></span>&nbsp; 查询</a>
 							</td>
@@ -92,7 +92,7 @@ html,body {
 					allowSortColumn="true" showPager="false" allowCellWrap=true>
 					<div property="columns">
 						<div type="indexcolumn" headerAlign="center" width="30">序号</div>
-						<div field="carNo" headerAlign="center" allowSort="true" width="70px">车牌</div>
+						<div field="carNo" headerAlign="center" allowSort="true" width="70px">车牌号</div>
 						<div field="carModel" headerAlign="center" allowSort="true" width="220px">品牌车型</div>
 						<div field="carVin" headerAlign="center" allowSort="true" width="120px">车架号(VIN)</div>
 						<div field="serviceTypeName" name = "serviceTypeName" headerAlign="center" allowSort="true" width="60px">业务类型</div>

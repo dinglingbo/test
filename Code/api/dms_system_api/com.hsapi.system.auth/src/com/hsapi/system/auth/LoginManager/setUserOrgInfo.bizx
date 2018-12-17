@@ -166,6 +166,10 @@
       <process:to type="query">m:userObject/attributes/displayBillTag</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">u/isCanSettle</process:from>
+      <process:to type="query">m:userObject/attributes/isCanSettle</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">comp/bankName</process:from>
       <process:to type="query">m:userObject/attributes/bankName</process:to>
     </process:copy>

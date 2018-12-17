@@ -199,6 +199,10 @@
       <process:from type="query" pattern="reference">member/displayBillTag</process:from>
       <process:to type="query">userInfo/displayBillTag</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">member/isCanSettle</process:from>
+      <process:to type="query">userInfo/isCanSettle</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="659" y="56"/>
@@ -245,6 +249,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">userInfo/displayBillTag</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">userInfo/isCanSettle</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">

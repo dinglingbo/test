@@ -110,9 +110,15 @@
     <node>subprocess0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="insertAccountDetail" displayName="insertAccountDetail" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
       <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link8" name="link8" displayName="连接线" type="transition">
       <sourceNode>subprocess1</sourceNode>
@@ -125,6 +131,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link22</targetConnections>
+    <targetConnections>link56</targetConnections>
     <location x="483" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
@@ -225,6 +232,7 @@
     <targetConnections>link21</targetConnections>
     <targetConnections>link24</targetConnections>
     <targetConnections>link50</targetConnections>
+    <targetConnections>link55</targetConnections>
     <location x="483" y="370"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionrollback0label</nodeLabel>
@@ -302,6 +310,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link54" name="link54" displayName="连接线" type="transition">
+      <sourceNode>subprocess3</sourceNode>
+      <targetNode>assign17</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="GT">
+          <process:leftOperand type="query">fee</process:leftOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="359" y="150"/>
     <size height="27" width="27"/>
@@ -316,7 +334,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="2" name="charOffAmt" type="query" value="Float" valueType="Primitive">charOffAmt</process:outputVariable>
+        <process:outputVariable id="2" name="fee" type="query" value="Float" valueType="Primitive">fee</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -348,7 +366,7 @@
     <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign3" name="赋值3" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign15</targetNode>
@@ -399,7 +417,6 @@
     <location x="855" y="1"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="accountDetailList" iterableElement="detailTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -966,12 +983,94 @@
     <figSize height="17" width="39"/>
     <node>assign16</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign17" name="赋值17" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link52" name="link52" displayName="link15" isDefault="true" type="transition">
+      <sourceNode>assign17</sourceNode>
+      <targetNode>invokePojo6</targetNode>
+    </sourceConnections>
+    <targetConnections>link54</targetConnections>
+    <location x="359" y="45"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign17label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">mainId</process:from>
+      <process:to type="query">accountTemp/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">account/rpDc</process:from>
+      <process:to type="query">rpDc</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">fee</process:from>
+      <process:to type="query">accountTemp/feeService</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">trueCharOffAmt+(rpDc*fee)</process:from>
+      <process:to type="query">accountTemp/trueInoutAmt</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign17label" name="label" nodeType="label">
+    <location x="354" y="81"/>
+    <figSize height="17" width="39"/>
+    <node>assign17</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign18" name="赋值18" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link55" name="link55" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign18</sourceNode>
+      <targetNode>transactionrollback0</targetNode>
+    </sourceConnections>
+    <targetConnections>link53</targetConnections>
+    <location x="434" y="237"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign18label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">数据更新异常</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
+    <location x="429" y="273"/>
+    <figSize height="17" width="39"/>
+    <node>assign18</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo6" name="updateEntity" displayName="updateEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link53" name="link53" displayName="link19" lineType="note" type="exception">
+      <sourceNode>invokePojo6</sourceNode>
+      <targetNode>assign18</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link56" name="link56" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo6</sourceNode>
+      <targetNode>subprocess1</targetNode>
+    </sourceConnections>
+    <targetConnections>link52</targetConnections>
+    <location x="437" y="45"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo6label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.updateEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">frm</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">accountTemp</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo6label" name="label" nodeType="label">
+    <location x="412" y="81"/>
+    <figSize height="17" width="73"/>
+    <node>invokePojo6</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-03-22 01:18:40" date="2018-03-21Z" description="应收应付结算" name="rpAccountSettle" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="mainId" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="charOffAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="fee" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rpAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="serverType" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="httpStr" primitiveType="String"/>
@@ -988,6 +1087,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="billMainId" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="dAmt" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="trueCharOffAmt" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.frm.data.fis.FisRpAccount" name="accountTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="rpDc" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.frm.data.fis.FisRpAccount" name="account"/>

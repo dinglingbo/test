@@ -1590,7 +1590,7 @@
     <figSize height="17" width="118"/>
     <node>subprocess6</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign18" name="赋值18" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign18" name="赋值18" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link51" name="link51" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign18</sourceNode>
       <targetNode>invokePojo1</targetNode>

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>盘点单明细</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheckQuery.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheckQuery.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	width: 90px;

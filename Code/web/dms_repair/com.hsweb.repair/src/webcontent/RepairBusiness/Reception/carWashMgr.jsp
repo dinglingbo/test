@@ -107,7 +107,7 @@
                   <div field="carNo" name="carNo" width="80px" headerAlign="center" header="车牌号"></div>
                   <div field="enterDate" name="enterDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂时间"></div>
                   <div field="serviceTypeName" name="serviceTypeName" width="100px" headerAlign="center" header="业务类型"></div>
-                  <div field="carBrandId" name="carBrandId" width="70px" headerAlign="center"  header="品牌车型"></div>
+                  <div field="carModel" name="carModel" width="70px" headerAlign="center"  header="品牌车型"></div>
                   <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
                   <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>

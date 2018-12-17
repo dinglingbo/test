@@ -73,10 +73,10 @@
 						style="width:calc(100% - 20px);">
 						<table class="nui-form-table" border=0>
 							<tr>
-								<td class="form_label required" style="width:30px">
+								<td class="form_label required">
 									<label>项目名称：</label>
 								</td>
-								<td>
+								<td  style="width:40%">
 									<input class="nui-textbox" name="name" width="100%"/>
 								</td>
 								<td class="form_label required">
@@ -100,6 +100,7 @@
 									<label>项目类型：</label>
 								</td>
 								<td colspan="1">
+								
 									<input class="nui-combobox" name="type" id="type"
 											valueField="customid"
 											textField="name"
@@ -115,23 +116,9 @@
 								</td>
 							
 							</tr>
+							
 							<tr>
-							    <td >
-									<label id="isShareTd">是否共享：</label>
-								</td>
-								<td colspan="1">
-								<input id="isShare" name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
-								<label id="isDisabledTd">是否禁用：</label>
-								   <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
-								<label id="isCalTimes">是否启用计数：</label>								
-									<input name="isCalTimes" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
-								</td>
-								<!-- <td colspan="1">
-								<label id="isDisabledTd">是否启用计数：</label>								
-									<input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="30%"/>
-								</td>
-								 -->
-								<td class="form_label">
+							<td class="form_label">
 									<label>品牌：</label>
 								</td>
 								<td>
@@ -142,8 +129,6 @@
 											width="100%" popupHeight="100%"/>
 								</td>
 								
-							</tr>
-							<tr>
 							  <td class="form_label">
 									<label>车系：</label>
 								</td>
@@ -154,15 +139,57 @@
 											onValuechanged="initCarModel('carModelId', '', e.value)"
 											width="100%" popupHeight="100%"/>
 								</td>
-								<td class="form_label">
+								
+							</tr>
+							<tr>
+							   <td class="form_label">
 									<label>品牌车型：</label>
 								</td>
-								<td colspan="1">
+								<td colspan="3">
 									<input class="nui-combobox" name="carModelId" id="carModelId"
 											valueField="carModelId"
 											textField="carModel"
 											width="100%" popupHeight="100%"/>
 								</td>
+							</tr>
+							<tr>
+							    <td >
+								<label>使用次数：</label>
+								</td>
+								<td colspan="3">
+									<input class="nui-spinner"
+											name="useTimes"
+											id="useTimes"
+											onvaluechanged="calc('useTimes')"
+											format="0"
+											value="0" maxValue="1000000000"
+											changeOnMousewheel="true" showButton="false"
+											width="38%"  selectOnFocus="true"/>
+								    <label id="isCalTimes">是否启用计数：</label>
+								   <input name="isCalTimes" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
+								   <label id="isShareTd">是否共享：</label> 
+								   <input id="isShare" name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
+								   <label id="isDisabledTd">是否禁用：</label>
+								   <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
+								</td>
+							   <!--  <td >
+									 <label id="isCalTimes" width="75px">是否启用计数：</label> 
+									 <label id="isShareTd">是否共享：</label> 
+								</td>
+								<td colspan="1">
+								<input name="isCalTimes" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
+								  <label id="isShareTd">是否共享：</label>	
+								<input id="isShare" name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
+								   <label id="isDisabledTd">是否禁用：</label>
+								   <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
+								   							
+									
+								</td> -->
+								<!-- <td class="form_label" style="width:85px">
+								    <label id="isCalTimes" >是否启用计数：</label>
+									
+								</td> -->
+								
 							</tr>
 						</table>
 					</div>

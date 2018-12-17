@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false" %>
 -->
 <head>
 	<title>配件提成设置</title>
-	<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partDeductSet.js?v=1.0.9"></script>
+	<script src="<%=webPath + contextPath%>/manage/js/inOutManage/basic/partDeductSet.js?v=1.0.10"></script>
 
 	<style type="text/css">
 	.table-label {
@@ -93,6 +93,9 @@ pageEncoding="UTF-8" session="false" %>
                           />
 			</div>
 			<div field="salesDeductValue" name="sellPrice" headerAlign="center" allowSort="true" header="销售提成">
+				<input  property="editor" required="true" vtype="float;range:0,100;" class="nui-textbox"/>
+			</div>
+			<div field="useTimes" name="useTimes" headerAlign="center" allowSort="true" header="使用次数" width="40">
 				<input  property="editor" required="true" vtype="float;range:0,100;" class="nui-textbox"/>
 			</div>
 			<div type="checkboxcolumn" field="isCalTimes" name="isCalTimes" trueValue="1" falseValue="0"  width="40" headerAlign="center" align="center" value="1">是否启用计数</div>

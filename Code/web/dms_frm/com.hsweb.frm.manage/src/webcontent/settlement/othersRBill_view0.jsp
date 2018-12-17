@@ -49,7 +49,7 @@
                             <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 
                             <label style="font-family:Verdana;">审核状态：</label>
-                            <input class="nui-combobox" id="auditSign" name="auditSign" value="0" nullitemtext="请选择..." emptyText="审核状态" data="auditSignList" width="70px" />
+                            <input class="nui-combobox" id="auditSign" name="auditSign" value="0" nullitemtext="请选择..." emptyText="审核状态" data="auditSignList" width="70px" onvaluechanged="refresh()"/>
 
                             <span class="separator"></span> 
                             <input id="searchGuestId" class="nui-buttonedit"

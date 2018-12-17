@@ -32,8 +32,6 @@
         .addyytime a:hover { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 14px; color: #df0024; text-decoration: none; }
         .addyytime a {text-decoration:none;transition:all .4s ease;}
 
-    
-
     </style>
 
 </head>

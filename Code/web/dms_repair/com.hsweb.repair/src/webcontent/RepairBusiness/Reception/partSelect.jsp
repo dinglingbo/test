@@ -65,7 +65,7 @@
                            showNullItem="false"
                            nullItemText="品牌"/>
               	<input id="billTypeId" visible="false" class="nui-combobox" textField="name" valueField="customid" />
-                <input class="nui-textbox" id="partNameAndPY" name="partNameAndPY" emptyText="输入查询条件" width="120" />
+                <input class="nui-textbox" id="partNameAndPY" name="partNameAndPY" emptyText="输入查询条件" width="120"  onenter="onSearch"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch">
                   <span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 				<span class="separator"></span>

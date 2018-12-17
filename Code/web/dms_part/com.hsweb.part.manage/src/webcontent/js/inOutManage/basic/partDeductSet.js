@@ -134,7 +134,7 @@ function onCellCommitEdit(e) {
     var editor = e.editor;
     var record = e.record;
     var row = e.row;
-   if(e.field == "salesDeductValue"){
+   if(e.field == "salesDeductValue" || e.field == "useTimes"){
 	   editor.validate();
 	    if (editor.isValid() == false) {
 	        showMsg("请输入数字!","W");

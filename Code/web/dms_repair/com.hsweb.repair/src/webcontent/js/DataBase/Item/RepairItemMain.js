@@ -391,6 +391,9 @@ function onDrawCell(e) {
 	case "isDisabled":
 		e.cellHtml = e.value == 1 ? "是" : "否";
 		break;
+	case "isCalTimes":
+		e.cellHtml = e.value == 1 ? "是" : "否";
+		break;
 	case "orgid":
 		e.cellHtml = currOrgId == e.value? '本店' : '连锁';
 		break;

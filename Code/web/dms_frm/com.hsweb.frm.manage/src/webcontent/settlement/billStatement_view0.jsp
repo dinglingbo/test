@@ -8,7 +8,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.0.6"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.0.7"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -77,10 +77,10 @@
 <!--                 <label style="font-family:Verdana;">配件编码：</label> -->
 <!--                 <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/> -->
                 <!-- <label style="font-family:Verdana;">订单单号：</label> -->
-                <input id="serviceId" width="80px" emptyText="订单单号" class="nui-textbox"/>
+                <input id="serviceId" width="130px" emptyText="对账单号" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">供应商：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
-                       emptyText="请选择供应商..."
+                       emptyText="请选择往来单位..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                 <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <span class="separator"></span>

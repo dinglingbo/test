@@ -138,6 +138,8 @@
 						<div field="unitPrice" headerAlign="center" allowSort="true" width="50px">单价</div>
 						<div field="amt" headerAlign="center" allowSort="true" width="50px">金额</div>
 						<div field="code" headerAlign="center" width="50px">项目编码</div>
+						<div field="useTimes" headerAlign="center" width="50px">使用次数</div>
+						<div field="isCalTimes" name="isCalTimes" headerAlign="center" allowSort="true" width="50px">是否启用计数</div>
 						<div field="isDisabled" name="isDisabled" headerAlign="center" allowSort="true" width="50px">是否禁用</div>
 						<div field="isShare" name="isShare" headerAlign="center" allowSort="true" width="50px">是否共享</div>
 							

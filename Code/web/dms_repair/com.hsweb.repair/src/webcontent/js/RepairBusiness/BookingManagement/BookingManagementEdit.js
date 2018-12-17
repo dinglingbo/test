@@ -135,6 +135,9 @@ function SetData(params) {
 
     basicInfoForm = new nui.Form("#basicInfoForm");
     basicInfoForm.setData(params.data);
+    if(params.data.serviceTypeId==0){
+    	nui.get("serviceTypeId").setText("");
+    }
 
 //    if(params.data.carBrandId){
 //        initCarSeries("carSeriesId", params.data.carBrandId, function () {

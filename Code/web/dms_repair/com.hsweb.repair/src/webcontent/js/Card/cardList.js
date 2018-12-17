@@ -31,6 +31,17 @@ $(document).ready(function(v) {
 		}
 
 	});
+	
+	nui.get("addBtn").focus();
+	document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		
+
+		if ((keyCode == 27)) { // ESC
+			CloseWindow('cancle');
+		}
+	}
 });
 
 // 新增
@@ -261,4 +272,13 @@ function setData(data)
 function setInitData(){
 	setStely();
 	assistant=1;
+}
+
+function CloseWindow(action) {
+	if (action == "close") {
+		return window.CloseOwnerWindow("saveSuccess");
+	} else if (window.CloseOwnerWindow)
+		return window.CloseOwnerWindow(action);
+	else
+		return window.close();
 }

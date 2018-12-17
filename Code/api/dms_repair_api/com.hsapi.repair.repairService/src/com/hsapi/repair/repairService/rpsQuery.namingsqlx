@@ -302,6 +302,12 @@
             <isNotEmpty prepend="and" property="mtAuditor">
                 (a.mt_advisor = #mtAuditor#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAdvisorId">
+                (a.mt_advisor_id = #mtAdvisorId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAdvisor">
+                (a.mt_advisor = #mtAdvisor#)
+            </isNotEmpty>
 			<isNotEmpty prepend="and" property="isOpenBill">
                 (a.is_open_bill = #isOpenBill#)
             </isNotEmpty>

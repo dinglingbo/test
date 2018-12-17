@@ -11,8 +11,12 @@
 -->
 <head>
 <title>本店套餐</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=2.5.9"></script>
-
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Package/PackageMain.js?v=2.5.10"></script>
+ <!-- <style type="text/css">
+ .required {
+            color: red;
+        }
+ </style> -->
 </head>
 
 <body>
@@ -25,7 +29,7 @@
 					<input class="nui-textbox" name="name" id="name-search" onenter="onSearch()"/>
 					<label class="form_label">品牌：</label>
 					<input class="nui-combobox" name="carBrandId" id="carBrandId-search" valueField="id" textField="nameCn" allowInput="true" valueFromSelect="true" onenter="onSearch()"/>
-					<label class="form_label">类别：</label>
+					<label class="form_label">业务类型：</label>
 					<input class="nui-combobox" name="serviceTypeId" id="type-serviceTypeId" valueField="id" textField="name" allowInput="true" valueFromSelect="true" onenter="onSearch()"
 					   valueFromSelect="true"/>
 					<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
@@ -87,7 +91,7 @@
 						<table class="nui-form-table" style="width: inherit;">
 							<tr>
 								<td class="form_label">
-									<label>套餐名称：</label>
+									<label><font color="red">套餐名称：</font></label>
 								</td>
 								<td colspan="9">
 									<input name="name" class="nui-textbox" width="100%"/>
@@ -95,7 +99,7 @@
 							</tr>
 							<tr>
 								<td class="form_label">
-									<label>套餐类别：</label>
+									<label><font color="red">套餐业务类型：</font></label>
 								</td>
 								<td>
 									<input class="nui-combobox" name="serviceTypeId" id="serviceTypeId"

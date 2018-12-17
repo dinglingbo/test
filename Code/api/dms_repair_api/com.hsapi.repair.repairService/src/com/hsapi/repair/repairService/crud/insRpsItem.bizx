@@ -1078,7 +1078,7 @@
       <process:to type="query">insItem/subtotal</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/serviceTypeId</process:from>
+      <process:from type="query" pattern="reference">rpbItem/serviceTypeId</process:from>
       <process:to type="query">insItem/serviceTypeId</process:to>
     </process:copy>
   </nodes>

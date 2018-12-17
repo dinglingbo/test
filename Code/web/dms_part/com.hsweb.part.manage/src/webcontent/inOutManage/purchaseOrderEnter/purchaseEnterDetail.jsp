@@ -76,7 +76,7 @@
         </tr>
     </table>
 </div>
-<!-- <div class="nui-fit"> -->
+ <div class="nui-fit">
   <div class="nui-splitter"
        id="splitter"
        allowResize="true"
@@ -246,8 +246,9 @@
                 	 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
 	                	<a class="nui-button" plain="true" iconCls="" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
 	                </div> 
+	                <div class="nui-fit">
                     <div id="rightGrid" class="nui-datagrid" 
-                         style="width:100%;height:78%;"
+                         style="width:100%;height:100%;"
                          selectOnLoad="true"
                          showPager="false"
                          dataField="pjPchsOrderDetailList"
@@ -316,7 +317,7 @@
                             </div>
                         </div>
                     </div>
-<!--                 </div> -->
+             </div>
 <!--           </div> -->
               
 <!--       </div> -->
@@ -325,4 +326,4 @@
 
 </div>
 
-
+</div>

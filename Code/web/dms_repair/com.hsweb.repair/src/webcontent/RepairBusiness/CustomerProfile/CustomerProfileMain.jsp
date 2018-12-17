@@ -32,13 +32,13 @@
 				<tr>
 					<td>
 						<label style="font-family: Verdana;">快速查询：</label>
-						<a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">所有</a>
+						<a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">所有客户</a>
 						<ul id="popupMenuStatus" class="nui-menu" style="display:none;">
-							<li iconCls="" onclick="quickSearch(6)" id="type6">所有</li>
-							<li iconCls="" onclick="quickSearch(0)" id="type0">本日来厂</li>
-							<li iconCls="" onclick="quickSearch(1)" id="type1">昨日来厂</li>
-							<li iconCls="" onclick="quickSearch(2)" id="type2">本日新客户</li>
-							<li iconCls="" onclick="quickSearch(3)" id="type3">本月新客户</li>
+							<li iconCls="" onclick="quickSearch(6)" id="type6">所有客户</li>
+							<li iconCls="" onclick="quickSearch(0)" id="type0">本日所有来厂客户</li>
+							<li iconCls="" onclick="quickSearch(1)" id="type1">昨日所有来厂客户</li>
+							<li iconCls="" onclick="quickSearch(2)" id="type2">本日新来厂客户</li>
+							<li iconCls="" onclick="quickSearch(3)" id="type3">本月新来厂客户</li>
 							<li iconCls="" onclick="quickSearch(4)" id="type4">本月所有来厂客户</li>
 						</ul>
 						<td>

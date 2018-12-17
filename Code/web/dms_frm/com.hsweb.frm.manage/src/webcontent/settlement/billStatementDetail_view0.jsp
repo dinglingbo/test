@@ -49,7 +49,7 @@
     </table>
 </div>
  <div class="nui-fit">
-      <fieldset id="fd1" style="width:95%;height:120px;">
+      <fieldset id="fd1" style="width:99.9%;height:120px;">
       <legend><span>对账单信息</span></legend>
       <div class="fieldset-body">
           <div id="basicInfoForm" class="form" contenteditable="false">

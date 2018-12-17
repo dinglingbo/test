@@ -684,7 +684,7 @@ function add() {
 
 	var formJsonThis = nui.encode(basicInfoForm.getData());
 	var len = rightGrid.getData().length;
-	var orderMan=nui.get('orderMan').getText()
+	var orderMan=nui.get('orderMan').getText();
 	var orderManId=nui.get('orderMan').getValue();
 
 	if (formJson != formJsonThis && len > 0) {// 

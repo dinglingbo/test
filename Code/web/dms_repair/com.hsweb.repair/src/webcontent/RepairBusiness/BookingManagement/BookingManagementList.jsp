@@ -137,24 +137,24 @@
                     <div class="nui-fit">
                         <div id="upGrid" class="nui-datagrid" style="width: 100%; height: 100%;" pageSize="20" dataField="rs" showPageSize="false"
                             selectOnLoad="true" sortMode="client" showReloadButton="false" showPagerButtonIcon="true" totalField="page.count"
-                            allowSortColumn="true">
+                            allowSortColumn="true" >
                             <div property="columns">
                                 <div field="id" headerAlign="center" allowSort="true" visible="false" width="">id </div>
-                                <div field="status" headerAlign="center" allowSort="true" visible="true" width="40" id="updStatus">状态 </div>
-                                <div field="prebookSource" headerAlign="center" allowSort="true" visible="true" width="40">预约来源</div>
-                                <div field="carNo" headerAlign="center" allowSort="true" visible="true" width="40">车牌号 </div>
-                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="40">品牌车型 </div>
-                                <div field="predictComeDate" headerAlign="center" allowSort="true" dateformat="yyyy-MM-dd HH:mm" visible="true" width="60">预计来厂 </div>
-                                <div field="Time" headerAlign="center" allowSort="true" dateformat="yyyy-MM-dd HH:mm" visible="true" width="60">距离来厂时间</div>
-                                <div field="contactorName" headerAlign="center" allowSort="true" visible="true" width="60">客户名称 </div>
-                                <div field="contactorTel" headerAlign="center" allowSort="true" visible="true" width="60">联系电话 </div>                                
+                                <div field="status" headerAlign="center" allowSort="true" visible="true" width="80" id="updStatus">状态 </div>
+                                <div field="prebookSource" headerAlign="center" allowSort="true" visible="true" width="80">预约来源</div>
+                                <div field="carNo" headerAlign="center" allowSort="true" visible="true" width="80">车牌号 </div>
+                                <div field="carModel" headerAlign="center" allowSort="true" visible="true" width="130">品牌车型 </div>
+                                <div field="predictComeDate" headerAlign="center" allowSort="true" dateformat="yyyy-MM-dd HH:mm" visible="true" width="100">预计来厂 </div>
+                                <div field="Time" headerAlign="center" allowSort="true" dateformat="yyyy-MM-dd HH:mm" visible="true" width="100">距离来厂时间</div>
+                                <div field="contactorName" headerAlign="center" allowSort="true" visible="true" width="80">客户名称 </div>
+                                <div field="contactorTel" headerAlign="center" allowSort="true" visible="true" width="100">联系电话 </div>                                
                                 <!-- <div field="carSeriesId" headerAlign="center" allowSort="true" visible="true" width="40">车系 </div> -->
-                                <div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true" width="40">业务类型 </div>
-                                <div field="prebookCategory" headerAlign="center" allowSort="true" visible="true" width="40">预约类型 </div>
-                                <div field="mtAdvisor" headerAlign="center" allowSort="true" align="center" visible="true" width="40">服务顾问 </div>
+                                <div field="serviceTypeId" headerAlign="center" allowSort="true" visible="true" width="80">业务类型 </div>
+                                <div field="prebookCategory" headerAlign="center" allowSort="true" visible="true" width="120">预约类型 </div>
+                                <div field="mtAdvisor" headerAlign="center" allowSort="true" align="center" visible="true" width="80">服务顾问 </div>
                                 <div field="mtAdvisorId" headerAlign="center" allowSort="true" visible="false" width="">服务顾问Id </div>
-                                <div field="isOpenBill" headerAlign="center" allowSort="true" visible="true" width="40">是否开单 </div>
-                                <div field="isJudge" headerAlign="center" allowSort="true" visible="true" width="40">是否评价 </div>
+                                <div field="isOpenBill" headerAlign="center" allowSort="true" visible="true" width="60">是否开单 </div>
+                                <div field="isJudge" headerAlign="center" allowSort="true" visible="true" width="60">是否评价 </div>
                                 <div field="faultDesc" headerAlign="center" allowSort="true" visible="true" width="100">客户描述 </div>
                             </div>
                         </div>

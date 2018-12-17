@@ -29,9 +29,9 @@
 			<table style="width: 100%;" id="table1">
 				<tr>
 					<td style="width: 100%;">计次卡名称: <input class="nui-textbox"
-						name="criteria/_expr[1]/name" id="cardName"/> <input class="nui-hidden"
+						name="criteria/_expr[1]/name" id="cardName" onenter="search()"/> <input class="nui-hidden"
 						name="criteria/_expr[1]/_op" value="like"> <input
-						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all">
+						class="nui-hidden" name="criteria/_expr[1]/_likeRule" value="all" >
 						<a class="nui-button" onclick="search()" plain="true">
 						<span class="fa fa-search fa-lg"></span> 查询 </a> 
 						<a  class="nui-button"  onclick="add()" id="addBtn"

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>结算账户修改</title>
-<script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountEdit.js?v=1.1.1"></script>
+<script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountEdit.js?v=1.1.27"></script>
 <style type="text/css">
         a.optbtn {
             width: 44px;
@@ -64,6 +64,9 @@
 .required {
     color: red;
 }
+.barkcla{
+	display:none;   
+}
 </style>
 </head>
 <body>
@@ -101,6 +104,26 @@
                         url="" >
                     </div> 
                 </td>
+            </tr>
+             <tr name="bark" class="htr barkcla" >
+                <td class=" right fwidtha">银行名称:</td>
+                <td ><input id="bankName" name="bankName" width="100%" class="nui-textbox" ></td>
+            
+            </tr>
+             <tr name="bark" class="htr barkcla">
+                <td class=" right fwidtha">银行账号:</td>
+                <td ><input id="bankAccountNumber" name="bankAccountNumber" width="100%" class="nui-textbox" ></td>
+            
+            </tr>
+             <tr name="bark" class="htr barkcla">
+                <td class=" right fwidtha">手续费率:</td>
+                <td ><input id="feeRate " name="feeRate " width="100%" class="nui-textbox" >‰</td>
+            
+            </tr>
+             <tr name="bark" class="htr barkcla">
+                <td class=" right fwidtha">最高手续费:</td>
+                <td ><input id="feeMax" onvalidation="onValidation" name="feeMax" width="100%" class="nui-textbox" ></td>
+            
             </tr>
             <tr class="htr">
                 <td class=" right fwidtha">备注:</td>

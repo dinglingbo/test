@@ -207,6 +207,7 @@
             }
 
         .company-info {
+        	height:30px;
         }
 
             .company-info h3 {
@@ -230,13 +231,17 @@
             background-color: transparent;
         }
 
-            .table thead td {
-                line-height: 20px;
-                font-weight: bold;
-            }
+        .table thead td {
+            line-height: 20px;
+            font-weight: bold;
+        }
+            
+        table#ybk td{
+		border: 1px solid #000;
+		}
 
         hr {
-            margin: 4px 0;
+            margin: 8px 0;
             border: 0;
             border-top: 1px solid #333;
             border-bottom: 1px solid #ffffff;
@@ -387,16 +392,45 @@
         <div class="company-info">
 <!--             <h3><span id="comp"></span></h3> -->
         </div>
-        <!-- <h1 id="title">领料单</h1> -->
-        <div style="font-size:25px; margin: 25px 0 15px;"> <span id="currOrgName"></span><span style="float:right;padding-right:165px;">领料单</span></div>
-        <div class="content">
-            <div><span>电话：</span>
-            <span style="float:center;padding-left:205px;">地址:</span>
-             <span style="float:center;padding-left:405px;" id="nowDate">打印日期:</span>
-            <span id="serviceCode"style="float:right;padding-right:85px;">单据单号：</span>
-            <hr />
-            </div>
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader">
+        <table  width="100%" border="0" cellspacing="0" cellpadding="0">
+	            <tbody>
+	                <tr>
+	                	<td rowspan="2" style="width: 133px;">
+	                     	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
+	                    </td>
+	                    <td>
+	                        <div style="font-size: 20px; font-family: 微软雅黑;">&nbsp;&nbsp;<span id="comp"></span></div>
+	                    </td>
+	                    <td rowspan="2" style="width: 300px;">
+	                        <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename"></span></b></div>
+	                        <div style="padding-top: 2px; font-size: 16px;">
+	                          №:<span id="serviceCode"></span>  
+	                        </div>
+	                    </td>
+	                </tr>
+	                <tr>
+	                	<td>
+	                	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜</br>
+	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜-->
+	                	</td>
+	                </tr>
+	            </tbody>
+	        </table>
+	         <hr />
+	          <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+	             <tr>
+	                <td>地址：<span id="guestAddr"></span></td>
+	<!--                 <td  id="openBank" style="width: 300px;">开户银行：</td> -->
+	                <td  style="width: 300px;">打印时间：<span id="date"></span></td>
+	            </tr> 
+	            <tr>
+	                <td>电话：<span id="phone"></span></td>
+	<!--                 <td  id="bankNo" >银行账号：</td> -->
+	             	<td  id="enterDate" >进厂时间：</td>
+	            </tr>
+	        </table>
+	        <hr />
+            <table width="100%" id="ybk" border="0" cellpadding="0" cellspacing="0" class="table theader">
                 <tbody>
                     <tr>
                         <!-- <td class="left" width="33.3%" id="guestFullName">客户名称：</td>
@@ -501,7 +535,12 @@
             else window.close();
         }
 	function SetData(params){
-		var date=new Date();
+		var date = new Date();
+		document.getElementById("comp").innerHTML = params.comp;
+		document.getElementById("spstorename").innerHTML = "领料单";
+		document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
+		document.getElementById("guestAddr").innerHTML = params.currCompAddress;
+		document.getElementById("phone").innerHTML = params.currCompTel;
 		var nowDate=format(date,"yyyy-MM-dd HH:mm");
 	    $.ajaxSettings.async = false;
 	    $.post(params.partApiUrl+"com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext?"+"&token="+params.token,{},function(text){
@@ -548,7 +587,7 @@
         			planFinishDate = format(planFinishDate, "yyyy-MM-dd HH:mm");
         		}
         		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML+ serviceCode;
-        		document.getElementById("nowDate").innerHTML = document.getElementById("nowDate").innerHTML+ nowDate;
+//         		document.getElementById("nowDate").innerHTML = document.getElementById("nowDate").innerHTML+ nowDate;
         		//document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
         		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
         		//document.getElementById("contactMobile").innerHTML = document.getElementById("contactMobile").innerHTML + contactMobile;

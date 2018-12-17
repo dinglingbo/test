@@ -28,6 +28,15 @@ $(document).ready(function(v) {
 	getSettleType(function(data) {
 		settleList = data.list || [];
 	});
+	
+	accountTypeIdEl.on("valuechanged", function (e) {
+		if(this.getValue()==2){
+			$('.barkcla').show();
+		}else{
+			$('.barkcla').css("display","none");
+		}
+
+	});
 	nui.get('code').focus();
 	document.onkeyup = function(event) {
         var e = event || window.event;
@@ -66,6 +75,9 @@ function SetData(row, newRow){
 	rowT = row;
 	newRowT = newRow;
 	mainForm.setData(rowT);
+	if(rowT.accountTypeId==2){
+		$('.barkcla').show();
+	}
 	if(rowT.isDefault==1){
 		isDefault.setValue(true);
 	}
@@ -93,10 +105,22 @@ var requiredField = {
 var saveUrl = baseUrl
 		+ "com.hsapi.frm.setting.saveFiSettleAccount.biz.ext";
 function saveType(type){
-	
 	var data = mainForm.getData();
 	var settleTypeData = settleAccountGrid.getData();
 	var is = isDefault.getValue();
+	var feeMax = data.feeMax;
+	var rq=/^\d+(\.\d+)?$/
+	if(feeMax){
+		if(!rq.test(feeMax)){
+			showMsg("请输入数字！","W");
+			return;
+		}
+		if(feeMax<0){
+			showMsg("最高手续费不能为零!","W");
+			return;
+		}
+		
+	}
 	if(settleTypeData){
 		if(settleTypeData.length == 0){
 			showMsg("请添加账户对应的结算方式!","W");
@@ -228,4 +252,13 @@ function CloseWindow(action) {
 
 function onClose(){
 	window.CloseOwnerWindow();	
+}
+
+
+function onValidation(e){
+	var feeMax=e.value;
+	if(feeMax<0){
+		e.isValid = false;
+		showMsg("不能小于0!","W");
+	}
 }

@@ -137,7 +137,7 @@ function showEditModal(row, newRow, type){
 		url: "com.hsweb.frm.arap.settleAccountEdit.flow",
 		title: title,
 		width: "500px",
-		height: "300px",
+		height: "450px",
         allowDrag:true,
         allowResize:false,
 		onload: function() {

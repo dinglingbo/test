@@ -898,7 +898,7 @@ function onPrint() {
 	var rtnReasonId= nui.get('rtnReasonId').text;
 	var createDate = nui.get('createDate').getValue();
 	var guestFullName=nui.get('guestId').text;
-	var serviceId = $('#bServiceId').text().substr(4);
+	var serviceId = $('#bServiceId').text().substr(6);
 	var formParms={
 			settleTypeId :settleTypeId,
 			rtnReasonId:rtnReasonId,

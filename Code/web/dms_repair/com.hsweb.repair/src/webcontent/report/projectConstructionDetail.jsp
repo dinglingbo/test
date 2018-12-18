@@ -49,7 +49,19 @@ body {
      <input class="nui-textbox" id="serviceCode" name="serviceCode" emptytext="工单号">
      <input class="nui-textbox" id="carNo" name="carNo"emptytext="车牌号">
      <input class="nui-textbox" id="itemName" name="itemName"emptytext="项目名称">
-     <input class="nui-textbox" id="mtAdvisor"name="mtAdvisor" emptytext="服务顾问">
+     <!-- <input class="nui-textbox" id="mtAdvisor"name="mtAdvisor" emptytext="服务顾问"> -->
+	 <input name="mtAdvisorId"
+	         id="mtAdvisorId"
+	         class="nui-combobox width1"
+	         textField="empName"
+	         valueField="empId"
+	         emptyText="服务顾问"
+	         url=""
+	         allowInput="true"
+	         showNullItem="false"
+	        
+	         valueFromSelect="true"
+	         nullItemText="服务顾问"/>
      <input class="nui-textbox" id=""name=""emptytext="配件分类">
 
      <a class="nui-button" iconcls="" plain="true" name="" onclick="Search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
@@ -87,6 +99,7 @@ body {
 <script type="text/javascript">
 
     nui.parse();
+    var mtAdvisorIdEl = nui.get("mtAdvisorId");
     var webBaseUrl = webPath + contextPath + "/";
     var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
     var grid = nui.get("grid");
@@ -99,7 +112,10 @@ body {
     var servieTypeHash = {};
     grid.setUrl(gridUrl);
     quickSearch(3);
-
+     initMember("mtAdvisorId",function(){
+        //memList = mtAdvisorIdEl.getData();
+        //nui.get("checkManId").setData(memList);
+    });
 
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();

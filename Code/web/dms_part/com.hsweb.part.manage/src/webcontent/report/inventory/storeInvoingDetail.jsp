@@ -72,7 +72,7 @@
                   url=""
                   allowInput="true"
                   valueFromSelect="false"
-                  width="100px">
+                  width="110px">
                 
 				操作日期 从:
                  <input class="nui-datepicker" id="OstartDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />

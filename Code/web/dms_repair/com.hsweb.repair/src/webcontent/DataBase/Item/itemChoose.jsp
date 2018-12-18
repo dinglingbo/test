@@ -11,8 +11,22 @@
 -->
 <head>
 <title>维修项目</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.8" type="text/javascript"></script>
 
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.10" type="text/javascript"></script>
+<style type="text/css">
+    html, body{
+        margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
+    }
+    
+    .addyytime a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 40px -1px no-repeat; padding-right:22px; color:#888; text-decoration:none;}
+    .addyytime a.hui{padding-left: 5px;padding-right: 5px;height:;line-height:24px;border:1px #a6e0f5 solid;display:block;float:left;text-decoration:none;
+        text-align:center;color:#00b4f6;border-radius:4px;margin:0 5px 5px 0;}
+        .addyytime a.hui{border:1px #e6e6e6 solid;color:#c8c8c8;background:#e6e6e6;}
+        .addyytime a.xz{ color:#fff !important; background:#5ab1ef;}
+        .addyytime a:link, a:visited { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 13px; color: #555555; text-decoration: none; }
+        .addyytime a.hui:hover { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 13px;background-color: #9fe6b8; color: #FFF; text-decoration: none; }
+        .addyytime a .hui{text-decoration:none;transition:all .4s ease;}
+</style>
 </head>
 <body>
 
@@ -95,6 +109,37 @@
 					</table>
 				</div>
 			</div>
+    
+       <div class="addyytime" style="display:none" id="showHot" >
+       <table style="width:100%;height:50px;">
+             <tr>
+                    <td >
+                        <!-- <a href='javascript:;' itemid='"+timeStr+"' class='hui'>"+timeStr+"</a> -->
+                        <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
+                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
+                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户ghjvhj</a>
+                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到hu</a>
+                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
+                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a> 
+                        <a href='javascript:;' itemid='3'name='type'class='hui'>员工生日</a>
+                                                <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
+                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
+                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户</a>
+                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到</a>
+                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
+                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a> 
+                        <a href='javascript:;' itemid='3'name='type'class='hui'>员工生日</a>
+                                                <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
+                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
+                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户</a>
+                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到</a>
+                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
+                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a> 
+                    </td>
+                </tr>
+        </table>
+      </div>
+            
 			<div class="nui-fit">
 				<div id="rightGrid"
 					 dataField="list"
@@ -165,8 +210,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
-						
+				</div>	
 			</div>
 		</div>
 	</div>

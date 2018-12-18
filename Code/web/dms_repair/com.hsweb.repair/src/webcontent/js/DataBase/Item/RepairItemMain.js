@@ -124,11 +124,24 @@ $(document).ready(function()
 		nui.get("editItemType").enable();
 	});
 	rightGrid.on("rowclick",function(e){
-		if(e.row.isShare==1){
-			nui.get("update").disable();
-		}else{
+		if(currOrgId == "0") {
 			nui.get("update").enable();
+		}else {
+			if(e.row.tenantId == currTenantId) {
+				if(currIsMaster == "1") {
+					nui.get("update").enable();
+				}else{
+					if(currOrgId == e.row.orgid) {
+						nui.get("update").enable();
+					}else {
+						nui.get("update").disable();
+					}
+				}
+			}else {
+				nui.get("update").disable();
+			}
 		}
+		
 		nui.get("editItemType").disable();
 	});
 });

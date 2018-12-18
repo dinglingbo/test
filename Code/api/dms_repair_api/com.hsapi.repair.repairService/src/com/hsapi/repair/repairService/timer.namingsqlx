@@ -157,7 +157,7 @@
 		group by item_id) b
 		on a.id = b.item_id
 		set a.use_times = ifnull(a.use_times,0) + b.ct
-		where ifnull(a.is_cal_times,0) = 1
+		where ifnull(a.is_cal_times,0) = 0
 	</update>
 	
 	<!--更新配件使用次数-->
@@ -173,7 +173,7 @@
 		group by m.part_id, n.orgid) b
 		on a.part_id = b.part_id and a.orgid = b.orgid
 		set a.use_times = ifnull(a.use_times,0) + b.ct
-		where ifnull(a.is_cal_times,0) = 1 and a.orgid = 0
+		where ifnull(a.is_cal_times,0) = 0 
 	</update>
 
 </sqlMap>

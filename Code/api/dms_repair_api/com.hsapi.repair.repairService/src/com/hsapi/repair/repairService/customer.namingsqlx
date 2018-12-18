@@ -47,10 +47,10 @@
                 (b.tenant_id = #tenantId#)
             </isNotEmpty>        
              <isNotEmpty prepend="and" property="recordStart">  
-                (date_format(a.record_date,'%Y-%m-%d') &gt;= #recordStart#)
+                (a.record_date &gt;= #recordStart# )
             </isNotEmpty>
             <isNotEmpty prepend="and" property="recordEnd">  
-                (date_format(a.record_date,'%Y-%m-%d') &lt;= #recordEnd#)
+                (a.record_date &lt;= #recordEnd# )
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carModelId">  
                 (a.car_model_id = #carModelId#)
@@ -73,7 +73,6 @@
                         
             <!--本日来厂-->
             <isEqual  property="todayEnter" compareValue="1">
-					<!-- AND date(c.last_come_date) = date(NOW())-->
 					 AND c.last_come_date &gt;= date_format(DATE_SUB(curdate(),INTERVAL 0 DAY),'%Y-%m-%d %H:%i:%s')  
 			</isEqual>
 			   <!--昨日来厂-->
@@ -84,13 +83,13 @@
              <!--本日新客户-->
             <isEqual  property="todayNew" compareValue="1">
 					 AND c.last_come_date &gt;= date_format(DATE_SUB(curdate(),INTERVAL 0 DAY),'%Y-%m-%d %H:%i:%s')
-					 AND c.chain_come_times = 1
+					 AND ifnull(c.chain_come_times,0) = 1
 			</isEqual>
 			  <!--本月新客户 --> 
             <isEqual property="thisMonthNew" compareValue="1"> 
                 and c.last_leave_date  &gt;= date_format(DATE_ADD(curdate(),interval -day(curdate())+1 day),'%Y-%m-%d %H:%i:%s')  
                 and c.last_leave_date  &lt; date_format(date_add(curdate()-day(curdate())+1,interval 1 month),'%Y-%m-%d %H:%i:%s')
-                and c.chain_come_times = 1
+                and ifnull(c.chain_come_times,0) = 1
             </isEqual>
             <!--本月所有来厂客户 --> 
             <isEqual  property="thisMonthEnter" compareValue="1"> 

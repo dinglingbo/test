@@ -9,7 +9,7 @@
 -->
 <head>
     <title>维修归库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairReturnReport.js?v=1.0.32"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairReturnReport.js?v=1.0.33"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -59,7 +59,9 @@
 	                dataField="storehouse"
 	                allowInput="true"
 	                showNullItem="false"
-	                nullItemText="仓库"/>
+	                nullItemText="仓库"
+	                onvaluechanged="onSearch"
+	                />
                 <input id="partBrandId"
 	                name="partBrandId"
 	                class="nui-combobox"
@@ -71,7 +73,9 @@
 	                url=""
 	                allowInput="true"
 	                showNullItem="false"
-	                nullItemText="品牌"/>
+	                nullItemText="品牌"
+	                onvaluechanged="onSearch"
+	                />
                 
                 <input class="nui-combobox" 
                   id="partTypeId" 
@@ -83,7 +87,9 @@
                   url=""
                   allowInput="true"
                   valueFromSelect="false"
-                  width="120px">
+                  width="120px"
+                  onvaluechanged="onSearch"
+                  >
                退货日期 从:
                  <input class="nui-datepicker" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
              至:
@@ -156,7 +162,7 @@
             <div property="columns">
                 <div allowSort="true"  field=outReturnSign width="60" headerAlign="center" header="退货标志" dataType="float" align="left"></div>
                 <div allowSort="true"  field=pickMan width="60" headerAlign="center" header="退货人" dataType="float" align="left"></div>
-                <div allowSort="true"  field="outDate" width="130"  dateFormat="yyyy-MM-dd HH:mm"  headerAlign="center" header="退货日期" dataType="float" align="left"></div>
+                <div allowSort="true"  field="outDate" width="130"  dateFormat="yyyy-MM-dd HH:mm"  headerAlign="center" header="退货日期"  align="left"></div>
             </div>
         </div>
     </div>

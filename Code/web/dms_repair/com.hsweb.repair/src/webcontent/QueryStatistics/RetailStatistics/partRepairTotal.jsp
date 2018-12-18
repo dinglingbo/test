@@ -65,7 +65,7 @@
 
                 <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/>
                 <input id="partName" width="100px" emptyText="配件名称" class="nui-textbox"/>
-                <input id="partBrandId" width="100px" textField="name" valueField="id" emptyText="配件品牌" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
+                <input id="partBrandId" width="100px" textField="name" valueField="id" emptyText="配件品牌" class="nui-combobox" allowinput="true" valueFromSelect="true" onvaluechanged="onSearch()"/>
                 <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择客户..." onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
                 <input id="guestType" width="100px" textField="name" valueField="customid" emptyText="客户分类" visible="false" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
 

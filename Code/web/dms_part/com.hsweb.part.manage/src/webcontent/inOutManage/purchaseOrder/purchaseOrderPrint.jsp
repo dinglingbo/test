@@ -46,11 +46,13 @@ table{
         border-spacing: 0;
         border-collapse: collapse;
         background-color: transparent;
+        table-layout:fixed;
 }
 table, td {
         font-family: Tahoma, Geneva, sans-serif;
         font-size: 12px;
         color: #000;
+        word-wrap:break-word
     }
 table#ybk td{
     
@@ -67,6 +69,7 @@ table#ybk td{
 }
 #sumOrderAmt{
 	padding-left:65px;
+	width:33%;
 }
  #currOrgName{
 /* 	padding-left:80px; */
@@ -80,10 +83,10 @@ table#ybk td{
 	padding-right:15px;
 }
 #nowDate{
-	padding-right:150px;
+/* 	padding-right:150px; */
 }
 #guestAddr{
-	padding-right:118px;
+/* 	padding-right:118px; */
 }
 #border1 tr{
 /* 	border-bottom: 1px black solid !important; */
@@ -181,6 +184,9 @@ table#ybk td{
 #index{
 	width:4%;
 }
+#currUserName{
+	width:28%;
+}
 hr {
         margin: 8px 0;
         border: 0;
@@ -226,18 +232,18 @@ hr {
                 </tr>
 	            </table>
 	            
-	            <hr/>
-	            <table width="100%">
-				  <tr>
-				  	<td style="font-size:8px;" id="phone">电话:</td>
-				    <td style="font-size:8px;" id="guestAddr" align="right">地址:</td>
-<!-- 				    <td colspan="2" style="text-align: right" id="serviceId"  class="" >No:</td> -->
-				  </tr>
-				  <tr id="border1">
-				    <td style="font-size:8px;" id="createDate" align="left">订单日期:</td>
-				    <td style="font-size:8px;" colspan="2" id="nowDate" align="right"  class="" >打印日期:</td>
-				  </tr>
-				</table>
+<!-- 	            <hr/> -->
+<!-- 	            <table width="100%"> -->
+<!-- 				  <tr> -->
+<!-- 				  	<td style="font-size:8px;" id="phone">电话:</td> -->
+<!-- 				    <td style="font-size:8px;" id="guestAddr" align="right">地址:</td> -->
+<!-- <!-- 				    <td colspan="2" style="text-align: right" id="serviceId"  class="" >No:</td> --> 
+<!-- 				  </tr> -->
+<!-- 				  <tr id="border1"> -->
+<!-- 				    <td style="font-size:8px;" id="createDate" align="left">订单日期:</td> -->
+<!-- 				    <td style="font-size:8px;" colspan="2" id="nowDate" align="right"  class="" >打印日期:</td> -->
+<!-- 				  </tr> -->
+<!-- 				</table> -->
 				<hr/>
 				<table id="ybk" width="100%">
 				  <tr>
@@ -294,14 +300,14 @@ hr {
 				  <tr><td  colspan="4"><hr/></td></tr>
 				  <tr id="border3">
 				    <td id="remark1">备注</td>
-				    <td></td>
-				    <td></td>
+				    <td style="" id="guestAddr" align="left">地址:</td>
+				    <td style="" id="nowDate" align="left"  class="" >打印日期:</td>
 				  </tr>
 				  <tr><td  colspan="3"><hr/></td></tr>
 				   <tr id="border4">
 				    <td id="">注(白联仓库   红联财务  黄联供应商)</td>
-				    <td></td>
-				    <td></td>
+				    <td style="" id="phone">电话:</td>
+				   <td style="" id="createDate" align="left">订单日期:</td>
 				  </tr>
 				</table>
             </div>

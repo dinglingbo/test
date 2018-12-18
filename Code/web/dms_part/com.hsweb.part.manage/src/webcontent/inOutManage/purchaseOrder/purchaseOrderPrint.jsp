@@ -62,11 +62,11 @@ table#ybk td{
 	text-align:left;
 }
 #sumOrderQty{
-	width:400px;
+	width:175px;
 	text-align:right;
 }
 #sumOrderAmt{
-	padding-left:85px;
+	padding-left:65px;
 }
  #currOrgName{
 /* 	padding-left:80px; */

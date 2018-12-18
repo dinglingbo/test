@@ -10,7 +10,7 @@
   --%>
 
 <head>
-<title>维修历史</title>
+<title>班组选择</title>
 <script
 	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/dispatchWorkers.js?v=1.0.1"></script>
 	<style type="text/css">

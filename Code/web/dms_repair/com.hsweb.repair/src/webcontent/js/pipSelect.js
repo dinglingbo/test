@@ -4,10 +4,10 @@
 
 var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
 
-var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
-var packageGridUrl = baseUrl+"com.hsapi.repair.baseData.rpb_package.queryPackage.biz.ext";
-var packageDetailUrl = baseUrl+"com.hsapi.repair.baseData.rpb_package.getPackageDetail.biz.ext";
-var itemGridUrl = baseUrl+"com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
+var cardTimesGridUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
+var packageGridUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.rpb_package.queryPackage.biz.ext";
+var packageDetailUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.rpb_package.getPackageDetail.biz.ext";
+var itemGridUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
 var partGridUrl = apiPath + partApi + "/com.hsapi.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
 var itemTypeUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDictTypeTree.biz.ext";
 

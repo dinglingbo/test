@@ -92,13 +92,13 @@ pageEncoding="UTF-8" session="false" %>
                             popupHeight="90%"
                           />
 			</div>
-			<div field="salesDeductValue" name="sellPrice" headerAlign="center" allowSort="true" header="销售提成">
+			<div field="salesDeductValue" name="sellPrice" headerAlign="center" allowSort="true"  width="40" header="销售提成">
 				<input  property="editor" required="true" vtype="float;range:0,100;" class="nui-textbox"/>
 			</div>
 			<div field="useTimes" name="useTimes" headerAlign="center" allowSort="true" header="使用次数" width="40">
 				<input  property="editor" required="true" vtype="float;range:0,100;" class="nui-textbox"/>
 			</div>
-			<div type="checkboxcolumn" field="isCalTimes" name="isCalTimes" trueValue="1" falseValue="0"  width="40" headerAlign="center" align="center" value="1">是否启用计数</div>
+			<div type="checkboxcolumn" field="isCalTimes" name="isCalTimes" trueValue="1" falseValue="0"  width="60" headerAlign="center" align="center" value="1">是否启用计数</div>
 			<div field="modifier" width="60" headerAlign="center" allowSort="true">操作人</div>
 			<div field="modifyDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">操作日期</div>
 		</div>

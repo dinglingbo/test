@@ -47,11 +47,11 @@ border-radius: 4px;
 {
   height:40px; 
 } 
-#table1 tr td span
+ .spanwidth
 {
    width:10px; 
   display: inline-block;
-}
+} 
 
 .tabwidth{
     width:800px;
@@ -142,7 +142,7 @@ border-radius: 4px;
            <table  id="table1">
 
             <tr >
-                <td class="tbtext">LOGO图片<span></span>   
+                <td class="tbtext">LOGO图片<span class="spanwidth"></span>   
 </td>
                 <td  colspan="5" class="tabwidth"><div class="pic"  style="width:64px;height:64px;border:1px solid #ccc; "></div></td>
 				
@@ -179,13 +179,13 @@ border-radius: 4px;
 
             </tr>
             <tr>
-                <td class="tbtext">组合地址<span></span></td>
+                <td class="tbtext">组合地址<span class="spanwidth"></span></td>
                 <td colspan="5"><input class="nui-textbox tabwidth" enabled="false" name="address" id="address"/></td>
 
             </tr>
 
             <tr>
-                <td class="tbtext">经度<span style="color:red" ></span></td>
+                <td class="tbtext">经度<span class="spanwidth" style="color:red" ></span></td>
                 <td colspan="5" ><input class="nui-textbox inline " style="" name="longitude" id="longitude"/>
                     <span style="width:450px;float: right;text-align: right;">纬度<input class="nui-textbox inline" style="margin-left: 10px;" name="latitude" id="latitude"/></span>
                 </td>
@@ -208,40 +208,41 @@ border-radius: 4px;
                 <td colspan="4"><input class="nui-textbox tabwidth" name="tel" id="tel" onvalidation="onMobileValidation"/></td>
             </tr>           
             <tr>
-                <td class="tbtext">网站<span></span></td>
+                <td class="tbtext">网站<span class="spanwidth"></span></td>
                 <td colspan="5"><input class="nui-textbox tabwidth" id="webaddress" name="webaddress"/></td>
 
             </tr>         
 
 
             <tr>
-                <td class="tbtext">主修品牌<span></span></td>
+                <td class="tbtext">主修品牌<span class="spanwidth"></span></td>
                 <td colspan="5"><input class="nui-textbox tabwidth" name="mainBrandId" id="mainBrandId"/></td>
 
             </tr>
 
 
             <tr>
-                <td class="tbtext">救援电话<span></span></td>
+                <td class="tbtext">救援电话<span class="spanwidth"></span></td>
                 <td colspan="5"><input class="nui-textbox tabwidth" name="rescueTel" id="rescueTel"/></td>
 
             </tr>           
             
             <tr>
-                <td class="tbtext">广告语1<span></span></td>
+                <td class="tbtext">广告语1<span class="spanwidth"></span></td>
                 <td colspan="5"><input class="nui-textbox tabwidth" name="slogan1" id="slogan1"/></td>
 
             </tr>           
             <tr>
-                <td class="tbtext">广告语2<span></span></td>
+                <td class="tbtext">广告语2<span class="spanwidth"></span></td>
                 <td colspan="5"><input class="nui-textbox tabwidth" name="slogan2" id="slogan2"/></td>
 
             </tr>
 
             <tr>
                 <td class="tbtext">电子档案对接省份<span style="color:red"></span></td>
-                <td colspan="5" ><input class="nui-textbox inline " style="" name="eRecordProvince" id="eRecordProvince" />
-                    <span style="width:450px;float: right;text-align: right;">电子档案维修厂编号<input class="nui-textbox inline" style="margin-left: 10px;" name="eRecordRepairNo" id="eRecordRepairNo"/></span>
+                <td colspan="5" ><input class="nui-textbox inline " style="width: 255px;" name="eRecordProvince" id="eRecordProvince" />
+                    <span style="width:500px;float: right;text-align: right;">电子档案维修厂编号
+                    <input class="nui-textbox inline" style="margin-left: 10px;" name="eRecordRepairNo" id="eRecordRepairNo"/></span>
                 </td>
 
 
@@ -258,7 +259,7 @@ border-radius: 4px;
 
 
             <tr>
-                <td class="tbtext">备注<span></span></td>
+                <td class="tbtext">备注<span class="spanwidth"></span></td>
                 <td colspan="5"><input class="nui-textbox tabwidth"/></td>
 
             </tr>

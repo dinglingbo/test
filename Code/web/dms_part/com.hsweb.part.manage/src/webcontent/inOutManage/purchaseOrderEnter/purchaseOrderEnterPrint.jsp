@@ -11,17 +11,6 @@
 <head>
 <style type="text/css">
 
-/*dom显示高度的设置*/
-
-html, body {
-    height: 100%;
-}
-#query-table {
-    height: 100%;
-}
-
-/*打印高度的设置*/
-
 html, body {
     height: 100%;
 }
@@ -39,6 +28,7 @@ html, body {
     }
     #queryTable {
         height: inherit !important;
+
     }
     @page {
       size: auto;  /* auto is the initial value */
@@ -55,11 +45,13 @@ table{
         border-spacing: 0;
         border-collapse: collapse;
         background-color: transparent;
+        table-layout:fixed;
 }
 table, td {
         font-family: Tahoma, Geneva, sans-serif;
         font-size: 12px;
         color: #000;
+        word-wrap:break-word
     }
 table#ybk td{
     
@@ -71,11 +63,12 @@ table#ybk td{
 	text-align:left;
 }
 #sumOrderQty{
-	width:400px;
+	width:175px;
 	text-align:right;
 }
 #sumOrderAmt{
-	padding-left:85px;
+	padding-left:65px;
+	width:33%;
 }
  #currOrgName{
 /* 	padding-left:80px; */
@@ -89,10 +82,10 @@ table#ybk td{
 	padding-right:15px;
 }
 #nowDate{
-	padding-right:150px;
+/* 	padding-right:150px; */
 }
 #guestAddr{
-	padding-right:118px;
+/* 	padding-right:118px; */
 }
 #border1 tr{
 /* 	border-bottom: 1px black solid !important; */
@@ -190,6 +183,9 @@ table#ybk td{
 #index{
 	width:4%;
 }
+#currUserName{
+	width:28%;
+}
 hr {
         margin: 8px 0;
         border: 0;
@@ -234,18 +230,18 @@ hr {
                 </tr>
 	            </table>
 	            
-	            <hr/>
-	            <table width="100%">
-				  <tr>
-				  	<td id="phone" style="font-size:8px;">电话:</td>
-				    <td  id="guestAddr" align="right" style="font-size:8px;">地址:</td>
-<!-- 				    <td colspan="2" style="text-align: right" id="serviceId"  class="" >No:</td> -->
-				  </tr>
-				  <tr id="border1">
-				    <td id="createDate" align="left" style="font-size:8px;">订单日期:</td>
-				    <td colspan="2" id="nowDate" align="right"  class=""  style="font-size:8px;">打印日期:</td>
-				  </tr>
-				</table>
+<!-- 	            <hr/> -->
+<!-- 	            <table width="100%"> -->
+<!-- 				  <tr> -->
+<!-- 				  	<td id="phone" style="font-size:8px;">电话:</td> -->
+<!-- 				    <td  id="guestAddr" align="right" style="font-size:8px;">地址:</td> -->
+<!-- <!-- 				    <td colspan="2" style="text-align: right" id="serviceId"  class="" >No:</td> --> 
+<!-- 				  </tr> -->
+<!-- 				  <tr id="border1"> -->
+<!-- 				    <td id="createDate" align="left" style="font-size:8px;">订单日期:</td> -->
+<!-- 				    <td colspan="2" id="nowDate" align="right"  class=""  style="font-size:8px;">打印日期:</td> -->
+<!-- 				  </tr> -->
+<!-- 				</table> -->
 				<hr/>
 				<table id="ybk" width="100%">
 				  <tr>
@@ -295,20 +291,20 @@ hr {
 				  <tr><td  colspan="3"><hr/></td></tr>
 				  <tr id="border2">
 				    <td id="currUserName">打印人：系统管理员</td>
-				    <td id="">送货人：</td>
-				    <td id="">收货人：</td>
+				    <td id="giveMan">送货人：</td>
+				    <td id="getMan">收货人：</td>
 				  </tr>
 				  <tr><td  colspan="3"><hr/></td></tr>
-				  <tr colspan="3" id="border3">
+				  <tr id="border3">
 				    <td id="remark1">备注</td>
-				    <td></td>
-				    <td></td>
+				    <td style="" id="guestAddr" align="left">地址:</td>
+				    <td style="" id="nowDate" align="left"  class="" >打印日期:</td>
 				  </tr>
 				  <tr><td  colspan="3"><hr/></td></tr>
-				   <tr colspan="3" id="border4">
+				   <tr id="border4">
 				    <td id="">注(白联仓库   红联财务  黄联供应商)</td>
-				    <td></td>
-				    <td></td>
+				    <td style="" id="phone">电话:</td>
+				   <td style="" id="createDate" align="left">订单日期:</td>
 				  </tr>
 				</table>
             </div>
@@ -350,7 +346,7 @@ hr {
        		$('#guestFullName').text("供应商:"+formParms.guestFullName);
        		$('#guestFullName').text("供应商:"+mainParams.guestFullName);
        		$('#createDate').text("入库日期："+format(mainParams.createDate,"yyyy-MM-dd HH:mm"));
-       		$('#serviceId').text("No:"+mainParams.serviceId);
+       		$('#serviceId').text(mainParams.serviceId);
      
     		$('#billTypeId').text("票据类型:"+formParms.billTypeId);
     		$('#settleTypeId').text("结算方式:"+formParms.settleTypeId);

@@ -142,7 +142,6 @@
 						<div field="isCalTimes" name="isCalTimes" headerAlign="center" allowSort="true" width="60px">是否禁用计数</div>
 						<div field="isDisabled" name="isDisabled" headerAlign="center" allowSort="true" width="50px">是否禁用</div>
 						<div field="isShare" name="isShare" headerAlign="center" allowSort="true" width="50px">是否共享</div>
-							
 					</div>
 				</div>
 

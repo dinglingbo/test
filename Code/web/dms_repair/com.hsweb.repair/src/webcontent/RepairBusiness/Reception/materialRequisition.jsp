@@ -426,7 +426,7 @@
 	            <tr>
 	                <td style="font-size:8px;">电话：<span id="phone"></span></td>
 	<!--                 <td  id="bankNo" >银行账号：</td> -->
-	             	<td style="font-size:8px;" id="enterDate" >进厂时间：</td>
+<!-- 	             	<td style="font-size:8px;" id="enterDate" >进厂时间：</td> -->
 	            </tr>
 	        </table>
 	        <hr />
@@ -437,18 +437,20 @@
                         <td class="left" width="33.3%" id="carNo">车牌号：</td>
                         <td class="left" id="contactMobile">联系电话：</td> -->
                         
-                        <td class="left" id="carNo" width="20%"style="margin-left: 0px;">车牌号：</td>
-                        <td class="left" id="carModel" width="50%">品牌车型/品牌：</td>
-                         <td  ></td>
+                        <td class="left" id="carNo" width="30%"style="margin-left: 0px;">车牌号：</td>
+                        <td class="left" id="carModel" width="45%">品牌车型/品牌：</td>
+                        <td class="left"id="mtAdvisor" width="">服务顾问：</td>
+                     	
                     </tr>
                     <tr>
                         <!-- <td class="left" width="33.3%" id="guestFullName">客户名称：</td>
                         <td class="left" width="33.3%" id="carNo">车牌号：</td>
                         <td class="left" id="contactMobile">联系电话：</td> -->
                         
-                        <td class="left"id="mtAdvisor" width="100px">服务顾问：</td>
                         <td class="left" id ="carVin" width="200px">车架号(VIN)：</td>
                         <td class="left" id ="engineNo">发动机号：</td>
+                        <td class="left" id="enterDate">进厂时间：</td>
+    
                     </tr>
                    <!--  <tr>
                     	<td class="left"id="mtAdvisor">服务顾问：</td>
@@ -595,7 +597,7 @@
         		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel;
 //         		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
 //         		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;
-//         		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
+        		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
         		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
         		document.getElementById("engineNo").innerHTML = document.getElementById("engineNo").innerHTML + engineNo;
 //         		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate; 

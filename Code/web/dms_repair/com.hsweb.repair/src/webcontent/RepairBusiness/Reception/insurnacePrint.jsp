@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
+<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -376,11 +377,45 @@ pageEncoding="UTF-8" session="false" %>
 </div>
 <div id="print-container">
     <div class="company-info">
-        <h3><span id="comp"></span></h3>
+<!--         <h3><span id="comp"></span></h3> -->
     </div>
-    <h1 id="title">保险单</h1>
-    <div class="content">
-        <h5>单据编号：<span id="serviceCode"></span></h5>
+    <table  width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                	<td rowspan="2" style="width: 133px;">
+                     	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
+                    </td>
+                    <td>
+                        <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
+                    </td>
+                    <td rowspan="2" style="">
+                        <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
+                        <div style="padding-top: 2px; font-size: 16px;font-family: Arial;">
+                          №:<span id="serviceCode"></span>  
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                	<td >
+                	<div style="font-size: 8px;padding-left: 10px; "><span id="slogan1"></span></div>
+                	<div style="font-size: 8px;padding-left: 10px; "><span id="slogan2"></span></div>
+                	</td>
+                </tr>
+            </tbody>
+        </table>
+         <hr />
+          <table width="100%" border="0"  cellspacing="0" cellpadding="0">
+             <tr>
+                <td style="font-size:8px;">地址：<span id="guestAddr"></span></td>
+<!--                 <td  id="openBank" style="width: 300px;">开户银行：</td> -->
+                <td  style="width: 190px;font-size:8px;">打印时间：<span id="date"></span></td>
+            </tr> 
+            <tr>
+                <td style="font-size:8px;">电话：<span id="phone"></span></td>
+<!--                 <td  id="bankNo" >银行账号：</td> -->
+<!-- 	             	<td style="font-size:8px;" id="enterDate" >进厂时间：</td> -->
+            </tr>
+        </table>
         <hr />
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table theader" style="line-height: 20px;">
             <tbody>
@@ -515,7 +550,12 @@ pageEncoding="UTF-8" session="false" %>
         else window.close();
     }
     function SetData(params){
-      document.getElementById("comp").innerHTML = params.comp;
+      var date = new Date();
+      document.getElementById("comp").innerHTML = currRepairSettorderPrintShow || "";
+	  document.getElementById("spstorename").innerHTML = "保险单";
+	  document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
+      document.getElementById("guestAddr").innerHTML = currCompAddress;
+	  document.getElementById("phone").innerHTML = currCompTel;
 		$.ajaxSettings.async = false;//设置为同步执行
         $.post(params.baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceList.biz.ext?params/id="+params.serviceId+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){

@@ -410,7 +410,7 @@
             <tr>
                 <td style="font-size:8px;">电话：<span id="phone"></span></td>
 <!--                 <td  id="bankNo" >银行账号：</td> -->
-             	<td  id="enterDate" style="font-size:8px;">进厂时间：</td>
+<!--              	<td  id="enterDate" style="font-size:8px;">进厂时间：</td> -->
             </tr>
         </table>
     

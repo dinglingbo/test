@@ -350,7 +350,37 @@ function setViewData(ck, delck, cck, params){
 		var xm = (params.serviceId).split("m");
 		serviceId = xm[1];
 		ximeiUrl = 1;
-		search(3);
+		var json = {
+			isDisabled :0,
+			serviceTypeId : 3
+		};
+		nui.ajax({
+			url : gridUrl,
+			type : 'POST',
+			data : json,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				grid.setData(text.package1);
+				var json1 = {
+						isDisabled :0,
+						serviceTypeId : 6
+					};
+				nui.ajax({
+					url : gridUrl,
+					type : 'POST',
+					data : json1,
+					cache : false,
+					contentType : 'text/json',
+					success : function(data) {
+						for(var i=0;i<data.package1.length;i++){
+							grid.addRow(data.package1[i]);
+						}
+						
+					}
+				 });
+			}
+		 });
 	}else{
 		serviceId = params.serviceId;
 	}

@@ -908,7 +908,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign19label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">WXD</process:from>
+      <process:from type="literal" pattern="reference">ZHD</process:from>
       <process:to type="query">billTypeCode</process:to>
     </process:copy>
   </nodes>

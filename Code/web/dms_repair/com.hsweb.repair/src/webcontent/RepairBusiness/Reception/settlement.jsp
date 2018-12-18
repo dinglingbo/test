@@ -210,19 +210,19 @@
 	                     	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
 	                    </td>
 	                    <td>
-	                        <div style="font-size: 20px; font-family: 微软雅黑;">&nbsp;&nbsp;<span id="comp"></span></div>
+	                        <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
 	                    </td>
-	                    <td rowspan="2" style="width: 300px;">
-	                        <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename"></span></b></div>
-	                        <div style="padding-top: 2px; font-size: 16px;">
+	                    <td rowspan="2" style="">
+	                        <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
+	                        <div style="padding-top: 2px; font-size: 16px;font-family: Arial;">
 	                          №:<span id="serviceCode"></span>  
 	                        </div>
 	                    </td>
 	                </tr>
 	                <tr>
-	                	<td>
-	                	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜</br>
-	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜-->
+	                	<td >
+	                	<div style="font-size: 8px;padding-left: 10px; "><span id="slogan1"></span></div>
+	                	<div style="font-size: 8px;padding-left: 10px; "><span id="slogan2"></span></div>
 	                	</td>
 	                </tr>
 	            </tbody>
@@ -230,33 +230,32 @@
 	        
         </div>
         
-        <div style="border-bottom: 1px #333 solid; height: 10px; margin-bottom: 10px;">&nbsp;</div>
+        <!-- <div style="border-bottom: 1px #333 solid; height: 2px; margin-bottom: 10px;">&nbsp;</div> -->
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
              <tr>
-                <td>地址：<span id="guestAddr"></span></td>
-                <td  id="openBank" style="width: 300px;">开户银行：</td>
-                <td  style="width: 300px;">打印时间：<span id="date"></span></td>
+                <td style="font-size:8px;" >地址：<span id="guestAddr"></span></td>
+                <td style="font-size:8px;"  id="openBank" style="">开户银行：</td>
+                <td style="font-size:8px;">打印时间：<span id="date"></span></td>
             </tr> 
             <tr>
-                <td>电话：<span id="phone"></span></td>
-                <td  id="bankNo" >银行账号：</td>
-             	<td  id="enterDate" >进厂时间：</td>
+                <td style="font-size:8px;">电话：<span id="phone"></span></td>
+                <td style="font-size:8px;" id="bankNo" >银行账号：</td>
+             	<td style="font-size:8px;" id="enterDate" >进厂时间：</td>
             </tr>
         </table>
 
         <div style="padding-top: 10px;">
             <table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk">
                 <tr>
-                    <td height="24" width="42%" id="guestFullName">&nbsp;客户名称：</td>
-                    <td height="24" id="carNo">&nbsp;车牌号：</td>
-<!--                     <td width="33%" id="mtAdvisor">&nbsp;服务顾问：</td> -->
-<!--                     <td >&nbsp;进厂里程：<span id="enterKilometers"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;油量：<span id="enterOilMass"></span></td> -->
+                    <td height="24" width="33%" id="guestFullName">&nbsp;客户名称：</td>
+                    <td width="33%" id="mtAdvisor">&nbsp;服务顾问：</td>
+                    <td >&nbsp;进厂里程：<span id="enterKilometers"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;油量：<span id="enterOilMass"></span></td>
                 </tr>
-<!--                 <tr> -->
-<!--                     <td height="24" id="carNo">&nbsp;车牌号：</td> -->
-<!--                     <td id="carModel">&nbsp;品牌车型： </td> -->
-<!--                     <td id="carVin">&nbsp;车架号(VIN)：</td> -->
-<!--                 </tr> -->
+                <tr>
+                    <td height="24" id="carNo">&nbsp;车牌号：</td>
+                    <td id="carModel">&nbsp;品牌车型： </td>
+                    <td id="carVin">&nbsp;车架号(VIN)：</td>
+                </tr>
                 <tr>
                     
                     
@@ -266,14 +265,25 @@
         <div style="height: 12px;"></div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPkg">
                 <tr>
-                    <td width="40" align="center" bgcolor="#f8f8f8"><b></b></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"><b>套餐项目(含工时配件)</b></td>
-                    <td width="60" align="center" bgcolor="#f8f8f8"><b>数量</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
-                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>优惠率</b></td>
-                    <td width="80" align="center" bgcolor="#f8f8f8"><b>小计</b></td>
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:16px;font-weight: bold;">套餐项目(含工时配件)</td>
                     
+                    
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">数量</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
+                    
+                </tr>
+                <tr>
+                	<td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
                 </tr>
                 <tbody id="tbodyId">
 				</tbody>
@@ -281,13 +291,22 @@
         <div style="height: 12px;" id="space1"></div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showItem">
                 <tr>
-                    <td width="40" align="center" bgcolor="#f8f8f8"><b></b></td>
-                    <td height="28" align="center" bgcolor="#f8f8f8"><b>项目名称</b></td>
-                    <td width="60" align="center" bgcolor="#f8f8f8"><b>工时/数量</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>单价</b></td>
-                    <td width="80" align="center" bgcolor="#f8f8f8"><b>金额</b></td>
-                    <td width="70" align="center" bgcolor="#f8f8f8"><b>优惠率</b></td>
-                    <td width="80" align="center" bgcolor="#f8f8f8"><b>小计</b></td>
+                    <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
+                    <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">项目名称</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">工时/数量</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">小计</td>
+                </tr>
+                <tr>
+                	<td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
+                    <td ><hr style="border:0.5px solid #000"></td>
                 </tr>
                 <tbody id="tbodyId2">
 				</tbody>
@@ -327,7 +346,7 @@
                </font>
             </span>
         </div> -->
-        <table width="100%" border="0"  cellpadding="0" cellspacing="0" class="y">
+        <table width="100%" border="0"  cellpadding="0" cellspacing="0" class="ybk">
             <tr>
                 <td height="36" colspan="1" style="border:0px solid #DDD; " rowspan="1" colspan="1" >
                    <!--  <div style="float: right; color: #000; margin-right: 12px; line-height: 36px;">
@@ -342,17 +361,15 @@
                     </div> -->
                      <span style="margin-left: 0px;">优惠金额：<span id="yh">0</span>元</span>
                 </td>
-                <td height="36" colspan="2" style="border:0px">
+                <td height="36" colspan="2" style="border:0px;font-family: Arial; font-size:16px;font-weight: bold;">
                     <div style="float: left; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
-                            <b style="font-size: 16px;">小计</b>：
-                            <font style="font-size: 15px; font-weight: bold;">
-                                <span id="cash1"></span>
-                            </font>元
+                            <font style="font-size: 16px; font-weight: bold;">
+                                小计：<span id="cash1"></span>元
+                            </font>
                         </span>
-                        <b style="font-size: 16px;">大写</b>：
-                        <font style="font-size: 15px; font-weight: bold;">
-                            <span id="money"></span>
+                        <font style="font-size: 16px; font-weight: bold;">
+                            大写：<span id="money"></span>
                         </font>
                     </div>
                 </td>
@@ -432,7 +449,7 @@
 	        	   document.getElementById("spstorename").innerHTML = "结账单";
 	        	   document.getElementById("show").innerHTML = params.currRepairSettPrintContent||"";
 	        	}else if(params.name == "报价单"){
-	        	   $("#enterDate").hide();
+	        	   //$("#enterDate").hide();
 	        	   document.getElementById("spstorename").innerHTML = "报价单";
 	        	   document.getElementById("show").innerHTML = params.currRepairEntrustPrintContent||"";
 	        	}
@@ -446,6 +463,8 @@
 	        
 	        document.getElementById("guestAddr").innerHTML = params.currCompAddress;
     		document.getElementById("phone").innerHTML = params.currCompTel;
+    		document.getElementById("slogan1").innerHTML = params.currSlogan1;
+    		document.getElementById("slogan2").innerHTML = params.currSlogan2;
     		
 	        $.ajaxSettings.async = false;//设置为同步执行
 	        var url = null;
@@ -467,7 +486,7 @@
 	        		var list = text.list[0];
 	        		phones = list.contactMobile || "";
 	        		var carNo = list.carNo || "";
-// 	        		var carVin = list.carVin || "";
+	        		var carVin = list.carVin || "";
 	        		var enterDate = list.enterDate || "";
 	        		
 	        		var drawOutReport = list.drawOutReport || "";
@@ -479,17 +498,17 @@
 	        		  enterDate='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 	        		}
 	        		var guestFullName = list.guestFullName || "";
-// 	        		var enterOilMass = list.enterOilMass || "0";
+	        		var enterOilMass = list.enterOilMass || "0";
 	        		var name = "0";
 	        		//查找油量http://127.0.0.1:8080/default/
-// 	        		for(var i = 0;i<data.length;i++){
-// 	        		        if(data[i].customid == enterOilMass){
-// 	        		           name = data[i].name;
-// 	        		           break;
-// 	        		        }
-// 	        		}
-// 	        		var enterKilometers = list.enterKilometers || "0";
-// 	        		var mtAdvisor = list.mtAdvisor || "";
+	        		for(var i = 0;i<data.length;i++){
+	        		        if(data[i].customid == enterOilMass){
+	        		           name = data[i].name;
+	        		           break;
+	        		        }
+	        		}
+	        		var enterKilometers = list.enterKilometers || "0";
+	        		var mtAdvisor = list.mtAdvisor || "";
 	        		var planFinishDate = list.planFinishDate || "";
 	        		if(planFinishDate){
 	        			planFinishDate = planFinishDate.replace(/-/g,"/");
@@ -498,7 +517,7 @@
 	        		}
 	        		var serviceCode = list.serviceCode || "";
 	        		var guestDesc = list.guestDesc || "";
-// 	        		var carModel = list.carModel || "";
+	        		var carModel = list.carModel || "";
 	        		var faultPhen = list.faultPhen || "";
 	        		var solveMethod = list.solveMethod || "";
 	        		var guestAddr = list.guestAddr || "";
@@ -508,18 +527,18 @@
 	        			//contactMobile = list.contactorTel || "";
 	        			carNo = list.carNo || "";
 	        			//contactName = list.contactorName || "";
-// 	        			mtAdvisor = list.mtAdvisor || "";
+	        			mtAdvisor = list.mtAdvisor || "";
 	        		}
 	        		document.getElementById("serviceCode").innerHTML = document.getElementById("serviceCode").innerHTML + serviceCode;
 	        		document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + carNo;
-// 	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
+	        		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
 	        		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
 	        		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestFullName;
-// 	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
-// 	        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;
-// 	        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
+	        		document.getElementById("enterKilometers").innerHTML = document.getElementById("enterKilometers").innerHTML + enterKilometers;
+	        		document.getElementById("enterOilMass").innerHTML = document.getElementById("enterOilMass").innerHTML + name;
+	        		document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + mtAdvisor;
 	        		document.getElementById("guestDesc").innerHTML = document.getElementById("guestDesc").innerHTML + guestDesc; 
-// 	        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
+	        		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + carModel; 
 	        		document.getElementById("faultPhen").innerHTML = document.getElementById("faultPhen").innerHTML + faultPhen; 
 	        		document.getElementById("solveMethod").innerHTML = document.getElementById("solveMethod").innerHTML + solveMethod; 
 	        		document.getElementById("guestAddr").innerHTML = document.getElementById("guestAddr").innerHTML + guestAddr;

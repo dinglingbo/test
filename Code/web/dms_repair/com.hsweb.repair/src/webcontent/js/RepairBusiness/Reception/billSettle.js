@@ -170,16 +170,19 @@ function setData(params){
 			var amount = 0;
 			if(params.data.ycAmt==null||params.data.ycAmt==0){
 				amount = parseFloat(params.data.mtAmt)+parseFloat(amt);
+				params.data.mtAmt = parseFloat(params.data.mtAmt)+parseFloat(amt);
 /*				params.data.mtAmt =  parseFloat(params.data.mtAmt)+parseFloat(amt);
 				params.data.mtAmt = params.data.mtAmt.toFixed(2);*/
 			}else{
 /*				params.data.mtAmt = parseFloat(params.data.mtAmt)-parseFloat(params.data.ycAmt)+parseFloat(amt);
 				params.data.mtAmt = params.data.mtAmt.toFixed(2);*/
 				amount=(parseFloat(params.data.mtAmt)-parseFloat(params.data.ycAmt)+parseFloat(amt)).toFixed(2);
+				params.data.mtAmt = parseFloat(params.data.mtAmt)+parseFloat(amt);
 			}
 			
 			netInAmt = parseFloat(amount);
-			zongAmt=parseFloat(params.data.mtAmt);
+			zongAmt=netInAmt;
+			
 			document.getElementById('totalAmt').innerHTML = "￥"+params.data.mtAmt;
 			document.getElementById('totalAmt1').innerHTML = params.data.mtAmt;
 			document.getElementById('amount').innerHTML =  netInAmt;
@@ -703,3 +706,5 @@ function CloseWindow(action) {
 	else
 		return window.close();
 }
+
+

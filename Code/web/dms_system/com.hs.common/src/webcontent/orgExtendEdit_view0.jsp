@@ -6,7 +6,7 @@
 <!-- 
   - Author(s): Administrator
   - Date: 2018-05-27 15:11:00
-  - Description:
+  - Description: 
 --> 
 <head>
     <title>门店信息</title>
@@ -24,7 +24,7 @@
    }
 
     /*body.back{background:LightSteelBlue;}*/
-   table
+   #table1
    {
 
     border-collapse:collapse;
@@ -43,13 +43,13 @@ background-size: 100% 100%;
 border-radius: 4px;
 }
 
-table tr
+#table1  tr
 {
   height:40px; 
 } 
-table tr td span
+#table1 tr td span
 {
-  width:10px;
+   width:10px; 
   display: inline-block;
 }
 
@@ -139,7 +139,7 @@ table tr td span
             </div>
         <div class="form"id="basicInfoForm" name="basicInfoForm" style="width:950px;height:100%;left:0;right:0;margin: 0 auto;">
         		     
-           <table >
+           <table  id="table1">
 
             <tr >
                 <td class="tbtext">LOGO图片<span></span>   

@@ -84,7 +84,7 @@ table#ybk td{
 	padding-top:20px;
 }
 #serviceId{
-	padding-right:145px;
+	padding-right:15px;
 }
 #nowDate{
 	padding-right:150px;
@@ -206,33 +206,39 @@ hr {
 			      <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
 			    </div>
         		<div style="height:20px;"></div>
-        		<table id="" width="100%">
+       		<table id="" width="100%">
 				   <tr>
 	            	<td rowspan="2" style="width: 133px;">
 	                 	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
 	                </td>
 	                <td>
-	                    <div style="font-size: 20px; font-family: 微软雅黑;">&nbsp;&nbsp;<span id="currOrgName"></span></div>
+	                    <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;">&nbsp;&nbsp;<span id="currOrgName"></span></div>
 	                </td>
-	                <td rowspan="2" style="width: 300px;">
-	                    <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename"></span></b></div>
-	                    <div style="padding-top: 2px; font-size: 16px;">
+	                <td rowspan="2" >
+	                    <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
+	                    <div style="padding-top: 2px; font-size: 16px;font-family: Arial;">
 	                      №:<span id="serviceId"></span>  
 	                    </div>
 	                </td>
 	            </tr>
+	             <tr>
+                	<td >
+                	<div style="font-size: 8px;padding-left: 10px; "><span id="slogan1"></span></div>
+                	<div style="font-size: 8px;padding-left: 10px; "><span id="slogan2"></span></div>
+                	</td>
+                </tr>
 	            </table>
 	            
 	            <hr/>
 	            <table width="100%">
 				  <tr>
-				  	<td id="phone">电话:</td>
-				    <td  id="guestAddr" align="right">地址:</td>
+				  	<td id="phone" style="font-size:8px;">电话:</td>
+				    <td  id="guestAddr" align="right" style="font-size:8px;">地址:</td>
 <!-- 				    <td colspan="2" style="text-align: right" id="serviceId"  class="" >No:</td> -->
 				  </tr>
 				  <tr id="border1">
-				    <td id="createDate" align="left">订单日期:</td>
-				    <td colspan="2" id="nowDate" align="right"  class="" >打印日期:</td>
+				    <td id="createDate" align="left" style="font-size:8px;">订单日期:</td>
+				    <td colspan="2" id="nowDate" align="right"  class=""  style="font-size:8px;">打印日期:</td>
 				  </tr>
 				</table>
 				<hr/>
@@ -310,7 +316,7 @@ hr {
 		var sumOrderQty=0;
 		var sumOrderAmt=0;
     	$(document).ready(function(){
-    		$('#currOrgName').text(currOrgName);
+    		$('#currOrgName').text(currRepairSettorderPrintShow);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
     		$('#currUserName').text("打印人:"+currUserName);
 			$("#print").click(function () {

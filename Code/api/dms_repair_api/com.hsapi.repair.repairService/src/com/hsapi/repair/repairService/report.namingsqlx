@@ -1659,7 +1659,7 @@
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="partTypeId">  
-				c.car_type_id_f = #partTypeId# or c.car_type_id_s = #partTypeId# or c.car_type_id_t = #partTypeId#
+				(c.car_type_id_f = #partTypeId# or c.car_type_id_s = #partTypeId# or c.car_type_id_t = #partTypeId#)
 			</isNotEmpty>
 				
             <isNotEmpty prepend="and" property="carTypeIdF">  
@@ -1687,7 +1687,7 @@
             <isNotEmpty prepend="and" property="partCodeList">  
                 (a.part_code in ($partCodeList$))
             </isNotEmpty> 
-            
+            order by d.out_date DESC
         </dynamic>  
 	</select>
 	
@@ -1784,7 +1784,7 @@
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="partTypeId">  
-				c.car_type_id_f = #partTypeId# or c.car_type_id_s = #partTypeId# or c.car_type_id_t = #partTypeId#
+				(c.car_type_id_f = #partTypeId# or c.car_type_id_s = #partTypeId# or c.car_type_id_t = #partTypeId#)
 			</isNotEmpty>
 				
             <isNotEmpty prepend="and" property="carTypeIdF">  
@@ -1958,7 +1958,7 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="eOutDate">  
                 (b.out_date &lt; #eOutDate#)
-            </isNotEmpty>
+            </isNotEmpty> 
             <!--预计完工日期 -->
             <isNotEmpty prepend="and" property="sPlanFinishDate">  
                 (b.plan_finish_date &gt;= #sPlanFinishDate#)
@@ -1982,7 +1982,7 @@
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="partTypeId">  
-				c.car_type_id_f = #partTypeId# or c.car_type_id_s = #partTypeId# or c.car_type_id_t = #partTypeId#
+				(c.car_type_id_f = #partTypeId# or c.car_type_id_s = #partTypeId# or c.car_type_id_t = #partTypeId#)
 			</isNotEmpty>
 				
             <isNotEmpty prepend="and" property="carTypeIdF">  

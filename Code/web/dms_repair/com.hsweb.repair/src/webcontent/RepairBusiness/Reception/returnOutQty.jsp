@@ -63,7 +63,9 @@
 	                dataField="storehouse"
 	                allowInput="true"
 	                showNullItem="false"
-	                nullItemText="仓库"/>
+	                nullItemText="仓库"
+	                onvaluechanged="onSearch"
+	                />
                 <input id="partBrandId"
 	                name="partBrandId"
 	                class="nui-combobox"
@@ -75,7 +77,9 @@
 	                url=""
 	                allowInput="true"
 	                showNullItem="false"
-	                nullItemText="品牌"/>
+	                nullItemText="品牌"
+	                onvaluechanged="onSearch"
+	                />
                 
                 <input class="nui-combobox" 
                   id="partTypeId" 
@@ -87,7 +91,9 @@
                   url=""
                   allowInput="true"
                   valueFromSelect="false"
-                  width="120px">        
+                  width="120px"
+                  onvaluechanged="onSearch"
+                  />        
 
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
             </td>

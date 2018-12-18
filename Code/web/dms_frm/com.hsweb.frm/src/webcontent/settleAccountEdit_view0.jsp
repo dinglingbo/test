@@ -8,7 +8,7 @@
 -->
 <head>
 <title>结算账户修改</title>
-<script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountEdit.js?v=1.1.27"></script>
+<script src="<%=webPath + contextPath%>/frm/js/settle/settleAccountEdit.js?v=1.1.30"></script>
 <style type="text/css">
         a.optbtn {
             width: 44px;
@@ -117,7 +117,7 @@
             </tr>
              <tr name="bark" class="htr barkcla">
                 <td class=" right fwidtha">手续费率:</td>
-                <td ><input id="feeRate " name="feeRate " width="100%" class="nui-textbox" >‰</td>
+                <td ><input id="feeRate" name="feeRate" width="100%" class="nui-textbox" >‰</td>
             
             </tr>
              <tr name="bark" class="htr barkcla">

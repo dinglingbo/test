@@ -115,7 +115,7 @@ function edit(action) {
 
     var url = webPath + contextPath + "/com.hs.common.employeeEdit.flow?token="+token;
     var width = 680;
-    var height = 430;
+    var height = 470;
     if(currCompType == 'PART'){
         url = webPath + contextPath + "/com.hs.common.partEmployeeEdit.flow?token="+token;
         height = 250;
@@ -243,7 +243,7 @@ function stoporstart(){
 
     }else if(row.isOpenAccount == 0 && !row.systemAccount){
         emp = row;
-        emp.passWord='000000';
+        emp.passWord='000000'; 
         nui.open({
             url: webPath + contextPath + "/common/setAccount.jsp?token="+token,
             width: 330,      //宽度

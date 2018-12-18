@@ -71,11 +71,11 @@ table#ybk td{
 	text-align:left;
 }
 #sumOrderQty{
-	width:400px;
+	width:175px;
 	text-align:right;
 }
 #sumOrderAmt{
-	padding-left:85px;
+	padding-left:65px;
 }
  #currOrgName{
 /* 	padding-left:80px; */
@@ -350,7 +350,7 @@ hr {
        		$('#guestFullName').text("供应商:"+formParms.guestFullName);
        		$('#guestFullName').text("供应商:"+mainParams.guestFullName);
        		$('#createDate').text("入库日期："+format(mainParams.createDate,"yyyy-MM-dd HH:mm"));
-       		$('#serviceId').text("No:"+mainParams.serviceId);
+       		$('#serviceId').text(mainParams.serviceId);
      
     		$('#billTypeId').text("票据类型:"+formParms.billTypeId);
     		$('#settleTypeId').text("结算方式:"+formParms.settleTypeId);

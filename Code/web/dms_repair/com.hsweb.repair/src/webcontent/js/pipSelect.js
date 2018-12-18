@@ -293,6 +293,28 @@ function doSearchPackage(params)
     	token:token,
         params:p
     });
+    var param = {};
+    param.name = params.name;
+    param.serviceTypeId = params.serviceTypeId;
+    param.isDisabled = 0;
+    param.serviceTypeId = 6;//洗车开单显示洗车和保养的
+	var json={
+			params: param,
+			token:token
+	}
+	nui.ajax({
+		url : packageGridUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(data) {
+			for(var i=0;i<data.list.length;i++){
+				packageGrid.addRow(data.package1[i]);
+			}
+			
+		}
+	 });
 }
 function doSearchItem(params)
 {
@@ -308,6 +330,28 @@ function doSearchItem(params)
     	token:token,
         params:p
     });
+    var param = {};
+    param.isDisabled = 0;
+    param.name = params.name||"";
+    param.ltype = params.ltype||"";
+    param.serviceTypeId = 6;//洗车开单显示洗车和保养的
+	var json={
+			params: param,
+			token:token
+	}
+	nui.ajax({
+		url : itemGridUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(data) {
+			for(var i=0;i<data.list.length;i++){
+				itemGrid.addRow(data.list[i]);
+			}
+			
+		}
+	 });
 }
 function doSearchPart(params)
 {

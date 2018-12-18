@@ -280,10 +280,47 @@ function setData(data)
 	if(isNaN(data.serviceId)){
 		var xm = (data.serviceId).split("m");
 		serviceId = xm[1];
-		var params={
-				serviceTypeId: "3"
+		var params = {
+				orgid : currOrgId,
+				isDisabled : 0,
+				serviceTypeId : 3
+			};
+		var json={
+				params: params,
+				token:token
 		}
-		doSearch(params);
+			nui.ajax({
+				url : rightGridUrl,
+				type : 'POST',
+				data : json,
+				cache : false,
+				contentType : 'text/json',
+				success : function(text) {
+					rightGrid.setData(text.list);
+					var params1 = {
+							orgid : currOrgId,
+							isDisabled : 0,
+							serviceTypeId : 6
+						};
+					var json1={
+							params: params1,
+							token:token
+					}
+					nui.ajax({
+						url : rightGridUrl,
+						type : 'POST',
+						data : json1,
+						cache : false,
+						contentType : 'text/json',
+						success : function(data) {
+							for(var i=0;i<data.list.length;i++){
+								rightGrid.addRow(data.list[i]);
+							}
+							
+						}
+					 });
+				}
+			 });
 	}else{
 		serviceId = data.serviceId;
 	}

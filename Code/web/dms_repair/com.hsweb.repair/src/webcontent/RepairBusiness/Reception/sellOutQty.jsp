@@ -128,7 +128,7 @@
                 <div allowSort="true" field="oemCode" width="100" headerAlign="center" header="OEM码"></div>
    				<div allowSort="true" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
    				<div allowSort="true" field="applyCarModel" width="200" headerAlign="center" header="适用车型"></div>
-                <div allowSort="true" field="unit" width="100" headerAlign="center" header="单位"></div>
+                <div allowSort="true" field="unit" width="50" headerAlign="center" header="单位"></div>
                 <div allowSort="true" field="carTypeIdF" width="100" headerAlign="center" header="配件分类一级"></div>
                 <div allowSort="true" field="carTypeIdS" width="100" headerAlign="center" header="配件分类二级"></div>
                 <div allowSort="true" field="carTypeIdT" width="100" headerAlign="center" header="配件分类三级"></div>

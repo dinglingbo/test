@@ -217,7 +217,7 @@ hr {
 	                <td>
 	                    <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;">&nbsp;&nbsp;<span id="currOrgName"></span></div>
 	                </td>
-	                <td rowspan="2" >
+	                <td rowspan="2" width="25%" >
 	                    <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
 	                    <div style="padding-top: 2px; font-size: 16px;font-family: Arial;">
 	                      №:<span id="serviceId"></span>  

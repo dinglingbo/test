@@ -10,7 +10,7 @@
 -->
 <head>
 <title>产品选择</title>
-<script src="<%=request.getContextPath()%>/repair/js/pipSelect.js?v=1.0.5"></script>
+<script src="<%=request.getContextPath()%>/repair/js/pipSelect.js?v=1.0.7"></script>
 <style type="text/css">
 
 table {

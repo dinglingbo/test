@@ -48,7 +48,8 @@ $(document).ready(function(v) {
 });
 
 function search(){
-
+	grid2.setData([]);
+	grid3.setData([]);
 	var carNo = nui.get("carNo").getValue();
 	var params = {
 			carNo:carNo

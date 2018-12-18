@@ -11,7 +11,7 @@
 
 			<head>
 				<title>维修历史</title>
-				<script src="<%=request.getContextPath()%>/repair/js/Card/oldmaintsin.js?v=1.0.2"></script>
+				<script src="<%=request.getContextPath()%>/repair/js/Card/oldmaintsin.js?v=1.0.3"></script>
 			</head>
 
 			<body>
@@ -34,7 +34,7 @@
 							</div>
 							<div class="nui-fit">
 							<div id="datagrid1" dataField="oldMaintain" class="nui-datagrid" showPager="false" onDrawCell="onDrawCell" onselectionchanged="selectionChanged"
-							 onrowclick="" allowSortColumn="true" style="width: 100%; height: 100%;">
+							 onrowclick="" allowSortColumn="true" style="width: 100%; height: 100%;" selectOnLoad="false">
 								<div property="columns">
 									<div type="indexcolumn" width="40px" header="序号"></div>
 									<!-- 				<div type="checkcolumn" >选择</div> -->

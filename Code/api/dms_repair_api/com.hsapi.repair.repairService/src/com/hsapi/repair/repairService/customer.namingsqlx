@@ -7,7 +7,11 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
-    <!--LEFT  JOIN rpb_contactor d ON b.id=d.guest_id-->
+    <!--
+    	LEFT  JOIN rpb_contactor d ON b.id=d.guest_id
+    	活跃期（ 近三个月内有消费）、稳定期（ 近三个月无消费、近6个月有消费）、
+                    睡眠期（ 近6个月无消费、近1个月有消费）、流失期（ 1年以上无消费）、未分类（无消费历史）
+    -->
     <select id="queryCustomerList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.id id,
@@ -57,6 +61,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestId">  
                 (a.guest_id = #guestId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mtAdvisorId">  
+                (C.mt_advisor_id = #mtAdvisorId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carBrandId">  
                 (a.car_brand_id = #carBrandId#)

@@ -110,7 +110,7 @@ function getSearchParams(){
     params.partBrandId=nui.get("partBrandId").getValue();
     params.storeId=nui.get("storeId").getValue();
     params.partTypeId=nui.get("partTypeId").value;
-    params.sOutDate=nui.get("sOutDate").getValue();
+    params.sOutDate=nui.get("sOutDate").getFormValue();
     params.eOutDate=addDate(eOutDateEl.getValue(),1);
     return params;
 }

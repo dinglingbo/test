@@ -171,7 +171,9 @@ function saveType(type){
 	data.isDisabled = 0;
 	data.isquickwear = 0;
 	data.carbrandid = 'SYS';
+	
 
+	
 	nui.ajax({
 		url : saveUrl,
 		type : "post",

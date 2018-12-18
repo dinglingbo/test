@@ -1332,7 +1332,7 @@ function sureMT(){
         return;
     }else{
         if(dataForm.status != 0){
-            showMsg("工单已开单!","W");
+            showMsg("工单已施工!","W");
             return;
         }
         var params = {
@@ -1362,9 +1362,9 @@ function sureMT(){
                 var status = main.status||0;
                 var isSettle = main.isSettle||0;
                 doSetStyle(status, isSettle);
-                showMsg("确定开单成功!","S");
+                showMsg("转施工成功!","S");
             }else{
-                showMsg(errMsg||"确定开单失败!","E");
+                showMsg(errMsg||"转施工失败!","E");
                 nui.unmask(document.body);
             }
         }, function(){

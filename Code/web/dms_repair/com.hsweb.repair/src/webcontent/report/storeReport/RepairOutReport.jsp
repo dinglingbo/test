@@ -59,7 +59,7 @@
         dataField="storehouse"
         allowInput="true"
         showNullItem="false"
-        nullItemText="仓库"/>
+        nullItemText="仓库" onvaluechanged="onSearch"/>
     <input id="partBrandId"
         name="partBrandId"
         class="nui-combobox"
@@ -71,7 +71,8 @@
         url=""
         allowInput="true"
         showNullItem="false"
-        nullItemText="品牌"/>
+        nullItemText="品牌"
+        onvaluechanged="onSearch"/>
     
     <input class="nui-combobox" 
       id="partTypeId" 
@@ -83,7 +84,7 @@
       url=""
       allowInput="true"
       valueFromSelect="false"
-      width="120px">
+      width="120px" onvaluechanged="onSearch">
    出库日期 从:
      <input class="nui-datepicker" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
  至:

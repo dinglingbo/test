@@ -271,12 +271,13 @@ function getParentStoreId(){
 }
 function loadMainAndDetailInfo(row) {
 	if (row) {
-		var orderMan=row.orderMan;
-		
-		row.orderMan=row.orderManId; 
+//		var orderMan=row.orderMan;
+//		
+//		row.orderMan=row.orderManId; 
 		basicInfoForm.setData(row);
 		//bottomInfoForm.setData(row);
-		nui.get("orderMan").setText(orderMan);
+		nui.get("orderMan").setValue(row.orderManId);
+		nui.get('orderMan').setText(row.orderMan);
 		nui.get("guestId").setText(row.guestFullName);
 
 		var row = leftGrid.getSelected();

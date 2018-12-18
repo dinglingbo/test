@@ -178,6 +178,14 @@
       <process:to type="query">m:userObject/attributes/bankAccountNumber</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">comp/slogan1</process:from>
+      <process:to type="query">m:userObject/attributes/slogan1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/slogan2</process:from>
+      <process:to type="query">m:userObject/attributes/slogan2</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>

@@ -210,21 +210,21 @@
 	                     	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
 	                    </td>
 	                    <td>
-	                        <div style="font-size: 18px; font-family: 黑体;">&nbsp;&nbsp;<span id="comp"></span></div>
+	                        <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
 	                    </td>
 	                    <td rowspan="2" style="">
-	                        <div style="font-size: 20px; font-family: 华文中宋;"><b><span id="spstorename"></span></b></div>
+	                        <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
 	                        <div style="padding-top: 2px; font-size: 16px;font-family: Arial;">
 	                          №:<span id="serviceCode"></span>  
 	                        </div>
 	                    </td>
 	                </tr>
-	               <!-- <tr>
-	                	<td>
-	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜</br>
-	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜
+	                <tr>
+	                	<td >
+	                	<div style="font-size: 8px;padding-left: 10px; "><span id="slogan1"></span></div>
+	                	<div style="font-size: 8px;padding-left: 10px; "><span id="slogan2"></span></div>
 	                	</td>
-	                </tr>-->
+	                </tr>
 	            </tbody>
 	        </table>
 	        
@@ -269,7 +269,7 @@
                     <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:16px;font-weight: bold;">套餐项目(含工时配件)</td>
                     
                     
-                    <td width="60" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">数量</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">数量</td>
                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
                     <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
@@ -293,7 +293,7 @@
                 <tr>
                     <td width="40" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
                     <td height="28" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">项目名称</td>
-                    <td width="60" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">工时/数量</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">工时/数量</td>
                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">单价</td>
                     <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">金额</td>
                     <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">优惠率</td>
@@ -449,7 +449,7 @@
 	        	   document.getElementById("spstorename").innerHTML = "结账单";
 	        	   document.getElementById("show").innerHTML = params.currRepairSettPrintContent||"";
 	        	}else if(params.name == "报价单"){
-	        	   $("#enterDate").hide();
+	        	   //$("#enterDate").hide();
 	        	   document.getElementById("spstorename").innerHTML = "报价单";
 	        	   document.getElementById("show").innerHTML = params.currRepairEntrustPrintContent||"";
 	        	}
@@ -463,6 +463,8 @@
 	        
 	        document.getElementById("guestAddr").innerHTML = params.currCompAddress;
     		document.getElementById("phone").innerHTML = params.currCompTel;
+    		document.getElementById("slogan1").innerHTML = params.currSlogan1;
+    		document.getElementById("slogan2").innerHTML = params.currSlogan2;
     		
 	        $.ajaxSettings.async = false;//设置为同步执行
 	        var url = null;

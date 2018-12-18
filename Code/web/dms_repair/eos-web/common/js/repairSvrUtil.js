@@ -693,6 +693,8 @@ function doPrint(params){
         bankAccountNumber: currBankAccountNumber,
         currCompAddress: currCompAddress,
         currCompTel: currCompTel,
+        currSlogan1: currSlogan1,
+        currSlogan2: currSlogan2,
 		token : token
 	};
 	if(source == 1){  //打印报价单

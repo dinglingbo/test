@@ -70,6 +70,8 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="isPrimaryBusiness" name="name" width="100"  headeralign="center" >是否主营业务</div>
                 <div field="shortName" name="name" width="100"  headeralign="center" >客户简称</div>
                 <div field="charOffAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" >收款金额</div>
+                <div field="feeService" name="feeService" width="50" summaryType="sum" headeralign="center" >手续费</div>
+                <div field="trueInoutAmt" name="trueInoutAmt" width="50" summaryType="sum" headeralign="center" >实收金额 </div>
                 <div field="auditor" name="auditor" width="60"  headeralign="center" >收款人</div>
                 <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" >收款日期</div>
                 <div field="fullName" name="name" width="120"  headeralign="center" >客户全称</div>

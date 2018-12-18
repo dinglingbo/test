@@ -401,7 +401,7 @@
 							border-radius: 5px;
 							line-height: 2;
 							text-decoration: none;" 
-							href="javascript:void(0)" onclick="noPay()">转结算</a>
+							href="javascript:void(0)" onclick="noPay()">转预结算</a>
 					</td>
 					<td >
 						<a id="btnsettle" style="    width: 120px;

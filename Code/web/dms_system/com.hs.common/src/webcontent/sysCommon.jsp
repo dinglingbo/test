@@ -91,6 +91,8 @@
     String empId = "";
     String bankName = "";
     String bankAccountNumber = "";
+    String slogan1 = "";
+    String slogan2 = "";
 	Map attr=new HashMap();
 	Object billParamsObj = null;
 	Map billParams = new HashMap();
@@ -145,6 +147,12 @@
                 }
                 if(attr.get("bankAccountNumber") != null){
                 	bankAccountNumber = attr.get("bankAccountNumber").toString();
+                }
+                if(attr.get("slogan1") != null){
+                	slogan1 = attr.get("slogan1").toString();
+                }
+                if(attr.get("slogan2") != null){
+                	slogan2 = attr.get("slogan2").toString();
                 }
                 
                 if(attr.get("billParams") != null){
@@ -213,6 +221,9 @@
     var token = "<%=token %>";
     var currCompAddress = "<%=compAddress %>";
     var currCompTel = "<%=compTel %>";
+    var currBankName = "<%=bankName %>";
+    var currSlogan1 = "<%=slogan1 %>";
+    var currSlogan2 = "<%=slogan2 %>";
     var currBankName = "<%=bankName %>";
     var currBankAccountNumber = "<%=bankAccountNumber %>";
     var currRepairBillQrcodeFlag = "<%=repairBillQrcodeFlag %>";

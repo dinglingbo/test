@@ -34,7 +34,8 @@
     background:#368bf4;/* 20180708#fff */
     cursor:default;
     font-size: 20px;
-    font-weight: bold;    
+    font-weight: bold;   
+    white-space:nowrap; 
 }
     #_sys_tip_msg_ {
         z-index: 9999;

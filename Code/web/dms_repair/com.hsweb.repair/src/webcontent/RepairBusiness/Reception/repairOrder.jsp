@@ -383,19 +383,19 @@
 	                     	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
 	                    </td>
 	                    <td>
-	                        <div style="font-size: 20px; font-family: 微软雅黑;">&nbsp;&nbsp;<span id="comp"></span></div>
+	                        <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
 	                    </td>
-	                    <td rowspan="2" style="width: 300px;">
-	                        <div style="font-size: 30px; font-family: 微软雅黑;"><b><span id="spstorename"></span></b></div>
-	                        <div style="padding-top: 2px; font-size: 16px;">
+	                    <td rowspan="2" style="">
+	                        <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
+	                        <div style="padding-top: 2px; font-size: 16px;font-family: Arial;">
 	                          №:<span id="serviceCode"></span>  
 	                        </div>
 	                    </td>
 	                </tr>
 	                <tr>
-	                	<td>
-	                	<!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜</br>
-	                	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中国第15店/河南华胜-->
+	                	<td >
+	                	<div style="font-size: 8px;padding-left: 10px; "><span id="slogan1"></span></div>
+	                	<div style="font-size: 8px;padding-left: 10px; "><span id="slogan2"></span></div>
 	                	</td>
 	                </tr>
 	            </tbody>
@@ -403,14 +403,14 @@
             <hr />
               <table width="100%" border="0" cellspacing="0" cellpadding="0">
              <tr>
-                <td>地址：<span id="guestAddr"></span></td>
+                <td  style="font-size:8px;">地址：<span id="guestAddr"></span></td>
 <!--                 <td  id="openBank" style="width: 300px;">开户银行：</td> -->
-                <td  style="width: 300px;">打印时间：<span id="date"></span></td>
+                <td  style="width: 190px;font-size:8px;">打印时间：<span id="date"></span></td>
             </tr> 
             <tr>
-                <td>电话：<span id="phone"></span></td>
+                <td style="font-size:8px;">电话：<span id="phone"></span></td>
 <!--                 <td  id="bankNo" >银行账号：</td> -->
-             	<td  id="enterDate" >进厂时间：</td>
+             	<td  id="enterDate" style="font-size:8px;">进厂时间：</td>
             </tr>
         </table>
     
@@ -545,9 +545,9 @@
 			           break;
 			        }
 	        	}
-	        	var engineNo = maintain.engineNo;
-        		var carNo = maintain.carNo;
-        		var carVin = maintain.carVin;
+	        	var engineNo = maintain.engineNo || "";
+        		var carNo = maintain.carNo || "";
+        		var carVin = maintain.carVin || "";
         		var enterDate = maintain.enterDate || "";
         		var carModel = maintain.carModel || "";
         		if(enterDate){

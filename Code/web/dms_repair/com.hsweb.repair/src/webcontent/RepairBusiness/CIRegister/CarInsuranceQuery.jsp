@@ -55,8 +55,7 @@ pageEncoding="UTF-8" session="false"%>
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
                     <a class="nui-button" iconCls="" onclick="onSearch()" plain="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <a class="nui-button" iconCls="" onclick="advancedSearch()" plain="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
-             
+                    <!-- <a class="nui-button" iconCls="" onclick="advancedSearch()" plain="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
                 </td>
             </tr>
         </table> 
@@ -81,8 +80,8 @@ pageEncoding="UTF-8" session="false"%>
                     <div field="id" headeralign="center" allowsort="true" visible="false" width="80px">主键</div>
                     <div field="carNo" headeralign="center" allowsort="true" visible="true" width="90px">车牌号</div>
                     <!-- <div field="carBrandId" headeralign="center" allowsort="true" visible="true" width="80px">品牌</div> -->
-                    <div field="carModel" headeralign="center" allowsort="true" visible="true" width="230px">品牌车型</div>
-                    <div field="carVin" headeralign="center" allowsort="true" visible="true" width="130px">车架号(VIN)</div>
+                    <div field="carModel" headeralign="center" allowsort="true" visible="true" width="180px">品牌车型</div>
+                    <div field="carVin" headeralign="center" allowsort="true" visible="true" width="150px">车架号(VIN)</div>
                     <div field="guestName" headeralign="center" allowsort="true" visible="true" width="80px">客户名称</div>
 <!--                     <div field="mobile" headeralign="center" allowsort="true" visible="true" width="100px">客户手机</div> -->
                     <div field="insureCompName" headeralign="center" allowsort="true" visible="true" width="230px">保险公司</div>

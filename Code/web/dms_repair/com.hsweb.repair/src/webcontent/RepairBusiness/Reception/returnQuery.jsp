@@ -10,7 +10,7 @@
 -->
 <head>
 <title>退货开单查询</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnQuery.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnQuery.js?v=1.0.5"></script>
 <style type="text/css">
 
 .title {
@@ -40,7 +40,12 @@
     margin-top: 20px;
     background-size: 50%;
 }
-
+ #wechatTag1{
+    color:#ccc;
+    }
+#wechatTag{
+    color:#62b900;
+    }
 </style>
 
 </head>
@@ -74,7 +79,7 @@
 		                </ul>
                     
                     <span class="separator"></span>
-                    <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+                    <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="carNoSearch"/>
                     <label class="form_label">退货日期&nbsp;从：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
@@ -108,8 +113,8 @@
               <div property="columns">
                   <div type="indexcolumn">序号</div>
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-                  <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>
-                  <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
+                  <div field="contactName" name="contactName" width="55" headerAlign="center" header="联系人姓名"></div>
+                  <div field="contactMobile" name="contactMobile" width="80" headerAlign="center" header="联系人手机"></div>
                   <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌" visible="false"></div>           
                   <div field="carModel" name="carModel" width="180" headerAlign="center" header="品牌车型" visible="false"></div>
                   <div field="partAmt" name="partAmt" width="40" headerAlign="center" header="金额"></div>
@@ -118,7 +123,7 @@
 	              <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
 	              <div field="status" name="status" width="50" headerAlign="center" header="状态"></div>
 	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-	               <div field="outDate" name="outDate" width="100" headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+	              <div field="outDate" name="outDate" width="100" headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd HH:mm"></div>
 	              <div field="remark" name="carModel" width="100" headerAlign="center" header="备注" ></div>
                  </div>
          </div>

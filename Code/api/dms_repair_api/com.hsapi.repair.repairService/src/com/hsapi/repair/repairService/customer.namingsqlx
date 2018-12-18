@@ -77,6 +77,17 @@
               <isNotEmpty prepend="and" property="vin">  
                 (a.vin like '%$vin$%')
             </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="type">  
+             	<!-- 
+             		0全部、1活跃期（ 近三个月内有消费）、2稳定期（ 近三个月无消费、近6个月有消费）、
+                    3睡眠期（ 近6个月无消费、近1个月有消费）、4流失期（ 1年以上无消费）、5未分类（无消费历史）
+             	-->
+                <isEqual prepend="and" property="type" compareValue="1">
+					and c.last_leave_date  &gt;= date_format(DATE_ADD(curdate(),interval -day(curdate())+1 day),'%Y-%m-%d %H:%i:%s')  
+                	and c.last_leave_date  &lt; date_format(date_add(curdate()-day(curdate())+1,interval 1 month),'%Y-%m-%d %H:%i:%s')
+				</isEqual>
+            </isNotEmpty>
                         
             <!--本日来厂-->
             <isEqual  property="todayEnter" compareValue="1">

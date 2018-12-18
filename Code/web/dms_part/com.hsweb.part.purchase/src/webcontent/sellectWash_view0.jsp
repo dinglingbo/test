@@ -67,10 +67,10 @@
 	                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
 	                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
 	                </ul>
-                    <input class="nui-combobox" id="search-type" width="93" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+                    <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="carNoSearch"/>
                     <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
-                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="80" valueFromSelect="true"/>
+                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="90" valueFromSelect="true"/>
  
   结算日期:
                     <input id="sOutDate" name="sOutDate" class="nui-datepicker"/>
@@ -123,22 +123,22 @@
                   
                   <div header="结算信息" headerAlign="center">
 	                  <div property="columns" >	                  
-		                  <div field="packageSubtotal" name="status" width="60" headerAlign="center" header="套餐小计"></div>
-		                  <div field="itemSubtotal" name="carNO" width="60" headerAlign="center" header="工时小计"></div>
-		                  <div field="partSubtotal" name="carBrandId" width="60" headerAlign="center" header="配件小计"></div>
-		                  <div field="cardTimesAmt" name="cardTimesAmt" width="60" headerAlign="center" header="预存抵扣"></div>
-		                  <div field="totalPrefAmt" name="carVin" width="60" headerAlign="center" header="优惠金额"></div>
-		                  <div field="otherAmt" name="guestFullName" width="60" headerAlign="center" header="其他收入"></div>
-		                  <div field="otherCostAmt" name="guestMobile" width="60" headerAlign="center" header="其他支出"></div>
-		                  <div field="balaAmt" name="contactName" width="60" headerAlign="center" header="结算金额"></div>
+		                  <div field="packageSubtotal" name="status" width="70" headerAlign="center" header="套餐小计"></div>
+		                  <div field="itemSubtotal" name="carNO" width="70" headerAlign="center" header="工时小计"></div>
+		                  <div field="partSubtotal" name="carBrandId" width="70" headerAlign="center" header="配件小计"></div>
+		                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" header="预存抵扣"></div>
+		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" header="优惠金额"></div>
+		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" header="其他收入"></div>
+		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" header="其他支出"></div>
+		                  <div field="balaAmt" name="contactName" width="70" headerAlign="center" header="结算金额"></div>
 	                  </div>
                   </div>
                   
                    <div header="其他" headerAlign="center">
 	                  <div property="columns" >
 		                 <!--  <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div> -->
-		                  <div field="carModel" name="carModel" width="330" headerAlign="center" header="品牌车型"></div>
-		                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="车架号(VIN)"></div>
+		                  <div field="carModel" name="carModel" width="200" headerAlign="center" header="品牌车型"></div>
+		                  <div field="carVin" name="carVin" width="140" headerAlign="center" header="车架号(VIN)"></div>
 		                  <div field="sureMtDate" name="sureMtDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="维修日期"></div>
 		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="完工日期"></div>
 		                  <div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="结算日期"></div>

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修项目</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.21" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.22" type="text/javascript"></script>
 
 </head>
 <body>
@@ -139,7 +139,7 @@
 						<div field="amt" headerAlign="center" allowSort="true" width="50px">金额</div>
 						<div field="code" headerAlign="center" width="50px">项目编码</div>
 						<div field="useTimes" headerAlign="center" width="50px">使用次数</div>
-						<div field="isCalTimes" name="isCalTimes" headerAlign="center" allowSort="true" width="50px">是否启用计数</div>
+						<div field="isCalTimes" name="isCalTimes" headerAlign="center" allowSort="true" width="60px">是否禁用计数</div>
 						<div field="isDisabled" name="isDisabled" headerAlign="center" allowSort="true" width="50px">是否禁用</div>
 						<div field="isShare" name="isShare" headerAlign="center" allowSort="true" width="50px">是否共享</div>
 							

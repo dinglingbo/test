@@ -165,7 +165,7 @@
 											value="0" maxValue="1000000000"
 											changeOnMousewheel="true" showButton="false"
 											width="38%"  selectOnFocus="true"/>
-								    <label id="isCalTimes">是否启用计数：</label>
+								    <label id="isCalTimes">是否禁用计数：</label>
 								   <input name="isCalTimes" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
 								   <label id="isShareTd">是否共享：</label> 
 								   <input id="isShare" name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>

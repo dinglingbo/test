@@ -1022,7 +1022,7 @@ function add(){
 }
 function save(){
 	
-	var data = billForm.getData();
+	var data = billForm.getData(true);
 	if(data.status == 2){
 		showMsg("工单已完工","W");
         return;        
@@ -1270,7 +1270,7 @@ var requiredField = {
 };
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function saveMaintain(callback,unmaskcall){
-    var data = billForm.getData();
+    var data = billForm.getData(true);
     for ( var key in requiredField) {
 	      if (!data[key] || $.trim(data[key]).length == 0) {
 	        unmaskcall && unmaskcall();

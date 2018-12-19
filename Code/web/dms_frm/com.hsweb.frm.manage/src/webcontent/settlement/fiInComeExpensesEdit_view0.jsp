@@ -83,7 +83,9 @@ pageEncoding="UTF-8" session="false" %>
 	            </tr>
 	            <tr class="htr">
 	                <td class=" right fwidtha">上级项目:</td>
-	                <td ><input id="parentId" name="parentId" width="100%" class="nui-combobox" textField="name" valueField="id"     dataField="" url="" valueFromSelect="true" allowinput="true"></td>
+	                <td ><input id="parentId" name="parentId" width="100%" class="nui-combobox" textField="name" valueField="id"     
+	                		dataField="" url="" valueFromSelect="true" allowinput="true" popupheight="100">
+	                </td>
 	            </tr>
 	            <tr class="htr">
 	                <td class=" right fwidtha required">项目类型:</td>

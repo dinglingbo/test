@@ -1965,12 +1965,18 @@ function addGuest(){
 }
 function onPrint(){
 	var from = basicInfoForm.getData();
-	var params={};
-	var detailParams={};
-	params.id=from.id;
-	params.auditSign=form.auditSign;
+	var params={
+			id : from.id,
+		auditSign:from.auditSign	
+	};
+	var detailParams={
+			mainId :from.id,
+			auditSign:from.auditSign
+	};
+//	params.id=from.id;
+//	params.auditSign=from.auditSign;
 	detailParams.mainId = from.id;
-	detailParams.auditSign=form.auditSign;
+	detailParams.auditSign=from.auditSign;
 	var openUrl = webPath + contextPath+"/purchase/purchaseOrder/purchaseOrderPrint.jsp";
 
     nui.open({
@@ -1982,7 +1988,7 @@ function onPrint(){
        showHeader: true,
        onload: function() {
            var iframe = this.getIFrameEl();
-           iframe.contentWindow.SetData(params,detailParms);
+           iframe.contentWindow.SetData(params,detailParams);
        },
    });
 }

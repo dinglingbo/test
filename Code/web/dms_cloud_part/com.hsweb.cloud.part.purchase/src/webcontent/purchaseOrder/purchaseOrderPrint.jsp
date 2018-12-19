@@ -357,7 +357,7 @@ hr {
     		document.getElementById("spstorename").innerHTML = "采购订单";
     		document.getElementById("guestAddr").innerHTML = "地址："+currCompAddress;
 	   		document.getElementById("phone").innerHTML ="电话："+currCompTel;
-	   		$.post(MainUrl,{params:params},function(text){
+	   		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
 	   			var formParms =text.pjPchsOrderMainList[0];
 	       		$('#guestFullName').text("供应商:"+formParms.guestFullName);
 	       		$('#createDate').text("订单日期："+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
@@ -366,7 +366,8 @@ hr {
 	    		$('#billTypeId').text("票据类型:"+formParms.billTypeId);
 	    		$('#settleTypeId').text("结算方式:"+formParms.settleTypeId);
     		});
-    		$.post(DetailUrl,{params:detailParms},function(text){
+    	
+    		$.post(DetailUrl+"?params/mainId="+detailParms.mainId+"&params/auditSign="+detailParms.auditSign+"&token="+token,{},function(text){
 				var data= text.pjPchsOrderDetailList;
 				var tBody = $("#tbodyId");
 				tBody.empty();

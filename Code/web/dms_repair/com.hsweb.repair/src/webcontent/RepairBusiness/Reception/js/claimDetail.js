@@ -750,7 +750,6 @@ function doSetMainInfo(car){
     maintain.serviceTypeId = 3;
     maintain.mtAdvisorId = currEmpId;
     maintain.mtAdvisor = currUserName;
-    maintain.recordDate = now;
     maintain.sex = car.sex;
     maintain.idNo = car.idNo;
     maintain.remark = car.remark;
@@ -1032,7 +1031,6 @@ function add(){
     nui.get("mtAdvisorId").setValue(currEmpId);
     nui.get("mtAdvisor").setValue(currUserName);
     nui.get("serviceTypeId").setValue(3);
-    nui.get("recordDate").setValue(now);
     nui.get("enterDate").setValue(now);
 
     fguestId = 0;
@@ -1312,7 +1310,6 @@ var requiredField = {
     guestId : "客户",
     enterOilMass : "进厂油量",
     enterKilometers : "进厂里程",
-    enterDate : "进厂日期",
     planFinishDate : "预计交车"
 };
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
@@ -1322,12 +1319,18 @@ function saveMaintain(callback,unmaskcall){
     for(var v in desData){
         data[v] = desData[v];
     }
+    if (data.planFinishDate) {
+		data.planFinishDate = format(data.planFinishDate, 'yyyy-MM-dd HH:mm:ss');
+	}
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
             unmaskcall && unmaskcall();
             showMsg(requiredField[key] + "不能为空!","W");
 			return;
 		}
+    }
+    if(data.id) {
+    	delete data.enterDate;
     }
     data.billTypeId = 4;
     data.lastEnterKilometers = $("#lastComeKilometers").text() || 0;
@@ -4655,7 +4658,7 @@ function SearchLastCheckMain() {
 
     var  tempParams = {
         carNo:nui.get("carNo").value,
-        endDate:nui.get("recordDate").text
+        endDate:nui.get("enterDate").text
     };
     nui.ajax({
         url: baseUrl + "com.hsapi.repair.repairService.repairInterface.QueryLastCheckMain.biz.ext",

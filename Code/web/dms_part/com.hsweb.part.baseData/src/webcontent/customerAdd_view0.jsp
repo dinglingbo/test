@@ -229,7 +229,7 @@
         </div>
         <div name="tab2" title="其他信息">
             <div class="nui-fit" id= "otherForm">
-              <div class="vpanel mainwidth" style="height:auto;">
+              <div class="vpanel mainwidth" style="height:auto; ">
                   <!-- <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>基本信息</span></div> -->
                   <div class="vpanel_body vpanel_bodyww">
 
@@ -301,7 +301,7 @@
             </div>
             <div class="nui-fit" id= "logisticsForm">
 
-              <div class="vpanel mainwidth" style="height:auto;">
+              <div class="vpanel mainwidth" style="height:auto;width:auto;">
                   
                   <div id="logisticsGrid" class="nui-datagrid" allowResize="true" style="width:100%;height:100%;"
                        url=""  idField="id" multiSelect="true"
@@ -315,7 +315,7 @@
                           <div allowSort="true" field="receiveMan" width="40" headerAlign="center">收货人</div>
                           <div allowSort="true" field="receiveManTel" width="60" headerAlign="center">联系方式</div>
                           <div allowSort="true" field="address" width="120" headerAlign="center">收货地址</div>
-                          <div type="checkboxcolumn" allowSort="true" field="isDefault" width="20" headerAlign="center" trueValue="1" falseValue="0">默认</div>
+                          <div type="checkboxcolumn" allowSort="true" field="isDefault" width="28" headerAlign="center" trueValue="1" falseValue="0">默认</div>
                       </div>
                   </div>
 

@@ -182,12 +182,16 @@
 				and ( a.CarModelID = '00000000' )
 			</isNull>
 			
+			<isNotNull property="itemType">
+				AND (b.cartypef = #itemType# or b.cartypes = #itemType# or b.cartypet = #itemType#)
+			</isNotNull>
+			
 			<isNotNull property="businessTypes">
 				AND b.Business_Type in ($businessTypes$)
 			</isNotNull>
 			
 			<isNotNull property="businessType">
-				AND b.Business_Type =  #businessType#
+				AND b.Business_Type = #businessType#
 			</isNotNull>
 			
 			<isNotNull property="itemName">

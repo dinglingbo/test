@@ -1313,7 +1313,7 @@ var requiredField = {
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function saveMaintain(callback,unmaskcall){
     var data = billForm.getData();
-    var desData = describeForm.getData();
+    var desData = describeForm.getData(true);
     for(var v in desData){
         data[v] = desData[v];
     }

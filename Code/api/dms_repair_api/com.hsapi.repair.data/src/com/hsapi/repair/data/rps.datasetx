@@ -67785,7 +67785,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property158" name="itemAmt" displayName="itemAmt" columnName="item_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="10" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property158" name="itemAmt" displayName="itemAmt" columnName="item_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>工时金额</comment>
       <viewField dict="false" dictTypeId="" displayName="itemAmt" entityField="itemAmt" id="itemAmt" label="itemAmt" name="itemAmt" userDefined="true">
         <fieldView showAllAttr="false">
@@ -67851,7 +67851,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property358" name="partAmt" displayName="partAmt" columnName="part_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="10" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property358" name="partAmt" displayName="partAmt" columnName="part_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>配件金额</comment>
       <viewField dict="false" dictTypeId="" displayName="partAmt" entityField="partAmt" id="partAmt" label="partAmt" name="partAmt" userDefined="true">
         <fieldView showAllAttr="false">
@@ -67917,7 +67917,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property359" name="packageAmt" displayName="packageAmt" columnName="package_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="10" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
+    <columnProperty id="property359" name="packageAmt" displayName="packageAmt" columnName="package_amt" nullAble="true" PK="false" defaultValue="0.00" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="2" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.00">
       <comment>套餐金额</comment>
       <viewField dict="false" dictTypeId="" displayName="packageAmt" entityField="packageAmt" id="packageAmt" label="packageAmt" name="packageAmt" userDefined="true">
         <fieldView showAllAttr="false">

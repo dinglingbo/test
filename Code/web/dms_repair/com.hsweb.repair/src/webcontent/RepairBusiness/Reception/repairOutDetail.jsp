@@ -12,7 +12,7 @@
 <head> 
     <title>配件出库详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.1.10"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.1.15"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -137,6 +137,7 @@
         <input class="nui-hidden" name="contactorId"/>
         <input class="nui-hidden" name="carId"/>
         <input class="nui-hidden" name="status"/>
+        <input class="nui-hidden" name="serviceCode"/>
         <input class="nui-hidden" name="drawOutReport"/>
         <input class="nui-hidden" name="contactorName"/>
         <input class="nui-hidden" name="identity"/>

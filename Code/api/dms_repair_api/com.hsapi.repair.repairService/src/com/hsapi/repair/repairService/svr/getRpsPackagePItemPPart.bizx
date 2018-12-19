@@ -287,7 +287,6 @@
     <location x="825" y="144"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart3label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="itemList" iterableElement="itemTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart3label" name="label" nodeType="label">
@@ -346,6 +345,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">pkgTemp/packageId</process:from>
       <process:to type="query">tempHash/prdtId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">tempHash/prdtCode</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">pkgTemp/packageName</process:from>
@@ -438,6 +441,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">tempHash/billPackageId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">tempHash/pickQty</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -734,6 +741,10 @@
       <process:to type="query">tempHash/prdtId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">itemTemp/itemCode</process:from>
+      <process:to type="query">tempHash/prdtCode</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">itemTemp/itemName</process:from>
       <process:to type="query">tempHash/prdtName</process:to>
     </process:copy>
@@ -820,6 +831,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">pkgTemp/id</process:from>
       <process:to type="query">tempHash/billPackageId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">tempHash/pickQty</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -919,6 +934,10 @@
       <process:to type="query">tempHash/prdtId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">partTemp/partCode</process:from>
+      <process:to type="query">tempHash/prdtCode</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">partTemp/partName</process:from>
       <process:to type="query">tempHash/prdtName</process:to>
     </process:copy>
@@ -1001,6 +1020,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">pkgTemp/serviceId</process:from>
       <process:to type="query">tempHash/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partTemp/pickQty</process:from>
+      <process:to type="query">tempHash/pickQty</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">

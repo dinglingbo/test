@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>理赔开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.6.15"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.6.18"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -230,7 +230,7 @@
 </div>
 <div class="nui-fit">
     <div class="" style="width:100%; height:110px" >
-    <%@include file="/repair/RepairBusiness/Reception/repairCarInfo.jsp" %>
+    <%@include file="/repair/RepairBusiness/Reception/repairCarInfoLp.jsp" %>
     </div>
 
     <div style="text-align:center;" >

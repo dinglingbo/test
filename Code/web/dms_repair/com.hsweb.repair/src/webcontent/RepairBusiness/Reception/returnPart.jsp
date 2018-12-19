@@ -1,5 +1,4 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/common.jsp"%>
 <%@include file="/common/commonRepair.jsp"%>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -11,7 +10,7 @@
 <head>
 <title>可退配件</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnPart.js?v=1.0.5"></script> 
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnPart.js?v=1.0.6"></script> 
 </head>
 <body>
   
@@ -44,22 +43,22 @@
         <div headerAlign="center" type="indexcolumn" width="20">序号</div>
           <div header="配件信息" headerAlign="center">
             <div property="columns">
-                <div field="serviceCode" headerAlign="serviceCode" allowSort="false" visible="true" width="100" header="所属工单号"></div>
+                <div field="serviceCode" headerAlign="serviceCode" allowSort="false" visible="true" width="90" header="所属工单号"></div>
                 <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
                 <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码"></div> 
-                <div field="qty" name="qty" summaryType="sum"  numberFormat="0" width="60" headerAlign="center" header="数量"> </div>
-                <div field="pickQty" name="pickQty" summaryType="sum"  numberFormat="0" width="60" headerAlign="center" header="已领数量"> </div>
-                <div field="unitPrice" width="60" headerAlign="center" header="单价"></div>
-                <div field="subtotal" summaryType="sum"  width="60" headerAlign="center" header="金额"></div>
+                <div field="qty" name="qty" summaryType="sum"  numberFormat="0" width="50" headerAlign="center" header="数量"> </div>
+                <div field="pickQty" name="pickQty" summaryType="sum"  numberFormat="0" width="50" headerAlign="center" header="已领数量"> </div>
+                <div field="unitPrice" width="50" headerAlign="center" header="单价"></div>
+                <div field="subtotal" summaryType="sum"  width="50" headerAlign="center" header="金额"></div>
                 <div field="saleMan" headerAlign="center"  allowSort="false" visible="true" width="50" header="销售员" align="center">
                      <input  property="editor" enabled="true" dataField="memList" 
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
                              url="" onvaluechanged="onpartsalemanChanged" emptyText=""  vtype="required"/> 
                 </div>
                 <div field="saleManId" headerAlign="center"
-                     allowSort="false" visible="false" width="80" header="销售员" align="center">
+                     allowSort="false" visible="false" width="70" header="销售员" align="center">
                 </div> 
-                <div field="recordDate" width="60" headerAlign="center" header="购买日期" dateFormat="yyyy-MM-dd HH:mm"> </div>
+                <div field="recordDate" width="70" headerAlign="center" header="购买日期" dateFormat="yyyy-MM-dd HH:mm"> </div>
            </div>
          </div>
        </div>

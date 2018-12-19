@@ -67,10 +67,10 @@
 	                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
 	                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
 	                </ul>
-                    <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
-                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"/>
+                    <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch"/>
                     <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
-                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="80" valueFromSelect="true"/>
+                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="90" valueFromSelect="true"/>
  
   结算日期:
                     <input id="sOutDate" name="sOutDate" class="nui-datepicker"/>
@@ -128,16 +128,16 @@
                   <div header="业务信息" headerAlign="center">
 	                  <div property="columns" >
 		                  <div field="carNo" name="carNO" width="60" headerAlign="center" header="车牌号"></div>
-		                  <div field="enterDate" name="enterDate" width="80" headerAlign="center" header="进厂时间" dateFormat="yyyy-MM-dd"></div>
+		                  <div field="enterDate" name="enterDate" width="80" headerAlign="center" header="进厂时间" dateFormat="yyyy-MM-dd HH:mm"></div>
 		                  <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
 		                  <div field="carBrandId" name="carBrandId" width="80" headerAlign="center" visible="false" header="品牌"></div>
 		                  <div field="carModel" name="carModel" width="150" headerAlign="center" header="品牌车型"></div>
-		                  <div field="carVin" name="carVin" width="140" headerAlign="center" header="VIN码"></div>
+		                  <div field="carVin" name="carVin" width="140" headerAlign="center" header="车架号(VIN码)"></div>
 		                  <div field="guestFullName" name="guestFullName" width="60" headerAlign="center" header="客户姓名"></div>
 <!-- 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div> -->
 		                  <div field="mtAdvisor" name="mtAdvisor" width="70" headerAlign="center" header="服务顾问"></div>
 		                  <div field="serviceTypeId" name="serviceTypeId" width="60" headerAlign="center" header="业务类型"></div> 
-		                  <div field="outDate" name="outDate" width="100" headerAlign="center" header="出厂时间" dateFormat="yyyy-MM-dd"></div>
+		                  <div field="outDate" name="outDate" width="100" headerAlign="center" header="出厂时间" dateFormat="yyyy-MM-dd HH:mm"></div>
 	                  </div>
                   </div>
               </div>

@@ -222,31 +222,25 @@
                 </div>
             </div>
         </fieldset>
-
-
-
      <fieldset style="width:97%;border:solid 1px #aaa;margin-top:8px;position:relative;height:50%;">
       <legend>服务记录</legend>
         <div id="mainGrid1" class="nui-datagrid" style="width:100%;height:190px;" selectOnLoad="true" showPager="true" 
             totalField="page.count"  dataField="data" onrowdblclick="" allowCellSelect="true" url="">
             <div property="columns">
                 	<div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号"></div>
-	                <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>
-	                <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div>
+	               <!--  <div field="guestFullName" name="guestFullName" width="55" headerAlign="center" header="客户姓名"></div>
+	                <div field="guestMobile" name="guestMobile" width="80" headerAlign="center" header="客户手机"></div> -->
 	                <div field="contactName" name="contactName" width="65" headerAlign="center" header="联系人姓名"></div>
                   	<div field="contactMobile" name="contactMobile" width="80" headerAlign="center" header="联系人手机"></div>
                   	<div field="mtAdvisor" name="mtAdvisor" width="70" headerAlign="center" header="服务顾问"></div>
 	                <div field="serviceCode" name="serviceCode" width="120" headerAlign="center" header="工单号"></div>
                     <div field="recordDate" name="recordDate" width="110" headerAlign="center" header="开单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div field="balaAmt" name="balaAmt" width="60" headerAlign="center" header="金额"></div>
-                    
             </div>
         </div>
        </fieldset>
     </div>
     </div>
-
-
 	<script type="text/javascript">
     	nui.parse();
     </script>

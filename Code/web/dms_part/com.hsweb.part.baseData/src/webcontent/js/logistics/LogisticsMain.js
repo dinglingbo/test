@@ -85,7 +85,7 @@ function addOrEditLogistics(comguest)
         targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.baseData.LogisticsDetail.flow?token="+token,
         allowResize:false,
-        title: title, width: 450, height: 200,
+        title: title, width: 470, height: 250,
         onload: function ()
         {
             var iframe = this.getIFrameEl();

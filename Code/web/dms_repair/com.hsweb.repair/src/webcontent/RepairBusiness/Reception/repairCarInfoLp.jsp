@@ -22,6 +22,7 @@
                 <input class="nui-hidden" name="isSettle"/>
                 <input class="nui-hidden" name="isOutBill"/>
                 <input class="nui-hidden" name="carModelIdLy"/>
+                <input class="nui-hidden" name="insureCompId" id="insureCompId"/>
                 <tr>
                         <td class="title required">
                             <label>车&nbsp;牌&nbsp;&nbsp;号：</label>
@@ -30,8 +31,9 @@
                         <td class="title required">
                             <label >进厂时间：</label>
                         </td>
-                        <td style="width:15%">
+                        <td >
                             <input id="enterDate" name="enterDate" enabled="false" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
+                            <input id="recordDate" name="recordDate" class="nui-datepicker" visible="false" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
                         </td>
                         <td class="title" >
                            <label>品牌车型：</label>
@@ -66,36 +68,44 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="title required">
-                            <label>进厂油量：</label>
-                        </td>
-                        <td>
-                            <input name="enterOilMass"
-                                   id="enterOilMass"
-                                   class="nui-combobox width1"
-                                   textField="name"
-                                   valueField="customid"
-                                   emptyText="请选择..."
-                                   url=""
-                                   width="100%"
-                                   allowInput="true"
-                                   showNullItem="false"
-                                   valueFromSelect="true"
-                                   nullItemText="请选择..."/>
-                        </td>
-                        <td class="title required">
+                       <td class="title required">
+                            <label>保险公司：</label>
+                       </td> 
+                      <td class="">
+                      <input class="nui-combobox" id="insureComp" name="insureCompName" 
+                         emptyText="选择保险公司" dataField="list" valueField="fullName" textField="fullName" 
+                         showNullItem="true" nullItemText="请选择..."popupWidth="200" onvaluechanged="insuranceChange"
+                         width="100%"/>
+                      </td>
+                        <td class="title required" > 
+                          <label>进厂油量：</label>
+                     </td> 
+                     <td class="title required" colspan="3" style="text-align:left;">
+                           <input name="enterOilMass"
+                               id="enterOilMass"
+                               class="nui-combobox width1"
+                               textField="name"
+                               valueField="customid"
+                               emptyText="请选择..."
+                               url=""
+                               width="15%"
+                               allowInput="true"
+                               showNullItem="false"
+                               valueFromSelect="true"
+                               nullItemText="请选择..."/>
+                      
+                      			&nbsp;&nbsp;
                               <label>进厂里程：</label>
-                          </td>
-                          <td >
-                               <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="100000000"  width="30%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
-                               <label class="title">(上次里程：<span id="lastComeKilometers">0</span>)</label>
-                          </td>
+                       
+                               <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="100000000"  width="10%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
+                               <label class="title" style="color:#000">(上次里程：<span id="lastComeKilometers">0</span>)</label>
+                         
+                         
                         
-                        <td class="title required">
+                      		&nbsp;&nbsp;
                             <label>预计交车：</label>
-                        </td>
-                        <td>
-                            <input id="planFinishDate" name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm" nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" width="100%"/>
+                    
+                            <input id="planFinishDate" name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm" nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" width="32%"/>
                         </td>
                     	<td class="title required">
                             <label>服&nbsp;务&nbsp;&nbsp;顾&nbsp;问：</label>
@@ -114,7 +124,7 @@
                                    valueFromSelect="true"
                                    nullItemText="请选择..."/>
                         </td>
-                        <td class="title">
+                       <td class="title">
                             <label>备注：</label>
                         </td>
                         <td >

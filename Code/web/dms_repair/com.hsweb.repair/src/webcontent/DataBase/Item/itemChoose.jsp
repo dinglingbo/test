@@ -12,7 +12,7 @@
 <head>
 <title>维修项目</title>
 
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.10" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.26" type="text/javascript"></script>
 <style type="text/css">
     html, body{
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
@@ -28,39 +28,77 @@
         .addyytime a .hui{text-decoration:none;transition:all .4s ease;}
 </style>
 </head>
-<body>
-
-<div class="nui-fit">
+<body>       
+   <div class="nui-fit">
 	<div class="nui-splitter" style="width: 100%; height: 100%;"
 		 showHandleButton="false">
 		<div size="200" showCollapseButton="false">
 			<div class="nui-fit">
-				<div class="nui-toolbar"
-					 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
-					<span>本地项目类型</span>
-				</div>
-				<div class="nui-fit">
-				<div style="width: 100%; height: 40%;">
-					<ul id="tree1" class="nui-tree" url="" style="width: 100%;"
-						dataField="data"
-						resultAsTree="false"
-						showTreeIcon="true"
-						textField="name" idField="id" parentField="dictid">
-					</ul>
-				</div>
+				<!-- onactivechanged="onTabChanged" -->
+				 <div class="nui-tabs"  id="mainTab" 
+                           activeIndex="0" style="width: 100%; height: 100%;" plain="false" borderStyle="border:0;">
+                     
+                  <div title="热词">
+                          <div class="addyytime" style="display:''" id="showHot" >
+                             <table style="width:100%;height:50px;">
+		                        <tr>
+				                    <td id="addAEl">
+				                     <!-- <a href='javascript:;' itemid='"+timeStr+"' class='hui'>"+timeStr+"</a> -->
+				                   <!--     <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
+				                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
+				                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户ghjvhj</a>
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到hu</a>
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a> 
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>员工生日</a>
+				                        <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
+				                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
+				                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户</a>
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到</a>
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a> 
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>员工生日</a>
+				                        <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
+				                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
+				                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户</a>
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到</a>
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a>  -->
+				                        
+				                    </td>
+		                       </tr>
+                         </table>
+                      </div>
+                      
+                      </div>
+                      <div title="分类">
+                      <div class="nui-toolbar"
+					         style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
+					      <span>本地项目类型</span>
+				      </div>
+				         <div style="width: 100%; height: 40%;">
+							<ul id="tree1" class="nui-tree" url="" style="width: 100%;"
+								dataField="data"
+								resultAsTree="false"
+								showTreeIcon="true"
+								textField="name" idField="id" parentField="dictid">
+							</ul>
+				        </div>
 			
-			    
-				<div class="nui-toolbar"
-					 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
-					<span>标准项目类型</span>
-				</div>
-				<div style="width: 100%; height: 50%;">
-					<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
-						dataField="rs" showTreeIcon="true" textField="name" expandOnLoad="0"
-						idField="id" ajaxData="setRoleId" parentField="" resultAsTree="false">
-					</ul>
-			    </div>
-		   </div>
+					<div class="nui-toolbar"
+						 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
+						<span>标准项目类型</span>
+					</div>
+					<div style="width: 100%; height: 50%;">
+						<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
+							dataField="partTypes" showTreeIcon="true" textField="name" expandOnLoad=""
+							idField="id" ajaxData="setRoleId" parentField="parentId" resultAsTree="false">
+						</ul>
+				    </div>
+		   
+                </div>
+             </div>
+				
 		</div>
 	</div>
 		<div showCollapseButton="false">
@@ -110,11 +148,11 @@
 				</div>
 			</div>
     
-       <div class="addyytime" style="display:none" id="showHot" >
-       <table style="width:100%;height:50px;">
+       <!-- <div class="addyytime" style="display:none" id="showHot" >
+         <table style="width:100%;height:50px;">
              <tr>
                     <td >
-                        <!-- <a href='javascript:;' itemid='"+timeStr+"' class='hui'>"+timeStr+"</a> -->
+                        <a href='javascript:;' itemid='"+timeStr+"' class='hui'>"+timeStr+"</a>
                         <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
                         <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
                         <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户ghjvhj</a>
@@ -138,7 +176,7 @@
                     </td>
                 </tr>
         </table>
-      </div>
+      </div> -->
             
 			<div class="nui-fit">
 				<div id="rightGrid"
@@ -159,13 +197,14 @@
 					<div property="columns" >
 						<div type="indexcolumn">序号</div>
 						<div type="checkcolumn" name="checkcolumn" visible="false"></div>
+						<div field="belonging" headerAlign="center" allowSort="true" width="50px">所属</div>
 						<div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
 						<div field="type" headerAlign="center" allowSort="true" width="100px">项目类型</div>
-						<div field="serviceTypeId" headerAlign="center" allowSort="true" width="50px">业务类型</div>
+						<div field="serviceTypeId" headerAlign="center" allowSort="true" width="60px">业务类型</div>
 						<div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="50px">工时</div>
 						<div field="unitPrice" headerAlign="center" allowSort="true" width="50px">单价</div>
 						<div field="amt" headerAlign="center" allowSort="true" width="50px">金额</div>
-						<div field="code" headerAlign="center" width="50px">项目编码</div>
+						<div field="code" headerAlign="center" width="60px">项目编码</div>
 							
 					</div>
 				</div>

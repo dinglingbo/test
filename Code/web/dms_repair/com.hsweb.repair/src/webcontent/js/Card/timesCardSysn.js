@@ -193,6 +193,56 @@ function onValueChangedSellPrice(e){
 	 }
 }
 
+function onValueChangedSellAmt(e){
+	oldAmt = null;
+	sellAmt = null;
+	var row = timesCardDetail.getSelected();
+	var b = isNaN(e.value);
+	if(row.prdtType && (row.prdtType == "2"  || row.prdtType == "1") )
+	{
+		if(!b)
+		{
+			
+			sellAmt = e.value/row.times;
+			sellAmt = parseFloat(sellAmt).toFixed(2);
+		}
+		
+		oldAmt = row.oldPrice*row.times;
+		oldAmt = parseFloat(oldAmt).toFixed(2);
+		
+		data = {
+			sellPrice:sellAmt,
+			oldAmt:oldAmt
+		   };
+		timesCardDetail.updateRow(row,data);	
+	}else
+	{
+		var qty = isNaN(row.qty);
+		var oldPrice = isNaN(row.oldPrice);
+		if(!b && !qty)
+		{
+			sellAmt = e.value/row.qty;
+			sellAmt = parseFloat(sellAmt).toFixed(2);
+		}
+		
+		if(!qty && !oldPrice)
+		{
+			oldAmt = row.qty*row.oldPrice;			
+			oldAmt = parseFloat(oldAmt).toFixed(2);
+		}
+		
+		data = {
+			oldAmt:oldAmt, 
+			sellPrice:sellAmt
+		   };
+	    timesCardDetail.updateRow(row,data);
+	 }
+}
+
+
+
+
+
 /*function onDrawSummaryCell(e) {
 	var rows = e.data;
     if (e.field == "sellAmt") {

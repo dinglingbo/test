@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>保险开单明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.57"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.59"></script>
     <style type="text/css">
    .title {
         width: 80px;
@@ -146,8 +146,8 @@ pageEncoding="UTF-8" session="false"%>
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
                         <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
                         <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
-                        <div header="送修人名称" field="contactName" width="30" headerAlign="center"></div>
-                        <div header="送修人手机" field="mobile" width="60" headerAlign="center"></div>
+                        <div header="联系人名称" field="contactName" width="30" headerAlign="center"></div>
+                        <div header="联系人手机" field="mobile" width="60" headerAlign="center"></div>
                         <div header="VIN" field="vin" width="70" headerAlign="center"></div>
                     </div>
                 </div>
@@ -206,7 +206,7 @@ pageEncoding="UTF-8" session="false"%>
             <td class="">
                 <input id="recordDate"
                 name="recordDate"
-                allowInput="false" format="yyyy-MM-dd "
+                allowInput="false" format="yyyy-MM-dd HH:mm "
                 class="nui-datepicker" enabled="false" width="100%"/>
             </td>
 

@@ -81,7 +81,7 @@
 				<td>归库数量:<input  allowInput="false" required="true" vtype="int" class="nui-textbox" id="outQty" name="outQty" type="text"></td>
 			</tr>
 			<tr id="return">
-				<td style="" >归库原因:<input  class="nui-combobox" id="returnReasonId" name="returnReasonId" type="text"  popupHeight="85%"></td>
+				<td style="padding-left:10px" >归库原因:<input  class="nui-combobox" id="returnReasonId" name="returnReasonId" type="text"  popupHeight="85%"></td>
 			</tr id="return">
 <!-- 			<tr id="return"> -->
 <!-- 				<td style="padding-left: 13px;" colspan="2">归库原因:<input required="true"  class="nui-textarea" id="returnRemark" name="returnRemark" type="text" ></td> -->

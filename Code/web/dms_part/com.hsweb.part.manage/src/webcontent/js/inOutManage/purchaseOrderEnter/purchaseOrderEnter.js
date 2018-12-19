@@ -787,7 +787,7 @@ function getMainData() {
 	data.printTimes = 0;
 	data.orderTypeId = 1;
 	data.isDiffOrder = 1;
-	
+	delete data.createDate;
 	data.orderManId=nui.get('orderMan').getValue();
 	data.orderMan=nui.get('orderMan').getText();
 

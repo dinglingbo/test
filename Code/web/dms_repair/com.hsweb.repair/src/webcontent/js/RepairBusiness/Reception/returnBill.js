@@ -658,6 +658,9 @@ function saveMaintain(callback,unmaskcall){
 			return;
 		}
     }
+	if(data.id) {
+    	delete data.recordDate;
+    }
     data.billTypeId = 5;
     data.serviceTypeId = 1 ;
     data.mtAdvisorId = currEmpId;
@@ -1199,6 +1202,7 @@ function saveBatch(){
 		});    
     }else{
 		var maintain = billForm.getData();
+		delete maintain.recordDate;
 		var addSellPart = nui.get("rpsPartGrid").getData();
 		var sellPartAdd = rpsPartGrid.getChanges("added");
 		var sellPartUpdate = rpsPartGrid.getChanges("modified");

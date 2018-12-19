@@ -541,6 +541,9 @@
              <isNotEmpty prepend="and" property="returnSign">
   				a.return_sign = #returnSign#
              </isNotEmpty>
+             <isNotEmpty prepend="and" property="outReturnSign">
+  				a.out_return_sign = #outReturnSign#
+             </isNotEmpty>
             <isNotEmpty prepend="and" property="sCreateDate">  
                 (a.pick_date &gt;= #sCreateDate#)
             </isNotEmpty>

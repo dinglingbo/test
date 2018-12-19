@@ -10,6 +10,7 @@ var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesBy
 var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
+var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgid+"&params/isDisabled=0";
 
 var billForm = null;
 var sendGuestForm = null;
@@ -76,6 +77,7 @@ var prdtTypeHash = {
     "3":"配件"
 };
 var chang = 0;
+var insuranceComp = null;
 //document.onmousemove = function(e){
 //
 //    if(advancedMorePartWin.visible){
@@ -99,6 +101,7 @@ var chang = 0;
 //}
 $(document).ready(function ()
 {
+	
 	
     rpsPackageGrid = nui.get("rpsPackageGrid");
     rpsItemGrid = nui.get("rpsItemGrid");
@@ -137,6 +140,8 @@ $(document).ready(function ()
     memCardGrid = nui.get("memCardGrid");
     memCardGrid.setUrl(memCardGridUrl);
 
+    insuranceComp = nui.get("insureComp");
+	insuranceComp.setUrl(insuranceInfoUrl);
     pkgRateEl = nui.get("pkgRateEl");
     itemRateEl = nui.get("itemRateEl");
     partRateEl = nui.get("partRateEl");
@@ -633,6 +638,7 @@ $(document).ready(function ()
 		// } 
 	 
 	}
+    InsuranceQuery();
 });
 
 var statusHash = {
@@ -744,7 +750,6 @@ function doSetMainInfo(car){
     maintain.serviceTypeId = 3;
     maintain.mtAdvisorId = currEmpId;
     maintain.mtAdvisor = currUserName;
-    maintain.recordDate = now;
     maintain.sex = car.sex;
     maintain.idNo = car.idNo;
     maintain.remark = car.remark;
@@ -906,12 +911,14 @@ function setInitData(params){
                         data.mobile = contactor.mobile;
                         data.carModel = car.carModel;
                         data.carModelIdLy = car.carModelIdLy||"";
-                        data.insureCompName = car.insureCompName || "";
-                        data.insureDueDate = car.insureDueDate || "";
-                        data.insureNo = car.insureNo || "";
-                        data.annualInspectionCompName = car.annualInspectionCompName || "";
-                        data.annualInspectionNo = car.annualInspectionNo || "";
-                        data.annualInspectionDate = car.annualInspectionDate || "";
+                        var insuranceData = {};
+                        insuranceData.insureCompName = car.insureCompName || "";
+                        insuranceData.insureDueDate = car.insureDueDate || "";
+                        insuranceData.insureNo = car.insureNo || "";
+                        insuranceData.annualInspectionCompName = car.annualInspectionCompName || "";
+                        insuranceData.annualInspectionNo = car.annualInspectionNo || "";
+                        insuranceData.annualInspectionDate = car.annualInspectionDate || "";
+                        
                         data.idNo = contactor.idNo;
                         data.remark = contactor.remark;
                         xyguest.guestId = data.guestId;
@@ -931,7 +938,7 @@ function setInitData(params){
                         doSearchMemCard(fguestId);
                         
                         billForm.setData(data);
-                        insuranceForm.setData(data);
+                        insuranceForm.setData(insuranceData);
                         var status = data.status||0;
                         var isSettle = data.isSettle||0;
                         doSetStyle(status, isSettle);
@@ -1024,7 +1031,6 @@ function add(){
     nui.get("mtAdvisorId").setValue(currEmpId);
     nui.get("mtAdvisor").setValue(currUserName);
     nui.get("serviceTypeId").setValue(3);
-    nui.get("recordDate").setValue(now);
     nui.get("enterDate").setValue(now);
 
     fguestId = 0;
@@ -1304,7 +1310,6 @@ var requiredField = {
     guestId : "客户",
     enterOilMass : "进厂油量",
     enterKilometers : "进厂里程",
-    enterDate : "进厂日期",
     planFinishDate : "预计交车"
 };
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
@@ -1314,12 +1319,18 @@ function saveMaintain(callback,unmaskcall){
     for(var v in desData){
         data[v] = desData[v];
     }
+    if (data.planFinishDate) {
+		data.planFinishDate = format(data.planFinishDate, 'yyyy-MM-dd HH:mm:ss');
+	}
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
             unmaskcall && unmaskcall();
             showMsg(requiredField[key] + "不能为空!","W");
 			return;
 		}
+    }
+    if(data.id) {
+    	delete data.enterDate;
     }
     data.billTypeId = 4;
     data.lastEnterKilometers = $("#lastComeKilometers").text() || 0;
@@ -4647,7 +4658,7 @@ function SearchLastCheckMain() {
 
     var  tempParams = {
         carNo:nui.get("carNo").value,
-        endDate:nui.get("recordDate").text
+        endDate:nui.get("enterDate").text
     };
     nui.ajax({
         url: baseUrl + "com.hsapi.repair.repairService.repairInterface.QueryLastCheckMain.biz.ext",
@@ -4844,6 +4855,21 @@ function saleManChangedBatP(e){
     saleManIdBat2 = saleManId;
 }
 
+function insuranceChange(e){
+    var selected = e.selected;
+    nui.get("insureCompId").setValue(selected.id);
+}
+//查出保险公司，用于带出返点
+function InsuranceQuery(){
+    nui.ajax({
+        url:insuranceInfoUrl,
+        tupe:"post",
+        async:false, 
+        success:function(text){
+        	insurance=text.list;
 
+        }
 
+    });
+}
 

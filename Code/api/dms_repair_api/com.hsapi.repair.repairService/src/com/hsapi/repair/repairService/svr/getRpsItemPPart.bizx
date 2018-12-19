@@ -366,6 +366,10 @@
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">t</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">tempHash/pickQty</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="685" y="177"/>
@@ -690,6 +694,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">partTemp/serviceId</process:from>
       <process:to type="query">tempHash/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partTemp/pickQty</process:from>
+      <process:to type="query">tempHash/pickQty</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">

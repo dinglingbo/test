@@ -12,7 +12,7 @@
 <head> 
     <title>配件出库详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.0.43"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.1.10"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -59,6 +59,27 @@
     a { 
 	    text-decoration: none;
 	}
+	
+	a.healthview{ background:#78c800; font-size:13px; color:#fff; text-decoration:none;  padding:0px 8px; border-radius:20px;}
+    a.healthview:hover{ background:#f00000;color:#fff;text-decoration:none;}
+
+    a.chooseClass{ background:#578ccd; font-size:13px; color:#fff; text-decoration:none;  padding:0px 8px; border-radius:20px;}
+    a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
+        
+    a.optbtn {
+        width: 44px;
+        /* height: 26px; */
+        border: 1px #d2d2d2 solid;
+        background: #f2f6f9;
+        text-align: center;
+        display: inline-block;
+        /* line-height: 26px; */
+        margin: 0 4px;
+        color: #000000;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+        
 </style>
 </head>
 
@@ -198,9 +219,101 @@
 
 <div style="height:10px;width:100%"></div>
 
+<div id="rpsPackageGrid" class="nui-datagrid"
+     style="width:100%;height:auto;"
+     dataField="list"
+     showPager="false"
+     showModified="false"
+     allowSortColumn="false"
+     visible="false"
+     >
+    <div property="columns">
+    	<div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
+        <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
+        <div header="套餐信息">
+            <div property="columns">
+                <div field="prdtName" headerAlign="center" allowSort="false"
+                     visible="true" width="100" header="套餐名称">
+                </div>
+                 <div field="type" headerAlign="center" allowSort="false"
+                     visible="true" width="60" header="项目类型" align="center">
+                </div>
+                <div field="serviceTypeId" headerAlign="center" name="pkgServiceTypeId"
+                     allowSort="false" visible="true" width="50" header="业务类型" align="center">
+                     <input  property="editor" enabled="true" dataField="servieTypeList" 
+                             class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
+                             url="" onvaluechanged="onPkgTypeIdValuechanged" emptyText=""  vtype="required" /> 
+                </div>
+                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime">工时/数量
+                </div>
+                <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>  
+                <div field="amt" headerAlign="center" name="pkgAmt"
+                     allowSort="false" visible="true" width="60" header="原价" align="center">
+                </div>
+
+                <div field="rate" headerAlign="center" name="pkgRate"
+                     allowSort="false" visible="true" width="60" header="" align="center">
+                           优惠率%
+                     <input property="editor"  width="60%" vtype="float"  class="nui-textbox"  onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
+                </div>
+                 <div field="subtotal" headerAlign="center" name="pkgSubtotal"
+                     allowSort="false" visible="true" width="60" header="套餐金额" align="center" >
+                     <input  property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged"/>
+                </div>
+                <div field="packageOptBtn" name="packageOptBtn" width="100" headerAlign="center" header="操作" align="center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="rpsItemGrid"
+     borderStyle="border-bottom:1;"
+     class="nui-datagrid"
+     dataField="list"
+     style="width: 100%; height:auto;"
+     showPager="false"
+     showModified="false"
+     allowSortColumn="true"
+     visible="false"
+     >
+    <div property="columns">
+        <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
+        <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
+        <div header="项目信息">
+            <div property="columns">
+                <div field="prdtName" name="prdtName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称
+                	<input property="editor" class="nui-textbox" selectOnFocus="true"/>
+                </div>
+                <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" align="center">业务类型
+                    <input  property="editor" enabled="true" dataField="servieTypeList" 
+                             class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
+                             url="" onvaluechanged="onValueChangedItemTypeId" emptyText=""  vtype="required"/> 
+                </div>
+                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime">工时/数量
+                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedComQty" selectOnFocus="true"/>
+                </div>
+                <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>  
+                <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
+                    <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onValueChangedItemUnitPrice" selectOnFocus="true"/>
+                </div>
+                <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >
+                    优惠率%
+                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemRate" selectOnFocus="true"/>
+                </div>
+                <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额
+                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemSubtotal" selectOnFocus="true"/>
+                </div>
+                <div field="amt"  name="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">项目总金额
+                </div>
+                <div field="itemOptBtn" name="itemOptBtn" width="100" headerAlign="center" header="操作" align="center" ></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
 dataField="data"   multiSelect="false" allowCellWrap = true
-url=""  showModified="false"
+url=""  showModified="false" visible="false"
 allowCellEdit="true" >
 <div property="columns">
    <div headerAlign="center" type="indexcolumn" width="20">序号</div>

@@ -57,7 +57,7 @@
       <targetNode>assign22</targetNode>
     </sourceConnections>
     <targetConnections>link40</targetConnections>
-    <location x="655" y="114"/>
+    <location x="655" y="104"/>
     <size height="28" width="28"/>
     <nodeLabel>assign17label</nodeLabel>
     <process:copy>
@@ -70,14 +70,14 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign17label" name="label" nodeType="label">
-    <location x="650" y="150"/>
+    <location x="650" y="140"/>
     <figSize height="17" width="39"/>
     <node>assign17</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign19" name="赋值19" displayName="赋值" grouped="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link72" name="link72" displayName="link20" isDefault="true" type="transition">
       <sourceNode>assign19</sourceNode>
-      <targetNode>assign23</targetNode>
+      <targetNode>assign12</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link73" name="link73" displayName="预存" type="transition">
@@ -332,12 +332,12 @@
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <targetConnections>link22</targetConnections>
-    <location x="1157" y="284"/>
+    <location x="1241" y="284"/>
     <size height="28" width="28"/>
     <nodeLabel>assign18label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
-    <location x="1152" y="320"/>
+    <location x="1236" y="320"/>
     <figSize height="17" width="39"/>
     <node>assign18</node>
   </nodes>
@@ -348,12 +348,12 @@
     </sourceConnections>
     <targetConnections>link12</targetConnections>
     <targetConnections>link13</targetConnections>
-    <location x="1016" y="50"/>
+    <location x="1100" y="50"/>
     <size height="28" width="28"/>
     <nodeLabel>assign22label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign22label" name="label" nodeType="label">
-    <location x="1011" y="86"/>
+    <location x="1095" y="86"/>
     <figSize height="17" width="39"/>
     <node>assign22</node>
   </nodes>
@@ -373,8 +373,9 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link72</targetConnections>
-    <location x="875" y="163"/>
+    <targetConnections>link7</targetConnections>
+    <targetConnections>link24</targetConnections>
+    <location x="959" y="163"/>
     <size height="28" width="28"/>
     <nodeLabel>assign23label</nodeLabel>
     <process:copy>
@@ -399,7 +400,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign23label" name="label" nodeType="label">
-    <location x="870" y="199"/>
+    <location x="954" y="199"/>
     <figSize height="17" width="39"/>
     <node>assign23</node>
   </nodes>
@@ -409,7 +410,7 @@
       <targetNode>assign25</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="876" y="96"/>
+    <location x="960" y="96"/>
     <size height="28" width="28"/>
     <nodeLabel>assign24label</nodeLabel>
     <process:copy>
@@ -418,7 +419,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign24label" name="label" nodeType="label">
-    <location x="878" y="132"/>
+    <location x="962" y="132"/>
     <figSize height="17" width="25"/>
     <node>assign24</node>
   </nodes>
@@ -439,12 +440,12 @@
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <targetConnections>link4</targetConnections>
-    <location x="938" y="163"/>
+    <location x="1022" y="163"/>
     <size height="28" width="28"/>
     <nodeLabel>assign25label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign25label" name="label" nodeType="label">
-    <location x="933" y="199"/>
+    <location x="1017" y="199"/>
     <figSize height="17" width="39"/>
     <node>assign25</node>
   </nodes>
@@ -454,7 +455,7 @@
       <targetNode>assign27</targetNode>
     </sourceConnections>
     <targetConnections>link47</targetConnections>
-    <location x="939" y="96"/>
+    <location x="1023" y="96"/>
     <size height="28" width="28"/>
     <nodeLabel>assign26label</nodeLabel>
     <process:copy>
@@ -463,7 +464,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign26label" name="label" nodeType="label">
-    <location x="941" y="132"/>
+    <location x="1025" y="132"/>
     <figSize height="17" width="25"/>
     <node>assign26</node>
   </nodes>
@@ -485,12 +486,12 @@
     </sourceConnections>
     <targetConnections>link10</targetConnections>
     <targetConnections>link42</targetConnections>
-    <location x="1000" y="163"/>
+    <location x="1084" y="163"/>
     <size height="28" width="28"/>
     <nodeLabel>assign27label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign27label" name="label" nodeType="label">
-    <location x="995" y="199"/>
+    <location x="1079" y="199"/>
     <figSize height="17" width="39"/>
     <node>assign27</node>
   </nodes>
@@ -500,7 +501,7 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link77</targetConnections>
-    <location x="1000" y="96"/>
+    <location x="1084" y="96"/>
     <size height="28" width="28"/>
     <nodeLabel>assign28label</nodeLabel>
     <process:copy>
@@ -509,7 +510,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign28label" name="label" nodeType="label">
-    <location x="1002" y="132"/>
+    <location x="1086" y="132"/>
     <figSize height="17" width="25"/>
     <node>assign28</node>
   </nodes>
@@ -530,7 +531,7 @@
     </sourceConnections>
     <targetConnections>link15</targetConnections>
     <targetConnections>link17</targetConnections>
-    <location x="1156" y="163"/>
+    <location x="1240" y="163"/>
     <size height="28" width="28"/>
     <nodeLabel>assign29label</nodeLabel>
     <process:copy>
@@ -583,7 +584,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign29label" name="label" nodeType="label">
-    <location x="1151" y="199"/>
+    <location x="1235" y="199"/>
     <figSize height="17" width="39"/>
     <node>assign29</node>
   </nodes>
@@ -593,7 +594,7 @@
       <targetNode>assign8</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="1156" y="217"/>
+    <location x="1240" y="217"/>
     <size height="28" width="28"/>
     <nodeLabel>assign30label</nodeLabel>
     <process:copy>
@@ -606,7 +607,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign30label" name="label" nodeType="label">
-    <location x="1151" y="253"/>
+    <location x="1235" y="253"/>
     <figSize height="17" width="39"/>
     <node>assign30</node>
   </nodes>
@@ -617,12 +618,12 @@
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <targetConnections>link11</targetConnections>
-    <location x="1255" y="165"/>
+    <location x="1339" y="165"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="1253" y="201"/>
+    <location x="1337" y="201"/>
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
@@ -653,7 +654,7 @@
     <targetConnections>link101</targetConnections>
     <targetConnections>link102</targetConnections>
     <targetConnections>link14</targetConnections>
-    <location x="1360" y="165"/>
+    <location x="1444" y="165"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -663,7 +664,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="1362" y="201"/>
+    <location x="1446" y="201"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -684,12 +685,12 @@
     </sourceConnections>
     <targetConnections>link76</targetConnections>
     <targetConnections>link0</targetConnections>
-    <location x="1069" y="164"/>
+    <location x="1153" y="164"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="1067" y="200"/>
+    <location x="1151" y="200"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -699,7 +700,7 @@
       <targetNode>assign29</targetNode>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
-    <location x="1067" y="96"/>
+    <location x="1151" y="96"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -708,7 +709,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="1065" y="132"/>
+    <location x="1149" y="132"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
@@ -728,12 +729,12 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link73</targetConnections>
-    <location x="1026" y="284"/>
+    <location x="1110" y="284"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="1024" y="320"/>
+    <location x="1108" y="320"/>
     <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
@@ -743,7 +744,7 @@
       <targetNode>assign18</targetNode>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
-    <location x="1025" y="217"/>
+    <location x="1109" y="217"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
     <process:copy>
@@ -752,9 +753,53 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
-    <location x="1020" y="253"/>
+    <location x="1104" y="253"/>
     <figSize height="17" width="39"/>
     <node>assign11</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign12" name="赋值12" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign12</sourceNode>
+      <targetNode>assign23</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link23" name="link23" displayName="连接线" type="transition">
+      <sourceNode>assign12</sourceNode>
+      <targetNode>assign13</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULL">
+          <process:leftOperand type="query">tmp/prdtName</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link72</targetConnections>
+    <location x="885" y="164"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign12label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
+    <location x="880" y="200"/>
+    <figSize height="17" width="39"/>
+    <node>assign12</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign13" name="赋值13" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign13</sourceNode>
+      <targetNode>assign23</targetNode>
+    </sourceConnections>
+    <targetConnections>link23</targetConnections>
+    <location x="886" y="96"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign13label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">tmp/prdtName</process:from>
+      <process:to type="query">updatePartTemp/partName</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
+    <location x="881" y="132"/>
+    <figSize height="17" width="39"/>
+    <node>assign13</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

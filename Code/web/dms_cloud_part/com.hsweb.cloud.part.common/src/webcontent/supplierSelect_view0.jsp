@@ -76,6 +76,7 @@
                      totalField="page.count"
                      ondrawcell="onDrawCell"
                      selectOnLoad="true"
+                     allowCellWrap = true
                      frozenStartColumn="-1"
                      frozenEndColumn="-1">
                     <div property="columns">
@@ -83,16 +84,16 @@
                         <!--<div type="checkcolumn" ></div>-->
                         <div header="往来基本信息" headerAlign="center">
                             <div property="columns">
-                                <div field="shortName" width="80" headerAlign="center" header="简称"></div>
-                                <div field="fullName" width="100" headerAlign="center" header="全称"></div>
-                                <div field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>
+                                <div field="shortName" width="160" headerAlign="center" header="简称"></div>
+                                <div field="fullName" width="240" headerAlign="center" header="全称"></div>
+                                <div field="advantageCarbrandId" width="200" headerAlign="center" header="优势品牌/产品"></div>
                                 <div field="billTypeId" width="80" headerAlign="center" header="票据类型"></div>
                                 <div field="settTypeId" width="100" headerAlign="center" header="结算方式"></div>
                                 <div field="manager" width="100" headerAlign="center" header="联系人"></div>
                                 <div field="mobile" width="100" headerAlign="center" header="联系电话"></div>
                                 <div field="contactor" width="80" headerAlign="center" header="业务员"></div>
                                 <div field="contactorTel" width="100" headerAlign="center" header="业务员电话"></div>
-                                <div field="code" width="100" headerAlign="center" header="编码"></div>
+                                <div field="code" width="140" headerAlign="center" header="编码"></div>
                                 <div field="isDisabled" width="100" headerAlign="center" header="状态"></div>
                             </div>
                         </div>
@@ -103,7 +104,7 @@
     </div>
 </div>
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:250px;"
+     title="高级查询" style="width:436px;height:250px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">

@@ -494,7 +494,7 @@ function getMainData()
     //汇总明细数据到主表
     data.auditSign = 0;
     data.printTimes = 0;
-    
+    delete data.createDate;
     data.orderManId=nui.get('orderMan').getValue();
 	data.orderMan=nui.get('orderMan').getText();
 

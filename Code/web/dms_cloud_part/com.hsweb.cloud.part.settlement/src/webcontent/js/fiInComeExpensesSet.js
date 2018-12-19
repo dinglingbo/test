@@ -119,7 +119,7 @@ function showEditModal(row, newRow, type){
 		url: "com.hsweb.cloud.part.settlement.fiInComeExpensesEdit.flow",
 		title: title,
 		width: "500px",
-		height: "250px",
+		height: "270px",
         allowDrag:true,
         allowResize:false,
 		onload: function() {

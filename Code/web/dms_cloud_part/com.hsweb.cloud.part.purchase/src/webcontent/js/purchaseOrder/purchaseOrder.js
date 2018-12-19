@@ -835,6 +835,12 @@ function getMainData() {
 	data.printTimes = 0;
 	data.orderTypeId = 1;
 	data.isDiffOrder = 0;
+	if (data.planArriveDate) {
+		data.planArriveDate = format(data.planArriveDate, 'yyyy-MM-dd HH:mm:ss');
+	}
+	if(data.id) {
+    	delete data.createDate;
+    }
 
 	if (data.operateDate) {
 		data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss')
@@ -1957,31 +1963,54 @@ function addGuest(){
 		}
 	});
 }
-function onPrint() {
-	var row = leftGrid.getSelected();
+function onPrint(){
+	var from = basicInfoForm.getData();
+	var params={};
+	var detailParams={};
+	params.id=from.id;
+	params.auditSign=form.auditSign;
+	detailParams.mainId = from.id;
+	detailParams.auditSign=form.auditSign;
+	var openUrl = webPath + contextPath+"/purchase/purchaseOrder/purchaseOrderPrint.jsp";
 
-	var data = rightGrid.getData();
-	if(data && data.length<=0) return;
-
-	if (row) {
-
-		if(!row.id) return;
-
-		var auditSign = row.auditSign||0;
-
-		nui.open({
-
-			url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
-					+ row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
-			title : "采购订单打印",
-			width : 900,
-			height : 600,
-			onload : function() {
-				var iframe = this.getIFrameEl();
-				// iframe.contentWindow.setInitData(storeId, 'XSD');
-			}
-		});
-	}
+    nui.open({
+       url: openUrl,
+       width: "100%",
+       height: "100%",
+       showMaxButton: false,
+       allowResize: false,
+       showHeader: true,
+       onload: function() {
+           var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params,detailParms);
+       },
+   });
+}
+//function onPrint() {
+//	var row = leftGrid.getSelected();
+//
+//	var data = rightGrid.getData();
+//	if(data && data.length<=0) return;
+//
+//	if (row) {
+//
+//		if(!row.id) return;
+//
+//		var auditSign = row.auditSign||0;
+//
+//		nui.open({
+//
+//			url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
+//					+ row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
+//			title : "采购订单打印",
+//			width : 900,
+//			height : 600,
+//			onload : function() {
+//				var iframe = this.getIFrameEl();
+//				// iframe.contentWindow.setInitData(storeId, 'XSD');
+//			}
+//		});
+//	}
 	// }else if(row && type == 1){
 	// 	if(!row.id) return;
 
@@ -2004,7 +2033,7 @@ function onPrint() {
 	// 	});
 	// }
 
-}
+//}
 function addSelectPart(){
 	var row = morePartGrid.getSelected();
 	if(row){

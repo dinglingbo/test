@@ -142,7 +142,7 @@ function addCustomer()
     nui.open({
         targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.baseData.customerAdd.flow?token=" + token,
-        title: "客户资料", width: 530, height: 460,
+        title: "客户资料", width: 560, height: 560,
         allowDrag:true,
         allowResize:false,
         onload: function ()

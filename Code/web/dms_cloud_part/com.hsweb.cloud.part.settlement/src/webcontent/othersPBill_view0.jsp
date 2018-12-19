@@ -3,7 +3,7 @@
 <%@include file="/common/commonCloudPart.jsp"%>
 <html>
 <!-- 
-  - Author(s): Administrator
+  - Author(s): Administrator 
   - Date: 2018-02-23 14:18:46
   - Description:
 -->
@@ -31,6 +31,9 @@
 .mini-panel-body {
   padding: 0;
 }
+label{
+	font-size:12px; 
+}
 </style>
 </head>
 <body>
@@ -41,7 +44,7 @@
 <div class="nui-fit"> 
 
             <div class="nui-toolbar" style="padding:0px;border-left:0;">
-                <table style="width:100%;">
+                <table style="width:100%;font-size:12px;">
                     <tr>
                         <td style="white-space:nowrap;">
                             <a class="nui-button" plain="true" iconCls="" onclick="addGuest()" id="addGuestBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;添加应付单</a>

@@ -10,7 +10,7 @@
 <head>
 <title>客户管理</title>
 
-<script src="<%=webPath + contextPath%>/baseDataPart/js/customerMgr/customerMgr.js?v=1.0.8"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/customerMgr/customerMgr.js?v=1.0.11"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -116,7 +116,7 @@
     </div>
 </div>
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:410px;height:220px;"
+     title="高级查询" style="width:460px;height:220px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">

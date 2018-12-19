@@ -11,6 +11,8 @@
 <head>
 <style type="text/css">
 
+/*dom显示高度的设置*/
+
 html, body {
     height: 100%;
 }
@@ -45,7 +47,21 @@ table{
         border-spacing: 0;
         border-collapse: collapse;
         background-color: transparent;
+}
+table#tbody{
+		width: 100%;
+        max-width: 100%;
+        border-spacing: 0;
+        border-collapse: collapse;
+        background-color: transparent;
         table-layout:fixed;
+}
+table,td#tbody{
+		font-family: Tahoma, Geneva, sans-serif;
+        font-size: 12px;
+        color: #000;
+        word-wrap:break-word
+}
 }
 table, td {
         font-family: Tahoma, Geneva, sans-serif;
@@ -59,7 +75,7 @@ table#ybk td{
 	}
 #sum{
 	padding-left: 80px;
-	width:350px;
+	width:55%;
 	text-align:left;
 }
 #sumOrderQty{
@@ -68,7 +84,7 @@ table#ybk td{
 }
 #sumOrderAmt{
 	padding-left:65px;
-	width:33%;
+	width:31%;
 }
  #currOrgName{
 /* 	padding-left:80px; */
@@ -117,7 +133,7 @@ table#ybk td{
     color: yellow;
 }
 #getMan{
-	text-align:left;
+	text-align:center;
 }
 .print_btn {
     text-align: center;
@@ -183,15 +199,16 @@ table#ybk td{
 #index{
 	width:4%;
 }
-#currUserName{
-	width:28%;
-}
+
 hr {
         margin: 8px 0;
         border: 0;
         border-top: 1px solid #333;
         border-bottom: 1px solid #ffffff;
     }
+#currUserName{
+	width:28%;
+}
 </style>
 <title>采购入库打印</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -215,7 +232,7 @@ hr {
 	                <td>
 	                    <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;">&nbsp;&nbsp;<span id="currOrgName"></span></div>
 	                </td>
-	                <td rowspan="2" >
+	                <td rowspan="2" width="25%">
 	                    <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
 	                    <div style="padding-top: 2px; font-size: 16px;font-family: Arial;">
 	                      №:<span id="serviceId"></span>  
@@ -288,23 +305,25 @@ hr {
 				    <td id="sumOrderQty" >合计</td>
 				    <td id="sumOrderAmt"></td>
 				  </tr>
+				</table>
+				<table>
 				  <tr><td  colspan="3"><hr/></td></tr>
 				  <tr id="border2">
-				    <td id="currUserName">打印人：系统管理员</td>
-				    <td id="giveMan">送货人：</td>
-				    <td id="getMan">收货人：</td>
+				    <td id="currUserName" >打印人：系统管理员</td>
+				    <td id="giveMan" >送货人：</td>
+				    <td id="getMan" width="" align="center">收货人：</td>
 				  </tr>
 				  <tr><td  colspan="3"><hr/></td></tr>
 				  <tr id="border3">
 				    <td id="remark1">备注</td>
 				    <td style="" id="guestAddr" align="left">地址:</td>
-				    <td style="" id="nowDate" align="left"  class="" >打印日期:</td>
+				    <td style="" id="nowDate" align="center"  class="" >打印日期:</td>
 				  </tr>
 				  <tr><td  colspan="3"><hr/></td></tr>
 				   <tr id="border4">
 				    <td id="">注(白联仓库   红联财务  黄联供应商)</td>
 				    <td style="" id="phone">电话:</td>
-				   <td style="" id="createDate" align="left">订单日期:</td>
+				   <td style="" id="createDate" align="center">订单日期:</td>
 				  </tr>
 				</table>
             </div>

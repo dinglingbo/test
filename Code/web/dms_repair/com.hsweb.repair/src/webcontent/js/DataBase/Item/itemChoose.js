@@ -128,10 +128,12 @@ $(document).ready(function()
 
     	var itemCodeLabel =document.getElementById("itemCodeLabel");
     	itemCodeLabel.style.display="";
+    	//showHot
     	
     	nui.get("serviceTypeId").setVisible(true);
     	nui.get("search-code").setVisible(true);
-    	
+    	var showHot =document.getElementById("showHot");
+    	showHot.style.display="none";
     });
 	
 	var hotUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getHotWord.biz.ext";
@@ -186,6 +188,8 @@ $(document).ready(function()
     	
     	nui.get("serviceTypeId").setVisible(false);
     	nui.get("search-code").setVisible(false);
+    	var showHot =document.getElementById("showHot");
+    	showHot.style.display="";
     });
 });
 function setRoleId(){

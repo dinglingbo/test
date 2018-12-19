@@ -23,7 +23,7 @@
 				<div class="nui-fit">
 					<div class="nui-fit">
 						<div id="typeGrid" dataField="data" class="nui-datagrid"
-							showPager="false" showHGridLines="true" allowSortColumn="false"
+							showPager="false" showHGridLines="false" allowSortColumn="false"
 							style="width: 100%; height: 50%;float:left;" multiSelect="false" >
 							 <div property="columns">
 								<div field="name" headerAlign="center" allowSort="true" allowSort="false"

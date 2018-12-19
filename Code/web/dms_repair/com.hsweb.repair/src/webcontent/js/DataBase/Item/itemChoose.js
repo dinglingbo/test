@@ -2,6 +2,7 @@ var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
 var treeUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDictTypeTree.biz.ext";
 var itemGridUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getItem.biz.ext";
+
 var tree1 = null;
 var rightGrid = null;
 var typeHash = {};
@@ -19,7 +20,7 @@ var itemGrid = null;
 var carModelIdLy = null;
 var serviceId = null;
 $(document).ready(function()
-{
+{	
 	queryForm = new nui.Form("#queryForm");
 	tree1 = nui.get("tree1");
 	itemGrid = nui.get("itemGrid");
@@ -136,7 +137,8 @@ $(document).ready(function()
     	showHot.style.display="none";
     });
 	
-	var hotUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getHotWord.biz.ext";
+	//var hotUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getHotWord.biz.ext";
+	var hotUrl = apiPath + partApi +"/com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
     tree = nui.get("tree");
     tree.on("load",function(e)
     {
@@ -191,6 +193,30 @@ $(document).ready(function()
     	var showHot =document.getElementById("showHot");
     	showHot.style.display="";
     });
+    setHotWord();
+    $("a[name=HotWord]").click(function () {
+    	rightGrid.hide();
+    	itemGrid.show();
+
+    	var serviceLabel =document.getElementById("serviceLabel");
+    	serviceLabel.style.display="none";
+
+    	var itemCodeLabel =document.getElementById("itemCodeLabel");
+    	itemCodeLabel.style.display="none";
+    	
+    	nui.get("serviceTypeId").setVisible(false);
+    	nui.get("search-code").setVisible(false);
+    	var showHot =document.getElementById("showHot");
+    	showHot.style.display="";
+    	
+    	$("a[name=HotWord]").removeClass("xz");
+        $(this).addClass("xz");
+        var name = $(this).text();
+        var params = {
+            	partName:name
+            };
+         doSearchItem(params);
+      });
 });
 function setRoleId(){
 	return {"token":token};
@@ -536,3 +562,42 @@ function onAdvancedAddOk(){
 }
 
 
+ function setHotWord(){
+	var hotUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getHotWord.biz.ext";
+	nui.ajax({
+		url : hotUrl,
+		type : "post",
+		aynsc:false,
+		data : {},
+		success : function(data) {
+			
+			data = data || {};
+			/*if (data.errCode == "S") {
+				
+				//var list = data.rs;
+				var temp = "";
+				for(var i=0;i<list.length;i++){
+				var aEl = "<a href= 'javascript:' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>"
+					temp +=aEl;
+				}
+				$("#addAEl").html(temp);
+				
+			} else {
+				showMsg(data.errMsg || "保存失败!","E");
+			}*/
+	      	var tdata = {"errCode":"S","errMsg":"执行成功！","rs":[{"id":"039","name":"发动机"},{"id":"013","name":"变速箱"},{"id":"037","name":"发电机"},{"id":"053","name":"保险杠"},{"id":"113","name":"轮胎"},{"id":"043","name":"方向机"},{"id":"126","name":"控制臂"},{"id":"029","name":"大灯"},{"id":"023","name":"车门"},{"id":"125","name":"气门室盖"},{"id":"056","name":"减震器"},{"id":"003","name":"蓄电池"},{"id":"060","name":"平衡杆"},{"id":"1242","name":"玻璃"},{"id":"098","name":"水箱"},{"id":"096","name":"空调压缩机"},{"id":"033","name":"点火线圈"},{"id":"574","name":"摆臂"},{"id":"150","name":"水箱副水壶"},{"id":"132","name":"叶子板"},{"id":"089","name":"进气歧管"},{"id":"148","name":"水泵"},{"id":"040","name":"发动机舱盖"},{"id":"086","name":"节温器"},{"id":"090","name":"凸轮轴"},{"id":"133","name":"曲轴"},{"id":"059","name":"轮毂"},{"id":"105","name":"冷凝器"},{"id":"022","name":"车轮"},{"id":"152","name":"天窗"},{"id":"158","name":"雾灯"},{"id":"169","name":"尾灯"},{"id":"002","name":"控制单元"},{"id":"134","name":"燃油泵"},{"id":"161","name":"行李箱舱盖"},{"id":"018","name":"差速器"},{"id":"1247","name":"空调蒸发箱"},{"id":"034","name":"电子扇"},{"id":"008","name":"半轴"},{"id":"063","name":"后视镜"},{"id":"167","name":"油气分离器"},{"id":"016","name":"泊车雷达"},{"id":"145","name":"三元催化器"},{"id":"035","name":"座椅"},{"id":"085","name":"节气门"},{"id":"157","name":"涡轮增压器"},{"id":"116","name":"排气管"},{"id":"587","name":"方向助力泵"},{"id":"122","name":"起动机"},{"id":"127","name":"牌照板"}]}
+	      	var list = tdata.rs;
+	      	var temp = "";
+			for(var i=0;i<list.length;i++){
+			var aEl = "<a href= 'javascript:' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>"
+				temp +=aEl;
+			}
+			$("#addAEl").html(temp);
+		
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+ 

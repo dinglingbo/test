@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修项目</title>
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.22" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/RepairItemMain.js?v=1.2.25" type="text/javascript"></script>
 
 </head>
 <body>
@@ -133,15 +133,19 @@
 						<div type="checkcolumn" name="checkcolumn" visible="false"></div>
 						<div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
 						<div field="type" headerAlign="center" allowSort="true" width="100px">项目类型</div>
-						<div field="serviceTypeId" headerAlign="center" allowSort="true" width="50px">业务类型</div>
+						<div field="serviceTypeId" headerAlign="center" allowSort="true" width="60px">业务类型</div>
 						<div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="50px">工时</div>
 						<div field="unitPrice" headerAlign="center" allowSort="true" width="50px">单价</div>
 						<div field="amt" headerAlign="center" allowSort="true" width="50px">金额</div>
-						<div field="code" headerAlign="center" width="50px">项目编码</div>
-						<div field="useTimes" headerAlign="center" width="50px">使用次数</div>
+						<div field="code" headerAlign="center" width="60px">项目编码</div>
+						<div field="useTimes" headerAlign="center" width="60px">使用次数</div>
 						<div field="isCalTimes" name="isCalTimes" headerAlign="center" allowSort="true" width="60px">是否禁用计数</div>
-						<div field="isDisabled" name="isDisabled" headerAlign="center" allowSort="true" width="50px">是否禁用</div>
-						<div field="isShare" name="isShare" headerAlign="center" allowSort="true" width="50px">是否共享</div>
+						<div field="isDisabled" name="isDisabled" headerAlign="center" allowSort="true" width="60px">是否禁用</div>
+						<div field="isShare" name="isShare" headerAlign="center" allowSort="true" width="60px">是否共享</div>
+						<div field="recorder" name="recorder" id="recorder" headerAlign="center" allowSort="true" width="60px">建档人</div>
+						<div field="recordDate" name="recordDate" id="recordDate" headerAlign="center" allowSort="true" dateFormat="  yyyy-MM-dd HH:mm"  width="130px">建档日期</div>
+						<div field="modifier" name="modifier" id="modifier" headerAlign="center" allowSort="true" width="60px">修改人</div>
+						<div field="modifyDate" name="modifyDate" id="modifyDate" headerAlign="center" allowSort="true" dateFormat="  yyyy-MM-dd HH:mm"  width="130px">修改日期</div>
 					</div>
 				</div>
 

@@ -28,6 +28,7 @@ $(document).ready(function()
 	data.forEach(function(v) {
 		typeHash[v.customid] = v;
 	});
+	
 	// getDatadictionaries(parentId,function(data)
 	// {
 	// 	var list = data.list||[];
@@ -224,6 +225,11 @@ function setData(data)
 	nui.get("editItemType").hide();
 	rightGrid.hideColumn("isDisabled");
 	rightGrid.hideColumn("isShare");
+	rightGrid.hideColumn("isCalTimes");
+	rightGrid.hideColumn("recorder");
+	rightGrid.hideColumn("recordDate");
+	rightGrid.hideColumn("modifier");
+	rightGrid.hideColumn("modifyDate");
 	document.getElementById('sep').style.display = "none";  
 	nui.get("selectBtn").show();
 	isOpenWin = 1;

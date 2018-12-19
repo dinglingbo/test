@@ -71,6 +71,20 @@ $(document).ready(function()
 					}
 				}
 				break;
+			case "belonging":
+				if(currOrgId==e.row.orgid){
+					e.cellHtml="本店";
+				}else{
+					e.cellHtml="";
+				}
+				break;
+            case "serviceTypeId":
+            	if(servieTypeHash[e.value] && servieTypeHash[e.value].name) {
+					e.cellHtml = servieTypeHash[e.value].name||"";
+				}
+                break;
+            default:
+                break;
 		}
 	});
 	tempGrid.on("cellclick",function(e){ 
@@ -92,17 +106,7 @@ $(document).ready(function()
 	            servieTypeHash[v.id] = v;
 	        });
 	 });
-	rightGrid.on("drawcell", function (e) {
-        switch (e.field) {
-            case "serviceTypeId":
-            	if(servieTypeHash[e.value] && servieTypeHash[e.value].name) {
-					e.cellHtml = servieTypeHash[e.value].name||"";
-				}
-                break;
-            default:
-                break;
-        }
-	 });
+
 	nui.get("search-name").focus();
 	document.onkeyup=function(event){
         var e=event||window.event;

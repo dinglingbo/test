@@ -755,7 +755,7 @@ function doSetMainInfo(car){
     maintain.serviceTypeId = 3;
     maintain.mtAdvisorId = currEmpId;
     maintain.mtAdvisor = currUserName;
-    maintain.recordDate = now;
+    maintain.enterDate = now;
 
     mpackageRate = 0;
     mitemRate = 0;
@@ -1000,7 +1000,7 @@ function add(){
     nui.get("mtAdvisorId").setValue(currEmpId);
     nui.get("mtAdvisor").setValue(currUserName);
     nui.get("serviceTypeId").setValue(3);
-    nui.get("recordDate").setValue(now);
+    nui.get("enterDate").setValue(now);
 
     fguestId = 0;
     fcarId = 0;
@@ -1272,19 +1272,25 @@ var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMain
 function saveMaintain(callback,unmaskcall){
     var data = billForm.getData();
     for ( var key in requiredField) {
-      if (!data[key] || $.trim(data[key]).length == 0) {
-        unmaskcall && unmaskcall();
-        showMsg(requiredField[key] + "不能为空!","W");
-        return;
+	      if (!data[key] || $.trim(data[key]).length == 0) {
+	        unmaskcall && unmaskcall();
+	        showMsg(requiredField[key] + "不能为空!","W");
+	        return;
+	    }
+	}
+    if (data.planFinishDate) {
+		data.planFinishDate = format(data.planFinishDate, 'yyyy-MM-dd HH:mm:ss');
+	}
+    if(data.id) {
+    	delete data.enterDate;
     }
-  }
-data.billTypeId = 2;
-data.lastEnterKilometers = $("#lastComeKilometers").text() || 0;
-var params = {
-    data:{
-        maintain:data
-    }
-};
+    data.billTypeId = 2;
+    data.lastEnterKilometers = $("#lastComeKilometers").text() || 0;
+	var params = {
+	    data:{
+	        maintain:data
+	    }
+	};
 svrSaveMaintain(params, function(text){
     var errCode = text.errCode||"";
     if(errCode == "S") {
@@ -4534,7 +4540,7 @@ function SearchLastCheckMain() {
 
     var  tempParams = {
         carNo:nui.get("carNo").value,
-        endDate:nui.get("recordDate").text
+        endDate:nui.get("enterDate").text
     };
     nui.ajax({
         url: baseUrl + "com.hsapi.repair.repairService.repairInterface.QueryLastCheckMain.biz.ext",

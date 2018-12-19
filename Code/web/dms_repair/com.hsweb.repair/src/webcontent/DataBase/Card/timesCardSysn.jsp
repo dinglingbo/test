@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.1.9"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.1.13"></script>
 </head>
 <body>
 		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
@@ -165,8 +165,8 @@
 								原销售金额 
 							</div>
 							<div field="sellAmt" allowSort="true" align="left" summaryType="sum" 
-								headerAlign="center" width="">
-								现销售金额 
+								headerAlign="center" width="" >
+								现销售金额 <input class="nui-textbox" name="sellAmt" property="editor" onvaluechanged ="onValueChangedSellAmt"/>
 							</div>
 						</div>
 					</div>

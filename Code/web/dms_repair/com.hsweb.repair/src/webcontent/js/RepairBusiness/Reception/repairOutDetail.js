@@ -198,7 +198,7 @@ $(document).ready(function(){
             	var type = record.type||0;
 
                 if(type == 3){
-                    var s = '<a class="optbtn" href="javascript:THSave(\'' + uid + '\')">领料</a>';
+                    var s = '<a class="optbtn" href="javascript:billPick(\'' + uid + '\')">领料</a>';
                 }else{
                     var s = '--';
                 }
@@ -244,7 +244,7 @@ $(document).ready(function(){
                 	 //修改配件信息
                 	 var s = ' <a class="optbtn" href="javascript:editItemRpsPart(\'' + uid + '\')">修改</a>'
                            + ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>'
-                           + ' <a class="optbtn" href="javascript:THSave(\'' + uid + '\')">领料</a>';
+                           + ' <a class="optbtn" href="javascript:billPick(\'' + uid + '\')">领料</a>';
                      if (grid.isEditingRow(record)) {
                          s = ' <a class="optbtn" href="javascript:updateItemRpsPart(\'' + uid + '\')">确定</a>'
                            + ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
@@ -391,6 +391,8 @@ function setInitData(params){
 	                        }
 	                        loadDetail(p1, p2);
                         }else {
+                        	rpsPackageGrid.hide();
+                        	rpsItemGrid.hide();
                         	mainGrid.show();
                         	mainGrid.load({serviceId:params.id,token:token});
                         }
@@ -412,6 +414,7 @@ function setInitData(params){
 }
 
 function loadDetail(p1, p2){
+	mainGrid.hide();
     if(p1 && p1.interType){
         getBillDetail(p1, function(text){
             var errCode = text.errCode;
@@ -445,7 +448,41 @@ function loadDetail(p1, p2){
         }, function(){});
     }
 }
+function billPick(row_uid){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("工单信息有误，请重新打开当前单据!","W");
+        return;
+    }
+    var nstatus = main.status||0;
+    if(nstatus == 2){
+        showMsg("工单已完工,不能领料","W");
+        return;
+    }
+	if(nstatus==0){
+		showMsg("草稿状态下的单据不能领料","W");
+		return;
+	}
+    if(isSettle == 1){
+        showMsg("工单已结算,不能修改配件","W");
+        return;
+    }
 
+    var row = rpsItemGrid.getRowByUID(row_uid);
+    if(!row) return;
+    var r = row.prdtId;
+	var c = row.prdtCode;
+	var recordId = row.id;
+	if(r){
+		openPartSelect(r,"Id",recordId,mainRow,row);
+	}else if(c){ 
+		openPartSelect(c,"Code",recordId,mainRow,row);
+	}else{
+		showMsg('部分配件需单独领取!','W');
+		return;
+	}
+}
 function LLSave(argument) {
 	if(status==2){
 		showMsg("单据已完工,不能领料","W");
@@ -490,7 +527,30 @@ function openPartSelect(par,type,id,row,srow){
 			iframe.contentWindow.SetData(par,type,id,row,srow);
 		},
 		ondestroy:function(action){ 
-            mainGrid.load({serviceId:mid,token:token});
+			var p1 = {};
+			var p2 = {};
+			var bill = false;
+			if(rpsPackageGrid.visible){
+				p1.interType = "package";
+				var data = {
+					serviceId: mid
+                }
+				p1.data = data;
+				bill = true;
+			}
+			if(rpsItemGrid.visible){
+				p2.interType = "item";
+				var data = {
+					serviceId: mid
+                }
+				p2.data = data;
+				bill = true;
+			}
+			if(bill) {
+				loadDetail(p1, p2);
+			}else {
+				mainGrid.load({serviceId:mid,token:token});
+			}
             repairOutGrid.load({serviceId:mid,token:token});
         }
 
@@ -1043,8 +1103,32 @@ function  savepartOutRtn(data,childdata){
             		var errCode = text.errCode;
             		nui.unmask(document.body);
             		if(errCode == "S"){
-            			mainGrid.load({serviceId:mid,token:token});
-            			repairOutGrid.load({serviceId:mid,token:token});
+            			var p1 = {};
+            			var p2 = {};
+            			var bill = false;
+            			if(rpsPackageGrid.visible){
+            				p1.interType = "package";
+            				var data = {
+            					serviceId: mid
+                            }
+            				p1.data = data;
+            				bill = true;
+            			}
+            			if(rpsItemGrid.visible){
+            				p2.interType = "item";
+            				var data = {
+            					serviceId: mid
+                            }
+            				p2.data = data;
+            				bill = true;
+            			}
+            			if(bill) {
+            				loadDetail(p1, p2);
+            			}else {
+            				mainGrid.load({serviceId:mid,token:token});
+            			}
+                        repairOutGrid.load({serviceId:mid,token:token});
+                        
             			showMsg('归库成功!','S');
             		}else{
             			showMsg(text.errMsg ||'归库失败!','W');

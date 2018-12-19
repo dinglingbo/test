@@ -41,6 +41,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" description="" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
     <targetConnections>link16</targetConnections>
+    <targetConnections>link3</targetConnections>
     <location x="546" y="170"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -48,6 +49,8 @@
       <process:return id="0" language="commonj.sdo.DataObject[]" name="detailList" type="query" valueType="Java">detailList</process:return>
       <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">total</process:return>
       <process:return id="2" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
+      <process:return id="3" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="4" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
@@ -67,6 +70,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">page/count</process:from>
       <process:to type="query">total</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">查询成功</process:from>
+      <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -117,6 +128,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">auditSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -188,6 +203,10 @@
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
     <targetConnections>link13</targetConnections>
     <targetConnections>link11</targetConnections>
     <location x="375" y="170"/>
@@ -212,6 +231,29 @@
     <figSize height="17" width="164"/>
     <node>invokePojo1</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值6" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="371" y="253"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">查询失败</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="369" y="289"/>
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-03-21 21:06:20" date="2018-03-21Z" description="" name="queryRPAccountList" version="7.0.0.0"/>
@@ -227,6 +269,8 @@
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="detailList"/>
     <process:output description="" isArray="false" name="total" primitiveType="Int"/>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
+    <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
+    <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -271,6 +271,10 @@
       <process:to type="query">tempHash/prdtId</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">tempHash/prdtCode</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">itemTemp/itemName</process:from>
       <process:to type="query">tempHash/prdtName</process:to>
     </process:copy>
@@ -614,6 +618,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">partTemp/partId</process:from>
       <process:to type="query">tempHash/prdtId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partTemp/partCode</process:from>
+      <process:to type="query">tempHash/prdtCode</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">partTemp/partName</process:from>

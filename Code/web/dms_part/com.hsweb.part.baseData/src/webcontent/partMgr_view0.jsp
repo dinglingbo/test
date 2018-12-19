@@ -23,15 +23,17 @@
                 <tr>
                     <td style="white-space:nowrap;">
                         <label style="font-family:Verdana;">快速查询：</label>
-                        <label style="font-family:Verdana;">编码：</label>
-                        <input class="nui-textbox" width="100" id="search-code" name="code" />
-                        <label style="font-family:Verdana;">名称：</label>
-                        <input class="nui-textbox" width="100" id="search-name" name="name" />
-                        <label style="font-family:Verdana;">品牌车型：</label>
-                        <input class="nui-textbox" width="100" id="search-applyCarModel" name="applyCarModel" />
-                        <label style="font-family:Verdana;">拼音：</label>
-                        <input class="nui-textbox" width="100" id="search-namePy" name="namePy" />
-                        <label style="font-family:Verdana;">品牌：</label>
+                        <input class="nui-combobox" id="search-type" width="80" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
+		                <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch()" />
+	<!--                     <label style="font-family:Verdana;">编码：</label>
+	                    <input class="nui-textbox" width="100" id="search-code" name="code"/>
+	                    <label style="font-family:Verdana;">名称：</label>
+	                    <input class="nui-textbox" width="100" id="search-name" name="name"/>
+	                    <label style="font-family:Verdana;">品牌车型：</label>
+	                    <input class="nui-textbox" width="100" id="search-applyCarModel" name="applyCarModel"/>
+	                    <label style="font-family:Verdana;">拼音：</label>
+	                    <input class="nui-textbox" width="100" id="search-namePy" name="namePy"/> -->
+	                    <label style="font-family:Verdana;">品牌：</label>
                         <input id="applyCarBrandId" name="applyCarBrandId" class="nui-combobox width1" textField="nameCn" valueField="id" emptyText="请选择..."
                             url="" allowInput="false" showNullItem="false" nullItemText="请选择..." />
                         <span class="separator"></span>
@@ -79,7 +81,7 @@
                             <div class="nui-fit">
                                 <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;" frozenStartColumn="0" frozenEndColumn="7" borderStyle="border:0;"
                                     dataField="parts" url="" onrowdblclick="onPartGridRowDblClick" onrowclick="onPartGridRowClick"
-                                    idField="id" totalField="page.count" selectOnLoad="true" pageSize="50" sortMode="client"
+                                    idField="id" totalField="page.count" selectOnLoad="true" pageSize="50" sortMode="client"allowCellWrap = true
                                     showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
                                     <div property="columns">
                                         <div header="基础信息" headerAlign="center">
@@ -88,9 +90,9 @@
                                                 <div allowSort="true" field="isDisabled" width="50" headerAlign="center">状态</div>
                                                 <div allowSort="true" field="qualityTypeId" width="60" headerAlign="center">品质</div>
                                                 <div allowSort="true" field="partBrandId" width="70" headerAlign="center">品牌</div>
-                                                <div allowSort="true" field="code" name="code" width="80" headerAlign="center" allowSort="true">编码</div>
-                                                <div allowSort="true" field="name" name="name" width="80" headerAlign="center" allowSort="true">名称</div>
-                                                <div allowSort="true" field="fullName" name="fullName" width="120" headerAlign="center" allowSort="true">全称</div>
+                                                <div allowSort="true" field="code" name="code" width="100" headerAlign="center" allowSort="true">编码</div>
+                                                <div allowSort="true" field="name" name="name" width="120" headerAlign="center" allowSort="true">名称</div>
+                                                <div allowSort="true" field="fullName" name="fullName" width="280" headerAlign="center" allowSort="true">全称</div>
                                                 <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
                                             </div>
                                         </div>
@@ -100,7 +102,7 @@
 
                                                 <div allowSort="true" field="model" width="60" headerAlign="center" allowSort="true">型号</div>
 
-                                                <div allowSort="true" field="applyCarModel" width="70" headerAlign="center" allowSort="true">品牌车型</div>
+                                                <div allowSort="true" field="applyCarModel" width="150" headerAlign="center" allowSort="true">品牌车型</div>
                                                 <div allowSort="true" field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
                                                 <div allowSort="true" field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>
                                                 <div allowSort="true" field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>
@@ -117,9 +119,9 @@
                                             <div property="columns">
                                                 <div allowSort="true" field="remark" width="60" headerAlign="center" allowSort="true">备注</div>
 
-                                                <div allowSort="true" field="queryCode" width="60" headerAlign="center" allowSort="true">助记码</div>
+                                                <div allowSort="true" field="queryCode" width="100" headerAlign="center" allowSort="true">助记码</div>
 
-                                                <div allowSort="true" field="namePy" width="60" headerAlign="center" allowSort="true">拼音</div>
+                                                <div allowSort="true" field="namePy" width="160" headerAlign="center" allowSort="true">拼音</div>
 
                                                 <div allowSort="true" field="isUniform" width="70" headerAlign="center" header="是否统一售价" allowSort="true"></div>
 
@@ -135,7 +137,7 @@
                         <div title="本地配件资料" name="local" id="local">
                             <div class="nui-fit">
                                 <div id="partLoalGrid" class="nui-datagrid" style="width:100%;height:100%;" frozenStartColumn="0" frozenEndColumn="7" borderStyle="border:0;"
-                                    dataField="parts" url="" onrowdblclick="onPartGridRowDblClick" onrowclick="onPartGridRowClick"
+                                    dataField="parts" url="" onrowdblclick="onPartGridRowDblClick" onrowclick="onPartGridRowClick"allowCellWrap = true
                                     idField="id" totalField="page.count" selectOnLoad="true" pageSize="50" sortMode="client"
                                     showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
                                     <div property="columns">
@@ -145,9 +147,9 @@
                                                 <div allowSort="true" field="isDisabled" width="50" headerAlign="center">状态</div>
                                                 <div allowSort="true" field="qualityTypeId" width="60" headerAlign="center">品质</div>
                                                 <div allowSort="true" field="partBrandId" width="70" headerAlign="center">品牌</div>
-                                                <div allowSort="true" field="code" name="code" width="80" headerAlign="center" allowSort="true">编码</div>
-                                                <div allowSort="true" field="name" name="name" width="80" headerAlign="center" allowSort="true">名称</div>
-                                                <div allowSort="true" field="fullName" name="fullName" width="120" headerAlign="center" allowSort="true">全称</div>
+                                                <div allowSort="true" field="code" name="code" width="100" headerAlign="center" allowSort="true">编码</div>
+                                                <div allowSort="true" field="name" name="name" width="120" headerAlign="center" allowSort="true">名称</div>
+                                                <div allowSort="true" field="fullName" name="fullName" width="280" headerAlign="center" allowSort="true">全称</div>
                                                 <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
                                             </div>
                                         </div>
@@ -157,7 +159,7 @@
 
                                                 <div allowSort="true" field="model" width="60" headerAlign="center" allowSort="true">型号</div>
 
-                                                <div allowSort="true" field="applyCarModel" width="70" headerAlign="center" allowSort="true">品牌车型</div>
+                                                <div allowSort="true" field="applyCarModel" width="200" headerAlign="center" allowSort="true">品牌车型</div>
                                                 <div allowSort="true" field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
                                                 <div allowSort="true" field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>
                                                 <div allowSort="true" field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>
@@ -172,9 +174,9 @@
                                         </div>
                                         <div header="辅助信息" headerAlign="center">
                                             <div property="columns">
-                                                <div allowSort="true" field="queryCode" width="60" headerAlign="center" allowSort="true">助记码</div>
+                                                <div allowSort="true" field="queryCode" width="100" headerAlign="center" allowSort="true">助记码</div>
 
-                                                <div allowSort="true" field="namePy" width="60" headerAlign="center" allowSort="true">拼音</div>
+                                                <div allowSort="true" field="namePy" width="160" headerAlign="center" allowSort="true">拼音</div>
 
                                                 <div allowSort="true" field="isUniform" width="70" headerAlign="center" header="是否统一售价" allowSort="true"></div>
 

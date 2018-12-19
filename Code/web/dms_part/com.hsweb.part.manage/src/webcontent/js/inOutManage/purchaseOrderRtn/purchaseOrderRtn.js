@@ -527,7 +527,7 @@ function getMainData()
 
     data.orderManId=nui.get('orderMan').getValue();
 	data.orderMan=nui.get('orderMan').getText();
-	
+	delete data.createDate;
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
     }

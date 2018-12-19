@@ -78,14 +78,15 @@
                      selectOnLoad="true"
                      sortMode="client"
                      frozenStartColumn="0"
+                     allowCellWrap = true
                      frozenEndColumn="0">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <!--<div type="checkcolumn" ></div>-->
                         <div header="往来基本信息" headerAlign="center">
                             <div property="columns">
-                                <div allowSort="true" field="shortName" width="80" headerAlign="center" header="简称"></div>
-                                <div allowSort="true" field="fullName" width="100" headerAlign="center" header="全称"></div>
+                                <div allowSort="true" field="shortName" width="120" headerAlign="center" header="简称"></div>
+                                <div allowSort="true" field="fullName" width="220" headerAlign="center" header="全称"></div>
                                 <div allowSort="true" field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>
                                 <div allowSort="true" field="billTypeId" width="80" headerAlign="center" header="票据类型"></div>
                                 <div allowSort="true" field="settTypeId" width="100" headerAlign="center" header="结算方式"></div>
@@ -104,7 +105,7 @@
     </div>
 </div>
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:250px;"
+     title="高级查询" style="width:456px;height:250px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">
@@ -144,6 +145,7 @@
                            valueField="id"
                            emptyText="请选择..."
                            url=""
+                           popupHeight="100%"
                            allowInput="true"
                            showNullItem="false"
                            onvaluechanged="onProvinceSelected('cityId')"

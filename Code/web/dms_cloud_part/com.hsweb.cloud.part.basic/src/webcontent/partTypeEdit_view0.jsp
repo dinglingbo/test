@@ -58,7 +58,7 @@
 
 
 <div class="nui-fit">
-    <div class="nui-fit">
+<!--     <div class="nui-fit"> -->
         <div id="editForm" class="form">
         	<input id="id" name="id" width="100%" class="nui-hidden" >
         	<input id="orgid" name="orgid" width="100%" class="nui-hidden" >
@@ -73,12 +73,12 @@
                 </tr>
                 <tr class="htr">
                     <td class=" right fwidtha required">上级分类:</td>
-                    <td ><input id="parentId" name="parentId" width="100%" class="nui-combobox" textField="name" valueField="id"     dataField="" url="" valueFromSelect="true" allowinput="true"></td>
+                    <td ><input id="parentId" name="parentId" width="100%" class="nui-combobox" textField="name" valueField="id"  popupHeight="50%"   dataField="" url="" valueFromSelect="true" allowinput="true"></td>
                 </tr>
             </table>
 
         </div>
-    </div>
+<!--     </div> -->
 	<div class="nui-toolbar" style="padding:0px;border-top:0;border-left:0;border-right:0;text-align:center;">
         <a class="nui-button" iconCls="" plain="true" onclick="add()"><span class="fa fa-plus fa-lg"></span>&nbsp;保存并新增</a>
         <a class="nui-button" iconCls="" plain="true" onclick="save()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>

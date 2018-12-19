@@ -1305,7 +1305,6 @@ var requiredField = {
     guestId : "客户",
     enterOilMass : "进厂油量",
     enterKilometers : "进厂里程",
-    enterDate : "进厂日期",
     planFinishDate : "预计交车"
 };
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
@@ -1314,9 +1313,6 @@ function saveMaintain(callback,unmaskcall){
     var desData = describeForm.getData(true);
     for(var v in desData){
         data[v] = desData[v];
-    }
-    if(data.id) {
-    	delete data.enterDate;
     }
     if (data.planFinishDate) {
 		data.planFinishDate = format(data.planFinishDate, 'yyyy-MM-dd HH:mm:ss');
@@ -1328,6 +1324,9 @@ function saveMaintain(callback,unmaskcall){
             showMsg(requiredField[key] + "不能为空!","W");
 			return;
 		}
+    }
+    if(data.id) {
+    	delete data.enterDate;
     }
     data.billTypeId = 0;
     data.lastEnterKilometers = $("#lastComeKilometers").text() || 0;

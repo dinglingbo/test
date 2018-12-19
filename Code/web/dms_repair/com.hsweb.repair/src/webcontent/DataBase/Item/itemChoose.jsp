@@ -159,13 +159,14 @@
 					<div property="columns" >
 						<div type="indexcolumn">序号</div>
 						<div type="checkcolumn" name="checkcolumn" visible="false"></div>
+						<div field="belonging" headerAlign="center" allowSort="true" width="50px">所属</div>
 						<div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
 						<div field="type" headerAlign="center" allowSort="true" width="100px">项目类型</div>
-						<div field="serviceTypeId" headerAlign="center" allowSort="true" width="50px">业务类型</div>
+						<div field="serviceTypeId" headerAlign="center" allowSort="true" width="60px">业务类型</div>
 						<div field="itemTime" headerAlign="center" allowSort="true" visible="true" width="50px">工时</div>
 						<div field="unitPrice" headerAlign="center" allowSort="true" width="50px">单价</div>
 						<div field="amt" headerAlign="center" allowSort="true" width="50px">金额</div>
-						<div field="code" headerAlign="center" width="50px">项目编码</div>
+						<div field="code" headerAlign="center" width="60px">项目编码</div>
 							
 					</div>
 				</div>

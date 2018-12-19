@@ -64,7 +64,7 @@ function onOk()
 		if(ckcallback){
 			var rs = ckcallback(row);
 			if(rs){
-				showMsg("此配件已添加,请返回查看!","W");
+				 parent.showMsg("此配件已添加,请返回查看!","W");
 				return;
 			}else{
 				if(callback){
@@ -101,7 +101,7 @@ function onOk()
 		}
 	}
 	else{
-		showMsg("请选择一个配件", "W");
+		 parent.showMsg("请选择一个配件", "W");
 	}
 }
 

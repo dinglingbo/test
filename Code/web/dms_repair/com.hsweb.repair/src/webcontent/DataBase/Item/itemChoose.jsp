@@ -43,27 +43,12 @@
                              <table style="width:100%;height:50px;">
 		                        <tr>
 				                    <td id="addAEl">
-				                     <!-- <a href='javascript:;' itemid='"+timeStr+"' class='hui'>"+timeStr+"</a> -->
-				                   <!--     <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
-				                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
-				                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户ghjvhj</a>
-				                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到hu</a>
-				                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
-				                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a> 
-				                        <a href='javascript:;' itemid='3'name='type'class='hui'>员工生日</a>
-				                        <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
-				                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
+				           
+				                       <!--  <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
 				                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户</a>
 				                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到</a>
 				                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
-				                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a> 
-				                        <a href='javascript:;' itemid='3'name='type'class='hui'>员工生日</a>
-				                        <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
-				                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
-				                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户</a>
-				                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到</a>
-				                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
-				                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a>  -->
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a>   -->
 				                        
 				                    </td>
 		                       </tr>
@@ -156,36 +141,6 @@
 					</table>
 				</div>
 			</div>
-    
-       <!-- <div class="addyytime" style="display:none" id="showHot" >
-         <table style="width:100%;height:50px;">
-             <tr>
-                    <td >
-                        <a href='javascript:;' itemid='"+timeStr+"' class='hui'>"+timeStr+"</a>
-                        <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
-                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
-                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户ghjvhj</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到hu</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a> 
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>员工生日</a>
-                                                <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
-                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
-                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a> 
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>员工生日</a>
-                                                <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
-                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
-                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a> 
-                    </td>
-                </tr>
-        </table>
-      </div> -->
             
 			<div class="nui-fit">
 				<div id="rightGrid"

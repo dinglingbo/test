@@ -278,13 +278,14 @@
     <location x="536" y="244"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.setItemWorkersById</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
         <process:inputVariable id="1" name="workerIds" type="query" value="String" valueType="Primitive" pattern="reference">workerIds</process:inputVariable>
         <process:inputVariable id="2" name="workers" type="query" value="String" valueType="Primitive" pattern="reference">workers</process:inputVariable>
         <process:inputVariable id="3" name="type" type="query" value="String" valueType="Primitive" pattern="reference">type</process:inputVariable>
+        <process:inputVariable id="4" name="serviceTypeIds" type="query" value="String" valueType="Primitive" pattern="reference">serviceTypeIds</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -336,6 +337,7 @@
     <process:input description="" isArray="false" name="workerIds" primitiveType="String"/>
     <process:input description="" isArray="false" name="workers" primitiveType="String"/>
     <process:input description="all,package,item" isArray="false" name="type" primitiveType="String"/>
+    <process:input description="业务类型" isArray="false" name="serviceTypeIds" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

@@ -11,8 +11,11 @@
 
 <head>
     <title>初始化导航</title>
-    <script src="<%= request.getContextPath() %>/config/js/dmsSysInitGuide.js?v=1.2.0"></script>
+    <script src="<%= request.getContextPath() %>/config/js/dmsSysInitGuide.js?v=1.2.1"></script>
     <style>
+    	body{
+	overflow:auto;
+	}
         .container {
             padding: 10px;
         }
@@ -166,6 +169,15 @@
                     </div>
                 </td>
             </tr> -->
+              <tr>
+                <td>
+                    <div class="mini-panel mini-panel-info" title="导入工单信息" width="250px" showCollapseButton="false" showCloseButton="false">
+                        <br />导入未跟换系统前的工单信息
+                        <br /><br />
+                        <div align="center"><a class="mini-button mini-button-success" onclick="importMaintain()" >导入工单信息</a></div>
+                    </div>
+                </td>
+            </tr>
         </table>
     </div>
 </body>

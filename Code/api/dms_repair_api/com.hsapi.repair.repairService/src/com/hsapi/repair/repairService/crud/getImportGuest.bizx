@@ -142,7 +142,7 @@
       <targetNode>transactionrollback1</targetNode>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
-    <location x="1110" y="298"/>
+    <location x="1108" y="298"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
     <process:copy>
@@ -155,7 +155,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="1108" y="334"/>
+    <location x="1106" y="334"/>
     <figSize height="17" width="32"/>
     <node>assign9</node>
   </nodes>
@@ -1039,7 +1039,7 @@
       <targetNode>loopend1</targetNode>
     </sourceConnections>
     <targetConnections>link27</targetConnections>
-    <location x="990" y="238"/>
+    <location x="975" y="231"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -1053,7 +1053,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="969" y="274"/>
+    <location x="954" y="267"/>
     <figSize height="17" width="64"/>
     <node>invokePojo1</node>
   </nodes>

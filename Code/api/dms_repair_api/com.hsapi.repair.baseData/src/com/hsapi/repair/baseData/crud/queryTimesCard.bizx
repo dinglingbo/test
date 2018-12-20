@@ -185,6 +185,7 @@
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="105" y="161"/>

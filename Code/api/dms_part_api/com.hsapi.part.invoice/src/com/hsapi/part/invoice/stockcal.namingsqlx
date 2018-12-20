@@ -152,6 +152,10 @@
 				and (F.QUERY_CODE like '%$partNameAndPY$%' or F.NAME like '%$partNameAndPY$%' or F.FULL_NAME like '%$partNameAndPY$%' or F.NAME_PY like '%$partNameAndPY$%')
 			</isNotNull>
 			
+			 <!--入库日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">A.enter_date &gt;= #sEnterDate#</isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">(A.enter_date &lt; #eEnterDate#)</isNotEmpty>
+            
 			<isNotNull prepend = "" property = "cartypeid">
 				<isNotEqual prepend = "" property = "cartypeid" compareValue="0">
 					and (F.CAR_TYPE_ID_F = #cartypeid# or F.CAR_TYPE_ID_S = #cartypeid# or F.CAR_TYPE_ID_T = #cartypeid#)

@@ -27,18 +27,18 @@
                         <td class="title required">
                             <label>车&nbsp;牌&nbsp;&nbsp;号：</label>
                         </td>
-                        <td class=""  style="width:200px"><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
+                        <td class="" ><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
                         <td class="title required">
                             <label >进厂时间：</label>
                         </td>
-                        <td style="width:200px">
+                        <td >
                             <input id="enterDate" name="enterDate" enabled="false" class="nui-datepicker" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
                             <input id="recordDate" name="recordDate" class="nui-datepicker" visible="false" value="" nullValue="null" format="yyyy-MM-dd HH:mm" showTime="true"  showOkButton="false" showClearButton="true" timeFormat="HH:mm:ss" width="100%"/>
                         </td>
                         <td class="title" >
                            <label>品牌车型：</label>
                         </td>
-                        <td class="" colspan="1" style="width:300px">
+                        <td class="" colspan="1" >
                              <input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/>
 <!--                             <input  class="nui-textbox" name="carBrandModel" id="carBrandModel" enabled="false" width="100%"/>
  -->                           

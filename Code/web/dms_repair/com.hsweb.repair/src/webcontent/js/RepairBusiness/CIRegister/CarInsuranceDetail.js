@@ -666,7 +666,7 @@ function onPrint(argument) {
     };
     nui.open({
         url: webBaseUrl + "repair/RepairBusiness/Reception/insurnacePrint.jsp?token="+token,
-        title:"打印",
+        title:"保险单打印",
         height:"100%",
         width:"100%",
         allowResize:false,

@@ -1973,10 +1973,6 @@ function onPrint(){
 			mainId :from.id,
 			auditSign:from.auditSign
 	};
-//	params.id=from.id;
-//	params.auditSign=from.auditSign;
-	detailParams.mainId = from.id;
-	detailParams.auditSign=from.auditSign;
 	var openUrl = webPath + contextPath+"/purchase/purchaseOrder/purchaseOrderPrint.jsp";
 
     nui.open({

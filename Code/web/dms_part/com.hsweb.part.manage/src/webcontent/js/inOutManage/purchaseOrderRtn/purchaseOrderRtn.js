@@ -929,6 +929,7 @@ function onPrint() {
         url: openUrl,
         width: "100%",
         height: "100%",
+        title : "采购退货单打印",
         showMaxButton: false,
         allowResize: false,
         showHeader: true,

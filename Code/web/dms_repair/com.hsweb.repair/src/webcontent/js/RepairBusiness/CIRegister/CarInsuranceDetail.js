@@ -256,7 +256,7 @@ function drawSummaryCell(e){
 
 function insuranceChange(e){
 	var data=detailGrid.getData();
-	var  detailData=[];
+	var  detailData2=[];
 	var carNo=nui.get('carNo').getValue();
 	if(!carNo){
 		showMsg("请先添加客户信息!","W");
@@ -266,15 +266,15 @@ function insuranceChange(e){
     nui.get("insureCompId").setValue(selected.id);
     for(var i =0;i<insurance.length;i++){
     	if(insurance[i].id==selected.id){
-    		detailData = [
+    		detailData2 = [
     		              {insureTypeId:1,rtnCompRate:insurance[i].rebateAgentToCompany1,rtnGuestRate:insurance[i].rebateCompanyToGuest1,insureTypeName:"交强险"},
     		              {insureTypeId:2,rtnCompRate:insurance[i].rebateAgentToCompany2,rtnGuestRate:insurance[i].rebateCompanyToGuest2,insureTypeName:"商业险"},
     		              {insureTypeId:3,rtnCompRate:insurance[i].rebateAgentToCompany3,rtnGuestRate:insurance[i].rebateCompanyToGuest3,insureTypeName:"车船税"}];
     	}
     }
-    if(detailData.length>0){
-    	for(var i=0;i<detailData.length;i++){
-    		detailGrid.updateRow(data[i],detailData[i]);
+    if(detailData2.length>0){
+    	for(var i=0;i<detailData2.length;i++){
+    		detailGrid.updateRow(data[i],detailData2[i]);
     	}
     	
     }
@@ -465,6 +465,7 @@ function add(){
     $("#servieIdEl").html("");
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
+    $("#guestCarEl").html("");
     detailGrid.setData([]);
     detailGrid.setData(detailData);
 }

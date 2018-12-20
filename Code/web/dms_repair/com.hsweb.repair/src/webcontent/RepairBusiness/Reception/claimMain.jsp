@@ -103,6 +103,7 @@
                   <div field="status" name="status" width="40px" headerAlign="center" header="进程"></div>
                   <div field="serviceCode" name="serviceCode" width="120px" headerAlign="center" header="工单号"></div>
                   <div field="carNo" name="carNo" width="80px" headerAlign="center" header="车牌号"></div>
+                  <div field="insureClaimCompName" name="insureClaimCompName" width="110px" headerAlign="center"  header="保险公司"></div>
                   <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂时间"></div>
                   <div field="serviceTypeName" name="serviceTypeName" width="100px" headerAlign="center" header="业务类型"></div>
                   <div field="carModel" name="carModel" width="70px" headerAlign="center"  header="品牌车型"></div>

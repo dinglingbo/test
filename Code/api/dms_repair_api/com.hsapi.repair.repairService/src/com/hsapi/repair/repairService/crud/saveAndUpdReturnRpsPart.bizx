@@ -8,6 +8,7 @@
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="serviceId" type="query" valueType="Primitive">serviceId</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
@@ -45,21 +46,6 @@
     <figSize height="17" width="49"/>
     <node>transactionrollback0</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" description="" id="end1" name="结束1" displayName="结束" type="end">
-    <targetConnections>link11</targetConnections>
-    <location x="859" y="179"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end1label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="857" y="215"/>
-    <figSize height="17" width="32"/>
-    <node>end1</node>
-  </nodes>
   <nodes xsi:type="process:tTransactionCommit" id="transactioncommit1" name="事务提交1" displayName="事务提交" type="transactioncommit">
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>transactioncommit1</sourceNode>
@@ -78,7 +64,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end5</targetNode>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="765" y="179"/>
@@ -114,6 +100,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">添加成功</process:from>
       <process:to type="query">errMsg</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/id</process:from>
+      <process:to type="query">serviceId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -428,21 +418,6 @@
     <figSize height="17" width="100"/>
     <node>invokePojo6</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
-    <targetConnections>link36</targetConnections>
-    <location x="1155" y="331"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end2label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
-    <location x="1153" y="367"/>
-    <figSize height="17" width="32"/>
-    <node>end2</node>
-  </nodes>
   <nodes xsi:type="process:tTransactionRollback" id="transactionrollback1" name="事务回滚1" displayName="事务回滚" type="transactionrollback">
     <sourceConnections xsi:type="process:tLink" id="link35" name="link35" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>transactionrollback1</sourceNode>
@@ -459,21 +434,6 @@
     <location x="958" y="367"/>
     <figSize height="17" width="56"/>
     <node>transactionrollback1</node>
-  </nodes>
-  <nodes xsi:type="process:tEnd" id="end3" name="结束3" displayName="结束" type="end">
-    <targetConnections>link30</targetConnections>
-    <location x="1200" y="400"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end3label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end3label" name="label" nodeType="label">
-    <location x="1198" y="436"/>
-    <figSize height="17" width="32"/>
-    <node>end3</node>
   </nodes>
   <nodes xsi:type="process:tTransactionCommit" id="transactioncommit0" name="事务提交" displayName="事务提交" type="transactioncommit">
     <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="连接线" isDefault="true" type="transition">
@@ -493,7 +453,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
-      <targetNode>end3</targetNode>
+      <targetNode>end2</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
@@ -508,6 +468,10 @@
       <process:from type="literal" pattern="reference">更新成功</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/id</process:from>
+      <process:to type="query">serviceId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
     <location x="1137" y="437"/>
@@ -517,7 +481,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link36" name="link36" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
-      <targetNode>end2</targetNode>
+      <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link35</targetConnections>
     <location x="1063" y="331"/>
@@ -620,21 +584,6 @@
     <figSize height="17" width="39"/>
     <node>assign12</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end4" name="结束4" displayName="结束" type="end">
-    <targetConnections>link43</targetConnections>
-    <location x="150" y="152"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end4label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end4label" name="label" nodeType="label">
-    <location x="148" y="188"/>
-    <figSize height="17" width="32"/>
-    <node>end4</node>
-  </nodes>
   <nodes xsi:type="process:tTransactionRollback" id="transactionrollback2" name="事务回滚2" displayName="事务回滚" type="transactionrollback">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>transactionrollback2</sourceNode>
@@ -653,7 +602,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign13" name="赋值12" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link43" name="link43" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign13</sourceNode>
-      <targetNode>end4</targetNode>
+      <targetNode>end3</targetNode>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
     <location x="207" y="152"/>
@@ -908,6 +857,70 @@
     <figSize height="17" width="79"/>
     <node>invokePojo3</node>
   </nodes>
+  <nodes xsi:type="process:tEnd" id="end5" name="结束5" displayName="结束" type="end">
+    <targetConnections>link11</targetConnections>
+    <location x="885" y="179"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end5label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="serviceId" type="query" valueType="Primitive">serviceId</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end5label" name="label" nodeType="label">
+    <location x="883" y="215"/>
+    <figSize height="17" width="32"/>
+    <node>end5</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
+    <targetConnections>link36</targetConnections>
+    <location x="1153" y="331"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end1label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="serviceId" type="query" valueType="Primitive">serviceId</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
+    <location x="1151" y="367"/>
+    <figSize height="17" width="32"/>
+    <node>end1</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
+    <targetConnections>link30</targetConnections>
+    <location x="1216" y="401"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end2label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="serviceId" type="query" valueType="Primitive">serviceId</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
+    <location x="1214" y="437"/>
+    <figSize height="17" width="32"/>
+    <node>end2</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end3" name="结束3" displayName="结束" type="end">
+    <targetConnections>link43</targetConnections>
+    <location x="150" y="152"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end3label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="Int" name="serviceId" type="query" valueType="Primitive">serviceId</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end3label" name="label" nodeType="label">
+    <location x="148" y="188"/>
+    <figSize height="17" width="32"/>
+    <node>end3</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-30 09:31:08" date="2018-07-30Z" description="" name="addStore" version="7.0.0.0"/>
@@ -930,6 +943,7 @@
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
+    <process:output description="" isArray="false" name="serviceId" primitiveType="Int"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

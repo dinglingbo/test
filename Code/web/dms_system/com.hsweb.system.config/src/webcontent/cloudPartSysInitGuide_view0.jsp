@@ -87,7 +87,7 @@
                     </div>
                 </td>
                 <td>
-                    <div class="mini-panel mini-panel-success" title="期初应收应付" width="250px"showCollapseButton="false" showCloseButton="false">
+                    <div class="mini-panel mini-panel-success" title="期初应收应付" width="350px"showCollapseButton="false" showCloseButton="false">
                         <br />设置系统启用之前供应商和客户的应收应付欠款余额
                         <br /><br />
                         <div align="center"><a class="mini-button mini-button-success" onclick="toRPBillSet()">设置期初应收应付</a></div>

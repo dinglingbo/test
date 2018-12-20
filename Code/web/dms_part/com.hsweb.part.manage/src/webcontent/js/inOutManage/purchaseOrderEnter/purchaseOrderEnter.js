@@ -1886,6 +1886,7 @@ function onPrint() {
         url: openUrl,
         width: "100%",
         height: "100%",
+        title : "入库单打印",
         showMaxButton: false,
         allowResize: false,
         showHeader: true,

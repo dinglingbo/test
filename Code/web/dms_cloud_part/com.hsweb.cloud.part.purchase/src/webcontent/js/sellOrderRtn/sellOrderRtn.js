@@ -591,7 +591,7 @@ function getMainData() {
     data.billStatusId = 0;
     data.printTimes = 0;
     data.orderTypeId = 4;
-
+    delete data.createDate;	
     if (data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss')
                 + '.0';// 用于后台判断数据是否在其他地方已修改
@@ -1120,33 +1120,60 @@ function setGuestInfo(params) {
         }
     });
 }
-function onPrint() {
-    var row = leftGrid.getSelected();
 
-    var data = rightGrid.getData();
-    if(data && data.length<=0) return;
+function onPrint(){
+	var from = basicInfoForm.getData();
+	var params={
+			id : from.id,
+		auditSign:from.auditSign	
+	};
+	var detailParams={
+			mainId :from.id,
+		  auditSign:from.auditSign	
+	};
+	var openUrl = webPath + contextPath+"/purchase/sellOrderRtn/sellOrderRtnPrint.jsp";
 
-    if (row) {
-
-        if(!row.id) return;
-
-		var auditSign = row.auditSign||0;
-
-        nui.open({
-
-            url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrderRtnPrint.flow?ID="
-                    + row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
-            title : "销售退货打印",
-            width : 900,
-            height : 600,
-            onload : function() {
-                var iframe = this.getIFrameEl();
-                // iframe.contentWindow.setInitData(storeId, 'XSD');
-            }
-        });
-    }
-
+    nui.open({
+       url: openUrl,
+       width: "100%",
+       title : "销售退货打印",
+       height: "100%",
+       showMaxButton: false,
+       allowResize: false,
+       showHeader: true,
+       onload: function() {
+           var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params,detailParams);
+       },
+   });
 }
+//function onPrint() {
+//    var row = leftGrid.getSelected();
+//
+//    var data = rightGrid.getData();
+//    if(data && data.length<=0) return;
+//
+//    if (row) {
+//
+//        if(!row.id) return;
+//
+//		var auditSign = row.auditSign||0;
+//
+//        nui.open({
+//
+//            url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrderRtnPrint.flow?ID="
+//                    + row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
+//            title : "销售退货打印",
+//            width : 900,
+//            height : 600,
+//            onload : function() {
+//                var iframe = this.getIFrameEl();
+//                // iframe.contentWindow.setInitData(storeId, 'XSD');
+//            }
+//        });
+//    }
+//
+//}
 function ontopTabChanged(e){
     var tab = e.tab;
     var name = tab.name;

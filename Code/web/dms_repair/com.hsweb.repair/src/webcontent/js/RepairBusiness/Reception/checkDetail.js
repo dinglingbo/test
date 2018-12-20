@@ -383,11 +383,12 @@ function newCheckMainMore(){
 } 
 
 function tprint(){
-
+	
+	var mainId= nui.get('id').value;
     var turl = "com.hsweb.print.checkCar.flow";
     var pa={
         baseUrl:baseUrl,
-        serviceId:mainParams.id,
+        mainId:mainId,
         token:token
     };
 

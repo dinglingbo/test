@@ -217,6 +217,9 @@
         if(type == "Code"){
             params.partCode = par;
         } 
+        if(type == "Name") {
+        	params.partName = par;
+        }
         //nui.alert(nui.encode(params));
         mainGrid.load({params:params,token:token});
     }

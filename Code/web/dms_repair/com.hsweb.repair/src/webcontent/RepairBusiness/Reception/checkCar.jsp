@@ -392,13 +392,13 @@
                 	<td rowspan="2" style="width: 133px;">
                      	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
                     </td>
-                    <td>
+                    <td style="width:55%">
                         <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
                     </td>
                     <td rowspan="2" style="">
                         <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
                         <div style="padding-top: 2px; font-size: 16px;font-family: Arial;">
-                          <span id="serviceCode"></span>  
+                          <span  id="serviceCode"></span>  
                         </div>
                     </td>
                 </tr>
@@ -503,7 +503,7 @@
 	function SetData(params){
 		// params.baseUrl params.serviceId params.token 
 		var date = new Date();
-		document.getElementById("comp").innerHTML = currRepairSettorderPrintShow || "";
+		document.getElementById("comp").innerHTML = currRepairSettorderPrintShow||currOrgName || "";
 		document.getElementById("spstorename").innerHTML = "车辆检查报告";
 		document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
 		document.getElementById("guestAddr").innerHTML = currCompAddress;
@@ -561,7 +561,7 @@
            		}
         	}
         });
-        $.post(params.baseUrl+"com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext?mainId="+params.serviceId+"&token="+params.token,{},function(text){
+        $.post(params.baseUrl+"com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext?mainId="+params.mainId+"&token="+params.token,{},function(text){
             	var tBody = $("#tbodyId");
 				tBody.empty();
 				var tds = '<td align="center">[id]</td>' +

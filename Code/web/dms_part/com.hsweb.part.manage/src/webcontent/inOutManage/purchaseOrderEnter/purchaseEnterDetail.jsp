@@ -102,7 +102,7 @@
                   <div property="columns">
                     <div type="indexcolumn">序号</div>
                       <div field="guestFullName" width="120" headerAlign="center" header="供应商"></div>
-                      <div field="createDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd HH:mm" header="创建日期"></div>
+                      <div field="createDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" format="yyyy-MM-dd HH:mm" header="创建日期"></div>
                       <div field="auditSign" width="60" headerAlign="center" header="状态"></div>
                       <div field="orderManId" width="60" headerAlign="center" visible="false" header="采购员Id"></div>
                       <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>

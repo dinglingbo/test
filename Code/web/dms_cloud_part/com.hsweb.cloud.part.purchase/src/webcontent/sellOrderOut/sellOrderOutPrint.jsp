@@ -210,7 +210,7 @@ hr {
 	width:28%;
 }
 </style>
-<title>采购订单打印</title>
+<title>销售出库单打印</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js"  type="text/javascript"></script>    
     
@@ -331,9 +331,9 @@ hr {
 		var dictDefs ={"billTypeIdE":"DDT20130703000008", "settleTypeIdE":"DDT20130703000035"};
 		var baseUrl = apiPath + cloudPartApi + "/";
 		var MainUrl = baseUrl
-				+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
+				+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList.biz.ext";
 		var DetailUrl = baseUrl
-				+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
+				+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
     	$(document).ready(function(){
     		$('#currOrgName').text(currRepairSettorderPrintShow||currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
@@ -371,11 +371,11 @@ hr {
             else window.close();
         }
     	function SetData(params,detailParms){
-    		document.getElementById("spstorename").innerHTML = "采购订单";
+    		document.getElementById("spstorename").innerHTML = "销售出库单";
     		document.getElementById("guestAddr").innerHTML = "地址："+currCompAddress;
 	   		document.getElementById("phone").innerHTML ="电话："+currCompTel;
 	   		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
-	   			var formParms =text.pjPchsOrderMainList[0];
+	   			var formParms =text.pjSellOrderMainList[0];
 	       		$('#guestFullName').text("供应商:"+formParms.guestFullName);
 	       		$('#createDate').text("订单日期："+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
 	       		$('#serviceId').text(formParms.serviceId);
@@ -387,8 +387,8 @@ hr {
 	    		}
     		});
     	
-    		$.post(DetailUrl+"?params/mainId="+detailParms.mainId+"&params/auditSign="+detailParms.auditSign+"&token="+token,{},function(text){
-				var data= text.pjPchsOrderDetailList;
+    		$.post(DetailUrl+"?params/mainId="+detailParms.mainId+"&token="+token,{},function(text){
+				var data= text.pjSellOrderDetailList;
 				var tBody = $("#tbodyId");
 				tBody.empty();
 				var tds='<td align="center">[index]</td>'+

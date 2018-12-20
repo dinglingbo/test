@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="checkCarExists" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、租户下的车辆不能重复，按车牌号；&#xD;&#xA;2、租户下的VIN不能重复，按VIN；&#xD;&#xA;&#xD;&#xA;修改时必须要能根据车牌号或是VIN查询到数据" title="Administrator&#x9;18-5-15 上午11:41">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="1、租户下的车辆不能重复，按车牌号；&#xD;&#xA;2、租户下的VIN不能重复，按VIN；&#xD;&#xA;&#xD;&#xA;修改时必须要能根据车牌号或是VIN查询到数据&#xD;&#xA;&#xD;&#xA;20181220去掉VIN的限制" title="Administrator&#x9;18-5-15 上午11:41">
     <location x="65" y="-75"/>
     <size height="138" width="361"/>
   </nodes>
@@ -35,7 +35,6 @@
     <targetConnections>link6</targetConnections>
     <targetConnections>link26</targetConnections>
     <targetConnections>link27</targetConnections>
-    <targetConnections>link30</targetConnections>
     <targetConnections>link34</targetConnections>
     <targetConnections>link38</targetConnections>
     <location x="675" y="237"/>
@@ -526,44 +525,11 @@
     <figSize height="17" width="39"/>
     <node>assign14</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign15" name="赋值15" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign15</sourceNode>
-      <targetNode>end0</targetNode>
-    </sourceConnections>
-    <targetConnections>link29</targetConnections>
-    <location x="158" y="281"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign15label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">VIN不能为空</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
-    <location x="153" y="317"/>
-    <figSize height="17" width="39"/>
-    <node>assign15</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" id="assign16" name="赋值16" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link28" name="link28" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign16</sourceNode>
       <targetNode>assign12</targetNode>
       <process:transitionCondition/>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link29" name="link29" displayName="连接线" type="transition">
-      <sourceNode>assign16</sourceNode>
-      <targetNode>assign15</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">carVin</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
     <location x="157" y="185"/>

@@ -111,8 +111,10 @@ function save(){
     if(!row){
         showMsg('请选择一条短信','W');
         return;
+    }else{
+    	CloseWindow("ok");
     }
-    CloseWindow("ok");
+    
 }
 
 function CloseWindow(action) {

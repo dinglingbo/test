@@ -32,9 +32,10 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getJVMDate" displayName="getJVMDate" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>subprocess2</targetNode>
+      <targetNode>assign7</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
@@ -190,6 +191,7 @@
       <targetNode>invokePojo4</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
+    <targetConnections>link21</targetConnections>
     <location x="350" y="145"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
@@ -221,9 +223,8 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link1</targetConnections>
-    <targetConnections>link8</targetConnections>
-    <location x="189" y="145"/>
+    <targetConnections>link22</targetConnections>
+    <location x="189" y="206"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
@@ -241,14 +242,15 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="144" y="180"/>
+    <location x="144" y="241"/>
     <figSize height="17" width="116"/>
     <node>subprocess2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
-      <targetNode>subprocess2</targetNode>
+      <targetNode>assign7</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="27" y="45"/>
@@ -325,7 +327,7 @@
     <figSize height="17" width="49"/>
     <node>transactioncommit0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>transactionrollback0</targetNode>
@@ -412,6 +414,37 @@
     <location x="-122" y="90"/>
     <figSize height="17" width="32"/>
     <node>assign6</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign7" name="赋值7" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" description="" id="link21" name="link21" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>subprocess1</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>subprocess2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="190" y="144"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign7label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
+    <location x="188" y="180"/>
+    <figSize height="17" width="32"/>
+    <node>assign7</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

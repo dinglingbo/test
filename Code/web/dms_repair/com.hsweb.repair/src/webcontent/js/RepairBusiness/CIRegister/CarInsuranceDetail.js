@@ -25,10 +25,8 @@ var settleTypeIdList = [{id:1,name:"保司直收"},{id:2,name:"门店代收全�
 var detailData = [{insureTypeId:1,insureTypeName:"交强险"},{insureTypeId:2,insureTypeName:"商业险"},{insureTypeId:3,insureTypeName:"车船税"}];
 $(document).ready(function ()
 {
-    var yy = (new Date()).getFullYear();
-    var mm = ((new Date()).getMonth() + 1);
-    var dd = (new Date()).getDate();
-    var db = yy + "-" + mm + "-" + dd; //本日
+   
+    
     basicInfoForm = new nui.Form("#basicInfoForm");
 //    insuranceForm = new nui.Form("#insuranceForm");
     mtAdvisorIdEl = nui.get("mtAdvisorId");
@@ -110,7 +108,7 @@ $(document).ready(function ()
                 guestId:item.guestId,
                 enterKilometers:"",
                 guestFullName:guestName,
-                recordDate:db,
+                recordDate: nui.get("recordDate").value,
                 mtAdvisorId:""
             };
             basicInfoForm.setData(sdata);
@@ -456,7 +454,7 @@ function add(){
     searchKeyEl.setValue("");//点增加给输入框个值，防止触发不了onchanged方法，不能放入客户
 //    insuranceForm.setData([]);
     basicInfoForm.setData([]);
-
+    nui.get("recordDate").setValue(new Date());
     nui.get("mtAdvisorId").setValue(currEmpId);
     nui.get("mtAdvisor").setValue(currUserName);
 
@@ -536,6 +534,9 @@ function saveData(e){
 			return false;
 		}
 	}
+    if(data.id){
+    	delete data.recordDate;
+    }
 //    var data2 = getData2();
     var gridData = detailGrid.getData();
 

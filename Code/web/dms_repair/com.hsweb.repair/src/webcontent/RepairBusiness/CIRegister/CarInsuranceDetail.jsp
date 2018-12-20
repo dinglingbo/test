@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>保险开单明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.57"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.59"></script>
     <style type="text/css">
    .title {
         width: 80px;
@@ -206,7 +206,7 @@ pageEncoding="UTF-8" session="false"%>
             <td class="">
                 <input id="recordDate"
                 name="recordDate"
-                allowInput="false" format="yyyy-MM-dd "
+                allowInput="false" format="yyyy-MM-dd HH:mm "
                 class="nui-datepicker" enabled="false" width="100%"/>
             </td>
 

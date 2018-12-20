@@ -2,6 +2,7 @@ var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
 var treeUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDictTypeTree.biz.ext";
 var itemGridUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getItem.biz.ext";
+
 var tree1 = null;
 var rightGrid = null;
 var typeHash = {};
@@ -18,8 +19,13 @@ var tree = null;
 var itemGrid = null;
 var carModelIdLy = null;
 var serviceId = null;
+var dataType = null;
+var dataTypeList = [
+    {id:1,name:'本地项目'},
+    {id:2,name:'标准项目'}
+];
 $(document).ready(function()
-{
+{	
 	queryForm = new nui.Form("#queryForm");
 	tree1 = nui.get("tree1");
 	itemGrid = nui.get("itemGrid");
@@ -28,6 +34,7 @@ $(document).ready(function()
 	advancedAddForm  = new nui.Form("#advancedAddForm");
 	tempGrid = nui.get("tempGrid");
 	itemGrid.hide();
+	dataType = nui.get("dataType");
 	
 	var parentId = "DDT20130703000063";
     tree1.setUrl(treeUrl+"?p/rootId=DDT20130703000063&token="+token);
@@ -36,11 +43,42 @@ $(document).ready(function()
 	data.forEach(function(v) {
 		typeHash[v.customid] = v;
 	});
-
+	nui.get("dataType").setData(dataTypeList);
 	 initCarBrand("carBrandId",function()
 	 {
 	 });
 
+	 dataType.on("valuechanged",function(e){
+		 var r = e.selected;
+		 if(r.id == 1) {
+			itemGrid.hide();
+	    	rightGrid.show();
+	    	nui.get("dataType").setValue(1);
+	    	var serviceLabel =document.getElementById("serviceLabel");
+	    	serviceLabel.style.display="";
+
+	    	var itemCodeLabel =document.getElementById("itemCodeLabel");
+	    	itemCodeLabel.style.display="";
+	    	//showHot
+	    	
+	    	nui.get("serviceTypeId").setVisible(true);
+	    	nui.get("search-code").setVisible(true);
+		 }else {
+			rightGrid.hide();
+	    	itemGrid.show();
+	    	nui.get("dataType").setValue(2);
+
+	    	var serviceLabel =document.getElementById("serviceLabel");
+	    	serviceLabel.style.display="none";
+
+	    	var itemCodeLabel =document.getElementById("itemCodeLabel");
+	    	itemCodeLabel.style.display="none";
+	    	
+	    	nui.get("serviceTypeId").setVisible(false);
+	    	nui.get("search-code").setVisible(false);
+		 }
+		 onSearch();
+	 });
 	tree1.on("nodedblclick",function(e)
 	{
 		var node = e.node;
@@ -123,6 +161,7 @@ $(document).ready(function()
 	tree1.on("nodeclick",function(e){
 		itemGrid.hide();
     	rightGrid.show();
+    	nui.get("dataType").setValue(1);
     	var serviceLabel =document.getElementById("serviceLabel");
     	serviceLabel.style.display="";
 
@@ -132,11 +171,12 @@ $(document).ready(function()
     	
     	nui.get("serviceTypeId").setVisible(true);
     	nui.get("search-code").setVisible(true);
-    	var showHot =document.getElementById("showHot");
-    	showHot.style.display="none";
+    	//var showHot =document.getElementById("showHot");
+    	//showHot.style.display="none";
     });
 	
-	var hotUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getHotWord.biz.ext";
+	//var hotUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getHotWord.biz.ext";
+	var hotUrl = apiPath + partApi +"/com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
     tree = nui.get("tree");
     tree.on("load",function(e)
     {
@@ -179,6 +219,7 @@ $(document).ready(function()
     tree.on("nodeclick",function(e){
     	rightGrid.hide();
     	itemGrid.show();
+    	nui.get("dataType").setValue(2);
 
     	var serviceLabel =document.getElementById("serviceLabel");
     	serviceLabel.style.display="none";
@@ -188,9 +229,34 @@ $(document).ready(function()
     	
     	nui.get("serviceTypeId").setVisible(false);
     	nui.get("search-code").setVisible(false);
-    	var showHot =document.getElementById("showHot");
-    	showHot.style.display="";
+    	//var showHot =document.getElementById("showHot");
+    	//showHot.style.display="";
     });
+    setHotWord();
+//    $("a[name=HotWord]").click(function () {
+//    	rightGrid.hide();
+//    	itemGrid.show();
+//
+//    	var serviceLabel =document.getElementById("serviceLabel");
+//    	serviceLabel.style.display="none";
+//
+//    	var itemCodeLabel =document.getElementById("itemCodeLabel");
+//    	itemCodeLabel.style.display="none";
+//    	
+//    	nui.get("serviceTypeId").setVisible(false);
+//    	nui.get("search-code").setVisible(false);
+//    	//var showHot =document.getElementById("showHot");
+//    	//showHot.style.display="";
+//    	
+//    	$("a[name=HotWord]").removeClass("xz");
+//    	$("a[name=HotWord]").addClass("hui");
+//        $(this).addClass("xz");
+//        var name = $(this).text();
+//        var params = {
+//            	partName:name
+//            };
+//         doSearchItem(params);
+//      });
 });
 function setRoleId(){
 	return {"token":token};
@@ -536,3 +602,51 @@ function onAdvancedAddOk(){
 }
 
 
+ function setHotWord(){
+	var hotUrl = apiPath + sysApi + "/com.hsapi.system.product.items.getHotWord.biz.ext";
+	nui.ajax({
+		url : hotUrl,
+		type : "post",
+		aynsc:false,
+		data : {},
+		success : function(data) {
+			
+			data = data || {};
+			if (data.errCode == "S") {
+				
+				var list = nui.clone(data.rs);
+				var temp = "";
+				for(var i=0;i<list.length;i++){
+				var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>";
+					temp +=aEl;
+				}
+				$("#addAEl").html(temp);
+				selectclick();
+			} else {
+				showMsg(data.errMsg || "设置热词失败!","E");
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+function selectclick() {
+    $("a[name=HotWord]").click(function () {
+        $(this).siblings().removeClass("xz");
+        $(this).toggleClass("xz");
+        
+        var name = $(this).text();
+        nui.get("search-name").setValue(name);
+        if(itemGrid.visible) {
+    		var params = {
+    			name: nui.get("search-name").getValue()
+    		}
+    		doSearchItem(params);
+    	}else {
+    		var params = getSearchParams();
+    		doSearch(params);
+    	}
+        
+    });
+}

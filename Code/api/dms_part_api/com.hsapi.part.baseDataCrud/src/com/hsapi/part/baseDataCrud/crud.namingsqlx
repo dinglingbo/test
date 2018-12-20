@@ -649,6 +649,68 @@
         </dynamic>
     </select>
     
+    <select id="queryLogisticsList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    <!-- 物流公司 -->
+    	SELECT 
+			a.id id,
+			a.orgid orgid,
+			a.code code,
+			a.py_name pyName,
+			a.full_name fullName,
+			a.short_name shortName,
+			a.manager manager,
+			a.mobile mobile,
+			a.order_index orderIndex,
+			a.is_disabled isDisabled
+		FROM
+			com_guest a 
+		WHERE
+			(a.orgid = 0 or a.orgid = #orgid#)
+			and a.guest_type = '01020204'
+		<dynamic>
+    		<isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty> 
+            <isNotEmpty prepend="and" property="name">  
+                (a.full_name like '%$name$%' or a.short_name like '%$name$%')
+            </isNotEmpty>
+    		<isNotEmpty prepend="and" property="fullName">  
+                (a.full_name like '%$fullName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">  
+                (a.mobile like '%$mobile$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="shortName">  
+                (a.short_name like '%$shortName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="manager">  
+                (a.manager = #manager#)
+            </isNotEmpty>
+        </dynamic>
+		order by a.order_index asc
+	</select>
+	
+	<update id="updatePartCommon" parameterClass="java.util.HashMap" >
+		update com_attribute set common_id = #commonId#
+		where 1 = 1
+            <isNotEmpty prepend="and" property="partIds">
+            	(id in ($partIds$))
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="commonIds">
+            	(common_id in ($commonIds$) and common_id &gt; 0)
+            </isNotEmpty>
+		 
+	</update>
+	
+	<update id="cancelPartCommon" parameterClass="java.util.HashMap" >
+		update com_attribute set common_id = 0
+		where 1 = 1
+            <isNotEmpty prepend="and" property="partIds">
+            	(id in ($partIds$))
+            </isNotEmpty>
+		 
+	</update>
+	
     <select id="queryPartStockByIds" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT orgid, part_id as partId, stock_qty as stockQty, stock_amt as stockAmt 
     	from wb_part.pj_part_stock

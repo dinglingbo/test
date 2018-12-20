@@ -11,7 +11,7 @@
 -->
 <head>
 <title>物流公司</title>
-<script src="<%= request.getContextPath() %>/baseDataPart/js/logistics/LogisticsMain.js?v=1.0.1"></script>
+<script src="<%= request.getContextPath() %>/baseDataPart/js/logistics/LogisticsMain.js?v=1.0.4"></script>
 <style type="text/css">
 table {
 	width: 100%;
@@ -41,7 +41,7 @@ table {
 	</table>
 </div>
 <div class="nui-fit">
-	<div id="datagrid1" dataField="list" class="nui-datagrid" style="width:800px;height:100%;"
+	<div id="datagrid1" dataField="list" class="nui-datagrid" style="width:100%;height:100%;"
 		 pageSize="20" showPageInfo="true" multiSelect="true" showPageIndex="true" showPage="true" showPageSize="true"
 		 showReloadButton="true" showPagerButtonIcon="true" totalField="page.count"
 		 ondrawcell="onDrawCell"

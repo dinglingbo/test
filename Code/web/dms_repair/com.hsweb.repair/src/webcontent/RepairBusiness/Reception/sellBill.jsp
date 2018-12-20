@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-销售单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=2.0.5"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=2.0.7"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -168,13 +168,13 @@
                         <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
                         <div header="联系人名称" field="contactName" width="30" headerAlign="center"></div>
                         <div header="联系人手机" field="mobile" width="60" headerAlign="center"></div>
-                        <div header="VIN" field="vin" width="70" headerAlign="center"></div>
+                        <div header="车架号(VIN)" field="vin" width="70" headerAlign="center"></div>
                     </div>
                 </div>
                 <input id="search_name"
                 name="search_name"
                 class="nui-textbox aa"
-                emptyText="车牌号/客户名称/手机号/VIN码"
+                emptyText="车牌号/客户名称/手机号/车架号(VIN)"
                 onbuttonclick="onSearchClick()"
                 visible="false"
                 enabled="false"

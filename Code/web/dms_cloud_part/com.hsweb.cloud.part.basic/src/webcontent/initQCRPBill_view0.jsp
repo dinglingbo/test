@@ -72,7 +72,7 @@
                         <div type="indexcolumn">序号</div>
                         <div field="guestId" width="50" headerAlign="center" visible="false"></div>
                         <div field="billDc" width="50" headerAlign="center" visible="false"></div>
-                        <div field="guestFullName" summaryType="count" width="50" headerAlign="center" header="往来单位全称"></div>
+                        <div field="guestFullName" summaryType="count" width="100" headerAlign="center" header="往来单位全称"></div>
                         <div field="guestShortName" width="100" headerAlign="center" header="往来单位简称"></div>
                         <div field="code" headerAlign="center" header="往来单位编码"></div>
                         <div field="ramt" width="60" summaryType="sum" headerAlign="center" header="应收">

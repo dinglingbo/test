@@ -12,7 +12,7 @@
 <head>
 <title>维修项目</title>
 
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.10" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.28" type="text/javascript"></script>
 <style type="text/css">
     html, body{
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
@@ -21,46 +21,69 @@
     .addyytime a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 40px -1px no-repeat; padding-right:22px; color:#888; text-decoration:none;}
     .addyytime a.hui{padding-left: 5px;padding-right: 5px;height:;line-height:24px;border:1px #a6e0f5 solid;display:block;float:left;text-decoration:none;
         text-align:center;color:#00b4f6;border-radius:4px;margin:0 5px 5px 0;}
-        .addyytime a.hui{border:1px #e6e6e6 solid;color:#c8c8c8;background:#e6e6e6;}
-        .addyytime a.xz{ color:#fff !important; background:#5ab1ef;}
-        .addyytime a:link, a:visited { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 13px; color: #555555; text-decoration: none; }
-        .addyytime a.hui:hover { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 13px;background-color: #9fe6b8; color: #FFF; text-decoration: none; }
-        .addyytime a .hui{text-decoration:none;transition:all .4s ease;}
+    .addyytime a.hui{border:1px #e6e6e6 solid;color:#555555;background:#e6e6e6;}
+    .addyytime a.xz{ font-size: 13px; color: #555555 !important; background:#5ab1ef;}
+    .addyytime a:link, a:visited { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 13px; color: #555555; text-decoration: none; }
+    .addyytime a.hui:hover { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 13px;background-color: #9fe6b8; color: #FFF; text-decoration: none; }
+    .addyytime a .hui{text-decoration:none;transition:all .4s ease;}
 </style>
 </head>
-<body>
-
-<div class="nui-fit">
+<body>       
+   <div class="nui-fit">
 	<div class="nui-splitter" style="width: 100%; height: 100%;"
 		 showHandleButton="false">
 		<div size="200" showCollapseButton="false">
 			<div class="nui-fit">
-				<div class="nui-toolbar"
-					 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
-					<span>本地项目类型</span>
-				</div>
-				<div class="nui-fit">
-				<div style="width: 100%; height: 40%;">
-					<ul id="tree1" class="nui-tree" url="" style="width: 100%;"
-						dataField="data"
-						resultAsTree="false"
-						showTreeIcon="true"
-						textField="name" idField="id" parentField="dictid">
-					</ul>
-				</div>
+				<!-- onactivechanged="onTabChanged" -->
+				 <div class="nui-tabs"  id="mainTab" 
+                           activeIndex="0" style="width: 100%; height: 100%;" plain="false" borderStyle="border:0;">
+                     
+                  <div title="热词">
+                          <div class="addyytime" style="display:''" id="showHot" >
+                             <table style="width:100%;height:50px;">
+		                        <tr>
+				                    <td id="addAEl">
+				           
+				                       <!--  <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
+				                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户</a>
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到</a>
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
+				                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a>   -->
+				                        
+				                    </td>
+		                       </tr>
+                         </table>
+                      </div>
+                      
+                      </div>
+                      <div title="分类">
+                      <div class="nui-toolbar"
+					         style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
+					      <span>本地项目类型</span>
+				      </div>
+				         <div style="width: 100%; height: 40%;">
+							<ul id="tree1" class="nui-tree" url="" style="width: 100%;"
+								dataField="data"
+								resultAsTree="false"
+								showTreeIcon="true"
+								textField="name" idField="id" parentField="dictid">
+							</ul>
+				        </div>
 			
-			    
-				<div class="nui-toolbar"
-					 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
-					<span>标准项目类型</span>
-				</div>
-				<div style="width: 100%; height: 50%;">
-					<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
-						dataField="rs" showTreeIcon="true" textField="name" expandOnLoad="0"
-						idField="id" ajaxData="setRoleId" parentField="" resultAsTree="false">
-					</ul>
-			    </div>
-		   </div>
+					<div class="nui-toolbar"
+						 style="padding: 2px; border-top: 0; border-left: 0; border-right: 0; text-align: center;">
+						<span>标准项目类型</span>
+					</div>
+					<div style="width: 100%; height: 50%;">
+						<ul id="tree" class="nui-tree" url="" style="width: 100%;height:100%;"
+							dataField="partTypes" showTreeIcon="true" textField="name" expandOnLoad=""
+							idField="id" ajaxData="setRoleId" parentField="parentId" resultAsTree="false">
+						</ul>
+				    </div>
+		   
+                </div>
+             </div>
+				
 		</div>
 	</div>
 		<div showCollapseButton="false">
@@ -70,6 +93,15 @@
 					<table class="table" id="table1">
 						<tr>
 							<td >
+								<input name="dataType"
+										id="dataType"
+										class="nui-combobox"
+										value="1"
+										textField="name"
+										valueField="id"
+										allowInput="true"
+										width="80px"
+										/>
 								<label style="font-family: Verdana;font-size: 12px;" id="serviceLabel">业务类型：</label>
 								<input name="serviceTypeId"
 										id="serviceTypeId"
@@ -96,9 +128,9 @@
 										showNullItem="false"
 										nullItemText="请选择..."/>
 								<label style="font-family: Verdana;font-size: 12px;">项目名称：</label>
-								<input class="nui-textbox" width="100px" id="search-name" name="name" onenter="onSearch()" />
+								<input class="nui-textbox" width="80px" id="search-name" name="name" onenter="onSearch()" />
 								<label style="font-family: Verdana;font-size: 12px;" id="itemCodeLabel">项目编码：</label>
-								<input class="nui-textbox" width="100px" id="search-code" name="code" onenter="onSearch()"/>
+								<input class="nui-textbox" width="60px" id="search-code" name="code" onenter="onSearch()"/>
 								<span class="separator"></span>
 								<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 								<a class="nui-button" plain="true" iconCls="" onclick="onClear()"><span class="fa fa-trash-o"></span>&nbsp;清空</a>
@@ -109,36 +141,6 @@
 					</table>
 				</div>
 			</div>
-    
-       <div class="addyytime" style="display:none" id="showHot" >
-       <table style="width:100%;height:50px;">
-             <tr>
-                    <td >
-                        <!-- <a href='javascript:;' itemid='"+timeStr+"' class='hui'>"+timeStr+"</a> -->
-                        <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
-                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
-                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户ghjvhj</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到hu</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a> 
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>员工生日</a>
-                                                <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
-                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
-                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a> 
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>员工生日</a>
-                                                <a href='javascript:;' itemid='1'name='type'class='hui'>商业险到</a>
-                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
-                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
-                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a> 
-                    </td>
-                </tr>
-        </table>
-      </div>
             
 			<div class="nui-fit">
 				<div id="rightGrid"

@@ -638,6 +638,7 @@ var requiredField = {
 
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function saveMaintain(callback,unmaskcall){
+	
     var data = billForm.getData();
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
@@ -645,6 +646,9 @@ function saveMaintain(callback,unmaskcall){
             showMsg(requiredField[key] + "不能为空!","W");
 			return;
 		}
+    }
+	if(data.id) {
+    	delete data.recordDate;
     }
     data.billTypeId = 3;
     data.serviceTypeId = 1 ;
@@ -1269,6 +1273,7 @@ function saveBatch(){
 	    
 	}else{		
 		var maintain = billForm.getData();
+	    delete maintain.recordDate;
 		var addSellPart = nui.get("rpsPartGrid").getData();
 		var sellPartAdd = rpsPartGrid.getChanges("added");
 		var sellPartUpdate = rpsPartGrid.getChanges("modified");

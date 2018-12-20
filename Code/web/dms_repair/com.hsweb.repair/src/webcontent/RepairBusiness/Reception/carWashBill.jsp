@@ -10,7 +10,8 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.63"></script>
+
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.65"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -276,8 +277,8 @@
                 <td class=""><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
                 <td class="title">进厂时间：</td> 
                 <td class="">
-                    <input id="recordDate"
-                    name="recordDate"
+                    <input id="enterDate"
+                    name="enterDate"
                     allowInput="false" format="yyyy-MM-dd HH:mm"
                     class="nui-datepicker" enabled="false" width="100%"/>
                 </td>  

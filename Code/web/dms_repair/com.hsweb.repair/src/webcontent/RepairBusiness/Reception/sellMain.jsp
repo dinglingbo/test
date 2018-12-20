@@ -66,7 +66,7 @@
                         <li iconCls="" onclick="quickSearch(4)" id="type0">已结算</li>
                     </ul>
                     <span class="separator"></span>
-                    <input class="nui-combobox" id="search-type" width="93" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+                    <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onenterCarNo(this.value)"/>
                     <label class="form_label">开单日期&nbsp;从：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>

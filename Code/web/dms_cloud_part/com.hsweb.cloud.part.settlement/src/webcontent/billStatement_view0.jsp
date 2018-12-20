@@ -12,7 +12,7 @@
 <script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.1"></script>
 <style type="text/css">
 .title {
-  width: 60px;
+  width: 85px;
   text-align: right;
 }
 
@@ -113,9 +113,9 @@
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
-                        <div field="guestName" width="80" headerAlign="center" header="往来单位"></div>
-                        <div field="createDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="对账日期"></div>
-                        <div field="stateMan" width="60" headerAlign="center" header="对账员"></div><div field="auditSign" width="35" headerAlign="center" header="状态"></div>
+                        <div field="guestName" width="150" headerAlign="center" header="往来单位"></div>
+                        <div field="createDate" width="130" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="对账日期"></div>
+                        <div field="stateMan" width="60" headerAlign="center" header="对账员"></div><div field="auditSign" width="55" headerAlign="center" header="状态"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="对账单号"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
                         <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="审核日期"></div>
@@ -125,7 +125,7 @@
         </div>
         <div showCollapseButton="false">
              <div class="nui-fit">
-                  <fieldset id="fd1" style="width:95%;height:90px;">
+                  <fieldset id="fd1" style="width:99.5%;height:120px;">
                       <legend><span>对账单信息</span></legend>
                       <div class="fieldset-body">
                           <div id="basicInfoForm" class="form" contenteditable="false">
@@ -300,7 +300,7 @@
 </div>
 
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:416px;height:220px;"
+     title="高级查询" style="width:416px;height:250px;"
      showModal="true"
      allowResize="false"
      allowDrag="true">
@@ -346,7 +346,7 @@
             </tr>
             <tr>
                 <td class="title">
-                    <span style="letter-spacing: 6px;">往来单位:
+                    <span style="">往来单位:
                 </td>
                 <td colspan="3">
                     <input id="btnEdit2"

@@ -11,7 +11,7 @@
 -->
 <head>
 <title>编辑物流公司</title>
-<script src="<%= request.getContextPath() %>/baseDataPart/js/logistics/LogisticsDetail.js?v=1.0.0"></script>
+<script src="<%= request.getContextPath() %>/baseDataPart/js/logistics/LogisticsDetail.js?v=1.0.1"></script>
 <style type="text/css">
 table {
 	table-layout: fixed;

@@ -368,7 +368,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">value</process:from>
-      <process:to type="query">tempHash/uintPrice</process:to>
+      <process:to type="query">tempHash/unitPrice</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">pkgTemp/rate</process:from>
@@ -762,7 +762,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">itemTemp/unitPrice</process:from>
-      <process:to type="query">tempHash/uintPrice</process:to>
+      <process:to type="query">tempHash/unitPrice</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">itemTemp/rate</process:from>
@@ -959,7 +959,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">partTemp/unitPrice</process:from>
-      <process:to type="query">tempHash/uintPrice</process:to>
+      <process:to type="query">tempHash/unitPrice</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">partTemp/rate</process:from>

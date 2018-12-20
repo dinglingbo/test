@@ -12,14 +12,25 @@
 <head>
 <title>班组选择</title>
 <script
-	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/dispatchWorkers.js?v=1.0.1"></script>
+	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/dispatchWorkers.js?v=1.1.2"></script>
 	<style type="text/css">
-	a:hover {
+	.show {
     background: #c0e1fd;
     color: #1582de;
 }
-a.show{
-	
+.none{	
+	 width: 60px;
+    height: 30px;
+    font-size: 18px;
+    text-align: center;
+
+    border-radius: 5px;
+    text-decoration: none;
+    line-height: 2;
+	background: #a596963d;
+}
+a {
+  cursor:pointer;
 }
 	</style>
 </head>
@@ -27,16 +38,20 @@ a.show{
 		<div>
 			<table>
 				<tr>
-					<td>
-						预计结束时间
+					<td >
+						为本单项目类型派工：
 					</td>
-					<td></td>
+				</tr>
+				<tr>
+					<td >
+						<div id="Project" style="width: 100%;height: 100%;">
+							
+						</div>
+					</td>
 				</tr>
 				<tr>	
-					<td>
+					<td width="90px" >
 						选择方式：
-					</td>
-					<td colspan="1" >
 						<div class="mini-radiobuttonlist" repeatItems="1"
 							repeatLayout="table" repeatDirection="vertical" name="isShare"
 							textField="text" valueField="value"
@@ -48,7 +63,7 @@ a.show{
 				<tr>
 					<td>
 						<div>
-							耗时工时：<input class="nui-textbox"/>天<input class="nui-textbox"/>时<input class="nui-textbox"/>分<br>
+							耗时工时：<input class="nui-textbox" width="50px"/>天<input class="nui-textbox" width="50px"/>时<input class="nui-textbox" width="50px"/>分<br>
 							<a  class="show"  style="padding: 0px 10px;margin-bottom: 0;border-radius: 4px;line-height: 24px;">
 							15m</a>
 							<a  class="show"  style="padding: 0px 10px;margin-bottom: 0;border-radius: 4px;line-height: 24px;">
@@ -69,7 +84,7 @@ a.show{
 					</td>
 				</tr>
 				<tr>
-					<td>
+					<td >
 						预计完工时间：2018-12-18 00.09
 					</td>
 				</tr>

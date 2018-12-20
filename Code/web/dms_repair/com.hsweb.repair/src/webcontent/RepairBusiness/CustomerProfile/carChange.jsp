@@ -11,7 +11,7 @@
 -->
 <head>
 <title>车牌车主变更</title>
-<script src="<%= request.getContextPath() %>/repair/js/RepairBusiness/CustomerProfile/carChange.js?v=1.0.7"></script>
+<script src="<%= request.getContextPath() %>/repair/js/RepairBusiness/CustomerProfile/carChange.js?v=1.0.8"></script>
 <style type="text/css">
 
 .dtable{

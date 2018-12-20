@@ -27,7 +27,7 @@
                         <td class="title required">
                             <label>车&nbsp;牌&nbsp;&nbsp;号：</label>
                         </td>
-                        <td class="" ><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
+                        <td class="" style="width:150px"><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
                         <td class="title required">
                             <label >进厂时间：</label>
                         </td>
@@ -38,7 +38,7 @@
                         <td class="title" >
                            <label>品牌车型：</label>
                         </td>
-                        <td class="" colspan="1">
+                        <td class="" colspan="1" >
                              <input  class="nui-textbox" name="carModel" id="carModel" enabled="false" width="100%"/>
 <!--                             <input  class="nui-textbox" name="carBrandModel" id="carBrandModel" enabled="false" width="100%"/>
  -->                           
@@ -80,7 +80,7 @@
                         <td class="title required" > 
                           <label>进厂油量：</label>
                      </td> 
-                     <td class="title required" colspan="3" style="text-align:left;">
+                     <td class="title required" colspan="5" style="text-align:left;">
                            <input name="enterOilMass"
                                id="enterOilMass"
                                class="nui-combobox width1"
@@ -88,7 +88,7 @@
                                valueField="customid"
                                emptyText="请选择..."
                                url=""
-                               width="15%"
+                               width="10%"
                                allowInput="true"
                                showNullItem="false"
                                valueFromSelect="true"
@@ -99,18 +99,15 @@
                        
                                <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="100000000"  width="10%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
                                <label class="title" style="color:#000">(上次里程：<span id="lastComeKilometers">0</span>)</label>
-                         
-                         
-                        
+                       
                       		&nbsp;&nbsp;
                             <label>预计交车：</label>
                     
-                            <input id="planFinishDate" name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm" nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" width="32%"/>
-                        </td>
-                    	<td class="title required">
+                            <input id="planFinishDate" name="planFinishDate" class="nui-datepicker" value="" format="yyyy-MM-dd HH:mm" nullValue="null" timeFormat="HH:mm:ss" showTime="true" showOkButton="false" showClearButton="true" width="17%"/>
+                        
+                            &nbsp;&nbsp;
                             <label>服&nbsp;务&nbsp;&nbsp;顾&nbsp;问：</label>
-                        </td>
-                        <td>
+                        
                             <input name="mtAdvisorId"
                                    id="mtAdvisorId"
                                    class="nui-combobox width1"
@@ -120,7 +117,7 @@
                                    url=""
                                    allowInput="true"
                                    showNullItem="false"
-                                   width="100%"
+                                   width="12%"
                                    valueFromSelect="true"
                                    nullItemText="请选择..."/>
                         </td>

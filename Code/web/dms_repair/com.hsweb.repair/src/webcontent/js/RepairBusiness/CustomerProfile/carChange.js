@@ -62,7 +62,7 @@ function onOk(){
 	    car.remark = nui.get("remark").getValue();
 	for ( var key in requiredField) {
 		if (!car[key] || $.trim(car[key]).length == 0) {
-			showMsg(requiredField[key] + "不能为空!", "W");
+			parent.showMsg(requiredField[key] + "不能为空!", "W");
 			return;
 		}
 	}

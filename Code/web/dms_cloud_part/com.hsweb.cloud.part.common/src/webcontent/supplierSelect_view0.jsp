@@ -13,6 +13,7 @@
 <style type="text/css">
 .table-label {
 	text-align: right;
+	
 }
 </style>
 </head>
@@ -104,7 +105,7 @@
     </div>
 </div>
 <div id="advancedSearchWin" class="nui-window"
-     title="高级查询" style="width:436px;height:250px;"
+     title="高级查询" style="width:456px;height:250px;"
      showModal="true"
      allowResize="false"
      allowDrag="false">

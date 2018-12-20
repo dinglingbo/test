@@ -11,7 +11,7 @@
 <head>
 <title>计次卡定义</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.4.3">
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardList.js?v=1.4.4">
 	</script>
 </head>
 <body>
@@ -54,7 +54,8 @@
 			allowSortColumn="false">
 			<div property="columns">
 				<div type="indexcolumn" header="序号" width="20px"></div>
-				<div type="checkcolumn" class="mini-radiobutton" header="选择"></div>
+				<div type="checkcolumn" class="mini-radiobutton" header="选择" width="20px"></div>
+				<div field="orgid" headerAlign="center" allowSort="true" width="20px">归属</div>
 				<div field="id" headerAlign="center" allowSort="true"
 					visible="false">计次卡ID</div>
 				<div field="name" headerAlign="center" allowSort="true" width="100px">计次卡名称</div>

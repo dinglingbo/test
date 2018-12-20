@@ -210,7 +210,7 @@ hr {
 	width:28%;
 }
 </style>
-<title>采购订单打印</title>
+<title>采购入库单打印</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js"  type="text/javascript"></script>    
     
@@ -371,7 +371,7 @@ hr {
             else window.close();
         }
     	function SetData(params,detailParms){
-    		document.getElementById("spstorename").innerHTML = "采购订单";
+    		document.getElementById("spstorename").innerHTML = "入库单";
     		document.getElementById("guestAddr").innerHTML = "地址："+currCompAddress;
 	   		document.getElementById("phone").innerHTML ="电话："+currCompTel;
 	   		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
@@ -387,7 +387,7 @@ hr {
 	    		}
     		});
     	
-    		$.post(DetailUrl+"?params/mainId="+detailParms.mainId+"&params/auditSign="+detailParms.auditSign+"&token="+token,{},function(text){
+    		$.post(DetailUrl+"?params/mainId="+detailParms.mainId+"&token="+token,{},function(text){
 				var data= text.pjPchsOrderDetailList;
 				var tBody = $("#tbodyId");
 				tBody.empty();

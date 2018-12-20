@@ -12,7 +12,7 @@
 <script src="<%=webPath + contextPath%>/basic/js/initPartStock.js?v=2.0.2"></script>
 <style type="text/css">
 .title {
-  width: 60px;
+  width: 80px;
   text-align: right;
 }
 
@@ -51,7 +51,7 @@
 		        </tr>
 		    </table>
 		</div>
-                <fieldset id="fd1" style="width:95%;height: 60px;">
+                <fieldset id="fd1" style="width:99.5%;height: 60px;">
                     <legend><span>期初库存信息</span></legend>
                     <div class="fieldset-body">
                     

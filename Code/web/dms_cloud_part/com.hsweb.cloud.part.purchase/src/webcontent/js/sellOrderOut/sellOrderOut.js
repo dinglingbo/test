@@ -1014,7 +1014,7 @@ function getMainData()
     data.printTimes = 0;
     data.orderTypeId = 2;
     data.isDiffOrder = 1;
-
+    delete data.createDate;	
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
     }
@@ -1866,30 +1866,55 @@ function addGuest(){
 		}
 	});
 }
-function onPrint() {
-    var row = leftGrid.getSelected();
-    if (row) {
+function onPrint(){
+	var from = basicInfoForm.getData();
+	var params={
+			id : from.id,
+		auditSign:from.auditSign	
+	};
+	var detailParams={
+			mainId :from.id,
+	};
+	var openUrl = webPath + contextPath+"/purchase/sellOrderOut/sellOrderOutPrint.jsp";
 
-        if(!row.id) return;
-
-        var auditSign = row.auditSign||0;
-        var logisticsName = getLogistics(row.id, row.guestId);
-
-        nui.open({
-
-            url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrderOutPrint.flow?ID="
-                    + row.id+"&printMan="+currUserName+"&auditSign="+auditSign+"&logisticsName="+logisticsName,// "view_Guest.jsp",
-            title : "销售出库打印",
-            width : 900,
-            height : 600,
-            onload : function() {
-                var iframe = this.getIFrameEl();
-                // iframe.contentWindow.setInitData(storeId, 'XSD');
-            }
-        });
-    }
-
+    nui.open({
+       url: openUrl,
+       width: "100%",
+       title : "销售出库打印",
+       height: "100%",
+       showMaxButton: false,
+       allowResize: false,
+       showHeader: true,
+       onload: function() {
+           var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params,detailParams);
+       },
+   });
 }
+//function onPrint() {
+//    var row = leftGrid.getSelected();
+//    if (row) {
+//
+//        if(!row.id) return;
+//
+//        var auditSign = row.auditSign||0;
+//        var logisticsName = getLogistics(row.id, row.guestId);
+//
+//        nui.open({
+//
+//            url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrderOutPrint.flow?ID="
+//                    + row.id+"&printMan="+currUserName+"&auditSign="+auditSign+"&logisticsName="+logisticsName,// "view_Guest.jsp",
+//            title : "销售出库打印",
+//            width : 900,
+//            height : 600,
+//            onload : function() {
+//                var iframe = this.getIFrameEl();
+//                // iframe.contentWindow.setInitData(storeId, 'XSD');
+//            }
+//        });
+//    }
+//
+//}
 function getLogistics(mainId, guestId){
     var logName = "";
     nui.ajax({

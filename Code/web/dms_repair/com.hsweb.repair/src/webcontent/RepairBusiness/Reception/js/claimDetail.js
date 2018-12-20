@@ -2210,6 +2210,7 @@ function closePkgWorkersSetWin(){
 //施工员
 function setPkgWorkers(){
 	nui.get("combobox3").setText("");
+	nui.get("combobox3").setValue("");
     var main =  billForm.getData();
     if(!main.id){
         return;
@@ -2495,6 +2496,7 @@ function closeItemWorkersSetWin(){
 
 function setItemWorkers(){
 	nui.get("combobox4").setText("");
+	nui.get("combobox4").setValue("");
     var main =  billForm.getData();
     if(!main.id){
         return;

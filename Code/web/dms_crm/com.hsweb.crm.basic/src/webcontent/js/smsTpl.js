@@ -20,7 +20,10 @@ $(document).ready(function(v){
     if((keyCode==27)) { //ESC
         onClose();
     }
-};
+   };
+   dgGrid.on("rowdblclick",function(){
+	   save();
+   });
 });
 
 /*
@@ -98,7 +101,7 @@ function setData(params){
 
 function getData(){
     var row = dgGrid.getSelected();
-    if(!row){
+    if(row.length<1){
         showMsg('请选择一条短信','W');
         return;
     }
@@ -108,7 +111,7 @@ function getData(){
 
 function save(){
     var row = dgGrid.getData();
-    if(!row){
+    if(row.length<1){
         showMsg('请选择一条短信','W');
         return;
     }else{

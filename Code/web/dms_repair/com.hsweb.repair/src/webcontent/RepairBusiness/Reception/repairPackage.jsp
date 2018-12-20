@@ -111,7 +111,7 @@
         <table style="width: 100%;height: 100%;">
             <tr >
                 <td colspan="2"  style="text-align: left;">
-                    <label style="color: #9e9e9e;">批量设置套餐优惠率</label>
+                    <label style="color: #9e9e9e;">批量设置套餐优惠率(标准套餐类型不能批量设置)</label>
                 </td>
             </tr>
             <tr >

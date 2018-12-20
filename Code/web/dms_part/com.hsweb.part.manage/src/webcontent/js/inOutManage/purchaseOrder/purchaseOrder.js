@@ -1635,7 +1635,7 @@ function addGuest(){
 			nui.open({
 				targetWindow: window,
 				url: webPath+contextPath+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
-				title: "供应商资料", width: 530, height: 480,
+				title: "供应商资料", width: 570, height: 510,
 				allowDrag:true,
 				allowResize:false,
 				onload: function ()
@@ -1706,6 +1706,7 @@ function onPrint(e){
         url: openUrl,
         width: "100%",
         height: "100%",
+        title : "采购订单打印",
         showMaxButton: false,
         allowResize: false,
         showHeader: true,

@@ -736,7 +736,7 @@ function getMainData() {
 	data.printTimes = 0;
 	data.orderTypeId = 1;
 	data.isDiffOrder = 1;
-
+	delete data.createDate;	
 	if (data.operateDate) {
 		data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss')
 				+ '.0';// 用于后台判断数据是否在其他地方已修改
@@ -1749,46 +1749,71 @@ function addGuest(){
 		}
 	});
 }
-function onPrint() {
-	var row = leftGrid.getSelected();
 
-	var data = rightGrid.getData();
-	if(data && data.length<=0) return;
+function onPrint(){
+	var from = basicInfoForm.getData();
+	var params={
+			id : from.id,
+		auditSign:from.auditSign	
+	};
+	var detailParams={
+			mainId :from.id
+	};
+	var openUrl = webPath + contextPath+"/purchase/purchaseOrderEnter/purchaseOrderEnterPrint.jsp";
 
-	if (row) {
-
-		if(!row.id) return;
-
-		var auditSign = row.auditSign||0;
-
-		nui.open({
-
-			url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
-					+ row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
-			title : "采购入库打印",
-			width : 900,
-			height : 600,
-			onload : function() {
-				var iframe = this.getIFrameEl();
-				// iframe.contentWindow.setInitData(storeId, 'XSD');
-			}
-		});
-
-		// nui.open({
-
-		// 	url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
-		// 			+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
-		// 	title : "采购入库打印",
-		// 	width : 900,
-		// 	height : 600,
-		// 	onload : function() {
-		// 		var iframe = this.getIFrameEl();
-		// 		// iframe.contentWindow.setInitData(storeId, 'XSD');
-		// 	}
-		// });
-	}
-
+    nui.open({
+       url: openUrl,
+       width: "100%",
+       height: "100%",
+       showMaxButton: false,
+       allowResize: false,
+       showHeader: true,
+       onload: function() {
+           var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params,detailParams);
+       },
+   });
 }
+//function onPrint() {
+//	var row = leftGrid.getSelected();
+//
+//	var data = rightGrid.getData();
+//	if(data && data.length<=0) return;
+//
+//	if (row) {
+//
+//		if(!row.id) return;
+//
+//		var auditSign = row.auditSign||0;
+//
+//		nui.open({
+//
+//			url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.pchsOrderEnterPrint.flow?ID="
+//					+ row.id+"&printMan="+currUserName+"&auditSign="+auditSign,// "view_Guest.jsp",
+//			title : "采购入库打印",
+//			width : 900,
+//			height : 600,
+//			onload : function() {
+//				var iframe = this.getIFrameEl();
+//				// iframe.contentWindow.setInitData(storeId, 'XSD');
+//			}
+//		});
+//
+//		// nui.open({
+//
+//		// 	url : webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrderPrint.flow?ID="
+//		// 			+ row.id+"&printMan="+currUserName,// "view_Guest.jsp",
+//		// 	title : "采购入库打印",
+//		// 	width : 900,
+//		// 	height : 600,
+//		// 	onload : function() {
+//		// 		var iframe = this.getIFrameEl();
+//		// 		// iframe.contentWindow.setInitData(storeId, 'XSD');
+//		// 	}
+//		// });
+//	}
+//
+//}
 function addSelectPart(){
 	var row = morePartGrid.getSelected();
 	if(row){

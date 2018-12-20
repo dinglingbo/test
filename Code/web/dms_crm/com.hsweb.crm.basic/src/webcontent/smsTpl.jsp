@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>短信模板</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=crmDomain%>/basic/js/smsTpl.js?v=1.0" type="text/javascript"></script> 
+    <script src="<%=crmDomain%>/basic/js/smsTpl.js?v=1.1" type="text/javascript"></script> 
 </head>
 <body>
 

@@ -210,7 +210,7 @@ hr {
 	width:28%;
 }
 </style>
-<title>采购订单打印</title>
+<title>销售退货单打印</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/numberFormat.js"  type="text/javascript"></script>    
     
@@ -333,7 +333,7 @@ hr {
 		var MainUrl = baseUrl
 				+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
 		var DetailUrl = baseUrl
-				+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
+				 + "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
     	$(document).ready(function(){
     		$('#currOrgName').text(currRepairSettorderPrintShow||currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
@@ -371,7 +371,7 @@ hr {
             else window.close();
         }
     	function SetData(params,detailParms){
-    		document.getElementById("spstorename").innerHTML = "采购订单";
+    		document.getElementById("spstorename").innerHTML = "销售退货单";
     		document.getElementById("guestAddr").innerHTML = "地址："+currCompAddress;
 	   		document.getElementById("phone").innerHTML ="电话："+currCompTel;
 	   		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){

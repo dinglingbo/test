@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="setItemWorkersById.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.repairService.updateSql.updateItemWorkers" title="Administrator&#x9;18-12-20 下午6:24">
+    <location x="278" y="288"/>
+    <size height="100" width="413"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -230,6 +234,10 @@
       <process:to type="query">param/modifier</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">serviceTypeIds</process:from>
+      <process:to type="query">param/serviceTypeIds</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsItem</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
@@ -240,6 +248,14 @@
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">serviceTypeIds</process:from>
+      <process:to type="query">cond/_expr[3]/serviceTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">in</process:from>
+      <process:to type="query">cond/_expr[3]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
@@ -358,7 +374,7 @@
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign6" name="赋值6" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>invokePojo4</targetNode>
@@ -444,6 +460,7 @@
     <location x="1000" y="153"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="itemList" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -777,6 +794,7 @@
     <process:input description="" isArray="false" name="workerIds" primitiveType="String"/>
     <process:input description="" isArray="false" name="workers" primitiveType="String"/>
     <process:input description="" isArray="false" name="type" primitiveType="String"/>
+    <process:input description="" isArray="false" name="serviceTypeIds" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

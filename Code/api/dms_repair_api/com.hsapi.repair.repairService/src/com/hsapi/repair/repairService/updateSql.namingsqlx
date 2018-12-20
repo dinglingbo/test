@@ -180,6 +180,10 @@
 					ifnull(bill_package_id, 0) = 0
 				</isEqual>
             </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="serviceTypeIds">  
+                (a.service_type_id in ($serviceTypeIds$))
+            </isNotEmpty>
 
 	</update>
 	
@@ -197,6 +201,10 @@
                 <isEqual prepend="and" property="type" compareValue="item">
 					ifnull(b.bill_package_id, 0) = 0
 				</isEqual>
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="serviceTypeIds">  
+                (a.service_type_id in ($serviceTypeIds$))
             </isNotEmpty>
 	</update>
 	

@@ -21,6 +21,27 @@ $(document).ready(function(v) {
 		nui.get('addBtn').setVisible(false);
 		nui.get('updateBtn').setVisible(false);
 	}*/
+	grid.on("drawcell", function (e) {
+        var grid = e.sender;
+        var record = e.record;
+        var uid = record._uid;
+        var rowIndex = e.rowIndex;
+        //获取到配件ID
+    	var pid = record.pid||0;
+        switch (e.field) {
+            case "orgid":
+                var value = e.value||"";
+                if(value==currOrgId){
+                    e.cellHtml = "本店";
+                }else {
+                	e.cellHtml = "";
+                }
+                break;
+            default:
+                break;
+        }
+        
+    });
 	
 	grid.on("rowdblclick",function(e){
 		if(assistant==1){

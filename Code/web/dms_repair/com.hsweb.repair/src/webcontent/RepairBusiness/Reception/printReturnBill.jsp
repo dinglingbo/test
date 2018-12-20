@@ -413,7 +413,7 @@
                 	<td rowspan="2" style="width: 133px;">
                      	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
                     </td>
-                    <td>
+                    <td style="width:55%">
                         <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
                     </td>
                     <td rowspan="2" style="">
@@ -543,7 +543,7 @@ function SetData(params){
        var date = new Date();
        var data = [];
        var recordDate = format(params.recordDate, "yyyy-MM-dd HH:mm");
-       document.getElementById("comp").innerHTML = currRepairSettorderPrintShow || "";
+       document.getElementById("comp").innerHTML = currRepairSettorderPrintShow||currOrgName || "";
        document.getElementById("spstorename").innerHTML = "配件退货单";
        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
 	   document.getElementById("guestAddr").innerHTML = currCompAddress;

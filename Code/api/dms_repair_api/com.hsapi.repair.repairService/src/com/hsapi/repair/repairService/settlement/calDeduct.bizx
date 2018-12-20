@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="calDeduct.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="结算后计算员工提成信息,更新套餐，工时，配件的提成金额&#xD;&#xA;（套餐，工时一定设置了提成信息；配件可能没设置需要用到通用提成）&#xD;&#xA;如果是产值提成，需要等到工单结算后再计算提成信息&#xD;&#xA;&#xD;&#xA; 预存的套餐，工时，配件不计算销售提成，只计算服务和技师提成&#xD;&#xA;&#xD;&#xA;套餐只计算 销售提成 和 服务顾问提成，没有技师提成&#xD;&#xA;技师提成在套餐的工时当中去计算；&#xD;&#xA;工时需要计算   销售，服务和技师提成；&#xD;&#xA;配件只计算销售提成，没有设置的取通用提成；&#xD;&#xA;建议通用提成只用于配件，套餐和工时必须设置提成信息；&#xD;&#xA;预存的配件不计算销售提成,套餐的配件不计算销售提成&#xD;&#xA;生成 rps_deduct_detail 数据&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.repairService.settleMent.getRpsDeductDetailAmt&#xD;&#xA;com.hsapi.repair.repairService.settleMent.getRpsDeductDetailAmt" title="Administrator&#x9;18-8-22 下午8:05">
-    <location x="27" y="-255"/>
-    <size height="286" width="483"/>
+    <location x="15" y="-285"/>
+    <size height="316" width="483"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
@@ -581,7 +581,7 @@
       <process:inputVariable id="1" name="criteriaEntity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">condDel</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">

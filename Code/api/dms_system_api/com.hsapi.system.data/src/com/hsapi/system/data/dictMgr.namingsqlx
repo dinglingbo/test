@@ -212,6 +212,12 @@
         <isNull property="orgid">
 			AND a.orgid in($orgids$)
 		</isNull>
+		<isNotNull property="memberGroupId">
+			AND a.member_group_id = #memberGroupId#
+		</isNotNull>
+		<isNotNull property="memberLevelId">
+			AND a.member_level_id = #memberLevelId#
+		</isNotNull>
     </select>
     <!--业务分类   is_disabled = 0 -->
     <select id="getServiceType" parameterClass="HashMap" resultClass="HashMap">

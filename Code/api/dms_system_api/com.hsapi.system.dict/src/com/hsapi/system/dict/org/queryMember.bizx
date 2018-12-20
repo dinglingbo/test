@@ -160,6 +160,7 @@
     <location x="413" y="244"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="orgids" iterableElement="param"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -204,6 +205,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">param</process:from>
       <process:to type="query">p/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">memberGroupId</process:from>
+      <process:to type="query">p/memberGroupId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">memberLevelId</process:from>
+      <process:to type="query">p/memberLevelId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -326,6 +335,8 @@
     <process:input description="父节点ID" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="多父节点ID列表" isArray="true" name="orgids" primitiveType="String"/>
     <process:input description="强制从数据库查询" isArray="false" name="fromDb" primitiveType="Boolean"/>
+    <process:input description="" isArray="false" name="memberGroupId" primitiveType="String"/>
+    <process:input description="" isArray="false" name="memberLevelId" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="data"/>

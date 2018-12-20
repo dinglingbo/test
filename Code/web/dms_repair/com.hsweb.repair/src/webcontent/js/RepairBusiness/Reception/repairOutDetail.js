@@ -21,7 +21,7 @@ var fserviceId = 0;
 var returnSignData = [{id:0,text:"否"},{id:1,text:"是"}];
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
-
+var showOut=null;
 var storehouse = null;
 var storeHash = {};
 var FStoreId = null;
@@ -46,6 +46,7 @@ $(document).ready(function(){
 	servieIdEl = nui.get("servieIdEl");
 	searchKeyEl = nui.get("search_key");
 	searchNameEl = nui.get("search_name");
+	showOut=nui.get("showOut");
 /*	if(actionType == "ll"){
 		mainGrid.load({serviceId:mid});
 	}
@@ -553,7 +554,7 @@ function openPartSelect(par,type,id,row,srow){
 		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow?token="+token,
 		title:"选择配件--待领料数量："+restQty,
 		height:"400px",
-		width:"900px",
+		width:"1100px",
 		onload:function(){
 			var iframe = this.getIFrameEl();
 			iframe.contentWindow.SetData(par,type,id,row,srow);
@@ -1234,6 +1235,13 @@ function  savepartOutRtn(data,childdata){
         }
     }
     
+    function onValueChangShowOut(){
+    	if(showOut.value==1){
+    		$('#repairOutGrid').css("display","block");
+    	}else if(showOut.value==0){
+    		$('#repairOutGrid').css("display","none");
+    	}
+    }
     function timeDiff(planFinishDate){
     	var startTime = new Date(); // 开始时间
         var endTime = planFinishDate; // 结束时间

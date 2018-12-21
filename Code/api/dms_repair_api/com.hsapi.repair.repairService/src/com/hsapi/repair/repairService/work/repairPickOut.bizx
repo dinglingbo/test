@@ -583,11 +583,11 @@
       <process:to type="query">insPart/unit</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">serviceId</process:from>
       <process:to type="query">insPart/serviceId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">itemId</process:from>
       <process:to type="query">insPart/billItemId</process:to>
     </process:copy>
     <process:copy>

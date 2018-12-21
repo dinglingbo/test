@@ -65,6 +65,16 @@
                            showNullItem="false"
                            nullItemText="品牌"/>
               	<input id="billTypeId" visible="false" class="nui-combobox" textField="name" valueField="customid" />
+              	<a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+
+                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+                </ul>
+              	<label style="font-family:Verdana;">入库日期 从：</label>
+                <input class="nui-datepicker" id="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+                <label style="font-family:Verdana;">至</label>
+                <input class="nui-datepicker" id="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <input class="nui-textbox" id="partNameAndPY" name="partNameAndPY" emptyText="输入查询条件" width="120"  onenter="onSearch"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch">
                   <span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
@@ -154,7 +164,13 @@
     var brandHash = {};
     var brandList = [];
     var billTypeHash = {};
+    var sEnterDateEl=null;
+    var eEnterDateEl=null;
 	nui.get('remark').focus();
+	$(document).ready(function(v){
+		sEnterDateEl = nui.get('sEnterDate');
+		eEnterDateEl = nui.get('eEnterDate');
+	});
 	document.onkeyup = function(event) {
         var e = event || window.event;
         var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -208,15 +224,53 @@
         });
     });
  
+
+ function quickSearch(type){
+    var queryname = "本日";
+    var params={};
+    switch (type)
+    {
+        case 0:
+            params.today = 1;
+            params.sEnterDate = getNowStartDate();
+            params.eEnterDate = addDate(getNowEndDate(), 1);
+            queryname = "本日";
+            sEnterDateEl.setValue(params.sEnterDate);
+    		eEnterDateEl.setValue(addDate(params.eEnterDate,-1));
+    		onSearch();
+            break;
+        case 2:
+            params.thisWeek = 1;
+            params.sEnterDate = getWeekStartDate();
+            params.eEnterDate = addDate(getWeekEndDate(), 1);
+            queryname = "本周";
+            sEnterDateEl.setValue(params.sEnterDate);
+    		eEnterDateEl.setValue(addDate(params.eEnterDate,-1));
+    		onSearch();
+            break;
+        default:
+            break;
+    }
+
+    currType = type;
+    var menunamedate = nui.get("menunamedate");
+    menunamedate.setText(queryname);
+}
     function onSearch(par,type) {  
         var params = {};
         params.partNameAndPY = nui.get("partNameAndPY").value;
+        params.eEnterDate= addDate(eEnterDateEl.getFormValue(),1);
+        params.sEnterDate = nui.get('sEnterDate').getFormValue();
+        
         if(type == "Id"){
             params .partId = par;
         }
         if(type == "Code"){
             params.partCode = par;
         } 
+        if(type == "Name") {
+        	params.partName = par;
+        }
         //nui.alert(nui.encode(params));
         mainGrid.load({params:params,token:token});
     }

@@ -209,7 +209,7 @@
 	                	<td rowspan="2" style="width: 133px;">
 	                     	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
 	                    </td>
-	                    <td>
+	                    <td style="width:55%">
 	                        <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
 	                    </td>
 	                    <td rowspan="2" style="">

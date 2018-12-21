@@ -11,7 +11,7 @@
 
 <head>
 	<title>保险结算</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CIRegister/insuranceSettlement.js?v=1.1.3"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CIRegister/insuranceSettlement.js?v=1.1.4"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -209,7 +209,7 @@
 			background: url(manage/settlement/images/yw_bg2.png) 0 -154px no-repeat;
 			line-height: 33px;
 			padding-left: 28px;
-			width: 90px;
+			width: 125px;
 			margin: 0 auto;
 			display: block;
 		}

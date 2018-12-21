@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>短信模板</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>
-    <script src="<%=crmDomain%>/basic/js/smsTpl.js?v=1.0" type="text/javascript"></script> 
+    <script src="<%=crmDomain%>/basic/js/smsTpl.js?v=1.1" type="text/javascript"></script> 
 </head>
 <body>
 
@@ -22,11 +22,11 @@ pageEncoding="UTF-8" session="false" %>
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
                 <label style="font-family:Verdana;">来源：</label>
-                <input class="nui-textbox" name="source" id="source" enabled="true"/>
+                <input class="nui-textbox" name="source" id="source" enabled="true" onenter="query()"/>
                 <label style="font-family:Verdana;">短信内容：</label>
-                <input class="nui-textbox" name="content" id="content" enabled="true"/>
+                <input class="nui-textbox" name="content" id="content" enabled="true" onenter="query()"/>
                 <label style="font-family:Verdana;">创建人：</label>
-                <input class="nui-combobox" name="recorder" id="recorder" enabled="true" textField="empName" valueField="empName" allowInput="true"/>
+                <input class="nui-combobox" name="recorder" id="recorder" enabled="true" textField="empName" valueField="empName" allowInput="true" onenter="query()"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="query()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="add" enabled="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增模板</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="edit" enabled="true"><span class="fa fa-edit fa-lg"></span>&nbsp;修改模板</a>

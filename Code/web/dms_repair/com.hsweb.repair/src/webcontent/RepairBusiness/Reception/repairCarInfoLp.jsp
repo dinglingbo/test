@@ -27,7 +27,7 @@
                         <td class="title required">
                             <label>车&nbsp;牌&nbsp;&nbsp;号：</label>
                         </td>
-                        <td class="" ><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
+                        <td class="" style="width:150px"><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
                         <td class="title required">
                             <label >进厂时间：</label>
                         </td>
@@ -88,7 +88,7 @@
                                valueField="customid"
                                emptyText="请选择..."
                                url=""
-                               width="15%"
+                               width="10%"
                                allowInput="true"
                                showNullItem="false"
                                valueFromSelect="true"

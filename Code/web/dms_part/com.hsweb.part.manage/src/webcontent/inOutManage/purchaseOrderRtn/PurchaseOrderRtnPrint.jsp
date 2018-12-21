@@ -339,7 +339,7 @@ hr {
 		var sumOrderQty=0;
 		var sumOrderAmt=0;
     	$(document).ready(function(){
-    		$('#currOrgName').text(currRepairSettorderPrintShow);
+    		$('#currOrgName').text(currRepairSettorderPrintShow||currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
     		$('#currUserName').text("打印人:"+currUserName);
 			$("#print").click(function () {

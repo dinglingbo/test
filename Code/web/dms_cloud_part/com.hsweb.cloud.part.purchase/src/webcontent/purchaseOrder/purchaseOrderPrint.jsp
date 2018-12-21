@@ -216,6 +216,8 @@ hr {
     
 </head>
 <body>
+	<input name="billTypeIdE"id="billTypeIdE"  visible="false"class="nui-combobox" />
+	<input name="settleTypeIdE" id="settleTypeIdE"  visible="false" class="nui-combobox"/>
 	<div id="query-table" style="margin: 0 10px;overflow: scroll;" class="printny">
 
         	<div id="queryTable" >
@@ -322,13 +324,18 @@ hr {
 		var date=new Date();
 		var sumOrderQty=0;
 		var sumOrderAmt=0;
+		var billTypeIdList=[];
+		var settleTypeIdList=[];
+		var billTypeIdHash={};
+		var settleTypeIdHash={};
+		var dictDefs ={"billTypeIdE":"DDT20130703000008", "settleTypeIdE":"DDT20130703000035"};
 		var baseUrl = apiPath + cloudPartApi + "/";
 		var MainUrl = baseUrl
 				+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
 		var DetailUrl = baseUrl
 				+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
     	$(document).ready(function(){
-    		$('#currOrgName').text(currRepairSettorderPrintShow);
+    		$('#currOrgName').text(currRepairSettorderPrintShow||currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
     		$('#currUserName').text("打印人:"+currUserName);
 			$("#print").click(function () {
@@ -336,7 +343,17 @@ hr {
 	            document.getElementById("query-table").style.overflow="hidden"
 	            window.print();
 	        }); 
-	        
+	        initDicts(dictDefs, function(){
+	        	billTypeIdList=nui.get('billTypeIdE').getData();     		
+	        	settleTypeIdList=nui.get('settleTypeIdE').getData();
+	        	billTypeIdList.forEach(function(v){
+	        		billTypeIdHash[v.customid]=v;
+	        	});
+	        	settleTypeIdList.forEach(function(v){
+	        		settleTypeIdHash[v.customid]=v;
+	        	});
+	        	
+	        });
 	         document.onkeyup = function(event) {
 		        var e = event || window.event;
 		        var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -362,9 +379,12 @@ hr {
 	       		$('#guestFullName').text("供应商:"+formParms.guestFullName);
 	       		$('#createDate').text("订单日期："+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
 	       		$('#serviceId').text(formParms.serviceId);
-	     
-	    		$('#billTypeId').text("票据类型:"+formParms.billTypeId);
-	    		$('#settleTypeId').text("结算方式:"+formParms.settleTypeId);
+	     		if(billTypeIdHash){
+	     			$('#billTypeId').text("票据类型:"+billTypeIdHash[formParms.billTypeId].name);
+	     		}
+	    		if(settleTypeIdHash){
+	    			$('#settleTypeId').text("结算方式:"+settleTypeIdHash[formParms.settleTypeId].name);
+	    		}
     		});
     	
     		$.post(DetailUrl+"?params/mainId="+detailParms.mainId+"&params/auditSign="+detailParms.auditSign+"&token="+token,{},function(text){

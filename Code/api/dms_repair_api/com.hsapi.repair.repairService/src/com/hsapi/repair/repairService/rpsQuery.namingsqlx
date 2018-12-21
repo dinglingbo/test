@@ -39,6 +39,8 @@
 			a.bala_audit_sign AS balaAuditSign,
 			a.bala_auditor AS balaAuditor,
 			a.bala_audit_date AS balaAuditDate,
+			a.insure_comp_id as insureClaimCompId,
+			a.insure_comp_name as insureClaimCompName,
 			b.insure_comp_name AS insureCompName,
 			a.package_amt AS packageAmt,
 			a.is_check AS isCheck,

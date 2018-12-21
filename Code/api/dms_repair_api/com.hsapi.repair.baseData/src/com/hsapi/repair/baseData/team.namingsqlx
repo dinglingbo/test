@@ -7,6 +7,7 @@
     <resultMap class="commonj.sdo.DataObject" id="resultMap">
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
+    <!--作废 -->
     <select id="getTeam" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.id id,
@@ -26,5 +27,16 @@
                 (a.is_disabled = #isDisabled#)
             </isNotEmpty> 
         </dynamic>
+	</select>
+	<select id="getGroup" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT type, id, name from (
+			select 'ALL' as type, 0 as id, '全部' as name
+			union
+				select 'BZ' as type, id, name from wb_common.com_member_group 
+				where is_disabled = 0 and orgid = #orgid#
+			union
+				select 'DJ' as type, id, name from wb_common.com_member_level 
+				where is_disabled = 0 and orgid = #orgid#) m
+
 	</select>
 </sqlMap>

@@ -21,7 +21,7 @@ var fserviceId = 0;
 var returnSignData = [{id:0,text:"否"},{id:1,text:"是"}];
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
-
+var showOut=null;
 var storehouse = null;
 var storeHash = {};
 var FStoreId = null;
@@ -46,6 +46,7 @@ $(document).ready(function(){
 	servieIdEl = nui.get("servieIdEl");
 	searchKeyEl = nui.get("search_key");
 	searchNameEl = nui.get("search_name");
+	showOut=nui.get("showOut");
 /*	if(actionType == "ll"){
 		mainGrid.load({serviceId:mid});
 	}
@@ -198,7 +199,7 @@ $(document).ready(function(){
             	var type = record.type||0;
 
                 if(type == 3){
-                    var s = '<a class="optbtn" href="javascript:billPick(\'' + uid + '\')">领料</a>';
+                    var s = '<a class="optbtn" href="javascript:pkgPick(\'' + uid + '\')">领料</a>';
                 }else{
                     var s = '--';
                 }
@@ -244,7 +245,7 @@ $(document).ready(function(){
                 	 //修改配件信息
                 	 var s = ' <a class="optbtn" href="javascript:editItemRpsPart(\'' + uid + '\')">修改</a>'
                            + ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>'
-                           + ' <a class="optbtn" href="javascript:billPick(\'' + uid + '\')">领料</a>';
+                           + ' <a class="optbtn" href="javascript:itemPick(\'' + uid + '\')">领料</a>';
                      if (grid.isEditingRow(record)) {
                          s = ' <a class="optbtn" href="javascript:updateItemRpsPart(\'' + uid + '\')">确定</a>'
                            + ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">删除</a>';
@@ -448,7 +449,41 @@ function loadDetail(p1, p2){
         }, function(){});
     }
 }
-function billPick(row_uid){
+function pkgPick(row_uid){
+    var main = billForm.getData();
+    var isSettle = main.isSettle||0;
+    if(!main.id){
+        showMsg("工单信息有误，请重新打开当前单据!","W");
+        return;
+    }
+    var nstatus = main.status||0;
+    if(nstatus == 2){
+        showMsg("工单已完工,不能领料","W");
+        return;
+    }
+	if(nstatus==0){
+		showMsg("草稿状态下的单据不能领料","W");
+		return;
+	}
+    if(isSettle == 1){
+        showMsg("工单已结算,不能修改配件","W");
+        return;
+    }
+
+    var row = rpsPackageGrid.getRowByUID(row_uid);
+    if(!row) return;
+    var r = row.prdtId;
+	var c = row.prdtCode;
+	var recordId = row.id;
+	if(r){
+		openPartSelect(r,"Id",recordId,mainRow,row);
+	}else if(c){ 
+		openPartSelect(c,"Code",recordId,mainRow,row);
+	}else{
+		openPartSelect(c,"Name",recordId,mainRow,row);
+	}
+}
+function itemPick(row_uid){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
@@ -479,8 +514,7 @@ function billPick(row_uid){
 	}else if(c){ 
 		openPartSelect(c,"Code",recordId,mainRow,row);
 	}else{
-		showMsg('部分配件需单独领取!','W');
-		return;
+		openPartSelect(c,"Name",recordId,mainRow,row);
 	}
 }
 function LLSave(argument) {
@@ -503,8 +537,7 @@ function LLSave(argument) {
 			}else if(c){ 
 				openPartSelect(c,"Code",recordId,mainRow,rows[i]);
 			}else{
-				showMsg('部分配件需单独领取!','W');
-				return;
+				openPartSelect(c,"Name",recordId,mainRow,rows[i]);
 			}
 		}
 
@@ -521,7 +554,7 @@ function openPartSelect(par,type,id,row,srow){
 		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow?token="+token,
 		title:"选择配件--待领料数量："+restQty,
 		height:"400px",
-		width:"900px",
+		width:"1100px",
 		onload:function(){
 			var iframe = this.getIFrameEl();
 			iframe.contentWindow.SetData(par,type,id,row,srow);
@@ -778,53 +811,53 @@ function updateItemRpsPart(row_uid){
         }
     }
 }
-function deleteItemRow(row_uid){
+function deletePartRow(row_uid){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
     if(!main.id){
-        showMsg("请选择保存工单!","W");
+        showMsg("工单信息有误，请重新打开当前单据!","W");
         return;
     }
     var status = main.status||0;
     if(status == 2){
-        showMsg("工单已完工,不能删除项目!","W");
+        showMsg("工单已完工,不能删除配件!","W");
         return;
     }
     if(isSettle == 1){
-        showMsg("工单已结算,不能删除项目!","W");
+        showMsg("工单已结算,不能删除配件!","W");
         return;
     }
 
     var data = rpsItemGrid.getData();
     var row = rpsItemGrid.getRowByUID(row_uid);
-    var id = row.id;
     if(data && data.length==1){
         row = data[0];
     }
-    var item = {
+    var part = {
         serviceId:row.serviceId,
         id:row.id,
         cardDetailId:row.cardDetailId||0
     };
     var params = {
         type:"delete",
-        interType:"item",
+        interType:"part",
         data:{
-            item: item
+            part: part
         }
     };
     svrCRUD(params,function(text){
         var errCode = text.errCode||"";
         var errMsg = text.errMsg||"";
-        if(errCode == 'S'){  
-        	var rows = rpsItemGrid.findRows(function(row){
-                if(row.id == id || row.billItemId == id){
-                    return true;
-                }
-            });
-        	rpsItemGrid.removeRows(rows);
+        if(errCode == 'S'){   
+            if(data && data.length==1){
+                rpsItemGrid.removeRow(data[0]);
+                //var newRow = {};
+                //rpsPartGrid.addRow(newRow);
+            }else{
+                rpsItemGrid.removeRow(row);
+            }
         }else{
-            showMsg(errMsg||"删除项目信息失败!","E");
+            showMsg(errMsg||"删除配件信息失败!","E");
             return;
         }
     });
@@ -1202,6 +1235,13 @@ function  savepartOutRtn(data,childdata){
         }
     }
     
+    function onValueChangShowOut(){
+    	if(showOut.value==1){
+    		$('#repairOutGrid').css("display","block");
+    	}else if(showOut.value==0){
+    		$('#repairOutGrid').css("display","none");
+    	}
+    }
     function timeDiff(planFinishDate){
     	var startTime = new Date(); // 开始时间
         var endTime = planFinishDate; // 结束时间

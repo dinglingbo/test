@@ -168,9 +168,7 @@ function refresh(){
 	            	}
 	            }
 	        }
-	 });
-	 
+	 }); 
 	 return infor;
-	
  }
   

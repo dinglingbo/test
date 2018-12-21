@@ -308,9 +308,8 @@ function setData(data)
                         initCityByParent('areaId', data.guest.cityId || -1);
                         contactList = data.contactList||[{}];
                         carList = data.carList||[{}];
-                        cardatagrid.addRows(carList);
-                        contactdatagrid.addRows(contactList);
-
+                        cardatagrid.setData(carList);
+                        contactdatagrid.setData(contactList);
                     }
                     else{
                         showMsg("获取客户信息失败", "E");
@@ -425,6 +424,7 @@ function setCarModel(data){
     nui.get("carModel").setValue(data.carModel);
 }
 
+var queryGuestUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext";
 function onChanged(id){
 	if(id=="fullName"){
 		fullName = nui.get("fullName").value;
@@ -433,11 +433,37 @@ function onChanged(id){
 	}
 	if(id=="mobile"){
 		mobile = nui.get("mobile").value;
-		
+		var params = 
+		      {
+				"carNo":"",
+		        "mobile":mobile
+		      };
+		if(mobile.length==11){
+			nui.ajax({
+				url : queryGuestUrl,
+				type : "post",
+				data : JSON.stringify({
+					params:params,
+					token: token
+				}),
+				success : function(data) {
+					var list = data.list;
+					if(list.length){
+						var guest = list[0];
+						var data ={
+								guest:guest
+						}
+						setData(data);
+					}
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR.responseText);
+				}
+			});
+		}
 	}
-	
-	
 }
+
 
 function addCar() {
 	var id = basicInfoForm.getData().id;

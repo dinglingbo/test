@@ -211,7 +211,7 @@ $(document).ready(function()
             return;
         }
         var params = {
-        	partName:node.name
+             itemType:node.oldId
         };
         doSearchItem(params);
 

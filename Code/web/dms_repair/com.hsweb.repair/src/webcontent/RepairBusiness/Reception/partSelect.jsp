@@ -91,11 +91,12 @@
 	                showNullItem="false" 
 	                valueFromSelect="true"
 	                nullItemText="请选择领料人"
+	                width="80"
 				/>
 				<input class="nui-textbox" id="remark"  name="remark" emptyText="请填写备注" width="120" />
 				<span class="separator"></span>
                   <a class="nui-button" iconCls="" plain="true" onclick="onOk">
-                      <span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
+                      <span class="fa fa-check fa-lg"></span>&nbsp;领料</a>
                   <a class="nui-button" iconCls="" plain="true" onclick="CloseWindow('cancle')">
                       <span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                   </td>
@@ -123,22 +124,24 @@
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div field="id" name="id" width="100" headerAlign="center" header="id" visible="false"></div>
+            <div field="guestName" width="100px" headerAlign="center" allowSort="true" header="供应商"></div>
+            <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
+             
             <div field="partCode" name="partCode" width="100" headerAlign="center"align="center"  header="配件编码"></div>
             <div field="oemCode" name="oemCode" width="100" headerAlign="center" align="center" header="OEM码"></div>
             <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
             <div field="stockQty" name="stockQty" allowSort="true"  width="60" headerAlign="center" align="center" header="库存数量" datatype="float" summaryType="sum"></div>
-            <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" align="center" header="库存单价"></div>
-            <div field="outQty" name="outQty" width="100"  headerAlign="center" align="center" header="领料数量" datatype="float" summaryType="sum">
+            <div field="enterPrice" width="60px" headerAlign="center" allowSort="true" align="center" header="库存单价"></div>
+            <div field="outQty" name="outQty" width="60"  headerAlign="center" align="center" header="领料数量" datatype="float" summaryType="sum">
                 <input property="editor" class="nui-textbox" vtype="float"/> 
             </div> 
-            <div field="billTypeId" width="55px" headerAlign="center" align="center" allowSort="true" header="票据类型"></div>
-            <div field="storeId" width="90" headerAlign="center" align="center"  allowSort="true" header="仓库"></div>
-            <div field="storeShelf" align="left" width="55px" headerAlign="center" align="center" allowSort="true" header="仓位"></div>
+            <div field="billTypeId" width="60px" headerAlign="center" align="center" allowSort="true" header="票据类型"></div>
+            <div field="storeId" width="60" headerAlign="center" align="center"  allowSort="true" header="仓库"></div>
+            <div field="storeShelf" align="left" width="60px" headerAlign="center" align="center" allowSort="true" header="仓位"></div>
             <div field="partBrandId" name="partBrandId" width="90" headerAlign="center" header="品牌"></div>
-            <div field="applyCarModel" name="applyCarModel" width="190" headerAlign="center" header="品牌车型"></div>
-            <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
-            <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
-            <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  
+            <div field="applyCarModel" name="applyCarModel" width="120" headerAlign="center" header="品牌车型"></div>
+            <div field="enterUnitId" width="35" headerAlign="center" header="单位"></div>
+             
             <div field="serviceCode" align="left" width="120px" headerAlign="center" align="center" allowSort="true" header="入库单号"></div>
             <div field="fullName" name="fullName" width="300" headerAlign="center" header="配件全称"></div> 
             <div field="partId" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件id"></div> 
@@ -158,6 +161,7 @@
     var mrecordId = null;//
     var mainRow = null;
     var selectRow = null;
+    var settleType = "";
 
     var storehouse = null;
     var storeHash = {};
@@ -181,15 +185,16 @@
         }
 
     }
-    function SetData(par,type,id,mRow,srow){
+    function SetData(par,type,id,mRow,srow,pickType){
         //id= 9522; 
         onSearch(par,type);
         mrecordId = id;
         mainRow = mRow;
         selectRow = srow;
+        settleType = pickType;
         nui.get('mtAdvisorId').setValue(currEmpId);
         nui.get('mtAdvisorId').setText(currUserName);
-
+		
     } 
 
 	var dictDefs = {
@@ -263,7 +268,7 @@
         params.sEnterDate = nui.get('sEnterDate').getFormValue();
         
         if(type == "Id"){
-            params .partId = par;
+            params.partId = par;
         }
         if(type == "Code"){
             params.partCode = par;
@@ -353,9 +358,11 @@
                 showMsg('请先填写领料数量!','W');
                 return;
             }
-            if(sum_out>selectRow.qty-selectRow.pickQty){
-            	showMsg('超过待领数量','W');
-            	 return;
+            if(settleType == "PICK") {
+	            if(sum_out>selectRow.qty-selectRow.pickQty){
+	            	showMsg('超过待领数量','W');
+	            	 return;
+	            }
             }
 //             nui.open({
 //                 url:webBaseUrl + "com.hsweb.RepairBusiness.partSelectMember.flow?token="+token,

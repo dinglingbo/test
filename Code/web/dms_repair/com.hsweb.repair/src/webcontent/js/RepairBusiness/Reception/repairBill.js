@@ -47,6 +47,7 @@ var pkgRateEl = null;
 var itemRateEl = null;
 var partRateEl = null;
 
+var isRecord = null;
 var advancedMorePartWin = null;
 var advancedCardTimesWin = null;
 var advancedPkgRateSetWin = null;
@@ -4482,10 +4483,11 @@ function SearchCheckMain(callback) {
             params:ydata
         },
         cache: false,
-        success: function (text) {  
-            callback && callback(text);
+        success: function (text) { 
             checkMainData = text;
             isRecord = text.isRecord;
+            callback && callback(text);
+
         }
     });
 
@@ -4620,7 +4622,7 @@ function SearchLastCheckMain() {
 
     var  tempParams = {
         carNo:nui.get("carNo").value,
-        endDate:nui.get("endDate").text
+        endDate:nui.get("enterDate").text
     };
     nui.ajax({
         url: baseUrl + "com.hsapi.repair.repairService.repairInterface.QueryLastCheckMain.biz.ext",

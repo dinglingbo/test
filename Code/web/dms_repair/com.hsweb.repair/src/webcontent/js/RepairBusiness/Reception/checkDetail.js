@@ -464,15 +464,24 @@ function isCheckMainY(){
 
                 searchNameEl.setValue(t);
                 searchNameEl.setEnabled(false);
-
+                if(mainParams.viewType){
+                    temp.lastKilometers = mainParams.lastKilometers;
+                    temp.enterKilometers = mainParams.enterKilometers || 0;
+                    temp.mtdvisor = mainParams.mtdvisor;
+                    temp.mtdvisorId = mainParams.mtdvisorId;
+                }else{
+                temp.lastKilometers = mainParams.mainFormData.lastKilometers;
+                temp.enterKilometers = mainParams.mainFormData.enterKilometers || 0;
+                temp.mtdvisor = nui.get("mtdvisor").value;
+                temp.mtdvisorId = nui.get("mtdvisorId").value;
+                }
                 temp.guestFullName = guest.fullName;
                 temp.guestMobile = guest.mobile;
                 temp.contactorName = contactor.name;
                 temp.mobile = contactor.mobile;
                 temp.carModel = car.carModel;
-                temp.mtdvisor = nui.get("mtdvisor").value;
-                temp.mtdvisorId = nui.get("mtdvisorId").value;;
                 billForm.setData(temp);
+               
                 fguestId=temp.guestId;
                 if(!temp.lastKilometers ||!temp.lastPoint){
                 	

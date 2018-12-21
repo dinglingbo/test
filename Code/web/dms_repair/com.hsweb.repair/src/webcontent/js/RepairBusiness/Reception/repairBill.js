@@ -36,6 +36,7 @@ var searchKeyEl = null;
 var carCheckInfo = null;
 var carSellPointInfo = null;
 //var rpsPartGrid = null;
+var lastCheckParams = null;
 
 var rpsPackageGrid = null;
 var rpsItemGrid = null;
@@ -4451,7 +4452,8 @@ function newCheckMain() {
         id:data.id,
         actionType:"new",
         isCheckMain:"N",//是否是直接开单
-        row: rdata
+        row: rdata,
+        mainFormData:data
     };
 
     window.parent.activeTabAndInit(item,params);
@@ -4637,6 +4639,7 @@ function SearchLastCheckMain() {
             var isRec = text.isRecord;
             if(isRec == "1"){
                 var ldata = text.list[0];
+                lastCheckParams = ldata;
                 var score = ldata.check_point || 0;
                 var rdate = nui.formatDate(nui.parseDate(ldata.record_date),"yyyy-MM-dd HH:mm:ss")
 
@@ -4652,6 +4655,19 @@ function SearchLastCheckMain() {
     });
  
 }
+function viewLastCheck(){
+    var params = lastCheckParams;
+    params.viewType = 1;
+    params.actionType = 'view';
+    params.isCheckMain = "Y";
+    var item={};
+    item.id = "checkPrecheckDetail";
+    item.text = "查车单";
+    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkDetail.flow";
+    item.iconCls = "fa fa-file-text";
+    window.parent.activeTabAndInit(item,params);
+}
+
 function updateBillExpense(){
     var data = billForm.getData();
     if(!data.id){

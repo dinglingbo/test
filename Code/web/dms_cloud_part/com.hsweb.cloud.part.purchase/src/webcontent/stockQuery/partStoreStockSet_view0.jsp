@@ -99,9 +99,9 @@
                 <div property="columns">
                     <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码"></div>
                     <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+                    <div allowSort="true" field="comOemCode"width="220"  headerAlign="center" header="OEM码"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
+                    <div allowSort="true" field="applyCarModel" width="260" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
                     <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
                     <div allowSort="true" field="shelf" width="60" headerAlign="center" header="仓位">
@@ -114,8 +114,8 @@
                     <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="65" headerAlign="center" header="库存数量"></div>
                     <div allowSort="true" field="upLimit" width="65" headerAlign="center" header="库存上限" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
                     <div allowSort="true" field="downLimit" width="65" headerAlign="center" header="库存下限" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
-                    <div allowSort="true" field="minOrderQty" width="65" headerAlign="center" header="最小起订量" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
-                    <div allowSort="true" field="minPackQty" width="65" headerAlign="center" header="最小包装量" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
+                    <div allowSort="true" field="minOrderQty" width="75" headerAlign="center" header="最小起订量" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
+                    <div allowSort="true" field="minPackQty" width="75" headerAlign="center" header="最小包装量" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
                 </div>
             </div>
             <div header="其他" headerAlign="center">
@@ -123,8 +123,8 @@
                     <div allowSort="true" datatype="float" field="enterQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div>
                     <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
                     <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div>
-                    <div allowSort="true" field="lastEnterDate" headerAlign="center" header="最近入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div allowSort="true" field="lastOutDate" headerAlign="center" header="最近出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" field="lastEnterDate"width="120" headerAlign="center" header="最近入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" field="lastOutDate"width="120" headerAlign="center" header="最近出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="remark" width="200" headerAlign="center" header="备注"></div>
                 </div>
             </div>

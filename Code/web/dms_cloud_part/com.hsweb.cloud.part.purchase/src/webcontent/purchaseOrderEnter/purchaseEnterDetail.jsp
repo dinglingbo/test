@@ -96,8 +96,8 @@
                    url="">
                   <div property="columns">
                     <div type="indexcolumn">序号</div>
-                      <div field="guestFullName" width="80" headerAlign="center" header="供应商"></div>
-                      <div field="createDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="建单日期"></div>
+                      <div field="guestFullName" width="120" headerAlign="center" header="供应商"></div>
+                      <div field="createDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="建单日期"></div>
                       <div field="auditSign" width="50" headerAlign="center" header="状态"></div>
                       <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                       <div field="serviceId" headerAlign="center" width="150" header="入库单号"></div>
@@ -105,7 +105,7 @@
                       <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
                       <div field="creator" width="60" headerAlign="center" header="建单人"></div>
                       <div field="auditor" width="60" headerAlign="center" header="提交人"></div>
-                      <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="入库日期"></div>
+                      <div field="auditDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="入库日期"></div>
                   </div>
               </div>
           </div>

@@ -1100,7 +1100,8 @@ function  savepartOutRtn(data,childdata){
             paramsData.billTypeId = '050206';
             paramsData.storeId = data.storeId;
             paramsData.unit = data.systemUnitId;
-            paramsData.pickMan = childdata.mtAdvisor;
+            paramsData.pickMan = data.pickMan;
+            paramsData.returnMan=childdata.mtAdvisor;
             paramsData.returnRemark = childdata.remark;
             //paramsData.pickType = "维修出库-领料";
             paramsData.taxUnitPrice = data.taxUnitPrice;

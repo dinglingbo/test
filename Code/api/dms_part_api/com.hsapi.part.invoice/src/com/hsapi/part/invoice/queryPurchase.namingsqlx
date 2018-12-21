@@ -1627,7 +1627,9 @@
                 </isNotEmpty> 
             </dynamic>  
         
+        group by a.id
         ORDER BY A.OPERATE_DATE DESC
+        
         
     </select>
     

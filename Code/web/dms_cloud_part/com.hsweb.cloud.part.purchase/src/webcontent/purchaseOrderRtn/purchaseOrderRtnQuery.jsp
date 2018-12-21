@@ -96,7 +96,7 @@
             <div type="indexcolumn">序号</div>
             <div header="退货信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="createDate" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" field="createDate" headerAlign="center"width="120" header="退货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="serviceId" width="130" summaryType="count" headerAlign="center" header="退货单号"></div>
                     <div field="guestFullName" width="150" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="退货员"></div>
@@ -107,10 +107,10 @@
             <div header="配件信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
-                    <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+                    <div allowSort="true" field="comPartName" width="180"headerAlign="center" header="配件名称"></div>
+                    <div allowSort="true" field="comOemCode" width="200"headerAlign="center" header="OEM码"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
+                    <div allowSort="true" field="applyCarModel" width="220" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
                 </div>
             </div>
@@ -128,7 +128,7 @@
                     <div allowSort="true" datatype="float" summaryType="sum" field="notOutQty" width="60" headerAlign="center" header="未出库数量"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="adjustQty" width="60" headerAlign="center" header="调整数量"></div> -->
                     <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                    <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true"width="120" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                 </div>
             </div>
         </div>

@@ -93,7 +93,7 @@
               <div field="fullName" width="150" headerAlign="center" header="客户名称"></div>
               <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
               <!-- <div field="orderAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div> -->
-              <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+              <div allowSort="true" width="120"field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
               <div field="remark" width="120" headerAlign="center" header="备注"></div>
               <div allowSort="true" summaryType="count" field="serviceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
 
@@ -113,10 +113,10 @@
           <div property="columns">
               <div type="indexcolumn">序号</div>
               <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码"></div>
-              <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-              <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+              <div allowSort="true" field="comPartName" width="120"headerAlign="center" header="配件名称"></div>
+              <div allowSort="true" field="comOemCode" width="120"headerAlign="center" header="OEM码"></div>
               <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-              <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
+              <div allowSort="true" field="comApplyCarModel" width="200" headerAlign="center" header="品牌车型"></div>
               <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
               <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
               <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>

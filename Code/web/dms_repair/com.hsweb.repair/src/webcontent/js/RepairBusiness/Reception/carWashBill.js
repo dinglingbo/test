@@ -2464,13 +2464,14 @@ function setItemWorkers(){
 		onload : function() {
 			var iframe = this.getIFrameEl(); 
 			var data = {
-					type : "item"
+					type : "item",
+					serviceId : fserviceId
 			};// 传入页面的json数据
-			//iframe.contentWindow.setData(data);
+			iframe.contentWindow.setData(data);
 		},
 		ondestroy : function(action) {// 弹出页面关闭前
 			if (action == "saveSuccess") {
-				
+				loadDetail(p1, p2, p3);
 			}
 		}
 	});

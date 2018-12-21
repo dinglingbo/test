@@ -13,7 +13,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>班组选择</title>
 <script
-	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/dispatchWorkers.js?v=1.4.3"></script>
+	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/dispatchWorkers.js?v=1.6.0"></script>
 	<style type="text/css">
 
 				body,
@@ -84,6 +84,19 @@ body{
     text-decoration: none;
     line-height: 2;
 	background: #fff;
+    color: #4eb7f5;
+    border: 1px solid #c0e1fd;
+}
+.empl1{	
+	 width: 90px;
+    height: 30px;
+    font-size: 18px;
+    text-align: center;
+	margin-left:20px;
+    border-radius: 40px;
+    text-decoration: none;
+    line-height: 2;
+	background: #4eb7f552;
     color: #4eb7f5;
     border: 1px solid #c0e1fd;
 }
@@ -163,9 +176,9 @@ a {
 				</tr> -->
 				<tr>
 					<td >
-						<div id="Project" style="width: 100%;height: 100%;">
-							
-						</div>
+					<div id="serviceTypeIds" name="serviceTypeIds" class="nui-checkboxlist" repeatItems="5" 
+                    repeatLayout="flow"  value="" 
+                    textField="name" valueField="id" ></div>
 					</td>
 				</tr>
 				<tr>
@@ -248,7 +261,7 @@ a {
 								float:right;
 								margin-right:0px;
 							text-decoration: none;" 
-							href="javascript:void(0)" onclick="noPay()" >派工</a>
+							href="javascript:void(0)" onclick="dispatchOk()" >派工</a>
                            
                         </td>
                     </tr>

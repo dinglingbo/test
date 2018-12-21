@@ -11,7 +11,7 @@
 <head>
     <title>工单-洗车单</title>
 
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.66"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.72"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -639,7 +639,7 @@ allowDrag="false">
             </td>
 
             <td class="">
-                <a class="nui-button  mini-button-info" iconCls="" plain="false" onclick="newCheckMainMore()" id="lastCheckInfo4" style="display: none">查看</a>
+                <a class="nui-button  mini-button-info" iconCls="" plain="false" onclick="viewLastCheck()" id="lastCheckInfo4" style="display: none">查看</a>
             </td>
         </tr>
     </table>

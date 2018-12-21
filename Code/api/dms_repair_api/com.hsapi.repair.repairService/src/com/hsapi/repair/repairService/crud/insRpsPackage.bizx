@@ -280,9 +280,10 @@
   <nodes xsi:type="model:GroupNode" id="group1" name="group1" grouped="true" gstart="loopstart1" gend="loopend1">
     <location x="422" y="102"/>
     <size height="142" width="206"/>
-    <chidren>assign2</chidren>
     <chidren>loopstart1</chidren>
     <chidren>loopend1</chidren>
+    <chidren>invokePojo5</chidren>
+    <chidren>assign2</chidren>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
     <location x="418" y="185"/>
@@ -292,7 +293,7 @@
   <nodes xsi:type="process:tLoopStart" description="" id="loopstart1" name="循环1" displayName="循环" grouped="true" type="loopstart" matchedName="loopend1" loopType="iterate">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="link4" isDefault="true" type="transition">
       <sourceNode>loopstart1</sourceNode>
-      <targetNode>assign2</targetNode>
+      <targetNode>invokePojo5</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
@@ -321,8 +322,8 @@
       <sourceNode>assign2</sourceNode>
       <targetNode>loopend1</targetNode>
     </sourceConnections>
-    <targetConnections>link6</targetConnections>
-    <location x="522" y="151"/>
+    <targetConnections>link72</targetConnections>
+    <location x="544" y="151"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
@@ -383,7 +384,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="520" y="187"/>
+    <location x="542" y="187"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -1633,6 +1634,31 @@
     <location x="-528" y="120"/>
     <figSize height="17" width="39"/>
     <node>assign29</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="getNextSequence1" displayName="getNextSequence" collapsed="false" grouped="true" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link72" name="link72" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo5</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="480" y="152"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo5label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">rpsPart.id</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">part/id</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
+    <location x="436" y="188"/>
+    <figSize height="17" width="110"/>
+    <node>invokePojo5</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

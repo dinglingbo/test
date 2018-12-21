@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.5"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.8"></script>
 <style type="text/css">
 
 table {
@@ -58,7 +58,8 @@ table {
                             <label>手机号码：</label>
                         </td>
                         <td>
-                            <input class="nui-textbox" id="mobile" name="mobile"  width="100%" onvaluechanged="onChanged(this.id)" />
+                            <input class="nui-textbox" id="mobile" name="mobile"  width="100%" onvaluechanged="onChanged(this.id)"  
+                            emptyText="请输入手机号查询" onenter="onChanged(this.id)"/>
                         </td>
                     </tr>
                     <tr>

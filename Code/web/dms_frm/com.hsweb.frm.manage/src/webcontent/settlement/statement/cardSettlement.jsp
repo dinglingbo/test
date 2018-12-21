@@ -209,7 +209,7 @@
 			background: url(manage/settlement/images/yw_bg2.png) 0 -154px no-repeat;
 			line-height: 33px;
 			padding-left: 28px;
-			width: 90px;
+			width: 120px;
 			margin: 0 auto;
 			display: block;
 		}

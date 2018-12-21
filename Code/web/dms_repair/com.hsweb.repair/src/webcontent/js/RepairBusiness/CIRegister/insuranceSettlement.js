@@ -34,7 +34,7 @@ function setData(params){
 		$("#radio3").attr("checked", "checked"); 
 		showAmt = "(保司保费-客户返点)";
 	}
-	guestData = params;
+	guestData = params.data1;
 	zongAmt = params.moneyCost;
 	netInAmt = parseFloat(params.moneyCost);
 	var serviceId = params.data1.id||0;

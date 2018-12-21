@@ -12,7 +12,7 @@
 <head> 
     <title>配件出库详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.1.26"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.1.28"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -377,6 +377,26 @@ allowCellEdit="true"  >
 </div>
 </div>
 </div>
+
+<div id="advancedMorePartWin" class="nui-window"
+     title="" style="height:70px;width:100px;"
+     showModal="false"
+     showHeader="false"
+     allowResize="false"
+     allowDrag="true">
+    <table style="text-align:left;width: 100%; height: 100%;padding-left:6px;">
+        <tr>
+            <td>
+            <a class="nui-button" iconCls="" plain="true" onclick="chooseBasic()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择配件</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <a class="nui-button" iconCls="" plain="true" onclick="chooseStock()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;直接领料</a>
+            </td>
+        </tr>
+    </table>
+</div>    
 
 <!-- <div style="width:100%;margin-top: 10px;"> -->
 <!--     <a class="nui-button" onclick="LLSave()" plain="false">领料</a> -->

@@ -588,6 +588,7 @@ function isVehicleNumber(vehicleNumber) {
     return result;
 }
 
+var queryGuestUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext";
 function onChanged(id){
 	if(id=="fullName"){
 		fullName = nui.get("fullName").value;
@@ -596,10 +597,35 @@ function onChanged(id){
 	}
 	if(id=="mobile"){
 		mobile = nui.get("mobile").value;
-		
+		var params = 
+		      {
+				"carNo":"",
+		        "mobile":mobile
+		      };
+		if(mobile.length==11){
+			nui.ajax({
+				url : queryGuestUrl,
+				type : "post",
+				data : JSON.stringify({
+					params:params,
+					token: token
+				}),
+				success : function(data) {
+					var list = data.list;
+					if(list.length){
+						var guest = list[0];
+						var data ={
+								guest:guest
+						}
+						setData(data);
+					}
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR.responseText);
+				}
+			});
+		}
 	}
-	
-	
 }
 
 

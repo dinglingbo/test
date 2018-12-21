@@ -2433,7 +2433,9 @@ function closeItemWorkersSetWin(){
     advancedItemWorkersSetWin.hide();
 }
 
-function setItemWorkers(){
+
+//批量派工
+/*function setItemWorkers(){
 	nui.get("combobox4").setText("");
 	nui.get("combobox4").setValue("");
     var main =  billForm.getData();
@@ -2450,6 +2452,29 @@ function setItemWorkers(){
             advancedItemWorkersSetWin.show();
         }
     }
+}*/
+
+//新批量派工
+function setItemWorkers(){
+	nui.open({
+		url :  webPath + contextPath + "/com.hsweb.repair.DataBase.dispatchWorkers.flow?token="+token,
+		title : "班组选择",
+		width : 600,
+		height : 480,
+		onload : function() {
+			var iframe = this.getIFrameEl(); 
+			var data = {
+					type : "item",
+					serviceId : fserviceId
+			};// 传入页面的json数据
+			iframe.contentWindow.setData(data);
+		},
+		ondestroy : function(action) {// 弹出页面关闭前
+			if (action == "saveSuccess") {
+				loadDetail(p1, p2, p3);
+			}
+		}
+	});
 }
 
 function sureItemWorkersSetWin(){

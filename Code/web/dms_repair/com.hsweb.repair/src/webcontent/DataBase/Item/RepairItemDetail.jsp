@@ -76,7 +76,7 @@
 								<td class="form_label required">
 									<label>项目名称：</label>
 								</td>
-								<td  style="width:40%">
+								<td  style="width:35%">
 									<input class="nui-textbox" name="name" width="100%"/>
 								</td>
 								<td class="form_label required">
@@ -153,7 +153,7 @@
 								</td>
 							</tr>
 							<tr>
-							    <td >
+							    <td align="right">
 								<label>使用次数：</label>
 								</td>
 								<td colspan="3">
@@ -164,7 +164,7 @@
 											format="0"
 											value="0" maxValue="1000000000"
 											changeOnMousewheel="true" showButton="false"
-											width="38%"  selectOnFocus="true"/>
+											width="30%"  selectOnFocus="true"/>
 								    <label id="isCalTimes">是否禁用计数：</label>
 								   <input name="isCalTimes" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
 								   <label id="isShareTd">是否共享：</label> 
@@ -172,25 +172,39 @@
 								   <label id="isDisabledTd">是否禁用：</label>
 								   <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
 								</td>
-							   <!--  <td >
-									 <label id="isCalTimes" width="75px">是否启用计数：</label> 
-									 <label id="isShareTd">是否共享：</label> 
-								</td>
-								<td colspan="1">
-								<input name="isCalTimes" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
-								  <label id="isShareTd">是否共享：</label>	
-								<input id="isShare" name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
-								   <label id="isDisabledTd">是否禁用：</label>
-								   <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
-								   							
-									
-								</td> -->
-								<!-- <td class="form_label" style="width:85px">
-								    <label id="isCalTimes" >是否启用计数：</label>
-									
-								</td> -->
-								
 							</tr>
+							
+							<tr>
+							<td class="form_label" >
+									<label>服务周期：</label>
+							</td>
+								<td>
+									<input class="nui-textbox" name="serviceCycle" width="100%"/>
+								</td>
+								
+							  <td class="form_label">
+									<label>回访天数：</label>
+								</td>
+								<td>
+									<input class="nui-textbox" name="visitDays" width="100%"/>
+								</td>
+							</tr>
+							<tr>
+							<td class="form_label">
+									<label>间隔公里：</label>
+								</td>
+								<td>
+									<input class="nui-textbox" name="intervalMile" width="100%"/>
+								</td>
+								
+							  <td class="form_label">
+									<label>间隔天数：</label>
+								</td>
+								<td>
+									<input class="nui-textbox" name="intervalDays" width="100%"/>
+								</td>
+							</tr>
+							
 						</table>
 					</div>
 					<div class="nui-panel" showToolbar="false" title="项目价格信息" showFooter="false"

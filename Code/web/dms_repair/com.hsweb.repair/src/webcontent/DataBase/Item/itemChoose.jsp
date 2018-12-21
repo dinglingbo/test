@@ -12,7 +12,7 @@
 <head>
 <title>维修项目</title>
 
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.28" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.31" type="text/javascript"></script>
 <style type="text/css">
     html, body{
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
@@ -21,11 +21,12 @@
     .addyytime a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 40px -1px no-repeat; padding-right:22px; color:#888; text-decoration:none;}
     .addyytime a.hui{padding-left: 5px;padding-right: 5px;height:;line-height:24px;border:1px #a6e0f5 solid;display:block;float:left;text-decoration:none;
         text-align:center;color:#00b4f6;border-radius:4px;margin:0 5px 5px 0;}
-    .addyytime a.hui{border:1px #e6e6e6 solid;color:#555555;background:#e6e6e6;}
-    .addyytime a.xz{ font-size: 13px; color: #555555 !important; background:#5ab1ef;}
+    .addyytime a.hui{border:1px #e6e6e6 solid;color:#555555;background:#ffc8a6;}
+    .addyytime a.xz{ font-size: 13px; color: #555555 !important; background:#5ab1ef !important;}
     .addyytime a:link, a:visited { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 13px; color: #555555; text-decoration: none; }
-    .addyytime a.hui:hover { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 13px;background-color: #9fe6b8; color: #FFF; text-decoration: none; }
+    .addyytime a.hui:hover { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 13px;background-color: #9fe6b8 ; color: #FFF; text-decoration: none; }
     .addyytime a .hui{text-decoration:none;transition:all .4s ease;}
+    .addyytime a.backRed{border:1px #e6e6e6 solid;color:#555555;background:#f17171 ;}
 </style>
 </head>
 <body>       
@@ -161,7 +162,7 @@
 					<div property="columns" >
 						<div type="indexcolumn">序号</div>
 						<div type="checkcolumn" name="checkcolumn" visible="false"></div>
-						<div field="belonging" headerAlign="center" allowSort="true" width="50px">所属</div>
+						<div field="belonging" headerAlign="center" allowSort="true" width="50px">归属</div>
 						<div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
 						<div field="type" headerAlign="center" allowSort="true" width="100px">项目类型</div>
 						<div field="serviceTypeId" headerAlign="center" allowSort="true" width="60px">业务类型</div>

@@ -348,6 +348,7 @@
     </sourceConnections>
     <targetConnections>link12</targetConnections>
     <targetConnections>link13</targetConnections>
+    <targetConnections>link26</targetConnections>
     <location x="1100" y="50"/>
     <size height="28" width="28"/>
     <nodeLabel>assign22label</nodeLabel>
@@ -453,6 +454,16 @@
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="link51" isDefault="true" type="transition">
       <sourceNode>assign26</sourceNode>
       <targetNode>assign27</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link25" name="link25" displayName="连接线" type="transition">
+      <sourceNode>assign26</sourceNode>
+      <targetNode>assign14</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="LT">
+          <process:leftOperand type="query">uQty</process:leftOperand>
+          <process:rightOperand type="query">partTemp/pickQty</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link47</targetConnections>
     <location x="1023" y="96"/>
@@ -800,6 +811,29 @@
     <location x="881" y="132"/>
     <figSize height="17" width="39"/>
     <node>assign13</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值14" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign14</sourceNode>
+      <targetNode>assign22</targetNode>
+    </sourceConnections>
+    <targetConnections>link25</targetConnections>
+    <location x="1022" y="0"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign14label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">E</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">数量不能小于已领数量</process:from>
+      <process:to type="query">errMsg</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
+    <location x="1017" y="36"/>
+    <figSize height="17" width="39"/>
+    <node>assign14</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

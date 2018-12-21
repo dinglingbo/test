@@ -97,14 +97,17 @@ function sure() {
 		for (var i = 0; i < data.length; i++) {
 			var newRow = {};
 			newRow.serviceCode = data[i].工单号||"";
-			newRow.partCode = data[i].配件编码||"";
-			newRow.partName = data[i].配件名称||"";
-			newRow.partBrandId = data[i].配件品牌||"";
-			newRow.qty = data[i].数量||"";
-			newRow.unitPrice = data[i].单价||"";
-			newRow.unit = data[i].单位||"";
-			newRow.amt = data[i].金额||"";
-			newRow.subtotal = data[i].小计||"";
+			newRow.itemCode = data[i].项目编码||"";
+			newRow.itemName = data[i].项目名称||"";
+			newRow.unitPrice = data[i].项目单价||"";
+			newRow.amt = data[i].项目金额||"";
+			newRow.rate = data[i].优惠率||"";
+			newRow.discountAmt = data[i].优惠金额||"";
+			newRow.partAmt = data[i].配件金额||"";
+			newRow.subtotal = data[i].项目小计||"";
+			newRow.workers = data[i].维修人||"";
+			newRow.beginDate = data[i].开始时间||"";
+			newRow.finishDate = data[i].完工时间||"";
 			newRow.saleMan = data[i].销售员||"";
 
 

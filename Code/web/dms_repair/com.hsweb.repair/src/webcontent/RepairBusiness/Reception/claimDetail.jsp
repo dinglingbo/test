@@ -479,7 +479,7 @@
             </td>
 
             <td class="">
-                <a class="nui-button  mini-button-info" iconCls="" plain="false" onclick="" id="lastCheckInfo4" style="display: none">查看</a>
+                <a class="nui-button  mini-button-info" iconCls="" plain="false" onclick="viewLastCheck()" id="lastCheckInfo4" style="display: none">查看</a>
             </td>
         </tr>
     </table>

@@ -1630,7 +1630,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								var leftRow = pjPchsOrderMainList[0];
 								var row = leftGrid.getSelected();
 								leftGrid.updateRow(row, leftRow);
-	
+								onPrint();
 								// 保存成功后重新加载数据
 //								loadMainAndDetailInfo(leftRow);
 								rightGrid.setData([]);
@@ -1700,7 +1700,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								var leftRow = pjPchsOrderMainList[0];
 								var row = leftGrid.getSelected();
 								leftGrid.updateRow(row, leftRow);
-	
+								onPrint();
 								// 保存成功后重新加载数据
 //								loadMainAndDetailInfo(leftRow);
 								rightGrid.setData([]);

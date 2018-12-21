@@ -465,7 +465,7 @@
                 <label id="lastCheckInfo1" style="color: #9e9e9e;"></label>
             </td>
 
-            <td class="">
+            <td class=""> 
                 <label id="lastCheckInfo2"></label>
             </td>
 
@@ -474,7 +474,7 @@
             </td>
 
             <td class="">
-                <a class="nui-button  mini-button-info" iconCls="" plain="false" onclick="" id="lastCheckInfo4" style="display: none">查看</a>
+                <a class="nui-button  mini-button-info" iconCls="" plain="false" onclick="viewLastCheck()" id="lastCheckInfo4" style="display: none">查看</a>
             </td>
         </tr>
     </table>

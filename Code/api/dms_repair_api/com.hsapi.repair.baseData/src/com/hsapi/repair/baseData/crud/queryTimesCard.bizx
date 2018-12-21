@@ -27,6 +27,7 @@
     <process:returns>
       <process:return id="0" language="com.hsapi.repair.data.rpb.RpbCardTimes[]" name="timesCard" type="query" valueType="DataObject">timesCard</process:return>
       <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">page/count</process:return>
+      <process:return id="2" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -185,6 +186,7 @@
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="105" y="161"/>
@@ -217,6 +219,7 @@
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbCardTimes" name="timesCard"/>
     <process:output description="" isArray="false" name="total" primitiveType="Int"/>
+    <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

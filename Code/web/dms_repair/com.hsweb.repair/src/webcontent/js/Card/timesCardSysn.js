@@ -335,7 +335,7 @@ function onOk() {
 	{
 		for (var i = 0; i < data1.length; i++)
 		{
-			if (!data1[i][key] || $.trim(data1[i][key]).length == 0)
+			if (data1[i][key] == "" || $.trim(data1[i][key]).length == 0)
 			{
 				showMsg(tcd[key] + "不能为空!", "W");
 				return;
@@ -464,7 +464,7 @@ function saveData() {
 		success : function(text) {
 			var returnJson = nui.decode(text);
 			nui.unmask(document.body);
-			if (returnJson.exception == null) {
+			if (returnJson.errCode == 'S') {
 				showMsg("保存成功");
 				CloseWindow("saveSuccess");
 			} else {

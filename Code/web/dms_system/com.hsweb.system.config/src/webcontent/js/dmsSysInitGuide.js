@@ -135,3 +135,12 @@ function initComGuestSet(){
 	item.iconCls = "fa fa-file";
 	window.parent.activeTab(item);
 }
+
+function importMaintain(){
+	var item={};
+	item.id = "importMaintain";
+	item.text = "导入工单";
+	item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.importMaintain.flow";
+	item.iconCls = "fa fa-file";
+	window.parent.activeTab(item);
+}

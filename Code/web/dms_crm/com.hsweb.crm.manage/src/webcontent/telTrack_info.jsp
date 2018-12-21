@@ -109,7 +109,7 @@ function setScoutForm(record){
 
 //保存跟踪
 function saveScout(){
-  var url =baseUrl+ "/com.hsapi.crm.telsales.crmTelsales.saveScout.biz.ext";
+  var url =baseUrl+ "com.hsapi.crm.telsales.crmTelsales.saveScout.biz.ext";
   doSave(form1, url);
 }
 

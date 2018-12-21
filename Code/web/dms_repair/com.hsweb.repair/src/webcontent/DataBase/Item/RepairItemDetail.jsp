@@ -179,14 +179,14 @@
 									<label>服务周期：</label>
 							</td>
 								<td>
-									<input class="nui-textbox" name="serviceCycle" width="100%"/>
+									<input class="nui-spinner" name="serviceCycle" width="100%" format="0" value="0" maxValue="1000000000"/>
 								</td>
 								
 							  <td class="form_label">
 									<label>回访天数：</label>
 								</td>
 								<td>
-									<input class="nui-textbox" name="visitDays" width="100%"/>
+									<input class="nui-spinner" name="visitDays" width="100%" format="0" value="0" maxValue="1000000000"/>
 								</td>
 							</tr>
 							<tr>
@@ -194,14 +194,14 @@
 									<label>间隔公里：</label>
 								</td>
 								<td>
-									<input class="nui-textbox" name="intervalMile" width="100%"/>
+									<input class="nui-spinner" name="intervalMile" width="100%" format="0" value="0" maxValue="1000000000"/>
 								</td>
 								
 							  <td class="form_label">
 									<label>间隔天数：</label>
 								</td>
 								<td>
-									<input class="nui-textbox" name="intervalDays" width="100%"/>
+									<input class="nui-spinner" name="intervalDays" width="100%" format="0" value="0" maxValue="1000000000"/>
 								</td>
 							</tr>
 							

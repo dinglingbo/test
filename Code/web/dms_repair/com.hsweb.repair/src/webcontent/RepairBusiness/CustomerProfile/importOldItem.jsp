@@ -8,7 +8,7 @@
   - Description:
 -->
 <head>
-<title>配件导入</title>
+<title>项目导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
 <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importOldPart.js?v=1.0.5"></script>
@@ -72,24 +72,29 @@
 				<div type="indexcolumn" width="40px" header="序号"></div>
 									<div field="serviceCode" headerAlign="center" allowSort="true" width="180px">工单号</div>
 
-									<div field="partCode" headerAlign="center" allowSort="true" width="60px">
-										配件编码</div>
-									<div field="partName" headerAlign="center" allowSort="true" width="60px">
-										配件名称</div>
-									<div field="partBrandId" headerAlign="center" allowSort="true" width="100px">
-										配件品牌</div>
-									<div field="qty" headerAlign="center" allowSort="true" width="80px">
-										数量</div>
-									<div field="unitPrice" headerAlign="center" allowSort="true" width="120px">
-										单价</div>
-									<div field="unit" headerAlign="center" allowSort="true" width="120px">
-										单位</div>	
-									<div field="amt" headerAlign="center" allowSort="true" width="60px">
-										金额</div>
-									<div field="subtotal" headerAlign="center" allowSort="true" width="60px">
-										小计</div>
-									<div field="saleMan" name="planFinishDate" width="110px" headerAlign="center" >
-										销售员</div>
+									<div field="itemCode" headerAlign="center" allowSort="true" width="60px">
+										项目编码</div>
+									<div field="itemName" headerAlign="center" allowSort="true" width="60px">
+										项目名称</div>
+									<div field="unitPrice" headerAlign="center" allowSort="true" width="80px">
+										项目单价</div>
+									<div field="amt" headerAlign="center" allowSort="true" width="120px">
+										项目金额</div>
+									<div field="rate" headerAlign="center" allowSort="true" width="120px">
+										优惠率</div>	
+									<div field="discountAmt" headerAlign="center" allowSort="true" width="60px">
+										优惠金额</div>
+									<div field="partAmt" headerAlign="center" allowSort="true" width="60px">
+										配件金额</div>
+									<div field="subtotal" name="planFinishDate" width="110px" headerAlign="center" >
+										项目小计</div>
+									<div field="workers" headerAlign="center" allowSort="true" width="60px">
+										维修人</div>
+									<div field="beginDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
+										开始时间</div>
+									<div field="finishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
+										完工时间</div>
+									<div field="saleMan" renderer="onstatus" headerAlign="center" allowSort="true" width="60px">销售员</div>
 
 			</div>
 		</div>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getTenantRoleResauth" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、取租户可管理的应用功能&#xD;&#xA;2、取应用功能菜单，用于输出树结构数据&#xD;&#xA;3、根据应用功能ID寻找上级菜单，最多只有两级&#xD;&#xA;com.hsapi.system.tenant.permissionsMgr.queryTenantApplication" title="Administrator&#x9;18-6-16 下午12:25">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、取租户可管理的应用功能&#xD;&#xA;2、取应用功能菜单，用于输出树结构数据&#xD;&#xA;3、根据应用功能ID寻找上级菜单，最多只有两级&#xD;&#xA;com.hsapi.system.tenant.permissionsMgr.queryTenantApplication&#xD;&#xA;com.hsapi.system.tenant.permissionsMgr.queryResMenu" title="Administrator&#x9;18-6-16 下午12:25">
     <location x="-13" y="-3"/>
     <size height="139" width="380"/>
   </nodes>
@@ -169,6 +169,7 @@
     <location x="480" y="151"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="appGroupList" iterableElement="groupTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">

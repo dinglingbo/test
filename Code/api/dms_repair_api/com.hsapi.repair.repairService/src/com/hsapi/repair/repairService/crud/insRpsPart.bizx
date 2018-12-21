@@ -320,17 +320,17 @@
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
-      <targetNode>assign8</targetNode>
+      <targetNode>invokePojo0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
     <targetConnections>link46</targetConnections>
-    <location x="559" y="142"/>
+    <location x="530" y="143"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="557" y="178"/>
+    <location x="528" y="179"/>
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
@@ -572,7 +572,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link20</targetConnections>
+    <targetConnections>link1</targetConnections>
     <location x="669" y="143"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
@@ -1093,6 +1093,31 @@
     <location x="19" y="178"/>
     <figSize height="17" width="39"/>
     <node>assign16</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getNextSequence" displayName="getNextSequence" collapsed="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign8</targetNode>
+    </sourceConnections>
+    <targetConnections>link20</targetConnections>
+    <location x="600" y="143"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo0label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">rpsPart.id</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">insPart/id</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
+    <location x="560" y="179"/>
+    <figSize height="17" width="103"/>
+    <node>invokePojo0</node>
   </nodes>
   <topRuler/>
   <leftRuler>

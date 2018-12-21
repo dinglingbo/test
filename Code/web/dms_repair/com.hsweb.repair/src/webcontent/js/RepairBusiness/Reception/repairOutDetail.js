@@ -23,9 +23,11 @@ var rpsPackageGrid = null;
 var rpsItemGrid = null;
 var showOut=null;
 var storehouse = null;
+var advancedMorePartWin = null;
 var storeHash = {};
 var FStoreId = null;
 var status=0;
+var FItemRow = null;
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"项目",
@@ -41,6 +43,7 @@ $(document).ready(function(){
 	repairOutGrid.setUrl(repairOutGridUrl);
 	rpsPackageGrid = nui.get("rpsPackageGrid");
 	rpsItemGrid = nui.get("rpsItemGrid");
+    advancedMorePartWin = nui.get("advancedMorePartWin");
 	billForm = new nui.Form("#billForm");
 	//mtAdvisorIdEl = nui.get("mtAdvisorId");
 	servieIdEl = nui.get("servieIdEl");
@@ -295,7 +298,25 @@ $(document).ready(function(){
 
 });
 
-
+document.onmousemove = function(e){
+    if(advancedMorePartWin.visible){
+        var mx = e.pageX;
+        var my = e.pageY;
+        var loc = "当前位置 x:"+e.pageX+",y:"+e.pageY
+        var x = advancedMorePartWin.x;
+        var y = advancedMorePartWin.y;
+        if(x - mx > 10 || mx - x > 180){
+            advancedMorePartWin.hide();
+            FItemRow = {};
+            return;
+        }
+        if(y - my > 10 || my - y > 130){
+            advancedMorePartWin.hide();
+            FItemRow = {};
+            return;
+        }
+    }
+}
 function setInitData(params){
 	mid = params.id;
 	//serviceCode = params.row.serviceCode;
@@ -635,6 +656,7 @@ function THSave(){
 //配件
 function choosePart(row_uid){
     var row = rpsItemGrid.getRowByUID(row_uid);
+    FItemRow = row;
     var itemId = null;
     if(row){
     	itemId = row.id;
@@ -656,8 +678,18 @@ function choosePart(row_uid){
         showMsg("工单已结算,不能添加配件!","W");
         return;
     }
-    openPartSelect("", "", itemId, mainRow, row, 'ADD');
-    /*doSelectPart(itemId,addToBillPart, delFromBillPart, null, function(text){
+
+    if(advancedMorePartWin.visible){
+    	FItemRow = {};
+    	advancedMorePartWin.hide();
+    	return;
+    } 
+    var atEl = rpsItemGrid.getCellEl(row,"prdtName");
+    advancedMorePartWin.showAtEl(atEl, {xAlign:"left",yAlign:"above"});
+   	
+    
+    /*openPartSelect("", "", itemId, mainRow, row, 'ADD');
+    doSelectPart(itemId,addToBillPart, delFromBillPart, null, function(text){
         var p1 = { };
         var p2 = {
             interType: "item",
@@ -668,6 +700,42 @@ function choosePart(row_uid){
         
         loadDetail(p1, p2);
     });*/
+}
+function chooseStock() {
+	advancedMorePartWin.hide();
+	if(!FItemRow.id) {
+		showMsg("请重新选择","W");
+		return;
+	}
+	openPartSelect("", "", FItemRow.id, mainRow, FItemRow, 'ADD');
+	
+	var p1 = { };
+    var p2 = {
+        interType: "item",
+        data:{
+            serviceId: FItemRow.serviceId||0
+        }
+    };
+    
+    loadDetail(p1, p2);
+}
+function chooseBasic() {
+	advancedMorePartWin.hide();
+	if(!FItemRow.id) {
+		showMsg("请重新选择","W");
+		return;
+	}
+	doSelectPart(FItemRow.id,addToBillPart, delFromBillPart, null, function(text){
+        var p1 = { };
+        var p2 = {
+            interType: "item",
+            data:{
+                serviceId: FItemRow.serviceId||0
+            }
+        };
+        
+        loadDetail(p1, p2);
+    });
 }
 
 function addToBillPart(row, callback, unmaskcall){

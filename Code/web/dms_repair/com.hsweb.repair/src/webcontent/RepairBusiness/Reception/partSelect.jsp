@@ -65,10 +65,11 @@
                            showNullItem="false"
                            nullItemText="品牌"/>
               	<input id="billTypeId" visible="false" class="nui-combobox" textField="name" valueField="customid" />
-              	<a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+              	<a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">所有</a>
 
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+                    <li iconCls="" onclick="quickSearch(0)" id="type0">所有</li>
+                    <li iconCls="" onclick="quickSearch(1)" id="type1">本日</li>
                     <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
                 </ul>
               	<label style="font-family:Verdana;">入库日期 从：</label>
@@ -136,6 +137,9 @@
             <div field="outQty" name="outQty" width="60"  headerAlign="center" align="center" header="领料数量" datatype="float" summaryType="sum">
                 <input property="editor" class="nui-textbox" vtype="float"/> 
             </div> 
+            <div field="sellUnitPrice" name="sellUnitPrice" width="60"  headerAlign="center" align="center" header="销售单价" datatype="float" visible="false" >
+                <input property="editor" class="nui-textbox" vtype="float"/> 
+            </div> 
             <div field="billTypeId" width="60px" headerAlign="center" align="center" allowSort="true" header="票据类型"></div>
             <div field="storeId" width="60" headerAlign="center" align="center"  allowSort="true" header="仓库"></div>
             <div field="storeShelf" align="left" width="60px" headerAlign="center" align="center" allowSort="true" header="仓位"></div>
@@ -195,6 +199,10 @@
         settleType = pickType;
         nui.get('mtAdvisorId').setValue(currEmpId);
         nui.get('mtAdvisorId').setText(currUserName);
+        
+        if(pickType == "ADD") {
+        	mainGrid.showColumn("sellUnitPrice");
+        }
 		
     } 
 
@@ -232,11 +240,20 @@
  
 
  function quickSearch(type){
-    var queryname = "本日";
+    var queryname = "所有";
     var params={};
     switch (type)
     {
         case 0:
+            params.today = 1;
+            params.sEnterDate = null;
+            params.eEnterDate = null;
+            queryname = "所有";
+            sEnterDateEl.setValue(null);
+    		eEnterDateEl.setValue(null);
+    		onSearch();
+            break;
+        case 1:
             params.today = 1;
             params.sEnterDate = getNowStartDate();
             params.eEnterDate = addDate(getNowEndDate(), 1);
@@ -308,6 +325,9 @@
             case "outQty" :
             	e.cellStyle = "background:#54FF9F";
             break;
+            case "sellUnitPrice" :
+            	e.cellStyle = "background:#54FF9F";
+            break;
             default:
             break;
         }
@@ -348,11 +368,17 @@
             for (var i = 0; i < data.length; i++) {
                 if(data[i].outQty){
                     sum_out +=parseFloat(data[i].outQty);
-                }if(data[i].outQty==0){
+                }
+                if(data[i].outQty==0){
                     showMsg('请填写领料数量!','W');
                     return;
                 }
-                
+                if(data[i].outQty>0 && settleType == "ADD") {
+                	if(data[i].sellUnitPrice == null || data[i].sellUnitPrice == "") {
+                		showMsg('请填写销售单价!','W');
+                    	return;
+                	}
+                }
             }
 
             if(!sum_out){
@@ -432,13 +458,35 @@
                 paramsData.noTaxAmt = data[i].noTaxAmt;
                 paramsData.trueUnitPrice = data[i].trueUnitPrice;
                 paramsData.trueCost = data[i].trueCost;
-                paramsData.sellUnitPrice = parseFloat(selectRow.unitPrice);
-                paramsData.sellAmt = parseFloat(selectRow.unitPrice * data[i].outQty);
+                if(settleType == "PICK") {
+                	paramsData.sellUnitPrice = parseFloat(selectRow.unitPrice);
+                	paramsData.sellAmt = parseFloat(selectRow.unitPrice * data[i].outQty);
+                }else if(settleType == "ADD") {
+                	paramsData.sellUnitPrice = parseFloat(data[i].sellUnitPrice);
+                	paramsData.sellAmt = parseFloat(data[i].sellUnitPrice) * parseFloat(data[i].outQty);
+                }
                 if(!paramsData.partNameId){ 
                     paramsData.partNameId = "0";  
                 }
                 paramsDataArr.push(paramsData);
             } 
+            
+            var url = "";
+            var data = {};
+            if(settleType == "PICK") {
+	            url = baseUrl + "com.hsapi.repair.repairService.work.repairOut.biz.ext";
+	            data.data = paramsDataArr;
+	            data.billTypeId = "050206";
+	            data.serviceId = mainRow.id;
+	            data.token = token;
+            }else if(settleType == "ADD") {
+            	url = baseUrl + "com.hsapi.repair.repairService.work.repairPickOut.biz.ext";
+	            data.data = paramsDataArr;
+	            data.billTypeId = "050206";
+	            data.serviceId = mainRow.id;
+	            data.itemId = mrecordId;
+	            data.token = token;
+            }
 
             nui.mask({
 	            el: document.body,
@@ -446,15 +494,10 @@
 	            html: '处理中...'
 	        });
             nui.ajax({
-                url:baseUrl + "com.hsapi.repair.repairService.work.repairOut.biz.ext",
+                url:url,
                 type:"post",
                 async: false,
-                data:{ 
-                    data:paramsDataArr,
-                    billTypeId:"050206",
-                    serviceId:mainRow.id,
-                    token:token   
-                },   
+                data:data,   
                 success:function(text){   
                     var errCode = text.errCode;
                     var errMsg = text.errMsg;

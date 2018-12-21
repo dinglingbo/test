@@ -109,7 +109,7 @@ function onOk(){
     //$("#save").hide();
     try {
         nui.ajax({
-            url: baseUrl + "/com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext",
+            url: baseUrl + "com.hsapi.crm.telsales.crmTelsales.saveGuest.biz.ext",
             type: 'post',
             data: nui.encode({
                 data: form1.getData(),

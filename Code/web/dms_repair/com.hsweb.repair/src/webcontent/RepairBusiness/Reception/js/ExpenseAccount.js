@@ -8,6 +8,7 @@ var FItemRow = {};
 //var advancedMorePartWin = null;
 var baseUrl = apiPath + repairApi + "/";
 var webBaseUrl = webPath + contextPath + "/";  
+
  
 /*document.onmousemove = function(e){
 
@@ -42,25 +43,6 @@ $(document).ready(function () {
 	        servieTypeHash[v.id] = v;
 	    });
 	 });
-	
-	if(nui.get("sourceServiceId").value){
-		nui.ajax({
-	        url: baseUrl+"com.hsapi.repair.repairService.query.searchRpsMaintainBill.biz.ext",
-	        type: "post",
-	        cache: false,
-	        data: {
-	        	sourceServiceId : nui.get("sourceServiceId").value
-	        },
-	        success: function(text) {
-	        	var list = nui.decode(text.list);
-	        	if(list.length  == 0){
-	        		showGridMsg(0);
-	        	}else{
-	        		showGridMsg(list[0].id);
-	        	}
-	        }
-	    });
-	}
 	
 	rpsPackageGrid.on("load",function(e){
 		var data = rpsPackageGrid.getData();
@@ -273,6 +255,27 @@ $(document).ready(function () {
 		}
 	});
 });
+
+function init(){
+	if(nui.get("sourceServiceId").value){
+		nui.ajax({
+	        url: baseUrl+"com.hsapi.repair.repairService.query.searchRpsMaintainBill.biz.ext",
+	        type: "post",
+	        cache: false,
+	        data: {
+	        	sourceServiceId : nui.get("sourceServiceId").value
+	        },
+	        success: function(text) {
+	        	var list = nui.decode(text.list);
+	        	if(list.length  == 0){
+	        		showGridMsg(0);
+	        	}else{
+	        		showGridMsg(list[0].id);
+	        	}
+	        }
+	    });
+	}
+}
 
 function showBasicData(type){
     var BasicDataUrl = null;
@@ -555,16 +558,17 @@ function choosePackage(){
             var orderIndex = null;
             for(var i = 0 , l = data.length ; i < l ; i ++){
             	var id = null;
-    			var packageName = data[i].name || "";
-    			var subtotal = data[i].total || "";
-    			var rate = 0;
+    			//var packageName = data[i].name || data[i].PackageName || "";
+    			//var subtotal = data[i].total || data[i].packageTotal "";
+            	var packageName = data[i].name ||  "";
+    			var subtotal = data[i].total ||  "";
+            	var rate = 0;
     			var amt = data[i].amount || "";
     			var remark = data[i].remark || "";
     			var discountAmt = data[i].discountAmt || "";
     			var packageId = data[i].id;
    			    id = data[i].id || 0;
     			var rpsPackageGridData = rpsPackageGrid.getData();
-    			
             	for(var j = 0 , k = rpsPackageGridData.length ; j < k ; j ++){
             		if(rpsPackageGridData[j].billPackageId == 0){
             			orderIndex = rpsPackageGridData[j].orderIndex;
@@ -750,11 +754,15 @@ function onPrint(e){
 	var main = billForm.getData();
 	var params = {
             serviceId : main.id,
-            comp : currOrgName,
+            comp : currRepairSettorderPrintShow || currOrgName,
             baseUrl : baseUrl,
             type : 1,
-            bankName: bankName,
-            bankAccountNumber: bankAccountNumber,
+            bankName: currBankName,
+            bankAccountNumber: currBankAccountNumber,
+            currCompAddress: currCompAddress,
+            currCompTel: currCompTel,
+            currSlogan1: currSlogan1,
+            currSlogan2: currSlogan2,
             token : token
         };
 	if(main.id){
@@ -804,10 +812,14 @@ function showGridMsg(serviceId){
 
 
 function setInitData(params){
+	nui.get("sourceServiceId").setValue(params.id);
+	init();
 	if(!params.isOutBill){//未保存过一次报销单
 		params.sourceServiceId = params.id;
 		params.id = "";
 		billForm.setData(params);
+		//rpsPackageGrid.setData([])
+		//rpsItemGrid.setData([])
 	}else{
 		nui.ajax({
 	        url: baseUrl+"com.hsapi.repair.repairService.svr.billqyeryMaintainList.biz.ext",

@@ -1,8 +1,7 @@
 
 var baseUrl = apiPath + repairApi + "/";
-
-
-var none = "0";
+var type = "" ;//区别是套餐还是项目修改的
+var none = "";
 $(document).ready(function(v) {
 
     $(document).on("click",".none",function(e){
@@ -21,6 +20,7 @@ $(document).ready(function(v) {
     			
     			var Member = text.data;
     				var str = "";
+    					
     				for(var i = 0;i<Member.length;i++){
     					str = str+"<a class='empl' id="+Member[i].empId+" >"+Member[i].empName+"</a>";
     					if((i+1)%3==0){
@@ -36,15 +36,19 @@ $(document).ready(function(v) {
     	});
     });
 
-	setData();
+	init();
     
 
 });
-	var queryMemberLevel = apiPath + repairApi + "/com.hsapi.repair.baseData.team.queryMemberLevel.biz.ext";
-	var queryWorkTeam = apiPath + repairApi + "/com.hsapi.repair.baseData.team.queryWorkTeam.biz.ext";
+var queryMemberLevel = apiPath + repairApi + "/com.hsapi.repair.baseData.team.getRepairGroup.biz.ext";
+	//var queryMemberLevel = apiPath + repairApi + "/com.hsapi.repair.baseData.team.queryMemberLevel.biz.ext";
+	//var queryWorkTeam = apiPath + repairApi + "/com.hsapi.repair.baseData.team.queryWorkTeam.biz.ext";
 	var queryMember = apiPath + sysApi + "/com.hsapi.system.dict.org.queryMember.biz.ext";
     var queryServiceType = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryServiceType.biz.ext";
-function  setData(){
+function setData(data){
+	type = data.type;
+}
+function init(){
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
@@ -59,7 +63,7 @@ function  setData(){
 			var ServiceType = text.data;
 				var str = "";
 				for(var i = 0;i<ServiceType.length;i++){
-					str = str+"<input  class='nui-CheckBox' id="+ServiceType[i].id+" />"+ServiceType[i].name;
+					str = str+"<input  class='nui-CheckBox' id='"+ServiceType[i].id+"'/>"+ServiceType[i].name;
 					if((i+1)%5==0){
 						str = str+"<br>";
 					}
@@ -67,20 +71,22 @@ function  setData(){
 				document.getElementById("Project").innerHTML=str; 		
 		}
 	});
-var teamStr ="<a class='none1' href= 'javascript:queryMember()' id='0' >所有</a></br>";
+var teamStr ="";
 	nui.ajax({
-		url : queryWorkTeam,
+		url : queryMemberLevel,
 		type : 'POST',
 		cache : false,
 		contentType : 'text/json',
 		success : function(text) {
-			nui.unmask(document.body);
-			var Member = text.list;
+			var Member = text.data;
+			none = Member[0].type+Member[0].id;
 			for(var i = 0;i<Member.length;i++){
-				teamStr = teamStr+"<a class='none' href= 'javascript:queryMember()'  id='WorkTeam"+Member[i].id+"' >"+Member[i].name+"</a></br>";
+				teamStr = teamStr+"<a class='none' href= 'javascript:queryMember()'  id='"+Member[i].type+Member[i].id+"' >"+Member[i].name+"</a></br>";
 				
 			}	
-			nui.ajax({
+			document.getElementById("team").innerHTML=teamStr; 	
+			nui.unmask(document.body);
+/*			nui.ajax({
 				url : queryMemberLevel,
 				type : 'POST',
 				cache : false,
@@ -95,7 +101,7 @@ var teamStr ="<a class='none1' href= 'javascript:queryMember()' id='0' >所有</
 						document.getElementById("team").innerHTML=teamStr; 	
 						nui.unmask(document.body);
 				}
-			});
+			});*/
 		}
 	});
 
@@ -113,7 +119,7 @@ function queryMember(){
 			var Member = text.data;
 				var str = "";
 				for(var i = 0;i<Member.length;i++){
-					str = str+"<a class='empl' id="+Member[i].empId+" >"+Member[i].empName+"</a></br>";
+					str = str+"<a class='empl' id='"+Member[i].empId+" '>"+Member[i].empName+"</a></br>";
 
 				}
 				document.getElementById("empl").innerHTML=str; 		

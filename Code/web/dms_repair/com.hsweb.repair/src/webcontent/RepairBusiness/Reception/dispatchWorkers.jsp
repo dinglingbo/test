@@ -13,7 +13,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>班组选择</title>
 <script
-	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/dispatchWorkers.js?v=1.3.5"></script>
+	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/dispatchWorkers.js?v=1.4.3"></script>
 	<style type="text/css">
 
 				body,
@@ -156,11 +156,11 @@ a {
 						<font size="4">为本单项目类型派工：</font>
 					</td>
 				</tr>
-				<tr>
+<!-- 				<tr>
 					<td >	
 					<div class="xline" ></div>
 					</td>
-				</tr>
+				</tr> -->
 				<tr>
 					<td >
 						<div id="Project" style="width: 100%;height: 100%;">

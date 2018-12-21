@@ -25,6 +25,7 @@ pageEncoding="UTF-8" session="false" %>
                     <label>标题：</label>
                     <input class="nui-textbox" name="" id="" enabled="true"/>
                     <a class="nui-button"  plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="list()"><span class="fa fa-plus fa-lg"></span>&nbsp;测试预约</a>
                 </td>
             </tr>
         </table>
@@ -103,6 +104,19 @@ pageEncoding="UTF-8" session="false" %>
         //grid2.load();
     }
 
+
+    function list(){
+       nui.open({
+           url: webPath + contextPath  + "/repair/RepairBusiness/BookingManagement/BookingMgrMain.jsp",
+           title: "预约管理",
+           width: '100%', 
+           height: '100%', 
+           onload: function () {
+           },
+           ondestroy: function (action) {
+           }
+       });
+   }
 </script>
 </body>
 </html>

@@ -617,7 +617,11 @@ function onAdvancedAddOk(){
 				var list = nui.clone(data.rs);
 				var temp = "";
 				for(var i=0;i<list.length;i++){
-				var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>";
+					if(i<3){
+						var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui backRed'>"+list[i].name+"</a>";
+					}else{
+						var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>";
+					}
 					temp +=aEl;
 				}
 				$("#addAEl").html(temp);

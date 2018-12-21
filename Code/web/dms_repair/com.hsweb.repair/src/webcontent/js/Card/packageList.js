@@ -81,7 +81,13 @@ $(document).ready(function(v) {
 	});
 	packageGrid.on("rowdblclick",function(e){
 		var row = e.row;
-		selectStdPkg(row);
+		if(exp==1){
+			//edit1();标准套餐占时不能选择
+			CloseWindow("ok");
+		}else{
+			selectStdPkg(row);
+		}
+		
 	});
 	//双击
 	grid.on("rowdblclick",function(e){
@@ -138,10 +144,6 @@ function loadStdPKG(packageTypeId) {
 	});
 }
 
-function getDataAll(){
-	var row = grid.getSelecteds();
-	return row;
-}
 function choose() {
 	if(packageGrid.visible) {
 		var row = packageGrid.getSelected();
@@ -154,9 +156,19 @@ function choose() {
 		edit();
 	}
 }
+
+var rowData = null;
+function getDataAll(){
+	return rowData;
+}
+function edit1(){
+	rowData = packageGrid.getSelecteds();
+	CloseWindow("ok");
+}
 // 选择
 function edit() {
 	if(nui.get("expense").value){
+		rowData = grid.getSelecteds();
 		CloseWindow("ok");
 	}else{
 		var row = grid.getSelected();
@@ -417,9 +429,13 @@ function look() {
 	}
 }
 
+var exp = 0;
 function setValueData(){
+	exp = 1;
 	grid.showColumn("checkcolumn");
 	nui.get("expense").setValue(6);
+	nui.get("datagrid1").setWidth("100%");
+	nui.get("packageGrid").setWidth("100%");
 }
 //取消
 function onCancel() {

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.22"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.30"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -88,7 +88,7 @@
 
 
 <div class="nui-toolbar" style="padding:2px;height:30px">
-	<input class="nui-hidden"id="sourceServiceId" value='<b:write property="sourceServiceId"/>'  name="sourceServiceId"/> 
+	<input class="nui-hidden" id="sourceServiceId"   name="sourceServiceId"/> 
 	<input class="nui-combobox" visible="false" name="serviceTypeId" id="serviceTypeId"
 										   valueField="id" allowInput="true" valueFromSelect="true"
 										   textField="name"/>
@@ -206,7 +206,7 @@
 		     showModified="false"
 		     allowSortColumn="false" allowCellEdit="true" allowCellSelect="true"
 		     oncellcommitedit="onCellCommitEditPkg"
-		     ondrawsummarycell="onDrawSummaryCellPack"
+		     
 		     >
     <div property="columns">
     	 <div type="indexcolumn" headerAlign="center" align="center"visible="false">序号</div>

@@ -87,6 +87,7 @@
 	                emptyText="请选择领料人"
 	                required="true"
 	                url=""
+	                width="120"
 	                allowInput="true"
 	                showNullItem="false" 
 	                valueFromSelect="true"

@@ -554,7 +554,7 @@ function openPartSelect(par,type,id,row,srow){
 		url: webBaseUrl + "com.hsweb.RepairBusiness.partSelect.flow?token="+token,
 		title:"选择配件--待领料数量："+restQty,
 		height:"400px",
-		width:"1100px",
+		width:"1050px",
 		onload:function(){
 			var iframe = this.getIFrameEl();
 			iframe.contentWindow.SetData(par,type,id,row,srow);

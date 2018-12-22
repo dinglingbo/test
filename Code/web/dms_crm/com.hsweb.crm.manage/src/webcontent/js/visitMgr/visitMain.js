@@ -95,7 +95,7 @@ function SetData(){
 		mini.open({
 			url: webPath + contextPath + "/manage/visitMgr/visitMainDetail.jsp?token="+ token,
 			title: "电话回访", 
-			width: 680, height: 330,
+			width: 680, height: 230,
 			onload: function () {
 				var iframe = this.getIFrameEl(); 
 				iframe.contentWindow.setData(row);

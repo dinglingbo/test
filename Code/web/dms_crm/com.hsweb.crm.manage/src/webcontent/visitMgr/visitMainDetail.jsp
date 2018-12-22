@@ -23,12 +23,18 @@ pageEncoding="UTF-8" session="false" %>
         overflow: hidden;
         font-family: "微软雅黑";
     }
+    .textboxWidth{
+        width: 100%;
+    }
+    .tbText{
+        /* float: right; */
+    }
 </style> 
 </head>
 <body>
    
     <div class="nui-fit" id="form1">
-          <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+          <div class="nui-toolbar" style="padding:0px;">
            <table style="width:80%;">
                <tr>
                    <td style="width:80%;">
@@ -42,32 +48,32 @@ pageEncoding="UTF-8" session="false" %>
        <input class="nui-hidden" name="visitId" id="visitId"/>
        <table class="tmargin" style="table-layout: fixed;width:100%">
         <tr class="htr">
-            <td  style="width: 70px;">回访方式：</td>
-            <td style="width: 135px;">
+            <td  style="width: 70px;" class="tbText">回访方式：</td>
+            <td style="width: 100px;">
                 <input id="visitMode" name="visitMode" class="nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name">
             </td>
-            <td style="width: 90px;">下次保养日期：</td>
+            <td style="width: 90px;" class="tbText">下次保养日期：</td>
             <td style="width: 135px;">
                 <input id="careDueDate" name="careDueDate" class=" nui-datepicker textboxWidth" >
             </td>
-            <td style="width: 70px;">保养周期：</td>
-            <td style="width: 135px;">
+            <td style="width: 70px;" class="tbText">保养周期：</td>
+            <td style="width: 100px;">
                 <input id="careDayCycle" name="careDayCycle" class="nui-spinner textboxWidth" minValue="0">
             </td>
-            <td style="width: "></td>
+            <td style=""></td>
         </tr> 
         <tr class="htr">
-            <td >回访内容：</td>
+            <td class="tbText">回访内容：</td>
             <td  colspan="6">
-                <input id="visitContent" name="visitContent" class="nui-textarea textboxWidth" style="width: 100%;height:200px;">
+                <input id="visitContent" name="visitContent" class="nui-textarea textboxWidth" style="width: 100%;height:150px;">
             </td>
         </tr> 
         <tr class="htr">
-            <td >回访员：</td>
+            <td class="tbText">回访员：</td>
             <td >
                 <input id="visitMan" name="visitMan" class="nui-combobox textboxWidth" allowInput="true" textField="empName" valueField="empName" emptyText="请选择..."nullItemText="请选择..." onvaluechanged="visitManChanged">
             </td>
-            <td >回访时间：</td>
+            <td class="tbText">回访时间：</td>
             <td >
                 <input id="visitDate" name="visitDate" class="nui-datepicker textboxWidth">
             </td>

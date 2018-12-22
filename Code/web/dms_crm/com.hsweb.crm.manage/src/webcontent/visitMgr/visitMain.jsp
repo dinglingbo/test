@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.4" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.5" type="text/javascript"></script>
     <style type="text/css">
     body { 
         margin: 0; 
@@ -34,7 +34,7 @@ pageEncoding="UTF-8" session="false" %>
         <a href="##" iconCls="" plain="true" onclick="quickSearch(1)">我接待的车辆</a>
         <a href="##" iconCls="" plain="true" onclick="quickSearch(2)">所有维修车辆</a>
         <label style="font-family:Verdana;">车牌号：</label>
-        <input class="nui-textbox" name="tcarNo" id="tcarNo">
+        <input class="nui-textbox" name="tcarNo" id="tcarNo" style="width:90px;">
         <a class="nui-button" plain="true" onclick="quickSearch(3)" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
         <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="visit()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;回访</a>

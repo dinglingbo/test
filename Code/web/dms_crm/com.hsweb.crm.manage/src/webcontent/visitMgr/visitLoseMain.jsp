@@ -38,7 +38,7 @@ pageEncoding="UTF-8" session="false" %>
             <li iconCls="" onclick="quickSearch(5)" id="type5">所有客户</li>
         </ul>
         <label style="font-family:Verdana;">车牌号：</label>
-        <input class="nui-textbox" name="tcarNo" id="tcarNo">
+        <input class="nui-textbox" name="tcarNo" id="tcarNo" style="width:90px;">
         <label style="font-family:Verdana;">流失天数：</label>
         <input class="nui-textbox" name="slost" id="slost" style="width: 60px;">
         <label style="font-family:Verdana;">至</label>
@@ -64,7 +64,7 @@ pageEncoding="UTF-8" session="false" %>
         <div property="columns">
             <div type="indexcolumn">序号</div>
             <div field="serviceCode" width="120" headerAlign="center" align="center">工单号</div>
-            <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
+            <div field="carNo" width="75" headerAlign="center"align="center">车牌号</div>
             <div field="carModel" name="carModel" width="200px" headerAlign="center"  header="品牌车型"></div>
             <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
             <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>

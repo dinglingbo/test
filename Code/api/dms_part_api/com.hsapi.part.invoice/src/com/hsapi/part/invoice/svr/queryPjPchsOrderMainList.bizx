@@ -14,8 +14,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="20" y="168"/>
-    <figSize height="17" width="25"/>
+    <location x="17" y="168"/>
+    <figSize height="20" width="31"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" collapsed="false" type="end">
@@ -25,13 +25,12 @@
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="commonj.sdo.DataObject[]" name="pjPchsOrderMainList" type="query" valueType="Java">pjPchsOrderMainList</process:return>
-      <process:return id="1" language="Int" name="total" type="query" valueType="Primitive">total</process:return>
-      <process:return id="2" language="Int" name="totalPage" type="query" valueType="Primitive">totalPage</process:return>
+      <process:return id="1" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="677" y="168"/>
-    <figSize height="17" width="25"/>
+    <location x="674" y="168"/>
+    <figSize height="20" width="31"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" type="assign">
@@ -80,24 +79,8 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">pageSize</process:from>
-      <process:to type="query">page/size</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">pageIndex</process:from>
-      <process:to type="query">page/currentPage</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="value">true</process:from>
+      <process:from type="expression" pattern="reference">true</process:from>
       <process:to type="query">page/isCount</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">pageSize*pageIndex</process:from>
-      <process:to type="query">page/begin</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">pageSize</process:from>
-      <process:to type="query">page/length</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
@@ -109,8 +92,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="123" y="168"/>
-    <figSize height="17" width="25"/>
+    <location x="120" y="168"/>
+    <figSize height="20" width="31"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="queryByNamedSqlWithPage" displayName="queryByNamedSqlWithPage" type="invoke" index="4" invokeType="invoke_pojo" varArgs="false">
@@ -137,8 +120,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="253" y="81"/>
-    <figSize height="17" width="164"/>
+    <location x="232" y="81"/>
+    <figSize height="20" width="206"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -153,18 +136,10 @@
     <location x="540" y="132"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">page/count</process:from>
-      <process:to type="query">totalPage</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">page/count</process:from>
-      <process:to type="query">total</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="538" y="168"/>
-    <figSize height="17" width="32"/>
+    <location x="534" y="168"/>
+    <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="未审" displayName="queryByNamedSqlWithPage" collapsed="false" type="invoke" index="4" invokeType="invoke_pojo" varArgs="false">
@@ -192,8 +167,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="323" y="199"/>
-    <figSize height="17" width="25"/>
+    <location x="320" y="199"/>
+    <figSize height="20" width="31"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="已审" displayName="queryByNamedSqlWithPage1" collapsed="false" type="invoke" index="4" invokeType="invoke_pojo" varArgs="false">
@@ -220,8 +195,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="323" y="276"/>
-    <figSize height="17" width="25"/>
+    <location x="320" y="276"/>
+    <figSize height="20" width="31"/>
     <node>invokePojo2</node>
   </nodes>
   <topRuler/>
@@ -232,14 +207,11 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
-    <process:input description="" isArray="false" name="pageIndex" primitiveType="Int"/>
-    <process:input description="" isArray="false" name="pageSize" primitiveType="Int"/>
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="pjPchsOrderMainList"/>
-    <process:output description="" isArray="false" name="total" primitiveType="Int"/>
-    <process:output description="" isArray="false" name="totalPage" primitiveType="Int"/>
+    <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

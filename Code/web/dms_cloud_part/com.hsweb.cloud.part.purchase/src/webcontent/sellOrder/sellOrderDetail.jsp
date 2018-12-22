@@ -81,10 +81,10 @@
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
-                        <div field="guestFullName" width="180" headerAlign="center" header="客户"></div>
+                        <div field="guestFullName" width="140" headerAlign="center" header="客户"></div>
                         <div field="createDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期"></div>
                         <div field="orderMan" width="60" headerAlign="center" header="销售员"></div>
-                        <div field="auditSign" width="65" headerAlign="center" header="状态"></div>
+                        <div field="auditSign" width="55" headerAlign="center" header="状态"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="订单号"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>

@@ -119,7 +119,7 @@ function showEditModal(row, newRow, type){
 		url: webPath+contextPath+"/com.hsweb.cloud.part.basic.settleAccountEdit.flow?token="+token,
 		title: title,
 		width: "500px",
-		height: "300px",
+		height: "350px",
         allowDrag:true,
         allowResize:false,
 		onload: function() {

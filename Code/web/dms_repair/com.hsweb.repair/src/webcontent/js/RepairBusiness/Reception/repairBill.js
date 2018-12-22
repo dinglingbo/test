@@ -4832,7 +4832,27 @@ function saleManChangedBatP(e){
     saleManIdBat2 = saleManId;
 }
 
-
+function GuestTabShow(){
+	var data = billForm.getData();
+	 nui.open({
+        url: webPath + contextPath + "/repair/RepairBusiness/Reception/guestTabShow.jsp?token="+token,
+        title: '客户标签',
+        width: 300, height: 300,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            var params = {};	
+            params.guest=data;
+           // iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action)
+        {
+            if("ok" == action)
+            {
+                grid.reload();
+            }
+        }
+    });
+}
 
 
 

@@ -21,7 +21,9 @@
 			<div title="客户级别" id="guestTypeTab" name="guestTypeTab" url="">
 			</div>
 			<div title="客户来源" name="guestSourceTab" url="" >
-			</div>   
+			</div> 
+			<div title="客户标签" name="guestTab" url="" >
+			</div>  
 			<div title="回访设置" name="visitTab" url="" >
 			</div>  
 			<div title="检查类型设置" name="checkTypeTab" url="" >

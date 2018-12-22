@@ -45,6 +45,13 @@ function showTabInfo(){
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
             }  
             break;
+        case "guestTab": 
+            if(!url){
+                mainTabs.loadTab(webPath + contextPath + "/repair/cfg/guestTab.jsp?token="+token, tab);
+            }else {
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
+            }  
+            break;
         case "visitTab":
             if(!url){
                 mainTabs.loadTab(webPath + contextPath + "/repair/cfg/visitSet.jsp?token="+token, tab);

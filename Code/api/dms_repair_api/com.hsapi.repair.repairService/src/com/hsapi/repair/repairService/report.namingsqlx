@@ -1919,15 +1919,15 @@
 			(a.true_cost / a.sell_amt) AS costRate,
 			a.pick_man AS pickMan,
 			a.pick_date AS pickDate,
-			b.out_date as outDate
+			b.out_date as outDate,
+			b.bill_type_id as billTypeId,
+			a.record_date  as recordDate,
+			a.return_date as returnDate
 		FROM
 			pj_repair_out a
 		INNER JOIN wb_repair.rps_maintain b ON a.service_id = b.id
 		INNER JOIN wb_common.com_attribute c ON c.id = a.part_id
 		WHERE 1=1
-		AND b.`status` = 2
-		AND b.is_settle = 1
-		AND a.return_sign = #returnSign#
 		
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">
@@ -1938,6 +1938,32 @@
                 (a.store_id = #storeId#)
             </isNotEmpty>
             
+            <isNotEmpty prepend="and" property="isSettle">  
+                (b.is_settle= #isSettle#)
+            </isNotEmpty>
+            
+           <isNotEmpty prepend="and" property="returnSign">  
+                (a.return_sign = #returnSign#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="storeId">  
+                (a.store_id = #storeId#)
+            </isNotEmpty>
+            
+            <!-- 领料日期-->
+            <isNotEmpty prepend="and" property="sPickDate">  
+                (a.pick_date &gt;= #sPickDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="ePickDate">  
+                (a.pick_date &lt; #ePickDate#)
+            </isNotEmpty>
+            <!-- 归库日期-->
+            <isNotEmpty prepend="and" property="sReturnDate">  
+                (a.return_date &gt;= #sReturnDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eReturnDate">  
+                (a.return_date &lt; #eReturnDate#)
+            </isNotEmpty>
             <!--进厂日期 -->
             <isNotEmpty prepend="and" property="sEnterDate">  
                 (b.enter_date &gt;= #sEnterDate#)
@@ -1945,12 +1971,12 @@
             <isNotEmpty prepend="and" property="eEnterDate">  
                 (b.enter_date &lt; #eEnterDate#)
             </isNotEmpty>
-            <!--开单日期 -->
+            <!--创建日期 -->
             <isNotEmpty prepend="and" property="sRecordDate">  
-                (b.record_date &gt;= #sRecordDate#)
+                (a.record_date &gt;= #sRecordDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="eRecordDate">  
-                (b.record_date &lt; #eRecordDate#)
+                (a.record_date &lt; #eRecordDate#)
             </isNotEmpty>
             <!--结算日期 -->
             <isNotEmpty prepend="and" property="sOutDate">  

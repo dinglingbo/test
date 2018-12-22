@@ -1,6 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/sysCommon.jsp"%>
-<%@include file="/common/commonCloudPart.jsp"%>
+<%@include file="/common/commonPart.jsp"%>
 <html>
 <!-- 
   - Author(s): Administrator
@@ -8,8 +7,8 @@
   - Description:
 -->
 <head>
-<title>业务单选择</title>
-<script src="<%=webPath + contextPath%>/purchase/js/packOut/packSellOrderSelect.js?v=1.0.0"></script>
+<title>入库单选择</title>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/orderEnterChoose.js?v=1.0.4"></script>
 <style type="text/css">
 .title {
 	width: 60px;
@@ -60,11 +59,12 @@
                          emptyText="请选择往来单位..."
                          onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" /> -->
                   <input class="nui-combobox" visible="false" name="accountSign" id="accountSign" value="0"
-                       emptyText="单据状态" data="" width="70px" />
+                       emptyText="单据状态" data="accountList" width="70px" />
                   <a class="nui-button" iconCls="" plain="true" onclick="searchBill()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                   
                   <span class="separator"></span>
                   <a class="nui-button" iconCls="" plain="true" onclick="addStatement()"><span class="fa fa-check fa-lg"></span>&nbsp;选入</a>
+                  <a class="nui-button" iconCls="" plain="true" onclick="CloseWindow('cancle')"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                   <input class="nui-combobox" name="billTypeId" id="billTypeId"
                        emptyText="票据类型" data="" width="60px" visible="false" />
                   <input class="nui-combobox" name="settleTypeId" id="settleTypeId" 
@@ -74,9 +74,9 @@
       </table>
   </div>
   <div class="nui-fit">
-      <div id="notPackGrid" class="nui-datagrid" style="width:100%;height:100%;"
+      <div id="notStatementGrid" class="nui-datagrid" style="width:100%;height:100%;"
            showPager="true"
-           dataField="detailList"
+           dataField="list"
            idField="detailId"
            ondrawcell="onDrawCell"
            sortMode="client"
@@ -90,10 +90,11 @@
               <div type="indexcolumn">序号</div>
               <div type="checkcolumn" width="30"></div>
               <div type="expandcolumn" width="20" >#</div>
-              <div field="fullName" width="150" headerAlign="center" header="客户名称"></div>
+              <div field="guestFullName" width="150" headerAlign="center" header="往来单位名称"></div>
               <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
-              <!-- <div field="orderAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div> -->
-              <div allowSort="true" width="120"field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+              <div field="orderTypeId" width="60" headerAlign="center" header="业务类型"></div>
+              <div field="orderAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
+              <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
               <div field="remark" width="120" headerAlign="center" header="备注"></div>
               <div allowSort="true" summaryType="count" field="serviceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>
 
@@ -101,8 +102,35 @@
       </div>
   </div>
 
-  <div id="editFormSellOutDetail" style="display:none;">
-      <div id="innerSellOutGrid" class="nui-datagrid" style="width:100%;height:150px;"
+  <div id="editFormPchsEnterDetail" style="display:none;">
+      <div id="innerPchsEnterGrid" class="nui-datagrid" style="width:100%;height:150px;"
+           showPager="false"
+           dataField="pjPchsOrderDetailList"
+           idField="detailId"
+           ondrawcell="onDrawCell"
+           sortMode="client"
+           url=""
+           allowCellWrap = true
+           showSummaryRow="true">
+          <div property="columns">
+              <div type="indexcolumn">序号</div>
+              <div allowSort="true" field="comPartCode" width="140" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
+              <div allowSort="true" field="comOemCode" width="140" headerAlign="center" header="OEM码"></div>
+              <div allowSort="true" field="comPartBrandId" width="160" headerAlign="center" header="品牌"></div>
+              <div allowSort="true" field="comApplyCarModel" width="160" headerAlign="center" header="品牌车型"></div>
+              <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
+              <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div>
+              <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="入库数量"></div>
+              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="入库单价"></div>
+              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="入库金额"></div>
+              <div allowSort="true" field="remark" width="80" headerAlign="center" header="备注"></div>
+          </div>
+      </div>
+  </div>
+
+  <div id="editFormPchsRtnDetail" style="display:none;">
+      <div id="innerPchsRtnGrid" class="nui-datagrid" style="width:100%;height:150px;"
            showPager="false"
            dataField="pjSellOrderDetailList"
            idField="detailId"
@@ -112,22 +140,21 @@
            showSummaryRow="true">
           <div property="columns">
               <div type="indexcolumn">序号</div>
-              <div allowSort="true" field="comPartCode" width="120" headerAlign="center" header="配件编码"></div>
-              <div allowSort="true" field="comPartName" width="120"headerAlign="center" header="配件名称"></div>
-              <div allowSort="true" field="comOemCode" width="120"headerAlign="center" header="OEM码"></div>
+              <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
+              <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
+              <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
               <div allowSort="true" field="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
-              <div allowSort="true" field="comApplyCarModel" width="200" headerAlign="center" header="品牌车型"></div>
+              <div allowSort="true" field="comApplyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
               <div allowSort="true" field="outUnitId" width="40" headerAlign="center" header="单位"></div>
               <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
-              <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="销售数量"></div>
-              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="销售单价"></div>
-              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="销售金额"></div>
+              <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="退货数量"></div>
+              <div allowSort="true" datatype="float" field="orderPrice" width="60" headerAlign="center" header="退货单价"></div>
+              <div allowSort="true" datatype="float" field="orderAmt" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
               <div allowSort="true" field="remark" width="60" headerAlign="center" header="备注"></div>
           </div>
       </div>
   </div>
 
-  
 </div>
 
 

@@ -125,10 +125,10 @@
             <div header="退货信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
-                    <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
-                    <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
+                    <div allowSort="true" field="comPartName"width="120" headerAlign="center" header="配件名称"></div>
+                    <div allowSort="true" field="comOemCode" width="120"headerAlign="center" header="OEM码"></div>
+                    <div allowSort="true" field="partBrandId" width="80" headerAlign="center" header="品牌"></div>
+                    <div allowSort="true" field="applyCarModel" width="120" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
                 </div>
             </div>
@@ -159,7 +159,7 @@
                 	<div allowSort="true" datatype="float" summaryType="sum" field="trueEnterQty" width="60" headerAlign="center" header="已入库数量"></div>
                     <div allowSort="true" datatype="float" summaryType="sum" field="notEnterQty" width="60" headerAlign="center" header="未入库数量"></div> -->
                     <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                    <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" width="120"field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                 </div>
             </div>
         </div>

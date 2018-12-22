@@ -29,13 +29,11 @@
             background: #fff;
         }
 
-        /* .fc-state-highlight{background: #1AB394;} */
         .fc-grid .fc-day-number {
             padding: 3px;
             font-size: 2rem;
         }
 
-        /* .fc-state-highlight .fc-day-number{color: #fff;} */
         .fc-event {
             border: none !important;
             text-align: center;
@@ -104,29 +102,21 @@
             color: red;
         }
 
-        .data-h label {}
-
-
-        .fc-day-header{
+        .fc-day-header {
             background-color: #deedf7
         }
     </style>
- 
+
 </head>
 
 <body>
     <div class="nui-toolbar" id="toolbar1" style="padding:2px;">
-
         <table class="table" id="table1" style="margin: 0;">
-            <tr >
+            <tr>
                 <td style="width:50%;">
-                    <input class="nui-combobox">
+                    <input class="nui-combobox" emptyText="请选择公司...">
                     <input format="yyyy-MM" style="width:100px" class="nui-monthpicker" allowInput="false" name="eRecordDate"
-                        id="eRecordDate" value="" />
-
-
-                    <!-- <span class="separator"></span> -->
-
+                        id="eRecordDate" emptyText="请选择公司..." />
                 </td>
                 <td class="fc-header-right" style="font-size:1.5rem;">
                     可预约：<b id="canReserve" style="color:blue;padding:0 3px;">0</b>，待确认<b id="reserve" style="color:red;padding:0 3px;">0</b>，已确认<b
@@ -144,10 +134,7 @@
     </div>
     <script type="text/javascript">
         nui.parse();
-
-
         $(document).ready(function () {
-
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green',
@@ -221,53 +208,53 @@
                     //         store_id: $('#storeId').val()
                     //     },
                     //     success: function (data) {
-                        var data = tdata;
-                            var totalCan = 0,
-                                confirm = 0,
-                                iscome = 0,
-                                reserve = 0,
-                                iscancel = 0
-                            $(data.data).each(function (index, el) {
-                                var flag = el.d >= td;
-                                var canReserve = el.total - el.reserve - el.confirm -
-                                    el.over
-                                totalCan += canReserve
-                                confirm += Number(el.confirm)
-                                iscome += Number(el.over)
-                                reserve += Number(el.reserve)
-                                iscancel += Number(el.cancel)
-                                if (m == el.m && flag) {
-                                    var str =
-                                        '<div><p class="data-p">可预约 <label>' +
-                                        canReserve +
-                                        '</label></p><p class="data-w">待确认<label>' +
-                                        el.reserve +
-                                        '</label></p></div><div><p class="data-w">已确认<label>' +
-                                        el.confirm +
-                                        '</label></p><p class="data-w">已到店<label>' +
-                                        el.over + '</label></p></div>'
-                                    // var str='';
+                    var data = tdata;
+                    var totalCan = 0,
+                        confirm = 0,
+                        iscome = 0,
+                        reserve = 0,
+                        iscancel = 0
+                    $(data.data).each(function (index, el) {
+                        var flag = el.d >= td;
+                        var canReserve = el.total - el.reserve - el.confirm -
+                            el.over
+                        totalCan += canReserve
+                        confirm += Number(el.confirm)
+                        iscome += Number(el.over)
+                        reserve += Number(el.reserve)
+                        iscancel += Number(el.cancel)
+                        if (m == el.m && flag) {
+                            var str =
+                                '<div><p class="data-p">可预约 <label>' +
+                                canReserve +
+                                '</label></p><p class="data-w">待确认<label>' +
+                                el.reserve +
+                                '</label></p></div><div><p class="data-w">已确认<label>' +
+                                el.confirm +
+                                '</label></p><p class="data-w">已到店<label>' +
+                                el.over + '</label></p></div>'
+                            // var str='';
 
-                                } else {
-                                    var str =
-                                        '<div><p class="data-l">可预约<label>' +
-                                        canReserve +
-                                        '</label></p><p class="data-l">待确认<label>' +
-                                        el.reserve +
-                                        '</label></p></div><div><p class="data-l">已确认<label>' +
-                                        el.confirm +
-                                        '</label></p><p class="data-l">已到店<label>' +
-                                        el.over + '</label></p></div>';
-                                }
-                                $('td.fc-day[data-date="' + el.key + '"]').find(
-                                    '.fc-day-content').html(str);
-                            });
-                            $('#canReserve').text(totalCan);
-                            $('#confirm').text(confirm);
-                            $('#iscome').text(iscome);
-                            $('#iscancel').text(iscancel);
-                            $('#reserve').text(reserve);
-                            
+                        } else {
+                            var str =
+                                '<div><p class="data-l">可预约<label>' +
+                                canReserve +
+                                '</label></p><p class="data-l">待确认<label>' +
+                                el.reserve +
+                                '</label></p></div><div><p class="data-l">已确认<label>' +
+                                el.confirm +
+                                '</label></p><p class="data-l">已到店<label>' +
+                                el.over + '</label></p></div>';
+                        }
+                        $('td.fc-day[data-date="' + el.key + '"]').find(
+                            '.fc-day-content').html(str);
+                    });
+                    $('#canReserve').text(totalCan);
+                    $('#confirm').text(confirm);
+                    $('#iscome').text(iscome);
+                    $('#iscancel').text(iscancel);
+                    $('#reserve').text(reserve);
+
                     //     }
                     // });
                 }
@@ -295,18 +282,17 @@
         });
 
 
-        function list(){
-       nui.open({
-           url: webPath + contextPath  + "/repair/RepairBusiness/BookingManagement/BookingManagementList.jsp",
-           title: "预约列表",
-           width: '100%', 
-           height: '100%', 
-           onload: function () {
-           },
-           ondestroy: function (action) {
-           }
-       });
-   }
+        function list() {
+            nui.open({
+                url: webPath + contextPath +
+                    "/repair/RepairBusiness/BookingManagement/BookingManagementList.jsp",
+                title: "预约列表",
+                width: '100%',
+                height: '100%',
+                onload: function () {},
+                ondestroy: function (action) {}
+            });
+        }
     </script>
 </body>
 

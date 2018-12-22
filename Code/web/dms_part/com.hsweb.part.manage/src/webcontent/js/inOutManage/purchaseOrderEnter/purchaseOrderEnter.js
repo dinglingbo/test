@@ -1630,11 +1630,18 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								var leftRow = pjPchsOrderMainList[0];
 								var row = leftGrid.getSelected();
 								leftGrid.updateRow(row, leftRow);
-								onPrint();
+								nui.confirm("是否打印？", "友情提示", function(action) {
+									if(action== 'ok'){
+										onPrint();
+									}else{
+										
+									}
+									
+								});
 								// 保存成功后重新加载数据
 //								loadMainAndDetailInfo(leftRow);
-								rightGrid.setData([]);
-								add();
+//								rightGrid.setData([]);
+//								add();
 	
 							}
 						} else {
@@ -1700,11 +1707,18 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								var leftRow = pjPchsOrderMainList[0];
 								var row = leftGrid.getSelected();
 								leftGrid.updateRow(row, leftRow);
-								onPrint();
+								nui.confirm("是否打印？", "友情提示", function(action) {
+									if(action== 'ok'){
+										onPrint();
+									}else{
+										
+									}
+									
+								});
 								// 保存成功后重新加载数据
 //								loadMainAndDetailInfo(leftRow);
-								rightGrid.setData([]);
-								add();
+//								rightGrid.setData([]);
+//								add();
 	
 							}
 						} else {

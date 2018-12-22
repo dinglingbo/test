@@ -803,6 +803,12 @@
             <isNotEmpty prepend="and" property="partBrandId">(b.part_brand_id = #partBrandId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="partCodeList">(b.code in ($partCodeList$))</isNotEmpty>
             <!--业务界面的库存详情限制50 -->
+            
+            <!--可以按成本从高到低排序，可以按库存数量排序，可以按时间先后顺序排序 -->
+            <isNotEmpty prepend="order by" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty> 
+            
             <isNotEmpty prepend="" property="limitQuery">limit 50</isNotEmpty>
         </dynamic>
     </select>

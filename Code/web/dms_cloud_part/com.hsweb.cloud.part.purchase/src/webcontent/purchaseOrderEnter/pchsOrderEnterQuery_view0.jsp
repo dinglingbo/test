@@ -103,17 +103,17 @@
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settelTypeId" width="60" headerAlign="center" header="结算方式"></div>
-                    <div allowSort="true" field="createDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" field="createDate" width="120"headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
             <div header="配件信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="comPartCode" headerAlign="center" header="配件编码"></div>
-                    <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+                    <div allowSort="true" field="comPartCode" width="80"headerAlign="center" header="配件编码"></div>
+                    <div allowSort="true" field="comPartName" width="120"headerAlign="center" header="配件名称"></div>
+                    <div allowSort="true" field="comOemCode" width="120"headerAlign="center" header="OEM码"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
+                    <div allowSort="true" field="applyCarModel" width="180" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
                 </div>
             </div>
@@ -128,7 +128,7 @@
             <div header="其他" headerAlign="center">
                 <div property="columns">
                 	<div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                    <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true"width="120" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                 </div>
             </div>
         </div>

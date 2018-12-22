@@ -153,7 +153,7 @@ order by retc
    
    
         <select id="selectProductUnsold" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-select a.part_code as partCode, a.part_name as partName, c.oem_code as oemCode, c.part_brand_id as partBrandId, 
+select  a.part_id as partId,a.part_code as partCode, a.part_name as partName, c.oem_code as oemCode, c.part_brand_id as partBrandId, 
        c.apply_car_model as applyCarModel, a.enter_unit_id as enterUnitId,
        c.car_type_id_f as carTypeIdF, c.car_type_id_s as carTypeIdS, c.car_type_id_t as carTypeIdT, c.spec as spec, 
        a.store_id as storeId, a.outable_qty as outableQty,
@@ -175,6 +175,10 @@ where b.orgid =#orgid#
             
             <isNotEmpty prepend="and" property="partCode">  
                 a.part_code like  #partCode#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="partId">  
+                a.part_id =  #partId#
             </isNotEmpty>
             
              <isNotEmpty prepend="and" property="serviceId">  

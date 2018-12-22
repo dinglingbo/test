@@ -124,10 +124,10 @@
                         <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
                         <div field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                         <div field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
-                        <div allowSort="true" field="createDate" headerAlign="center" header="制单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                        <div allowSort="true"width="120" field="createDate" headerAlign="center" header="制单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                         <div field="billStatusId" width="60" headerAlign="center" header="状态"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                        <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                        <div allowSort="true" width="120"field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                         <div field="remark" width="120" headerAlign="center" header="备注"></div>
             
                     </div>
@@ -159,7 +159,7 @@
                            <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
                            <div field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                            <div field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
-                           <div allowSort="true" field="outDate" headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                           <div allowSort="true" field="outDate" width="120"headerAlign="center" header="出库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                            <div field="isFinished" width="60" headerAlign="center" header="状态"></div>
                            <div field="remark" width="120" headerAlign="center" header="备注"></div>
              

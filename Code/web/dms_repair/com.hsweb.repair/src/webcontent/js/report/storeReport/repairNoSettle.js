@@ -1,12 +1,11 @@
 /**
  * Created by Administrator on 2018/2/1.
  */
-//var baseUrl = apiPath + repairApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + repairApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.repair.repairService.report.queryRepairOutList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
-var advancedSearchFormData = null;
 var advancedSearchFormData = null;
 var basicInfoForm = null;
 var rightGrid = null;
@@ -23,10 +22,16 @@ $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
-    sOutDateEl =nui.get('sOutDate');
-    eOutDateEl = nui.get('eOutDate');
+    sRecordDateEl =nui.get('sRecordDate');
+    eRecordDateEl = nui.get('eRecordDate');
     
-
+	document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		if ((keyCode == 13)) { // F9
+			onSearch();
+		}
+	}
     
 	getAllPartBrand(function(data) {
 		brandList = data.brand;
@@ -91,11 +96,12 @@ $(document).ready(function(v)
 	document.onkeyup = function(event) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		
 		if ((keyCode == 13)) { // F9
 			onSearch();
 		}
+
 	}
-	
     quickSearch(4);
 
 	getAllPartType(function(data){
@@ -111,13 +117,12 @@ function getSearchParams(){
     params.partCode=nui.get("partCode").getValue();
     params.partName=nui.get("partName").getValue();
     params.partBrandId=nui.get("partBrandId").getValue();
-    params.storeId=nui.get("storeId").getValue();
     params.partTypeId=nui.get("partTypeId").value;
-    params.sOutDate=nui.get("sOutDate").getFormValue();
-    params.eOutDate=addDate(eOutDateEl.getValue(),1);
+    params.storeId=nui.get("storeId").getValue();
+    params.sRecordDate=nui.get("sRecordDate").getFormValue();
+    params.eRecordDate=addDate(eRecordDateEl.getValue(),1);
     return params;
 }
-
 var currType = 2;
 function quickSearch(type){
 	var params = getSearchParams();
@@ -126,59 +131,59 @@ function quickSearch(type){
     {
         case 0:
             params.today = 1;
-            params.sOutDate = getNowStartDate();
-            params.eOutDate = addDate(getNowEndDate(), 1);
+            params.sRecordDate = getNowStartDate();
+            params.eRecordDate = addDate(getNowEndDate(), 1);
             queryname = "本日";
             break;
         case 1:
             params.yesterday = 1;
-            params.sOutDate = getPrevStartDate();
-            params.eOutDate = addDate(getPrevEndDate(), 1);
+            params.sRecordDate = getPrevStartDate();
+            params.eRecordDate = addDate(getPrevEndDate(), 1);
             queryname = "昨日";
             break;
         case 2:
             params.thisWeek = 1;
-            params.sOutDate = getWeekStartDate();
-            params.eOutDate = addDate(getWeekEndDate(), 1);
+            params.sRecordDate = getWeekStartDate();
+            params.eRecordDate = addDate(getWeekEndDate(), 1);
             queryname = "本周";
             break;
         case 3:
             params.lastWeek = 1;
-            params.sOutDate = getLastWeekStartDate();
-            params.eOutDate = addDate(getLastWeekEndDate(), 1);
+            params.sRecordDate = getLastWeekStartDate();
+            params.eRecordDate = addDate(getLastWeekEndDate(), 1);
             queryname = "上周";
             break;
         case 4:
             params.thisMonth = 1;
-            params.sOutDate = getMonthStartDate();
-            params.eOutDate = addDate(getMonthEndDate(), 1);
+            params.sRecordDate = getMonthStartDate();
+            params.eRecordDate = addDate(getMonthEndDate(), 1);
             queryname = "本月";
             break;
         case 5:
             params.lastMonth = 1;
-            params.sOutDate = getLastMonthStartDate();
-            params.eOutDate = addDate(getLastMonthEndDate(), 1);
+            params.sRecordDate = getLastMonthStartDate();
+            params.eRecordDate = addDate(getLastMonthEndDate(), 1);
             queryname = "上月";
             break;
 
         case 10:
             params.thisYear = 1;
-            params.sOutDate = getYearStartDate();
-            params.eOutDate = getYearEndDate();
+            params.sRecordDate = getYearStartDate();
+            params.eRecordDate = getYearEndDate();
             queryname="本年";
             break;
         case 11:
             params.lastYear = 1;
-            params.sOutDate = getPrevYearStartDate();
-            params.eOutDate = getPrevYearEndDate();
+            params.sRecordDate = getPrevYearStartDate();
+            params.eRecordDate = getPrevYearEndDate();
             queryname="上年";
             break;
         default:
             break;
     }
     currType = type;
-    sOutDateEl.setValue(params.sOutDate);
-    eOutDateEl.setValue(addDate(params.eOutDate,-1));
+    sRecordDateEl.setValue(params.sRecordDate);
+    eRecordDateEl.setValue(addDate(params.eRecordDate,-1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
     doSearch(params);
@@ -191,9 +196,9 @@ function onSearch(){
 function doSearch(params)
 {
 	params.orgid = currOrgid;
-	params.returnSign = 1; //出库
-	params.isSettle=1; //已结算
-	params.status=2; //状态已完工
+//	params.returnSign = 0; //出库
+	params.isSettle=0; //未结算
+//	params.status=2; //状态已完工
     rightGrid.load({
         params:params,
         token :token     

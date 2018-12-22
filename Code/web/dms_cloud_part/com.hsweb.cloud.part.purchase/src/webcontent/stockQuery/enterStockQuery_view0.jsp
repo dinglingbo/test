@@ -88,9 +88,9 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div field="partCode" name="partCode" width="100" headerAlign="center" summaryType="count" header="配件编码"></div>
-            <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
-            <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
+            <div field="partCode" name="partCode" width="150" headerAlign="center" summaryType="count" header="配件编码"></div>
+            <div field="oemCode" name="oemCode" width="180" headerAlign="center" header="OEM码"></div>
+            <div field="partName" partName="name" width="120" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" summaryType="sum" headerAlign="center" header="库存数量"></div>
             <div allowSort="true" datatype="float" width="60" field="preOutQty" headerAlign="center" summaryType="sum" header="待出库数量"></div>
             <div field="enterPrice" width="55px" headerAlign="center" allowSort="true" header="库存单价"></div>
@@ -99,7 +99,7 @@
             <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
             <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
             <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-            <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
+            <div field="applyCarModel" name="applyCarModel" width="200" headerAlign="center" header="品牌车型"></div>
             <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
             <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
             <div field="guestName" width="150px" headerAlign="center" allowSort="true" header="供应商"></div>  

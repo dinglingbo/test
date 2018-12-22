@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-    <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.33"></script>
+    <title>配件出库查询</title>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutQty.js?v=1.0.32"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -86,9 +86,9 @@
       valueFromSelect="false"
       width="120px" onvaluechanged="onSearch">
    出库日期 从:
-     <input class="nui-datepicker" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
+     <input class="nui-datepicker" id="sPickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
  至:
-    <input class="nui-datepicker" id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+    <input class="nui-datepicker" id="ePickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 </div>
 
@@ -146,10 +146,10 @@
                 <div allowSort="true" summaryType="sum" field="costRate" headerAlign="center" header="成本率" dataType="float" align="left"></div>
             </div>
         </div>
-        <div header="出库信息" headerAlign="center">
+        <div header="创建信息" headerAlign="center">
             <div property="columns">
-                <div allowSort="true"  field=pickMan width="60" headerAlign="center" header="出库人" dataType="float" align="left"></div>
-                <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd HH:mm" field="outDate" headerAlign="center" header="出库日期" dataType="float" align="left"></div>
+                <div allowSort="true"  field=pickMan width="60" headerAlign="center" header="创建人" dataType="float" align="left"></div>
+                <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd HH:mm" field="recordDate" headerAlign="center" header="创建日期" dataType="float" align="left"></div>
             </div>
         </div>
     </div>

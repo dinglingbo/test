@@ -55,6 +55,9 @@ $(document).ready(function(v)
 	
 	rightGrid.on("drawcell",function(e){
 		switch (e.field) {
+		case "serviceCode":
+			e.cellHtml ='<a href="##" onclick="editSell()">'+e.value+'</a>';
+			break;
 		case "outReturnSign":
 				e.cellHtml="已归库";
 			break;
@@ -194,8 +197,58 @@ function doSearch(params)
 {
 	params.orgid = currOrgid;
 	params.returnSign = 0; //出库
+	params.isSettle=1; //已结算
+	params.status=2; //状态已完工
     rightGrid.load({
         params:params,
         token :token     
     });
+}
+
+function editSell(){
+    var row = rightGrid.getSelected();
+    if(!row) return;
+    var billTypeId = row.billTypeId;
+    var part={};
+    if(billTypeId==0){
+	    part.id = "2000";
+	    part.text = "综合开单详情";
+	    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow?token="+token;
+	    part.iconCls = "fa fa-file-text";
+    }
+    if(billTypeId==1){
+	    part.id = "checkPrecheckDetail";
+	    part.text = "查车开单详情";
+	    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkDetail.flow?token="+token;
+	    part.iconCls = "fa fa-file-text";
+    }
+    if(billTypeId==2){
+	    part.id = "3000";
+	    part.text = "洗美开单详情";
+	    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBill.flow?token="+token;
+	    part.iconCls = "fa fa-file-text";
+    }
+    if(billTypeId==3){
+	    part.id = "5000";
+	    part.text = "销售开单详情";
+	    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.sellBill.flow?token="+token;
+	    part.iconCls = "fa fa-file-text";
+    }
+    if(billTypeId==4){
+	    part.id = "4000";
+	    part.text = "理赔开单详情";
+	    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.claimDetail.flow?token="+token;
+	    part.iconCls = "fa fa-file-text";
+    }
+    if(billTypeId==5){
+	    part.id = "5200";
+	    part.text = "退货开单详情";
+	    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.returnBill.flow?token="+token;
+	    part.iconCls = "fa fa-file-text";
+    }
+    //window.parent.activeTab(item);
+    var params = {
+        id: row.id
+    };
+    window.parent.activeTabAndInit(part,params);
 }

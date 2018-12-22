@@ -16,7 +16,8 @@
          a.record_date recordData,
          a.sell_amt sellAmt,
          a.status status,
-         a.past_date pastDate
+         a.past_date pastDate,
+         a.period_validity periodValidity
          FROM rps_card_times a 
          INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
          WHERE  a.orgid = #orgid#

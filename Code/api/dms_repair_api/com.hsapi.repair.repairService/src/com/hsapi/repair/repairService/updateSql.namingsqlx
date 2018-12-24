@@ -204,7 +204,7 @@
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="serviceTypeIds">  
-                (service_type_id in ($serviceTypeIds$))
+                (b.service_type_id in ($serviceTypeIds$))
             </isNotEmpty>
 	</update>
 	

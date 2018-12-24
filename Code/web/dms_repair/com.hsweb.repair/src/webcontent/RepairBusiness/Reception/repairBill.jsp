@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.0.5"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.0.7"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -42,7 +42,12 @@
         font-size: 12px; 
         color: #578ccd; 
         text-decoration: none; 
-        }  
+        } 
+        #guestTab a:link { 
+        font-size: 12px; 
+        color: #578ccd; 
+        text-decoration: none; 
+        }   
         #guestInfo a:visited { 
         font-size: 12px; 
         color: #578ccd; 

@@ -2471,7 +2471,21 @@ function setItemWorkers(){
 		},
 		ondestroy : function(action) {// 弹出页面关闭前
 			if (action == "saveSuccess") {
-				loadDetail(p1, p2, p3);
+                var p1 = {
+                        interType: "package",
+                        data:{
+                            serviceId: serviceId||0
+                        }
+                    }
+                    var p2 = {
+                        interType: "item",
+                        data:{
+                            serviceId: serviceId||0
+                        }
+                    }
+                    var p3 = {
+                    }
+                    loadDetail(p1, p2, p3);
 			}
 		}
 	});

@@ -1685,7 +1685,9 @@ function onPrint(e){
 	var settleTypeId=nui.get('settleTypeId').text;
 	var guestFullName=nui.get('guestId').text;
 	var serviceId =$('#bServiceId').text().substr(4);
+	var guestId =from.guestId;
 	var formParms={
+			guestId : guestId,
 			billTypeId :billTypeId,
 			settleTypeId:settleTypeId,
 			guestFullName : guestFullName,
@@ -1704,7 +1706,7 @@ function onPrint(e){
 	
 	for(var i=0;i<detailParms.length;i++){	
 		var comPartBrindId=detailParms[i].comPartBrandId;
-		detailParms[i].comPartBrindId=brandList[comPartBrindId-1].name;
+		detailParms[i].comPartBrindId=brandHash[comPartBrindId].name;
 	}
 	
 	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrder/purchaseOrderPrint.jsp";

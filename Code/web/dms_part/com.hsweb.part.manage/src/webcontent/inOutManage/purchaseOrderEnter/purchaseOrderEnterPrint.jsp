@@ -247,27 +247,27 @@ hr {
                 </tr>
 	            </table>
 	            
-<!-- 	            <hr/> -->
-<!-- 	            <table width="100%"> -->
-<!-- 				  <tr> -->
-<!-- 				  	<td id="phone" style="font-size:8px;">电话:</td> -->
-<!-- 				    <td  id="guestAddr" align="right" style="font-size:8px;">地址:</td> -->
-<!-- <!-- 				    <td colspan="2" style="text-align: right" id="serviceId"  class="" >No:</td> --> 
-<!-- 				  </tr> -->
-<!-- 				  <tr id="border1"> -->
-<!-- 				    <td id="createDate" align="left" style="font-size:8px;">订单日期:</td> -->
-<!-- 				    <td colspan="2" id="nowDate" align="right"  class=""  style="font-size:8px;">打印日期:</td> -->
-<!-- 				  </tr> -->
-<!-- 				</table> -->
+	            <hr/>
+	            <table width="100%">
+				  <tr>			  	
+				    <td style="font-size:8px;" id="guestAddr" align="left">地址:</td>
+				    <td style="font-size:8px;" colspan="2" id="nowDate" align="left"  class="" >打印日期:</td>
+<!--  				    <td colspan="2" style="text-align: right" id="serviceId"  class="" >No:</td>  -->
+				  </tr>
+				  <tr id="border1">
+				  	<td style="font-size:8px;" id="phone">电话:</td>
+				    <td style="font-size:8px;" id="createDate" align="left">订单日期:</td>	    
+				  </tr>
+				</table>
 				<hr/>
 				<table id="ybk" width="100%">
-				  <tr>
+				   <tr>
 				    <td width="33.3%" id="guestFullName">供应商:</td>
-				    <td width="33.3%"id="">联系人:</td>
-				    <td id="">联系方式:</td>
+				    <td width="33.3%"id="contactor">联系人:</td>
+				    <td id="contactorTel">联系方式:</td>
 				  </tr>
 				  <tr>
-				    <td id="">地址</td>
+				    <td id="addr">地址</td>
 				    <td id="billTypeId">票据类型:</td>
 				    <td id="settleTypeId">结算方式:</td>
 				  </tr>
@@ -316,14 +316,16 @@ hr {
 				  <tr><td  colspan="3"><hr/></td></tr>
 				  <tr id="border3">
 				    <td id="remark1">备注</td>
-				    <td style="" id="guestAddr" align="left">地址:</td>
-				    <td style="" id="nowDate" align="center"  class="" >打印日期:</td>
+<!-- 				    <td style="" id="guestAddr" align="left">地址:</td> -->
+<!-- 				    <td style="" id="nowDate" align="center"  class="" >打印日期:</td> -->
 				  </tr>
 				  <tr><td  colspan="3"><hr/></td></tr>
 				   <tr id="border4">
 				    <td id="">注(白联仓库   红联财务  黄联供应商)</td>
-				    <td style="" id="phone">电话:</td>
-				   <td style="" id="createDate" align="center">订单日期:</td>
+				    <td></td>
+				    <td></td>
+<!-- 				    <td style="" id="phone">电话:</td> -->
+<!-- 				   <td style="" id="createDate" align="center">订单日期:</td> -->
 				  </tr>
 				</table>
             </div>
@@ -333,6 +335,7 @@ hr {
 		var date=new Date();
 		var sumOrderQty=0;
 		var sumOrderAmt=0;
+		var supplierUrl=apiPath + partApi + "/"+"com.hsapi.part.baseDataCrud.crud.queryGuestList.biz.ext";
     	$(document).ready(function(){
     		$('#currOrgName').text(currRepairSettorderPrintShow||currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
@@ -369,6 +372,18 @@ hr {
      
     		$('#billTypeId').text("票据类型:"+formParms.billTypeId);
     		$('#settleTypeId').text("结算方式:"+formParms.settleTypeId);
+			$.post(supplierUrl+"?params/guestId="+formParms.guestId+"&token="+token,{},function(text){
+    			var guest=text.guest[0];
+    			if(guest.contactor){		
+    				$('#contactor').text("联系人:"+guest.contactor);
+    			}
+    			if(guest.contactorTel){
+    				$('#contactorTel').text("联系人方式:"+guest.contactorTel);
+    			}
+    			if(guest.addr){
+    				$('#addr').text("地址:"+guest.addr);
+    			}
+    		});
 			var data= detailParms;
 			var tBody = $("#tbodyId");
 			tBody.empty();

@@ -58,10 +58,10 @@
         <div property="columns" width="10">
             <div header="   ">
               <div property="columns" width="10">
-                <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >供应商编码</div>
-                <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >供应商简称</div>
-                <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >供应商分类</div>
-                <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >供应商全称</div>
+                <div field="partBrandId" allowSort="true" headerAlign="center"width="100"  >供应商编码</div>
+                <div field="partBrandId" allowSort="true" headerAlign="center"width="100"  >供应商简称</div>
+                <div field="partBrandId" allowSort="true" headerAlign="center"width="100"  >供应商分类</div>
+                <div field="partBrandId" allowSort="true" headerAlign="center"width="160"  >供应商全称</div>
               </div>
             </div>
             <div header="2018">

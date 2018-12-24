@@ -1868,6 +1868,7 @@ function onPrint() {
 	
 	
 	var main = leftGrid.getSelected();
+	var from = basicInfoForm.getData();
 	if(!main){
 		showMsg("请选择一条记录");
 	}
@@ -1875,9 +1876,11 @@ function onPrint() {
 	var mainParams=main;
 	var billTypeId=nui.get('billTypeId').text;
 	var settleTypeId=nui.get('settleTypeId').text;
+	var guestId = from.guestId;
 	var formParms={
 			billTypeId :billTypeId,
-			settleTypeId:settleTypeId
+			settleTypeId:settleTypeId,
+			guestId	: guestId
 	};
 	var detailParms=detail;
 
@@ -1891,7 +1894,7 @@ function onPrint() {
 	
 	for(var i=0;i<detailParms.length;i++){	
 		var comPartBrindId=detailParms[i].comPartBrandId;
-		detailParms[i].comPartBrindId=brandList[comPartBrindId-1].name;
+		detailParms[i].comPartBrindId=brandHash[comPartBrindId].name;
 	}
 	
 	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrderEnter/purchaseOrderEnterPrint.jsp";

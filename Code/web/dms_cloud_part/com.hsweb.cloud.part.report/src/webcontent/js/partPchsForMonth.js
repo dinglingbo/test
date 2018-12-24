@@ -254,10 +254,10 @@ function initGrid(startDate, endDate){
 	var columnsList = [];
 	columnsList.push({type: "indexcolumn", header: "序号" });
 	columnsList.push({field: "partCode",width:"100", summaryType:"count", headerAlign: "center", allowSort: true, header: "配件编码"});
-    columnsList.push({field: "partName",width:"80", headerAlign: "center", allowSort: true, header: "配件名称"});
-    columnsList.push({field: "qualityTypeId",width:"60", headerAlign: "center", allowSort: true, header: "配件品质"});
-    columnsList.push({field: "partBrandId",width:"60", headerAlign: "center", allowSort: true, header: "配件品牌"});
-    columnsList.push({field: "carTypeIdF",width:"60", headerAlign: "center", allowSort: true, header: "配件类型"});
+    columnsList.push({field: "partName",width:"100", headerAlign: "center", allowSort: true, header: "配件名称"});
+    columnsList.push({field: "qualityTypeId",width:"80", headerAlign: "center", allowSort: true, header: "配件品质"});
+    columnsList.push({field: "partBrandId",width:"90", headerAlign: "center", allowSort: true, header: "配件品牌"});
+    columnsList.push({field: "carTypeIdF",width:"80", headerAlign: "center", allowSort: true, header: "配件类型"});
 	if(columnList && columnList.length > 0){
 		for (i = 0; i < columnList.length; i++) {
 			var yearMonthObj = columnList[i];

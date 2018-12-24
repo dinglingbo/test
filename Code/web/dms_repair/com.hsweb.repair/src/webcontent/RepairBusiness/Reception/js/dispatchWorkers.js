@@ -182,17 +182,14 @@ function dispatchOk(){
 		showMsg("请选择施工员！","W");
 		return;
 	}
-	if(serviceTypeIdList==""){
-		showMsg("请选择施工类型！","W");
-		return;
-	}
+
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
         html: '处理中...'
     });
 	for(var i = 0;i<emlpsz.length;i++){
-		if(i=0){
+		if(i==0){
 			emlpszId = emlpsz[i].id;
 			emlpszName = emlpsz[i].innerText;
 		}else{

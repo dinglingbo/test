@@ -4883,9 +4883,8 @@ function GuestTabShow(){
         width: 300, height: 300,
         onload: function () {
             var iframe = this.getIFrameEl();
-            var params = {};	
-            params.guest=data;
-           // iframe.contentWindow.setData(params);
+           // var params = sendGuestForm.getData();
+            iframe.contentWindow.setData(data);
         },
         ondestroy: function (action)
         {

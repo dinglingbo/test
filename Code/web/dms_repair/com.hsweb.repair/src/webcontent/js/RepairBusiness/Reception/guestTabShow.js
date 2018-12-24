@@ -2,16 +2,13 @@ var setNature = apiPath+repairApi+"/com.hsapi.repair.repairService.svr.saveNatur
 var concator = {};
 $(document).ready(function()
 {	
-	//nui.get("addAEl").focus();
+	nui.get("auditBtn").focus();
 	document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;//38向上 40向下
 
         if((keyCode==27))  {  //ESC
-            if(isOpenWin==1){
-                onCancel();
-            }
-           
+            onCancel();
         }
       };
     setHotWord();
@@ -42,7 +39,12 @@ function setData(params){
 			nui.unmask(document.body);
 			if (data.errCode == "S") {
 				var guestTab = data.contcator;
-				showTab(guestTab.id);
+				var str = guestTab.natureId;
+				//str = "1545469092700,1545469092701,1545469092702";
+				if(str){
+					showTab(str);
+				}
+				
 			}else{
 				showMsg("保存失败","E");
 			}
@@ -166,9 +168,9 @@ function NoSave(){
 function showTab(str){
 	var list = str.split(",");
 	if(list.length >0){
-		for(var i ;i<list.length;i++){
+		for(var i = 0 ;i<list.length;i++){
 			var id = list[i];
-			var s = "'"+"#"+id+"'";
+			var s = "#"+id;
 			$(s).toggleClass("xz");
 		}
 	}

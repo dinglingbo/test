@@ -898,8 +898,10 @@ function onPrint() {
 	var rtnReasonId= nui.get('rtnReasonId').text;
 	var createDate = nui.get('createDate').getValue();
 	var guestFullName=nui.get('guestId').text;
+	var guestId =form.guestId;
 	var serviceId = $('#bServiceId').text().substr(6);
 	var formParms={
+			guestId :guestId,
 			settleTypeId :settleTypeId,
 			rtnReasonId:rtnReasonId,
 			guestFullName : guestFullName,
@@ -919,7 +921,7 @@ function onPrint() {
 	for(var i=0;i<detailParms.length;i++){	
 		var comPartBrindId=detailParms[i].comPartBrandId;
 		if(comPartBrindId){
-			detailParms[i].comPartBrindId=brandList[comPartBrindId].name;
+			detailParms[i].comPartBrindId=brandHash[comPartBrindId].name;
 		}
 	}
 	

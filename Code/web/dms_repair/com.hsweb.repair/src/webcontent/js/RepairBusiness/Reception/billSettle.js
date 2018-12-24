@@ -259,8 +259,7 @@ function setData(params){
 			}
 		});
 		addType();
-
-	getData(data);
+	    getData(data);
 }
 function addReceiveRow(row_uid){
 	var row = {};
@@ -577,7 +576,8 @@ function addF(){
 	 $("#csdiv").before(str);
 	addType();
 }
-
+var flag=1;
+var checkF = 0;
 function addType(){
 	nui.ajax({
 		url : apiPath + frmApi + "/com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext?token="+ token,
@@ -589,55 +589,30 @@ function addType(){
 				var optaccount = document.getElementById('optaccount'+i);
 				$("<option value=''>—请选择结算账户—</option>").appendTo("#optaccount"+i);
 				for (var j = 0; j < data.settleAccount.length; j++) {
-					$("<option  value="+data.settleAccount[j].id+">"+data.settleAccount[j].name+"</option>").appendTo("#optaccount"+i);
+					if(data.settleAccount[j].isDefault==1 && flag==1){
+						$("<option selected = 'selected' value="+data.settleAccount[j].id+">"+data.settleAccount[j].name+"</option>").appendTo("#optaccount"+i);
+						checkF = 1;
+						flag = 0;
+					}else{
+						$("<option  value="+data.settleAccount[j].id+">"+data.settleAccount[j].name+"</option>").appendTo("#optaccount"+i);
+					}
 				}
 			}
+			if(checkF){
+				checkField("optaccount0");
+			}
+			
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);
 		}
 	});
-}
-
-function checkField(id){
-	 var str = "";
-	 var s1=id.split("optaccount");
-	 $("#ppaytype"+s1[1]).empty();
-	 var myselect=document.getElementById("optaccount"+s1[1]);
-	 var index=myselect.selectedIndex;
-	 var c  =myselect.options[index].value
-   var json = {
-   		accountId:c,
-   		token:token
-   }
-	nui.ajax({
-		url : apiPath + frmApi + "/com.hsapi.frm.setting.queryAccountSettleType.biz.ext",
-		type : "post",
-		data : json,
-		success : function(data) {
-			for(var i = 0;i<data.list.length;i++){
-				var ss = '<td width="110" height="44" align="right">'+data.list[i].customName+'</td>'+'<td>'+'<input class="nui-textbox" id ='+s1[1]+data.list[i].customId+' name ="amount" onvaluechanged="onChanged" style="width: 100px;">'+'</td>';
-				if(((i+1)%3)==0){
-					ss=ss+'</tr>'+'<tr>';
-				}
-				str = str+ss;
-			}
-			str='<tr>'+str+'</tr>';
-			document.getElementById('ppaytype'+s1[1]).innerHTML = str;
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR.responseText);
-		}
-	});
-	 onChanged();
 }
 
 function remove(id){
 	$("#div"+id).empty();
 	onChanged();
 }
-
-
 //计算输入金额的结算金额
 function  scount(){
 	type = null;
@@ -664,7 +639,7 @@ function  scount(){
 function checkField(id){
 	 var str = "";
 	 var s1=id.split("optaccount");
-	 $("#ppaytype"+s1[1]).empty();
+	 //$("#ppaytype"+s1[1]).empty();
 	 var myselect=document.getElementById("optaccount"+s1[1]);
 	 var index=myselect.selectedIndex;
 	 var c  =myselect.options[index].value;
@@ -686,6 +661,13 @@ function checkField(id){
 			}
 			str='<tr>'+str+'</tr>';
 			document.getElementById('ppaytype'+s1[1]).innerHTML = str;
+			if(checkF){
+				//获取待收金额
+				var amt = document.getElementById('totalAmt1').innerText;
+				var byId = s1[1]+data.list[0].customId;
+				document.getElementById(byId).value = amt;
+				checkF = 0;
+			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);

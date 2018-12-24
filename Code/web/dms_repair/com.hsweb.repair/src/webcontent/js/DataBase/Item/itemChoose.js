@@ -304,8 +304,8 @@ function addOrEdit(item){
 		targetWindow: window,
 		url:webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemDetail.flow?token="+token,
 		title:"维修项目",
-		width:600,
-		height:400,
+		width:630,
+		height:500,
 		allowResize:false,
 		onload: function()
 		{

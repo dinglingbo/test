@@ -242,10 +242,10 @@ function initGrid(startDate, endDate){
 	var columnsObj = {};
 	var columnsList = [];
 	columnsList.push({type: "indexcolumn", header: "序号" });
-	columnsList.push({field: "supplierCode",width:"60", summaryType:"count", headerAlign: "center", allowSort: true, header: "供应商编码"});
-    columnsList.push({field: "shortName",width:"60", headerAlign: "center", allowSort: true, header: "供应商简称"});
-    columnsList.push({field: "supplierType",width:"60", headerAlign: "center", allowSort: true, header: "供应商分类"});
-    columnsList.push({field: "fullName",width:"60", headerAlign: "center", allowSort: true, header: "供应商全称"});
+	columnsList.push({field: "supplierCode",width:"100", summaryType:"count", headerAlign: "center", allowSort: true, header: "供应商编码"});
+    columnsList.push({field: "shortName",width:"100", headerAlign: "center", allowSort: true, header: "供应商简称"});
+    columnsList.push({field: "supplierType",width:"100", headerAlign: "center", allowSort: true, header: "供应商分类"});
+    columnsList.push({field: "fullName",width:"160", headerAlign: "center", allowSort: true, header: "供应商全称"});
 	if(columnList && columnList.length > 0){
 		for (i = 0; i < columnList.length; i++) {
 			var yearMonthObj = columnList[i];

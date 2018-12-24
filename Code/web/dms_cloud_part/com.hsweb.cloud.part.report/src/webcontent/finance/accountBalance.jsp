@@ -39,19 +39,19 @@ pageEncoding="UTF-8" session="false" %>
         <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-select fa-lg"></span>&nbsp;查询</a>
     </div>
     <div class="nui-fit">
-        <div id="mainGrid" class="nui-datagrid" style="width:800px;height:100%;" 
+        <div id="mainGrid" class="nui-datagrid" style="width:1000px;height:100%;" 
              showPager="true"  dataField="list"   url="" sortMode="client" ondrawcell=""
               pageSize="100" sizeList="[50,100,200,500]" showSummaryRow="true">
             <div property="columns">
-                <div type="indexcolumn"  headeralign="center" width="20">序号</div>
-                <div field="settAccountCode" name="code" width="60" summaryType="count"  headeralign="center" >账户编码</div>
-                <div field="settAccountName" name="name" width="100"  headeralign="center" >账户名称</div>
-                <div field="fyear" name="fyear" width="50"  headeralign="center" >年份</div>
-                <div field="fmonth" name="fmonth" width="50"  headeralign="center" >月份</div>
-                <div field="beginBala" name="beginBala" width="60"  headeralign="center" >期初</div>
-                <div field="debit" name="debit" width="60" summaryType="sum"  headeralign="center" >收入</div>
-                <div field="credit" name="credit" width="60" summaryType="sum"  headeralign="center" >支出</div>
-                <div field="endBala" name="endBala" width="60"  headeralign="center" >余额</div>
+                <div type="indexcolumn"  headeralign="center" width="30">序号</div>
+                <div field="settAccountCode" name="code" width="70" summaryType="count"  headeralign="center" >账户编码</div>
+                <div field="settAccountName" name="name" width="140"  headeralign="center" >账户名称</div>
+                <div field="fyear" name="fyear" width="60"  headeralign="center" >年份</div>
+                <div field="fmonth" name="fmonth" width="60"  headeralign="center" >月份</div>
+                <div field="beginBala" name="beginBala" width="70"  headeralign="center" >期初</div>
+                <div field="debit" name="debit" width="70" summaryType="sum"  headeralign="center" >收入</div>
+                <div field="credit" name="credit" width="70" summaryType="sum"  headeralign="center" >支出</div>
+                <div field="endBala" name="endBala" width="70"  headeralign="center" >余额</div>
            
             </div>
         </div>

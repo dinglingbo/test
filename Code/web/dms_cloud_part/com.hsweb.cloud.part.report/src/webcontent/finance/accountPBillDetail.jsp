@@ -40,20 +40,20 @@ pageEncoding="UTF-8" session="false" %>
         <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-select fa-lg"></span>&nbsp;查询</a>
     </div>
     <div class="nui-fit">
-        <div id="mainGrid" class="nui-datagrid" style="width:900px;height:100%;" 
+        <div id="mainGrid" class="nui-datagrid" style="width:1100px;height:100%;" 
              ondrawcell="onDrawCell" showPager="true"  dataField="list"   url="" sortMode="client" 
              pageSize="100" sizeList="[50,100,200,500]" showSummaryRow="true">
             <div property="columns">
-                <div type="indexcolumn"  headeralign="center" width="20">序号</div>
+                <div type="indexcolumn"  headeralign="center" width="30">序号</div>
                 <div field="billServiceId" name="name" summaryType="count" width="100"  headeralign="center" >业务单号</div>
                 <div field="billTypeId" name="name" width="100"  headeralign="center" >收支类型</div>
-                <div field="shortName" name="name" width="100"  headeralign="center" >供应商简称</div>
-                <div field="rpAmt" name="rpAmt" width="50" summaryType="sum" headeralign="center" >应付金额</div>
+                <div field="shortName" name="name" width="120"  headeralign="center" >供应商简称</div>
+                <div field="rpAmt" name="rpAmt" width="60" summaryType="sum" headeralign="center" >应付金额</div>
                 <div field="trueCharOffAmt" name="trueCharOffAmt" summaryType="sum" width="60"  headeralign="center" >已付金额</div>
                 <div field="noCharOffAmt" name="noCharOffAmt" summaryType="sum" width="60"  headeralign="center" >未付金额</div>
                 <div field="settleStatus" name="settleStatus" width="100" headeralign="center" >结算状态</div>
-                <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" >单据日期</div>
-                <div field="fullName" name="name" width="120"  headeralign="center" >供应商全称</div>
+                <div field="auditDate" name="auditDate" width="120" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" >单据日期</div>
+                <div field="fullName" name="name" width="180"  headeralign="center" >供应商全称</div>
            
             </div>
         </div>

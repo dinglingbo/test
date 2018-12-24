@@ -425,6 +425,7 @@
 	            </tr> 
 	            <tr>
 	                <td style="font-size:8px;">电话：<span id="phone"></span></td>
+	                <td style="width: 190px;font-size:8px;">预计交车时间：<span id=planFinishDate></span></td>
 	<!--                 <td  id="bankNo" >银行账号：</td> -->
 <!-- 	             	<td style="font-size:8px;" id="enterDate" >进厂时间：</td> -->
 	            </tr>
@@ -600,7 +601,7 @@
         		document.getElementById("enterDate").innerHTML = document.getElementById("enterDate").innerHTML + enterDate;
         		document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + carVin;
         		document.getElementById("engineNo").innerHTML = document.getElementById("engineNo").innerHTML + engineNo;
-//         		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate; 
+        		document.getElementById("planFinishDate").innerHTML = document.getElementById("planFinishDate").innerHTML + planFinishDate; 
         });//http://127.0.0.1:8080/default/
        
         $.post(baseUrl+"com.hsapi.repair.repairService.query.queryRepairOutPart.biz.ext?serviceId="+params.serviceId+"&retunSign=0",{},function(text){

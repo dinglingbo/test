@@ -250,14 +250,26 @@ hr {
 	            </table>
 	            
 				<hr/>
+				<table width="100%">
+				  <tr>			  	
+				    <td style="font-size:8px;" id="guestAddr" align="left">地址:</td>
+				    <td style="font-size:8px;" colspan="2" id="nowDate" align="left"  class="" >打印日期:</td>
+<!--  				    <td colspan="2" style="text-align: right" id="serviceId"  class="" >No:</td>  -->
+				  </tr>
+				  <tr id="border1">
+				  	<td style="font-size:8px;" id="phone">电话:</td>
+				    <td style="font-size:8px;" id="createDate" align="left">订单日期:</td>	    
+				  </tr>
+				</table>
+				<hr/>
 				<table id="ybk" width="100%">
-				  <tr>
+				   <tr>
 				    <td width="33.3%" id="guestFullName">供应商:</td>
-				    <td width="33.3%"id="">联系人:</td>
-				    <td id="">联系方式:</td>
+				    <td width="33.3%"id="contactor">联系人:</td>
+				    <td id="contactorTel">联系方式:</td>
 				  </tr>
 				  <tr>
-				    <td id="">地址</td>
+				    <td id="addr">地址</td>
 				    <td id="billTypeId">票据类型:</td>
 				    <td id="settleTypeId">结算方式:</td>
 				  </tr>
@@ -307,14 +319,16 @@ hr {
 				  <tr><td  colspan="3"><hr/></td></tr>
 				  <tr id="border3">
 				    <td id="remark1">备注</td>
-				    <td style="" id="guestAddr" align="left">地址:</td>
-				    <td style="" id="nowDate" align="center"  class="" >打印日期:</td>
+<!-- 				    <td style="" id="guestAddr" align="left">地址:</td> -->
+<!-- 				    <td style="" id="nowDate" align="center"  class="" >打印日期:</td> -->
 				  </tr>
 				  <tr><td  colspan="3"><hr/></td></tr>
 				   <tr id="border4">
 				    <td id="">注(白联仓库   红联财务  黄联供应商)</td>
-				    <td style="" id="phone">电话:</td>
-				   <td style="" id="createDate" align="center">订单日期:</td>
+				    <td></td>
+				    <td></td>
+<!-- 				    <td style="" id="phone">电话:</td> -->
+<!-- 				   <td style="" id="createDate" align="center">订单日期:</td> -->
 				  </tr>
 				</table>
             </div>

@@ -2178,8 +2178,7 @@ function setPkgWorkers(){
 			iframe.contentWindow.setData(data);
 		},
 		ondestroy : function(action) {// 弹出页面关闭前
-			if (action == "saveSuccess") {
-
+			if (action.saveSuccess == "saveSuccess") {
                 var p1 = {
                         interType: "package",
                         data:{
@@ -2510,10 +2509,9 @@ function setItemWorkers(){
 			iframe.contentWindow.setData(data);
 		},
 		ondestroy : function(action) {// 弹出页面关闭前
-			if (action == "saveSuccess") {
-
+			if (action.saveSuccess == "saveSuccess") {
                 var p1 = {
-                    
+                        
                 }
                 var p2 = {
                     interType: "item",

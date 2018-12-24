@@ -2208,7 +2208,7 @@ function closePkgWorkersSetWin(){
     advancedPkgWorkersSetWin.hide();
 }
 
-//施工员
+/*//施工员
 function setPkgWorkers(){
 	nui.get("combobox3").setText("");
 	nui.get("combobox3").setValue("");
@@ -2226,7 +2226,49 @@ function setPkgWorkers(){
             advancedPkgWorkersSetWin.show();
         }
     }
+}*/
+
+//新套餐派工
+function setPkgWorkers(){
+	nui.open({
+		url :  webPath + contextPath + "/com.hsweb.repair.DataBase.dispatchWorkers.flow?token="+token,
+		title : "班组派工",
+		width : 600,
+		height : 480,
+		onload : function() {
+			var iframe = this.getIFrameEl(); 
+			var data = {
+					type : "package",
+					serviceId : fserviceId,
+					planFinishDate : mini.formatDate ( nui.get("planFinishDate").getValue(),"yyyy-MM-dd HH:mm:ss")
+			};// 传入页面的json数据
+			iframe.contentWindow.setData(data);
+		},
+		ondestroy : function(action) {// 弹出页面关闭前
+			if (action.saveSuccess == "saveSuccess") {
+				nui.get("planFinishDate").setValue(action.planFinishDate);
+				saveNoshowMsg();
+                var p1 = {
+                        interType: "package",
+                        data:{
+                            serviceId: fserviceId
+                        }
+                };
+                var p2 = {
+                    
+                };
+                var p3 = {
+                    interType: "part",
+                    data:{
+                        serviceId: fserviceId
+                    }
+                };
+                loadDetail(p1, p2, p3);
+			}
+		}
+	});
 }
+
 //施工员
 function surePkgWorkersSetWin(){
     var data =  billForm.getData();
@@ -2495,7 +2537,7 @@ function closeItemWorkersSetWin(){
     advancedItemWorkersSetWin.hide();
 }
 
-function setItemWorkers(){
+/*function setItemWorkers(){
 	nui.get("combobox4").setText("");
 	nui.get("combobox4").setValue("");
     var main =  billForm.getData();
@@ -2512,6 +2554,47 @@ function setItemWorkers(){
             advancedItemWorkersSetWin.show();
         }
     }
+}*/
+
+//新批量派工
+function setItemWorkers(){
+	nui.open({
+		url :  webPath + contextPath + "/com.hsweb.repair.DataBase.dispatchWorkers.flow?token="+token,
+		title : "班组派工",
+		width : 600,
+		height : 480,
+		onload : function() {
+			var iframe = this.getIFrameEl(); 
+			var data = {
+					type : "item",
+					serviceId : fserviceId,
+					planFinishDate : mini.formatDate ( nui.get("planFinishDate").getValue(),"yyyy-MM-dd HH:mm:ss")
+			};// 传入页面的json数据
+			iframe.contentWindow.setData(data);
+		},
+		ondestroy : function(action) {// 弹出页面关闭前
+			if (action.saveSuccess == "saveSuccess") {
+				nui.get("planFinishDate").setValue(action.planFinishDate);
+				saveNoshowMsg();
+                var p1 = {
+                        
+                }
+                var p2 = {
+                    interType: "item",
+                    data:{
+                        serviceId:fserviceId
+                    }
+                }
+                var p3 = {
+                    interType: "part",
+                    data:{
+                        serviceId: fserviceId
+                    }
+                }
+                loadDetail(p1, p2, p3);
+			}
+		}
+	});
 }
 
 function sureItemWorkersSetWin(){

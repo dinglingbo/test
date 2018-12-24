@@ -452,7 +452,7 @@ function doEditDict(action){
     if (checkDictTypeSelected()) {
         nui.open({
             url: "<%=contextPath%>/coframe/dict/edit_dict.jsp",
-            title: title, width: 320, height: 230,
+            title: title, width: 320, height: 250,
             onload: function () {
                 var iframe = this.getIFrameEl();
                 iframe.contentWindow.loadForm(data);
@@ -469,7 +469,7 @@ function addSubDict() {
     if (checkDictSelected()) {
         nui.open({
             url: "<%=contextPath%>/coframe/dict/edit_dict.jsp",
-            title: "添加子项", width: 320, height: 230,
+            title: "添加子项", width: 320, height: 250,
             onload: function () {
                 var iframe = this.getIFrameEl();
                 var parent = dict_tg.getSelected();
@@ -491,7 +491,7 @@ function editDict() {
     /*if (checkDictSelected()) {
         nui.open({
             url: "<%=contextPath%>/coframe/dict/edit_dict.jsp",
-            title: "修改字典项", width: 320, height: 230,
+            title: "修改字典项", width: 320, height: 250,
             onload: function () {
                 var iframe = this.getIFrameEl();
                 var data = nui.clone(dict_tg.getSelected());

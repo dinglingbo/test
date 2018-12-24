@@ -1864,56 +1864,82 @@ function addGuest(){
 		}
 	});
 }
-function onPrint() {
-	
-	
-	var main = leftGrid.getSelected();
-	var from = basicInfoForm.getData();
-	if(!main){
-		showMsg("请选择一条记录");
-	}
-	var detail=rightGrid.getData();
-	var mainParams=main;
-	var billTypeId=nui.get('billTypeId').text;
-	var settleTypeId=nui.get('settleTypeId').text;
-	var guestId = from.guestId;
-	var formParms={
-			billTypeId :billTypeId,
-			settleTypeId:settleTypeId,
-			guestId	: guestId
-	};
-	var detailParms=detail;
 
-	for(var i=0;i<detailParms.length;i++){
-		for(var j=0;j<storehouse.length;j++){
-			if(detailParms[i].storeId==storehouse[j].id){
-				detailParms[i].storehouse=storehouse[j].name;
-			}
-		}
-	}
-	
-	for(var i=0;i<detailParms.length;i++){	
-		var comPartBrindId=detailParms[i].comPartBrandId;
-		detailParms[i].comPartBrindId=brandHash[comPartBrindId].name;
-	}
-	
+function onPrint(){
+	var from = basicInfoForm.getData();
+	var params={
+			id : from.id,
+		auditSign:from.auditSign,
+		guestId : from.guestId
+	};
+	var detailParams={
+			mainId :from.id
+	};
 	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrderEnter/purchaseOrderEnterPrint.jsp";
 
-     nui.open({
-        url: openUrl,
-        width: "100%",
-        height: "100%",
-        title : "入库单打印",
-        showMaxButton: false,
-        allowResize: false,
-        showHeader: true,
-        onload: function() {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(mainParams,detailParms,formParms);
-        },
-    });
-
+    nui.open({
+       url: openUrl,
+       width: "100%",
+       height: "100%",
+       showMaxButton: false,
+       allowResize: false,
+       showHeader: true,
+       onload: function() {
+           var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params,detailParams);
+       },
+   });
 }
+//function onPrint() {
+//	
+//	
+//	var main = leftGrid.getSelected();
+//	var from = basicInfoForm.getData();
+//	if(!main){
+//		showMsg("请选择一条记录");
+//	}
+//	var detail=rightGrid.getData();
+//	var mainParams=main;
+//	var billTypeId=nui.get('billTypeId').text;
+//	var settleTypeId=nui.get('settleTypeId').text;
+//	var guestId = from.guestId;
+//	var formParms={
+//			billTypeId :billTypeId,
+//			settleTypeId:settleTypeId,
+//			guestId	: guestId
+//	};
+//	var detailParms=detail;
+//
+//	for(var i=0;i<detailParms.length;i++){
+//		for(var j=0;j<storehouse.length;j++){
+//			if(detailParms[i].storeId==storehouse[j].id){
+//				detailParms[i].storehouse=storehouse[j].name;
+//			}
+//		}
+//	}
+//	
+//	for(var i=0;i<detailParms.length;i++){	
+//		var comPartBrindId=detailParms[i].comPartBrandId;
+//		detailParms[i].comPartBrindId=brandHash[comPartBrindId].name;
+//	}
+//	
+//	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrderEnter/purchaseOrderEnterPrint.jsp";
+//
+//     nui.open({
+//        url: openUrl,
+//        width: "100%",
+//        height: "100%",
+//        title : "入库单打印",
+//        showMaxButton: false,
+//        allowResize: false,
+//        showHeader: true,
+//        onload: function() {
+//            var iframe = this.getIFrameEl();
+//            iframe.contentWindow.SetData(mainParams,detailParms,formParms);
+//        },
+//    });
+//
+//}
 function addSelectPart(){
 	var row = morePartGrid.getSelected();
 	if(row){
@@ -2511,7 +2537,9 @@ function setInitData(params){
 			var data={};
 			data.id=params.id;
 			data.auditSign=params.auditSign;
+			autoNew=1;
 			doSearch(data);
+			
 		}
 		if(params.billStatusId == 0){
 			

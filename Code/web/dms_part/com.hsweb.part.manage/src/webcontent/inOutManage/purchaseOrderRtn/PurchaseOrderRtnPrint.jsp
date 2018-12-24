@@ -368,10 +368,10 @@ hr {
         }
     	function SetData(mainParams,detailParms,formParms){
     		document.getElementById("spstorename").innerHTML = "采购退货单";
-    		document.getElementById("guestAddr").innerHTML = "地址："+currCompAddress;
-	   		document.getElementById("phone").innerHTML ="电话："+currCompTel;
+    		document.getElementById("guestAddr").innerHTML = "地址:"+currCompAddress;
+	   		document.getElementById("phone").innerHTML ="电话:"+currCompTel;
        		$('#guestFullName').text("供应商:"+formParms.guestFullName);
-       		$('#createDate').text("退货日期："+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
+       		$('#createDate').text("退货日期:"+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
        		$('#serviceId').text(formParms.serviceId);
      
     		$('#rtnReasonId').text("退货原因:"+formParms.rtnReasonId);

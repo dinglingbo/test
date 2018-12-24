@@ -89,6 +89,7 @@
               <div id="leftGrid" class="nui-datagrid" style="width:100%;height:100%;"
                    showPager="true"
                    pageSize="50"
+                   totalField="page.count"
                    sizeList=[20,50,100,200]
                    selectOnLoad="true"
                    showModified="false"

@@ -12,7 +12,7 @@
 <head>
 <title>维修项目</title>
 
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.30" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.31" type="text/javascript"></script>
 <style type="text/css">
     html, body{
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
@@ -162,7 +162,7 @@
 					<div property="columns" >
 						<div type="indexcolumn">序号</div>
 						<div type="checkcolumn" name="checkcolumn" visible="false"></div>
-						<div field="belonging" headerAlign="center" allowSort="true" width="50px">所属</div>
+						<div field="belonging" headerAlign="center" allowSort="true" width="50px">归属</div>
 						<div field="name" headerAlign="center" allowSort="true" width="150px">项目名称</div>
 						<div field="type" headerAlign="center" allowSort="true" width="100px">项目类型</div>
 						<div field="serviceTypeId" headerAlign="center" allowSort="true" width="60px">业务类型</div>

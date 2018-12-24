@@ -105,7 +105,7 @@ function refresh(){
   //剩余可使用次数
   var canUseTimes = null;
   var id = null;
-  function onDrawCell(e)
+ function onDrawCell(e)
   {
 	  var  d = totalTimes;
 	
@@ -119,9 +119,9 @@ function refresh(){
     /*e.cellHtml = e.value==1?"禁用":"启用";*/
     	e.cellHtml = hash[e.value];
         break; 
-    /*case "pastDate":
+    case "periodValidity":
     	e.cellHtml = (e.value == -1 ? "永久有效":e.value);
-    	break;*/
+    	break;
   /*  case "id":
     	id = e.value;
     	break;*/
@@ -168,9 +168,7 @@ function refresh(){
 	            	}
 	            }
 	        }
-	 });
-	 
+	 }); 
 	 return infor;
-	
  }
   

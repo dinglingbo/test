@@ -520,9 +520,12 @@
 			a.print_num AS printNum,
 			a.recorder AS recorder,
 			a.record_date AS recordDate,
-			a.out_qty as stockQty
+			a.out_qty as stockQty,
+			b.service_type_id as serviceTypeId
 		FROM
 			pj_repair_out a
+			inner join wb_repair.rps_maintain b on
+			a.service_id  = b.id
 		WHERE 1=1
 		<dynamic>
 

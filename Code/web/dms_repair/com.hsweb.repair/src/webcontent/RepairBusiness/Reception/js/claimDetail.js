@@ -4672,10 +4672,10 @@ function SearchLastCheckMain() {
         },
         cache: false,
         success: function (text) {  
-            
+        
             var isRec = text.isRecord;
             if(isRec == "1"){
-                var ldata = text.list[0];
+                    var ldata = text.list[0];
                 lastCheckParams = ldata;
                 var score = ldata.check_point || 0;
                 var rdate = nui.formatDate(nui.parseDate(ldata.record_date),"yyyy-MM-dd HH:mm:ss")

@@ -1532,7 +1532,14 @@ function orderEnter(mainId) {
 							leftRow.guestFullName = guestFullName;
 						}
 						loadMainAndDetailInfo(leftRow);
-					
+						nui.confirm("是否打印？", "友情提示", function(action) {
+							if(action== 'ok'){
+								onPrint();
+							}else{
+								
+							}
+							
+						});
 //						$('#bServiceId').text("订单号："+leftRow.serviceId);
 					}
 

@@ -308,9 +308,8 @@ function setData(data)
                         initCityByParent('areaId', data.guest.cityId || -1);
                         contactList = data.contactList||[{}];
                         carList = data.carList||[{}];
-                        cardatagrid.addRows(carList);
-                        contactdatagrid.addRows(contactList);
-
+                        cardatagrid.setData(carList);
+                        contactdatagrid.setData(contactList);
                     }
                     else{
                         showMsg("获取客户信息失败", "E");
@@ -425,6 +424,7 @@ function setCarModel(data){
     nui.get("carModel").setValue(data.carModel);
 }
 
+var queryGuestUrl = apiPath + repairApi + "/com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext";
 function onChanged(id){
 	if(id=="fullName"){
 		fullName = nui.get("fullName").value;
@@ -433,11 +433,95 @@ function onChanged(id){
 	}
 	if(id=="mobile"){
 		mobile = nui.get("mobile").value;
-		
+		var params = 
+		      {
+				"carNo":"",
+		        "mobile":mobile
+		      };
+		if(mobile.length==11){
+			nui.ajax({
+				url : queryGuestUrl,
+				type : "post",
+				data : JSON.stringify({
+					params:params,
+					token: token
+				}),
+				success : function(data) {
+					var list = data.list;
+					var data = {};
+					if(list.length){
+						var guest = list[0];
+						data ={
+								guest:guest
+						};
+						setDataQuery(data);
+					}else{
+						cardatagrid.setData([]);
+	                    contactdatagrid.setData([]);
+	                    basicInfoForm.setData([]);
+	                    nui.get("mobile").setValue(mobile);
+					}
+					
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR.responseText);
+				}
+			});
+		}else{
+			cardatagrid.setData([]);
+            contactdatagrid.setData([]);
+            basicInfoForm.setData([]);
+            nui.get("mobile").setValue(mobile);
+		}
 	}
-	
-	
 }
+
+
+function setDataQuery(data)
+{
+	var carNo = null;
+	var guestFullName = null;
+	if(data.guest){
+		resultGuest.guestId=data.guest.guestId;
+		carNo =data.guest.carNo;
+	    guestFullName =data.guest.guestFullName;
+	}
+	var count = 0;
+	 if(data.guest)
+     {
+         var guest = data.guest;
+         doPost({
+             url : queryUrl,
+             data : {
+                 guestId:guest.guestId
+             },
+             success : function(data)
+             {
+                 data = data||{};
+                 if(data.guest && data.guest.id)
+                 {
+                     basicInfoForm.setData(data.guest);
+                     initCityByParent('cityId', data.guest.provinceId || -1);
+                     initCityByParent('areaId', data.guest.cityId || -1);
+                     contactList = data.contactList||[{}];
+                     carList = data.carList||[{}];
+                     cardatagrid.setData(carList);
+                     contactdatagrid.setData(contactList);
+                 }
+                 else{
+                     showMsg("获取客户信息失败", "E");
+                 }
+             },
+             error : function(jqXHR, textStatus, errorThrown) {
+                 console.log(jqXHR.responseText);
+                 showMsg("网络出错", "E");
+             }
+         });
+     }
+
+}
+
+
 
 function addCar() {
 	var id = basicInfoForm.getData().id;

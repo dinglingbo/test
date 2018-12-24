@@ -114,7 +114,7 @@
                               <td class=" right fwidtha required">供应商编码:</td>
                               <td ><input id="code" name="code" width="100%" class="nui-textbox" ></td>
                               <td class=" right fwidthb required">供应商简称:</td>
-                              <td ><input id="shortName" name="shortName" width="100%" class="nui-textbox" ></td>
+                              <td ><input id="shortName" name="shortName" width="100%" class="nui-textbox" maxLength="50" ></td>
                           </tr>
                           <tr class="htr">
                               <td class=" right fwidtha required">供应商全称:</td>

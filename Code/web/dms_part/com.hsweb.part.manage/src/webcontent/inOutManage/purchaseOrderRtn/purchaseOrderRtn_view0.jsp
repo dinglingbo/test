@@ -200,6 +200,7 @@ body .mini-grid-row-selected{
                           <tr>
                               <td style="white-space:nowrap;">
                                   <a class="nui-button" plain="true" iconCls="" onclick="addPart()" id="addPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择采购订单</a>
+                                  <a class="nui-button" plain="true" iconCls="" onclick="addEnterPart()" id="addEnterPartBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;选择入库订单</a>
                                   <a class="nui-button" plain="true" iconCls="" onclick="deletePart()" id="deletePartBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                               </td>
                           </tr>

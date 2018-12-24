@@ -30,9 +30,9 @@ pageEncoding="UTF-8" session="false" %>
     <div class="nui-toolbar">
         <!--  <label style="font-family:Verdana;">快速查询：</label> -->
         <label style="font-family:Verdana;">车牌号：</label>
-        <input class="nui-textbox" name="tcarNo" id="tcarNo">
+        <input class="nui-textbox" name="tcarNo" id="tcarNo" style="width: 90px;">
         <label style="font-family:Verdana;">手机号：</label>
-        <input class="nui-textbox" name="tmobile" id="tmobile">
+        <input class="nui-textbox" name="tmobile" id="tmobile" style="width: 110px;">
         <a class="nui-button" plain="true" onclick="onSearch()" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>

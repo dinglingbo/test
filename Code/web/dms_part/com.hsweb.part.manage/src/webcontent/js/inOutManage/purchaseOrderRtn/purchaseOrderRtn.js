@@ -1764,6 +1764,29 @@ function selectPart(callback,checkcallback)
         }
     });
 }
+
+function selectEnterPart(callback,checkcallback)
+{
+    nui.open({
+        targetWindow: window,
+        url: webPath + contextPath + "/com.hsweb.part.manage.orderEnerChoose.flow?token="+token,
+        title: "入库单选择", width: 930, height: 560,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var data = {
+                orderTypeId: 1,
+                guestId: nui.get("guestId").getValue()
+            };
+            iframe.contentWindow.setInitData(data,callback,checkcallback);
+        },
+        ondestroy: function (action)
+        {
+        }
+    });
+}
 function addPart() {
 	var data = basicInfoForm.getData();
 
@@ -1794,6 +1817,45 @@ function addPart() {
 //    });
 
     selectPart(function(data) {
+        addDetail(data);
+    },function(data) {
+        var part = data.part;
+        var partid = part.id;
+        //var rtn = checkPartIDExists(partid);
+        return rtn;
+    });
+}
+
+function addEnterPart() {
+	var data = basicInfoForm.getData();
+
+    for ( var key in requiredField) {
+        if (!data[key] || $.trim(data[key]).length == 0) {
+            showMsg(requiredField[key] + "不能为空!","W");
+            return;
+        }
+    }
+	if (data) {
+		if (data.auditSign == 1) {
+			return;
+		}
+	}
+	
+    var guestId = nui.get("guestId").getValue();
+    if(!guestId) {
+        showMsg("请选择供应商!","W");
+        return;
+    }
+
+//    rightGrid.findRow(function(row){
+//        var partId = row.partId;
+//        var partCode = row.comPartCode;
+//        if(partId == null || partId == "" || partId == undefined || partCode == null || partCode == "" || partCode == undefined){
+//            rightGrid.removeRow(row);
+//        }
+//    });
+
+    selectEnterPart(function(data) {
         addDetail(data);
     },function(data) {
         var part = data.part;

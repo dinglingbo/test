@@ -36,17 +36,17 @@
                         <div type="indexcolumn">序号</div>
                         <div field="isDisabled" width="50" headerAlign="center">状态</div>
                         <div field="qualityTypeId" width="60" headerAlign="center">品质</div>
-                        <div field="partBrandId" width="70" headerAlign="center">品牌</div>
+                        <div field="partBrandId" width="120" headerAlign="center">品牌</div>
                         <div field="id" width="50" headerAlign="center">配件ID</div>
-                        <div field="code" width="80" headerAlign="center" allowSort="true">编码</div>
-                        <div field="name" width="80" headerAlign="center" allowSort="true">名称</div>
-                        <div field="fullName" width="120" headerAlign="center" allowSort="true">全称</div>
+                        <div field="code" width="120" headerAlign="center" allowSort="true">编码</div>
+                        <div field="name" width="120" headerAlign="center" allowSort="true">名称</div>
+                        <div field="fullName" width="250" headerAlign="center" allowSort="true">全称</div>
                         <div field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
-                        <div field="spec" width="60" headerAlign="center" allowSort="true">规格</div>
+                        <div field="spec" width="80" headerAlign="center" allowSort="true">规格</div>
 
                         <div field="position_name" width="60" headerAlign="center" allowSort="true">型号</div>
 
-                        <div field="applyCarModel" width="70" headerAlign="center" allowSort="true">品牌车型</div>
+                        <div field="applyCarModel" width="280" headerAlign="center" allowSort="true">品牌车型</div>
                         <div field="carTypeIdF" width="80" headerAlign="center" allowSort="true">一级分类</div>
                         <div field="carTypeIdS" width="80" headerAlign="center" allowSort="true">二级分类</div>
                         <div field="carTypeIdT" width="80" headerAlign="center" allowSort="true">三级分类</div>

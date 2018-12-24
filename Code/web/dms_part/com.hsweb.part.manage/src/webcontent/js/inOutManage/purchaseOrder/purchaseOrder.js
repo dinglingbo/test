@@ -1673,58 +1673,85 @@ function addGuest(){
 		}
 	});
 }
-function onPrint(e){
-//	var main = leftGrid.getSelected();
-//	if(!main){
-//		showMsg("请选择一条记录");
-//	}
-	var detail=rightGrid.getData();
-	var from = basicInfoForm.getData();
-	var mainParams=null;
-	var billTypeId=nui.get('billTypeId').text;
-	var settleTypeId=nui.get('settleTypeId').text;
-	var guestFullName=nui.get('guestId').text;
-	var serviceId =$('#bServiceId').text().substr(4);
-	var guestId =from.guestId;
-	var formParms={
-			guestId : guestId,
-			billTypeId :billTypeId,
-			settleTypeId:settleTypeId,
-			guestFullName : guestFullName,
-			serviceId : serviceId,
-			createDate :from.createDate
-	};
-	var detailParms=detail;
 
-	for(var i=0;i<detailParms.length;i++){
-		for(var j=0;j<storehouse.length;j++){
-			if(detailParms[i].storeId==storehouse[j].id){
-				detailParms[i].storehouse=storehouse[j].name;
-			}
-		}
-	}
-	
-	for(var i=0;i<detailParms.length;i++){	
-		var comPartBrindId=detailParms[i].comPartBrandId;
-		detailParms[i].comPartBrindId=brandHash[comPartBrindId].name;
-	}
-	
+function onPrint(){
+	var from = basicInfoForm.getData();
+	var params={
+			id : from.id,
+		auditSign:from.auditSign,
+		guestId :from.guestId
+	};
+	var detailParams={
+			mainId :from.id,
+			auditSign:from.auditSign
+	};
 	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrder/purchaseOrderPrint.jsp";
 
-     nui.open({
-        url: openUrl,
-        width: "100%",
-        height: "100%",
-        title : "采购订单打印",
-        showMaxButton: false,
-        allowResize: false,
-        showHeader: true,
-        onload: function() {
-            var iframe = this.getIFrameEl();
-            iframe.contentWindow.SetData(mainParams,detailParms,formParms);
-        },
-    });
- }
+    nui.open({
+       url: openUrl,
+       width: "100%",
+       height: "100%",
+       showMaxButton: false,
+       allowResize: false,
+       showHeader: true,
+       onload: function() {
+           var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params,detailParams);
+       },
+   });
+}
+//function onPrint(e){
+////	var main = leftGrid.getSelected();
+////	if(!main){
+////		showMsg("请选择一条记录");
+////	}
+//	var detail=rightGrid.getData();
+//	var from = basicInfoForm.getData();
+//	var mainParams=null;
+//	var billTypeId=nui.get('billTypeId').text;
+//	var settleTypeId=nui.get('settleTypeId').text;
+//	var guestFullName=nui.get('guestId').text;
+//	var serviceId =$('#bServiceId').text().substr(4);
+//	var guestId =from.guestId;
+//	var formParms={
+//			guestId : guestId,
+//			billTypeId :billTypeId,
+//			settleTypeId:settleTypeId,
+//			guestFullName : guestFullName,
+//			serviceId : serviceId,
+//			createDate :from.createDate
+//	};
+//	var detailParms=detail;
+//
+//	for(var i=0;i<detailParms.length;i++){
+//		for(var j=0;j<storehouse.length;j++){
+//			if(detailParms[i].storeId==storehouse[j].id){
+//				detailParms[i].storehouse=storehouse[j].name;
+//			}
+//		}
+//	}
+//	
+//	for(var i=0;i<detailParms.length;i++){	
+//		var comPartBrindId=detailParms[i].comPartBrandId;
+//		detailParms[i].comPartBrindId=brandHash[comPartBrindId].name;
+//	}
+//	
+//	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrder/purchaseOrderPrint.jsp";
+//
+//     nui.open({
+//        url: openUrl,
+//        width: "100%",
+//        height: "100%",
+//        title : "采购订单打印",
+//        showMaxButton: false,
+//        allowResize: false,
+//        showHeader: true,
+//        onload: function() {
+//            var iframe = this.getIFrameEl();
+//            iframe.contentWindow.SetData(mainParams,detailParms,formParms);
+//        },
+//    });
+// }
 
 function addSelectPart(){
 	

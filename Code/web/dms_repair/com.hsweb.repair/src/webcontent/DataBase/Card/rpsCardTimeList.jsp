@@ -12,7 +12,7 @@
 <head>
 <title>计次卡查询</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.6"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.7"></script>
 </head>
 
 <body>
@@ -24,9 +24,9 @@
 				<td>
 					<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;快速查询：</label>
 					<label class="form_label">客户名称：</label>
-					<input class="nui-textbox" name="guestName" id="guestName-search"/>
+					<input class="nui-textbox" name="guestName" id="guestName-search" onenter="onSearch"/>
 					<label class="form_label">计次卡名称：</label>
-					<input class="nui-textbox" name="cardName" id="cardName-search"/>
+					<input class="nui-textbox" name="cardName" id="cardName-search" onenter="onSearch"/>
 			        <label class="form_label">创建时间&nbsp;从：</label>
 	                <input format="yyyy-MM-dd"  style="width:160px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "startDate" value=""/>
 	                <label class="form_label">至：</label>
@@ -51,8 +51,8 @@
                     allowCellSelect="true"
                     allowCellEdit="true"
                     showModified="false"
-                   
-			 allowSortColumn="true" style="width: 100%;height:100% ">
+                   allowCellWrap = "true"
+			      allowSortColumn="true" style="width: 100%;height:100% ">
 			<div property="columns">
 				<!-- <div type="indexcolumn"></div>-->
 				<div type="checkcolumn" ></div> 
@@ -69,13 +69,15 @@
 				<div field="cardName" headerAlign="center" allowSort="true">
 				  计次卡名称</div>
 				
-				 <!-- <div field="id" headerAlign="center" allowSort="true">
-					剩余次数
-				</div>  -->
-				<div field="recordData" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">
+				 <div field="userTimes" headerAlign="center" allowSort="true">
+					使用情况
+				</div>
+				<!-- <div field="recordData" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">
 					创建时间</div>
 				<div field="pastDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">
-					到期时间</div>
+					到期时间</div> -->
+					<div field="periodValidity" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">
+					有效期</div> 
 				<div field="sellAmt" headerAlign="center" allowSort="true">
 					销售金额</div>
 				<div field="status" headerAlign="center" allowSort="true">

@@ -386,7 +386,7 @@ function setData(data)
 	var guestFullName = null;
 	if(data.guest){
 		carNo =data.guest.carNo;
-	    guestFullName =data.guest.guestFullName;
+	    guestFullName =data.guest.contactName;
 	}
 	var count = 0;
     init(function()
@@ -413,6 +413,7 @@ function setData(data)
                         	if(carNo==carList[i].carNo){
                         		
                         		carInfoFrom.setData(carList[i]);
+                        		currCarIdx = i;
                         	}
                             //nui.get("carModelId").setText(carList[0].carModel);
                             //carList[i] = carInfoFrom.getData();
@@ -425,6 +426,7 @@ function setData(data)
                         {
                         	if(guestFullName==contactList[i].name){
                         		contactInfoForm.setData(contactList[i]);
+                        		currContactIdx = i;
                         		count = 1;
                         	}
                         	
@@ -435,8 +437,8 @@ function setData(data)
                         	
                         	contactInfoForm.setData(contactList[0]);
                         }
-                        setCarByIdx(0);
-                        setContactByIdx(0);
+                        setCarByIdx(currCarIdx);
+                        setContactByIdx(currContactIdx);
                         
                         provice.doValueChanged();
                         cityId.doValueChanged();
@@ -452,7 +454,6 @@ function setData(data)
             });
         }
     });
-
 }
 
 function setGuest(data,row){
@@ -612,20 +613,101 @@ function onChanged(id){
 				}),
 				success : function(data) {
 					var list = data.list;
+					var data = {};
 					if(list.length){
 						var guest = list[0];
-						var data ={
+						data ={
 								guest:guest
-						}
-						setData(data);
+						};
+						setDataQuery(data);
+					}else{
+						contactInfoForm.setData([]);
+						carInfoFrom.setData([]);
+	                    basicInfoForm.setData([]);
+	                    nui.get("mobile").setValue(mobile);
 					}
+					
 				},
 				error : function(jqXHR, textStatus, errorThrown) {
 					console.log(jqXHR.responseText);
 				}
 			});
+		}else{
+			carInfoFrom.setData([]);
+			contactInfoForm.setData([]);
+            basicInfoForm.setData([]);
+            nui.get("mobile").setValue(mobile);
 		}
 	}
+}
+
+function setDataQuery(data)
+{
+	carList = [{}];
+	carHash = {};
+	currCarIdx = 0;
+	var carNo = null;
+	var guestFullName = null;
+	if(data.guest){
+		carNo =data.guest.carNo;
+	    guestFullName =data.guest.contactName;
+	}
+	var count = 0;
+	if(data.guest)
+    {
+        var guest = data.guest;
+        doPost({
+            url : queryUrl,
+            data : {
+                guestId:guest.guestId
+            },
+            success : function(data)
+            {
+                data = data||{};
+                if(data.guest && data.guest.id)
+                {
+                    basicInfoForm.setData(data.guest);
+                    contactList = data.contactList||[{}];
+                    carList = data.carList||[{}];
+                    var i;
+                    for(i=0;i<carList.length;i++)
+                    {
+                    	if(carNo==carList[i].carNo){
+                    		carInfoFrom.setData(carList[i]);
+                    		currCarIdx = i;
+                    	}
+                          carHash[carList[i].id] = JSON.stringify(carList[i]);
+                    }
+                    contactInfoForm.setData(contactList[0]);
+                    for(i=0;i<contactList.length;i++)
+                    {
+                    	if(guestFullName==contactList[i].name){
+                    		contactInfoForm.setData(contactList[i]);
+                    		currContactIdx = i;
+                    		count = 1;
+                    	}
+                        contactHash[contactList[i].id] = JSON.stringify(contactList[i]);
+                    }
+                    if(count==0){
+                    	contactInfoForm.setData(contactList[0]);
+                    }
+                    setCarByIdx(currCarIdx);
+                    setContactByIdx(currContactIdx);
+                    
+                    provice.doValueChanged();
+                    cityId.doValueChanged();
+                }
+                else{
+                    showMsg("获取客户信息失败", "E");
+                }
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.responseText);
+                showMsg("网络出错", "E");
+            }
+        });
+    }
+
 }
 
 

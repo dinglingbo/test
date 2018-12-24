@@ -42,7 +42,12 @@
         font-size: 12px; 
         color: #578ccd; 
         text-decoration: none; 
-        }  
+        } 
+        #guestTab a:link { 
+        font-size: 12px; 
+        color: #578ccd; 
+        text-decoration: none; 
+        }   
         #guestInfo a:visited { 
         font-size: 12px; 
         color: #578ccd; 

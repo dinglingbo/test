@@ -154,9 +154,9 @@
                                     <div property="columns">
                                         <div type="indexcolumn" width="20">序号</div>
                                         <div type="checkcolumn" width="25"></div>
-                                        <div field="partCode" name="partCode" headerAlign="center" allowSort="true">配件编码</div>
-                                        <div field="fullName" name="fullName" headerAlign="center" allowSort="true">配件全称</div>
-                                        <div field="sellPrice" name="sellPrice" headerAlign="center" allowSort="true" header="销售单价">
+                                        <div field="partCode" name="partCode"  width="120"headerAlign="center" allowSort="true">配件编码</div>
+                                        <div field="fullName" name="fullName" width="450" headerAlign="center" allowSort="true">配件全称</div>
+                                        <div field="sellPrice" name="sellPrice" width="80" headerAlign="center" allowSort="true" header="销售单价">
                                             <input property="editor" vtype="float" class="nui-textbox"/>
                                         </div>
                                         <div field="operator" width="60" headerAlign="center" allowSort="true">操作人</div>

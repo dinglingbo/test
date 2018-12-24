@@ -122,13 +122,14 @@
                     <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="65" headerAlign="center" header="库存数量"></div>
                     <div allowSort="true" field="unit" width="40" headerAlign="center" header="单位"></div>
                     <div allowSort="true" field="storeId" width="100" headerAlign="center" header="仓库"></div>
-                    <div allowSort="true" field="shelf" width="60" headerAlign="center" header="仓位">
-<!--                         <input property="editor" class="nui-textbox"/> -->
-                    </div>
+                    
                 </div>
             </div>
             <div header="库存设置" headerAlign="center">
                 <div property="columns">
+                	<div allowSort="true" field="shelf" width="60" headerAlign="center" header="仓位">
+                        <input property="editor" class="nui-textbox"/>
+                    </div>
                     <div allowSort="true" field="sellPrice" width="65" headerAlign="center" header="参考售价" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
                     <div allowSort="true" field="upLimit" width="65" headerAlign="center" header="库存上限" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>
                     <div allowSort="true" field="downLimit" width="65" headerAlign="center" header="库存下限" numberFormat="0.00"><input property="editor" vtype="float" class="nui-textbox"/></div>

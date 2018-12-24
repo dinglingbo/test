@@ -493,6 +493,9 @@
 		FROM com_guest a
 		WHERE (a.orgid = #orgid# or a.orgid = 0)
     	<dynamic>
+    		<isNotEmpty prepend="and" property="guestId">  
+                (id = #guestId#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="code">  
                 (code like '%$code$%')
             </isNotEmpty>
@@ -690,6 +693,26 @@
 		order by a.order_index asc
 	</select>
 	
+	<select id="queryPartByCodes" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    <!-- 物流公司 -->
+    	SELECT 
+			a.id as id,
+			a.code as code,
+			a.common_id as commonId
+		FROM
+			com_attribute a 
+		WHERE
+			(a.orgid = 0 or a.orgid = #orgid#)
+		<dynamic>
+    		<isNotEmpty prepend="and" property="isDisabled">  
+                (a.is_disabled = #isDisabled#)
+            </isNotEmpty> 
+            <isNotEmpty prepend="and" property="partCodeList">  
+                (a.code in ($partCodeList$))
+            </isNotEmpty>
+        </dynamic>
+	</select>
+	
 	<update id="updatePartCommon" parameterClass="java.util.HashMap" >
 		update com_attribute set common_id = #commonId#
 		where 1 = 1
@@ -728,6 +751,6 @@
             	(part_id = #partId#)
             </isNotEmpty>
         </dynamic>
-    </select>
+    </select> 
     
 </sqlMap>

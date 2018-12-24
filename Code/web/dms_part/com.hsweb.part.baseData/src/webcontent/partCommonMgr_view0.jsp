@@ -80,7 +80,7 @@ body .mini-grid-row-selected{
                   <div property="columns">
                     <div type="indexcolumn">序号</div>
 					<div allowSort="true" field="qualityTypeId" width="60" headerAlign="center">品质</div>
-					<div allowSort="true" field="partBrandId" width="70" headerAlign="center">品牌</div>
+					<div allowSort="true" field="partBrandId" width="80" headerAlign="center">品牌</div>
 					<div allowSort="true" field="code" name="code" width="80" headerAlign="center" allowSort="true">编码</div>
 					<div allowSort="true" field="name" name="name" width="80" headerAlign="center" allowSort="true">名称</div>
 					<div allowSort="true" field="fullName" name="fullName" width="120" headerAlign="center" allowSort="true">全称</div>
@@ -92,7 +92,7 @@ body .mini-grid-row-selected{
           </div>
       </div>
       <div showCollapseButton="false">
-                <div style="float:left;width:40%">
+                <div style="float:left;width:45%">
                     <div title="替换配件选择" class="nui-panel"
                         showFooter="true"
                         style="width:100%;height:100%;">
@@ -125,12 +125,12 @@ body .mini-grid-row-selected{
                                     <div type="indexcolumn">序号</div>
                                     <div type="checkcolumn" width="25"></div>
                                     <div allowSort="true" field="qualityTypeId" width="60" headerAlign="center">品质</div>
-                                    <div allowSort="true" field="partBrandId" width="70" headerAlign="center">品牌</div>
-                                    <div allowSort="true" field="code" name="code" width="80" headerAlign="center" allowSort="true">编码</div>
-                                    <div allowSort="true" field="name" name="name" width="80" headerAlign="center" allowSort="true">名称</div>
-                                    <div allowSort="true" field="fullName" name="fullName" width="120" headerAlign="center" allowSort="true">全称</div>
-                                    <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
-                                    <div allowSort="true" field="spec" width="60" headerAlign="center" allowSort="true">规格</div>
+                                    <div allowSort="true" field="partBrandId" width="80" headerAlign="center">品牌</div>
+                                    <div allowSort="true" field="code" name="code" width="100" headerAlign="center" allowSort="true">编码</div>
+                                    <div allowSort="true" field="name" name="name" width="150" headerAlign="center" allowSort="true">名称</div>
+                                    <div allowSort="true" field="fullName" name="fullName" width="220" headerAlign="center" allowSort="true">全称</div>
+                                    <div allowSort="true" field="unit" width="35" headerAlign="center" allowSort="true">单位</div>
+                                    <div allowSort="true" field="spec" width="90" headerAlign="center" allowSort="true">规格</div>
                                     <div allowSort="true" field="model" width="60" headerAlign="center" allowSort="true">型号</div>
                                 </div>
                             </div>
@@ -139,7 +139,7 @@ body .mini-grid-row-selected{
                     </div>
                 </div>
 
-                <div style="float:left;height:100%;width:10%;margin-top:10%;">
+                <div style="float:left;height:100%;width:5%;margin-top:10%;">
                     <table style="width:100%;text-align:center;">
                         <tr>
                             <td style="white-space:nowrap;">
@@ -171,12 +171,12 @@ body .mini-grid-row-selected{
                                 <div type="indexcolumn">序号</div>
                                 <div type="checkcolumn" width="25"></div>
                                 <div allowSort="true" field="qualityTypeId" width="60" headerAlign="center">品质</div>
-                                <div allowSort="true" field="partBrandId" width="70" headerAlign="center">品牌</div>
-                                <div allowSort="true" field="code" name="code" width="80" headerAlign="center" allowSort="true">编码</div>
-                                <div allowSort="true" field="name" name="name" width="80" headerAlign="center" allowSort="true">名称</div>
-                                <div allowSort="true" field="fullName" name="fullName" width="120" headerAlign="center" allowSort="true">全称</div>
-                                <div allowSort="true" field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
-                                <div allowSort="true" field="spec" width="60" headerAlign="center" allowSort="true">规格</div>
+                                <div allowSort="true" field="partBrandId" width="90" headerAlign="center">品牌</div>
+                                <div allowSort="true" field="code" name="code" width="100" headerAlign="center" allowSort="true">编码</div>
+                                <div allowSort="true" field="name" name="name" width="150" headerAlign="center" allowSort="true">名称</div>
+                                <div allowSort="true" field="fullName" name="fullName" width="220" headerAlign="center" allowSort="true">全称</div>
+                                <div allowSort="true" field="unit" width="35" headerAlign="center" allowSort="true">单位</div>
+                                <div allowSort="true" field="spec" width="80" headerAlign="center" allowSort="true">规格</div>
                                 <div allowSort="true" field="model" width="60" headerAlign="center" allowSort="true">型号</div>
                             </div>
                         </div>

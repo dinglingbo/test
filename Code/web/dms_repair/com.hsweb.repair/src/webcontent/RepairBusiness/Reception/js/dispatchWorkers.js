@@ -4,6 +4,7 @@ var type = "" ;//区别是套餐还是项目修改的
 var none = "ALL0";//班组技术样式下标
 var serviceTypeIds = null;
 var serviceId = 0;//工单号
+var planFinishDate = "";//预计交车时间
 $(document).ready(function(v) {
 	 serviceTypeIds = nui.get("serviceTypeIds");
     $(document).on("click",".none",function(e){
@@ -39,7 +40,7 @@ $(document).ready(function(v) {
     });
 
 	init();
-    
+	
 
 });
 var queryMemberLevel = apiPath + repairApi + "/com.hsapi.repair.baseData.team.getRepairGroup.biz.ext";
@@ -52,6 +53,13 @@ var queryMemberLevel = apiPath + repairApi + "/com.hsapi.repair.baseData.team.ge
 function setData(data){
 	type = data.type;
 	serviceId = data.serviceId;
+	planFinishDate = data.planFinishDate||"";
+	if(planFinishDate==""){
+		nui.get("planFinishDate").readOnly = true;
+	}else{		
+		nui.get("planFinishDate").readOnly = true;
+		nui.get("planFinishDate").setValue(planFinishDate);
+	}
 }
 function init(){
     nui.mask({
@@ -91,6 +99,7 @@ var teamStr ="";
 				
 			}	
 			document.getElementById("team").innerHTML=teamStr; 	
+			document.getElementById(none).setAttribute("class", "none1");
 			nui.unmask(document.body);
 /*			nui.ajax({
 				url : queryMemberLevel,
@@ -111,6 +120,7 @@ var teamStr ="";
 		}
 	});
 	queryMember({toke:token});
+	
 }
 
 
@@ -138,26 +148,53 @@ function queryMember(json){
 	});
 }
 
-var zongTime = 0;
 function timeStamp(StatusMinute){
-	zongTime = parseInt(zongTime) + parseInt(StatusMinute);
-	var day=parseInt(zongTime/60/24);
-    var hour=parseInt(zongTime/60%24);
-	var min= parseInt(zongTime % 60);
-	StatusMinute="";
-	if (day > 0)
-	{
-		nui.get("day").setValue(day);
-	} 
-	if (hour>0)
-	{
-		nui.get("hour").setValue(hour);
-	} 
-	if (min>0)
-	{
-		nui.get("min").setValue(min);
-	}
+	if(planFinishDate==""){
+		nui.get("day").setValue("");
+		nui.get("hour").setValue("");
+		nui.get("min").setValue("");
+		var day=parseInt(StatusMinute/60/24);
+	    var hour=parseInt(StatusMinute/60%24);
+		var min= parseInt(StatusMinute % 60);
+		StatusMinute="";
+		if (day > 0){
+			nui.get("day").setValue(day);
 
+		} 
+		if (hour>0){
+			nui.get("hour").setValue(hour);
+		} 
+		if (min>0){
+			nui.get("min").setValue(min);
+		}
+	}else{
+		nui.get("day").setValue("");
+		nui.get("hour").setValue("");
+		nui.get("min").setValue("");
+		var day=parseInt(StatusMinute/60/24);
+	    var hour=parseInt(StatusMinute/60%24);
+		var min= parseInt(StatusMinute % 60);
+		StatusMinute="";
+		if (day > 0){
+			nui.get("day").setValue(day);
+			var yjDate = new Date(planFinishDate);
+			yjDate.setDate(yjDate.getDate()+day );
+			nui.get("planFinishDate").setValue(mini.formatDate ( yjDate,"yyyy-MM-dd HH:mm:ss"));
+			
+		} 
+		if (hour>0){
+			nui.get("hour").setValue(hour);
+			var yjDate = new Date(planFinishDate);
+			yjDate.setHours(yjDate.getHours()+hour);
+			nui.get("planFinishDate").setValue(mini.formatDate ( yjDate,"yyyy-MM-dd HH:mm:ss"));
+		} 
+		if (min>0){
+			nui.get("min").setValue(min);
+			var yjDate = new Date(planFinishDate);
+			yjDate.setMinutes(yjDate.getMinutes()+min);
+			nui.get("planFinishDate").setValue(mini.formatDate ( yjDate,"yyyy-MM-dd HH:mm:ss"));
+		}
+	}
 }
 
 function CloseWindow(action) {
@@ -182,17 +219,14 @@ function dispatchOk(){
 		showMsg("请选择施工员！","W");
 		return;
 	}
-	if(serviceTypeIdList==""){
-		showMsg("请选择施工类型！","W");
-		return;
-	}
+
     nui.mask({
         el: document.body,
         cls: 'mini-mask-loading',
         html: '处理中...'
     });
 	for(var i = 0;i<emlpsz.length;i++){
-		if(i=0){
+		if(i==0){
 			emlpszId = emlpsz[i].id;
 			emlpszName = emlpsz[i].innerText;
 		}else{
@@ -220,7 +254,11 @@ function dispatchOk(){
 			nui.unmask(document.body);
 			if (text.errCode == 'S') {
 				showMsg("派工成功","S");
-				CloseWindow("saveSuccess");
+				var data = {
+						planFinishDate:nui.get("planFinishDate").getValue(),
+						saveSuccess :"saveSuccess"
+				}
+				CloseWindow(data);
 	
 			} else {
 				showMsg(returnJson.errMsg||"保存失败","W");
@@ -232,4 +270,28 @@ function dispatchOk(){
 
 		}
 	});
+}
+
+function times(id){
+	if(planFinishDate==""){
+		
+	}else{
+			var yjDate = new Date(planFinishDate);
+			var day = parseInt(nui.get("day").getValue());
+			if(isNaN(day)){
+				day=0;
+			}
+			yjDate.setDate(yjDate.getDate()+day);
+			var hour = parseInt(nui.get("hour").getValue());
+			if(isNaN(hour)){
+				hour=0;
+			}
+			yjDate.setHours(yjDate.getHours()+hour);
+			var min = parseInt(nui.get("min").getValue());
+			if(isNaN(min)){
+				min=0;
+			}
+			yjDate.setMinutes(yjDate.getMinutes()+min);
+			nui.get("planFinishDate").setValue(mini.formatDate ( yjDate,"yyyy-MM-dd HH:mm:ss"));
+	}
 }

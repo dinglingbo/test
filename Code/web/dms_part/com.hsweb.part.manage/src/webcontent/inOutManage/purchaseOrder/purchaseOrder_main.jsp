@@ -108,6 +108,7 @@
          ondrawcell="onDrawCell"
          sortMode="client"
          url=""
+         totalField="page.count"
          pageSize="10000"
          sizeList="[1000,5000,10000]"
          selectOnLoad="true"

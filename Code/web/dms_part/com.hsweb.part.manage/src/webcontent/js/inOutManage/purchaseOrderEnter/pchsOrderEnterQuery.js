@@ -371,13 +371,39 @@ function onDrawCell(e)
     }
 }
 
+function onPrint(){
+	var data=rightGrid.getSelected();
+	var params={
+			id : data.mainId,
+		auditSign:1,
+		guestId : data.guestId
+	};
+	var detailParams={
+			mainId :data.mainId
+	};
+	var openUrl = webPath + contextPath+"/manage/inOutManage/purchaseOrderEnter/purchaseOrderEnterPrint.jsp";
+
+    nui.open({
+       url: openUrl,
+       width: "100%",
+       height: "100%",
+       showMaxButton: false,
+       allowResize: false,
+       showHeader: true,
+       onload: function() {
+           var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params,detailParams);
+       },
+   });
+}
+
 function edit(){
     var row = rightGrid.getSelected();
     row.id=row.mainId;
     row.auditSign=1;
     if(!row) return; 
     var item={};
-    item.id = "6340";
+    item.id = "2094";
     item.text = "入库单";
     item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrderEnter.flow";
     item.iconCls = "fa fa-file-text";

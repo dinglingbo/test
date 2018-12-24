@@ -180,12 +180,12 @@ function savePartCommon(partList){
 	            if (data.errCode == "S") {
 	                var errMsg = data.errMsg;
 	                if(errMsg){
-                        showMsg(errMsg,"S");
+                        parent.showMsg(errMsg,"S");
 	                }else{
-						showMsg("导入成功!","S");
+	                	parent.showMsg("导入成功!","S");
 					}
 	            } else {
-                    showMsg(data.errMsg || "导入失败!","W");
+	            	parent.showMsg(data.errMsg || "导入失败!","W");
 	            }
 	        },
 	        error : function(jqXHR, textStatus, errorThrown) {

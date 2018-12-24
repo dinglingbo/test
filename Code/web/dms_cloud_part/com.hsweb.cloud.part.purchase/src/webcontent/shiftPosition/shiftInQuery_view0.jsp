@@ -93,21 +93,21 @@
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="移仓入库单号"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
-                    <div allowSort="true" field="enterDate" headerAlign="center" header="移仓日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" field="enterDate"width="120" headerAlign="center" header="移仓日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>-->
                     <!-- <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div> -->
-                    <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+                    <div allowSort="true" field="storeId" width="80" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
             <div header="配件信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
-                    <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
-                    <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
+                    <div allowSort="true" field="comPartCode" width="80" headerAlign="center" header="配件编码"></div>
+                    <div allowSort="true" field="comPartName"width="150" headerAlign="center" header="配件名称"></div>
+                    <div allowSort="true" field="comOemCode" width="140"headerAlign="center" header="OEM码"></div>
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="60" headerAlign="center" header="品牌车型"></div>
+                    <div allowSort="true" field="applyCarModel" width="200" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
                 </div>
             </div>
@@ -138,8 +138,8 @@
                 <div property="columns">
                 	<div allowSort="true" field="manualCode" width="150" headerAlign="center" header="手工单号"></div>
                     <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
-                    <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div allowSort="true" field="partId" width="40" headerAlign="center" header="配件ID"></div>
+                    <div allowSort="true"width="120" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true" field="partId" width="60" headerAlign="center" header="配件ID"></div>
                 </div>
             </div>
         </div>

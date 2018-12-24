@@ -13,7 +13,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>班组选择</title>
 <script
-	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/dispatchWorkers.js?v=1.6.2"></script>
+	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/dispatchWorkers.js?v=1.8.7"></script>
 	<style type="text/css">
 
 				body,
@@ -41,6 +41,10 @@
 					font-variant: normal;
 					list-style-type: none;
 				}
+table {
+  border-collapse:separate;
+  border-spacing: 7px;
+  }
 body{
 	overflow:auto;
 	background:#f5f5f5;
@@ -54,7 +58,7 @@ body{
     border-radius: 5px;
     text-decoration: none;
     line-height: 2;
-	background: #f5f5f5;
+	background: #FFF;
     color: #4eb7f5;
 
     float:right;
@@ -69,7 +73,7 @@ body{
     border-radius: 5px;
     text-decoration: none;
     line-height: 2;
-	background: #FFF;
+	background: #f5f5f5;
 	color:#333;
     float:right;
     margin-right: 0px;
@@ -83,7 +87,7 @@ body{
     border-radius: 40px;
     text-decoration: none;
     line-height: 2;
-	background: #fff;
+	background: #f5f5f5;
     color: #4eb7f5;
     border: 1px solid #c0e1fd;
 }
@@ -96,7 +100,7 @@ body{
     border-radius: 40px;
     text-decoration: none;
     line-height: 2;
-	background: #4eb7f552;
+	background: #3899ec3d;
     color: #4eb7f5;
     border: 1px solid #c0e1fd;
 }
@@ -145,17 +149,29 @@ a.sj:hover {
 	width:25%;
 	margin-top:5px;
 	display:inline;
+	background: #FFF;
 }
 #empl{
 	float:left;
 	width:75%;
 	height:70%;
 	margin-top:5px;
-	background: #FFF;
+	background: #f5f5f5;
 	display:inline;
+}
+.da{
+	font-size: 18px;
+	margin-top: 20px;
+}
+.xiao{
+	font-size: 14px;
+	color:#999;
 }
 a {
   cursor:pointer;
+}
+label{
+    margin-right: 10px;
 }
 .xline{border-bottom:solid 2px #dcdcdc; height:5px;width: 600px;}
 	</style>
@@ -166,43 +182,51 @@ a {
 			<table>
 				<tr >
 					<td  >
-						<font size="4">为本单项目类型派工：</font>
+						<span class="da">项目类型</span>
 					</td>
 				</tr>
-<!-- 				<tr>
+ 				<tr>
 					<td >	
 					<div class="xline" ></div>
 					</td>
-				</tr> -->
+				</tr> 
 				<tr>
 					<td >
-					<div id="serviceTypeIds" name="serviceTypeIds" class="nui-checkboxlist" repeatItems="5" 
+					<div id="serviceTypeIds" name="serviceTypeIds" class="nui-checkboxlist" repeatItems="5" repeatLayout="table"
                     repeatLayout="flow"  value="" 
                     textField="name" valueField="id" ></div>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<font size="4">施工人员</font>
+				<tr >
+					<td  >
+						<span class="da">预计完工时间</span>
 					</td>
 				</tr>
-<!-- 				<tr>	
-					<td width="90px" >
-						<font size="3">选择方式：</font>
-						<div class="mini-radiobuttonlist" repeatItems="1"
-							repeatLayout="table" repeatDirection="vertical" name="isShare"
-							textField="text" valueField="value"
-							data="[{value:'0',text:'耗时选择',},{value:'1',text:'时间选择器'}]" value="0" onvaluechanged="">
+ 				<tr>
+					<td >	
+					<div class="xline" ></div>
+					</td>
+				</tr> 
+<!--  				<tr>	
+					<td >
+						<div style="display:inline;width:100%;">
+							<font size="3">选择方式：</font>  
+							<div class="mini-radiobuttonlist" repeatItems="1"
+								repeatLayout="table" repeatDirection="vertical" name="isShare"
+								textField="text" valueField="value"
+								data="[{value:'0',text:'耗时选择',},{value:'1',text:'时间选择器'}]" value="0" onvaluechanged="">		
+							</div>
 						</div>
 					</td>
 					
 				</tr> -->
-<!-- 				<tr>
+ 				<tr>
 					<td>
 						<div>
-							<font size="3">耗时工时：</font>
-							<input class="nui-textbox" id="day" width="50px"/>天<input class="nui-textbox" id="hour" width="50px"/>时<input class="nui-textbox" id="min" width="50px"/>分<br>
-							<a  class="sj"  onclick="timeStamp(15)" >15m</a>
+							<span class="xiao">施工耗时：</span>
+							<input class="nui-textbox" id="day" width="50px" onvalueChanged="times(this.id)"/>天<input class="nui-textbox" id="hour" width="50px" onvalueChanged="times(this.id)"/>时<input class="nui-textbox" id="min" width="50px" onvalueChanged="times(this.id)" />分<br>
+							
+							<a  class="sj" style="margin-left: 80px;" onclick="timeStamp(15)" >15m</a>
 							<a  class="sj" onclick="timeStamp(30)" >30m</a>
 							<a  class="sj" onclick="timeStamp(60)" >1h</a>
 							<a  class="sj" onclick="timeStamp(120)" >2h</a>
@@ -216,10 +240,15 @@ a {
 				</tr>
 				<tr>
 					<td >
-						<font size="3">预计完工时间：</font>
-						2018-12-18 00.09
+						<span class="xiao">预计完工时间：</span>
+						<input class="nui-textbox" id="planFinishDate" name="planFinishDate">
 					</td>
-				</tr> -->
+				</tr> 
+								<tr>
+					<td>
+						<span class="da">施工人员</span>
+					</td>
+				</tr>
 			</table>
 		</div>
 		<div id="kong">

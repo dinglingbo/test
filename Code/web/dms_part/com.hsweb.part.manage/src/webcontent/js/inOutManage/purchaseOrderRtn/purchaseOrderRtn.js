@@ -892,7 +892,12 @@ function onPrint() {
 //	}
 	var detail=rightGrid.getData();
 	var form=basicInfoForm.getData();
-	var mainParams=null;
+	var mainParams={
+			currUserName :currUserName,
+			currRepairSettorderPrintShow :currRepairSettorderPrintShow,
+			currCompAddress :currCompAddress,
+			currCompTel :currCompTel	
+	};
 	var billTypeId=nui.get('billTypeId').text;
 	var settleTypeId=nui.get('settleTypeId').text;
 	var rtnReasonId= nui.get('rtnReasonId').text;

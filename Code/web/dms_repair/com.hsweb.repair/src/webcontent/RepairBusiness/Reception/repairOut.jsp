@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@include file="/common/commonRepair.jsp"%>
 <%@include file="/common/sysCommon.jsp"%>
 
 <html>
@@ -314,6 +315,8 @@ a {
             }else if(value == 5){
             	e.cellHtml = "退货开单";
             }
+        }else if(e.field == "carNo"){
+        	e.cellHtml ='<a href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
         }
     });
 
@@ -361,6 +364,16 @@ a {
 
 });
 
+function showCarInfo(row_uid){
+	var row = mainGrid.getRowByUID(row_uid);
+	if(row){
+		var params = {
+				carId : row.carId,
+				guestId : row.guestId
+		};
+		doShowCarInfo(params);
+	}
+}
 /*function edit() {
     var row = mainGrid.getSelected();
     if(row){ 

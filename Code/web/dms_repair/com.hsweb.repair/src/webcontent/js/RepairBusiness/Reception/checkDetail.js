@@ -465,13 +465,16 @@ function isCheckMainY(){
                 searchNameEl.setValue(t);
                 searchNameEl.setEnabled(false);
                 if(mainParams.viewType){
-                    temp.lastKilometers = mainParams.lastKilometers;
+                    temp.lastKilometers = mainParams.lastKilometers||0;
                     temp.enterKilometers = mainParams.enterKilometers || 0;
                     temp.mtdvisor = mainParams.mtdvisor;
                     temp.mtdvisorId = mainParams.mtdvisorId;
-                }else{
-                temp.lastKilometers = mainParams.mainFormData.lastKilometers;
+                }else if(mainParams.isCheckMain == "N"){
+                temp.lastKilometers = mainParams.mainFormData.lastKilometers||0;
                 temp.enterKilometers = mainParams.mainFormData.enterKilometers || 0;
+                temp.mtdvisor = nui.get("mtdvisor").value;
+                temp.mtdvisorId = nui.get("mtdvisorId").value;
+                }else{
                 temp.mtdvisor = nui.get("mtdvisor").value;
                 temp.mtdvisorId = nui.get("mtdvisorId").value;
                 }
@@ -528,7 +531,7 @@ function isCheckMainN(){
                 data:{
                     guestId: data.guestId||0,
                     contactorId: data.contactorId||0,
-                    carId:data.carId || 0,
+                    carId:data.carId || 0, 
                 }
             };
             getGuestContactorCar(p, function(text){
@@ -647,8 +650,8 @@ function saveb(){
 		return;
 	}
 	
-	var lastKilometers =data.lastKilometers;
-	var enterKilometers =data.enterKilometers;
+	var lastKilometers =parseFloat(data.lastKilometers || 0);
+	var enterKilometers = parseFloat(data.enterKilometers||0);
 	if(enterKilometers <=lastKilometers){
 		showMsg("本次里程不能小于上次里程","W");
 		return;
@@ -805,7 +808,7 @@ function updateCheckMain(mData){
 
 function saveCheckMain(){//isCheckMain == "Y"
 	var gridData=mainGrid.getData();
-	var rex=/^\d+(\.\d+)?$/
+	var rex=/^\d+(\.\d+)?$/;
 	  
 	for(var i=0;i<gridData.length;i++){
 		if(gridData[i].settleType==0){
@@ -841,6 +844,7 @@ function saveCheckMain(){//isCheckMain == "Y"
             if(data.errCode == "S"){
             	nui.unmask();
                 var mainData = data.mainData;
+                
                 nui.get("id").setValue(mainData.id);
                 billForm.setData(mainData);
                 $("#servieIdEl").html(mainData.serviceCode);
@@ -950,7 +954,7 @@ function saveDetailB(){
         	nui.unmask();
             if(data.errCode == "S"){
                 actionType = 'edit';
-                var temp = SearchCheckMain(mainParams.id);
+                var temp = SearchCheckMain(nui.get("id").value||0);
                 billForm.setData(temp);
                 mainGrid.setUrl(baseUrl + "com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
                 mainGrid.load({mainId:mmid,token:token});
@@ -986,6 +990,7 @@ function addNew(){
     temp.mtdvisorId = currEmpId;
     billForm.setData(temp);
     mainGrid.setData([]);
+
     nui.get('checkMainId').setEnabled(true);
     fguestId = 0;
     fcarId = 0;

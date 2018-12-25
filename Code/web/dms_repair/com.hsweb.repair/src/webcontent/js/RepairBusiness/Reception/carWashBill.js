@@ -4867,3 +4867,34 @@ function transferImages(){
     			document.getElementById("search").style.display="none";
     			},2500);
 }*/
+
+
+function GuestTabShow(){
+	var data = billForm.getData();
+	if(!data.contactorId){
+		showMsg("联系人不能为空!","W");
+		return;
+	}
+	 nui.open({
+        url: webPath + contextPath + "/repair/RepairBusiness/Reception/guestTabShow.jsp?token="+token,
+        title: '客户标签',
+        width: 300, height: 300,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           // var params = sendGuestForm.getData();
+            iframe.contentWindow.setData(data);
+        },
+        ondestroy: function (action)
+        {
+            /*if("ok" == action)
+            {
+                grid.reload();
+            }*/
+        }
+    });
+}
+
+
+
+
+

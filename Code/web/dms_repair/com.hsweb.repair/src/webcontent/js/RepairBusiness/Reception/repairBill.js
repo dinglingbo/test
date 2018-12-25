@@ -629,7 +629,7 @@ $(document).ready(function ()
             e.cellHtml = '<a class="optbtn" href="javascript:void()">查看</a>';
         }
     });
-
+    
     document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号/VIN码)");
     // document.onmousedown=function(event){ 
     //     var i = 0;
@@ -2897,6 +2897,11 @@ function loadDetail(p1, p2, p3){
             var data = text.data||[];
             if(errCode == "S"){
                 rpsPackageGrid.clearRows();
+                for(var i=0;i<data.length;i++){
+                	if(data[i].qty==0){
+                  		data[i].qty=1;
+                  	}
+                }
                 rpsPackageGrid.addRows(data);
                 rpsPackageGrid.accept();
             }
@@ -2908,15 +2913,17 @@ function loadDetail(p1, p2, p3){
             var data = text.data||[];
             if(errCode == "S"){
                 rpsItemGrid.clearRows();
+                for(var i=0;i<data.length;i++){
+                	if(data[i].qty==0){
+                  		data[i].qty=1;
+                  	}
+                }
+             	
                 rpsItemGrid.addRows(data);
                 rpsItemGrid.accept();
             }
         }, function(){});
     }
-   /* if(p3 && p3.interType){
-        getBillDetail(p3, function(text){
-        }, function(){});
-    }*/
 }
 var __workerIds="";
 var __saleManId="";

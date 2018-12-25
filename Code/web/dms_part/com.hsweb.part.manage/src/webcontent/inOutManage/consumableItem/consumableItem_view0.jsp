@@ -135,6 +135,16 @@ pageEncoding="UTF-8" session="false"%>
                     <tr>
                         <td>
                             <label style="font-family:Verdana;">快速查询：</label>
+                            <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+			                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+			                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+			                    <li class="separator"></li>
+			                    <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+			                    <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+			                    <li class="separator"></li>
+			                    <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+			                    <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+			                </ul>
                             <td class="form_label">日期 从:</td>
                             <td>
                                <input class="nui-datepicker" id="sCreateDate" allowInput="false" width="100%" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />

@@ -551,6 +551,12 @@ $(document).ready(function ()
                     e.cellHtml = e.value + '%';
                 }
                 break;
+            case "rate":
+                var value = e.value||"";
+                if(value&&value=="0"){
+                    e.cellHtml = 1;
+                }
+                break;
             default:
                 break;
         }

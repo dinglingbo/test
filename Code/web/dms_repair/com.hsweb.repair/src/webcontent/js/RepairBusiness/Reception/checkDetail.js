@@ -1072,6 +1072,9 @@ function lastCheckModel(){
             console.log(jqXHR.responseText);
         }
     });
-
 	
+}
+
+function setNormal(){
+	mainGrid.updateColumn() 
 }

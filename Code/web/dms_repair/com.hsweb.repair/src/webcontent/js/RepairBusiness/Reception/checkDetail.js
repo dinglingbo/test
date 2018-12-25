@@ -469,9 +469,12 @@ function isCheckMainY(){
                     temp.enterKilometers = mainParams.enterKilometers || 0;
                     temp.mtdvisor = mainParams.mtdvisor;
                     temp.mtdvisorId = mainParams.mtdvisorId;
-                }else{
+                }else if(mainParams.isCheckMain == "N"){
                 temp.lastKilometers = mainParams.mainFormData.lastKilometers;
                 temp.enterKilometers = mainParams.mainFormData.enterKilometers || 0;
+                temp.mtdvisor = nui.get("mtdvisor").value;
+                temp.mtdvisorId = nui.get("mtdvisorId").value;
+                }else{
                 temp.mtdvisor = nui.get("mtdvisor").value;
                 temp.mtdvisorId = nui.get("mtdvisorId").value;
                 }

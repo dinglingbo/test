@@ -896,7 +896,8 @@ function onPrint() {
 			currUserName :currUserName,
 			currRepairSettorderPrintShow :currRepairSettorderPrintShow,
 			currCompAddress :currCompAddress,
-			currCompTel :currCompTel	
+			currCompTel :currCompTel,
+			currOrgName : currOrgName
 	};
 	var billTypeId=nui.get('billTypeId').text;
 	var settleTypeId=nui.get('settleTypeId').text;

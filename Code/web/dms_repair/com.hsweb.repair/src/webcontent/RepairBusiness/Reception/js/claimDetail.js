@@ -2948,6 +2948,11 @@ function loadDetail(p1, p2, p3){
             var data = text.data||[];
             if(errCode == "S"){
                 rpsPackageGrid.clearRows();
+                for(var i=0;i<data.length;i++){
+                	if(data[i].qty==0){
+                  		data[i].qty=1;
+                  	}
+                }
                 rpsPackageGrid.addRows(data);
                 rpsPackageGrid.accept();
             }
@@ -2959,6 +2964,11 @@ function loadDetail(p1, p2, p3){
             var data = text.data||[];
             if(errCode == "S"){
                 rpsItemGrid.clearRows();
+                for(var i=0;i<data.length;i++){
+                	if(data[i].qty==0){
+                  		data[i].qty=1;
+                  	}
+                }
                 rpsItemGrid.addRows(data);
                 rpsItemGrid.accept();
             }

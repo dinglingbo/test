@@ -13,7 +13,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>班组选择</title>
 <script
-	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/dispatchWorkers.js?v=1.8.7"></script>
+	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/dispatchWorkers.js?v=1.8.8"></script>
 	<style type="text/css">
 
 				body,
@@ -43,7 +43,7 @@
 				}
 table {
   border-collapse:separate;
-  border-spacing: 7px;
+  border-spacing: 4px;
   }
 body{
 	overflow:auto;
@@ -94,7 +94,7 @@ body{
 .empl1{	
 	 width: 90px;
     height: 30px;
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
 	margin-left:20px;
     border-radius: 40px;
@@ -106,8 +106,8 @@ body{
 }
 .sj{	
 
-        background: #fff;
-    color: #4eb7f5;
+        background: #3899ec29;
+    color: #201f35;
     font-size: 18px;
     text-align: center;
 	margin-left:20px;
@@ -124,8 +124,7 @@ a.sj:hover {
     border-radius: 0px;
     text-decoration: none;
     line-height: 2;
-	    background: #3899ec;
-    border-color: #3899ec;
+	background: #3899ecbf;
 }
 .show{	
 	 width: 60px;
@@ -146,22 +145,22 @@ a.sj:hover {
 }
 #team{
 	float:left;
-	width:25%;
+	width:120px;
 	margin-top:5px;
 	display:inline;
 	background: #FFF;
 }
 #empl{
 	float:left;
-	width:75%;
-	height:70%;
+	width:450px;
 	margin-top:5px;
 	background: #f5f5f5;
 	display:inline;
+	text-align:center
 }
 .da{
-	font-size: 18px;
-	margin-top: 20px;
+	font-size: 17px;
+	margin-top: 10px;
 }
 .xiao{
 	font-size: 14px;
@@ -226,14 +225,14 @@ label{
 							<span class="xiao">施工耗时：</span>
 							<input class="nui-textbox" id="day" width="50px" onvalueChanged="times(this.id)"/>天<input class="nui-textbox" id="hour" width="50px" onvalueChanged="times(this.id)"/>时<input class="nui-textbox" id="min" width="50px" onvalueChanged="times(this.id)" />分<br>
 							
-							<a  class="sj" style="margin-left: 80px;" onclick="timeStamp(15)" >15m</a>
-							<a  class="sj" onclick="timeStamp(30)" >30m</a>
-							<a  class="sj" onclick="timeStamp(60)" >1h</a>
-							<a  class="sj" onclick="timeStamp(120)" >2h</a>
-							<a  class="sj" onclick="timeStamp(180)" >3h</a>
-							<a  class="sj" onclick="timeStamp(240)" >4h</a>
-							<a  class="sj" onclick="timeStamp(1440)" >1d</a>
-							<a  class="sj" onclick="timeStamp(2880)" >2d</a>
+							<a  class="sj" style="margin-left: 70px;" onclick="timeStamp(15)" >15m</a>
+							<a  class="sj" onclick="timeStamp(30)" >&nbsp;30m&nbsp;</a>
+							<a  class="sj" onclick="timeStamp(60)" >&nbsp;1h&nbsp;&nbsp;</a>
+							<a  class="sj" onclick="timeStamp(120)" >&nbsp;2h&nbsp;&nbsp;</a>
+							<a  class="sj" onclick="timeStamp(180)" >&nbsp;3h&nbsp;&nbsp;</a>
+							<a  class="sj" onclick="timeStamp(240)" >&nbsp;4h&nbsp;&nbsp;</a>
+							<a  class="sj" onclick="timeStamp(1440)" >&nbsp;1d&nbsp;&nbsp;</a>
+							<a  class="sj" onclick="timeStamp(2880)" >&nbsp;2d&nbsp;&nbsp;</a>
 						</div>
 
 					</td>
@@ -266,6 +265,7 @@ label{
                           <a id="wxbtnsettle" style="    width: 80px;
 							height: 40px;
 							font-size: 18px;
+							margin-top: 4px;
 							background: #FFF;
 							color: #333;
 							text-align: center;
@@ -286,6 +286,7 @@ label{
 							text-align: center;
 							display: block;
 							border-radius: 5px;
+							margin-top: 4px;
 							line-height: 2;
 								float:right;
 								margin-right:0px;

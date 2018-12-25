@@ -109,12 +109,9 @@ order by retc
        a.finish_date as finishDate, b.mt_advisor as mtAdvisor, b.service_code as serviceCode, b.out_date as outDate,
        b.enter_date as enterDate
 		from wb_repair.rps_item a
-		inner join wb_repair.rps_maintain b
-		on a.service_id = b.id
-		inner join wb_repair.rpb_car c
-		on b.car_id = c.id
-		inner join wb_common.com_guest d
-		on b.guest_id = d.id
+		inner join wb_repair.rps_maintain b on a.service_id = b.id
+		inner join wb_repair.rpb_car c on b.car_id = c.id
+		inner join wb_common.com_guest d  on b.guest_id = d.id
 		where b.is_settle = 1
 				and b.orgid =#orgid#
 		     <dynamic>

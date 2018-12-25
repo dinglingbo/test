@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@include file="/common/commonRepair.jsp"%>
-<%@include file="/common/sysCommon.jsp"%>
 
 <html>
 <!--  
@@ -21,6 +20,9 @@ a {
     text-decoration: none;
 }
  a#service{
+	text-decoration:underline
+}
+a#car{
 	text-decoration:underline
 }
 .form_label {
@@ -123,6 +125,7 @@ a {
 </div>
 
 <script type="text/javascript">
+	var webBaseUrl = webPath + contextPath + "/";
     var con_data_status = [{id:0,text:"草稿"},{id:1,text:"施工中"},{id:2,text:"已完工"}];
     var con_data_isSettle = [{id:1,text:"已结算"},{id:0,text:"未结算"}];
     nui.parse();
@@ -315,8 +318,6 @@ a {
             }else if(value == 5){
             	e.cellHtml = "退货开单";
             }
-        }else if(e.field == "carNo"){
-        	e.cellHtml ='<a href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
         }
     });
 
@@ -360,6 +361,9 @@ a {
     }
     if(column.field == "serviceCode"){
        e.cellHtml ='<a id="service" href="##" onclick="newrepairOut('+"'ll'"+ ')">'+e.value+'</a>';
+    }
+  	if(column.field == "carNo"){
+    	e.cellHtml ='<a id="car" href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
     }
 
 });

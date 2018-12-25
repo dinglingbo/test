@@ -1394,6 +1394,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceCode">  
                 (a.service_code like '%$serviceCode$%')
+            </isNotEmpty> 
+            <isNotEmpty prepend="and" property="workerId">  
+                (d.worker_id = #workerId#)
             </isNotEmpty>
             <!--进厂日期 -->
             <isNotEmpty prepend="and" property="sEnterDate">  

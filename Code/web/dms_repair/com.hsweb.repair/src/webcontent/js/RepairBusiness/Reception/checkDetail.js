@@ -531,7 +531,7 @@ function isCheckMainN(){
                 data:{
                     guestId: data.guestId||0,
                     contactorId: data.contactorId||0,
-                    carId:data.carId || 0,
+                    carId:data.carId || 0, 
                 }
             };
             getGuestContactorCar(p, function(text){
@@ -808,7 +808,7 @@ function updateCheckMain(mData){
 
 function saveCheckMain(){//isCheckMain == "Y"
 	var gridData=mainGrid.getData();
-	var rex=/^\d+(\.\d+)?$/
+	var rex=/^\d+(\.\d+)?$/;
 	  
 	for(var i=0;i<gridData.length;i++){
 		if(gridData[i].settleType==0){
@@ -990,7 +990,7 @@ function addNew(){
     temp.mtdvisorId = currEmpId;
     billForm.setData(temp);
     mainGrid.setData([]);
-    mainParams = {};
+
     nui.get('checkMainId').setEnabled(true);
     fguestId = 0;
     fcarId = 0;

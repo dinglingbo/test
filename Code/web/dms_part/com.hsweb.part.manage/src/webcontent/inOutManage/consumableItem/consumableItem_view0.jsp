@@ -135,6 +135,7 @@ pageEncoding="UTF-8" session="false"%>
                     <tr>
                         <td>
                             <label style="font-family:Verdana;">快速查询：</label>
+                            <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
                             <ul id="popupMenuDate" class="nui-menu" style="display:none;">
 			                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
 			                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>

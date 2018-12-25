@@ -2172,9 +2172,9 @@ function closePkgWorkersSetWin(){
 function setPkgWorkers(){
 	nui.open({
 		url :  webPath + contextPath + "/com.hsweb.repair.DataBase.dispatchWorkers.flow?token="+token,
-		title : "班组派工",
+		title : "派工处理",
 		width : 600,
-		height : 480,
+		height : 630,
 		onload : function() {
 			var iframe = this.getIFrameEl(); 
 			var data = {
@@ -2600,9 +2600,9 @@ function closeItemWorkersSetWin(){
 function setItemWorkers(){
 	nui.open({
 		url :  webPath + contextPath + "/com.hsweb.repair.DataBase.dispatchWorkers.flow?token="+token,
-		title : "班组派工",
+		title : "派工处理",
 		width : 600,
-		height : 480,
+		height : 630,
 		onload : function() {
 			var iframe = this.getIFrameEl(); 
 			var data = {

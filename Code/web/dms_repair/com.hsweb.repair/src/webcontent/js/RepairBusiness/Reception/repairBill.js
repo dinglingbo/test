@@ -2611,6 +2611,7 @@ function setItemWorkers(){
 		title : "派工处理",
 		width : 600,
 		height : 630,
+		allowResize: false,
 		onload : function() {
 			var iframe = this.getIFrameEl(); 
 			var data = {

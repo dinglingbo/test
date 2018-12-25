@@ -1874,7 +1874,8 @@ function onPrint(){
 		currUserName :currUserName,
 		currRepairSettorderPrintShow :currRepairSettorderPrintShow,
 		currCompAddress :currCompAddress,
-		currCompTel :currCompTel
+		currCompTel :currCompTel,
+		currOrgName : currOrgName
 	};
 	var detailParams={
 			mainId :from.id

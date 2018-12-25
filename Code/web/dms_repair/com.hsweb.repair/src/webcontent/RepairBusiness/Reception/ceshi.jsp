@@ -24,7 +24,7 @@
     	function open(){
     	
     	nui.open({
-		url :  webPath + contextPath + "/repair/RepairBusiness/Reception/dispatchWorkers.jsp",
+		url :  webPath + contextPath + "/repair/RepairBusiness/Reception/Workers.jsp",
 		title : "班组选择",
 		width : 600,
 		height : 480,

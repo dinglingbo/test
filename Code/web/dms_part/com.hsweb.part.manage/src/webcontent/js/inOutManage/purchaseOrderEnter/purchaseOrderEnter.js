@@ -1868,9 +1868,13 @@ function addGuest(){
 function onPrint(){
 	var from = basicInfoForm.getData();
 	var params={
-			id : from.id,
+		id : from.id,
 		auditSign:from.auditSign,
-		guestId : from.guestId
+		guestId :from.guestId,
+		currUserName :currUserName,
+		currRepairSettorderPrintShow :currRepairSettorderPrintShow,
+		currCompAddress :currCompAddress,
+		currCompTel :currCompTel
 	};
 	var detailParams={
 			mainId :from.id

@@ -279,8 +279,6 @@ public class HttpUtils {
 		HttpURLConnection con = null;
 		OutputStreamWriter osw = null;
 		BufferedReader br = null;
-		System.out.println("删除转预结算数据：" + urlParam);
-		System.out.println("删除转预结算数据--参数：" + json);
 		// 发送请求
 		try {
 			URL url = new URL(urlParam);

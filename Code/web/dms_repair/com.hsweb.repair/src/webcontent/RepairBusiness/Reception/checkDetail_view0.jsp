@@ -12,7 +12,7 @@
 <head> 
     <title>检查开单详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.57"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkDetail.js?v=1.0.60"></script>
     <style type="text/css">
     
     body { 
@@ -306,7 +306,7 @@
         <div field="checkCode" name="checkCode" width="30" headerAlign="center" align="center" visible="false"><strong>检查项目</strong></div>
         <div field="checkId" name="checkId" width="30" headerAlign="center" align="center" visible="false"><strong>配件名称id</strong></div>
         <div type="checkboxcolumn" field="status" name="status" trueValue="1" falseValue="0"  width="20" headerAlign="center" align="center" value="1"><strong>
-        	正常&nbsp;<div type=""></div></strong></div>
+        	正常&nbsp;<a title="批量设置为正常" plain="true" onclick="setNormal()"><span class="fa fa-edit fa-lg"></span></a></strong></div>
         <div type="checkboxcolumn" field="nostatus" name="nostatus" trueValue="1" falseValue="0"  width="10" headerAlign="center" align="center"><strong>异常</strong></div>
         <div field="checkRemark" name="checkRemark" width="80" headerAlign="center" align="center"><strong>检查说明</strong>
         	 <input property="editor" class="nui-textbox" style="width:100%;" allowInput="true"/>  

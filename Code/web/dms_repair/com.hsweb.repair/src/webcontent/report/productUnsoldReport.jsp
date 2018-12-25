@@ -28,18 +28,18 @@ body {
 
     <div id="form1" class="mini-toolbar" style="padding:10px;">
         快速查询：
-        <a class="nui-menubutton" plain="true" iconCls="" id="menunamedate" menu="#popupMenu" >7天之内</a>
-        <ul id="popupMenu" class="nui-menu" style="display:none;">
-            <li iconCls="" onclick="quickSearch(0)">7天之内</li>
-            <li iconCls="" onclick="quickSearch(1)">30天之内</li>
-            <li iconCls="" onclick="quickSearch(2)">90天之内</li>
-            <li iconCls="" onclick="quickSearch(3)">180天之内</li> 
-            <li iconCls="" onclick="quickSearch(4)">360天之内</li>
-        </ul>
+<!--         <a class="nui-menubutton" plain="true" iconCls="" id="menunamedate" menu="#popupMenu" >7天之内</a> -->
+<!--         <ul id="popupMenu" class="nui-menu" style="display:none;"> -->
+<!--             <li iconCls="" onclick="quickSearch(0)">7天之内</li> -->
+<!--             <li iconCls="" onclick="quickSearch(1)">30天之内</li> -->
+<!--             <li iconCls="" onclick="quickSearch(2)">90天之内</li> -->
+<!--             <li iconCls="" onclick="quickSearch(3)">180天之内</li>  -->
+<!--             <li iconCls="" onclick="quickSearch(4)">360天之内</li> -->
+<!--         </ul> -->
 
-        入库日期: 
-        <input class="nui-datepicker"  id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" /> 至
-        <input class="nui-datepicker"  id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
+<!--         入库日期:  -->
+<!--         <input class="nui-datepicker"  id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" /> 至 -->
+<!--         <input class="nui-datepicker"  id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" /> -->
         <input class="nui-textbox"  id="partCode" name="partCode" emptytext="配件编码">
         <input class="nui-textbox" id="partName" name="partName"emptytext="配件名称">
         <!-- <input class="nui-textbox" id=""emptytext="配件品牌"> -->
@@ -95,14 +95,16 @@ body {
     var partTypeList=[];
     var partTypeHash={};
     grid.setUrl(gridUrl); 
+    
+    Search();
 
-quickSearch(0);
+// quickSearch(0);
 
 	document.onkeyup = function(event) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下
 		if ((keyCode == 13)) { // F9
-			onSearch();
+			Search();
 		}
 	}
 
@@ -159,10 +161,10 @@ quickSearch(0);
 
     function Search() {
         var data= form.getData();
-        var eDate = nui.get("endDate").getFormValue();
-        if(eDate){
-                data.endDate = eDate +" 23:59:59";
-        }
+//         var eDate = nui.get("endDate").getFormValue();
+//         if(eDate){
+//                 data.endDate = eDate +" 23:59:59";
+//         }
 		grid.load({params:data});
     }
     

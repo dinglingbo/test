@@ -1076,5 +1076,24 @@ function lastCheckModel(){
 }
 
 function setNormal(){
-	mainGrid.updateColumn() 
+	var data=mainGrid.getData();
+	var nrow={status:1,nostatus:-1,nosettleType :0,settleType:-1};
+	var row2={status:0,nosettleType :0,settleType :-1};
+	var count=0;
+		for(var i=0;i<data.length;i++){
+			if(data[i].status==1){
+				count++;
+			}
+		}
+		for(var i=0;i<data.length;i++){
+			if(count==data.length){
+				mainGrid.updateRow(data[i],row2) ;
+			}				
+			else{
+				mainGrid.updateRow(data[i],nrow) ;
+			}
+				
+		}
+	
+	
 }

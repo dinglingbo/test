@@ -20,7 +20,7 @@
     .addyytime a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 40px -1px no-repeat; padding-right:22px; color:#888; text-decoration:none;}
     .addyytime a.hui{padding-left: 5px;padding-right: 5px;height:;line-height:24px;border:1px #a6e0f5 solid;display:block;float:left;text-decoration:none;
         text-align:center;color:#00b4f6;border-radius:4px;margin:0 5px 5px 0;}
-    .addyytime a.hui{border:1px #e6e6e6 solid;color:#555555;background:#ffc8a6;}
+    .addyytime a.hui{border:1px #e6e6e6 solid;color:#555555;background:#ccc;}
     .addyytime a.xz{ font-size: 13px; color: #555555 !important; background:#5ab1ef !important;}
     .addyytime a:link, a:visited { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 13px; color: #555555; text-decoration: none; }
     .addyytime a.hui:hover { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 13px;background-color: #9fe6b8 ; color: #FFF; text-decoration: none; }

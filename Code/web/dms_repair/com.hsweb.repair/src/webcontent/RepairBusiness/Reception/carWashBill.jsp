@@ -11,7 +11,7 @@
 <head>
     <title>工单-洗车单</title>
 
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.82"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.4.83"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -61,6 +61,11 @@
         text-decoration: underline; 
     }  
 
+   #guestTab a:link { 
+        font-size: 12px; 
+        color: #578ccd; 
+        text-decoration: none; 
+    }
     #wechatTag{
         color:#62b900;
     }
@@ -334,6 +339,7 @@
                 <input  class="nui-textbox" name="guestFullName" id="guestFullName" enabled="false" width="100%"/>
                
                 </td>
+                
                 <td class="title required">客户手机：</td> 
                 <td class="">
                 <input  class="nui-textbox" name="guestMobile" id="guestMobile" enabled="false" width="100%"/>
@@ -383,6 +389,7 @@
                     <span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp;
                     <label style="font-family:Verdana;">客户名称:</label>
                     <label id="guestInfo" style="font-family:Verdana;"><a id="guestNameEl" href="javascript:checkGuest()"></a></label>&nbsp;
+                    <label id="guestTab" style="font-family:Verdana;color:#578ccd;"><a id="" href="javascript:GuestTabShow()" >客户标签</a></label>&nbsp;
                     <label style="font-family:Verdana;">手机:</label>
                     <label id="guestTelEl" style="font-family:Verdana;"></label>&nbsp;
                 </td>

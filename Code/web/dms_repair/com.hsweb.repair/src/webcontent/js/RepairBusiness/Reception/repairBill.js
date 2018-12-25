@@ -551,10 +551,11 @@ $(document).ready(function ()
                     e.cellHtml = e.value + '%';
                 }
                 break;
-            case "rate":
+            case "qty":
                 var value = e.value||"";
                 if(value&&value=="0"){
                     e.cellHtml = 1;
+                    record.qty=1;
                 }
                 break;
             default:
@@ -4925,6 +4926,10 @@ function saleManChangedBatP(e){
 
 function GuestTabShow(){
 	var data = billForm.getData();
+	if(!data.contactorId){
+		showMsg("联系人不能为空!","W");
+		return;
+	}
 	 nui.open({
         url: webPath + contextPath + "/repair/RepairBusiness/Reception/guestTabShow.jsp?token="+token,
         title: '客户标签',
@@ -4936,10 +4941,10 @@ function GuestTabShow(){
         },
         ondestroy: function (action)
         {
-            if("ok" == action)
+            /*if("ok" == action)
             {
                 grid.reload();
-            }
+            }*/
         }
     });
 }

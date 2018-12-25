@@ -10,7 +10,7 @@
 --> 
 <head>
 <title>维修提成明细</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairConsultantPerformance/RepairCommissionDetailsMain.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairConsultantPerformance/RepairCommissionDetailsMain.js?v=1.0.2"></script>
 <style type="text/css">
 
 .title {
@@ -70,7 +70,7 @@
                     <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch"/>
                     <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
-                        emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="90" valueFromSelect="true"/>
+                        emptyText="员工姓名" url=""  allowInput="true" showNullItem="false" width="90" valueFromSelect="true"/>
  
   结算日期:
                     <input id="sOutDate" name="sOutDate" class="nui-datepicker"/>
@@ -110,7 +110,7 @@
                onrowdblclick=""
                allowCellSelect="true"
                editNextOnEnterKey="true"
-               allowCellWrap = "false"
+               allowCellWrap = "true"
                onshowrowdetail="onShowRowDetail"
                url="">
               <div property="columns">

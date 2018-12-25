@@ -417,7 +417,20 @@ hr {
 	    			$('#settleTypeId').text("结算方式:"+settleTypeIdHash[formParms.settleTypeId].name);
 	    		}
     		});
-    	
+    		
+    		$.post(supplierUrl+"?params/guestId="+params.guestId+"&token="+token,{},function(text){
+    			var guest=text.guest[0];
+    			if(guest.contactor){		
+    				$('#contactor').text("联系人:"+guest.contactor);
+    			}
+    			if(guest.contactorTel){
+    				$('#contactorTel').text("联系人方式:"+guest.contactorTel);
+    			}
+    			if(guest.addr){
+    				$('#addr').text("地址:"+guest.addr);
+    			}
+    			
+    		});
     		$.post(DetailUrl+"?params/mainId="+detailParms.mainId+"&token="+token,{},function(text){
 				var data= text.pjPchsOrderDetailList;
 				var tBody = $("#tbodyId");

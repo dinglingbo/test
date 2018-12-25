@@ -45,7 +45,7 @@ $(document).ready(function(v) {
 	eCreateDateEl=nui.get("eCreateDate");
 	getNowFormatDate();
 
-	onSearch();
+	quickSearch(4);
 
 	enterGrid = nui.get("enterGrid");
 	morePartCodeEl = nui.get("morePartCode");
@@ -302,7 +302,7 @@ function getSearchParams() {
 	params.returnSign=0;
 	params.billTypeId='050207';
 	params.sCreateDate = sCreateDateEl.getText();
-	params.eCreateDate = eCreateDateEl.getText();
+	params.eCreateDate = addDate(eCreateDateEl.getText(),1);
 	params.pickMan = nui.get('pickMan1').getText();
 	return params;
 }

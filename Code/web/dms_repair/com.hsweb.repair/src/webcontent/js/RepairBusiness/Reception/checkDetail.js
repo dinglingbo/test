@@ -630,6 +630,7 @@ function SearchCheckMain(sId) {
             var te = text;
             if(text.list.length > 0){
                 t = text.list[0];
+                t.carModel = text.car.carModel;
             }
         }
     });

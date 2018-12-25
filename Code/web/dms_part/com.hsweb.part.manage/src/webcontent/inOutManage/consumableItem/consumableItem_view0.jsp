@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>耗材出库</title>
-    <script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.50"></script>
+    <script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.51"></script>
     <style type="text/css">
     html,body {
        margin: 0;
@@ -135,7 +135,7 @@ pageEncoding="UTF-8" session="false"%>
                     <tr>
                         <td>
                             <label style="font-family:Verdana;">快速查询：</label>
-                            <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+                            <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本月</a>
                             <ul id="popupMenuDate" class="nui-menu" style="display:none;">
 			                    <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
 			                    <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>

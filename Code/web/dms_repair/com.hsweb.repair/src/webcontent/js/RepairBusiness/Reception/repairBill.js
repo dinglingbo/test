@@ -103,7 +103,6 @@ var prdtTypeHash = {
 //}
 $(document).ready(function ()
 {
-	
     rpsPackageGrid = nui.get("rpsPackageGrid");
     rpsItemGrid = nui.get("rpsItemGrid");
 
@@ -654,7 +653,12 @@ $(document).ready(function ()
 		// } 
 	 
 	}
-
+    //nui.get("workersName").focus()
+    /*$("#workersName").click(
+       function(){
+    	   openWorkers(this);
+       }
+     );*/
 });
 
 var statusHash = {
@@ -2954,6 +2958,7 @@ function editRpsPackage(row_uid){
         rpsPackageGrid.beginEditRow(row);
     }
 }
+
 function updateRpsPackage(row_uid){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
@@ -4957,6 +4962,39 @@ function GuestTabShow(){
         }
     });
 }
-
+var b = 1;
+function openWorkers(e){	
+    var row = rpsPackageGrid.getRowByUID(e.sender.ownerRowID);
+    var data = {};
+    data = {
+    	workers:row.workers,
+    	workersId:row.workersId
+    };
+    //是原來頁面都失去焦點
+    
+	
+	 
+	    //document.querySelector("#workersName").setAttribute('autofocus', 'autofocus');
+	    //$("#workersName").blur();
+	 if(b==1){	
+		 $('.mini-textbox-input').blur();
+		 b = 0;
+	     nui.open({
+	        url: webPath + contextPath + "/com.hsweb.repair.DataBase.Workers.flow?token="+token,
+	        title: '选择施工员',
+	        width: 600, height: 500,
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	           // var params = sendGuestForm.getData();
+	            iframe.contentWindow.setData(data);
+	        },
+	        ondestroy: function (action)
+	        {
+	        	b=1;
+	        }
+	    });
+    }
+   
+}
 
 

@@ -1,10 +1,10 @@
 
 var baseUrl = apiPath + repairApi + "/";
 var none = "ALL0";//班组技术样式下标
-var serviceTypeIds = null;
+//var serviceTypeIds = null;
 var serviceId = 0;//工单号
 $(document).ready(function(v) {
-	 serviceTypeIds = nui.get("serviceTypeIds");
+	 //serviceTypeIds = nui.get("serviceTypeIds");
     $(document).on("click",".none",function(e){
         nui.mask({
             el: document.body,
@@ -36,7 +36,17 @@ $(document).ready(function(v) {
 
     	document.getElementById(e.target.id).setAttribute("class", "empl");
     });
+    
+    // nui.get("toolbar1").focus();
+	document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;//38向上 40向下
 
+        if((keyCode==27))  {  //ESC
+        	onClose();
+        }
+      };
+    
 	init();
 	
 
@@ -135,7 +145,7 @@ function CloseWindow(action) {
 function onClose(){
 	window.CloseOwnerWindow();	
 }
-
+var data={};
 function dispatchOk(){
 	var emlpsz = $("a.empl1");//所选技师数组
 	var emlpszId = "";
@@ -160,10 +170,12 @@ function dispatchOk(){
 		
 	}
     nui.unmask(document.body);
-	var data = {
+	data = {
 			emlpszId :emlpszId,
 			emlpszName:emlpszName
-	}
-	CloseWindow(data);
+	};
+	CloseWindow("ok");
 }
-
+function getData(){
+	return data;
+}

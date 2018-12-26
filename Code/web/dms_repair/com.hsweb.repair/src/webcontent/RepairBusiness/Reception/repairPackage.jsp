@@ -43,20 +43,24 @@
                 <div field="workers" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="" align="center" name="workers">
                                             施工员 <a href="javascript:setPkgWorkers()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
-                    <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
-                    url="" data="memList" value="" multiSelect="true"  showClose="false" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" >     
+                   
+                     <input  property="editor" id="workersName" name="workersName" class="nui-textbox" onfocus="openWorkers" /> 
+                    <!--<input id="workersName" name="workersName"  class="mini-buttonedit" allowInput="ture"  onbuttonclick="" selectOnFocus="true" focus="test"/>-->
+                    
+                </div>
+                <div field="workerIds" headerAlign="center"
+                     allowSort="false" visible="false" width="100" header="施工员" align="center">
+                </div> 
+                <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
+                    url="" data="memList" value="" multiSelect="true"  showClose="false" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged"  visible="false">     
                     <!-- <div property="columns">
                         <div header="ID" field="id"></div>
                         <div header="名称" field="empName"></div>
                     </div> -->
-                </div>
-                </div>
-                <div field="workerIds" headerAlign="center"
-                     allowSort="false" visible="false" width="100" header="施工员" align="center">
-                </div>                
+                </div>               
                 <div field="saleMan" headerAlign="center"
                      allowSort="false" visible="true" width="50" header="" align="center" name="saleMan">
-                     销售员<a href="javascript:setPkgSaleMans()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+                                     销售员<a href="javascript:setPkgSaleMans()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                      <input  property="editor" enabled="true" dataField="memList" 
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
                              url="" onvaluechanged="onsalemanChanged" emptyText=""  vtype="required"/> 

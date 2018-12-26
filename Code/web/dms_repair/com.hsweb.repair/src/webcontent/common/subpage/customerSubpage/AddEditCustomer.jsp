@@ -11,7 +11,7 @@
 -->
 <head>
 <title>新增/修改客户档案</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.17"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditCustomer.js?v=1.3.23"></script>
 <style type="text/css">
 
 table {
@@ -163,7 +163,7 @@ table {
                                 </td>
                             </tr>
                             <tr>
-                                <td class="form_label required">
+                                <td class="form_label ">
                                     <label>车架号(VIN)：</label>
                                 </td>
                                 <td colspan="2">
@@ -300,7 +300,7 @@ table {
                         <label>姓名：</label>
                     </td>
                     <td colspan="3">
-                        <input class="nui-textbox" id="name" name="name" width="160px" />
+                        <input class="nui-textbox" id="name2" name="name" width="160px" />
                         <a class="nui-button" iconCls="" id="preContactBtn" onclick="preContact()" style="margin-right:10px;" tooltip="上一个" plain="true"><span class="fa fa-chevron-left fa-lg"></span></a>
                         <a class="nui-button" iconCls="" id="nextContactBtn" onclick="nextContact()" style="margin-right:10px;" tooltip="下一个" plain="true"><span class="fa fa-chevron-right fa-lg"></span></a>
                         <a class="nui-button" iconCls="" onclick="addContact()" tooltip="新增" plain="true"><span class="fa fa-plus fa-lg"></span></a>
@@ -317,7 +317,7 @@ table {
                         <label>身份：</label>
                     </td>
                     <td>
-                        <input class="nui-combobox" name="identity" id="identity" valueField="customid" textField="name" width="100%" value="0" />
+                        <input class="nui-combobox" name="identity" id="identity" valueField="customid" textField="name" width="100%" value="060301" />
                     </td>
                 </tr>
                 <tr>
@@ -332,7 +332,7 @@ table {
                         <label>来源：</label>
                     </td>
                     <td>
-                        <input class="nui-combobox" name="source" id="source" valueField="customid" textField="name" width="100%" value="0" />
+                        <input class="nui-combobox" name="source" id="source" valueField="customid" textField="name" width="100%" value="060110" />
                     </td>
                 </tr>
                  <tr>

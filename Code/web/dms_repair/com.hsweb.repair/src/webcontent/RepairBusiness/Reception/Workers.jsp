@@ -87,14 +87,14 @@ body{
     border-radius: 40px;
     text-decoration: none;
     line-height: 2;
-	background: #f5f5f5;
+	background: #fffffff2;
     color: #4eb7f5;
     border: 1px solid #c0e1fd;
 }
 .empl1{	
 	 width: 90px;
     height: 30px;
-    font-size: 16px;
+    font-size: 18px;
     text-align: center;
 	margin-left:20px;
     border-radius: 40px;
@@ -148,7 +148,7 @@ a.sj:hover {
 	width:120px;
 	margin-top:5px;
 	display:inline;
-	background: #FFF;
+	background: #fffffff2;
 }
 #empl{
 	float:left;
@@ -177,15 +177,7 @@ label{
 </head>
 	<body >
     <!-- <input class="nui-textbox" id="text1" > -->
-		<div class="nui-toolbar" id="toolbar1" >
-			<table>
-				<tr>
-					<td>
-						<span class="da" >施工人员</span>
-					</td>
-				</tr>
-			</table>
-		</div>
+
 		<div id="kong">
 			<div id="team" >
 				
@@ -194,7 +186,7 @@ label{
 				
 			</div>
 		</div>
-		<div style="background-color: #cfddee;position:fixed; top:90%;width:100%;height: 10%; z-index:900;">
+		<div style="background-color: #cfddee;position:fixed; top:85%;width:100%;height: 15%; z-index:900;">
 			 <table style="width:100%;" id="table1">
                     <tr>
                         <td style="width:100%;">
@@ -231,7 +223,7 @@ label{
                            
                         </td>
                     </tr>
-                </table>
+              </table>
 		</div>
 	</body>
 </html>

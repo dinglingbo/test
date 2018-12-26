@@ -292,11 +292,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">flag+orgid</process:from>
+      <process:from type="expression" pattern="reference">flag+orgid</process:from>
       <process:to type="query">customCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">billTypeCode+customCode+'-'+yearmonthc+maxnostr</process:from>
+      <process:from type="expression" pattern="reference">billTypeCode+customCode+yearmonthc+maxnostr</process:from>
       <process:to type="query">serviceno</process:to>
     </process:copy>
   </nodes>
@@ -345,11 +345,11 @@
       <process:to type="query">maxnostr</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">flag+orgid</process:from>
+      <process:from type="expression" pattern="reference">flag+orgid</process:from>
       <process:to type="query">customCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">billTypeCode+customCode+'-'+yearmonthc+maxnostr</process:from>
+      <process:from type="expression" pattern="reference">billTypeCode+customCode+yearmonthc+maxnostr</process:from>
       <process:to type="query">serviceno</process:to>
     </process:copy>
   </nodes>

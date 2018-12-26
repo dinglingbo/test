@@ -71,9 +71,9 @@
 			(SELECT ifnull(sum(amt),0) itemAmt from rps_item where service_id = #serviceId# and ifnull(package_id,0) = 0) itemAmt,
 			(select ifnull(sum(discount_amt),0) itemPrefAmt from rps_item where service_id = #serviceId# and ifnull(package_id,0) = 0) itemPrefAmt,
 			(select ifnull(sum(subtotal),0) itemSubAmt from rps_item where service_id = #serviceId# and ifnull(package_id,0) = 0) itemSubAmt,
-			(SELECT ifnull(sum(amt),0) partAmt from rps_part where service_id = #serviceId# and ifnull(package_id,0) = 0) partAmt,
-			(select ifnull(sum(discount_amt),0) partPrefAmt from rps_part where service_id = #serviceId# and ifnull(package_id,0) = 0) partPrefAmt,
-			(select ifnull(sum(subtotal),0) partSubAmt from rps_part where service_id = #serviceId# and ifnull(package_id,0) = 0) partSubAmt
+			(SELECT ifnull(sum(amt),0) partAmt from rps_part where ifnull(is_disabled,0) = 0 and service_id = #serviceId# and ifnull(package_id,0) = 0) partAmt,
+			(select ifnull(sum(discount_amt),0) partPrefAmt from rps_part where ifnull(is_disabled,0) = 0 and service_id = #serviceId# and ifnull(package_id,0) = 0) partPrefAmt,
+			(select ifnull(sum(subtotal),0) partSubAmt from rps_part where ifnull(is_disabled,0) = 0 and service_id = #serviceId# and ifnull(package_id,0) = 0) partSubAmt
 		)
 	</select>
 	
@@ -110,7 +110,7 @@
 	</select>
 	<select id="getRpsPartCardTimesAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT sum(amt) as amt, sum(subtotal) as subtotal from rps_part
-		where service_id = #serviceId#  and card_detail_id > 0	
+		where service_id = #serviceId#  and card_detail_id > 0 and ifnull(is_disabled,0) = 0
 	</select>
 	
 	<select id="getRpsPkgDetailAmt" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsPackage">
@@ -202,7 +202,7 @@
 			       0 as techDeductValue, 0 as advisorDeductValue
 			from rps_part
 			WHERE
-				service_id = #serviceId# 
+				service_id = #serviceId# and ifnull(is_disabled,0) = 0
 			group by sale_man_id, sale_man
 				union
 			select #mtAdvisorId#  as workerId, #mtAdvisor#  as worker, 0 as salesDeductValue, 
@@ -251,7 +251,8 @@
 	<select id="getNullServiceTypePart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT id, service_type_id as serviceTypeId, sales_deduct_origin_value as salesDeductOriginValue
 		from rps_part 
-		where service_id = #serviceId# and service_type_id > 0 and sales_deduct_origin_value is null
+		where service_id = #serviceId# and service_type_id > 0 
+		      and ifnull(is_disabled,0) = 0 and sales_deduct_origin_value is null
 	</select>
 	
 	<select id="getOtherAmt" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">

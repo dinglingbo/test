@@ -10,8 +10,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="539" y="116"/>
-    <figSize height="20" width="31"/>
+    <location x="542" y="116"/>
+    <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="queryEntitiesByCriteriaEntity" displayName="queryEntitiesByCriteriaEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
@@ -37,8 +37,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="284" y="116"/>
-    <figSize height="20" width="207"/>
+    <location x="306" y="116"/>
+    <figSize height="17" width="162"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
@@ -57,8 +57,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="79" y="116"/>
-    <figSize height="20" width="31"/>
+    <location x="82" y="116"/>
+    <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" collapsed="false" type="assign">
@@ -108,10 +108,22 @@
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">cr/_expr[2]/_value</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">isDisabled</process:from>
+      <process:to type="query">cr/_expr[3]/_property</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cr/_expr[3]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cr/_expr[3]/_value</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="227" y="116"/>
-    <figSize height="20" width="31"/>
+    <location x="230" y="116"/>
+    <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" collapsed="false" type="assign">
@@ -137,8 +149,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="223" y="231"/>
-    <figSize height="20" width="40"/>
+    <location x="227" y="231"/>
+    <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
   <topRuler>

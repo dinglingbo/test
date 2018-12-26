@@ -8,7 +8,7 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
     <select id="getRpsPartById" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-		select ifnull(qty,0) qty, ifnull(amt,0) amt from wb_repair.rps_part where service_id = #serviceId# and part_id = #partId#
+		select ifnull(qty,0) qty, ifnull(amt,0) amt from wb_repair.rps_part where ifnull(is_disabled,0) = 0 and service_id = #serviceId# and part_id = #partId#
 	</select>
 	<update id="updateRpsPartById" parameterClass="java.util.HashMap">
 		update wb_repair.rps_part set qty = #qty#, amt = #amt#, unit_price = #unitPrice#,

@@ -4972,8 +4972,6 @@ function openWorkers(e){
     };
     //是原來頁面都失去焦點
     
-	
-	 
 	    //document.querySelector("#workersName").setAttribute('autofocus', 'autofocus');
 	    //$("#workersName").blur();
 	 if(b==1){	

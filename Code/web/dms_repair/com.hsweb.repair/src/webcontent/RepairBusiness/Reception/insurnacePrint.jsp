@@ -551,11 +551,11 @@ pageEncoding="UTF-8" session="false" %>
     }
     function SetData(params){
       var date = new Date();
-      document.getElementById("comp").innerHTML = currRepairSettorderPrintShow||currOrgName || "";
+      document.getElementById("comp").innerHTML = params.currRepairSettorderPrintShow||params.currOrgName || "";
 	  document.getElementById("spstorename").innerHTML = "保险单";
 	  document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
-      document.getElementById("guestAddr").innerHTML = currCompAddress;
-	  document.getElementById("phone").innerHTML = currCompTel;
+      document.getElementById("guestAddr").innerHTML = params.currCompAddress;
+	  document.getElementById("phone").innerHTML = params.currCompTel;
 		$.ajaxSettings.async = false;//设置为同步执行
         $.post(params.baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceList.biz.ext?params/id="+params.serviceId+"&token="+params.token,{},function(text){
         	if(text.errCode == "S"){

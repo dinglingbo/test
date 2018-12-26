@@ -157,4 +157,7 @@
         </div>
     </div>
 </body>
+<script type="text/javascript">
+	nui.parse();
+</script>
 </html>

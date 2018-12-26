@@ -546,6 +546,15 @@
       <sourceNode>assign17</sourceNode>
       <targetNode>invokePojo1</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link8" name="不判断VIN" displayName="连接线" type="transition">
+      <sourceNode>assign17</sourceNode>
+      <targetNode>assign15</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link18</targetConnections>
     <targetConnections>link19</targetConnections>
     <location x="780" y="185"/>
@@ -662,6 +671,7 @@
     <targetConnections>link41</targetConnections>
     <targetConnections>link46</targetConnections>
     <targetConnections>link47</targetConnections>
+    <targetConnections>link9</targetConnections>
     <location x="1319" y="185"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -899,6 +909,21 @@
     <location x="1315" y="15"/>
     <figSize height="17" width="39"/>
     <node>assign27</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign15" name="赋值15" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign15</sourceNode>
+      <targetNode>end1</targetNode>
+    </sourceConnections>
+    <targetConnections>link8</targetConnections>
+    <location x="897" y="117"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign15label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
+    <location x="892" y="153"/>
+    <figSize height="17" width="39"/>
+    <node>assign15</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

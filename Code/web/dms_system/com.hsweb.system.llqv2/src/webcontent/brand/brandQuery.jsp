@@ -45,8 +45,9 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-    	var initBrand = "<b:write property="brand"/>";
-    </script>
 </body>
+<script type="text/javascript">
+	var initBrand = "<b:write property="brand"/>";
+	nui.parse();
+</script>
 </html>

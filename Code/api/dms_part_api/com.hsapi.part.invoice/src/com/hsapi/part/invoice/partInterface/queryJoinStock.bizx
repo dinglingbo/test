@@ -401,23 +401,6 @@
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" collapsed="false" type="end">
-    <targetConnections>link19</targetConnections>
-    <targetConnections>link27</targetConnections>
-    <location x="965" y="344"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end2label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.alibaba.fastjson.JSONObject" name="data" type="query" valueType="Java">data</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
-    <location x="963" y="380"/>
-    <figSize height="17" width="32"/>
-    <node>end2</node>
-  </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="srmAuth" displayName="srmAuth" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link31" name="link31" displayName="link22" isDefault="true" type="transition">
       <sourceNode>subprocess2</sourceNode>
@@ -431,8 +414,8 @@
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hs.common.sysService.srmAuth</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="loginName" type="literal" value="String" valueType="Primitive" pattern="reference">hstest</process:inputVariable>
-        <process:inputVariable id="1" name="pw" type="literal" value="String" valueType="Primitive" pattern="reference">hstest</process:inputVariable>
+        <process:inputVariable id="0" name="loginName" type="literal" value="String" valueType="Primitive" pattern="reference">000dlb</process:inputVariable>
+        <process:inputVariable id="1" name="pw" type="literal" value="String" valueType="Primitive" pattern="reference">123456</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -445,19 +428,38 @@
     <figSize height="17" width="49"/>
     <node>subprocess2</node>
   </nodes>
-  <topRuler/>
+  <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
+    <targetConnections>link27</targetConnections>
+    <targetConnections>link19</targetConnections>
+    <location x="965" y="343"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end2label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="java.util.List" name="data" type="query" valueType="Java">data</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
+    <location x="963" y="379"/>
+    <figSize height="17" width="32"/>
+    <node>end2</node>
+  </nodes>
+  <topRuler>
+    <guides position="480" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-09-15 21:06:25" date="2018-09-15Z" description="" name="rpAccount" version="7.0.0.0"/>
   <process:variables>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="param"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="msg" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="url" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="apiPath" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="t" primitiveType="Int"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="systoken" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="result"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="str" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="url" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="systoken" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="key" primitiveType="String"/>

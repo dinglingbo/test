@@ -133,6 +133,10 @@
       <process:to type="query">param/password</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">param/system</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">E</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>

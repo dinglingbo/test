@@ -524,7 +524,7 @@
 			b.service_type_id as serviceTypeId
 		FROM
 			pj_repair_out a
-			inner join wb_repair.rps_maintain b on
+			left join wb_repair.rps_maintain b on
 			a.service_id  = b.id
 		WHERE 1=1
 		<dynamic>
@@ -534,6 +534,9 @@
              </isNotEmpty>
              <isNotEmpty prepend="and" property="mainId">
   				a.main_id = #mainId#
+             </isNotEmpty>
+             <isNotEmpty prepend="and" property="partId">
+  				a.part_id = #partId#
              </isNotEmpty>
              <isNotEmpty prepend="and" property="mainIdStr">
   				a.main_id in ($mainIdStr$)

@@ -13,7 +13,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <title>班组选择</title>
 <script
-	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/Workers.js?v=1.0.1"></script>
+	src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/Workers.js?v=1.0.6"></script>
 	<style type="text/css">
 
 				body,
@@ -176,12 +176,12 @@ label{
 	</style>
 </head>
 	<body >
-
-		<div>
+    <!-- <input class="nui-textbox" id="text1" > -->
+		<div class="nui-toolbar" id="toolbar1" >
 			<table>
 				<tr>
 					<td>
-						<span class="da">施工人员</span>
+						<span class="da" >施工人员</span>
 					</td>
 				</tr>
 			</table>
@@ -195,7 +195,7 @@ label{
 			</div>
 		</div>
 		<div style="background-color: #cfddee;position:fixed; top:90%;width:100%;height: 10%; z-index:900;">
-			 <table style="width:100%;">
+			 <table style="width:100%;" id="table1">
                     <tr>
                         <td style="width:100%;">
                           <a id="wxbtnsettle" style="    width: 80px;
@@ -214,7 +214,7 @@ label{
 							text-decoration: none;" 
 							href="javascript:void(0)" onclick="onClose()" >取消</a>
 							
-						 <a id="wxbtnsettle" style="    width: 120px;
+						 <a id="wxbtnsettle1" style="    width: 120px;
 							height: 40px;
 							font-size: 18px;
 							background: #2ac476;

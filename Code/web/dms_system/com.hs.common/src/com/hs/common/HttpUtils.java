@@ -28,8 +28,6 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -40,7 +38,6 @@ import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
-import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
@@ -53,6 +50,7 @@ import org.apache.http.util.EntityUtils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.eos.system.annotation.Bizlet;
+
 /**
  * @author chenyy
  * @date 2016-07-06 10:19:35
@@ -89,9 +87,9 @@ public class HttpUtils {
 			// 获取所有响应头字段
 			Map<String, List<String>> map = connection.getHeaderFields();
 			// 遍历所有的响应头字段
-			//for (String key : map.keySet()) {
-			//	System.out.println(key + "--->" + map.get(key));
-			//}
+			// for (String key : map.keySet()) {
+			// System.out.println(key + "--->" + map.get(key));
+			// }
 			// 定义 BufferedReader输入流来读取URL的响应
 			in = new BufferedReader(new InputStreamReader(
 					connection.getInputStream()));
@@ -218,7 +216,7 @@ public class HttpUtils {
 			con.setDoInput(true);
 			con.setUseCaches(false);
 			con.setRequestProperty("Content-Type",
-					"application/x-www-form-urlencoded");
+					"application/x-www-form-urlencoded");// multipart/form-data
 			if (sbParams != null && sbParams.length() > 0) {
 				osw = new OutputStreamWriter(con.getOutputStream(), charset);
 				osw.write(sbParams.substring(0, sbParams.length() - 1));
@@ -419,6 +417,7 @@ public class HttpUtils {
 		return getHttpByJsonParam(urlPath, params, "POST");
 	}
 
+	@Bizlet("")
 	public static String getHttpByFormParam(String urlPath,
 			Map<String, Object> params, String method) {
 		String result = null;
@@ -436,7 +435,7 @@ public class HttpUtils {
 
 			// 数据塔原form提交方式
 			connection.setRequestProperty("content-type",
-					"application/x-www-form-urlencoded");
+					"application/x-www-form-urlencoded");// multipart/form-data
 
 			connection.setRequestProperty("cache-control", "no-cache");
 			connection.setRequestProperty("Accept-Charset", "utf-8");
@@ -615,7 +614,7 @@ public class HttpUtils {
 
 	}
 
-	public static void main(String[] args) {
+	public static void main_bmw(String[] args) {
 		/*
 		 * String param =
 		 * "http://127.0.0.1:8081/default/com.vplus.login.auth.setUserOrgInfo.biz.ext"
@@ -650,11 +649,23 @@ public class HttpUtils {
 		p.put("req_date", "06.07.2018");
 		p.put("material", "");
 
-		Integer x=(int)Math.random()*10;
-		Integer y=(int)Math.random()*10;
+		Integer x = (int) Math.random() * 10;
+		Integer y = (int) Math.random() * 10;
 		p.put("x", x.toString());
 		p.put("y", y.toString());
 		String result = getBmpByJson(url, p, "POST");
+		System.out.println(result);
+	}
+
+	public static void main(String[] args) throws Exception {
+		String url = "http://124.172.221.179:81/engine/parts_search?vin=LBVFP3906BSD09750&brand=bmw&pid=轮毂&filter=1";
+		 Map<String, String> param=new HashMap<String,String>();
+		 param.put("vin", "LBVFP3906BSD09750");
+		 param.put("brand", "bmw");
+		 param.put("pid", "轮毂");
+		 param.put("filter", "1");
+		//String result = doGet("http://124.172.221.179:81", "/engine/parts_search", null, null, param);
+		 String result = doGet(url, null, null, null, param);
 		System.out.println(result);
 	}
 
@@ -665,8 +676,10 @@ public class HttpUtils {
 		HttpClient httpClient = wrapClient(host);
 		String result = null;
 		HttpGet request = new HttpGet(buildUrl(host, path, querys));
-		for (Map.Entry<String, String> e : headers.entrySet()) {
-			request.addHeader(e.getKey(), e.getValue());
+		if(headers!=null){
+			for (Map.Entry<String, String> e : headers.entrySet()) {
+				request.addHeader(e.getKey(), e.getValue());
+			}
 		}
 		HttpResponse response = httpClient.execute(request);
 		HttpEntity entity = response.getEntity();
@@ -675,14 +688,14 @@ public class HttpUtils {
 		}
 		return result;
 	}
-	
+
 	@Bizlet("推送短信")
 	public static String send(String phones, String message) {
 		final String USER_NAME = "harsons";
 		final String PASSWORD = "harsons123";
-		HttpClient client =  new DefaultHttpClient();
+		HttpClient client = new DefaultHttpClient();
 		HttpPost method = null;
-		String errCode="S";
+		String errCode = "S";
 		try {
 			method = new HttpPost(
 					"http://yzh.tushi106.com:6062/public/sms.action");
@@ -695,23 +708,22 @@ public class HttpUtils {
 					+ "</phones><content>"
 					+ message
 					+ "</content><subcode></subcode><sendtime></sendtime></message></messages>";
-			StringEntity stringEntity = new StringEntity(submitXml,"UTF-8");  
-			stringEntity.setContentType("text/xml"); 
+			StringEntity stringEntity = new StringEntity(submitXml, "UTF-8");
+			stringEntity.setContentType("text/xml");
 			method.setEntity(stringEntity);
-			HttpResponse httpResponse =client.execute(method);
+			HttpResponse httpResponse = client.execute(method);
 			HttpEntity responseEntity = httpResponse.getEntity();
-			String result = EntityUtils.toString(responseEntity,"UTF-8");
+			String result = EntityUtils.toString(responseEntity, "UTF-8");
 			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
-			errCode="E";
+			errCode = "E";
 			return errCode;
-		}finally {
+		} finally {
 			method.releaseConnection();
 		}
 		return errCode;
 	}
-	
 
 	/**
 	 * post form
@@ -963,6 +975,5 @@ public class HttpUtils {
 			throw new RuntimeException(ex);
 		}
 	}
-	
-	
+
 }

@@ -663,6 +663,10 @@ function onPrint(argument) {
         comp:"",
         baseUrl:baseUrl,
         serviceId:nui.get("id").value,
+        currRepairSettorderPrintShow : currRepairSettorderPrintShow,
+        currOrgName : currOrgName,
+        currCompAddress : currCompAddress,
+        currCompTel : currCompTel,
         token:token
     };
     nui.open({

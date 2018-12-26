@@ -44,7 +44,7 @@
                      allowSort="false" visible="true" width="60" header="" align="center" name="workers">
                                             施工员 <a href="javascript:setPkgWorkers()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                    
-                     <input  property="editor" id="workersName" name="workersName" class="nui-textbox" onfocus="openWorkers" /> 
+                     <input  property="editor" id="workersName" name="workersName" class="nui-textbox" onclick="openWorkers" /> 
                     <!--<input id="workersName" name="workersName"  class="mini-buttonedit" allowInput="ture"  onbuttonclick="" selectOnFocus="true" focus="test"/>-->
                     
                 </div>

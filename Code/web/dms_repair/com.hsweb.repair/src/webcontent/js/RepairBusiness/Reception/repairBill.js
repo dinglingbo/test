@@ -4979,7 +4979,7 @@ function openWorkers(e){
 	     nui.open({
 	        url: webPath + contextPath + "/com.hsweb.repair.DataBase.Workers.flow?token="+token,
 	        title: '选择施工员',
-	        width: 600, height: 500,
+	        width: 600, height: 400,
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
 	           // var params = sendGuestForm.getData();
@@ -4991,8 +4991,8 @@ function openWorkers(e){
 	        		var iframe = this.getIFrameEl();
 		        	var data = iframe.contentWindow.getData();
 		        	__workerIds = data.emlpszId;
-		        	document.querySelector("#workersName").value="aaaa";
-		        	//nui.get("workersName").setData(data.emlpszName);
+		        	//document.querySelector("#workersName").value="aaaa";
+		        	nui.get("workersName").setData(data.emlpszName);
 	        	}
 	        	
 	        		

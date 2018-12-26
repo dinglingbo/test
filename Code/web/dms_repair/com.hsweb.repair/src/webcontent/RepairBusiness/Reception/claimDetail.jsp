@@ -128,7 +128,7 @@
 }
 .btn .aa{
 	height:36px;
-	width: 350px;
+	width: 300px;
 }
 .btn .mini-buttonedit .mini-corner-all{
 	height:33px;
@@ -161,7 +161,7 @@
         <tr>            
             <td class="btn">
                 <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
-                    style="width:350px;height: 50px !important;"  popupWidth="600" textField="text" valueField="id" 
+                    style="width:300px;height: 50px !important;"  popupWidth="600" textField="text" valueField="id" 
                     id="search_key" url="" value="carNo"   searchField="key" 
                     dataField="list" placeholder="请输入...">     
                     <div property="columns">

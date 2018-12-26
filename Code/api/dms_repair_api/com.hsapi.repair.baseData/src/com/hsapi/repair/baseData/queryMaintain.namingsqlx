@@ -108,7 +108,7 @@
                 (c.full_name like '%$name$%')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="part">  
-                exists(select 1 from rps_part d where a.id = d.service_id)
+                exists(select 1 from rps_part d where a.id = d.service_id and ifnull(d.is_disabled,0) = 0)
             </isNotEmpty>
            
         </dynamic>  

@@ -4962,7 +4962,7 @@ function GuestTabShow(){
         }
     });
 }
-var b = 1;
+
 function openWorkers(e){	
     var row = rpsPackageGrid.getRowByUID(e.sender.ownerRowID);
     var data = {};
@@ -4974,7 +4974,6 @@ function openWorkers(e){
     
 	    //document.querySelector("#workersName").setAttribute('autofocus', 'autofocus');
 	    //$("#workersName").blur();
-	 if(b==1){	
 		 $('.mini-textbox-input').blur();
 		 b = 0;
 	     nui.open({
@@ -4988,10 +4987,17 @@ function openWorkers(e){
 	        },
 	        ondestroy: function (action)
 	        {
-	        	b=1;
+	        	if(action=="ok"){
+	        		var iframe = this.getIFrameEl();
+		        	var data = iframe.contentWindow.getData();
+		        	__workerIds = data.emlpszId;
+		        	document.querySelector("#workersName").value="aaaa";
+		        	//nui.get("workersName").setData(data.emlpszName);
+	        	}
+	        	
+	        		
 	        }
 	    });
-    }
    
 }
 

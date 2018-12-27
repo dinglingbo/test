@@ -54,6 +54,14 @@
       <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cond/_expr[2]/isDisabled</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[2]/_op</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">id</process:from>
       <process:to type="query">cond/_orderby[1]/_property</process:to>
     </process:copy>

@@ -1027,6 +1027,7 @@
 			AND b.guest_id = #guestId#	
 			AND a.pick_qty &gt; a.out_return_qty
 			AND a.detail_id = 0
+			and ifnull(a.is_disabled,0) = 0
 	</select>
 	
 	    <select id="queryComprehensive" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

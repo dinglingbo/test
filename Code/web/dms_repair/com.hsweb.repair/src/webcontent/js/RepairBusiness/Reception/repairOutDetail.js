@@ -922,28 +922,33 @@ function deletePartRow(row_uid){
         id:row.id,
         cardDetailId:row.cardDetailId||0
     };
-    var params = {
-        type:"delete",
-        interType:"part",
-        data:{
-            part: part
-        }
-    };
-    svrCRUD(params,function(text){
-        var errCode = text.errCode||"";
-        var errMsg = text.errMsg||"";
-        if(errCode == 'S'){   
-            if(data && data.length==1){
-                rpsItemGrid.removeRow(data[0]);
-                //var newRow = {};
-                //rpsPartGrid.addRow(newRow);
+    
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据处理中...'
+    });
+    nui.ajax({
+    	url:baseUrl + "com.hsapi.repair.repairService.crud.deleteRpsPartByKeeper.biz.ext",
+    	type:"post",
+    	data:{
+    		part:part,
+    		token:token
+    	},
+    	success:function(text){
+    		var errCode = text.errCode;
+    		nui.unmask(document.body);
+    		if(errCode == 'S'){   
+                if(data && data.length==1){
+                    rpsItemGrid.removeRow(data[0]);
+                }else{
+                    rpsItemGrid.removeRow(row);
+                }
             }else{
-                rpsItemGrid.removeRow(row);
+                showMsg(errMsg||"删除配件信息失败!","E");
+                return;
             }
-        }else{
-            showMsg(errMsg||"删除配件信息失败!","E");
-            return;
-        }
+    	}
     });
 }
 

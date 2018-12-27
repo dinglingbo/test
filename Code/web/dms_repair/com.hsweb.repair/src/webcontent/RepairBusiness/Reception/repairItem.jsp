@@ -40,13 +40,14 @@
                <div field="workers" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="" align="center" name="workers">
                                             施工员 <a href="javascript:setItemWorkers()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
-                    <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
-                    url="" data="memList" value="" multiSelect="true"  showClose="false" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" >     
+                    <input class="nui-textbox" property="editor" id="workersName" name="workersName"  onclick="openItemWorkers" /> 
+                </div>
+                <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
+                    url="" data="memList" value="" multiSelect="true"  showClose="false" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" visible="false">     
                     <!-- <div property="columns">
                         <div header="ID" field="id"></div>
                         <div header="名称" field="empName"></div>
                     </div> -->
-                </div>
                 </div>
                 <div field="workerIds" headerAlign="center"
                      allowSort="false" visible="false" width="80" header="施工员" align="center">

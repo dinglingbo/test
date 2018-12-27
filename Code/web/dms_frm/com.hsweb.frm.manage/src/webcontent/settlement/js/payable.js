@@ -142,6 +142,7 @@ var settleAuditUrl = frmUrl+ "com.hsapi.frm.frmService.rpsettle.rpAccountSettle.
 function settleOK() {
 	var accountTypeList =[];
 	var accountDetail = {};
+	var count = scount();
 	for(var i = 0;i<tableNum+1;i++){
 		var  Sel=document.getElementById("optaccount"+i);
 		if(Sel!=null){
@@ -162,7 +163,7 @@ function settleOK() {
 	}
 
 
-		var count = scount();
+		
 		if(count!=zongAmt){
 			nui.alert("付款金额和应付金额不一致，请重新确认！","提示");
 			return;

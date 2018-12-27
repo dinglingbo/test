@@ -121,7 +121,7 @@ function queryMember(json){
 				var str = "";
 					
 				for(var i = 0;i<Member.length;i++){
-					str = str+"<a class='empl' id="+Member[i].empId+" >"+Member[i].empName+"</a>";
+					str = str+"<a class='empl' id="+Member[i].empId+">"+Member[i].empName+"</a>";
 					if((i+1)%3==0){
 						str = str+"<br>";
 					}

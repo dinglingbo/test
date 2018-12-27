@@ -4963,8 +4963,10 @@ function GuestTabShow(){
     });
 }
 
-function openWorkers(e){	
-    var row = rpsPackageGrid.getRowByUID(e.sender.ownerRowID);
+function openWorkers(e){
+	var el = e.sender;
+    var row = rpsPackageGrid.getEditorOwnerRow(el);
+	var workers = rpsPackageGrid.getCellEditor("workers", row);
     var data = {};
     data = {
     	workers:row.workers,
@@ -4972,32 +4974,27 @@ function openWorkers(e){
     };
     //是原來頁面都失去焦點
     
-	    //document.querySelector("#workersName").setAttribute('autofocus', 'autofocus');
-	    //$("#workersName").blur();
-		 $('.mini-textbox-input').blur();
-		 b = 0;
-	     nui.open({
-	        url: webPath + contextPath + "/com.hsweb.repair.DataBase.Workers.flow?token="+token,
-	        title: '选择施工员',
-	        width: 600, height: 400,
-	        onload: function () {
-	            var iframe = this.getIFrameEl();
-	           // var params = sendGuestForm.getData();
-	            iframe.contentWindow.setData(data);
-	        },
-	        ondestroy: function (action)
-	        {
-	        	if(action=="ok"){
-	        		var iframe = this.getIFrameEl();
-		        	var data = iframe.contentWindow.getData();
-		        	__workerIds = data.emlpszId;
-		        	document.querySelector("input[name='workersName']").value=data.emlpszName;
-		        	//nui.get("workersName").setData(data.emlpszName);
-	        	}
-	        	
-	        		
-	        }
-	    });
+	 $('.mini-textbox-input').blur();
+	 b = 0;
+     nui.open({
+        url: webPath + contextPath + "/com.hsweb.repair.DataBase.Workers.flow?token="+token,
+        title: '选择施工员',
+        width: 600, height: 400,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           // var params = sendGuestForm.getData();
+            iframe.contentWindow.setData(data);
+        },
+        ondestroy: function (action)
+        {
+        	if(action=="ok"){
+        		var iframe = this.getIFrameEl();
+	        	var data = iframe.contentWindow.getData();
+	        	__workerIds = data.emlpszId;
+	        	workers.setValue(data.emlpszName);
+        	}
+        }
+    });
    
 }
 

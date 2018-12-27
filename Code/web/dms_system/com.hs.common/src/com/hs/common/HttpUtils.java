@@ -469,7 +469,8 @@ public class HttpUtils {
 		return result;
 	}
 
-	private static String getHttpByJsonParam(String urlPath,
+	@Bizlet("")
+	public static String getHttpByJsonParam(String urlPath,
 			Map<String, String> params, String method) {
 		String result = null;
 		try {
@@ -659,13 +660,14 @@ public class HttpUtils {
 
 	public static void main(String[] args) throws Exception {
 		String url = "http://124.172.221.179:81/engine/parts_search?vin=LBVFP3906BSD09750&brand=bmw&pid=轮毂&filter=1";
-		 Map<String, String> param=new HashMap<String,String>();
-		 param.put("vin", "LBVFP3906BSD09750");
-		 param.put("brand", "bmw");
-		 param.put("pid", "轮毂");
-		 param.put("filter", "1");
-		//String result = doGet("http://124.172.221.179:81", "/engine/parts_search", null, null, param);
-		 String result = doGet(url, null, null, null, param);
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("vin", "LBVFP3906BSD09750");
+		param.put("brand", "bmw");
+		param.put("pid", "轮毂");
+		param.put("filter", "1");
+		// String result = doGet("http://124.172.221.179:81",
+		// "/engine/parts_search", null, null, param);
+		String result = doGet(url, null, null, null, param);
 		System.out.println(result);
 	}
 
@@ -676,7 +678,7 @@ public class HttpUtils {
 		HttpClient httpClient = wrapClient(host);
 		String result = null;
 		HttpGet request = new HttpGet(buildUrl(host, path, querys));
-		if(headers!=null){
+		if (headers != null) {
 			for (Map.Entry<String, String> e : headers.entrySet()) {
 				request.addHeader(e.getKey(), e.getValue());
 			}
@@ -934,7 +936,7 @@ public class HttpUtils {
 				sbUrl.append("?").append(sbQuery);
 			}
 		}
-
+		System.out.println(sbUrl);
 		return sbUrl.toString();
 	}
 

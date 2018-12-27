@@ -12,7 +12,7 @@
 <head>
 	<title>开票单</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoice.js?v=7" type="text/javascript"></script>
+	<script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoice.js?v=1.1" type="text/javascript"></script>
 </head>
 <style type="text/css">
         a.optbtn {

@@ -30,7 +30,7 @@
 		from wb_repair.rps_part a
 		inner join wb_repair.rps_maintain b
 		on a.service_id = b.id
-		where b.orgid = #orgid# and b.is_settle = 1 
+		where b.orgid = #orgid# and b.is_settle = 1 and ifnull(a.is_disabled,0) = 0
 		      and b.out_date &gt;= #startDate# and b.out_date &lt; #endDate#
 	</select>
 	

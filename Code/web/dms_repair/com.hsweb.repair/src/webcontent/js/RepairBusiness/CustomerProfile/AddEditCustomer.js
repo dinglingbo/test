@@ -8,6 +8,7 @@ var PreBook = {};
 var provice;
 var cityId;
 var data;
+var empty = 0;//是否清空
 $(document).ready(function()
 {
 	if(currRepairBillCmodelFlag == "1"){
@@ -205,8 +206,7 @@ var basicRequiredField = {
 }
 
 var carRequiredField ={
-    "carNo":"车牌号",
-    "vin":"车架号"
+    "carNo":"车牌号"
 };
 var contactRequiredField ={
     "name":"联系人姓名",
@@ -594,10 +594,11 @@ function onChanged(id){
 	if(id=="fullName"){
 		fullName = nui.get("fullName").value;
 		nui.get("shortName").setValue(fullName);
-		
+		nui.get("name2").setValue(fullName);
 	}
 	if(id=="mobile"){
 		mobile = nui.get("mobile").value;
+		nui.get("mobile2").setValue(mobile);
 		var params = 
 		      {
 				"carNo":"",
@@ -620,11 +621,14 @@ function onChanged(id){
 								guest:guest
 						};
 						setDataQuery(data);
+						empty = 1;
 					}else{
-						contactInfoForm.setData([]);
-						carInfoFrom.setData([]);
-	                    basicInfoForm.setData([]);
-	                    nui.get("mobile").setValue(mobile);
+						if(empty==1){
+							contactInfoForm.setData([]);
+							carInfoFrom.setData([]);
+		                    basicInfoForm.setData([]);
+		                    nui.get("mobile").setValue(mobile);
+						}
 					}
 					
 				},

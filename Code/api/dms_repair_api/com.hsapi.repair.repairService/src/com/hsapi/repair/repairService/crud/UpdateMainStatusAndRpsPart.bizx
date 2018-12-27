@@ -223,7 +223,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">temp2</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
@@ -610,7 +610,7 @@
     <figSize height="17" width="39"/>
     <node>assign13</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign14" name="赋值13" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign14" name="赋值13" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign14</sourceNode>
       <targetNode>assign11</targetNode>

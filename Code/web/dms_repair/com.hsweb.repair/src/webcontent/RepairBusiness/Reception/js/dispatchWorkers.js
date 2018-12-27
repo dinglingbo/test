@@ -137,7 +137,7 @@ function queryMember(json){
 				var str = "";
 					
 				for(var i = 0;i<Member.length;i++){
-					str = str+"<a class='empl' id="+Member[i].empId+" >&nbsp;"+Member[i].empName+"&nbsp;</a>";
+					str = str+"<a class='empl' id="+Member[i].empId+" >  "+Member[i].empName+"  </a>";
 					if((i+1)%3==0){
 						str = str+"<br>";
 					}
@@ -212,8 +212,8 @@ function onClose(){
 function dispatchOk(){
 
 	var emlpsz = $("a.empl1");//所选技师数组
-	var emlpszId = "";
-	var emlpszName = "";
+	var emlpszId ="";
+	var emlpszName ="";
 	var serviceTypeIdList = serviceTypeIds.getValue();
 	if(emlpsz.length==0){
 		showMsg("请选择施工员！","W");

@@ -11,7 +11,7 @@
 -->
 <head>
     <title>新增客户档案</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.39"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.46"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -171,7 +171,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form_label required">
+                    <td class="form_label">
                         <label>车架号(VIN)：</label>
                     </td>
                     <td colspan="2">

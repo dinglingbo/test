@@ -11,7 +11,7 @@
 -->
 <head>
 	<title>客户档案</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.1"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.6"></script>
 	<style type="text/css">
 		table {
 			font-size: 12px;
@@ -20,6 +20,9 @@
 		.title {
 			min-width: 80px;
 			text-align: right;
+		}
+		a#car{
+			text-decoration:underline
 		}
 	</style>
 </head>
@@ -82,8 +85,8 @@
 				<div header="车辆信息" headerAlign="center">
 					<div property="columns">
 						<div field="carNo" headerAlign="center"   visible="true" width="80">车牌号</div>
-						<div field="carModel" headerAlign="center"  width="200px">品牌车型</div>
-						<div field="vin" headerAlign="center"   visible="true" width="130px">车架号（VIN）</div>
+						<div field="carModel" headerAlign="center"  width="250px">品牌车型</div>
+						<div field="vin" headerAlign="center"   visible="true" width="180px">车架号（VIN）</div>
 						<div field="annualInspectionDate"  headerAlign="center" dateFormat="yyyy-MM-dd"  visible="true"
 						 width="80px">商业险到期</div>
 						<div field="insureDueDate"  headerAlign="center" dateFormat="yyyy-MM-dd"  visible="true"
@@ -92,7 +95,7 @@
 				</div>
 				<div header="客户信息" headerAlign="center">
 					<div property="columns">
-						<div name="guestFullName"  field="guestFullName" headerAlign="center"  visible="true" width="70px">客户名称</div>
+						<div name="guestFullName"  field="guestFullName" headerAlign="center"  visible="true" width="80px">客户名称</div>
 <!-- 						<div name="mobile" field="mobile"  headerAlign="center"  visible="true" width="100px">客户电话</div> -->
 						<div name="addr" field="addr"  headerAlign="center"  visible="true" width="200px">地址</div>
 						<div name="lastComeDate" field="lastComeDate"  dateFormat="yyyy-MM-dd" headerAlign="center" 

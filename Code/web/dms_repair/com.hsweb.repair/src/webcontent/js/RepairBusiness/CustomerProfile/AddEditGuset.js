@@ -17,6 +17,8 @@ var mobile = null;
 var resultGuest = {};
 var resultCar = {};
 var resultContact= {};
+var isAdd = 0;//是否是添加界面
+var empty = 0;//是否清空
 $(document).ready(function()
 {
 	carview = nui.get("carview");
@@ -233,7 +235,12 @@ function onOk()
 
     var insCarList = [];
     var updCarList = [];
-    var insContactList = [];
+    var insContactList = [{
+    	source: "060110",
+    	mobile: guest.mobile,
+    	name: guest.fullName,
+    	identity: "060301"
+    }];
     var updContactList = [];
     nui.mask({
 		el : document.body,
@@ -260,6 +267,25 @@ function onOk()
                 showMsg("保存成功","S");
                 resultGuest = data.retData;
                 nui.get("guestId").setValue(resultGuest.guestId);
+                
+                    //添加一行联系人
+                    resultContact = data.retData;
+            		var newRow = {
+            				id:resultContact.contactorId,
+            				guestId:resultContact.guestId,
+            				name : resultContact.guestFullName,
+            				mobile : resultContact.mobile,
+            				identity :resultContact.identity,
+            				source :resultContact.source
+            			};
+                    var contactid = contactdatagrid.getData();
+                    for(var i = 0 ;i<contactid.length;i++){
+                    	if(contactid[i].id==contact.id){
+                    		contactdatagrid.removeRow(contactid[i]);
+                    	}
+                    }
+            		contactdatagrid.addRow(newRow);
+
                 //CloseWindow("ok");
             }
             else{
@@ -280,6 +306,7 @@ function getSaveData(){
 var queryUrl = baseUrl+"com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext";
 function setData(data)
 {
+		isAdd=1;
 	var carNo = null;
 	var guestFullName = null;
 	if(data.guest){
@@ -455,11 +482,15 @@ function onChanged(id){
 								guest:guest
 						};
 						setDataQuery(data);
+						 empty = 1;//是否清空
 					}else{
-						cardatagrid.setData([]);
-	                    contactdatagrid.setData([]);
-	                    basicInfoForm.setData([]);
-	                    nui.get("mobile").setValue(mobile);
+						if(empty==1){
+							cardatagrid.setData([]);
+		                    contactdatagrid.setData([]);
+		                    basicInfoForm.setData([]);
+		                    nui.get("mobile").setValue(mobile);
+						}
+
 					}
 					
 				},
@@ -556,8 +587,8 @@ function addCarList(){
 	var insContactList=[];
 	var updContactList = [];
 	var car = carInfoFrom.getData();
-	if(car.carNo==""||car.vin==""){
-		showMsg("车牌号和车架号(VIN)不能为空!","W");
+	if(car.carNo==""){
+		showMsg("车牌号不能为空!","W");
 		return;
 	}else{
 

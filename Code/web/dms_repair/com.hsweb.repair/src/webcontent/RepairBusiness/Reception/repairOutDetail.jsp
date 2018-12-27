@@ -12,7 +12,7 @@
 <head> 
     <title>配件出库详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.1.28"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.1.29"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -346,7 +346,7 @@ allowCellEdit="true" >
 
 <div id="repairOutGrid" class="nui-datagrid" style="width:100%;height:auto; " showPager="false" 
 dataField="data"  allowCellSelect="true" multiSelect="false" allowCellWrap = true
-url=""  showModified="false"
+url=""  showModified="false" showSummaryRow="true"
 allowCellEdit="true"  >
 <div property="columns">
    <div headerAlign="center" type="indexcolumn" width="30">序号</div>
@@ -354,13 +354,13 @@ allowCellEdit="true"  >
    <div header="已领料-配件信息">
     <div property="columns">
         <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
-        <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="80px" header="配件编码"></div>           
-        <div field="outQty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量"></div>
+        <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="80px" header="配件编码" ></div>           
+        <div field="outQty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量" summaryType="sum"></div>
         <div field="unit" headerAlign="center" allowSort="false" visible="false" width="80px" header="单位"></div>           
         <div field="sellUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="销售单价"></div>
-        <div field="sellAmt" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="销售金额"></div>
+        <div field="sellAmt" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="销售金额" summaryType="sum"></div>
         <div field="trueUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本单价"></div>
-        <div field="trueCost" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本金额"></div>
+        <div field="trueCost" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="成本金额" summaryType="sum"></div>
         
 		<div field="storeId" headerAlign="center" allowSort="false" visible="true" width="70" align="center" header="仓库"></div>
         <div field="returnSign" headerAlign="center" allowSort="false" visible="true" width="60" align="center" header="是否归库" renderer="onGenderRenderer"></div>

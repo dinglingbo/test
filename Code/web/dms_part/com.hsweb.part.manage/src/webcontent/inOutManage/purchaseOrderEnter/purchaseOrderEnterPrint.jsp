@@ -353,9 +353,7 @@ hr {
 		var DetailUrl = baseUrl
 				+ "com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
     	$(document).ready(function(){
-    		$('#currOrgName').text(currRepairSettorderPrintShow||currOrgName);
-    		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
-    		$('#currUserName').text("打印人:"+currUserName);
+    		
 			$("#print").click(function () {
 	            $(".print_btn").hide();
 	             document.getElementById("query-table").style.overflow="hidden"
@@ -403,8 +401,11 @@ hr {
         }
     	function SetData(params,detailParms){
     		document.getElementById("spstorename").innerHTML = "入库单";
-    		document.getElementById("guestAddr").innerHTML = "地址:"+currCompAddress;
-	   		document.getElementById("phone").innerHTML ="电话:"+currCompTel;
+    		document.getElementById("guestAddr").innerHTML = "地址:"+params.currCompAddress;
+	   		document.getElementById("phone").innerHTML ="电话:"+params.currCompTel;
+	   		$('#currOrgName').text(params.currRepairSettorderPrintShow||params.currOrgName);
+    		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
+    		$('#currUserName').text("打印人:"+params.currUserName);
        		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
 	   			var formParms =text.pjPchsOrderMainList[0];
 	       		$('#guestFullName').text("供应商:"+formParms.guestFullName);
@@ -417,7 +418,20 @@ hr {
 	    			$('#settleTypeId').text("结算方式:"+settleTypeIdHash[formParms.settleTypeId].name);
 	    		}
     		});
-    	
+    		
+    		$.post(supplierUrl+"?params/guestId="+params.guestId+"&token="+token,{},function(text){
+    			var guest=text.guest[0];
+    			if(guest.contactor){		
+    				$('#contactor').text("联系人:"+guest.contactor);
+    			}
+    			if(guest.contactorTel){
+    				$('#contactorTel').text("联系人方式:"+guest.contactorTel);
+    			}
+    			if(guest.addr){
+    				$('#addr').text("地址:"+guest.addr);
+    			}
+    			
+    		});
     		$.post(DetailUrl+"?params/mainId="+detailParms.mainId+"&token="+token,{},function(text){
 				var data= text.pjPchsOrderDetailList;
 				var tBody = $("#tbodyId");

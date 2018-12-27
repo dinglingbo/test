@@ -1,6 +1,7 @@
 /**
  * Created by Administrator on 2018/3/17.
  */
+var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = window._rootUrl||"http://127.0.0.1:8080/default/";
 var grid = null;
 var gridUrl = baseUrl+"com.hsapi.repair.repairService.svr.queryCustomerList.biz.ext";
@@ -21,7 +22,15 @@ $(document).ready(function(v){
 	nui.get("splitBtn").hide();
     grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
-    grid.on("drawcell",onDrawCell);
+    grid.on("drawcell",function(e){
+    	 var field = e.field;
+         var record = e.record;
+         var column = e.column;
+         var id = record.id;
+         if(column.field == "carNo"){
+         	e.cellHtml ='<a id="car" href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
+         }
+    });
     queryForm = new nui.Form("#queryForm");
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
@@ -496,6 +505,16 @@ function importTimesCard(){
     });
 }
 
+function showCarInfo(row_uid){
+	var row = grid.getRowByUID(row_uid);
+	if(row){
+		var params = {
+				carId : row.id,
+				guestId : row.guestId
+		};
+		doShowCarInfo(params);
+	}
+}
 function carChange(){
     var row = grid.getSelected();
     if (row)

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getCompBillNO" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="目前 customCode 默认取的是 DS000&#xD;&#xA;需要根据实际取数规则进行修改&#xD;&#xA;&#xD;&#xA;m:userObject/userOrgId目前取不到值" title="Administrator&#x9;18-2-25 下午4:55">
-    <location x="19" y="20"/>
-    <size height="100" width="362"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="目前 customCode 默认取的是 DS000&#xD;&#xA;需要根据实际取数规则进行修改&#xD;&#xA;&#xD;&#xA;m:userObject/userOrgId目前取不到值&#xD;&#xA;&#xD;&#xA;综合开单  ZHD    已调整&#xD;&#xA;洗车开单  XCD    已调整&#xD;&#xA;理赔开单  LPD     已调整&#xD;&#xA;检查开单  CCD    已调整&#xD;&#xA;接车开单  JCD     已调整&#xD;&#xA;保险开单  BXD     已调整&#xD;&#xA;销售开单  XSD     已调整&#xD;&#xA;退货开单  THD     已调整&#xD;&#xA;耗材出库  HCC&#xD;&#xA;采购订单  CGD&#xD;&#xA;采购入库  CGR&#xD;&#xA;盘点单     PDD&#xD;&#xA;盘盈入库  PYR&#xD;&#xA;盘亏出库  PKC&#xD;&#xA;移仓单      YCD&#xD;&#xA;移仓入库  YCR&#xD;&#xA;移仓出库  YCC&#xD;&#xA;采退订单  CTD&#xD;&#xA;采购退货  CGT&#xD;&#xA;对账单     DZD&#xD;&#xA;应收        RPR&#xD;&#xA;应付        RPP&#xD;&#xA;收款        SKD&#xD;&#xA;付款        FKD&#xD;&#xA;储值卡充值  CZD&#xD;&#xA;储值卡退款  CZT&#xD;&#xA;计次卡充值  CKD&#xD;&#xA;计次卡退款  CKT&#xD;&#xA;开票单  KPD" title="Administrator&#x9;18-2-25 下午4:55">
+    <location x="-375" y="0"/>
+    <size height="481" width="362"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link33" name="link33" displayName="link15" isDefault="true" type="transition">
@@ -131,7 +131,7 @@
     <figSize height="17" width="72"/>
     <node>invokePojo1</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="取当前年月" displayName="取当前年月" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="年月日6位" displayName="取当前年月" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="link16" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign0</targetNode>
@@ -146,15 +146,15 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="date" type="query" value="java.util.Date" valueType="Java" pattern="reference">nowDate</process:inputVariable>
-      <process:inputVariable id="1" name="pattern" type="literal" value="java.lang.String" valueType="Java" pattern="reference">yyyyMM</process:inputVariable>
+      <process:inputVariable id="1" name="pattern" type="literal" value="java.lang.String" valueType="Java" pattern="reference">yyMMdd</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">yearmonthc</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="204" y="208"/>
-    <figSize height="17" width="61"/>
+    <location x="206" y="208"/>
+    <figSize height="17" width="56"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="取最大单号" displayName="赋值" collapsed="false" type="assign">
@@ -179,6 +179,10 @@
     <process:copy>
       <process:from type="expression" pattern="reference">billrecords.length</process:from>
       <process:to type="query">size</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">100000</process:from>
+      <process:to type="query">flag</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -288,11 +292,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">billTypeCode+customCode+'-'+yearmonthc+maxnostr</process:from>
-      <process:to type="query">serviceno</process:to>
+      <process:from type="expression" pattern="reference">flag+orgid</process:from>
+      <process:to type="query">customCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">billTypeCode+yearmonthc+maxnostr</process:from>
+      <process:from type="expression" pattern="reference">billTypeCode+customCode+yearmonthc+maxnostr</process:from>
       <process:to type="query">serviceno</process:to>
     </process:copy>
   </nodes>
@@ -341,11 +345,11 @@
       <process:to type="query">maxnostr</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">billTypeCode+customCode+'-'+yearmonthc+maxnostr</process:from>
-      <process:to type="query">serviceno</process:to>
+      <process:from type="expression" pattern="reference">flag+orgid</process:from>
+      <process:to type="query">customCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">billTypeCode+yearmonthc+maxnostr</process:from>
+      <process:from type="expression" pattern="reference">billTypeCode+customCode+yearmonthc+maxnostr</process:from>
       <process:to type="query">serviceno</process:to>
     </process:copy>
   </nodes>
@@ -385,10 +389,10 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link35</targetConnections>
-    <location x="739" y="170"/>
+    <location x="739" y="171"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo5label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hs.common.BillNOUtils.getMaxNOToStr</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
@@ -401,7 +405,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
-    <location x="702" y="206"/>
+    <location x="702" y="207"/>
     <figSize height="17" width="96"/>
     <node>invokePojo5</node>
   </nodes>
@@ -424,7 +428,7 @@
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
-      <process:to type="query">cd/_expr[1]/_op</process:to>
+      <process:to type="query">cond/_expr[1]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -552,6 +556,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hs.common.com.ComCompany" name="comps"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hs.common.com.ComCompany" name="comp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="flag" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="billTypeCode" primitiveType="String"/>

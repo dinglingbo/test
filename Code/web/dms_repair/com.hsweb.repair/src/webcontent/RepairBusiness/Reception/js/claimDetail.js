@@ -2235,6 +2235,7 @@ function setPkgWorkers(){
 		title : "派工处理",
 		width : 600,
 		height : 630,
+		allowResize: false,
 		onload : function() {
 			var iframe = this.getIFrameEl(); 
 			var data = {
@@ -2563,6 +2564,7 @@ function setItemWorkers(){
 		title : "派工处理",
 		width : 600,
 		height : 630,
+		allowResize: false,
 		onload : function() {
 			var iframe = this.getIFrameEl(); 
 			var data = {
@@ -2946,6 +2948,11 @@ function loadDetail(p1, p2, p3){
             var data = text.data||[];
             if(errCode == "S"){
                 rpsPackageGrid.clearRows();
+                for(var i=0;i<data.length;i++){
+                	if(data[i].qty==0){
+                  		data[i].qty=1;
+                  	}
+                }
                 rpsPackageGrid.addRows(data);
                 rpsPackageGrid.accept();
             }
@@ -2957,6 +2964,11 @@ function loadDetail(p1, p2, p3){
             var data = text.data||[];
             if(errCode == "S"){
                 rpsItemGrid.clearRows();
+                for(var i=0;i<data.length;i++){
+                	if(data[i].qty==0){
+                  		data[i].qty=1;
+                  	}
+                }
                 rpsItemGrid.addRows(data);
                 rpsItemGrid.accept();
             }
@@ -4971,4 +4983,29 @@ function viewLastCheck(){
     item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkDetail.flow";
     item.iconCls = "fa fa-file-text";
     window.parent.activeTabAndInit(item,params);
+}
+
+function GuestTabShow(){
+	var data = billForm.getData();
+	if(!data.contactorId){
+		showMsg("联系人不能为空!","W");
+		return;
+	}
+	 nui.open({
+        url: webPath + contextPath + "/repair/RepairBusiness/Reception/guestTabShow.jsp?token="+token,
+        title: '客户标签',
+        width: 300, height: 300,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           // var params = sendGuestForm.getData();
+            iframe.contentWindow.setData(data);
+        },
+        ondestroy: function (action)
+        {
+            /*if("ok" == action)
+            {
+                grid.reload();
+            }*/
+        }
+    });
 }

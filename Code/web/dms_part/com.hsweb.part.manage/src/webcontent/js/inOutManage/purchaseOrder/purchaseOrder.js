@@ -1679,7 +1679,12 @@ function onPrint(){
 	var params={
 			id : from.id,
 		auditSign:from.auditSign,
-		guestId :from.guestId
+		guestId :from.guestId,
+		currUserName :currUserName,
+		currRepairSettorderPrintShow :currRepairSettorderPrintShow,
+		currCompAddress :currCompAddress,
+		currCompTel :currCompTel,
+		currOrgName : currOrgName
 	};
 	var detailParams={
 			mainId :from.id,

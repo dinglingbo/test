@@ -45,7 +45,7 @@ $(document).ready(function(v) {
 	eCreateDateEl=nui.get("eCreateDate");
 	getNowFormatDate();
 
-	onSearch();
+	quickSearch(4);
 
 	enterGrid = nui.get("enterGrid");
 	morePartCodeEl = nui.get("morePartCode");
@@ -235,12 +235,74 @@ $(document).ready(function(v) {
 	morePartSearch();
 });
 
+
+function quickSearch(type){
+    var params = getSearchParams();
+    var querysign = 1;
+    var queryname = "本日";
+    switch (type)
+    {
+        case 0:
+            params.today = 1;
+            params.sCreateDate = getNowStartDate();
+            params.eCreateDate = addDate(getNowEndDate(), 1);
+            querysign = 1;
+            queryname = "本日";
+            break;
+        case 1:
+            params.yesterday = 1;
+            params.sCreateDate = getPrevStartDate();
+            params.eCreateDate = addDate(getPrevEndDate(), 1);
+            querysign = 1;
+            queryname = "昨日";
+            break;
+        case 2:
+            params.thisWeek = 1;
+            params.sCreateDate = getWeekStartDate();
+            params.eCreateDate = addDate(getWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "本周";
+            break;
+        case 3:
+            params.lastWeek = 1;
+            params.sCreateDate = getLastWeekStartDate();
+            params.eCreateDate = addDate(getLastWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "上周";
+            break;
+        case 4:
+            params.thisMonth = 1;
+            params.sCreateDate = getMonthStartDate();
+            params.eCreateDate = addDate(getMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "本月";
+            break;
+        case 5:
+            params.lastMonth = 1;
+            params.sCreateDate = getLastMonthStartDate();
+            params.eCreateDate = addDate(getLastMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "上月";
+            break;
+        default:
+            break;
+    }
+    
+    sCreateDateEl.setValue(params.sCreateDate);
+    eCreateDateEl.setValue(addDate(params.eCreateDate,-1));
+    currType = type;
+    if(querysign == 1){
+    	var menunamedate = nui.get("menunamedate");
+    	menunamedate.setText(queryname); 	
+    }
+    doSearch(params);
+}
 function getSearchParams() {
 	var params = {};
 	params.returnSign=0;
 	params.billTypeId='050207';
 	params.sCreateDate = sCreateDateEl.getText();
-	params.eCreateDate = eCreateDateEl.getText();
+	params.eCreateDate = addDate(eCreateDateEl.getText(),1);
 	params.pickMan = nui.get('pickMan1').getText();
 	return params;
 }

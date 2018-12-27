@@ -342,9 +342,7 @@ hr {
 		var sumOrderAmt=0;
 		var supplierUrl=apiPath + partApi + "/"+"com.hsapi.part.baseDataCrud.crud.queryGuestList.biz.ext";
     	$(document).ready(function(){
-    		$('#currOrgName').text(currRepairSettorderPrintShow||currOrgName);
-    		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
-    		$('#currUserName').text("打印人:"+currUserName);
+    		
 			$("#print").click(function () {
 	            $(".print_btn").hide();
 	            document.getElementById("query-table").style.overflow="hidden"
@@ -368,8 +366,12 @@ hr {
         }
     	function SetData(mainParams,detailParms,formParms){
     		document.getElementById("spstorename").innerHTML = "采购退货单";
-    		document.getElementById("guestAddr").innerHTML = "地址:"+currCompAddress;
-	   		document.getElementById("phone").innerHTML ="电话:"+currCompTel;
+    		document.getElementById("guestAddr").innerHTML = "地址:"+mainParams.currCompAddress;
+	   		document.getElementById("phone").innerHTML ="电话:"+mainParams.currCompTel;
+	   		$('#currOrgName').text(mainParams.currRepairSettorderPrintShow||mainParams.currOrgName);
+    		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
+    		$('#currUserName').text("打印人:"+mainParams.currUserName);
+    		
        		$('#guestFullName').text("供应商:"+formParms.guestFullName);
        		$('#createDate').text("退货日期:"+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
        		$('#serviceId').text(formParms.serviceId);

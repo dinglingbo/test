@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>理赔开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.6.24"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.6.27"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -22,6 +22,11 @@
             height: 100%;
             overflow: hidden;
         }
+        #guestTab a:link { 
+           font-size: 12px; 
+           color: #578ccd; 
+           text-decoration: none; 
+        } 
         .btnType{
             font-family:Verdana;
             font-size: 14px;
@@ -123,7 +128,7 @@
 }
 .btn .aa{
 	height:36px;
-	width: 350px;
+	width: 300px;
 }
 .btn .mini-buttonedit .mini-corner-all{
 	height:33px;
@@ -156,7 +161,7 @@
         <tr>            
             <td class="btn">
                 <div class="mini-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
-                    style="width:350px;height: 50px !important;"  popupWidth="600" textField="text" valueField="id" 
+                    style="width:300px;height: 50px !important;"  popupWidth="600" textField="text" valueField="id" 
                     id="search_key" url="" value="carNo"   searchField="key" 
                     dataField="list" placeholder="请输入...">     
                     <div property="columns">
@@ -247,6 +252,7 @@
                     <span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp;
                     <label style="font-family:Verdana;">客户名称:</label>
                     <label id="guestInfo" style="font-family:Verdana;"><a id="guestNameEl" href="javascript:checkGuest()"></a></label>&nbsp;
+                    <label id="guestTab" style="font-family:Verdana;color:#578ccd;"><a id="" href="javascript:GuestTabShow()" >客户标签</a></label>&nbsp;
                     <label style="font-family:Verdana;">手机:</label>
                     <label id="guestTelEl" style="font-family:Verdana;"></label>&nbsp;
                 </td>

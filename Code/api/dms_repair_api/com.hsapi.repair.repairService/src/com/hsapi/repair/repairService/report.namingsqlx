@@ -1085,6 +1085,7 @@
 		where b.is_settle = 1 
 			  and a.package_id = 0
 		      and b.orgid= #orgid#
+		      and ifnull(a.is_disabled,0) = 0
 		
 		<isNotEmpty prepend="and" property="startDate"> 
               b.out_date &gt;= #startDate#
@@ -1182,6 +1183,7 @@
 		where b.is_settle = 1 
 			  and a.package_id = 0
 		      and b.orgid= #orgid#
+		      and ifnull(a.is_disabled,0) = 0
 		
 		<isNotEmpty prepend="and" property="startDate"> 
               b.out_date &gt;= #startDate#
@@ -1394,6 +1396,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceCode">  
                 (a.service_code like '%$serviceCode$%')
+            </isNotEmpty> 
+            <isNotEmpty prepend="and" property="workerId">  
+                (d.worker_id = #workerId#)
             </isNotEmpty>
             <!--进厂日期 -->
             <isNotEmpty prepend="and" property="sEnterDate">  

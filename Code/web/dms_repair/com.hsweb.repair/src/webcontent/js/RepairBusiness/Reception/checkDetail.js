@@ -630,6 +630,7 @@ function SearchCheckMain(sId) {
             var te = text;
             if(text.list.length > 0){
                 t = text.list[0];
+                t.carModel = text.car.carModel;
             }
         }
     });
@@ -1071,6 +1072,28 @@ function lastCheckModel(){
             console.log(jqXHR.responseText);
         }
     });
+	
+}
 
+function setNormal(){
+	var data=mainGrid.getData();
+	var nrow={status:1,nostatus:-1,nosettleType :0,settleType:-1};
+	var row2={status:0,nosettleType :0,settleType :-1};
+	var count=0;
+		for(var i=0;i<data.length;i++){
+			if(data[i].status==1){
+				count++;
+			}
+		}
+		for(var i=0;i<data.length;i++){
+			if(count==data.length){
+				mainGrid.updateRow(data[i],row2) ;
+			}				
+			else{
+				mainGrid.updateRow(data[i],nrow) ;
+			}
+				
+		}
+	
 	
 }

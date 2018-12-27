@@ -55,7 +55,7 @@ var requiredField = {
 		mobile : "电话号码",
 		remark : "变更原因"
 		
-	};
+};
 
 function onOk(){
 	var car = xCar.getData();

@@ -65,18 +65,21 @@
                            showNullItem="false"
                            nullItemText="品牌"/>
               	<input id="billTypeId" visible="false" class="nui-combobox" textField="name" valueField="customid" />
-              	<a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">所有</a>
+              	<a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate" style="display:none;">所有</a>
 
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="quickSearch(0)" id="type0">所有</li>
                     <li iconCls="" onclick="quickSearch(1)" id="type1">本日</li>
                     <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
                 </ul>
-              	<label style="font-family:Verdana;">入库日期 从：</label>
-                <input class="nui-datepicker" id="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
-                <label style="font-family:Verdana;">至</label>
-                <input class="nui-datepicker" id="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
-                <input class="nui-textbox" id="partNameAndPY" name="partNameAndPY" emptyText="输入查询条件" width="120"  onenter="onSearch"/>
+<!--               	<label style="font-family:Verdana;" style="display:none;">入库日期 从：</label> -->
+                <input style="display:none;" class="nui-datepicker" id="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+<!--                 <label style="font-family:Verdana;" style="display:none;">至</label> -->
+                <input style="display:none;"class="nui-datepicker" id="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+                <input class="nui-textbox" id="partCode" name="partCode" emptyText="按配件编码查询" width="100"  onenter="onSearch"/>
+                <input class="nui-textbox" id="partNameAndPY" name="partName" emptyText="按名称查询" width="100"  onenter="onSearch"/>
+                <input class="nui-textbox" id="storeShelf" name="storeShelf" emptyText="按仓位查询" width="90"  onenter="onSearch"/>
+<!--                 <input class="nui-textbox" id="partNameAndPY" name="partNameAndPY" emptyText="输入查询条件" width="120"  onenter="onSearch"/> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch">
                   <span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 				<span class="separator"></span>
@@ -88,7 +91,7 @@
 	                emptyText="请选择领料人"
 	                required="true"
 	                url=""
-	                width="120"
+	                width="80"
 	                allowInput="true"
 	                showNullItem="false" 
 	                valueFromSelect="true"
@@ -281,8 +284,12 @@
 }
     function onSearch(par,type) {  
         var params = {};
-        params.partNameAndPY = nui.get("partNameAndPY").value;
-        params.eEnterDate= addDate(eEnterDateEl.getFormValue(),1);
+        params.partName= nui.get("partNameAndPY").value;
+        params.partCode = nui.get("partCode").value;
+        params.storeShelf = nui.get("storeShelf").value;
+        if(eEnterDateEl.getFormValue()){ 
+    	    params.eEnterDate= addDate(eEnterDateEl.getFormValue(),1);
+        }
         params.sEnterDate = nui.get('sEnterDate').getFormValue();
         
         if(type == "Id"){

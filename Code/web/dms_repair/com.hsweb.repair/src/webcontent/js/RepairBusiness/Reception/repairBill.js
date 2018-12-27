@@ -103,7 +103,6 @@ var prdtTypeHash = {
 //}
 $(document).ready(function ()
 {
-	
     rpsPackageGrid = nui.get("rpsPackageGrid");
     rpsItemGrid = nui.get("rpsItemGrid");
 
@@ -551,10 +550,11 @@ $(document).ready(function ()
                     e.cellHtml = e.value + '%';
                 }
                 break;
-            case "rate":
+            case "qty":
                 var value = e.value||"";
                 if(value&&value=="0"){
                     e.cellHtml = 1;
+                    record.qty=1;
                 }
                 break;
             default:
@@ -628,7 +628,7 @@ $(document).ready(function ()
             e.cellHtml = '<a class="optbtn" href="javascript:void()">查看</a>';
         }
     });
-
+    
     document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号/VIN码)");
     // document.onmousedown=function(event){ 
     //     var i = 0;
@@ -653,7 +653,12 @@ $(document).ready(function ()
 		// } 
 	 
 	}
-
+    //nui.get("workersName").focus()
+    /*$("#workersName").click(
+       function(){
+    	   openWorkers(this);
+       }
+     );*/
 });
 
 var statusHash = {
@@ -2181,6 +2186,7 @@ function setPkgWorkers(){
 		title : "派工处理",
 		width : 600,
 		height : 630,
+		allowResize: false,
 		onload : function() {
 			var iframe = this.getIFrameEl(); 
 			var data = {
@@ -2609,6 +2615,7 @@ function setItemWorkers(){
 		title : "派工处理",
 		width : 600,
 		height : 630,
+		allowResize: false,
 		onload : function() {
 			var iframe = this.getIFrameEl(); 
 			var data = {
@@ -2894,6 +2901,11 @@ function loadDetail(p1, p2, p3){
             var data = text.data||[];
             if(errCode == "S"){
                 rpsPackageGrid.clearRows();
+                for(var i=0;i<data.length;i++){
+                	if(data[i].qty==0){
+                  		data[i].qty=1;
+                  	}
+                }
                 rpsPackageGrid.addRows(data);
                 rpsPackageGrid.accept();
             }
@@ -2905,15 +2917,17 @@ function loadDetail(p1, p2, p3){
             var data = text.data||[];
             if(errCode == "S"){
                 rpsItemGrid.clearRows();
+                for(var i=0;i<data.length;i++){
+                	if(data[i].qty==0){
+                  		data[i].qty=1;
+                  	}
+                }
+             	
                 rpsItemGrid.addRows(data);
                 rpsItemGrid.accept();
             }
         }, function(){});
     }
-   /* if(p3 && p3.interType){
-        getBillDetail(p3, function(text){
-        }, function(){});
-    }*/
 }
 var __workerIds="";
 var __saleManId="";
@@ -2944,6 +2958,7 @@ function editRpsPackage(row_uid){
         rpsPackageGrid.beginEditRow(row);
     }
 }
+
 function updateRpsPackage(row_uid){
     var main = billForm.getData();
     var isSettle = main.isSettle||0;
@@ -4925,6 +4940,10 @@ function saleManChangedBatP(e){
 
 function GuestTabShow(){
 	var data = billForm.getData();
+	if(!data.contactorId){
+		showMsg("联系人不能为空!","W");
+		return;
+	}
 	 nui.open({
         url: webPath + contextPath + "/repair/RepairBusiness/Reception/guestTabShow.jsp?token="+token,
         title: '客户标签',
@@ -4936,13 +4955,50 @@ function GuestTabShow(){
         },
         ondestroy: function (action)
         {
-            if("ok" == action)
+            /*if("ok" == action)
             {
                 grid.reload();
-            }
+            }*/
         }
     });
 }
 
+function openWorkers(e){	
+    var row = rpsPackageGrid.getRowByUID(e.sender.ownerRowID);
+    var data = {};
+    data = {
+    	workers:row.workers,
+    	workersId:row.workersId
+    };
+    //是原來頁面都失去焦點
+    
+	    //document.querySelector("#workersName").setAttribute('autofocus', 'autofocus');
+	    //$("#workersName").blur();
+		 $('.mini-textbox-input').blur();
+		 b = 0;
+	     nui.open({
+	        url: webPath + contextPath + "/com.hsweb.repair.DataBase.Workers.flow?token="+token,
+	        title: '选择施工员',
+	        width: 600, height: 400,
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	           // var params = sendGuestForm.getData();
+	            iframe.contentWindow.setData(data);
+	        },
+	        ondestroy: function (action)
+	        {
+	        	if(action=="ok"){
+	        		var iframe = this.getIFrameEl();
+		        	var data = iframe.contentWindow.getData();
+		        	__workerIds = data.emlpszId;
+		        	document.querySelector("input[name='workersName']").value=data.emlpszName;
+		        	//nui.get("workersName").setData(data.emlpszName);
+	        	}
+	        	
+	        		
+	        }
+	    });
+   
+}
 
 

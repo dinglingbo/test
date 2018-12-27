@@ -5,6 +5,7 @@ var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/
 var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
 var partGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartList.biz.ext";
 var partGrid = null;
+var stockUrl = baseUrl+"com.hsapi.part.invoice.partInterface.queryJoinStock.biz.ext";
 
 var qualityList = [];
 var qualityHash = {};
@@ -15,7 +16,8 @@ var abcTypeList = [];
 var carBrandList = [];
 var chooseType = null;
 var codeEl = null;
-var tempGrid=null;
+var tempGrid = null;
+var rightGrid = null;
 
 var isChooseClose = 1;//默认选择后就关闭窗体
 
@@ -26,9 +28,19 @@ $(document).ready(function(v)
     partGrid = nui.get("partGrid");
     partGrid.setUrl(partGridUrl);
     tempGrid=nui.get("tempGrid");
+    rightGrid = nui.get("rightGrid");
+    rightGrid.setUrl(stockUrl);
     codeEl = nui.get("search-code");
     partGrid.on("beforeload",function(e){
         e.data.token = token;
+    });
+    partGrid.on("selectionchanged", function () {
+        var row = partGrid.getSelected();
+        var code = row.code;
+        rightGrid.load({
+        	key:code,
+        	token:token
+        });
     });
     partGrid.on("drawcell",function(e)
     {

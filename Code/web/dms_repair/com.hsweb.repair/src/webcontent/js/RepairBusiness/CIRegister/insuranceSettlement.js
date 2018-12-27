@@ -155,6 +155,7 @@ function noPay(){
 //结算
 function pay(){
 	var accountTypeList =[];
+	var count = scount();
 	for(var i = 0;i<tableNum+1;i++){
 		var  Sel=document.getElementById("optaccount"+i);
 		if(Sel!=null){
@@ -173,7 +174,7 @@ function pay(){
 			}
 		}
 	}
-		var count = scount();
+		
 		deductible = nui.get("deductible").getValue()||0;
 		count = (count+deductible).toFixed(2);
 		if(count!=zongAmt){
@@ -328,6 +329,8 @@ function addF(){
 	addType();
 }
 
+var flag=1;
+var checkF = 0;
 function addType(){
 	nui.ajax({
 		url : apiPath + frmApi + "/com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext?token="+ token,
@@ -338,9 +341,18 @@ function addType(){
 				$("#optaccount"+i).empty();
 				var optaccount = document.getElementById('optaccount'+i);
 				$("<option value=''>—请选择结算账户—</option>").appendTo("#optaccount"+i);
-				for (var j = 0; j < data.settleAccount.length; j++) {
-					$("<option  value="+data.settleAccount[j].id+">"+data.settleAccount[j].name+"</option>").appendTo("#optaccount"+i);
+				for (var j = 0; j < data.settleAccount.length; j++){
+					if(data.settleAccount[j].isDefault==1 && flag==1){
+						$("<option selected = 'selected' value="+data.settleAccount[j].id+">"+data.settleAccount[j].name+"</option>").appendTo("#optaccount"+i);
+						checkF = 1;
+						flag = 0;
+					}else{
+						$("<option  value="+data.settleAccount[j].id+">"+data.settleAccount[j].name+"</option>").appendTo("#optaccount"+i);
+					}
 				}
+			}
+			if(checkF){
+				checkField("optaccount0");
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -382,7 +394,7 @@ function  scount(){
 function checkField(id){
 	 var str = "";
 	 var s1=id.split("optaccount");
-	 $("#ppaytype"+s1[1]).empty();
+	// $("#ppaytype"+s1[1]).empty();
 	 var myselect=document.getElementById("optaccount"+s1[1]);
 	 var index=myselect.selectedIndex;
 	 var c  =myselect.options[index].value
@@ -404,6 +416,13 @@ function checkField(id){
 			}
 			str='<tr>'+str+'</tr>';
 			document.getElementById('ppaytype'+s1[1]).innerHTML = str;
+			if(checkF){
+				//获取待收金额
+				var amt = document.getElementById('totalAmt1').innerText;
+				var byId = s1[1]+data.list[0].customId;
+				document.getElementById(byId).value = amt;
+				checkF = 0;
+			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);

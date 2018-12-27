@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.33"></script>
+<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.34"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -200,7 +200,7 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 						      	<div class="nui-fit">
 								    <div id="rightGrid" class="nui-datagrid" style="width:100%;height:100%;"
 								         showPager="false"
-								         dataField="detailList"
+								         dataField="data"
 								         idField="detailId"
 								         ondrawcell="onDrawCell"
 								         sortMode="client"
@@ -211,15 +211,17 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 								         showSummaryRow="false">
 								        <div property="columns">
 								            <div type="indexcolumn">序号</div>
-								            <div allowSort="true" field="shortName" width="60" headerAlign="center" header="供应商名称"></div>
-								            <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
-								            <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
-								            <div allowSort="true" field="sellPrice" width="60" headerAlign="center" header="售价"></div>
-								            <div allowSort="true" field="manager" width="60" headerAlign="center" header="联系人"></div>
-								            <div allowSort="true" field="mobile" width="60" headerAlign="center" header="联系人手机"></div>
-								            <div allowSort="true" field="contactor" width="60" headerAlign="center" header="业务员"></div>
-								            <div allowSort="true" field="contactorTel" width="60" headerAlign="center" header="业务员手机"></div>
-								            <div allowSort="true" field="address" width="180" headerAlign="center" header="公司地址"></div>
+								            <div allowSort="true" field="guestName" width="80" headerAlign="center" header="供应商名称"></div>
+								            <div allowSort="true" field="code" width="60" headerAlign="center" header="配件编码"></div>
+								            <div allowSort="true" field="fullName" width="60" headerAlign="center" header="配件全称"></div>
+								            <div allowSort="true" field="unit" width="60" headerAlign="center" header="单位"></div>
+								            <div allowSort="true" field="qualityName" width="60" headerAlign="center" header="品质"></div>
+								            <div allowSort="true" field="brandName" width="60" headerAlign="center" header="品牌"></div>
+								            <div allowSort="true" field="carNmae" width="60" headerAlign="center" header="厂牌"></div>
+								            <div allowSort="true" field="qty" width="60" headerAlign="center" header="库存数量"></div>
+								            <div allowSort="true" field="price" width="60" headerAlign="center" header="含税单价"></div>
+								            <div allowSort="true" field="warranty" width="60" headerAlign="center" header="质保天数"></div>
+								            <div allowSort="true" field="batchCode" width="60" headerAlign="center" header="年份周期"></div>
 								        </div>
 								    </div>
 								</div>

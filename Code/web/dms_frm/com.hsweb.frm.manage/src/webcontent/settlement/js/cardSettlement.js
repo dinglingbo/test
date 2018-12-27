@@ -59,6 +59,8 @@ function addF(){
 	addType();
 }
 
+var flag=1;
+var checkF = 0;
 function addType(){
 		nui.ajax({
 			url : apiPath + frmApi + "/com.hsapi.frm.frmService.crud.queryFiSettleAccount.biz.ext?token="+ token,
@@ -70,8 +72,16 @@ function addType(){
 					var optaccount = document.getElementById('optaccount'+i);
 					$("<option value=''>—请选择结算账户—</option>").appendTo("#optaccount"+i);
 					for (var j = 0; j < data.settleAccount.length; j++) {
-						$("<option  value="+data.settleAccount[j].id+">"+data.settleAccount[j].name+"</option>").appendTo("#optaccount"+i);
-					}
+						if(data.settleAccount[j].isDefault==1 && flag==1){
+							$("<option selected = 'selected' value="+data.settleAccount[j].id+">"+data.settleAccount[j].name+"</option>").appendTo("#optaccount"+i);
+							checkF = 1;
+							flag = 0;
+						}else{
+							$("<option  value="+data.settleAccount[j].id+">"+data.settleAccount[j].name+"</option>").appendTo("#optaccount"+i);
+						}					}
+				}
+				if(checkF){
+					checkField("optaccount0");
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -83,7 +93,7 @@ function addType(){
 function checkField(id){
 		 var str = "";
 		 var s1=id.split("optaccount");
-		 $("#paytype"+s1[1]).empty();
+		// $("#paytype"+s1[1]).empty();
 		 var myselect=document.getElementById("optaccount"+s1[1]);
 		 var index=myselect.selectedIndex;
 		 var c  =myselect.options[index].value;
@@ -105,6 +115,13 @@ function checkField(id){
 				}
 				str='<tr>'+str+'</tr>';
 				document.getElementById('paytype'+s1[1]).innerHTML = str;
+				if(checkF){
+					//获取待收金额
+					var amt = document.getElementById('totalAmt1').innerText;
+					var byId = s1[1]+data.list[0].customId;
+					document.getElementById(byId).value = amt;
+					checkF = 0;
+				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				console.log(jqXHR.responseText);

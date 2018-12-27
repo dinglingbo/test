@@ -38,6 +38,7 @@
     <sourceConnections xsi:type="process:tLink" id="link101" name="link101" displayName="link4" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link102" name="link102" displayName="link48" lineType="note" type="exception">
       <sourceNode>subprocess0</sourceNode>
@@ -108,6 +109,18 @@
     <process:copy>
       <process:from type="query" pattern="reference">serviceId</process:from>
       <process:to type="query">cond2/_expr[1]/_value</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">isDisabled</process:from>
+      <process:to type="query">cond2/_expr[2]/_property</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond2/_expr[2]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">cond2/_expr[2]/_value</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">

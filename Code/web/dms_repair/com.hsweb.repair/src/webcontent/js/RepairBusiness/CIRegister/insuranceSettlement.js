@@ -155,6 +155,7 @@ function noPay(){
 //结算
 function pay(){
 	var accountTypeList =[];
+	var count = scount();
 	for(var i = 0;i<tableNum+1;i++){
 		var  Sel=document.getElementById("optaccount"+i);
 		if(Sel!=null){
@@ -173,7 +174,7 @@ function pay(){
 			}
 		}
 	}
-		var count = scount();
+		
 		deductible = nui.get("deductible").getValue()||0;
 		count = (count+deductible).toFixed(2);
 		if(count!=zongAmt){

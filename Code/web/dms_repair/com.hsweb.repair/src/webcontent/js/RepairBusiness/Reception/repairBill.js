@@ -4991,8 +4991,8 @@ function openWorkers(e){
 	        		var iframe = this.getIFrameEl();
 		        	var data = iframe.contentWindow.getData();
 		        	__workerIds = data.emlpszId;
-		        	//document.querySelector("#workersName").value="aaaa";
-		        	nui.get("workersName").setData(data.emlpszName);
+		        	document.querySelector("input[name='workersName']").value=data.emlpszName;
+		        	//nui.get("workersName").setData(data.emlpszName);
 	        	}
 	        	
 	        		

@@ -82,7 +82,7 @@
                 (a.id in ($partIds$))
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="code">  
-                (code like '%$code$%')
+                (a.code like '%$code$%')
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="lcode">  
                 (a.code like '$code$%')

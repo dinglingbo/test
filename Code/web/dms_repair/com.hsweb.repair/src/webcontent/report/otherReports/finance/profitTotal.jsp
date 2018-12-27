@@ -46,17 +46,18 @@
         .parent{display:flex;}
         .column{
             flex:1;
-            border-radius:10px;
-            background-color:#95d9f966;
+            /* border-radius:10px; */
+            /* background-color:#95d9f966; */
             margin-top:20px;
             padding:10px;
-            border:1px solid #CCC}
+            border:1px solid #CCC
+            }
         .column+.column{margin-left:20px;} 
     </style>
 </head>
 
 <body>
-   
+        <div id="showDiv" class="tipStyle"></div>
         <div class="nui-toolbar" style="padding:2px;" id="queryForm">
             <table style="width:100%;">
                 <tr>
@@ -86,21 +87,57 @@
                 </tr>
             </table>
         </div>
-        <div id="showDiv" class="tipStyle"></div>
+        
         <div class="nui-fit">
                 <div style="height: 300px;" class="parent">
 
                         <div class="column">
+                                <div class="nui-toolbar" style="padding:20px;" id="">
+                                    <span style="font-size: 20px;margin-left:20px;">收入：</span>
+                                    <span style="color: #f9a52e;font-size: 30px;">13,287.00</span>
+                                    <span style="font-size: 20px;">元</span>
+                                    </div>
+                                    <div id="grid1" class="nui-datagrid" style="width:100%;height:auto;" selectOnLoad="true" showPager="false"
+                                    allowCellSelect="true"  allowCellWrap=true>
+                                    <div property="columns">
+                                        <div type="indexcolumn" width="40" headerAlign="center" align="center">序号</div>
+                                        <div field=vala name="" width="100" headerAlign="center" align="center">收入类型</div>
+                                        <div field="valb" name="" width="100" headerAlign="center" align="center">金额</div>
+                                    </div>
+                                </div>
 
+                        </div>
+                        <div class="column">
+                                <div class="nui-toolbar" style="padding:20px;" id="">
+                                        <span style="font-size: 20px;margin-left:20px;">成本费用：</span>
+                                        <span style="color: #f9a52e;font-size: 30px;">5,999.50</span>
+                                        <span style="font-size: 20px;">元</span>
+                                        </div>
+                                        <div id="grid2" class="nui-datagrid" style="width:100%;height:auto;" selectOnLoad="true" showPager="false"
+                                        allowCellSelect="true"  allowCellWrap=true>
+                                        <div property="columns">
+                                            <div type="indexcolumn" width="40" headerAlign="center" align="center">序号</div>
+                                            <div field=vala name="" width="100" headerAlign="center" align="center">支出类型</div>
+                                            <div field="valb" name="" width="100" headerAlign="center" align="center">金额</div>
+                                        </div>
+                                    </div>
 
                         </div>
                         <div class="column">
 
-
-                        </div>
-                        <div class="column">
-
-
+                                <div class="nui-toolbar" style="padding:20px;" id="">
+                                        <span style="font-size: 20px;margin-left:20px;">利润：</span>
+                                        <span style="color: #f9a52e;font-size: 30px;">7,287.50</span>
+                                        <span style="font-size: 20px;">元</span>
+                                        </div>
+                                        <div id="grid3" class="nui-datagrid" style="width:100%;height:auto;" selectOnLoad="true" showPager="false"
+                                        allowCellSelect="true"  allowCellWrap=true>
+                                        <div property="columns">
+                                            <div type="indexcolumn" width="40" headerAlign="center" align="center">序号</div>
+                                            <div field=vala name="" width="100" headerAlign="center" align="center">指标分析</div>
+                                            <div field="valb" name="" width="100" headerAlign="center" align="center">金额</div>
+                                        </div>
+                                    </div>
                         </div>
                 
                     </div>
@@ -111,7 +148,18 @@
     <script type="text/javascript">
         nui.parse();
         var con8='这是一个提示';
-
+        var grid1_data=[{vala:"工单销售",valb:"7127.00"},{vala:"其他收入",valb:"6160.00"}];
+        var grid2_data=[{vala:'工单成本&nbsp;<span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)" onmouseout="outHide()"></span>',valb:"855.00"},
+        {vala:'内部领料成本&nbsp;<span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)" onmouseout="outHide()"></span>',valb:"0.00"},
+        {vala:'赠送余额使用&nbsp;<span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)" onmouseout="outHide()"></span>',valb:"1400.00"},
+        {vala:"其它支出",valb:"3744.50"}];
+        var grid3_data=[{}];
+        var grid1 = nui.get("grid1");
+        var grid2 = nui.get("grid2");
+        var grid3 = nui.get("grid3");
+        grid1.setData(grid1_data);
+        grid2.setData(grid2_data);
+        grid3.setData(grid3_data);
         var startDateEl = nui.get('startDate');
         var endDateEl = nui.get('endDate');
         var currType = 2;

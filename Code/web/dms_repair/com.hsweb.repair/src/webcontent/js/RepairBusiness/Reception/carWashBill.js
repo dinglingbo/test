@@ -4906,6 +4906,103 @@ function GuestTabShow(){
     });
 }
 
+function openPkgWorkers(e){
+	var el = e.sender;
+    var row = rpsPackageGrid.getEditorOwnerRow(el);
+	var workers = rpsPackageGrid.getCellEditor("workers", row);
+    var data = {};
+    data = {
+    	workers:row.workers,
+    	workersId:row.workersId
+    };
+ 	 $('.mini-textbox-input').blur();
+     nui.open({
+        url: webPath + contextPath + "/com.hsweb.repair.DataBase.Workers.flow?token="+token,
+        title: '选择施工员',
+        width: 600, height: 400,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           // var params = sendGuestForm.getData();
+            iframe.contentWindow.setData(data);
+        },
+        ondestroy: function (action)
+        {
+        	if(action=="ok"){
+        		var iframe = this.getIFrameEl();
+	        	var data = iframe.contentWindow.getData();
+	        	__workerIds = data.emlpszId;
+	        	workers.setValue(data.emlpszName);
+        	}
+        }
+    });
+   
+}
+
+function openItemWorkers(e){
+	var el = e.sender;
+    var row = rpsItemGrid.getEditorOwnerRow(el);
+	var workers = rpsItemGrid.getCellEditor("workers", row);
+    var data = {};
+    data = {
+    	workers:row.workers,
+    	workersId:row.workersId
+    };
+ 	 $('.mini-textbox-input').blur();
+     nui.open({
+        url: webPath + contextPath + "/com.hsweb.repair.DataBase.Workers.flow?token="+token,
+        title: '选择施工员',
+        width: 600, height: 400,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           // var params = sendGuestForm.getData();
+            iframe.contentWindow.setData(data);
+        },
+        ondestroy: function (action)
+        {
+        	if(action=="ok"){
+        		var iframe = this.getIFrameEl();
+	        	var data = iframe.contentWindow.getData();
+	        	__workerIds = data.emlpszId;
+	        	workers.setValue(data.emlpszName);
+        	}
+        }
+    });
+}
+
+//0,综合 2,洗美 4,理赔
+function toChangBillTypeId(billTypeId){
+	var data =  billForm.getData();
+	var serviceId = data.id;
+	if(serviceId){
+		nui.ajax({
+	        url: baseUrl + "com.hsapi.repair.repairService.crud.transformBill.biz.ext",
+	        type:"post",
+	        //async: false,
+	        data:{ 
+	        	serviceId:serviceId,
+	        	billTypeId:billTypeId
+	        },
+	        cache: false,
+	        success: function (data) {  
+	            if(data.errCode=="S"){
+	                if(billTypeId==0){
+	                	showMsg("转为综合开单成功","S");
+	                }
+	                if(billTypeId==4){
+	                	showMsg("转为理赔开单成功","S");
+	                }
+	            }else{
+	            	if(billTypeId==0){
+	                	showMsg("转为综合开单失败","E");
+	                }
+	                if(billTypeId==4){
+	                	showMsg("转为理赔开单失败","E");
+	                }
+	            }
+	        }
+	    });
+	}	 
+}
 
 
 

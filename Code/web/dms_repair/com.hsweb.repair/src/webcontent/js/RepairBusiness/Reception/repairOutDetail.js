@@ -1329,6 +1329,55 @@ function  savepartOutRtn(data,childdata){
         }
     }
     
+    function onDrawSummaryCell(e)
+    {
+        var rows = e.data;//rightGrid.getData();
+        
+        if (e.field == "qty") { 
+        	var qty = 0;
+            for (var i = 0; i < rows.length; i++) {
+            	if(rows[i].type==3){
+            		qty += parseFloat(rows[i].qty);
+            	}
+            	e.cellHtml=qty;  
+            }   
+        }
+        if (e.field == "subtotal") { 
+        	var subtotal = 0;
+            for (var i = 0; i < rows.length; i++) {
+            	if(rows[i].type==3){
+            		subtotal += parseFloat(rows[i].subtotal);
+            	}
+            	e.cellHtml=subtotal;  
+            }   
+        }
+        
+    }
+    
+    function onDrawSummaryCell2(e)
+    {
+        var rows = e.data;//rightGrid.getData();
+        
+        if (e.field == "qty") { 
+        	var qty = 0;
+            for (var i = 0; i < rows.length; i++) {
+            	if(rows[i].pid!=0){
+            		qty += parseFloat(rows[i].qty);
+            	}
+            	e.cellHtml=qty;  
+            }   
+        }
+        if (e.field == "subtotal") { 
+        	var subtotal = 0;
+            for (var i = 0; i < rows.length; i++) {
+            	if(rows[i].pid!=0){
+            		subtotal += parseFloat(rows[i].subtotal);
+            	}
+            	e.cellHtml=subtotal;  
+            }   
+        }
+        
+    }
     function timeDiff(planFinishDate){
     	var startTime = new Date(); // 开始时间
         var endTime = planFinishDate; // 结束时间

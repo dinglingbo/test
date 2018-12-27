@@ -7,6 +7,8 @@ var advancedMorePartWin = null;
 var moreGrid = null;
 var oldValue = null;
 var oldRow = null;
+var servieTypeList = [];
+var servieTypeHash = {};
 $(document).ready(function () {
 	grid = nui.get("grid");
 	advancedMorePartWin = nui.get("advancedMorePartWin");
@@ -26,6 +28,8 @@ $(document).ready(function () {
             		var list = nui.decode(text.list);
             		document.getElementById("rate").value = list[0].rate;
             		form.setData(list[0]);
+            		nui.get("invoiceType").setText(list[0].invoiceType);
+            		nui.get("invoiceType").setValue(list[0].invoiceType);
             		
             	}
             },
@@ -51,13 +55,20 @@ $(document).ready(function () {
 		}
 	});
 	
-	/*invoiceTypeEl = nui.get("invoiceType");
-	initServiceType("invoiceType",function(data) {
+	invoiceTypeEl = nui.get("invoiceType");
+	/*initServiceType("invoiceType",function(data) {
         servieTypeList = nui.get("invoiceType").getData();
         servieTypeList.forEach(function(v) {
             servieTypeHash[v.id] = v;
         });
     });*/
+	var dicDefs = {"invoiceType":"DDT20130703000008"};
+	initDicts(dicDefs,function(data){
+		servieTypeList = nui.get("invoiceType").getData();
+        servieTypeList.forEach(function(v) {
+        servieTypeHash[v.id] = v;
+        });
+	});
 	
 	advancedMorePartWin.on("load",function(e){
 		var data = advancedMorePartWin.getData();
@@ -111,6 +122,7 @@ function remove(){//删除
 
 function saveData(){//保存
 	var data = form.getData();
+	//data.invoiceType = nui.get("invoiceType").getValue();
 	nui.ajax({
         url: baseUrl+"com.hsapi.repair.repairService.insurance.saveInvoice.biz.ext",
         type: "post",

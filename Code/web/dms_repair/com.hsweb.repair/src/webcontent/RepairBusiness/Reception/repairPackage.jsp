@@ -44,7 +44,7 @@
                      allowSort="false" visible="true" width="60" header="" align="center" name="workers">
                                             施工员 <a href="javascript:setPkgWorkers()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                    
-                     <input class="nui-textbox" property="editor" id="workersName" name="workersName"  onclick="openWorkers" /> 
+                     <input class="nui-textbox" property="editor" id="workersName" name="workersName"  onclick="openPkgWorkers" /> 
                 
                 </div>
                 <div field="workerIds" headerAlign="center"

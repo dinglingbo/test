@@ -205,6 +205,7 @@
     <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="link9" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>view0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <targetConnections>link11</targetConnections>

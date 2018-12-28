@@ -3004,7 +3004,7 @@ function updateRpsPackage(row_uid){
                 if(cardDetailId > 0){
                     pkg.serviceTypeId = row.serviceTypeId;
                 }else{
-                    pkg.subtotal = row.subtotal
+                    pkg.subtotal = row.subtotal;
                     pkg.serviceTypeId = row.serviceTypeId;
                     if(__saleManId){
                         pkg.saleMan = row.saleMan;
@@ -3019,7 +3019,8 @@ function updateRpsPackage(row_uid){
                         id: row.id,
                         serviceId: row.serviceId,
                         workerIds:__workerIds,
-                        workers:row.workers
+                        workers:row.workers,
+                        planFinishDate:planFinishDate
                     }
                     itemList.push(item);
                 }
@@ -3125,6 +3126,9 @@ function updateRpsItem(row_uid){
                     item.workerIds = __workerIds;
                     item.workers = row.workers;
                 }
+                if(planFinishDate){
+                	item.planFinishDate = planFinishDate;
+                }
                 updList.push(item);
             }else{
                 var item = {};
@@ -3141,6 +3145,9 @@ function updateRpsItem(row_uid){
                 if(__saleManId){
                     item.saleMan = row.saleMan;
                     item.saleManId = __saleManId;
+                }
+                if(planFinishDate){
+                	item.planFinishDate = planFinishDate;
                 }
                 updList.push(item);
             }
@@ -4976,7 +4983,7 @@ function openPkgWorkers(e){
      nui.open({
         url: webPath + contextPath + "/com.hsweb.repair.DataBase.Workers.flow?token="+token,
         title: '选择施工员',
-        width: 600, height: 400,
+        width: 600, height: 500,
         onload: function () {
             var iframe = this.getIFrameEl();
            // var params = sendGuestForm.getData();
@@ -4989,16 +4996,20 @@ function openPkgWorkers(e){
 	        	var data = iframe.contentWindow.getData();
 	        	__workerIds = data.emlpszId;
 	        	workers.setValue(data.emlpszName);
+	        	row.workersId = data.emlpszId;
+	        	planFinishDate = data.planFinishDate;
         	}
         }
     });
    
 }
-
+var planFinishDate = null;
 function openItemWorkers(e){
-	var el = e.sender;
+	var el = e.sender;//ownerRowID
     var row = rpsItemGrid.getEditorOwnerRow(el);
 	var workers = rpsItemGrid.getCellEditor("workers", row);
+	/*var workerIds = rpsItemGrid.getCellEditor("workerIds", row);
+	var ids = workerIds.getValue();*/
     var data = {};
     data = {
     	workers:row.workers,
@@ -5008,7 +5019,7 @@ function openItemWorkers(e){
      nui.open({
         url: webPath + contextPath + "/com.hsweb.repair.DataBase.Workers.flow?token="+token,
         title: '选择施工员',
-        width: 600, height: 600,
+        width: 600, height: 500,
         onload: function () {
             var iframe = this.getIFrameEl();
            // var params = sendGuestForm.getData();
@@ -5021,6 +5032,9 @@ function openItemWorkers(e){
 	        	var data = iframe.contentWindow.getData();
 	        	__workerIds = data.emlpszId;
 	        	workers.setValue(data.emlpszName);
+	        	//workerIds.setValue(data.emlpszId);
+	        	planFinishDate = data.planFinishDate;
+	        	row.workersId = data.emlpszId;
         	}
         }
     });

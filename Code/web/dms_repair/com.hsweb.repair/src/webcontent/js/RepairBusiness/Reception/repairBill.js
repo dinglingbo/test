@@ -258,7 +258,7 @@ $(document).ready(function ()
                                 	}
                                 	if(list.billTypeId == "2"){
                                         opt.id="2083";
-                                        opt.text="洗车开单";
+                                        opt.text="洗美开单";
                                         opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBillMgr.flow";
                                 	}
                                 	if(list.billTypeId == "4"){
@@ -4963,7 +4963,7 @@ function GuestTabShow(){
     });
 }
 
-function openWorkers(e){
+function openPkgWorkers(e){
 	var el = e.sender;
     var row = rpsPackageGrid.getEditorOwnerRow(el);
 	var workers = rpsPackageGrid.getCellEditor("workers", row);
@@ -4972,10 +4972,7 @@ function openWorkers(e){
     	workers:row.workers,
     	workersId:row.workersId
     };
-    //是原來頁面都失去焦點
-    
-	 $('.mini-textbox-input').blur();
-	 b = 0;
+ 	 $('.mini-textbox-input').blur();
      nui.open({
         url: webPath + contextPath + "/com.hsweb.repair.DataBase.Workers.flow?token="+token,
         title: '选择施工员',
@@ -4997,5 +4994,87 @@ function openWorkers(e){
     });
    
 }
+
+function openItemWorkers(e){
+	var el = e.sender;
+    var row = rpsItemGrid.getEditorOwnerRow(el);
+	var workers = rpsItemGrid.getCellEditor("workers", row);
+    var data = {};
+    data = {
+    	workers:row.workers,
+    	workersId:row.workersId
+    };
+ 	 $('.mini-textbox-input').blur();
+     nui.open({
+        url: webPath + contextPath + "/com.hsweb.repair.DataBase.Workers.flow?token="+token,
+        title: '选择施工员',
+        width: 600, height: 600,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           // var params = sendGuestForm.getData();
+            iframe.contentWindow.setData(data);
+        },
+        ondestroy: function (action)
+        {
+        	if(action=="ok"){
+        		var iframe = this.getIFrameEl();
+	        	var data = iframe.contentWindow.getData();
+	        	__workerIds = data.emlpszId;
+	        	workers.setValue(data.emlpszName);
+        	}
+        }
+    });
+}
+//0,综合 2,洗美 4,理赔
+function toChangBillTypeId(billTypeId){
+	var data =  billForm.getData();
+	var serviceId = data.id;
+	if(serviceId){
+		nui.ajax({
+	        url: baseUrl + "com.hsapi.repair.repairService.crud.transformBill.biz.ext",
+	        type:"post",
+	        //async: false,
+	        data:{ 
+	        	serviceId:serviceId,
+	        	billTypeId:billTypeId
+	        },
+	        cache: false,
+	        success: function (data) {  
+	            if(data.errCode=="S"){
+	            	//showMsg("转为洗美开单成功","S");
+	            	add();
+	            	var item={};
+	            	var main = data.main;
+	                if(billTypeId==2){
+                	    item.id = "3000";
+                	    item.text = "洗美开单详情";
+                	    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBill.flow";
+                	    item.iconCls = "fa fa-file-text";
+                	    //window.parent.activeTab(item);
+	                }
+	                if(billTypeId==4){
+	                	//showMsg("转为理赔开单成功","S");
+	                	item.id = "4000";
+	                    item.text = "理赔开单详情";
+	                    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.claimDetail.flow";
+	                    item.iconCls = "fa fa-file-text";
+	                }
+	                var params = {
+                	        id: main.id
+                	    };
+                	window.parent.activeTabAndInit(item,params);
+	            }else{
+	            	if(billTypeId==2){
+	                	showMsg("转为洗美开单失败","E");
+	                }
+	                if(billTypeId==4){
+	                	showMsg("转为理赔开单失败","E");
+	                }
+	            }
+	        }
+	    });
+	}	 
+}
+
 
 

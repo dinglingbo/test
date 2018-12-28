@@ -229,6 +229,8 @@
      showModified="false"
      allowSortColumn="false"
      visible="false"
+     showSummaryRow="true"
+     ondrawsummarycell="onDrawSummaryCell"
      >
     <div property="columns">
     	<div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
@@ -247,7 +249,7 @@
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                              url="" onvaluechanged="onPkgTypeIdValuechanged" emptyText=""  vtype="required" /> 
                 </div>
-                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime">工时/数量
+                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime"summaryType="sum" >工时/数量
                 </div>
                 <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>  
                 <div field="amt" headerAlign="center" name="pkgAmt"
@@ -260,7 +262,7 @@
                      <input property="editor"  width="60%" vtype="float"  class="nui-textbox"  onvaluechanged="onPkgRateValuechanged" selectOnFocus="true"/>
                 </div>
                  <div field="subtotal" headerAlign="center" name="pkgSubtotal"
-                     allowSort="false" visible="true" width="60" header="套餐金额" align="center" >
+                     allowSort="false" visible="true" width="60" header="套餐金额" align="center" summaryType="sum">
                      <input  property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged"/>
                 </div>
                 <div field="packageOptBtn" name="packageOptBtn" width="100" headerAlign="center" header="操作" align="center"></div>
@@ -278,6 +280,8 @@
      showModified="false"
      allowSortColumn="true"
      visible="false"
+     showSummaryRow="true"
+     ondrawsummarycell="onDrawSummaryCell2"
      >
     <div property="columns">
         <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
@@ -292,7 +296,7 @@
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
                              url="" onvaluechanged="onValueChangedItemTypeId" emptyText=""  vtype="required"/> 
                 </div>
-                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime">工时/数量
+                <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime" summaryType="sum">工时/数量
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedComQty" selectOnFocus="true"/>
                 </div>
                 <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>  
@@ -303,7 +307,7 @@
                     优惠率%
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemRate" selectOnFocus="true"/>
                 </div>
-                <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额
+                <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" summaryType="sum">金额
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemSubtotal" selectOnFocus="true"/>
                 </div>
                 <div field="amt"  name="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">项目总金额
@@ -316,7 +320,7 @@
 
 <div id="mainGrid" class="nui-datagrid" style="width:100%;height:auto;" showPager="false" 
 dataField="data"   multiSelect="false" allowCellWrap = true
-url=""  showModified="false" visible="false"
+url=""  showModified="false" visible="false" showSummaryRow="true"
 allowCellEdit="true" >
 <div property="columns">
    <div headerAlign="center" type="indexcolumn" width="20">序号</div>
@@ -327,11 +331,11 @@ allowCellEdit="true" >
         <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
         <div field="partCode" headerAlign="center" allowSort="false" visible="true" width="80px" header="配件编码"></div> 
         <div field="serviceTypeId" name="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
-        <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量"></div>
+        <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量" summaryType="sum"></div>
         <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>                        
         <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价"></div>
         <div field="rate" headerAlign="center" allowSort="false" visible="true" width="60" align="center"  header="优惠率"></div>
-        <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"></div>
+        <div field="subtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额" summaryType="sum"></div>
         <div field="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">金额</div>
         <div field="saleMan" headerAlign="center" allowSort="false" visible="true" width="50" header="销售员" align="center"></div>
         <div field="saleManId" headerAlign="center" allowSort="false" visible="false" width="80" header="销售员" align="center"></div>

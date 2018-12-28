@@ -87,7 +87,7 @@
 
 
 
-    <div id="win" class="nui-window" title="购物车(临时存放信息)" style="width:450px;height:300px;" 
+    <div id="win" class="nui-window" title="购物车(临时存放信息)" style="width:550px;height:300px;" 
         showMaxButton="true" showCollapseButton="true" showShadow="true"
         showToolbar="true" showFooter="true" showModal="false" allowResize="true" allowDrag="true"
         >
@@ -110,7 +110,7 @@
             </div>
         </div>
 
-        <div class="nui-fit">
+<!--         <div class="nui-fit"> -->
                 <div id="cartGrid" class="nui-datagrid" style="width:100%;height:100%;"
                              borderStyle="border:0;"
                              showPager="false"
@@ -141,7 +141,7 @@
                                 <div field="remark" width="80" headerAlign="center" allowSort="true">备注<input property="editor" class="nui-textbox"/></div>
                         </div>
                 </div>
-        </div>
+<!--         </div> -->
     </div>
 
 

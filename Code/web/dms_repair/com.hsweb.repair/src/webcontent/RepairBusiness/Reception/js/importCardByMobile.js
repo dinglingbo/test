@@ -108,7 +108,7 @@ function sure() {
 
 		for ( var key in requiredField) {
 				if (!newRow[key] || $.trim(newRow[key]).length == 0) {
-					showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
+					parent.parent.showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
 					return;
 				}
 			}
@@ -154,14 +154,14 @@ function saveEnterPart(partList){
 	                if(errMsg){
 						nui.get("fastCodeList").setValue(errMsg);
 						advancedTipWin.show();
-						//showMsg(errMsg,"S");
+						//parent.parent.showMsg(errMsg,"S");
 	                }else{
-						showMsg("导入成功!","S");
+	                	parent.parent.showMsg("导入成功!","S");
 	                }
 	            } else {
 					nui.get("fastCodeList").setValue(data.errMsg);
 					advancedTipWin.show();
-					//showMsg(data.errMsg || "导入失败!","W");
+					//parent.parent.showMsg(data.errMsg || "导入失败!","W");
 	            }
 	        },
 	        error : function(jqXHR, textStatus, errorThrown) {

@@ -53,13 +53,9 @@ var queryMemberLevel = apiPath + repairApi + "/com.hsapi.repair.baseData.team.ge
 function setData(data){
 	type = data.type;
 	serviceId = data.serviceId;
-	planFinishDate = data.planFinishDate||"";
-	if(planFinishDate==""){
-		nui.get("planFinishDate").readOnly = true;
-	}else{		
-		nui.get("planFinishDate").readOnly = true;
-		nui.get("planFinishDate").setValue(planFinishDate);
-	}
+	planFinishDate = new Date();
+	nui.get("planFinishDate").setValue(mini.formatDate ( planFinishDate,"yyyy-MM-dd HH:mm:ss"));
+
 }
 function init(){
     nui.mask({
@@ -242,7 +238,8 @@ function dispatchOk(){
 			workerIds :emlpszId,
 			workers: emlpszName,
 			serviceTypeIds:serviceTypeIdList,
-			type:type
+			type:type,
+			planFinishDate:nui.get("planFinishDate").getValue()
 	}
 	nui.ajax({	
 		url : setItemWorkersBatch,
@@ -255,7 +252,6 @@ function dispatchOk(){
 			if (text.errCode == 'S') {
 				showMsg("派工成功","S");
 				var data = {
-						planFinishDate:nui.get("planFinishDate").getValue(),
 						saveSuccess :"saveSuccess"
 				}
 				CloseWindow(data);

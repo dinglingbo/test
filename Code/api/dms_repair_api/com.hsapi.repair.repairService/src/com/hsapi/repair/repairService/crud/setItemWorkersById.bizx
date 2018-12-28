@@ -230,6 +230,10 @@
       <process:to type="query">param/workers</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">planFinishDate</process:from>
+      <process:to type="query">param/planFinishDate</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">param/modifier</process:to>
     </process:copy>
@@ -500,6 +504,7 @@
     <location x="1047" y="151"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="idList" iterableElement="t"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
@@ -795,6 +800,7 @@
     <process:input description="" isArray="false" name="workers" primitiveType="String"/>
     <process:input description="" isArray="false" name="type" primitiveType="String"/>
     <process:input description="" isArray="false" name="serviceTypeIds" primitiveType="String"/>
+    <process:input description="" isArray="false" name="planFinishDate" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

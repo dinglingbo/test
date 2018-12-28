@@ -88,7 +88,9 @@ function fixdata(data) { //文件流转BinaryString
 }
 var requiredField = {
 		serviceCode : "工单号",
-		carNo: "车牌号"
+		guestName:"客户姓名",
+		mobile : "电话号码",
+		carNo: "车牌号",
 };
 function sure() {
 	var data = mainGrid.getData();
@@ -159,18 +161,9 @@ function saveEnterPart(partList){
 	            nui.unmask(document.body);
 	            data = data || {};
 	            if (data.errCode == "S") {
-	                var errMsg = data.errMsg;
-	                if(errMsg){
-						nui.get("fastCodeList").setValue(errMsg);
-						advancedTipWin.show();
-						//showMsg(errMsg,"S");
-	                }else{
-						showMsg("导入成功!","S");
-	                }
+	            	parent.showMsg("导入成功!","S");
 	            } else {
-					nui.get("fastCodeList").setValue(data.errMsg);
-					advancedTipWin.show();
-					//showMsg(data.errMsg || "导入失败!","W");
+	            	parent.showMsg(data.errMsg || "导入失败!","W");
 	            }
 	        },
 	        error : function(jqXHR, textStatus, errorThrown) {

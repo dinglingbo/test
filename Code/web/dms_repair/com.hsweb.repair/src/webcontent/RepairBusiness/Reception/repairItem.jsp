@@ -55,9 +55,7 @@
                 <div field="saleMan" headerAlign="center"
                      allowSort="false" visible="true" width="50" header="" align="center" name="saleMan">
                       销售员<a href="javascript:setItemSaleMan()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
-                     <input  property="editor" enabled="true" dataField="memList" 
-                             class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url="" onvaluechanged="onitemsalemanChanged" emptyText=""  vtype="required"/> 
+                     <input class="nui-textbox" property="editor" id="saleMansName" name="saleMansName"  onclick="openItemSaleMans" /> 
                 </div>
                 <div field="saleManId" headerAlign="center"
                      allowSort="false" visible="false" width="80" header="销售员" align="center">
@@ -188,9 +186,7 @@
                     项目销售员：
                 </td>
                 <td >
-                   <input  property="editor" enabled="true" dataField="memList" id="ItemSale1"
-                             class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url=""  emptyText=""  vtype="required"  onvaluechanged="saleManChangedBat" oncloseclick="onCloseClick"/> 
+                   <input class="nui-textbox" property="editor" id="itemSaleMan" name="itemSaleMan"  onclick="setSaleManBat('item')" />  
                  </td>
             </tr> 
             <tr >
@@ -198,9 +194,8 @@
                     配件销售员：
                 </td>
                 <td >
-                   <input  property="editor" enabled="true" dataField="memList" id="ItemSale2"
-                             class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url=""  emptyText="" onvaluechanged="saleManChangedBatP"  vtype="required" oncloseclick="onCloseClick"/> 
+                 <input class="nui-textbox" property="editor" id="partSaleMan" name="partSaleMan"  onclick="setSaleManBat('part')" />  
+                    
                  </td>
             </tr>
             <tr>

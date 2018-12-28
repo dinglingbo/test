@@ -11,7 +11,7 @@
 <title>工单导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importMaintain.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importMaintain.js?v=1.0.8"></script>
 <style type="text/css">
 
 
@@ -70,31 +70,31 @@
 			style="width:100%;height:100%;">
 			<div property="columns">
 				<div type="indexcolumn" width="40px" header="序号"></div>
-									<div field="serviceCode" headerAlign="center" allowSort="true" width="180px">工单号</div>
+									<div field="工单号" headerAlign="center" allowSort="true" width="180px">工单号</div>
 
-									<div field="billTypeId" headerAlign="center" allowSort="true" width="60px">
+									<div field="工单类型" headerAlign="center" allowSort="true" width="60px">
 										工单类型</div>
-									<div field="guestName" headerAlign="center" allowSort="true" width="60px">
+									<div field="客户姓名" headerAlign="center" allowSort="true" width="60px">
 										客户姓名</div>
-									<div field="mobile" headerAlign="center" allowSort="true" width="100px">
+									<div field="客户电话" headerAlign="center" allowSort="true" width="100px">
 										客户电话</div>
-									<div field="carNo" headerAlign="center" allowSort="true" width="80px">
+									<div field="车牌号" headerAlign="center" allowSort="true" width="80px">
 										车牌号</div>
-									<div field="carVin" headerAlign="center" allowSort="true" width="120px">
-										车架号（VIN）</div>
-									<div field="itemAmt" headerAlign="center" allowSort="true" width="60px">
+									<div field="车架号（VIN）" headerAlign="center" allowSort="true" width="120px">
+										车架号(VIN)</div>
+									<div field="项目金额" headerAlign="center" allowSort="true" width="60px">
 										项目金额</div>
-									<div field="partAmt" headerAlign="center" allowSort="true" width="60px">
+									<div field="配件金额" headerAlign="center" allowSort="true" width="60px">
 										配件金额</div>
-									<div field="packageAmt" headerAlign="center" allowSort="true" width="60px">
+									<div field="套餐金额" headerAlign="center" allowSort="true" width="60px">
 										套餐金额</div>
-									<div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
+									<div field="进店日期" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
 										进店日期</div>
-									<div field="outDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
+									<div field="结算日期" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
 										结算日期</div>
-									<div field="mtAdvisor" headerAlign="center" allowSort="true" width="60px">
+									<div field="维修顾问" headerAlign="center" allowSort="true" width="60px">
 										维修顾问</div>
-									<div field="remark" renderer="onstatus" headerAlign="center" allowSort="true" width="120px">备注</div>
+									<div field="备注" renderer="onstatus" headerAlign="center" allowSort="true" width="120px">备注</div>
 
 			</div>
 		</div>

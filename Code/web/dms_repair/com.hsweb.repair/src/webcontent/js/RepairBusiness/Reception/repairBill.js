@@ -2191,15 +2191,12 @@ function setPkgWorkers(){
 			var iframe = this.getIFrameEl(); 
 			var data = {
 					type : "package",
-					serviceId : fserviceId,
-					planFinishDate : mini.formatDate ( nui.get("planFinishDate").getValue(),"yyyy-MM-dd HH:mm:ss")
+					serviceId : fserviceId
 			};// 传入页面的json数据
 			iframe.contentWindow.setData(data);
 		},
 		ondestroy : function(action) {// 弹出页面关闭前
 			if (action.saveSuccess == "saveSuccess") {
-				nui.get("planFinishDate").setValue(action.planFinishDate);
-				saveNoshowMsg();
                 var p1 = {
                         interType: "package",
                         data:{
@@ -2620,15 +2617,12 @@ function setItemWorkers(){
 			var iframe = this.getIFrameEl(); 
 			var data = {
 					type : "item",
-					serviceId : fserviceId,
-					planFinishDate : mini.formatDate ( nui.get("planFinishDate").getValue(),"yyyy-MM-dd HH:mm:ss")
+					serviceId : fserviceId
 			};// 传入页面的json数据
 			iframe.contentWindow.setData(data);
 		},
 		ondestroy : function(action) {// 弹出页面关闭前
 			if (action.saveSuccess == "saveSuccess") {
-				nui.get("planFinishDate").setValue(action.planFinishDate);
-				saveNoshowMsg();
                 var p1 = {
                         
                 }
@@ -5019,7 +5013,7 @@ function openItemWorkers(e){
      nui.open({
         url: webPath + contextPath + "/com.hsweb.repair.DataBase.Workers.flow?token="+token,
         title: '选择施工员',
-        width: 600, height: 500,
+        width: 600, height: 600,
         onload: function () {
             var iframe = this.getIFrameEl();
            // var params = sendGuestForm.getData();

@@ -70137,7 +70137,7 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node36" name="RpsOldMaintain" nodeType="table" displayName="RpsOldMaintain" author="Administrator" instanceClass="" table="rps_old_maintain" genStrategy="assigned">
+  <nodes xsi:type="model:PEntityNode" id="node36" name="RpsOldMaintain" nodeType="table" displayName="RpsOldMaintain" author="Administrator" instanceClass="" table="rps_old_maintain" genStrategy="native">
     <location x="60" y="24198"/>
     <size height="390" width="150"/>
     <figSize height="20" width="150"/>

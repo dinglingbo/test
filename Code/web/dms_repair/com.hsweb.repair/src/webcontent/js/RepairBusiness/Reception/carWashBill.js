@@ -4951,7 +4951,7 @@ function openItemWorkers(e){
      nui.open({
         url: webPath + contextPath + "/com.hsweb.repair.DataBase.Workers.flow?token="+token,
         title: '选择施工员',
-        width: 600, height: 400,
+        width: 600, height: 600,
         onload: function () {
             var iframe = this.getIFrameEl();
            // var params = sendGuestForm.getData();

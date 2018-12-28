@@ -41,8 +41,8 @@
          showSummaryRow="false">
         <div property="columns">
             <div type="indexcolumn">序号</div>
-            <div allowSort="true" field="shortName" width="60" headerAlign="center" header="供应商名称"></div>
-            <div allowSort="true" field="storeId" width="60" headerAlign="center" header="仓库"></div>
+            <div allowSort="true" field="shortName" width="100" headerAlign="center" header="供应商名称"></div>
+            <div allowSort="true" field="storeId" width="70" headerAlign="center" header="仓库"></div>
             <div allowSort="true" datatype="float" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
             <div allowSort="true" field="sellPrice" width="60" headerAlign="center" header="售价"></div>
             <div allowSort="true" field="manager" width="60" headerAlign="center" header="联系人"></div>

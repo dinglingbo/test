@@ -600,7 +600,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     //切换角色
     function changeOrgs(orgid) {
         if (orgid != currOrgId) {
-            $("#toggleRole")[0].action = "com.hsapi.system.auth.login.wlogin.flow";
+            $("#toggleRole")[0].action = "com.hsapi.system.auth.login.loginCloud.flow";
             $("#operatorId").val(currUserId);
             $("#orgid").val(orgid);
             $("#toggleRole")[0].submit();

@@ -4996,7 +4996,6 @@ function openPkgWorkers(e){
 	        	var data = iframe.contentWindow.getData();
 	        	__workerIds = data.emlpszId;
 	        	workers.setValue(data.emlpszName);
-	        	row.workersId = data.emlpszId;
 	        	planFinishDate = data.planFinishDate;
         	}
         }

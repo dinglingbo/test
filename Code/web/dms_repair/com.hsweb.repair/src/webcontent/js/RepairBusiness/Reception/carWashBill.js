@@ -4985,12 +4985,28 @@ function toChangBillTypeId(billTypeId){
 	        cache: false,
 	        success: function (data) {  
 	            if(data.errCode=="S"){
+	            	//showMsg("转为洗美开单成功","S");
+	            	add();
+	            	var item={};
+	            	var main = data.main;
 	                if(billTypeId==0){
-	                	showMsg("转为综合开单成功","S");
+	                	item.id = "2000";
+	                    item.text = "综合开单详情";
+	                    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow";
+	                    item.iconCls = "fa fa-file-text";
+                	    //window.parent.activeTab(item);
 	                }
 	                if(billTypeId==4){
-	                	showMsg("转为理赔开单成功","S");
+	                	//showMsg("转为理赔开单成功","S");
+	                	item.id = "4000";
+	                    item.text = "理赔开单详情";
+	                    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.claimDetail.flow";
+	                    item.iconCls = "fa fa-file-text";
 	                }
+	                var params = {
+                	        id: main.id
+                	    };
+                	window.parent.activeTabAndInit(item,params);
 	            }else{
 	            	if(billTypeId==0){
 	                	showMsg("转为综合开单失败","E");

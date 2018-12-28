@@ -24,10 +24,10 @@
     	function open(){
     	
     	nui.open({
-		url :  webPath + contextPath + "/repair/RepairBusiness/Reception/Workers.jsp",
-		title : "班组选择",
+		url :  webPath + contextPath + "/repair/RepairBusiness/Reception/Salesperson.jsp",
+		title : "销售员选择",
 		width : 600,
-		height : 480,
+		height : 400,
 		onload : function() {
 				
 		},

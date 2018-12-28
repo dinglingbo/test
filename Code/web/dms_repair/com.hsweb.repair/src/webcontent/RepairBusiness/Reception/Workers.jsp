@@ -176,7 +176,63 @@ label{
 	</style>
 </head>
 	<body >
-    <!-- <input class="nui-textbox" id="text1" > -->
+    		<div>
+			<table>
+			
+				<tr >
+					<td  >
+						<span class="da">预计完工时间</span>
+					</td>
+				</tr>
+ 				<tr>
+					<td >	
+					<div class="xline" ></div>
+					</td>
+				</tr> 
+<!--  				<tr>	
+					<td >
+						<div style="display:inline;width:100%;">
+							<font size="3">选择方式：</font>  
+							<div class="mini-radiobuttonlist" repeatItems="1"
+								repeatLayout="table" repeatDirection="vertical" name="isShare"
+								textField="text" valueField="value"
+								data="[{value:'0',text:'耗时选择',},{value:'1',text:'时间选择器'}]" value="0" onvaluechanged="">		
+							</div>
+						</div>
+					</td>
+					
+				</tr> -->
+ 				<tr>
+					<td>
+						<div>
+							<span class="xiao">施工耗时：</span>
+							<input class="nui-textbox" id="day" width="50px" onvalueChanged="times(this.id)"/>天<input class="nui-textbox" id="hour" width="50px" onvalueChanged="times(this.id)"/>时<input class="nui-textbox" id="min" width="50px" onvalueChanged="times(this.id)" />分<br>
+							
+							<a  class="sj" style="margin-left: 70px;" onclick="timeStamp(15)" >15m</a>
+							<a  class="sj" onclick="timeStamp(30)" >&nbsp;30m&nbsp;</a>
+							<a  class="sj" onclick="timeStamp(60)" >&nbsp;1h&nbsp;&nbsp;</a>
+							<a  class="sj" onclick="timeStamp(120)" >&nbsp;2h&nbsp;&nbsp;</a>
+							<a  class="sj" onclick="timeStamp(180)" >&nbsp;3h&nbsp;&nbsp;</a>
+							<a  class="sj" onclick="timeStamp(240)" >&nbsp;4h&nbsp;&nbsp;</a>
+							<a  class="sj" onclick="timeStamp(1440)" >&nbsp;1d&nbsp;&nbsp;</a>
+							<a  class="sj" onclick="timeStamp(2880)" >&nbsp;2d&nbsp;&nbsp;</a>
+						</div>
+
+					</td>
+				</tr>
+				<tr>
+					<td >
+						<span class="xiao">预计完工时间：</span>
+						<input class="nui-textbox" id="planFinishDate" name="planFinishDate">
+					</td>
+				</tr> 
+								<tr>
+					<td>
+						<span class="da">施工人员</span>
+					</td>
+				</tr>
+			</table>
+		</div>
 
 		<div id="kong">
 			<div id="team" >

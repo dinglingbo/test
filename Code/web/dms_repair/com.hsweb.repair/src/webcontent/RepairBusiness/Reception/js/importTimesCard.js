@@ -107,12 +107,19 @@ function sure() {
 
 		for ( var key in requiredField) {
 				if (!newRow[key] || $.trim(newRow[key]).length == 0) {
-					showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
+					parent.parent.showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
 					return;
 				}
 			}
+		//判断客户有没有选择
+		  nui.confirm("确定导入吗？", "友情提示",function(action){
+		       if(action == "ok"){
+		    	   partList.push(newRow);
+		     }else {
+					return;
+			 }
+			 }); 
 
-			partList.push(newRow);
 		}
 
 	}
@@ -155,7 +162,7 @@ function saveEnterPart(partList){
 						advancedTipWin.show();
 						//showMsg(errMsg,"S");
 	                }else{
-						showMsg("导入成功!","S");
+	                	parent.parent.showMsg("导入成功!","S");
 	                }
 	            } else {
 					nui.get("fastCodeList").setValue(data.errMsg);

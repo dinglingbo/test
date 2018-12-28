@@ -59,10 +59,9 @@ $(document).ready(function(v) {
 	var queryMemberUrl = apiPath + sysApi + "/com.hsapi.system.dict.org.queryMember.biz.ext";
     var queryServiceType = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryServiceType.biz.ext";
     var setItemWorkersBatch = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.setItemWorkersBatch.biz.ext";
-    
 function setData(data){
-	workers =data.workers||"";
-	workersId =data.workersId||"";
+	workers =data.saleMan||"";
+	workersId =data.saleManId||"";
 	if(workersId==""){
 		
 	}else{
@@ -144,7 +143,7 @@ function dispatchOk(){
 	var emlpszId = "";
 	var emlpszName = "";
 	if(emlpsz.length==0){
-		showMsg("请选择施工员！","W");
+		showMsg("请选择销售员！","W");
 		return;
 	}
     nui.mask({

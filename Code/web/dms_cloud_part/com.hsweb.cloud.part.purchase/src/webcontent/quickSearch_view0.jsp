@@ -101,17 +101,17 @@
 							 showSummaryRow="true"
 							 showFilterRow="false" allowCellSelect="true" allowCellEdit="true">
 						<div property="columns">
-								<div type="expandcolumn" width="40">替换件</div>
+								<div type="expandcolumn" width="60">替换件</div>
 								<div type="checkboxcolumn" field="check" width="20" headerAlign="center" 
 									 align="center" trueValue="1" falseValue="0"><span class="fa fa-check"></span>
 								</div>
 								<div field="partCode" width="150" headerAlign="center" allowSort="true" summaryType="count">编码</div>
 								<div field="fullName" width="150" headerAlign="center" allowSort="true">全称</div>
-								<div field="outableQty" width="40" headerAlign="center">库存</div>
-								<div field="partBrandId" width="70" headerAlign="center">品牌</div>
-								<div field="partName" width="80" headerAlign="center" allowSort="true">名称</div>
-								<div field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
-								<div field="applyCarModel" width="120" headerAlign="center" allowSort="true">品牌车型</div>
+								<div field="outableQty" width="50" headerAlign="center">库存</div>
+								<div field="partBrandId" width="80" headerAlign="center">品牌</div>
+								<div field="partName" width="90" headerAlign="center" allowSort="true">名称</div>
+								<div field="unit" width="40" headerAlign="center" allowSort="true">单位</div>
+								<div field="applyCarModel" width="150" headerAlign="center" allowSort="true">品牌车型</div>
 								<div field="spec" width="60" headerAlign="center" allowSort="true">规格</div>
 								<div field="qualityTypeId" width="60" headerAlign="center">品质</div>
   

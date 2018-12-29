@@ -53,7 +53,15 @@
 	<!--#groupName# card_name  sale_man-->
 	<select id="queryCard" parameterClass="commonj.sdo.DataObject" resultClass="java.util.HashMap">
 		SELECT
-				#groupName# AS name,
+		
+		   <isEqual prepend="" property="groupName" compareValue="card_name">
+			    card_name as name,
+			</isEqual>
+			
+			<isEqual prepend="" property="groupName" compareValue="sale_man">
+			    sale_man as name,
+			</isEqual>
+            
 				COUNT(1) AS num,
 				SUM(recharge_amt) AS amt
 			FROM wb_repair.rps_stored_record 
@@ -73,11 +81,19 @@
 	
 	<select id="querytimesCard" parameterClass="commonj.sdo.DataObject" resultClass="java.util.HashMap">
 		SELECT
-				#groupName# AS name,
+		
+		   <isEqual prepend="" property="groupName" compareValue="card_name">
+			    card_name as name,
+			</isEqual>
+			
+			<isEqual prepend="" property="groupName" compareValue="sale_man">
+			    sale_man as name,
+			</isEqual>
+
 				COUNT(1) AS num,
 				SUM(sell_amt) AS amt
 			FROM wb_repair.rps_card_times 
-			WHERE orgid = #orgid# and is_settle = 1
+			WHERE orgid = #orgid# and status = 2
 		<dynamic>
 			<isNotEmpty prepend="and" property="startDate">  
                 (settle_date &gt;= #startDate#)

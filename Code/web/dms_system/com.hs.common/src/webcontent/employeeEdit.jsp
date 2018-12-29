@@ -12,7 +12,7 @@
 <head> 
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.0.9" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/common/js/employeeEdit.js?v=1.1.0" type="text/javascript"></script>
     <style type="text/css">
 </style>
 </head>
@@ -92,6 +92,12 @@
                 <td colspan="2"><input class="nui-textbox" name="urgencyPersonPhone" id="urgencyPersonPhone" onvalidation="onMobileValidation" /></td>
 
             </tr> 
+             <tr>
+                        <td align="right">是否结算权限：</td>
+                        <td>
+                       		 <input class="nui-combobox"  required="false" id="isCanSettle" name="isCanSettle" textField="name"  value="0" valueField="id" />
+                        </td>
+             </tr>
         </table>
     </fieldset>
     <fieldset id="fd1" style="width:600px;">

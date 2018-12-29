@@ -991,12 +991,12 @@ function doSettle() {
 	}
 
 	var rows = rightGrid.getSelecteds();
-	if(rows[0].settleStatus!=0){
+	if(rows[0].settleStatus==2){
 		showMsg("此单已结算", "W");
 		return;
 	}
-	if(rows[0].nowAmt!=rows[0].rpAmt){
-		showMsg("结算金额和应收金额不一致", "W");
+	if(rows[0].nowAmt>rows[0].noCharOffAmt){
+		showMsg("结算金额不能大于应结金额", "W");
 		return;
 	}
 	var s = rows.length;

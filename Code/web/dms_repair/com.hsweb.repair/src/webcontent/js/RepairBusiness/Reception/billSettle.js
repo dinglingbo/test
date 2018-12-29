@@ -425,10 +425,11 @@ function pay(){
 		}*/
 		deductible = nui.get("deductible").getValue()||0;
 		count = (count+deductible).toFixed(2);
-		if(count!=zongAmt){
-			nui.alert("结算金额和应结金额不一致，请重新确认！","提示");
+		if(count>zongAmt){
+			nui.alert("结算金额不能大于应收，请重新确认！","提示");
 			return;
 		}
+		
 	var deductible = nui.get("deductible").getValue()||0;
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
 	

@@ -246,7 +246,7 @@
       <process:to type="query">ppTemp/billTypeCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
+      <process:from type="query" pattern="reference">balaAmtC</process:from>
       <process:to type="query">ppTemp/charOffAmt</process:to>
     </process:copy>
     <process:copy>

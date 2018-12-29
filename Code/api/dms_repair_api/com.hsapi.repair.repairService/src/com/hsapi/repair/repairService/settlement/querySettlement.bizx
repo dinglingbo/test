@@ -111,7 +111,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">工单ID错误，找不到对应记录</process:from>
+      <process:from type="literal" pattern="reference">当前网络有问题，请稍后再试！</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>

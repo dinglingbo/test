@@ -349,9 +349,7 @@ hr {
 		var DetailUrl = baseUrl
 				+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
     	$(document).ready(function(){
-    		$('#currOrgName').text(currRepairSettorderPrintShow||currOrgName);
-    		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
-    		$('#currUserName').text("打印人:"+currUserName);
+    		
 			$("#print").click(function () {
 	            $(".print_btn").hide();
 	            document.getElementById("query-table").style.overflow="hidden"
@@ -385,6 +383,9 @@ hr {
             else window.close();
         }
     	function SetData(params,detailParms){
+    		$('#currOrgName').text(currRepairSettorderPrintShow||currOrgName);
+    		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
+    		$('#currUserName').text("打印人:"+currUserName);
     		document.getElementById("spstorename").innerHTML = "采购订单";
     		document.getElementById("guestAddr").innerHTML = "地址："+currCompAddress;
 	   		document.getElementById("phone").innerHTML ="电话："+currCompTel;

@@ -249,6 +249,19 @@ hr {
                 </tr>
 	            </table>
 	            
+	            <hr/>
+				<table width="100%">
+				  <tr>			  	
+				    <td style="font-size:8px;" id="guestAddr" align="left">地址:</td>
+				    <td style="font-size:8px;" colspan="2" id="nowDate" align="left"  class="" >打印日期:</td>
+<!--  				    <td colspan="2" style="text-align: right" id="serviceId"  class="" >No:</td>  -->
+				  </tr>
+				  <tr id="border1">
+				  	<td style="font-size:8px;" id="phone">电话:</td>
+				    <td style="font-size:8px;" id="createDate" align="left">订单日期:</td>	    
+				  </tr>
+				</table>
+				
 				<hr/>
 				<table id="ybk" width="100%">
 				  <tr>
@@ -307,14 +320,16 @@ hr {
 				  <tr><td  colspan="3"><hr/></td></tr>
 				  <tr id="border3">
 				    <td id="remark1">备注</td>
-				    <td style="" id="guestAddr" align="left">地址:</td>
-				    <td style="" id="nowDate" align="center"  class="" >打印日期:</td>
+<!-- 				    <td style="" id="guestAddr" align="left">地址:</td> -->
+<!-- 				    <td style="" id="nowDate" align="center"  class="" >打印日期:</td> -->
 				  </tr>
 				  <tr><td  colspan="3"><hr/></td></tr>
 				   <tr id="border4">
 				    <td id="">注(白联仓库   红联财务  黄联供应商)</td>
-				    <td style="" id="phone">电话:</td>
-				   <td style="" id="createDate" align="center">订单日期:</td>
+				    <td></td>
+				    <td></td>
+<!-- 				    <td style="" id="phone">电话:</td> -->
+<!-- 				   <td style="" id="createDate" align="center">订单日期:</td> -->
 				  </tr>
 				</table>
             </div>
@@ -335,9 +350,7 @@ hr {
 		var DetailUrl = baseUrl
 				 + "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
     	$(document).ready(function(){
-    		$('#currOrgName').text(currRepairSettorderPrintShow||currOrgName);
-    		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
-    		$('#currUserName').text("打印人:"+currUserName);
+    		
 			$("#print").click(function () {
 	            $(".print_btn").hide();
 	            document.getElementById("query-table").style.overflow="hidden"
@@ -371,6 +384,10 @@ hr {
             else window.close();
         }
     	function SetData(params,detailParms){
+    		
+    		$('#currOrgName').text(currRepairSettorderPrintShow||currOrgName);
+    		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
+    		$('#currUserName').text("打印人:"+currUserName);
     		document.getElementById("spstorename").innerHTML = "销售退货单";
     		document.getElementById("guestAddr").innerHTML = "地址："+currCompAddress;
 	   		document.getElementById("phone").innerHTML ="电话："+currCompTel;

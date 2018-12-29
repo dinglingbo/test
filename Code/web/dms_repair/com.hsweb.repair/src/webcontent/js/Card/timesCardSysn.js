@@ -571,7 +571,8 @@ function selectPackage() {
 			var iframe = this.getIFrameEl();
 			var list = [];
 			var params = {
-				list : list
+				list : list,
+				type:"pkg"
 			};
 			// params.list = rightItemGrid.getData();
 			iframe.contentWindow.setData(params);

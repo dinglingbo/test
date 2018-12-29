@@ -266,7 +266,7 @@
       <process:to type="query">fisRpAccount/billTypeCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
+      <process:from type="query" pattern="reference">balaAmtC</process:from>
       <process:to type="query">fisRpAccount/charOffAmt</process:to>
     </process:copy>
     <process:copy>
@@ -302,7 +302,7 @@
       <process:to type="query">fisRpAccount/settleType</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">settlement/balaAmt</process:from>
+      <process:from type="query" pattern="reference">balaAmtC</process:from>
       <process:to type="query">fisRpAccount/trueCharOffAmt</process:to>
     </process:copy>
     <process:copy>
@@ -580,7 +580,7 @@
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign9" name="结算金额与应结不一致" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="结算金额不能超过应结金额" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
       <targetNode>assign26</targetNode>
@@ -619,7 +619,7 @@
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">结算金额与应结金额不一致</process:from>
+      <process:from type="literal" pattern="reference">结算金额不能超过应结金额</process:from>
       <process:to type="query">msg</process:to>
     </process:copy>
     <process:copy>
@@ -647,13 +647,13 @@
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">结算金额与应结金额不一致</process:from>
+      <process:from type="literal" pattern="reference">结算金额不能超过应结金额</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="734" y="75"/>
-    <figSize height="17" width="121"/>
+    <location x="722" y="75"/>
+    <figSize height="17" width="145"/>
     <node>assign9</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值9" displayName="赋值" type="assign">
@@ -1696,7 +1696,7 @@
       <sourceNode>assign25</sourceNode>
       <targetNode>assign9</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NE">
+        <process:simpleCondition operator="LT">
           <process:leftOperand type="query">balaAmt</process:leftOperand>
           <process:rightOperand type="query">balaAmtC</process:rightOperand>
         </process:simpleCondition>

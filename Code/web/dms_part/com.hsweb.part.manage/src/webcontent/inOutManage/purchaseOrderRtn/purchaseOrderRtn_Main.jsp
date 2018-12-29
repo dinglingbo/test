@@ -113,7 +113,7 @@
             <div header="退货信息" headerAlign="center">
                 <div property="columns">
                 	<div field="auditSign" width="60" headerAlign="center" header="状态"></div>
-                    <div allowSort="true" field="serviceId" width="130" summaryType="count" headerAlign="center" header="退货单号"></div>
+                    <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="退货单号"></div>
                     <div field="guestFullName" width="190" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>

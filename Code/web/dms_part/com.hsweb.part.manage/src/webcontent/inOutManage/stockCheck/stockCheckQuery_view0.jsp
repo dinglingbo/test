@@ -96,7 +96,7 @@
             <div type="indexcolumn" width="40">序号</div>
             <div header="" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="serviceId" width="130" summaryType="count" headerAlign="center" header="盘点单号"></div>
+                    <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="盘点单号"></div>
                     <div allowSort="true" field="createDate"  width="120" headerAlign="center" header="盘点日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="盘点员"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div>

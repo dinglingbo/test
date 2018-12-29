@@ -347,8 +347,11 @@ function getData() {
 function setData(data) {
 	list = data.list || [];
 	nui.get("selectBtn").show();
+	if(data.type && data.type=="pkg"){
+		nui.get("datagrid1").setWidth("100%");
+		nui.get("packageGrid").setWidth("100%");
+	}
 }
-
 function setViewData(ck, delck, cck, params){
 	isChooseClose = 0;
 	callback = ck;

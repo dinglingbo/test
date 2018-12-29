@@ -4687,13 +4687,15 @@ function SaveCheckMain() {
     if(!data.id){
         showMsg("请先保存工单!","W");
         return;
-    }
+    } 
     if(isRecord == "0"){
         var temp ={
             serviceId:data.id, 
             carId:data.carId,
             carNo:data.carNo,
-            checkStatus:0,
+            checkStatus: 0,
+            carVin:data.carVin,
+            serviceCode:$('#servieIdEl').text(),
             enterKilometers:data.enterKilometers,
             mtAdvisorId:data.mtAdvisorId,
             mtAdvisor:data.mtAdvisor,
@@ -4734,7 +4736,7 @@ function SaveCheckMain() {
 
 
 function MemSelectCancel(e) {
-    if(e == 1){
+    if(e == 1){ 
 
         $("#show1").show();
         $("#show2").hide();

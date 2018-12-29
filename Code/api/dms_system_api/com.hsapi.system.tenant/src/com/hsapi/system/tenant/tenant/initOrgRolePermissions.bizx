@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="initOrgRolePermissions.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="初始子公司&#xD;&#xA;1、根据com_company新增组织机构org_organization&#xD;&#xA;2、当天添加人新增到org_emporg且配置管理员角色(查询模版角色)&#xD;&#xA;3、添加当前用户到cap_partyauth（添加管理员角色）&#xD;&#xA;4、角色权限，资源cap_resauth&#xD;&#xA;5、初始往来单位com_guest&#xD;&#xA;6、初始仓库com_store&#xD;&#xA;7、不用添加员工信息和用户信息（需要切换到新增的机构添加员工）&#xD;&#xA;&#xD;&#xA;目前只取管理员角色 15  对应的角色资源  com_cap_resauth" title="Administrator&#x9;18-6-14 上午10:51">
-    <location x="57" y="-65"/>
-    <size height="246" width="406"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="初始子公司&#xD;&#xA;1、根据com_company新增组织机构org_organization&#xD;&#xA;2、当天添加人新增到org_emporg且配置管理员角色(查询模版角色)&#xD;&#xA;3、添加当前用户到cap_partyauth（添加管理员角色）&#xD;&#xA;4、角色权限，资源cap_resauth&#xD;&#xA;5、初始往来单位com_guest&#xD;&#xA;6、初始仓库com_store&#xD;&#xA;7、不用添加员工信息和用户信息（需要切换到新增的机构添加员工）&#xD;&#xA;&#xD;&#xA;目前汽修只取管理员角色 15  对应的角色资源  com_cap_resauth&#xD;&#xA;com_tenant_menu -1&#xD;&#xA;&#xD;&#xA;目前汽配只取管理员角色 24  对应的角色资源  com_cap_resauth&#xD;&#xA;com_tenant_menu -2" title="Administrator&#x9;18-6-14 上午10:51">
+    <location x="68" y="-90"/>
+    <size height="261" width="480"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
-    <sourceConnections xsi:type="process:tLink" id="link57" name="link57" displayName="link0" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link57" name="link57" displayName="link0" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <location x="30" y="217"/>
     <size height="28" width="28"/>
@@ -29,8 +35,28 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>assign8</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">type</process:leftOperand>
+          <process:rightOperand type="literal">PART</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link14" name="link14" displayName="连接线" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>assign9</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">type</process:leftOperand>
+          <process:rightOperand type="literal">REPAIR</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link57</targetConnections>
-    <location x="273" y="217"/>
+    <location x="150" y="217"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
@@ -107,7 +133,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="271" y="253"/>
+    <location x="148" y="253"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -121,6 +147,8 @@
       <targetNode>assign5</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
+    <targetConnections>link15</targetConnections>
+    <targetConnections>link16</targetConnections>
     <location x="427" y="217"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
@@ -1004,7 +1032,7 @@
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.getTemplateMenu</process:partner>
       <process:inputVariables>
-        <process:inputVariable id="0" name="tentantId" type="literal" value="String" valueType="Primitive" pattern="reference">-1</process:inputVariable>
+        <process:inputVariable id="0" name="tentantId" type="literal" value="String" valueType="Primitive" pattern="reference">inx</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="tenantMenu" type="query" value="com.hsapi.system.data.sys.ComTenantMenu[]" valueType="DataObject">tmpComTenantMenu</process:outputVariable>
@@ -1181,6 +1209,44 @@
     <figSize height="17" width="25"/>
     <node>invokePojo6</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign8</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+    </sourceConnections>
+    <targetConnections>link11</targetConnections>
+    <location x="150" y="300"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign8label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">-2</process:from>
+      <process:to type="query">inx</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
+    <location x="148" y="336"/>
+    <figSize height="17" width="32"/>
+    <node>assign8</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>invokePojo2</targetNode>
+    </sourceConnections>
+    <targetConnections>link14</targetConnections>
+    <location x="223" y="353"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign9label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">-1</process:from>
+      <process:to type="query">inx</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
+    <location x="221" y="389"/>
+    <figSize height="17" width="32"/>
+    <node>assign9</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-06-14 11:18:53" date="2018-06-14Z" description="" name="initOrgRolePermissions" version="7.0.0.0"/>
@@ -1203,6 +1269,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComTenantMenu" name="tmpmenu"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComTenantMenu" name="menu"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.ComTenantMenu" name="menulist"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="inx" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.system.data.sys.ComCompany" name="comCompany"/>

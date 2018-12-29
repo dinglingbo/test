@@ -15,11 +15,14 @@ var basicInfoForm = null;
 var form1=null;
 var workList=[];
 var memberLever=[];
+var isCanSettle ;
 $(document).ready(function(v) {
 	isShowOwnBill=nui.get("isShowOwnBill");
 	isAllowRemind=nui.get("isAllowRemind");
+	isCanSettle=nui.get("isCanSettle");
 	isShowOwnBill.setData(isservicelist);
 	isAllowRemind.setData(isservicelist);
+	isCanSettle.setData(isservicelist);
 	isservice=nui.get("isArtificer");
 	sex=nui.get("sex");
 	sex.setData(sexlist);

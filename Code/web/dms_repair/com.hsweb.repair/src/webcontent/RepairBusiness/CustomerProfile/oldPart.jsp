@@ -8,43 +8,12 @@
   - Description:
 -->
 <head>
-<title>客户储值卡导入</title>
+<title>工单配件导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importTimesCard.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/oldPart.js?v=1.0.9"></script>
 <style type="text/css">
-/*.a-upload {
-    padding: 4px 10px;
-    height: 20px;
-    line-height: 20px;
-    position: relative;
-    cursor: pointer;
-    color: #888;
-    background: #fafafa;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    overflow: hidden;
-    display: inline-block;
-    *display: inline;
-    *zoom: 1
-}
 
-.a-upload  input {
-    position: absolute;
-    font-size: 100px;
-    right: 0;
-    top: 0;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    cursor: pointer
-}
-
-.a-upload:hover {
-    color: #444;
-    background: #eee;
-    border-color: #ccc;
-    text-decoration: none
-}*/
 
 
 .file {
@@ -90,7 +59,7 @@
 					    <input type="file" name="" id="" onchange="importf(this)">
 					</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
-	               <a class="nui-button" plain="true" href="<%=request.getContextPath() %>/repair/RepairBusiness/template/计次卡导入模板.xlsx"><span class="fa fa-arrow-down fa-lg"></span>下载计次卡模板</a>
+	                <a class="nui-button" plain="true" href="<%=request.getContextPath() %>/repair/RepairBusiness/template/工单配件导入模板.xls"><span class="fa fa-arrow-down fa-lg"></span>下载工单配件模板</a>
 				</td>
 	        </tr>
 	    </table>
@@ -100,21 +69,31 @@
 			showSummaryRow="true" showModified="false" allowCellSelect="true" allowCellEdit="true" allowSortColumn="false"
 			style="width:100%;height:100%;">
 			<div property="columns">
-				<div type="indexcolumn">序号</div>
-				<div field="车牌号" width="90px" summaryType="count" headerAlign="center" allowSort="true">
-					*车牌号<input property="editor" class="nui-textbox"/></div>
-				<div field="项目名称" width="70px" headerAlign="center" allowSort="true">
-					*项目名称<input property="editor" class="nui-textbox"/></div>
-				<div field="总次数" width="135px" headerAlign="center" allowSort="true">
-					*总次数<input property="editor" class="nui-textbox"/></div>
-				<div field="已使用次数" width="135px" headerAlign="center" allowSort="true">
-					*已使用次数<input property="editor" class="nui-textbox"/></div>
+				<div type="indexcolumn" width="40px" header="序号"></div>
+									<div field="工单号" headerAlign="center" allowSort="true" width="180px">*工单号</div>
+
+									<div field="配件名称" headerAlign="center" allowSort="true" width="60px">
+										*配件名称</div>
+									<div field="配件品牌" headerAlign="center" allowSort="true" width="60px">
+										配件品牌</div>
+									<div field="数量" headerAlign="center" allowSort="true" width="100px">
+										数量</div>
+									<div field="单价" headerAlign="center" allowSort="true" width="80px">
+										单价</div>
+									<div field="单位" headerAlign="center" allowSort="true" width="120px">
+										单位</div>
+									<div field="小计" headerAlign="center" allowSort="true" width="60px">
+										小计</div>
+									<div field="销售员" headerAlign="center" allowSort="true" width="60px">
+										销售员</div>
+									<div field="备注" headerAlign="center" allowSort="true" width="60px">
+										备注</div>
 			</div>
 		</div>
 	</div>
 
     <div id="advancedTipWin" class="nui-window"
-        title="未成功导入计次卡" style="width:400px;height:200px;"
+        title="未成功导入客户" style="width:400px;height:200px;"
         showModal="true"
         allowResize="false"
         allowDrag="true">

@@ -2,7 +2,7 @@ var setNature = apiPath+repairApi+"/com.hsapi.repair.repairService.svr.saveNatur
 var concator = {};
 $(document).ready(function()
 {	
-	nui.get("auditBtn").focus();
+	//nui.get("auditBtn").focus();
 	document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;//38向上 40向下

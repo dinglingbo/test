@@ -8,43 +8,12 @@
   - Description:
 -->
 <head>
-<title>客户储值卡导入</title>
+<title>工单导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importTimesCard.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/oldMaintain.js?v=1.0.0"></script>
 <style type="text/css">
-/*.a-upload {
-    padding: 4px 10px;
-    height: 20px;
-    line-height: 20px;
-    position: relative;
-    cursor: pointer;
-    color: #888;
-    background: #fafafa;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    overflow: hidden;
-    display: inline-block;
-    *display: inline;
-    *zoom: 1
-}
 
-.a-upload  input {
-    position: absolute;
-    font-size: 100px;
-    right: 0;
-    top: 0;
-    opacity: 0;
-    filter: alpha(opacity=0);
-    cursor: pointer
-}
-
-.a-upload:hover {
-    color: #444;
-    background: #eee;
-    border-color: #ccc;
-    text-decoration: none
-}*/
 
 
 .file {
@@ -90,7 +59,7 @@
 					    <input type="file" name="" id="" onchange="importf(this)">
 					</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
-	               <a class="nui-button" plain="true" href="<%=request.getContextPath() %>/repair/RepairBusiness/template/计次卡导入模板.xlsx"><span class="fa fa-arrow-down fa-lg"></span>下载计次卡模板</a>
+					<a class="nui-button" plain="true" href="<%=request.getContextPath() %>/repair/RepairBusiness/template/工单导入模板.xls"><span class="fa fa-arrow-down fa-lg"></span>下载客户模板</a>
 				</td>
 	        </tr>
 	    </table>
@@ -100,21 +69,39 @@
 			showSummaryRow="true" showModified="false" allowCellSelect="true" allowCellEdit="true" allowSortColumn="false"
 			style="width:100%;height:100%;">
 			<div property="columns">
-				<div type="indexcolumn">序号</div>
-				<div field="车牌号" width="90px" summaryType="count" headerAlign="center" allowSort="true">
-					*车牌号<input property="editor" class="nui-textbox"/></div>
-				<div field="项目名称" width="70px" headerAlign="center" allowSort="true">
-					*项目名称<input property="editor" class="nui-textbox"/></div>
-				<div field="总次数" width="135px" headerAlign="center" allowSort="true">
-					*总次数<input property="editor" class="nui-textbox"/></div>
-				<div field="已使用次数" width="135px" headerAlign="center" allowSort="true">
-					*已使用次数<input property="editor" class="nui-textbox"/></div>
+				<div type="indexcolumn" width="40px" header="序号"></div>
+									<div field="工单号" headerAlign="center" allowSort="true" width="180px">*工单号</div>
+
+									<div field="工单类型" headerAlign="center" allowSort="true" width="60px">
+										工单类型</div>
+									<div field="客户姓名" headerAlign="center" allowSort="true" width="60px">
+										*客户姓名</div>
+									<div field="客户电话" headerAlign="center" allowSort="true" width="100px">
+										*客户电话</div>
+									<div field="车牌号" headerAlign="center" allowSort="true" width="80px">
+										*车牌号</div>
+									<div field="车架号（VIN）" headerAlign="center" allowSort="true" width="120px">
+										车架号(VIN)</div>
+									<div field="项目金额" headerAlign="center" allowSort="true" width="60px">
+										项目金额</div>
+									<div field="配件金额" headerAlign="center" allowSort="true" width="60px">
+										配件金额</div>
+									<div field="套餐金额" headerAlign="center" allowSort="true" width="60px">
+										套餐金额</div>
+									<div field="进店日期" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
+										进店日期</div>
+									<div field="结算日期" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
+										结算日期</div>
+									<div field="维修顾问" headerAlign="center" allowSort="true" width="60px">
+										维修顾问</div>
+									<div field="备注" renderer="onstatus" headerAlign="center" allowSort="true" width="120px">备注</div>
+
 			</div>
 		</div>
 	</div>
 
     <div id="advancedTipWin" class="nui-window"
-        title="未成功导入计次卡" style="width:400px;height:200px;"
+        title="未成功导入客户" style="width:400px;height:200px;"
         showModal="true"
         allowResize="false"
         allowDrag="true">

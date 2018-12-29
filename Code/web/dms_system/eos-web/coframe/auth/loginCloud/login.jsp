@@ -8,7 +8,7 @@
 <html>
 <head>
 
-<title>车道汽配云版</title>
+<title>车道汽配云</title>
 <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
 <meta charset="utf-8">
 <meta name="keywords" content="汽修达人管理平台"/>
@@ -313,13 +313,13 @@ a {
 	<div class="login" id="loginBox">
 		<div class="loginTitle">
 			<div class="weixinbox">
-				<img src="images/weixin-min-img.png" />
+				<img src="" />
 				<div class="weixin_max_img">
-					<img src="images/xiongying.jpg"  />
+					<img src=""  />
 				</div>
 			</div>		
 			<div class="log">
-				欢迎登录车道汽配云版
+				欢迎登录车道汽配云
 				<span>为了保障您顺畅的使用，建议使用谷歌/火孤/360浏览器</span>
 			</div>
 		</div>
@@ -348,9 +348,9 @@ a {
 
 		<div class="app">
 			<div class="imgbox">
-				<img src="images/app-min-img.png" onclick="changeShow();"  />
+				<img src="" onclick="changeShow();"  />
 				<div class="max_img">
-					<img src="images/xiongying.jpg"  onclick="changeHide();"  />
+					<img src=""  onclick="changeHide();"  />
 				</div>
 			</div>
 			<div class="wu">还没帐号？  <span class="blue" id="register">立即注册</span></div>

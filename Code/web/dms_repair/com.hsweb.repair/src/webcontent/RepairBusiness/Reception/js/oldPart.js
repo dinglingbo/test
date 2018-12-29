@@ -87,9 +87,8 @@ function fixdata(data) { //文件流转BinaryString
 	return o;
 }
 var requiredField = {
-	carNo : "车牌号",
-	rechargeAmt: "充值金额",
-	sAmt : "剩余金额"
+		serviceCode : "工单号",
+		partName:"配件名称"
 };
 function sure() {
 	var data = mainGrid.getData();
@@ -104,10 +103,16 @@ function sure() {
 				return;
 			}
 			var newRow = {};
-			newRow.carNo = data[i].车牌号||"";
-			newRow.rechargeAmt = data[i].充值金额||"";
-			newRow.sAmt = data[i].剩余金额||"";
-			
+			newRow.serviceCode = data[i].工单号||"";
+			newRow.partName = data[i].配件名称||"";
+			newRow.partBrandId = data[i].配件品牌||"";
+			newRow.qty = data[i].数量||"";
+			newRow.unitPrice = data[i].单价||"";
+			newRow.unit = data[i].单位||"";
+			newRow.subtotal = data[i].小计||"";
+			newRow.saleMan = data[i].销售员||"";
+			newRow.remark = data[i].备注||"";
+	
 
 
 		for ( var key in requiredField) {
@@ -121,12 +126,20 @@ function sure() {
 		}
 
 	}
-
-	saveEnterPart(partList);
+	  nui.confirm("确定导入吗？", "友情提示",function(action){
+	       if(action == "ok"){
+	    	   saveEnterPart(partList);
+	     }else {
+				return;
+		 }
+		 }); 
 }
 
 function clear(){
-	mainGrid.setData([]);
+	var guestList = mainGrid.getData();
+	for(var i = 0 ; i<guestList.length;i++){
+		mainGrid.removeRow(guestList[i]);
+	}
 }
 
 function close(){
@@ -134,52 +147,36 @@ function close(){
     else window.close();
 }
 
-var saveUrl = baseUrl + "com.hsapi.repair.repairService.crud.getImportCardByCarNo.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.repair.repairService.crud.getImportOldPart.biz.ext";
 function saveEnterPart(partList){
 	if(partList && partList.length>0) {
-		  nui.confirm("确定导入吗？", "友情提示",function(action){
-		       if(action == "ok"){
-		   		nui.mask({
-			        el: document.body,
-			        cls: 'mini-mask-loading',
-			        html: '正在导入...'
-			    });
+		nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '正在导入...'
+	    });
 
-			    nui.ajax({
-			        url : saveUrl,
-			        type : "post",
-			        data : JSON.stringify({
-			            list : partList,
-			            token : token
-			        }),
-			        success : function(data) {
-			            nui.unmask(document.body);
-			            data = data || {};
-			            if (data.errCode == "S") {
-			                var errMsg = data.errMsg;
-			                if(errMsg){
-								nui.get("fastCodeList").setValue(errMsg);
-								advancedTipWin.show();
-								//parent.parent.showMsg(errMsg,"S");
-			                }else{
-			                	parent.parent.showMsg("导入成功!","S");
-			                }
-			            } else {
-							nui.get("fastCodeList").setValue(data.errMsg);
-							advancedTipWin.show();
-							//parent.parent.showMsg(data.errMsg || "导入失败!","W");
-			            }
-			        },
-			        error : function(jqXHR, textStatus, errorThrown) {
-			            // nui.alert(jqXHR.responseText);
-			            console.log(jqXHR.responseText);
-			        }
-			    });
-		     }else {
-					return;
-			 }
-			 }); 
-
+	    nui.ajax({
+	        url : saveUrl,
+	        type : "post",
+	        data : JSON.stringify({
+	            list : partList,
+	            token : token
+	        }),
+	        success : function(data) {
+	            nui.unmask(document.body);
+	            data = data || {};
+	            if (data.errCode == "S") {
+	            	parent.parent.showMsg("导入成功!","S");
+	            } else {
+	            	parent.parent.showMsg(data.errMsg || "导入失败!","W");
+	            }
+	        },
+	        error : function(jqXHR, textStatus, errorThrown) {
+	            // nui.alert(jqXHR.responseText);
+	            console.log(jqXHR.responseText);
+	        }
+	    });
 		
 	}
 

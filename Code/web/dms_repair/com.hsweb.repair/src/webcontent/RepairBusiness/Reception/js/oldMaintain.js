@@ -88,14 +88,22 @@ function fixdata(data) { //文件流转BinaryString
 }
 var requiredField = {
 		serviceCode : "工单号",
-		carNo: "车牌号"
+		guestName:"客户姓名",
+		mobile : "电话号码",
+		carNo: "车牌号",
 };
 function sure() {
 	var data = mainGrid.getData();
 	var partList = [];
+	var length = 0;//用于限制大小不能超过一千
 	if (data) {
 		//alert(data.length);
 		for (var i = 0; i < data.length; i++) {
+			length++;
+			if(length>1000){
+				parent.parent.showMsg("导入不能超过一千条，请重新选择文件！","W");
+				return;
+			}
 			var newRow = {};
 			newRow.serviceCode = data[i].工单号||"";
 			newRow.billTypeId = data[i].工单类型||"";
@@ -114,7 +122,7 @@ function sure() {
 
 		for ( var key in requiredField) {
 				if (!newRow[key] || $.trim(newRow[key]).length == 0) {
-					showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
+					parent.parent.showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
 					return;
 				}
 			}
@@ -123,8 +131,14 @@ function sure() {
 		}
 
 	}
-
-	saveEnterPart(partList);
+	  nui.confirm("确定导入吗？", "友情提示",function(action){
+	       if(action == "ok"){
+	    	   saveEnterPart(partList);
+	     }else {
+				return;
+		 }
+		 }); 
+	
 }
 
 function clear(){
@@ -142,6 +156,7 @@ function close(){
 var saveUrl = baseUrl + "com.hsapi.repair.repairService.crud.getImportOldMaintain.biz.ext";
 function saveEnterPart(partList){
 	if(partList && partList.length>0) {
+		
 		nui.mask({
 	        el: document.body,
 	        cls: 'mini-mask-loading',
@@ -159,18 +174,9 @@ function saveEnterPart(partList){
 	            nui.unmask(document.body);
 	            data = data || {};
 	            if (data.errCode == "S") {
-	                var errMsg = data.errMsg;
-	                if(errMsg){
-						nui.get("fastCodeList").setValue(errMsg);
-						advancedTipWin.show();
-						//showMsg(errMsg,"S");
-	                }else{
-						showMsg("导入成功!","S");
-	                }
+	            	parent.parent.showMsg("导入成功!","S");
 	            } else {
-					nui.get("fastCodeList").setValue(data.errMsg);
-					advancedTipWin.show();
-					//showMsg(data.errMsg || "导入失败!","W");
+	            	parent.parent.showMsg(data.errMsg || "导入失败!","W");
 	            }
 	        },
 	        error : function(jqXHR, textStatus, errorThrown) {

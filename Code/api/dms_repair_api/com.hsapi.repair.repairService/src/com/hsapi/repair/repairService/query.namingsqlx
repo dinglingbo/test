@@ -654,13 +654,197 @@
 	</select>
 	
 	<select id="queryTodayData" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-		select * from (
+		select newCarQty, recordBillQty, settleQty, serviceBillQty, bookingBillQty, czAmt, ckAmt, 
+		       ifnull(czAmt,0) + ifnull(ckAmt,0) as zkAmt
+		from (
 			(SELECT count(1) as newCarQty from rps_guest_file where comp_come_times = 1 and orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate#) newCarQty,
 			(select count(1) as recordBillQty from rps_maintain where is_disabled = 0 and orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate# ) recordBillQty,
 			(select count(1) as settleQty from rps_maintain where is_settle = 1 and orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate#) settleQty,
 			(select count(1) as serviceBillQty from rps_maintain where is_settle = 0 and orgid = #orgid# and is_disabled = 0 ) serviceBillQty,
-			(SELECT count(1) as bookingBillQty from rps_prebook where orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate# and ifnull(status,0) != 2) bookingBillQty
+			(SELECT count(1) as bookingBillQty from rps_prebook where orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate# and ifnull(status,0) != 2) bookingBillQty,
+			(
+			select sum(a.char_off_amt) as czAmt from wb_frm.fis_rp_account_detail a
+			inner join wb_frm.fis_rp_account b
+			on a.main_id = b.id
+			where a.bill_type_id = 104 and b.orgid = #orgid# and a.create_date &gt;= #startDate# and a.create_date &lt; #endDate# 
+			) as czAmt,
+			(
+			select sum(a.char_off_amt) as ckAmt from wb_frm.fis_rp_account_detail a
+			inner join wb_frm.fis_rp_account b
+			on a.main_id = b.id
+			where a.bill_type_id = 105 and b.orgid = #orgid# and a.create_date &gt;= #startDate# and a.create_date &lt; #endDate# 
+			) as ckAmt
 		)
+	</select>
+	<select id="queryRPAccount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT sum(debit) debit, sum(credit) credit from fis_settle_account_bala 
+            where orgid = #orgid# and operate_date &gt;= #startDate# and operate_date &lt; #endDate# 
+	</select>
+	<select id="querySettlement" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT sum(b.bala_amt) as balaAmt, sum(b.gross_profit) maoLi,
+			       sum(b.package_subtotal) as pkgAmt, sum(b.item_subtotal) as itemAmt,
+			       sum(b.card_times_amt) as cardAmt, 
+			       sum(package_pref_amt + item_pref_amt + part_pref_amt + allowance_amt) as prefAmt,
+			       sum(other_amt) as otherAmt, sum(other_cost_amt) as otherCostAmt
+			from rps_maintain a
+			inner join rps_settlement b
+			on a.id = b.service_id
+			where a.is_settle = 1
+                  a.orgid = #orgid# 
+                  and a.out_date &gt;= #startDate# and a.out_date &lt; #endDate# 
+	</select>
+	<!--员工提成汇总-->
+	<select id="queryMemDeductSum" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT worker_id as workerId, worker as worker, sum(total_deduct_amt) as deduct
+			from rps_deduct_detail 
+			where orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate# 
+			group by worker_id, worker
+	</select>
+	<select id="queryMemFilterDeductSum" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT a.worker_id as workerId, a.worker as worker, sum(a.total_deduct_amt) as deduct
+			from rps_deduct_detail a
+      		inner join wb_common.com_member b
+			on a.worker_id = b.empid
+			where a.orgid = #orgid# and b.member_group_id = #groupId#
+            and record_date &gt;= #startDate# and record_date &lt; #endDate# 
+			group by a.worker_id, a.worker
+	</select>
+	<!--套餐提成信息-->
+	<select id="queryPkgDeduct" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+			SELECT a.service_code as serviceCode, b.package_name as name, b.total_deduct_amt as deduct, 
+			       a.out_date as outDate 
+			from rps_maintain a
+			inner join rps_package b
+			on a.id = b.service_id
+			where a.is_settle = 1 and b.total_deduct_amt > 0
+			      and a.orgid = #orgid# 
+			      and a.out_date &gt;= #startDate# and a.out_date &lt; #endDate# 
+			      
+			      <dynamic>
+
+		            <isNotEmpty prepend="and" property="groupId">
+		  				 and exists(select 1 from wb_common.com_member c where c.empid = b.sale_man_id 
+		  				            and c.member_group_id = #groupId#)
+		            </isNotEmpty>
+		            <isNotEmpty prepend="and" property="memberId">
+		  				 and b.sale_man_id = #memberId# 
+		            </isNotEmpty>
+		          </dynamic>  
+			      
+			order by a.out_date desc
+	</select>
+	<!--工时提成信息-->
+	<select id="queryItemDeduct" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+			SELECT a.service_code as serviceCode, b.item_name as name, b.total_deduct_amt as deduct, 
+			       a.out_date as outDate
+			from rps_maintain a
+			inner join rps_item b
+			on a.id = b.service_id
+			where a.is_settle = 1 and b.total_deduct_amt > 0
+			      and a.orgid = #orgid# 
+			      and a.out_date &gt;= #startDate# and a.out_date &lt; #endDate# 
+			      
+			      <dynamic>
+
+		            <isNotEmpty prepend="and" property="groupId">
+		  				 and exists(select 1 from wb_common.com_member c where (c.empid = b.sale_man_id 
+		  				                                     or FIND_IN_SET(c.empid,b.worker_ids) > 0 )
+		  				            and c.member_group_id = #groupId#)
+		            </isNotEmpty>
+		            <isNotEmpty prepend="and" property="memberId">
+		  				 and (b.sale_man_id = #memberId# or FIND_IN_SET(#memberId#,b.worker_ids) > 0 )
+		            </isNotEmpty>
+		          </dynamic>  
+			      
+			order by a.out_date desc
+	</select>
+	<!--配件提成信息-->
+	<select id="queryPartDeduct" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+			SELECT a.service_code as serviceCode, b.part_name as name, b.sales_deduct_value as deduct, a.out_date as outDate
+			from rps_maintain a
+			inner join rps_part b
+			on a.id = b.service_id
+			where a.is_settle = 1 and b.sales_deduct_value > 0
+			      and a.orgid = #orgid# 
+			      and a.out_date &gt;= #startDate# and a.out_date &lt; #endDate# 
+			      
+			      <dynamic>
+
+		            <isNotEmpty prepend="and" property="groupId">
+		  				 and exists(select 1 from wb_common.com_member c where c.empid = b.sale_man_id
+		  				            and c.member_group_id = #groupId#)
+		            </isNotEmpty>
+		            <isNotEmpty prepend="and" property="memberId">
+		  				 and b.sale_man_id = #memberId# 
+		            </isNotEmpty>
+		          </dynamic>  
+			      
+			order by a.out_date desc
+	</select>
+	<!--保险提成信息-->
+	<select id="queryInsureDeduct" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+			SELECT a.service_code as serviceCode, b.insure_type_name as name, b.deduct_value as deduct, a.out_date as outDate
+			from rps_insurance_main a
+			inner join rps_insurance_detail b
+			on a.id = b.service_id
+			where a.is_settle = 1 and b.deduct_value > 0
+			      and a.orgid = #orgid# 
+			      and a.out_date &gt;= #startDate# and a.out_date &lt; #endDate# 
+			      
+			      <dynamic>
+
+		            <isNotEmpty prepend="and" property="groupId">
+		  				 and exists(select 1 from wb_common.com_member c where FIND_IN_SET(c.empid,b.sale_man_ids) > 0
+		  				            and c.member_group_id = #groupId#)
+		            </isNotEmpty>
+		            <isNotEmpty prepend="and" property="memberId">
+		  				 and FIND_IN_SET(#memberId#,b.sale_man_ids) > 0
+		            </isNotEmpty>
+		          </dynamic>  
+			      
+			order by a.out_date desc
+	</select>
+	<!--充值提成信息-->
+	<select id="queryCZDeduct" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+			SELECT a.code as serviceCode, a.card_name as name, a.sales_deduct_value as deduct, a.settle_date as outDate 
+			from rps_stored_record a
+			where a.is_settle = 1 and a.sales_deduct_value > 0
+			      and a.orgid = #orgid# 
+			      and a.settle_date &gt;= #startDate# and a.settle_date &lt; #endDate# 
+			      
+			      <dynamic>
+
+		            <isNotEmpty prepend="and" property="groupId">
+		  				 and exists(select 1 from wb_common.com_member c where c.empid = a.sale_man_id
+		  				            and c.member_group_id = #groupId#)
+		            </isNotEmpty>
+		            <isNotEmpty prepend="and" property="memberId">
+		  				 and a.sale_man_id = #memberId#
+		            </isNotEmpty>
+		          </dynamic>  
+			      
+			order by a.settle_date desc
+	</select>
+	<!--次卡提成信息-->
+	<select id="queryCKDeduct" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+			SELECT a.code as serviceCode, a.card_name as name, a.sales_deduct_value as deduct, a.settle_date as outDate 
+			from rps_card_times a
+			where a.status = 2 and a.sales_deduct_value > 0
+			      and a.orgid = #orgid# 
+			      and a.settle_date &gt;= #startDate# and a.settle_date &lt; #endDate# 
+			      
+			      <dynamic>
+
+		            <isNotEmpty prepend="and" property="groupId">
+		  				 and exists(select 1 from wb_common.com_member c where c.empid = a.sale_man_id
+		  				            and c.member_group_id = #groupId#)
+		            </isNotEmpty>
+		            <isNotEmpty prepend="and" property="memberId">
+		  				 and a.sale_man_id = #memberId#
+		            </isNotEmpty>
+		          </dynamic>  
+			      
+			order by a.settle_date desc
 	</select>
 	<select id="appointmentQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 			SELECT

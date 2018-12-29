@@ -101,7 +101,7 @@
                   <div type="indexcolumn">序号</div>
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
                   <div field="status" name="status" width="40px" headerAlign="center" header="进程"></div>
-                  <div field="serviceCode" name="serviceCode" width="150px" headerAlign="center" header="工单号"></div>
+                  <div field="serviceCode" name="serviceCode" width="170px" headerAlign="center" header="工单号"></div>
                   <div field="carNo" name="carNo" width="80px" headerAlign="center" header="车牌号"></div>
                   <div field="insureClaimCompName" name="insureClaimCompName" width="110px" headerAlign="center"  header="保险公司"></div>
                   <div field="recordDate" name="recordDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂时间"></div>

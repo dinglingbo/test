@@ -60,9 +60,7 @@
                 <div field="saleMan" headerAlign="center"
                      allowSort="false" visible="true" width="50" header="" align="center" name="saleMan">
                                      销售员<a href="javascript:setPkgSaleMans()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
-                     <input  property="editor" enabled="true" dataField="memList" 
-                             class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url="" onvaluechanged="onsalemanChanged" emptyText=""  vtype="required"/> 
+                     <input class="nui-textbox" property="editor" id="saleMansName" name="saleMansName"  onclick="openPkgSaleMans" />
                 </div>
                 <div field="saleManId" headerAlign="center"
                      allowSort="false" visible="false" width="80" header="销售员" align="center">

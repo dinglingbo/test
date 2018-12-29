@@ -344,6 +344,7 @@ hr {
 		var settleTypeIdHash={};
 		var dictDefs ={"billTypeIdE":"DDT20130703000008", "settleTypeIdE":"DDT20130703000035"};
 		var baseUrl = apiPath + cloudPartApi + "/";
+		var supplierUrl=apiPath + partApi + "/"+"com.hsapi.part.baseDataCrud.crud.queryGuestList.biz.ext";
 		var MainUrl = baseUrl
 				+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
 		var DetailUrl = baseUrl
@@ -389,7 +390,7 @@ hr {
     		document.getElementById("spstorename").innerHTML = params.printName;
     		document.getElementById("guestAddr").innerHTML = "地址："+params.currCompAddress;
 	   		document.getElementById("phone").innerHTML ="电话："+params.currCompTel;
-	   		if(params.id && params.auditSign){
+	   		if(params.id){
 		   		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
 		   			var formParms =text.pjPchsOrderMainList[0];
 		       		$('#guestFullName').text("供应商:"+formParms.guestFullName);

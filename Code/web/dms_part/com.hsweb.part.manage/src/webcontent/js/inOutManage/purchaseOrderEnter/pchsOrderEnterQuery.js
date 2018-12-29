@@ -376,7 +376,12 @@ function onPrint(){
 	var params={
 			id : data.mainId,
 		auditSign:1,
-		guestId : data.guestId
+		guestId : data.guestId,
+		currUserName :currUserName,
+		currRepairSettorderPrintShow :currRepairSettorderPrintShow,
+		currCompAddress :currCompAddress,
+		currCompTel :currCompTel,
+		currOrgName : currOrgName
 	};
 	var detailParams={
 			mainId :data.mainId

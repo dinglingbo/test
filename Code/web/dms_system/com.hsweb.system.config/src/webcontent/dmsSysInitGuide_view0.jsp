@@ -119,7 +119,7 @@
                 </td>
                 <td>
                     <div class="mini-panel mini-panel-warning" title="导入" width="350px" showCollapseButton="false" showCloseButton="false">
-                        <br />导入客户车辆，储值卡，计次卡
+                        <br />导入功能通常只在系统初次使用时使用，导入完成后数据无法撤回
                         <br />
                         <br />
                         <div align="center">
@@ -169,7 +169,7 @@
                     </div>
                 </td>
             </tr> -->
-              <tr>
+<!--               <tr>
                 <td>
                     <div class="mini-panel mini-panel-info" title="导入工单信息" width="250px" showCollapseButton="false" showCloseButton="false">
                         <br />导入未跟换系统前的工单信息
@@ -177,7 +177,7 @@
                         <div align="center"><a class="mini-button mini-button-success" onclick="importMaintain()" >导入工单信息</a></div>
                     </div>
                 </td>
-            </tr>
+            </tr> -->
         </table>
     </div>
 </body>

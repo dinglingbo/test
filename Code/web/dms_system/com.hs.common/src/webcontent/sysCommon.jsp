@@ -313,9 +313,15 @@
 			}
 		} */
 		
+		
 		if(window.parent!=window && ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
 			window.parent.backToLogin();
-		}else{
+		}
+		if(window.location.pathname =="/dms/coframe/auth/loginCloud/index.jsp"){
+			showMsg("登录超时，正在跳转！", "E");
+            window.top.location.href = window.location.href;			
+		}	
+		else{
 		//	debugger;
 			showMsg("登录超时，正在跳转！", "E");
             window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			

@@ -55,11 +55,11 @@ pageEncoding="UTF-8" session="false"%>
                         <li iconCls="" onclick="quickSearchType(3)">已结算</li>
                     </ul>
 
-                    <input class="nui-textbox" id="guestFullName" name="guestFullName" emptyText="输入客户姓名" width="100"  onenter="onenterGuestName(this.value)"/>
-                    <input class="nui-textbox" id="serviceCode" name="serviceCode" emptyText="请输入单号" width="100" onenter="onenterServiceCode(this.value)"/>
-                    <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="100" onenter=""/>
+                    <input class="nui-textbox" id="guestFullName" name="guestFullName" emptyText="输入客户姓名" width="100"  onenter="doSearch()"/>
+                    <input class="nui-textbox" id="serviceCode" name="serviceCode" emptyText="请输入单号" width="100" onenter="doSearch()"/>
+                    <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="100" onenter="doSearch()"/>
                     <label class="form_label">开单日期&nbsp;从：</label>
-                    <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "startDate" value=""/>
+                    <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "startDate" value="" />
                     <label class="form_label">至：</label>
                     <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "endDate" value=""/>
 

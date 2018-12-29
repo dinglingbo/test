@@ -105,9 +105,15 @@ var requiredField = {
 function sure() {
 	var data = mainGrid.getData();
 	var partList = [];
+	var length = 0;//用于限制大小不能超过一千
 	if (data) {
 		//alert(data.length);
 		for (var i = 0; i < data.length; i++) {
+			length++;
+			if(length>1000){
+				parent.parent.showMsg("导入不能超过一千条，请重新选择文件！","W");
+				return;
+			}
 			var newRow = {};
 			newRow.partBrandId = data[i].品牌||"";
 			newRow.code = data[i].编码||"";
@@ -130,7 +136,7 @@ function sure() {
 
 			for ( var key in requiredField) {
 				if (!newRow[key] || $.trim(newRow[key]).length == 0) {
-					showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
+					parent.parent.showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
 					return;
 				}
 			}
@@ -153,7 +159,7 @@ function sure() {
 				newRow.qualityTypeId = partBrandIdHash[newRow.partBrandId].parentId;
 				newRow.partBrandId = partBrandIdHash[newRow.partBrandId].id;
 			}else{
-				showMsg("第"+(i+1)+"行记录的品牌信息有误!","W");
+				parent.parent.showMsg("第"+(i+1)+"行记录的品牌信息有误!","W");
 				return;
 			}
 
@@ -162,7 +168,7 @@ function sure() {
 				if(carBrandHash && carBrandHash[newRow.applyCarbrandId.replace(/\s+/g, "")]){
 					newRow.applyCarbrandId = carBrandHash[newRow.applyCarbrandId.replace(/\s+/g, "")].id;
 				}else{
-					showMsg("第"+(i+1)+"行记录的厂牌信息有误!","W");
+					parent.parent.showMsg("第"+(i+1)+"行记录的厂牌信息有误!","W");
 					return;
 				}
 			}
@@ -174,7 +180,14 @@ function sure() {
 	}
 
 	//faddPart(partList);
-	saveEnterPart(partList);
+	  nui.confirm("确定导入吗？", "友情提示",function(action){
+	       if(action == "ok"){
+	    		saveEnterPart(partList);
+	     }else {
+				return;
+		 }
+		 }); 
+
 }
 
 function clear(){
@@ -210,14 +223,14 @@ function saveEnterPart(partList){
 	                if(errMsg){
 						nui.get("fastCodeList").setValue(errMsg);
 						advancedTipWin.show();
-						//showMsg(errMsg,"S");
+						//parent.parent.showMsg(errMsg,"S");
 	                }else{
-						showMsg("导入成功!","S");
+						parent.parent.showMsg("导入成功!","S");
 	                }
 	            } else {
 					nui.get("fastCodeList").setValue(data.errMsg);
 					advancedTipWin.show();
-					//showMsg(data.errMsg || "导入失败!","W");
+					//parent.parent.showMsg(data.errMsg || "导入失败!","W");
 	            }
 	        },
 	        error : function(jqXHR, textStatus, errorThrown) {

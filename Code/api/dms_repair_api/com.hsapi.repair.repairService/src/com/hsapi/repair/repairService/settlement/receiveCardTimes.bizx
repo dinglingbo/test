@@ -37,6 +37,7 @@
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" type="transition">
       <sourceNode>subprocess0</sourceNode>
@@ -152,7 +153,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="更新为已结算" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
-      <targetNode>assign4</targetNode>
+      <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link60" name="link60" displayName="连接线" type="transition">
       <sourceNode>assign5</sourceNode>
@@ -171,6 +172,54 @@
     <process:copy>
       <process:from type="literal" pattern="reference">2</process:from>
       <process:to type="query">cardTimes/status</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">cardTimes/settleDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimes/orgid</process:from>
+      <process:to type="query">deduct/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimes/id</process:from>
+      <process:to type="query">deduct/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimes/code</process:from>
+      <process:to type="query">deduct/serviceCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimes/saleManId</process:from>
+      <process:to type="query">deduct/workerId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimes/saleMan</process:from>
+      <process:to type="query">deduct/worker</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimes/salesDeductValue</process:from>
+      <process:to type="query">deduct/salesDeductValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimes/salesDeductValue</process:from>
+      <process:to type="query">deduct/totalDeductAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimes/recorder</process:from>
+      <process:to type="query">deduct/recorder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">deduct/recordDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimes/recorder</process:from>
+      <process:to type="query">deduct/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">deduct/modifyDate</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
@@ -235,6 +284,7 @@
       <targetNode>transactionrollback0</targetNode>
     </sourceConnections>
     <targetConnections>link38</targetConnections>
+    <targetConnections>link9</targetConnections>
     <location x="333" y="225"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
@@ -1067,7 +1117,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link11</targetConnections>
+    <targetConnections>link3</targetConnections>
     <location x="477" y="145"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
@@ -1157,6 +1207,34 @@
     <figSize height="17" width="32"/>
     <node>assign13</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="生成提成记录" displayName="生成提成记录" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign4</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" lineType="note" type="exception">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign6</targetNode>
+    </sourceConnections>
+    <targetConnections>link11</targetConnections>
+    <location x="360" y="145"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo0label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">deduct</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
+    <location x="335" y="181"/>
+    <figSize height="17" width="73"/>
+    <node>invokePojo0</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-13 20:52:53" date="2018-08-13Z" description="" name="rechargeReceive" version="7.0.0.0"/>
@@ -1193,6 +1271,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="contentStr" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="strTemp" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.FisRpAccountDType" name="rpAccount"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsDeductDetail" name="deduct"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="payAmt" primitiveType="Double"/>

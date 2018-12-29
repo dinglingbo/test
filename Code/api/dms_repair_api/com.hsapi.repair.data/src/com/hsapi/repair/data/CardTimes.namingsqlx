@@ -22,7 +22,7 @@
          a.car_no as carNo
          FROM rps_card_times a 
          INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
-         WHERE  a.orgid = #orgid# and a.is_settle = 1
+         WHERE  a.orgid = #orgid# and a.status = 2
          <dynamic>
          <isNotEmpty prepend="and" property="guestName">  
 	            (a.guest_name like '%$guestName$%')
@@ -117,5 +117,22 @@
          inner JOIN rpb_car c ON ( b.car_id = c.id )
          WHERE  a.orgid = #orgid# 
          AND a.guest_stored_id = #id#
+	</select>
+	
+	<select id="queryStoreRecord" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
+       select a.guest_name as guestName, a.card_name as cardName,
+		       a.recharge_amt as rechargeAmt, a.settle_date as settleDate
+		from rps_stored_record a
+         WHERE  a.orgid = #orgid# and a.is_settle = 1
+         <dynamic>
+	    	<isNotEmpty prepend="and" property="startDate"> 
+	                (a.settle_date &gt;= #startDate#)
+	         </isNotEmpty>
+	         <isNotEmpty prepend="and" property="endDate">
+	                (a.settle_date &lt;= #endDate#)
+	         </isNotEmpty>
+        </dynamic>
+        order by a.settle_date desc
+ 
 	</select>
 </sqlMap>

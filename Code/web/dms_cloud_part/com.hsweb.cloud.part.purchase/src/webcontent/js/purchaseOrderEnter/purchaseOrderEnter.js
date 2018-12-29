@@ -1752,7 +1752,7 @@ function addGuest(){
 
 function onPrint(){
 	var tab=parent.mini.get("mainTabs").getActiveTab();
-	var name=tab.name
+	var name=tab.name;
 	
 	if(name == '1568'){ //进货单1568 采购入库 1681
 		var printName =tab.title;
@@ -1763,6 +1763,7 @@ function onPrint(){
 	var params={
 			id : from.id,
 		auditSign:from.auditSign,
+		guestId :from.guestId,
 		printName : printName,
 		currRepairSettorderPrintShow : currRepairSettorderPrintShow,
 		currOrgName : currOrgName,

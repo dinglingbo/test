@@ -574,6 +574,7 @@ function isCheckMainN(){
                     data.lastKilometers = temp.lastKilometers;
                     data.lastPoint = temp.lastPoint;
                     data.checkMan = temp.checkMan;
+                    data.checkManId = temp.checkManId;
                     data.checkPoint = temp.checkPoint;
                     data.isFinish =temp.isFinish;
                     data.checkStatus=temp.checkStatus;

@@ -95,9 +95,9 @@
             <div type="indexcolumn">序号</div>
             <div header="移仓信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="移仓出库单号"></div>
+                    <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="移仓出库单号"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
-                    <div allowSort="true" field="outDate" headerAlign="center" header="移仓日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                    <div allowSort="true"width="120" field="outDate" headerAlign="center" header="移仓日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
                     <div allowSort="true" field="enterTypeId" width="60" headerAlign="center" header="入库类型"></div>-->
                     <!-- <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>

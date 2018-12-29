@@ -96,7 +96,7 @@
             <div width="40" type="indexcolumn">序号</div>
             <div header="退货信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="serviceId" width="130" summaryType="count" headerAlign="center" header="退货单号"></div>
+                    <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="退货单号"></div>
                     <div field="guestFullName" width="220" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="退货员"></div>
                     <div field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>

@@ -249,6 +249,18 @@ hr {
                 </tr>
 	            </table>
 	            
+	            <hr/>
+				<table width="100%">
+				  <tr>			  	
+				    <td style="font-size:8px;" id="guestAddr" align="left">地址:</td>
+				    <td style="font-size:8px;" colspan="2" id="nowDate" align="left"  class="" >打印日期:</td>
+<!--  				    <td colspan="2" style="text-align: right" id="serviceId"  class="" >No:</td>  -->
+				  </tr>
+				  <tr id="border1">
+				  	<td style="font-size:8px;" id="phone">电话:</td>
+				    <td style="font-size:8px;" id="createDate" align="left">订单日期:</td>	    
+				  </tr>
+				</table>
 				<hr/>
 				<table id="ybk" width="100%">
 				  <tr>
@@ -307,14 +319,16 @@ hr {
 				  <tr><td  colspan="3"><hr/></td></tr>
 				  <tr id="border3">
 				    <td id="remark1">备注</td>
-				    <td style="" id="guestAddr" align="left">地址:</td>
-				    <td style="" id="nowDate" align="center"  class="" >打印日期:</td>
+<!-- 				    <td style="" id="guestAddr" align="left">地址:</td> -->
+<!-- 				    <td style="" id="nowDate" align="center"  class="" >打印日期:</td> -->
 				  </tr>
 				  <tr><td  colspan="3"><hr/></td></tr>
 				   <tr id="border4">
 				    <td id="">注(白联仓库   红联财务  黄联供应商)</td>
-				    <td style="" id="phone">电话:</td>
-				   <td style="" id="createDate" align="center">订单日期:</td>
+				    <td></td>
+				    <td></td>
+<!-- 				    <td style="" id="phone">电话:</td> -->
+<!-- 				   <td style="" id="createDate" align="center">订单日期:</td> -->
 				  </tr>
 				</table>
             </div>
@@ -330,14 +344,13 @@ hr {
 		var settleTypeIdHash={};
 		var dictDefs ={"billTypeIdE":"DDT20130703000008", "settleTypeIdE":"DDT20130703000035"};
 		var baseUrl = apiPath + cloudPartApi + "/";
+		var supplierUrl=apiPath + partApi + "/"+"com.hsapi.part.baseDataCrud.crud.queryGuestList.biz.ext";
 		var MainUrl = baseUrl
 				+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList.biz.ext";
 		var DetailUrl = baseUrl
 				+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
     	$(document).ready(function(){
-    		$('#currOrgName').text(currRepairSettorderPrintShow||currOrgName);
-    		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
-    		$('#currUserName').text("打印人:"+currUserName);
+    		
 			$("#print").click(function () {
 	            $(".print_btn").hide();
 	            document.getElementById("query-table").style.overflow="hidden"
@@ -371,66 +384,87 @@ hr {
             else window.close();
         }
     	function SetData(params,detailParms){
+    		$('#currOrgName').text(params.currRepairSettorderPrintShow||params.currOrgName);
+    		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
+    		$('#currUserName').text("打印人:"+params.currUserName);
     		document.getElementById("spstorename").innerHTML = "销售订单";
-    		document.getElementById("guestAddr").innerHTML = "地址："+currCompAddress;
-	   		document.getElementById("phone").innerHTML ="电话："+currCompTel;
-	   		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
-	   			var formParms =text.pjSellOrderMainList[0];
-	       		$('#guestFullName').text("供应商:"+formParms.guestFullName);
-	       		$('#createDate').text("订单日期："+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
-	       		$('#serviceId').text(formParms.serviceId);
-	     		if(billTypeIdHash){
-	     			$('#billTypeId').text("票据类型:"+billTypeIdHash[formParms.billTypeId].name);
-	     		}
-	    		if(settleTypeIdHash){
-	    			$('#settleTypeId').text("结算方式:"+settleTypeIdHash[formParms.settleTypeId].name);
-	    		}
-    		});
-    	
-    		$.post(DetailUrl+"?params/mainId="+detailParms.mainId+"&token="+token,{},function(text){
-				var data= text.pjSellOrderDetailList;
-				var tBody = $("#tbodyId");
-				tBody.empty();
-				var tds='<td align="center">[index]</td>'+
-						'<td align="center">[comPartCode]</td>'+
-						'<td align="center">[comOemCode]</td>'+
-						'<td align="center">[comPartName]</td>'+
-						'<td align="center">[comPartBrindId]</td>'+
-						'<td align="center">[comApplyCarModel]</td>'+
-						'<td align="center">[comSpec]</td>'+		  			
-						'<td align="center">[comUnit]</td>'+
-						'<td align="center">[orderQty]</td>'+
-						'<td align="center">[orderPrice]</td>'+
-						'<td align="center">[orderAmt]</td>'+
-						'<td align="center">[remark]</td>'+
-						'<td align="center">[storehouse]</td>'+
-						'<td align="center">[storeShelf]</td>';
-					for(var i = 0; i < data.length; i++ ){ 
-						var tr=$("<tr></tr>");
-						tr.append(
-							tds.replace("[index]",i+1 ||"")
-								.replace("[comPartCode]",data[i].comPartCode ||"")
-								.replace("[comOemCode]",data[i].comOemCode ||"")
-								.replace("[comPartName]",data[i].comPartName ||"")
-								.replace("[comPartBrindId]",data[i].comPartBrindId ||"")
-								.replace("[comApplyCarModel]",data[i].comApplyCarModel ||"")
-								.replace("[comSpec]",data[i].comSpec ||"")
-								.replace("[comUnit]",data[i].comUnit ||"")
-								.replace("[orderQty]",data[i].orderQty ||"")
-								.replace("[orderPrice]",data[i].orderPrice ||"")
-								.replace("[orderAmt]",data[i].orderAmt ||"")
-								.replace("[remark]",data[i].remark ||"")
-								.replace("[storehouse]",data[i].storehouse ||"")
-								.replace("[storeShelf]",data[i].storeShelf ||""));
-						tBody.append(tr);
-						sumOrderQty +=parseFloat(data[i].orderQty);
-						sumOrderAmt +=parseFloat(data[i].orderAmt);
-					}
-					var sum=transform(parseFloat(sumOrderAmt).toFixed(1)+"");
-					$('#sumOrderQty').text("合计:"+parseFloat(sumOrderQty).toFixed(1));
-					$('#sumOrderAmt').text(""+parseFloat(sumOrderAmt).toFixed(1));
-					$('#sum').text("合计:"+sum);
-			});
+    		document.getElementById("guestAddr").innerHTML = "地址："+params.currCompAddress;
+	   		document.getElementById("phone").innerHTML ="电话："+params.currCompTel;
+	   		if(params.id){
+		   		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
+		   			var formParms =text.pjSellOrderMainList[0];
+		       		$('#guestFullName').text("供应商:"+formParms.guestFullName);
+		       		$('#createDate').text("订单日期："+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
+		       		$('#serviceId').text(formParms.serviceId);
+		     		if(billTypeIdHash){
+		     			$('#billTypeId').text("票据类型:"+billTypeIdHash[formParms.billTypeId].name);
+		     		}
+		    		if(settleTypeIdHash){
+		    			$('#settleTypeId').text("结算方式:"+settleTypeIdHash[formParms.settleTypeId].name);
+		    		}
+	    		});
+	    	}
+	    	if(params.guestId){
+	    		$.post(supplierUrl+"?params/guestId="+params.guestId+"&token="+token,{},function(text){
+	    			var guest=text.guest[0];
+	    			if(guest.contactor){		
+	    				$('#contactor').text("联系人:"+guest.contactor);
+	    			}
+	    			if(guest.contactorTel){
+	    				$('#contactorTel').text("联系人方式:"+guest.contactorTel);
+	    			}
+	    			if(guest.addr){
+	    				$('#addr').text("地址:"+guest.addr);
+	    			}
+	    			
+	    		});
+    		}
+    		if(detailParms.mainId){
+	    		$.post(DetailUrl+"?params/mainId="+detailParms.mainId+"&token="+token,{},function(text){
+					var data= text.pjSellOrderDetailList;
+					var tBody = $("#tbodyId");
+					tBody.empty();
+					var tds='<td align="center">[index]</td>'+
+							'<td align="center">[comPartCode]</td>'+
+							'<td align="center">[comOemCode]</td>'+
+							'<td align="center">[comPartName]</td>'+
+							'<td align="center">[comPartBrindId]</td>'+
+							'<td align="center">[comApplyCarModel]</td>'+
+							'<td align="center">[comSpec]</td>'+		  			
+							'<td align="center">[comUnit]</td>'+
+							'<td align="center">[orderQty]</td>'+
+							'<td align="center">[orderPrice]</td>'+
+							'<td align="center">[orderAmt]</td>'+
+							'<td align="center">[remark]</td>'+
+							'<td align="center">[storehouse]</td>'+
+							'<td align="center">[storeShelf]</td>';
+						for(var i = 0; i < data.length; i++ ){ 
+							var tr=$("<tr></tr>");
+							tr.append(
+								tds.replace("[index]",i+1 ||"")
+									.replace("[comPartCode]",data[i].comPartCode ||"")
+									.replace("[comOemCode]",data[i].comOemCode ||"")
+									.replace("[comPartName]",data[i].comPartName ||"")
+									.replace("[comPartBrindId]",data[i].comPartBrindId ||"")
+									.replace("[comApplyCarModel]",data[i].comApplyCarModel ||"")
+									.replace("[comSpec]",data[i].comSpec ||"")
+									.replace("[comUnit]",data[i].comUnit ||"")
+									.replace("[orderQty]",data[i].orderQty ||"")
+									.replace("[orderPrice]",data[i].orderPrice ||"")
+									.replace("[orderAmt]",data[i].orderAmt ||"")
+									.replace("[remark]",data[i].remark ||"")
+									.replace("[storehouse]",data[i].storehouse ||"")
+									.replace("[storeShelf]",data[i].storeShelf ||""));
+							tBody.append(tr);
+							sumOrderQty +=parseFloat(data[i].orderQty);
+							sumOrderAmt +=parseFloat(data[i].orderAmt);
+						}
+						var sum=transform(parseFloat(sumOrderAmt).toFixed(1)+"");
+						$('#sumOrderQty').text("合计:"+parseFloat(sumOrderQty).toFixed(1));
+						$('#sumOrderAmt').text(""+parseFloat(sumOrderAmt).toFixed(1));
+						$('#sum').text("合计:"+sum);
+				});
+			}
     	}
     </script>
 </body>

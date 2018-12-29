@@ -37,12 +37,14 @@ public class ReportUtils {
 		
 		for(int i=0; i<data.length; i++) {
 			HashMap m = data[i];
-			String workerId = (String) m.get("workerId");
+			Integer workerId =  (Integer) m.get("workerId");
+			m.put("groupId", null);
+			m.put("groupName", null);
 			for (DataObject obj : memList) {
-				String empId = obj.getString("empId");
-				String groupId = obj.getString("groupId");
+				Integer empId = obj.getInt("empId");
+				Integer groupId = obj.getInt("groupId");
 				String groupName = obj.getString("groupName");
-				if(workerId.equalsIgnoreCase(empId)) {
+				if(workerId.equals(empId)) {
 					m.put("groupId", groupId);
 					m.put("groupName", groupName);
 				}

@@ -1967,7 +1967,13 @@ function onPrint(){
 	var from = basicInfoForm.getData();
 	var params={
 			id : from.id,
-		auditSign:from.auditSign	
+		auditSign:from.auditSign,
+		guestId	:from.guestId,
+		currRepairSettorderPrintShow : currRepairSettorderPrintShow,
+		currOrgName : currOrgName,
+		currUserName : currUserName,
+		currCompAddress : currCompAddress,
+		currCompTel : currCompTel
 	};
 	var detailParams={
 			mainId :from.id,

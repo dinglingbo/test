@@ -1025,6 +1025,16 @@
             </isNotEmpty>
 	</select>
 	
+	<!--查询本公司的人员，工作组信息-->
+	<select id="queryMemGroup" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+			select b.id as groupId, b.name as groupName, a.empid as empId, a.name as empName 
+			from wb_common.com_member a
+			left join wb_common.com_member_group b
+			on a.member_group_id = b.id
+			WHERE 
+				a.orgid=#orgid#	
+	</select>
+	
 		<select id="queryCommercialInsurance" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 			SELECT
 				a.annual_status as annualStatus,

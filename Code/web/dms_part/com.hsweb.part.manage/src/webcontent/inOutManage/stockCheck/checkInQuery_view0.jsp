@@ -90,7 +90,7 @@
             <div type="indexcolumn">序号</div>
             <div header="" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="盘盈单号"></div>
+                    <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="盘盈单号"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="盘点员"></div>
                     <div allowSort="true" field="enterDate" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <!-- <div allowSort="true" field="billStatus" width="60" headerAlign="center" header="单据状态"></div> 
@@ -135,7 +135,7 @@
             </div>
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                	<div allowSort="true" field="manualCode" width="150" headerAlign="center" header="手工单号"></div>
+                	<div allowSort="true" field="manualCode" width="160" headerAlign="center" header="手工单号"></div>
                     <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
                     <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                   <div allowSort="true" field="partId" width="40" headerAlign="center" header="配件ID"></div>

@@ -577,6 +577,7 @@
     <chidren>invokePojo3</chidren>
     <chidren>group2</chidren>
     <chidren>assign2</chidren>
+    <chidren>assign10</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link70" name="link70" displayName="连接线" isDefault="true" type="transition">
@@ -591,6 +592,7 @@
     </sourceConnections>
     <targetConnections>link68</targetConnections>
     <targetConnections>link79</targetConnections>
+    <targetConnections>link18</targetConnections>
     <location x="764" y="217"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
@@ -642,6 +644,16 @@
     <sourceConnections xsi:type="process:tLink" id="link89" name="link89" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link17" name="link17" displayName="连接线" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>assign10</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">roleTemp/roleId</process:leftOperand>
+          <process:rightOperand type="literal">24</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link69</targetConnections>
     <location x="711" y="217"/>
@@ -1246,6 +1258,25 @@
     <location x="221" y="389"/>
     <figSize height="17" width="32"/>
     <node>assign9</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign10</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link17</targetConnections>
+    <location x="708" y="300"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign10label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">roleId</process:from>
+      <process:to type="query">mainRoleId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
+    <location x="703" y="336"/>
+    <figSize height="17" width="39"/>
+    <node>assign10</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

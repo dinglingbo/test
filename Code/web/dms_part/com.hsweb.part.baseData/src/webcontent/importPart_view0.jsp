@@ -90,8 +90,7 @@
 					    <input type="file" name="" id="" onchange="importf(this)">
 					</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
-	                <a class="nui-button" iconCls="" plain="true" onclick="clear()" id="saveBtn"><span class="fa fa-trash fa-lg"></span>&nbsp;清空</a>
-	                <a class="nui-button" iconCls="" plain="true" onclick="close()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+					<a class="nui-button" plain="true" href="<%=request.getContextPath() %>/repair/RepairBusiness/template/客户导入模板.xlsx"><span class="fa fa-arrow-down fa-lg"></span>下载客户模板</a>
 				</td>
 	        </tr>
 	    </table>
@@ -103,13 +102,13 @@
 			<div property="columns">
 				<div type="indexcolumn">序号</div>
 				<div field="品牌" width="50px" summaryType="count" headerAlign="center" allowSort="true">
-					品牌<input property="editor" class="nui-textbox"/></div>
+					*品牌<input property="editor" class="nui-textbox"/></div>
 				<div field="编码" width="100px" summaryType="count" headerAlign="center" allowSort="true">
-					编码<input property="editor" class="nui-textbox"/></div>
+					*编码<input property="editor" class="nui-textbox"/></div>
 				<div field="名称" width="100px" headerAlign="center" allowSort="true">
-					名称<input property="editor" class="nui-textbox"/></div>
+					*名称<input property="editor" class="nui-textbox"/></div>
 				<div field="单位" width="50px" headerAlign="center" allowSort="true">
-					单位<input property="editor" class="nui-textbox"/></div>
+					*单位<input property="editor" class="nui-textbox"/></div>
 				<div field="规格" width="80px" headerAlign="center" allowSort="true">
                     规格<input property="editor" class="nui-textbox"/></div>
                 <div field="厂牌" width="80px" headerAlign="center" allowSort="true">

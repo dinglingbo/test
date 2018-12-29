@@ -153,11 +153,16 @@ function changedToText(newRow){//从文字转化为编码存到数据库中
 function sure() {
 	var data = mainGrid.getData();
 	var partList = [];
+	var length = 0;
 	if (data) {
 		//alert(data.length);
 		for (var i = 0; i < data.length; i++) {
 			var newRow = data[i];
-
+			length++;
+			if(length>1000){
+				parent.parent.showMsg("导入不能超过一千条，请重新选择文件！","W");
+				return;
+			}
 			for ( var key in requiredField) {
 				if (!newRow[key] || $.trim(newRow[key]).length == 0) {
 					parent.parent.showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
@@ -188,43 +193,50 @@ function close(){
 var saveUrl = baseUrl + "com.hsapi.crm.svr.svr.saveImportGuestInfo.biz.ext";
 function saveEnterPart(partList){
 	if(partList && partList.length>0) {
-		nui.mask({
-			el: document.body,
-			cls: 'mini-mask-loading',
-			html: '正在导入...'
-		});
+		  nui.confirm("确定导入吗？", "友情提示",function(action){
+		       if(action == "ok"){
+		   		nui.mask({
+					el: document.body,
+					cls: 'mini-mask-loading',
+					html: '正在导入...'
+				});
 
-		nui.ajax({
-			url : saveUrl,
-			type : "post",
-			data : JSON.stringify({
-				list : partList,
-				token : token
-			}),
-			success : function(data) {
-				nui.unmask(document.body);
-				data = data || {};
-				if (data.errCode == "S") {
-					var errMsg = data.errMsg;
-					if(errMsg){
-						//nui.get("fastCodeList").setValue(errMsg);
-						parent.parent.showMsg(errMsg,"S");
-					}else{
-						parent.parent.showMsg("导入成功!","S");
-					}
-				} else {
-					//nui.get("fastCodeList").setValue(data.errMsg);
-					var noImportList = data.noImportList;
-					var l = noImportList.length;
-					parent.parent.showMsg(l+"条导入失败!","W");
-					showNoImportList(noImportList);
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-	            // nui.alert(jqXHR.responseText);
-	            console.log(jqXHR.responseText);
-	        }
-	    });
+				nui.ajax({
+					url : saveUrl,
+					type : "post",
+					data : JSON.stringify({
+						list : partList,
+						token : token
+					}),
+					success : function(data) {
+						nui.unmask(document.body);
+						data = data || {};
+						if (data.errCode == "S") {
+							var errMsg = data.errMsg;
+							if(errMsg){
+								//nui.get("fastCodeList").setValue(errMsg);
+								parent.parent.showMsg(errMsg,"S");
+							}else{
+								parent.parent.showMsg("导入成功!","S");
+							}
+						} else {
+							//nui.get("fastCodeList").setValue(data.errMsg);
+							var noImportList = data.noImportList;
+							var l = noImportList.length;
+							parent.parent.showMsg(l+"条导入失败!","W");
+							showNoImportList(noImportList);
+						}
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+			            // nui.alert(jqXHR.responseText);
+			            console.log(jqXHR.responseText);
+			        }
+			    });
+		     }else {
+					return;
+			 }
+			 }); 
+
 		
 	}
 

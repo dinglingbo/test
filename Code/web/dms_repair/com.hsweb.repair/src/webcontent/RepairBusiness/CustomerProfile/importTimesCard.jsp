@@ -90,8 +90,7 @@
 					    <input type="file" name="" id="" onchange="importf(this)">
 					</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
-	               <!--  <a class="nui-button" iconCls="" plain="true" onclick="clear()" id="saveBtn"><span class="fa fa-trash fa-lg"></span>&nbsp;清空</a> -->
-	                <a class="nui-button" iconCls="" plain="true" onclick="close()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+	               <a class="nui-button" plain="true" href="<%=request.getContextPath() %>/repair/RepairBusiness/template/计次卡导入模板.xlsx"><span class="fa fa-arrow-down fa-lg"></span>下载计次卡模板</a>
 				</td>
 	        </tr>
 	    </table>
@@ -103,13 +102,13 @@
 			<div property="columns">
 				<div type="indexcolumn">序号</div>
 				<div field="车牌号" width="90px" summaryType="count" headerAlign="center" allowSort="true">
-					车牌号<input property="editor" class="nui-textbox"/></div>
+					*车牌号<input property="editor" class="nui-textbox"/></div>
 				<div field="项目名称" width="70px" headerAlign="center" allowSort="true">
-					项目名称<input property="editor" class="nui-textbox"/></div>
+					*项目名称<input property="editor" class="nui-textbox"/></div>
 				<div field="总次数" width="135px" headerAlign="center" allowSort="true">
-					总次数<input property="editor" class="nui-textbox"/></div>
+					*总次数<input property="editor" class="nui-textbox"/></div>
 				<div field="已使用次数" width="135px" headerAlign="center" allowSort="true">
-					已使用次数<input property="editor" class="nui-textbox"/></div>
+					*已使用次数<input property="editor" class="nui-textbox"/></div>
 			</div>
 		</div>
 	</div>

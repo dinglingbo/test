@@ -76,7 +76,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="editPart()" id="editBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="disablePart()" id="disableBtn"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="enablePart()" id="enableBtn" visible="false"><span class="fa fa-check fa-lg"></span>&nbsp;启用</a>
-                <a class="nui-button" plain="true" iconCls="" onclick="importGuest()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
+                <!-- <a class="nui-button" plain="true" iconCls="" onclick="importGuest()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a> -->
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="reloadData()"><span class="fa fa-refresh fa-lg"></span>&nbsp;刷新</a>
             </div>

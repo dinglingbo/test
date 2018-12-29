@@ -235,12 +235,17 @@ function onOk()
 
     var insCarList = [];
     var updCarList = [];
-    var insContactList = [{
-    	source: "060110",
-    	mobile: guest.mobile,
-    	name: guest.fullName,
-    	identity: "060301"
-    }];
+    if(isAdd==1){
+        var insContactList = [{
+        	source: "060110",
+        	mobile: guest.mobile,
+        	name: guest.fullName,
+        	identity: "060301"
+        }];
+    }else{
+    	var insContactList = [];
+    }
+
     var updContactList = [];
     nui.mask({
 		el : document.body,
@@ -306,7 +311,9 @@ function getSaveData(){
 var queryUrl = baseUrl+"com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext";
 function setData(data)
 {
-		isAdd=1;
+		if(isEmptyObject(data)){
+			isAdd=1;		
+		}
 	var carNo = null;
 	var guestFullName = null;
 	if(data.guest){
@@ -865,7 +872,13 @@ function isVehicleNumber(vehicleNumber) {
 }
 
 
-
+//判断对象是否为{}
+function isEmptyObject (obj){
+	for(var key in obj ){
+		return false;
+	}
+	return true;
+}
 
 
 

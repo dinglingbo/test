@@ -95,9 +95,15 @@ var requiredField = {
 function sure() {
 	var data = mainGrid.getData();
 	var partList = [];
+	var length = 0;//用于限制大小不能超过一千
 	if (data) {
 		//alert(data.length);
 		for (var i = 0; i < data.length; i++) {
+			length++;
+			if(length>1000){
+				parent.parent.showMsg("导入不能超过一千条，请重新选择文件！","W");
+				return;
+			}
 			var newRow = {};
 			newRow.carNo = data[i].车牌号||"";
 			newRow.itemName = data[i].项目名称||"";
@@ -111,20 +117,20 @@ function sure() {
 					return;
 				}
 			}
-		//判断客户有没有选择
-		  nui.confirm("确定导入吗？", "友情提示",function(action){
-		       if(action == "ok"){
-		    	   partList.push(newRow);
-		     }else {
-					return;
-			 }
-			 }); 
+		  partList.push(newRow);
 
 		}
 
 	}
-
-	saveEnterPart(partList);
+	//判断客户有没有选择
+	  nui.confirm("确定导入吗？", "友情提示",function(action){
+	       if(action == "ok"){
+	    	   saveEnterPart(partList);
+	     }else {
+				return;
+		 }
+		 }); 
+	
 }
 
 function clear(){

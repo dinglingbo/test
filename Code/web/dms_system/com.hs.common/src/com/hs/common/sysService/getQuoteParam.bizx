@@ -60,7 +60,7 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getEnv" displayName="getEnv" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="link20" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
-      <targetNode>assign0</targetNode>
+      <targetNode>subprocess2</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
@@ -89,8 +89,8 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link17</targetConnections>
-    <location x="375" y="196"/>
+    <targetConnections>link0</targetConnections>
+    <location x="405" y="196"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -102,7 +102,7 @@
       <process:to type="query">url</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">14</process:from>
+      <process:from type="query" pattern="reference">cityCode</process:from>
       <process:to type="query">params/cityCode</process:to>
     </process:copy>
     <process:copy>
@@ -127,7 +127,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="373" y="232"/>
+    <location x="403" y="232"/>
     <figSize height="17" width="32"/>
     <node>assign0</node>
   </nodes>
@@ -441,6 +441,30 @@
     <figSize height="17" width="32"/>
     <node>end2</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="getCityCode" displayName="getCityCode" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess2</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link17</targetConnections>
+    <location x="315" y="197"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess2label</nodeLabel>
+    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">this.getCityCode</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="carNo" type="query" value="String" valueType="Primitive" pattern="reference">carNo</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="cityCode" type="query" value="String" valueType="Primitive">cityCode</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
+    <location x="292" y="232"/>
+    <figSize height="17" width="72"/>
+    <node>subprocess2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-09-18 20:53:12" date="2018-09-18Z" description="" name="getQuoteParam" version="7.0.0.0"/>
@@ -453,6 +477,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="t" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="systoken" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="result"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="cityCode" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="车牌号" isArray="false" name="carNo" primitiveType="String"/>

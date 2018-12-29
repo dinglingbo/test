@@ -110,7 +110,7 @@
             </div>
         </div>
 
-<!--         <div class="nui-fit"> -->
+        <div class="nui-fit">
                 <div id="cartGrid" class="nui-datagrid" style="width:100%;height:100%;"
                              borderStyle="border:0;"
                              showPager="false"
@@ -141,7 +141,7 @@
                                 <div field="remark" width="80" headerAlign="center" allowSort="true">备注<input property="editor" class="nui-textbox"/></div>
                         </div>
                 </div>
-<!--         </div> -->
+        </div>
     </div>
 
 

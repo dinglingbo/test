@@ -371,6 +371,34 @@
                 </isNotEmpty>
             </dynamic> 
             order by  a.create_date desc
+	</select>
+	
+	
+	<select id="queryRPAccountSum" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT sum(debit) debit, sum(credit) credit, sum(end_bala) as bala from fis_settle_account_bala 
+            where orgid = #orgid# and operate_date &gt;= #startDate# and operate_date &lt; #endDate# 
+	</select>
+	<select id="queryRPAccountDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT b.audit_date as auditDate, a.bill_main_id as billMainId, 
+				   a.bill_service_id as billServieId, c.name as billType,
+			       a.char_off_amt as amt, b.settle_type as settleType,
+			       d.car_no as carNo, d.guest_name as guestName
+			from fis_rp_account_detail a
+			inner join fis_rp_account b
+			on a.main_id = b.id
+			inner join fib_income_expenses c
+			on a.bill_type_id = c.id
+			inner join fis_rp_bill d
+			on a.bill_rp_id = d.id
+			where b.orgid = #orgid# and b.audit_sign = 1
+	              and b.audit_date &gt;= #startDate# and b.audit_date &lt; #endDate#
+	              
+	              <dynamic>
+		                <isNotEmpty prepend="and" property="dc">  
+		                    (b.rp_dc = #dc#)
+		                </isNotEmpty>
+		            </dynamic> 
+	        order by b.audit_date desc 
 	</select>	
 	
 </sqlMap>

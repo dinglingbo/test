@@ -96,7 +96,7 @@
             <div type="indexcolumn">序号</div>
             <div header="订单信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="订单单号"></div>
+                    <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
                     <div field="guestFullName" width="150" headerAlign="center" header="客户"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="销售员"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>

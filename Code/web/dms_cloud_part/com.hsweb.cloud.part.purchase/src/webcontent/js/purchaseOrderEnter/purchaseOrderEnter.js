@@ -1751,10 +1751,24 @@ function addGuest(){
 }
 
 function onPrint(){
+	var tab=parent.mini.get("mainTabs").getActiveTab();
+	var name=tab.name
+	
+	if(name == '1568'){ //进货单1568 采购入库 1681
+		var printName =tab.title;
+	}else if(name == '1681'){
+		var printName ='采购入库单';
+	}
 	var from = basicInfoForm.getData();
 	var params={
 			id : from.id,
-		auditSign:from.auditSign	
+		auditSign:from.auditSign,
+		printName : printName,
+		currRepairSettorderPrintShow : currRepairSettorderPrintShow,
+		currOrgName : currOrgName,
+		currUserName : currUserName,
+		currCompAddress : currCompAddress,
+		currCompTel : currCompTel
 	};
 	var detailParams={
 			mainId :from.id

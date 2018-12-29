@@ -352,7 +352,6 @@ function setData(data) {
 		nui.get("packageGrid").setWidth("100%");
 	}
 }
-
 function setViewData(ck, delck, cck, params){
 	isChooseClose = 0;
 	callback = ck;

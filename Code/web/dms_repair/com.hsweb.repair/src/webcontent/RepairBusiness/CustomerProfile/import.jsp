@@ -39,6 +39,7 @@
 		<div title="计次卡导入" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/importTimesCard.jsp">
 		</div>
 		<div title="配件导入" url="<%=request.getContextPath() %>/baseDataPart/importPart_view0.jsp">
+		</div>
 		<div title="供应商导入" url="<%=request.getContextPath() %>/baseDataPart/importSupplier_view0.jsp">
 		</div>
 		<div title="工单导入" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/oldMaintain.jsp">

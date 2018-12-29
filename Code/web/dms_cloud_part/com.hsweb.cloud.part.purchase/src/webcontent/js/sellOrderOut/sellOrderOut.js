@@ -1867,10 +1867,24 @@ function addGuest(){
 	});
 }
 function onPrint(){
+	var tab=parent.mini.get("mainTabs").getActiveTab();
+	var name=tab.name;
+	if(name == '1682'){ //销售出库单1682 销售退货 1323
+		var printName ="销售出库单";
+	}else if(name == '1569'){
+		var printName ='销售单';
+	}
 	var from = basicInfoForm.getData();
 	var params={
 			id : from.id,
-		auditSign:from.auditSign	
+		auditSign:from.auditSign,
+		printName : printName,
+		guestId : guestId,
+		currRepairSettorderPrintShow : currRepairSettorderPrintShow,
+		currOrgName : currOrgName,
+		currUserName : currUserName,
+		currCompAddress : currCompAddress,
+		currCompTel : currCompTel
 	};
 	var detailParams={
 			mainId :from.id,
@@ -1880,7 +1894,7 @@ function onPrint(){
     nui.open({
        url: openUrl,
        width: "100%",
-       title : "销售出库打印",
+       title : "销售打印",
        height: "100%",
        showMaxButton: false,
        allowResize: false,

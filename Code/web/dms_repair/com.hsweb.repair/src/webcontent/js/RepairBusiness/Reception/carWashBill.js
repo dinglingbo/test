@@ -68,6 +68,8 @@
  var mpartRate = 0;
  var x = 0;
  var y = 0;
+ var score = 0;
+ var lcheckDate = '';
  var lastItemSubtotal = null;
  var lastItemQty = null;
  var lastItemRate = null;
@@ -4580,6 +4582,9 @@ function SaveCheckMain() {
         guestId:data.guestId,
         contactorId:data.contactorId,
         serviceCode:document.getElementById("servieIdEl").innerText.trim(),
+        lastKilometers:$('#lastComeKilometers').text(),
+        lastPoint:score,
+        lastCheckDate:lcheckDate,
         checkStatus:0,
         enterKilometers:data.enterKilometers,
         mtAdvisorId:data.mtAdvisorId,
@@ -4664,7 +4669,8 @@ function SearchLastCheckMain() {
             if(isRec == "1"){
                 var ldata = text.list[0];
                 lastCheckParams = ldata;
-                var score = ldata.check_point || 0;
+                score = ldata.check_point || 0;
+                lcheckDate = ldata.checkDate ;
                 var rdate = nui.formatDate(nui.parseDate(ldata.record_date),"yyyy-MM-dd HH:mm:ss")
 
                 $("#lastCheckInfo1").html('上次检查');

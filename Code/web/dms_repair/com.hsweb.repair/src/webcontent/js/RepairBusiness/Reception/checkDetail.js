@@ -486,10 +486,10 @@ function isCheckMainY(){
                 billForm.setData(temp);
                
                 fguestId=temp.guestId;
-                if(!temp.lastKilometers && !temp.serviceId){
-                	
-                	lastCheckModel();
-                }
+//                if(!temp.lastKilometers && !temp.serviceId){
+//                	
+//                	lastCheckModel();
+//                }
                 if(mainParams.actionType == "view"){
                     billForm.setEnabled(false);
                     $("#saveData").hide();

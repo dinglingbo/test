@@ -9,7 +9,7 @@
 <head>
 
 <title>车道商户版</title>
-<script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
+<script  src="<%= request.getContextPath() %>/common/nui/nui.js?v=2.1.50" type="text/javascript" ></script>
 <meta charset="utf-8">
 <meta name="keywords" content="汽修达人管理平台"/>
 <meta name="description" content="汽修达人管理平台"/>

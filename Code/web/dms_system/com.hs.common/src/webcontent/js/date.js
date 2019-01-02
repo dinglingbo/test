@@ -160,25 +160,90 @@ function getPrevEndDate() {
 
 // 获得本周的开始日期
 function getWeekStartDate() {
-	var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1);
-	return formatDate(weekStartDate);
+	
+    var currentDate =  new Date();
+    //返回date是一周中的某一天 
+    var week = currentDate.getDay();
+    //返回date是一个月中的某一天 
+    var month = currentDate.getDate();
+
+    //一天的毫秒数 
+    var millisecond = 1000 * 60 * 60 * 24;
+    //减去的天数 
+    var minusDay = week != 0 ? week - 1 : 6;
+    //alert(minusDay); 
+    //本周 周一 
+    var monday = new Date(currentDate.getTime() - (minusDay * millisecond));
+    return formatDate(monday);
+	
+	//var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1);
+	//return formatDate(weekStartDate);
 }
 
 // 获得本周的结束日期
 function getWeekEndDate() {
-	var weekEndDate = new Date(nowYear, nowMonth, nowDay + (6 - nowDayOfWeek + 1));
-	return formatDate(weekEndDate);
+	
+    var currentDate =  new Date();
+    //返回date是一周中的某一天 
+    var week = currentDate.getDay();
+    //返回date是一个月中的某一天 
+    var month = currentDate.getDate();
+
+    //一天的毫秒数 
+    var millisecond = 1000 * 60 * 60 * 24;
+    //减去的天数 
+    var minusDay = week != 0 ? week - 1 : 6;
+    //本周 周日 
+    var monday = new Date(currentDate.getTime() - (minusDay * millisecond));
+    var sunday = new Date(monday.getTime() + (6 * millisecond));
+    //添加本周时间 
+    return formatDate(sunday);
+	
+//	var weekEndDate = new Date(nowYear, nowMonth, nowDay + (6 - nowDayOfWeek + 1));
+//	return formatDate(weekEndDate);
 }
 
 //获得上周的开始日期
 function getLastWeekStartDate() {
-    var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek - 7 + 1);
-    return formatDate(weekStartDate);
+	
+    var currentDate = new Date();
+    //返回date是一周中的某一天 
+    var week = currentDate.getDay();
+    //返回date是一个月中的某一天 
+    var month = currentDate.getDate();
+    //一天的毫秒数 
+    var millisecond = 1000 * 60 * 60 * 24;
+    //减去的天数 
+    var minusDay = week != 0 ? week - 1 : 6;
+    //获得当前周的第一天 
+    var currentWeekDayOne = new Date(currentDate.getTime() - (millisecond * minusDay));
+    //上周最后一天即本周开始的前一天 
+    var priorWeekLastDay = new Date(currentWeekDayOne.getTime() - millisecond);
+    //上周的第一天 
+    var priorWeekFirstDay = new Date(priorWeekLastDay.getTime() - (millisecond * 6));
+	
+    //var weekStartDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek - 7 + 1);
+    return formatDate(priorWeekFirstDay);
 }
 //获得上周的结束日期
 function getLastWeekEndDate() {
-    var weekEndDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek - 1 + 1);
-    return formatDate(weekEndDate);
+    var currentDate = new Date();
+    //返回date是一周中的某一天 
+    var week = currentDate.getDay();
+    //返回date是一个月中的某一天 
+    var month = currentDate.getDate();
+    //一天的毫秒数 
+    var millisecond = 1000 * 60 * 60 * 24;
+    //减去的天数 
+    var minusDay = week != 0 ? week - 1 : 6;
+    //获得当前周的第一天 
+    var currentWeekDayOne = new Date(currentDate.getTime() - (millisecond * minusDay));
+    //上周最后一天即本周开始的前一天 
+    var priorWeekLastDay = new Date(currentWeekDayOne.getTime() - millisecond);
+    //上周的第一天 
+    var priorWeekFirstDay = new Date(priorWeekLastDay.getTime() - (millisecond * 6));	
+    //var weekEndDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek - 1 + 1);
+    return formatDate(priorWeekLastDay);
 }
 
 //获得下周的开始日期
@@ -205,12 +270,32 @@ function getMonthEndDate() {
 }
 // 获得上月开始时间
 function getLastMonthStartDate() {
-	var lastMonthStartDate = new Date(nowYear, lastMonth, 1);
+	var tyear = nowYear;
+	var tmonth = nowMonth;
+    if (tmonth == 0) {
+    	tmonth = 11; //月份为上年的最后月份 
+    	tyear--; //年份减1 
+       
+    }else{
+        //否则,只减去月份 
+        tmonth--;
+    }
+	var lastMonthStartDate = new Date(tyear, tmonth, 1);
 	return formatDate(lastMonthStartDate);
 }
 // 获得上月结束时间
 function getLastMonthEndDate() {
-	var lastMonthEndDate = new Date(nowYear, lastMonth, getMonthDays(lastMonth));
+	var tyear = nowYear;
+	var tmonth = nowMonth;
+    if (tmonth == 0) {
+    	tmonth = 11; //月份为上年的最后月份 
+    	tyear--; //年份减1 
+       
+    }else{
+        //否则,只减去月份 
+        tmonth--;
+    }
+	var lastMonthEndDate = new Date(tyear, tmonth, getMonthDays(lastMonth));
 	return formatDate(lastMonthEndDate);
 }
 

@@ -319,7 +319,7 @@
 		}
 		if(window.location.pathname =="/dms/coframe/auth/loginCloud/index.jsp"){
 			showMsg("登录超时，正在跳转！", "E");
-            window.top.location.href = window.location.href;			
+            window.top.location.href = sysDomain +"/coframe/auth/loginCloud/login.jsp";			
 		}	
 		else{
 		//	debugger;

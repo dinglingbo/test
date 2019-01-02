@@ -360,7 +360,6 @@ a {
 <div class="com_text">Copyright © 2014-2018 广州信绘通信息科技有限公司  版权所有: 粤ICP备10036501号-1 </div>
 </div>
 <script src="jquery-1.9.1.min.js?ver=1.01"></script>
-
 <script type="text/javascript">
 nui.parse();
 	<%

@@ -33,6 +33,8 @@ var carCheckInfo = null;
 var ycAmt = 0;
 var tcAmt = 0;
 var gsAmt = 0;
+var score = 0;
+var lcheckDate = '';
 var carSellPointInfo = null;
 var lastCheckParams = null;
 
@@ -4699,6 +4701,9 @@ function SaveCheckMain() {
             carVin:data.carVin,
             serviceCode:$('#servieIdEl').text(),
             enterKilometers:data.enterKilometers,
+            lastKilometers:$('#lastComeKilometers').text(),
+            lastPoint:score,
+            lastCheckDate:lcheckDate,
             mtAdvisorId:data.mtAdvisorId,
             mtAdvisor:data.mtAdvisor,
             checkManId:nui.get("checkManId").value,
@@ -4781,7 +4786,8 @@ function SearchLastCheckMain() {
             if(isRec == "1"){
                     var ldata = text.list[0];
                 lastCheckParams = ldata;
-                var score = ldata.check_point || 0;
+                score = ldata.check_point || 0;
+                lcheckDate = ldata.checkDate ;
                 var rdate = nui.formatDate(nui.parseDate(ldata.record_date),"yyyy-MM-dd HH:mm:ss")
 
                 $("#lastCheckInfo1").html('上次检查');

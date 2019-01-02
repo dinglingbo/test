@@ -315,7 +315,7 @@ function addGuest(){
 
 
 function doSetMainInfo(car){
-    var maintain = billForm.getData();
+    var maintain = billForm.getData(true);
     maintain.carId = car.id;
     maintain.carNo = car.carNo;
     maintain.carVin = car.vin;
@@ -486,10 +486,10 @@ function isCheckMainY(){
                 billForm.setData(temp);
                
                 fguestId=temp.guestId;
-                if(!temp.lastKilometers ||!temp.lastPoint){
-                	
-                	lastCheckModel();
-                }
+//                if(!temp.lastKilometers && !temp.serviceId){
+//                	
+//                	lastCheckModel();
+//                }
                 if(mainParams.actionType == "view"){
                     billForm.setEnabled(false);
                     $("#saveData").hide();
@@ -645,7 +645,7 @@ var requiredField={
 
 function saveb(){
 	
-	var data=billForm.getData();
+	var data=billForm.getData(true);
 	billForm.validate();
 	if(billForm.isValid()==false){
 		showMsg("请正确填写本次里程！","W");
@@ -701,7 +701,7 @@ function saveb(){
 
 function saveDetail(){ //√  isCheckMain == "N"
     //var mainGrid = nui.get("mainGrid");
-    var mdata = billForm.getData();
+    var mdata = billForm.getData(true);
     mainGrid.commitEdit();
     var grid_all = mainGrid.getData(true); //保存
     var gridData = [];
@@ -829,7 +829,7 @@ function saveCheckMain(){//isCheckMain == "Y"
 			}
 		}
 	}
-    var mdata = billForm.getData();
+    var mdata = billForm.getData(true);
     nui.mask({
     	el : document.body,
 		cls : 'mini-mask-loading',
@@ -868,7 +868,7 @@ function saveCheckMain(){//isCheckMain == "Y"
 
 function finish(){
 	
-	var data = billForm.getData();
+	var data = billForm.getData(true);
 	if(data.isFinish != 1){		
 		saveDetailB();
 	}
@@ -1049,7 +1049,7 @@ function onCellCommitEdit(e){
 	
 }
 function lastCheckModel(){
-	var fromData=billForm.getData();
+	var fromData=billForm.getData(true);
 	var params={};
 	params.guestId=fguestId;
 

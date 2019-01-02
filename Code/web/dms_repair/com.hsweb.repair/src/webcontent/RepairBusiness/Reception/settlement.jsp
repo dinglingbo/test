@@ -572,7 +572,9 @@
 	    				var j = 0;
 	    				var discountAmt = 0;
 	    				for(var i = 0 , l = data.length ; i < l ; i++){
-	    					//document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
+	    				    if(!params.isSettle){
+	    				       document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
+	    				    }
 	    					var prdtName = data[i].prdtName;
 	    					if(params.type){
 	    						prdtName = data[i].packageName || "";
@@ -628,8 +630,10 @@
 	    					}
 			    			getSubtotal();
 	    				}
-	    				//document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML).toFixed(2);
-	    				document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML).toFixed(2);
+	    				if(!params.isSettle){
+	    				   document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML).toFixed(2);
+	    				}
+	    				 document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML).toFixed(2);
 	    				
 		        	}else{
 	                  $("#showPkg").hide();
@@ -663,7 +667,9 @@
 					    			"<td align='center'>[subtotal]</td>";
     				
     				for(var i = 0 , l = data.length ; i < l ; i++){
-    					//document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
+    				    if(!params.isSettle){
+    				        document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
+    				    }
     					var rate = data[i].rate;
     					rate = rate + "%";
     					var tr = $("<tr></tr>");
@@ -700,11 +706,10 @@
 				    			tBody.append(tr);
 				    	getSubtotal();		
     				}
-    				    //document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML).toFixed(2);
-    	var json1 = {
-				serviceId:params.serviceId,
-			};
-  				    
+    				  if(!params.isSettle){
+    				      document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML).toFixed(2);
+    				   }
+    				   
     				    document.getElementById("part").innerHTML = parseFloat(document.getElementById("part").innerHTML).toFixed(2);
 	    				document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML).toFixed(2);
 	        	    }else{
@@ -712,17 +717,19 @@
 	        	    }
 	        	}
         	});
-        	$.post(params.baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
-        				    				if(text.errCode=="S"){ 
-		    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt;
-		    				 		document.getElementById("cash1").innerHTML = text.data.balaAmt;			
-		    						    		var money = transform(text.data.balaAmt+"");
-    											document.getElementById("money").innerHTML = money;
-		    					
-		    				}else{
-		    					nui.alert(text.errMsg,"提示");
-		    				}
-        	});
+        	if(params.isSettle){
+				 $.post(params.baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
+    				    				if(text.errCode=="S"){ 
+	    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt;
+	    				 		document.getElementById("cash1").innerHTML = text.data.balaAmt;			
+	    						    		var money = transform(text.data.balaAmt+"");
+											document.getElementById("money").innerHTML = money;
+	    					
+	    				}else{
+	    					nui.alert(text.errMsg,"提示");
+	    				}
+    	            });  
+    		}
         	/* if(params.type){
         		url_three = "com.hsapi.repair.repairService.svr.billgetRpsMainPart.biz.ext?serviceId=";
         	}else{

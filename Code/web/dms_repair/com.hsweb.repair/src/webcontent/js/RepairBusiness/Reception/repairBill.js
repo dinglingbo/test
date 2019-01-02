@@ -3879,13 +3879,26 @@ function addcard(){
 function onPrint(e){
 	var main = billForm.getData();
 	var openUrl = null;
+	
 	if(main.id){
 		var params = {
             source : e,
             serviceId : main.id,
             isSettle : main.isSettle
 		};
-        doPrint(params);
+		params.isSettle=0;
+		if(e==3 || e==4){
+			if(main.isSettle){
+				params.isSettle=1;
+				doPrint(params);
+			}else{
+				showMsg("工单未结算，不能打印","W");
+				return;
+			}
+		}else{
+			 doPrint(params);
+		}
+       
 	}else{
         showMsg("请先保存工单,再打印!","W");
         return;

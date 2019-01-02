@@ -308,7 +308,10 @@ function onChanged() {
 		document.getElementById('amount').innerHTML = amount.toFixed(2);
 	}
 	var memAmt = nui.get("rechargeBalaAmt").getValue()||0;
+	if(memAmt!=0){
 		memAmt = (memAmt.split("￥"))[1];
+	}
+		
 	if(deductible>memAmt){
 		nui.alert("储值抵扣不能大于储值余额","提示");
 
@@ -664,7 +667,7 @@ function checkField(id){
 			document.getElementById('ppaytype'+s1[1]).innerHTML = str;
 			if(checkF){
 				//获取待收金额
-				var amt = document.getElementById('totalAmt1').innerText;
+				var amt = document.getElementById('amount').innerText;
 				var byId = s1[1]+data.list[0].customId;
 				document.getElementById(byId).value = amt;
 				checkF = 0;

@@ -429,14 +429,16 @@
             else window.close();
         }
         //com.hsapi.repair.repairService.svr.billqyeryMaintainList
-        function getSubtotal(){//更新套餐工时配件合计金额
-        	//var money = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(document.getElementById("item").innerHTML) + parseFloat(document.getElementById("part").innerHTML);
-        	//document.getElementById("cash").innerHTML = money;
-        	//document.getElementById("cash1").innerHTML = money;
-    		money = transform(money+"");
-    		document.getElementById("money").innerHTML = money;
-    		//document.getElementById("cash1").innerHTML = parseFloat(document.getElementById("cash1").innerHTML).toFixed(2);
-
+        function getSubtotal(p){//更新套餐工时配件合计金额
+            var params = p;
+        	if( params.name != "结账单"){
+        	   var money = parseFloat(document.getElementById("prdt").innerHTML) + parseFloat(document.getElementById("item").innerHTML) + parseFloat(document.getElementById("part").innerHTML);
+        	  // document.getElementById("cash").innerHTML = money;
+        	   document.getElementById("cash1").innerHTML = money;
+        	   money = transform(money+"");
+    		   document.getElementById("money").innerHTML = money;
+    		   document.getElementById("cash1").innerHTML = parseFloat(document.getElementById("cash1").innerHTML).toFixed(2);
+        	}
         }
         function SetData(params){
             token1 =  params.token;
@@ -572,7 +574,7 @@
 	    				var j = 0;
 	    				var discountAmt = 0;
 	    				for(var i = 0 , l = data.length ; i < l ; i++){
-	    				    if(!params.isSettle){
+	    				    if(params.name != "结账单"){
 	    				       document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
 	    				    }
 	    					var prdtName = data[i].prdtName;
@@ -628,9 +630,9 @@
 					    				.replace("[subtotal]",""));
 					    			tBody.append(tr); 
 	    					}
-			    			getSubtotal();
+			    			getSubtotal(params);
 	    				}
-	    				if(!params.isSettle){
+	    				if(params.name != "结账单"){
 	    				   document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML).toFixed(2);
 	    				}
 	    				 document.getElementById("prdt").innerHTML = parseFloat(document.getElementById("prdt").innerHTML).toFixed(2);
@@ -667,7 +669,7 @@
 					    			"<td align='center'>[subtotal]</td>";
     				
     				for(var i = 0 , l = data.length ; i < l ; i++){
-    				    if(!params.isSettle){
+    				    if(params.name != "结账单"){
     				        document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML) + parseFloat(data[i].discountAmt);
     				    }
     					var rate = data[i].rate;
@@ -704,9 +706,9 @@
 				    				.replace("[rate]",rate)
 				    				.replace("[subtotal]",data[i].subtotal));
 				    			tBody.append(tr);
-				    	getSubtotal();		
+				    	getSubtotal(params);		
     				}
-    				  if(!params.isSettle){
+    				  if(params.name != "结账单"){
     				      document.getElementById("yh").innerHTML = parseFloat(document.getElementById("yh").innerHTML).toFixed(2);
     				   }
     				   
@@ -717,7 +719,7 @@
 	        	    }
 	        	}
         	});
-        	if(params.isSettle){
+        	if(params.name == "结账单"){
 				 $.post(params.baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
     				    				if(text.errCode=="S"){ 
 	    				 		document.getElementById("yh").innerHTML = text.data.totalPrefAmt;

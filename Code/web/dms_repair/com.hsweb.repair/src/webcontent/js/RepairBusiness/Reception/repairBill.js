@@ -2329,6 +2329,21 @@ function setItemWorkersOnly(row_uid){
                             if(errCode == 'S'){   
                                 __workerIds = "";
                                 rpsItemGrid.accept();
+                                var p1 = {
+                                }
+                                var p2 = {
+                                    interType: "item",
+                                    data:{
+                                        serviceId: row.serviceId||0
+                                    }
+                                }
+                                var p3 = {
+                                    interType: "part",
+                                    data:{
+                                        serviceId: row.serviceId||0
+                                    }
+                                }
+                                loadDetail(p1, p2, p3);
                             }else{
                             	rpsItemGrid.reject();
                                 rpsItemGrid.accept();

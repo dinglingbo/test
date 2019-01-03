@@ -214,7 +214,7 @@
 	                    </td>
 	                    <td rowspan="2" style="">
 	                        <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
-	                        <div style="padding-top: 2px; font-size: 16px;font-family: Arial;">
+	                        <div style="padding-top: 2px; font-size: 14px;font-family: Arial;">
 	                          №:<span id="serviceCode"></span>  
 	                        </div>
 	                    </td>
@@ -365,7 +365,7 @@
                     <div style="float: left; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
                             <font style="font-size: 16px; font-weight: bold;">
-                                小计：<span id="cash1"></span>元
+                                结算金额：<span id="cash1"></span>元
                             </font>
                         </span>
                         <font style="font-size: 16px; font-weight: bold;">
@@ -379,6 +379,11 @@
 
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="ybk">
                 <tr>
+                    <td height="100" valign="top" style="padding: 8px;" id="drawOutReport" colspan="3">
+                                                       出车报告：
+                    </td>
+                </tr>
+                <tr>
                     <td height="50" valign="top" style="padding: 8px;" id="guestDesc">
                                                        客户描述：
                     </td>
@@ -391,7 +396,7 @@
                 </tr>
                 <tr>
                    <td height="30" style="padding: 8px;" colspan="3">
-                      <span style = "margin-left: 0px;" id = "show"></span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style = "margin-left: 0px;" id = "show"></span><br>
                       <span style = "margin-left: 500px;">客户签名：</span>
                   </td>
                  
@@ -415,13 +420,10 @@
        document.onkeyup = function(event) {
 	        var e = event || window.event;
 	        var keyCode = e.keyCode || e.which;// 38向上 40向下
-	        
-	
 	        if ((keyCode == 27)) { // ESC
 	            CloseWindow('cancle');
 	        }
-	
-	    }  
+	     }  
         });
         
          function CloseWindow(action) {
@@ -492,6 +494,12 @@
 	        		var enterDate = list.enterDate || "";
 	        		
 	        		var drawOutReport = list.drawOutReport || "";
+	        		if(drawOutReport != ""){
+	        		     document.getElementById("drawOutReport").innerHTML = document.getElementById("drawOutReport").innerHTML + drawOutReport;
+	        		     
+	        		}else{
+	        		  	  $("#drawOutReport").hide();
+	        		}
 	        		if(enterDate){
 	        			enterDate = enterDate.replace(/-/g,"/");
 	        			enterDate = new Date(enterDate);
@@ -696,7 +704,6 @@
     						   document.getElementById("item").innerHTML = parseFloat(document.getElementById("item").innerHTML) + parseFloat(data[i].subtotal);
     					   }
     					}
-    					 
 				    			tr.append(
 				    				tds.replace("[id]",data[i].orderIndex)
 				    				.replace("[prdtName]",itemName)
@@ -719,6 +726,7 @@
 	        	    }
 	        	}
         	});
+        	$.ajaxSettings.async = false;
         	if(params.name == "结账单"){
 				 $.post(params.baseUrl+"com.hsapi.repair.repairService.query.querySettleAmt.biz.ext?serviceId="+params.serviceId+"&token="+params.token,{},function(text){
     				    				if(text.errCode=="S"){ 

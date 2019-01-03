@@ -282,7 +282,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="insertEntity" displayName="insertEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
-      <targetNode>assign8</targetNode>
+      <targetNode>assign5</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo2</sourceNode>
@@ -313,6 +313,7 @@
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
+    <targetConnections>link10</targetConnections>
     <location x="411" y="146"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
@@ -604,7 +605,6 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link10</targetConnections>
     <targetConnections>link12</targetConnections>
     <targetConnections>link34</targetConnections>
     <targetConnections>link35</targetConnections>
@@ -1261,6 +1261,14 @@
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">stored/settleDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">card/salesDeductType</process:from>
+      <process:to type="query">stored/salesDeductType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">card/salesDeductValue</process:from>
+      <process:to type="query">stored/salesDeductOriginValue</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
     <location x="107" y="182"/>
@@ -1685,7 +1693,9 @@
     <node>invokePojo0</node>
   </nodes>
   <topRuler/>
-  <leftRuler/>
+  <leftRuler>
+    <guides position="138" horizontal="true"/>
+  </leftRuler>
   <process:info author="Administrator" createTime="2018-08-13 20:52:53" date="2018-08-13Z" description="" name="rechargeReceive" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.ComJoinMember" name="guestJoin"/>

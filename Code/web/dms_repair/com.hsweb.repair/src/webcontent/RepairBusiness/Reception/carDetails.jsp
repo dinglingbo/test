@@ -254,11 +254,10 @@
 									<div type="indexcolumn" width="40px" header="序号"></div>
 									<!-- 				<div type="checkcolumn" >选择</div> -->
 									<div field="id" headerAlign="center" allowSort="true" visible="false">工单ID</div>
-									<div field="serviceCode" headerAlign="center" allowSort="true" width="180px">工单号</div>
-
-									<div field="billTypeId" headerAlign="center" allowSort="true" width="60px">
-										工单类型</div>
-									<div field="guestName" headerAlign="center" allowSort="true" width="60px">
+									<div field="serviceCode" headerAlign="center" allowSort="true" width="160px">工单号</div>
+<!-- 									<div field="billTypeId" headerAlign="center" allowSort="true" width="60px">
+										工单类型</div> -->
+									<div field="guestName" headerAlign="center" allowSort="true" width="70px">
 										客户姓名</div>
 									<div field="mobile" headerAlign="center" allowSort="true" width="100px">
 										客户电话</div>
@@ -272,16 +271,20 @@
 										配件金额</div>
 									<div field="packageAmt" headerAlign="center" allowSort="true" width="60px">
 										套餐金额</div>
-									<div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
+									<div field="partAmt" headerAlign="center" allowSort="true" width="60px">
+										优惠金额</div>
+									<div field="packageAmt" headerAlign="center" allowSort="true" width="60px">
+										结算金额</div>	
+									<div field="planFinishDate" name="planFinishDate" width="160px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
 										进店日期</div>
-									<div field="outDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
+									<div field="outDate" name="planFinishDate" width="160px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
 										结算日期</div>
 									<div field="mtAdvisor" headerAlign="center" allowSort="true" width="60px">
 										维修顾问</div>
 									<div field="remark" renderer="onstatus" headerAlign="center" allowSort="true" width="120px">备注</div>
-									<div field="recorder" headerAlign="center" allowSort="true" width="100px">建档人</div>
+<!-- 									<div field="recorder" headerAlign="center" allowSort="true" width="100px">建档人</div>
 									<div field="recordDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
-										建档日期</div>
+										建档日期</div> -->
 								</div>
 								</div>
 							</div>
@@ -295,16 +298,18 @@
 									<div type="indexcolumn" width="40px" header="序号"></div>
 									<!-- 				<div type="checkcolumn" >选择</div> -->
 									<div field="id" headerAlign="center" allowSort="true" visible="false">ID</div>
-									<div field="partCode" headerAlign="center" allowSort="true" width="160px">配件编码</div>
 
-									<div field="partName" headerAlign="center" allowSort="true" width="110px">
+
+									<div field="partName" headerAlign="center" allowSort="true" width="90px">
 										配件名称</div>
 									<div field="partBrandId" headerAlign="center" allowSort="true" width="80px">
 										配件品牌</div>
-									<div field="qty" headerAlign="center" allowSort="true" width="100px">
-										数量</div>
 									<div field="unitPrice" headerAlign="center" allowSort="true" width="60px">
 										单价</div>
+									<div field="qty" headerAlign="center" allowSort="true" width="100px">
+										数量</div>
+									<div field="unit" headerAlign="center" allowSort="true" width="60px">
+										单位</div>
 									<div field="amt" headerAlign="center" allowSort="true" width="60px">
 										金额</div>
 									<div field="subtotal" headerAlign="center" allowSort="true" width="60px">
@@ -322,20 +327,20 @@
 									<div type="indexcolumn" width="40px" header="序号"></div>
 									<!-- 				<div type="checkcolumn" >选择</div> -->
 									<div field="id" headerAlign="center" allowSort="true" visible="false">ID</div>
-									<div field="itemCode" headerAlign="center" allowSort="true" width="160px">项目编码</div>
+
 
 									<div field="itemName" headerAlign="center" allowSort="true" width="80px">
 										项目名称</div>
-									<div field="itemTime" headerAlign="center" allowSort="true" width="60px">
-										项目时间</div>
+<!-- 									<div field="itemTime" headerAlign="center" allowSort="true" width="60px">
+										项目时间</div> -->
 									<div field="unitPrice" headerAlign="center" allowSort="true" width="60px">
 										项目单价</div>
-									<div field="amt" headerAlign="center" allowSort="true" width="60px">
-										项目金额</div>
-									<div field="rate" headerAlign="center" allowSort="true" width="60px">
+<!-- 									<div field="amt" headerAlign="center" allowSort="true" width="60px">
+										项目金额</div> -->
+<!-- 									<div field="rate" headerAlign="center" allowSort="true" width="60px">
 										优惠率</div>
 									<div field="discountAmt" headerAlign="center" allowSort="true" width="60px">
-										优惠金额</div>
+										优惠金额</div> -->
 									<div field="partAmt" headerAlign="center" allowSort="true" width="60px">
 										配件金额</div>
 									<div field="subtotal" headerAlign="center" allowSort="true" width="60px">

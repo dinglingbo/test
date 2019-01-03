@@ -39,24 +39,23 @@
 									<div type="indexcolumn" width="40px" header="序号"></div>
 									<!-- 				<div type="checkcolumn" >选择</div> -->
 									<div field="id" headerAlign="center" allowSort="true" visible="false">工单ID</div>
-									<div field="serviceCode" headerAlign="center" allowSort="true" width="180px">工单号</div>
-
-									<div field="billTypeId" headerAlign="center" allowSort="true" width="60px">
-										工单类型</div>
-									<div field="guestName" headerAlign="center" allowSort="true" width="60px">
+									<div field="serviceCode" headerAlign="center" allowSort="true" width="160px">工单号</div>
+									<div field="guestName" headerAlign="center" allowSort="true" width="70px">
 										客户姓名</div>
 									<div field="mobile" headerAlign="center" allowSort="true" width="100px">
 										客户电话</div>
 									<div field="carNo" headerAlign="center" allowSort="true" width="80px">
 										车牌号</div>
-									<div field="carVin" headerAlign="center" allowSort="true" width="120px">
-										车架号（VIN）</div>
 									<div field="itemAmt" headerAlign="center" allowSort="true" width="60px">
 										工时金额</div>
 									<div field="partAmt" headerAlign="center" allowSort="true" width="60px">
 										配件金额</div>
 									<div field="packageAmt" headerAlign="center" allowSort="true" width="60px">
 										套餐金额</div>
+									<div field="partAmt" headerAlign="center" allowSort="true" width="60px">
+										优惠金额</div>
+									<div field="packageAmt" headerAlign="center" allowSort="true" width="60px">
+										结算金额</div>										
 									<div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
 										进店日期</div>
 									<div field="outDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
@@ -64,10 +63,6 @@
 									<div field="mtAdvisor" headerAlign="center" allowSort="true" width="60px">
 										维修顾问</div>
 									<div field="remark" renderer="onstatus" headerAlign="center" allowSort="true" width="120px">备注</div>
-									<div field="recorder" headerAlign="center" allowSort="true" width="100px">建档人</div>
-									<div field="recordDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
-										建档日期</div>
-								</div>
 								</div>
 							</div>
 						</div>
@@ -127,10 +122,10 @@
 										项目小计</div>
 									<div field="workers" headerAlign="center" allowSort="true" width="60px">
 										维修人</div>
-									<div field="beginDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
+<!-- 									<div field="beginDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
 										开始时间</div>
 									<div field="finishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
-										完工时间</div>
+										完工时间</div> -->
 									<div field="saleMan" renderer="onstatus" headerAlign="center" allowSort="true" width="60px">销售员</div>
 								</div>
 							</div>

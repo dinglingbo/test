@@ -271,13 +271,13 @@
 										配件金额</div>
 									<div field="packageAmt" headerAlign="center" allowSort="true" width="60px">
 										套餐金额</div>
-									<div field="partAmt" headerAlign="center" allowSort="true" width="60px">
+									<div field="agiosum" headerAlign="center" allowSort="true" width="60px">
 										优惠金额</div>
-									<div field="packageAmt" headerAlign="center" allowSort="true" width="60px">
+									<div field="banlansum" headerAlign="center" allowSort="true" width="60px">
 										结算金额</div>	
-									<div field="planFinishDate" name="planFinishDate" width="160px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
+									<div field="enterDate"  width="160px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
 										进店日期</div>
-									<div field="outDate" name="planFinishDate" width="160px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
+									<div field="outDate"  width="160px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
 										结算日期</div>
 									<div field="mtAdvisor" headerAlign="center" allowSort="true" width="60px">
 										维修顾问</div>
@@ -310,8 +310,8 @@
 										数量</div>
 									<div field="unit" headerAlign="center" allowSort="true" width="60px">
 										单位</div>
-									<div field="amt" headerAlign="center" allowSort="true" width="60px">
-										金额</div>
+<!-- 									<div field="amt" headerAlign="center" allowSort="true" width="60px">
+										金额</div> -->
 									<div field="subtotal" headerAlign="center" allowSort="true" width="60px">
 										小计</div>
 									<div field="saleMan" headerAlign="center" allowSort="true" width="60px">
@@ -341,8 +341,8 @@
 										优惠率</div>
 									<div field="discountAmt" headerAlign="center" allowSort="true" width="60px">
 										优惠金额</div> -->
-									<div field="partAmt" headerAlign="center" allowSort="true" width="60px">
-										配件金额</div>
+<!-- 									<div field="partAmt" headerAlign="center" allowSort="true" width="60px">
+										配件金额</div> -->
 									<div field="subtotal" headerAlign="center" allowSort="true" width="60px">
 										项目小计</div>
 									<div field="workers" headerAlign="center" allowSort="true" width="60px">

@@ -19,10 +19,11 @@ $(document).ready(function(v) {
     			token  : token
     	};
         if(queryId=="BZ"){
-        	json.memberGroupId=( e.target.id).slice(2,4);
+        	
+        	json.memberGroupId=((e.target.id).split("Z"))[1]||"";
         	queryMember(json);
         }else if(queryId=="DJ"){
-        	json.memberLevelId=( e.target.id).slice(2,4);
+        	json.memberLevelId=((e.target.id).split("J"))[1]||"";
         	queryMember(json);
         }else{
         	queryMember(json);
@@ -134,7 +135,7 @@ function queryMember(json){
 					
 				for(var i = 0;i<Member.length;i++){
 					str = str+"<a class='empl' id="+Member[i].empId+">"+Member[i].empName+"</a>";
-					if((i+1)%3==0){
+					if((i+1)%4==0){
 						str = str+"<br>";
 					}
 				}

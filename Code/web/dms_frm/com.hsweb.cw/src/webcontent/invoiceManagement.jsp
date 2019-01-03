@@ -12,7 +12,7 @@
 <head>
     <title>开票管理</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoiceManagement.js?v=1.0.3" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoiceManagement.js?v=1.0.5" type="text/javascript"></script>
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/date.js" type="text/javascript"></script>
 </head>
 <style type="text/css">
@@ -35,6 +35,19 @@
 		                   源单日期:<input class="nui-datepicker" id="start"onblur="valueChane()"/>-<input class="nui-datepicker" id="end"/>
 		            <input class="nui-combobox" data="data" textfield="text" valuefield="id" value="1" id="type"/>
 		           <input id="message"name="message" class="nui-textbox" style="width:18%"  >
+		           <input name="invoiceType"
+	                        id="invoiceType"
+	                        class="nui-combobox width1"
+	                        textField="name"
+	                        valueField="id"
+	                        emptyText="请选择..."
+	                        url=""
+	                        allowInput="true"
+	                        nullItemText="请选择..."
+	                        valuechanged="change"
+	                        width="150px"
+	                        visible="false"
+	                        />
 		            <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 		             <a class="nui-button" plain="true" iconCls="" onclick="newBill(1)" ><span class="fa fa-plus fa-lg"></span>&nbsp;增加</a>
 		             <a class="nui-button" plain="true" iconCls="" onclick="newBill(2)" ><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>

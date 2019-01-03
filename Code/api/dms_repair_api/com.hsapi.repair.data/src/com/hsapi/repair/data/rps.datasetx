@@ -69684,7 +69684,7 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node47" name="RpsOldItem" nodeType="table" displayName="RpsOldItem" author="Administrator" instanceClass="" table="rps_old_item" genStrategy="assigned">
+  <nodes xsi:type="model:PEntityNode" id="node47" name="RpsOldItem" nodeType="table" displayName="RpsOldItem" author="Administrator" instanceClass="" table="rps_old_item" genStrategy="native">
     <location x="60" y="23964"/>
     <size height="336" width="150"/>
     <figSize height="20" width="150"/>
@@ -70825,7 +70825,7 @@
       </viewField>
     </columnProperty>
   </nodes>
-  <nodes xsi:type="model:PEntityNode" id="node49" name="RpsOldPart" nodeType="table" displayName="RpsOldPart" author="Administrator" instanceClass="" table="rps_old_part" genStrategy="assigned">
+  <nodes xsi:type="model:PEntityNode" id="node49" name="RpsOldPart" nodeType="table" displayName="RpsOldPart" author="Administrator" instanceClass="" table="rps_old_part" genStrategy="native">
     <location x="60" y="24364"/>
     <size height="282" width="150"/>
     <figSize height="20" width="150"/>

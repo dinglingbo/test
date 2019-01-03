@@ -422,7 +422,7 @@
 			d.mobile as guestMobile,
 			b.rate_amt as rateAmt,
 			c.invoice_no as invoiceNo,
-			b.invoice_type as invoiceType,
+			c.invoice_type as invoiceType,
 			b.rate as rate,
 			b.invoice_amt as invoiceAmt,
 			c.invoice_name as invoiceName,

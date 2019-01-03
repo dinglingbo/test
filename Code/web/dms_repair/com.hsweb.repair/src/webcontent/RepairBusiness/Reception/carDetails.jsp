@@ -271,6 +271,10 @@
 										配件金额</div>
 									<div field="packageAmt" headerAlign="center" allowSort="true" width="60px">
 										套餐金额</div>
+									<div field="partAmt" headerAlign="center" allowSort="true" width="60px">
+										优惠金额</div>
+									<div field="packageAmt" headerAlign="center" allowSort="true" width="60px">
+										结算金额</div>	
 									<div field="planFinishDate" name="planFinishDate" width="160px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
 										进店日期</div>
 									<div field="outDate" name="planFinishDate" width="160px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">

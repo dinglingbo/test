@@ -168,7 +168,7 @@
                                     </table>
                                 </div>
                             </fieldset>
-                            <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:40%;">
+                            <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:25%;">
                                 <legend>保险</legend>
                                 <div id="editForm3" style="padding:5px;">
 
@@ -242,7 +242,7 @@
                             </div>
                         </div>
                         
-                        <div title="跟换系统前维修记录" id="main" name="main">
+                        <div title="历史维修记录(导入)" id="main" name="main">
                         <div class="nui-splitter" vertical="true" style="width: 100%; height: 100%;" allowResize="true">
 					<div size="40%" showCollapseButton="true">
 						<div class="nui-fit">

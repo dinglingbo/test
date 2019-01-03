@@ -56,6 +56,12 @@ function SetInitData(data) {
 	var itemDiscountRate =data.itemDiscountRate*100;
 	var partDiscountRate =data.partDiscountRate*100;
 	basicInfoForm.setData(data);
+	if(data.memberGroupId==0){
+		nui.get("memberGroupId").setText("选择工作组");
+	}
+	if(data.memberLevelId==0){
+		nui.get("memberLevelId").setText("选择技师等级");
+	}
 	nui.get("itemDiscountRate").setValue(itemDiscountRate);
 	nui.get("partDiscountRate").setValue(partDiscountRate);
 	var isArtificer = nui.get("isArtificer").value;

@@ -120,7 +120,7 @@ function checkField(id){
 				document.getElementById('paytype'+s1[1]).innerHTML = str;
 				if(checkF){
 					//获取待收金额
-					var amt = document.getElementById('totalAmt1').innerText;
+					var amt = document.getElementById('amount').innerText;
 					var byId = s1[1]+data.list[0].customId;
 					document.getElementById(byId).value = amt;
 					checkF = 0;

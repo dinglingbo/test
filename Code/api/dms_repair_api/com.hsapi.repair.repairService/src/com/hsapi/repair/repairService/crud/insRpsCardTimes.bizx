@@ -221,19 +221,19 @@
       <process:to type="query">cardTimes/isFinish</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">cardTimes/salesDeductType</process:from>
+      <process:from type="query" pattern="reference">bCardTimes/salesDeductType</process:from>
       <process:to type="query">sales_deduct_type</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">cardTimes/salesDeductOriginValue</process:from>
+      <process:from type="query" pattern="reference">bCardTimes/salesDeductValue</process:from>
       <process:to type="query">sales_deduct_origin_value</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">cardTimes/sellAmt</process:from>
+      <process:from type="query" pattern="reference">bCardTimes/totalAmt</process:from>
       <process:to type="query">amt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">cardTimes/sellAmt</process:from>
+      <process:from type="query" pattern="reference">bCardTimes/sellAmt</process:from>
       <process:to type="query">subtotal</process:to>
     </process:copy>
     <process:copy>

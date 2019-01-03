@@ -11,7 +11,7 @@
 <title>工单导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/oldMaintain.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/oldMaintain.js?v=1.0.1"></script>
 <style type="text/css">
 
 
@@ -71,13 +71,10 @@
 			<div property="columns">
 				<div type="indexcolumn" width="40px" header="序号"></div>
 									<div field="工单号" headerAlign="center" allowSort="true" width="180px">*工单号</div>
-
-									<div field="工单类型" headerAlign="center" allowSort="true" width="60px">
-										工单类型</div>
 									<div field="客户姓名" headerAlign="center" allowSort="true" width="60px">
 										*客户姓名</div>
 									<div field="客户电话" headerAlign="center" allowSort="true" width="100px">
-										*客户电话</div>
+										客户电话</div>
 									<div field="车牌号" headerAlign="center" allowSort="true" width="80px">
 										*车牌号</div>
 									<div field="车架号（VIN）" headerAlign="center" allowSort="true" width="120px">
@@ -88,6 +85,10 @@
 										配件金额</div>
 									<div field="套餐金额" headerAlign="center" allowSort="true" width="60px">
 										套餐金额</div>
+									<div field="优惠金额" headerAlign="center" allowSort="true" width="60px">
+										优惠金额</div>
+									<div field="结算金额" headerAlign="center" allowSort="true" width="60px">
+										结算金额</div>
 									<div field="进店日期" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
 										进店日期</div>
 									<div field="结算日期" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">

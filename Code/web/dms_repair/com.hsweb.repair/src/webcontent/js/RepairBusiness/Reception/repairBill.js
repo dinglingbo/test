@@ -2185,8 +2185,6 @@ function closePkgWorkersSetWin(){
 }
 */
 
-
-
 function setPkgWorkersOnly(row_uid){
 	var main =  billForm.getData();
     if(!main.id){

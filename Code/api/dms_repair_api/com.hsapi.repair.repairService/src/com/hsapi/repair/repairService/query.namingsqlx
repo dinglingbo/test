@@ -697,7 +697,8 @@
 			       sum(b.package_subtotal) as pkgAmt, sum(b.item_subtotal) as itemAmt,
 			       sum(b.card_times_amt) as cardAmt, 
 			       sum(package_pref_amt + item_pref_amt + part_pref_amt + allowance_amt) as prefAmt,
-			       sum(other_amt) as otherAmt, sum(other_cost_amt) as otherCostAmt
+			       sum(other_amt) as otherAmt, sum(other_cost_amt) as otherCostAmt,
+			       sum(total_pref_amt) as totalPrefAmt
 			from rps_maintain a
 			inner join rps_settlement b
 			on a.id = b.service_id

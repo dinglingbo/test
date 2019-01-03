@@ -1,5 +1,7 @@
 var grid = null;
 var baseUrl = apiPath + repairApi + "/";
+var servieTypeList = [];
+var servieTypeHash = {};
 $(document).ready(function () {
     searchBeginDate = nui.get("start");
     searchEndDate = nui.get("end");
@@ -23,10 +25,23 @@ $(document).ready(function () {
      			e.cellHtml = value + "%";
      		}
      	}
+     	if(field == "invoiceType"){
+     		if(value){
+     			e.cellHtml = servieTypeHash[value].name;
+     		}
+		}
      });
+	 grid.on("rowdbclick",function(){
+		 newBill(2);
+	 });
+	 var dicDefs = {"invoiceType":"DDT20130703000008"};
+		initDicts(dicDefs,function(data){
+			servieTypeList = nui.get("invoiceType").getData();
+	        servieTypeList.forEach(function(v) {
+	        servieTypeHash[v.id] = v;
+	        });
+	});
 });
-
-
 
 function refresh(){
 	var params = {};

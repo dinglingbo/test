@@ -214,7 +214,7 @@
 	                    </td>
 	                    <td rowspan="2" style="">
 	                        <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
-	                        <div style="padding-top: 2px; font-size: 16px;font-family: Arial;">
+	                        <div style="padding-top: 2px; font-size: 14px;font-family: Arial;">
 	                          №:<span id="serviceCode"></span>  
 	                        </div>
 	                    </td>

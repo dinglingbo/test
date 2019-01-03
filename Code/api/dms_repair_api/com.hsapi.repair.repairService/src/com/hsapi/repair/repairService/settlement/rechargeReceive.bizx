@@ -282,7 +282,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="insertEntity" displayName="insertEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
-      <targetNode>assign8</targetNode>
+      <targetNode>assign5</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo2</sourceNode>
@@ -313,6 +313,7 @@
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
+    <targetConnections>link10</targetConnections>
     <location x="411" y="146"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
@@ -604,7 +605,6 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link10</targetConnections>
     <targetConnections>link12</targetConnections>
     <targetConnections>link34</targetConnections>
     <targetConnections>link35</targetConnections>

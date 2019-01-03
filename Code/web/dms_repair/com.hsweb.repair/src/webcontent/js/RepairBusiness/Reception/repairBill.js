@@ -3902,7 +3902,7 @@ function onPrint(e){
             isSettle : main.isSettle
 		};
 		if(e==3 || e==4){
-			if(main.isSettle){
+			if(main.isSettle||main.balaAuditSign){
 				doPrint(params);
 			}else{
 				showMsg("工单未结算，不能打印","W");

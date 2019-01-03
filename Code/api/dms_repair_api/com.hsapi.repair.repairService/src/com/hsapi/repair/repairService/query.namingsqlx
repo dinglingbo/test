@@ -140,7 +140,7 @@
 			inner join rpb_car b on (a.car_id = b.id)
 			inner join rpb_contactor c on (a.contactor_id = c.id)
 		<dynamic>
-			<isEqual prepend="and" property="status" compareValue="6">
+			<isEqual prepend="" property="status" compareValue="6">
 			inner join(
 				SELECT
 					DISTINCT service_id 
@@ -751,11 +751,11 @@
 			      <dynamic>
 
 		            <isNotEmpty prepend="and" property="groupId">
-		  				 and exists(select 1 from wb_common.com_member c where c.empid = b.sale_man_id 
+		  				  exists(select 1 from wb_common.com_member c where c.empid = b.sale_man_id 
 		  				            and c.member_group_id = #groupId#)
 		            </isNotEmpty>
 		            <isNotEmpty prepend="and" property="memberId">
-		  				 and b.sale_man_id = #memberId# 
+		  				  b.sale_man_id = #memberId# 
 		            </isNotEmpty>
 		          </dynamic>  
 			      
@@ -775,12 +775,12 @@
 			      <dynamic>
 
 		            <isNotEmpty prepend="and" property="groupId">
-		  				 and exists(select 1 from wb_common.com_member c where (c.empid = b.sale_man_id 
+		  				  exists(select 1 from wb_common.com_member c where (c.empid = b.sale_man_id 
 		  				                                     or FIND_IN_SET(c.empid,b.worker_ids) > 0 )
 		  				            and c.member_group_id = #groupId#)
 		            </isNotEmpty>
 		            <isNotEmpty prepend="and" property="memberId">
-		  				 and (b.sale_man_id = #memberId# or FIND_IN_SET(#memberId#,b.worker_ids) > 0 )
+		  				  (b.sale_man_id = #memberId# or FIND_IN_SET(#memberId#,b.worker_ids) > 0 )
 		            </isNotEmpty>
 		          </dynamic>  
 			      
@@ -799,11 +799,11 @@
 			      <dynamic>
 
 		            <isNotEmpty prepend="and" property="groupId">
-		  				 and exists(select 1 from wb_common.com_member c where c.empid = b.sale_man_id
+		  				  exists(select 1 from wb_common.com_member c where c.empid = b.sale_man_id
 		  				            and c.member_group_id = #groupId#)
 		            </isNotEmpty>
 		            <isNotEmpty prepend="and" property="memberId">
-		  				 and b.sale_man_id = #memberId# 
+		  				  b.sale_man_id = #memberId# 
 		            </isNotEmpty>
 		          </dynamic>  
 			      
@@ -822,11 +822,11 @@
 			      <dynamic>
 
 		            <isNotEmpty prepend="and" property="groupId">
-		  				 and exists(select 1 from wb_common.com_member c where FIND_IN_SET(c.empid,b.sale_man_ids) > 0
+		  				  exists(select 1 from wb_common.com_member c where FIND_IN_SET(c.empid,a.sale_man_ids) > 0
 		  				            and c.member_group_id = #groupId#)
 		            </isNotEmpty>
 		            <isNotEmpty prepend="and" property="memberId">
-		  				 and FIND_IN_SET(#memberId#,b.sale_man_ids) > 0
+		  				  FIND_IN_SET(#memberId#,a.sale_man_ids) > 0
 		            </isNotEmpty>
 		          </dynamic>  
 			      
@@ -843,11 +843,11 @@
 			      <dynamic>
 
 		            <isNotEmpty prepend="and" property="groupId">
-		  				 and exists(select 1 from wb_common.com_member c where c.empid = a.sale_man_id
+		  				  exists(select 1 from wb_common.com_member c where c.empid = a.sale_man_id
 		  				            and c.member_group_id = #groupId#)
 		            </isNotEmpty>
 		            <isNotEmpty prepend="and" property="memberId">
-		  				 and a.sale_man_id = #memberId#
+		  				  a.sale_man_id = #memberId#
 		            </isNotEmpty>
 		          </dynamic>  
 			      
@@ -864,11 +864,11 @@
 			      <dynamic>
 
 		            <isNotEmpty prepend="and" property="groupId">
-		  				 and exists(select 1 from wb_common.com_member c where c.empid = a.sale_man_id
+		  				  exists(select 1 from wb_common.com_member c where c.empid = a.sale_man_id
 		  				            and c.member_group_id = #groupId#)
 		            </isNotEmpty>
 		            <isNotEmpty prepend="and" property="memberId">
-		  				 and a.sale_man_id = #memberId#
+		  				  a.sale_man_id = #memberId#
 		            </isNotEmpty>
 		          </dynamic>  
 			      

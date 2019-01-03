@@ -23,6 +23,7 @@
                 <input class="nui-hidden" name="isOutBill"/>
                 <input class="nui-hidden" name="carModelIdLy"/>
                 <input class="nui-hidden" name="balaAuditor"/>
+                <input class="nui-hidden" name="balaAuditSign"/>
                 <tr>
                         <td class="title required">
                             <label>车&nbsp;牌&nbsp;&nbsp;号：</label>

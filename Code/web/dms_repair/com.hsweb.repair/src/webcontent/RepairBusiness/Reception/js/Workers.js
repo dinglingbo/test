@@ -66,8 +66,10 @@ function setData(data){
 	var workersIdStr =data.workersId||"";
 	workers =workersStr.split(",");
 	workersId =workersIdStr.split(",");
-	for(var i = 0;i<workersId.length;i++){
-		document.getElementById(workersId[i]).setAttribute("class", "empl1");
+	if(workersId!=""){
+		for(var i = 0;i<workersId.length;i++){
+			document.getElementById(workersId[i]).setAttribute("class", "empl1");
+		}	
 	}
 	nui.get("planFinishDate").setValue(mini.formatDate ( new Date(),"yyyy-MM-dd HH:mm:ss"));
 }

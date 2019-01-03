@@ -295,7 +295,7 @@
 									<div type="indexcolumn" width="40px" header="序号"></div>
 									<!-- 				<div type="checkcolumn" >选择</div> -->
 									<div field="id" headerAlign="center" allowSort="true" visible="false">ID</div>
-									<div field="partCode" headerAlign="center" allowSort="true" width="160px">配件编码</div>
+
 
 									<div field="partName" headerAlign="center" allowSort="true" width="110px">
 										配件名称</div>
@@ -322,7 +322,7 @@
 									<div type="indexcolumn" width="40px" header="序号"></div>
 									<!-- 				<div type="checkcolumn" >选择</div> -->
 									<div field="id" headerAlign="center" allowSort="true" visible="false">ID</div>
-									<div field="itemCode" headerAlign="center" allowSort="true" width="160px">项目编码</div>
+
 
 									<div field="itemName" headerAlign="center" allowSort="true" width="80px">
 										项目名称</div>

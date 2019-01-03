@@ -317,7 +317,7 @@
 		if(window.parent!=window && ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
 			window.parent.backToLogin();
 		}
-		if(window.location.pathname =="/dms/coframe/auth/loginCloud/index.jsp"){
+		if(window.location.pathname.substr(-20) =="loginCloud/index.jsp"){
 			showMsg("登录超时，正在跳转！", "E");
             window.top.location.href = sysDomain +"/coframe/auth/loginCloud/login.jsp";			
 		}	

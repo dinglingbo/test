@@ -396,7 +396,7 @@
                 </tr>
                 <tr>
                    <td height="30" style="padding: 8px;" colspan="3">
-                      <span style = "margin-left: 0px;" id = "show"></span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style = "margin-left: 0px;" id = "show"></span><br>
                       <span style = "margin-left: 500px;">客户签名：</span>
                   </td>
                  

@@ -202,20 +202,20 @@
         }
 
             #print-container h5 {
-                font-size: 14px;
+                font-size: 16px;
             }
 
         .company-info {
         }
 
             .company-info h3 {
-                font-size: 16px;
+                font-size: 18px;
                 padding: 10px 0 8px 5px;
                 border-bottom: 1px solid #333;
             }
 
         #title {
-            font-size: 24px;
+            font-size: 26px;
             margin: 15px 0 10px;
             font-weight: 800;
             text-align: center;
@@ -261,12 +261,12 @@
             .table-header h3, .table-header h4 {
                 text-align: left;
                 padding-left: 5px;
-                font-size: 14px;
+                font-size: 16px;
             }
 
         .tlist td {
             line-height: 18px;
-            font-size: 12px;
+            font-size: 14px;
             padding: 0 0 0 3px;
             border: 1px solid #333;
         }
@@ -276,12 +276,12 @@
         }
 
         .theader td {
-            font-size: 12px;
+            font-size: 14px;
         }
 
         .tfooter td {
             padding: 0px;
-            font-size: 12px;
+            font-size: 14px;
         }
 
         [contenteditable="true"].single-line {
@@ -318,7 +318,7 @@
 
         table, td {
             font-family: Tahoma, Geneva, sans-serif;
-            font-size: 12px;
+            font-size: 14px;
             color: #000;
         }
 		table#ybk td{
@@ -338,7 +338,7 @@
                 line-height: 42px;
                 border-radius: 5px;
                 color: #fff;
-                font-size: 18px;
+                font-size: 20px;
                 text-decoration: none;
                 margin: 0 10px;
             }
@@ -352,7 +352,7 @@
             height: 40px;
             border: 1px #b4b4b4 solid;
             float: left;
-            font-size: 16px;
+            font-size: 18px;
             font-family: "微软雅黑";
         }
 
@@ -387,7 +387,7 @@
 	                    </td>
 	                    <td rowspan="2" style="">
 	                        <div style="font-size: 20px; font-family: 华文中宋;padding-top: 5px;"><b><span id="spstorename"></span></b></div>
-	                        <div style="padding-top: 2px; font-size: 16px;font-family: Arial;">
+	                        <div style="padding-top: 2px; font-size: 14px;font-family: Arial;">
 	                          №:<span id="serviceCode"></span>  
 	                        </div>
 	                    </td>

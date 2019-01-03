@@ -18,10 +18,11 @@ $(document).ready(function(v) {
     			token  : token
     	};
         if(queryId=="BZ"){
-        	json.memberGroupId=( e.target.id).slice(2,4);
+        	
+        	json.memberGroupId=((e.target.id).split("Z"))[1]||"";
         	queryMember(json);
         }else if(queryId=="DJ"){
-        	json.memberLevelId=( e.target.id).slice(2,4);
+        	json.memberLevelId=((e.target.id).split("J"))[1]||"";
         	queryMember(json);
         }else{
         	queryMember(json);

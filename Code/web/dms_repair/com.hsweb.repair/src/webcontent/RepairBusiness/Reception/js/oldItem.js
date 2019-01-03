@@ -108,7 +108,7 @@ function sure() {
 			newRow.unitPrice = data[i].项目单价||"";
 			newRow.subtotal = data[i].项目小计||"";
 			newRow.workers = data[i].维修员||"";
-			newRow.sale_man = data[i].销售员||"";
+			newRow.saleMan = data[i].销售员||"";
 			newRow.remark = data[i].备注||"";
 
 

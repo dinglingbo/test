@@ -365,7 +365,7 @@
                     <div style="float: left; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
                             <font style="font-size: 16px; font-weight: bold;">
-                                小计：<span id="cash1"></span>元
+                                结算金额：<span id="cash1"></span>元
                             </font>
                         </span>
                         <font style="font-size: 16px; font-weight: bold;">

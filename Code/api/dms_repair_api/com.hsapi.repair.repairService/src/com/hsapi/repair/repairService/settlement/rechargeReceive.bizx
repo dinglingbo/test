@@ -1261,6 +1261,14 @@
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">stored/settleDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">card/salesDeductType</process:from>
+      <process:to type="query">stored/salesDeductType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">card/salesDeductValue</process:from>
+      <process:to type="query">stored/salesDeductOriginValue</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
     <location x="107" y="182"/>
@@ -1685,7 +1693,9 @@
     <node>invokePojo0</node>
   </nodes>
   <topRuler/>
-  <leftRuler/>
+  <leftRuler>
+    <guides position="138" horizontal="true"/>
+  </leftRuler>
   <process:info author="Administrator" createTime="2018-08-13 20:52:53" date="2018-08-13Z" description="" name="rechargeReceive" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.ComJoinMember" name="guestJoin"/>

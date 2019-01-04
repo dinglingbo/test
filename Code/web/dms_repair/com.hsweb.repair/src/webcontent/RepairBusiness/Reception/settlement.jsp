@@ -21,7 +21,7 @@
 <style>
 	        table, td {
 	            font-family: Tahoma,Geneva,sans-serif;
-	            font-size: 13px;
+	            font-size: 16px;
 	            color: #000;
 	        }
 

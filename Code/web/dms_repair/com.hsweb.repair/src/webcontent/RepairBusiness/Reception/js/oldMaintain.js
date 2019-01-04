@@ -111,8 +111,8 @@ function sure() {
 			newRow.carVin = data[i].车架号VIN||"";
 			newRow.itemAmt = data[i].项目金额||"";
 			newRow.partAmt = data[i].配件金额||"";
-			newRow.agioSum = data[i].优惠金额||"";
-			newRow.banlanSum = data[i].结算金额||"";
+			newRow.agiosum = data[i].优惠金额||"";
+			newRow.banlansum = data[i].结算金额||"";
 			newRow.packageAmt = data[i].套餐金额||"";
 			newRow.enterDate = data[i].进店日期||"";
 			newRow.outDate = data[i].结算日期||"";

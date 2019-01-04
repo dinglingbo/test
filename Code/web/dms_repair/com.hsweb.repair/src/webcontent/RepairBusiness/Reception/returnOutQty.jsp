@@ -9,7 +9,7 @@
 -->
 <head>
     <title>退货归库查询</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnOutQty.js?v=1.0.33"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnOutQty.js?v=1.0.36"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -46,6 +46,8 @@
                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                </ul>
                <span class="separator"></span>
+              	出库日期 从:<input class="nui-datepicker" id="sPickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
+			至:<input class="nui-datepicker" id="ePickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                			退货日期 从:<input class="nui-datepicker" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
 			至:<input class="nui-datepicker" id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
              	<input class="nui-textbox" width="100px" id="partCode" name="partCode" selectOnFocus="true" enabled="true" emptyText="配件编码"/>
@@ -54,7 +56,7 @@
                  <input id="storeId"
 	                name="storeId"
 	                class="nui-combobox"
-	                width="100px"
+	                width="80px"
 	                textField="name"
 	                valueField="id"
 	                valueFromSelect="true"
@@ -69,7 +71,7 @@
                 <input id="partBrandId"
 	                name="partBrandId"
 	                class="nui-combobox"
-	                width="100px"
+	                width="80px"
 	                textField="name"
 	                valueField="id"
 	                valueFromSelect="true"
@@ -91,7 +93,7 @@
                   url=""
                   allowInput="true"
                   valueFromSelect="false"
-                  width="120px"
+                  width="100px"
                   onvaluechanged="onSearch"
                   />        
 

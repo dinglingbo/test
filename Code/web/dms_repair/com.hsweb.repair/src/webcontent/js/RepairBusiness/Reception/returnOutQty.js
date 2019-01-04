@@ -17,13 +17,18 @@ var storeHash = {};
 var billTypeIdHash = {};
 var settTypeIdHash = {};
 var outTypeIdHash = {};
+var sOutDateEl=null;
+var eOutDateEl =null;
+var sPickDateEl =null;
+var ePickDateEl=null;
 $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     sOutDateEl =nui.get('sOutDate');
     eOutDateEl = nui.get('eOutDate');
-    
+    sPickDateEl =nui.get('sPickDate');
+    ePickDateEl = nui.get('ePickDate');
 
     
 	getAllPartBrand(function(data) {
@@ -111,8 +116,14 @@ function getSearchParams(){
     params.partName=nui.get("partName").getValue();
     params.partBrandId=nui.get("partBrandId").getValue();
     params.storeId=nui.get("storeId").getValue();
+    params.sPickDate=nui.get("sPickDate").getFormValue();
+    if(ePickDateEl.getValue()){
+    params.ePickDate=addDate(ePickDateEl.getValue(),1);
+    }
     params.sOutDate=nui.get("sOutDate").getFormValue();
+    if(eOutDateEl.getValue()){
     params.eOutDate=addDate(eOutDateEl.getValue(),1);
+    }
     return params;
 }
 var currType = 2;
@@ -123,59 +134,59 @@ function quickSearch(type){
     {
         case 0:
             params.today = 1;
-            params.sOutDate = getNowStartDate();
-            params.eOutDate = addDate(getNowEndDate(), 1);
+            params.sPickDate = getNowStartDate();
+            params.ePickDate = addDate(getNowEndDate(), 1);
             queryname = "本日";
             break;
         case 1:
             params.yesterday = 1;
-            params.sOutDate = getPrevStartDate();
-            params.eOutDate = addDate(getPrevEndDate(), 1); 
+            params.sPickDate = getPrevStartDate();
+            params.ePickDate = addDate(getPrevEndDate(), 1); 
             queryname = "昨日";
             break;
         case 2:
             params.thisWeek = 1;
-            params.sOutDate = getWeekStartDate();
-            params.eOutDate = addDate(getWeekEndDate(), 1);
+            params.sPickDate = getWeekStartDate();
+            params.ePickDate = addDate(getWeekEndDate(), 1);
             queryname = "本周";
             break;
         case 3:
             params.lastWeek = 1;
-            params.sOutDate = getLastWeekStartDate();
-            params.eOutDate = addDate(getLastWeekEndDate(), 1);
+            params.sPickDate = getLastWeekStartDate();
+            params.ePickDate = addDate(getLastWeekEndDate(), 1);
             queryname = "上周";
             break;
         case 4:
             params.thisMonth = 1;
-            params.sOutDate = getMonthStartDate();
-            params.eOutDate = addDate(getMonthEndDate(), 1);
+            params.sPickDate = getMonthStartDate();
+            params.ePickDate = addDate(getMonthEndDate(), 1);
             queryname = "本月";
             break;
         case 5:
             params.lastMonth = 1;
-            params.sOutDate = getLastMonthStartDate();
-            params.eOutDate = addDate(getLastMonthEndDate(), 1);
+            params.sPickDate = getLastMonthStartDate();
+            params.ePickDate = addDate(getLastMonthEndDate(), 1);
             queryname = "上月";
             break;
 
         case 10:
             params.thisYear = 1;
-            params.sOutDate = getYearStartDate();
-            params.eOutDate = getYearEndDate();
+            params.sPickDate = getYearStartDate();
+            params.ePickDate = getYearEndDate();
             queryname="本年";
             break;
         case 11:
             params.lastYear = 1;
-            params.sOutDate = getPrevYearStartDate();
-            params.eOutDate = getPrevYearEndDate();
+            params.sPickDate = getPrevYearStartDate();
+            params.ePickDate = getPrevYearEndDate();
             queryname="上年";
             break;
         default:
             break;
     }
     currType = type;
-    sOutDateEl.setValue(params.sOutDate);
-    eOutDateEl.setValue(addDate(params.eOutDate,-1));
+    sPickDateEl.setValue(params.sPickDate);
+    ePickDateEl.setValue(addDate(params.ePickDate,-1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
     doSearch(params);

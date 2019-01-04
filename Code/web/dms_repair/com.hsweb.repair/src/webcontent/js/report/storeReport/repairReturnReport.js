@@ -19,10 +19,16 @@ var storeHash = {};
 var billTypeIdHash = {};
 var settTypeIdHash = {};
 var outTypeIdHash = {};
+var sOutDateEl=null;
+var eOutDateEl =null;
+var sReturnDateEl =null;
+var eReturnDateEl=null;
 $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
+    sReturnDateEl=nui.get('sReturnDate');
+    eReturnDateEl = nui.get('eReturnDate');
     sOutDateEl =nui.get('sOutDate');
     eOutDateEl = nui.get('eOutDate');
     
@@ -113,8 +119,14 @@ function getSearchParams(){
     params.partBrandId=nui.get("partBrandId").getValue();
     params.storeId=nui.get("storeId").getValue();
     params.partTypeId=nui.get("partTypeId").value;
+    params.sReturnDate=nui.get("sReturnDate").getFormValue();
+    if(eReturnDateEl.getValue())  {
+    	params.eReturnDate=addDate(eReturnDateEl.getValue(),1);
+    }
     params.sOutDate=nui.get("sOutDate").getFormValue();
-    params.eOutDate=addDate(eOutDateEl.getValue(),1);
+    if(eOutDateEl.getValue())  {
+    	params.eOutDate=addDate(eOutDateEl.getValue(),1);
+    }
     return params;
 }
 
@@ -126,59 +138,59 @@ function quickSearch(type){
     {
         case 0:
             params.today = 1;
-            params.sOutDate = getNowStartDate();
-            params.eOutDate = addDate(getNowEndDate(), 1);
+            params.sReturnDate = getNowStartDate();
+            params.eReturnDate = addDate(getNowEndDate(), 1);
             queryname = "本日";
             break;
         case 1:
             params.yesterday = 1;
-            params.sOutDate = getPrevStartDate();
-            params.eOutDate = addDate(getPrevEndDate(), 1);
+            params.sReturnDate = getPrevStartDate();
+            params.eReturnDate = addDate(getPrevEndDate(), 1);
             queryname = "昨日";
             break;
         case 2:
             params.thisWeek = 1;
-            params.sOutDate = getWeekStartDate();
-            params.eOutDate = addDate(getWeekEndDate(), 1);
+            params.sReturnDate = getWeekStartDate();
+            params.eReturnDate = addDate(getWeekEndDate(), 1);
             queryname = "本周";
             break;
         case 3:
             params.lastWeek = 1;
-            params.sOutDate = getLastWeekStartDate();
-            params.eOutDate = addDate(getLastWeekEndDate(), 1);
+            params.sReturnDate = getLastWeekStartDate();
+            params.eReturnDate = addDate(getLastWeekEndDate(), 1);
             queryname = "上周";
             break;
         case 4:
             params.thisMonth = 1;
-            params.sOutDate = getMonthStartDate();
-            params.eOutDate = addDate(getMonthEndDate(), 1);
+            params.sReturnDate = getMonthStartDate();
+            params.eReturnDate = addDate(getMonthEndDate(), 1);
             queryname = "本月";
             break;
         case 5:
             params.lastMonth = 1;
-            params.sOutDate = getLastMonthStartDate();
-            params.eOutDate = addDate(getLastMonthEndDate(), 1);
+            params.sReturnDate = getLastMonthStartDate();
+            params.eReturnDate = addDate(getLastMonthEndDate(), 1);
             queryname = "上月";
             break;
 
         case 10:
             params.thisYear = 1;
-            params.sOutDate = getYearStartDate();
-            params.eOutDate = getYearEndDate();
+            params.sReturnDate = getYearStartDate();
+            params.eReturnDate = getYearEndDate();
             queryname="本年";
             break;
         case 11:
             params.lastYear = 1;
-            params.sOutDate = getPrevYearStartDate();
-            params.eOutDate = getPrevYearEndDate();
+            params.sReturnDate = getPrevYearStartDate();
+            params.eReturnDate = getPrevYearEndDate();
             queryname="上年";
             break;
         default:
             break;
     }
     currType = type;
-    sOutDateEl.setValue(params.sOutDate);
-    eOutDateEl.setValue(addDate(params.eOutDate,-1));
+    sReturnDateEl.setValue(params.sReturnDate);
+    eReturnDateEl.setValue(addDate(params.eReturnDate,-1));
     var menunamedate = nui.get("menunamedate");
     menunamedate.setText(queryname);
     doSearch(params);
@@ -192,8 +204,8 @@ function doSearch(params)
 {
 	params.orgid = currOrgid;
 	params.returnSign = 1; //出库
-	params.isSettle=1; //已结算
-	params.status=2; //状态已完工
+//	params.isSettle=1; //已结算
+//	params.status=2; //状态已完工
     rightGrid.load({
         params:params,
         token :token     

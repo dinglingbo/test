@@ -671,6 +671,10 @@
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">deduct/modifyDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">7</process:from>
+      <process:to type="query">deduct/billTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
     <location x="744" y="321"/>

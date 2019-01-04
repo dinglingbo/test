@@ -86,13 +86,13 @@
       valueFromSelect="false"
       width="100px" onvaluechanged="onSearch">
   出库日期 从:
-     <input class="nui-datepicker" id="sPickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
+     <input class="nui-datepicker"width="100px" id="sPickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
  至:
-    <input class="nui-datepicker" id="ePickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+    <input class="nui-datepicker" width="100px"id="ePickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
    结算日期 从:
-     <input class="nui-datepicker" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
+     <input class="nui-datepicker"width="100px" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
  至:
-    <input class="nui-datepicker" id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+    <input class="nui-datepicker" width="100px"id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 </div>
 
@@ -114,7 +114,7 @@
         <div type="indexcolumn">序号</div>
         <div header="工单信息" headerAlign="center">
             <div property="columns">
-            	<div allowSort="true" field="serviceCode" width="160" headerAlign="center" header="业务单号"></div>
+            	<div allowSort="true" field="serviceCode" width="180" headerAlign="center" header="业务单号"></div>
             	<div allowSort="true" field="carNo" width="100" headerAlign="center" header="车牌号"></div>
             	<div allowSort="true" field="storeId" width="100" headerAlign="center" header="仓库"></div>
                 <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>

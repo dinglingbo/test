@@ -94,9 +94,15 @@ var requiredField = {
 function sure() {
 	var data = mainGrid.getData();
 	var partList = [];
+	var length = 0;//用于限制大小不能超过一千
 	if (data) {
 		//alert(data.length);
 		for (var i = 0; i < data.length; i++) {
+			length++;
+			if(length>1000){
+				parent.parent.showMsg("导入不能超过一千条，请重新选择文件！","W");
+				return;
+			}
 			var newRow = {};
 			newRow.fullName = data[i].客户名称||"";
 			newRow.mobile = data[i].手机号码||"";
@@ -115,7 +121,7 @@ function sure() {
 
 		for ( var key in requiredField) {
 				if (!newRow[key] || $.trim(newRow[key]).length == 0) {
-					showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
+					parent.parent.showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
 					return;
 				}
 			}
@@ -143,42 +149,50 @@ function close(){
 var saveUrl = baseUrl + "com.hsapi.repair.repairService.crud.getImportGuest.biz.ext";
 function saveEnterPart(partList){
 	if(partList && partList.length>0) {
-		nui.mask({
-	        el: document.body,
-	        cls: 'mini-mask-loading',
-	        html: '正在导入...'
-	    });
+		  nui.confirm("确定导入吗？", "友情提示",function(action){
+		       if(action == "ok"){
+		   		nui.mask({
+			        el: document.body,
+			        cls: 'mini-mask-loading',
+			        html: '正在导入...'
+			    });
+		   	    nui.ajax({
+			        url : saveUrl,
+			        type : "post",
+			        data : JSON.stringify({
+			            list : partList,
+			            token : token
+			        }),
+			        success : function(data) {
+			            nui.unmask(document.body);
+			            data = data || {};
+			            if (data.errCode == "S") {
+			                var errMsg = data.errMsg;
+			                if(errMsg){
+								nui.get("fastCodeList").setValue(errMsg);
+								advancedTipWin.show();
+								//showMsg(errMsg,"S");
+			                }else{
+			                	parent.parent.showMsg("导入成功!","S");
+			                }
+			            } else {
+							nui.get("fastCodeList").setValue(data.errMsg);
+							advancedTipWin.show();
+							//showMsg(data.errMsg || "导入失败!","W");
+			            }
+			        },
+			        error : function(jqXHR, textStatus, errorThrown) {
+			            // nui.alert(jqXHR.responseText);
+			            console.log(jqXHR.responseText);
+			        }
+			    });
+		     }else {
+					return;
+			 }
+			 }); 
 
-	    nui.ajax({
-	        url : saveUrl,
-	        type : "post",
-	        data : JSON.stringify({
-	            list : partList,
-	            token : token
-	        }),
-	        success : function(data) {
-	            nui.unmask(document.body);
-	            data = data || {};
-	            if (data.errCode == "S") {
-	                var errMsg = data.errMsg;
-	                if(errMsg){
-						nui.get("fastCodeList").setValue(errMsg);
-						advancedTipWin.show();
-						//showMsg(errMsg,"S");
-	                }else{
-						showMsg("导入成功!","S");
-	                }
-	            } else {
-					nui.get("fastCodeList").setValue(data.errMsg);
-					advancedTipWin.show();
-					//showMsg(data.errMsg || "导入失败!","W");
-	            }
-	        },
-	        error : function(jqXHR, textStatus, errorThrown) {
-	            // nui.alert(jqXHR.responseText);
-	            console.log(jqXHR.responseText);
-	        }
-	    });
+
+
 		
 	}
 

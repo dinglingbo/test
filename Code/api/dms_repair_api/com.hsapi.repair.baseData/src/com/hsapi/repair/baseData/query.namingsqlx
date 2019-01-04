@@ -50,53 +50,60 @@
             </isNotEmpty>  
         </dynamic>  
 	</select>
-	
-	    <select id="queryCard" parameterClass="commonj.sdo.DataObject" resultClass="java.util.HashMap">
+	<!--#groupName# card_name  sale_man-->
+	<select id="queryCard" parameterClass="commonj.sdo.DataObject" resultClass="java.util.HashMap">
 		SELECT
-				a.name AS name,
-				a.id AS id,
+		
+		   <isEqual prepend="" property="groupName" compareValue="card_name">
+			    card_name as name,
+			</isEqual>
+			
+			<isEqual prepend="" property="groupName" compareValue="sale_man">
+			    sale_man as name,
+			</isEqual>
+            
 				COUNT(1) AS num,
-				SUM(a.recharge_amt) AS amt
-			FROM
-				wb_repair.rpb_card_stored a
-			INNER JOIN wb_repair.rps_stored_record as b ON a.id = b.card_id
-			WHERE
-				(a.orgid =#orgid# OR a.is_share = 1)
-				AND a.tenant_id = #tenantId#
-				AND a.STATUS = 0
-
+				SUM(recharge_amt) AS amt
+			FROM wb_repair.rps_stored_record 
+			WHERE orgid =#orgid# and is_settle = 1
+			
 		<dynamic>
 			<isNotEmpty prepend="and" property="startDate">  
-                (b.record_date &gt;= #startDate#)
+                (settle_date &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (b.record_date &lt;= #endDate#)
+                (settle_date &lt;= #endDate#)
             </isNotEmpty>  
         </dynamic> 
-        GROUP BY a.NAME,a.id 
+        GROUP BY #groupName#
+        order by amt desc
 	</select>
 	
 	<select id="querytimesCard" parameterClass="commonj.sdo.DataObject" resultClass="java.util.HashMap">
 		SELECT
-				a. NAME AS NAME,
+		
+		   <isEqual prepend="" property="groupName" compareValue="card_name">
+			    card_name as name,
+			</isEqual>
+			
+			<isEqual prepend="" property="groupName" compareValue="sale_man">
+			    sale_man as name,
+			</isEqual>
+
 				COUNT(1) AS num,
-				a.id AS id,
-				SUM(a.sell_amt) AS amt
-			FROM
-				wb_repair.rpb_card_times a
-			INNER JOIN wb_repair.rps_card_times as b ON a.id = b.card_id
-			WHERE
-				(a.orgid = #orgid# OR a.is_share = 1)AND a.tenant_id = #tenantId#
-			AND a.STATUS = 0
+				SUM(sell_amt) AS amt
+			FROM wb_repair.rps_card_times 
+			WHERE orgid = #orgid# and status = 2
 		<dynamic>
 			<isNotEmpty prepend="and" property="startDate">  
-                (b.record_date &gt;= #startDate#)
+                (settle_date &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (b.record_date &lt;= #endDate#)
+                (settle_date &lt;= #endDate#)
             </isNotEmpty>  
         </dynamic> 
-        GROUP BY a.NAME, a.id
+        GROUP BY #groupName#
+        order by amt desc
 	</select>
 	
 	<select id="queryLastCheckModel" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">

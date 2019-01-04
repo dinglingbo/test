@@ -12,9 +12,21 @@
 <title>导入</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    
+    <style type="text/css">
+    	.tips {
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+    </style>
 </head>
 <body style="margin:0;width: 98%; height:100%;overflow-x:hidden">	
+	<div class="tips">
+		<span class="fa fa-exclamation-triangle fa-lg"></span>数据导入功能通常只在系统初次使用时使用，导入完成后数据无法撤回，请检查数据正确性，谨慎操作！<br>
+		<span class="fa fa-exclamation-triangle fa-lg"></span>数据导入前请下载我们的导入模板整理文件。<br>
+		<span class="fa fa-exclamation-triangle fa-lg"></span>每次导入最多1000条数据， 如果数量超过1000，请分批导入。<br>
+		<span class="fa fa-exclamation-triangle fa-lg"></span>表头标*为必填项，请按正常数据格式整理文件（如：数量请用数字，勿用中文.日期格式：2018-11-11）。<br>
+	</div>
 	<div id ="tabs" class="nui-tabs" width="100%" height="100%">
 		<div title="客户导入" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/importGuest.jsp">
 		</div>
@@ -25,6 +37,17 @@
 		<div title="按车牌号导入储值卡" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/importCardByCarNo.jsp">
 		</div>
 		<div title="计次卡导入" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/importTimesCard.jsp">
+		</div>
+		<div title="配件导入" url="<%=request.getContextPath() %>/baseDataPart/importPart_view0.jsp">
+		</div>
+		<div title="供应商导入" url="<%=request.getContextPath() %>/baseDataPart/importSupplier_view0.jsp">
+		</div>
+		<div title="工单导入" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/oldMaintain.jsp">
+		</div>
+		<div title="工单项目导入" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/oldItem.jsp">
+		</div>
+		<div title="工单配件导入" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/oldPart.jsp">
+		</div>
 		</div>
 	</div>
 

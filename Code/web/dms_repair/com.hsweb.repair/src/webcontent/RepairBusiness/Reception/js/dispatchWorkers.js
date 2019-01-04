@@ -18,10 +18,11 @@ $(document).ready(function(v) {
     			token  : token
     	};
         if(queryId=="BZ"){
-        	json.memberGroupId=( e.target.id).slice(2,4);
+        	
+        	json.memberGroupId=((e.target.id).split("Z"))[1]||"";
         	queryMember(json);
         }else if(queryId=="DJ"){
-        	json.memberLevelId=( e.target.id).slice(2,4);
+        	json.memberLevelId=((e.target.id).split("J"))[1]||"";
         	queryMember(json);
         }else{
         	queryMember(json);
@@ -53,13 +54,9 @@ var queryMemberLevel = apiPath + repairApi + "/com.hsapi.repair.baseData.team.ge
 function setData(data){
 	type = data.type;
 	serviceId = data.serviceId;
-	planFinishDate = data.planFinishDate||"";
-	if(planFinishDate==""){
-		nui.get("planFinishDate").readOnly = true;
-	}else{		
-		nui.get("planFinishDate").readOnly = true;
-		nui.get("planFinishDate").setValue(planFinishDate);
-	}
+	planFinishDate = new Date();
+	nui.get("planFinishDate").setValue(mini.formatDate ( planFinishDate,"yyyy-MM-dd HH:mm:ss"));
+
 }
 function init(){
     nui.mask({
@@ -138,7 +135,7 @@ function queryMember(json){
 					
 				for(var i = 0;i<Member.length;i++){
 					str = str+"<a class='empl' id="+Member[i].empId+" >"+Member[i].empName+"</a>";
-					if((i+1)%3==0){
+					if((i+1)%4==0){
 						str = str+"<br>";
 					}
 				}
@@ -242,7 +239,8 @@ function dispatchOk(){
 			workerIds :emlpszId,
 			workers: emlpszName,
 			serviceTypeIds:serviceTypeIdList,
-			type:type
+			type:type,
+			planFinishDate:nui.get("planFinishDate").getValue()
 	}
 	nui.ajax({	
 		url : setItemWorkersBatch,
@@ -255,7 +253,6 @@ function dispatchOk(){
 			if (text.errCode == 'S') {
 				showMsg("派工成功","S");
 				var data = {
-						planFinishDate:nui.get("planFinishDate").getValue(),
 						saveSuccess :"saveSuccess"
 				}
 				CloseWindow(data);

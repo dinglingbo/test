@@ -95,9 +95,15 @@ var requiredField = {
 function sure() {
 	var data = mainGrid.getData();
 	var partList = [];
+	var length = 0;//用于限制大小不能超过一千
 	if (data) {
 		//alert(data.length);
 		for (var i = 0; i < data.length; i++) {
+			length++;
+			if(length>1000){
+				parent.parent.showMsg("导入不能超过一千条，请重新选择文件！","W");
+				return;
+			}
 			var newRow = {};
 			newRow.carNo = data[i].车牌号||"";
 			newRow.itemName = data[i].项目名称||"";
@@ -107,17 +113,24 @@ function sure() {
 
 		for ( var key in requiredField) {
 				if (!newRow[key] || $.trim(newRow[key]).length == 0) {
-					showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
+					parent.parent.showMsg("请完善第"+(i+1)+"行记录的"+requiredField[key]+"!","W");
 					return;
 				}
 			}
+		  partList.push(newRow);
 
-			partList.push(newRow);
 		}
 
 	}
-
-	saveEnterPart(partList);
+	//判断客户有没有选择
+	  nui.confirm("确定导入吗？", "友情提示",function(action){
+	       if(action == "ok"){
+	    	   saveEnterPart(partList);
+	     }else {
+				return;
+		 }
+		 }); 
+	
 }
 
 function clear(){
@@ -155,7 +168,7 @@ function saveEnterPart(partList){
 						advancedTipWin.show();
 						//showMsg(errMsg,"S");
 	                }else{
-						showMsg("导入成功!","S");
+	                	parent.parent.showMsg("导入成功!","S");
 	                }
 	            } else {
 					nui.get("fastCodeList").setValue(data.errMsg);

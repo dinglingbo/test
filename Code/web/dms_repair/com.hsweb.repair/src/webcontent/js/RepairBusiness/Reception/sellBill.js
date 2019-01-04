@@ -970,6 +970,10 @@ function choosePart(){
         showMsg("工单已审核,不能添加配件!","W");
         return;
     }
+    if(main.status == 2){
+        showMsg("工单已出库,不能添加配件!","W");
+        return;
+    }
     nui.open({
 		targetWindow : window,
 		url : webPath + contextPath + "/com.hsweb.repair.DataBase.partSelectView.flow?token=" + token,

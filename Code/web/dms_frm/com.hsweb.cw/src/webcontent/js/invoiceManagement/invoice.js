@@ -53,6 +53,9 @@ $(document).ready(function () {
 				e.cellHtml = value + "%";
 			}
 		}
+		if(field == "invoiceType"){
+			e.cellHtml = servieTypeHash[value].name;
+		}
 	});
 	
 	invoiceTypeEl = nui.get("invoiceType");
@@ -143,12 +146,12 @@ function saveData(){//保存
         }
     });
 }
-function checkValue(){//实时监听税率输出的值
-	if (document.getElementById("rate").value < 0 || document.getElementById("rate").value > 100){
+function checkValue(e){//实时监听税率输出的值
+	if (e.value < 0 || e.value > 100){
 		document.getElementById("rate").value = "";
 		showMsg("请输入0-100以内的数字","W");
 	}else{
-		if(/\D/.test(document.getElementById("rate").value)){
+		if(/\D/.test(e.value)){
 			showMsg('只能输入数字',"W");
 			document.getElementById("rate").value = "";;
 		}
@@ -157,7 +160,15 @@ function checkValue(){//实时监听税率输出的值
 	//document.getElementById("rateMoney").innerHTML = 0;
 	for(var i = 0, l = data.length ; i < l ; i++){
 		var row = grid.getRow(i);
-		var newRow = {rate : document.getElementById("rate").value};
+		var invoiceAmt = row.invoiceAmt;
+		var rateAmt = 0;
+		if(invoiceAmt){
+			rateAmt = row.invoiceAmt*e.value/100;
+			rateAmt=rateAmt.toFixed(2);	
+		}
+		var newRow = {rate : e.value,
+				    rateAmt : rateAmt
+				};
 		grid.updateRow(row,newRow);
 		/*if(document.getElementById("rate").value && row.invoiceAmt){
 			var rateAmt = parseFloat(document.getElementById("rate").value) * row.invoiceAmt / 100;

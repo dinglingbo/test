@@ -3,6 +3,9 @@ var baseUrl = apiPath + repairApi + "/";
 var none = "ALL0";//班组技术样式下标
 //var serviceTypeIds = null;
 var serviceId = 0;//工单号
+var planFinishDate = new Date();//派工从现在时间开始
+var workers={};
+var workersId={};
 $(document).ready(function(v) {
 	 //serviceTypeIds = nui.get("serviceTypeIds");
     $(document).on("click",".none",function(e){
@@ -16,10 +19,11 @@ $(document).ready(function(v) {
     			token  : token
     	};
         if(queryId=="BZ"){
-        	json.memberGroupId=( e.target.id).slice(2,4);
+        	
+        	json.memberGroupId=((e.target.id).split("Z"))[1]||"";
         	queryMember(json);
         }else if(queryId=="DJ"){
-        	json.memberLevelId=( e.target.id).slice(2,4);
+        	json.memberLevelId=((e.target.id).split("J"))[1]||"";
         	queryMember(json);
         }else{
         	queryMember(json);
@@ -59,8 +63,16 @@ var queryMemberLevel = apiPath + repairApi + "/com.hsapi.repair.baseData.team.ge
     var setItemWorkersBatch = apiPath + repairApi + "/com.hsapi.repair.repairService.crud.setItemWorkersBatch.biz.ext";
     
 function setData(data){
-	type = data.type;
-	serviceId = data.serviceId;
+	var workersStr =data.workers||"";
+	var workersIdStr =data.workersId||"";
+	workers =workersStr.split(",");
+	workersId =workersIdStr.split(",");
+	if(workersId!=""){
+		for(var i = 0;i<workersId.length;i++){
+			document.getElementById(workersId[i]).setAttribute("class", "empl1");
+		}	
+	}
+	nui.get("planFinishDate").setValue(mini.formatDate ( new Date(),"yyyy-MM-dd HH:mm:ss"));
 }
 function init(){
     nui.mask({
@@ -104,6 +116,7 @@ var teamStr ="";
 		}
 	});
 	queryMember({toke:token});
+
 	
 }
 
@@ -122,7 +135,7 @@ function queryMember(json){
 					
 				for(var i = 0;i<Member.length;i++){
 					str = str+"<a class='empl' id="+Member[i].empId+">"+Member[i].empName+"</a>";
-					if((i+1)%3==0){
+					if((i+1)%4==0){
 						str = str+"<br>";
 					}
 				}
@@ -172,10 +185,84 @@ function dispatchOk(){
     nui.unmask(document.body);
 	data = {
 			emlpszId :emlpszId,
-			emlpszName:emlpszName
+			emlpszName:emlpszName,
+			planFinishDate:nui.get("planFinishDate").getValue(),
 	};
 	CloseWindow("ok");
 }
 function getData(){
 	return data;
+}
+
+function times(id){
+	if(planFinishDate==""){
+		
+	}else{
+			var yjDate = new Date(planFinishDate);
+			var day = parseInt(nui.get("day").getValue());
+			if(isNaN(day)){
+				day=0;
+			}
+			yjDate.setDate(yjDate.getDate()+day);
+			var hour = parseInt(nui.get("hour").getValue());
+			if(isNaN(hour)){
+				hour=0;
+			}
+			yjDate.setHours(yjDate.getHours()+hour);
+			var min = parseInt(nui.get("min").getValue());
+			if(isNaN(min)){
+				min=0;
+			}
+			yjDate.setMinutes(yjDate.getMinutes()+min);
+			nui.get("planFinishDate").setValue(mini.formatDate ( yjDate,"yyyy-MM-dd HH:mm:ss"));
+	}
+}
+
+function timeStamp(StatusMinute){
+	if(planFinishDate==""){
+		nui.get("day").setValue("");
+		nui.get("hour").setValue("");
+		nui.get("min").setValue("");
+		var day=parseInt(StatusMinute/60/24);
+	    var hour=parseInt(StatusMinute/60%24);
+		var min= parseInt(StatusMinute % 60);
+		StatusMinute="";
+		if (day > 0){
+			nui.get("day").setValue(day);
+
+		} 
+		if (hour>0){
+			nui.get("hour").setValue(hour);
+		} 
+		if (min>0){
+			nui.get("min").setValue(min);
+		}
+	}else{
+		nui.get("day").setValue("");
+		nui.get("hour").setValue("");
+		nui.get("min").setValue("");
+		var day=parseInt(StatusMinute/60/24);
+	    var hour=parseInt(StatusMinute/60%24);
+		var min= parseInt(StatusMinute % 60);
+		StatusMinute="";
+		if (day > 0){
+			nui.get("day").setValue(day);
+			var yjDate = new Date(planFinishDate);
+			yjDate.setDate(yjDate.getDate()+day );
+			nui.get("planFinishDate").setValue(mini.formatDate ( yjDate,"yyyy-MM-dd HH:mm:ss"));
+			
+		} 
+		if (hour>0){
+			nui.get("hour").setValue(hour);
+			var yjDate = new Date(planFinishDate);
+			yjDate.setHours(yjDate.getHours()+hour);
+			nui.get("planFinishDate").setValue(mini.formatDate ( yjDate,"yyyy-MM-dd HH:mm:ss"));
+		} 
+		if (min>0){
+			nui.get("min").setValue(min);
+			var yjDate = new Date(planFinishDate);
+			yjDate.setMinutes(yjDate.getMinutes()+min);
+			nui.get("planFinishDate").setValue(mini.formatDate ( yjDate,"yyyy-MM-dd HH:mm:ss"));
+		}
+	}
 }

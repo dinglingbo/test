@@ -53,12 +53,11 @@
 <input name="man"  id="man"  visible="false" class="nui-combobox "  textField="name" valueField="customid"/>
 <input name="carBrandId"  id="carBrandId"  visible="false" class="nui-combobox "  textField="name" valueField="customid"/>
 <div class="nui-toolbar" style="padding:4px;border-bottom:0;" id="queryForm">
-                    <a href="javascript:;" class="file">导入资料
+                    <a href="javascript:;" class="file">点击这里选择文件
                         <input type="file" name="" id="" onchange="importf(this)">
                     </a>
                     <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
-                       <a class="nui-button" iconCls="" plain="true" onclick="clear()" id="saveBtn"><span class="fa fa-trash fa-lg"></span>&nbsp;清空</a>
-	                <a class="nui-button" iconCls="" plain="true" onclick="close()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+					<a class="nui-button" plain="true" href="<%=request.getContextPath() %>/repair/RepairBusiness/template/电销客户模板.xlsx"><span class="fa fa-arrow-down fa-lg"></span>下载电销客户模板</a>
 </div>
 
 
@@ -83,7 +82,7 @@
                                 <div property="columns">
                                     <div field="id" visible=false>ID</div>
                                     <div field="orgid" width="120" headerAlign="center" allowSort=false>所在分店</div>
-                                    <div field="carNo" width="90" headerAlign="center" allowSort=false>车牌号</div>
+                                    <div field="carNo" width="90" headerAlign="center" allowSort=false>*车牌号</div>
                                     <div field="carBrandId" width="100" headerAlign="center" allowSort=false>品牌</div>
                                     <div field="carModel" width="250" headerAlign="center" allowSort=false>品牌车型</div>
                                     <div field="vin" width="160" headerAlign="center" allowSort=false>车架号</div>
@@ -98,8 +97,8 @@
                             <div headerAlign="center">客户信息
                                 <div property="columns">
                                     <div field="guestId" visible=false>客户ID</div>
-                                    <div field="guestName" width="80" headerAlign="center" summaryType="" allowSort=false>客户名称</div>
-                                    <div field="mobile" width="100" headerAlign="center" summaryType="" allowSort=false>手机号</div>
+                                    <div field="guestName" width="80" headerAlign="center" summaryType="" allowSort=false>*客户名称</div>
+                                    <div field="mobile" width="100" headerAlign="center" summaryType="" allowSort=false>*手机号</div>
                                     <div field="contacts" width="80" headerAlign="center" summaryType="" allowSort=false>联系人</div>
                                     <div field="tel" width="100" headerAlign="center" summaryType="" allowSort=false>电话</div>
                                     <div field="sex" width="80" headerAlign="center" summaryType="" allowSort=false>性别</div>

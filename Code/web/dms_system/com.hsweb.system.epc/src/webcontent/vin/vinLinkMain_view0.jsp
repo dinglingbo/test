@@ -87,7 +87,7 @@
 
 
 
-    <div id="win" class="nui-window" title="购物车(临时存放信息)" style="width:450px;height:300px;" 
+    <div id="win" class="nui-window" title="购物车(临时存放信息)" style="width:550px;height:300px;" 
         showMaxButton="true" showCollapseButton="true" showShadow="true"
         showToolbar="true" showFooter="true" showModal="false" allowResize="true" allowDrag="true"
         >

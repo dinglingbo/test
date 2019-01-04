@@ -170,7 +170,8 @@
 	
 	<update id="updateItemWorkers" parameterClass="java.util.HashMap">
 		update rps_item set worker_ids = #workerIds#, workers = #workers#, 
-		                    modifier = #modifier#, modify_date = SYSDATE()
+		                    modifier = #modifier#, modify_date = SYSDATE(),
+		                    plan_finish_date = #planFinishDate#
 		where service_id = #serviceId# 
 			<isNotEmpty prepend="" property="type"> 
                 <isEqual prepend="and" property="type" compareValue="package">

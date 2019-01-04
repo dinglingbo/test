@@ -94,6 +94,10 @@ $(document).ready(function ()
             }else{
                 e.cellHtml = "未结算";
             }
+        }else if(e.field == "serviceCode"){
+        	e.cellHtml ='<a href="##" onclick="edit('+e.record._uid+')">'+e.record.serviceCode+'</a>';
+        }else if(e.field == "carNo"){
+        	e.cellHtml ='<a href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
         }
     });
     innerItemGrid.on("drawcell", function (e) {
@@ -320,7 +324,7 @@ function onSearch()
 function doSearch() {
     var gsparams = getSearchParam();
     gsparams.isSettle = 1;
-    gsparams.billTypeId = 0;
+   // gsparams.billTypeId = 0;
     gsparams.isDisabled = 0;
 
     mainGrid.load({
@@ -333,6 +337,7 @@ function getSearchParam() {
     params.sOutDate = nui.get("sOutDate").getValue();
     params.eOutDate = addDate(endDateEl.getValue(),1);  
     params.mtAuditorId = mtAdvisorIdEl.getValue();
+    params.billTypeId = nui.get("billTypeId").getValue();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){
@@ -398,3 +403,48 @@ function setInitData(params){
 function carNoSearch(){
 	onSearch();
 }
+
+function edit(row_uid){
+	var row = null;
+	if(!row_uid){
+		row = mainGrid.getSelected();
+	}else{
+		row = mainGrid.getRowByUID(row_uid);
+	}
+    if(!row) return;
+    var item={};
+    if(row.billTypeId == 0){
+        item.id = "2000";
+        item.text = "综合开单详情";
+        item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow";
+        item.iconCls = "fa fa-file-text";
+    }
+    if(row.billTypeId == 2){
+    	item.id = "3000";
+	    item.text = "洗美开单详情";
+	    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBill.flow";
+	    item.iconCls = "fa fa-file-text";
+    }
+    if(row.billTypeId == 4){
+    	item.id = "4000";
+        item.text = "理赔开单详情";
+        item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.claimDetail.flow";
+        item.iconCls = "fa fa-file-text";
+    }
+    var params = {
+        id: row.id
+    };
+    window.parent.activeTabAndInit(item,params);
+}
+
+function showCarInfo(row_uid){
+	var row = mainGrid.getRowByUID(row_uid);
+	if(row){
+		var params = {
+				carId : row.carId,
+				guestId : row.guestId
+		};
+		doShowCarInfo(params);
+	}
+}
+

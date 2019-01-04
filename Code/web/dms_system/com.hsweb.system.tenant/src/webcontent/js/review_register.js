@@ -292,13 +292,13 @@ doPost({
  * 
  */
 var auditUrl = baseUrl + "com.hsapi.system.tenant.register.auditRegister.biz.ext";// com.primeton.tenant.reView.review
-function audit(){
+function auditPart(){
 	var s=dgGrid.getSelected ();
 	if(s){
         nui.mask({
             el : document.body,
             cls : 'mini-mask-loading',
-            html : '审核中...'
+            html : '认证中...'
         });
 
         nui.ajax({
@@ -306,17 +306,59 @@ function audit(){
             type : "post",
             data : JSON.stringify({
                 reg: s,
+                type :'PART',
                 token:token
             }),
             success : function(data) {
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    nui.alert("审核成功!","",function(e){
+                    nui.alert("认证成功!","",function(e){
                         dgGrid.reload();
                     });
                 } else {
-                    nui.alert(data.errMsg || "审核失败！");
+                    nui.alert(data.errMsg || "认证失败！");
+                }
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+                // nui.alert(jqXHR.responseText);
+                console.log(jqXHR.responseText);
+            }
+        });
+
+	    
+	}else{
+		  nui.alert("请选中一条数据！！");
+	}
+	
+}
+
+function auditRepair(){
+	var s=dgGrid.getSelected ();
+	if(s){
+        nui.mask({
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '认证中...'
+        });
+
+        nui.ajax({
+            url : auditUrl,
+            type : "post",
+            data : JSON.stringify({
+                reg: s,
+                type :'REPAIR',
+                token:token
+            }),
+            success : function(data) {
+                nui.unmask(document.body);
+                data = data || {};
+                if (data.errCode == "S") {
+                    nui.alert("认证成功!","",function(e){
+                        dgGrid.reload();
+                    });
+                } else {
+                    nui.alert(data.errMsg || "认证失败！");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {

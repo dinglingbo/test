@@ -941,7 +941,10 @@ function chooseReturnPart(){
  	    }
  		saveNoShowMsg();
     }
-     
+     if(main.status == 2){
+         showMsg("工单已归库,不能添加配件!","W");
+         return;
+     }
      if(main.status == 1){
          showMsg("工单已审核,不能添加配件!","W");
          return;

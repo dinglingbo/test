@@ -133,7 +133,7 @@
             <div type="indexcolumn" width="20">序号</div>
             <div type="expandcolumn" width="15" ><span class="fa fa-plus fa-lg"></span></div>
 			<div field="auditSign" width="60" headerAlign="center" header="状态"></div>
-            <div allowSort="true" field="serviceId" width="100" summaryType="count" headerAlign="center" header="订单单号"></div>
+            <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
             <div allowSort="true" field="storeId" width="90" headerAlign="center" header="移出仓库"></div>
             <div allowSort="true" field="receiveStoreId" width="90" headerAlign="center" header="移入仓库"></div>
             <div allowSort="true" field="createDate" headerAlign="center" header="移仓日期" dateFormat="yyyy-MM-dd HH:mm"></div>

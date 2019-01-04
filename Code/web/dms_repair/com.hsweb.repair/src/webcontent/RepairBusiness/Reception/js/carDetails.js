@@ -2,6 +2,10 @@ var tabs = null;
 var mainGrid1 = null;
 var params = {};
 var form = null;
+var datagrid1 = null;
+var datagrid2 = null;
+var datagrid3 = null;
+var grid = null;
 var grid1 = null;
 var grid2 = null;
 var baseUrl = apiPath + repairApi + "/";
@@ -11,9 +15,24 @@ var prdtTypeHash = {
 	    "2":"项目",
 	    "3":"配件"
 };
+
+var queryOldMaintain = baseUrl
++"com.hsapi.repair.baseData.crud.queryOldMaintain.biz.ext";
+var queryOldItemPart = baseUrl
++"com.hsapi.repair.baseData.crud.queryOldItemPart.biz.ext";
+var grid3 = null;
+var grid4 = null;
+var servieTypeList = [];
+var servieTypeHash = {};
+
 $(document).ready(function () {
+	datagrid1 = nui.get("datagrid1");
+	datagrid2 = nui.get("datagrid2");
+	datagrid3 = nui.get("datagrid3");
+	datagrid1.setUrl(queryOldMaintain);
     mainGrid1 = nui.get("mainGrid1");
     form = new nui.Form("#editForm1");
+    
     grid1 = nui.get("grid1");
     grid2 = nui.get("grid2");
     grid1.setUrl(baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext");
@@ -103,6 +122,7 @@ function SetData(params){
         success: function (text) {
             var list = nui.decode(text.list);
             form.setData(list[0]);
+            searchOld(list[0].carNo||"");
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR.responseText);
@@ -136,3 +156,52 @@ function SetData(params){
    
 }
 
+
+function searchOld(carNo){
+	datagrid2.setData([]);
+	datagrid3.setData([]);
+	var params = {
+			carNo:carNo
+	}
+	var json1 = {
+			params:params,
+			token:token
+	}
+	nui.ajax({
+		url : queryOldMaintain,
+		type : 'POST',
+		data : json1,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			datagrid1.setData(text.oldMaintain);
+					
+		}
+	});
+}
+function selectionChanged() {
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '数据加载中...'
+    });
+	var row = datagrid1.getSelected();
+	var serviceCode = row.serviceCode;
+	var params = {};
+	params.serviceCode = serviceCode;
+	var json1 = {
+			params:	params
+	};
+	nui.ajax({
+		url : queryOldItemPart,
+		type : 'POST',
+		data : json1,
+		cache : false,
+		contentType : 'text/json',
+		success : function(text) {
+			nui.unmask(document.body);
+			datagrid2.setData(text.oldPart);
+			datagrid3.setData(text.oldItem);
+		}
+	});
+}

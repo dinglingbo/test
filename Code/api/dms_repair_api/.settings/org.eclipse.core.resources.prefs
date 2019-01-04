@@ -14,6 +14,7 @@ encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/checkContactorExists.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/insRpsCardTimes.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/insRpsItemList.bizx.eosdebug=UTF-8
+encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/saveAndUpdReturnRpsPart.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/saveCheckDetail.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/saveCustomerInfo.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/saveRpsMaintain.bizx.eosdebug=UTF-8
@@ -28,3 +29,4 @@ encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/settlement/querySettlement.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/settlement/rpAccountSettle.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/svr/getRpsItemQuoteByServiceId.bizx.eosdebug=UTF-8
+encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/svr/saveNature.bizx.eosdebug=UTF-8

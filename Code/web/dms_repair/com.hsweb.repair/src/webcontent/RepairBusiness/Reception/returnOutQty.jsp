@@ -46,10 +46,10 @@
                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                </ul>
                <span class="separator"></span>
-              	出库日期 从:<input class="nui-datepicker" id="sPickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
-			至:<input class="nui-datepicker" id="ePickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
-               			退货日期 从:<input class="nui-datepicker" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
-			至:<input class="nui-datepicker" id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+              	出库日期 从:<input class="nui-datepicker" id="sPickDate"  width="100px" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
+			至:<input class="nui-datepicker" id="ePickDate" width="100px" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+               			退货日期 从:<input class="nui-datepicker" id="sOutDate" width="100px" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
+			至:<input class="nui-datepicker" id="eOutDate" allowInput="false" width="100px"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
              	<input class="nui-textbox" width="100px" id="partCode" name="partCode" selectOnFocus="true" enabled="true" emptyText="配件编码"/>
                 <input class="nui-textbox" width="100px" id="partName" emptyText="配件名称"  selectOnFocus="true" name="partName"/>
                
@@ -123,7 +123,7 @@
         <div type="indexcolumn">序号</div>
         <div header="工单信息" headerAlign="center">
             <div property="columns">
-            	<div allowSort="true" field="serviceCode" width="130" headerAlign="center" header="业务单号"></div>
+            	<div allowSort="true" field="serviceCode" width="180" headerAlign="center" header="业务单号"></div>
             	<div allowSort="true" field="carNo" width="100" headerAlign="center" header="车牌号"></div>
             	<div allowSort="true" field="storeId" width="80" headerAlign="center" header="仓库"></div>
                 <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>

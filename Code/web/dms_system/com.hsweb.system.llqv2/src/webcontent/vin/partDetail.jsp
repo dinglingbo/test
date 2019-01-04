@@ -45,4 +45,5 @@
 <script>
     var pid = '<b:write property="pid"/>';
     var brand = '<b:write property="brand"/>';
+    nui.parse();
 </script>

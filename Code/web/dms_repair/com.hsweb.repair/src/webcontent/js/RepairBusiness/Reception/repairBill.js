@@ -962,10 +962,13 @@ function setInitData(params){
                         insuranceForm.setData(data);
                         var status = data.status||0;
                         var balaAuditSign = data.balaAuditSign||0;
-                        doSetStyle(status, balaAuditSign);
-/*                        var isSettle = data.isSettle||0;
-                        doSetStyle(status, isSettle);*/
-
+                        if(balaAuditSign==1){                    	
+                        	doSetStyle(status, balaAuditSign);
+                        }else{
+                        	var isSettle = data.isSettle||0;
+                        	doSetStyle(status, isSettle);                       	
+                        }
+                      
                         if(data.isOutBill){
                         	nui.get("ExpenseAccount").setVisible(false);
                         	nui.get("ExpenseAccount1").setVisible(true);
@@ -4013,10 +4016,10 @@ function pay(){
                     showMsg("结算成功!","S");
                 }else if(action == "onok"){
                     var status = data.status||2;
-                    var isSettle = data.isSettle||1;
-                    doSetStyle(status, isSettle);
+                    var balaAuditSign = data.balaAuditSign||1;
+                    doSetStyle(status, balaAuditSign);
                     var main = billForm.getData();
-                    main.isSettle = 1;
+                    main.balaAuditSign = 1;
                     billForm.setData(main);
                     showMsg("转预结算成功!","S");
                 }else{

@@ -922,8 +922,13 @@ function setInitData(params){
                         billForm.setData(data);
 
                         var status = data.status||0;
-                        var isSettle = data.isSettle||0;
-                        doSetStyle(status, isSettle);
+                        var balaAuditSign = data.balaAuditSign||0;
+                        if(balaAuditSign==1){                    	
+                        	doSetStyle(status, balaAuditSign);
+                        }else{
+                        	var isSettle = data.isSettle||0;
+                        	doSetStyle(status, isSettle);                       	
+                        }
 
                         if(data.isOutBill){
                         	nui.get("ExpenseAccount").setVisible(false);
@@ -4600,7 +4605,7 @@ function pay(){
             showMsg("工单未完工,不能结算!","W");
             return;
         }
-        if(data.isSettle == 1){
+        if(data.isSettle == 1||data.balaAuditSign == 1){
        	 showMsg("工单已结算!","W");
             return;
        }
@@ -4628,8 +4633,10 @@ function pay(){
                 }else if(action == "onok"){
                 	nui.get("isSettle").setValue(1);
                     var status = data.status||2;
-                    var isSettle = data.isSettle||1;
-                    doSetStyle(status, isSettle);
+                    var balaAuditSign = data.balaAuditSign||1;
+                    doSetStyle(status, balaAuditSign);
+                    var main = billForm.getData();
+                    main.balaAuditSign = 1;
                     showMsg("转预结算成功!","S");
                 }else{
                     if(data.errCode){

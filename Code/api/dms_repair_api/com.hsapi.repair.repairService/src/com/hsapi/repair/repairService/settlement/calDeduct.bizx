@@ -405,6 +405,10 @@
       <process:from type="expression" pattern="reference">aAmt+sAmt+tAmt</process:from>
       <process:to type="query">temp/totalDeductAmt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/billTypeId</process:from>
+      <process:to type="query">temp/billTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="571" y="188"/>
@@ -491,6 +495,7 @@
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
       <targetNode>assign4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <location x="1050" y="151"/>

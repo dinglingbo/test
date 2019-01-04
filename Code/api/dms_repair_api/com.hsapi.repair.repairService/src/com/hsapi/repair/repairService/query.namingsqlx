@@ -738,6 +738,25 @@
             and record_date &gt;= #startDate# and record_date &lt; #endDate# 
 			group by a.worker_id, a.worker
 	</select>
+	<select id="queryDeductDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT worker_id as workerId, worker as worker, total_deduct_amt as deduct, 
+			       case when bill_type_id = 0 then '综合开单' when bill_type_id = 2 then '洗美开单' 
+			       when bill_type_id = 3 then '销售开单' when bill_type_id = 4 then '理赔开单'
+			       when bill_type_id = 6 then '计次卡销售' when bill_type_id = 7 then '储值卡销售'
+						 when bill_type_id = 8 then '保险开单'
+			       end as billTypeId,
+			       service_code as serviceCode, service_id as serviceId
+			from rps_deduct_detail 
+			where orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate# 
+			<dynamic>
+
+            <isNotEmpty prepend="and" property="memberId">
+  				  worker_id = #memberId# 
+            </isNotEmpty>
+            
+          </dynamic>  
+          order by record_date desc
+	</select>
 	<!--套餐提成信息-->
 	<select id="queryPkgDeduct" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 			SELECT a.service_code as serviceCode, b.package_name as name, b.total_deduct_amt as deduct, 

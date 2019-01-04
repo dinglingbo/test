@@ -202,7 +202,7 @@
       <targetNode>loopstart1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -370,6 +370,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">deduct/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">8</process:from>
+      <process:to type="query">deduct/billTypeId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">i+1</process:from>

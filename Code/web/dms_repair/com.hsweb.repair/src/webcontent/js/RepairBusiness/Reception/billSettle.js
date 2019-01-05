@@ -25,7 +25,7 @@ var expenseUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.svr.getR
 var srnum = [];
 $(document).ready(function(v) {
 
-	$("body").on("input  onchange","input[name='amount']",function(){
+	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
 	});
 

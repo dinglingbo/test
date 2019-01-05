@@ -10,7 +10,7 @@
 -->
 <head>
 <title>理赔开单</title>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/claimMain.js?v=1.1.8"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/claimMain.js?v=1.1.9"></script>
 <style type="text/css">
 
 .title {
@@ -111,7 +111,7 @@
                   <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
-                  <div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div>
+                  <div field="balaAuditSign" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div>
                   <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计交车时间"></div>
               </div>
           </div>

@@ -11,7 +11,7 @@
 
 <head>
 	<title>工单结算</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.5.26"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.5.32"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -571,7 +571,7 @@
 										<td width="220">
 											<input class="mini-datepicker">
 										</td> -->
-										<td width="120" align="right">收款备注:</td>
+										<td width="120" align="right">业务备注:</td>
 										<td >
 											<input class="nui-textbox" id="txtreceiptcomment" name="txtreceiptcomment" width="150px">
 										</td>

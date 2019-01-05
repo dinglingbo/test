@@ -945,8 +945,13 @@ function setInitData(params){
                         billForm.setData(data);
                         insuranceForm.setData(insuranceData);
                         var status = data.status||0;
-                        var isSettle = data.isSettle||0;
-                        doSetStyle(status, isSettle);
+                        var balaAuditSign = data.balaAuditSign||0;
+                        if(balaAuditSign==1){                    	
+                        	doSetStyle(status, balaAuditSign);
+                        }else{
+                        	var isSettle = data.isSettle||0;
+                        	doSetStyle(status, isSettle);                       	
+                        }
 
                         if(data.isOutBill){
                         	nui.get("ExpenseAccount").setVisible(false);
@@ -4005,10 +4010,10 @@ function pay(){
             showMsg("工单未完工,不能结算!","W");
             return;
         }
-        if(data.isSettle == 1){
-          	 showMsg("工单已结算!","W");
-               return;
-          }
+        if(data.isSettle == 1||data.balaAuditSign == 1){
+       	 showMsg("工单已结算!","W");
+            return;
+       }
         var sellData = sellForm.getData();
         ycAmt = parseFloat(tcAmt)+parseFloat(gsAmt);
         sellData.ycAmt = ycAmt;
@@ -4034,10 +4039,10 @@ function pay(){
                     showMsg("结算成功!","S");
                 }else if(action == "onok"){
                     var status = data.status||2;
-                    var isSettle = data.isSettle||1;
-                    doSetStyle(status, isSettle);
+                    var balaAuditSign = data.balaAuditSign||1;
+                    doSetStyle(status, balaAuditSign);
                     var main = billForm.getData();
-                    main.isSettle = 1;
+                    main.balaAuditSign = 1;
                     billForm.setData(main);
                     showMsg("转预结算成功!","S");
                 }else{

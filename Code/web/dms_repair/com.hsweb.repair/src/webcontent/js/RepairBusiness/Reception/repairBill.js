@@ -961,9 +961,14 @@ function setInitData(params){
                         billForm.setData(data);
                         insuranceForm.setData(data);
                         var status = data.status||0;
-                        var isSettle = data.isSettle||0;
-                        doSetStyle(status, isSettle);
-
+                        var balaAuditSign = data.balaAuditSign||0;
+                        if(balaAuditSign==1){                    	
+                        	doSetStyle(status, balaAuditSign);
+                        }else{
+                        	var isSettle = data.isSettle||0;
+                        	doSetStyle(status, isSettle);                       	
+                        }
+                      
                         if(data.isOutBill){
                         	nui.get("ExpenseAccount").setVisible(false);
                         	nui.get("ExpenseAccount1").setVisible(true);
@@ -1198,6 +1203,7 @@ function save(){
                             serviceId: data.id||0
                         }
                     };
+                    nui.unmask(document.body);
                     loadDetail(p1, p2, p3);
 
                 }else{
@@ -1211,7 +1217,6 @@ function save(){
         nui.unmask(document.body);
     });
 }
-
 
 function saveNoshowMsg(callback){
 	saveMaintain(function(data){
@@ -1358,7 +1363,7 @@ function saveMaintain(callback,unmaskcall){
         var errCode = text.errCode||"";
         if(errCode == "S") {
             unmaskcall && unmaskcall();
-            var main = text.data||{};
+        	var main = text.data||{};
             fserviceId = main.id||0;
             callback && callback(main);
         } else {
@@ -3982,7 +3987,7 @@ function pay(){
             showMsg("工单未完工,不能结算!","W");
             return;
         }
-        if(data.isSettle == 1){
+        if(data.isSettle == 1||data.balaAuditSign == 1){
         	 showMsg("工单已结算!","W");
              return;
         }
@@ -4011,10 +4016,10 @@ function pay(){
                     showMsg("结算成功!","S");
                 }else if(action == "onok"){
                     var status = data.status||2;
-                    var isSettle = data.isSettle||1;
-                    doSetStyle(status, isSettle);
+                    var balaAuditSign = data.balaAuditSign||1;
+                    doSetStyle(status, balaAuditSign);
                     var main = billForm.getData();
-                    main.isSettle = 1;
+                    main.balaAuditSign = 1;
                     billForm.setData(main);
                     showMsg("转预结算成功!","S");
                 }else{

@@ -1204,6 +1204,7 @@ function save(){
                             serviceId: data.id||0
                         }
                     };
+                    nui.unmask(document.body);
                     loadDetail(p1, p2, p3);
 
                 }else{
@@ -1217,7 +1218,6 @@ function save(){
         nui.unmask(document.body);
     });
 }
-
 
 function saveNoshowMsg(callback){
 	saveMaintain(function(data){
@@ -1364,7 +1364,7 @@ function saveMaintain(callback,unmaskcall){
         var errCode = text.errCode||"";
         if(errCode == "S") {
             unmaskcall && unmaskcall();
-            var main = text.data||{};
+        	var main = text.data||{};
             fserviceId = main.id||0;
             callback && callback(main);
         } else {

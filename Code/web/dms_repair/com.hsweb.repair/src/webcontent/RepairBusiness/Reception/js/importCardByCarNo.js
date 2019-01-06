@@ -107,7 +107,7 @@ function sure() {
 			newRow.carNo = data[i].车牌号||"";
 			newRow.rechargeAmt = data[i].充值金额||"";
 			newRow.sAmt = data[i].剩余金额||"";
-			
+			newRow.remark = data[i].备注||"";
 
 
 		for ( var key in requiredField) {

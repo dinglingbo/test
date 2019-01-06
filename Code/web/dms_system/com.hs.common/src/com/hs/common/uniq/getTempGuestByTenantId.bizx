@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getGuestByInternalId" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="guestType =  01020202&#xD;&#xA;用于盘点，移仓" title="Administrator&#x9;19-1-6 上午10:53">
-    <location x="38" y="210"/>
-    <size height="100" width="197"/>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getTempGuestByTenantId" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="guestType =  01020103&#xD;&#xA;汽车维修客户&#xD;&#xA;用于新增车辆但是又没有提供客户信息&#xD;&#xA;&#xD;&#xA;isInternalId 取租户ID" title="Administrator&#x9;19-1-6 上午10:53">
+    <location x="38" y="225"/>
+    <size height="121" width="253"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -66,7 +66,7 @@
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
       <process:to type="query">cond/_expr[1]/isInternalId</process:to>
     </process:copy>
     <process:copy>
@@ -86,7 +86,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">01020202</process:from>
+      <process:from type="literal" pattern="reference">01020103</process:from>
       <process:to type="query">cond/_expr[3]/guestType</process:to>
     </process:copy>
     <process:copy>
@@ -113,7 +113,7 @@
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/orgid</process:from>
+      <process:from type="query" pattern="reference">params/tenantId</process:from>
       <process:to type="query">cond/_expr[1]/isInternalId</process:to>
     </process:copy>
     <process:copy>
@@ -133,7 +133,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">01020202</process:from>
+      <process:from type="literal" pattern="reference">01020103</process:from>
       <process:to type="query">cond/_expr[3]/guestType</process:to>
     </process:copy>
     <process:copy>

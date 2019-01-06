@@ -98,9 +98,9 @@ $(document).ready(function ()
             if (servieTypeHash && servieTypeHash[e.value]) {
                 e.cellHtml = servieTypeHash[e.value].name;
             }
-        }else if(e.field == "isSettle"){
+        }else if(e.field == "balaAuditSign"){
             if(e.value == 1){
-                e.cellHtml = "已结算";
+                e.cellHtml = "预结算";
             }else{
                 e.cellHtml = "未结算";
             }

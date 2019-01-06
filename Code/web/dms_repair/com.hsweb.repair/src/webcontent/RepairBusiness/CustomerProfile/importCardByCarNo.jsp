@@ -11,7 +11,7 @@
 <title>客户储值卡导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importCardByCarNo.js?v=1.0.9"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importCardByCarNo.js?v=1.1.0"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -107,6 +107,8 @@
 					*充值金额<input property="editor" class="nui-textbox"/></div>
 				<div field="剩余金额" width="135px" headerAlign="center" allowSort="true">
 					*剩余金额<input property="editor" class="nui-textbox"/></div>
+				<div field="备注" width="135px" headerAlign="center" allowSort="true">
+					备注<input property="editor" class="nui-textbox"/></div>
 			</div>
 		</div>
 	</div>

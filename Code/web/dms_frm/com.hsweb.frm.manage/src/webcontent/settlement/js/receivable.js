@@ -10,7 +10,7 @@ var zongAmt = 0;//实时填写的结算金额
 var guestData = null;
 var deductible = 0;
 $(document).ready(function (){
-	$("body").on("input  onvaluechanged","input[name='amount']",function(){
+	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
 	});
 });

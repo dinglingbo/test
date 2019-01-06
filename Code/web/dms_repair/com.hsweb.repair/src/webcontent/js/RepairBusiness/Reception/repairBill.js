@@ -1112,6 +1112,7 @@ function save(){
         html: '保存中...'
     });
     saveMaintain(function(data){
+    	billForm.setData(data);
         if(data.id){
             fserviceId = data.id;
             showMsg("保存成功!","S");

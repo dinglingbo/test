@@ -98,7 +98,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <targetConnections>link4</targetConnections>
@@ -191,7 +191,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
     <targetConnections>link8</targetConnections>
@@ -215,7 +215,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
     <location x="375" y="360"/>
@@ -338,7 +338,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link20" name="link20" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
     <location x="551" y="354"/>
@@ -395,27 +395,6 @@
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
-    <targetConnections>link12</targetConnections>
-    <targetConnections>link11</targetConnections>
-    <targetConnections>link10</targetConnections>
-    <targetConnections>link20</targetConnections>
-    <targetConnections>link21</targetConnections>
-    <location x="551" y="435"/>
-    <size height="28" width="28"/>
-    <nodeLabel>end1label</nodeLabel>
-    <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.repair.data.rps.RpsStoredRecord" name="rpsStoredRecord" type="query" valueType="DataObject">rpsStoredRecord</process:return>
-      <process:return id="3" language="com.hsapi.repair.data.common.ComJoinMember" name="joinMem" type="query" valueType="DataObject">joinMem</process:return>
-    </process:returns>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="549" y="471"/>
-    <figSize height="17" width="32"/>
-    <node>end1</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
@@ -456,7 +435,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign10</sourceNode>
-      <targetNode>end1</targetNode>
+      <targetNode>end2</targetNode>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <location x="615" y="435"/>
@@ -475,6 +454,28 @@
     <location x="610" y="471"/>
     <figSize height="17" width="39"/>
     <node>assign10</node>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
+    <targetConnections>link12</targetConnections>
+    <targetConnections>link11</targetConnections>
+    <targetConnections>link10</targetConnections>
+    <targetConnections>link20</targetConnections>
+    <targetConnections>link21</targetConnections>
+    <location x="551" y="435"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end2label</nodeLabel>
+    <process:returns>
+      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
+      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="com.hsapi.repair.data.rps.RpsStoredRecord" name="rpsStoredRecord" type="query" valueType="DataObject">rpsStoredRecord</process:return>
+      <process:return id="3" language="com.hsapi.repair.data.common.ComJoinMember" name="joinMem" type="query" valueType="DataObject">joinMem</process:return>
+      <process:return id="4" language="Double" name="trueCutAmt" type="query" valueType="Primitive">trueCutAmt</process:return>
+    </process:returns>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end2label" name="label" nodeType="label">
+    <location x="549" y="471"/>
+    <figSize height="17" width="32"/>
+    <node>end2</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

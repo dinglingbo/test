@@ -241,7 +241,8 @@ function setData(params){
 	});
 	
 
-		
+	
+	if(currIsCanSettle==1){
 		nui.ajax({
 			url : apiPath + repairApi + "/com.hsapi.repair.baseData.query.queryMemberByGuestId.biz.ext" ,
 			type : "post",
@@ -258,6 +259,10 @@ function setData(params){
 				console.log(jqXHR.responseText);
 			}
 		});
+	}else{
+		document.getElementById("carddk").style.display='none';
+		document.getElementById("settle").style.display='none';
+	}
 		addType();
 	    getData(data);
 }

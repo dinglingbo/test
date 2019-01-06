@@ -179,3 +179,44 @@ function selectionChanged() {
 		}
 	});
 }
+
+
+function refund(){
+	var row = grid.getSelected();
+	if(row){
+		
+	}else{
+		showMsg("请选一张储值卡!","W");
+		return;
+	}
+    nui.open({
+        targetWindow: window,
+        url: webPath+contextPath+"/com.hsweb.frm.manage.refund.flow?token="+token,
+        title: "储值卡退款", width: 450, height: 360,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var params = {
+                card : 1,//储值卡
+                row:row
+            };
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action)
+        {
+            if(action == 'ok')
+            {
+                var iframe = this.getIFrameEl();
+                var data = iframe.contentWindow.getData();
+                supplier = data.supplier;
+                var value = supplier.id;
+                var text = supplier.fullName;
+                var el = nui.get(elId);
+                el.setValue(value);
+                el.setText(text);
+            }
+        }
+    });
+}

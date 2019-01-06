@@ -11,7 +11,7 @@
 <head>
 <title>储值卡消费记录</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.2.2"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.2.7"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -45,6 +45,7 @@ html,body {
 									办卡日期: <input id="startDate" class="mini-datepicker" required="true" />-至-
 									         <input id="endDate" class="mini-datepicker" required="true" /> 
 									<a class="nui-button" onclick="search()" plain="true"> <span class="fa fa-search fa-lg"></span>&nbsp; 查询</a>
+									<a class="nui-button" onclick="refund()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款</a>
 							</td>
 						</tr>
 					</table>

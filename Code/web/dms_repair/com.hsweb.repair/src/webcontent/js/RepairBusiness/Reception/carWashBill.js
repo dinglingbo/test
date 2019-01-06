@@ -323,9 +323,9 @@ $(document).ready(function ()
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
         nui.get("checkManId").setData(memList);
-        nui.get("combobox3").setData(memList);
+       /* nui.get("combobox3").setData(memList);
         nui.get("pkgSale").setData(memList);
-        nui.get("combobox4").setData(memList);
+        nui.get("combobox4").setData(memList);*/
         
     });
   

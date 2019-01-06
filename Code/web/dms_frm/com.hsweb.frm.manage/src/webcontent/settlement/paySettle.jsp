@@ -169,7 +169,7 @@
                         <!-- <div type="expandcolumn" width="20" >#</div> -->
                         <div field="guestName" width="150" headerAlign="center" header="结算单位"></div>
                         <div field="carNo" width="80" headerAlign="center" header="车牌号"></div>
-                        <div allowSort="true" summaryType="count" field="billServiceId" width="120" summaryType="count" headerAlign="center" header="业务单号"></div>
+                        <div allowSort="true" summaryType="count" field="billServiceId" width="130" summaryType="count" headerAlign="center" header="业务单号"></div>
                         <div field="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
                         <div field="remark" width="120" headerAlign="center" header="业务备注"></div>
                         <div field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="应付金额"></div>

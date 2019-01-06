@@ -57,11 +57,10 @@
          a.item_rate itemRate,
          a.part_rate partRate,
          a.recorder recorder,
-         a.settle_date as settleDate,
-         a.car_no as carNo
+         a.record_date as settleDate
          FROM rps_card_stored a 
          INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
-         WHERE  a.orgid = #orgid# and a.is_settle = 1
+         WHERE   a.orgid = #orgid# 
          <dynamic>
          <isNotEmpty prepend="and" property="guestName">  
 	            (c.full_name like '%$guestName$%')
@@ -73,13 +72,13 @@
 	            (a.card_name like '%$cardName$%')
 	    </isNotEmpty>
     	<isNotEmpty prepend="and" property="startDate"> 
-                (a.settle_date &gt;= #startDate#)
+                (a.record_date &gt;= #startDate#)
          </isNotEmpty>
          <isNotEmpty prepend="and" property="endDate">
-                (a.settle_date &lt; #endDate#)
+                (a.record_date &lt; #endDate#)
          </isNotEmpty>
         </dynamic>
- 			order by a.settle_date desc
+ 			order by a.record_date desc
 	</select>
 	
 	 <select id="queryCardTimesDe" parameterClass="java.lang.String" resultClass="java.util.HashMap">

@@ -103,6 +103,7 @@
 	String repairEntrustPrintContent = "";
 	String repairPchsRtnFlag = "1";
 	String repairDefaultStore = "";
+	String isCanSettle = "";
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
 	}else{
@@ -153,6 +154,9 @@
                 }
                 if(attr.get("slogan2") != null){
                 	slogan2 = attr.get("slogan2").toString();
+                }
+                if(attr.get("isCanSettle") != null){
+                	isCanSettle = attr.get("isCanSettle").toString();
                 }
                 
                 if(attr.get("billParams") != null){
@@ -233,7 +237,7 @@
 	var currRepairEntrustPrintContent = "<%=repairEntrustPrintContent %>";
 	var currRepairPchsRtnFlag = "<%=repairPchsRtnFlag %>";
 	var currRepairDefaultStore = "<%=repairDefaultStore %>";
-	
+	var currIsCanSettle = "<%=isCanSettle %>";
     //alert("token=" + token);
     
     /* var _sysMsg_;

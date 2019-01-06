@@ -25,6 +25,9 @@
                 <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime">工时/数量
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedComQty" selectOnFocus="true"/>
                 </div>
+                <div field="planFinishDate" headerAlign="center" allowSort="false" visible="false" width="40" datatype="float" align="center" name="planFinishDate">
+                                                      工时预计完工时间
+                </div>
                 <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
                     <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onValueChangedItemUnitPrice" selectOnFocus="true"/>
                 </div>
@@ -69,6 +72,12 @@
     <span id="carHealthEl" >
         <a href="javascript:chooseItem()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择维修项目</a>
     </span>
+    <!-- <span id="carHealthEl" >
+        <a href="javascript:updateItem()" class="chooseClass" >修改</a>
+    </span>
+    <span id="carHealthEl" >
+        <a href="javascript:saveItem()" class="chooseClass" >保存</a>
+    </span> -->
     <!--<span>&nbsp;</span>
     <span id="carHealthEl" >
         <a href="javascript:showBasicData('item')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择标准项目</a>
@@ -94,7 +103,6 @@
         </tr>
     </table>
 </div>    
-
 
 <div id="advancedItemPartRateSetWin" class="nui-window"
      title="批量设置优惠率" style="width:300px;height:150px;"
@@ -135,6 +143,7 @@
     </div>
 </div>   
 
+<!-- 不要 -->
 <div id="advancedItemWorkersSetWin" class="nui-window"
      title="批量设置项目施工员" style="width:300px;height:150px;"
      showModal="true"

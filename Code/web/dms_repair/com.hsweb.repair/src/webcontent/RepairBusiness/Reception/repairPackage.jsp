@@ -59,7 +59,7 @@
                 </div>               
                 <div field="saleMan" headerAlign="center"
                      allowSort="false" visible="true" width="50" header="" align="center" name="saleMan">
-                                     销售员<a href="javascript:setPkgSaleMans()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+                                     销售员<a href="javascript:setPkgSaleMans()" title="批量设置销售员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                      <input class="nui-textbox" property="editor" id="saleMansName" name="saleMansName"  onclick="openPkgSaleMans" />
                 </div>
                 <div field="saleManId" headerAlign="center"
@@ -133,7 +133,8 @@
     </div>
 </div>   	
 
-<div id="advancedPkgWorkersSetWin" class="nui-window"
+<!-- 往下删除 -->
+ <div id="advancedPkgWorkersSetWin" class="nui-window"
      title="批量设置套餐施工员" style="width:300px;height:150px;"
      showModal="true"
      showHeader="false"
@@ -164,8 +165,8 @@
             </tr>
         </table>
     </div>
-</div> 
-<div id="advancedPkgSaleMansSetWin" class="nui-window"
+</div>  
+ <div id="advancedPkgSaleMansSetWin" class="nui-window"
      title="批量设置套餐销售员" style="width:300px;height:150px;"
      showModal="true"
      showHeader="false"
@@ -196,6 +197,6 @@
             </tr>
         </table>
     </div>
-</div> 
+</div>  
 
 

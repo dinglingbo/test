@@ -11,7 +11,7 @@
 
 <head>
 	<title>工单结算</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.5.32"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/billSettle.js?v=1.5.35"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -373,12 +373,12 @@
 				<div class="pay_tcbk">
 					<div id="benefitdeductionbox">
 
-						<div class="pay_jshj_list">
+						<div class="pay_jshj_list" id ="carddk">
 							<div class="pay_js_left">
 								<a href="javascript:;" class="xz">储值卡抵扣</a>
 							</div>
 							<div class="pay_js_right">
-								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+								<table width="100%"  border="0" cellspacing="0" cellpadding="0">
 									<tbody>
 										<tr>
 											<td width="15%">
@@ -625,7 +625,7 @@
 						<span id="amount" style="font-size:21px; font-weight:bold; color:#ff3200;"></span> 元
 					</td>
 					<td >
-						<a id="wxbtnsettle" style="    width: 120px;
+						<a id="ysettle" style="    width: 120px;
 							height: 40px;
 							font-size: 18px;
 							background: #2ac476;
@@ -638,7 +638,7 @@
 							href="javascript:void(0)" onclick="noPay()" >转预结算</a>
 					</td>
 					<td >
-						<a id="btnsettle" style="    width: 120px;
+						<a id="settle" style="    width: 120px;
 							height: 40px;
 							font-size: 18px;
 							background: #578ccd;

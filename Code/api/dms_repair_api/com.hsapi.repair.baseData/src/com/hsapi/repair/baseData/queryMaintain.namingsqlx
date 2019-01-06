@@ -349,6 +349,9 @@
             <isNotEmpty prepend="and" property="orgid">
                 (b.orgid = #orgid#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="mainId">
+                (b.id = #mainId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="id">
                 (a.id = #id#)
             </isNotEmpty>
@@ -381,6 +384,9 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="canUseTimes">  
                 (a.can_use_times &gt; #canUseTimes#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="useTimes">  
+                (a.use_times &gt; #useTimes#)
             </isNotEmpty>
            
         </dynamic>  

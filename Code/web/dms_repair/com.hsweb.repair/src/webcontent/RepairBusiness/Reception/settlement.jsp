@@ -395,7 +395,7 @@
                 <tr>
                    <td height="30" style="padding: 8px;" colspan="3">
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style = "margin-left: 0px;" id = "show"></span><br>
-                      <span style = "margin-left: 500px;">客户签名：</span>
+                      <span style = "margin-left: 10px;" id="makeMan">制单：</span><span style = "margin-left: 100px;">服务顾问签名：</span><span style = "margin-left: 110px;">客户签名：</span>
                   </td>
                  
             </tr>
@@ -409,9 +409,11 @@
 		var phones = "";
 		//尊敬的客户:以上报价在实际施工过程中可能略有小幅变动，最终价格以实际结算单为准
 		$(document).ready(function (){
+			
 			$("#print").click(function () {
 	            $(".print_btn").hide();
 	            $(".print_hide").hide();
+	            
 	            window.print();
 	        }); 
 	      
@@ -456,6 +458,7 @@
 	        	   document.getElementById("show").innerHTML = params.currRepairEntrustPrintContent||"";
 	        	}
 	        }
+	      
 	        document.getElementById("comp").innerHTML = params.comp;
 	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
 	        //document.getElementById("pdate").innerHTML = document.getElementById("pdate").innerHTML + format(date, "yyyy-MM-dd HH:mm");
@@ -467,7 +470,7 @@
     		document.getElementById("phone").innerHTML = params.currCompTel;
     		document.getElementById("slogan1").innerHTML = params.currSlogan1;
     		document.getElementById("slogan2").innerHTML = params.currSlogan2;
-    		
+    		  document.getElementById("makeMan").innerHTML="制单:" + params.currUserName;
 	        $.ajaxSettings.async = false;//设置为同步执行
 	        var url = null;
 	        if(params.type){

@@ -5,7 +5,7 @@ var netInAmt = 0;
 var tableNum = 0;
 var form = null;
 var type = null;
-var typeUrl = 0;//结算逻辑流，2退货
+var typeCard = 0;//1计次，2储值
 var typeList = {};
 var zongAmt = 0;//实时填写的结算金额
 var guestData = null;
@@ -20,9 +20,10 @@ $(document).ready(function (){
 function setData(data){
 	guestData = data.card;
 	zongAmt = data.payAmt;
+	typeCard = data.typeCard;
 
 	document.getElementById('mobile').innerHTML = guestData.mobile||"";
-	document.getElementById('guest').innerHTML = guestData.fullName;
+	document.getElementById('guestName').innerHTML = guestData.guestName;
 	document.getElementById('totalAmt').innerHTML = "￥"+zongAmt;
 	document.getElementById('totalAmt1').innerHTML = zongAmt;
 	document.getElementById('amount').innerHTML = zongAmt;
@@ -159,15 +160,25 @@ function settleOK() {
 			nui.alert("付款金额和应付金额不一致，请重新确认！","提示");
 			return;
 		}
-		
+		var json={};
+			if(typeCard==1){
+				 json = {
+						accountTypeList : accountTypeList,
+						serviceId:guestData.id,
+						remark:nui.get("txtreceiptcomment").getValue(),
+						payAmt:zongAmt,
+						type:1
+					};
+			}else{
+				 json = {
+						accountTypeList : accountTypeList,
+						serviceId:guestData.id,
+						remark:nui.get("txtreceiptcomment").getValue(),
+						payAmt:zongAmt,
+						type:2
+					};
+			}
 
-			var json = {
-					accountTypeList : accountTypeList,
-					serviceId:guestData.id,
-					remark:nui.get("txtreceiptcomment").getValue(),
-					payAmt:zongAmt,
-					type:2
-				};
 		    nui.confirm("是否确定结算？", "友情提示",function(action){
 			       if(action == "ok"){
 					    nui.mask({
@@ -184,7 +195,7 @@ function settleOK() {
 			    			success : function(data) {
 			    				nui.unmask(document.body);
 			    				if(data.errCode=="S"){  					
-			    					CloseWindow("ok");
+			    					CloseWindow("saveSuccess");
 			    				}else{
 			    					nui.alert(data.errMsg,"提示");
 			    				}

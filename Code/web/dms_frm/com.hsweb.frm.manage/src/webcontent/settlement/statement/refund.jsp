@@ -12,7 +12,7 @@
 <title>储值卡退款</title>
 
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/refund.js?v=1.0.4"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/refund.js?v=1.1.4"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
         <style type="text/css">
@@ -66,7 +66,7 @@ body,
 								客户：	
 							</td>
 							<td align="left">
-								<input class="nui-textbox" id="fullName" name="fullName" width="100"  />
+								<input class="nui-textbox" id="guestName" name="guestName" width="100"  />
 							</td>
 							<td align="right">
 								电话：			
@@ -112,13 +112,21 @@ body,
 								退款金额<span style="color: red;">*</span>：		
 							</td>
 							<td align="left">
-								<input class="mini-spinner" id="refundAmt" name="refundAmt" width="100" showButton="false" onvaluechanged="onrefundAmt()";/>		
+								<input class="mini-spinner" id="yrefundAmt" minValue="0" maxValue="100000" name="yrefundAmt" width="100" showButton="false" onvaluechanged="onrefundAmt()";/>		
 							</td>
 							<td align="right">
 								退款后剩余金额：							
 							</td>
 							<td align="left">
 								<input class="nui-textbox" id="trefundAmt" name="trefundAmt" width="100"  />								
+							</td>
+							</tr>
+							<tr>
+							<td align="right">
+								已退款金额：							
+							</td>
+							<td align="left">
+								<input class="nui-textbox" id="refundAmt" name="refundAmt" width="100"  />								
 							</td>							
 						</tr>
 					</tbody>

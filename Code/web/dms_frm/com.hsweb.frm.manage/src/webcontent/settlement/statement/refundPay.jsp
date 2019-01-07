@@ -11,7 +11,7 @@
 
 <head>
 	<title>退款结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.1.3"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/refundPay.js?v=1.0.3"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -250,7 +250,7 @@
 							<td width="300" height="58">
 								客户：
 								
-								<span style="padding-top: 2px;"   id="guest" name="guest">></span>
+								<span style="padding-top: 2px;"   id="guestName" name="guestName">></span>
 							</td>
 							<td align="center">
 								电话：
@@ -259,10 +259,6 @@
 								
 								&nbsp;&nbsp;
 								<span name="mobile" id="mobile"></span>
-							</td>
-							<td align="center" style="padding-left: 10px;">
-								挂账：
-								<span style="color: #ff7800;">0.00元</span>
 							</td>
 							<td width="320" valign="top" style="position: relative;">
 								<dl>

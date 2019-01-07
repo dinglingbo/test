@@ -20,7 +20,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rps.RpsCardStored[]" name="data" type="query" valueType="DataObject">data</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rps.RpsStoredRecord[]" name="data" type="query" valueType="DataObject">data</process:return>
       <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="3" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
@@ -54,7 +54,7 @@
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsCardStored</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsStoredRecord</process:from>
       <process:to type="query">cr/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -139,7 +139,7 @@
     <process:input description="" isArray="false" name="guestId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsCardStored" name="data"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsStoredRecord" name="data"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>

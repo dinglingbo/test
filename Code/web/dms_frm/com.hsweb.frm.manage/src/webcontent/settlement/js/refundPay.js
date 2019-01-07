@@ -18,21 +18,15 @@ $(document).ready(function (){
 
 
 function setData(data){
-	guestData = data;
-	zongAmt = parseFloat(data[0].nowAmt);
-	typeUrl =  data[0].typeUrl;
-	if(typeUrl==2){
-		$("#wxbtnsettle").show();
-	}else{
-		$("#wxbtnsettle").hide();
-	}
+	guestData = data.card;
+	zongAmt = data.payAmt;
 
-	document.getElementById('carNo').innerHTML = data[0].carNo;
-	document.getElementById('guest').innerHTML = data[0].guestName;
-	document.getElementById('totalAmt').innerHTML = "￥"+data[0].nowAmt;
-	document.getElementById('totalAmt1').innerHTML = data[0].nowAmt;
-	document.getElementById('amount').innerHTML = data[0].nowAmt;
-	netInAmt = parseFloat(data[0].nowAmt);
+	document.getElementById('mobile').innerHTML = guestData.mobile||"";
+	document.getElementById('guest').innerHTML = guestData.fullName;
+	document.getElementById('totalAmt').innerHTML = "￥"+zongAmt;
+	document.getElementById('totalAmt1').innerHTML = zongAmt;
+	document.getElementById('amount').innerHTML = zongAmt;
+	netInAmt = parseFloat(zongAmt);
 
 	
 	addType();
@@ -166,12 +160,13 @@ function settleOK() {
 			return;
 		}
 		
-		if(typeUrl==2){
+
 			var json = {
 					accountTypeList : accountTypeList,
-					serviceId:guestData[0].serviceId,
+					serviceId:guestData.id,
 					remark:nui.get("txtreceiptcomment").getValue(),
-					payAmt:zongAmt
+					payAmt:zongAmt,
+					type:2
 				};
 		    nui.confirm("是否确定结算？", "友情提示",function(action){
 			       if(action == "ok"){
@@ -181,7 +176,7 @@ function settleOK() {
 						    html : '处理中...'
 					    });
 			    		nui.ajax({
-			    			url : baseUrl+ "com.hsapi.repair.repairService.settlement.returnSettle.biz.ext",
+			    			url : baseUrl+ "com.hsapi.repair.repairService.settlement.refundSettle.biz.ext",
 			    			type : "post",
 			    			data : json,
 					        cache : false,
@@ -204,96 +199,7 @@ function settleOK() {
 						return;
 				 }
 			});
-		}else{
-			var account = {};
-			var accountDetailList = [];
-			var rRPAmt = 0; // 应收金额
-			var rTrueAmt = 0; // 实收应收
-			var rVoidAmt = 0; // 优惠金额
-			var rNoCharOffAmt = 0; // 未结金额
-			var pRPAmt = 0; // 应付金额
-			var pTrueAmt = 0; // 实付金额
-			var pVoidAmt = 0; // 免付金额
-			var pNoCharOffAmt = 0; // 未结金额
-			var rpAmt = 0; // 合计金额
-			var pAmount = 0;
-			var rAmount = 0;
-			var s1 = 0; // 合计收
-			var s2 = 0; // 合计付
-			account.guestId = guestData[0].guestId;
-			account.guestName = guestData[0].guestName;
-			account.itemQty = 1;
-			account.remark = nui.get('txtreceiptcomment').getValue();
-			accountDetail.billRpId = guestData[0].id;
-			accountDetail.billMainId = guestData[0].billMainId;
-			accountDetail.billServiceId = guestData[0].billServiceId;
-			accountDetail.billTypeId = guestData[0].billTypeId;
-			var noCharOffAmt = guestData[0].noCharOffAmt || 0; // 已结金额
-			var rpAmt = guestData[0].rpAmt || 0; // 应结金额
-			var nowAmt = guestData[0].nowAmt || 0;
-			var nowVoidAmt = guestData[0].nowVoidAmt || 0;
-			accountDetail.rpDc = -1;
-			nowAmt = parseFloat(nowAmt);
-			nowVoidAmt = parseFloat(nowVoidAmt);
-			pRPAmt += rpAmt;
-			pTrueAmt += nowAmt;
-			pVoidAmt += nowVoidAmt;
-			pNoCharOffAmt += noCharOffAmt;
-			s1 += (nowAmt + nowVoidAmt);
-			accountDetail.charOffAmt = nowAmt;
-			accountDetail.voidAmt = nowVoidAmt;
-			if(guestData[0].nowAmt!=(count)){
-				nui.alert("结算金额与应收金额不一致","提示");
-				return;
-			}
-
-			accountDetailList.push(accountDetail);
-
-			account.rpDc = -1;
-			account.settleType = "应付";
-			account.voidAmt = pVoidAmt;
-			account.trueCharOffAmt = pTrueAmt;
-			account.charOffAmt = pVoidAmt + pTrueAmt;
-			
-			var list={balaTypeCode:"020107",charOffAmt:deductible,settAccountId:"274"};
-			accountTypeList.push(list);
-
-			  nui.confirm("确定结算吗？", "友情提示",function(action){
-			       if(action == "ok"){
-						nui.mask({
-							el : document.body,
-							cls : 'mini-mask-loading',
-							html : '数据处理中...'
-						});
-						nui.ajax({
-							url : settleAuditUrl,
-							type : "post",
-							data : JSON.stringify({
-								account : account,
-								accountDetailList : accountDetailList,
-								accountTypeList : accountTypeList,
-								token : token
-							}),
-							success : function(data) {
-								nui.unmask(document.body);
-								data = data || {};
-								if (data.errCode == "S") {
-									CloseWindow("saveSuccess");
-				
-								} else {
-									showMsg(data.errMsg || "结算失败!", "W");
-								}
-							},
-							error : function(jqXHR, textStatus, errorThrown) {
-								// nui.alert(jqXHR.responseText);
-								console.log(jqXHR.responseText);
-							}
-						});
-			     }else {
-						return;
-				 }
-				 }); 
-		}
+		
 
 
 

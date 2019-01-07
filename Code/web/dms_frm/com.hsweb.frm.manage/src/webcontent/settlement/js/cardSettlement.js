@@ -150,7 +150,6 @@ function settleOK() {
 		return;
 	}	
 	var accountTypeList =[];
-	
 	for(var i = 0;i<tableNum+1;i++){
 		var  Sel=document.getElementById("optaccount"+i);
 		if(Sel!=null){
@@ -238,7 +237,7 @@ function settleOK() {
 							data = data || {};
 							if (data.errCode == "S") {
 								CloseWindow("ok");
-			
+								print();
 							} else {
 								nui.alert(data.errMsg,"提示");
 							}
@@ -256,6 +255,50 @@ function settleOK() {
 
 
 
+}
+
+//打印函数
+function print(){
+	var sourceUrl = "";
+	var printName = currRepairSettorderPrintShow||currOrgName;
+	var p = {
+		comp : printName,
+		partApiUrl:apiPath + partApi + "/",
+		baseUrl: apiPath + repairApi + "/",
+		sysUrl: apiPath + sysApi + "/",
+		webUrl:webPath + contextPath + "/",
+        bankName: currBankName,
+        bankAccountNumber: currBankAccountNumber,
+        currCompAddress: currCompAddress,
+        currCompTel: currCompTel,
+        currSlogan1: currSlogan1,
+        currSlogan2: currSlogan2,
+        currUserName : currUserName,
+		token : token
+	};
+	params = {
+		guestData:guestData,
+		row :row,
+		p:p
+	};
+	if(settlementUrl==1){
+		sourceUrl = webPath + contextPath + "/com.hsweb.RepairBusiness.printCard.flow?token="+token;
+	}
+	if(settlementUrl==2){
+		sourceUrl = webPath + contextPath + "/com.hsweb.RepairBusiness.printCardStored.flow?token="+token;
+	}
+	nui.open({
+        url: sourceUrl,
+        title: p.name + "打印",
+		width: "100%",
+		height: "100%",
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params);
+        },
+        ondestroy: function (action){
+        }
+    });
 }
 
 function  scount(){
@@ -389,6 +432,7 @@ function noPayOk(){
 				        var returnJson = nui.decode(text);
 				        if (returnJson.errCode == "S") {
 				        	CloseWindow("onok");
+				        	print();
 				        }
 				        else {
 				            nui.alert("转结算失败:"+returnJson.errMsg, "系统提示");

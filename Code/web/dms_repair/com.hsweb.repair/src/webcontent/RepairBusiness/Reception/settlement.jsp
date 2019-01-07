@@ -201,8 +201,6 @@
 	     
         <div style="margin: 0 10px;" class="printny">
         <div class="company-info">
-        	
-            
             <table  width="100%" border="0" cellspacing="0" cellpadding="0">
 	            <tbody>
 	                <tr>

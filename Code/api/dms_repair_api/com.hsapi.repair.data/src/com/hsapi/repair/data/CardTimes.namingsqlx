@@ -48,6 +48,39 @@
  
 	</select>
 	
+	   <select id="queryRefundRecord" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
+       SELECT
+         a.id id,
+         c.full_name fullName,
+         a.guest_id  guestId,
+         a.type type,
+         a.guest_name guestName,
+         c.mobile mobile,
+         a.refund_amt refundAmt,
+		 a.remark remark,
+		 a.recorder recorder,
+         a.record_date as recordDate
+         FROM rps_refund_record a 
+         INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
+         WHERE  a.orgid = #orgid# 
+         <dynamic>
+         <isNotEmpty prepend="and" property="guestName">  
+	            (a.guest_name like '%$guestName$%')
+	     </isNotEmpty>          
+	     <isNotEmpty prepend="and" property="mobile">  
+	            (c.mobile like '%$mobile$%')
+	    </isNotEmpty>
+    	<isNotEmpty prepend="and" property="startDate"> 
+                (a.record_date &gt;= #startDate#)
+         </isNotEmpty>
+         <isNotEmpty prepend="and" property="endDate">
+                (a.record_date &lt;= #endDate#)
+         </isNotEmpty>
+        </dynamic>
+        order by a.record_date desc
+ 
+	</select>
+	
 	   <select id="queryStoredRecord" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
        SELECT
          a.id id,

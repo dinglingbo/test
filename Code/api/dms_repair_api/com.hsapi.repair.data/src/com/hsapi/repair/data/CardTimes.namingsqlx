@@ -11,11 +11,15 @@
        SELECT
          a.id id,
          c.full_name fullName,
+         a.guest_name guestName,
          c.mobile mobile,
          a.card_name cardName,
          a.record_date recordData,
          a.sell_amt sellAmt,
          a.status status,
+         a.is_refund isRefund,
+         a.refunder refunder,
+         a.refund_date refundDate,
          a.past_date pastDate,
          a.period_validity periodValidity,
          a.settle_date as settleDate,
@@ -26,9 +30,11 @@
          <dynamic>
          <isNotEmpty prepend="and" property="guestName">  
 	            (a.guest_name like '%$guestName$%')
-	     </isNotEmpty>
-	            
-	     <isNotEmpty prepend="and" property="cardName">  
+	     </isNotEmpty>          
+	     <isNotEmpty prepend="and" property="mobile">  
+	            (c.mobile like '%$mobile$%')
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="cardName">  
 	            (a.card_name like '%$cardName$%')
 	    </isNotEmpty>
     	<isNotEmpty prepend="and" property="startDate"> 
@@ -42,28 +48,31 @@
  
 	</select>
 	
-	   <select id="queryCardStoredList" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
+	   <select id="queryStoredRecord" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
        SELECT
          a.id id,
-         c.full_name fullName,
+         a.guest_id guestId,
+         a.guest_name guestName,
          c.mobile mobile,
+         a.card_id cardId,
          a.card_name cardName,
-         a.record_date recordDate,
          a.recharge_amt rechargeAmt,
          a.give_amt giveAmt,
          a.total_amt totalAmt,
          a.use_amt useAmt,
+         a.bala_amt balaAmt,
+         a.refund_amt refundAmt,
          a.package_rate packageRate,
          a.item_rate itemRate,
          a.part_rate partRate,
-         a.recorder recorder,
-         a.record_date as settleDate
-         FROM rps_card_stored a 
+         a.sale_man saleMan,
+         a.record_date as recordDate
+         FROM rps_stored_record a 
          INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
          WHERE   a.orgid = #orgid# 
          <dynamic>
          <isNotEmpty prepend="and" property="guestName">  
-	            (c.full_name like '%$guestName$%')
+	            (a.guest_name like '%$guestName$%')
 	     </isNotEmpty>
 	      <isNotEmpty prepend="and" property="guestTelephone">  
 	            (c.mobile like '%$guestTelephone$%')

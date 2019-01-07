@@ -322,9 +322,9 @@ hr {
 				<table>
 				  <tr><td  colspan="3"><hr id="se"/></td></tr>
 				  <tr id="border2">
-				    <td id="currUserName" >打印人：系统管理员</td>
-				    <td id="giveMan" >送货人：</td>
-				    <td id="getMan" width="" align="center">收货人：</td>
+				    <td id="currUserName" >制单：系统管理员</td>
+				    <td id="giveMan" >送货：</td>
+				    <td id="getMan" width="" align="center">收货：</td>
 				  </tr>
 				  <tr><td  colspan="3"><hr id="se"/></td></tr>
 <!-- 				  <tr id="border3"> -->
@@ -416,7 +416,7 @@ hr {
 	   		document.getElementById("phone").innerHTML ="电话:"+params.currCompTel;
 	   		$('#currOrgName').text(params.currRepairSettorderPrintShow||params.currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
-    		$('#currUserName').text("打印人:"+params.currUserName);
+    		$('#currUserName').text("制单:"+params.currUserName);
     		if(params.id){
 	       		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
 		   			var formParms =text.pjPchsOrderMainList[0];

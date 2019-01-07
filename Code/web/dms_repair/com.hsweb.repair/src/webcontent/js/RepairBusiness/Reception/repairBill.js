@@ -3242,10 +3242,14 @@ function pay(){
             showMsg("工单未完工,不能结算!","W");
             return;
         }
-        if(data.isSettle == 1||data.balaAuditSign == 1){
+        if(data.isSettle == 1){
         	 showMsg("工单已结算!","W");
              return;
         }
+        if(data.balaAuditSign == 1){
+       	 showMsg("工单已转预结算!","W");
+            return;
+       }
         var sellData = sellForm.getData();
         ycAmt = parseFloat(tcAmt)+parseFloat(gsAmt);
         sellData.ycAmt = ycAmt;

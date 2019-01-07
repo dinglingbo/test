@@ -1,14 +1,13 @@
 /**
  * Created by Administrator on 2018/4/27.
  */                                       
-//var queryFormUrl = apiPath + repairApi + "/ com.hsapi.repair.baseData.cardTimes.test.biz.ext";
-var queryFormUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.queryCardTimesList.biz.ext";
-var CardUrl = webPath + contextPath + "/repair/DataBase/Card/rpsCardTimesBase.jsp?token="+token;
-//var getTimes = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimesDe.biz.ext";
+
+var queryFormUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.queryRefundRecord.biz.ext";
+
 var grid = null;
 var queryForm = null;
-var statusList = [{id:"0",name:"客户名称"},{id:"1",name:"客户电话"},{id:"2",name:"计次卡名称"}];
-/*进来该页面，加载套餐列表数据*/
+var statusList = [{id:"0",name:"客户名称"},{id:"1",name:"客户电话"}];
+
 $(document).ready(function (v)
 {
     grid  = nui.get("datagrid1");
@@ -24,108 +23,34 @@ $(document).ready(function (v)
     endDate.setValue(date);
     
     
-    var query = {
+    var params = {
     		startDate:sdate,
     		endDate:date
     }; 
     grid.setUrl(queryFormUrl);
     grid.load({
-    	query:query,
+    	params:params,
     	token : token
     });
        
 });
 
 
-//查看
-function searchOne() {
-
-  var row = grid.getSelected();
-  if (row) {
-    nui.open({
-      url:CardUrl,
-      title: "计次卡基本信息",
-      width: 1200,
-      height: 620,
-      onload: function () {
-    	var iframe = this.getIFrameEl();
-        var data = row;
-        //直接从页面获取，不用去后台获取
-        
-        iframe.contentWindow.setData(data);
-        
-        },
-         
-        });
-      } else {
-        nui.alert("请选中一条记录","提示");
-      }
-    }
     
- 
-//购买次卡套餐
-var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token"+token;
-function dealtWithCard(){	
- 	nui.open({
- 		url : addcardTimeUrl,
- 		title : "次卡办理",
- 		width : 965,
- 		height : 573,
- 		onload : function() {
- 		    var iframe = this.getIFrameEl();
- 			iframe.contentWindow.setStely();
- 		},
- 		ondestroy : function(action) {// 弹出页面关闭前
- 			if (action == "saveSuccess") {
- 				grid.reload();
- 			}
- 		}
- 	});
- 	
- }
- 
- 
-  //重新刷新页面
-function refresh(){
-    var form = new  nui.Form("#queryform");
-    var json = form.getData(false,false);
-    grid.load(json);//grid查询
-    nui.get("update").enable();
-	/*grid  = nui.get("datagrid1");
-    grid.setUrl(gridUrl);
-    grid.load();*/
-  }
 
-      
-  var hash = new Array("草稿","已提交","已结算");
-  var isRefundList = new Array("未退款","已退款");
-  //剩余次数
-  var balaTimes = null;
-  //总次数
-  var totalTimes = null;
-  //剩余可使用次数
-  var canUseTimes = null;
-  var id = null;
+var hash = new Array("计次卡退款","储值卡退款");
+
  function onDrawCell(e)
   {
-	  var  d = totalTimes;
-	
+
     switch (e.field)
     {
         
-    case "sellAmt":
-        e.cellHtml = "￥"+e.value;
-        break;
-    case "status":
-    /*e.cellHtml = e.value==1?"禁用":"启用";*/
-    	e.cellHtml = hash[e.value];
+
+    case "type":
+    	e.cellHtml = hash[e.value-1];
         break; 
-    case "periodValidity":
-    	e.cellHtml = (e.value == -1 ? "永久有效":e.value);
-    	break;
-    case "isRefund":
-    	e.cellHtml = isRefundList[e.value];
-    	break;
+
     default:
         break;
     }
@@ -162,7 +87,7 @@ function refresh(){
 				endDate:endDate
 		}
 		var json1 = {
-				query:params,
+				params:params,
 				token:token
 		}
 		nui.ajax({
@@ -172,7 +97,7 @@ function refresh(){
 			cache : false,
 			contentType : 'text/json',
 			success : function(text) {
-				grid.setData(text.params);
+				grid.setData(text.data);
 				nui.unmask(document.body);
 				
 				
@@ -181,68 +106,6 @@ function refresh(){
 	}
 
  
- //查明细
- var searchDetialUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimesDe.biz.ext";
- function searchDetial(id){
-	 
-	 var infor = null;
-	 var json = nui.encode({
-		 Id:id,
-		 token:token
-	 });
-	 nui.ajax({
-	        url : searchDetialUrl,
-	        type : 'POST',
-	        data : json,
-	        cache : false,
-	        contentType : 'text/json',
-	        success : function(text) 
-	        {
-	            var object = nui.decode(text);
-	            var cardTimeDe = object.cardTimDe;
-	            if(cardTimeDe != null)
-	            {
-	            	for(var i = 0;i<cardTimeDe.length;i++)
-	            	{
-	            		infor = infor + cardTimeDe[i].prdtName + "总次数【"+ cardTimeDe[i].balaTimes+"】,剩余次数【"+cardTimeDe[i].balaTimes+"】"
-	            	}
-	            }
-	        }
-	 }); 
-	 return infor;
- }
-  
- //计次卡退款
- function refund(){
-		var row = grid.getSelected();
-		if(row){
-			
-		}else{
-			showMsg("请选一张储值卡!","W");
-			return;
-		}
-		nui.open({
-	        url: webPath + contextPath +"/com.hsweb.frm.manage.refundPay.flow?token="+token,
-	         width: "100%", height: "100%", 
-	        onload: function () {
-	            var iframe = this.getIFrameEl();
-	            var data = {
-	            		card:row,
-	            		payAmt:row.sellAmt,
-	            		typeCard:1
-	            }
-	            iframe.contentWindow.setData(data);
-	        },
-			ondestroy : function(action) {// 弹出页面关闭前
-				if (action == "saveSuccess") {
-					showMsg("退款成功!", "S");
-					var query = queryForm.getData();
-					grid.load({
-				    	query:query,
-				    	token : token
-				    });
 
-				}
-			}
-	    });
-	}
+  
+

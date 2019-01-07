@@ -9,9 +9,9 @@
   - Description:
 -->
 <head>
-<title>计次卡查询</title>
+<title>退款记录</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.1.2"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/refundRecord.js?v=1.0.0"></script>
 </head>
 
 <body>

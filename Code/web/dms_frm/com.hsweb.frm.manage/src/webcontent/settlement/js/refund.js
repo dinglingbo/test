@@ -14,24 +14,35 @@ $(document).ready(function(v) {
 function setData(params){
 	card = params.row;
 	form.setData(params.row||{});
-	nui.get("fullName").disable();
+	nui.get("guestName").disable();
 	nui.get("mobile").disable();
 	nui.get("cardName").disable();
 	nui.get("balaAmt").disable();
 	nui.get("rechargeAmt").disable();
 	nui.get("giveAmt").disable();
 	nui.get("trefundAmt").disable();
-	tureRefundAmt = (parseFloat(card.balaAmt)-parseFloat(card.giveAmt)).toFixed(2);//计算最多能退金额
+	nui.get("refundAmt").disable();
+	if(card.refundAmt>0){
+		tureRefundAmt = parseFloat(card.balaAmt);
+	}else{		
+		tureRefundAmt = (parseFloat(card.balaAmt)-parseFloat(card.giveAmt)).toFixed(2);//计算最多能退金额
+	}
 }
 
 function onrefundAmt(){
-	var refundAmt = parseFloat(nui.get("refundAmt").getValue());
-	if(refundAmt>tureRefundAmt){
-		showMsg("最大退款金额："+tureRefundAmt+",请确认！","W");
+	var yrefundAmt = parseFloat(nui.get("yrefundAmt").getValue());
+	if(yrefundAmt>tureRefundAmt){
+		parent.showMsg("最大退款金额："+tureRefundAmt+",请确认！","W");
 		return;
 	}else{
-		var trefundAmt = (parseFloat(card.balaAmt)-parseFloat(card.refundAmt)-parseFloat(card.giveAmt)).toFixed(2);//计算退款后剩余金额
-		nui.get("trefundAmt").setValue(trefundAmt);
+		if(card.refundAmt>0){
+			var trefundAmt = (parseFloat(card.balaAmt)-parseFloat(yrefundAmt)).toFixed(2);//计算退款后剩余金额
+			nui.get("trefundAmt").setValue(trefundAmt);
+		}else{		
+			var trefundAmt = (parseFloat(card.balaAmt)-parseFloat(yrefundAmt)-parseFloat(card.giveAmt)).toFixed(2);//计算退款后剩余金额
+			nui.get("trefundAmt").setValue(trefundAmt);
+		}
+
 	}
 }
 
@@ -49,7 +60,14 @@ function onClose(){
 }
 
 function refundAmtPay(){
-	
+	var yrefundAmt = parseFloat(nui.get("yrefundAmt").getValue());
+	if(yrefundAmt>tureRefundAmt){
+		parent.showMsg("最大退款金额："+tureRefundAmt+",请确认！","W");
+		return;
+	}else{
+		var trefundAmt = (parseFloat(card.balaAmt)-parseFloat(refundAmt)-parseFloat(card.giveAmt)).toFixed(2);//计算退款后剩余金额
+		nui.get("trefundAmt").setValue(trefundAmt);
+	}
 	nui.open({
         url: webPath + contextPath +"/com.hsweb.frm.manage.refundPay.flow?token="+token,
          width: "100%", height: "100%", 
@@ -57,14 +75,15 @@ function refundAmtPay(){
             var iframe = this.getIFrameEl();
             var data = {
             		card:card,
-            		payAmt:nui.get("refundAmt").getValue()
+            		payAmt:nui.get("yrefundAmt").getValue(),
+            		typeCard:2
             }
             iframe.contentWindow.setData(data);
         },
 		ondestroy : function(action) {// 弹出页面关闭前
 			if (action == "saveSuccess") {
-				showMsg("结算成功!", "S");
-				pRightGrid.reload();
+				CloseWindow("saveSuccess");
+
 			}
 		}
     });

@@ -175,7 +175,7 @@
                 (c.full_name like '%$name$%')
             </isNotEmpty>
         </dynamic>  
-        order by a.modify_date desc
+        order by a.record_date desc
 	</select>
 	<select id="getMaintainById" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT

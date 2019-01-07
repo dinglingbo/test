@@ -3,7 +3,7 @@
  */
 var baseUrl = apiPath + repairApi + "/";
 var queryCardUrl = baseUrl
-+"com.hsapi.repair.baseData.query.queryCardstored.biz.ext";
++"com.hsapi.repair.baseData.query.queryStoredRecord.biz.ext";
 var queryCardUr2 = baseUrl
 +"com.hsapi.repair.baseData.query.queryStoreConsume.biz.ext";
 var grid = null;
@@ -56,6 +56,11 @@ $(document).ready(function(v) {
 });
 
 function search(){
+    nui.mask({
+        el : document.body,
+	    cls : 'mini-mask-loading',
+	    html : '查询中...'
+    });
 	var guestName =  null;
 	var guestTelephone = null;
 	var cardName = null;
@@ -90,7 +95,7 @@ function search(){
 		contentType : 'text/json',
 		success : function(text) {
 			grid.setData(text.data);
-			
+			nui.unmask(document.body);
 			
 			
 		}
@@ -206,16 +211,60 @@ function refund(){
         },
         ondestroy: function (action)
         {
-            if(action == 'ok')
+            if(action == 'saveSuccess')
             {
-                var iframe = this.getIFrameEl();
-                var data = iframe.contentWindow.getData();
-                supplier = data.supplier;
-                var value = supplier.id;
-                var text = supplier.fullName;
-                var el = nui.get(elId);
-                el.setValue(value);
-                el.setText(text);
+				showMsg("退款成功!", "S");
+			    var query = {
+			    		startDate:sdate,
+			    		endDate:date
+			    }; 
+			    grid.load({
+			    	query:query,
+			    	token : token
+			    });
+			    grid2.setValue({});
+            }
+        }
+    });
+}
+
+function refund(){
+	var row = grid.getSelected();
+	if(row){
+		
+	}else{
+		showMsg("请选一张储值卡!","W");
+		return;
+	}
+    nui.open({
+        targetWindow: window,
+        url: webPath+contextPath+"/com.hsweb.frm.manage.refund.flow?token="+token,
+        title: "储值卡退款", width: 450, height: 360,
+        allowDrag:true,
+        allowResize:true,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var params = {
+                card : 1,//储值卡
+                row:row
+            };
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action)
+        {
+            if(action == 'saveSuccess')
+            {
+				showMsg("退款成功!", "S");
+			    var query = {
+			    		startDate:sdate,
+			    		endDate:date
+			    }; 
+			    grid.load({
+			    	query:query,
+			    	token : token
+			    });
+			    grid2.setValue({});
             }
         }
     });

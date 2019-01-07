@@ -246,6 +246,10 @@
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
+      <process:from type="expression" pattern="reference">refundAmt+payAmt</process:from>
+      <process:to type="query">refundAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
@@ -362,6 +366,7 @@
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
       <targetNode>assign5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link17" name="link17" displayName="连接线" type="transition">
       <sourceNode>assign8</sourceNode>
@@ -377,10 +382,6 @@
     <location x="615" y="255"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
-    <process:copy>
-      <process:from type="expression" pattern="reference">refundAmt+payAmt</process:from>
-      <process:to type="query">refundAmt</process:to>
-    </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">cutAmt+payAmt</process:from>
       <process:to type="query">cutAmt</process:to>
@@ -399,16 +400,7 @@
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
       <targetNode>assign5</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link19" name="link19" displayName="连接线" type="transition">
-      <sourceNode>assign9</sourceNode>
-      <targetNode>assign10</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">payAmt</process:leftOperand>
-          <process:rightOperand type="query">balaAmt</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link17</targetConnections>
     <location x="615" y="360"/>
@@ -432,35 +424,11 @@
     <figSize height="17" width="32"/>
     <node>assign9</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign10</sourceNode>
-      <targetNode>end2</targetNode>
-    </sourceConnections>
-    <targetConnections>link19</targetConnections>
-    <location x="615" y="435"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign10label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">退款金额大于可退余额</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="610" y="471"/>
-    <figSize height="17" width="39"/>
-    <node>assign10</node>
-  </nodes>
   <nodes xsi:type="process:tEnd" id="end2" name="结束2" displayName="结束" type="end">
     <targetConnections>link12</targetConnections>
     <targetConnections>link11</targetConnections>
     <targetConnections>link10</targetConnections>
     <targetConnections>link20</targetConnections>
-    <targetConnections>link21</targetConnections>
     <location x="551" y="435"/>
     <size height="28" width="28"/>
     <nodeLabel>end2label</nodeLabel>
@@ -492,7 +460,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="id" primitiveType="Int"/>
-    <process:input description="退款金额" isArray="false" name="payAmt" primitiveType="String"/>
+    <process:input description="退款金额" isArray="false" name="payAmt" primitiveType="Double"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

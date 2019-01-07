@@ -824,6 +824,24 @@
 			code
     </select>
     
+    <parameterMap class="HashMap" id="procqueryinvocingParamWrap">   
+		<parameter property="orgid"  javaType="java.lang.Integer" jdbcType="int" mode="IN"/> 
+		<parameter property="startDate"  javaType="java.sql.Date" jdbcType="DATE" mode="IN"/> 
+		<parameter property="endDate"  javaType="java.sql.Date" jdbcType="DATE" mode="IN"/> 
+	</parameterMap>
+	<parameterMap class="HashMap" id="procquerystoreinvocingParamWrap">   
+		<parameter property="storeId"  javaType="java.lang.Integer" jdbcType="int" mode="IN"/> 
+		<parameter property="startDate"  javaType="java.sql.Date" jdbcType="DATE" mode="IN"/> 
+		<parameter property="endDate"  javaType="java.sql.Date" jdbcType="DATE" mode="IN"/> 
+	</parameterMap>
+	
+	<procedure id="proc_query_invocing" parameterMap="procqueryinvocingParamWrap" resultClass="java.util.HashMap">
+		{call proc_query_invocing(?,?,?)}
+	</procedure>
+	<procedure id="proc_query_store_invocing" parameterMap="procquerystoreinvocingParamWrap" resultClass="java.util.HashMap">
+		{call proc_query_store_invocing(?,?,?)}
+	</procedure>
+    
     <!--门店进销存统计-->
     <select id="queryPjInvoing" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	SELECT

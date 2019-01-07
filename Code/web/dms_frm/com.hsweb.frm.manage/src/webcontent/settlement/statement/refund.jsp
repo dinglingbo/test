@@ -12,7 +12,7 @@
 <title>储值卡退款</title>
 
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/refund.js?v=1.0.2"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/refund.js?v=1.0.4"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
         <style type="text/css">
@@ -112,13 +112,13 @@ body,
 								退款金额<span style="color: red;">*</span>：		
 							</td>
 							<td align="left">
-								<input class="nui-textbox" id="refundAmt" name="refundAmt" width="100"  />		
+								<input class="mini-spinner" id="refundAmt" name="refundAmt" width="100" showButton="false" onvaluechanged="onrefundAmt()";/>		
 							</td>
 							<td align="right">
 								退款后剩余金额：							
 							</td>
 							<td align="left">
-								<input class="nui-textbox" id="refundAmt" name="refundAmt" width="100"  />								
+								<input class="nui-textbox" id="trefundAmt" name="trefundAmt" width="100"  />								
 							</td>							
 						</tr>
 					</tbody>
@@ -131,7 +131,7 @@ body,
                           <a id="wxbtnsettle" style="    width: 70px;
 							height: 40px;
 							font-size: 18px;
-							margin-top: 10px;
+							margin-top: 5px;
 							background: #FFF;
 							color: #333;
 							text-align: center;
@@ -152,12 +152,12 @@ body,
 							text-align: center;
 							display: block;
 							border-radius: 5px;
-							margin-top: 10px;
+							margin-top: 5px;
 							line-height: 2;
 								float:right;
 								margin-right:0px;
 							text-decoration: none;" 
-							href="javascript:void(0)" onclick="dispatchOk()" >退款</a>
+							href="javascript:void(0)" onclick="refundAmtPay()" >退款</a>
                            
                         </td>
                     </tr>

@@ -248,6 +248,18 @@
       <process:from type="query" pattern="reference">maintain/serviceTypeId</process:from>
       <process:to type="query">data/serviceTypeId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/mtAdvisorId</process:from>
+      <process:to type="query">data/mtAdvisorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/mtAdvisor</process:from>
+      <process:to type="query">data/mtAdvisor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">maintain/planFinishDate</process:from>
+      <process:to type="query">data/planFinishDate</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
     <location x="355" y="186"/>
@@ -350,7 +362,7 @@
         <process:outputVariable id="2" name="car" type="query" value="com.hsapi.repair.data.rpb.RpbCar" valueType="DataObject">carObj</process:outputVariable>
         <process:outputVariable id="3" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="4" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="5" name="carExtend" type="query" value="com.hsapi.repair.data.rpb.RpbCarExtend" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="5" name="carExtend" type="query" value="com.hsapi.repair.data.rpb.RpbCarExtend" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -377,7 +389,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">guestJoinObj</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">

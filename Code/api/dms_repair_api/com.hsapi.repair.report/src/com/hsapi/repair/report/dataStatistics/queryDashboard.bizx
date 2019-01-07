@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryDashboard.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="仪表盘数据统计&#xD;&#xA;总收入   其他收入（非主营业务收入）、工单销售（综合开单，洗美开单，理赔开单，保险开单，销售开单）&#xD;&#xA;                                                      0综合，1检查，2洗美，3销售，4理赔，5退货&#xD;&#xA;总利润&#xD;&#xA;预收  （充值  计次卡）&#xD;&#xA;客户记账&#xD;&#xA;现金银行" title="Administrator&#x9;18-12-25 下午2:08">
-    <location x="0" y="-120"/>
-    <size height="136" width="736"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="仪表盘数据统计&#xD;&#xA;总收入   其他收入（非主营业务收入）、工单销售（综合开单，洗美开单，理赔开单，保险开单，销售开单）&#xD;&#xA;                                                      0综合，1检查，2洗美，3销售，4理赔，5退货&#xD;&#xA;总利润&#xD;&#xA;预收  （充值  计次卡）&#xD;&#xA;客户记账&#xD;&#xA;现金银行&#xD;&#xA;业务产值占比 com.hsapi.repair.report.repairBillSql.queryOutputValue  已确定&#xD;&#xA;com.hsapi.repair.report.repairBillSql.queryBillIncome" title="Administrator&#x9;18-12-25 下午2:08">
+    <location x="-20" y="-180"/>
+    <size height="211" width="736"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">

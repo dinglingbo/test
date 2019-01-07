@@ -70,28 +70,90 @@
 	
 	<!--业务产值占比图-->
 	<select id="queryOutputValue" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-    	SELECT c.name, count(1) as billCount,
-		       sum(IFNULL(b.package_subtotal,0) + IFNULL(b.item_subtotal,0) + IFNULL(b.part_subtotal,0)) as outputValue
-		from rps_maintain a
-		inner join rps_settlement b
-		on a.id = b.service_id
-		inner join rpb_business_type c
-		on a.service_type_id = c.id
-		where a.orgid = #orgid# and a.is_settle = 1
+    	
+    	SELECT m.name, sum(m.subtotal) as outputValue
+		from (
+			SELECT a.service_type_id as serviceTypeId, a.subtotal as subtotal
+			from rps_package a
+			inner join rps_maintain b
+			on a.service_id = b.id
+			where b.orgid = #orgid# and b.is_settle = 1
+			
+			<!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (b.out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (b.out_date &lt; #endDate#)
+            </isNotEmpty>
+            
+			union all
+			SELECT a.service_type_id as serviceTypeId, a.subtotal as subtotal
+			from rps_item a
+			inner join rps_maintain b
+			on a.service_id = b.id
+			where b.orgid = #orgid# and b.is_settle = 1 and a.bill_package_id = 0
+			
+			<!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (b.out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (b.out_date &lt; #endDate#)
+            </isNotEmpty>
+            
+			union all
+			SELECT a.service_type_id as serviceTypeId, a.subtotal as subtotal
+			from rps_part a
+			inner join rps_maintain b
+			on a.service_id = b.id
+			where b.orgid = #orgid# and b.is_settle = 1 and a.bill_package_id = 0
+			
+			<!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (b.out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (b.out_date &lt; #endDate#)
+            </isNotEmpty>
+		)m
+		inner join rpb_business_type n
+		on m.serviceTypeId = n.id
+		group by n.name
+		order by m.service_type_id
+    	
+	</select>
+	
+	<!--总收入-->
+	<select id="querySumReceive" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(char_off_amt * bill_dc) as rAmt
+		from fis_rp_bill 
+		where audit_sign = 1 and orgid = #orgid#
 		<dynamic>
             <!--结算日期 -->
             <isNotEmpty prepend="and" property="startDate">  
-                (a.out_date &gt;= #startDate#)
+                (audit_date &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (a.out_date &lt; #endDate#)
+                (audit_date &lt; #endDate#)
             </isNotEmpty>
         </dynamic>  
-        
-        group by a.service_type_id
-		order by a.service_type_id
+	</select>	
+	
+	<!--成本：配件，提成-->
+	<select id="querySumCost" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(char_off_amt * bill_dc) as rAmt
+		from fis_rp_bill 
+		where audit_sign = 1 and orgid = #orgid#
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (audit_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (audit_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
 	</select>
-	
-	
 	
 </sqlMap>

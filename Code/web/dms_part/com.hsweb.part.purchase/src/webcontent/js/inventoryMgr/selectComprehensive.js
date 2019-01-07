@@ -413,28 +413,14 @@ function edit(row_uid){
 	}
     if(!row) return;
     var item={};
-    if(row.billTypeId == 0){
-        item.id = "2000";
-        item.text = "综合开单详情";
-        item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow";
-        item.iconCls = "fa fa-file-text";
-    }
-    if(row.billTypeId == 2){
-    	item.id = "3000";
-	    item.text = "洗美开单详情";
-	    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBill.flow";
-	    item.iconCls = "fa fa-file-text";
-    }
-    if(row.billTypeId == 4){
-    	item.id = "4000";
-        item.text = "理赔开单详情";
-        item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.claimDetail.flow";
-        item.iconCls = "fa fa-file-text";
-    }
-    var params = {
-        id: row.id
-    };
-    window.parent.activeTabAndInit(item,params);
+    var data = {};
+    data.id = row.id;
+    var item={};
+	item.id = "11111";
+    item.text = "工单详情页";
+	item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+data.id;
+	item.iconCls = "fa fa-file-text";
+	window.parent.activeTabAndInit(item,data);
 }
 
 function showCarInfo(row_uid){

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="updateMemberBalance.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、判断会员余额&#xD;&#xA;2、更新会员余额&#xD;&#xA;3、生成消费记录 要关联到卡&#xD;&#xA;4、更新会员卡余额，按时间先后顺序扣减余额&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.repairService.query.getGuestCardAmt&#xD;&#xA;" title="Administrator&#x9;18-8-13 上午12:27">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、判断会员余额&#xD;&#xA;2、更新会员余额&#xD;&#xA;3、生成消费记录 要关联到卡&#xD;&#xA;4、更新会员卡余额，按时间先后顺序扣减余额&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.repairService.query.getGuestCardAmt&#xD;&#xA;&#xD;&#xA;20190106改为 com.hsapi.repair.repairService.query.getGuestStoredRecordAmt" title="Administrator&#x9;18-8-13 上午12:27">
     <location x="75" y="-105"/>
-    <size height="181" width="496"/>
+    <size height="181" width="526"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -258,7 +258,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
-      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.repairService.query.getGuestCardAmt</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.repairService.query.getGuestStoredRecordAmt</process:inputVariable>
       <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">p</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -285,7 +285,6 @@
     <location x="720" y="150"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="guestCard" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -374,11 +373,27 @@
       <process:to type="query">cardUse</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">temp/cutAmt</process:from>
+      <process:to type="query">cutAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(cardTotal))</process:from>
       <process:to type="query">d1</process:to>
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(cardUse))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.subtract(d2).doubleValue()</process:from>
+      <process:to type="query">dedAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(dedAmt))</process:from>
+      <process:to type="query">d1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(cutAmt))</process:from>
       <process:to type="query">d2</process:to>
     </process:copy>
     <process:copy>
@@ -415,6 +430,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">cardUse</process:from>
       <process:to type="query">temp/useAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">temp/balaAmt</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
@@ -631,6 +650,34 @@
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">cardPayAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(cardTotal))</process:from>
+      <process:to type="query">d1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(cardUse))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.subtract(d2).doubleValue()</process:from>
+      <process:to type="query">dedAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(dedAmt))</process:from>
+      <process:to type="query">d1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new BigDecimal(Double.toString(cutAmt))</process:from>
+      <process:to type="query">d2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">d1.subtract(d2).doubleValue()</process:from>
+      <process:to type="query">dedAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">dedAmt</process:from>
+      <process:to type="query">temp/balaAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
@@ -884,16 +931,17 @@
     <process:variable description="已消费金额" historyStateLocation="client" isArray="false" name="rechargeUseAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsStoredConsumeRecord" name="consumeRecord"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardStored" name="temp"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsCardStored" name="updateList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsStoredRecord" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsStoredRecord" name="updateList"/>
     <process:variable description="抵扣金额" historyStateLocation="client" isArray="false" name="dedAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="cardTotal" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="cardUse" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsStoredConsumeRecord" name="consumeRecordList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="restAmt" primitiveType="Double"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsCardStored" name="guestCard"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsStoredRecord" name="guestCard"/>
     <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d1"/>
     <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d2"/>
+    <process:variable description="退款扣减金额" historyStateLocation="client" isArray="false" name="cutAmt" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="guestId" primitiveType="Int"/>

@@ -86,7 +86,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">收款成功</process:from>
+      <process:from type="literal" pattern="reference">付款成功</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>

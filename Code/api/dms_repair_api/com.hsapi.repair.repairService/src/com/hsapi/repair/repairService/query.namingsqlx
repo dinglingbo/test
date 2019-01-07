@@ -1106,7 +1106,7 @@
  
 	</select>
 	
-			<select id="queryRemindS" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	<select id="queryRemindS" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 			SELECT
 				a.id as guestId,
 				a.orgid as orgid,

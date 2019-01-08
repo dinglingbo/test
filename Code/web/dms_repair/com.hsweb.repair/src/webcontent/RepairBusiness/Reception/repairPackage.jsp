@@ -23,7 +23,7 @@
                      allowSort="false" visible="true" width="50" header="业务类型" align="center">
                      <input  property="editor" enabled="true" dataField="servieTypeList" 
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
-                             url="" onvaluechanged="onPkgTypeIdValuechanged" emptyText=""  vtype="required" /> 
+                             url="" onvaluechanged="onPkgTypeIdValuechanged" emptyText=""  vtype="required" width="60%"/> 
                 </div>
                 <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime">工时/数量
                 </div>
@@ -38,13 +38,13 @@
                 </div>
                  <div field="subtotal" headerAlign="center" name="pkgSubtotal"
                      allowSort="false" visible="true" width="60" header="套餐金额" align="center" >
-                     <input  property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged"/>
+                     <input  property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onPkgSubtotalValuechanged" width="60%"/>
                 </div>
                 <div field="workers" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="" align="center" name="workers">
                                             施工员 <a href="javascript:setPkgWorkers()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
                    
-                     <input class="nui-textbox" property="editor" id="workersName" name="workersName"  onclick="openPkgWorkers" /> 
+                     <input class="nui-textbox" property="editor" id="workersName" name="workersName"  onclick="openPkgWorkers" width="60%"/> 
                 
                 </div>
                 <div field="workerIds" headerAlign="center"
@@ -60,7 +60,7 @@
                 <div field="saleMan" headerAlign="center"
                      allowSort="false" visible="true" width="50" header="" align="center" name="saleMan">
                                      销售员<a href="javascript:setPkgSaleMans()" title="批量设置销售员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
-                     <input class="nui-textbox" property="editor" id="saleMansName" name="saleMansName"  onclick="openPkgSaleMans" />
+                     <input class="nui-textbox" property="editor" id="saleMansName" name="saleMansName"  onclick="openPkgSaleMans" width="60%"/>
                 </div>
                 <div field="saleManId" headerAlign="center"
                      allowSort="false" visible="false" width="80" header="销售员" align="center">

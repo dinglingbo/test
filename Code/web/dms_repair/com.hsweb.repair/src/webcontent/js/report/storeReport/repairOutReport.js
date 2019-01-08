@@ -126,6 +126,7 @@ function getSearchParams(){
     params.partTypeId=nui.get("partTypeId").value;
     params.storeId=nui.get("storeId").getValue();
     params.sPickDate=nui.get("sPickDate").getFormValue();
+    params.carNo = nui.get("carNo").getValue();
     if(eOutDateEl.getValue()){ 	
     	params.ePickDate=addDate(eOutDateEl.getValue(),1);
     }

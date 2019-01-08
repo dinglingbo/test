@@ -288,7 +288,7 @@
                 <tr>
                    <td height="30" style="padding: 8px;" colspan="3">
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style = "margin-left: 0px;" id = "show"></span><br>
-                      <span style = "margin-left: 100px;" id="makeMan">制单人：</span>
+                      <span style = "margin-left: 100px;" id="makeMan">制单：</span>
                       <span style = "margin-left: 200px;">服务顾问签名：</span>
                       <span style = "margin-left: 300px;">客户签名：</span>
                   </td>
@@ -342,7 +342,7 @@
     		document.getElementById("phone").innerHTML = params.currCompTel;
     		document.getElementById("slogan1").innerHTML = params.currSlogan1;
     		document.getElementById("slogan2").innerHTML = params.currSlogan2;
-    		document.getElementById("makeMan").innerHTML = "制单人:" + params.currUserName;
+    		document.getElementById("makeMan").innerHTML = "制单:" + params.currUserName;
     		
     		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestData.guestFullName;
 	        document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + guestData.mtAdvisor;

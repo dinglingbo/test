@@ -5,10 +5,10 @@
 var baseUrl = window._rootSysUrl || "http://127.0.0.1:8080/default/";
 
 var cardTimesGridUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.query.queryCardTimesByGuestId.biz.ext";
-var packageGridUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.rpb_package.queryPackage.biz.ext";
+//var packageGridUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.rpb_package.queryPackage.biz.ext";
 var packageDetailUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.rpb_package.getPackageDetail.biz.ext";
 var itemGridUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
-var partGridUrl = apiPath + partApi + "/com.hsapi.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
+//var partGridUrl = apiPath + partApi + "/com.hsapi.part.baseDataCrud.crud.queryPartListByOrgid.biz.ext";
 var itemTypeUrl = apiPath + sysApi + "/com.hsapi.system.dict.dictMgr.queryDictTypeTree.biz.ext";
 
 var queryItemEl = null;
@@ -18,11 +18,11 @@ var mainTabEl = null;
 var cardTimesGrid = null;
 var cardTimesDetail = null;
 var cardDetailGrid_Form = null;
-var packageGrid = null;
-var packageDetail = null;
-var detailGrid_Form = null;
+//var packageGrid = null;
+//var packageDetail = null;
+//var detailGrid_Form = null;
 var itemGrid = null;
-var partGrid = null;
+//var partGrid = null;
 var servieTypeList = [];
 var servieTypeHash = {};
 var typeList = [];
@@ -50,11 +50,11 @@ function init()
     cardTimesDetail.setUrl(packageDetailUrl);
     cardDetailGrid_Form = document.getElementById("cardDetailGrid_Form");
 
-    packageGrid = nui.get("packageGrid");
-    packageGrid.setUrl(packageGridUrl);
-    packageDetail = nui.get("packageDetail");
-    packageDetail.setUrl(packageDetailUrl);
-    detailGrid_Form = document.getElementById("detailGrid_Form");
+    //packageGrid = nui.get("packageGrid");
+   // packageGrid.setUrl(packageGridUrl);
+   // packageDetail = nui.get("packageDetail");
+  //  packageDetail.setUrl(packageDetailUrl);
+   // detailGrid_Form = document.getElementById("detailGrid_Form");
 
     cardTimesGrid.on("beforeload",function(e)
     {
@@ -101,7 +101,7 @@ function init()
         onOk();
     });
 
-    packageGrid.on("beforeload",function(e)
+    /*packageGrid.on("beforeload",function(e)
     {
         e.data["token"] = "";
         e.data["page/isCount"] = true;
@@ -116,16 +116,16 @@ function init()
     packageGrid.on("rowdblclick",function(e)
     {
         onOk();
-    });
-    packageDetail.on("drawcell",function(e)
+    });*/
+    /*packageDetail.on("drawcell",function(e)
     {
         if(e.field == "prdtType" && prdtTypeHash[e.value])
         {
             e.cellHtml = prdtTypeHash[e.value];
         }
     });
-    
-    packageGrid.on("showrowdetail",function(e)
+    */
+    /*packageGrid.on("showrowdetail",function(e)
     {
         var grid = e.sender;
         var row = e.record;
@@ -135,7 +135,7 @@ function init()
         detailGrid_Form.style.display = "block";
         packageDetail.clearRows();
         loadPackageDetailByPkgId(row.id,function(){});
-    });
+    });*/
     
     itemGrid = nui.get("itemGrid");
     itemGrid.setUrl(itemGridUrl);
@@ -160,7 +160,7 @@ function init()
         onOk();
     });
     
-    partGrid = nui.get("partGrid");
+    /*partGrid = nui.get("partGrid");
     partGrid.on("rowdblclick",function(e)
     {
         //onOk();
@@ -177,7 +177,7 @@ function init()
         {
             e.cellHtml = brandHash[e.value].name;
         }
-    });
+    });*/
   
     //queryTabIdEl = nui.get("queryTabId");
     mainTabEl = nui.get("mainTab");
@@ -212,12 +212,12 @@ function loadCardTimesDetailByPkgId(pkgId,callback)
         packageId:pkgId
     },callback);
 }
-function loadPackageDetailByPkgId(pkgId,callback)
+/*function loadPackageDetailByPkgId(pkgId,callback)
 {
     packageDetail.load({
         packageId:pkgId
     },callback);
-}
+}*/
 function queryType(t){
     var menuqueryItemTab = nui.get("itemTab");
     if(t == 1){
@@ -241,15 +241,7 @@ function onTabChanged(e){
     var tabIdx = mainTabEl.activeIndex;
     if(tabIdx == 1)
     {
-        doSearchPackage(params);
-    }
-    else if(tabIdx == 2)
-    {
-        doSearchItem(params);
-    }
-    else if(tabIdx == 3)
-    {
-        doSearchPart(params);
+    	doSearchItem(params);
     }
 }
 function getSearchParams()
@@ -265,15 +257,7 @@ function onSearch()
     var tabIdx = mainTabEl.activeIndex;
     if(tabIdx == 1)
     {
-        doSearchPackage(params);
-    }
-    else if(tabIdx == 2)
-    {
-        doSearchItem(params);
-    }
-    else if(tabIdx == 3)
-    {
-        doSearchPart(params);
+    	doSearchItem(params);
     }
 }
 function doSetCardTimes(data)
@@ -281,7 +265,7 @@ function doSetCardTimes(data)
     cardTimesGrid.clearRows();
     cardTimesGrid.setData(data);
 }
-function doSearchPackage(params)
+/*function doSearchPackage(params)
 {
     var p = {};
     p.name = params.name;
@@ -315,7 +299,7 @@ function doSearchPackage(params)
 			
 		}
 	 });
-}
+}*/
 function doSearchItem(params)
 {
     var p = {};
@@ -323,7 +307,7 @@ function doSearchItem(params)
     p.name = params.name||"";
     p.ltype = params.ltype||"";
     //查询洗美业务类型工时
-    p.serviceTypeId = 3;
+    p.serviceTypeIds = "1,2";
    
     itemGrid.clearRows();
     itemGrid.load({
@@ -353,7 +337,7 @@ function doSearchItem(params)
 		}
 	 });
 }
-function doSearchPart(params)
+/*function doSearchPart(params)
 {
     var p = {};
     p.orgids = currOrgId;
@@ -366,7 +350,7 @@ function doSearchPart(params)
     	token:token,
         params:p
     });
-}
+}*/
 var resultData = {};
 function onOk()
 {
@@ -378,21 +362,21 @@ function onOk()
         type = 0;
         node = cardTimesGrid.getSelected();
     }
-    else if(tabIdx == 1)
+    /*else if(tabIdx == 1)
     {
         type = 1;
         node = packageGrid.getSelected();
-    }
-    else if(tabIdx == 2)
+    }*/
+    else if(tabIdx == 1)
     {
         type = 2;
         node = itemGrid.getSelected();
     }
-    else if(tabIdx == 3)
+   /* else if(tabIdx == 3)
     {
         type = 3;
         node = partGrid.getSelected();
-    }
+    }*/
     var nodec = nui.clone(node);
     
     if(!nodec)

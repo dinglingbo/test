@@ -1037,10 +1037,12 @@ function save(){
     });
     
     saveMaintain(function(data){
+    	var carModel = nui.get("carModel").value || "";
+    	if(carModel != ""){
+    		data.carModel = carModel;
+    	}
     	billForm.setData(data);
         if(data.id){
-        	saveItem();
-            savePkg();
             fserviceId = data.id;
             //查询挂账
             if(data.guestId){
@@ -1300,6 +1302,9 @@ function saveMaintain(callback,unmaskcall){
     svrSaveMaintain(params, function(text){
         var errCode = text.errCode||"";
         if(errCode == "S") {
+        	//工单保存成功之后
+        	saveItem();
+            savePkg();
             unmaskcall && unmaskcall();
         	var main = text.data||{};
             fserviceId = main.id||0;

@@ -281,9 +281,9 @@ a {
 			<p ><span id="errorP" style="font-size:15px;color:red"></span></p>
 			<input type="text" id="registercompname" name="registercompname" value="" placeholder="请输入公司名" maxlength="11" />
 		</label>
-		<label style="width:100%">
-			<input type="text" id="registername" name="registername" value="" placeholder="请输入用户名" maxlength="20" />
-		</label>
+ 		<label style="width:100%">
+			<input type="text" style="display:none"  id="registername" name="registername" value="" placeholder="请输入用户名" maxlength="20" />
+		</label> 
 		<label style="width:100%">
 			<input type="text" class="number" id="phone" name="phone" value="" placeholder="手机号码" maxlength="11" />
 		</label>
@@ -460,12 +460,12 @@ function weixiMmaxImg() {
  //注册    
 function register(){
  	var phone = $("#phone").val();
- 	var registername = $("#registername").val();
+ 	var registername = $("#phone").val();
  	var usern = /^[a-zA-Z0-9_]{1,}$/;
- 	if (!registername.match(usern)) { 
+/*  	if (!registername.match(usern)) { 
  		$("#errorP").html("用户名只能由字母数字下划线组成");
 	    return false;
- 	}
+ 	} */
  	
  	var registercompname = $("#registercompname").val();
  	var code = $("#authcode").val();
@@ -473,13 +473,15 @@ function register(){
 	      	$("#errorP").html("请输入公司名");
 	      	return false;
      	}
-     	if(!registername){
+/*      	if(!registername){
 	      	$("#errorP").html("请输入用户名");
 	      	return false;
-     	}
+     	} */
      	if(!phone){
 	      	$("#errorP").html("请输入手机号");
 	      	return false;
+     	}else{
+     		document.getElementById('registername').value=phone;
      	}
 
      	if(!code){

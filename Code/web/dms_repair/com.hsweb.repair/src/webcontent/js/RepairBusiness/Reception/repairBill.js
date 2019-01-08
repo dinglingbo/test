@@ -277,6 +277,7 @@ $(document).ready(function ()
                                 }else{
                                 	return;
                                 }
+                                e.sender.listbox.oOolo0 = {};
                             }
                         });
                     }else{

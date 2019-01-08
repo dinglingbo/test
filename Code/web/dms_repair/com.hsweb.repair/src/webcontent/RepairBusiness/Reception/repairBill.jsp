@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.2.1"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.2.7"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -158,7 +158,7 @@
                     style="width:300px;height: 50px !important;"  popupWidth="600" textField="text" valueField="id" 
                     id="search_key" url="" value="carNo"   searchField="key" 
                     dataField="list" placeholder="请输入..." >     
-                    <div property="columns">
+                    <div property="columns" id=guestList">
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
                         <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
                         <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>

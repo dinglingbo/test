@@ -90,7 +90,7 @@
 					    <input type="file" name="" id="" onchange="importf(this)">
 					</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
-	                		<a class="nui-button" plain="true" href="<%=webPath + contextPath%>/repair/RepairBusiness/template/配件导入模板.xlsx"><span class="fa fa-arrow-down fa-lg"></span>下载配件模板</a>
+	                		<a class="nui-button" plain="true" href="<%=webPath + contextPath%>/repair/RepairBusiness/template/guest.xlsx"><span class="fa fa-arrow-down fa-lg"></span>下载配件模板</a>
 				</td>
 	        </tr>
 	    </table>

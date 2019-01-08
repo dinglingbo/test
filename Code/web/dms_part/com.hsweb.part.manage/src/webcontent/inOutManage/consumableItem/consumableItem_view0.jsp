@@ -10,7 +10,6 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>耗材出库</title>
-    <script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.54"></script>
     <style type="text/css">
     html,body {
        margin: 0;
@@ -51,6 +50,7 @@ pageEncoding="UTF-8" session="false"%>
 			                <input style=""class="nui-datepicker" id="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                             <input class="nui-textbox" width="100px" id="morePartCode" name="morePartCode" selectOnFocus="true" enabled="true" emptyText="编码"/>
                             <input class="nui-textbox" width="100px" id="morePartName" emptyText="名称"  selectOnFocus="true" name="morePartName"/>
+                            <input class="nui-textbox" width="100px" id="storeShelf" emptyText="仓位"  selectOnFocus="true" name="storeShelf"/>
                             <input id="partBrandId"
                             name="partBrandId"
                             class="nui-combobox"

@@ -11,7 +11,7 @@ var zongAmt = 0;//实时填写的结算金额
 var guestData = null;
 var deductible = 0;
 $(document).ready(function (){
-	$("body").on("input  onvaluechanged","input[name='amount']",function(){
+	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
 	});
 });
@@ -26,17 +26,14 @@ function setData(data){
 	}else{
 		$("#wxbtnsettle").hide();
 	}
-	var rechargeBalaAmt = 0;
+
 	document.getElementById('carNo').innerHTML = data[0].carNo;
 	document.getElementById('guest').innerHTML = data[0].guestName;
 	document.getElementById('totalAmt').innerHTML = "￥"+data[0].nowAmt;
 	document.getElementById('totalAmt1').innerHTML = data[0].nowAmt;
 	document.getElementById('amount').innerHTML = data[0].nowAmt;
 	netInAmt = parseFloat(data[0].nowAmt);
-	var json = {
-		guestId:data[0].guestId,
-		token : token
-	}
+
 	
 	addType();
 }

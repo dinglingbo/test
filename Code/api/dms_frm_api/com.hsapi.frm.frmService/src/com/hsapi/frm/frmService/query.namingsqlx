@@ -311,7 +311,7 @@
                 </isNotEmpty>
                 
                 <isNotEmpty prepend="and" property="billServiceId"> 
-                    (a.bill_service_id = #billServiceId#)
+                    (a.bill_service_id like '%$billServiceId$%')
                 </isNotEmpty>
                 
                 <isNotEmpty prepend="and" property="balancer"> 

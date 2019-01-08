@@ -125,6 +125,18 @@
       <process:to type="query">f/auditSign</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
+      <process:to type="query">f/auditorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">f/auditor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">f/auditDate</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">f/settleStatus</process:to>
     </process:copy>
@@ -367,6 +379,18 @@
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
       <process:to type="query">f/auditSign</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
+      <process:to type="query">f/auditorId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">f/auditor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">operateDate</process:from>
+      <process:to type="query">f/auditDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
@@ -865,7 +889,7 @@
       <targetNode>assign14</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -944,7 +968,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="rpBill" type="query" value="com.hsapi.frm.data.fis.FisRpBill" valueType="DataObject">temp</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

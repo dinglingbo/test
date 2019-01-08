@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryCardByGuestId" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询客户储值卡&#xD;&#xA;&#xD;&#xA;先只考虑根据客户ID查询，不考虑查询本店还是查询所有，有可能" title="Administrator&#x9;18-8-9 上午11:18">
-    <location x="71" y="28"/>
-    <size height="100" width="425"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询客户储值卡&#xD;&#xA;&#xD;&#xA;先只考虑根据客户ID查询，不考虑查询本店还是查询所有，有可能&#xD;&#xA;20190106 com.hsapi.repair.data.rps.RpsCardStored 改为  com.hsapi.repair.data.rps.RpsStoredRecord" title="Administrator&#x9;18-8-9 上午11:18">
+    <location x="71" y="-15"/>
+    <size height="121" width="665"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -20,7 +20,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rps.RpsCardStored[]" name="data" type="query" valueType="DataObject">data</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rps.RpsStoredRecord[]" name="data" type="query" valueType="DataObject">data</process:return>
       <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="3" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
@@ -42,7 +42,7 @@
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="238" y="185"/>
+    <location x="213" y="185"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -54,7 +54,7 @@
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsCardStored</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.repair.data.rps.RpsStoredRecord</process:from>
       <process:to type="query">cr/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -69,9 +69,17 @@
       <process:from type="literal" pattern="reference">true</process:from>
       <process:to type="query">page/isCount</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">cr/_expr[2]/isSettle</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cr/_expr[2]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="240" y="221"/>
+    <location x="215" y="221"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
@@ -139,7 +147,7 @@
     <process:input description="" isArray="false" name="guestId" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsCardStored" name="data"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsStoredRecord" name="data"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>

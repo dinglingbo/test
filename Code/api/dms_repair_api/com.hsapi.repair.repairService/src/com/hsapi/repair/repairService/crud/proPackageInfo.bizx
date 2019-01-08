@@ -560,7 +560,15 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">此套餐不允许修改金额</process:from>
+      <process:from type="query" pattern="reference">pkgTemp/packageName</process:from>
+      <process:to type="query">str1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">不允许修改金额</process:from>
+      <process:to type="query">str2</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">str1+str2</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -897,6 +905,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="discountAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPackage" name="pkgTemp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="t" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="str1" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="str2" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="pkg"/>

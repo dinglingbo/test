@@ -10,6 +10,7 @@
      showModified="false"
      allowSortColumn="true"
      ondrawsummarycell="onDrawSummaryCellItem"
+     editNextOnEnterKey = "false"
      >
     <div property="columns">
         <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
@@ -20,27 +21,30 @@
                 <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" align="center">业务类型
                     <input  property="editor" enabled="true" dataField="servieTypeList" 
                              class="nui-combobox" valueField="id" textField="name" data="servieTypeList"
-                             url="" onvaluechanged="onValueChangedItemTypeId" emptyText=""  vtype="required"/> 
+                             url="" onvaluechanged="onValueChangedItemTypeId" emptyText=""  vtype="required" width="60%"/> 
                 </div>
                 <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime">工时/数量
-                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedComQty" selectOnFocus="true"/>
+                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedComQty" selectOnFocus="true" width="60%"/>
+                </div>
+                <div field="planFinishDate" headerAlign="center" allowSort="false" visible="false" width="40" datatype="float" align="center" name="planFinishDate">
+                                                      工时预计完工时间
                 </div>
                 <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
-                    <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onValueChangedItemUnitPrice" selectOnFocus="true"/>
+                    <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onValueChangedItemUnitPrice" selectOnFocus="true" width="60%"/>
                 </div>
                 <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >
                     优惠率%<a href="javascript:setItemPartRate()" title="批量设置优化率" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
-                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemRate" selectOnFocus="true"/>
+                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemRate" selectOnFocus="true" width="60%"/>
                 </div>
                 <div field="subtotal"  name="itemSubtotal" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center">金额
-                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemSubtotal" selectOnFocus="true"/>
+                    <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedItemSubtotal" selectOnFocus="true" width="60%"/>
                 </div>
                 <div field="amt"  name="amt" headerAlign="center" allowSort="false" visible="false" width="70" datatype="float" align="center">项目总金额
                 </div>
                <div field="workers" headerAlign="center"
                      allowSort="false" visible="true" width="60" header="" align="center" name="workers">
                                             施工员 <a href="javascript:setItemWorkers()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
-                    <input class="nui-textbox" property="editor" id="workersName" name="workersName"  onclick="openItemWorkers" /> 
+                    <input class="nui-textbox" property="editor" id="workersName" name="workersName"  onclick="openItemWorkers" width="60%"/> 
                 </div>
                 <div id="combobox2" property="editor" class="mini-combobox" style="width:250px;"  popupWidth="100" textField="empName" valueField="empName" 
                     url="" data="memList" value="" multiSelect="true"  showClose="false" oncloseclick="onCloseClick" onvaluechanged="onworkerChanged" visible="false">     
@@ -55,10 +59,10 @@
                 <div field="saleMan" headerAlign="center"
                      allowSort="false" visible="true" width="50" header="" align="center" name="saleMan">
                       销售员<a href="javascript:setItemSaleMan()" title="批量设置施工员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
-                     <input class="nui-textbox" property="editor" id="saleMansName" name="saleMansName"  onclick="openItemSaleMans" /> 
+                     <input class="nui-textbox" property="editor" id="saleMansName" name="saleMansName"  onclick="openItemSaleMans" width="60%"/> 
                 </div>
                 <div field="saleManId" headerAlign="center"
-                     allowSort="false" visible="false" width="80" header="销售员" align="center">
+                     allowSort="false" visible="false" width="80" header="销售员" align="center" >
                 </div> 
                 <div field="itemOptBtn" name="itemOptBtn" width="100" headerAlign="center" header="操作" align="center" ></div>
             </div>
@@ -69,6 +73,12 @@
     <span id="carHealthEl" >
         <a href="javascript:chooseItem()" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择维修项目</a>
     </span>
+    <!-- <span id="carHealthEl" >
+        <a href="javascript:updateItem()" class="chooseClass" >修改</a>
+    </span>
+    <span id="carHealthEl" >
+        <a href="javascript:saveItem()" class="chooseClass" >保存</a>
+    </span> -->
     <!--<span>&nbsp;</span>
     <span id="carHealthEl" >
         <a href="javascript:showBasicData('item')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;选择标准项目</a>
@@ -94,7 +104,6 @@
         </tr>
     </table>
 </div>    
-
 
 <div id="advancedItemPartRateSetWin" class="nui-window"
      title="批量设置优惠率" style="width:300px;height:150px;"
@@ -135,6 +144,7 @@
     </div>
 </div>   
 
+<!-- 不要 -->
 <div id="advancedItemWorkersSetWin" class="nui-window"
      title="批量设置项目施工员" style="width:300px;height:150px;"
      showModal="true"

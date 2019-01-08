@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getGuestByInternalId" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="guestType =  01020202&#xD;&#xA;用于盘点，移仓" title="Administrator&#x9;19-1-6 上午10:53">
+    <location x="38" y="210"/>
+    <size height="100" width="197"/>
+  </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -81,6 +85,14 @@
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">01020202</process:from>
+      <process:to type="query">cond/_expr[3]/guestType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[3]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="210" y="96"/>
@@ -119,6 +131,14 @@
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">01020202</process:from>
+      <process:to type="query">cond/_expr[3]/guestType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[3]/_op</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">

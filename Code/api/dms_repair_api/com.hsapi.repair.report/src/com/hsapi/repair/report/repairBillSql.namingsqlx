@@ -70,14 +70,119 @@
 	
 	<!--业务产值占比图-->
 	<select id="queryOutputValue" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-    	SELECT c.name, count(1) as billCount,
-		       sum(IFNULL(b.package_subtotal,0) + IFNULL(b.item_subtotal,0) + IFNULL(b.part_subtotal,0)) as outputValue
+    	
+    	SELECT m.name, sum(m.subtotal) as outputValue
+		from (
+			SELECT a.service_type_id as serviceTypeId, a.subtotal as subtotal
+			from rps_package a
+			inner join rps_maintain b
+			on a.service_id = b.id
+			where b.orgid = #orgid# and b.is_settle = 1
+			
+			<!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (b.out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (b.out_date &lt; #endDate#)
+            </isNotEmpty>
+            
+			union all
+			SELECT a.service_type_id as serviceTypeId, a.subtotal as subtotal
+			from rps_item a
+			inner join rps_maintain b
+			on a.service_id = b.id
+			where b.orgid = #orgid# and b.is_settle = 1 and a.bill_package_id = 0
+			
+			<!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (b.out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (b.out_date &lt; #endDate#)
+            </isNotEmpty>
+            
+			union all
+			SELECT a.service_type_id as serviceTypeId, a.subtotal as subtotal
+			from rps_part a
+			inner join rps_maintain b
+			on a.service_id = b.id
+			where b.orgid = #orgid# and b.is_settle = 1 and a.bill_package_id = 0
+			
+			<!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (b.out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (b.out_date &lt; #endDate#)
+            </isNotEmpty>
+		)m
+		inner join rpb_business_type n
+		on m.serviceTypeId = n.id
+		group by n.name
+		order by m.service_type_id
+    	
+	</select>
+	
+	<!--总收入-->
+	<select id="querySumReceive" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(char_off_amt * bill_dc) as rAmt
+		from fis_rp_bill 
+		where audit_sign = 1 and orgid = #orgid#
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (audit_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (audit_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
+	</select>	
+	
+	<!--成本：配件，提成-->
+	<select id="querySumCost" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(char_off_amt * bill_dc) as rAmt
+		from fis_rp_bill 
+		where audit_sign = 1 and orgid = #orgid#
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (audit_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (audit_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	
+	<!--业务产值汇总统计，可以根据工单的业务类型，也可以根据工单服务顾问进行统计-->
+	<select id="queryOutputAnalysis" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+    	
+	    	 <isEqual  prepend="" property="groupByType"  compareValue="0">
+		     	a.service_type_id as groupName,
+		     </isEqual>
+		     <isEqual  prepend="" property="groupByType"  compareValue="1">
+		     	a.mt_advisor_id as groupName,
+		     </isEqual>
+    	       
+    	       count(1) as ct, sum(b.package_amt) as pkgAmt, sum(b.package_pref_amt) as pkgPrefAmt,
+		       sum(b.package_subtotal) as pkgSubtotal, sum(b.item_total_amt) as itemTotalAmt, sum(b.item_pref_amt) as itemPrefAmt,
+		       sum(b.item_subtotal) as itemSubtotal, sum(b.part_total_amt) as partTotalAmt, sum(b.part_pref_amt) as partPrefAmt,
+		       sum(b.part_subtotal) as partSubtotal, sum(b.part_true_cost) as partTrueCost, sum(b.card_times_amt) as cardTimesAmt,
+		       sum(b.allowance_amt) as allowanceAmt, sum(b.other_amt) as otherAmt, sum(b.other_cost_amt) as otherCostAmt,
+		       sum(b.total_pref_amt) as totalPrefAmt, sum(b.bala_amt) as balaAmt, sum(b.sales_deduct_value) as salesDeductValue,
+		       sum(b.tech_deduct_value) as techDeductValue, sum(b.advisor_deduct_value) as advisorDeductValue,
+		       sum(b.total_deduct_amt) as totalDeductAmt, sum(b.netin_amt) as netinAmt, sum(b.gross_profit) as grossProfit,
+		       case when sum(b.netin_amt) = 0 then 0 
+		       else (sum(b.netin_amt) - sum(b.tech_deduct_value) - sum(b.part_true_cost) - sum(b.other_cost_amt))*1.0/sum(b.netin_amt)
+		       end as grossProfitRate
 		from rps_maintain a
 		inner join rps_settlement b
 		on a.id = b.service_id
-		inner join rpb_business_type c
-		on a.service_type_id = c.id
-		where a.orgid = #orgid# and a.is_settle = 1
+		where a.is_settle = 1 and a.orgid = #orgid#
+		
 		<dynamic>
             <!--结算日期 -->
             <isNotEmpty prepend="and" property="startDate">  
@@ -86,10 +191,32 @@
             <isNotEmpty prepend="and" property="endDate">  
                 (a.out_date &lt; #endDate#)
             </isNotEmpty>
+            
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">  
+                (a.record_date &gt;= #sEnterDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">  
+                (a.record_date &lt; #eEnterDate#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="mtAdvisorId">  
+                (a.mt_advisor_id = #mtAdvisorId#)
+            </isNotEmpty>
+            
         </dynamic>  
         
-        group by a.service_type_id
-		order by a.service_type_id
+        <isEqual  prepend="" property="groupByType"  compareValue="0">
+	     	group by a.service_type_id
+	     	order by a.service_type_id
+	    </isEqual>
+	    <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	group by a.mt_advisor_id 
+	     	order by a.mt_advisor_id
+	    </isEqual>
+		
+		
+		
 	</select>
 	
 	

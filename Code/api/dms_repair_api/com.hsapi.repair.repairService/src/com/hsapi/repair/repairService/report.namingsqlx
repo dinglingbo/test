@@ -1245,7 +1245,8 @@
 			 A.itemSubtotal itemSubtotal,
 			 A.partSubtotal partSubtotal,
 			 A.partTrueCost partTrueCost,
-			 A.cardTimesAmt cardTimesAmt
+			 A.cardTimesAmt cardTimesAmt,
+			 A.orgid orgid
 		FROM
 			(
 		  SELECT 
@@ -1275,7 +1276,10 @@
 		 </isNotEmpty>
 		 <isNotEmpty prepend="and" property="endDate"> 
 		      A.outDate &lt;= #endDate#
-		 </isNotEmpty>  	
+		 </isNotEmpty> 
+		 <isNotEmpty prepend="and" property="orgid"> 
+		      A.orgid = #orgid#
+		 </isNotEmpty>   	
     </select>
     
     <select id="queryPopulation" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -1955,6 +1959,10 @@
             
             <isNotEmpty prepend="and" property="storeId">  
                 (a.store_id = #storeId#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="carNo">  
+                (b.car_no like '%$carNo$%')
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="isSettle">  

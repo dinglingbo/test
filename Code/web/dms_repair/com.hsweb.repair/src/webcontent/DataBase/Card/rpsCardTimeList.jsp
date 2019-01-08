@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/common.jsp"%>
-<%@include file="/common/commonRepair.jsp"%>
+	<%@include file="/common/sysCommon.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -12,7 +11,7 @@
 <head>
 <title>计次卡查询</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.0.7"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.1.2"></script>
 </head>
 
 <body>
@@ -22,21 +21,16 @@
 		<table>
 			<tr>
 				<td>
-					<label style="font-family:Verdana;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;快速查询：</label>
-					<label class="form_label">客户名称：</label>
-					<input class="nui-textbox" name="guestName" id="guestName-search" onenter="onSearch"/>
-					<label class="form_label">计次卡名称：</label>
-					<input class="nui-textbox" name="cardName" id="cardName-search" onenter="onSearch"/>
-			        <label class="form_label">创建时间&nbsp;从：</label>
-	                <input format="yyyy-MM-dd"  style="width:160px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "startDate" value=""/>
-	                <label class="form_label">至：</label>
-	                <input format="yyyy-MM-dd"  style="width:160px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "endDate" value=""/>
-					<a class="nui-button" plain="true"  onclick="onSearch()"> <span class="fa fa-search fa-lg"></span>查询</a>
-				</td>
-				<td >		
-			       <a class="nui-button" onclick="searchOne()">查看详情</a>	
-				   <a class="nui-button" onclick="dealtWithCard()">次卡办理</a>		    
-				</td>
+				<input name="serviceTypeId" id="serviceTypeId" visible="false" class="nui-combobox" textField="name" valueField="id"/>
+					   <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
+           			   <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="search()" />
+						办卡日期: <input id="startDate" class="mini-datepicker" required="true" />-至-
+						         <input id="endDate" class="mini-datepicker" required="true" /> 
+						<a class="nui-button" onclick="search()" plain="true"> <span class="fa fa-search fa-lg"></span>&nbsp; 查询</a>
+						<a class="nui-button" onclick="searchOne()" plain="true"> <span class="fa fa-search fa-lg"></span>&nbsp; 查看详情</a>	
+	   					<a class="nui-button" onclick="dealtWithCard()" plain="true"> <span class="fa fa-address-card-o fa-lg"></span>&nbsp;次卡办理</a>
+						<a class="nui-button" onclick="refund()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款</a>
+				</td>			
 			</tr>
 		</table>
 	</div>
@@ -72,17 +66,16 @@
 				 <div field="userTimes" headerAlign="center" allowSort="true">
 					使用情况
 				</div>
-				<!-- <div field="recordData" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">
-					创建时间</div>
-				<div field="pastDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">
-					到期时间</div> -->
 					<div field="periodValidity" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">
 					有效期</div> 
 				<div field="sellAmt" headerAlign="center" allowSort="true">
-					销售金额</div>
-				<div field="status" headerAlign="center" allowSort="true">
-				状态</div>
-
+					充值金额</div>
+				<div field="isRefund" headerAlign="center" allowSort="true">
+				是否退款</div>
+				<div field="refunder" headerAlign="center" allowSort="true">
+				退款人</div>				
+				<div field="refundDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">
+					退款日期</div> 
 			</div>
 		</div>
 	</div>

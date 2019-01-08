@@ -9,7 +9,7 @@
 -->
 <head>
     <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.35"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.36"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -85,6 +85,7 @@
       allowInput="true"
       valueFromSelect="false"
       width="100px" onvaluechanged="onSearch">
+      <input class="nui-textbox" width="80px" id="carNo" name="carNo" selectOnFocus="true" enabled="true" emptyText="车牌号"/>
   出库日期 从:
      <input class="nui-datepicker"width="100px" id="sPickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
  至:

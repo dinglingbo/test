@@ -325,9 +325,9 @@ hr {
 				<table>
 				  <tr><td  colspan="3"><hr id="se"/></td></tr>
 				  <tr id="border2">
-				    <td id="currUserName" >打印人：系统管理员</td>
-				    <td id="giveMan" >送货人：</td>
-				    <td id="getMan" width="" align="center">收货人：</td>
+				    <td id="currUserName" >制单：系统管理员</td>
+				    <td id="giveMan" >送货：</td>
+				    <td id="getMan" width="" align="center">收货：</td>
 				  </tr>
 				  <tr><td  colspan="3"><hr id="se"/></td></tr>
 <!-- 				  <tr id="border3"> -->
@@ -381,7 +381,7 @@ hr {
 	   		document.getElementById("phone").innerHTML ="电话:"+mainParams.currCompTel;
 	   		$('#currOrgName').text(mainParams.currRepairSettorderPrintShow||mainParams.currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
-    		$('#currUserName').text("打印人:"+mainParams.currUserName);
+    		$('#currUserName').text("制单:"+mainParams.currUserName);
     		
        		$('#guestFullName').text("供应商:"+formParms.guestFullName);
        		$('#createDate').text("退货日期:"+format(formParms.createDate,"yyyy-MM-dd HH:mm"));

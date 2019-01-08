@@ -16,7 +16,7 @@ var frmUrl = apiPath + frmApi + "/";
 var srnum = [];
 $(document).ready(function(v) {
 
-	$("body").on("input  onvaluechanged","input[name='amount']",function(){
+	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
 	});
 

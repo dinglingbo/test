@@ -173,7 +173,7 @@
       <process:to type="query">comd/tenantId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">value</process:from>
       <process:to type="query">comd/code</process:to>
     </process:copy>
     <process:copy>

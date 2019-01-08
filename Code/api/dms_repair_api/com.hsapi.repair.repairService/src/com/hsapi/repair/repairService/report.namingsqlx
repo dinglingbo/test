@@ -1961,6 +1961,10 @@
                 (a.store_id = #storeId#)
             </isNotEmpty>
             
+            <isNotEmpty prepend="and" property="carNo">  
+                (b.car_no like '%$carNo$%')
+            </isNotEmpty>
+            
             <isNotEmpty prepend="and" property="isSettle">  
                 (b.is_settle= #isSettle#)
             </isNotEmpty>

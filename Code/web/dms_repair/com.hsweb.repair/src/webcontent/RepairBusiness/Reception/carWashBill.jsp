@@ -11,7 +11,7 @@
 <head>
     <title>工单-洗车单</title>
 
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.1"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.7"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -365,14 +365,14 @@
                 <td class="title required">联系人手机：</td> 
                 <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false" width="100%"/>                 
                 </td>
-                <td class="title required">进厂里程：</td> 
+                <!-- <td class="title required">进厂里程：</td> 
                 <td >
                      <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="100000000" width="45%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" />
                      <label class="title">(上次里程：<span id="lastComeKilometers">0</span>)</label>
-                </td>
+                </td> -->
                 <!-- <td class=""><input  class="nui-textbox" name="enterKilometers" width="100%"/></td> -->
                 <td class="title">备注：</td> 
-                <td class="" colspan=""><input  class="nui-textbox" name="remark" width="100%"/></td>
+                <td class="" colspan="3"><input  class="nui-textbox" name="remark" width="100%"/></td>
             </tr>
         </table>
     </div>
@@ -430,8 +430,8 @@
 
             <div class="nui-fit">
                 <div class="" style="width:100%;height:auto;" >
-                    <div style="width:100%;height:5px;"></div>
-                    <%@include file="/repair/RepairBusiness/Reception/repairPackage.jsp" %>
+                    <%-- <div style="width:100%;height:5px;"></div>
+                    <%@include file="/repair/RepairBusiness/Reception/repairPackage.jsp" %> --%>
                     <div style="width:100%;height:5px;"></div>
                     <%@include file="/repair/RepairBusiness/Reception/repairItem.jsp" %>
                     <%-- <div style="width:100%;height:5px;"></div>

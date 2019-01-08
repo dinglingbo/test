@@ -7,7 +7,7 @@
 
         <div id="billForm" class="form">
           <table style="width: 100%;border-spacing: 0px 5px;">
-                <input name="id" class="nui-hidden"/>
+                <input name="id" class="nui-hidden" id="mainId"/>
                 <input name="guestId" class="nui-hidden"/>
                 <input id="mtAdvisor" name="mtAdvisor" class="nui-hidden"/>
                 <input class="nui-hidden" name="contactorId"/>
@@ -22,6 +22,8 @@
                 <input class="nui-hidden" name="isSettle"/>
                 <input class="nui-hidden" name="isOutBill"/>
                 <input class="nui-hidden" name="carModelIdLy"/>
+                <input class="nui-hidden" name="balaAuditor"/>
+                <input class="nui-hidden" name="balaAuditSign"/>
                 <tr>
                         <td class="title required">
                             <label>车&nbsp;牌&nbsp;&nbsp;号：</label>

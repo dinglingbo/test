@@ -57,7 +57,7 @@
                         <input type="file" name="" id="" onchange="importf(this)">
                     </a>
                     <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
-					<a class="nui-button" plain="true" href="<%=request.getContextPath() %>/repair/RepairBusiness/template/电销客户模板.xlsx"><span class="fa fa-arrow-down fa-lg"></span>下载电销客户模板</a>
+					<a class="nui-button" plain="true" href="<%=request.getContextPath() %>/repair/RepairBusiness/template/phoneGuest.xlsx"><span class="fa fa-arrow-down fa-lg"></span>下载电销客户模板</a>
 </div>
 
 

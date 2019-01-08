@@ -470,6 +470,10 @@
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">settlement/otherAmt</process:from>
+      <process:to type="query">otherAmt</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
       <process:to type="query">maintain/isSettle</process:to>
     </process:copy>
@@ -550,7 +554,7 @@
       <process:to type="query">settlement/allowanceAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">netinAmt-allowanceAmt</process:from>
+      <process:from type="expression" pattern="reference">netinAmt-allowanceAmt+otherAmt</process:from>
       <process:to type="query">settlement/netinAmt</process:to>
     </process:copy>
   </nodes>
@@ -1264,6 +1268,7 @@
     <process:variable description="费用支出的总金额" historyStateLocation="client" isArray="false" name="payAmt" primitiveType="Double"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="true" name="rpAdd"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sysDis" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="otherAmt" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

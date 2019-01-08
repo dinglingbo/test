@@ -172,6 +172,11 @@ table#ybk td{
 #comApplyCarModel{
 	width:10%;
 }
+#CarModel{
+	white-space:nowrap; 
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
 #comSpec{
 	width:8%;
 }
@@ -202,6 +207,12 @@ table#ybk td{
 
 hr {
         margin: 8px 0;
+        border: 0;
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #ffffff;
+    }
+ #se  {
+        margin: 2px 0;
         border: 0;
         border-top: 1px solid #333;
         border-bottom: 1px solid #ffffff;
@@ -429,7 +440,7 @@ hr {
 							'<td align="center">[comOemCode]</td>'+
 							'<td align="center">[comPartName]</td>'+
 							'<td align="center">[comPartBrindId]</td>'+
-							'<td align="center">[comApplyCarModel]</td>'+
+							'<td id="CarModel" align="center">[comApplyCarModel]</td>'+
 							'<td align="center">[comSpec]</td>'+		  			
 							'<td align="center">[comUnit]</td>'+
 							'<td align="center">[orderQty]</td>'+

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.1.50"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.2.12"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -19,7 +19,7 @@
             padding: 0;
             border: 0;
             width: 100%;
-            height: 100%;
+            height: 100%;F
             overflow: hidden;
         }
         .btnType{
@@ -149,15 +149,15 @@
 <body>
 
 
-
+<!-- multiSelect="true" -->
 <div class="nui-toolbar" style="padding:2px;height:48px;position: relative;">
     <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
         <tr>            
             <td class="btn">
                 <div class="nui-autocomplete" emptyText="未匹配到数据...(输入的内容长度要求大于或是等于3)"
                     style="width:300px;height: 50px !important;"  popupWidth="600" textField="text" valueField="id" 
-                    id="search_key" url="" value="carNo"   searchField="key" 
-                    dataField="list" placeholder="请输入..." >     
+                    id="search_key" url="" value="carNo"   searchField="key" multiSelect="false" 
+                    dataField="list" placeholder="请输入..."  >     
                     <div property="columns">
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
                         <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>

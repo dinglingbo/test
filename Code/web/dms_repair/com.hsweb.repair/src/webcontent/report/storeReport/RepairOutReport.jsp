@@ -9,7 +9,7 @@
 -->
 <head>
     <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.33"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.36"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -44,13 +44,13 @@
        <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
    </ul>
    <span class="separator"></span>
- 	<input class="nui-textbox" width="100px" id="partCode" name="partCode" selectOnFocus="true" enabled="true" emptyText="配件编码"/>
-    <input class="nui-textbox" width="100px" id="partName" emptyText="配件名称"  selectOnFocus="true" name="partName"/>
+ 	<input class="nui-textbox" width="80px" id="partCode" name="partCode" selectOnFocus="true" enabled="true" emptyText="配件编码"/>
+    <input class="nui-textbox" width="80px" id="partName" emptyText="配件名称"  selectOnFocus="true" name="partName"/>
    
      <input id="storeId"
         name="storeId"
         class="nui-combobox"
-        width="100px"
+        width="80px"
         textField="name"
         valueField="id"
         valueFromSelect="true"
@@ -63,7 +63,7 @@
     <input id="partBrandId"
         name="partBrandId"
         class="nui-combobox"
-        width="100px"
+        width="80px"
         textField="name"
         valueField="id"
         valueFromSelect="true"
@@ -84,11 +84,16 @@
       url=""
       allowInput="true"
       valueFromSelect="false"
-      width="120px" onvaluechanged="onSearch">
-   出库日期 从:
-     <input class="nui-datepicker" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
+      width="100px" onvaluechanged="onSearch">
+      <input class="nui-textbox" width="80px" id="carNo" name="carNo" selectOnFocus="true" enabled="true" emptyText="车牌号"/>
+  出库日期 从:
+     <input class="nui-datepicker"width="100px" id="sPickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
  至:
-    <input class="nui-datepicker" id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+    <input class="nui-datepicker" width="100px"id="ePickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+   结算日期 从:
+     <input class="nui-datepicker"width="100px" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
+ 至:
+    <input class="nui-datepicker" width="100px"id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 </div>
 
@@ -110,7 +115,7 @@
         <div type="indexcolumn">序号</div>
         <div header="工单信息" headerAlign="center">
             <div property="columns">
-            	<div allowSort="true" field="serviceCode" width="130" headerAlign="center" header="业务单号"></div>
+            	<div allowSort="true" field="serviceCode" width="180" headerAlign="center" header="业务单号"></div>
             	<div allowSort="true" field="carNo" width="100" headerAlign="center" header="车牌号"></div>
             	<div allowSort="true" field="storeId" width="100" headerAlign="center" header="仓库"></div>
                 <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>

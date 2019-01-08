@@ -25,7 +25,7 @@ var expenseUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.svr.getR
 var srnum = [];
 $(document).ready(function(v) {
 
-	$("body").on("input  onchange","input[name='amount']",function(){
+	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
 	});
 
@@ -241,7 +241,8 @@ function setData(params){
 	});
 	
 
-		
+	
+	if(currIsCanSettle==1){
 		nui.ajax({
 			url : apiPath + repairApi + "/com.hsapi.repair.baseData.query.queryMemberByGuestId.biz.ext" ,
 			type : "post",
@@ -258,6 +259,10 @@ function setData(params){
 				console.log(jqXHR.responseText);
 			}
 		});
+	}else{
+		document.getElementById("carddk").style.display='none';
+		document.getElementById("settle").style.display='none';
+	}
 		addType();
 	    getData(data);
 }
@@ -308,7 +313,10 @@ function onChanged() {
 		document.getElementById('amount').innerHTML = amount.toFixed(2);
 	}
 	var memAmt = nui.get("rechargeBalaAmt").getValue()||0;
+	if(memAmt!=0){
 		memAmt = (memAmt.split("￥"))[1];
+	}
+		
 	if(deductible>memAmt){
 		nui.alert("储值抵扣不能大于储值余额","提示");
 
@@ -425,10 +433,11 @@ function pay(){
 		}*/
 		deductible = nui.get("deductible").getValue()||0;
 		count = (count+deductible).toFixed(2);
-		if(count!=zongAmt){
-			nui.alert("结算金额和应结金额不一致，请重新确认！","提示");
+		if(count>zongAmt){
+			nui.alert("结算金额不能大于应收，请重新确认！","提示");
 			return;
 		}
+		
 	var deductible = nui.get("deductible").getValue()||0;
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
 	
@@ -663,7 +672,7 @@ function checkField(id){
 			document.getElementById('ppaytype'+s1[1]).innerHTML = str;
 			if(checkF){
 				//获取待收金额
-				var amt = document.getElementById('totalAmt1').innerText;
+				var amt = document.getElementById('amount').innerText;
 				var byId = s1[1]+data.list[0].customId;
 				document.getElementById(byId).value = amt;
 				checkF = 0;

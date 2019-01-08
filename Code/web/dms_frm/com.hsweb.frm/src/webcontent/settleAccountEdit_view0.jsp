@@ -54,6 +54,7 @@
 }
 .right{
     text-align: right;
+    font-size:13px;
 }  
 .fwidtha{
     width: 120px;
@@ -127,7 +128,7 @@
             </tr>
             <tr class="htr">
                 <td class=" right fwidtha">备注:</td>
-                <td ><input id="remark" name="remark" width="75%" class="nui-textbox">&nbsp;默认:<input type="checkbox" id="isDefault" class="mini-checkbox"></td>
+                <td ><input id="remark" name="remark" width="75%" class="nui-textbox"><span style="font-size:13px;">&nbsp;默认:</span><input type="checkbox" id="isDefault" class="mini-checkbox"></td>
                 
             </tr>
         </table>

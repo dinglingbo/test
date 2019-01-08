@@ -71,8 +71,8 @@
 		<div class="nui-fit">
 		<!-- 供应商排行  -->
 			<div id="dgGrid" class="nui-datagrid"
-				style="width: 100%; height: 100%;" showPager="true" pageSize="10"
-				sizeList="[10,20,50]" allowAlternating="true" multiSelect="true"
+				style="width: 100%; height: 100%;" showPager="true" pageSize="20"
+				sizeList="[20,30,50]" allowAlternating="true" multiSelect="true"
 			    url="<%=apiPath + frmApi%>/com.hsapi.cloud.part.register.review.allRegister.biz.ext" 
 				>
 				<div property="columns" width="10">

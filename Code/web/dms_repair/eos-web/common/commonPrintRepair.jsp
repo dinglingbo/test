@@ -7,34 +7,6 @@
 <%@include file="/common/sysPrintCommon.jsp"%>
 
 <script type="text/javascript">
-	<% IMUODataContext muo = DataContextManager.current()
-					.getMUODataContext();
-			String currUserName = "";
-			String currOrgid = "";
-			String currOrgName = "";
-			String currUserId = "";
-			if (muo != null) {
-				IUserObject userobject = muo.getUserObject();
-				if (userobject != null) {
-					//String ip = userobject.getUserRemoteIP();
-					currUserName = userobject.getUserRealName();
-					currOrgid = userobject.getUserOrgId();
-					currOrgName = userobject.getUserOrgName();
-					currUserId = userobject.getUserId();
-				}
-			}%>
-	var currUserName =
-		<%="'" + currUserName + "'"%>;
-	var currOrgid =
-		<%="'" + currOrgid + "'"%>;
-	var currOrgName =
-		<%="'" + currOrgName + "'"%>;
-	var currentTimeMillis =
-		<%=System.currentTimeMillis()%>;
-	var currUserId =
-		<%="'" + currUserId + "'"%>;
-</script>
-<script type="text/javascript">
 	function getRoot() {
 		var hostname = location.hostname;
 		var pathname = location.pathname;

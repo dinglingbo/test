@@ -103,6 +103,7 @@
 	String repairEntrustPrintContent = "";
 	String repairPchsRtnFlag = "1";
 	String repairDefaultStore = "";
+	String isCanSettle = "";
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
 	}else{
@@ -153,6 +154,9 @@
                 }
                 if(attr.get("slogan2") != null){
                 	slogan2 = attr.get("slogan2").toString();
+                }
+                if(attr.get("isCanSettle") != null){
+                	isCanSettle = attr.get("isCanSettle").toString();
                 }
                 
                 if(attr.get("billParams") != null){
@@ -233,7 +237,7 @@
 	var currRepairEntrustPrintContent = "<%=repairEntrustPrintContent %>";
 	var currRepairPchsRtnFlag = "<%=repairPchsRtnFlag %>";
 	var currRepairDefaultStore = "<%=repairDefaultStore %>";
-	
+	var currIsCanSettle = "<%=isCanSettle %>";
     //alert("token=" + token);
     
     /* var _sysMsg_;
@@ -313,9 +317,15 @@
 			}
 		} */
 		
+		
 		if(window.parent!=window && ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
 			window.parent.backToLogin();
-		}else{
+		}
+		if(window.location.pathname.substr(-20) =="loginCloud/index.jsp"){
+			showMsg("登录超时，正在跳转！", "E");
+            window.top.location.href = sysDomain +"/coframe/auth/loginCloud/login.jsp";			
+		}	
+		else{
 		//	debugger;
 			showMsg("登录超时，正在跳转！", "E");
             window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			

@@ -1245,7 +1245,8 @@
 			 A.itemSubtotal itemSubtotal,
 			 A.partSubtotal partSubtotal,
 			 A.partTrueCost partTrueCost,
-			 A.cardTimesAmt cardTimesAmt
+			 A.cardTimesAmt cardTimesAmt,
+			 A.orgid orgid
 		FROM
 			(
 		  SELECT 
@@ -1275,7 +1276,10 @@
 		 </isNotEmpty>
 		 <isNotEmpty prepend="and" property="endDate"> 
 		      A.outDate &lt;= #endDate#
-		 </isNotEmpty>  	
+		 </isNotEmpty> 
+		 <isNotEmpty prepend="and" property="orgid"> 
+		      A.orgid = #orgid#
+		 </isNotEmpty>   	
     </select>
     
     <select id="queryPopulation" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -1608,8 +1612,7 @@
 			a.detail_id > 0
 		AND c.out_return_sign = 1
 		AND d.bill_type_id = 5
-		AND d.status=2
-		AND d.is_settle=1
+
 		
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">
@@ -1620,6 +1623,21 @@
                 (c.store_id = #storeId#)
             </isNotEmpty>
             
+            <isNotEmpty prepend="and" property="status">  
+                (d.status = #status#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="isSettle">  
+                d.is_settle=#isSettle#)
+            </isNotEmpty>
+            
+            <!-- 领料日期-->
+            <isNotEmpty prepend="and" property="sPickDate">  
+                (c.pick_date &gt;= #sPickDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="ePickDate">  
+                (c.pick_date &lt; #ePickDate#)
+            </isNotEmpty>
             <!--进厂日期 -->
             <isNotEmpty prepend="and" property="sEnterDate">  
                 (d.enter_date &gt;= #sEnterDate#)
@@ -1941,6 +1959,10 @@
             
             <isNotEmpty prepend="and" property="storeId">  
                 (a.store_id = #storeId#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="carNo">  
+                (b.car_no like '%$carNo$%')
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="isSettle">  

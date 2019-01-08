@@ -8,7 +8,7 @@
 -->
 <head>
 <title>应付账款管理</title>
-    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.1.5"></script> 
+    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.1.6"></script> 
     <style type="text/css">
 .title {
     width: 90px;
@@ -106,7 +106,7 @@
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul>
 										<input class="nui-combobox"
-						data="[{value:'0',text:'未结算',},{value:'2',text:'已结算'}]"
+						data="[{value:'0',text:'未结算',},{value:'1',text:'部分结算'},{value:'2',text:'已结算'}]"
 						textField="text" valueField="value" name="settleStatus" id="settleStatus" width="90px"
 						value="0" onvalidation="onSearch()"  />
                 <label style="font-family:Verdana;">转单日期 从：</label>
@@ -169,7 +169,7 @@
                         <!-- <div type="expandcolumn" width="20" >#</div> -->
                         <div field="guestName" width="150" headerAlign="center" header="结算单位"></div>
                         <div field="carNo" width="80" headerAlign="center" header="车牌号"></div>
-                        <div allowSort="true" summaryType="count" field="billServiceId" width="120" summaryType="count" headerAlign="center" header="业务单号"></div>
+                        <div allowSort="true" summaryType="count" field="billServiceId" width="130" summaryType="count" headerAlign="center" header="业务单号"></div>
                         <div field="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
                         <div field="remark" width="120" headerAlign="center" header="业务备注"></div>
                         <div field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="应付金额"></div>

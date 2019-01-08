@@ -7,6 +7,7 @@ var CardUrl = webPath + contextPath + "/repair/DataBase/Card/rpsCardTimesBase.js
 //var getTimes = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimesDe.biz.ext";
 var grid = null;
 var queryForm = null;
+var statusList = [{id:"0",name:"客户名称"},{id:"1",name:"客户电话"},{id:"2",name:"计次卡名称"}];
 /*进来该页面，加载套餐列表数据*/
 $(document).ready(function (v)
 {
@@ -97,7 +98,7 @@ function refresh(){
 
       
   var hash = new Array("草稿","已提交","已结算");
-
+  var isRefundList = new Array("未退款","已退款");
   //剩余次数
   var balaTimes = null;
   //总次数
@@ -122,9 +123,9 @@ function refresh(){
     case "periodValidity":
     	e.cellHtml = (e.value == -1 ? "永久有效":e.value);
     	break;
-  /*  case "id":
-    	id = e.value;
-    	break;*/
+    case "isRefund":
+    	e.cellHtml = isRefundList[e.value];
+    	break;
     default:
         break;
     }
@@ -132,14 +133,53 @@ function refresh(){
 
  //快速查询
  
- function onSearch()
- {
-	var query = queryForm.getData();
-	grid.load({
-    	query:query,
-    	token : token
-    });
- }
+ function search(){
+	    nui.mask({
+	        el : document.body,
+		    cls : 'mini-mask-loading',
+		    html : '查询中...'
+	    });
+		var guestName =  null;
+		var mobile = null;
+		var cardName = null;
+		var startDate = nui.get("startDate").getFormValue();
+		var endDate = nui.get("endDate").getValue();
+		endDate = addDate(endDate, 1);
+	    var type = nui.get("search-type").getValue();
+	    var typeValue = nui.get("carNo-search").getValue();
+	    if(type==0){
+	    	guestName = typeValue;
+	    }else if(type==1){
+	    	mobile = typeValue;
+	    }else if(type==2){
+	    	cardName = typeValue;
+	    }
+		var params = {
+				guestName:guestName,
+				mobile:mobile,
+				cardName:cardName,
+				startDate:startDate,
+				endDate:endDate
+		}
+		var json1 = {
+				query:params,
+				token:token
+		}
+		nui.ajax({
+			url : queryFormUrl,
+			type : 'POST',
+			data : json1,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				grid.setData(text.params);
+				nui.unmask(document.body);
+				
+				
+			}
+		});
+	}
+
  
  //查明细
  var searchDetialUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimesDe.biz.ext";
@@ -172,3 +212,37 @@ function refresh(){
 	 return infor;
  }
   
+ //计次卡退款
+ function refund(){
+		var row = grid.getSelected();
+		if(row){
+			
+		}else{
+			showMsg("请选一张储值卡!","W");
+			return;
+		}
+		nui.open({
+	        url: webPath + contextPath +"/com.hsweb.frm.manage.refundPay.flow?token="+token,
+	         width: "100%", height: "100%", 
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            var data = {
+	            		card:row,
+	            		payAmt:row.sellAmt,
+	            		typeCard:1
+	            }
+	            iframe.contentWindow.setData(data);
+	        },
+			ondestroy : function(action) {// 弹出页面关闭前
+				if (action == "saveSuccess") {
+					showMsg("退款成功!", "S");
+					var query = queryForm.getData();
+					grid.load({
+				    	query:query,
+				    	token : token
+				    });
+
+				}
+			}
+	    });
+	}

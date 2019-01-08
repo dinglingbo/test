@@ -10,7 +10,7 @@ var zongAmt = 0;//实时填写的结算金额
 var guestData = null;
 var deductible = 0;
 $(document).ready(function (){
-	$("body").on("input  onvaluechanged","input[name='amount']",function(){
+	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
 	});
 });
@@ -55,21 +55,23 @@ function onChanged() {
 	 deductible = nui.get("deductible").getValue()||0;
 	var PrefAmt = nui.get("PrefAmt").getValue()||0;
 	var memAmt = nui.get("rechargeBalaAmt").getValue()||0;
-	memAmt = (memAmt.split("￥"))[1];
+	if(memAmt!=0){
+		memAmt = (memAmt.split("￥"))[1];
+	} 
 
 	if(deductible>memAmt){
 		nui.alert("储值抵扣不能大于储值余额","提示");
-		nui.get("deductible").setValue(0);
+/*		nui.get("deductible").setValue(0);
 		deductible=0;
-		nui.get("PrefAmt").setValue(0);
+		nui.get("PrefAmt").setValue(0);*/
 		//document.getElementById('amount').innerHTML=netInAmt;
 		return;
 	}
 	if(parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count) > netInAmt){
 		nui.alert("收款大于应收金额，请重新填写","提示");
-		nui.get("deductible").setValue(0);
+/*		nui.get("deductible").setValue(0);
 		deductible=0;
-		nui.get("PrefAmt").setValue(0);
+		nui.get("PrefAmt").setValue(0);*/
 		//document.getElementById('amount').innerHTML=netInAmt;
 		return;
 	}
@@ -149,7 +151,7 @@ function checkField(id){
 				document.getElementById('paytype'+s1[1]).innerHTML = str;
 				if(checkF){
 					//获取待收金额
-					var amt = document.getElementById('totalAmt1').innerText;
+					var amt = document.getElementById('amount').innerText;
 					var byId = s1[1]+data.list[0].customId;
 					document.getElementById(byId).value = amt;
 					checkF = 0;

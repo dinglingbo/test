@@ -15,11 +15,14 @@ var basicInfoForm = null;
 var form1=null;
 var workList=[];
 var memberLever=[];
+var isCanSettle ;
 $(document).ready(function(v) {
 	isShowOwnBill=nui.get("isShowOwnBill");
 	isAllowRemind=nui.get("isAllowRemind");
+	isCanSettle=nui.get("isCanSettle");
 	isShowOwnBill.setData(isservicelist);
 	isAllowRemind.setData(isservicelist);
+	isCanSettle.setData(isservicelist);
 	isservice=nui.get("isArtificer");
 	sex=nui.get("sex");
 	sex.setData(sexlist);
@@ -53,6 +56,12 @@ function SetInitData(data) {
 	var itemDiscountRate =data.itemDiscountRate*100;
 	var partDiscountRate =data.partDiscountRate*100;
 	basicInfoForm.setData(data);
+	if(data.memberGroupId==0){
+		nui.get("memberGroupId").setText("选择工作组");
+	}
+	if(data.memberLevelId==0){
+		nui.get("memberLevelId").setText("选择技师等级");
+	}
 	nui.get("itemDiscountRate").setValue(itemDiscountRate);
 	nui.get("partDiscountRate").setValue(partDiscountRate);
 	var isArtificer = nui.get("isArtificer").value;

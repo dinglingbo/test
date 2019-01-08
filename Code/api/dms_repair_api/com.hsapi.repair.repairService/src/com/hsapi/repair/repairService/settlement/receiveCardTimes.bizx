@@ -9,7 +9,7 @@
       <sourceNode>start0</sourceNode>
       <targetNode>assign10</targetNode>
     </sourceConnections>
-    <location x="-248" y="90"/>
+    <location x="-242" y="90"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
@@ -24,7 +24,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="-246" y="126"/>
+    <location x="-240" y="126"/>
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
@@ -220,6 +220,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">deduct/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">6</process:from>
+      <process:to type="query">deduct/billTypeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">

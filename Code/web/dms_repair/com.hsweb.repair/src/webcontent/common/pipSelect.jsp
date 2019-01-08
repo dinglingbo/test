@@ -10,7 +10,7 @@
 -->
 <head>
 <title>产品选择</title>
-<script src="<%=request.getContextPath()%>/repair/js/pipSelect.js?v=1.0.7"></script>
+<script src="<%=request.getContextPath()%>/repair/js/pipSelect.js?v=1.0.10"></script>
 <style type="text/css">
 
 table {
@@ -59,9 +59,9 @@ table {
 
                     <ul id="queryItemTab" class="nui-menu" style="display:none;">
                             <li iconCls="" onclick="queryType(0)" id="type10">客户已购买</li>
-                        <li iconCls="" onclick="queryType(1)" id="type10">套餐</li>
-                        <li iconCls="" onclick="queryType(2)" id="type11">项目</li>
-                        <li iconCls="" onclick="queryType(3)" id="type11">配件</li>
+                            <li iconCls="" onclick="queryType(1)" id="type10">套餐</li>
+                            <li iconCls="" onclick="queryType(2)" id="type11">项目</li>
+                            <li iconCls="" onclick="queryType(3)" id="type11">配件</li>
                     </ul>
 
                     <!-- <a class="nui-button" plain="false"  onclick="onSearch()">选择分类查</a> -->
@@ -109,7 +109,7 @@ table {
                     </div>
                 </div>
             </div>
-            <div title="套餐" borderStyle="border:0;">
+            <!-- <div title="套餐" borderStyle="border:0;">
                 <div  class="nui-fit">
                     <div class="nui-datagrid" style="width:100%;height:100%;"
                             id="packageGrid"
@@ -139,7 +139,7 @@ table {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div title="项目">
                 <div  class="nui-fit">
                     <div class="nui-datagrid" style="width:100%;height:100%"
@@ -158,7 +158,7 @@ table {
                     </div>
                 </div>
             </div>
-            <div title="配件">
+            <!-- <div title="配件">
                 <div class="nui-fit">
                     <div class="nui-datagrid" style="width:100%;height:100%"
                             id="partGrid" dataField="parts"
@@ -175,7 +175,7 @@ table {
                     </div>
                 </div>
 
-            </div>
+            </div> -->
         </div>
     </div>
 

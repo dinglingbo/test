@@ -28,4 +28,19 @@
         </dynamic>
         ORDER BY  CREATETIME DESC
     </select>
+    
+    <select id="getUserOrgAll" parameterClass="HashMap" resultClass="com.hsapi.system.data.sys.VwUserOrg">
+    	SELECT
+			realComp,ORGID,ORGCODE,ORGNAME,`STATUS`,ISLEAF,TENANT_ID,OPERATORID,USERID,EMPNAME
+		FROM
+			vw_user_org
+			where 1=1
+		<dynamic>
+            <isNotEmpty prepend="and" property="orgidOrName">
+            	(orgcode like '%$orgidOrName$%' or orgname like '%$orgidOrName$%')
+            </isNotEmpty>
+        </dynamic>
+        ORDER BY  CREATETIME DESC
+    </select>
+    
 </sqlMap>

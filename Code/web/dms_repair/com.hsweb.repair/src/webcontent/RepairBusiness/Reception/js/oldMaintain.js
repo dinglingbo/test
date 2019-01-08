@@ -89,7 +89,6 @@ function fixdata(data) { //文件流转BinaryString
 var requiredField = {
 		serviceCode : "工单号",
 		guestName:"客户姓名",
-		mobile : "电话号码",
 		carNo: "车牌号",
 };
 function sure() {
@@ -106,15 +105,16 @@ function sure() {
 			}
 			var newRow = {};
 			newRow.serviceCode = data[i].工单号||"";
-			newRow.billTypeId = data[i].工单类型||"";
 			newRow.guestName = data[i].客户姓名||"";
 			newRow.mobile = data[i].客户电话||"";
 			newRow.carNo = data[i].车牌号||"";
 			newRow.carVin = data[i].车架号VIN||"";
 			newRow.itemAmt = data[i].项目金额||"";
 			newRow.partAmt = data[i].配件金额||"";
+			newRow.agiosum = data[i].优惠金额||"";
+			newRow.banlansum = data[i].结算金额||"";
 			newRow.packageAmt = data[i].套餐金额||"";
-			newRow.planFinishDate = data[i].进店日期||"";
+			newRow.enterDate = data[i].进店日期||"";
 			newRow.outDate = data[i].结算日期||"";
 			newRow.mtAdvisor = data[i].维修顾问||"";
 			newRow.remark = data[i].备注||"";

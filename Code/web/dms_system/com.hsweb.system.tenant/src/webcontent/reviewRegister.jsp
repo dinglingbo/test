@@ -7,7 +7,7 @@
 <link
 	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
-<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.3"
+<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.6"
 	type="text/javascript"></script>
 </head>
 <body>
@@ -35,12 +35,11 @@
                             <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 					<li class="separator"></li>
 					<a class="nui-button"  plain="true" href="javascript:query();" id="query" enabled="true"  onclick="superSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-						<a class="nui-button"  plain="true"
-					 id="sh" enabled="true"  onclick="audit"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
-					 	<a class="nui-button"  plain="true"
-					 id="jy" name="jy" enabled="true"  onclick="stopUse"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
-					  	<a class="nui-button"  plain="true" visible="false"
-					 id="qy" name="qy" enabled="true"  onclick="stopUse"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用</a>
+<!-- 					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="audit"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a> -->
+					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditPart"><span class="fa fa-check fa-lg"></span>&nbsp;认证为汽配商</a>
+					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="auditRepair"><span class="fa fa-check fa-lg"></span>&nbsp;认证为汽修商</a>
+					<a class="nui-button"  plain="true"	 id="jy" name="jy" enabled="true"  onclick="stopUse"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用</a>
+					<a class="nui-button"  plain="true" visible="false"	 id="qy" name="qy" enabled="true"  onclick="stopUse"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用</a>
 			 	</td>
 			</tr>
 		</table>
@@ -50,8 +49,8 @@
 		<div class="nui-fit">
 		<!-- 供应商排行  -->
 			<div id="dgGrid" class="nui-datagrid"
-				style="width: 100%; height: 100%;" showPager="true" pageSize="10"
-				sizeList="[10,20,50]" allowAlternating="true" multiSelect="true"
+				style="width: 100%; height: 100%;" showPager="true" pageSize="20"
+				sizeList="[20,50,100]" allowAlternating="true" multiSelect="true"
 			    url="<%= request.getContextPath() %>/com.primeton.tenant.reView.allRegister.biz.ext" 
 				onselectionchanged="changebutton"
 				>

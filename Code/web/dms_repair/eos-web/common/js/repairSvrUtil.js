@@ -692,6 +692,7 @@ function doPrint(params){
         bankName: currBankName,
         bankAccountNumber: currBankAccountNumber,
         currCompAddress: currCompAddress,
+        currUserName :currUserName,
         currCompTel: currCompTel,
         currSlogan1: currSlogan1,
         currSlogan2: currSlogan2,

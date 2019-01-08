@@ -172,6 +172,11 @@ table#ybk td{
 #comApplyCarModel{
 	width:10%;
 }
+#CarModel{
+	white-space:nowrap; 
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
 #comSpec{
 	width:8%;
 }
@@ -202,6 +207,12 @@ table#ybk td{
 
 hr {
         margin: 8px 0;
+        border: 0;
+        border-top: 1px solid #333;
+        border-bottom: 1px solid #ffffff;
+    }
+ #se  {
+        margin: 2px 0;
         border: 0;
         border-top: 1px solid #333;
         border-bottom: 1px solid #ffffff;
@@ -249,7 +260,7 @@ hr {
                 </tr>
 	            </table>
 	            
-	            <hr/>
+	            <hr id="se"/>
 	            <table width="100%">
 				  <tr>			  	
 				    <td style="font-size:8px;" id="guestAddr" align="left">地址:</td>
@@ -275,7 +286,7 @@ hr {
 				  </tr>
 				</table>
         	</div> 
-        	<hr />
+        	<hr/>
             <div id="queryTable" style="height: auto;">
 				<table id="tbody" width="100%"  border="1" style="border: 1px solid #151515; border-collapse:collapse;">
 					<tbody>
@@ -309,26 +320,26 @@ hr {
 				  </tr>
 				</table>
 				<table>
-				  <tr><td  colspan="3"><hr/></td></tr>
+				  <tr><td  colspan="3"><hr id="se"/></td></tr>
 				  <tr id="border2">
-				    <td id="currUserName" >打印人：系统管理员</td>
-				    <td id="giveMan" >送货人：</td>
-				    <td id="getMan" width="" align="center">收货人：</td>
+				    <td id="currUserName" >制单：系统管理员</td>
+				    <td id="giveMan" >送货：</td>
+				    <td id="getMan" width="" align="center">收货：</td>
 				  </tr>
-				  <tr><td  colspan="3"><hr/></td></tr>
-				  <tr id="border3">
-				    <td id="remark1">备注</td>
+				  <tr><td  colspan="3"><hr id="se"/></td></tr>
+<!-- 				  <tr id="border3"> -->
+<!-- 				    <td id="remark1">备注</td> -->
 <!-- 				    <td style="" id="guestAddr" align="left">地址:</td> -->
 <!-- 				    <td style="" id="nowDate" align="center"  class="" >打印日期:</td> -->
-				  </tr>
-				  <tr><td  colspan="3"><hr/></td></tr>
-				   <tr id="border4">
-				    <td id="">注(白联仓库   红联财务  黄联供应商)</td>
-				    <td></td>
-				    <td></td>
+<!-- 				  </tr> -->
+<!-- 				  <tr><td  colspan="3"><hr/></td></tr> -->
+<!-- 				   <tr id="border4"> -->
+<!-- 				    <td id="">注(白联仓库   红联财务  黄联供应商)</td> -->
+<!-- 				    <td></td> -->
+<!-- 				    <td></td> -->
 <!-- 				    <td style="" id="phone">电话:</td> -->
 <!-- 				   <td style="" id="createDate" align="center">订单日期:</td> -->
-				  </tr>
+<!-- 				  </tr> -->
 				</table>
             </div>
 
@@ -405,7 +416,7 @@ hr {
 	   		document.getElementById("phone").innerHTML ="电话:"+params.currCompTel;
 	   		$('#currOrgName').text(params.currRepairSettorderPrintShow||params.currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
-    		$('#currUserName').text("打印人:"+params.currUserName);
+    		$('#currUserName').text("制单:"+params.currUserName);
     		if(params.id){
 	       		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
 		   			var formParms =text.pjPchsOrderMainList[0];
@@ -445,7 +456,7 @@ hr {
 							'<td align="center">[comOemCode]</td>'+
 							'<td align="center">[comPartName]</td>'+
 							'<td align="center">[comPartBrindId]</td>'+
-							'<td align="center">[comApplyCarModel]</td>'+
+							'<td id="CarModel"align="center">[comApplyCarModel]</td>'+
 							'<td align="center">[comSpec]</td>'+		  			
 							'<td align="center">[comUnit]</td>'+
 							'<td align="center">[orderQty]</td>'+

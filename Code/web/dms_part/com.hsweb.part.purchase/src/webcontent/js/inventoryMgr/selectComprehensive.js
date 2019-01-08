@@ -94,6 +94,10 @@ $(document).ready(function ()
             }else{
                 e.cellHtml = "未结算";
             }
+        }else if(e.field == "serviceCode"){
+        	e.cellHtml ='<a href="##" onclick="edit('+e.record._uid+')">'+e.record.serviceCode+'</a>';
+        }else if(e.field == "carNo"){
+        	e.cellHtml ='<a href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
         }
     });
     innerItemGrid.on("drawcell", function (e) {
@@ -320,7 +324,7 @@ function onSearch()
 function doSearch() {
     var gsparams = getSearchParam();
     gsparams.isSettle = 1;
-    gsparams.billTypeId = 0;
+   // gsparams.billTypeId = 0;
     gsparams.isDisabled = 0;
 
     mainGrid.load({
@@ -333,6 +337,7 @@ function getSearchParam() {
     params.sOutDate = nui.get("sOutDate").getValue();
     params.eOutDate = addDate(endDateEl.getValue(),1);  
     params.mtAuditorId = mtAdvisorIdEl.getValue();
+    params.billTypeId = nui.get("billTypeId").getValue();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){
@@ -398,3 +403,34 @@ function setInitData(params){
 function carNoSearch(){
 	onSearch();
 }
+
+function edit(row_uid){
+	var row = null;
+	if(!row_uid){
+		row = mainGrid.getSelected();
+	}else{
+		row = mainGrid.getRowByUID(row_uid);
+	}
+    if(!row) return;
+    var item={};
+    var data = {};
+    data.id = row.id;
+    var item={};
+	item.id = "11111";
+    item.text = "工单详情页";
+	item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+data.id;
+	item.iconCls = "fa fa-file-text";
+	window.parent.activeTabAndInit(item,data);
+}
+
+function showCarInfo(row_uid){
+	var row = mainGrid.getRowByUID(row_uid);
+	if(row){
+		var params = {
+				carId : row.carId,
+				guestId : row.guestId
+		};
+		doShowCarInfo(params);
+	}
+}
+

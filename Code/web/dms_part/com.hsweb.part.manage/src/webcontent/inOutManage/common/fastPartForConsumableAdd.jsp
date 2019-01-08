@@ -27,7 +27,7 @@
    		padding-top:3px;
    	}
 	.mini-listbox-view{
-		height:105px !important;
+		height:145px !important;
 	}
 	#out1{
 		border-top:black solid 1px;
@@ -77,10 +77,10 @@
                             emptyText="请选择..."
                             url=""
                              required="true"
-                            allowInput="false"
+                            allowInput="true"
                             valueFromSelect="false"
-                            popupHeight="90%"
                           />
+  
 				</td>
 				<td>出库数量:<input required="true"  vtype="float;range:0.01,100000000" class="nui-textbox" id="outQty" name="outQty" type="text"></td>
 			</tr>

@@ -241,6 +241,7 @@
 		       a.car_id as carId,
 		       a.car_no as carNo,
 		       a.car_vin as carVin,
+		       a.out_date outDate,
 		       c.birthday as birthday, 
 		       a.guest_id as guestId,
 		       c.name as contactName,
@@ -1055,10 +1056,17 @@
 			FROM
 				wb_repair.rpb_car_extend a
 			INNER JOIN wb_repair.rpb_car b ON a.car_id = b.id
+			INNER JOIN wb_common.com_guest c ON b.guest_id = c.id
 		
 			WHERE 
 				b.orgid=#orgid#	
           
+             <isNotEmpty prepend="and" property="carNo">
+  				b.car_no = #carNo#
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="mobile">
+  				c.mobile = #mobile#
+            </isNotEmpty>
             <!-- 商业险是否需要提醒-->
             <isNotEmpty prepend="and" property="isAnnualRemind">
   				a.is_annual_remind = #isAnnualRemind#
@@ -1182,6 +1190,30 @@
 					wb_repair.rpb_contactor a
 				WHERE
 					a.orgid = #orgid#;
+			</select>
+			
+			
+					<!--工单回访  流失回访提醒数量-->
+		<select id="visitQuantity" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
+				SELECT
+					count(
+						CASE
+						WHEN a.type = 1
+						AND a.status = 0 THEN
+							1
+						END
+					) AS tianQuantity,
+					count(
+						CASE
+						WHEN a.type = 2
+						AND a.status = 0 THEN
+							1
+						END
+					) AS loseQuantity
+					
+				FROM
+					wb_crm.crm_visit_data a
+				WHERE a.orgid = #orgid#
 			</select>
 			
 	<!--首页提醒数量与消息表相关-->

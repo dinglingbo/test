@@ -48,18 +48,22 @@
 			b.insure_due_date AS insureDueDate,
 			b.annual_inspection_date AS annualInspectionDate,
 			b.annual_inspection_no AS annualInspectionNo,
+			d.birthday,
 			a.part_amt AS partAmt,
 			a.out_date as outDate,
 			e.visit_times visitTimes,
 			e.leave_days leaveDays,
 			e.status visitStatus,
 			e.data_type visitType,
+			z.last_leave_date lastLeaveDate,
+			z.last_care_due_date lastCareDueDate,
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join wb_repair.rpb_business_type f on e.service_type_id = f.id
 	       where e.service_id = a.id) as serviceTypeName
 		FROM
 			 wb_repair.rps_maintain a
 			inner JOIN wb_repair.rpb_car b ON ( a.car_id = b.id )
+			inner join  wb_repair.rpb_car_extend z  on b.id = z.car_id
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 			inner join wb_repair.rpb_contactor d on (a.contactor_id = d.id and c.id = d.guest_id)
 		INNER JOIN wb_crm.crm_visit_data e on e.service_id = a.id 
@@ -71,6 +75,9 @@
             </isNotEmpty>
                <isNotEmpty prepend="and" property="carNo">  
                	a.car_no =   #carNo#
+            </isNotEmpty>
+           <isNotEmpty prepend="and" property="mobile">  
+               	c.mobile =   #mobile#
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carId">  
                	a.car_id =   #carId#

@@ -156,4 +156,69 @@
         </dynamic>  
 	</select>
 	
+	<!--业务产值汇总统计，可以根据工单的业务类型，也可以根据工单服务顾问进行统计-->
+	<select id="queryOutputAnalysis" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+    	
+	    	 <isEqual  prepend="" property="groupByType"  compareValue="0">
+		     	a.service_type_id as groupName,
+		     </isEqual>
+		     <isEqual  prepend="" property="groupByType"  compareValue="1">
+		     	a.mt_advisor_id as groupName,
+		     </isEqual>
+    	       
+    	       count(1) as ct, sum(b.package_amt) as pkgAmt, sum(b.package_pref_amt) as pkgPrefAmt,
+		       sum(b.package_subtotal) as pkgSubtotal, sum(b.item_total_amt) as itemTotalAmt, sum(b.item_pref_amt) as itemPrefAmt,
+		       sum(b.item_subtotal) as itemSubtotal, sum(b.part_total_amt) as partTotalAmt, sum(b.part_pref_amt) as partPrefAmt,
+		       sum(b.part_subtotal) as partSubtotal, sum(b.part_true_cost) as partTrueCost, sum(b.card_times_amt) as cardTimesAmt,
+		       sum(b.allowance_amt) as allowanceAmt, sum(b.other_amt) as otherAmt, sum(b.other_cost_amt) as otherCostAmt,
+		       sum(b.total_pref_amt) as totalPrefAmt, sum(b.bala_amt) as balaAmt, sum(b.sales_deduct_value) as salesDeductValue,
+		       sum(b.tech_deduct_value) as techDeductValue, sum(b.advisor_deduct_value) as advisorDeductValue,
+		       sum(b.total_deduct_amt) as totalDeductAmt, sum(b.netin_amt) as netinAmt, sum(b.gross_profit) as grossProfit,
+		       case when sum(b.netin_amt) = 0 then 0 
+		       else (sum(b.netin_amt) - sum(b.tech_deduct_value) - sum(b.part_true_cost) - sum(b.other_cost_amt))*1.0/sum(b.netin_amt)
+		       end as grossProfitRate
+		from rps_maintain a
+		inner join rps_settlement b
+		on a.id = b.service_id
+		where a.is_settle = 1 and a.orgid = #orgid#
+		
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (a.out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (a.out_date &lt; #endDate#)
+            </isNotEmpty>
+            
+            <!--进厂日期 -->
+            <isNotEmpty prepend="and" property="sEnterDate">  
+                (a.record_date &gt;= #sEnterDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eEnterDate">  
+                (a.record_date &lt; #eEnterDate#)
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="mtAdvisorId">  
+                (a.mt_advisor_id = #mtAdvisorId#)
+            </isNotEmpty>
+            
+        </dynamic>  
+        
+        <isEqual  prepend="" property="groupByType"  compareValue="0">
+	     	group by a.service_type_id
+	     	order by a.service_type_id
+	    </isEqual>
+	    <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	group by a.mt_advisor_id 
+	     	order by a.mt_advisor_id
+	    </isEqual>
+		
+		
+		
+	</select>
+	
+	
+	
 </sqlMap>

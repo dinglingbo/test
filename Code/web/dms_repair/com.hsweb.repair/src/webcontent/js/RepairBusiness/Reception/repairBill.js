@@ -186,11 +186,7 @@ $(document).ready(function ()
     });//valuechanged,itemclick
     
     searchKeyEl.on("valuechanged",function(e){
-    	//var item = e.item;
     	var item = e.selected;
-    	 /* if(!item){
-    		item = e.sender.listbox.oOolo0;
-    	}*/
         if(fserviceId){
             return;
         }
@@ -201,10 +197,6 @@ $(document).ready(function ()
     
     searchKeyEl.on("itemclick",function(e){
     	var item = e.item;
-    	/*var item = e.selected;
-    	  if(!item){
-    		item = e.sender.listbox.oOolo0;
-    	}*/
         if(fserviceId){
             return;
         }
@@ -1167,6 +1159,7 @@ function save(){
 
 function saveNoshowMsg(callback){
 	saveMaintain(function(data){
+		billForm.setData(data);
         if(data.id){
             fserviceId = data.id;
             //showMsg("保存成功!","S");
@@ -2832,12 +2825,11 @@ function chooseItem(){
        // showMsg("请选择保存工单!","S");
        // return;
       falg="Y";
-	  saveNoshowMsg();
-    }
-    var param = {};
-    param.carModelIdLy = main.carModelIdLy;
-    param.serviceId = main.id;
-	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
+	  saveNoshowMsg(function(){
+		  var param = {};
+	      param.carModelIdLy = main.carModelIdLy;
+	      param.serviceId = main.id;
+	      doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
 		    main = billForm.getData();
 	        var p1 = { }
 	        var p2 = {
@@ -2849,6 +2841,25 @@ function chooseItem(){
 	        var p3 = {};
 	        loadDetail(p1, p2, p3,main.status);
 	    }); 
+	  });
+    }else{
+    	var param = {};
+        param.carModelIdLy = main.carModelIdLy;
+        param.serviceId = main.id;
+    	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
+    		    main = billForm.getData();
+    	        var p1 = { }
+    	        var p2 = {
+    	            interType: "item",
+    	            data:{
+    	                serviceId: main.id||0
+    	            }
+    	        };
+    	        var p3 = {};
+    	        loadDetail(p1, p2, p3,main.status);
+    	    }); 
+    }
+    
 }
 
 function choosePackage(){
@@ -2887,23 +2898,41 @@ function choosePackage(){
        // showMsg("请选择保存工单!","S");
        // return;
       falg="Y";
-	  saveNoshowMsg();
-    }  
-    var param = {};
-    param.carModelIdLy = main.carModelIdLy;
-    param.serviceId = main.id;
-    doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
-        main = billForm.getData();
-        var p1 = { 
-    		interType: "package",
-            data:{
-                serviceId: main.id||0
-            }
-        };
-        var p2 = {};
-        var p3 = {};
-        loadDetail(p1, p2, p3,main.status);
-    });
+	  saveNoshowMsg(function(){
+		var param = {};
+	    param.carModelIdLy = main.carModelIdLy;
+	    param.serviceId = main.id;
+	    doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
+	        main = billForm.getData();
+	        var p1 = { 
+	    		interType: "package",
+	            data:{
+	                serviceId: main.id||0
+	            }
+	        };
+	        var p2 = {};
+	        var p3 = {};
+	        loadDetail(p1, p2, p3,main.status);
+	    });
+	  });
+    }else{
+    	var param = {};
+        param.carModelIdLy = main.carModelIdLy;
+        param.serviceId = main.id;
+        doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
+            main = billForm.getData();
+            var p1 = { 
+        		interType: "package",
+                data:{
+                    serviceId: main.id||0
+                }
+            };
+            var p2 = {};
+            var p3 = {};
+            loadDetail(p1, p2, p3,main.status);
+        });
+    } 
+    
 }
 
 function addToBillPackage(row, callback, unmaskcall){

@@ -49,8 +49,8 @@
 		<div class="nui-fit">
 		<!-- 供应商排行  -->
 			<div id="dgGrid" class="nui-datagrid"
-				style="width: 100%; height: 100%;" showPager="true" pageSize="10"
-				sizeList="[10,20,50]" allowAlternating="true" multiSelect="true"
+				style="width: 100%; height: 100%;" showPager="true" pageSize="20"
+				sizeList="[20,50,100]" allowAlternating="true" multiSelect="true"
 			    url="<%= request.getContextPath() %>/com.primeton.tenant.reView.allRegister.biz.ext" 
 				onselectionchanged="changebutton"
 				>

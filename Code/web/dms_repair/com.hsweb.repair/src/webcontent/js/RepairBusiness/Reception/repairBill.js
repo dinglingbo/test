@@ -1142,7 +1142,6 @@ function save(){
                         }
                     };
                     loadDetail(p1, p2, p3,status);
-                    
                     nui.unmask(document.body);
                 }else{
                     showMsg("数据加载失败,请重新打开工单!","E");
@@ -1154,7 +1153,6 @@ function save(){
     },function(){ 
         nui.unmask(document.body);
     });
-     
 }
 
 function saveNoshowMsg(callback){

@@ -10,6 +10,7 @@
      showModified="false"
      allowSortColumn="true"
      ondrawsummarycell="onDrawSummaryCellItem"
+     editNextOnEnterKey = "false"
      >
     <div property="columns">
         <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>

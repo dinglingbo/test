@@ -12,6 +12,7 @@
          a.id id,
          c.full_name fullName,
          a.guest_name guestName,
+         a.guest_id guestId,
          c.mobile mobile,
          a.card_name cardName,
          a.record_date recordData,
@@ -33,6 +34,9 @@
 	     </isNotEmpty>          
 	     <isNotEmpty prepend="and" property="mobile">  
 	            (c.mobile like '%$mobile$%')
+	    </isNotEmpty>
+	    	    <isNotEmpty prepend="and" property="guestId">  
+	            (a.guest_id = #guestId#)
 	    </isNotEmpty>
 	    <isNotEmpty prepend="and" property="cardName">  
 	            (a.card_name like '%$cardName$%')
@@ -69,6 +73,9 @@
 	     </isNotEmpty>          
 	     <isNotEmpty prepend="and" property="mobile">  
 	            (c.mobile like '%$mobile$%')
+	    </isNotEmpty>
+	    <isNotEmpty prepend="and" property="guestId">  
+	            (a.guest_id = #guestId#)
 	    </isNotEmpty>
     	<isNotEmpty prepend="and" property="startDate"> 
                 (a.record_date &gt;= #startDate#)

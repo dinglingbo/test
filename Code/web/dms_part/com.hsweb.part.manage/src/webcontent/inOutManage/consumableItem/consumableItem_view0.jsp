@@ -10,6 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>耗材出库</title>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.0"></script>
     <style type="text/css">
     html,body {
        margin: 0;

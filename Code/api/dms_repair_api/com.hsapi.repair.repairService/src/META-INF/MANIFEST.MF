@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hs.common,com.hsapi.repair.data,com.hsapi.repair.c
- ommon,com.hsweb.system.config,com.hsweb.system.tenant,com.eos.foundat
- ion,com.hsweb.system.auth,com.hsweb.system.dict,com.hsapi.repair.base
- Data,com.hsweb.system.llq
-Bundle-Vendor: chenziming
+Require-Bundle: com.hsapi.system.basic,com.hs.common,com.hsapi.repair.
+ common,com.hsapi.repair.data,com.hsweb.system.config,com.hsweb.system
+ .tenant,com.eos.foundation,com.hsweb.system.auth,com.hsweb.system.dic
+ t,com.hsapi.repair.baseData,com.hsweb.system.llq
 eos-webCtxPath: repairService
+Bundle-Vendor: chenziming
 Bundle-Version: 1.0.0
 Bundle-Name: com.hsapi.repair.repairService
 Bundle-Description: 

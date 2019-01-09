@@ -2,7 +2,7 @@
 var baseUrl = apiPath + repairApi + "/";
 var type = "" ;//区别是套餐还是项目修改的
 var none = "ALL0";//班组技术样式下标
-var serviceTypeIds = null;
+var serviceTypeIds = [];
 var serviceId = 0;//工单号
 var planFinishDate = "";//预计交车时间
 $(document).ready(function(v) {
@@ -206,6 +206,7 @@ function onClose(){
 	window.CloseOwnerWindow();	
 }
 
+var resultData = null;
 function dispatchOk(){
 
 	var emlpsz = $("a.empl1");//所选技师数组
@@ -213,6 +214,9 @@ function dispatchOk(){
 	var emlpszName ="";
 	var serviceTypeIdList = serviceTypeIds.getValue();
 	serviceTypeIdList = serviceTypeIdList.split(",");
+	if(serviceTypeIdList==""){
+		serviceTypeIdList = [];	
+	};
 	if(emlpsz.length==0){
 		showMsg("请选择施工员！","W");
 		return;
@@ -241,6 +245,7 @@ function dispatchOk(){
 			planFinishDate:nui.get("planFinishDate").getValue(),
 			serviceTypeIds:serviceTypeIdList
 	};
+	resultData = data;
 	CloseWindow("ok");
 
 /*	var json = {
@@ -278,6 +283,9 @@ function dispatchOk(){
 	});*/
 }
 
+function getData(){
+	return resultData;
+}
 function times(id){
 	if(planFinishDate==""){
 		

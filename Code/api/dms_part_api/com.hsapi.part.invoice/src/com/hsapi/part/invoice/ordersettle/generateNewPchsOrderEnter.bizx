@@ -1267,6 +1267,7 @@
     <sourceConnections xsi:type="process:tLink" id="link85" name="link85" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign18</sourceNode>
       <targetNode>transactionrollback0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link84</targetConnections>
     <location x="-104" y="356"/>
@@ -1327,7 +1328,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="129" y="171"/>
+    <location x="129" y="168"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
@@ -1343,7 +1344,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="93" y="206"/>
+    <location x="93" y="203"/>
     <figSize height="17" width="99"/>
     <node>subprocess4</node>
   </nodes>

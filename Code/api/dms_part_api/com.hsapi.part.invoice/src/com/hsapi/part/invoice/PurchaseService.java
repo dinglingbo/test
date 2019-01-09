@@ -39,7 +39,7 @@ import commonj.sdo.DataObject;
  */
 @Bizlet("")
 public class PurchaseService {
-	@Bizlet("")
+	@Bizlet("提交SRM采购订单")
 	public static String pushPchsOrderToSRM(String companyId, String address, int isInsurance,
 			int isDeposit, int isScene, int isTax, String payType, String receiver,
 			String remark, String mobile, String userName, String warehouseto, 
@@ -195,4 +195,106 @@ public class PurchaseService {
 		}
 				
 	}
+	
+	@Bizlet("查询SRM配件列表，带库存数量")
+	public static String querySRMSKUList(String access_token,String brandId,String carId,
+			String categoryF, String categoryS, String categoryT, int count,
+			int currpage, String key, String sortOrder) {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", "serverType");
+		String apiurl = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", envType);
+		String urlParam = apiurl + "srm/router/rest?token="+access_token;
+		Map main = new HashMap();   
+		main.put("type", 1); //固定值 1
+		main.put("method", "base.partQuery.partSkuList");
+		main.put("brandId", brandId); //品牌ID
+		main.put("carId", carId);  //厂牌ID
+		main.put("categoryF_id", categoryF);  //车身分类一级ID
+		main.put("categoryS_id", categoryS);  //车身分类二级ID
+		main.put("categoryT_id", categoryT);  //车身分类三级ID
+		main.put("count", count);  //	每页显示条数
+		main.put("currpage", currpage);  //当前 页码
+		main.put("key", key);
+		main.put("sortOrder", sortOrder);  // ‘asc’ 升序 'desc' 降序
+		
+		JSONObject jsonObj = JSONObject.fromObject(main);
+		String json = jsonObj.toString();
+		
+		StringBuffer resultBuffer = null;
+		HttpURLConnection con = null;
+		OutputStreamWriter osw = null;
+		BufferedReader br = null;
+		// 发送请求
+		try {
+			URL url = new URL(urlParam);
+			con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("POST");
+			con.setDoOutput(true);
+			con.setDoInput(true);
+			con.setUseCaches(true);
+			con.setRequestProperty("Content-Type",
+					"application/json;charset=UTF-8");
+			con.setRequestProperty("accept", "application/json,text/plain,*/*");
+
+			con.setConnectTimeout(60000);// 连接超时 单位毫秒
+			con.setReadTimeout(60000);// 读取超时 单位毫秒
+			if (json != null && json.length() > 0) {
+				osw = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
+				osw.write(json);
+				osw.flush();
+			}
+
+			// 读取返回内容
+			if (con.getResponseCode() == 200) {
+				resultBuffer = new StringBuffer();
+				br = new BufferedReader(new InputStreamReader(
+						con.getInputStream(), "UTF-8"));
+				String temp;
+				while ((temp = br.readLine()) != null) {
+					resultBuffer.append(temp);
+				}
+			} else {
+				System.out.println("con.getResponseCode = "
+						+ con.getResponseCode());
+			}
+			return resultBuffer.toString();
+		} catch (Exception e) {
+			System.out.println("Access Error At:" + urlParam);
+			e.printStackTrace();
+			return "{\"resultCode\":\"Http_Send_Error\", \"resultMsg\":\""
+					+ e.getMessage() + "\"}";
+		} finally {
+			if (osw != null) {
+				try {
+					osw.close();
+				} catch (IOException e) {
+					osw = null;
+					throw new RuntimeException(e);
+				} finally {
+					if (con != null) {
+						con.disconnect();
+						con = null;
+					}
+				}
+			}
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					br = null;
+					throw new RuntimeException(e);
+				} finally {
+					if (con != null) {
+						con.disconnect();
+						con = null;
+					}
+				}
+			}
+		}
+				
+	}
+	
+	
+	
 }

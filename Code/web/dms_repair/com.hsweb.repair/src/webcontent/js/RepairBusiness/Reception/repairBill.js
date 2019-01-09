@@ -1037,11 +1037,6 @@ function save(){
     });
     
     saveMaintain(function(data){
-    	var carModel = nui.get("carModel").value || "";
-    	if(carModel != ""){
-    		data.carModel = carModel;
-    	}
-    	billForm.setData(data);
         if(data.id){
             fserviceId = data.id;
             //查询挂账
@@ -1159,7 +1154,7 @@ function save(){
 
 function saveNoshowMsg(callback){
 	saveMaintain(function(data){
-		billForm.setData(data);
+		//billForm.setData(data);
         if(data.id){
             fserviceId = data.id;
             //showMsg("保存成功!","S");
@@ -1302,12 +1297,17 @@ function saveMaintain(callback,unmaskcall){
     svrSaveMaintain(params, function(text){
         var errCode = text.errCode||"";
         if(errCode == "S") {
-        	//工单保存成功之后
+        	//工单保存成功之后,设置表单的值
+        	var main = text.data||{};
+            fserviceId = main.id||0;
+        	var carModel = nui.get("carModel").value || "";
+        	if(carModel != ""){
+        		main.carModel = carModel;
+        	}
+        	billForm.setData(main);
         	saveItem();
             savePkg();
             unmaskcall && unmaskcall();
-        	var main = text.data||{};
-            fserviceId = main.id||0;
             callback && callback(main);
         } else {
             unmaskcall && unmaskcall();
@@ -1316,7 +1316,6 @@ function saveMaintain(callback,unmaskcall){
     }, function(){
         unmaskcall && unmaskcall();
     })
-
 }
 function sureMT(){
     var data = billForm.getData();
@@ -2336,13 +2335,21 @@ function setPkgSaleMans(){
         	        	var data = iframe.contentWindow.getData();
         	        	saleManNameBat = data.emlpszName;
         	        	saleManIdBat = data.emlpszId;
-        	        	surePkgSaleMansSetWin(main);
+        	        	var row = rpsPackageGrid.findRow(function(row){
+                    		if(row.billPackageId==0){
+                    			var saleMan = rpsPackageGrid.getCellEditor("saleMan", row);
+                    			saleMan.setValue(data.emlpszName);
+                		        row.saleManId = data.emlpszId;
+                    		}
+                        });
+        	        	//surePkgSaleMansSetWin(main);
         			}
         		}
         	});
         }
     }
 }
+
 
 function surePkgSaleMansSetWin(main){
     var data =  main;
@@ -2422,6 +2429,7 @@ function sureItemPartSaleManSetWin(){
         if(status == 2){
             showMsg("工单已完工,不能修改!","W");
             advancedItemPartSaleManSetWin.hide();
+             
             return;
         }else{
             var isSettle = data.isSettle||0;
@@ -2430,8 +2438,25 @@ function sureItemPartSaleManSetWin(){
                 return;
             }
             serviceId = data.id||0;
-           
-            if(saleManIdBat){
+            var row = rpsItemGrid.findRow(function(row){
+        		if(row.billItemId==0){
+        			if(saleManNameBat){
+        				var saleMan = rpsItemGrid.getCellEditor("saleMan", row);
+            			saleMan.setValue(saleManNameBat);
+        		        row.saleManId = saleManIdBat;
+        			}
+        			
+        		}else{
+        			if(saleManIdBat2){
+        				var saleMan = rpsItemGrid.getCellEditor("saleMan", row);
+            			saleMan.setValue(saleManNameBat2);
+        		        row.saleManId = saleManIdBat2;
+        			}
+        			
+        		}
+            });
+            advancedItemPartSaleManSetWin.hide();
+            /*if(saleManIdBat){
             	if(saleManIdBat2){
             		var params = {
                             data:{
@@ -2472,8 +2497,8 @@ function sureItemPartSaleManSetWin(){
                 el: document.body,
                 cls: 'mini-mask-loading',
                 html: '处理中...'
-            });
-            svrSetPkgSaleMansBatch(params, function(data){
+            });*/
+            /*svrSetPkgSaleMansBatch(params, function(data){
                 data = data||{};
                 var errCode = data.errCode||"";
                 var errMsg = data.errMsg||"";
@@ -2501,7 +2526,7 @@ function sureItemPartSaleManSetWin(){
                 nui.unmask(document.body);
             }, function(){
                 nui.unmask(document.body);
-            });
+            });*/
         }
     } 
 }
@@ -2793,9 +2818,9 @@ var __saleManId="";*/
 
 var falg="Y";
 function chooseItem(){
-    var main = billForm.getData();
-    var isSettle = main.isSettle||0;
-    var status = main.status||0;
+    var data = billForm.getData();
+    var isSettle = data.isSettle||0;
+    var status = data.status||0;
     if(isSettle == 1){
         showMsg("工单已结算,不能添加项目!","W");
         return;
@@ -2804,7 +2829,6 @@ function chooseItem(){
         showMsg("工单已完工,不能添加项目!","W");
         return;
     }
-    var data = billForm.getData();
 	var desData = describeForm.getData();
 	for(var v in desData){
 	      data[v] = desData[v];
@@ -2824,32 +2848,34 @@ function chooseItem(){
   	  showMsg("进厂里程不能小于上次里程","W");
   	  return;
   	}
-    if(!main.id || falg=="N"){
+    if(!data.id || falg=="N"){
        // showMsg("请选择保存工单!","S");
        // return;
       falg="Y";
 	  saveNoshowMsg(function(){
+		  var main = billForm.getData();
 		  var param = {};
 	      param.carModelIdLy = main.carModelIdLy;
 	      param.serviceId = main.id;
 	      doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
-		    main = billForm.getData();
-	        var p1 = { }
-	        var p2 = {
-	            interType: "item",
-	            data:{
-	                serviceId: main.id||0
-	            }
-	        };
-	        var p3 = {};
-	        loadDetail(p1, p2, p3,main.status);
+			     main = billForm.getData();
+			     var p1 = { }
+			     var p2 = {
+			         interType: "item",
+			         data:{
+			             serviceId: main.id||0
+			         }
+			     };
+			     var p3 = {};
+			     loadDetail(p1, p2, p3,main.status);
 	    }); 
 	  });
     }else{
+    	var main = billForm.getData();
     	var param = {};
         param.carModelIdLy = main.carModelIdLy;
         param.serviceId = main.id;
-    	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
+    	doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
     		    main = billForm.getData();
     	        var p1 = { }
     	        var p2 = {
@@ -2866,9 +2892,9 @@ function chooseItem(){
 }
 
 function choosePackage(){
-    var main = billForm.getData();
-    var isSettle = main.isSettle||0;
-    var status = main.status||0;
+    var data = billForm.getData();
+    var isSettle = data.isSettle||0;
+    var status = data.status||0;
     if(status == 2){
         showMsg("工单已完工,不能添加套餐!","W");
         return;
@@ -2877,7 +2903,6 @@ function choosePackage(){
         showMsg("工单已结算,不能添加套餐!","W");
         return;
     }
-    var data = billForm.getData();
 	var desData = describeForm.getData();
 	for(var v in desData){
 	      data[v] = desData[v];
@@ -2897,11 +2922,12 @@ function choosePackage(){
   	  showMsg("进厂里程不能小于上次里程","W");
   	  return;
   	}
-    if(!main.id || falg=="N"){
+    if(!data.id || falg=="N"){
        // showMsg("请选择保存工单!","S");
        // return;
       falg="Y";
 	  saveNoshowMsg(function(){
+		var main = billForm.getData();
 		var param = {};
 	    param.carModelIdLy = main.carModelIdLy;
 	    param.serviceId = main.id;
@@ -2919,6 +2945,7 @@ function choosePackage(){
 	    });
 	  });
     }else{
+    	var main = billForm.getData();
     	var param = {};
         param.carModelIdLy = main.carModelIdLy;
         param.serviceId = main.id;
@@ -2934,8 +2961,7 @@ function choosePackage(){
             var p3 = {};
             loadDetail(p1, p2, p3,main.status);
         });
-    } 
-    
+    }   
 }
 
 function addToBillPackage(row, callback, unmaskcall){
@@ -4743,7 +4769,7 @@ function savePkg(){
                 var item = {
                     id: row.id,
                     serviceId: row.serviceId,
-                    workerIds:row.workerIds,
+                    workerIds:row.workersId,
                     workers:row.workers,
                     planFinishDate:row.planFinishDate
                 }

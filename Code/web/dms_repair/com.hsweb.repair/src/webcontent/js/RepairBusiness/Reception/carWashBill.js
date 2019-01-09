@@ -1291,10 +1291,24 @@ function saveMaintain(callback,unmaskcall){
 	};
 svrSaveMaintain(params, function(text){
     var errCode = text.errCode||"";
+    var err = "S";
     if(errCode == "S") {
+    	 var main = text.data||{};
+         fserviceId = main.id||0;
+    	//保存成功之后，执行确定维修接口，执行一次
+        svrSureMT(params, function(data){
+             data = data||{};
+             var errCode = data.errCode||"";
+             var errMsg = data.errMsg||"";
+             if(errCode == 'S'){
+            	 err = "S";
+             }else{
+            	 err = "E";
+             }
+         }, function(){
+             //nui.unmask(document.body);
+         });
         unmaskcall && unmaskcall();
-        var main = text.data||{};
-        fserviceId = main.id||0;
         callback && callback(main);
     } else {
         unmaskcall && unmaskcall();
@@ -3476,23 +3490,40 @@ function chooseItem(){
        // showMsg("请选择保存工单!","S");
        // return;
       falg="Y";
-	  saveNoshowMsg();
+	  saveNoshowMsg(function(){
+		var param = {};
+	    param.carModelIdLy = main.carModelIdLy;
+	    param.serviceId = "xm"+main.id;//洗美开单默认查询洗美项目
+		doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
+			    main = billForm.getData();
+		        var p1 = { }
+		        var p2 = {
+		            interType: "item",
+		            data:{
+		                serviceId: main.id||0
+		            }
+		        };
+		        var p3 = {};
+		        loadDetail(p1, p2, p3);
+		    });	  
+	  });
+    }else{
+        var param = {};
+	    param.carModelIdLy = main.carModelIdLy;
+	    param.serviceId = "xm"+main.id;//洗美开单默认查询洗美项目
+		doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
+			    main = billForm.getData();
+		        var p1 = { }
+		        var p2 = {
+		            interType: "item",
+		            data:{
+		                serviceId: main.id||0
+		            }
+		        };
+		        var p3 = {};
+		        loadDetail(p1, p2, p3);
+		    }); 
     }
-    var param = {};
-    param.carModelIdLy = main.carModelIdLy;
-    param.serviceId = "xm"+main.id;//洗美开单默认查询洗美项目
-	 doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
-		    main = billForm.getData();
-	        var p1 = { }
-	        var p2 = {
-	            interType: "item",
-	            data:{
-	                serviceId: main.id||0
-	            }
-	        };
-	        var p3 = {};
-	        loadDetail(p1, p2, p3);
-	    }); 
 }
 
 /*function choosePackage(){

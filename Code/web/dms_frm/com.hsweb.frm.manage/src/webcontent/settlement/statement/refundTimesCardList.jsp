@@ -9,9 +9,9 @@
   - Description:
 -->
 <head>
-<title>储值卡退款</title>
+<title>计次卡退款</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/refundList.js?v=1.0.9"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/refundTimesCardList.js?v=1.0.9"></script>
     <style type="text/css">
         body { 
             margin: 0;
@@ -107,38 +107,49 @@
         </table>
       </div>
 
-				<div class="nui-fit">
-					<div id="datagrid1" dataField="data" class="nui-datagrid"
-						pageSize="50" onDrawCell="onDrawCell"
-						onselectionchanged="selectionChanged" onrowclick=""
-						allowSortColumn="true" style="width: 100%; height: 100%;">
-						<div property="columns">
-							<div type="indexcolumn">序号</div>
-							<div field="id" headerAlign="center" allowSort="true"
-								visible="false">会员卡ID</div>
-							<div field="guestName" headerAlign="center" align="center"
-								allowSort="true">客户名称</div>
-							<div field="cardName" headerAlign="center" align="center"
-								allowSort="true">会员卡名称</div>
-							<div field="rechargeAmt" headerAlign="center" align="center"
-								allowSort="true">充值金额</div>
-							<div field="giveAmt" headerAlign="center" align="center"
-								allowSort="true">赠送金额</div>
-							<div field="totalAmt" headerAlign="center" align="center"
-								allowSort="true">总金额</div>
-							<div field="useAmt" headerAlign="center" align="center"
-								allowSort="true">已使用金额</div>
-							<div field="balaAmt" headerAlign="center" align="center"
-								allowSort="true">剩余金额</div>	
-							<div field="refundAmt" headerAlign="center" align="center"
-								allowSort="true">已退款金额</div>									
-							<div field="saleMan" headerAlign="center" align="center"
-								allowSort="true">销售员</div>
-							<div field="recordDate"  align="center"
-								headerAlign="center" dateFormat="yyyy-MM-dd HH:ss" allowSort="true">充值日期</div>
-						</div>
-					</div>
+	<div class="nui-fit">
+		<div id="datagrid1" dataField="params" class="nui-datagrid"
+			pageSize="50" onDrawCell="onDrawCell"  		
+			     showPager="true"    
+                    totalField="page.count"
+                    sortMode="client"
+                    allowCellSelect="true"
+                    allowCellEdit="true"
+                    showModified="false"
+                   allowCellWrap = "true"
+			      allowSortColumn="true" style="width: 100%;height:100% ">
+			<div property="columns">
+				<!-- <div type="indexcolumn"></div>-->
+				<div type="checkcolumn" ></div> 
+				
+				
+				<div field="fullName" headerAlign="center" allowSort="true"
+					>姓名</div>
+				
+				<div field="mobile" headerAlign="center" allowSort="true"  >
+					电话</div>
+
+				<!-- <div field="carOn" headerAlign="center" allowSort="true">
+					车牌号</div> -->
+				<div field="cardName" headerAlign="center" allowSort="true">
+				  计次卡名称</div>
+				
+				 <div field="userTimes" headerAlign="center" allowSort="true">
+					使用情况
 				</div>
+					<div field="periodValidity" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">
+					有效期</div> 
+				<div field="sellAmt" headerAlign="center" allowSort="true">
+					充值金额</div>
+				<div field="isRefund" headerAlign="center" allowSort="true">
+				是否退款</div>
+				<div field="refunder" headerAlign="center" allowSort="true">
+				退款人</div>				
+				<div field="refundDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">
+					退款日期</div> 
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>

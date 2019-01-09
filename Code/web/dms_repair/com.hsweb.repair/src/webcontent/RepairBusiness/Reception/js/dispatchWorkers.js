@@ -212,6 +212,7 @@ function dispatchOk(){
 	var emlpszId ="";
 	var emlpszName ="";
 	var serviceTypeIdList = serviceTypeIds.getValue();
+	serviceTypeIdList = serviceTypeIdList.split(",");
 	if(emlpsz.length==0){
 		showMsg("请选择施工员！","W");
 		return;
@@ -238,8 +239,7 @@ function dispatchOk(){
 			emlpszId :emlpszId,
 			emlpszName:emlpszName,
 			planFinishDate:nui.get("planFinishDate").getValue(),
-			serviceTypeIds:serviceTypeIdList,
-			type:type
+			serviceTypeIds:serviceTypeIdList
 	};
 	CloseWindow("ok");
 

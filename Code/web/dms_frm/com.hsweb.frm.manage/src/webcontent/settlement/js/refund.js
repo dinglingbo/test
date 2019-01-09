@@ -15,7 +15,6 @@ function setData(params){
 	card = params.row;
 	form.setData(params.row||{});
 	nui.get("guestName").disable();
-	nui.get("mobile").disable();
 	nui.get("cardName").disable();
 	nui.get("balaAmt").disable();
 	nui.get("rechargeAmt").disable();

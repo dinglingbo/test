@@ -12,7 +12,7 @@
 <title>储值卡退款</title>
 
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/refund.js?v=1.1.4"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/refund.js?v=1.1.5"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
         <style type="text/css">
@@ -67,12 +67,6 @@ body,
 							</td>
 							<td align="left">
 								<input class="nui-textbox" id="guestName" name="guestName" width="100"  />
-							</td>
-							<td align="right">
-								电话：			
-							</td>
-							<td align="left">
-								<input class="nui-textbox" id="mobile" name="mobile" width="100"  />
 							</td>
 						</tr>
 						

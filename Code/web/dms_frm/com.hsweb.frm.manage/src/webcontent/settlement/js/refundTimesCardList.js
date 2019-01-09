@@ -3,7 +3,7 @@
  */
 var baseUrl = apiPath + repairApi + "/";
 var queryCardUrl = baseUrl
-+"com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
++"com.hsapi.repair.baseData.cardTimes.queryCardTimesList.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var grid = null;
 var servieTypeList = [];
@@ -109,42 +109,40 @@ function setGuest(item){
 
 
 
+//计次卡退款
 function refund(){
-	var row = grid.getSelected();
-	if(row){
-		
-	}else{
-		showMsg("请选一张储值卡!","W");
-		return;
+		var row = grid.getSelected();
+		if(row){
+			
+		}else{
+			showMsg("请选一张储值卡!","W");
+			return;
+		}
+		nui.open({
+	        url: webPath + contextPath +"/com.hsweb.frm.manage.refundPay.flow?token="+token,
+	         width: "100%", height: "100%", 
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            var data = {
+	            		card:row,
+	            		payAmt:row.sellAmt,
+	            		typeCard:1
+	            }
+	            iframe.contentWindow.setData(data);
+	        },
+			ondestroy : function(action) {// 弹出页面关闭前
+				if (action == "saveSuccess") {
+					showMsg("退款成功!", "S");
+					var query = queryForm.getData();
+					grid.load({
+				    	query:query,
+				    	token : token
+				    });
+
+				}
+			}
+	    });
 	}
-    nui.open({
-        targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.frm.manage.refund.flow?token="+token,
-        title: "储值卡退款", width: 450, height: 360,
-        allowDrag:true,
-        allowResize:true,
-        onload: function ()
-        {
-            var iframe = this.getIFrameEl();
-            var params = {
-                card : 1,//储值卡
-                row:row
-            };
-            iframe.contentWindow.setData(params);
-        },
-        ondestroy: function (action)
-        {
-            if(action == 'saveSuccess')
-            {
-				showMsg("退款成功!", "S");
-			    grid.load({
-			    	guestId: guestId,
-			    	token : token
-			    });
-            }
-        }
-    });
-}
 
 
 

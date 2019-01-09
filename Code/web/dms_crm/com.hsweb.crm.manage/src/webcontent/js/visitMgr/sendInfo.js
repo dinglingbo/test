@@ -2,7 +2,7 @@ var webBaseUrl = webPath + contextPath + "/";
 var form1 = null;
 var phones = "";
 var visitContent = null;
-var baseUrl = apiPath + sysApi + "/";
+var baseUrl = apiPath + systemApi + "/";
 var sendUrl = baseUrl+"com.hsapi.system.basic.smsPush.testPush.biz.ext";
 $(document).ready(function (){
 	

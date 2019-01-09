@@ -23,15 +23,9 @@ $(document).ready(function (v)
     endDate.setValue(date);
     
     
-    var params = {
-    		startDate:sdate,
-    		endDate:date
-    }; 
+ 
     grid.setUrl(queryFormUrl);
-    grid.load({
-    	params:params,
-    	token : token
-    });
+
        
 });
 
@@ -39,6 +33,13 @@ $(document).ready(function (v)
     
 
 var hash = new Array("计次卡退款","储值卡退款");
+
+function setData(params){
+    grid.load({
+    	params:params,
+    	token : token
+    });
+}
 
  function onDrawCell(e)
   {

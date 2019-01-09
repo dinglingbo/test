@@ -384,24 +384,28 @@ function onOk()
         return;
     }
     resultData = {
-        type:type,
-        rtnRow:nodec
+            type:type,
+            rtnRow:nodec
     };
-
-    if(parent && parent.addPrdt){
-        //需要判断是否已经添加相同 套餐，工时或是配件
-        if(parent && parent.checkPrdt){
-            var checkMsg = parent.checkPrdt(resultData);
-            if(checkMsg) {
-                parent.showMsg(checkMsg,"W");
-            }else{
-                //弹出数量，单价和金额的编辑界面
-                parent.addPrdt(resultData);
-            }
-        }else{
-            parent.addPrdt(resultData);
-        }
+    if(parent && parent.saveNoshowMsg){
+    	parent.saveNoshowMsg(function(){
+    		if(parent && parent.addPrdt){
+    	        //需要判断是否已经添加相同 套餐，工时或是配件
+    	        if(parent && parent.checkPrdt){
+    	            var checkMsg = parent.checkPrdt(resultData);
+    	            if(checkMsg) {
+    	                parent.showMsg(checkMsg,"W");
+    	            }else{
+    	                //弹出数量，单价和金额的编辑界面
+    	                parent.addPrdt(resultData);
+    	            }
+    	        }else{
+    	            parent.addPrdt(resultData);
+    	        }
+    	    }
+    	})
     }
+  
 }
 function getData(){
     return resultData;

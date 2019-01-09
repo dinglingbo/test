@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>耗材出库</title>
-    <script src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=1.0.52"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.0"></script>
     <style type="text/css">
     html,body {
        margin: 0;
@@ -38,6 +38,17 @@ pageEncoding="UTF-8" session="false"%>
                 <table id="top"style="width:100%;">
                     <tr>
                         <td style="width:100%;">
+                           <label style="font-family:Verdana;">快速查询：</label>
+                            <a class="nui-menubutton" menu="#popupMenuDate2" id="menunamedate2">所有</a>
+                            <ul id="popupMenuDate2" class="nui-menu" style="display:none;">
+                                <li iconCls="" onclick="quickMorePartSearch(0)" id="type0">所有</li>
+			                    <li iconCls="" onclick="quickMorePartSearch(1)" id="type1">本日</li>
+			                    <li iconCls="" onclick="quickMorePartSearch(2)" id="type2">本周</li>
+			                </ul>
+			                <label style="font-family:Verdana;" style="display:none;">入库日期 从：</label>
+			                <input style="" class="nui-datepicker" id="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+			                <label style="font-family:Verdana;" style="display:none;">至</label>
+			                <input style=""class="nui-datepicker" id="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                             <input class="nui-textbox" width="100px" id="morePartCode" name="morePartCode" selectOnFocus="true" enabled="true" emptyText="编码"/>
                             <input class="nui-textbox" width="100px" id="morePartName" emptyText="名称"  selectOnFocus="true" name="morePartName"/>
                             <input class="nui-textbox" width="100px" id="storeShelf" emptyText="仓位"  selectOnFocus="true" name="storeShelf"/>

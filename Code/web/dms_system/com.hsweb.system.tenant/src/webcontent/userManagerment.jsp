@@ -73,7 +73,7 @@
         <div class="nui-fit">
             <div id="datagrid1" class="nui-datagrid gridborder" style="width: 100%; height:100%;"
             bodyStyle="padding:0;border:0;" url="" idField="id" allowResize="true" dataField="rs" 
-            sizeList="[20,30,50,100]" pageSize="20" frozenStartColumn="0" frozenEndColumn="3">
+            sizeList="[20,30,50,100]"  frozenStartColumn="0" frozenEndColumn="3" pageSize="20" showPageInfo="true">
             <div property="columns">
             	<div type="checkcolumn" >选择</div>
             	

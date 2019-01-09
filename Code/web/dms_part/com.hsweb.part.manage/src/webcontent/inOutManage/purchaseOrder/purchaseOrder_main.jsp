@@ -42,7 +42,7 @@
 <!-- 				<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(13)">待发货</a> -->
 <!--                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(14)">待收货</a> -->
 <!--                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(15)">已入库</a> -->
-                <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+                <a class="nui-menubutton " menu="#popupMenuDate2" id="menunamedate2">本日</a>
 
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>

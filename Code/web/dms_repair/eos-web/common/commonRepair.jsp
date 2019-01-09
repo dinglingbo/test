@@ -30,8 +30,8 @@
 	window._webRepairUrl = webPath + contextPath + "/";
 	//console.log(window._rootUrl);
 </script>
-<script src="<%=webPath + contextPath%>/common/js/repairUtil.js?v=3.1.5" type="text/javascript"></script>
-<script src="<%=webPath + contextPath%>/common/js/repairSvrUtil.js?v=8.1.13" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/repairUtil.js?v=3.1.6" type="text/javascript"></script>
+<script src="<%=webPath + contextPath%>/common/js/repairSvrUtil.js?v=8.1.14" type="text/javascript"></script>
 <style type="text/css">
 	html,
 	body {

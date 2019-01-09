@@ -212,6 +212,7 @@ function dispatchOk(){
 	var emlpszId ="";
 	var emlpszName ="";
 	var serviceTypeIdList = serviceTypeIds.getValue();
+	serviceTypeIdList = serviceTypeIdList.split(",");
 	if(emlpsz.length==0){
 		showMsg("请选择施工员！","W");
 		return;
@@ -233,8 +234,16 @@ function dispatchOk(){
 		
 	}
 
+    nui.unmask(document.body);
+	data = {
+			emlpszId :emlpszId,
+			emlpszName:emlpszName,
+			planFinishDate:nui.get("planFinishDate").getValue(),
+			serviceTypeIds:serviceTypeIdList
+	};
+	CloseWindow("ok");
 
-	var json = {
+/*	var json = {
 			serviceId :serviceId,
 			workerIds :emlpszId,
 			workers: emlpszName,
@@ -266,7 +275,7 @@ function dispatchOk(){
 			}
 
 		}
-	});
+	});*/
 }
 
 function times(id){

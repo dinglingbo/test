@@ -11,7 +11,7 @@
 <head>
 <title>退款记录</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/refundRecord.js?v=1.0.3"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/refundRecord.js?v=1.0.4"></script>
 </head>
 
 <body>

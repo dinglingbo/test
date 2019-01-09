@@ -3,7 +3,7 @@
  */
 var baseUrl = apiPath + repairApi + "/";
 var queryCardUrl = baseUrl
-+"com.hsapi.repair.baseData.query.queryStoredRecord.biz.ext";
++"com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var grid = null;
 var servieTypeList = [];
@@ -11,6 +11,7 @@ var searchKeyEl = null;
 var searchNameEl = null;
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
+	grid.setUrl(queryCardUrl);
 	searchKeyEl = nui.get("search_key");
 	searchNameEl = nui.get("search_name");
     searchKeyEl.setUrl(guestInfoUrl);
@@ -73,6 +74,7 @@ function setGuest(item){
     var tel = item.guestMobile||"";
     var guestName = item.guestFullName||"";
     var carVin = item.vin||"";
+    var guestId = item.guestId||"";
     var sk = document.getElementById("search_key");
     sk.style.display = "none";
     searchNameEl.setVisible(true);
@@ -88,6 +90,11 @@ function setGuest(item){
     }
     var t = carNo + tel + guestName + carVin;
     searchNameEl.setValue(t);
+    
+    grid.load({
+    	guestId: guestId,
+    	token : token
+    });
     //searchNameEl.setEnabled(false);
 
 }

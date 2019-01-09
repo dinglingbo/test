@@ -233,8 +233,17 @@ function dispatchOk(){
 		
 	}
 
+    nui.unmask(document.body);
+	data = {
+			emlpszId :emlpszId,
+			emlpszName:emlpszName,
+			planFinishDate:nui.get("planFinishDate").getValue(),
+			serviceTypeIds:serviceTypeIdList,
+			type:type
+	};
+	CloseWindow("ok");
 
-	var json = {
+/*	var json = {
 			serviceId :serviceId,
 			workerIds :emlpszId,
 			workers: emlpszName,
@@ -266,7 +275,7 @@ function dispatchOk(){
 			}
 
 		}
-	});
+	});*/
 }
 
 function times(id){

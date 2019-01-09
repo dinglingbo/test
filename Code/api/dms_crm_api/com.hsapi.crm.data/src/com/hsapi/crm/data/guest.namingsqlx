@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType" />
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId" />
+    </resultMap>
+
+    <sql id="guest_column">
+    	SELECT
+        a.id,
+        a.tenant_id tenantId,
+        a.orgid,
+        a.car_no carNo,
+        a.car_model carNodel,
+		c.full_name name,
+		c.mobile 
+        FROM
+        rpb_car a 
+        INNER JOIN rpb_car_extend b  ON a.id = b.car_id
+LEFT JOIN wb_common.com_guest c on c.id = a.guest_id
+    </sql>
+    <!-- 首修车辆  最近一个月的首次消费车辆-->
+    <select id="getGuestTypeA" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column" />
+
+        WHERE A.ORGID = #orgid#
+        AND CHAIN_COME_TIMES = 1
+        AND DATE_SUB(CURDATE(), INTERVAL 1 MONTH) &lt;= DATE(LAST_LEAVE_DATE) 
+    </select> 
+
+        <!-- 活跃期  来店2次（含）2次，且30天内消费过车辆-->
+    <select id="getGuestTypeB" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column" />
+        WHERE A.ORGID = #orgid#
+        AND CHAIN_COME_TIMES > 2
+        AND DATE_SUB(CURDATE(), INTERVAL 1 MONTH) &lt;= DATE(LAST_LEAVE_DATE)
+    </select> 
+
+        <!-- 稳定期  来店2次（含）2次，且31-90天内消费过车辆-->
+    <select id="getGuestTypeC" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column" /> 
+        WHERE A.ORGID = #orgid#
+        AND CHAIN_COME_TIMES >= 2
+        AND DATE_SUB(CURDATE(), INTERVAL 30 DAY) > DATE(LAST_LEAVE_DATE)
+        AND DATE_SUB(CURDATE(), INTERVAL 90 DAY) &lt;= DATE(LAST_LEAVE_DATE)
+    </select> 
+
+        <!-- 睡眠期 离店天数在 91-180 天内-->
+    <select id="getGuestTypeD" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column" />
+        WHERE A.ORGID = #orgid#
+        AND CHAIN_COME_TIMES > 0
+        AND DATE_SUB(CURDATE(), INTERVAL 90 DAY) > DATE(LAST_LEAVE_DATE)
+        AND DATE_SUB(CURDATE(), INTERVAL 180 DAY) &lt;= DATE(LAST_LEAVE_DATE)
+    </select> 
+
+    <!-- 流失期  离店天数超 181 天以上-->
+    <select id="getGuestTypeE" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/>
+        WHERE A.ORGID = #orgid#
+        AND CHAIN_COME_TIMES  &gt; 0
+        AND DATE_SUB(CURDATE(), INTERVAL 180 DAY) &gt; DATE(LAST_LEAVE_DATE)
+    </select>
+    
+        <!-- 未分类-->
+    <select id="getGuestTypeF" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/>
+        WHERE A.ORGID = #orgid#
+        AND CHAIN_COME_TIMES  &lt; 1
+    </select> 
+    
+    <!-- 所有-->
+    <select id="getGuestTypeG" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+        <include refid="guest_column"/>
+        WHERE A.ORGID = #orgid#
+    </select>
+
+</sqlMap>

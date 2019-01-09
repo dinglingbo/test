@@ -33,7 +33,8 @@ var detail = null;
 var serviceId = null;
 var sCreateDateEl=null;
 var eCreateDateEl =null;
-
+var sEnterDateEl =null;
+var eEnterDateEl =null;
 $(document).ready(function(v) {
 
 	queryInfoForm = new nui.Form("#queryInfoForm").getData(false, false);
@@ -44,6 +45,8 @@ $(document).ready(function(v) {
 	grid.on("drawcell", onDrawCell);
 	sCreateDateEl=nui.get("sCreateDate");
 	eCreateDateEl=nui.get("eCreateDate");
+	sEnterDateEl = nui.get('sEnterDate');
+	eEnterDateEl = nui.get('eEnterDate');
 	getNowFormatDate();
 
 	quickSearch(4);
@@ -247,7 +250,46 @@ $(document).ready(function(v) {
 	morePartSearch();
 });
 
+function quickMorePartSearch(type){
+    var queryname = "所有";
+    var params={};
+    switch (type)
+    {
+        case 0:
+            params.today = 1;
+            params.sEnterDate = null;
+            params.eEnterDate = null;
+            queryname = "所有";
+            sEnterDateEl.setValue(null);
+    		eEnterDateEl.setValue(null);
+    		morePartSearch();
+            break;
+        case 1:
+            params.today = 1;
+            params.sEnterDate = getNowStartDate();
+            params.eEnterDate = addDate(getNowEndDate(), 1);
+            queryname = "本日";
+            sEnterDateEl.setValue(params.sEnterDate);
+    		eEnterDateEl.setValue(addDate(params.eEnterDate,-1));
+    		morePartSearch();
+            break;
+        case 2:
+            params.thisWeek = 1;
+            params.sEnterDate = getWeekStartDate();
+            params.eEnterDate = addDate(getWeekEndDate(), 1);
+            queryname = "本周";
+            sEnterDateEl.setValue(params.sEnterDate);
+    		eEnterDateEl.setValue(addDate(params.eEnterDate,-1));
+    		morePartSearch();
+            break;
+        default:
+            break;
+    }
 
+    currType = type;
+    var menunamedate = nui.get("menunamedate2");
+    menunamedate.setText(queryname);
+}
 function quickSearch(type){
     var params = getSearchParams();
     var querysign = 1;
@@ -413,7 +455,11 @@ function morePartSearch() {
 	params.serviceId = moreServiceIdEl.getValue();
 	params.partBrandId = nui.get('partBrandId').getValue();
 	var sortTypeValue = sortTypeEl.getValue();
-
+  if(eEnterDateEl.getFormValue()){ 
+    params.eEnterDate= addDate(eEnterDateEl.getFormValue(),1);
+  }
+  params.sEnterDate = nui.get('sEnterDate').getFormValue();
+  
 	if (!params.partCode && !params.partName && !params.serviceId
 			&& !params.partBrandId && !sortTypeValue) {
 		showMsg("请输入查询条件!", "W");

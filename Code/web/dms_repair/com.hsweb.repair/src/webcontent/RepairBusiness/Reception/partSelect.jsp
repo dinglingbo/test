@@ -72,10 +72,10 @@
                     <li iconCls="" onclick="quickSearch(1)" id="type1">本日</li>
                     <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
                 </ul>
-<!--               	<label style="font-family:Verdana;" style="display:none;">入库日期 从：</label> -->
-                <input style="display:none;" class="nui-datepicker" id="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
-<!--                 <label style="font-family:Verdana;" style="display:none;">至</label> -->
-                <input style="display:none;"class="nui-datepicker" id="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+              	<label style="font-family:Verdana;" style="display:none;">入库日期 从：</label>
+                <input style="" class="nui-datepicker" id="sEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+                <label style="font-family:Verdana;" style="display:none;">至</label>
+                <input style=""class="nui-datepicker" id="eEnterDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <input class="nui-textbox" id="partCode" name="partCode" emptyText="按配件编码查询" width="100"  onenter="onSearch"/>
                 <input class="nui-textbox" id="partNameAndPY" name="partName" emptyText="按名称查询" width="100"  onenter="onSearch"/>
                 <input class="nui-textbox" id="storeShelf" name="storeShelf" emptyText="按仓位查询" width="90"  onenter="onSearch"/>

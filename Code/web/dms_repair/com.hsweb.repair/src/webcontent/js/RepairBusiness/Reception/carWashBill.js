@@ -1296,7 +1296,7 @@ svrSaveMaintain(params, function(text){
     	 var main = text.data||{};
          fserviceId = main.id||0;
     	//保存成功之后，执行确定维修接口，执行一次
-        svrSureMT(params, function(data){
+        /*svrSureMT(params, function(data){
              data = data||{};
              var errCode = data.errCode||"";
              var errMsg = data.errMsg||"";
@@ -1307,7 +1307,7 @@ svrSaveMaintain(params, function(text){
              }
          }, function(){
              //nui.unmask(document.body);
-         });
+         });*/
         unmaskcall && unmaskcall();
         callback && callback(main);
     } else {

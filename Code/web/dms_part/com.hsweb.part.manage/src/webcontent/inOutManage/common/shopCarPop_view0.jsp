@@ -12,7 +12,7 @@
 <script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/shopCartPop.js?v=1.0.1"></script>
 <style type="text/css">
 .title {
-	width: 60px;
+	width: 80px;
 	text-align: right;
 }
 

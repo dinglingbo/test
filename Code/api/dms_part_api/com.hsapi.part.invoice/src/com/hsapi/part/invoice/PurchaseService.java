@@ -208,14 +208,30 @@ public class PurchaseService {
 				"cfg", "SRMAPI", envType);
 		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
 				//apiurl + "srm/router/rest?token="+access_token;
+		if(count==0) {
+			count = 20;
+		}
+		if(currpage == 0) {
+			currpage = 1;
+		}
 		Map main = new HashMap();   
 		main.put("type", 1); //固定值 1
 		main.put("method", "base.partQuery.partSkuList");
-		main.put("brandId", brandId); //品牌ID
-		main.put("carId", carId);  //厂牌ID
-		main.put("categoryF_id", categoryF);  //车身分类一级ID
-		main.put("categoryS_id", categoryS);  //车身分类二级ID
-		main.put("categoryT_id", categoryT);  //车身分类三级ID
+		if(brandId != null && !brandId.equals("")) {
+			main.put("brandId", brandId); //品牌ID
+		}
+		if(carId != null && !carId.equals("")) {
+			main.put("carId", carId);  //厂牌ID
+		}
+		if(categoryF != null && !categoryF.equals("")) {
+			main.put("categoryF_id", categoryF);  //车身分类一级ID
+		}
+		if(categoryS != null && !categoryS.equals("")) {
+			main.put("categoryS_id", categoryS);  //车身分类二级ID
+		}
+		if(categoryT != null && !categoryT.equals("")) {
+			main.put("categoryT_id", categoryT);  //车身分类三级ID
+		}
 		main.put("count", count);  //	每页显示条数
 		main.put("currpage", currpage);  //当前 页码
 		main.put("key", key);
@@ -240,8 +256,8 @@ public class PurchaseService {
 					"application/json;charset=UTF-8");
 			con.setRequestProperty("accept", "application/json,text/plain,*/*");
 
-			con.setConnectTimeout(20000);// 连接超时 单位毫秒
-			con.setReadTimeout(20000);// 读取超时 单位毫秒
+			//con.setConnectTimeout(20000);// 连接超时 单位毫秒
+			//con.setReadTimeout(20000);// 读取超时 单位毫秒
 			if (json != null && json.length() > 0) {
 				osw = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
 				osw.write(json);

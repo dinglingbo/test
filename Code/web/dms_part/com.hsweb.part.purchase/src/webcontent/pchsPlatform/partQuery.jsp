@@ -1,0 +1,121 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" session="false" %>
+<%@include file="/common/commonPart.jsp"%>
+<html>
+<!-- 
+  - Author(s): Administrator
+  - Date: 2019-01-10 10:18:54
+  - Description:
+-->
+<head>
+<title>配件查询</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.36"></script>
+    <style type="text/css">
+		.table-label {
+			text-align: right;
+		}
+		a.chooseClass{ background:#578ccd; font-size:13px; color:#fff; text-decoration:none;  padding:0px 8px; border-radius:20px;}
+		a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
+</style>
+</head>
+<body>
+	 <input class="nui-combobox" visible="false" id="unit"/>
+     <input class="nui-combobox" visible="false" id="abcType"/>
+<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
+	<input class="nui-textbox" id="state"visible="false"/>
+    <div class="form" id="queryForm">
+        <table style="width:100%;">
+            <tr>
+                <td style="white-space:nowrap;">
+                    <label style="font-family:Verdana;">编码：</label>
+                    <input class="nui-textbox" width="100" id="search-code" name="code"/>
+                    <label style="font-family:Verdana;">名称：</label>
+                    <input class="nui-textbox" width="100" id="search-name" name="name"/>
+                    <label style="font-family:Verdana;">品牌车型：</label>
+                    <input class="nui-textbox" width="100" id="search-applyCarModel" name="applyCarModel"/>
+                    <label style="font-family:Verdana;">拼音：</label>
+                    <input class="nui-textbox" width="100" id="search-namePy" name="namePy"/>
+                    <label style="font-family:Verdana;">品牌：</label>
+                     <input id="partBrandId"
+                           name="partBrandId"
+                           class="nui-combobox width1"
+                           textField="name"
+                           valueField="id"
+                           emptyText="请选择品牌"
+                           url=""
+                           allowInput="true"
+                           showNullItem="false"
+                           nullItemText="请选择品牌"/>
+                    <input id="applyCarBrandId"
+                           name="applyCarBrandId"
+                           class="nui-combobox width1"
+                           textField="nameCn"
+                           valueField="id"
+                           emptyText="请选择..."
+                           url=""
+                           style="display:none;"
+                           allowInput="true"
+                           showNullItem="false"
+                           nullItemText="请选择..."/>
+                    <span class="separator"></span>
+                    
+                    <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <label style="font-family:Verdana;">获取token：</label>
+                    <input class="nui-textbox" width="180" id="protoken" name="protoken"/>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="nui-fit">
+    <div class="nui-splitter"
+         allowResize="false"
+         style="width:100%;height:100%;">
+        <div size="210" showCollapseButton="false">
+            <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;text-align: center;">
+                <span>系统分类</span>
+            </div>
+            <div class="nui-fit">
+                <ul id="tree1" class="nui-tree" url="" style="width:100%;"
+                    dataField="partTypes"
+                    ondrawnode="onDrawNode"
+                    onnodedblclick="onNodeDblClick"
+                    showTreeIcon="true" textField="name" idField="id" parentField="parentId" resultAsTree="false">
+                </ul>
+            </div>
+        </div>
+        <div showCollapseButton="false">
+         	<div class="nui-fit" >
+         		 <div id="partGrid" class="nui-datagrid" style="float:left;width:100%;height:100%;"
+	                     borderStyle="border:0;"
+	                     dataField="parts"
+	                     url=""
+	                     idField="id"
+	                     totalField="page.count"
+	                     onrowdblclick="onOk()"
+	                     selectOnLoad="true"
+	                     pageSize="50"
+	                     sortMode="client"
+	                     showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
+		          	 	<div property="columns">
+		          	 		<div type="indexcolumn">序号</div>
+		          	 		<div allowSort="true" field="" width="100" headerAlign="center" allowSort="true">配件内码</div>
+		          	 		<div allowSort="true" field="" width="100" headerAlign="center" allowSort="true">配件编码</div>
+		          	 		<div allowSort="true" field="" width="100" headerAlign="center" allowSort="true">全称</div>
+		          	 		<div allowSort="true" field="" width="100" headerAlign="center" allowSort="true">品质</div>
+		          	 		<div allowSort="true" field="" width="100" headerAlign="center" allowSort="true">厂牌</div>
+		          	 		<div allowSort="true" field="" width="100" headerAlign="center" allowSort="true">库存量</div>
+		          	 		<div allowSort="true" field="" width="100" headerAlign="center" allowSort="true">操作</div>
+		          	 	</div>
+		          </div>
+         	</div>
+        </div>
+   </div>
+</div>
+	<script type="text/javascript">
+    	nui.parse();
+    </script>
+</body>
+</html>

@@ -256,8 +256,8 @@ public class PurchaseService {
 					"application/json;charset=UTF-8");
 			con.setRequestProperty("accept", "application/json,text/plain,*/*");
 
-			//con.setConnectTimeout(20000);// 连接超时 单位毫秒
-			//con.setReadTimeout(20000);// 读取超时 单位毫秒
+			con.setConnectTimeout(20000);// 连接超时 单位毫秒
+			con.setReadTimeout(20000);// 读取超时 单位毫秒
 			if (json != null && json.length() > 0) {
 				osw = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
 				osw.write(json);

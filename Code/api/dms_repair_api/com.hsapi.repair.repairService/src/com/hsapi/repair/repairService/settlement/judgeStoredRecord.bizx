@@ -278,11 +278,11 @@
       <process:to type="query">rpsStoredRecord/refundDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">memRefundAmt+cutAmt</process:from>
+      <process:from type="expression" pattern="reference">memRefundAmt+trueCutAmt</process:from>
       <process:to type="query">joinMem/rechargeRefundAmt</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">memBalaAmt-cutAmt</process:from>
+      <process:from type="expression" pattern="reference">memBalaAmt-trueCutAmt</process:from>
       <process:to type="query">joinMem/rechargeBalaAmt</process:to>
     </process:copy>
   </nodes>

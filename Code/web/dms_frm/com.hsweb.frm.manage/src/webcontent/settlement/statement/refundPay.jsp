@@ -11,7 +11,7 @@
 
 <head>
 	<title>退款结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/refundPay.js?v=1.0.3"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/refundPay.js?v=1.0.6"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -252,14 +252,14 @@
 								
 								<span style="padding-top: 2px;"   id="guestName" name="guestName">></span>
 							</td>
-							<td align="center">
+<!-- 							<td align="center">
 								电话：
 								
 									<span style="padding-top: 2px;" id="mobile" name="mobile"></span>
 								
 								&nbsp;&nbsp;
 								<span name="mobile" id="mobile"></span>
-							</td>
+							</td> -->
 							<td width="320" valign="top" style="position: relative;">
 								<dl>
 									<dt>待付金额：</dt>

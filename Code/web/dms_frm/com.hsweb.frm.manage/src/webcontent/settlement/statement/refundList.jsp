@@ -11,7 +11,7 @@
 <head>
 <title>储值卡退款</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/refundList.js?v=1.0.9"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/refundList.js?v=1.1.5"></script>
     <style type="text/css">
         body { 
             margin: 0;
@@ -36,7 +36,20 @@
         .required {
             color: red;
         }
-
+       
+        a.optbtn {
+            width: 44px;
+            /* height: 26px; */
+            border: 1px #d2d2d2 solid;
+            background: #f2f6f9;
+            text-align: center;
+            display: inline-block;
+            /* line-height: 26px; */
+            margin: 0 4px;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 5px;
+        }
 
 
 .tishi{
@@ -99,9 +112,9 @@
                 enabled="false"
                 showClose="false"
                 allowInput="true"/>
-                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-history fa-lg"></span>&nbsp;切换客户</a>
-                <a class="nui-button" onclick="refund()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款</a>
-				<a class="nui-button" onclick="refundRecord()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款记录</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-history fa-lg"></span>&nbsp;清空</a>
+<!--                 <a class="nui-button" onclick="refund()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款</a>
+				<a class="nui-button" onclick="refundRecord()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款记录</a> -->
             </td> 
           </tr>
         </table>
@@ -109,7 +122,7 @@
 
 				<div class="nui-fit">
 					<div id="datagrid1" dataField="data" class="nui-datagrid"
-						pageSize="50" onDrawCell="onDrawCell"
+						pageSize="50" 
 						onselectionchanged="selectionChanged" onrowclick=""
 						allowSortColumn="true" style="width: 100%; height: 100%;">
 						<div property="columns">
@@ -136,6 +149,7 @@
 								allowSort="true">销售员</div>
 							<div field="recordDate"  align="center"
 								headerAlign="center" dateFormat="yyyy-MM-dd HH:ss" allowSort="true">充值日期</div>
+							<div field="operateBtn" name="operateBtn" align="center" width="100px" headerAlign="center" header="操作"></div>								
 						</div>
 					</div>
 				</div>

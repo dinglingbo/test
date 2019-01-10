@@ -298,6 +298,15 @@
 		LEFT JOIN wb_common.com_guest b on a.guest_id= b.id	
 		where 1 = 1
 			<dynamic>
+			    <isNotEmpty prepend="and" property="mobile"> 
+                    (b.mobile like '%$mobile$%')
+                </isNotEmpty>
+			    <isNotEmpty prepend="and" property="guestName"> 
+                    (a.guest_name like '%$guestName$%' )
+                </isNotEmpty>
+				<isNotEmpty prepend="and" property="carNo"> 
+                    (a.car_no like '%$carNo$%' )
+                </isNotEmpty>
 			    <isNotEmpty prepend="and" property="billDc"> 
                     (a.bill_dc = #billDc#)
                 </isNotEmpty>

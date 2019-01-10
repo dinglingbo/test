@@ -19,7 +19,9 @@
     <location x="645" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
-    <process:returns/>
+    <process:returns>
+      <process:return id="0" language="String" name="data" type="query" valueType="Primitive">data</process:return>
+    </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
     <location x="102" y="186"/>
@@ -58,7 +60,7 @@
       <process:inputVariable id="10" name="userName" type="query" value="java.lang.String" valueType="Java" pattern="reference">m:userObject/userName</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">data</process:outputVariable>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
@@ -81,7 +83,9 @@
     <process:input description="品质名称" isArray="false" name="qualityName" primitiveType="String"/>
     <process:input description="" isArray="false" name="protoken" primitiveType="String"/>
   </process:inputs>
-  <process:outputs/>
+  <process:outputs>
+    <process:output description="" isArray="false" name="data" primitiveType="String"/>
+  </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>
 </process:tBusinessLogic>

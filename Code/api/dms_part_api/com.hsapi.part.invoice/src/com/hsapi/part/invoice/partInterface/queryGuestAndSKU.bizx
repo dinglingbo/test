@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryGuestAndSKU.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="根据SRM往来单位ID，往来单位名称在车道上查询存不存在；                         返回车道往来单位信息&#xD;&#xA;根据SRM上配件内码/（配件编码，配件品牌，配件品质）查询配件是否存在；   返回车道配件基础资料&#xD;&#xA;&#xD;&#xA;不能返回的，后台自动新增，后台新增不能获取到必填写值的，前端弹出新增" title="Administrator&#x9;19-1-10 下午2:40">
+    <location x="60" y="15"/>
+    <size height="100" width="613"/>
+  </nodes>
+  <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
+    <location x="100" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>start0label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
+    <location x="645" y="150"/>
+    <size height="28" width="28"/>
+    <nodeLabel>end0label</nodeLabel>
+    <process:returns/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
+    <location x="102" y="186"/>
+    <figSize height="17" width="25"/>
+    <node>start0</node>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
+    <location x="647" y="186"/>
+    <figSize height="17" width="25"/>
+    <node>end0</node>
+  </nodes>
+  <topRuler/>
+  <leftRuler/>
+  <process:info author="Administrator" createTime="2019-01-10 14:40:05" date="2019-01-10Z" description="" name="queryGuestAndSKU" version="7.0.0.0"/>
+  <process:variables/>
+  <process:inputs varArgs="false">
+    <process:input description="往来单位ID" isArray="false" name="guestId" primitiveType="String"/>
+    <process:input description="往来单位名称" isArray="false" name="guestName" primitiveType="String"/>
+    <process:input description="配件内码" isArray="false" name="partId" primitiveType="String"/>
+    <process:input description="配件编码" isArray="false" name="partCode" primitiveType="String"/>
+    <process:input description="品牌ID" isArray="false" name="brandId" primitiveType="String"/>
+    <process:input description="品牌名称" isArray="false" name="brandName" primitiveType="String"/>
+    <process:input description="品质ID" isArray="false" name="qualityId" primitiveType="String"/>
+    <process:input description="品质名称" isArray="false" name="qualityName" primitiveType="String"/>
+  </process:inputs>
+  <process:outputs/>
+  <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
+</process:tBusinessLogic>

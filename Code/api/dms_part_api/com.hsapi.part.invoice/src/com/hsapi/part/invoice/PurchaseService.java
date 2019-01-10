@@ -20,6 +20,8 @@ import org.apache.commons.collections.CollectionUtils;
 
 import net.sf.json.JSONObject;
 
+import com.eos.data.datacontext.DataContextManager;
+import com.eos.data.datacontext.IMUODataContext;
 import com.eos.foundation.database.DatabaseExt;
 import com.eos.system.annotation.Bizlet;
 import com.hs.common.Env;
@@ -237,8 +239,8 @@ public class PurchaseService {
 					"application/json;charset=UTF-8");
 			con.setRequestProperty("accept", "application/json,text/plain,*/*");
 
-			con.setConnectTimeout(60000);// 连接超时 单位毫秒
-			con.setReadTimeout(60000);// 读取超时 单位毫秒
+			con.setConnectTimeout(20000);// 连接超时 单位毫秒
+			con.setReadTimeout(20000);// 读取超时 单位毫秒
 			if (json != null && json.length() > 0) {
 				osw = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
 				osw.write(json);
@@ -295,6 +297,14 @@ public class PurchaseService {
 				
 	}
 	
-	
+	public static void main(String[] args) {
+		IMUODataContext muo = DataContextManager.current().getMUODataContext();
+		Map<String, Object> attrMap = muo.getUserObject().getAttributes();
+		String accessToken = (String) attrMap.get("srmtoken");
+		//(String access_token,String brandId,String carId,
+		//		String categoryF, String categoryS, String categoryT, int count,
+		//		int currpage, String key, String sortOrder)
+		querySRMSKUList(accessToken,null,null,null,null,null,20,1,null,"desc");
+	} 
 	
 }

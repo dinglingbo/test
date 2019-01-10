@@ -742,6 +742,7 @@ function onSearchClick(){
         doSetMainInfo(car);
     });
 }
+var lastComeKilometers = null;
 function doSetMainInfo(car){
     var maintain = billForm.getData();
     maintain.carId = car.id;
@@ -778,7 +779,7 @@ function doSetMainInfo(car){
     $("#guestNameEl").html(car.guestFullName);
     $("#showCarInfoEl").html(car.carNo);
     $("#guestTelEl").html(car.guestMobile);
-    /*if(car.id){
+    if(car.id){
     	var lastComeKilometersUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCarExtend.biz.ext";
     	var json = nui.encode({
     		carId:car.id,
@@ -795,14 +796,14 @@ function doSetMainInfo(car){
     			var returnJson = nui.decode(text);
     			if (returnJson.errCode == "S") {
     				var data = returnJson.data;
-    				var lastComeKilometers = data.lastComeKilometers || 0;
+    				lastComeKilometers = data.lastComeKilometers || 0;
     				$("#lastComeKilometers").html(lastComeKilometers);
     			} else {
     				showMsg(returnJson.errMsg||"查询上次里程失败","E");
     		    }
     		}
     	 });
-    }*/
+    }
 }
 
 function setInitData(params){
@@ -1266,6 +1267,7 @@ var requiredField = {
     serviceTypeId : "业务类型",
     mtAdvisorId : "服务顾问"
 };
+var svrSureF = 1;
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function saveMaintain(callback,unmaskcall){
     var data = billForm.getData(true);
@@ -1291,25 +1293,32 @@ function saveMaintain(callback,unmaskcall){
 	};
 svrSaveMaintain(params, function(text){
     var errCode = text.errCode||"";
-    var err = "S";
     if(errCode == "S") {
     	 var main = text.data||{};
          fserviceId = main.id||0;
+         var status = main.status;
     	//保存成功之后，执行确定维修接口，执行一次
-        /*svrSureMT(params, function(data){
-             data = data||{};
-             var errCode = data.errCode||"";
-             var errMsg = data.errMsg||"";
-             if(errCode == 'S'){
-            	 err = "S";
-             }else{
-            	 err = "E";
-             }
-         }, function(){
-             //nui.unmask(document.body);
-         });*/
-        unmaskcall && unmaskcall();
-        callback && callback(main);
+        if(svrSureF==1 && status==0){
+        	svrSureMT(params, function(data){
+                data = data||{};
+                var errCode = data.errCode||"";
+                var errMsg = data.errMsg||"";
+                if(errCode == 'S'){
+                	svrSureF = 0;
+                	unmaskcall && unmaskcall();
+                    callback && callback(main);
+                }else{
+                	unmaskcall && unmaskcall();
+                	svrSureF = 1;
+                	showMsg("数据操作有误，请重新操作!","E");
+                }
+            }, function(){
+                //nui.unmask(document.body);
+            });
+        }else{
+        	unmaskcall && unmaskcall();
+            callback && callback(main);
+        }
     } else {
         unmaskcall && unmaskcall();
         showMsg(data.errMsg || "保存单据失败","E");

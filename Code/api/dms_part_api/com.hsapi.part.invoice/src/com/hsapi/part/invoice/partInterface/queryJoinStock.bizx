@@ -331,7 +331,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">result/errMsg</process:from>
+      <process:from type="query" pattern="reference">result/msg</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>

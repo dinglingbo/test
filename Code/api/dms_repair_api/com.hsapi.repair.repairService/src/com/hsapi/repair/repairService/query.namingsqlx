@@ -140,7 +140,7 @@
 			inner join rpb_car b on (a.car_id = b.id)
 			inner join rpb_contactor c on (a.contactor_id = c.id)
 		<dynamic>
-			<isEqual prepend="" property="status" compareValue="6">
+			<isEqual prepend="and" property="status" compareValue="6">
 			inner join(
 				SELECT
 					DISTINCT service_id 
@@ -187,21 +187,7 @@
 			   card_name as cardName, recharge_amt as rechargeAmt, give_amt as giveAmt
 		from rps_card_stored
 		where total_amt > use_amt and guest_id = #guestId# 
-		order by record_date asc
-	</select>
-	
-	<select id="getGuestStoredRecordAmt" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsStoredRecord">
-		SELECT
-			a.id as id, a.tenant_id as tenantId, a.orgid as orgid, a.`code` as code,
-			a.guest_id as guestId, a.guest_name as guestName, a.card_id as cardId,
-			a.card_name as cardName, a.period_validity as periodValidity,
-			a.recharge_amt as rechargeAmt, a.give_amt as giveAmt,
-			a.total_amt as totalAmt, a.use_amt as useAmt, a.bala_amt as balaAmt,
-			a.refund_amt as refundAmt, a.cut_amt as cutAmt, a.integral as integral
-		FROM
-			rps_stored_record AS a
-		where a.bala_amt > 0 and a.guest_id = #guestId# and a.is_settle = 1
-		order by a.settle_date asc
+		order by record_date desc
 	</select>
 	
 	
@@ -437,7 +423,7 @@
 			d.mobile as guestMobile,
 			b.rate_amt as rateAmt,
 			c.invoice_no as invoiceNo,
-			c.invoice_type as invoiceType,
+			b.invoice_type as invoiceType,
 			b.rate as rate,
 			b.invoice_amt as invoiceAmt,
 			c.invoice_name as invoiceName,
@@ -712,8 +698,7 @@
 			       sum(b.package_subtotal) as pkgAmt, sum(b.item_subtotal) as itemAmt,
 			       sum(b.card_times_amt) as cardAmt, 
 			       sum(package_pref_amt + item_pref_amt + part_pref_amt + allowance_amt) as prefAmt,
-			       sum(other_amt) as otherAmt, sum(other_cost_amt) as otherCostAmt,
-			       sum(total_pref_amt) as totalPrefAmt
+			       sum(other_amt) as otherAmt, sum(other_cost_amt) as otherCostAmt
 			from rps_maintain a
 			inner join rps_settlement b
 			on a.id = b.service_id
@@ -753,25 +738,6 @@
             and record_date &gt;= #startDate# and record_date &lt; #endDate# 
 			group by a.worker_id, a.worker
 	</select>
-	<select id="queryDeductDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-			SELECT worker_id as workerId, worker as worker, total_deduct_amt as deduct, 
-			       case when bill_type_id = 0 then '综合开单' when bill_type_id = 2 then '洗美开单' 
-			       when bill_type_id = 3 then '销售开单' when bill_type_id = 4 then '理赔开单'
-			       when bill_type_id = 6 then '计次卡销售' when bill_type_id = 7 then '储值卡销售'
-						 when bill_type_id = 8 then '保险开单'
-			       end as billTypeId,
-			       service_code as serviceCode, service_id as serviceId
-			from rps_deduct_detail 
-			where orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate# 
-			<dynamic>
-
-            <isNotEmpty prepend="and" property="memberId">
-  				  worker_id = #memberId# 
-            </isNotEmpty>
-            
-          </dynamic>  
-          order by record_date desc
-	</select>
 	<!--套餐提成信息-->
 	<select id="queryPkgDeduct" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 			SELECT a.service_code as serviceCode, b.package_name as name, b.total_deduct_amt as deduct, 
@@ -786,11 +752,11 @@
 			      <dynamic>
 
 		            <isNotEmpty prepend="and" property="groupId">
-		  				  exists(select 1 from wb_common.com_member c where c.empid = b.sale_man_id 
+		  				 and exists(select 1 from wb_common.com_member c where c.empid = b.sale_man_id 
 		  				            and c.member_group_id = #groupId#)
 		            </isNotEmpty>
 		            <isNotEmpty prepend="and" property="memberId">
-		  				  b.sale_man_id = #memberId# 
+		  				 and b.sale_man_id = #memberId# 
 		            </isNotEmpty>
 		          </dynamic>  
 			      
@@ -810,12 +776,12 @@
 			      <dynamic>
 
 		            <isNotEmpty prepend="and" property="groupId">
-		  				  exists(select 1 from wb_common.com_member c where (c.empid = b.sale_man_id 
+		  				 and exists(select 1 from wb_common.com_member c where (c.empid = b.sale_man_id 
 		  				                                     or FIND_IN_SET(c.empid,b.worker_ids) > 0 )
 		  				            and c.member_group_id = #groupId#)
 		            </isNotEmpty>
 		            <isNotEmpty prepend="and" property="memberId">
-		  				  (b.sale_man_id = #memberId# or FIND_IN_SET(#memberId#,b.worker_ids) > 0 )
+		  				 and (b.sale_man_id = #memberId# or FIND_IN_SET(#memberId#,b.worker_ids) > 0 )
 		            </isNotEmpty>
 		          </dynamic>  
 			      
@@ -834,11 +800,11 @@
 			      <dynamic>
 
 		            <isNotEmpty prepend="and" property="groupId">
-		  				  exists(select 1 from wb_common.com_member c where c.empid = b.sale_man_id
+		  				 and exists(select 1 from wb_common.com_member c where c.empid = b.sale_man_id
 		  				            and c.member_group_id = #groupId#)
 		            </isNotEmpty>
 		            <isNotEmpty prepend="and" property="memberId">
-		  				  b.sale_man_id = #memberId# 
+		  				 and b.sale_man_id = #memberId# 
 		            </isNotEmpty>
 		          </dynamic>  
 			      
@@ -857,11 +823,11 @@
 			      <dynamic>
 
 		            <isNotEmpty prepend="and" property="groupId">
-		  				  exists(select 1 from wb_common.com_member c where FIND_IN_SET(c.empid,a.sale_man_ids) > 0
+		  				 and exists(select 1 from wb_common.com_member c where FIND_IN_SET(c.empid,b.sale_man_ids) > 0
 		  				            and c.member_group_id = #groupId#)
 		            </isNotEmpty>
 		            <isNotEmpty prepend="and" property="memberId">
-		  				  FIND_IN_SET(#memberId#,a.sale_man_ids) > 0
+		  				 and FIND_IN_SET(#memberId#,b.sale_man_ids) > 0
 		            </isNotEmpty>
 		          </dynamic>  
 			      
@@ -878,11 +844,11 @@
 			      <dynamic>
 
 		            <isNotEmpty prepend="and" property="groupId">
-		  				  exists(select 1 from wb_common.com_member c where c.empid = a.sale_man_id
+		  				 and exists(select 1 from wb_common.com_member c where c.empid = a.sale_man_id
 		  				            and c.member_group_id = #groupId#)
 		            </isNotEmpty>
 		            <isNotEmpty prepend="and" property="memberId">
-		  				  a.sale_man_id = #memberId#
+		  				 and a.sale_man_id = #memberId#
 		            </isNotEmpty>
 		          </dynamic>  
 			      
@@ -899,11 +865,11 @@
 			      <dynamic>
 
 		            <isNotEmpty prepend="and" property="groupId">
-		  				  exists(select 1 from wb_common.com_member c where c.empid = a.sale_man_id
+		  				 and exists(select 1 from wb_common.com_member c where c.empid = a.sale_man_id
 		  				            and c.member_group_id = #groupId#)
 		            </isNotEmpty>
 		            <isNotEmpty prepend="and" property="memberId">
-		  				  a.sale_man_id = #memberId#
+		  				 and a.sale_man_id = #memberId#
 		            </isNotEmpty>
 		          </dynamic>  
 			      
@@ -959,7 +925,7 @@
 			FROM
 				wb_repair.rps_maintain a
 			WHERE
-				a.is_settle = 0
+				a.is_settle = 1
 			AND a.STATUS = 2	
 			AND a.is_disabled = 0
 			AND a.orgid = #orgid#
@@ -990,7 +956,8 @@
 				a.prev_advisor_name as preAdvisorName,
 				c.mobile as mobile,
 				b.car_model_id as carModelId,
-				b.car_brand_id as carBrandId
+				b.car_brand_id as carBrandId,
+				a.remind_status remindStatus
 			FROM
 				rpb_car_extend a
 			INNER JOIN rpb_car b ON a.car_id = b.id
@@ -1075,6 +1042,8 @@
 				a.annual_status as annualStatus,
 				a.insure_status as insureStatus,
 				a.veri_status as veriStatus,
+				c.full_name name,
+				c.contactor_tel mobile,
 				b.id as carId,
 				b.orgid as orgid,
 				b.car_no as carNo,
@@ -1086,7 +1055,8 @@
 				b.annual_inspection_date as annualInspectionDate,
 				b.annual_inspection_comp_name as annualInspectionCompName,
 				b.insure_due_date as insureDueDate,
-				b.insure_comp_name as insureCompName
+				b.insure_comp_name as insureCompName,
+				a.remind_status remindStatus
 			FROM
 				wb_repair.rpb_car_extend a
 			INNER JOIN wb_repair.rpb_car b ON a.car_id = b.id
@@ -1128,7 +1098,7 @@
  
 	</select>
 	
-	<select id="queryRemindS" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			<select id="queryRemindS" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 			SELECT
 				a.id as guestId,
 				a.orgid as orgid,
@@ -1138,11 +1108,11 @@
 				a.birthday as birthday,
 				a.license_over_date as licenseOverDate,
 				a.license_status as licenseStatus,
-				a.bir_status as birStatus
-
+				a.bir_status as birStatus,
+				b.car_no carNo
 			FROM
 				wb_repair.rpb_contactor a
-		
+		LEFT JOIN wb_repair.rpb_car b on b.guest_id = a.guest_id
 			WHERE 
 				a.orgid=#orgid#	
           
@@ -1229,24 +1199,28 @@
 			
 					<!--工单回访  流失回访提醒数量-->
 		<select id="visitQuantity" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
-				SELECT
+			SELECT
 					count(
 						CASE
-						WHEN a.type = 1
-						AND a.status = 0 THEN
+						WHEN e.type = 1
+						AND e.status = 0 THEN
 							1
 						END
 					) AS tianQuantity,
 					count(
 						CASE
-						WHEN a.type = 2
-						AND a.status = 0 THEN
+						WHEN e.type = 2
+						AND e.status = 0 THEN
 							1
 						END
 					) AS loseQuantity
 					
 				FROM
-					wb_crm.crm_visit_data a
+					wb_crm.crm_visit_data e
+			INNER JOIN wb_repair.rps_maintain a on e.service_id = a.id 
+			inner JOIN wb_repair.rpb_car b ON ( a.car_id = b.id )
+			inner join wb_repair.rpb_car_extend z on b.id = z.car_id
+		  INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 				WHERE a.orgid = #orgid#
 			</select>
 			

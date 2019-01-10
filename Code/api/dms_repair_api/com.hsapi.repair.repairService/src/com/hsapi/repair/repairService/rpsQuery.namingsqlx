@@ -1360,6 +1360,11 @@
 			a.fault_phen faultPhen,
 			a.solve_method solveMethod,
 	    	d.wechat_open_id as openId,
+	    	e.card_times_amt AS cardTimesAmt,
+			e.total_pref_amt AS totalPrefAmt,
+			e.bala_amt AS balaAmt,
+			e.other_amt AS otherAmt,
+			e.other_cost_amt AS otherCostAmt,
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
 	       where e.service_id = a.id) as serviceTypeName,
@@ -1370,6 +1375,7 @@
 		inner JOIN rpb_car b ON ( a.car_id = b.id )
 		INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 		inner join rpb_contactor d on (a.contactor_id = d.id and c.id = d.guest_id)
+		inner join rps_settlement e on (a.id =  e.service_id)
 		where a.is_settle = 0 and a.is_disabled = 0 
 		      and a.bill_type_id in (0,2,4)
 			  and a.orgid = #orgid#

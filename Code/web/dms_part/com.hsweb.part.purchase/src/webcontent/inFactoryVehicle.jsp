@@ -9,8 +9,8 @@
   - Description:
 -->
 <head>
-<title>综合开单查询</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.14"></script>
+<title>在厂车辆查询</title>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.16"></script>
 <style type="text/css">
 
 .title {
@@ -75,17 +75,17 @@
                         emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="90" valueFromSelect="true"/>
  
   结算日期:
-                    <input id="sOutDate" name="sOutDate" class="nui-datepicker"/>
+                    <input id="sEnterDate" name="sEnterDate" class="nui-datepicker"/>
 至:
-                    <input id="eOutDate" name="eOutDate" class="nui-datepicker"
+                    <input id="eEnterDate" name="eEnterDate" class="nui-datepicker"
                            format="yyyy-MM-dd"
                            timeFormat="H:mm:ss"
                            showTime="false"
                            showOkButton="false"
                            showClearButton="false"/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <span class="separator"></span>
-                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>            
+<!--                     <span class="separator"></span>
+                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>    -->         
                 </td>
             </tr>
         </table>
@@ -99,7 +99,7 @@
                pageSize="50"
                totalField="page.count"
                sizeList=[20,50,100,200]
-               dataField="list"
+               dataField="data"
                showModified="false"
                onrowdblclick=""
                allowCellSelect="true"
@@ -114,6 +114,7 @@
 	                  <div property="columns" >
 		                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>  
 		                  <div field="carNo" name="carNO" width="80" headerAlign="center" header="车牌号"></div>
+		                  <div field="guestFullName" name="guestFullName" width="120" headerAlign="center" header="客户名称"></div>
 		                  <div field="carModel" name="carModel" width="120" headerAlign="center" header="品牌车型"></div>
 		                  <div field="serviceCode" name="serviceCode" width="160" headerAlign="center" header="工单号"></div>
 		                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" header="业务类型"></div> 
@@ -125,16 +126,15 @@
 	                  </div>
                   </div>
                
-                  <div header="结算信息" headerAlign="center">
+                  <div header="费用信息" headerAlign="center">
 	                  <div property="columns" >	                  
-		                  <div field="packageSubtotal" name="status" width="70" headerAlign="center" header="套餐小计"></div>
+		                  <div field="pkgSubtotal" name="status" width="70" headerAlign="center" header="套餐小计"></div>
 		                  <div field="itemSubtotal" name="carNO" width="70" headerAlign="center" header="工时小计"></div>
 		                  <div field="partSubtotal" name="carBrandId" width="70" headerAlign="center" header="配件小计"></div>
 		                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" header="预存抵扣"></div>
 		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" header="优惠金额"></div>
 		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" header="其他收入"></div>
 		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" header="其他支出"></div>
-		                  <div field="balaAmt" name="contactName" width="70" headerAlign="center" header="结算金额"></div>
 	                  </div>
                   </div>
                   
@@ -144,7 +144,6 @@
 		                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="车架号(VIN)"></div> -->
 		                  <div field="enterDate" name="enterDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="进厂时间"></div>
 		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="完工时间"></div>
-		                  <div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="出厂时间"></div>
 	                  </div>
                   </div>
                   

@@ -18,6 +18,7 @@ var innerSellGridUrl = partBaseUrl
 		+ "com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
 var innerStateGridUrl = partBaseUrl
 		+ "com.hsapi.part.invoice.settle.getPJStatementDetailById.biz.ext";
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"手机号"},{id:"2",name:"客户名称"},{id:"2",name:"业务单号"}];
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -109,7 +110,6 @@ $(document).ready(
 			qRightGrid.setUrl(rightGridUrl);
 			searchBeginDate = nui.get("beginDate");
 			searchEndDate = nui.get("endDate");
-			searchServiceId = nui.get("serviceId");
 			// comSearchGuestId = nui.get("searchGuestId");
 			mainTabs = nui.get("mainTabs");
 			settleAccountGrid = nui.get("settleAccountGrid");
@@ -227,7 +227,6 @@ function getItemType(callback) {
 function getSearchParam() {
 	var params = {};
 
-	params.billServiceId = searchServiceId.getValue();
 	// params.guestId = comSearchGuestId.getValue();
 
 	params.sCreateDate = searchBeginDate.getFormValue();
@@ -305,6 +304,17 @@ function onSearch() {
 }
 function doSearch(params) {
 	params.eCreateDate = addDate(params.eCreateDate, 1);
+	var type = nui.get("search-type").getValue();
+    var typeValue = nui.get("carNo-search").getValue();
+    if(type==0){
+    	params.carNo = typeValue;
+    }else if(type==1){
+    	params.mobile = typeValue;
+    }else if(type==2){
+    	params.guestName = typeValue;
+    }else if(type==3){
+    	params.serviceId = typeValue;
+    }
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
 	switch (name) {

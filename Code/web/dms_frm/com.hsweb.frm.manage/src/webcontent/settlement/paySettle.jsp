@@ -8,7 +8,7 @@
 -->
 <head>
 <title>应付账款管理</title>
-    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.1.6"></script> 
+    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.1.7"></script> 
     <style type="text/css">
 .title {
     width: 90px;
@@ -115,7 +115,8 @@
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 
                 <span class="separator"></span> 
-                <input id="serviceId" width="120px" emptyText="业务单号" class="nui-textbox" onenter="onSearch()"  />
+                <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
+           		<input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch()" />
                 <!-- <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择结算单位..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" /> -->

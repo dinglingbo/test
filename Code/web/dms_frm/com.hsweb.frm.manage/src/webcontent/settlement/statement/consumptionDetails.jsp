@@ -35,7 +35,7 @@ html,body {
 		
 		<div size="50%" showCollapseButton="false">
 			<div class="nui-fit">
-				<div class="nui-toolbar" style="padding: 2px; height: 30px">
+				<div class="nui-toolbar" style="padding: 2px; height: 35px">
 					<table id="table1">
 						<tr>
 							<td>

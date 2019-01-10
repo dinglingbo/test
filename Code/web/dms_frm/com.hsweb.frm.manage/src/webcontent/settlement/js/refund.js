@@ -4,6 +4,7 @@
 var baseUrl = apiPath + repairApi + "/";
 var form = null;
 var card={};
+var printGuest = {};
 var tureRefundAmt = 0;//实际能退金额
 $(document).ready(function(v) {
 	form = new nui.Form("#dataform1");
@@ -12,6 +13,7 @@ $(document).ready(function(v) {
 });
 
 function setData(params){
+	printGuest = params.printGuest;
 	card = params.row;
 	form.setData(params.row||{});
 	nui.get("guestName").disable();
@@ -73,6 +75,7 @@ function refundAmtPay(){
         onload: function () {
             var iframe = this.getIFrameEl();
             var data = {
+            		printGuest:printGuest,
             		card:card,
             		payAmt:nui.get("yrefundAmt").getValue(),
             		typeCard:2

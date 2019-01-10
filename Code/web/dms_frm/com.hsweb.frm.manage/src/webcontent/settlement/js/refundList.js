@@ -10,6 +10,7 @@ var servieTypeList = [];
 var searchKeyEl = null;
 var searchNameEl = null;
 var guestId = 0;
+var printGuest ={};//打印用
  var guestName ="";
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
@@ -17,6 +18,16 @@ $(document).ready(function(v) {
 	searchKeyEl = nui.get("search_key");
 	searchNameEl = nui.get("search_name");
     searchKeyEl.setUrl(guestInfoUrl);
+    
+    grid.on("drawcell",function(e){
+        switch (e.field) {
+			case "operateBtn":
+				e.cellHtml = ' <a class="optbtn" href="javascript:refund()">退款</a>'; 
+                break;
+            default:
+                break;
+        }
+	});
     
     searchKeyEl.on("beforeload",function(e){
         var data = {};
@@ -72,6 +83,7 @@ $(document).ready(function(v) {
 
 
 function setGuest(item){
+	printGuest = item;
 	var carNo = item.carNo||"";
     var tel = item.guestMobile||"";
      guestName = item.guestFullName||"";
@@ -127,6 +139,7 @@ function refund(){
         {
             var iframe = this.getIFrameEl();
             var params = {
+            	printGuest :printGuest,
                 card : 1,//储值卡
                 row:row
             };

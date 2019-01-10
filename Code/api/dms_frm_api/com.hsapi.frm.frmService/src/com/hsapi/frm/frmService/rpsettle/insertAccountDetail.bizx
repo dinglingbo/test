@@ -151,6 +151,7 @@
     <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>assign7</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
     <location x="402" y="43"/>
@@ -668,7 +669,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">msgO+serviceId+msgT</process:from>
+      <process:from type="expression" pattern="reference">msgO+serviceId+msgT</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -803,7 +804,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">msgO+serviceId+msgT</process:from>
+      <process:from type="expression" pattern="reference">msgO+serviceId+msgT</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>

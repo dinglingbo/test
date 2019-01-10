@@ -797,7 +797,7 @@ function doSetMainInfo(car){
     			if (returnJson.errCode == "S") {
     				var data = returnJson.data;
     				lastComeKilometers = data.lastComeKilometers || 0;
-    				$("#lastComeKilometers").html(lastComeKilometers);
+    				//$("#lastComeKilometers").html(lastComeKilometers);
     			} else {
     				showMsg(returnJson.errMsg||"查询上次里程失败","E");
     		    }
@@ -1285,7 +1285,9 @@ function saveMaintain(callback,unmaskcall){
     	delete data.enterDate;
     }
     data.billTypeId = 2;
-    //data.lastEnterKilometers = $("#lastComeKilometers").text() || 0;
+    if(!data.lastEnterKilometers){
+    	data.lastEnterKilometers = lastComeKilometers;
+    }
 	var params = {
 	    data:{
 	        maintain:data
@@ -1297,6 +1299,11 @@ svrSaveMaintain(params, function(text){
     	 var main = text.data||{};
          fserviceId = main.id||0;
          var status = main.status;
+         var params = {
+                 data:{
+                     id:main.id||0
+                 }
+             };
     	//保存成功之后，执行确定维修接口，执行一次
         if(svrSureF==1 && status==0){
         	svrSureMT(params, function(data){
@@ -4801,11 +4808,11 @@ function SaveCheckMain() {
         guestId:data.guestId,
         contactorId:data.contactorId,
         serviceCode:document.getElementById("servieIdEl").innerText.trim(),
-        //lastKilometers:$('#lastComeKilometers').text(),
+        lastKilometers:data.enterKilometers,
         lastPoint:score,
         lastCheckDate:lcheckDate,
         checkStatus:0,
-       // enterKilometers:data.enterKilometers,
+        enterKilometers:data.enterKilometers,
         mtAdvisorId:data.mtAdvisorId,
         mtAdvisor:data.mtAdvisor,
         checkManId:nui.get("checkManId").value,

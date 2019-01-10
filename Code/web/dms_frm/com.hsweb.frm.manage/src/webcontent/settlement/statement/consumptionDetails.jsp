@@ -45,8 +45,8 @@ html,body {
 									办卡日期: <input id="startDate" class="mini-datepicker" required="true" />-至-
 									         <input id="endDate" class="mini-datepicker" required="true" /> 
 									<a class="nui-button" onclick="search()" plain="true"> <span class="fa fa-search fa-lg"></span>&nbsp; 查询</a>
-									<a class="nui-button" onclick="refund()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款</a>
-									<a class="nui-button" onclick="refundRecord()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款记录</a>
+<!-- 									<a class="nui-button" onclick="refund()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款</a>
+									<a class="nui-button" onclick="refundRecord()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款记录</a> -->
 							</td>
 						</tr>
 					</table>

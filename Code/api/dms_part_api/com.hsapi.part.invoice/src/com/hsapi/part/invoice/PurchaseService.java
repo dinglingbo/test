@@ -198,7 +198,7 @@ public class PurchaseService {
 				
 	}
 	
-	@Bizlet("查询SRM配件列表，带库存数量")
+	@Bizlet("查询SRM配件列表，带库存数量      根据SKU查询库存明细")
 	public static String querySRMSKUList(String access_token,String brandId,String carId,
 			String categoryF, String categoryS, String categoryT, int count,
 			int currpage, String key, String sortOrder) {
@@ -208,11 +208,17 @@ public class PurchaseService {
 				"cfg", "SRMAPI", envType);
 		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
 				//apiurl + "srm/router/rest?token="+access_token;
+		if(key == null || key.equals("")) {
+			return "{\"status\":\"-1\", \"resultMsg\":\"请输入查询条件!\"}";
+		}
 		if(count==0) {
 			count = 20;
 		}
 		if(currpage == 0) {
 			currpage = 1;
+		}
+		if(sortOrder == null || sortOrder.equals("")) {
+			sortOrder = "desc";
 		}
 		Map main = new HashMap();   
 		main.put("type", 1); //固定值 1
@@ -235,6 +241,129 @@ public class PurchaseService {
 		main.put("count", count);  //	每页显示条数
 		main.put("currpage", currpage);  //当前 页码
 		main.put("key", key);
+		main.put("sortOrder", sortOrder);  // ‘asc’ 升序 'desc' 降序
+		
+		JSONObject jsonObj = JSONObject.fromObject(main);
+		String json = jsonObj.toString();
+		
+		StringBuffer resultBuffer = null;
+		HttpURLConnection con = null;
+		OutputStreamWriter osw = null;
+		BufferedReader br = null;
+		// 发送请求
+		try {
+			URL url = new URL(urlParam);
+			con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("POST");
+			con.setDoOutput(true);
+			con.setDoInput(true);
+			con.setUseCaches(true);
+			con.setRequestProperty("Content-Type",
+					"application/json;charset=UTF-8");
+			con.setRequestProperty("accept", "application/json,text/plain,*/*");
+
+			con.setConnectTimeout(20000);// 连接超时 单位毫秒
+			con.setReadTimeout(20000);// 读取超时 单位毫秒
+			if (json != null && json.length() > 0) {
+				osw = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
+				osw.write(json);
+				osw.flush();
+			}
+
+			// 读取返回内容
+			if (con.getResponseCode() == 200) {
+				resultBuffer = new StringBuffer();
+				br = new BufferedReader(new InputStreamReader(
+						con.getInputStream(), "UTF-8"));
+				String temp;
+				while ((temp = br.readLine()) != null) {
+					resultBuffer.append(temp);
+				}
+			} else {
+				System.out.println("con.getResponseCode = "
+						+ con.getResponseCode());
+			}
+			return resultBuffer.toString();
+		} catch (Exception e) {
+			System.out.println("Access Error At:" + urlParam);
+			e.printStackTrace();
+			return "{\"resultCode\":\"Http_Send_Error\", \"resultMsg\":\""
+					+ e.getMessage() + "\"}";
+		} finally {
+			if (osw != null) {
+				try {
+					osw.close();
+				} catch (IOException e) {
+					osw = null;
+					throw new RuntimeException(e);
+				} finally {
+					if (con != null) {
+						con.disconnect();
+						con = null;
+					}
+				}
+			}
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					br = null;
+					throw new RuntimeException(e);
+				} finally {
+					if (con != null) {
+						con.disconnect();
+						con = null;
+					}
+				}
+			}
+		}
+				
+	}
+	
+	@Bizlet("根据SKU查询库存明细")
+	public static String querySRMSKUDetailStockList(String access_token,String guestId,
+			int count,int currpage, String id, String isGP, String isHS, String isJP,
+			int isMaterial, String isSRM, String sort, String sortOrder) {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", "serverType");
+		String apiurl = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", envType);
+		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+				//apiurl + "srm/router/rest?token="+access_token;
+		if(id == null || id.equals("")) {
+			return "{\"status\":\"-1\", \"resultMsg\":\"请输入查询条件!\"}";
+		}
+		if(count==0) {
+			count = 20;
+		}
+		if(currpage == 0) {
+			currpage = 1;
+		}
+		if(sort == null || sort.equals("")) {
+			sort = "qty";
+		}
+		if(sortOrder == null || sortOrder.equals("")) {
+			sortOrder = "desc";
+		}
+		Map main = new HashMap();   
+		main.put("method", "base.partQuery.getSkuInvList");
+		if(isGP != null && !isGP.equals("")) {
+			main.put("isGP", isGP);  //车身分类一级ID
+		}
+		if(isHS != null && !isHS.equals("")) {
+			main.put("isHS", isHS);  //车身分类二级ID
+		}
+		if(isJP != null && !isJP.equals("")) {
+			main.put("isJP", isJP);  //车身分类三级ID
+		}
+		if(isSRM != null && !isSRM.equals("")) {
+			main.put("isSRM", isSRM);  //车身分类三级ID
+		}
+		main.put("guestId", guestId);
+		main.put("isMaterial", isMaterial);
+		main.put("count", count);  //	每页显示条数
+		main.put("currpage", currpage);  //当前 页码
+		main.put("id", id);
 		main.put("sortOrder", sortOrder);  // ‘asc’ 升序 'desc' 降序
 		
 		JSONObject jsonObj = JSONObject.fromObject(main);

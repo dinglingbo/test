@@ -10,7 +10,7 @@
 <head>
 <title>配件查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.38"></script>
+    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.41"></script>
     <style type="text/css">
 		.table-label {
 			text-align: right;
@@ -63,7 +63,7 @@
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <label style="font-family:Verdana;">token：</label>
                     <input class="nui-textbox" width="180" id="protoken" name="protoken"/>
-
+<!-- 					<a class="nui-button" iconCls="" plain="true" onclick="getToken()"><span class=""></span>&nbsp;获取token</a> -->
                 </td>
             </tr>
         </table>
@@ -100,9 +100,12 @@
 	                     pageIndexField="currpage"
 	                     pageSizeField="count"
 	                     sortMode="client"
+	                     onshowrowdetail="onShowRowDetail"
+     					 allowCellWrap = true
 	                     showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
 		          	 	<div property="columns">
 		          	 		<div type="indexcolumn">序号</div>
+		          	 		<div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
 		          	 		<div allowSort="true" field="partId" width="50" headerAlign="center" allowSort="true">配件内码</div>
 		          	 		<div allowSort="true" field="code" width="100" headerAlign="center" allowSort="true">配件编码</div>
 		          	 		<div allowSort="true" field="fullName" width="300" headerAlign="center" allowSort="true">全称</div>

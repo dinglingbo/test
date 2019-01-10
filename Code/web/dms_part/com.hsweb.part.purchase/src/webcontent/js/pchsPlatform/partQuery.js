@@ -14,6 +14,7 @@ $(document).ready(function() {
 function onSearch (){
 	protoken =protokenEl.value;
 	partGrid.load({
-		protoken :protoken
+		protoken :protoken,
+		key  :23
 	});
 }

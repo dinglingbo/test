@@ -323,9 +323,7 @@ function onSearch()
 }
 function doSearch() {
     var gsparams = getSearchParam();
-    gsparams.isSettle = 1;
-   // gsparams.billTypeId = 0;
-    gsparams.isDisabled = 0;
+
 
     mainGrid.load({
         token:token,

@@ -9,7 +9,7 @@
 
 <head>
 	<title>应收账款管理</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.5.7"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.6.0"></script>
 	<style type="text/css">
 		.title {
 			width: 90px;
@@ -127,10 +127,13 @@
 						<input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false"
 						 showOkButton="false" showClearButton="false" />
 						<span class="separator"></span>
-						<input id="serviceId" width="120px" emptyText="业务单号" class="nui-textbox" onenter="onSearch()" />
+						<input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
+           			   <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch()" />
+						<!-- <input id="serviceId" width="120px" emptyText="业务单号" class="nui-textbox" onenter="onSearch()" /> -->
 						<a class="nui-button" iconCls="" plain="true" onclick="onSearch()">
 							<span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-						<input id="proId" width="120px" visible="false" emptyText="业务单号" class="nui-combobox" />
+
+						 <input id="proId" width="120px" visible="false" emptyText="业务单号" class="nui-combobox" />
 						<span class="separator"></span>
 <!-- 						<a class="nui-button" plain="true" onclick="advancedSearch()">
 							<span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>

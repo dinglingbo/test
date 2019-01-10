@@ -10,6 +10,7 @@ var servieTypeList = [];
 var searchKeyEl = null;
 var searchNameEl = null;
 var guestId = 0;
+var printGuest ={};//打印用
  var guestName ="";
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
@@ -17,6 +18,8 @@ $(document).ready(function(v) {
 	searchKeyEl = nui.get("search_key");
 	searchNameEl = nui.get("search_name");
     searchKeyEl.setUrl(guestInfoUrl);
+    
+
     
     searchKeyEl.on("beforeload",function(e){
         var data = {};
@@ -72,6 +75,7 @@ $(document).ready(function(v) {
 
 
 function setGuest(item){
+	printGuest = item;
 	var carNo = item.carNo||"";
     var tel = item.guestMobile||"";
      guestName = item.guestFullName||"";
@@ -93,8 +97,11 @@ function setGuest(item){
     var t = carNo + tel + guestName + carVin;
     searchNameEl.setValue(t);
     
+	var query = {
+			guestId	:guestId
+	};
     grid.load({
-    	guestId: guestId,
+    	query: query,
     	token : token
     });
     //searchNameEl.setEnabled(false);
@@ -124,6 +131,7 @@ function refund(){
 	        onload: function () {
 	            var iframe = this.getIFrameEl();
 	            var data = {
+	            		printGuest:printGuest,
 	            		card:row,
 	            		payAmt:row.sellAmt,
 	            		typeCard:1
@@ -133,9 +141,11 @@ function refund(){
 			ondestroy : function(action) {// 弹出页面关闭前
 				if (action == "saveSuccess") {
 					showMsg("退款成功!", "S");
-					var query = queryForm.getData();
-					grid.load({
-				    	query:query,
+					var query = {
+							guestId	:guestId
+					};
+				    grid.load({
+				    	query: query,
 				    	token : token
 				    });
 
@@ -170,6 +180,48 @@ function refundRecord(){
     });
 }
 
+
+var hash = new Array("草稿","已提交","已结算");
+var isRefundList = new Array("未退款","已退款");
+//剩余次数
+var balaTimes = null;
+//总次数
+var totalTimes = null;
+//剩余可使用次数
+var canUseTimes = null;
+var id = null;
+function onDrawCell(e)
+{
+	  var  d = totalTimes;
+	
+  switch (e.field)
+  {
+      
+  case "sellAmt":
+      e.cellHtml = "￥"+e.value;
+      break;
+  case "status":
+  /*e.cellHtml = e.value==1?"禁用":"启用";*/
+  	e.cellHtml = hash[e.value];
+      break; 
+  case "periodValidity":
+  	e.cellHtml = (e.value == -1 ? "永久有效":e.value);
+  	break;
+  case "isRefund":
+  	e.cellHtml = isRefundList[e.value];
+  	break;
+	case "operateBtn":
+		if(e.record.isRefund==1){
+			
+		}else{
+			e.cellHtml = ' <a class="optbtn" href="javascript:refund()">退款</a>'; 
+		}
+		
+        break;
+    default:
+        break;
+  }
+}
 
 function add(){
 

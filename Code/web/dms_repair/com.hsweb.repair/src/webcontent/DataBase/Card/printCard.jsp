@@ -232,10 +232,6 @@
                     <td width="33%" id="mtAdvisor">&nbsp;服务顾问：</td>
                 </tr>
                 <tr>
-                    <td id="carModel" colspan="2">&nbsp;品牌车型： </td>
-                    <td id="carVin" >&nbsp;车架号(VIN)：</td>
-                </tr>
-                <tr>
                     
                     
                 </tr>
@@ -334,21 +330,19 @@
 	        document.getElementById("spstorename").innerHTML = "计次卡结账单";
 	       // document.getElementById("show").innerHTML = params.currRepairSettPrintContent||"";
 	       
-	        document.getElementById("comp").innerHTML = params.comp;
-	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
-	        document.getElementById("openBank").innerHTML = document.getElementById("openBank").innerHTML + params.bankName;
-	        document.getElementById("bankNo").innerHTML = document.getElementById("bankNo").innerHTML + params.bankAccountNumber;
-	        document.getElementById("guestAddr").innerHTML = params.currCompAddress;
-    		document.getElementById("phone").innerHTML = params.currCompTel;
-    		document.getElementById("slogan1").innerHTML = params.currSlogan1;
-    		document.getElementById("slogan2").innerHTML = params.currSlogan2;
-    		document.getElementById("makeMan").innerHTML = "制单:" + params.currUserName;
+	        document.getElementById("comp").innerHTML = params.comp||"";
+	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + (format(date, "yyyy-MM-dd HH:mm")||"");
+	        document.getElementById("openBank").innerHTML = document.getElementById("openBank").innerHTML + (params.bankName||"");
+	        document.getElementById("bankNo").innerHTML = document.getElementById("bankNo").innerHTML + (params.bankAccountNumber||"");
+	        document.getElementById("guestAddr").innerHTML = params.currCompAddress||"";
+    		document.getElementById("phone").innerHTML = params.currCompTel||"";
+    		document.getElementById("slogan1").innerHTML = params.currSlogan1||"";
+    		document.getElementById("slogan2").innerHTML = params.currSlogan2||"";
+    		document.getElementById("makeMan").innerHTML = "制单:" + (params.currUserName||"");
     		
-    		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + guestData.guestFullName;
-	        document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + guestData.mtAdvisor;
-	        document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + guestData.carNo;
-	        document.getElementById("carVin").innerHTML = document.getElementById("carVin").innerHTML + guestData.carVin;
-    		document.getElementById("carModel").innerHTML = document.getElementById("carModel").innerHTML + guestData.carModel;
+    		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + (guestData.guestFullName||"");
+	        document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + (guestData.mtAdvisor||"");
+	        document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + (guestData.carNo||"");
     		
 	        $.ajaxSettings.async = false;//设置为同步执行
 	        var url = null;

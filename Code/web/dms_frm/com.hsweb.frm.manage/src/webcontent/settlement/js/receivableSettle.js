@@ -19,6 +19,7 @@ var innerSellGridUrl = partBaseUrl
 var innerStateGridUrl = partBaseUrl
 		+ "com.hsapi.part.invoice.settle.getPJStatementDetailById.biz.ext";
 var rechargeBalaAmt = null;
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"手机号"},{id:"2",name:"客户名称"},{id:"2",name:"业务单号"}];
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -103,7 +104,6 @@ $(document).ready(
 			rRightGrid.setUrl(rightGridUrl);
 			searchBeginDate = nui.get("beginDate");
 			searchEndDate = nui.get("endDate");
-			searchServiceId = nui.get("serviceId");
 			// comSearchGuestId = nui.get("searchGuestId");
 			mainTabs = nui.get("mainTabs");
 			settleAccountGrid = nui.get("settleAccountGrid");
@@ -235,7 +235,6 @@ function getItemType(callback) {
 function getSearchParam() {
 	var params = {};
 
-	params.billServiceId = searchServiceId.getValue();
 	// params.guestId = comSearchGuestId.getValue();
 
 	params.sCreateDate = searchBeginDate.getFormValue();
@@ -308,6 +307,7 @@ function quickSearch(type) {
 	doSearch(params);
 }
 function onSearch() {
+	
 	var params = getSearchParam();
 
 	doSearch(params);
@@ -315,6 +315,17 @@ function onSearch() {
 function doSearch(params) {
 	var tab = mainTabs.getActiveTab();
 	params.eCreateDate = addDate(params.eCreateDate, 1);
+	var type = nui.get("search-type").getValue();
+    var typeValue = nui.get("carNo-search").getValue();
+    if(type==0){
+    	params.carNo = typeValue;
+    }else if(type==1){
+    	params.mobile = typeValue;
+    }else if(type==2){
+    	params.guestName = typeValue;
+    }else if(type==3){
+    	params.serviceId = typeValue;
+    }
 	var name = tab.name;
 	switch (name) {
 	
@@ -1566,21 +1577,26 @@ function onChanged() {
 
 function openOrderDetail(){
 	var row = rRightGrid.getSelected();
-	if(row){
-		var data={};
-		data.id=row.billMainId;
+	if(row.billTypeId==103||row.billTypeId==106||row.billTypeId==108){
+		if(row){
+			var data={};
+			data.id=row.billMainId;
 
-		if(data.id){
-			var item={};
-			item.id = "11111";
-		    item.text = "应收详情页";
-			item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+data.id;
-			item.iconCls = "fa fa-cog";
-			window.parent.activeTabAndInit(item,data);
-		}	
+			if(data.id){
+				var item={};
+				item.id = "11111";
+			    item.text = "应收详情页";
+				item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+data.id;
+				item.iconCls = "fa fa-cog";
+				window.parent.activeTabAndInit(item,data);
+			}	
+		}else{
+			showMsg("请选择单据!", "W");
+			return;
+		}
 	}else{
-		showMsg("请选择单据!", "W");
-		return;
+		showMsg("无详情！","W");
 	}
+
 
 }

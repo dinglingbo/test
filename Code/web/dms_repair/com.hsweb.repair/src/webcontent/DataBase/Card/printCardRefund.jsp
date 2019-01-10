@@ -229,21 +229,17 @@
                 <tr>
                     <td height="24" id="carNo">&nbsp;车牌号：</td>
                     <td height="24" width="33%" id="guestFullName">&nbsp;客户名称：</td>
-                    <td width="33%" id="mtAdvisor">&nbsp;服务顾问：</td>
-                </tr>
-                <tr>
-                    
-                    
+                    <td width="33%" id="mtAdvisor">&nbsp;操作人：</td>
                 </tr>
             </table>
         </div>
         <div style="height: 12px;"></div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk1" id="showPkg">
                 <tr>
-                    <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:16px;font-weight: bold;">储值卡名称</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">充值金额</td>
-                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">赠送金额</td>
-                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">总金额</td>
+                    <td height="28" align="center" bgcolor="#f8f8f8"style="font-family: 华文中宋; font-size:16px;font-weight: bold;">计次卡名称</td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;">退款金额</td>
+                    <td width="70" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
+                    <td width="80" align="center" bgcolor="#f8f8f8" style="font-family: 华文中宋; font-size:16px;font-weight: bold;"></td>
                 </tr>
                 <tr>
                 	<td ><hr style="border:0.5px solid #000"></td>
@@ -258,6 +254,11 @@
        
         <table width="100%" border="0"  cellpadding="0" cellspacing="0" class="ybk">
             <tr>
+                <td height="36" colspan="1" style="border:0px" >
+                    <!-- <div style="float: center; color: #000; margin-right: 12px; line-height: 36px;">
+                        <span style="margin-left: 200px;">优惠金额：<span id="yh">0</span>元</span>
+                    </div> -->
+                </td>
                 <td height="36" colspan="2" style="border:0px;font-family: Arial; font-size:16px;font-weight: bold;">
                     <div style="float: left; color: #000; margin-right: 12px; line-height: 36px;">
                         <span style="margin-right: 15px;">
@@ -278,9 +279,8 @@
                 <tr>
                    <td height="30" style="padding: 8px;" colspan="3">
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style = "margin-left: 0px;" id = "show"></span><br>
-                      <span style = "margin-left: 100px;" id="makeMan">制单人：</span>
-                      <span style = "margin-left: 200px;">服务顾问签名：</span>
-                      <span style = "margin-left: 300px;">客户签名：</span>
+                      <span style = "margin-left: 100px;" id="makeMan">制单：</span>
+                      <span style = "margin-left: 500px;">客户签名：</span>
                   </td>
                  
             </tr>
@@ -316,13 +316,13 @@
 
         function SetData(data){
             var params = data.p;
-            var card = data.row;
             var guestData = data.guestData;
+            var printGuest = data.printGuest;
             token1 =  params.token;
             webUrl = params.webUrl;
 	        var date = new Date();
-	        document.getElementById("spstorename").innerHTML = "储值卡结账单";
-	       // document.getElementById("show").innerHTML = params.currRepairSettPrintContent||"";
+	        document.getElementById("spstorename").innerHTML = "计次卡结账单";
+	        document.getElementById("show").innerHTML = params.currRepairSettPrintContent||"";
 	       
 	        document.getElementById("comp").innerHTML = params.comp||"";
 	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm")||"";
@@ -332,11 +332,11 @@
     		document.getElementById("phone").innerHTML = params.currCompTel||"";
     		document.getElementById("slogan1").innerHTML = params.currSlogan1||"";
     		document.getElementById("slogan2").innerHTML = params.currSlogan2||"";
-    		document.getElementById("makeMan").innerHTML = "制单人:" + (params.currUserName||"");
+    		document.getElementById("makeMan").innerHTML = "制单:" + params.currUserName;
     		
-    		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + (guestData.guestFullName||"");
-	        document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + (guestData.mtAdvisor||"");
-	        document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + (guestData.carNo||"");
+    		document.getElementById("guestFullName").innerHTML = document.getElementById("guestFullName").innerHTML + (guestData.guestName||"");
+	        document.getElementById("mtAdvisor").innerHTML = document.getElementById("mtAdvisor").innerHTML + (params.currUserName||"");
+	        document.getElementById("carNo").innerHTML = document.getElementById("carNo").innerHTML + (printGuest.carNo||"");
     		
 	        $.ajaxSettings.async = false;//设置为同步执行
 	        var url = null;
@@ -344,21 +344,32 @@
 	        var tBody = $("#tbodyId");
 	    	tBody.empty();
 	        var tds = 
-	    			"<td>[name]</td>"+
-	    			"<td align='center'>[rechargeAmt]</td>"+
-	    			"<td align='center'>[giveAmt]</td>"+ 
-	    			"<td align='center'>[totalAmt]</td>"; 
-	        var name = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + card.name;
+	    			"<td>[prdtName]</td>"+
+	    			"<td align='center'>[payAmt]</td>"; 
 	    	var tr1 = $("<tr></tr>");
 	    			tr1.append(
-	    			  tds.replace("[name]",name)
-	    				.replace("[rechargeAmt]",card.rechargeAmt)
-	    				.replace("[giveAmt]",card.giveAmt || 0)
-	    				.replace("[totalAmt]",card.totalAmt || 0));
+	    			  tds.replace("[prdtName]",guestData.cardName)
+	    				.replace("[payAmt]",guestData.payAmt || 0));
 	            tBody.append(tr1);		
-    		    document.getElementById("cash1").innerHTML = card.rechargeAmt;			
-    		    var money = transform(card.rechargeAmt+"");
-			   document.getElementById("money").innerHTML = money;
+        	$.post(params.baseUrl+url+guestData.id+"&token="+params.token,{},function(text){//套餐
+	        	    var data = {};//
+	        	    data = text.timesCardDetail;
+	        	    var prdtName = "";
+	        	    if(data.length>0){
+	    				for(var i = 0 , l = data.length ; i < l ; i++){
+	    					prdtName = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+data[i].prdtName;
+	    					var tr = $("<tr></tr>");
+					    			tr.append(
+					    			  tds.replace("[prdtName]",prdtName)
+					    				.replace("[times]",data[i].times)
+					    				.replace("[payAmt]", ""));
+					            tBody.append(tr); 
+	    				}
+		        	}
+        	});
+    		document.getElementById("cash1").innerHTML = guestData.payAmt;			
+    		var money = transform(guestData.payAmt+"");
+			document.getElementById("money").innerHTML = money;
      }   	
         function box_setup_open() {
 	        $(".boxbg").show();

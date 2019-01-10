@@ -15,7 +15,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
-    body {  
+    body {  f
         margin: 0; 
         padding: 0;
         border: 0;
@@ -363,7 +363,9 @@
                      />
                 </td>
                 <td class="title required">联系人手机：</td> 
-                <td class=""><input  class="nui-textbox" name="mobile" id="mobile" enabled="false" width="100%"/>                 
+                <td class="">
+                <input  class="nui-textbox" name="mobile" id="mobile" enabled="false" width="100%"/> 
+                <input class="nui-Spinner"  decimalPlaces="0" minValue="0" maxValue="100000000" width="45%" id="enterKilometers" name="enterKilometers" allowNull="false" showButton="false" visible="false"/>                
                 </td>
                 <!-- <td class="title required">进厂里程：</td> 
                 <td >

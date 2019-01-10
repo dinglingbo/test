@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-
+    <%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -10,10 +10,10 @@
 -->
 
 <head>
-    <title>日结算明细</title>
+    <title>业务产值汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <%@include file="/common/commonRepair.jsp"%>
+    <script src="<%=webPath + contextPath%>/repair/js/sell/businessOutputTotal.js?v=1.0.19"></script>
+
     <style>
 
         .titleText{
@@ -69,55 +69,77 @@
                     <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" />
                     至
                     <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
-                    <input class="nui-textbox" style="widows: 100px;" emptyText="接待人员">
-                    <input class="nui-textbox" style="widows: 100px;" emptyText="维修顾问">
-                    <input class="nui-combobox" style="widows: 100px;" emptyText="维修类型">
-                    <a class="nui-button" plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <li class="separator"></li>
-                    <a class="nui-button" plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查看明细</a>
+                    <label>&nbsp;&nbsp;&nbsp;服务顾问：</label>
+                                                <input name="mtAdvisorId"
+                                   id="mtAdvisorId"
+                                   class="nui-combobox width1"
+                                   textField="empName"
+                                   valueField="empId"
+                                   emptyText="请选择..."
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="100px"
+                                   valueFromSelect="true"
+                                   nullItemText="请选择..."/>
+                                   <label>&nbsp;&nbsp;&nbsp;&nbsp;业务类型：</label>
+                                                <input name="serviceTypeId"
+                                   id="serviceTypeId"
+                                   class="nui-combobox width1"
+                                   textField="name"
+                                   valueField="id"
+                                   emptyText="请选择..."
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="100px"
+                                   valueFromSelect="true"
+                                   nullItemText="请选择..."/>
+                    <a class="nui-button" plain="true" onclick="onSearch()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 </td>
             </tr>
         </table>
     </div>
     <div id="showDiv" class="tipStyle"></div>
     <div class="nui-fit">
-        <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true"
-            pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick=""
+        <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="false"
+            pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick=""
             allowCellSelect="true" editNextOnEnterKey="true" onshowrowdetail="onShowRowDetail" url="" allowCellWrap=true>
             <div property="columns">
-                <div type="indexcolumn" width="40">序号</div>
                 <div field="id" name="id" visible="false" width="100">id</div>
-                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">业务类型</div>
-                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">单数</div>
-                <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">售价合计&nbsp;
-                    <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
-                        onmouseout="outHide()"></span>
-                </div>
-                <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">优惠合计&nbsp;
+                <div field="ct" name="ct" width="100" headerAlign="center" align="center">单数</div>
+                <div field="totalPrefAmt" name="totalPrefAmt" width="100" headerAlign="center" align="center">优惠合计&nbsp;
                     <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
                         onmouseout="outHide()"></span></div>
-                <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">应收合计&nbsp;
+                <div field="allowanceAmt" name="allowanceAmt" width="100" headerAlign="center" align="center">结算优惠&nbsp;
                     <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
                         onmouseout="outHide()"></span></div>
-                <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">结算优惠&nbsp;
+                <div field="balaAmt" name="balaAmt" width="100" headerAlign="center" align="center">实收合计&nbsp;
                     <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
                         onmouseout="outHide()"></span></div>
-                <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">实收合计&nbsp;
+                <div field="pkgAmt" name="pkgAmt" width="100" headerAlign="center" align="center">套餐金额</div>
+                <div field="pkgPrefAmt" name="pkgPrefAmt" width="100" headerAlign="center" align="center">套餐优惠金额</div>
+                 <div field="pkgSubtotal" name="pkgAmt" width="100" headerAlign="center" align="center">套餐小计</div>
+                 <div field="itemTotalAmt" name="itemTotalAmt" width="100" headerAlign="center" align="center">项目金额</div>
+                <div field="itemPrefAmt" name="itemPrefAmt" width="100" headerAlign="center" align="center">项目优惠金额</div>
+                  <div field="itemSubtotal" name="itemSubtotal" width="100" headerAlign="center" align="center">项目小计</div>
+                <div field="partTotalAmt" name="partTotalAmt" width="100" headerAlign="center" align="center">配件金额</div>
+                <div field="partPrefAmt" name="partPrefAmt" width="100" headerAlign="center" align="center">配件优惠金额</div>
+                  <div field="partSubtotal" name="partSubtotal" width="100" headerAlign="center" align="center">配件小计</div>
+
+                     <div field="cardTimesAmt" name="cardTimesAmt" width="100" headerAlign="center" align="center">计次卡金额</div>       
+
+                <div field="otherAmt" name="otherAmt" width="100" headerAlign="center" align="center">其他费用收入</div>
+                <div field="otherCostAmt" name="other_cost_amt" width="100" headerAlign="center" align="center">其他费用成本</div>
+                <div field="salesDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center">销售提成金额</div>
+                <div field="techDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center">技师提成金额</div>
+                <div field="advisorDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center">服务顾问提成金额</div>
+                <div field="totalDeductAmt" name="salesDeductValue" width="100" headerAlign="center" align="center">总提成金额</div>
+                <div field="netinAmt" name="netinAmt" width="100" headerAlign="center" align="center">营收金额</div>
+                <div field="grossProfit" name="grossProfit" width="100" headerAlign="center" align="center">毛利&nbsp;
                     <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
                         onmouseout="outHide()"></span></div>
-                <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">套餐抵扣数量</div>
-                <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">套餐抵扣金额</div>
-                <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">工单配件成本&nbsp;
-                    <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
-                        onmouseout="outHide()"></span></div>
-                <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">内部领料成本&nbsp;
-                    <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
-                        onmouseout="outHide()"></span></div>
-                <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">项目外包成本</div>
-                <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">毛利&nbsp;
-                    <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
-                        onmouseout="outHide()"></span></div>
-                <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">毛利率&nbsp;
+                <div field="grossProfitRate" name="grossProfitRate" width="100" headerAlign="center" align="center">毛利率&nbsp;
                     <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
                         onmouseout="outHide()"></span></div>
 
@@ -129,75 +151,8 @@
         nui.parse();
         var con8 = '这是一个提示';
 
-        var startDateEl = nui.get('startDate');
-        var endDateEl = nui.get('endDate');
-        var currType = 2;
-        quickSearch(1);
 
-        function quickSearch(type) {
-            //var params = getSearchParams();
-            var params = {};
-            var queryname = "本日";
-            switch (type) {
-                case 0:
-                    params.today = 1;
-                    params.startDate = getNowStartDate();
-                    params.endDate = addDate(getNowEndDate(), 1);
-                    queryname = "本日";
-                    break;
-                case 1:
-                    params.yesterday = 1;
-                    params.startDate = getPrevStartDate();
-                    params.endDate = addDate(getPrevEndDate(), 1);
-                    queryname = "昨日";
-                    break;
-                case 2:
-                    params.thisWeek = 1;
-                    params.startDate = getWeekStartDate();
-                    params.endDate = addDate(getWeekEndDate(), 1);
-                    queryname = "本周";
-                    break;
-                case 3:
-                    params.lastWeek = 1;
-                    params.startDate = getLastWeekStartDate();
-                    params.endDate = addDate(getLastWeekEndDate(), 1);
-                    queryname = "上周";
-                    break;
-                case 4:
-                    params.thisMonth = 1;
-                    params.startDate = getMonthStartDate();
-                    params.endDate = addDate(getMonthEndDate(), 1);
-                    queryname = "本月";
-                    break;
-                case 5:
-                    params.lastMonth = 1;
-                    params.startDate = getLastMonthStartDate();
-                    params.endDate = addDate(getLastMonthEndDate(), 1);
-                    queryname = "上月";
-                    break;
 
-                case 10:
-                    params.thisYear = 1;
-                    params.startDate = getYearStartDate();
-                    params.endDate = getYearEndDate();
-                    queryname = "本年";
-                    break;
-                case 11:
-                    params.lastYear = 1;
-                    params.startDate = getPrevYearStartDate();
-                    params.endDate = getPrevYearEndDate();
-                    queryname = "上年";
-                    break;
-                default:
-                    break;
-            }
-            currType = type;
-            startDateEl.setValue(params.startDate);
-            endDateEl.setValue(addDate(params.endDate, -1));
-            var menunamedate = nui.get("menunamedate");
-            menunamedate.setText(queryname);
-            //doSearch(params);
-        }
 
 
 

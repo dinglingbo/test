@@ -1597,9 +1597,21 @@ function addPrdt(data){
                             if(interType == 'package'){
                                 rpsPackageGrid.clearRows();
                                 rpsPackageGrid.addRows(data);
+                                if(main.status<2){
+                                	var row = rpsPackageGrid.findRow(function(row){
+                                		rpsPackageGrid.beginEditRow(row);
+                                    });
+                                }
                             }else if(interType == 'item'){
                                 rpsItemGrid.clearRows();
                                 rpsItemGrid.addRows(data);
+                                rpsItemGrid.clearRows();
+                                rpsItemGrid.addRows(data);
+                                if(main.status<2){
+                                	var row = rpsItemGrid.findRow(function(row){
+                                		rpsItemGrid.beginEditRow(row);
+                                    });
+                                }
                             }
                         }
                     }, function(){});
@@ -1643,6 +1655,11 @@ function addPrdt(data){
                     if(errCode == "S"){
                         rpsPackageGrid.clearRows();
                         rpsPackageGrid.addRows(data);
+                        if(main.status<2){
+                        	var row = rpsPackageGrid.findRow(function(row){
+                        		rpsPackageGrid.beginEditRow(row);
+                            });
+                        }
                     }
                 }, function(){});
             }else{
@@ -1682,6 +1699,11 @@ function addPrdt(data){
                     if(errCode == "S"){
                         rpsItemGrid.clearRows();
                         rpsItemGrid.addRows(data);
+                        if(main.status<2){
+                        	var row = rpsItemGrid.findRow(function(row){
+                        		rpsItemGrid.beginEditRow(row);
+                            });
+                        }
                     }
                 }, function(){});
             }else{
@@ -2479,9 +2501,19 @@ function addCardTimesToBill(){
                         if(interType == 'package'){
                             rpsPackageGrid.clearRows();
                             rpsPackageGrid.addRows(data);
+                            if(main.status<2){
+                            	var row = rpsPackageGrid.findRow(function(row){
+                            		rpsPackageGrid.beginEditRow(row);
+                                });
+                            }
                         }else if(interType == 'item'){
                             rpsItemGrid.clearRows();
                             rpsItemGrid.addRows(data);
+                            if(main.status<2){
+                            	var row = rpsItemGrid.findRow(function(row){
+                            		rpsItemGrid.beginEditRow(row);
+                                });
+                            }
                         }
                     }
                 }, function(){});

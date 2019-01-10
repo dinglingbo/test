@@ -18,5 +18,6 @@
 	<classpathentry kind="lib" path="/dms_system/eos-web/WEB-INF/lib/commons-lang-2.1.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/json-lib-2.2.2-jdk15.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/json.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/gson-2.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

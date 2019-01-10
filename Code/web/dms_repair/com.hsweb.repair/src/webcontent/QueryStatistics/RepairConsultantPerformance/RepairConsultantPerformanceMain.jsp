@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修顾问业绩报表</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairConsultantPerformance/RepairConsultantPerformanceMain.js?v=1.0.3"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairConsultantPerformance/RepairConsultantPerformanceMain.js?v=1.0.4"></script>
 <style type="text/css">
 .form_label {
 	width: 72px;

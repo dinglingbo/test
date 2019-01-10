@@ -22,10 +22,14 @@ import net.sf.json.JSONObject;
 
 import com.eos.data.datacontext.DataContextManager;
 import com.eos.data.datacontext.IMUODataContext;
+import com.eos.foundation.data.DataObjectUtil;
 import com.eos.foundation.database.DatabaseExt;
 import com.eos.system.annotation.Bizlet;
+import com.google.gson.Gson;
 import com.hs.common.Env;
 import com.hs.common.HttpUtils;
+import com.hs.common.Utils;
+import com.hs.utils.APIUtils;
 
 import commonj.sdo.DataObject;
 
@@ -246,77 +250,8 @@ public class PurchaseService {
 		JSONObject jsonObj = JSONObject.fromObject(main);
 		String json = jsonObj.toString();
 		
-		StringBuffer resultBuffer = null;
-		HttpURLConnection con = null;
-		OutputStreamWriter osw = null;
-		BufferedReader br = null;
-		// 发送请求
-		try {
-			URL url = new URL(urlParam);
-			con = (HttpURLConnection) url.openConnection();
-			con.setRequestMethod("POST");
-			con.setDoOutput(true);
-			con.setDoInput(true);
-			con.setUseCaches(true);
-			con.setRequestProperty("Content-Type",
-					"application/json;charset=UTF-8");
-			con.setRequestProperty("accept", "application/json,text/plain,*/*");
-
-			con.setConnectTimeout(20000);// 连接超时 单位毫秒
-			con.setReadTimeout(20000);// 读取超时 单位毫秒
-			if (json != null && json.length() > 0) {
-				osw = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
-				osw.write(json);
-				osw.flush();
-			}
-
-			// 读取返回内容
-			if (con.getResponseCode() == 200) {
-				resultBuffer = new StringBuffer();
-				br = new BufferedReader(new InputStreamReader(
-						con.getInputStream(), "UTF-8"));
-				String temp;
-				while ((temp = br.readLine()) != null) {
-					resultBuffer.append(temp);
-				}
-			} else {
-				System.out.println("con.getResponseCode = "
-						+ con.getResponseCode());
-			}
-			return resultBuffer.toString();
-		} catch (Exception e) {
-			System.out.println("Access Error At:" + urlParam);
-			e.printStackTrace();
-			return "{\"resultCode\":\"Http_Send_Error\", \"resultMsg\":\""
-					+ e.getMessage() + "\"}";
-		} finally {
-			if (osw != null) {
-				try {
-					osw.close();
-				} catch (IOException e) {
-					osw = null;
-					throw new RuntimeException(e);
-				} finally {
-					if (con != null) {
-						con.disconnect();
-						con = null;
-					}
-				}
-			}
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					br = null;
-					throw new RuntimeException(e);
-				} finally {
-					if (con != null) {
-						con.disconnect();
-						con = null;
-					}
-				}
-			}
-		}
+		String msg = sendPostByJson(urlParam, json);
+		return msg;	
 				
 	}
 	
@@ -360,15 +295,248 @@ public class PurchaseService {
 			main.put("isSRM", isSRM);  //车身分类三级ID
 		}
 		main.put("guestId", guestId);
-		main.put("isMaterial", isMaterial);
+		main.put("isMaterial", 1);
 		main.put("count", count);  //	每页显示条数
 		main.put("currpage", currpage);  //当前 页码
 		main.put("id", id);
+		main.put("sort", sort);
 		main.put("sortOrder", sortOrder);  // ‘asc’ 升序 'desc' 降序
 		
 		JSONObject jsonObj = JSONObject.fromObject(main);
 		String json = jsonObj.toString();
 		
+		String msg = sendPostByJson(urlParam, json);
+		return msg;	
+	}
+	
+	@Bizlet("查询SRM品牌")
+	public static String queryPartBrand(String access_token) {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", "serverType");
+		String apiurl = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", envType);
+		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+				//apiurl + "srm/router/rest?token="+access_token;
+		Map main = new HashMap();   
+		main.put("method", "base.brand.listAll");
+		main.put("type", 1);  
+		
+		JSONObject jsonObj = JSONObject.fromObject(main);
+		String json = jsonObj.toString();
+		
+		String msg = sendPostByJson(urlParam, json);
+		return msg;	
+	}
+	
+	@Bizlet("查询SRM品质")
+	public static String queryPartQuality(String access_token) {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", "serverType");
+		String apiurl = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", envType);
+		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+				//apiurl + "srm/router/rest?token="+access_token;
+		Map main = new HashMap();   
+		main.put("method", "base.brand.listAll");
+		main.put("parent_id", 0);  
+		main.put("type", 1);  
+		
+		JSONObject jsonObj = JSONObject.fromObject(main);
+		String json = jsonObj.toString();
+		
+		String msg = sendPostByJson(urlParam, json);
+		return msg;	
+	}
+	
+	@Bizlet("查询SRM厂牌")
+	public static String queryCarplate(String access_token) {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", "serverType");
+		String apiurl = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", envType);
+		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+				//apiurl + "srm/router/rest?token="+access_token;
+		Map main = new HashMap();   
+		main.put("method", "base.lable.listAll");
+		main.put("parent_id", 0);  
+		main.put("type", 1);  
+		
+		JSONObject jsonObj = JSONObject.fromObject(main);
+		String json = jsonObj.toString();
+		
+		String msg = sendPostByJson(urlParam, json);
+		return msg;	
+	}
+	
+	@Bizlet("查询SRM车身分类")
+	public static String queryPartType(String access_token, String parentId) {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", "serverType");
+		String apiurl = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", envType);
+		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+				//apiurl + "srm/router/rest?token="+access_token;
+		Map main = new HashMap();   
+		main.put("method", "base.category.listAll");
+		main.put("parent_id", parentId);  
+		main.put("type", 1);  
+		
+		JSONObject jsonObj = JSONObject.fromObject(main);
+		String json = jsonObj.toString();
+		
+		String msg = sendPostByJson(urlParam, json);
+		return msg;	
+	}
+	
+	private static String getGuestById(String access_token,String guestId) {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", "serverType");
+		String apiurl = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", envType);
+		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+				//apiurl + "srm/router/rest?token="+access_token;
+		Map main = new HashMap();   
+		main.put("method", "base.supplier.getGuestByCompanyName");
+		main.put("id", guestId);
+		//main.put("name", count);  
+		
+		JSONObject jsonObj = JSONObject.fromObject(main);
+		String json = jsonObj.toString();
+		
+		String msg = sendPostByJson(urlParam, json);
+		return msg;		
+	}
+	
+	private static DataObject setGuestInfo(String access_token, String guestId, String guestName, int orgid, String userName) throws Throwable {
+		//根据srm_guest_id查询往来单位信息
+		DataObject criteria = com.eos.foundation.data.DataObjectUtil
+				.createDataObject("com.primeton.das.criteria.criteriaType");
+    	criteria.set("_entity", "com.hsapi.part.data.com.ComGuest");
+    	criteria.set("_expr[1]/srmGuestId", guestId);
+    	criteria.set("_expr[1]/_op", "=");
+    	DataObject[] result = com.eos.foundation.database.DatabaseUtil
+    	.queryEntitiesByCriteriaEntity("common", criteria);
+    	
+    	if(result.length <= 0) {
+    		criteria.set("_expr[1]/srmGuestId", null);
+        	criteria.set("_expr[1]/_op", null);
+        	criteria.set("_expr[1]/fullName", guestName);
+        	criteria.set("_expr[1]/_op", "like");
+        	result = com.eos.foundation.database.DatabaseUtil
+        		    	.queryEntitiesByCriteriaEntity("common", criteria);
+        	if(result.length <= 0) {
+        		//如果不存在，后台自动新增，然后返回新增后的结果
+        		//com.hsapi.part.baseDataCrud.crud.saveSupplier  supplier  orgid  userName
+        		String retMsg = getGuestById(access_token, guestId);
+        		Gson gson = new Gson();
+                Map<String, String> resultMap = new HashMap<String, String>();
+                resultMap = gson.fromJson(retMsg, resultMap.getClass());
+                String status = resultMap.get("status");
+                HashMap map = null;
+                if(status.equals("0")) {
+                	String data = resultMap.get("data");
+                	map = Utils.str2Map(data);
+                }
+        		
+        		List<Object> params = new ArrayList<Object>();
+        		DataObject guest = DataObjectUtil
+						.createDataObject("com.hsapi.part.data.com.ComGuest");
+        		guest.set("orgid", orgid);
+        		guest.set("fullName", "");
+        		guest.set("shortName", "");
+        		guest.set("contactor", "");
+        		guest.set("contactorTel", "");
+        		guest.set("tel", "");
+        		guest.set("mobile", "");
+        		guest.set("srmGuestId", guestId);
+    			params.add(guest);
+    			params.add(orgid);
+    			params.add(userName);
+    			Object[] resultRes = APIUtils.callLogicFlowMethd("com.hsapi.part.baseDataCrud.crud", "saveSupplier", params.toArray(new Object[params.size()]));
+    			return null;
+    			
+        	}else {
+        		return result[0];
+        	}
+    	}
+		    	
+		return null;
+	}
+	
+	private static DataObject setPartInfo(String access_token, String partId, String partCode, String partName, 
+			int orgid, String userName, String brandId, String brandName, String qualityId, String qualityName) throws Throwable {
+		//根据srm_brand_id   srm_quality_id  srm_part_id 查询配件基础资料信息
+		DataObject criteria = com.eos.foundation.data.DataObjectUtil
+				.createDataObject("com.primeton.das.criteria.criteriaType");
+    	criteria.set("_entity", "com.hsapi.part.data.com.ComAttribute");
+    	criteria.set("_expr[1]/srmBrandId", brandId);
+    	criteria.set("_expr[1]/_op", "=");
+    	criteria.set("_expr[2]/srmQualityId", qualityId);
+    	criteria.set("_expr[2]/_op", "=");
+    	criteria.set("_expr[3]/code", partCode);
+    	criteria.set("_expr[3]/_op", "=");
+    	DataObject[] result = com.eos.foundation.database.DatabaseUtil
+    	.queryEntitiesByCriteriaEntity("common", criteria);
+    	
+    	if(result.length <= 0) {
+    		//如果不存在，后台自动新增，然后返回新增后的结果
+    		//com.hsapi.part.invoice.orderSettle.queryPartByPartBrand
+    		HashMap params = new HashMap();
+    		params.put("partCode",partCode);
+    		params.put("brandName",brandName);
+        	Object[] objs = DatabaseExt.queryByNamedSql("common","com.hsapi.part.invoice.orderSettle.queryPartByPartBrand", params);
+        	List<HashMap> detailList = new ArrayList<HashMap>();
+        	CollectionUtils.addAll(detailList, objs);
+        	DataObject obj = null;
+        	if(objs.length > 0) {
+        		obj = result[0];
+        		obj.set("status", 0);
+        		//com.hsapi.part.invoice.orderSettle.updatePartInfo
+        		HashMap pm = new HashMap();
+        		pm.put("brandId", brandId);
+        		pm.put("partId", partId);
+        		pm.put("qualityId", qualityId);
+        		pm.put("id", obj.get("id").toString());
+        		DatabaseExt.executeNamedSql(
+						"common",
+						"com.hsapi.part.invoice.orderSettle.updatePartInfo",
+						pm);
+        		
+        		return obj;
+        	}else {
+        		DataObject rs = DataObjectUtil
+						.createDataObject("com.hsapi.part.data.com.ComGuest");
+        		rs.set("status", -1);
+        		rs.set("msg", "请新增配件基础资料!");
+        		return rs;
+        	}
+        	
+    	}
+		    
+		return null;
+	}
+	
+	/*
+	 *  根据SRM往来单位ID，往来单位名称在车道上查询存不存在；                         返回车道往来单位信息
+		根据SRM上配件内码/（配件编码，配件品牌，配件品质）查询配件是否存在；   返回车道配件基础资料
+		
+		不能返回的，后台自动新增，后台新增不能获取到必填写值的，前端弹出新增
+	 * */
+	@Bizlet("")
+	public static String queryGuestAndSKU(String access_token, String guestId,
+			String guestName, String partId, String partCode, String brandId,
+			String brandName, String qualityId, String qualityName, int orgid, String userName) throws Throwable {
+		if(guestId == null || guestId.equals("")) {
+			return "{\"status\":\"-1\", \"resultMsg\":\"请传递guestId!\"}";
+		}
+		
+		setGuestInfo(access_token, guestId, guestName, orgid, userName);
+		
+		return null;
+				
+	}
+	
+	private static String sendPostByJson(String urlParam, String json) {
 		StringBuffer resultBuffer = null;
 		HttpURLConnection con = null;
 		OutputStreamWriter osw = null;
@@ -385,8 +553,8 @@ public class PurchaseService {
 					"application/json;charset=UTF-8");
 			con.setRequestProperty("accept", "application/json,text/plain,*/*");
 
-			con.setConnectTimeout(20000);// 连接超时 单位毫秒
-			con.setReadTimeout(20000);// 读取超时 单位毫秒
+			con.setConnectTimeout(60000);// 连接超时 单位毫秒
+			con.setReadTimeout(60000);// 读取超时 单位毫秒
 			if (json != null && json.length() > 0) {
 				osw = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
 				osw.write(json);
@@ -440,17 +608,6 @@ public class PurchaseService {
 				}
 			}
 		}
-				
 	}
-	
-	public static void main(String[] args) {
-		IMUODataContext muo = DataContextManager.current().getMUODataContext();
-		Map<String, Object> attrMap = muo.getUserObject().getAttributes();
-		String accessToken = (String) attrMap.get("srmtoken");
-		//(String access_token,String brandId,String carId,
-		//		String categoryF, String categoryS, String categoryT, int count,
-		//		int currpage, String key, String sortOrder)
-		querySRMSKUList(accessToken,null,null,null,null,null,20,1,null,"desc");
-	} 
 	
 }

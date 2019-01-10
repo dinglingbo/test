@@ -9,10 +9,10 @@
 <head>
 <title>添加采购车/销售车</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/shopCartPop.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/shopCartPop.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
-	width: 80px;
+	width: 90px;
 	text-align: right;
 }
 
@@ -43,6 +43,7 @@
     </table>
 </div>
 <div id="batchInfoForm" class="form">
+	<input class="nui-hidden"  id="orderMan" name="orderMan">
     <table style="width: 100%" id="list_table">
         <tr>
             <td class="title required">
@@ -67,8 +68,39 @@
                      class="nui-textbox" />
             </td>
         </tr>
+        
         <tr>
-            <td class="title">
+            <td class="title required">
+              <label>采购员：</label>
+            </td>
+            <td>
+              <input  class="nui-combobox"
+              		 id="orderManId" 
+                     name="orderManId" 
+                     textField="empName"
+              		 valueField="empId"
+                     emptyText="请选择..."
+                     url=""
+                     width="100%"
+                     required="true"
+                     allowInput="true"
+                  	 valueFromSelect="false"
+                     nullItemText="请选择..."/>
+            </td>
+            <td class="title required">
+              <label>预计到货日期：</label>
+            </td>
+            <td>
+              <input name="planArriveDate"
+                         id="planArriveDate"
+                         width="100%"
+                         showTime="true"
+                         class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="title required">
               <label>票据类型：</label>
             </td>
             <td>
@@ -84,7 +116,7 @@
                      width="100%"
                      nullItemText="请选择..."/>
             </td>
-            <td class="title">
+            <td class="title required">
               <label>结算方式：</label>
             </td>
             <td>

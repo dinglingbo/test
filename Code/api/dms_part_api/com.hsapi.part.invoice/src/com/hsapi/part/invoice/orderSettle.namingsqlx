@@ -8,7 +8,29 @@
         <result column="TYPEID" javaType="string" property="typeId"/>
     </resultMap>
     
-    
+    <!--根据中文的品牌 + 配件编码 查询配件信息存不存在-->
+    <select id="queryPartByPartBrand" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id, a.orgid, a.`code`, a.`name`, a.full_name, a.brand_code, a.oem_code,
+			a.common_code, a.query_code, a.quality_type_id, a.part_name_id,
+			a.name_py, a.name_en, a.goods_code, a.tax_rate, a.part_brand_id,
+			a.apply_carbrand_id, a.apply_car_model, a.car_type_id_f,
+			a.car_type_id_s, a.car_type_id_t, a.spec, a.direction, a.model,
+			a.unit, a.retail_price, a.whole_sale_price, a.usage_qty, a.picture,
+			a.source_id, a.common_id, a.srm_brand_id, a.srm_quality_id,
+			a.srm_part_id, a.remark
+		from com_attribute a
+			inner join com_part_brand b
+			on a.part_brand_id = b.id
+			where a.code = #partCode# and b.name = #brandName# and a.is_disabled = 0	
+	</select>
+	
+	<!--更新 com_attribute 的 srm_brand_id   srm_quality_id  srm_part_id-->
+	<update id="updatePartInfo" parameterClass="java.util.HashMap" >
+		update com_attribute set srm_brand_id = #brandId#, srm_part_id = #partId#, srm_quality_id = #qualityId#
+		where id = #id#
+	</update>
+	
     <select id="queryPchsOrderDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT b.srm_brand_id as srmBrandId, a.part_code as partCode, a.part_name as partName, 
 		       b.oem_code as oemCode, a.order_qty as orderQty, b.srm_quality_id as srmQualityId, 

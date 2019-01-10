@@ -28,6 +28,7 @@ import com.eos.system.annotation.Bizlet;
 import com.google.gson.Gson;
 import com.hs.common.Env;
 import com.hs.common.HttpUtils;
+import com.hs.common.Utils;
 import com.hs.utils.APIUtils;
 
 import commonj.sdo.DataObject;
@@ -249,77 +250,8 @@ public class PurchaseService {
 		JSONObject jsonObj = JSONObject.fromObject(main);
 		String json = jsonObj.toString();
 		
-		StringBuffer resultBuffer = null;
-		HttpURLConnection con = null;
-		OutputStreamWriter osw = null;
-		BufferedReader br = null;
-		// 发送请求
-		try {
-			URL url = new URL(urlParam);
-			con = (HttpURLConnection) url.openConnection();
-			con.setRequestMethod("POST");
-			con.setDoOutput(true);
-			con.setDoInput(true);
-			con.setUseCaches(true);
-			con.setRequestProperty("Content-Type",
-					"application/json;charset=UTF-8");
-			con.setRequestProperty("accept", "application/json,text/plain,*/*");
-
-			con.setConnectTimeout(20000);// 连接超时 单位毫秒
-			con.setReadTimeout(20000);// 读取超时 单位毫秒
-			if (json != null && json.length() > 0) {
-				osw = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
-				osw.write(json);
-				osw.flush();
-			}
-
-			// 读取返回内容
-			if (con.getResponseCode() == 200) {
-				resultBuffer = new StringBuffer();
-				br = new BufferedReader(new InputStreamReader(
-						con.getInputStream(), "UTF-8"));
-				String temp;
-				while ((temp = br.readLine()) != null) {
-					resultBuffer.append(temp);
-				}
-			} else {
-				System.out.println("con.getResponseCode = "
-						+ con.getResponseCode());
-			}
-			return resultBuffer.toString();
-		} catch (Exception e) {
-			System.out.println("Access Error At:" + urlParam);
-			e.printStackTrace();
-			return "{\"resultCode\":\"Http_Send_Error\", \"resultMsg\":\""
-					+ e.getMessage() + "\"}";
-		} finally {
-			if (osw != null) {
-				try {
-					osw.close();
-				} catch (IOException e) {
-					osw = null;
-					throw new RuntimeException(e);
-				} finally {
-					if (con != null) {
-						con.disconnect();
-						con = null;
-					}
-				}
-			}
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					br = null;
-					throw new RuntimeException(e);
-				} finally {
-					if (con != null) {
-						con.disconnect();
-						con = null;
-					}
-				}
-			}
-		}
+		String msg = sendPostByJson(urlParam, json);
+		return msg;	
 				
 	}
 	
@@ -363,87 +295,18 @@ public class PurchaseService {
 			main.put("isSRM", isSRM);  //车身分类三级ID
 		}
 		main.put("guestId", guestId);
-		main.put("isMaterial", isMaterial);
+		main.put("isMaterial", 1);
 		main.put("count", count);  //	每页显示条数
 		main.put("currpage", currpage);  //当前 页码
 		main.put("id", id);
+		main.put("sort", sort);
 		main.put("sortOrder", sortOrder);  // ‘asc’ 升序 'desc' 降序
 		
 		JSONObject jsonObj = JSONObject.fromObject(main);
 		String json = jsonObj.toString();
 		
-		StringBuffer resultBuffer = null;
-		HttpURLConnection con = null;
-		OutputStreamWriter osw = null;
-		BufferedReader br = null;
-		// 发送请求
-		try {
-			URL url = new URL(urlParam);
-			con = (HttpURLConnection) url.openConnection();
-			con.setRequestMethod("POST");
-			con.setDoOutput(true);
-			con.setDoInput(true);
-			con.setUseCaches(true);
-			con.setRequestProperty("Content-Type",
-					"application/json;charset=UTF-8");
-			con.setRequestProperty("accept", "application/json,text/plain,*/*");
-
-			con.setConnectTimeout(20000);// 连接超时 单位毫秒
-			con.setReadTimeout(20000);// 读取超时 单位毫秒
-			if (json != null && json.length() > 0) {
-				osw = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
-				osw.write(json);
-				osw.flush();
-			}
-
-			// 读取返回内容
-			if (con.getResponseCode() == 200) {
-				resultBuffer = new StringBuffer();
-				br = new BufferedReader(new InputStreamReader(
-						con.getInputStream(), "UTF-8"));
-				String temp;
-				while ((temp = br.readLine()) != null) {
-					resultBuffer.append(temp);
-				}
-			} else {
-				System.out.println("con.getResponseCode = "
-						+ con.getResponseCode());
-			}
-			return resultBuffer.toString();
-		} catch (Exception e) {
-			System.out.println("Access Error At:" + urlParam);
-			e.printStackTrace();
-			return "{\"resultCode\":\"Http_Send_Error\", \"resultMsg\":\""
-					+ e.getMessage() + "\"}";
-		} finally {
-			if (osw != null) {
-				try {
-					osw.close();
-				} catch (IOException e) {
-					osw = null;
-					throw new RuntimeException(e);
-				} finally {
-					if (con != null) {
-						con.disconnect();
-						con = null;
-					}
-				}
-			}
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					br = null;
-					throw new RuntimeException(e);
-				} finally {
-					if (con != null) {
-						con.disconnect();
-						con = null;
-					}
-				}
-			}
-		}
-				
+		String msg = sendPostByJson(urlParam, json);
+		return msg;	
 	}
 	
 	private static String getGuestById(String access_token,String guestId) {
@@ -490,8 +353,10 @@ public class PurchaseService {
                 Map<String, String> resultMap = new HashMap<String, String>();
                 resultMap = gson.fromJson(retMsg, resultMap.getClass());
                 String status = resultMap.get("status");
+                HashMap map = null;
                 if(status.equals("0")) {
-                	resultMap.get("data");
+                	String data = resultMap.get("data");
+                	map = Utils.str2Map(data);
                 }
         		
         		List<Object> params = new ArrayList<Object>();
@@ -503,7 +368,7 @@ public class PurchaseService {
     			params.add(guest);
     			params.add(orgid);
     			params.add(userName);
-    			Object[] resultRes = APIUtils.callLogicFlowMethd("com.hsapi.part.baseDataCrud.crud.saveSupplier", "saveSupplier", params.toArray(new Object[params.size()]));
+    			Object[] resultRes = APIUtils.callLogicFlowMethd("com.hsapi.part.baseDataCrud.crud", "saveSupplier", params.toArray(new Object[params.size()]));
     			return null;
     			
         	}else {
@@ -546,10 +411,12 @@ public class PurchaseService {
 	@Bizlet("")
 	public static String queryGuestAndSKU(String access_token, String guestId,
 			String guestName, String partId, String partCode, String brandId,
-			String brandName, String qualityId, String qualityName) {
+			String brandName, String qualityId, String qualityName, int orgid, String userName) throws Throwable {
 		if(guestId == null || guestId.equals("")) {
 			return "{\"status\":\"-1\", \"resultMsg\":\"请传递guestId!\"}";
 		}
+		
+		setGuestInfo(access_token, guestId, guestName, orgid, userName);
 		
 		return null;
 				

@@ -10,7 +10,7 @@
 <head>
 <title>配件查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.36"></script>
+    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.38"></script>
     <style type="text/css">
 		.table-label {
 			text-align: right;
@@ -61,7 +61,7 @@
                     <span class="separator"></span>
                     
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <label style="font-family:Verdana;">获取token：</label>
+                    <label style="font-family:Verdana;">token：</label>
                     <input class="nui-textbox" width="180" id="protoken" name="protoken"/>
 
                 </td>
@@ -90,28 +90,57 @@
          	<div class="nui-fit" >
          		 <div id="partGrid" class="nui-datagrid" style="float:left;width:100%;height:100%;"
 	                     borderStyle="border:0;"
-	                     dataField="parts"
+	                     dataField="data"
 	                     url=""
 	                     idField="id"
-	                     totalField="page.count"
+	                     totalField="page.size"
 	                     onrowdblclick="onOk()"
 	                     selectOnLoad="true"
 	                     pageSize="50"
+	                     pageIndexField="currpage"
+	                     pageSizeField="count"
 	                     sortMode="client"
 	                     showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
 		          	 	<div property="columns">
 		          	 		<div type="indexcolumn">序号</div>
-		          	 		<div allowSort="true" field="" width="100" headerAlign="center" allowSort="true">配件内码</div>
-		          	 		<div allowSort="true" field="" width="100" headerAlign="center" allowSort="true">配件编码</div>
-		          	 		<div allowSort="true" field="" width="100" headerAlign="center" allowSort="true">全称</div>
-		          	 		<div allowSort="true" field="" width="100" headerAlign="center" allowSort="true">品质</div>
-		          	 		<div allowSort="true" field="" width="100" headerAlign="center" allowSort="true">厂牌</div>
-		          	 		<div allowSort="true" field="" width="100" headerAlign="center" allowSort="true">库存量</div>
+		          	 		<div allowSort="true" field="partId" width="50" headerAlign="center" allowSort="true">配件内码</div>
+		          	 		<div allowSort="true" field="code" width="100" headerAlign="center" allowSort="true">配件编码</div>
+		          	 		<div allowSort="true" field="fullName" width="300" headerAlign="center" allowSort="true">全称</div>
+		          	 		<div allowSort="true" field="qualityName" width="50" headerAlign="center" allowSort="true">品质</div>
+		          	 		<div allowSort="true" field="brandName" width="100" headerAlign="center" allowSort="true">厂牌</div>
+		          	 		<div allowSort="true" field="countQty" width="100" headerAlign="center" allowSort="true">库存量</div>
 		          	 		<div allowSort="true" field="" width="100" headerAlign="center" allowSort="true">操作</div>
 		          	 	</div>
 		          </div>
          	</div>
         </div>
+   </div>
+</div>
+
+<div id="editFormDetail" style="display:none;padding:5px;position:relative;">
+
+   <div id="innerPartGrid"
+       dataField="pjPchsOrderDetailList"
+       allowCellWrap = true
+       class="nui-datagrid"
+       style="width: 100%; height: 100px;"
+       showPager="false"
+       allowSortColumn="true">
+      <div property="columns">
+           <div headerAlign="center" type="indexcolumn" width="30">序号</div>
+           <div field="partId" name="comPartCode" width="100" headerAlign="center" header="内码"></div>
+	       <div field="code" headerAlign="center" header="编码"></div>
+	       <div field="comPartBrandId" id="comPartBrandId" width="60" headerAlign="center" header="全称"></div>
+	       <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="品质"></div>
+	       <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="品牌"></div>
+	       <div field="orderPrice" numberFormat="0.0000" width="60" headerAlign="center" header="厂牌"></div>
+	       <div field="orderAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center"header="库存" ></div>
+		   <div field="comOemCode" width="100" headerAlign="center" allowSort="true" header="销售价"></div>
+		   <div field="comSpec" width="100" headerAlign="center" allowSort="true" header="配件商"></div>
+	   	   <div field="comApplyCarModel" id="comApplyCarModel" width="140" headerAlign="center" header="仓库"></div>
+		   <div field="storeId" width="100" headerAlign="center" allowSort="true" header="仓库所在地"></div>
+		   <div field="storeShelf" width="100" headerAlign="center" allowSort="true" header="操作"></div>
+      </div>
    </div>
 </div>
 	<script type="text/javascript">

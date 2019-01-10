@@ -9,7 +9,7 @@
 <head>
 <title>添加采购车/销售车</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/shopCartPop.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/common/shopCartPop.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -43,6 +43,7 @@
     </table>
 </div>
 <div id="batchInfoForm" class="form">
+	<input class="nui-hidden"  id="orderMan" name="orderMan">
     <table style="width: 100%" id="list_table">
         <tr>
             <td class="title required">
@@ -74,8 +75,8 @@
             </td>
             <td>
               <input  class="nui-combobox"
-              		 id="orderMan" 
-                     name="orderMan" 
+              		 id="orderManId" 
+                     name="orderManId" 
                      textField="empName"
               		 valueField="empId"
                      emptyText="请选择..."

@@ -14,6 +14,7 @@ var billTypeIdEl = null;
 var settleTypeIdEl = null;
 var guestIdEl = null;
 var TStoreId = null;
+var memList=null;
 $(document).ready(function(v)
 {
     mainGrid = nui.get("mainGrid");
@@ -25,7 +26,9 @@ $(document).ready(function(v)
 
     var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
     initDicts(dictDefs, null);
-
+    initMember("orderManId",function(){
+        memList = nui.get('orderMan').getData();
+    });
     guestIdEl.focus();
 
     $("#guestId").bind("keydown", function (e) {
@@ -147,6 +150,9 @@ function initGridDataTwo(data){
         shortNameEl.setValue(main.shortName);
         billTypeIdEl.setValue(main.billTypeId);
         settleTypeIdEl.setValue(main.settleTypeId);
+        nui.get('orderManId').setValue(currEmpId);
+        nui.get('orderManId').setText(currUserName);
+        nui.get('orderMan').setValue(currUserName);
     }
 
     mainGrid.setData(rows);
@@ -344,7 +350,14 @@ function onOk()
         showMsg("请选择往来单位!","W");
         return;
     }
-
+    if(!data.orderManId || !data.orderMan){
+    	showMsg("请选择采购员!","W");
+        return;
+    }
+    if(!data.planArriveDate){
+    	showMsg("请填写预计到货日期!","W");
+        return;
+    }
     var detail = mainGrid.getData();
     if(detail.length <= 0){
         showMsg("明细为空!","W");
@@ -366,7 +379,9 @@ function onOk()
     main.remark = data.remark;
     main.billTypeId = data.billTypeId;
     main.settleTypeId = data.settleTypeId;
-
+    main.orderManId=data.orderManId;
+    main.orderMan=data.orderMan;
+    main.planArriveDate =nui.get('planArriveDate').getFormValue();
     var rows = mainGrid.findRows(function(row) {
         if (row.partId == -1)
             return true;

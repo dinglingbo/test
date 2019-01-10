@@ -654,7 +654,7 @@ function saveb(){
 	
 	var lastKilometers =parseFloat(data.lastKilometers || 0);
 	var enterKilometers = parseFloat(data.enterKilometers||0);
-	if(enterKilometers <=lastKilometers){
+	if(enterKilometers <lastKilometers){
 		showMsg("本次里程不能小于上次里程","W");
 		return;
 	}

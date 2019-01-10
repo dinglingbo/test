@@ -283,9 +283,11 @@ function print(){
 	};
 	if(settlementUrl==1){
 		sourceUrl = webPath + contextPath + "/com.hsweb.RepairBusiness.printCard.flow?token="+token;
+		p.name="计次卡结账";
 	}
 	if(settlementUrl==2){
 		sourceUrl = webPath + contextPath + "/com.hsweb.RepairBusiness.printCardStored.flow?token="+token;
+		p.name="储值卡结账";
 	}
 	nui.open({
         url: sourceUrl,

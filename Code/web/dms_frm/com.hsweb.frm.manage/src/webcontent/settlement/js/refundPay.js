@@ -10,6 +10,7 @@ var typeList = {};
 var zongAmt = 0;//实时填写的结算金额
 var guestData = null;
 var deductible = 0;
+var printGuest = {}//打印用
 $(document).ready(function (){
 	$("body").on("blur","input[name='amount']",function(){
 		onChanged();
@@ -18,11 +19,12 @@ $(document).ready(function (){
 
 
 function setData(data){
+	printGuest = data.printGuest;
 	guestData = data.card;
 	zongAmt = data.payAmt;
 	typeCard = data.typeCard;
 
-	document.getElementById('mobile').innerHTML = guestData.mobile||"";
+	/*document.getElementById('mobile').innerHTML = guestData.mobile||"";*/
 	document.getElementById('guestName').innerHTML = guestData.guestName;
 	document.getElementById('totalAmt').innerHTML = "￥"+zongAmt;
 	document.getElementById('totalAmt1').innerHTML = zongAmt;
@@ -196,6 +198,8 @@ function settleOK() {
 			    				nui.unmask(document.body);
 			    				if(data.errCode=="S"){  					
 			    					CloseWindow("saveSuccess");
+			    					guestData.payAmt = zongAmt;
+			    					print();
 			    				}else{
 			    					nui.alert(data.errMsg,"提示");
 			    				}
@@ -286,4 +290,50 @@ function noPay(){
 			 }
 		});
 
+}
+
+//打印函数
+function print(){
+	var sourceUrl = "";
+	var printName = currRepairSettorderPrintShow||currOrgName;
+	var p = {
+		comp : printName,
+		partApiUrl:apiPath + partApi + "/",
+		baseUrl: apiPath + repairApi + "/",
+		sysUrl: apiPath + sysApi + "/",
+		webUrl:webPath + contextPath + "/",
+        bankName: currBankName,
+        bankAccountNumber: currBankAccountNumber,
+        currCompAddress: currCompAddress,
+        currCompTel: currCompTel,
+        currSlogan1: currSlogan1,
+        currSlogan2: currSlogan2,
+        currUserName : currUserName,
+		token : token
+	};
+	params = {
+			printGuest:printGuest,
+		guestData:guestData,
+		p:p
+	};
+	if(typeCard==1){
+		sourceUrl = webPath + contextPath + "/com.hsweb.repair.DataBase.printCardRefund.flow?token="+token;
+		p.name="计次卡退款";
+	}
+	if(typeCard==2){
+		sourceUrl = webPath + contextPath + "/com.hsweb.repair.DataBase.printCardStoredRefund.flow?token="+token;
+		p.name="储值卡退款";
+	}
+	nui.open({
+        url: sourceUrl,
+        title: p.name + "打印",
+		width: "100%",
+		height: "100%",
+        onload: function () {
+            var iframe = this.getIFrameEl();
+           iframe.contentWindow.SetData(params);
+        },
+        ondestroy: function (action){
+        }
+    });
 }

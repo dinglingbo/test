@@ -184,40 +184,40 @@
 			sum( d.advisorDeductValue ) as advisorDeductValue
 		FROM
 			(
-			select sale_man_id as workerId, sale_man as worker, sum(IFNULL(sales_deduct_value,0)) as salesDeductValue, 
+			select sale_man_id as workerId, ifnull(sale_man,'') as worker, sum(IFNULL(sales_deduct_value,0)) as salesDeductValue, 
 			       0 as techDeductValue, 0 as advisorDeductValue
 			from rps_package a
 			WHERE
 				service_id = #serviceId# 
 			group by sale_man_id, sale_man
-				union
-			SELECT sale_man_id as workerId, sale_man as worker , sum(IFNULL(sales_deduct_value,0)) as salesDeductValue, 
+				union all
+			SELECT sale_man_id as workerId, ifnull(sale_man,'') as worker , sum(IFNULL(sales_deduct_value,0)) as salesDeductValue, 
 			       0 as techDeductValue, 0 as advisorDeductValue
 			from rps_item
 			WHERE
 				service_id = #serviceId# 
 			group by sale_man_id, sale_man
-				union		
-			SELECT sale_man_id as workerId, sale_man as worker , sum(IFNULL(sales_deduct_value,0)) as salesDeductValue, 
+				union all		
+			SELECT sale_man_id as workerId, ifnull(sale_man,'') as worker , sum(IFNULL(sales_deduct_value,0)) as salesDeductValue, 
 			       0 as techDeductValue, 0 as advisorDeductValue
 			from rps_part
 			WHERE
 				service_id = #serviceId# and ifnull(is_disabled,0) = 0
 			group by sale_man_id, sale_man
-				union
+				union all
 			select #mtAdvisorId#  as workerId, #mtAdvisor#  as worker, 0 as salesDeductValue, 
 			       0 as techDeductValue, sum(IFNULL(advisor_deduct_value,0)) as advisorDeductValue
 			from rps_package a
 			WHERE
 				service_id = #serviceId# 
-				union
+				union all
 			select #mtAdvisorId#  as workerId, #mtAdvisor#  as worker, 0 as salesDeductValue, 
 			       0 as techDeductValue, sum(IFNULL(advisor_deduct_value,0)) as advisorDeductValue
 			from rps_item a
 			WHERE
 				service_id = #serviceId# 
-				union
-			SELECT worker_id as workerId, worker as worker, 0 as salesDeductValue, 
+				union all
+			SELECT worker_id as workerId, ifnull(worker,'') as worker, 0 as salesDeductValue, 
 			       sum(IFNULL(deduct_value,deduct_value)) as techDeductValue, 0 as advisorDeductValue
 			from rps_item_workers 
 			WHERE

@@ -208,7 +208,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
-	params.orgid = currOrgid;
+	params.orgid = currOrgId;
 	params.returnSign = 0; //出库
 //	params.isSettle=1; //已结算
 //	params.status=2; //状态已完工

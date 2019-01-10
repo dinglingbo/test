@@ -235,6 +235,7 @@
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
       <targetNode>assign2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link16</targetConnections>
     <location x="465" y="149"/>
@@ -534,6 +535,7 @@
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="2" language="Int" name="guestId" type="query" valueType="Primitive">guestId</process:return>
+      <process:return id="3" language="com.hsapi.part.data.com.ComGuest" name="supplier" type="query" valueType="DataObject">supplier</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
@@ -625,6 +627,7 @@
     <process:output description="S/E" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output description="" isArray="false" name="guestId" primitiveType="Int"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.part.data.com.ComGuest" name="supplier"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

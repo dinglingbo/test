@@ -206,7 +206,8 @@ public class PurchaseService {
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", envType);
-		String urlParam = apiurl + "srm/router/rest?token="+access_token;
+		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+				//apiurl + "srm/router/rest?token="+access_token;
 		Map main = new HashMap();   
 		main.put("type", 1); //固定值 1
 		main.put("method", "base.partQuery.partSkuList");

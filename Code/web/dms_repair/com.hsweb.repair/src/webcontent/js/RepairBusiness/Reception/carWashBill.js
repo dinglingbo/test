@@ -1013,8 +1013,10 @@ function add(){
     fguestId = 0;
     fcarId = 0;
     fserviceId = 0;
-
-    document.getElementById("formIframe").contentWindow.doSetCardTimes([]);
+    //if(document.getElementById("formIframe").contentWindow.doSetCardTimes([])){
+     var fn = document.getElementById("formIframe").contentWindow.doSetCardTimes([]);
+    typeof fn === "function" ? fn() : false;
+    //}
    // $("#lastComeKilometers").html("0");
     $("#servieIdEl").html("");
     $("#showCardTimesEl").html("次卡套餐(0)");
@@ -1549,8 +1551,9 @@ nui.ajax({
 function addPrdt(data){
     var main = billForm.getData();
     if(!main.id){
-        showMsg("请先保存工单!","E");
-        return;
+    	saveNoshowMsg();
+       /* showMsg("请先保存工单!","E");
+        return;*/
     }
     var type = data.type;
     var rtnRow = data.rtnRow||{};

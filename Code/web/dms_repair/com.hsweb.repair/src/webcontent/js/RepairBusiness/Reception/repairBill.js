@@ -1407,7 +1407,7 @@ function finish(){
                             }
                         };
                         loadDetail(p1, p2, p3,status);
-                    showMsg("完工成功!","S");
+                        showMsg("完工成功!","S");
                 }else{
                     if(data.errCode){
                         showMsg("完工失败!","E");
@@ -1497,7 +1497,7 @@ function loadMaintain(callback,unmaskcall){
 			return;
 		}
     }
-    data.billTypeId = 2;
+    data.billTypeId = 0;
     
     nui.ajax({
         url : saveMaintainUrl,
@@ -2571,8 +2571,6 @@ function loadDetail(p1, p2, p3,status){
         }, function(){});
     }
 }
-/*var __workerIds="";
-var __saleManId="";*/
 
 var falg="Y";
 function chooseItem(){
@@ -2645,8 +2643,7 @@ function chooseItem(){
     	        var p3 = {};
     	        loadDetail(p1, p2, p3,main.status);
     	    }); 
-    }
-    
+    }   
 }
 
 function choosePackage(){
@@ -2988,8 +2985,7 @@ function addcard(){
 
 function onPrint(e){
 	var main = billForm.getData();
-	var openUrl = null;
-	
+	var openUrl = null;	
 	if(main.id){
 		var params = {
             source : e,
@@ -4073,31 +4069,7 @@ function chooseContactor(){
          }
      });
 }
-var workerIdsBat = "";
-var workerNamesBat = "";
-/*function onworkerChangedBat(e){
-	workerNamesBat = e.value;
-    var obj = e.sender;
-    var rows = e.selecteds;
-    var workerIds = "";
-    var workerIdList = [];
-    if(!rows || rows.length==0){
-        workerIds = "";
-    }else{
-        for(var i=0; i<rows.length; i++){
-            var row = rows[i];
-            var empId = row.empId;
-            workerIdList.push(empId);
-        }
 
-        if(workerIdList&&workerIdList.length>0){
-            workerIds = workerIdList.join(",");
-        }else{
-            workerIds = "";
-        }
-    }
-    workerIdsBat = workerIds;
-}*/
 var saleManIdBat = "";
 var saleManNameBat = "";
 var saleManIdBat2 = "";
@@ -4352,7 +4324,7 @@ var partF = "S";
 var pkgF = "S";
 function saveItem(){
 	var main = billForm.getData();
-	
+	var status = main.status||0;
     var isSettle = main.isSettle||0;
     if(!main.id){
         showMsg("请选择保存工单!","W");
@@ -4366,7 +4338,6 @@ function saveItem(){
         showMsg("工单已结算,不能修改项目!","W");
         return;
     }
-    var status = main.status||0;
     rpsItemGrid.commitEdit();
     var rows = rpsItemGrid.getChanges();
     if(status<2){

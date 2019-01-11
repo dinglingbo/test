@@ -370,7 +370,7 @@ function add(){
     window.parent.activeTabAndInit(item,params);
 
 }
-function edit(){
+/*function edit(){
     var row = mainGrid.getSelected();
     if(!row) return;
     var item={};
@@ -383,7 +383,7 @@ function edit(){
         id: row.id
     };
     window.parent.activeTabAndInit(item,params);
-}
+}*/
 //根据开单界面传递的车牌号查询未结算的工单
 function setInitData(params){
     var carNo = params.carNo||"";

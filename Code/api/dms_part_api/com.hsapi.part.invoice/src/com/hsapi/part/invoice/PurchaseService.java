@@ -448,9 +448,10 @@ public class PurchaseService {
         	Object[] objs = DatabaseExt.queryByNamedSql("common","com.hsapi.part.invoice.orderSettle.queryPartByPartBrand", params);
         	List<HashMap> detailList = new ArrayList<HashMap>();
         	CollectionUtils.addAll(detailList, objs);
-        	DataObject obj = null;
+        	DataObject obj =DataObjectUtil
+					.createDataObject("com.hsapi.part.data.com.ComAttribute");
         	if(objs.length > 0) {
-        		obj = result[0];
+//        		obj = result[0];
         		obj.set("status", 0);
         		//com.hsapi.part.invoice.orderSettle.updatePartInfo
         		HashMap pm = new HashMap();

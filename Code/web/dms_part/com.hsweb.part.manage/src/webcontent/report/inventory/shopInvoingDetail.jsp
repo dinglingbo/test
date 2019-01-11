@@ -115,8 +115,8 @@
          <div header="本次操作信息" headerAlign="center">
             <div property="columns">
                 <div summaryType="sum" allowSort="true" datatype="float" field="qty" width="60" headerAlign="center" header="数量" dataType="float" align="right"></div>
-                <div allowSort="true" datatype="float" field="price" width="60" headerAlign="center" header="单价" dataType="float" align="right"></div>
-                <div summaryType="sum" allowSort="true" datatype="float" field="amt" headerAlign="center" header="金额" dataType="float" align="right"></div>
+                <div allowSort="true" datatype="float" field="costPrice" width="60" headerAlign="center" header="单价" dataType="float" align="right"></div>
+                <div summaryType="sum" allowSort="true" datatype="float" field="costAmt" headerAlign="center" header="金额" dataType="float" align="right"></div>
             </div>
         </div>
    

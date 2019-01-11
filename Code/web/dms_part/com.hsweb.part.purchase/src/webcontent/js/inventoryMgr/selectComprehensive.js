@@ -140,7 +140,9 @@ $(document).ready(function ()
         }
         
     });
-    
+    mainGrid.on("rowdblclick",function(){
+    	edit();
+    });
     innerpackGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -323,6 +325,9 @@ function onSearch()
 }
 function doSearch() {
     var gsparams = getSearchParam();
+    if(gsparams.billTypeIds && gsparams.billTypeIds==5){
+    	gsparams.billTypeIds = "0,2,4";
+    }
     gsparams.isSettle = 1;
    // gsparams.billTypeId = 0;
     gsparams.isDisabled = 0;
@@ -337,7 +342,7 @@ function getSearchParam() {
     params.sOutDate = nui.get("sOutDate").getValue();
     params.eOutDate = addDate(endDateEl.getValue(),1);  
     params.mtAuditorId = mtAdvisorIdEl.getValue();
-    params.billTypeId = nui.get("billTypeId").getValue();
+    params.billTypeIds = nui.get("billTypeId").getValue();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){
@@ -370,7 +375,7 @@ function add(){
     window.parent.activeTabAndInit(item,params);
 
 }
-function edit(){
+/*function edit(){
     var row = mainGrid.getSelected();
     if(!row) return;
     var item={};
@@ -383,7 +388,7 @@ function edit(){
         id: row.id
     };
     window.parent.activeTabAndInit(item,params);
-}
+}*/
 //根据开单界面传递的车牌号查询未结算的工单
 function setInitData(params){
     var carNo = params.carNo||"";

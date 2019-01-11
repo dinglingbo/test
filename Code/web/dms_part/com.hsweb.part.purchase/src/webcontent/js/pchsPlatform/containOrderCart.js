@@ -171,8 +171,14 @@ function updateOrderCart(list){
 }
 function generatePchsOrder(){
     var rows = cartGrid.getSelecteds();
+    var guestId=rows[0].guestId;
     if(rows && rows.length > 0){
-
+    	for(var i=0;i<rows.length;i++){
+    		if(guestId!=rows[i].guestId){
+    			nui.alert("请选择相同供应商的配件!");
+    			return;
+    		}
+    	}
     }else{
         nui.alert("请选择配件信息!");
         return;

@@ -187,7 +187,7 @@
                         <label>车型信息：</label>
                     </td>
                     <td colspan="3">
-                        <textarea class="nui-textarea" id="carModel" name="carModel" width="100%"></textarea>
+                        <textarea class="nui-textarea" id="carModel" name="carModelFullName" width="100%"></textarea>
                     </td>
                 </tr>
                 <!--
@@ -425,7 +425,7 @@
                                     <div field="vin" allowSort="true" align="left" headerAlign="center" width="160px" dataType="int">
                                         车架号(VIN)
                                     </div>
-                                    <div field="carModel" allowSort="true" align="left" headerAlign="center" width="160px" dataType="int">
+                                    <div field="carModelFullName" allowSort="true" align="left" headerAlign="center" width="160px" dataType="int">
                                         车型信息
                                     </div>
                                     

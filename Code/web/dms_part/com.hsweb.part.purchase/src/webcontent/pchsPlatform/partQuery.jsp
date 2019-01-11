@@ -10,7 +10,7 @@
 <head>
 <title>配件查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.41"></script>
+    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.45"></script>
     <style type="text/css">
 		.table-label {
 			text-align: right;
@@ -123,7 +123,7 @@
        class="nui-datagrid"
        style="width: 100%; height: 100px;"
        showPager="false"
-       multiSelect="true"
+       multiSelect="false"
        allowCellSelect="true"
        allowSortColumn="true">
       <div property="columns">

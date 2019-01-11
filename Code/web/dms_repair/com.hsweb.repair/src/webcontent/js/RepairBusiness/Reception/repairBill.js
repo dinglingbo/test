@@ -408,6 +408,12 @@ $(document).ready(function ()
                     record.qty=1;
                 }
                 break;
+            case "saleMan":
+                var cardDetailId = record.cardDetailId||0;
+                if(cardDetailId> 0){
+                    e.cellHtml = "--";
+                }
+                break;
             default:
                 break;
         }
@@ -430,7 +436,7 @@ $(document).ready(function ()
                 e.cancel = true;
             }
         }
-        if(field == 'unitPrice' || field == 'subtotal' || field == 'rate' || field == 'saleMan'){
+        if(field == 'unitPrice' || field == 'subtotal' || field == 'rate' || field == 'saleMan' || field == 'qty'){
             if(row.cardDetailId > 0){
                 e.cancel = true;
             }
@@ -498,8 +504,6 @@ $(document).ready(function ()
 	}
 
 });
-
-
 function setGuest(item){
 	var carNo = item.carNo||"";
     var tel = item.guestMobile||"";
@@ -1371,7 +1375,7 @@ function finish(){
             return;
         }
         if(data.status == 0){
-            showMsg("工单未施工!","W");
+            showMsg("工单未施工!","W"); 
             return;
         }
         var params = {
@@ -1407,7 +1411,7 @@ function finish(){
                             }
                         };
                         loadDetail(p1, p2, p3,status);
-                    showMsg("完工成功!","S");
+                        showMsg("完工成功!","S");
                 }else{
                     if(data.errCode){
                         showMsg("完工失败!","E");
@@ -1497,7 +1501,7 @@ function loadMaintain(callback,unmaskcall){
 			return;
 		}
     }
-    data.billTypeId = 2;
+    data.billTypeId = 0;
     
     nui.ajax({
         url : saveMaintainUrl,
@@ -2571,10 +2575,9 @@ function loadDetail(p1, p2, p3,status){
         }, function(){});
     }
 }
-/*var __workerIds="";
-var __saleManId="";*/
 
 var falg="Y";
+var openIF = 1;
 function chooseItem(){
     var data = billForm.getData();
     var isSettle = data.isSettle||0;
@@ -2607,28 +2610,28 @@ function chooseItem(){
   	  return;
   	}
     if(!data.id || falg=="N"){
-       // showMsg("请选择保存工单!","S");
-       // return;
       falg="Y";
+      openIF = 0;
 	  saveNoshowMsg(function(){
 		  var main = billForm.getData();
 		  var param = {};
 	      param.carModelIdLy = main.carModelIdLy;
 	      param.serviceId = main.id;
 	      doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
-			     main = billForm.getData();
-			     var p1 = { }
-			     var p2 = {
-			         interType: "item",
-			         data:{
-			             serviceId: main.id||0
-			         }
-			     };
-			     var p3 = {};
-			     loadDetail(p1, p2, p3,main.status);
+    	     openIF = 1;
+    	     main = billForm.getData();
+		     var p1 = { }
+		     var p2 = {
+		         interType: "item",
+		         data:{
+		             serviceId: main.id||0
+		         }
+		     };
+		     var p3 = {};
+		     loadDetail(p1, p2, p3,main.status);
 	    }); 
 	  });
-    }else{
+    }else if(openIF == 1){
     	var main = billForm.getData();
     	var param = {};
         param.carModelIdLy = main.carModelIdLy;
@@ -2645,10 +2648,10 @@ function chooseItem(){
     	        var p3 = {};
     	        loadDetail(p1, p2, p3,main.status);
     	    }); 
-    }
-    
+    }   
 }
 
+var openPF = 1;
 function choosePackage(){
     var data = billForm.getData();
     var isSettle = data.isSettle||0;
@@ -2684,12 +2687,14 @@ function choosePackage(){
        // showMsg("请选择保存工单!","S");
        // return;
       falg="Y";
+      openPF = 0;
 	  saveNoshowMsg(function(){
 		var main = billForm.getData();
 		var param = {};
 	    param.carModelIdLy = main.carModelIdLy;
 	    param.serviceId = main.id;
 	    doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
+	    	openPF = 1;
 	        main = billForm.getData();
 	        var p1 = { 
 	    		interType: "package",
@@ -2702,7 +2707,7 @@ function choosePackage(){
 	        loadDetail(p1, p2, p3,main.status);
 	    });
 	  });
-    }else{
+    }else if(openPF == 1){
     	var main = billForm.getData();
     	var param = {};
         param.carModelIdLy = main.carModelIdLy;
@@ -2988,8 +2993,7 @@ function addcard(){
 
 function onPrint(e){
 	var main = billForm.getData();
-	var openUrl = null;
-	
+	var openUrl = null;	
 	if(main.id){
 		var params = {
             source : e,
@@ -4073,31 +4077,7 @@ function chooseContactor(){
          }
      });
 }
-var workerIdsBat = "";
-var workerNamesBat = "";
-/*function onworkerChangedBat(e){
-	workerNamesBat = e.value;
-    var obj = e.sender;
-    var rows = e.selecteds;
-    var workerIds = "";
-    var workerIdList = [];
-    if(!rows || rows.length==0){
-        workerIds = "";
-    }else{
-        for(var i=0; i<rows.length; i++){
-            var row = rows[i];
-            var empId = row.empId;
-            workerIdList.push(empId);
-        }
 
-        if(workerIdList&&workerIdList.length>0){
-            workerIds = workerIdList.join(",");
-        }else{
-            workerIds = "";
-        }
-    }
-    workerIdsBat = workerIds;
-}*/
 var saleManIdBat = "";
 var saleManNameBat = "";
 var saleManIdBat2 = "";
@@ -4352,7 +4332,7 @@ var partF = "S";
 var pkgF = "S";
 function saveItem(){
 	var main = billForm.getData();
-	
+	var status = main.status||0;
     var isSettle = main.isSettle||0;
     if(!main.id){
         showMsg("请选择保存工单!","W");
@@ -4366,7 +4346,6 @@ function saveItem(){
         showMsg("工单已结算,不能修改项目!","W");
         return;
     }
-    var status = main.status||0;
     rpsItemGrid.commitEdit();
     var rows = rpsItemGrid.getChanges();
     if(status<2){

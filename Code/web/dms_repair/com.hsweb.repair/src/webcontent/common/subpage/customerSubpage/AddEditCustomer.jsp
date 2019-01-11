@@ -179,7 +179,7 @@ table {
                                     <label>车型信息：</label>
                                 </td>
                                 <td colspan="3">
-                                    <textarea class="nui-textarea" id="carModel" name="carModel" width="100%"></textarea>
+                                    <textarea class="nui-textarea" id="carModel" name="carModelFullName" width="100%"></textarea>
                                 </td>
                             </tr>
                             <!--

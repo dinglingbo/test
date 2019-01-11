@@ -10,6 +10,7 @@ var baseUrl = apiPath + repairApi + "/";
 var webBaseUrl = webPath + contextPath + "/";  
 var serviceId=null;
 var sellForm=null;
+var servieIdEl = null;
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"项目",
@@ -22,6 +23,7 @@ $(document).ready(function () {
 	sellForm =new nui.Form('#sellForm');
 	mtAdvisorIdEl = nui.get("mtAdvisorId");
 	advancedMorePartWin = nui.get("advancedMorePartWin");
+	servieIdEl = nui.get("servieIdEl");
 	initServiceType("serviceTypeId",function(data) {
 	    servieTypeList = nui.get("serviceTypeId").getData();
 	    servieTypeList.forEach(function(v) {
@@ -113,7 +115,7 @@ $(document).ready(function () {
 		var uid = record._uid;
 		if(field == "serviceTypeId") {
 	         var type = record.type||0;
-	         if(type>1){
+	         if(type>2){
 	             e.cellHtml = "--";
 	         }else{
 	             e.cellHtml = servieTypeHash[e.value].name ||"";
@@ -155,10 +157,8 @@ function setInitData(params){
         var errCode = text.errCode||"";
         var data = text.maintain||{};
         params.sourceServiceId = params.id;
+        $("#servieIdEl").html(data.serviceCode);
         billForm.setData(data);   
-        
-
-	
     var p = {
             data:{
                 guestId: data.guestId||0,
@@ -396,3 +396,30 @@ function onDrawSummaryCellPack(e){
 		  }
 	  } 
 }
+function onPrint(e){
+	var main = billForm.getData();
+	var openUrl = null;	
+	if(main.id){
+		var params = {
+            source : e,
+            serviceId : main.id,
+            isSettle : main.isSettle
+		};
+		if(e==3 || e==4){
+			if(main.isSettle||main.balaAuditSign){
+				doPrint(params);
+			}else{
+				showMsg("工单未结算，不能打印","W");
+				return;
+			}
+		}else{
+			 doPrint(params);
+		}
+       
+	}else{
+        showMsg("请先保存工单,再打印!","W");
+        return;
+    }
+}
+
+

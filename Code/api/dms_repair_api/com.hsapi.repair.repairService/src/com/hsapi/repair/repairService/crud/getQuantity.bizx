@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getQuantity" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.repairService.query.appointmentQuantity" title="Administrator&#x9;18-11-13 下午7:18">
-    <location x="335" y="380"/>
-    <size height="100" width="566"/>
+  <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.repairService.query.appointmentQuantity&#xD;&#xA;com.hsapi.repair.repairService.query.offerQuantity&#xD;&#xA;com.hsapi.repair.repairService.query.constructionQuantity&#xD;&#xA;com.hsapi.repair.repairService.query.throughQuantity&#xD;&#xA;com.hsapi.repair.repairService.query.settleQuantity" title="Administrator&#x9;19-1-11 上午10:01">
+    <location x="0" y="-15"/>
+    <size height="136" width="528"/>
+  </nodes>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="offerQuantity在报价&#xD;&#xA;constructionQuantity施工中&#xD;&#xA;throughQuantity待完工&#xD;&#xA;settleQuantity待结算&#xD;&#xA;" title="Administrator&#x9;18-11-13 下午7:18">
+    <location x="-25" y="322"/>
+    <size height="144" width="566"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -231,6 +235,7 @@
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="354" y="150"/>

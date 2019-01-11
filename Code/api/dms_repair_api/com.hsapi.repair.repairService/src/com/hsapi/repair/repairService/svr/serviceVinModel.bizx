@@ -101,7 +101,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCodeModelLy</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
         <process:outputVariable id="2" name="data" type="query" value="com.alibaba.fastjson.JSON" valueType="Java">dataModelLy</process:outputVariable>
       </process:outputVariables>
     </process:flow>
@@ -176,7 +176,7 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign2" name="赋值2" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link18" name="link18" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>subprocess2</targetNode>
@@ -344,6 +344,10 @@
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">name1+name2+name3</process:from>
+      <process:to type="query">car/carModelFullName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">name1+name2</process:from>
       <process:to type="query">car/carModel</process:to>
     </process:copy>
   </nodes>

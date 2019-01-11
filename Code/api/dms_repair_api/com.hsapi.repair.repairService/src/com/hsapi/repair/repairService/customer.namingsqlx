@@ -22,6 +22,7 @@
 			b.full_name guestFullName,
 			a.car_model_id carModelId,
 			a.car_model carModel,
+			a.car_model_full_name as carModelFullName,
 			a.car_brand_id carBrandId,
 			a.engine_no engineNo,
 			a.annual_inspection_date annualInspectionDate,

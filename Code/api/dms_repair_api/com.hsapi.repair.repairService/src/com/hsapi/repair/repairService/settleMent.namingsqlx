@@ -235,7 +235,9 @@
 		where service_id = #serviceId# 
 		UNION
 		SELECT DISTINCT service_id as serviceId, service_type_id as serviceTypeId from rps_item
-		where service_id = #serviceId# and bill_package_id = 0) m
+		where service_id = #serviceId# and bill_package_id = 0
+		union
+		select id as serviceId, service_type_id as serviceTypeId from rps_maintain where id = #serviceId#) m
 	</select>
 	
 	<select id="getNullServiceTypeItem" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">

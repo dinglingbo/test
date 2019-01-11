@@ -115,7 +115,7 @@ $(document).ready(function () {
 		var uid = record._uid;
 		if(field == "serviceTypeId") {
 	         var type = record.type||0;
-	         if(type>1){
+	         if(type>2){
 	             e.cellHtml = "--";
 	         }else{
 	             e.cellHtml = servieTypeHash[e.value].name ||"";

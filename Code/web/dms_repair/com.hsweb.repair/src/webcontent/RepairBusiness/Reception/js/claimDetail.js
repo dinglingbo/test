@@ -450,7 +450,7 @@ $(document).ready(function ()
                 e.cancel = true;
             }
         }
-        if(field == 'unitPrice' || field == 'subtotal' || field == 'rate' || field == 'saleMan'){
+        if(field == 'unitPrice' || field == 'subtotal' || field == 'rate' || field == 'saleMan' || field == 'qty'){
             if(row.cardDetailId > 0){
                 e.cancel = true;
             }

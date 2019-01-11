@@ -312,7 +312,7 @@ $(document).ready(function ()
                 e.cancel = true;
             }
         }
-        if(field == 'unitPrice' || field == 'subtotal' || field == 'rate' || field == 'saleMan'){
+        if(field == 'unitPrice' || field == 'subtotal' || field == 'rate' || field == 'saleMan' || field == 'qty'){
             if(row.cardDetailId > 0){
                 e.cancel = true;
             }
@@ -2693,6 +2693,7 @@ function onValueChangedItemSubtotal(e){
 	}	
 }
 
+var scTyIdUrl = baseUrl + "com.hsapi.repair.repairService.query.getCardDiscount.biz.ext";
 //选择配件业务，修改优惠率和小计金额
 function onValueChangedItemTypeId(e){
    var maintain = billForm.getData();

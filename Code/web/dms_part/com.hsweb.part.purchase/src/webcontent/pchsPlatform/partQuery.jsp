@@ -123,7 +123,7 @@
        class="nui-datagrid"
        style="width: 100%; height: 100px;"
        showPager="false"
-       multiSelect="true"
+       multiSelect="false"
        allowCellSelect="true"
        allowSortColumn="true">
       <div property="columns">

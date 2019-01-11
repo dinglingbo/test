@@ -214,6 +214,7 @@
     %>	
 
 	var currOrgId = "<%=orgId %>";
+	var currOrgid = "<%=orgId %>";
     var currOrgName = "<%=orgName %>";
     var currUserId = "<%=userId %>";
 	var currUserName = "<%=userName %>";

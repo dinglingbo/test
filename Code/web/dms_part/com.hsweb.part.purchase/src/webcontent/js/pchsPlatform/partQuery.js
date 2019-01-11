@@ -53,33 +53,33 @@ $(document).ready(function() {
 function addOrderCar()
 {
 	var  type = 'pchsCart';
-    var data = innerPartGrid.getSelecteds();
+    var data = innerPartGrid.getSelected();
     var detail=[];
-    for(var i=0;i<data.length;i++){
-    	if(!data[i].guestId){
-    		parent.showMsg("请选择往来单位!","W");
-            return;
-    	}
-    	data[i].partId=data[i].partId;
-    	data[i].partCode=data[i].code;
-    	data[i].partName=data[i].name;
-    	data[i].fullName=data[i].full_name;
-        data[i].orderQty=data[i].qty;
-        data[i].orderPrice=data[i].price;
-        detail.push(data[i]);
-        
-    	var main={};
-    	main.guestId=data[i].guestId;
-    	main.guestName=data[i].guestName;
-    	main.shortName=data[i].guestName;
-    	main.storeId='';
-    	main.shopType = 1;
-    	main.remark='';
-    	main.billTypeId=billTypeIdList[0].customid;
-    	main.settleTypeId=settleTypeIdList[0].customid;
-    	main.type = "";
-    	generateOrderByBatch(main, detail, type);
-    }
+	if(!data.guestId){
+		parent.showMsg("请选择往来单位!","W");
+        return;
+	}
+	
+	data.partId=data.partId;
+	data.partCode=data.code;
+	data.partName=data.name;
+	data.fullName=data.full_name;
+    data.orderQty=data.qty;
+    data.orderPrice=data.price;
+    detail.push(data);
+    
+	var main={};
+	main.guestId=data.guestId;
+	main.guestName=data.guestName;
+	main.shortName=data.guestName;
+	main.storeId='';
+	main.shopType = 1;
+	main.remark='';
+	main.billTypeId=billTypeIdList[0].customid;
+	main.settleTypeId=settleTypeIdList[0].customid;
+	main.type = "";
+	generateOrderByBatch(main, detail, type);
+ 
 
 
 }

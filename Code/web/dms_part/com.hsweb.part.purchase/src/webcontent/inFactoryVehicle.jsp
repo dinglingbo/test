@@ -10,7 +10,7 @@
 -->
 <head>
 <title>在厂车辆查询</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.16"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.19"></script>
 <style type="text/css">
 
 .title {
@@ -74,7 +74,7 @@
                     <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
                         emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="90" valueFromSelect="true"/>
  
-  结算日期:
+  进厂日期:
                     <input id="sEnterDate" name="sEnterDate" class="nui-datepicker"/>
 至:
                     <input id="eEnterDate" name="eEnterDate" class="nui-datepicker"
@@ -104,19 +104,20 @@
                onrowdblclick=""
                allowCellSelect="true"
                editNextOnEnterKey="true"
-               allowCellWrap = true
+               allowCellWrap = "true"
+               showSummaryRow = "true"
                onshowrowdetail="onShowRowDetail"
                url="">
               <div property="columns">
-                  <div type="indexcolumn">序号</div>
+                  <div type="indexcolumn" width="40" >序号</div>
                   <div type="checkcolumn" name="checkcolumn" visible="false"></div>
                   <div header="客户车辆信息" headerAlign="center">
 	                  <div property="columns" >
 		                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>  
 		                  <div field="carNo" name="carNO" width="80" headerAlign="center" header="车牌号"></div>
-		                  <div field="guestFullName" name="guestFullName" width="120" headerAlign="center" header="客户名称"></div>
+		                  <div field="guestFullName" name="guestFullName" width="80" headerAlign="center" header="客户名称"></div>
 		                  <div field="carModel" name="carModel" width="120" headerAlign="center" header="品牌车型"></div>
-		                  <div field="serviceCode" name="serviceCode" width="160" headerAlign="center" header="工单号"></div>
+		                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号"></div>
 		                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" header="业务类型"></div> 
 		                  <div field="enterKilometers" name="enterKilometers" width="80" headerAlign="center" header="进厂里程"></div>
 		                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" header="服务顾问"></div>
@@ -126,15 +127,15 @@
 	                  </div>
                   </div>
                
-                  <div header="费用信息" headerAlign="center">
+                  <div header="估算费用信息" headerAlign="center">
 	                  <div property="columns" >	                  
-		                  <div field="pkgSubtotal" name="status" width="70" headerAlign="center" header="套餐小计"></div>
-		                  <div field="itemSubtotal" name="carNO" width="70" headerAlign="center" header="工时小计"></div>
-		                  <div field="partSubtotal" name="carBrandId" width="70" headerAlign="center" header="配件小计"></div>
-		                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" header="预存抵扣"></div>
-		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" header="优惠金额"></div>
-		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" header="其他收入"></div>
-		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" header="其他支出"></div>
+		                  <div field="pkgSubtotal" name="status" width="70" headerAlign="center" summaryType="sum" header="套餐小计"></div>
+		                  <div field="itemSubtotal" name="carNO" width="70" headerAlign="center" summaryType="sum" header="工时小计"></div>
+		                  <div field="partSubtotal" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="配件小计"></div>
+		                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum"  header="预存抵扣"></div>
+		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" summaryType="sum"  header="优惠金额"></div>
+		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" summaryType="sum"  header="其他收入"></div>
+		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" summaryType="sum"  header="其他支出"></div>
 	                  </div>
                   </div>
                   

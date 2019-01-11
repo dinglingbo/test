@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/orderDetail.js?v=1.3.39"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/orderDetail.js?v=1.3.40"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -84,9 +84,6 @@
 </style>
 </head>
 <body>
-
-
-
     <div class="nui-toolbar" style="padding:2px;height:30px">
         <input class="nui-hidden" id="sourceServiceId" value='<b:write property="sourceServiceId"/>'  name="sourceServiceId"/> 
         <input class="nui-combobox" visible="false" name="serviceTypeId" id="serviceTypeId"
@@ -95,9 +92,19 @@
         <table class="table" id="table1" border="0" style="width:100%;border-spacing:0px 0px;">
             <tr>            
 			<td  style="text-align:left;">
-				工单详情
+				<label style="font-family:Verdana;">工单号:</label>
+                <label id="servieIdEl" style="font-family:Verdana;"></label>
 			</td>
-			
+			<td align="right">
+			     <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint" ><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                  <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="onPrint(1)" id="type11">打印报价单</li>
+                    <li iconCls="" onclick="onPrint(2)" id="type11">打印派工单</li>
+                    <li iconCls="" onclick="onPrint(3)" id="type11">打印结账单</li>
+                    <li iconCls="" onclick="onPrint(4)" id="type11">打印结账单(小票)</li>
+                    <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
+                </ul>
+			</td>
         </tr>
     </table>
 
@@ -188,7 +195,7 @@
                 <td class=""><input  class="nui-textbox" name="idNo" id="idNo"enabled="false" width="100%" /></td>
                 <td class="title">联系人备注:</td> 
                 <td class=""><input  class="nui-textbox" name="contactRemark" id="contactRemark" enabled="false" width="100%"/></td>
-  </td>
+ 
             </tr>
             <tr>   
                 <td class="title">进厂油量:</td> 
@@ -292,7 +299,7 @@ allowSortColumn="true" ondrawsummarycell="onDrawSummaryCellItem" allowCellEdit="
             </div>
             <div field="serviceTypeId" headerAlign="center"
             allowSort="false" visible="true" width="60" header="业务类型" align="center"></div>
-            <div field="itemTime" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时/数量
+            <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">工时/数量
                 <input property="editor" vtype="float" class="nui-textbox"/>
             </div>
             <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价

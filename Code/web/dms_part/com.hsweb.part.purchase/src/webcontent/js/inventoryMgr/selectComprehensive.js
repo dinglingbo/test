@@ -342,7 +342,12 @@ function getSearchParam() {
     params.sOutDate = nui.get("sOutDate").getValue();
     params.eOutDate = addDate(endDateEl.getValue(),1);  
     params.mtAuditorId = mtAdvisorIdEl.getValue();
-    params.billTypeIds = nui.get("billTypeId").getValue();
+
+    if((nui.get("billTypeId").getValue())==5){
+    	
+    }else{
+        params.billTypeIds = nui.get("billTypeId").getValue();
+    }
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){

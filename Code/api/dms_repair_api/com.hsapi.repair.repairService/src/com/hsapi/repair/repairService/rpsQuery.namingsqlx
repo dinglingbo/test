@@ -1093,6 +1093,13 @@
 			d.bala_amt AS balaAmt,
 			d.other_amt AS otherAmt,
 			d.other_cost_amt AS otherCostAmt,
+			d.part_true_cost AS partTrueCost,
+			d.tech_deduct_value AS techDeductValue,
+			d.sales_deduct_value AS salesDeductValue,
+			d.advisor_deduct_value AS advisorDeductValue,
+			d.total_deduct_amt AS totalDeductAmt,
+			d.gross_profit AS grossProfit,
+			d.gross_profit_rate AS grossProfitRate,
 
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id

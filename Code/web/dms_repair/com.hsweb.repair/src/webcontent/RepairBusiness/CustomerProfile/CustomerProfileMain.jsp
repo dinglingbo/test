@@ -85,8 +85,8 @@
 				<div header="车辆信息" headerAlign="center">
 					<div property="columns">
 						<div field="carNo" headerAlign="center"   visible="true" width="80">车牌号</div>
-						<div field="carModel" headerAlign="center"  width="250px">品牌车型</div>
-						<div field="vin" headerAlign="center"   visible="true" width="180px">车架号（VIN）</div>
+						<div field="carModel" headerAlign="center"  width="180px">品牌车型</div>
+						<div field="vin" headerAlign="center"   visible="true" width="160px">车架号（VIN）</div>
 						<div field="annualInspectionDate"  headerAlign="center" dateFormat="yyyy-MM-dd"  visible="true"
 						 width="80px">商业险到期</div>
 						<div field="insureDueDate"  headerAlign="center" dateFormat="yyyy-MM-dd"  visible="true"

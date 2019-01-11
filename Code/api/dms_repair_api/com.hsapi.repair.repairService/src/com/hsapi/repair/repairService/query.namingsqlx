@@ -925,7 +925,8 @@
 			FROM
 				wb_repair.rps_maintain a
 			WHERE
-				a.is_settle = 1
+			    a.bala_audit_sign = 1 
+			and	a.is_settle = 0
 			AND a.STATUS = 2	
 			AND a.is_disabled = 0
 			AND a.orgid = #orgid#

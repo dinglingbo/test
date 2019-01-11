@@ -9,6 +9,8 @@ var billTypeIdList=[];
 var settleTypeIdList=[];
 var billTypeIdHash={};
 var settleTypeIdHash={};
+var guestData=null;
+var partData=null;
 var dictDefs ={"billTypeIdE":"DDT20130703000008", "settleTypeIdE":"DDT20130703000035"};
 var getToeknUrl='http://124.172.221.179:83/srm/router/rest?method=sys.sys.loginIndex&account=000dlb&password=123456&system=0';
 var getDetailPartUrl =baseUrl+"com.hsapi.part.invoice.partInterface.queryDetailStock.biz.ext";
@@ -21,6 +23,15 @@ $(document).ready(function() {
     innerPartGrid.setUrl(getDetailPartUrl);
     editFormDetail = document.getElementById("editFormDetail");
     
+    document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		
+
+		if ((keyCode == 13)) { // F9
+			onSearch();
+		}
+	}
     initDicts(dictDefs, function(){
     	billTypeIdList=nui.get('billTypeIdE').getData();     		
     	settleTypeIdList=nui.get('settleTypeIdE').getData();
@@ -40,7 +51,7 @@ $(document).ready(function() {
         
         switch (e.field) {
             case "action":
-            	e.cellHtml ='<a href="##" onclick="addOrderCar()">'+'添加到采购车'+'</a>'
+            	e.cellHtml ='<a href="##" onclick="updateGuestMessage()">'+'添加到采购车'+'</a>'
             	+"&nbsp;&nbsp;" + '<a href="##" onclick="addOrder()">'+'生成采购订单'+'</a>';;
                 break;
             default:
@@ -49,7 +60,7 @@ $(document).ready(function() {
     });
     
 });
-
+//实际添加到采购车方法
 function addOrderCar()
 {
 	var  type = 'pchsCart';
@@ -59,17 +70,18 @@ function addOrderCar()
 		parent.showMsg("请选择往来单位!","W");
         return;
 	}
-	
-	data.partId=data.partId;
+
+	data.partId=guestData.id;
 	data.partCode=data.code;
 	data.partName=data.name;
 	data.fullName=data.full_name;
     data.orderQty=data.qty;
     data.orderPrice=data.price;
     detail.push(data);
-    
+   	
+	
 	var main={};
-	main.guestId=data.guestId;
+	main.guestId=guestData.guestId;
 	main.guestName=data.guestName;
 	main.shortName=data.guestName;
 	main.storeId='';
@@ -80,8 +92,97 @@ function addOrderCar()
 	main.type = "";
 	generateOrderByBatch(main, detail, type);
  
+}
+//新增配件
+function addOrEditPart(row)
+{
+    nui.open({
+        targetWindow: window,
+        url: webPath + contextPath + "/com.hsweb.part.baseData.partDetail.flow?token=" + token,
+        title: "配件资料",
+        width: 470, height: 320,
+        allowDrag:true,
+        allowResize:false,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var params={};
+//            params.qualityTypeIdList=null;
+//            params.partBrandIdList=null;
+//            params.unitList=null;
+//            params.abcTypeList=null;
+//            params.applyCarModelList=null;
+            if(row)
+            {
+                params.comPartCode= row.code;
+            }
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action)
+        {
+          	var iframe = this.getIFrameEl();
+        	var data = iframe.contentWindow.getData();
+        	console.log(data);
+        	var enterDetail={
+        		comPartCode : data.code
+        	};
+            if(action == "ok")
+            {	
+            	addOrderCar(enterDetail.comPartCode,row);
+            	
+            }
+        }
+    });
 
-
+}
+var guestUrl=baseUrl+"com.hsapi.part.invoice.partInterface.queryGuestAndSKU.biz.ext";
+function updateGuestMessage(){
+	nui.mask({
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '加载中...'
+    });
+	var jsonData = innerPartGrid.getSelected();
+	if(!jsonData.guestId){
+		showMsg("请选择有往来单位的配件！","W");
+		return;
+	}
+	nui.ajax({
+        url : guestUrl,
+        type : "post",
+        data : {
+        	guestId	 :jsonData.guestId,
+    		guestName : jsonData.guestName,
+    		partId :jsonData.partId,
+    		partCode :jsonData.code,
+    		brandId : jsonData.brandId,
+    		brandName :jsonData.brandName,
+    		qualityId :jsonData.qualityId,
+    		qualityName: jsonData.qualityName,
+    		partName :jsonData.name,
+    		protoken: protoken
+        },
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data.data || {};
+            guestData=data.guest;
+            partData=data.part;
+            console.log(data);
+            if(partData.status==-1){
+        		nui.alert(partData.msg);
+        		addOrEditPart(jsonData);
+        	}else{
+        		 addOrderCar();
+        	}
+           
+            return true;   
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+            return false;
+        }
+    });
 }
 var generateOrderUrl = baseUrl
 + "com.hsapi.part.invoice.paramcrud.generateOrderByBatch.biz.ext";

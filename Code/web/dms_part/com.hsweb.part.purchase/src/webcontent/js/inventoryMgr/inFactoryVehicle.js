@@ -426,6 +426,7 @@ function showCarInfo(row_uid){
 	if(row){
 		var params = {
 				carId : row.carId,
+				carNo : row.carNo,
 				guestId : row.guestId
 		};
 		doShowCarInfo(params);

@@ -140,7 +140,9 @@ $(document).ready(function ()
         }
         
     });
-    
+    mainGrid.on("rowdblclick",function(){
+    	edit();
+    });
     innerpackGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -323,6 +325,9 @@ function onSearch()
 }
 function doSearch() {
     var gsparams = getSearchParam();
+    if(gsparams.billTypeIds && gsparams.billTypeIds==5){
+    	gsparams.billTypeIds = "0,2,4";
+    }
     gsparams.isSettle = 1;
    // gsparams.billTypeId = 0;
     gsparams.isDisabled = 0;
@@ -337,7 +342,7 @@ function getSearchParam() {
     params.sOutDate = nui.get("sOutDate").getValue();
     params.eOutDate = addDate(endDateEl.getValue(),1);  
     params.mtAuditorId = mtAdvisorIdEl.getValue();
-    params.billTypeId = nui.get("billTypeId").getValue();
+    params.billTypeIds = nui.get("billTypeId").getValue();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){

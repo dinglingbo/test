@@ -195,7 +195,7 @@
                 <td class=""><input  class="nui-textbox" name="idNo" id="idNo"enabled="false" width="100%" /></td>
                 <td class="title">联系人备注:</td> 
                 <td class=""><input  class="nui-textbox" name="contactRemark" id="contactRemark" enabled="false" width="100%"/></td>
-  </td>
+ 
             </tr>
             <tr>   
                 <td class="title">进厂油量:</td> 

@@ -446,12 +446,12 @@ public class PurchaseService {
     		params.put("partCode",partCode);
     		params.put("brandName",brandName);
         	Object[] objs = DatabaseExt.queryByNamedSql("common","com.hsapi.part.invoice.orderSettle.queryPartByPartBrand", params);
-        	List<HashMap> detailList = new ArrayList<HashMap>();
+        	List<DataObject> detailList = new ArrayList<DataObject>();
         	CollectionUtils.addAll(detailList, objs);
         	DataObject obj =DataObjectUtil
 					.createDataObject("com.hsapi.part.data.com.ComAttribute");
         	if(objs.length > 0) {
-//        		obj = result[0];
+        		obj = detailList.get(0);
         		obj.set("status", 0);
         		//com.hsapi.part.invoice.orderSettle.updatePartInfo
         		HashMap pm = new HashMap();
@@ -467,7 +467,7 @@ public class PurchaseService {
         		return obj;
         	}else {
         		DataObject rs = DataObjectUtil
-						.createDataObject("com.hsapi.part.data.com.ComGuest");
+						.createDataObject("com.hsapi.part.data.com.ComAttribute");
         		rs.set("status", -1);
         		rs.set("msg", "请新增配件基础资料!");
         		return rs;

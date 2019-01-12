@@ -122,24 +122,23 @@
                  <div field="pkgSubtotal" name="pkgAmt" width="100" headerAlign="center" align="center">套餐小计</div>
                  <div field="itemTotalAmt" name="itemTotalAmt" width="100" headerAlign="center" align="center">项目金额</div>
                 <div field="itemPrefAmt" name="itemPrefAmt" width="100" headerAlign="center" align="center">项目优惠金额</div>
-                  <div field="itemSubtotal" name="itemSubtotal" width="100" headerAlign="center" align="center">项目小计</div>
+                 <div field="itemSubtotal" name="itemSubtotal" width="100" headerAlign="center" align="center">项目小计</div>
                 <div field="partTotalAmt" name="partTotalAmt" width="100" headerAlign="center" align="center">配件金额</div>
                 <div field="partPrefAmt" name="partPrefAmt" width="100" headerAlign="center" align="center">配件优惠金额</div>
-                  <div field="partSubtotal" name="partSubtotal" width="100" headerAlign="center" align="center">配件小计</div>
-
-                     <div field="cardTimesAmt" name="cardTimesAmt" width="100" headerAlign="center" align="center">计次卡金额</div>       
-
+                 <div field="partSubtotal" name="partSubtotal" width="100" headerAlign="center" align="center">配件小计</div>
+ 				<div field="partTrueCost"  width="70" headerAlign="center" header="配件成本"></div>
+                <div field="cardTimesAmt" name="cardTimesAmt" width="100" headerAlign="center" align="center">计次卡抵扣</div>       
                 <div field="otherAmt" name="otherAmt" width="100" headerAlign="center" align="center">其他费用收入</div>
                 <div field="otherCostAmt" name="other_cost_amt" width="100" headerAlign="center" align="center">其他费用成本</div>
-                <div field="salesDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center">销售提成金额</div>
-                <div field="techDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center">技师提成金额</div>
-                <div field="advisorDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center">服务顾问提成金额</div>
+                <div field="salesDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center">销售提成</div>
+                <div field="techDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center">技师提成</div>
+                <div field="advisorDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center">服务顾问提成</div>
                 <div field="totalDeductAmt" name="salesDeductValue" width="100" headerAlign="center" align="center">总提成金额</div>
                 <div field="netinAmt" name="netinAmt" width="100" headerAlign="center" align="center">营收金额</div>
                 <div field="grossProfit" name="grossProfit" width="100" headerAlign="center" align="center">毛利&nbsp;
                     <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
                         onmouseout="outHide()"></span></div>
-                <div field="grossProfitRate" name="grossProfitRate" width="100" headerAlign="center" align="center">毛利率&nbsp;
+                <div field="grossProfitRate" name="grossProfitRate" width="100" numberFormat="p" headerAlign="center" align="center">毛利率&nbsp;
                     <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
                         onmouseout="outHide()"></span></div>
 

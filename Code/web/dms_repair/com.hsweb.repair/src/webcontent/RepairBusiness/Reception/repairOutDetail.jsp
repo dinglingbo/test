@@ -12,7 +12,7 @@
 <head> 
     <title>配件出库详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.1.29"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.1.32"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -117,6 +117,7 @@
                  <li class="separator"></li>
                 <a class="nui-button" iconCls="" onclick="onPrint(5)" plain="true" style="align:right"><span class="fa fa-print fa-lg"></span>&nbsp;打印领料单</a>
                 <a class="nui-button" onclick="" plain="true" style="align:right"><span class="fa fa-check fa-lg"></span>&nbsp;一键领料</a>
+                 <a class="nui-button" onclick="updateBillExpense" plain="true" style="align:right"><span class="fa fa-check fa-lg"></span>&nbsp;费用登记</a>
                 <label style="font-family:Verdana;">显示归库：</label>
                 <input class="nui-checkbox" id="showOut" trueValue="1" falseValue="0" onvaluechanged="onValueChangShowOut"/>
             </td>     
@@ -251,7 +252,8 @@
                 </div>
                 <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime"summaryType="sum" >工时/数量
                 </div>
-                <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>  
+                <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div> 
+                <div field="restQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="未领数量"></div>   
                 <div field="amt" headerAlign="center" name="pkgAmt"
                      allowSort="false" visible="true" width="60" header="原价" align="center">
                 </div>
@@ -299,7 +301,8 @@
                 <div field="qty" headerAlign="center" allowSort="false" visible="true" width="40" datatype="float" align="center" name="itemItemTime" summaryType="sum">工时/数量
                     <input property="editor" vtype="float" class="nui-textbox" onvaluechanged="onValueChangedComQty" selectOnFocus="true"/>
                 </div>
-                <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div>  
+                <div field="pickQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="已领数量"></div> 
+                <div field="restQty" headerAlign="center" allowSort="false" visible="true" width="60px" align="center" header="未领数量"></div>    
                 <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价
                     <input property="editor" vtype="float" class="nui-textbox"  onvaluechanged="onValueChangedItemUnitPrice" selectOnFocus="true"/>
                 </div>

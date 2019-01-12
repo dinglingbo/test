@@ -200,7 +200,7 @@ $(document).ready(function ()
                 break;
         }
     });
-    quickSearch(2);
+
     
 });
 var statusHash = {
@@ -238,7 +238,7 @@ function onShowRowDetail(e) {
     });
 }
 
-function quickSearch(type){
+/*function quickSearch(type){
     var params = getSearchParam();
     var querysign = 1;
     var queryname = "本日";
@@ -314,7 +314,7 @@ function quickSearch(type){
     
     doSearch(params);
 }
-
+*/
 
 
 function onSearch()
@@ -335,7 +335,10 @@ function getSearchParam() {
     params.sEnterDate = nui.get("sEnterDate").getValue();
     params.eEnterDate = addDate(endDateEl.getValue(),1);  
     params.mtAuditorId = mtAdvisorIdEl.getValue();
-    params.billTypeId = nui.get("billTypeId").getValue();
+    if((nui.get("billTypeId").getValue())!=999){
+    	params.billTypeId = nui.get("billTypeId").getValue();
+    }
+    
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){
@@ -426,6 +429,7 @@ function showCarInfo(row_uid){
 	if(row){
 		var params = {
 				carId : row.carId,
+				carNo : row.carNo,
 				guestId : row.guestId
 		};
 		doShowCarInfo(params);

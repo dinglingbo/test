@@ -173,7 +173,7 @@ $(document).ready(function(){
         var record = e.record;
         var uid = record._uid;
         var rowIndex = e.rowIndex;
-
+        var pid = record.pid||0;
         switch (e.field) {
             case "serviceTypeId":
                 var type = record.type||0;
@@ -213,6 +213,13 @@ $(document).ready(function(){
                 var value = e.value||"";
                 if(value&&value!="0"){
                     e.cellHtml = e.value + '%';
+                }
+                break;
+            case "restQty":
+                var value = record.qty-record.pickQty||"";
+                if(value&&value!="0" && pid!=0){
+                    e.cellHtml = value ;
+                    e.cellStyle = "background:#54FF9F";
                 }
                 break;
             default:
@@ -268,7 +275,14 @@ $(document).ready(function(){
             case "rate":
                 var value = e.value||"";
                 if(value&&value!="0"){
-                    e.cellHtml = e.value + '%';
+                    e.cellHtml = e.value ;
+                }
+                break;
+            case "restQty":
+                var value = record.qty-record.pickQty||"";
+                if(value&&value!="0" && pid!=0){
+                    e.cellHtml = value ;
+                    e.cellStyle = "background:#54FF9F";
                 }
                 break;
             default:
@@ -1421,4 +1435,20 @@ function  savepartOutRtn(data,childdata){
             return s;
         }
         
+    }
+    
+    function updateBillExpense(){
+        var data = billForm.getData();
+        var params = {
+            serviceId:data.id||0
+        };
+        doBillExpenseDetail(params, function(data){
+            data = data||{};
+            if(data.action){
+                var action = data.action||"";
+                if(action == 'ok'){
+                }else{
+                }
+            }
+        });
     }

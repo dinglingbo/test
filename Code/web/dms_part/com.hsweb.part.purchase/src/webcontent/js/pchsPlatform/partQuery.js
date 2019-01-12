@@ -71,17 +71,18 @@ function addOrderCar()
         return;
 	}
 
-	data.partId=guestData.id;
-	data.partCode=data.code;
-	data.partName=data.name;
-	data.fullName=data.full_name;
+	data.partId=partData.id;
+	data.partCode=partData.code;
+	data.partName=partData.name;
+	data.fullName=partData.fullName;
+	data.unit=partData.unit;
     data.orderQty=data.qty;
     data.orderPrice=data.price;
     detail.push(data);
    	
 	
 	var main={};
-	main.guestId=guestData.guestId;
+	main.guestId=guestData.id;
 	main.guestName=data.guestName;
 	main.shortName=data.guestName;
 	main.storeId='';
@@ -115,6 +116,7 @@ function addOrEditPart(row)
             if(row)
             {
                 params.comPartCode= row.code;
+                params.name=row.name;
             }
             iframe.contentWindow.setData(params);
         },
@@ -123,12 +125,12 @@ function addOrEditPart(row)
           	var iframe = this.getIFrameEl();
         	var data = iframe.contentWindow.getData();
         	console.log(data);
-        	var enterDetail={
-        		comPartCode : data.code
-        	};
+//        	var enterDetail={
+//        		comPartCode : data.code
+//        	};
             if(action == "ok")
             {	
-            	addOrderCar(enterDetail.comPartCode,row);
+            	updateGuestMessage();
             	
             }
         }
@@ -169,7 +171,7 @@ function updateGuestMessage(){
             partData=data.part;
             console.log(data);
             if(partData.status==-1){
-        		nui.alert(partData.msg);
+        		showMsg(partData.msg);
         		addOrEditPart(jsonData);
         	}else{
         		 addOrderCar();
@@ -317,3 +319,4 @@ function onShowRowDetail(e) {
     	});
     
 }
+

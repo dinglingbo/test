@@ -10,7 +10,7 @@
 -->
 <head>
 <title>在厂车辆查询</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.19"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.22"></script>
 <style type="text/css">
 
 .title {
@@ -51,7 +51,7 @@
         <table class="table" id="table1">
             <tr>
                 <td>
-                	<label style="font-family:Verdana;">快速查询：</label>
+<!--                 	<label style="font-family:Verdana;">快速查询：</label>
                 	 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
 
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
@@ -66,9 +66,9 @@
                     <li class="separator"></li>
                     <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
-                </ul>
-                     <input class="nui-combobox" id="billTypeId" emptyText="综合开单" name="billTypeId" data="[{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'}]"
-                          width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="0"/>
+                </ul> -->
+                     <input class="nui-combobox" id="billTypeId" emptyText="综合开单" name="billTypeId" data="[{billTypeId:999,text:'全部'},{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'}]"
+                          width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="999"/>
                     <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="carNoSearch"/>
                     <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"

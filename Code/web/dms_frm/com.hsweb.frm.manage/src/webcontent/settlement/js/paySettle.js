@@ -18,7 +18,7 @@ var innerSellGridUrl = partBaseUrl
 		+ "com.hsapi.part.invoice.svr.queryPjSellOrderDetailList.biz.ext";
 var innerStateGridUrl = partBaseUrl
 		+ "com.hsapi.part.invoice.settle.getPJStatementDetailById.biz.ext";
-var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"手机号"},{id:"2",name:"客户名称"},{id:"2",name:"业务单号"}];
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"手机号"},{id:"2",name:"客户名称"},{id:"3",name:"业务单号"}];
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -313,7 +313,7 @@ function doSearch(params) {
     }else if(type==2){
     	params.guestName = typeValue;
     }else if(type==3){
-    	params.serviceId = typeValue;
+    	params.billServiceId = typeValue;
     }
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;

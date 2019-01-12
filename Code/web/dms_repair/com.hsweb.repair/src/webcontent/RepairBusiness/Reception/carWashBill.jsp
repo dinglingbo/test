@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.27"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.32"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -169,6 +169,35 @@
 	margin-top: 8px;
 	
 }
+
+html, body{
+    margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
+}
+
+.addyytime a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 40px -1px no-repeat; padding-right:22px; color:#888; text-decoration:none;}
+.addyytime a.hui{padding-left: 5px;padding-right: 5px;height:;line-height:24px;border:1px #a6e0f5 solid;display:block;float:left;text-decoration:none;
+    text-align:center;color:#00b4f6;border-radius:4px;margin:0 10px 10px 0;}
+.addyytime a.hui{border:1px #e6e6e6 solid;color:#555555;background:#fff;}
+.addyytime a.xz{ font-size: 13px; color: #555555 !important; background:#5ab1ef !important;}
+.addyytime a:link, a:visited { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 16px; color: #555555; text-decoration: none; }
+.addyytime a.hui:hover { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 16px;background-color: #9fe6b8 ; color: #FFF; text-decoration: none; }
+.addyytime a .hui{text-decoration:none;transition:all .4s ease;}
+.addyytime a.backRed{border:1px #e6e6e6 solid;color:#555555;background:#f17171 ;}
+
+.titleTextDiv{
+    border-bottom:1px solid #ccc;
+    margin-top: 10px;
+ }
+
+.titleText{
+        font-weight: 400;
+        font-size: 18px;
+        color: #666;
+        border-bottom: 2px solid #23c0fa;
+        display: inline-block;
+        line-height: 35px;
+}
+
 </style>
 </head>
 <body>
@@ -417,96 +446,40 @@
     </div>
 
     <div class="nui-fit">
-        <div class="nui-splitter"
-        id="splitter"
-        allowResize="true"
-        handlerSize="6"
-        style="width:100%;height:100%;">
-        <div size="300" showCollapseButton="true">
-            <div class="nui-fit">
-                <iframe id="formIframe" src="" frameborder="0" scrolling="yes" height="100%" width="100%" noresize="noresize"></iframe>
-            </div>
+          <div class="titleTextDiv">
+            <span class="titleText">服务项目</span>
+         </div>
+            <div class="addyytime" style="display:''" id="showHot" >
+	          <table style="width:100%;height:50px;">
+	                <tr>
+	                    <td id="addAEl">
+	                        <!-- <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
+	                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户</a>
+	                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到</a>
+	                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
+	                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a>
+	                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
+	                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户</a>
+	                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到</a>
+	                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
+	                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a>
+	                        <a href='javascript:;' itemid='1'name='type'class='hui'>交强险到</a>
+	                        <a href='javascript:;' itemid='2'name='type'class='hui'>保养到户</a>
+	                        <a href='javascript:;' itemid='3'name='type'class='hui'>年检到</a>
+	                        <a href='javascript:;' itemid='3'name='type'class='hui'>驾照年审</a>
+	                        <a href='javascript:;' itemid='3'name='type'class='hui'>客户生日</a>  -->
+	                        
+	                    </td>
+	               </tr>
+	         </table>
         </div>
-        <div showCollapseButton="false">
-
-            <div class="nui-fit">
-                <div class="" style="width:100%;height:auto;" >
-                    <%-- <div style="width:100%;height:5px;"></div>
-                    <%@include file="/repair/RepairBusiness/Reception/repairPackage.jsp" %> --%>
-                    <div style="width:100%;height:5px;"></div>
-                    <%@include file="/repair/RepairBusiness/Reception/repairItem.jsp" %>
-                    <%-- <div style="width:100%;height:5px;"></div>
-                    <%@include file="/repair/RepairBusiness/Reception/repairPart.jsp" %> --%>
-                </div>
-                
-                <!-- <div id="bottomPanel" class="nui-panel" title="其他" iconCls="" style="width:100%;height:100px;" 
-                showToolbar="false" showCollapseButton="true" showFooter="false" allowResize="false" collapseOnTitleClick="true"
-                >
-                <div id="billForm" class="form">
-                    <table style="width: 100%;">
-                        <tr>
-                            <td class="title">
-                                <label>套餐金额：</label>
-                            </td>
-                            <td >
-                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                            </td>
-                            <td class="title">
-                                <label>套餐优惠：</label>
-                            </td>
-                            <td >
-                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                            </td>
-                            <td class="title">
-                                <label>工时金额：</label>
-                            </td>
-                            <td >
-                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                            </td>
-                            <td class="title">
-                                <label>工时优惠：</label>
-                            </td>
-                            <td >
-                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                            </td>
-                            <td class="title">
-                                <label>零件金额：</label>
-                            </td>
-                            <td >
-                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                            </td>
-                            <td class="title">
-                                <label>零件优惠：</label>
-                            </td>
-                            <td >
-                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="title required">
-                                <label>应收总计：</label>
-                            </td>
-                            <td >
-                                <input class="nui-textbox" enabled="false" width="100%" id="remark" name="remark"/>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                
-                
-            </div> -->
-        </div>
-        
-
+        <div class="" style="width:100%;height:auto;" >
+            <%@include file="/repair/RepairBusiness/Reception/repairItem.jsp" %>
+         </div>
     </div>
-</div>
 
 </div>
 <div style="height: 10%;"></div>
-
-
-
-</div>
 
 <div style="background-color: #cfddee;position:absolute; top:90%;width:100%;height: 10%; z-index:900;">
     <div id="statustable" style="float: left;height:100%;font-size:16px;color:#5a78a0;padding-left:20px;">
@@ -731,9 +704,6 @@ allowDrag="false">
 
 
 </div> 
-
-
-
 <div id="carSellPointInfo" class="nui-window"
     title="" style="width:700px;height:200px;"
     showModal="false"
@@ -772,6 +742,20 @@ allowDrag="false">
     </div>
 </div>
 
+<div class="nui-datagrid" style="display: none;" 
+    id="itemGrid"
+        dataField="list"
+        pageSize="20"
+        totalField="page.count"
+        allowSortColumn="true">
+    <div property="columns">
+        <div field="name" width="100" headerAlign="center" allowSort="true" header="项目名称"></div>
+        <div field="itemTime" width="50" headerAlign="center" allowSort="true" header="工时"></div>
+        <div field="amt" width="60" headerAlign="center" allowSort="true" header="金额"></div>
+        <div field="type" width="60" headerAlign="center" allowSort="true" header="项目类型"></div>
+        <div field="serviceTypeId" width="60" headerAlign="center" allowSort="true" header="业务类型"></div>
+    </div>
+</div>
 <script type="text/javascript">
  nui.parse();
 </script>

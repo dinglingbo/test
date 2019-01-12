@@ -254,7 +254,7 @@ function settleOK() {
 		var list={balaTypeCode:"020107",charOffAmt:deductible,settAccountId:"274"};
 		accountTypeList.push(list);
 
-		  nui.confirm("是否确定结算?？", "友情提示",function(action){
+		  nui.confirm("是否确定结算?", "友情提示",function(action){
 		       if(action == "ok"){
 					nui.mask({
 						el : document.body,

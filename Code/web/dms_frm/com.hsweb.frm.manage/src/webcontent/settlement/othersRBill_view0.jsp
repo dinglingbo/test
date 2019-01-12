@@ -88,6 +88,7 @@
                         <div field="guestId" width="50" headerAlign="center" visible="false"></div>
                         <div field="billDc" width="50" headerAlign="center" visible="false"></div>
                         <div field="guestName" summaryType="count" width="50" headerAlign="center" header="往来单位名称"></div>
+                        <div field="carNo" summaryType="count" width="50" headerAlign="center" header="车牌号"></div>
                         <div field="billTypeId" type="comboboxcolumn" width="100" headerAlign="center" header="收支项目">
                             <input  property="editor" enabled="true" id="billTypeList" name="list" data="Rlist"  class="nui-combobox" valueField="id" onvaluechanged="onbillTypeChange" textField="name" url="" emptyText="" /> 
                         </div>

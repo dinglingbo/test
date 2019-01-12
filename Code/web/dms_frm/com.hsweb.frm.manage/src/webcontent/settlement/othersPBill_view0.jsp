@@ -42,13 +42,13 @@
             <div class="nui-toolbar" style="padding:0px;border-left:0;">
                 <table style="width:100%;">
                     <tr>
-                        <td style="white-space:nowrap;">
-                            <label style="font-family:Verdana;">创建日期 从：</label>
+                        <td >
+                            <label >创建日期 从：</label>
                             <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
-                            <label style="font-family:Verdana;">至</label>
+                            <label >至</label>
                             <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 
-                            <label style="font-family:Verdana;">审核状态：</label>
+                            <label >审核状态：</label>
                             <input class="nui-combobox" id="auditSign" name="auditSign" value="0" nullitemtext="请选择..." emptyText="审核状态" data="auditSignList" width="70px" />
 
                             <span class="separator"></span> 
@@ -87,6 +87,7 @@
                         <div field="guestId" width="50" headerAlign="center" visible="false"></div>
                         <div field="billDc" width="50" headerAlign="center" visible="false"></div>
                         <div field="guestName" summaryType="count" width="50" headerAlign="center" header="往来单位名称"></div>
+                        <div field="carNo" summaryType="count" width="50" headerAlign="center" header="车牌号"></div>
                         <div field="billTypeId" type="comboboxcolumn" width="100" headerAlign="center" header="收支项目">
                             <input  property="editor" enabled="true" id="billTypeList" name="list" data="list" dataField="list" class="nui-combobox" onvaluechanged="onbillTypeChange" valueField="id" textField="name" url="" emptyText=""  vtype="required"/> 
                         </div>

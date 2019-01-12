@@ -387,7 +387,7 @@ $(document).ready(function ()
                                 //'</ul>';
                 
                 }else{
-                    e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
+                    e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value + s;
                 }
                 break;
             case "itemOptBtn":
@@ -1346,7 +1346,7 @@ function saveMaintain(callback,unmaskcall){
         		main.carModel = carModel;
         	}
         	billForm.setData(main);
-        	//保存项目和配件
+        	//保存项目和配件,执行完之后执行保存套餐的
         	saveItem();
         	//保存套餐
             savePkg();
@@ -2662,15 +2662,27 @@ function addCardTimesToBill(){
             data.insItem = insItem;
             data.serviceId = main.id||0;
         }else if(interType == 'part'){
-            var insPart = {
-                serviceId:main.id||0,
-                partId:row.prdtId,
-                cardDetailId:row.id||0,
-                partCode:row.prdtCode
-            };
-            data.insPart = insPart;
-            data.serviceId = main.id||0;
+        	var rowItem = rpsItemGrid.getSelected();
+        	if(!rowItem){
+        		showMsg("请选择一个项目","W");
+        		return;
+        	}else if(rowItem.billItemId != "0"){
+        		showMsg("请选择一个项目","W");
+        		return;
+        	}else{
+    		   var insPart = {
+                    serviceId:main.id||0,
+                    partId:row.prdtId,
+                    cardDetailId:row.id||0,
+                    partCode:row.prdtCode,
+                    qty:1,
+                    billItemId:rowItem.id
+                    
+                };
+              data.insPart = insPart;
+              data.serviceId = main.id||0;
         }
+     }
         var params = {
             type:"insert",
             interType:interType,
@@ -2711,6 +2723,16 @@ function addCardTimesToBill(){
                             		rpsItemGrid.beginEditRow(row);
                                 });
                             }
+                        }else if(interType == 'part'){
+                            var p1 = { }
+                 		      var p2 = {
+                 		      interType: "item",
+                 		         data:{
+                 		             serviceId: main.id||0
+                 		         }
+                 		     };
+                 		     var p3 = {};
+                 		     loadDetail(p1, p2, p3,main.status);
                         }
                     }
                 }, function(){});

@@ -11,6 +11,8 @@
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
  var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
+ var itemRpbGridUrl = baseUrl + "com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
+ var itemGrid = null;
   
  var billForm = null;   
  var xyguest = null;  
@@ -98,6 +100,7 @@
 //}
 $(document).ready(function ()
 {
+	itemGrid = nui.get("itemGrid");
     rpsItemGrid = nui.get("rpsItemGrid");
     billForm = new nui.Form("#billForm");
     sellForm = new nui.Form("#sellForm");
@@ -197,7 +200,7 @@ $(document).ready(function ()
         }
     });
     searchKeyEl.focus();
-    document.getElementById("formIframe").src=webPath + contextPath + "/repair/common/pipSelect.jsp?token"+token;
+    //document.getElementById("formIframe").src=webPath + contextPath + "/repair/common/pipSelect.jsp?token"+token;
    
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
@@ -377,17 +380,8 @@ $(document).ready(function ()
 	    if((keyCode==83)&&(event.altKey))  {   //保存
          save();
      } 
-
-	    // if((keyCode==80)&&(event.altKey))  {   //打印
-		// 	onPrint();
-	    // } 
-	    // if((keyCode==113))  {  
-		// 	addMorePart();
-		// } 
-	    /*if((keyCode==27))  {  //ESC
-        	cardTimesGrid.hide();
-	   };*/
 	}
+    doSearchItem();
 });
 
 function setGuest(item){
@@ -821,9 +815,6 @@ function add(type){
    // rpsPackageGrid.clearRows();
     rpsItemGrid.clearRows();
     billForm.setData([]);
-    //sendGuestForm.setData([]);
-    //insuranceForm.setData([]);
-    //describeForm.setData([]);
     var data = {
 			packageSubtotal:0,
 			packagePrefAmt:0,
@@ -847,9 +838,9 @@ function add(type){
     fcarId = 0;
     fserviceId = 0;
    // $("#lastComeKilometers").html("0");
-    if(type=="ADD"){
+    /*if(type=="ADD"){
     	document.getElementById("formIframe").contentWindow.doSetCardTimes([]);
-    }
+    }*/
     $("#servieIdEl").html("");
     $("#showCardTimesEl").html("次卡套餐(0)");
     $("#showCardEl").html("储值卡(0)");
@@ -860,9 +851,6 @@ function add(type){
 
     nui.get("ExpenseAccount").setVisible(true);
     nui.get("ExpenseAccount1").setVisible(false);
-   // cardTimesGrid.clearRows();
-    //$("#formIframe")[0].contentWindow()
-    //document.getElementById("formIframe").contentWindow.clearData();
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
 }
 function save(){
@@ -1638,6 +1626,7 @@ function deleteItemRow(row_uid){
                 }
             });
         	rpsItemGrid.removeRows(rows);
+        	hideTab(rows[0].prdtId);
         }else{
             showMsg(errMsg||"删除项目信息失败!","E");
             return;
@@ -1734,8 +1723,12 @@ function doSearchCardTimes(guestId)
         var data = cardTimesGrid.getData();
         var len = data.length||0;
         $("#showCardTimesEl").html("次卡套餐("+len+")");
-        document.getElementById("formIframe").contentWindow.doSetCardTimes(data);
-        
+       // document.getElementById("formIframe").contentWindow.doSetCardTimes(data);
+        if(len>0 && !fserviceId && showcF){
+        	showcF = 0;
+        	var atEl = document.getElementById("cardPackageEl");  
+            advancedCardTimesWin.showAtEl(atEl, {xAlign:"right",yAlign:"below"});
+        }
     });
 }
 function doSearchMemCard(guestId)
@@ -2051,10 +2044,19 @@ function sureItemPartRateSetWin(){
 function addCardTimesToBill(){
     var main = billForm.getData();
     if(!main.id){
-        showMsg("请先保存工单!","W");
-        return;
-    }
-    var row = cardTimesGrid.getSelected();
+        /*showMsg("请先保存工单!","W");
+        return;*/
+    	saveNoshowMsg(function(){
+    	    var mainData = billForm.getData();
+    		selecCardTimes(mainData);
+    	});
+    }else{
+    	selecCardTimes(main);
+    }   
+}
+
+function selecCardTimes(main){
+	var row = cardTimesGrid.getSelected();
     if(row){
         var t = row.prdtType||0;
         var interType = "";
@@ -2119,10 +2121,6 @@ function addCardTimesToBill(){
                     var errCode = text.errCode;
                     var data = text.data||[];
                     if(errCode == "S"){
-                        /*if(interType == 'package'){
-                            rpsPackageGrid.clearRows();
-                            rpsPackageGrid.addRows(data);
-                        }else*/ 
                     	if(interType == 'item'){
                             rpsItemGrid.clearRows();
                             rpsItemGrid.addRows(data);
@@ -2184,6 +2182,10 @@ function loadDetail(p1, p2, p3,status){
                 		 rpsItemGrid.beginEditRow(row);
                      });
                 }
+                /*var strId = forFrom();
+                if(strId==null){
+                	showTab(strId);
+                }*/
             }
         }, function(){});
     }
@@ -2313,9 +2315,12 @@ function delFromBillItem(data, callback){
 function checkFromBillItem(data){
     var itemId= data.id;
     var rows = rpsItemGrid.findRows(function(row){
-        if(row && row.itemId == itemId){
+        /*if(row && row.itemId == itemId){
             return true;
-        }
+        }*/
+       if(row && row.prdtId == itemId){
+        return true;
+       }
     });
     if(rows && rows.length>0){
         return true;
@@ -3827,3 +3832,123 @@ function saveItem(callback){
     	  callback && callback();
       }
 }
+
+
+function doSearchItem()
+{
+    var p = {};
+    p.isDisabled = 0;
+    //查询洗美业务类型工时
+    p.serviceTypeIds = "1,2";   
+    itemGrid.clearRows();
+    itemGrid.load({
+    	token:token,
+        params:p
+    });
+	var json={
+			params: p,
+			token:token
+	}
+	nui.ajax({
+		url : itemRpbGridUrl,
+		type : 'POST',
+		data : json,
+		cache : false,
+		contentType : 'text/json',
+		success : function(data) {
+			var temp = "";
+			var list = nui.clone(data.list);
+			for(var i=0;i<data.list.length;i++){
+				itemGrid.addRow(data.list[i]);
+				var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>";
+				 temp +=aEl;
+			}
+			$("#addAEl").html(temp);
+			selectclick();
+		}
+	 });
+}
+
+//删除项目
+function hideTab(str){
+	var tabList = document.querySelectorAll('.xz');
+	var natureId = null;
+	for(var i=0;i<tabList.length;i++){
+		natureId= tabList[i].id;
+		if(str==natureId){
+			var s = "#"+natureId;
+			$(s).toggleClass("xz");
+		}
+	}
+}
+//回显颜色
+function showTab(str){
+	var list = str.split(",");
+	if(list.length >0){
+		for(var i = 0 ;i<list.length;i++){
+			var id = list[i];
+			var s = "#"+id;
+			$(s).toggleClass("xz");
+		}
+	}
+}
+
+//遍历表格(编辑时调用)
+function forFrom(){
+	var strId = null;
+	var data = [];
+	var row = rpsItemGrid.findRow(function(row){
+		if(row.billItemId && row.billItemId==0){
+			data.push(row);
+		}
+    });
+	var rpbData = itemGrid.getData();
+	if(data && data.length>0 && rpbData && rpbData.length>0){
+		for(var i = 0;i<data.length;i++){
+			for(var j = 0;j<rpbData.length;j++){
+				if(rpbData[j].id == data[i].prdtId){
+					if(strId==null){
+						strId =  rpbData[j].id;
+                	}else{
+                		strId = strId+","+rpbData[j].id;
+                	}
+					break;
+				}
+			}			
+		}
+	}
+	return strId;
+}
+
+function selectclick() {
+    $("a[name=HotWord]").click(function () {
+//        $(this).siblings().removeClass("xz");
+        
+    	if($(this)[0].classList.length==1){
+        	$(this).toggleClass("xz");
+        }
+        var rpbId = $(this)[0].id;
+        //等于2添加，1删除
+        if($(this)[0].classList.length==2){
+        	var row = itemGrid.findRow(function(row){
+        		if(row.id == rpbId){
+        			var type = 2;
+        			var resultData = {
+        		            type:type,
+        		            rtnRow:row
+        		    };
+        			var checkMsg = checkPrdt(resultData);
+                    if(checkMsg) {
+                        showMsg(checkMsg,"W");
+                        return;
+                    }else{
+                        //弹出数量，单价和金额的编辑界面
+                        addPrdt(resultData);
+                    }
+        		}
+        		
+            });
+        }
+    });
+}
+

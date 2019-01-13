@@ -3052,7 +3052,7 @@ function delFromBillItem(data, callback){
 function checkFromBillItem(data){
     var itemId= data.id;
     var rows = rpsItemGrid.findRows(function(row){
-        if(row && row.itemId == itemId){
+        if(row && row.prdtId == itemId){
             return true;
         }
     });

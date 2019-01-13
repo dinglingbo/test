@@ -327,7 +327,7 @@ hr {
 				  </tr>
 				</table>
 				<table>
-				  <tr><td  colspan="3"><hr/></td></tr>
+				  <tr><td  colspan="3"><hr id="se"/></td></tr>
 				  <tr id="border2">
 				    <td id="currUserName" >打印人：系统管理员</td>
 				    <td id="giveMan" >送货：</td>

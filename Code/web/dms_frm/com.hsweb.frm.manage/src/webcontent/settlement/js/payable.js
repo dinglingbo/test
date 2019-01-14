@@ -255,10 +255,13 @@ function settleOK() {
 			account.trueCharOffAmt = pTrueAmt;
 			account.charOffAmt = pVoidAmt + pTrueAmt;
 			
-			var list={balaTypeCode:"020107",charOffAmt:deductible,settAccountId:"274"};
-			accountTypeList.push(list);
+			if(deductible!=0){
+				var list={balaTypeCode:"020107",charOffAmt:deductible,settAccountId:"274"};
+				accountTypeList.push(list);
+			}
 
-			  nui.confirm("确定结算吗？", "友情提示",function(action){
+
+			  nui.confirm("是否确定结算？", "友情提示",function(action){
 			       if(action == "ok"){
 						nui.mask({
 							el : document.body,

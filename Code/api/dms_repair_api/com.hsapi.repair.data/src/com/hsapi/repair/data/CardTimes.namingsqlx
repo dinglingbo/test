@@ -42,10 +42,10 @@
 	            (a.card_name like '%$cardName$%')
 	    </isNotEmpty>
     	<isNotEmpty prepend="and" property="startDate"> 
-                (a.settle_date &gt;= #startDate#)
+                (a.record_date &gt;= #startDate#)
          </isNotEmpty>
          <isNotEmpty prepend="and" property="endDate">
-                (a.settle_date &lt;= #endDate#)
+                (a.record_date &lt;= #endDate#)
          </isNotEmpty>
         </dynamic>
         order by a.settle_date desc

@@ -158,6 +158,7 @@ function WindowrepairHistory(){
 	var row = gridCar.getSelected();
 	var params = {
 		carId : row.carId,
+		carNo : row.carNo,
 		guestId : row.guestId
 	};
 	if(row.id){

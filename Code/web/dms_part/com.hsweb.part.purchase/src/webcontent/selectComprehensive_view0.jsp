@@ -9,8 +9,8 @@
   - Description:
 -->
 <head>
-<title>综合开单查询</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.14"></script>
+<title>已结算工单表明细查询</title>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.16"></script>
 <style type="text/css">
 
 .title {
@@ -67,8 +67,8 @@
                     <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul>
-                     <input class="nui-combobox" id="billTypeId" emptyText="综合开单" name="billTypeId" data="[{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'}]"
-                          width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="0"/>
+                     <input class="nui-combobox" id="billTypeId" emptyText="综合开单" name="billTypeId" data="[{billTypeId:5,text:'全部'},{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'}]"
+                          width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="5"/>
                     <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="carNoSearch"/>
                     <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
@@ -130,14 +130,22 @@
 		                  <div field="packageSubtotal" name="status" width="70" headerAlign="center" header="套餐小计"></div>
 		                  <div field="itemSubtotal" name="carNO" width="70" headerAlign="center" header="工时小计"></div>
 		                  <div field="partSubtotal" name="carBrandId" width="70" headerAlign="center" header="配件小计"></div>
-		                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" header="预存抵扣"></div>
+		                  <div field="partTrueCost"  width="70" headerAlign="center" header="配件成本"></div>
+		                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" header="计次卡抵扣"></div>
 		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" header="优惠金额"></div>
 		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" header="其他收入"></div>
 		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" header="其他支出"></div>
 		                  <div field="balaAmt" name="contactName" width="70" headerAlign="center" header="结算金额"></div>
+		                  <div field="techDeductValue"  width="70" headerAlign="center" header="技师提成"></div>
+		                  <div field="salesDeductValue" width="70" headerAlign="center" header="销售提成"></div>
+		                  <div field="advisorDeductValue"  width="70" headerAlign="center" header="服务顾问提成"></div>
+		                  <div field="totalDeductAmt"  width="70" headerAlign="center" header="总提成"></div>
+		                  <div field="grossProfit"  width="70" headerAlign="center" header="毛利"></div>
+		                  <div field="grossProfitRate"  width="70" headerAlign="center" numberFormat="p" header="毛利率"></div>
+		                  
 	                  </div>
                   </div>
-                  
+                                    
                    <div header="其他" headerAlign="center">
 	                  <div property="columns" >
 		                 <!--  <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div> 

@@ -182,6 +182,7 @@
 		inner join rps_settlement b
 		on a.id = b.service_id
 		where a.is_settle = 1 and a.orgid = #orgid#
+		and a.bill_type_id in (0,2,4)
 		
 		<dynamic>
             <!--结算日期 -->
@@ -202,6 +203,9 @@
             
             <isNotEmpty prepend="and" property="mtAdvisorId">  
                 (a.mt_advisor_id = #mtAdvisorId#)
+            </isNotEmpty>
+                        <isNotEmpty prepend="and" property="serviceTypeId">  
+                (a.service_type_id = #serviceTypeId#)
             </isNotEmpty>
             
         </dynamic>  

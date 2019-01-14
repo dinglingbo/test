@@ -12,7 +12,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.8" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.9" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -38,7 +38,7 @@
                     <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="">
                         <div title="客户信息" id="main" name="main">
 							                            <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:40%;">
-                                <legend>保险</legend>
+                                <legend>客户信息</legend>
                             <div id="editForm4" style="padding:5px;">
                                 <table class="nui-form-table" style="width:99%">
                                     <tr>
@@ -98,7 +98,7 @@
                             </div>
 </fieldset>
                             <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;">
-                                <legend>基本信息</legend>
+                                <legend>车辆信息</legend>
                                 <div id="editForm" style="padding:5px;">
 
                                     <table style="width:100%;" border="0" cellspacing="0" cellpadding="2px">

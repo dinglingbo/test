@@ -31,6 +31,12 @@
 		where id = #id#
 	</update>
 	
+	<!--更新 com_guest 的 srm_guest_id-->
+	<update id="updateGuestInfo" parameterClass="java.util.HashMap" >
+		update com_guest set srm_guest_id = #guestId#
+		where id = #id#
+	</update>
+	
     <select id="queryPchsOrderDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT b.srm_brand_id as srmBrandId, a.part_code as partCode, a.part_name as partName, 
 		       b.oem_code as oemCode, a.order_qty as orderQty, b.srm_quality_id as srmQualityId, 

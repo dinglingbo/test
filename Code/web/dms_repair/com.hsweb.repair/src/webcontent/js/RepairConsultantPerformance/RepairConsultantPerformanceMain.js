@@ -114,7 +114,7 @@ function onSearch()
 
 function doSearch() {
    var params = getSearchParams();
-    params.orgid = currOrgid;
+    params.orgid = currOrgId;
     grid.load({
         token:token,
         params: params

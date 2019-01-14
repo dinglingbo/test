@@ -108,21 +108,19 @@ function SetData(params){
 	nui.get("carId").setValue(params.carId);
 	nui.get("guestId").setValue(params.guestId);
 	
-	var json = {
-			carId : nui.get("carId").value
-    };
+
 	nui.ajax({
-        url: baseUrl+"com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext",
+        url: baseUrl+"com.hsapi.repair.repairService.report.queryCarByCarId.biz.ext",
         type : "post",
         data : {
-        	params:json,
+        	carId:params.carId,
         	token:token
         },
         async:false,
         success: function (text) {
-            var list = nui.decode(text.list);
-            form.setData(list[0]);
-            searchOld(list[0].carNo||"");
+            var list = nui.decode(text.rpbCar);
+            form.setData(list);
+            searchOld(list.carNo||"");
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR.responseText);

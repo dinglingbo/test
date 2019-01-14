@@ -10,7 +10,7 @@
 <head>
 <title>配件查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.41"></script>
+    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.80"></script>
     <style type="text/css">
 		.table-label {
 			text-align: right;
@@ -20,7 +20,7 @@
 </style>
 </head>
 <body>
-	 <input class="nui-combobox" visible="false" id="unit"/>
+	 <input class="nui-combobox" visible="false" id="unit" name="unit"/>
      <input class="nui-combobox" visible="false" id="abcType"/>
      <input name="billTypeIdE"id="billTypeIdE"  visible="false"class="nui-combobox" />
 	 <input name="settleTypeIdE" id="settleTypeIdE"  visible="false" class="nui-combobox"/>
@@ -44,10 +44,10 @@
                            showNullItem="false"
                            nullItemText="请选择品牌"/>
                     <label style="font-family:Verdana;">选择厂牌：</label>
-                    <input id="applyCarBrandId"
-                           name="applyCarBrandId"
+                    <input id="Carplate"
+                           name="Carplate"
                            class="nui-combobox width1"
-                           textField="nameCn"
+                           textField="name"
                            valueField="id"
                            emptyText="请选择..."
                            url=""
@@ -75,7 +75,7 @@
             </div>
             <div class="nui-fit">
                 <ul id="tree1" class="nui-tree" url="" style="width:100%;"
-                    dataField="partTypes"
+                    dataField="data"
                     ondrawnode="onDrawNode"
                     onnodedblclick="onNodeDblClick"
                     showTreeIcon="true" textField="name" idField="id" parentField="parentId" resultAsTree="false">
@@ -83,6 +83,9 @@
             </div>
         </div>
         <div showCollapseButton="false">
+            <div  class="nui-splitter"  vertical="true" style="width:100%;height:100%;" allowResize="true">
+	        <!-- 上 -->
+	        <div size="50%" showCollapseButton="false">
          	<div class="nui-fit" >
          		 <div id="partGrid" class="nui-datagrid" style="float:left;width:100%;height:100%;"
 	                     borderStyle="border:0;"
@@ -90,7 +93,7 @@
 	                     url=""
 	                     idField="id"
 	                     totalField="page.size"
-	                     onrowdblclick="onOk()"
+	                     onselectionchanged="onGridSelectionChanged()"
 	                     selectOnLoad="true"
 	                     pageSize="50"
 	                     pageIndexField="currpage"
@@ -112,38 +115,54 @@
 		          </div>
          	</div>
         </div>
+        
+        <div  showCollapseButton="false">
+        	<div class="nui-toolbar" style="padding:2px;border-bottom:1;">
+        		<table id="top"style="width:100%;">
+        			<tr>
+        				<td>
+        					<label style="font-family:Verdana;">配件详情：</label>
+        				</td>
+        			</tr>
+        		</table>
+        	</div>
+        	<div class="nui-fit">
+        		<div id="partDetailGrid" class="nui-datagrid" style="float:left;width:100%;height:100%;"
+				       borderStyle="border:0;"
+	                     dataField="data"
+	                     url=""
+	                     idField="id"
+	                     totalField="page.size"
+	                     selectOnLoad="true"
+	                     pageSize="50"
+	                     pageIndexField="currpage"
+	                     pageSizeField="count"			       
+	                     allowCellSelect="true"
+	                     allowCellWrap = true
+				       allowSortColumn="true">
+				      <div property="columns">
+				      	   <div headerAlign="center" type="indexcolumn" width="30">序号</div>
+				           <div field="partId" name="partId" width="80" headerAlign="center" header="内码"></div>
+					       <div field="code" headerAlign="code" width="80"header="编码"></div>
+					       <div field="full_name" id="full_name" width="260" headerAlign="center" header="全称"></div>
+					       <div field="qualityName" name="qualityName" width="60" headerAlign="center" header="品质"></div>
+					       <div field="brandName" name="brandName" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="品牌"></div>
+					       <div field="carName"  width="60" headerAlign="center" header="厂牌"></div>
+					       <div field="qty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center"header="库存" ></div>
+						   <div field="price" width="60" headerAlign="center" allowSort="true" header="销售价"></div>
+						   <div field="guestName" width="150" headerAlign="center" allowSort="true" header="配件商"></div>
+					   	   <div field="warehouseName" id="warehouseName" width="140" headerAlign="center" header="仓库"></div>
+						   <div field="rangeName" width="80" headerAlign="center" allowSort="true" header="仓库所在地"></div>
+						   <div field="action" width="180" headerAlign="center" allowSort="true" header="操作"></div>
+				      </div>
+				 </div>
+        	</div>
+        </div>
+        </div>
    </div>
 </div>
-
-<div id="editFormDetail" style="display:none;padding:5px;position:relative;">
-
-   <div id="innerPartGrid"
-       dataField="data"
-       allowCellWrap = true
-       class="nui-datagrid"
-       style="width: 100%; height: 100px;"
-       showPager="false"
-       multiSelect="true"
-       allowCellSelect="true"
-       allowSortColumn="true">
-      <div property="columns">
-           <div headerAlign="center" type="indexcolumn" width="30">序号</div>
-           <div type="checkcolumn" width="25"></div>
-           <div field="partId" name="partId" width="80" headerAlign="center" header="内码"></div>
-	       <div field="code" headerAlign="code" width="80"header="编码"></div>
-	       <div field="full_name" id="full_name" width="260" headerAlign="center" header="全称"></div>
-	       <div field="qualityName" name="qualityName" width="60" headerAlign="center" header="品质"></div>
-	       <div field="brandName" name="brandName" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="品牌"></div>
-	       <div field="carName"  width="60" headerAlign="center" header="厂牌"></div>
-	       <div field="qty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center"header="库存" ></div>
-		   <div field="price" width="60" headerAlign="center" allowSort="true" header="销售价"></div>
-		   <div field="guestName" width="150" headerAlign="center" allowSort="true" header="配件商"></div>
-	   	   <div field="warehouseName" id="warehouseName" width="140" headerAlign="center" header="仓库"></div>
-		   <div field="rangeName" width="60" headerAlign="center" allowSort="true" header="仓库所在地"></div>
-		   <div field="action" width="180" headerAlign="center" allowSort="true" header="操作"></div>
-      </div>
-   </div>
 </div>
+
 	<script type="text/javascript">
     	nui.parse();
     </script>

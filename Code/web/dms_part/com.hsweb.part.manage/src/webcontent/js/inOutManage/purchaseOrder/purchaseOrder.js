@@ -1386,7 +1386,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 //								leftRow.billStatusId=2;
 								loadMainAndDetailInfo(leftRow);
 								$('#bServiceId').text("订单号："+leftRow.serviceId);
-
+								 pushSupplierOrder();
 
 							}
 						} else {
@@ -1455,7 +1455,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 //								leftRow.billStatusId=2;
 								loadMainAndDetailInfo(leftRow);
 								$('#bServiceId').text("订单号："+leftRow.serviceId);
-
+								 pushSupplierOrder();
 
 							}
 						} else {
@@ -2304,5 +2304,36 @@ function setInitData(params){
 	}
 }
 
-
-
+var pushOrderUrl=baseUrl+"com.hsapi.part.invoice.ordersettle.pushSupplierOrder.biz.ext";
+function pushSupplierOrder(){
+	var payType = '';
+	var companyId='COM00000000000001';
+	var settleType=nui.get('settleTypeId').getText();
+	if(settleType=='现结'){
+		payType='JS01';
+	}else if(settleType=='月结'){
+		payType ='JS05';
+	}
+	nui.ajax({
+        url : pushOrderUrl,
+        type : "post",
+        data : JSON.stringify({
+        	payType : payType,
+        	companyId : companyId
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+				console.log(data);
+                
+            } else {
+            	console.log(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}

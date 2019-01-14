@@ -128,77 +128,8 @@ public class PurchaseService {
 		JSONObject jsonObj = JSONObject.fromObject(main);
 		String json = jsonObj.toString();
 		
-		StringBuffer resultBuffer = null;
-		HttpURLConnection con = null;
-		OutputStreamWriter osw = null;
-		BufferedReader br = null;
-		// 发送请求
-		try {
-			URL url = new URL(urlParam);
-			con = (HttpURLConnection) url.openConnection();
-			con.setRequestMethod("POST");
-			con.setDoOutput(true);
-			con.setDoInput(true);
-			con.setUseCaches(true);
-			con.setRequestProperty("Content-Type",
-					"application/json;charset=UTF-8");
-			con.setRequestProperty("accept", "application/json,text/plain,*/*");
-
-			con.setConnectTimeout(60000);// 连接超时 单位毫秒
-			con.setReadTimeout(60000);// 读取超时 单位毫秒
-			if (json != null && json.length() > 0) {
-				osw = new OutputStreamWriter(con.getOutputStream(), "UTF-8");
-				osw.write(json);
-				osw.flush();
-			}
-
-			// 读取返回内容
-			if (con.getResponseCode() == 200) {
-				resultBuffer = new StringBuffer();
-				br = new BufferedReader(new InputStreamReader(
-						con.getInputStream(), "UTF-8"));
-				String temp;
-				while ((temp = br.readLine()) != null) {
-					resultBuffer.append(temp);
-				}
-			} else {
-				System.out.println("con.getResponseCode = "
-						+ con.getResponseCode());
-			}
-			return resultBuffer.toString();
-		} catch (Exception e) {
-			System.out.println("Access Error At:" + urlParam);
-			e.printStackTrace();
-			return "{\"resultCode\":\"Http_Send_Error\", \"resultMsg\":\""
-					+ e.getMessage() + "\"}";
-		} finally {
-			if (osw != null) {
-				try {
-					osw.close();
-				} catch (IOException e) {
-					osw = null;
-					throw new RuntimeException(e);
-				} finally {
-					if (con != null) {
-						con.disconnect();
-						con = null;
-					}
-				}
-			}
-			if (br != null) {
-				try {
-					br.close();
-				} catch (IOException e) {
-					br = null;
-					throw new RuntimeException(e);
-				} finally {
-					if (con != null) {
-						con.disconnect();
-						con = null;
-					}
-				}
-			}
-		}
+		String msg = sendPostByJson(urlParam, json);
+		return msg;
 				
 	}
 	
@@ -429,38 +360,68 @@ public class PurchaseService {
         		//com.hsapi.part.baseDataCrud.crud.saveSupplier  supplier  orgid  userName
         		String retMsg = getGuestById(access_token, guestId);
         		Gson gson = new Gson();
-                Map<String, String> resultMap = new HashMap<String, String>();
+                Map<String, Object> resultMap = new HashMap<String, Object>();
                 resultMap = gson.fromJson(retMsg, resultMap.getClass());
-                String status = resultMap.get("status");
+                String status = (String) resultMap.get("status");
                 HashMap map = null;
                 if(status.equals("0")) {
-                	String data = resultMap.get("data");
-                	map = Utils.str2Map(data);
+                	Map data = (Map) resultMap.get("data");
+                	List<Object> params = new ArrayList<Object>();
+            		DataObject guest = DataObjectUtil
+    						.createDataObject("com.hsapi.part.data.com.ComGuest");
+            		guest.set("orgid", orgid);
+            		guest.set("is_supplier", 1);
+            		guest.set("fullName", data.get("guestName"));
+            		guest.set("shortName", data.get("guestName"));
+            		guest.set("contactor", data.get("salesMan"));
+            		guest.set("contactorTel", data.get("salesManTel"));
+            		guest.set("tel", data.get("salesManTel"));
+            		guest.set("mobile", data.get("salesManTel"));
+            		guest.set("srmGuestId", guestId);
+        			params.add(guest);
+        			params.add(orgid);
+        			params.add(userName);
+        			Object[] resultRes = APIUtils.callLogicFlowMethd("com.hsapi.part.baseDataCrud.crud", "saveSupplier", params.toArray(new Object[params.size()]));
+        			String errCode = (String) resultRes[0];
+        			String errMsg = (String) resultRes[1];
+        			Integer gstId = (Integer) resultRes[2];
+        			DataObject supplier = (DataObject) resultRes[3];
+        			if(errCode.equals("S")) {
+        				supplier.set("status", "0");
+        				return supplier;
+        			}else {
+        				DataObject rs = DataObjectUtil
+        						.createDataObject("com.hsapi.part.data.com.ComGuest");
+                		rs.set("status", -1);
+                		rs.set("msg", "请新增供应商资料!");
+                		return rs;
+        			}
                 }
         		
-        		List<Object> params = new ArrayList<Object>();
-        		DataObject guest = DataObjectUtil
+                DataObject rs = DataObjectUtil
 						.createDataObject("com.hsapi.part.data.com.ComGuest");
-        		guest.set("orgid", orgid);
-        		guest.set("fullName", "");
-        		guest.set("shortName", "");
-        		guest.set("contactor", "");
-        		guest.set("contactorTel", "");
-        		guest.set("tel", "");
-        		guest.set("mobile", "");
-        		guest.set("srmGuestId", guestId);
-    			params.add(guest);
-    			params.add(orgid);
-    			params.add(userName);
-    			Object[] resultRes = APIUtils.callLogicFlowMethd("com.hsapi.part.baseDataCrud.crud", "saveSupplier", params.toArray(new Object[params.size()]));
-    			return null;
+        		rs.set("status", -1);
+        		rs.set("msg", "请新增供应商资料!");
+        		return rs;
     			
         	}else {
-        		return result[0];
+        		HashMap pm = new HashMap();
+        		pm.put("guestId", guestId);
+        		pm.put("id", result[0].get("id"));
+        		DatabaseExt.executeNamedSql(
+						"common",
+						"com.hsapi.part.invoice.orderSettle.updateGuestInfo",
+						pm);
+        		DataObject rs = result[0];
+        		rs.set("status", "0");
+        		return rs;
         	}
+    	}else {
+    		DataObject rs = result[0];
+    		rs.set("status", "0");
+    		return rs;
     	}
-		    	
-		return null;
+		    
 	}
 	
 	private static DataObject setPartInfo(String access_token, String partId, String partCode, String partName, 
@@ -485,11 +446,12 @@ public class PurchaseService {
     		params.put("partCode",partCode);
     		params.put("brandName",brandName);
         	Object[] objs = DatabaseExt.queryByNamedSql("common","com.hsapi.part.invoice.orderSettle.queryPartByPartBrand", params);
-        	List<HashMap> detailList = new ArrayList<HashMap>();
+        	List<DataObject> detailList = new ArrayList<DataObject>();
         	CollectionUtils.addAll(detailList, objs);
-        	DataObject obj = null;
+        	DataObject obj =DataObjectUtil
+					.createDataObject("com.hsapi.part.data.com.ComAttribute");
         	if(objs.length > 0) {
-        		obj = result[0];
+        		obj = detailList.get(0);
         		obj.set("status", 0);
         		//com.hsapi.part.invoice.orderSettle.updatePartInfo
         		HashMap pm = new HashMap();
@@ -505,15 +467,17 @@ public class PurchaseService {
         		return obj;
         	}else {
         		DataObject rs = DataObjectUtil
-						.createDataObject("com.hsapi.part.data.com.ComGuest");
+						.createDataObject("com.hsapi.part.data.com.ComAttribute");
         		rs.set("status", -1);
         		rs.set("msg", "请新增配件基础资料!");
         		return rs;
         	}
         	
+    	}else {
+    		DataObject rs = result[0];
+    		rs.set("status", "0");
+    		return rs;
     	}
-		    
-		return null;
 	}
 	
 	/*
@@ -523,16 +487,23 @@ public class PurchaseService {
 		不能返回的，后台自动新增，后台新增不能获取到必填写值的，前端弹出新增
 	 * */
 	@Bizlet("")
-	public static String queryGuestAndSKU(String access_token, String guestId,
-			String guestName, String partId, String partCode, String brandId,
+	public static Map queryGuestAndSKU(String access_token, String guestId,
+			String guestName, String partId, String partCode, String partName, String brandId,
 			String brandName, String qualityId, String qualityName, int orgid, String userName) throws Throwable {
 		if(guestId == null || guestId.equals("")) {
-			return "{\"status\":\"-1\", \"resultMsg\":\"请传递guestId!\"}";
+			HashMap mp = new HashMap();
+			mp.put("status", -1);
+			mp.put("resultMsg", "请传递guestId!");
+			return mp;
 		}
 		
-		setGuestInfo(access_token, guestId, guestName, orgid, userName);
-		
-		return null;
+		DataObject guest = setGuestInfo(access_token, guestId, guestName, orgid, userName);
+		DataObject part = setPartInfo(access_token, partId, partCode, partName, orgid, userName, brandId, 
+				brandName, qualityId, qualityName);
+		HashMap map = new HashMap();
+		map.put("guest", guest);
+		map.put("part", part);
+		return map;
 				
 	}
 	

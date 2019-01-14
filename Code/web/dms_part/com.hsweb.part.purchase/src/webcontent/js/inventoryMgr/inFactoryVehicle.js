@@ -4,7 +4,7 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
-var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryComprehensive.biz.ext";
+var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.report.queryNotSettleMaintain.biz.ext";
 var getdRpsPackageUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext";
 var getRpsItemUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext";
 var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
@@ -35,8 +35,8 @@ var prdtTypeHash = {
 };
 $(document).ready(function ()
 {
-    beginDateEl = nui.get("sOutDate");
-	endDateEl = nui.get("eOutDate");
+    beginDateEl = nui.get("sEnterDate");
+	endDateEl = nui.get("eEnterDate");
 
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
@@ -200,7 +200,7 @@ $(document).ready(function ()
                 break;
         }
     });
-    quickSearch(2);
+
     
 });
 var statusHash = {
@@ -238,7 +238,7 @@ function onShowRowDetail(e) {
     });
 }
 
-function quickSearch(type){
+/*function quickSearch(type){
     var params = getSearchParam();
     var querysign = 1;
     var queryname = "本日";
@@ -246,57 +246,57 @@ function quickSearch(type){
     {
         case 0:
             params.today = 1;
-            params.sOutDate = getNowStartDate();
-            params.eOutDate = addDate(getNowEndDate(), 1);
+            params.sEnterDate = getNowStartDate();
+            params.eEnterDate = addDate(getNowEndDate(), 1);
             querysign = 1;
             queryname = "本日";
             break;
         case 1:
             params.yesterday = 1;
-            params.sOutDate = getPrevStartDate();
-            params.eOutDate = addDate(getPrevEndDate(), 1);
+            params.sEnterDate = getPrevStartDate();
+            params.eEnterDate = addDate(getPrevEndDate(), 1);
             querysign = 1;
             queryname = "昨日";
             break;
         case 2:
             params.thisWeek = 1;
-            params.sOutDate = getWeekStartDate();
-            params.eOutDate = addDate(getWeekEndDate(), 1);
+            params.sEnterDate = getWeekStartDate();
+            params.eEnterDate = addDate(getWeekEndDate(), 1);
             querysign = 1;
             queryname = "本周";
             break;
         case 3:
             params.lastWeek = 1;
-            params.sOutDate = getLastWeekStartDate();
-            params.eOutDate = addDate(getLastWeekEndDate(), 1);
+            params.sEnterDate = getLastWeekStartDate();
+            params.eEnterDate = addDate(getLastWeekEndDate(), 1);
             querysign = 1;
             queryname = "上周";
             break;
         case 4:
             params.thisMonth = 1;
-            params.sOutDate = getMonthStartDate();
-            params.eOutDate = addDate(getMonthEndDate(), 1);
+            params.sEnterDate = getMonthStartDate();
+            params.eEnterDate = addDate(getMonthEndDate(), 1);
             querysign = 1;
             queryname = "本月";
             break;
         case 5:
             params.lastMonth = 1;
-            params.sOutDate = getLastMonthStartDate();
-            params.eOutDate = addDate(getLastMonthEndDate(), 1);
+            params.sEnterDate = getLastMonthStartDate();
+            params.eEnterDate = addDate(getLastMonthEndDate(), 1);
             querysign = 1;
             queryname = "上月";
             break;
         case 10:
             params.thisYear = 1;
-            params.sOutDate = getYearStartDate();
-            params.eOutDate = getYearEndDate();
+            params.sEnterDate = getYearStartDate();
+            params.eEnterDate = getYearEndDate();
             querysign = 1;
             queryname = "本年";
             break;
         case 11:
             params.lastYear = 1;
-            params.sOutDate = getPrevYearStartDate();
-            params.eOutDate = getPrevYearEndDate();
+            params.sEnterDate = getPrevYearStartDate();
+            params.eEnterDate = getPrevYearEndDate();
             querysign = 1;
             queryname = "上年";
             break;
@@ -305,8 +305,8 @@ function quickSearch(type){
             break;
     }
     
-    beginDateEl.setValue(params.sOutDate);
-    endDateEl.setValue(addDate(params.eOutDate,-1));
+    beginDateEl.setValue(params.sEnterDate);
+    endDateEl.setValue(addDate(params.eEnterDate,-1));
     if(querysign == 1){
     	var menunamedate = nui.get("menunamedate");
     	menunamedate.setText(queryname); 	
@@ -314,7 +314,7 @@ function quickSearch(type){
     
     doSearch(params);
 }
-
+*/
 
 
 function onSearch()
@@ -323,9 +323,7 @@ function onSearch()
 }
 function doSearch() {
     var gsparams = getSearchParam();
-    gsparams.isSettle = 1;
-   // gsparams.billTypeId = 0;
-    gsparams.isDisabled = 0;
+
 
     mainGrid.load({
         token:token,
@@ -334,10 +332,13 @@ function doSearch() {
 }
 function getSearchParam() {
     var params = {};
-    params.sOutDate = nui.get("sOutDate").getValue();
-    params.eOutDate = addDate(endDateEl.getValue(),1);  
+    params.sEnterDate = nui.get("sEnterDate").getValue();
+    params.eEnterDate = addDate(endDateEl.getValue(),1);  
     params.mtAuditorId = mtAdvisorIdEl.getValue();
-    params.billTypeId = nui.get("billTypeId").getValue();
+    if((nui.get("billTypeId").getValue())!=999){
+    	params.billTypeId = nui.get("billTypeId").getValue();
+    }
+    
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){
@@ -428,6 +429,7 @@ function showCarInfo(row_uid){
 	if(row){
 		var params = {
 				carId : row.carId,
+				carNo : row.carNo,
 				guestId : row.guestId
 		};
 		doShowCarInfo(params);

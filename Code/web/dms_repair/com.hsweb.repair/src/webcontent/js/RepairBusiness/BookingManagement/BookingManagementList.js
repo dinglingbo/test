@@ -560,7 +560,6 @@ function callBill() {
         showMsg("请选中一条数据","W");
         return;
     }
-    
     nui.open({
         url: webPath + contextPath + "/com.hsweb.RepairBusiness.BookingScout.flow?token="+token,
         title: "预约跟进", width: 700, height: 350,

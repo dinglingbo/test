@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.32"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.38"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -556,9 +556,9 @@ allowDrag="false">
       <div property="columns">
           <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
           <div field="prdtType" name="prdtType" width="50" headerAlign="center" header="产品类别"></div>
-          <div field="canUseTimes" name="canUseTimes" width="50" headerAlign="center" header="可使用次数"></div>
-          <div field="doTimes" name="doTimes" width="50" headerAlign="center" header="使用中次数"></div>
           <div field="balaTimes" name="balaTimes" width="50" headerAlign="center" header="剩余次数"></div>
+          <div field="doTimes" name="doTimes" width="50" headerAlign="center" header="使用中次数"></div>
+          <div field="canUseTimes" name="canUseTimes" width="50" headerAlign="center" header="可使用次数"></div>
           <div field="cardTimesOpt" name="cardTimesOpt" width="50" headerAlign="center"  header="操作"></div>
       </div>
   </div>
@@ -739,21 +739,6 @@ allowDrag="false">
                   <div field="cardTimesOpt" name="cardTimesOpt" width="50" headerAlign="center"  header="操作" align="center"></div>
               </div>
           </div>
-    </div>
-</div>
-
-<div class="nui-datagrid" style="display: none;" 
-    id="itemGrid"
-        dataField="list"
-        pageSize="20"
-        totalField="page.count"
-        allowSortColumn="true">
-    <div property="columns">
-        <div field="name" width="100" headerAlign="center" allowSort="true" header="项目名称"></div>
-        <div field="itemTime" width="50" headerAlign="center" allowSort="true" header="工时"></div>
-        <div field="amt" width="60" headerAlign="center" allowSort="true" header="金额"></div>
-        <div field="type" width="60" headerAlign="center" allowSort="true" header="项目类型"></div>
-        <div field="serviceTypeId" width="60" headerAlign="center" allowSort="true" header="业务类型"></div>
     </div>
 </div>
 <script type="text/javascript">

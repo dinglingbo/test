@@ -102,16 +102,16 @@ function deleteCartShop(){
                 nui.unmask(document.body);
                 data = data || {};
                 if (data.errCode == "S") {
-                    nui.alert("删除成功!","",function(e){
+                    parent.parent.showMsg("删除成功!","",function(e){
                         cartGrid.removeRows(rows,true);
                     });
                     
                 } else {
-                    nui.alert(data.errMsg || "删除失败!");
+                    parent.parent.showMsg(data.errMsg || "删除失败!");
                 }
             },
             error : function(jqXHR, textStatus, errorThrown) {
-                // nui.alert(jqXHR.responseText);
+                // parent.parent.showMsg(jqXHR.responseText);
                 console.log(jqXHR.responseText);
             }
         });
@@ -164,24 +164,25 @@ function updateOrderCart(list){
 
         },
         error : function(jqXHR, textStatus, errorThrown) {
-            // nui.alert(jqXHR.responseText);
+            // parent.parent.showMsg(jqXHR.responseText);
             console.log(jqXHR.responseText);
         }
     });
 }
 function generatePchsOrder(){
     var rows = cartGrid.getSelecteds();
+    if(rows.length<=0){
+    	parent.parent.showMsg("请选择配件信息!");
+        return;
+    }
     var guestId=rows[0].guestId;
     if(rows && rows.length > 0){
     	for(var i=0;i<rows.length;i++){
     		if(guestId!=rows[i].guestId){
-    			nui.alert("请选择相同供应商的配件!");
+    			parent.parent.showMsg("请选择相同供应商的配件!");
     			return;
     		}
     	}
-    }else{
-        nui.alert("请选择配件信息!");
-        return;
     }
 
     openGeneratePop(rows, "fromPchsCart", "新增采购订单");
@@ -191,7 +192,7 @@ function generateSellOrder(){
     if(rows && rows.length > 0){
 
     }else{
-        nui.alert("请选择配件信息!");
+        parent.parent.showMsg("请选择配件信息!");
         return;
     }
 

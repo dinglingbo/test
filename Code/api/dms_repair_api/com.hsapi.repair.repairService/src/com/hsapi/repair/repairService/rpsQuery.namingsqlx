@@ -1268,7 +1268,7 @@
 		
 	<select id="checkBillPart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
    		   	SELECT 1 FROM rps_part AS a
-            WHERE a.service_id = #serviceId# AND a.pick_qty &lt; a.qty
+            WHERE a.service_id = #serviceId# and a.is_disabled = 0 AND a.pick_qty &lt; a.qty
     </select>
  
  <select id="queryRpbBillModelList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

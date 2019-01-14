@@ -100,7 +100,7 @@ function sendInfo(){
 		title: "发送短信", width: 655, height: 386,
 		onload: function () {
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.setPhones(rowData);
+			iframe.contentWindow.setData(rowData);
 		},
 		ondestroy: function (action) {
             //重新加载

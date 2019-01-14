@@ -526,7 +526,7 @@ function selectPart(callback)
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.common.enterDetailSelect.flow?token=" + token,
         title: "选择入库明细", width: 930, height: 560,
         allowDrag:true,
@@ -552,7 +552,7 @@ function selectPart(callback)
 function addEnterDetail(part)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "./inBoundCountView.html",
         title: "入库数量金额", width: 430, height:210,
         allowDrag:true,
@@ -619,7 +619,7 @@ function editPart()
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.purchase.enterDetailEdit.flow?token=" + token,
         title: "数量金额", width: 430, height:210,
         allowDrag:true,

@@ -139,7 +139,7 @@ function onCancel(e) {
 function selectCaptain(elId)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.repair.common.empSelect.flow",
         title: "选择用户", width: 300, height: 500,
         allowDrag:true,

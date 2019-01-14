@@ -46,7 +46,7 @@ function onRowClick(e)
 function onAddNode()
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.baseData.storehouseDetail.flow?token=" + token,
         title: "仓库定义",
         width: 500, height: 200,
@@ -78,7 +78,7 @@ function onEditNode(){
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.baseData.storehouseDetail.flow?token=" + token,
         title: "仓库定义",
         width: 500, height: 200,
@@ -117,7 +117,7 @@ function addPosition()
     }
     var storehouseList = tree.getList()||[];
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.baseData.positionDetail.flow?token=" + token,
         title: "仓位定义",
         width: 525, height: 230,

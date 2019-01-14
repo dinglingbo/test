@@ -1686,7 +1686,7 @@ function getPartPrice(params){
 function selectPart(callback,checkcallback)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.manage.orderBillChoose.flow?token="+token,
         title: "销售订单选择", width: 930, height: 560,
         allowDrag:true,

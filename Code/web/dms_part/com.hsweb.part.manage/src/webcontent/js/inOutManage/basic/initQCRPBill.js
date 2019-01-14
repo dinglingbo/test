@@ -64,7 +64,7 @@ function onCellCommitEdit(e) {
 function addGuest(){
     var supplier = null;
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "往来单位", width: 980, height: 560,
         allowDrag:true,
@@ -327,7 +327,7 @@ function importGuest(){
     
 
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.manage.initQCRPBillImport.flow?token="+token,
         title: "期初应收应付导入", 
         width: 930, 

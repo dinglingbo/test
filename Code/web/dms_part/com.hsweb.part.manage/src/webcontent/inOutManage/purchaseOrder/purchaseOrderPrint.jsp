@@ -418,6 +418,7 @@ hr {
    		    $('#currOrgName').text(params.currRepairSettorderPrintShow||params.currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
     		$('#currUserName').text("制单:"+params.currUserName);
+    		$.ajaxSettings.async = false;
     		if(params.id ){
 		   		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
 		   			var formParms =text.pjPchsOrderMainList[0];

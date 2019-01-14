@@ -175,7 +175,7 @@ function addOrEditBrand(brand)
         title = "修改品牌";
     }
 	nui.open({
-		targetWindow: window,
+		// targetWindow: window,
         url: "com.hsweb.repair.DataBase.CarBrandDetail.flow",
         title: title, width: 400, height: 190,
         allowResize:false,
@@ -299,7 +299,7 @@ function addOrEditSeries(series)
       title = "修改车系";
   }
   nui.open({
-      targetWindow: window,
+      // targetWindow: window,
       url: "com.hsweb.repair.DataBase.CarSeriesDetail.flow",
       title: title, width: 600, height: 230,
       allowResize:false,
@@ -349,7 +349,7 @@ function addOrEditModel(model)
       title = "修改车型";
   }
   nui.open({
-      targetWindow: window,
+      // targetWindow: window,
       url: "com.hsweb.repair.DataBase.CarModelDetail.flow",
       title: title, width: 600, height: 230,
       allowResize:false,

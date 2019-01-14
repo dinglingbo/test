@@ -193,10 +193,10 @@ function editPart(){
 function addOrEditPart(row)
 {
     nui.open({
-        targetWindow: window,
-        url: "com.hsweb.part.baseData.partDetail.flow",
+        // targetWindow: window,
+        url: "com.hsweb.cloud.part.basic.partDetail.flow",
         title: "配件资料",
-        width: 740, height: 350,
+        width: 740, height: 370,
         allowDrag:true,
         allowResize:false,
         onload: function ()

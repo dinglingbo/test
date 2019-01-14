@@ -410,15 +410,16 @@ hr {
             if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
             else window.close();
         }
-    	function SetData(params,detailParms){
+    	function SetData(mainParams,detailParms){
     		document.getElementById("spstorename").innerHTML = "入库单";
-    		document.getElementById("guestAddr").innerHTML = "地址:"+params.currCompAddress;
-	   		document.getElementById("phone").innerHTML ="电话:"+params.currCompTel;
-	   		$('#currOrgName').text(params.currRepairSettorderPrintShow||params.currOrgName);
+    		document.getElementById("guestAddr").innerHTML = "地址:"+mainParams.currCompAddress;
+	   		document.getElementById("phone").innerHTML ="电话:"+mainParams.currCompTel;
+	   		$('#currOrgName').text(mainParams.currRepairSettorderPrintShow||mainParams.currOrgName);
     		$('#nowDate').text("打印日期:"+format(date,"yyyy-MM-dd HH:mm"));
-    		$('#currUserName').text("制单:"+params.currUserName);
-    		if(params.id){
-	       		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
+    		$('#currUserName').text("制单:"+mainParams.currUserName);
+    		$.ajaxSettings.async = false;
+    		if(mainParams.id){
+	       		$.post(MainUrl+"?params/id="+mainParams.id+"&params/auditSign="+mainParams.auditSign+"&token="+token,{},function(text){
 		   			var formParms =text.pjPchsOrderMainList[0];
 		       		$('#guestFullName').text("供应商:"+formParms.guestFullName);
 		       		$('#createDate').text("订单日期:"+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
@@ -431,8 +432,8 @@ hr {
 		    		}
 	    		});
     		}
-    		if(params.guestId){
-	    		$.post(supplierUrl+"?params/guestId="+params.guestId+"&token="+token,{},function(text){
+    		if(mainParams.guestId){
+	    		$.post(supplierUrl+"?params/guestId="+mainParams.guestId+"&token="+token,{},function(text){
 	    			var guest=text.guest[0];
 	    			if(guest.contactor){		
 	    				$('#contactor').text("联系人:"+guest.contactor);

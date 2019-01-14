@@ -1630,6 +1630,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								var leftRow = pjPchsOrderMainList[0];
 								var row = leftGrid.getSelected();
 								leftGrid.updateRow(row, leftRow);
+								loadMainAndDetailInfo(leftRow);
 								nui.confirm("是否打印？", "友情提示", function(action) {
 									if(action== 'ok'){
 										onPrint();
@@ -1707,6 +1708,7 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								var leftRow = pjPchsOrderMainList[0];
 								var row = leftGrid.getSelected();
 								leftGrid.updateRow(row, leftRow);
+								loadMainAndDetailInfo(leftRow);
 								nui.confirm("是否打印？", "友情提示", function(action) {
 									if(action== 'ok'){
 										onPrint();
@@ -1831,7 +1833,7 @@ function addGuest(){
 	nui.confirm("此供应商不存在，是否新增?", "友情提示", function(action) {
 		if (action == "ok") {
 			nui.open({
-				targetWindow: window,
+				// targetWindow: window,
 				url: webPath+contextPath+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
 				title: "供应商资料", width: 530, height: 480,
 				allowDrag:true,
@@ -1867,7 +1869,7 @@ function addGuest(){
 
 function onPrint(){
 	var from = basicInfoForm.getData();
-	var params={
+	var mainParams={
 		id : from.id,
 		auditSign:from.auditSign,
 		guestId :from.guestId,
@@ -1891,7 +1893,7 @@ function onPrint(){
        showHeader: true,
        onload: function() {
            var iframe = this.getIFrameEl();
-           iframe.contentWindow.SetData(params,detailParams);
+           iframe.contentWindow.SetData(mainParams,detailParams);
        },
    });
 }
@@ -2286,7 +2288,7 @@ function addPchsOrder(type)
 	}
 
 	nui.open({
-		targetWindow: window,
+		// targetWindow: window,
 		url: webPath+contextPath+"/com.hsweb.part.manage.pchsOrderSelect.flow?token="+token,
 		title: title, width: 1000, height: 560,
 		allowDrag:true,
@@ -2474,7 +2476,7 @@ function getSellDetail(params)
 function addOrEditPart(row)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.baseData.partDetail.flow?token=" + token,
         title: "配件资料",
         width: 470, height: 320,

@@ -270,7 +270,7 @@ function selectSupplier(elId)
 {
     supplier = null;
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.common.supplierSelect.flow",
         title: "供应商资料", width: 980, height: 560,
         allowDrag:true,

@@ -522,7 +522,7 @@ function selectCustomer(elId)
 {
     customer = null;
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.common.customerSelect.flow?token=" + token,
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,
@@ -569,7 +569,7 @@ function selectPart(callback)
         id:storeId
     };
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.common.enterDetailSelect.flow?token=" + token,
         title: "选择入库明细", width: 930, height: 560,
         allowDrag:true,
@@ -587,7 +587,7 @@ function selectPart(callback)
 function addEnterDetail(part)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.purchase.sellOutDetail.flow?token=" + token,
         title: "销售数量金额", width: 430, height:320,
         allowDrag:true,
@@ -650,7 +650,7 @@ function editPart()
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.purchase.sellOutDetail.flow?token=" + token,
         title: "销售数量金额", width: 430, height:320,
         allowDrag:true,

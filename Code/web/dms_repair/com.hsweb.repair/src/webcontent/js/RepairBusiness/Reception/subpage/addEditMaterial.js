@@ -221,7 +221,7 @@ function onOk()
 function selectPartName()
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.common.partNameSelect.flow",
         title: "配件名称查询",
         width:900, height: 650,

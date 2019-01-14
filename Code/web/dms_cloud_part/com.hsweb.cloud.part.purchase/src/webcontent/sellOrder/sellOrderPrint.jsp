@@ -401,6 +401,7 @@ hr {
     		document.getElementById("spstorename").innerHTML = "销售订单";
     		document.getElementById("guestAddr").innerHTML = "地址："+params.currCompAddress;
 	   		document.getElementById("phone").innerHTML ="电话："+params.currCompTel;
+	   		$.ajaxSettings.async = false;
 	   		if(params.id){
 		   		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
 		   			var formParms =text.pjSellOrderMainList[0];

@@ -2,19 +2,55 @@
  * Created by Administrator on 2018/1/27.
  */
 
-var baseUrl = apiPath + cloudPartApi + "/";
+var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+//var gridUrl = baseUrl+"com.hsapi.part.common.svr.queryPartName.biz.ext"; 
+//var  treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
+
 var gridUrl = baseUrl+"com.hsapi.part.common.svr.queryPartName.biz.ext";
 var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
+
 var grid = null;
 var tree = null;
 $(document).ready(function(v)
 {
     grid = nui.get("grid1");
     grid.setUrl(gridUrl);
-
+    grid.on("beforeload",function(e){
+        e.data.token = token;
+    });
     tree = nui.get("tree1");
     tree.setUrl(treeUrl);
+    tree.load({token:token});
+//    tree.on("beforeload",function(e){
+//        e.data.token = token;
+//    });
     //console.log("xxx");
+    grid.on("rowdblclick", function(e) {
+		var row = grid.getSelected();
+		var rowc = nui.clone(row);
+		if (!rowc)
+			return;
+		onOk();
+
+	});
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+
+        switch(keyCode){
+            case 27:
+            window.CloseOwnerWindow("");
+            break; 
+        }
+
+        /*if((keyCode==83)&&(event.shiftKey))  {  
+            onOk();  
+        } 
+
+        if((keyCode==67)&&(event.shiftKey))  { 
+            onCancel();
+        }  */
+    }
 });
 function onDrawNode(e)
 {
@@ -128,4 +164,33 @@ function CloseWindow(action)
 }
 function onCancel(e) {
     CloseWindow("cancel");
+}
+
+function addPartName(){
+	
+	var namestd =nui.get('searchKey').getValue();
+	nui.open({
+		url : webPath+ partDomain+ "/commonPart/partNameAdd.jsp?token"+ token,
+		title : "新增配件名称",
+		width : 425,
+		height : 300,
+		allowDrag : false,
+		allowResize : false,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var params = {
+				namestd : namestd
+			};
+
+			iframe.contentWindow.SetData(params);
+		},
+		ondestroy : function(action) {
+			if (action == 'ok') {
+
+				onSearch();
+				morePartSearch();
+
+			}
+		}
+	});
 }

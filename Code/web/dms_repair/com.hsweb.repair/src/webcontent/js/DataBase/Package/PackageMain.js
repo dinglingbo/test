@@ -530,7 +530,7 @@ function save()
 function selectPart(callback)
 {
 	nui.open({
-		targetWindow: window,
+		// targetWindow: window,
 		url: "com.hsweb.part.common.partSelectView.flow",
 		title: "选择配件", width: 930, height: 560,
 		allowDrag:true,
@@ -593,7 +593,7 @@ function removePart()
 function selectItem(callback)
 {
 	nui.open({
-		targetWindow: window,
+		// targetWindow: window,
 		url: "com.hsweb.repair.DataBase.RepairItemMain.flow",
 		title: "选择项目", width: 1000, height: 560,
 		allowDrag:true,

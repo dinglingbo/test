@@ -1753,7 +1753,7 @@ function addNewKeyRow(){
 function selectPart(callback,checkcallback)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.manage.orderBillChoose.flow?token="+token,
         title: "采购订单选择", width: 930, height: 560,
         allowDrag:true,
@@ -1776,7 +1776,7 @@ function selectPart(callback,checkcallback)
 function selectEnterPart(callback,checkcallback)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.manage.orderEnerChoose.flow?token="+token,
         title: "入库单选择", width: 930, height: 560,
         allowDrag:true,

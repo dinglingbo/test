@@ -412,7 +412,7 @@ function selectPart(callback)
     var guestId = nui.get("guestId").getValue();
     var guestFullName = nui.get("guestId").getText();
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.common.allotOutSelect.flow",
         title: "选择调拨出库明细", width: 930, height: 560,
         allowDrag:true,
@@ -490,7 +490,7 @@ function editPart()
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.purchase.enterDetailEdit.flow",
         title: "数量金额", width: 430, height:210,
         allowDrag:true,

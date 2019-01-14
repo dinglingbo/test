@@ -1452,3 +1452,32 @@ function  savepartOutRtn(data,childdata){
             }
         });
     }
+    
+    function auditPart(){
+    	
+        nui.mask({
+            el: document.body,
+            cls: 'mini-mask-loading',
+            html: '数据处理中...'
+        });
+        nui.ajax({
+        	url:baseUrl + "ccom.hsapi.repair.repairService.work.partAudit.biz.ext",
+        	type:"post",
+        	data:{
+        		id:mainRow.id,
+        		userName:currUserName, 
+        		token:token
+        	},
+        	success:function(text){
+        		var errCode = text.errCode;
+        		nui.unmask(document.body);
+        		if(errCode == "S"){
+
+        			showMsg('配件审核成功!','S');
+        		}else{
+        			showMsg(text.errMsg ||'配件审核失败!','W');
+        		}
+
+        	}
+        });
+    }

@@ -20,7 +20,7 @@
     <script src="<%= request.getContextPath() %>/repair/js/RepairBusiness/BookingManagement/fullcalendar.min.js"></script>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/repair/RepairBusiness/BookingManagement/style.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/repair/RepairBusiness/BookingManagement/fullcalendar.css">
-    <script src="<%= request.getContextPath() %>/repair/js/RepairBusiness/BookingManagement/BookingMgrMain.js"></script>
+    <script src="<%= request.getContextPath() %>/repair/js/RepairBusiness/BookingManagement/BookingMgrMain.js?v=1.0.0"></script>
     <!-- <link rel="stylesheet" href="<%= request.getContextPath() %>/repair/RepairBusiness/BookingManagement/lightbox.min.css"> -->
 
 
@@ -113,10 +113,10 @@
     <div class="nui-toolbar" id="toolbar1" style="padding:2px;">
         <table class="table" id="table1" style="margin: 0;">
             <tr>
-                <td style="width:50%;">
+                <td style="width:40%;">
                     <input class="nui-combobox" emptyText="请选择公司...">
                     <input format="yyyy-MM" style="width:100px" class="nui-monthpicker" allowInput="false" name="eRecordDate"
-                        id="eRecordDate" emptyText="请选择公司..." />
+                        id="eRecordDate" emptyText="请选择年月" />
                 </td>
                 <td class="fc-header-right" style="font-size:1.5rem;">
                     可预约：<b id="canReserve" style="color:blue;padding:0 3px;">0</b>，待确认<b id="reserve" style="color:red;padding:0 3px;">0</b>，已确认<b
@@ -153,8 +153,8 @@
                     console.log(date);
                     console.log(allDay);
                     console.log(jsEvent);
-                    console.log(view)
-                    $('.current_day').removeClass('current_day')
+                    console.log(view);
+                    $('.current_day').removeClass('current_day');
                     $(this).addClass('current_day');
                     var date = $(this).attr('data-date');
                     console.log(date);
@@ -213,16 +213,16 @@
                         confirm = 0,
                         iscome = 0,
                         reserve = 0,
-                        iscancel = 0
+                        iscancel = 0;
                     $(data.data).each(function (index, el) {
                         var flag = el.d >= td;
                         var canReserve = el.total - el.reserve - el.confirm -
                             el.over
-                        totalCan += canReserve
-                        confirm += Number(el.confirm)
-                        iscome += Number(el.over)
-                        reserve += Number(el.reserve)
-                        iscancel += Number(el.cancel)
+                        totalCan += canReserve;
+                        confirm += Number(el.confirm);
+                        iscome += Number(el.over);
+                        reserve += Number(el.reserve);
+                        iscancel += Number(el.cancel);
                         if (m == el.m && flag) {
                             var str =
                                 '<div><p class="data-p">可预约 <label>' +
@@ -232,7 +232,7 @@
                                 '</label></p></div><div><p class="data-w">已确认<label>' +
                                 el.confirm +
                                 '</label></p><p class="data-w">已到店<label>' +
-                                el.over + '</label></p></div>'
+                                el.over + '</label></p></div>';
                             // var str='';
 
                         } else {

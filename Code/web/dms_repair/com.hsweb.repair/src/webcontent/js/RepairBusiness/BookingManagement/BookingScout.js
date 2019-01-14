@@ -34,10 +34,11 @@ function init() {
     });    
 }
 
-
+var rowData = null;
 function SetData(params) {
     basicInfoForm = new nui.Form("#basicInfoForm");	
     basicInfoForm.setData(params.data);
+    rowData = params.data;
     nui.get("serviceId").setValue(params.data.id);
 }
 
@@ -94,12 +95,16 @@ function onDrawDate(e) {
 function sendInfo(){
 	var data = basicInfoForm.getData();
 	var phones = data.contactorTel || "";
+	if(phones=="" && phones==null){
+		showMsg("联系人电话为空!","W");
+		return;
+	}
 	nui.open({
 		url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
 		title: "发送短信", width: 655, height: 386,
 		onload: function () {
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.setPhones(phones);
+			iframe.contentWindow.setData(rowData);
 		},
 		ondestroy: function (action) {
             //重新加载

@@ -42,7 +42,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">1001,1002,1003,1004,1006,1007,1008,1009,1011,1014,1017</process:from>
+      <process:from type="literal" pattern="reference">1001,1002,1003,1004,1006,1007,1008,1009,1011,1014,1017,1016</process:from>
       <process:to type="query">params/keyidIds</process:to>
     </process:copy>
   </nodes>
@@ -68,8 +68,8 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="list" type="query" value="java.util.HashMap[]" valueType="Java">paramsList</process:outputVariable>
-        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -82,8 +82,9 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign11</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="repairBillControlFlag" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="1005" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
@@ -93,7 +94,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="1006" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
@@ -103,7 +104,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="1007" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
@@ -113,7 +114,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="1009" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
@@ -123,7 +124,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link8" name="link8" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link8" name="1010" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign5</targetNode>
       <process:transitionCondition>
@@ -133,7 +134,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link9" name="1012" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign6</targetNode>
       <process:transitionCondition>
@@ -143,7 +144,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link10" name="link10" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link10" name="1014" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign7</targetNode>
       <process:transitionCondition>
@@ -153,7 +154,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link11" name="1013" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign8</targetNode>
       <process:transitionCondition>
@@ -163,7 +164,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link12" name="1011" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign9</targetNode>
       <process:transitionCondition>
@@ -173,7 +174,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="1008" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign10</targetNode>
       <process:transitionCondition>
@@ -183,7 +184,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link24" name="link24" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link24" name="1003" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign12</targetNode>
       <process:transitionCondition>
@@ -193,7 +194,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link28" name="结算单" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link28" name="1001" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign13</targetNode>
       <process:transitionCondition>
@@ -203,7 +204,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link29" name="委托单打印" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link29" name="1002" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign14</targetNode>
       <process:transitionCondition>
@@ -213,7 +214,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link32" name="link32" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link32" name="1004" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign15</targetNode>
       <process:transitionCondition>
@@ -223,13 +224,23 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link33" name="link33" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link33" name="1017" displayName="连接线" type="transition">
       <sourceNode>loopstart0</sourceNode>
       <targetNode>assign16</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">paramObj/keyidId</process:leftOperand>
           <process:rightOperand type="literal">1017</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link36" name="1016" displayName="连接线" type="transition">
+      <sourceNode>loopstart0</sourceNode>
+      <targetNode>assign17</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">paramObj/keyidId</process:leftOperand>
+          <process:rightOperand type="literal">1016</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -280,6 +291,7 @@
     <chidren>assign14</chidren>
     <chidren>assign15</chidren>
     <chidren>assign16</chidren>
+    <chidren>assign17</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link23" name="link23" displayName="连接线" isDefault="true" type="transition">
@@ -532,12 +544,13 @@
     <targetConnections>link31</targetConnections>
     <targetConnections>link34</targetConnections>
     <targetConnections>link35</targetConnections>
-    <location x="799" y="180"/>
+    <targetConnections>link37</targetConnections>
+    <location x="805" y="226"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
-    <location x="794" y="216"/>
+    <location x="800" y="262"/>
     <figSize height="17" width="39"/>
     <node>assign11</node>
   </nodes>
@@ -655,6 +668,29 @@
     <location x="586" y="480"/>
     <figSize height="17" width="39"/>
     <node>assign16</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign17" name="赋值17" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link37" name="link37" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign17</sourceNode>
+      <targetNode>assign11</targetNode>
+    </sourceConnections>
+    <targetConnections>link36</targetConnections>
+    <location x="537" y="469"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign17label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">paramObj/keyidValue</process:from>
+      <process:to type="query">keyValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">keyValue</process:from>
+      <process:to type="query">billParams/repairPartAuditFlag</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign17label" name="label" nodeType="label">
+    <location x="532" y="505"/>
+    <figSize height="17" width="39"/>
+    <node>assign17</node>
   </nodes>
   <topRuler>
     <guides position="311" horizontal="true"/>

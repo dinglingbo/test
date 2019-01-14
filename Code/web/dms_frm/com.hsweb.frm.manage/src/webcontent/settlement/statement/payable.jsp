@@ -11,7 +11,7 @@
 
 <head>
 	<title>应付结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.1.3"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/payable.js?v=1.1.4"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -247,7 +247,7 @@
 				<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
 					<tbody>
 						<tr>
-							<td width="300" height="58">
+							<td width="200" height="58">
 								车辆：
 								
 								<span style="padding-top: 2px;"  id="carNo" name="carNo">></span>

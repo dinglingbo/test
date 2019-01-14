@@ -188,12 +188,17 @@ function sendInfo(){
         showMsg("请选中一条数据","W");
         return; 
     }
+    if (row.tel) {
+        showMsg("该数据没有客户手机号码，无法发送短信","W");
+        return; 
+    }
+    
     nui.open({
         url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
         title: "发送短信", width: 655, height: 280,
         onload: function () {
             var iframe = this.getIFrameEl();
-            //iframe.contentWindow.setData();
+            iframe.contentWindow.setData(row);
         },
         ondestroy: function (action) {
             //重新加载

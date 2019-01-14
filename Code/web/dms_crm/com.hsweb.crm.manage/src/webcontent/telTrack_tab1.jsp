@@ -139,7 +139,7 @@ pageEncoding="UTF-8" session="false" %>
                             style="height: 120px;width: 100%"
                             emptyText="请输入跟踪内容"
                             required="true">
-                        </textarea>
+                        </textarea> 
                     </td>
                 </tr>
 

@@ -9,7 +9,7 @@
 -->
 <head>
   <title>工单设置</title>
-  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.6"></script>
+  <script src="<%=webPath + contextPath%>/config/js/comParamsSet.js?v=1.0.7"></script>
   <style type="text/css">
 
     .title {
@@ -69,6 +69,14 @@
                         repeatDirection="" repeatLayout="table" 
                         textField="text" valueField="id" ></div>
                 </td>      
+            </tr>
+            <tr>
+                <td class="tbtext">哪些类型工单必须配件审核：</td>
+                <td class="tbCtrl" >
+                    <div id="repairPartAuditFlag" name="repairPartAuditFlag" class="nui-checkboxlist" repeatItems="5" 
+                    repeatLayout="flow"  value="" 
+                    textField="text" valueField="id" ></div>
+                </td>
             </tr>
             <tr>
                 <td class="tbtext">小票、结算单显示结算二维码<br>或微信公众号二维码：</td>

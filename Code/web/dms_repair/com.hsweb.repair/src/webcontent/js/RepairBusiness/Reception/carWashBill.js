@@ -100,7 +100,6 @@
 //}
 $(document).ready(function ()
 {
-	itemGrid = nui.get("itemGrid");
     rpsItemGrid = nui.get("rpsItemGrid");
     billForm = new nui.Form("#billForm");
     sellForm = new nui.Form("#sellForm");
@@ -789,8 +788,12 @@ function setInitData(params){
                                 serviceId: data.id||0
                             }
                         }
-                        loadDetail(p1, p2, p3,status);
-
+                        loadDetail(p1, p2, p3,status,function(){
+                        	var strId = forFrom();
+                            if(strId!=null){
+                            	showTab(strId);
+                            }
+                        });
                     }else{
                         showMsg("数据加载失败,请重新打开工单!","E");
                     }
@@ -1246,16 +1249,20 @@ function unfinish(){
                 doSetStyle(status, isSettle);
                 showMsg("返单成功!","S");
                 var p1 = {
-                    };
-                    var p2 = {
-                        interType: "item",
-                        data:{
-                            serviceId: maintain.id||0
-                        }
-                    };
-                    var p3 = {
-                    };
-                    loadDetail(p1, p2, p3,status);
+                }
+                var p2 = {
+                    interType: "item",
+                    data:{
+                        serviceId: data.id||0
+                    }
+                }
+                var p3 = {
+                    interType: "part",
+                    data:{
+                        serviceId: data.id||0
+                    }
+                }
+                loadDetail(p1, p2, p3,status);
             }else{
                 showMsg(errMsg||"返单失败!","E");
             }
@@ -1379,12 +1386,27 @@ function addPrdt(data){
                             }else*/ 
                         	if(interType == 'item'){
                                 rpsItemGrid.clearRows();
-                                rpsItemGrid.addRows(data);
+                                /*rpsItemGrid.addRows(data);
                                 if(main.status<2){
                                 	var row = rpsItemGrid.findRow(function(row){
                                 		rpsItemGrid.beginEditRow(row);
                                     });
+                                }*/
+                                var p1 = {
                                 }
+                                var p2 = {
+                                    interType: "item",
+                                    data:{
+                                        serviceId: main.id||0
+                                    }
+                                }
+                                var p3 = {
+                                    interType: "part",
+                                    data:{
+                                        serviceId: main.id||0
+                                    }
+                                }
+                        		loadDetail(p1, p2, p3,main.status);
                             }
                         }
                     }, function(){});
@@ -1428,12 +1450,31 @@ function addPrdt(data){
                     var data = text.data||[];
                     if(errCode == "S"){
                         rpsItemGrid.clearRows();
+                        /*if(data.qty==0){
+                        	data.qty = 1;
+                        }
                         rpsItemGrid.addRows(data);
                         if(main.status<2){
                         	var row = rpsItemGrid.findRow(function(row){
                         		rpsItemGrid.beginEditRow(row);
                             });
+                        }*/
+                        var p1 = {
                         }
+                        var p2 = {
+                            interType: "item",
+                            data:{
+                                serviceId: main.id||0
+                            }
+                        }
+                        var p3 = {
+                            interType: "part",
+                            data:{
+                                serviceId: main.id||0
+                            }
+                        }
+                        loadDetail(p1, p2, p3,main.status);
+                    	
                     }
                 }, function(){});
             }else{
@@ -1591,6 +1632,16 @@ function addItemNewRow(){
 }
 
 function deleteItemRow(row_uid){
+	var data2 = billForm.getData();
+	var isSettle = data2.isSettle||0;
+    if(isSettle == 1){
+        showMsg("工单已结算,不能删除!","W");
+        return;
+    }
+    if(data2.status == 2){
+        showMsg("工单已完工,不能删除!","W");
+        return;
+    } 
     var data = rpsItemGrid.getData();
     var row = rpsItemGrid.getRowByUID(row_uid);
     var id = row.id;
@@ -1626,7 +1677,10 @@ function deleteItemRow(row_uid){
                 }
             });
         	rpsItemGrid.removeRows(rows);
-        	hideTab(rows[0].prdtId);
+        	var strId = forFrom();
+            if(strId!=null){
+            	showTab(strId);
+            }
         }else{
             showMsg(errMsg||"删除项目信息失败!","E");
             return;
@@ -2051,6 +2105,14 @@ function addCardTimesToBill(){
     		selecCardTimes(mainData);
     	});
     }else{
+    	if(main.status == 2){
+            showMsg("工单已完工,不能添加项目!","W");
+            return;
+        }
+    	if(main.isSettle == 1){
+            showMsg("工单已结算,不能添加项目!","W");
+            return;
+        }
     	selecCardTimes(main);
     }   
 }
@@ -2123,12 +2185,30 @@ function selecCardTimes(main){
                     if(errCode == "S"){
                     	if(interType == 'item'){
                             rpsItemGrid.clearRows();
+                            /*if(data.qty==0){
+                            	data.qty = 1;
+                            }
                             rpsItemGrid.addRows(data);
                             if(main.status<2){
                             	var row = rpsItemGrid.findRow(function(row){
                             		rpsItemGrid.beginEditRow(row);
                                 });
+                            }*/
+                            var p1 = {
                             }
+                            var p2 = {
+                                interType: "item",
+                                data:{
+                                    serviceId: main.id||0
+                                }
+                            }
+                            var p3 = {
+                                interType: "part",
+                                data:{
+                                    serviceId: main.id||0
+                                }
+                            }
+                            loadDetail(p1, p2, p3,main.status);
                         }
                     }
                 }, function(){});
@@ -2142,7 +2222,7 @@ function selecCardTimes(main){
         return;
     }
 }
-function loadDetail(p1, p2, p3,status){
+function loadDetail(p1, p2, p3,status,callback){
     if(p1 && p1.interType){
         getBillDetail(p1, function(text){
             var errCode = text.errCode;
@@ -2182,10 +2262,7 @@ function loadDetail(p1, p2, p3,status){
                 		 rpsItemGrid.beginEditRow(row);
                      });
                 }
-                /*var strId = forFrom();
-                if(strId==null){
-                	showTab(strId);
-                }*/
+                callback && callback();
             }
         }, function(){});
     }
@@ -2383,14 +2460,20 @@ function choosePart(row_uid){
     }
 
     doSelectPart(itemId,addToBillPart, delFromBillPart, null, function(text){
-        var p1 = { };
-        var p2 = {
-            interType: "item",
-            data:{
-                serviceId: main.id||0
-            }
-        };
-        var p3 = {};
+    	 var p1 = {
+         }
+         var p2 = {
+             interType: "item",
+             data:{
+                 serviceId: main.id||0
+             }
+         }
+         var p3 = {
+             interType: "part",
+             data:{
+                 serviceId: main.id||0
+             }
+         }
         loadDetail(p1, p2, p3,main.status);
     });
 }
@@ -3834,17 +3917,13 @@ function saveItem(callback){
 }
 
 
+var itemGridHash = {};
 function doSearchItem()
 {
     var p = {};
     p.isDisabled = 0;
     //查询洗美业务类型工时
     p.serviceTypeIds = "1,2";   
-    itemGrid.clearRows();
-    itemGrid.load({
-    	token:token,
-        params:p
-    });
 	var json={
 			params: p,
 			token:token
@@ -3859,7 +3938,8 @@ function doSearchItem()
 			var temp = "";
 			var list = nui.clone(data.list);
 			for(var i=0;i<data.list.length;i++){
-				itemGrid.addRow(data.list[i]);
+				var key = list[i].id;
+				itemGridHash[key] = list[i];
 				var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>";
 				 temp +=aEl;
 			}
@@ -3870,7 +3950,7 @@ function doSearchItem()
 }
 
 //删除项目
-function hideTab(str){
+/*function hideTab(str){
 	var tabList = document.querySelectorAll('.xz');
 	var natureId = null;
 	for(var i=0;i<tabList.length;i++){
@@ -3880,11 +3960,21 @@ function hideTab(str){
 			$(s).toggleClass("xz");
 		}
 	}
-}
+}*/
 //回显颜色
 function showTab(str){
+	var tabList = document.querySelectorAll('.xz');
+	var natureId = null;
+	for(var i=0;i<tabList.length;i++){
+		natureId= tabList[i].id;
+		var s = "#"+natureId;
+		$(s).toggleClass("xz");
+	}
 	var list = str.split(",");
-	if(list.length >0){
+	if(list.length>0){
+		if(list.length > 1){
+			list = unique(list);
+		}
 		for(var i = 0 ;i<list.length;i++){
 			var id = list[i];
 			var s = "#"+id;
@@ -3894,8 +3984,8 @@ function showTab(str){
 }
 
 //遍历表格(编辑时调用)
-function forFrom(){
-	var strId = null;
+/*function forFrom(){
+	var strId = "";
 	var data = [];
 	var row = rpsItemGrid.findRow(function(row){
 		if(row.billItemId && row.billItemId==0){
@@ -3907,8 +3997,8 @@ function forFrom(){
 		for(var i = 0;i<data.length;i++){
 			for(var j = 0;j<rpbData.length;j++){
 				if(rpbData[j].id == data[i].prdtId){
-					if(strId==null){
-						strId =  rpbData[j].id;
+					if(strId==""){
+						strId =  ""+rpbData[j].id;
                 	}else{
                 		strId = strId+","+rpbData[j].id;
                 	}
@@ -3918,9 +4008,24 @@ function forFrom(){
 		}
 	}
 	return strId;
+}*/
+
+function forFrom(){
+	var strId = "";
+	var data = [];
+	var row = rpsItemGrid.findRow(function(row){
+		if(row.billItemId && row.billItemId==0){
+			if(strId==""){
+				strId =  ""+row.prdtId;
+        	}else{
+        		strId = strId+","+row.prdtId;
+        	}
+		}
+    });
+	return strId;
 }
 
-function selectclick() {
+/*function selectclick() {
     $("a[name=HotWord]").click(function () {
 //        $(this).siblings().removeClass("xz");
         
@@ -3937,18 +4042,65 @@ function selectclick() {
         		            type:type,
         		            rtnRow:row
         		    };
-        			var checkMsg = checkPrdt(resultData);
-                    if(checkMsg) {
-                        showMsg(checkMsg,"W");
-                        return;
-                    }else{
-                        //弹出数量，单价和金额的编辑界面
-                        addPrdt(resultData);
-                    }
+        		    saveNoshowMsg(function(){
+        		    	var checkMsg = checkPrdt(resultData);
+                        if(checkMsg) {
+                            showMsg(checkMsg,"W");
+                            return;
+                        }else{
+                            //弹出数量，单价和金额的编辑界面
+                            addPrdt(resultData);
+                        }
+        		    	},"addYC");
         		}
-        		
             });
         }
     });
+}*/
+
+function selectclick() {
+    $("a[name=HotWord]").click(function () {
+//        $(this).siblings().removeClass("xz");
+    	var main = billForm.getData();
+        var isSettle = main.isSettle||0;
+        var status = main.status||0;
+        if(status == 2){
+            showMsg("工单已完工,不能添加项目!","W");
+            return;
+        }else if(isSettle == 1){
+            showMsg("工单已结算,不能添加项目!","W");
+            return;
+        }else{
+        	if($(this)[0].classList.length==1){
+            	$(this).toggleClass("xz");
+            }
+            var rpbId = $(this)[0].id;
+            //等于2添加，1删除
+            if($(this)[0].classList.length==2){
+            	//if(itemGridHash)
+            	var row = itemGridHash[rpbId];
+            	var type = 2;
+    			var resultData = {
+    		            type:type,
+    		            rtnRow:row
+    		    };
+    			saveNoshowMsg(function(){
+    				addPrdt(resultData);
+    		    	},"addYC");
+            }
+        }
+    	
+    });
+}
+
+function unique(arr) {
+    var result = [], hash = {};
+    for (var i = 0, elem; (elem = arr[i]) != null; i++) {
+        if (!hash[elem]) {
+            result.push(elem);
+            hash[elem] = true;
+        }
+    }
+    return result;
 }
 

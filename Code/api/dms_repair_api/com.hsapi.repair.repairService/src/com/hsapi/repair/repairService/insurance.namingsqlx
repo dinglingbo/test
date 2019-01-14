@@ -27,9 +27,9 @@
 			a.begin_date beginDate,
 			a.end_date endDate,
 			a.settle_type_id settleTypeId,
-			a.amt,
-			a.rtn_comp_amt rtnCompAmt,
-			a.rtn_guest_amt rtnGuestAmt,
+			d.amt amt,
+			<!--a.rtn_comp_amt rtnCompAmt,
+			a.rtn_guest_amt rtnGuestAmt,-->
 			a.record_date recordDate,
 			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
 			b.vin carVin,
@@ -38,14 +38,18 @@
 			b.engine_no engineNo,
 			b.car_brand_id carBrandId,
 			c.wechat_open_id as openId,
-			a.out_date outDate
+			a.out_date outDate,
+			d.rtn_comp_amt rtnCompAmt,
+			d.rtn_guest_amt rtnGuestAmt,
+			d.insure_type_Name  insureTypeName
 		FROM
 			rps_insurance_main a
 		INNER JOIN rpb_car b ON (a.car_id = b.id)
 		INNER JOIN rpb_contactor c ON (a.contactor_id = c.id)
+		INNER JOIN rps_insurance_detail d ON (d.service_id = a.id)
 		where a.orgid = #orgid#
+		and d.amt &gt; 0
 		<dynamic>
-		
 			<isNotEmpty prepend="and" property="id">  
 	            (a.id = #id#)
 	        </isNotEmpty>

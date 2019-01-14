@@ -759,7 +759,7 @@
 			b.annual_inspection_date as annualInspectionDate,
 			b.annual_inspection_no as annualInspectionNo,
 			a.part_amt as partAmt,
-			d.wechat_open_id as openId
+			d.wechat_open_id as openId,
 		FROM
 			rps_maintain a
 			inner JOIN rpb_car b ON ( a.car_id = b.id )
@@ -1462,5 +1462,70 @@
             </isNotEmpty>
         </dynamic>  
         order by a.record_date desc
-	</select>    	
+	</select>
+	
+	 <select id="queryReturnPart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.guest_id AS guestId,
+			a.service_code AS serviceCode,
+			a.car_id as carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			a.mt_advisor AS mtAdvisor,
+			a.`status` AS `status`,
+			a.service_type_id AS serviceTypeId,
+			a.is_settle AS isSettle,
+			a.is_judge AS isJudge,
+			a.remark AS remark,
+			a.bill_type_id AS billTypeId,
+			d.`name` AS contactName,
+			d.mobile AS contactMobile,
+			a.modifier AS modifier,
+			a.modify_date AS modifyDate,
+			a.recorder AS recorder,
+			a.record_date AS recordDate,
+			a.part_amt AS partAmt,
+			a.out_date as outDate,
+			a.is_out_bill as isOutBill,
+			a.mt_advisor_id as mtAdvisorId,
+			a.is_disabled as isDisabled,
+			e.part_code partCode,
+			e.part_name partName,
+			e.qty qty,
+			e.unit_price unitPrice,
+			e.amt amt
+		FROM
+			rps_maintain a
+			inner join rpb_contactor d on (a.contactor_id = d.id)
+			inner join rps_part e on (a.id = e.service_id)
+		WHERE 1 = 1
+			and a.orgid = #orgid#
+			and a.status = 2
+		<dynamic>
+		    <isNotEmpty prepend="and" property="billTypeId">  
+                (a.bill_type_id = #billTypeId#)
+            </isNotEmpty>
+		    <isNotEmpty prepend="and" property="sRecordDate">  
+                (a.record_date &gt;= #sRecordDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">  
+                (a.record_date &lt; #eRecordDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carNo">  
+                (a.car_no like '%$carNo$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="vin">  
+                (a.car_vin like '%$vin$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">  
+                (d.name like '%$name$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="isSettle">  
+                (a.is_settle = #isSettle#)
+            </isNotEmpty>
+        </dynamic> 
+        order by a.modify_date desc
+	</select>
+	    	
 </sqlMap>

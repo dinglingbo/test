@@ -2465,13 +2465,13 @@ function choosePart(row_uid){
          var p2 = {
              interType: "item",
              data:{
-                 serviceId: data.id||0
+                 serviceId: main.id||0
              }
          }
          var p3 = {
              interType: "part",
              data:{
-                 serviceId: data.id||0
+                 serviceId: main.id||0
              }
          }
         loadDetail(p1, p2, p3,main.status);

@@ -93,8 +93,12 @@ function onDrawDate(e) {
 }
 //发送短信
 function sendInfo(){
-	/*var data = basicInfoForm.getData();
-	var phones = data.contactorTel || "";*/
+	var data = basicInfoForm.getData();
+	var phones = data.contactorTel || "";
+	if(phones=="" && phones==null){
+		showMsg("联系人电话为空!","W");
+		return;
+	}
 	nui.open({
 		url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
 		title: "发送短信", width: 655, height: 386,

@@ -408,6 +408,13 @@ function setInitData(params){
                         //doSearchMemCard(fguestId);
 
                         billForm.setData(data);
+                        if(nui.get('partAuditSign')==0){
+                        	nui.get('partAuditSign').setValue("未审核");
+                        }
+                        else{
+                        	nui.get('partAuditSign').setValue("已审核");
+                        	$('#audit').text("配件返审");
+                        }
                         //mainGrid.setUrl("com.hsapi.repair.baseData.query.QueryRpsCheckDetailList.biz.ext");
                         //mainGrid.load({mainId:params.id});
                         
@@ -1454,16 +1461,22 @@ function  savepartOutRtn(data,childdata){
     }
     
     function auditPart(){
-    	
+    	var status=null;
+    	if(nui.get('partAuditSign').value=="已审核"){
+    		status=0;
+    	}else{
+    		status=1;
+    	}
         nui.mask({
             el: document.body,
             cls: 'mini-mask-loading',
             html: '数据处理中...'
         });
         nui.ajax({
-        	url:baseUrl + "ccom.hsapi.repair.repairService.work.partAudit.biz.ext",
+        	url:baseUrl + "com.hsapi.repair.repairService.work.partAudit.biz.ext",
         	type:"post",
         	data:{
+        		status :status,
         		id:mainRow.id,
         		userName:currUserName, 
         		token:token
@@ -1472,10 +1485,22 @@ function  savepartOutRtn(data,childdata){
         		var errCode = text.errCode;
         		nui.unmask(document.body);
         		if(errCode == "S"){
-
-        			showMsg('配件审核成功!','S');
+        			if(status==1){
+        				nui.get('partAuditSign').setValue("已审核");
+            			showMsg('配件审核成功!','S');
+            			$('#audit').text("配件返审");
+        			}else{
+        				nui.get('partAuditSign').setValue("未核");
+            			showMsg('配件返审成功!','S');
+            			$('#audit').text("配件审核");
+        			}
+        			      		
         		}else{
-        			showMsg(text.errMsg ||'配件审核失败!','W');
+        			if(status==1){
+        				showMsg(text.errMsg ||'配件审核失败!','W');
+        			}else{
+        				showMsg(text.errMsg ||'配件返审失败!','W');
+        			}
         		}
 
         	}

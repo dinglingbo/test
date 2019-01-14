@@ -12,7 +12,7 @@
 <head> 
     <title>配件出库详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.1.34"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.1.41"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -118,7 +118,7 @@
                 <a class="nui-button" iconCls="" onclick="onPrint(5)" plain="true" style="align:right"><span class="fa fa-print fa-lg"></span>&nbsp;打印领料单</a>
                 <a class="nui-button" onclick="" plain="true" style="align:right"><span class="fa fa-check fa-lg"></span>&nbsp;一键领料</a>
                  <a class="nui-button" onclick="updateBillExpense" plain="true" style="align:right"><span class="fa fa-check fa-lg"></span>&nbsp;费用登记</a>
-                 <a class="nui-button" onclick="auditPart" plain="true" style="align:right"><span class="fa fa-check fa-lg"></span>&nbsp;配件审核</a>
+                 <a class="nui-button"  id="audit" onclick="auditPart" plain="true" style="align:right"><span class="fa fa-check fa-lg"></span>&nbsp;配件审核</a>
                 <label style="font-family:Verdana;">显示归库：</label>
                 <input class="nui-checkbox" id="showOut" trueValue="1" falseValue="0" onvaluechanged="onValueChangShowOut"/>
             </td>     

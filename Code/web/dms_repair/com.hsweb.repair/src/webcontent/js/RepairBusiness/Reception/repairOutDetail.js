@@ -408,7 +408,7 @@ function setInitData(params){
                         //doSearchMemCard(fguestId);
 
                         billForm.setData(data);
-                        if(nui.get('partAuditSign')==0){
+                        if(nui.get('partAuditSign').value==0){
                         	nui.get('partAuditSign').setValue("未审核");
                         }
                         else{

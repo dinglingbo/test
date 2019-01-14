@@ -1,8 +1,9 @@
 var webBaseUrl = webPath + contextPath + "/";
 var form1 = null;
 var phones = "";
+var mainData = null;
 var visitContent = null;
-var baseUrl = apiPath + systemApi + "/";
+var baseUrl = apiPath + sysApi + "/";
 var sendUrl = baseUrl+"com.hsapi.system.basic.smsPush.testPush.biz.ext";
 $(document).ready(function (){
 	
@@ -20,6 +21,11 @@ $(document).ready(function (){
 
 });
    
+function setData(row) {
+    mainData = row;
+ 
+
+}
 
 
     function save(){
@@ -44,7 +50,10 @@ $(document).ready(function (){
 			"phones" : phones,
 			"message" : message,
 			token : token
-		});       
+        });   
+        var params = {
+            
+        }
        nui.ajax({
 			url : sendUrl,
 			type : 'POST',
@@ -55,7 +64,8 @@ $(document).ready(function (){
 				var returnJson = nui.decode(text);
 				if (returnJson.errCode == "S") {
 				    nui.unmask(document.body);
-					showMsg(returnJson.errMsg || "发送成功","S");
+                    showMsg(returnJson.errMsg || "发送成功", "S");
+                    saveRecord(mainData);
 					CloseWindow("ok");
 				} else {
 					nui.unmask(document.body);
@@ -64,6 +74,40 @@ $(document).ready(function (){
 				}
 			}
 		});
+}
+
+
+
+function saveRecord(data) {
+    //var data = form1.getData();
+    message  = visitContent.getValue();
+    var params ={
+        type:1,//电销
+        mainId:data.id||'',
+        guestId:data.guestId||'',
+        carId:data.carId||'',
+        carNo: data.carNo || '',
+        visitMode:'011402',//短信
+        visitContent:message||'',
+    }
+    nui.ajax({
+        url:baseUrl+ "com.hsapi.crm.svr.visit.saveVisitRecord.biz.ext",
+        type:'post',
+        data:{
+            params:params
+        },
+        success:function(res){
+            if(res.errCode == 'S'){
+                showMsg("保存成功！","S");
+            }else{
+                showMsg("保存失败！","E");
+            }
+        },
+        error: function (jqXHR) {
+            showMsg(jqXHR.responseText);
+        }
+    })
+    
 }
 
 function onClear(){

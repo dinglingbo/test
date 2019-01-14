@@ -27,13 +27,14 @@ pageEncoding="UTF-8" session="false" %>
     {customid:"060702",name:"终止跟踪"},
     {customid:"060703",name:"重点跟踪"},
     {customid:"060704",name:"已来厂/已成交"}];
-   nui.parse();
-   var baseUrl = apiPath + crmApi + "/"; 
-   var dgScoutDetail  = nui.get("dgScoutDetail");
-   var form1 = new nui.Form("#form1");
-   var carModelHash = [];
-   init();
-
+    nui.parse();
+    var mainId = null;
+    var baseUrl = apiPath + crmApi + "/"; 
+    var dgScoutDetail  = nui.get("dgScoutDetail");
+    var form1 = new nui.Form("#form1");
+    var carModelHash = [];
+    init();
+ 
 
 nui.get("saveScout").focus();
 document.onkeyup=function(event){
@@ -84,6 +85,7 @@ function onCarBrandChange(e){
 
 function setScoutForm(record){
     $(".saveGroup").show();
+    mainId = record.id;
     form1.setData(record);
     var currGuest = record;
     //触发选择事件
@@ -110,7 +112,7 @@ function setScoutForm(record){
 //保存跟踪
 function saveScout(){
   var url =baseUrl+ "com.hsapi.crm.telsales.crmTelsales.saveScout.biz.ext";
-  doSave(form1, url);
+  doSave(form1, url,saveRecord);
 }
 
 
@@ -126,12 +128,12 @@ function doSave(tform, url, callBack){
         url: url,
         type: 'post',
         data: nui.encode({
-          data: tform.getData()
+          data: tform.getData(true)
       }),
         cache: false,
         success: function (data) {
           if (data.errCode == "S"){
-            showMsg("保存成功！","S");
+            
             if(callBack){
               callBack();
           }
@@ -150,6 +152,41 @@ function doSave(tform, url, callBack){
   }  
 }
 
+function saveRecord() {
+    var data = form1.getData();
+    var params ={
+        type:1,//电销
+        mainId:mainId,
+        // guestId:data.guestId||'',
+        guestId:'',
+        carId:'',
+        carNo:data.carNo||'',
+        visitStatus:data.visitStatus||'',
+        visitResult:data.scoutResult||'',
+        visitMode:data.scoutMode||'',
+        careDueDate:data.nextScoutDate||'',
+        visitContent:data.scoutContent||'',
+        nextVisitDate:data.nextScoutDate||''
+    }
+    nui.ajax({
+        url:baseUrl+ "com.hsapi.crm.svr.visit.saveVisitRecord.biz.ext",
+        type:'post',
+        data:{
+            params:params
+        },
+        success:function(res){
+            if(res.errCode == 'S'){
+                showMsg("保存成功！","S");
+            }else{
+                showMsg("保存失败！","E");
+            }
+        },
+            error: function (jqXHR, textStatus, errorThrown) {
+              showMsg(jqXHR.responseText);
+          }
+    })
+    
+}
 
 
       //选择话术

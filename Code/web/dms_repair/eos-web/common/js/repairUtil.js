@@ -338,7 +338,8 @@ function onDrawCell(e) {
 }
 function getDate(type)
 {
-	var now = (new Date(currentTimeMillis));
+	//var now = (new Date(currentTimeMillis));
+	var now = (new Date());
     var year = now.getFullYear();
     var month = now.getMonth();
     var date = now.getDate();

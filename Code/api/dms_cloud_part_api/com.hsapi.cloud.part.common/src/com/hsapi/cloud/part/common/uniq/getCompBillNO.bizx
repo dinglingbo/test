@@ -147,7 +147,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="date" type="query" value="java.util.Date" valueType="Java" pattern="reference">nowDate</process:inputVariable>
-      <process:inputVariable id="1" name="pattern" type="literal" value="java.lang.String" valueType="Java" pattern="reference">yyyyMM</process:inputVariable>
+      <process:inputVariable id="1" name="pattern" type="literal" value="java.lang.String" valueType="Java" pattern="reference">yyMMdd</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">yearmonthc</process:outputVariable>
@@ -180,6 +180,10 @@
     <process:copy>
       <process:from type="expression" pattern="reference">billrecords.length</process:from>
       <process:to type="query">size</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">100000</process:from>
+      <process:to type="query">flag</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -265,6 +269,14 @@
       <process:from type="expression" pattern="reference">billTypeCode+yearmonthc+maxnostr</process:from>
       <process:to type="query">serviceno</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">flag+orgid</process:from>
+      <process:to type="query">customCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">billTypeCode+customCode+yearmonthc+maxnostr</process:from>
+      <process:to type="query">serviceno</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
     <location x="808" y="188"/>
@@ -316,6 +328,18 @@
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">billTypeCode+yearmonthc+maxnostr</process:from>
+      <process:to type="query">serviceno</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">00001</process:from>
+      <process:to type="query">maxnostr</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">flag+orgid</process:from>
+      <process:to type="query">customCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">billTypeCode+customCode+yearmonthc+maxnostr</process:from>
       <process:to type="query">serviceno</process:to>
     </process:copy>
   </nodes>
@@ -528,6 +552,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.cloud.part.data.com.ComCompany" name="comps"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComCompany" name="comp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="flag" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="billTypeCode" primitiveType="String"/>

@@ -286,7 +286,7 @@ function returnStore(id) {
         }
     });
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.RepairBusiness.repairOutReturn.flow",
         title: "车间退回", width: 500, height: 400,
         allowDrag: true,
@@ -369,7 +369,7 @@ function repairOut() {
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.RepairBusiness.repairOutDetail.flow",
         title: "车间领料", width: 500, height: 350,
         allowDrag: true,
@@ -483,7 +483,7 @@ function addOrEditRpsPart(idx) {
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.RepairBusiness.addEditMaterialRepairOut.flow",
         title: "维修材料录入",
         width: 600,

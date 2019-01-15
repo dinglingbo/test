@@ -49,7 +49,7 @@ $(document).ready(function(v)
     billServiceIdEl = nui.get("billServiceId");
     billServiceManEl = nui.get("billServiceMan");
 
-    sBillAuditDateEl.setValue(getLastMonthStartDate());//上月开始日期
+    sBillAuditDateEl.setValue(getMonthStartDate());//上月开始日期
     eBillAuditDateEl.setValue(getMonthEndDate());//本月结束日期
 
     var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};

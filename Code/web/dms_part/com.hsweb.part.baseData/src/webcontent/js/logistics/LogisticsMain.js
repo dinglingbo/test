@@ -82,7 +82,7 @@ function addOrEditLogistics(comguest)
         title = "修改物流公司";
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.baseData.LogisticsDetail.flow?token="+token,
         allowResize:false,
         title: title, width: 470, height: 250,

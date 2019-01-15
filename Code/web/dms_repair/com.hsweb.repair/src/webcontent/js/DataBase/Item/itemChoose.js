@@ -301,7 +301,7 @@ function doSearch(params)
 }
 function addOrEdit(item){
 	nui.open({
-		targetWindow: window,
+		// targetWindow: window,
 		url:webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemDetail.flow?token="+token,
 		title:"维修项目",
 		width:630,

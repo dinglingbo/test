@@ -810,7 +810,7 @@ function onCellCommitEdit(e) {
 function selectPart(callback,checkcallback)
 {
     /*nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.cloud.part.common.partSelectView.flow",
         title: "配件选择", width: 930, height: 560,
         allowDrag:true,
@@ -825,7 +825,7 @@ function selectPart(callback,checkcallback)
         }
     });*/
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.cloud.part.common.outableEnterSelect.flow",
         title: "入库记录选择", width: 930, height: 560,
         allowDrag:true,
@@ -846,9 +846,9 @@ function selectPart(callback,checkcallback)
 function addSellOutDetail(part)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.cloud.part.common.detailQPAPopOperate.flow",
-        title: "入库数量金额", width: 430, height:210,
+        title: "入库数量金额", width: 430, height:230,
         allowDrag:true,
         allowResize:false,
         onload: function ()

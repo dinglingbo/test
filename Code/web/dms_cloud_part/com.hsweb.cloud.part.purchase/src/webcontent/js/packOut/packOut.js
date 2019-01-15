@@ -560,7 +560,7 @@ function selectSupplier(elId)
 {
     supplier = null;
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "客户选择", width: 980, height: 560,
         allowDrag:true,
@@ -958,7 +958,7 @@ function addBill(){
 function selectPart(guestId,callback,checkcallback)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.cloud.part.purchase.packSellOrderSelect.flow?token="+token,
         title: "销售订单选择", width: 930, height: 560,
         allowDrag:true,
@@ -1091,7 +1091,7 @@ function selectLogisticsSupplier(elId)
 {
     supplier = null;
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "物流公司选择", width: 980, height: 560,
         allowDrag:true,

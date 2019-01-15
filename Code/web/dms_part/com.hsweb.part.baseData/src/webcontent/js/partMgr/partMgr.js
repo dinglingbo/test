@@ -302,7 +302,7 @@ function onPartGridRowDblClick(){
 function addOrEditPart(row)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.baseData.partDetail.flow?token=" + token,
         title: "配件资料",
         width: 470, height: 330,
@@ -433,7 +433,7 @@ function savePart(part,successTip,errorTip)
 }
 function importGuest(){
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.baseData.importPart.flow?token="+token,
         title: "配件导入", 
         width: 930, 
@@ -465,4 +465,37 @@ function onNoShow(e){
     nui.get("editBtn").disable();
     nui.get("disableBtn").disable();
     nui.get("enableBtn").disable();
+}
+
+function onDrawCell(e){
+	var field = e.field;
+    if("isUniform" == field)
+    {
+        e.cellHtml = e.value == 1?"是":"否";
+    }
+    else if("isDisabled" == field)
+    {
+        e.cellHtml = e.value == 1?"失效":"有效";
+    }
+    else if("carTypeIdF" == field || "carTypeIdS" == field || "carTypeIdT" == field)
+    {
+        if(partTypeHash && partTypeHash[e.value])
+        {
+            e.cellHtml = partTypeHash[e.value].name||"";
+        }
+    }
+    else if("qualityTypeId" == field)
+    {
+        if(qualityHash[e.value])
+        {
+            e.cellHtml = qualityHash[e.value].name||"";
+        }
+    }
+    else if("partBrandId" == field)
+    {
+        if(brandHash[e.value])
+        {
+            e.cellHtml = brandHash[e.value].name||"";
+        }
+    }
 }

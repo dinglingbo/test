@@ -195,7 +195,7 @@ function refund(){
 		return;
 	}
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.frm.manage.refund.flow?token="+token,
         title: "储值卡退款", width: 450, height: 360,
         allowDrag:true,
@@ -237,7 +237,7 @@ function refund(){
 		return;
 	}
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.frm.manage.refund.flow?token="+token,
         title: "储值卡退款", width: 450, height: 360,
         allowDrag:true,
@@ -273,7 +273,7 @@ function refund(){
 function refundRecord(){
 
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.frm.manage.refundRecord.flow?token="+token,
         title: "退款记录", width: 850, height: 560,
         allowDrag:true,

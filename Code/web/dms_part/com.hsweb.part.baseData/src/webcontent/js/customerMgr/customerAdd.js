@@ -144,7 +144,7 @@ function onOk()
     {
     	if(!data.fullName1)
         {
-            showMsg("请选择公司","W");
+            parent.showMsg("请选择公司","W");
             return;
         }
         data.isInternalId = data.fullName1;
@@ -157,14 +157,14 @@ function onOk()
     {
         if(!data[key] || data[key].trim().length==0)
         {
-            showMsg(requiredField[key]+"不能为空","W");
+            parent.showMsg(requiredField[key]+"不能为空","W");
             return;
         }
     }
 /*    data.moblie=nui.get('mobile').getValue();
     var pattern = /^[1][3,4,5,7,8]\d{9}$/;
     if(data.mobile !=pattern || data.mobile.length!=11){
-    	showMsg("请输入正确的手机号");
+    	parent.showMsg("请输入正确的手机号");
     	return;
     }*/
 
@@ -196,11 +196,11 @@ function onOk()
             if(data.errCode == "S")
             {
             	saveLogistics(data.guestId);
-                showMsg("保存成功","S");
+                parent.showMsg("保存成功","S");
                 CloseWindow("ok");
             }
             else{
-                showMsg(data.errMsg||"保存失败","W");
+                parent.showMsg(data.errMsg||"保存失败","W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
@@ -228,7 +228,7 @@ function saveLogistics(guestId){
         {
             if(data.errCode == "S"){
             }else{
-                showMsg(data.errMsg||"收货信息保存失败","W");
+                parent.showMsg(data.errMsg||"收货信息保存失败","W");
             }
         },
         error:function(jqXHR, textStatus, errorThrown){
@@ -310,7 +310,7 @@ function setData(data)
         otherForm.setData(supplier);
 
         onProvinceSelected("cityId");
-      
+        nui.get('cityId').setValue(supplier.cityId);     
         nui.get("isClient").setValue(supplier.isClient);
         nui.get("isSupplier").setValue(supplier.isSupplier);
         nui.get("isDisabled").setValue(supplier.isDisabled);

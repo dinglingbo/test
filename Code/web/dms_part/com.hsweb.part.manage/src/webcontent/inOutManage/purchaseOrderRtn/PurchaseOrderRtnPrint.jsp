@@ -389,6 +389,7 @@ hr {
      
     		$('#rtnReasonId').text("退货原因:"+formParms.rtnReasonId);
     		$('#settleTypeId').text("结算方式:"+formParms.settleTypeId);
+    		$.ajaxSettings.async = false;
 			$.post(supplierUrl+"?params/guestId="+formParms.guestId+"&token="+token,{},function(text){
     			var guest=text.guest[0];
     			if(guest.contactor){		

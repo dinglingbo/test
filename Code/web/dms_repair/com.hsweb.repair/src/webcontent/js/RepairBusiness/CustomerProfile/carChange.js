@@ -147,7 +147,7 @@ function changeCarGuest()
 function onButtonEdit(e) {
 	var nGuest ={};
     nui.open({
-        //targetWindow: window,
+        //// targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.RepairBusiness.questGuest.flow?token="+token,
         title: "客户查询", 
         width: 600, 

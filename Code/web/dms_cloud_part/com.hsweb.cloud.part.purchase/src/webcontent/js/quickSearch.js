@@ -499,7 +499,7 @@ function editPart(){
 function addOrEditPart(row)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.baseData.partDetail.flow?token=" + token,
         title: "配件资料",
         width: 470, height: 300,

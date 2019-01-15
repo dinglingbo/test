@@ -387,7 +387,7 @@ function selectCustomer(guestId)
 {
     customer = null;
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/repair/common/Customer.jsp?token="+token,
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,
@@ -427,7 +427,7 @@ function selectionChanged() {
 
 function importGuest(){
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.RepairBusiness.importGuest.flow?token="+token,
         title: "客户导入", 
         width: 930, 
@@ -447,7 +447,7 @@ function importGuest(){
 
 function importCardByMobile(){
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.RepairBusiness.importCardByMobile.flow?token="+token,
         title: "客户储值卡导入", 
         width: 930, 
@@ -467,7 +467,7 @@ function importCardByMobile(){
 
 function importCardByCarNo(){
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.RepairBusiness.importCardByCarNo.flow?token="+token,
         title: "客户储值卡导入", 
         width: 930, 
@@ -487,7 +487,7 @@ function importCardByCarNo(){
 
 function importTimesCard(){
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.RepairBusiness.importTimesCard.flow?token="+token,
         title: "客户计次卡导入", 
         width: 930, 
@@ -521,7 +521,7 @@ function carChange(){
     if (row)
     {
         nui.open({
-            targetWindow: window,
+            // targetWindow: window,
             url: webPath + contextPath + "/com.hsweb.RepairBusiness.carChange.flow?token="+token,
             title: "车牌车主变更", 
             width: 550, 

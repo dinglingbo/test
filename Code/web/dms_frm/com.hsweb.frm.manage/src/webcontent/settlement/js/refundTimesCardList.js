@@ -159,7 +159,7 @@ function refund(){
 function refundRecord(){
 
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.frm.manage.refundRecord.flow?token="+token,
         title: "退款记录", width: 850, height: 560,
         allowDrag:true,

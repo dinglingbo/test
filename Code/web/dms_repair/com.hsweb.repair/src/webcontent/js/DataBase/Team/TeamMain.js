@@ -49,7 +49,7 @@ function addOrEditTeam(team)
         title = "修改班组";
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.repair.DataBase.TeamDetail.flow",
         title: title, width: 300, height: 170,
         allowResize:false,
@@ -94,7 +94,7 @@ function addTeamMember()
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.repair.common.empSelect.flow",
         title: "选择用户", width: 300, height: 500,
         allowDrag:true,

@@ -462,7 +462,7 @@ function addDetail()
 {
 	var list = rightGrid.getData();
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.common.partSelectView.flow?token=" + token,
         title: "配件选择",
         width: 900, height: 500,
@@ -540,7 +540,7 @@ function openCheckMain()
 {
     var list = storeIdEl.getData();
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.purchase.selectStockCheck.flow?token=" + token,
         title: "盘点单选择",
         width: 900, height: 500,

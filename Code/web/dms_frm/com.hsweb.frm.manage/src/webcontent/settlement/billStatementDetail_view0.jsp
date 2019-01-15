@@ -11,7 +11,7 @@
 <script src="<%=webPath + contextPath%>/manage/settlement/js/billStatementDetail.js?v=1.1.7"></script>
 <style type="text/css">
 .title {
-  width: 60px;
+  width: 80px;
   text-align: right;
 }
 

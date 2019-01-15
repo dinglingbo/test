@@ -17,7 +17,7 @@ function init(callback)
 function selectReport()
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "../OutCar/OutCarMain.html",
         title: "出车报告",
         width: 900,

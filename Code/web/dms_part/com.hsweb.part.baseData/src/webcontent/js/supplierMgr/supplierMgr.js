@@ -187,13 +187,13 @@ function editSuplier() {
 		settTypeIdList = nui.get("settType").getData();
 		managerDutyList = nui.get("managerDuty").getData();
 		nui.open({
-			targetWindow : window,
+//			targetWindow : window,
 			url : webPath + contextPath
 					+ "/com.hsweb.part.baseData.supplierDetail.flow?token="
 					+ token,
 			title : "供应商资料",
-			width : 530,
-			height : 480,
+			width : 600,
+			height : 550,
 			allowDrag : true,
 			allowResize : false,
 			onload : function() {
@@ -242,8 +242,8 @@ function importGuest() {
 						+ "/com.hsweb.part.baseData.importSupplier.flow?token="
 						+ token,
 				title : "供应商导入",
-				width : 930,
-				height : 560,
+				width : 1000,
+				height : 600,
 				allowDrag : true,
 				allowResize : true,
 				onload : function() {

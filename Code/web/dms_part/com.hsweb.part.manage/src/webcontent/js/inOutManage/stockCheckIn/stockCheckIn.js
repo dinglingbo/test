@@ -775,7 +775,7 @@ function onCellCommitEdit(e) {
 function selectPart(callback,checkcallback)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.common.partSelectView.flow?token="+token,
         title: "配件选择", width: 930, height: 560,
         allowDrag:true,
@@ -793,7 +793,7 @@ function selectPart(callback,checkcallback)
 function addEnterDetail(part)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.manage.detailQPAPopOperate.flow",
         title: "入库数量金额", width: 430, height:210,
         allowDrag:true,

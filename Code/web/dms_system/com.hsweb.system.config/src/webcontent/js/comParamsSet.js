@@ -3,6 +3,7 @@ var clientGridUrl = baseUrl + "com.hsapi.cloud.part.report.report.querySellClien
 var basicInfoForm = null;
 var repairBillControlFlag = null;
 var repairBillPartFlag = null;
+var repairPartAuditFlag = null;
 var repairBillQrcodeFlag = null;
 var repairBillQrSettleFlag = null;
 var repairBillCmodelFlag = null;
@@ -19,6 +20,7 @@ $(document).ready(function(v) {
     basicInfoForm = new nui.Form("#basicInfoForm");
     //repairBillControlFlag = nui.get("repairBillControlFlag");
     repairBillPartFlag = nui.get("repairBillPartFlag");
+    repairPartAuditFlag = nui.get("repairPartAuditFlag");
     repairBillQrcodeFlag = nui.get("repairBillQrcodeFlag");
     repairBillQrSettleFlag = nui.get("repairBillQrSettleFlag");
     repairBillCmodelFlag = nui.get("repairBillCmodelFlag");
@@ -47,6 +49,7 @@ $(document).ready(function(v) {
 
     getServiceTypeList(function(data){
         editParice.setData(data);
+        repairPartAuditFlag.setData(data);
     });
 
     getComParamsList();

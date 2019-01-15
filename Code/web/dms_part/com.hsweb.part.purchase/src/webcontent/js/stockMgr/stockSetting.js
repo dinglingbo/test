@@ -175,7 +175,7 @@ function storeCycEdit()
     {
         var storehouseList = nui.get("storeId").getData();
         nui.open({
-            targetWindow: window,
+            // targetWindow: window,
             url: "com.hsweb.part.purchase.storeCycDetail.flow?token=" + token,
             title: "周期定义",
             width: 500, height: 570,
@@ -203,7 +203,7 @@ function setStoreLocationBatch()
 {
     var storehouseList = nui.get("storeId").getData();
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.purchase.setStoreLocationBatch.flow?token=" + token,
         title: "批量设置仓位",
         width: 500, height: 410,

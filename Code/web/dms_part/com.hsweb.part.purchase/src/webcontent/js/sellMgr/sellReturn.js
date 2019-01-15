@@ -439,7 +439,7 @@ function selectCustomer(elId)
 {
     customer = null;
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.common.customerSelect.flow?token=" + token,
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,
@@ -483,7 +483,7 @@ function selectPart(callback)
     }
     var guestFullName = nui.get("guestId").getText();
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.common.sellOutSelect.flow?token=" + token,
         title: "选择销售明细", width: 930, height: 560,
         allowDrag:true,
@@ -561,7 +561,7 @@ function editPart()
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.purchase.enterDetailEdit.flow?token=" + token,
         title: "数量金额", width: 430, height:210,
         allowDrag:true,

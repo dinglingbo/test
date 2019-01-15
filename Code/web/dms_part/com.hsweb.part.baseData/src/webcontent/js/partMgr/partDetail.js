@@ -348,8 +348,8 @@ function onButtonEdit()
 {
     partName = null;
     nui.open({
-//        targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.part.common.partNameSelect.flow?token="+token,
+//        // targetWindow: window,
+        url: webPath+contextPath+"/commonPart/partNameSelect_view0.jsp?token="+token,
         title: "配件名称查询",
         width:940, height: 650,
         allowDrag:true,

@@ -1640,7 +1640,7 @@ function addGuest(){
 	nui.confirm("此供应商不存在，是否新增?", "友情提示", function(action) {
 		if (action == "ok") {
 			nui.open({
-				targetWindow: window,
+				// targetWindow: window,
 				url: webPath+contextPath+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
 				title: "供应商资料", width: 570, height: 510,
 				allowDrag:true,
@@ -1868,7 +1868,7 @@ function addMorePart(){
 function addOrEditPart(row)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.baseData.partDetail.flow?token=" + token,
         title: "配件资料",
         width: 470, height: 320,
@@ -2120,7 +2120,7 @@ function importPart(){
 	}
 
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.manage.getPartInfoImoprt.flow?token="+token,
         title: "配件导入", 
         width: 930, 

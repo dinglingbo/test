@@ -25,7 +25,7 @@
     
     <select id="queryGuestPartSellPriceHash" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	SELECT b.id as strategyId, b.`name` as name,
-		       c.part_id as partId,
+		       c.part_id as partId,c.whole_price as wholePrice,c.lowest_sell_price as lowestSellPrice,
 		       c.sell_price as sellPrice, c.operate_date operateDate, c.operator as operator
 		FROM pj_sell_price_strategy b
 		inner join pj_sell_price_part c

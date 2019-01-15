@@ -109,10 +109,11 @@ $(document).ready(function () {
 		        	if(data.length > 0){
 		        		for(var i = 0 , l = data.length ; i < l ; i ++){
 		        			var itemName = data[i].prdtName || "";
-		        			var itemTime = data[i].qty || "";
-		        			var unitPrice = data[i].unitPrice || "";
+		        			var itemTime = data[i].qty || 0;
+		        			var unitPrice = data[i].unitPrice || 0;
 		        			var rate = data[i].rate || "";
-		        			var subtotal = data[i].subtotal || "";
+		        			var subtotal = data[i].subtotal || 0;
+		        			var amt = data[i].amt || 0;
 		        			var billItemId = data[i].billItemId;
 		        			var discountAmt = data[i].discountAmt;
 		        			var remark = data[i].remark;
@@ -133,6 +134,7 @@ $(document).ready(function () {
 		        					discountAmt : discountAmt,
 		        					remark : remark,
 		        					unitPrice : unitPrice,
+		        					amt : amt,
 		        					orderIndex : orderIndex
 		        			};
 		        			var dataAll = rpsItemGrid.getData();
@@ -464,7 +466,8 @@ function choosePart(row_uid){//配件
             			rate : 0,
             			subtotal : 0,
             			billItemId: row.itemId,
-            			orderIndex : orderIndex
+            			orderIndex : orderIndex,
+            			amt:0
             	};
             	rpsItemGrid.addRow(newRow,index);
             }
@@ -698,6 +701,7 @@ function chooseItem(){
             				subtotal : subtotal,
             				itemId : itemId,
             				billItemId:0,
+            				amt:subtotal,
             				orderIndex : orderIndex
             				};
             	var dataAll = rpsItemGrid.getData();
@@ -760,11 +764,18 @@ function onPrint(e){
             bankName: currBankName,
             bankAccountNumber: currBankAccountNumber,
             currCompAddress: currCompAddress,
+            currUserName :currUserName,
             currCompTel: currCompTel,
             currSlogan1: currSlogan1,
             currSlogan2: currSlogan2,
-            token : token
+    		token : token
         };
+	if(e==1){
+		params.printName = "报价单";
+	}
+	if(e==2){
+		params.printName = "结账单";
+	}
 	if(main.id){
 		nui.open({
 	        url: webBaseUrl +"com.hsweb.print.settlement.flow",
@@ -811,7 +822,7 @@ function showGridMsg(serviceId){
 }
 
 
-function setInitData(params){
+/*function setInitData(params){
 	nui.get("sourceServiceId").setValue(params.id);
 	init();
 	if(!params.isOutBill){//未保存过一次报销单
@@ -835,8 +846,33 @@ function setInitData(params){
 	        }
 	    });
 	}
-}
+}*/
 
+
+function setInitData(params){
+	nui.get("sourceServiceId").setValue(params.id);
+	init();
+	nui.ajax({
+        url: baseUrl+"com.hsapi.repair.repairService.svr.billqyeryMaintainList.biz.ext",
+        type: "post",
+        //cache: false,
+        async: false,
+        data: {
+        	sourceServiceId : params.id
+        },
+        success: function(text) {
+        	var list = nui.decode(text.list);
+        	if(list && list.length>0){
+        		billForm.setData(list[0]);
+        	}else{
+        		params.sourceServiceId = params.id;
+        		params.id = "";
+        		billForm.setData(params);
+        	}
+        	
+        }
+    });
+}
 //oncellcommitedit="onCellCommitEditPkg"
 
 //提交单元格编辑数据前激发
@@ -873,7 +909,7 @@ function onCellCommitEditItem(e) {
             }
 			newRow = {
 				amt : amt,
-				subtotal:amt
+				subtotal:subtotal
 			};
 			rpsItemGrid.updateRow(e.row, newRow);
 

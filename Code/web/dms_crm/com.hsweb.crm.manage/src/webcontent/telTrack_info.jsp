@@ -155,7 +155,7 @@ function doSave(tform, url, callBack){
 function saveRecord() {
     var data = form1.getData();
     var params ={
-        type:1,//电销
+        serviceType:1,//电销
         mainId:mainId,
         // guestId:data.guestId||'',
         guestId:'',

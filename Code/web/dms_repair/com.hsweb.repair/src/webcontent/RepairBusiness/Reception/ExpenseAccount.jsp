@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>报销单</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.30"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/ExpenseAccount.js?v=1.4.35"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -88,7 +88,7 @@
 
 
 <div class="nui-toolbar" style="padding:2px;height:30px">
-	<input class="nui-hidden" id="sourceServiceId"   name="sourceServiceId"/> 
+	<input class="nui-hidden" id="sourceServiceId"   name="sourceServiceId"/>
 	<input class="nui-combobox" visible="false" name="serviceTypeId" id="serviceTypeId"
 										   valueField="id" allowInput="true" valueFromSelect="true"
 										   textField="name"/>
@@ -100,12 +100,11 @@
                 <span class="separator"></span> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <span class="separator"></span>
-                <a class="nui-button" plain="true" id="menuprint" onclick="onPrint(1)" ><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
-
-               <!-- <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
-                 <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="onPrint(1)" id="type11">打印报销单</li>
-                </ul> -->
+                 <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                <ul id="popupMenuPrint" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="onPrint(1)" id="type11">打印报价单</li>
+                    <li iconCls="" onclick="onPrint(2)" id="type11">打印结账单</li>
+                </ul>
             </td>
         </tr>
     </table>

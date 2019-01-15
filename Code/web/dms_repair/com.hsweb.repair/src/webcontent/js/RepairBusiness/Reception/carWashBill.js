@@ -1245,6 +1245,7 @@ function unfinish(){
             var errCode = data.errCode||"";
             var errMsg = data.errMsg||"";
             if(errCode == 'S'){
+            	doFinishF = 1;
                 var maintain = data.main||{};
                 var olddata = billForm.getData();
                 olddata.status = 1;
@@ -3067,7 +3068,7 @@ function showHealth(){
         },
     });*/
 }
-//var doFinishF = 1;
+var doFinishF = 1;
 function pay(){
 	var data = billForm.getData();
     if(!data.id){
@@ -3078,9 +3079,10 @@ function pay(){
           	 showMsg("工单已结算!","W");
                return;
           }
-        if(data.status != 2){
+        if(data.status != 2 && doFinishF==1){
             //showMsg("工单未完工,不能结算!","W");
             //return;
+        	doFinishF = 0;
         	var params = {
         	        data:{
         	            id:data.id||0,
@@ -3090,7 +3092,7 @@ function pay(){
         	    svrRepairAudit(params, function(data1){
         	        data1 = data1||{};
         	        var errCode = data1.errCode||"";
-        	        var errMsg = data1.errMsg||"";
+        	        var errMsg = data1.errMsg||"操作失败,请重新操作";
         	        if(errCode == 'S'){
         	        	//成功之后，重新设置表单值*******************
                         var olddata = billForm.getData();
@@ -3119,7 +3121,8 @@ function pay(){
                         loadDetail(p1, p2, p3,status);
                         onPay(data);
         	        }else{
-        	        	showMsg("操作失败,请重新操作","E");
+        	        	doFinishF = 1;
+        	        	showMsg(errMsg,"E");
         	        }
         	    }, function(){
         	    });

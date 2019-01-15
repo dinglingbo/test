@@ -463,14 +463,14 @@
 	        document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");
 	        //document.getElementById("pdate").innerHTML = document.getElementById("pdate").innerHTML + format(date, "yyyy-MM-dd HH:mm");
 	        
-	        document.getElementById("openBank").innerHTML = document.getElementById("openBank").innerHTML + params.bankName;
-	        document.getElementById("bankNo").innerHTML = document.getElementById("bankNo").innerHTML + params.bankAccountNumber;
+	        document.getElementById("openBank").innerHTML = document.getElementById("openBank").innerHTML + (params.bankName||"");
+	        document.getElementById("bankNo").innerHTML = document.getElementById("bankNo").innerHTML + (params.bankAccountNumber||"");
 	        
-	        document.getElementById("guestAddr").innerHTML = params.currCompAddress;
-    		document.getElementById("phone").innerHTML = params.currCompTel;
-    		document.getElementById("slogan1").innerHTML = params.currSlogan1;
-    		document.getElementById("slogan2").innerHTML = params.currSlogan2;
-    		  document.getElementById("makeMan").innerHTML="制单:" + params.currUserName;
+	        document.getElementById("guestAddr").innerHTML = params.currCompAddress||"";
+    		document.getElementById("phone").innerHTML = params.currCompTel||"";
+    		document.getElementById("slogan1").innerHTML = params.currSlogan1||"";
+    		document.getElementById("slogan2").innerHTML = params.currSlogan2||"";
+    		  document.getElementById("makeMan").innerHTML="制单:" + (params.currUserName||"");
 	        $.ajaxSettings.async = false;//设置为同步执行
 	        var url = null;
 	        if(params.type){

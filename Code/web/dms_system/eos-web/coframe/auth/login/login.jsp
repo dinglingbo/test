@@ -10,6 +10,7 @@
 
 <title>车道商户版</title>
 <script  src="<%= request.getContextPath() %>/common/nui/nui.js?v=2.1.50" type="text/javascript" ></script>
+<script src="<%= request.getContextPath() %>/common/js/qrcode.js" type="text/javascript"></script>
 <meta charset="utf-8">
 <meta name="keywords" content="汽修达人管理平台"/>
 <meta name="description" content="汽修达人管理平台"/>
@@ -25,7 +26,9 @@
  <%
    String contextPath=request.getContextPath();
    String url = null;
+    String sweepCodeUrl = null;
    String loginUrl = "org.gocom.components.coframe.auth.login.login.flow";
+   String sweepCodeFlow = "com.hsapi.system.auth.login.qrLogin.flow";
    loginUrl = "com.hsapi.system.auth.login.login.flow";
    String regUrl = "com.hsapi.system.auth.login.registerOfm.flow";
    
@@ -39,13 +42,16 @@
    		boolean isAllInHttps = securityConfig.isAllInHttps();
    		if(!isAllInHttps){
    			url = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + loginUrl;
+   			sweepCodeUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + sweepCodeFlow;
    			regUrl = "https://" + ip + ":" + https_port + contextPath + "/coframe/auth/login/" + regUrl;
 
    		}else{
    			url = loginUrl;
+   			sweepCodeUrl = sweepCodeFlow;
    		}
    }else{
    		url = loginUrl;
+   		sweepCodeUrl = sweepCodeFlow;
    }
 
    	//api地址
@@ -187,6 +193,7 @@ body {
 	cursor: pointer;
 }
 .login_box .blue { color: #0050FB;cursor: pointer;font-size: 14px;}
+.login_box .blue1 { color: #0050FB;cursor: pointer;font-size: 18px;}
 .login_box .wu {
 	text-align: center;	
 	margin-top: 20px;
@@ -266,6 +273,11 @@ a {
   color: #FFF;
   font-size:13px;
   }
+  
+  #qrcode{
+  	margin-left: 55px;
+  	margin-top: 20px;
+  }
 </style>
 
 </head>
@@ -308,6 +320,15 @@ a {
 		</div>
 	</div>
 </form>	
+
+	<form method="post"	name="sweepCodeForm" onsubmit="return sweepCode();" action="<%=sweepCodeFlow%>">
+	<div class="login" id="sweepCodeBox">
+		<div class="title"><font color="#0050fb9e" >扫码登录</font>  | <span class="blue1" id="login1">账号登录</span></div>
+		<div id="qrcode" ></div>
+		<div class="you" >打开车道手机APP扫描二维码</div>
+	</div>
+</form>	
+
 <!--<form method="post"	name="loginForm"  action="login.jsp">-->
 <form method="post"	name="loginForm" onsubmit="return login();"  action="<%=url%>">	
 	<div class="login" id="loginBox">
@@ -353,7 +374,7 @@ a {
 					<img src="images/xiongying.jpg"  onclick="changeHide();"  />
 				</div>
 			</div>
-			<div class="wu">还没帐号？  <span class="blue" id="register">立即注册</span></div>
+			<div class="wu"><span class="blue" id="sweepCode">扫码登录</span>  |  <span class="blue" id="register">立即注册</span></div>
 		</div>	
 	</div>
 </form>
@@ -404,11 +425,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 $(function () {
 	//显示登录框
 	$("#login").click(openLogin);
+	$("#login1").click(openLogin);
 	//显示注册框
 	$("#register").click(openRegister);
 	
 	//登录
-	//$("#loginJump").click(loginTest);
+	$("#sweepCode").click(openSweepCode);
 	
 	//注册registered
 	$("#registered").click(registered);
@@ -438,12 +460,24 @@ function changeHide(){
 function openLogin() {
 	$("#registerBox").hide();
 	$("#loginBox").show();
+	$("#sweepCodeBox").hide();
 }
 //显示注册框
 function openRegister() {
 	$("#registerBox").show();
 	$("#loginBox").hide();
+	$("#sweepCodeBox").hide();
 }
+
+//显示扫码框
+function openSweepCode() {
+	$("#registerBox").hide();
+	$("#loginBox").hide();
+	$("#sweepCodeBox").show();
+	sweepCode();
+	setCode(60);
+}
+
 function maxImg() {
 	$(".max_img").show();
 }
@@ -666,6 +700,62 @@ function login(){
 	 function reload(){
 	 	document.getElementById("loginImgVeri").src="../img.jsp?rnd=" + Math.random();
 	 }
+	 
+	 
+	  function guid() {
+		    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+		        var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+		        return v.toString(16);
+		    });
+		}
+	var code = "";	
+		function sweepCode() {
+				$("#qrcode").empty();
+				 code = guid();
+				
+				// 设置参数方式 
+				var qrcode = new QRCode('qrcode', { 
+				  text: code, 
+				  width: 256, 
+				  height: 256, 
+				  colorDark : '#000000', 
+				  colorLight : '#ffffff', 
+				  correctLevel : QRCode.CorrectLevel.H 
+				});
+		}
+		
+	      function setCode(time) {
+			  if (time == 0) {
+				  $("#error").html("二维码已过期，返回登录页面！");
+				  openLogin();
+			    return;
+			  } else { 
+			  			var json = {
+			  				webId : code,
+			  				type : check
+			  			}
+				  		nui.ajax({
+						url : "<%=apiPath%><%=sysApi%>/com.hsapi.system.auth.LoginManager.qrcodeCheck.biz.ext",
+						type : 'POST',
+						data : json,
+						cache : false,
+						contentType : 'text/json',
+						success : function(text) {
+							var record = text.record||{};
+							if(record.status==0){
+								setTimeout(function () { setCode(time); }, 1000);
+							}else if(record.status==1){
+								//document.loginForm.submit();
+								window.location.href="<%=sweepCodeUrl%>?webId="+code;
+							}else if(record.status==2){
+								$("#error").html("已拒绝");
+							}
+						}
+					});			
+			    time--;
+			  }
+			  
+			}
 
 
 

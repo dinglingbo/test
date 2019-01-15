@@ -30,7 +30,7 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign0" name="赋值" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo1</targetNode>
@@ -49,6 +49,22 @@
     <location x="120" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">params/visitDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">params/visitMan</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
+      <process:to type="query">params/visitId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">params/orgid</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="122" y="186"/>
@@ -74,7 +90,7 @@
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">detail</process:from>
+      <process:from type="query" pattern="reference">params</process:from>
       <process:to type="query">detailData</process:to>
     </process:copy>
   </nodes>
@@ -98,7 +114,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">crm</process:inputVariable>
-      <process:inputVariable id="1" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">detail</process:inputVariable>
+      <process:inputVariable id="1" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">params</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -121,7 +137,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">detail</process:inputVariable>
+      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">params</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -160,7 +176,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">crm</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">detail</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">params</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -174,7 +190,7 @@
   <process:info author="Administrator" createTime="2018-10-24 09:15:05" date="2018-10-24Z" description="" name="savevisitDetail" version="7.0.0.0"/>
   <process:variables/>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.crm.data.crm.CrmVisitRecord" name="detail"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.crm.data.crm.CrmVisitRecord" name="params"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

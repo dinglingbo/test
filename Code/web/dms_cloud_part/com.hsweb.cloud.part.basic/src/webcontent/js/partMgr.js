@@ -434,7 +434,7 @@ function savePart(part,successTip,errorTip)
 function importGuest(){
     nui.open({
         // targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.part.baseData.importPart.flow?token="+token,
+        url: webPath + contextPath + "/com.hsweb.cloud.part.basic.importPart.flow?token="+token,
         title: "配件导入", 
         width: 930, 
         height: 560,

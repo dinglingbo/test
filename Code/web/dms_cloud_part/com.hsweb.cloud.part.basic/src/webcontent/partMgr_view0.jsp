@@ -78,7 +78,7 @@
                 <div class="nui-fit">
                     <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="">
                         <div title="云配件资料" id="main" name="main">
-                            <div class="nui-fit">
+<!--                             <div class="nui-fit"> -->
                                 <div id="partGrid" class="nui-datagrid" style="width:100%;height:100%;" frozenStartColumn="0" frozenEndColumn="7" borderStyle="border:0;"
                                     dataField="parts" url="" onrowdblclick="onPartGridRowDblClick" onrowclick="onPartGridRowClick"
                                     idField="id" totalField="page.count" selectOnLoad="true" pageSize="50" sortMode="client"allowCellWrap = true
@@ -133,9 +133,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+<!--                         </div> -->
                         <div title="本地配件资料" name="local" id="local">
-                            <div class="nui-fit">
+<!--                             <div class="nui-fit"> -->
                                 <div id="partLoalGrid" class="nui-datagrid" style="width:100%;height:100%;" frozenStartColumn="0" frozenEndColumn="7" borderStyle="border:0;"
                                     dataField="parts" url="" onrowdblclick="onPartGridRowDblClick" onrowclick="onPartGridRowClick"allowCellWrap = true
                                     idField="id" totalField="page.count" selectOnLoad="true" pageSize="50" sortMode="client"
@@ -186,7 +186,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+<!--                                 </div> -->
                             </div>
                         </div>
                     </div>

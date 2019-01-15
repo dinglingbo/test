@@ -183,16 +183,17 @@ function editClient(){
 
 
 function sendInfo(){
-    var row = dgGrid.getSelected();
+    var row = dgGrid.getSelected()||{};
     if (row == undefined) {
         showMsg("请选中一条数据","W");
         return; 
     }
-    if (row.tel) {
+    if (!row.tel) {
         showMsg("该数据没有客户手机号码，无法发送短信","W");
         return; 
     }
-    
+    row.mobile = row.tel;
+    row.serviceType = 1;//电销
     nui.open({
         url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
         title: "发送短信", width: 655, height: 280,

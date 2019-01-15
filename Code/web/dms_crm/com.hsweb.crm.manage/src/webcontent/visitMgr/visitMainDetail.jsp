@@ -46,11 +46,14 @@ pageEncoding="UTF-8" session="false" %>
            </table>
        </div>
        <input class="nui-hidden" name="visitId" id="visitId"/>
+       <input class="nui-hidden" name="carId" id="carId"/>
+       <input class="nui-hidden" name="carNo" id="carNo"/>
+       <input class="nui-hidden" name="guestId" id="guestId"/>
        <table class="tmargin" style="table-layout: fixed;width:100%">
         <tr class="htr">
             <td  style="width: 70px;" class="tbText">回访方式：</td>
             <td style="width: 100px;">
-                <input id="visitMode" name="visitMode" class="nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name">
+                <input id="visitMode" name="visitMode" class="nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name" value='011401' enabled="false">
             </td>
             <td style="width: 90px;" class="tbText">下次保养日期：</td>
             <td style="width: 135px;">
@@ -105,48 +108,7 @@ pageEncoding="UTF-8" session="false" %>
 
     function setData(rowData){
         mainData = rowData;
-        var visitdetaildata = searchVisitDetail(rowData.id);
-        if(visitdetaildata){
-            form.visitMode = visitdetaildata.visitMode;
-            form.visitId = visitdetaildata.visitId;
-            form.visitMan = visitdetaildata.visitMan;
-            form.visitDate = visitdetaildata.visitDate;
-            form.visitContent = visitdetaildata.visitContent;
-            form.careDueDate = visitdetaildata.careDueDate;
-            form.careDayCycle = visitdetaildata.careDayCycle;
-        }
-        tabForm.setData(form);
     }
-
-
-    function searchVisitDetail(mid){
-        var ret = null;
-        var p ={
-            mainId:mid
-        };
-        nui.ajax({
-            url:baseUrl + "com.hsapi.crm.svr.visit.queryCrmVisitRecord.biz.ext",
-            type:"post",
-            async: false,
-            data:{
-                params:p,
-                token:token
-            },
-            success:function(text){
-                if(text.errCode == "S"){
-                    var tdata = text.data;
-                    if(tdata.length == 1){
-                        ret = tdata[0];
-                    }else if(tdata.length > 1 ){
-                        showMsg("获取数据失败！","E");
-                    }else{}
-                }
-
-            }
-        });
-        return ret;
-    }
-
 
     function save(){
         var data = tabForm.getData();
@@ -158,17 +120,18 @@ pageEncoding="UTF-8" session="false" %>
             visitContent:data.visitContent,
             careDueDate:data.careDueDate,
             careDayCycle:data.careDayCycle,
-            carId:data.carId,
-            guestId:data.guestId,
-            serviceId:data.serviceId,
-            type:'1',
+            carId:mainData.carId,
+            carNo:mainData.carNo,
+            guestId:mainData.guestId,
+            serviceId:mainData.serviceId,
+            serviceType:'3',
             mainId:mainData.id
         };
         nui.ajax({
             url:baseUrl + "com.hsapi.crm.svr.visit.savevisitDetail.biz.ext",
             type:"post",
             data:{
-                detail:record
+                params:record
             },
             success:function(text){
                 if(text.errCode == "S"){

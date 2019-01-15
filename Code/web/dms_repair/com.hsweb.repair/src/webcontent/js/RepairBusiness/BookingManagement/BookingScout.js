@@ -99,12 +99,15 @@ function sendInfo(){
 		showMsg("联系人电话为空!","W");
 		return;
 	}
+	var p = rowData;
+	p.mobile =  rowData.contactorTel;
+	p.serviceType = 2;//预约
 	nui.open({
 		url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
 		title: "发送短信", width: 655, height: 386,
 		onload: function () {
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.setData(rowData);
+			iframe.contentWindow.setData(p);
 		},
 		ondestroy: function (action) {
             //重新加载

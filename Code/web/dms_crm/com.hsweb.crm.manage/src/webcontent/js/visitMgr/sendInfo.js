@@ -1,7 +1,6 @@
 var webBaseUrl = webPath + contextPath + "/";
 var form1 = null;
-var phones = "";
-var mainData = null;
+var mainData = {};
 var visitContent = null;
 var baseUrl = apiPath + sysApi + "/";
 var sendUrl = baseUrl+"com.hsapi.system.basic.smsPush.testPush.biz.ext";
@@ -23,20 +22,18 @@ $(document).ready(function (){
    
 function setData(row) {
     mainData = row;
- 
-
 }
 
 
-    function save(){
-       // phones = "13973231730";
+function save() {
+    mainData.mobile = '15607733238';
         //验证
     	var message  = visitContent.getValue();
         if(message=="" || message==null){
             showMsg("请输入短信内容!","W");
             return ;
         }
-        if(phones ==""|| phones == null){
+        if(!mainData.mobile){
             showMsg("手机号不能为空!","W");
             return ;
         }
@@ -47,7 +44,7 @@ function setData(row) {
         });
        
         var json = nui.encode({
-			"phones" : phones,
+			"phones" : mainData.mobile,
 			"message" : message,
 			token : token
         });   
@@ -80,9 +77,9 @@ function setData(row) {
 
 function saveRecord(data) {
     //var data = form1.getData();
-    message  = visitContent.getValue();
+    var message  = visitContent.getValue();
     var params ={
-        type:1,//电销
+        serviceType:data.serviceType,
         mainId:data.id||'',
         guestId:data.guestId||'',
         carId:data.carId||'',
@@ -98,9 +95,9 @@ function saveRecord(data) {
         },
         success:function(res){
             if(res.errCode == 'S'){
-                showMsg("保存成功！","S");
+                // showMsg("保存成功！","S");
             }else{
-                showMsg("保存失败！","E");
+                // showMsg("保存失败！","E");
             }
         },
         error: function (jqXHR) {
@@ -143,7 +140,4 @@ function onClear(){
 
     function onClose(){
         window.CloseOwnerWindow();  
-    }
-    function setPhones(phone){
-        phones = phone;
     }

@@ -6,8 +6,8 @@ var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:808
 //var gridUrl = baseUrl+"com.hsapi.part.common.svr.queryPartName.biz.ext"; 
 //var  treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
 
-var gridUrl = baseUrl+"com.hsapi.part.common.svr.queryPartName.biz.ext";
-var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
+var gridUrl = baseUrl+"com.hsapi.cloud.part.common.svr.queryPartName.biz.ext";
+var treeUrl = baseUrl+"com.hsapi.cloud.part.common.svr.getPartTypeTree.biz.ext";
 
 var grid = null;
 var tree = null;

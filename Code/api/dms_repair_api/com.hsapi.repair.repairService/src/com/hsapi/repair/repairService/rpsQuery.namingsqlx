@@ -1527,5 +1527,64 @@
         </dynamic> 
         order by a.modify_date desc
 	</select>
-	    	
+	 <select id="queryCheckMainDetailList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+   		   	SELECT
+			A.id as id,
+			A.tenant_id as tenantId,
+			A.orgid as orgid,
+			A.datekey as datekey,
+			A.service_code as serviceCode,
+			A.service_id as serviceId,
+			A.guest_id as guestId,
+			A.contactor_id as contactorId,
+			A.car_id as carId,
+			A.car_no as carNo,
+			A.car_vin as carVin,
+			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
+			A.check_main_id as checkMainId,
+			A.check_main_name as checkMainName,
+			A.check_status as checkStatus,
+			A.enter_kilometers as enterKilometers,
+			A.last_kilometers as lastKilometers,
+			A.last_check_date as lastCheckDate,
+			A.mt_advisor_id as mtAdvisorId,
+			A.mt_advisor AS mtAdvisor,
+			A.check_man_id AS checkManId,
+			A.check_man AS checkMan,
+			A.check_date AS checkDate,
+			A.is_finish AS isFinish,
+			A.finish_date AS finishDate,
+			A.check_point AS checkPoint,
+			A.last_point AS lastPoint,
+			A.repair_advice AS repairAdvice,
+			A.part_advice AS partAdvice,
+			A.remark AS remark,
+			A.recorder as recorder,
+			A.record_date as recordDate,
+			A.modifier as modifier,
+			A.modify_date as modifyDate,
+			b.check_name checkName,
+			b.check_type checkType,
+			b.check_code checkCode,
+			b.status status,
+			b.check_remark checkRemark
+			from rps_check_main A
+			inner join rps_check_detail b on b.main_id = A.id
+			where A.orgid = #orgid# 
+			<isNotEmpty prepend="and" property="carNo">  
+				A. car_no like '%$carNo$%'
+			</isNotEmpty>
+			
+			<isNotEmpty prepend="and" property="serviceCode">  
+				a.service_code like '%$serviceCode$%'
+			</isNotEmpty>
+            <isNotEmpty prepend="and" property="sRecordDate">  
+                (a.record_date &gt;= #sRecordDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="eRecordDate">  
+                (a.record_date &lt; #eRecordDate#)
+            </isNotEmpty>
+            
+			ORDER BY A.record_date desc
+      </select>    	
 </sqlMap>

@@ -36,6 +36,7 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="255" y="143"/>
@@ -73,7 +74,7 @@
       <process:to type="query">p/tenantId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.CapPartyauth</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.system.data.sys.ComCapPartyauth</process:from>
       <process:to type="query">cd/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -335,8 +336,8 @@
   <process:variables>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="empUser"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cd"/>
-    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.CapPartyauth" name="capPartyauthList"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.CapPartyauth" name="capPartyauth"/>
+    <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.system.data.sys.ComCapPartyauth" name="capPartyauthList"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComCapPartyauth" name="capPartyauth"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="c" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">

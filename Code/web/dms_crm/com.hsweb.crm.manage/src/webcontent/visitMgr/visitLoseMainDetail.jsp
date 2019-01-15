@@ -43,7 +43,7 @@ pageEncoding="UTF-8" session="false" %>
             <tr class="htr">
                 <td >回访方式：</td>
                 <td >
-                    <input id="mode" name="mode" class="nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name">
+                    <input id="visitMode" name="visitMode" class="nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name"  value='011401' enabled="false">
                 </td>
                 <td >现在维修厂：</td>
                 <td >
@@ -52,22 +52,22 @@ pageEncoding="UTF-8" session="false" %>
                 <td></td>
                 <td>
                 </td>
-                <td style="width: "></td>
+                <td ></td>
             </tr>
             <tr class="htr">
                 <td style="width: 100px;">是否继续跟进：</td>
                 <td style="width: 135px;">
-                    <input id="isContinueScout" name="isContinueScout" class="nui-combobox textboxWidth"valueField="id" textField="text" data="[{id:0,text:'是'},{id:1,text:'否'}]">
+                    <input id="isContinueVisit" name="isContinueVisit" class="nui-combobox textboxWidth"valueField="id" textField="text" data="[{id:0,text:'是'},{id:1,text:'否'}]">
                 </td>
                 <td style="width: 100px;">下次跟进日期：</td>
                 <td style="width: 135px;">
-                    <input id="nextScoutDate" name="nextScoutDate" class=" nui-datepicker textboxWidth" >
+                    <input id="nextVisitDate" name="nextVisitDate" class=" nui-datepicker textboxWidth" >
                 </td>
                 <td style="width: 90px;">计划来厂日期：</td>
                 <td style="width: 135px;">
-                    <input id="predComeDate" name="predComeDate" class="nui-datepicker textboxWidth" minValue="0">
+                    <input id="planComeDate" name="planComeDate" class="nui-datepicker textboxWidth" minValue="0">
                 </td>
-                <td style="width: "></td>
+                <td ></td>
             </tr> 
             <tr class="htr">
                 <td  >不来厂主要原因：</td>
@@ -76,24 +76,24 @@ pageEncoding="UTF-8" session="false" %>
                 </td>
                 <td >不来厂明细原因：</td>
                 <td colspan="3">
-                    <input id="subReason" name="subReason" class=" nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name" popupWidth="350px" style="width: 358px;">
+                    <input id="subReason" name="subReason" class=" nui-combobox textboxWidth" dataField="data" valueField="customid" textField="name" popupWidth="350px" style="width:100%;">
                 </td>
-                <td style="width: "></td>
+                <td ></td>
             </tr> 
             <tr class="htr">
                 <td >回访内容：</td>
                 <td  colspan="6">
-                    <input id="content" name="content" class="nui-textarea textboxWidth" style="width: 100%;height:150px;">
+                    <input id="visitContent" name="visitContent" class="nui-textarea textboxWidth" style="width: 100%;height:150px;">
                 </td> 
             </tr>
             <tr class="htr">
                 <td >回访员：</td>
                 <td >
-                    <input id="scoutMan" name="scoutMan" class="nui-combobox textboxWidth" allowInput="true" textField="empName" valueField="empName" emptyText="请选择..."nullItemText="请选择..." onvaluechanged="visitManChanged">
+                    <input id="visitMan" name="visitMan" class="nui-combobox textboxWidth" allowInput="true" textField="empName" valueField="empName" emptyText="请选择..."nullItemText="请选择..." onvaluechanged="visitManChanged">
                 </td>
                 <td >回访时间：</td>
                 <td >
-                    <input id="scoutDate" name="scoutDate" class="nui-datepicker textboxWidth">
+                    <input id="visitDate" name="visitDate" class="nui-datepicker textboxWidth">
                 </td>
             </tr>
 
@@ -106,7 +106,7 @@ pageEncoding="UTF-8" session="false" %>
     var visitModeCtrlUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130703000021&fromDb=true";
     var mainReasonUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130705000008&fromDb=true";
     var detailReasonUrl = baseUrl + "com.hsapi.system.dict.dictMgr.queryDict.biz.ext?dictid=DDT20130705000009&fromDb=true";
-    visitMode_ctrl = nui.get("mode");
+    visitMode_ctrl = nui.get("visitMode");
     visitMode_ctrl.setUrl(visitModeCtrlUrl);
     var visitManEl = nui.get("visitMan");
     var visitIdEl = nui.get("visitId");
@@ -119,7 +119,7 @@ pageEncoding="UTF-8" session="false" %>
     var mainData = null;
 
 
-    initMember("scoutMan",function(){
+    initMember("visitMan",function(){
     }); 
 
 function visitManChanged(e){
@@ -129,82 +129,40 @@ function visitManChanged(e){
 }
     function setData(rowData){
         mainData = rowData;
-        var visitdetaildata = searchVisitDetail(rowData.guestId);
-        if(visitdetaildata){
-            form.mode = visitdetaildata.mode;
-            form.scoutMan = visitdetaildata.scoutMan;
-            form.scoutDate = visitdetaildata.scoutDate;
-            form.content = visitdetaildata.content;
-            form.nextScoutDate = visitdetaildata.nextScoutDate;
-            form.predComeDate = visitdetaildata.predComeDate;
-            form.mainReason = visitdetaildata.mainReason;
-            form.subReason = visitdetaildata.subReason;
-            form.isContinueScout = visitdetaildata.isContinueScout;
-            form.nowMtComp = visitdetaildata.nowMtComp;
-
-        }
-        tabForm.setData(form);
-
     }
-
-
-
-function searchVisitDetail(gid){
-    var ret = null;
-    var p ={
-        id:"",
-        guestId:gid,
-        carId:""
-    };
-    nui.ajax({
-        url:baseUrl + "com.hsapi.crm.svr.visit.QueryCrmVisitLoseDetail.biz.ext",
-        type:"post",
-        async: false,
-        data:{
-            params:p,
-            token:token
-        },
-        success:function(text){
-            if(text.errCode == "S"){
-                var tdata = text.data;
-                if(tdata.length == 1){
-                    ret = tdata[0];
-                }else if(tdata.length > 1 ){
-                    showMsg("获取数据失败！","E");
-                }else{}
-            }
-
-        }
-    });
-    return ret;
-}
-
 
 function save(){
     var data = tabForm.getData();
-    var record = {
-        mode:data.mode,
-        scoutMan:data.scoutMan,
-        scoutDate:data.scoutDate,
-        content:data.content,
-        nextScoutDate:data.nextScoutDate,
-        predComeDate:data.predComeDate,
-        mainReason:data.mainReason,
-        subReason:data.subReason,
-        isContinueScout:data.isContinueScout,
-        nowMtComp:data.nowMtComp,
-        carId:mainData.id,
-        guestId:mainData.guestId
-    };
+        var record = {
+            visitMode:data.visitMode,
+            visitId:data.visitId,
+            visitMan:data.visitMan,
+            visitDate:data.visitDate,
+            visitContent:data.visitContent,
+            careDueDate:data.careDueDate,
+            careDayCycle:data.careDayCycle,
+            carId:mainData.carId,
+            carNo:mainData.carNo,
+            guestId:mainData.guestId,
+            serviceId:mainData.serviceId,
+            serviceType:'4',
+            mainId:mainData.id,
+            isContinueVisit:data.isContinueVisit,
+            mainReason:data.mainReason,
+            subReason:data.subReason,
+            planComeDate:data.planComeDate,
+            nextVisitDate:data.nextVisitDate,
+            nowMtComp:data.nowMtComp
+        };
     nui.ajax({
-        url:baseUrl + "com.hsapi.crm.svr.visit.saveVisitLoseDetail.biz.ext",
+        url:baseUrl + "com.hsapi.crm.svr.visit.savevisitDetail.biz.ext",
         type:"post",
         data:{
-            detail:record
+            params:record
         },
         success:function(text){
             if(text.errCode == "S"){
-                var detailData = text.detailData;
+               // var detailData = text.detailData;
                 showMsg("保存成功！","S");
                 CloseWindow("ok");
             }

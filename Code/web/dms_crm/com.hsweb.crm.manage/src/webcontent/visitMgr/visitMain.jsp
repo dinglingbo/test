@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.5" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.6" type="text/javascript"></script>
     <style type="text/css">
     body { 
         margin: 0; 
@@ -28,7 +28,7 @@ pageEncoding="UTF-8" session="false" %>
 </head>
 <body>
     <input name="serviceTypeId"id="serviceTypeId" visible="false"class="nui-combobox"textField="name"valueField="id"/>
-    <input name="carBrandId"id="carBrandId" visible="false"class="nui-combobox"textField="name"valueField="id"/>
+    <input name="carBrandId" id="carBrandId" visible="false"class="nui-combobox"textField="name"valueField="id"/>
     <div class="nui-toolbar">
         <label style="font-family:Verdana;">快速查询：</label>
         <a href="##" iconCls="" plain="true" onclick="quickSearch(1)">我接待的车辆</a>
@@ -64,8 +64,6 @@ pageEncoding="UTF-8" session="false" %>
             <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
             <div field="guestFullName" name="guestFullName" width="80px" headerAlign="center" header="客户姓名"></div>
             <div field="guestMobile" name="guestMobile" width="100px" headerAlign="center" header="客户手机"></div>
-            <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
-            <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div> 
             <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
             <div field="serviceTypeName" name="serviceTypeName" width="100px" headerAlign="center" header="业务类型"></div>
             <!--<div field="isSettle" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div> -->

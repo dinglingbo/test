@@ -373,7 +373,7 @@ $(document).ready(function ()
        var keyCode=e.keyCode||e.which;
 
 	    if((keyCode==78)&&(event.altKey))  {  //新建
-         add("ADD");	
+         add();	
      } 
 
 	    if((keyCode==83)&&(event.altKey))  {   //保存
@@ -657,7 +657,7 @@ function setInitData(params){
 	};
 	sellForm.setData(data);
     if(!params.id){
-        add("SET");
+        add();
     }else{
         nui.mask({
             el: document.body,
@@ -807,7 +807,7 @@ function setInitData(params){
         });
     }
 }
-function add(type){
+function add(){
     searchNameEl.setVisible(false);
     searchNameEl.setEnabled(false);
     searchNameEl.setValue("");
@@ -834,7 +834,7 @@ function add(type){
     sellForm.setData(data);
     nui.get("mtAdvisorId").setValue(currEmpId);
     nui.get("mtAdvisor").setValue(currUserName);
-    nui.get("serviceTypeId").setValue(3);
+    nui.get("serviceTypeId").setValue(1);
     nui.get("enterDate").setValue(now);
 
     fguestId = 0;
@@ -855,6 +855,13 @@ function add(type){
     nui.get("ExpenseAccount").setVisible(true);
     nui.get("ExpenseAccount1").setVisible(false);
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
+    var tabList = document.querySelectorAll('.xz');
+	var natureId = null;
+	for(var i=0;i<tabList.length;i++){
+		natureId= tabList[i].id;
+		var s = "#"+natureId;
+		$(s).toggleClass("xz");
+	}
 }
 function save(){
 	itemF = "S";
@@ -1238,6 +1245,7 @@ function unfinish(){
             var errCode = data.errCode||"";
             var errMsg = data.errMsg||"";
             if(errCode == 'S'){
+            	doFinishF = 1;
                 var maintain = data.main||{};
                 var olddata = billForm.getData();
                 olddata.status = 1;
@@ -1253,13 +1261,13 @@ function unfinish(){
                 var p2 = {
                     interType: "item",
                     data:{
-                        serviceId: data.id||0
+                        serviceId: maintain.id ||0
                     }
                 }
                 var p3 = {
                     interType: "part",
                     data:{
-                        serviceId: data.id||0
+                        serviceId: maintain.id||0
                     }
                 }
                 loadDetail(p1, p2, p3,status);
@@ -3060,7 +3068,7 @@ function showHealth(){
         },
     });*/
 }
-//var doFinishF = 1;
+var doFinishF = 1;
 function pay(){
 	var data = billForm.getData();
     if(!data.id){
@@ -3071,9 +3079,10 @@ function pay(){
           	 showMsg("工单已结算!","W");
                return;
           }
-        if(data.status != 2){
+        if(data.status != 2 && doFinishF==1){
             //showMsg("工单未完工,不能结算!","W");
             //return;
+        	doFinishF = 0;
         	var params = {
         	        data:{
         	            id:data.id||0,
@@ -3083,7 +3092,7 @@ function pay(){
         	    svrRepairAudit(params, function(data1){
         	        data1 = data1||{};
         	        var errCode = data1.errCode||"";
-        	        var errMsg = data1.errMsg||"";
+        	        var errMsg = data1.errMsg||"操作失败,请重新操作";
         	        if(errCode == 'S'){
         	        	//成功之后，重新设置表单值*******************
                         var olddata = billForm.getData();
@@ -3112,7 +3121,8 @@ function pay(){
                         loadDetail(p1, p2, p3,status);
                         onPay(data);
         	        }else{
-        	        	showMsg("操作失败,请重新操作","E");
+        	        	doFinishF = 1;
+        	        	showMsg(errMsg,"E");
         	        }
         	    }, function(){
         	    });
@@ -3742,7 +3752,7 @@ function toChangBillTypeId(billTypeId){
 	        success: function (data) {  
 	            if(data.errCode=="S"){
 	            	//showMsg("转为洗美开单成功","S");
-	            	add("ADD");
+	            	add();
 	            	var item={};
 	            	var main = data.main;
 	                if(billTypeId==0){
@@ -3983,32 +3993,6 @@ function showTab(str){
 	}
 }
 
-//遍历表格(编辑时调用)
-/*function forFrom(){
-	var strId = "";
-	var data = [];
-	var row = rpsItemGrid.findRow(function(row){
-		if(row.billItemId && row.billItemId==0){
-			data.push(row);
-		}
-    });
-	var rpbData = itemGrid.getData();
-	if(data && data.length>0 && rpbData && rpbData.length>0){
-		for(var i = 0;i<data.length;i++){
-			for(var j = 0;j<rpbData.length;j++){
-				if(rpbData[j].id == data[i].prdtId){
-					if(strId==""){
-						strId =  ""+rpbData[j].id;
-                	}else{
-                		strId = strId+","+rpbData[j].id;
-                	}
-					break;
-				}
-			}			
-		}
-	}
-	return strId;
-}*/
 
 function forFrom(){
 	var strId = "";
@@ -4024,39 +4008,6 @@ function forFrom(){
     });
 	return strId;
 }
-
-/*function selectclick() {
-    $("a[name=HotWord]").click(function () {
-//        $(this).siblings().removeClass("xz");
-        
-    	if($(this)[0].classList.length==1){
-        	$(this).toggleClass("xz");
-        }
-        var rpbId = $(this)[0].id;
-        //等于2添加，1删除
-        if($(this)[0].classList.length==2){
-        	var row = itemGrid.findRow(function(row){
-        		if(row.id == rpbId){
-        			var type = 2;
-        			var resultData = {
-        		            type:type,
-        		            rtnRow:row
-        		    };
-        		    saveNoshowMsg(function(){
-        		    	var checkMsg = checkPrdt(resultData);
-                        if(checkMsg) {
-                            showMsg(checkMsg,"W");
-                            return;
-                        }else{
-                            //弹出数量，单价和金额的编辑界面
-                            addPrdt(resultData);
-                        }
-        		    	},"addYC");
-        		}
-            });
-        }
-    });
-}*/
 
 function selectclick() {
     $("a[name=HotWord]").click(function () {

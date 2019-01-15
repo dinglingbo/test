@@ -124,6 +124,14 @@ function showTabInfo(){
             }
             
             break;
+        case "other":
+            if(!url){
+                mainTabs.loadTab(baseUrlm + "/repair/cfg/x_makeAnAppointmentLocation.jsp?token="+token, tab);
+            }else{
+                mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
+            }
+            
+            break;
         default:
             break;
     }

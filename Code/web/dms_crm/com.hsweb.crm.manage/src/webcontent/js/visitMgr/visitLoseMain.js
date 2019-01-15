@@ -45,7 +45,7 @@ $(document).ready(function(){
 
     gridCar.on("drawcell", function (e) { 
     	if(e.field == "serviceCode"){
-    		e.cellHtml ='<a href="##" onclick="openOrderDetail('+"'"+e.record.id+"'"+')">'+e.record.serviceCode+'</a>';
+    		e.cellHtml ='<a href="##" onclick="openOrderDetail('+"'"+e.record.serviceId+"'"+')">'+e.record.serviceCode+'</a>';
     	}
     });
 
@@ -65,7 +65,7 @@ function SetData(){
 		mini.open({
 			url: webPath + contextPath + "/manage/visitMgr/visitLoseMainDetail.jsp?token="+ token,
 			title: "电话回访", 
-			width: 750, height: 370,
+			width: 770, height: 390,
 			onload: function () {
 				var iframe = this.getIFrameEl(); 
 				iframe.contentWindow.setData(row);
@@ -200,7 +200,7 @@ function openOrderDetail(serviceId){
 		var item={};
 		item.id = "11111";
 		item.text = "工单详情页";
-		item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow";
+		item.url = webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow";
 		item.iconCls = "fa fa-cog";
 		window.parent.activeTabAndInit(item,data);
 	}
@@ -211,13 +211,19 @@ function sendInfo(){
 	if (row == undefined) {
 		showMsg("请选中一条数据","W");
 		return;
-	}
+    }
+    if (!row.guestMobile) {
+		showMsg("该数据没有手机号码，无法发送短信","W");
+		return;
+    }
+    row.mobile = row.guestMobile;
+    row.serviceType = 4;//客户回访
 	nui.open({
 		url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
 		title: "发送短信", width: 655, height: 386,
 		onload: function () {
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.setData();
+			iframe.contentWindow.setData(row);
 		},
 		ondestroy: function (action) {
             //重新加载

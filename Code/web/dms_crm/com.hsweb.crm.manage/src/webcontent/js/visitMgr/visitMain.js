@@ -47,6 +47,7 @@ $(document).ready(function(){
         	quickSearch(3);
         }
     };
+
     initCarBrand("carBrandId",function(data) {
     	brandList = nui.get("carBrandId").getData();
     	brandList.forEach(function(v) {
@@ -77,7 +78,7 @@ $(document).ready(function(){
     			e.cellHtml = "未结算";
     		}
     	}else if(e.field == "serviceCode"){
-    		e.cellHtml ='<a href="##" onclick="openOrderDetail('+"'"+e.record.id+"'"+')">'+e.record.serviceCode+'</a>';
+    		e.cellHtml ='<a href="##" onclick="openOrderDetail('+"'"+e.record.serviceId+"'"+')">'+e.record.serviceCode+'</a>';
     	}
     });
 
@@ -95,7 +96,7 @@ function SetData(){
 		mini.open({
 			url: webPath + contextPath + "/manage/visitMgr/visitMainDetail.jsp?token="+ token,
 			title: "电话回访", 
-			width: 680, height: 230,
+			width: 680, height: 330,
 			onload: function () {
 				var iframe = this.getIFrameEl(); 
 				iframe.contentWindow.setData(row);
@@ -192,13 +193,19 @@ function sendInfo(){
 	if (row == undefined) {
 		showMsg("请选中一条数据","W");
 		return;
-	}
+    }
+    if (!row.guestMobile) {
+		showMsg("该数据没有手机号码，无法发送短信","W");
+		return;
+    }
+    row.mobile = row.guestMobile;
+    row.serviceType = 3;//客户回访
 	nui.open({
 		url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
 		title: "发送短信", width: 655, height: 386,
 		onload: function () {
 			var iframe = this.getIFrameEl();
-			iframe.contentWindow.setData();
+			iframe.contentWindow.setData(row);
 		},
 		ondestroy: function (action) {
             //重新加载

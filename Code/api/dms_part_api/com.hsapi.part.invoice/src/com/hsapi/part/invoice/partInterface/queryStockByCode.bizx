@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryJoinStock" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询SRM库存&#xD;&#xA;http://14.23.35.20:5781/srm/router/rest&#xD;&#xA;{&quot;method&quot;:&quot;sys.sys.loginIndex&quot;,&quot;account&quot;:&quot;hstest&quot;,&quot;password&quot;:&quot;hstest&quot;}&#xD;&#xA;&#xD;&#xA;http://14.23.35.20:5781/srm/router/rest?token=2B9CE39B6B200D867146AFF56BB1967A&#xD;&#xA;{method:&quot;product.guestInvQty.getPartInv&quot;,code:&quot;A2782000400&quot;,qty:1}&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;18-12-25 下午4:56">
-    <location x="-105" y="-150"/>
-    <size height="248" width="566"/>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryStockByCode" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="2019.1.15   根据配件编码查询SRM库存&#xD;&#xA;http://124.172.221.179:83/srm/router/rest?token=8A1354354EB4B7335986E04C98D84C5B&#xD;&#xA;{&#xA;&#x9;&quot;method&quot;:&quot;base.partQuery.getInvList&quot;,&#xA;&#x9;&quot;partCode&quot;:&quot;16127236941&quot;&#xA;}&#xD;&#xA;" title="Administrator&#x9;18-12-25 下午4:56">
+    <location x="-105" y="-75"/>
+    <size height="151" width="566"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="link11" isDefault="true" type="transition">

@@ -10,7 +10,7 @@
 -->
 <head>
 <title>退货开单查询</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnQuery.js?v=1.0.5"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnQuery.js?v=1.0.6"></script>
 <style type="text/css">
 
 .title {
@@ -112,16 +112,22 @@
                url="">
               <div property="columns">
                   <div type="indexcolumn">序号</div>
-                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
+                  <!--展开有问题  -->
+                  <div type="expandcolumn" width="20" visible="false"><span class="fa fa-plus fa-lg"></span></div>
                   <div field="contactName" name="contactName" width="55" headerAlign="center" header="联系人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="80" headerAlign="center" header="联系人手机"></div>
                   <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌" visible="false"></div>           
                   <div field="carModel" name="carModel" width="180" headerAlign="center" header="品牌车型" visible="false"></div>
-                  <div field="partAmt" name="partAmt" width="40" headerAlign="center" header="金额"></div>
+                  <!-- <div field="partAmt" name="partAmt" width="40" headerAlign="center" header="金额"></div> -->
                   <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div> 
-                  <div field="recorder" name="recorder" width="50" headerAlign="center" header="销售员"></div>
+                  <div field="recorder" name="recorder" width="50" headerAlign="center" header="退货员"></div>
 	              <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
 	              <div field="status" name="status" width="50" headerAlign="center" header="状态"></div>
+	              <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div> 
+                  <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码" align="center"></div>   
+                  <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="退货数量" name="partQty"> </div>
+                  <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价" name="partUnitPrice"> </div>
+	              <div field="amt" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"> </div>
 	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
 	              <div field="outDate" name="outDate" width="100" headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd HH:mm"></div>
 	              <div field="remark" name="carModel" width="100" headerAlign="center" header="备注" ></div>

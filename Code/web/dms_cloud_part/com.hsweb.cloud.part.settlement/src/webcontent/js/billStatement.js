@@ -598,7 +598,7 @@ function selectSupplier(elId)
 {
     supplier = null;
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "往来单位", width: 980, height: 560,
         allowDrag:true,
@@ -927,7 +927,7 @@ function addBill(){
 function selectPart(guestId,callback,checkcallback)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.cloud.part.settlement.billServiceSelect.flow?token="+token,
         title: "业务单选择", width: 930, height: 560,
         allowDrag:true,

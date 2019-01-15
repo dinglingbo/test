@@ -69,7 +69,7 @@ function addOrEditInsurance(comguest)
         title = "修改保险公司";
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.repair.DataBase.InsuranceDetail.flow",
         allowResize:false,
         title: title, width: 600, height: 400,

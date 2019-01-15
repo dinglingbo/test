@@ -1141,7 +1141,7 @@ function addDetail(part) {
 				url : webPath+contextPath+"/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
 				title : "入库数量金额",
 				width : 430,
-				height : 210,
+				height : 230,
 				allowDrag : true,
 				allowResize : false,
 				onload : function() {

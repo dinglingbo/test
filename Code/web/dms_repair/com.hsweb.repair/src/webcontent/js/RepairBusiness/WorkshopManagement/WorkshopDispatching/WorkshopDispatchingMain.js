@@ -338,7 +338,7 @@ function onFinnish()
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.RepairBusiness.workInspection.flow",
         title: "车辆总检",
         width: 660,

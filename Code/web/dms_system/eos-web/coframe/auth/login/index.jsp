@@ -111,7 +111,6 @@
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-<!--                 	 <input class="nui-textbox" id="orgId" name="orgId" width="100px" emptyText="请输入店号"> -->
                     <input class="nui-textbox" id="orgidOrName" name="orgidOrName" width="160px" emptyText="请输入店号或公司名">
                     <a class="nui-button" iconCls="" plain="true" onclick="searchOrg()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="addOrg" id=""><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
@@ -134,7 +133,6 @@
                url="">
               <div property="columns">
               	<div type="checkcolumn" width="15" class="mini-radiobutton" header="选择"></div>
-<!--                 <div type="indexcolumn" headerAlign="center"  width="15">店号</div> -->
                 <div field="orgcode" name="orgid" width="15" align="center"  visible="true" headerAlign="center" header="企业号"></div>
                 <div field="orgname" name="orgname" width="" align="center"  headerAlign="center" header="公司名称"></div>
               </div>
@@ -158,9 +156,7 @@
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
             <li class="dropdown">
                 <a  onClick="OrgShow()" style="padding-top: 18px; ">
-<!--                        <i class="fa fa-align-justify"></i> -->
                         <span  class="org_hover" id="currOrgName">公司</span>
-<!--                        <i class="fa fa-angle-down"></i> -->
                 </a>
                 <ul class="dropdown-menu pull-right" id="orgsname">
                     <!-- <li>

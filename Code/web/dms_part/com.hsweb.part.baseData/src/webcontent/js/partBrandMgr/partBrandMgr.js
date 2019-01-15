@@ -58,7 +58,7 @@ function addOrEditPartQuality(quality)
         title = "品质编辑";
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.baseData.partQualityDetail.flow?token=" + token,
         title: title, width: 350, height: 150,
         allowDrag:true,
@@ -109,7 +109,7 @@ function addOrEditPartBrand(brand)
         title = "品牌编辑";
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.baseData.partBrandDetail.flow?token=" + token,
         title: title, width: 350, height: 200,
         allowDrag:true,
@@ -411,7 +411,7 @@ function updateIsDisabled(brand,callback)
 function addLocalBrand()
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.baseData.partBrandOrgDetail.flow?token=" + token,
         title: "新增关注品牌", width: 600, height: 350,
         allowDrag:true,

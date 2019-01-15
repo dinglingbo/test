@@ -115,7 +115,7 @@ function edit(action) {
 
     var url = webPath + contextPath + "/com.hs.common.employeeEdit.flow?token="+token;
     var width = 680;
-    var height = 470;
+    var height = 550;
     if(currCompType == 'PART'){
         url = webPath + contextPath + "/com.hs.common.partEmployeeEdit.flow?token="+token;
         height = 250;
@@ -326,7 +326,7 @@ function changebutton(){
 function importGuest(){
 
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hs.common.importEmployee.flow?token="+token,
         title: "员工导入", 
         width: 930, 

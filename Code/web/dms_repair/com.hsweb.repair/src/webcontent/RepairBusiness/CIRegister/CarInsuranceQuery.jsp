@@ -76,7 +76,7 @@ pageEncoding="UTF-8" session="false"%>
                 allowSortColumn="true">
                 <div property="columns">
                     <div type="indexcolumn" headeralign="center" allowsort="true" visible="true" width="30">序号</div>
-                    <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
+                    <div type="expandcolumn" width="20" visible="false"><span class="fa fa-plus fa-lg"></span></div>
                     <div field="id" headeralign="center" allowsort="true" visible="false" width="80px">主键</div>
                     <div field="carNo" headeralign="center" allowsort="true" visible="true" width="90px">车牌号</div>
                     <!-- <div field="carBrandId" headeralign="center" allowsort="true" visible="true" width="80px">品牌</div> -->
@@ -91,9 +91,13 @@ pageEncoding="UTF-8" session="false"%>
                     <div field="beginDate" name="" width="130" headerAlign="center" header="有效开始日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div field="endDate" name="" width="130" headerAlign="center" header="有效结束日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div field="settleTypeId" headeralign="center" allowsort="true" visible="true" width="100px">保费收取方式</div>
-                    <div field="amt" name="amt" width="100" headerAlign="center" header="保司保费总金额"></div>
+		            <div field="insureTypeName" headerAlign="center" allowSort="false" visible="true" width="100" header="险种"></div> 
+		            <div field="amt" headerAlign="center" allowSort="false"  width="80px" header="保司保费" align="center"></div>   
+		            <div field="rtnCompAmt" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="保司返点" > </div>
+		            <div field="rtnGuestAmt" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="客户返点"> </div>
+                    <!-- <div field="amt" name="amt" width="100" headerAlign="center" header="保司保费总金额"></div>
                     <div field="rtnCompAmt" name="partAmt" width="100" headerAlign="center" header="保司返点总金额"></div>
-                    <div field="rtnGuestAmt" name="partAmt" width="100" headerAlign="center" header="客户返点总金额"></div>
+                    <div field="rtnGuestAmt" name="partAmt" width="100" headerAlign="center" header="客户返点总金额"></div> -->
                 </div>
             </div>
             <div id="editFormDetail" style="display:none;padding:5px;position:relative;">

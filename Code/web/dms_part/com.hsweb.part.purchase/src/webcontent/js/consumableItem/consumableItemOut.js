@@ -98,7 +98,7 @@ function itemOut(){
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.purchase.consumableItemOutDetail.flow?token=" + token,
         title: "耗材出库", width: 500, height: 240,
         allowDrag:true,
@@ -131,7 +131,7 @@ function returnStore(id)
         }
     });
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.purchase.consumableItemReturn.flow?token=" + token,
         title: "耗材退回", width: 500, height: 270,
         allowDrag:true,

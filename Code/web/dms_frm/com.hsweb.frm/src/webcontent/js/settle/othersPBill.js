@@ -135,7 +135,7 @@ function onbillTypeChange(e){
 function addGuest(){
     var supplier = null;
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.common.supplierSelect.flow",
         title: "选择往来单位", width: 980, height: 560,
         allowDrag:true,
@@ -341,7 +341,7 @@ function selectSupplier(elId)
 {
     supplier = null;
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.common.supplierSelect.flow",
         title: "结算单位资料", width: 980, height: 560,
         allowDrag:true,

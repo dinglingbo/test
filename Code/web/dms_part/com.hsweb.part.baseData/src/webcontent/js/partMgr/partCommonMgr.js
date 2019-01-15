@@ -458,7 +458,7 @@ function doSSearch(params) {
 }
 function importPart(){
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.baseData.importPartCommon.flow?token="+token,
         title: "配件替换关系导入", 
         width: 930, 

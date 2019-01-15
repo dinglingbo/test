@@ -915,7 +915,7 @@ function selectSupplier(elId)
 {
 	supplier = null;
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title: "供应商资料", width: 980, height: 560,
         allowDrag:true,
@@ -1093,7 +1093,7 @@ function onCellCommitEdit(e) {
 function selectPart(callback,checkcallback)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.cloud.part.common.partSelectView.flow",
         title: "配件选择", width: 930, height: 560,
         allowDrag:true,
@@ -1132,7 +1132,7 @@ function addDetail(part)
     }
     
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
         title: "入库数量金额", width: 430, height:230,
         allowDrag:true,

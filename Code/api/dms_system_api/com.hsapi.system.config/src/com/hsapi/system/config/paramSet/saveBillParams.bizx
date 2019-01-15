@@ -211,7 +211,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">paramObj/keyidId</process:leftOperand>
-          <process:rightOperand type="literal">repairDeductKpiFlag</process:rightOperand>
+          <process:rightOperand type="literal">repairPartAuditFlag</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>

@@ -1168,7 +1168,7 @@ function addDetail(part) {
 				url : webPath+contextPath+"/com.hsweb.cloud.part.common.detailQPAPopOperate.flow?token="+token,
 				title : "入库数量金额",
 				width : 430,
-				height : 210,
+				height : 230,
 				allowDrag : true,
 				allowResize : false,
 				onload : function() {
@@ -1716,7 +1716,7 @@ function addGuest(){
 	nui.confirm("此供应商不存在，是否新增?", "友情提示", function(action) {
 		if (action == "ok") {
 			nui.open({
-				targetWindow: window,
+				// targetWindow: window,
 				url: webPath+contextPath+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
 				title: "供应商资料", width: 530, height: 480,
 				allowDrag:true,
@@ -2147,7 +2147,7 @@ function addPchsOrder(type)
 	}
 
 	nui.open({
-		targetWindow: window,
+		// targetWindow: window,
 		url: webPath+contextPath+"/com.hsweb.cloud.part.purchase.pchsOrderSelect.flow?token="+token,
 		title: title, width: 930, height: 560,
 		allowDrag:true,

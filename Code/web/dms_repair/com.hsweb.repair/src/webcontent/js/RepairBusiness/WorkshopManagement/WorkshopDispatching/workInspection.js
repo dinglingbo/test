@@ -56,7 +56,7 @@ function init(callback)
 function selectReport()
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.repair.DataBase.OutCarMain.flow",
         title: "出车报告",
         width: 900,

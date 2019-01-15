@@ -563,7 +563,7 @@ function save() {
 function selectPart(callback)
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.common.partSelectView.flow?token=" + token,
         title: "选择配件", width: 900, height: 600,
         allowDrag:true,
@@ -587,7 +587,7 @@ function addEnterDetail(part)
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.purchase.inBoundCountView.flow?token=" + token,
         title: "入库数量金额", width: 430, height:210,
         allowDrag:true,
@@ -653,7 +653,7 @@ function editPart()
     }
     var storeId = nui.get("storeId").getValue();
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.part.purchase.enterDetailEdit.flow?token=" + token,
         title: "数量金额", width: 430, height:210,
         allowDrag:true,

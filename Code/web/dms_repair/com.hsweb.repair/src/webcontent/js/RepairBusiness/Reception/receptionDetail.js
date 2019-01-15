@@ -289,7 +289,7 @@ function selectPackage() {
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.repair.common.rpbPackageSelect.flow",
         title: "本店套餐",
         width: 1000,
@@ -469,7 +469,7 @@ function editRpsPackage() {
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.RepairBusiness.editRpsPackage.flow",
         title: "修改套餐",
         width: 800,
@@ -615,7 +615,7 @@ function addOrEditRpsItemQuote(idx) {
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.RepairBusiness.addEditItem.flow",
         title: "维修项目录入",
         width: 600,
@@ -762,7 +762,7 @@ function addOrEditRpsPartQuote(idx) {
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.RepairBusiness.addEditMaterial.flow",
         title: "维修材料录入",
         width: 600,
@@ -928,7 +928,7 @@ function addOrEditRpsItem(idx) {
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.RepairBusiness.addEditItem.flow",
         title: "维修项目录入",
         width: 600,
@@ -1069,7 +1069,7 @@ function addOrEditRpsPart(idx) {
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.RepairBusiness.addEditMaterial.flow",
         title: "维修材料录入",
         width: 600,
@@ -1160,7 +1160,7 @@ function addOrEditRpsItemBill(idx) {
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.RepairBusiness.addEditItem.flow",
         title: "维修项目录入",
         width: 600,
@@ -1297,7 +1297,7 @@ function addOrEditRpsPartBill(idx) {
         return;
     }
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.RepairBusiness.addEditMaterial.flow",
         title: "维修材料录入",
         width: 600,
@@ -1940,7 +1940,7 @@ function clearReport(){
 function selectReport()
 {
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "com.hsweb.repair.DataBase.OutCarMain.flow",
         title: "出车报告",
         width: 900,

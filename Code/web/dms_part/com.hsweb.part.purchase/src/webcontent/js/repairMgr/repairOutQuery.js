@@ -200,7 +200,7 @@ function selectCustomer(elId)
 {
     customer = null;
     nui.open({
-        targetWindow: window,
+        // targetWindow: window,
         url: "../common/customerSelectView.html",
         title: "客户资料", width: 980, height: 560,
         allowDrag:true,

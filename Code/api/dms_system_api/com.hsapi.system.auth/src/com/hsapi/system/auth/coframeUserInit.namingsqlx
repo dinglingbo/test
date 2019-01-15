@@ -54,4 +54,9 @@
 			UNION 
 		SELECT ROLE_ID FROM cap_partyauth P WHERE P.PARTY_ID IN (SELECT CHAR(GROUPID) FROM ORG_EMPGROUP WHERE EMPID=#empid#) AND P.PARTY_TYPE = 'group'
 	</select>
+	
+	<update id="updateCompSrmConfigure" parameterClass="java.util.HashMap">
+		update com_guest set srm_guest_id = #guestId#  where is_internal_id = #orgid# 
+	</update>
+
 </sqlMap>

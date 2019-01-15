@@ -1,11 +1,11 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
-var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
+var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryMainPartList.biz.ext";
 var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
 var beginDateEl = null;
 var endDateEl = null;
-var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"联系人名称"},{id:"3",name:"手机号"}];
 var brandList = [];
 var brandHash = {};
 var servieTypeList = [];
@@ -218,7 +218,7 @@ function doSearch(params) {
 //    gsparams.status = params.status;
 //    gsparams.isSettle = params.isSettle;
 //    //表示退货单
-//    gsparams.billTypeId = 5;
+    gsparams.billTypeId = 5;
     mainGrid.load({
         token:token,
         params: gsparams

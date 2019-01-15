@@ -140,7 +140,7 @@ function addCustomer()
     settTypeIdList = nui.get("settType").getData();
     managerDutyList = nui.get("managerDuty").getData();
     nui.open({
-        targetWindow: window,
+//        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.baseData.customerAdd.flow?token=" + token,
         title: "客户资料", width: 560, height: 560,
         allowDrag:true,
@@ -179,9 +179,9 @@ function editCustomer()
     settTypeIdList = nui.get("settType").getData();
     managerDutyList = nui.get("managerDuty").getData();
     nui.open({
-        targetWindow: window,
+//        // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.part.baseData.customerAdd.flow?token=" + token,
-        title: "客户资料", width: 530, height: 460,
+        title: "客户资料", width: 600, height: 550,
         allowDrag:true,
         allowResize:false,
         onload: function ()
@@ -230,11 +230,11 @@ function importGuest(){
     settTypeIdList = nui.get("settType").getData();
 
     nui.open({
-        targetWindow: window,
+//        // targetWindow: window,
         url: webPath + contextPath + "/com.hsweb.part.baseData.importClient.flow?token="+token,
         title: "客户导入", 
-        width: 930, 
-        height: 560,
+        width: 1000, 
+        height: 5400,
         allowDrag:true,
         allowResize:true,
         onload: function ()

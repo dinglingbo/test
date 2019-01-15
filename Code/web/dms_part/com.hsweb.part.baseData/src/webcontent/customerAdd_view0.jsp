@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/customerMgr/customerAdd.js?v=1.0.8"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/customerMgr/customerAdd.js?v=1.0.20"></script>
 <style type="text/css">
 .title {
   text-align: right;
@@ -89,7 +89,7 @@
 <div id="tabs1" class="nui-tabs" activeIndex="0"  style="width:97%;height:100%;margin-left: 1.5%;"
          arrowPosition="side" showNavMenu="true">
         <div name="tab1" title="基本信息">
-            <div class="nui-fit" id= "mainForm">
+            <div class="form" id= "mainForm">
               <div class="vpanel mainwidth" style="height:auto;">
                   <!-- <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>基本信息</span></div> -->
                   <div class="vpanel_body vpanel_bodyww">
@@ -228,7 +228,7 @@
             </div>
         </div>
         <div name="tab2" title="其他信息">
-            <div class="nui-fit" id= "otherForm">
+            <div class="form" id= "otherForm">
               <div class="vpanel mainwidth" style="height:auto; ">
                   <!-- <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>基本信息</span></div> -->
                   <div class="vpanel_body vpanel_bodyww">

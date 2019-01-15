@@ -59,21 +59,21 @@ a#car{
         <td>
     	 <label style="font-family:Verdana;">快速查询：</label>
                     
-                    <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+<!--                     <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a> -->
 
-                <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-                <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
-                <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
-                <li class="separator"></li>
-                <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
-                <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
-                <li class="separator"></li>
-                <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
-                <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
-                <li class="separator"></li>
-                <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
-                <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
-            </ul>
+<!--                 <ul id="popupMenuDate" class="nui-menu" style="display:none;"> -->
+<!--                 <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li> -->
+<!--                 <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li> -->
+<!--                 <li class="separator"></li> -->
+<!--                 <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li> -->
+<!--                 <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li> -->
+<!--                 <li class="separator"></li> -->
+<!--                 <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li> -->
+<!--                 <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li> -->
+<!--                 <li class="separator"></li> -->
+<!--                 <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li> -->
+<!--                 <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li> -->
+<!--             </ul> -->
                 
             <input class="nui-textbox" id="name" name="name" emptyText="输入客户姓名" width="120" />
             <input class="nui-textbox" id="carNo" name="carNo" emptyText="输入车牌号" width="120" />
@@ -92,8 +92,9 @@ a#car{
             valueFromSelect="true"
             onvaluechanged=""
             nullItemText="请选择..."/>
-            开单日期 从<input id="date1" name="" class="nui-datepicker" value=""/>
-            至 <input id="date2" name="" class="nui-datepicker" value=""/>
+<!--             开单日期 从<input id="date1" name="" class="nui-datepicker" value=""/> -->
+<!--             至 <input id="date2" name="" class="nui-datepicker" value=""/> -->
+			<input class="nui-textbox" id="serviceCode" name="serviceCode" emptyText="按工单号查询" width="120" />
             <a class="nui-button" iconCls="" plain="false" onclick="onSearch">
                 <span class="fa fa-search fa-lg"></span>&nbsp;查询
             </a>
@@ -138,8 +139,8 @@ a#car{
     var gridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
     mainGrid.setUrl(gridUrl);
     
-    beginDateEl = nui.get("date1");
-    endDateEl = nui.get("date2");
+//     beginDateEl = nui.get("date1");
+//     endDateEl = nui.get("date2");
 
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
@@ -147,109 +148,110 @@ a#car{
           servieTypeHash[v.id] = v;
       });
     });
+	onSearch();
 
-
-    var yy = (new Date()).getFullYear();
-    var mm = ((new Date()).getMonth() + 1);
-    var dd = (new Date()).getDate();
-    var da = yy + "-" + mm; //本月月
-    var db = yy + "-" + mm + "-" + dd; //本月月
-    nui.get("date1").setValue(da);
-    nui.get("date2").setValue(db);
-    quickSearch(4);
+//     var yy = (new Date()).getFullYear();
+//     var mm = ((new Date()).getMonth() + 1);
+//     var dd = (new Date()).getDate();
+//     var da = yy + "-" + mm; //本月月
+//     var db = yy + "-" + mm + "-" + dd; //本月月
+//     nui.get("date1").setValue(da);
+//     nui.get("date2").setValue(db);
+//     quickSearch(4);
     
-    var currType = 2;
-	function quickSearch(type){
-	    var params = {};
-	    var querysign = 1;
-	    var queryname = "本日";
-	    var querystatusname = "草稿";
-	    switch (type)
-	    {
-	        case 0:
-	            params.today = 1;
-	            params.sRecordDate = getNowStartDate();
-	            params.eRecordDate = addDate(getNowEndDate(), 1);
-	            querysign = 1;
-	            queryname = "本日";
-	            break;
-	        case 1:
-	            params.yesterday = 1;
-	            params.sRecordDate = getPrevStartDate();
-	            params.eRecordDate = addDate(getPrevEndDate(), 1);
-	            querysign = 1;
-	            queryname = "昨日";
-	            break;
-	        case 2:
-	            params.thisWeek = 1;
-	            params.sRecordDate = getWeekStartDate();
-	            params.eRecordDate = addDate(getWeekEndDate(), 1);
-	            querysign = 1;
-	            queryname = "本周";
-	            break;
-	        case 3:
-	            params.lastWeek = 1;
-	            params.sRecordDate = getLastWeekStartDate();
-	            params.eRecordDate = addDate(getLastWeekEndDate(), 1);
-	            querysign = 1;
-	            queryname = "上周";
-	            break;
-	        case 4:
-	            params.thisMonth = 1;
-	            params.sRecordDate = getMonthStartDate();
-	            params.eRecordDate = addDate(getMonthEndDate(), 1);
-	            querysign = 1;
-	            queryname = "本月";
-	            break;
-	        case 5:
-	            params.lastMonth = 1;
-	            params.sRecordDate = getLastMonthStartDate();
-	            params.eRecordDate = addDate(getLastMonthEndDate(), 1);
-	            querysign = 1;
-	            queryname = "上月";
-	            break;
-	        case 10:
-	            params.thisYear = 1;
-	            params.sRecordDate = getYearStartDate();
-	            params.eRecordDate = getYearEndDate();
-	            querysign = 1;
-	            queryname = "本年";
-	            break;
-	        case 11:
-	            params.lastYear = 1;
-	            params.sRecordDate = getPrevYearStartDate();
-	            params.eRecordDate = getPrevYearEndDate();
-	            querysign = 1;
-	            queryname = "上年";
-	            break;
-	        default:
-	            break;
-	    }
-	    beginDateEl.setValue(params.sRecordDate);  
-	    endDateEl.setValue(addDate(params.eRecordDate,-1));
-	    currType = type;
-	    if(querysign == 1){
-	    	var menunamedate = nui.get("menunamedate");
-	    	menunamedate.setText(queryname); 	
-	    }
+//     var currType = 2;
+// 	function quickSearch(type){
+// 	    var params = {};
+// 	    var querysign = 1;
+// 	    var queryname = "本日";
+// 	    var querystatusname = "草稿";
+// 	    switch (type)
+// 	    {
+// 	        case 0:
+// 	            params.today = 1;
+// 	            params.sRecordDate = getNowStartDate();
+// 	            params.eRecordDate = addDate(getNowEndDate(), 1);
+// 	            querysign = 1;
+// 	            queryname = "本日";
+// 	            break;
+// 	        case 1:
+// 	            params.yesterday = 1;
+// 	            params.sRecordDate = getPrevStartDate();
+// 	            params.eRecordDate = addDate(getPrevEndDate(), 1);
+// 	            querysign = 1;
+// 	            queryname = "昨日";
+// 	            break;
+// 	        case 2:
+// 	            params.thisWeek = 1;
+// 	            params.sRecordDate = getWeekStartDate();
+// 	            params.eRecordDate = addDate(getWeekEndDate(), 1);
+// 	            querysign = 1;
+// 	            queryname = "本周";
+// 	            break;
+// 	        case 3:
+// 	            params.lastWeek = 1;
+// 	            params.sRecordDate = getLastWeekStartDate();
+// 	            params.eRecordDate = addDate(getLastWeekEndDate(), 1);
+// 	            querysign = 1;
+// 	            queryname = "上周";
+// 	            break;
+// 	        case 4:
+// 	            params.thisMonth = 1;
+// 	            params.sRecordDate = getMonthStartDate();
+// 	            params.eRecordDate = addDate(getMonthEndDate(), 1);
+// 	            querysign = 1;
+// 	            queryname = "本月";
+// 	            break;
+// 	        case 5:
+// 	            params.lastMonth = 1;
+// 	            params.sRecordDate = getLastMonthStartDate();
+// 	            params.eRecordDate = addDate(getLastMonthEndDate(), 1);
+// 	            querysign = 1;
+// 	            queryname = "上月";
+// 	            break;
+// 	        case 10:
+// 	            params.thisYear = 1;
+// 	            params.sRecordDate = getYearStartDate();
+// 	            params.eRecordDate = getYearEndDate();
+// 	            querysign = 1;
+// 	            queryname = "本年";
+// 	            break;
+// 	        case 11:
+// 	            params.lastYear = 1;
+// 	            params.sRecordDate = getPrevYearStartDate();
+// 	            params.eRecordDate = getPrevYearEndDate();
+// 	            querysign = 1;
+// 	            queryname = "上年";
+// 	            break;
+// 	        default:
+// 	            break;
+// 	    }
+// 	    beginDateEl.setValue(params.sRecordDate);  
+// 	    endDateEl.setValue(addDate(params.eRecordDate,-1));
+// 	    currType = type;
+// 	    if(querysign == 1){
+// 	    	var menunamedate = nui.get("menunamedate");
+// 	    	menunamedate.setText(queryname); 	
+// 	    }
 	    
-	    onSearch();
-	}
+// 	    onSearch();
+// 	}
     function onSearch(){
 
-        var fdate1 = nui.get("date1").value;
-        var fdate2 = nui.get("date2").value;
+//         var fdate1 = nui.get("date1").value;
+//         var fdate2 = nui.get("date2").value;
         //fdate2.setDate(fdate2.getDate()+1);
 
-        var sdate = nui.formatDate (fdate1,"yyyy-MM-dd");
-        var edate = nui.formatDate (fdate2,"yyyy-MM-dd");
-        edate = edate + " 23:59:59";
+//         var sdate = nui.formatDate (fdate1,"yyyy-MM-dd");
+//         var edate = nui.formatDate (fdate2,"yyyy-MM-dd");
+//         edate = edate + " 23:59:59";
         var params ={
             // part :1,
             carNo:nui.get("carNo").value,
             name:nui.get("name").value,
-            sRecordDate:sdate,
-            eRecordDate:edate,
+            serviceCode :nui.get("serviceCode").value,
+//             sRecordDate:sdate,
+//             eRecordDate:edate,
             status:1,
             serviceTypeId:nui.get("serviceTypeId").value,
 //             isSettle:isSettle.value,

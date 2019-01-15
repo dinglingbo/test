@@ -29,7 +29,8 @@ mini_debugger = false;                                           //
 
 window['nui_model']=window['nui_model']||'min';
 
-var skin = getCookie("miniuiSkin") || 'cupertino';             //skin cookie   cupertino
+//var skin = getCookie("miniuiSkin") || 'cupertino';             //skin cookie   cupertino
+var skin = 'cupertino'; 
 var mode = getCookie("miniuiMode") || 'default';                 //mode cookie     medium
 
 //miniui

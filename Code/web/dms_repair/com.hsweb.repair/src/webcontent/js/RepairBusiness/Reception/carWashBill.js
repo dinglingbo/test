@@ -990,7 +990,7 @@ function setFrom(data){
                     }
                 }
                 loadDetail(p1, p2, p3,status);
-                nui.unmask(document.body)
+                nui.unmask(document.body);
             }else{
             	nui.unmask(document.body)
                 showMsg("数据加载失败,请重新打开工单!","E");
@@ -1245,7 +1245,6 @@ function unfinish(){
             var errCode = data.errCode||"";
             var errMsg = data.errMsg||"";
             if(errCode == 'S'){
-            	doFinishF = 1;
                 var maintain = data.main||{};
                 var olddata = billForm.getData();
                 olddata.status = 1;
@@ -3068,7 +3067,7 @@ function showHealth(){
         },
     });*/
 }
-var doFinishF = 1;
+//var doFinishF = 1;
 function pay(){
 	var data = billForm.getData();
     if(!data.id){
@@ -3079,10 +3078,14 @@ function pay(){
           	 showMsg("工单已结算!","W");
                return;
           }
-        if(data.status != 2 && doFinishF==1){
+        if(data.status != 2 ){
+        	 nui.mask({
+        	        el: document.body,
+        	        cls: 'mini-mask-loading',
+        	        html: '数据加载中...'
+        	 });
             //showMsg("工单未完工,不能结算!","W");
             //return;
-        	doFinishF = 0;
         	var params = {
         	        data:{
         	            id:data.id||0,
@@ -3119,14 +3122,15 @@ function pay(){
                             }
                         }
                         loadDetail(p1, p2, p3,status);
+                        nui.unmask(document.body);
                         onPay(data);
         	        }else{
-        	        	doFinishF = 1;
+        	        	nui.unmask(document.body)
         	        	showMsg(errMsg,"E");
         	        }
         	    }, function(){
         	    });
-        }else{
+        }else {
         	onPay(data);
         }  
     }

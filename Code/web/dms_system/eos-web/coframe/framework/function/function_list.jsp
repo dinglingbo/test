@@ -131,6 +131,7 @@
         
         function onResTypeRenderer(e) {
             if (e.value == "flow") return "页面流";
+            if (e.value == "app") return "APP";
             if (e.value == "page") return "页面";
             if (e.value == "form") return "表单";
             if (e.value == "view") return "视图";

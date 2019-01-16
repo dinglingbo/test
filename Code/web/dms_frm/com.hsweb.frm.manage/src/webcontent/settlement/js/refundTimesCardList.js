@@ -12,12 +12,14 @@ var searchNameEl = null;
 var guestId = 0;
 var printGuest ={};//打印用
  var guestName ="";
-
+var card = {};
  var tableNum = 0;
 
  var typeList = {};
   var flag=1;
   var checkF = 0;
+  var card = [];
+  var printcard = {};//打印用
 $(document).ready(function(v) {
 	searchKeyEl = nui.get("search_key");
 	searchNameEl = nui.get("search_name");
@@ -122,6 +124,7 @@ function setGuest(item){
 		contentType : 'text/json',
 		success : function(text) {
 			var returnJson = nui.decode(text);
+			card = returnJson.params;
 				nui.unmask(document.body);
 				var cardList =[];
 				for(var i = 0;i<returnJson.params.length;i++){
@@ -288,6 +291,7 @@ function  scount(){
 function pay(){
 	var accountTypeList =[];
 	var accountDetail = {};
+	var amt = scount();
 	for(var i = 0;i<tableNum+1;i++){
 		var  Sel=document.getElementById("optaccount"+i);
 		if(Sel!=null){
@@ -307,14 +311,21 @@ function pay(){
 		}
 	}
 
-	var amt = scount();
+	
 	 json = {
 				accountTypeList : accountTypeList,
 				serviceId:nui.get("cardName").getSelected().value,
 				remark:nui.get("txtreceiptcomment").getValue(),
 				payAmt:amt,
-				type:2
+				type:1
 			};
+	 //确定退款哪张卡，打印用
+	 for(var i = 0 ;i<card.length;i++){
+		 if(json.serviceId==card[i].id){
+			 printcard = card[i];
+			 printcard.payAmt = amt;
+		 }
+	 }
 	    nui.confirm("是否确定退款？", "友情提示",function(action){
 		       if(action == "ok"){
 				    nui.mask({
@@ -373,14 +384,8 @@ function print(){
 		guestData:guestData,
 		p:p
 	};
-	if(typeCard==1){
 		sourceUrl = webPath + contextPath + "/com.hsweb.repair.DataBase.printCardRefund.flow?token="+token;
 		p.name="计次卡退款";
-	}
-	if(typeCard==2){
-		sourceUrl = webPath + contextPath + "/com.hsweb.repair.DataBase.printCardStoredRefund.flow?token="+token;
-		p.name="储值卡退款";
-	}
 	nui.open({
         url: sourceUrl,
         title: p.name + "打印",

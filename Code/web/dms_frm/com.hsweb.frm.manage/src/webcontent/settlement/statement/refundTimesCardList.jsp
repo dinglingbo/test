@@ -11,7 +11,7 @@
 <head>
 <title>计次卡退款</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/refundTimesCardList.js?v=1.2.3"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/refundTimesCardList.js?v=1.2.5"></script>
     <style type="text/css">
         body { 
             margin: 0;
@@ -299,7 +299,7 @@ body,
 								计次卡：		
 							</td>
 							<td align="left" width="100px" colspan="3">
-								<input class="mini-combobox" id="cardName" name="cardName" width="300"  onchange="onChanged()"/>
+								<input class="mini-combobox" id="cardName" name="cardName" width="300"  />
 							</td>
 
 						</tr>

@@ -11,7 +11,7 @@
 <head>
 <title>储值卡退款</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/refundList.js?v=1.2.3"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/refundList.js?v=1.2.6"></script>
     <style type="text/css">
         body { 
             margin: 0;
@@ -300,7 +300,7 @@ body,
 								<font color="red">*</font>储值卡<font color="red">*</font>：		
 							</td>
 							<td align="left" width="100px" colspan="3">
-								<input class="mini-combobox" id="cardName" name="cardName" width="300"  onchange="onChanged()"/>
+								<input class="mini-combobox" id="cardName" name="cardName" width="300"  />
 							</td>
 
 						</tr>

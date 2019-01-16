@@ -20,14 +20,16 @@
     
     <!--1.获取租户自身可设置权限的应用功能-->
     <select id="queryTenantApplication" parameterClass="HashMap" resultClass="HashMap">
-    	select res_id as id, res_name as text, res_parent_id as parentId, 0 as isCheck, 'function' as type
+    	select res_id as id, res_name as text, res_parent_id as parentId, 0 as isCheck, 
+    	       'function' as type, scope as scope, type as appPc
     	from com_tenant_menu
     	where is_disabled = 0 and tenant_id = #tenantId#
     </select>
     
     <!--2.获取应用功能菜单-->
     <select id="queryResMenu" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT b.FUNCGROUPID as id, b.FUNCGROUPNAME as text, b.PARENTGROUP as parentId, 0 as isCheck, 'menu' as type
+    	SELECT b.FUNCGROUPID as id, b.FUNCGROUPNAME as text, b.PARENTGROUP as parentId, 0 as isCheck, 
+    	       'menu' as type, '' as scope, '' as appPc
 		from app_funcgroup b
 		order by b.FUNCGROUPID
     </select>

@@ -15,6 +15,8 @@ var printGuest ={};//打印用
 var typeList = {};
  var flag=1;
  var checkF = 0;
+ var card = [];
+ var printcard = {};//打印用
 $(document).ready(function(v) {
 
 	searchKeyEl = nui.get("search_key");
@@ -109,6 +111,7 @@ function setGuest(item){
 
 			token:token
 		};
+
 	nui.ajax({
 		url : queryCardUrl,
 		type : 'POST',
@@ -118,7 +121,9 @@ function setGuest(item){
 		success : function(text) {
 			var returnJson = nui.decode(text);
 			if (returnJson.errCode == 'S') {
+				card = returnJson.data;
 				nui.unmask(document.body);
+				
 				var cardList =[];
 				for(var i = 0;i<returnJson.data.length;i++){
 					var tureRefundAmt =0;
@@ -136,7 +141,7 @@ function setGuest(item){
 	
 			} else {
 				nui.unmask(document.body);
-				showMsg(returnJson.errMsg||"获取数据失败","W");
+				parent.parent.showMsg(returnJson.errMsg||"获取数据失败","W");
 
 			}
 		}
@@ -300,6 +305,7 @@ function  scount(){
 function pay(){
 	var accountTypeList =[];
 	var accountDetail = {};
+	var amt = scount();
 	for(var i = 0;i<tableNum+1;i++){
 		var  Sel=document.getElementById("optaccount"+i);
 		if(Sel!=null){
@@ -319,7 +325,7 @@ function pay(){
 		}
 	}
 
-	var amt = scount();
+
 	 json = {
 				accountTypeList : accountTypeList,
 				serviceId:nui.get("cardName").getSelected().value,
@@ -327,6 +333,13 @@ function pay(){
 				payAmt:amt,
 				type:2
 			};
+	 //确定退款哪张卡，打印用
+	 for(var i = 0 ;i<card.length;i++){
+		 if(json.serviceId==card[i].id){
+			 printcard = card[i];
+			 printcard.payAmt = amt;
+		 }
+	 }
 	    nui.confirm("是否确定退款？", "友情提示",function(action){
 		       if(action == "ok"){
 				    nui.mask({
@@ -343,10 +356,10 @@ function pay(){
 		    			success : function(data) {
 		    				nui.unmask(document.body);
 		    				if(data.errCode=="S"){  					
-		    					showMsg("退款成功!","W");
+		    					parent.parent.showMsg("退款成功!","W");
 		    					print();
 		    				}else{
-		    					showMsg(data.errMsg||"退款失败!","E");
+		    					parent.parent.showMsg(data.errMsg||"退款失败!","E");
 		    				}
 
 		    			},
@@ -382,17 +395,12 @@ function print(){
 	};
 	params = {
 			printGuest:printGuest,
-		guestData:guestData,
+		guestData:printcard,
 		p:p
 	};
-	if(typeCard==1){
-		sourceUrl = webPath + contextPath + "/com.hsweb.repair.DataBase.printCardRefund.flow?token="+token;
-		p.name="计次卡退款";
-	}
-	if(typeCard==2){
+
 		sourceUrl = webPath + contextPath + "/com.hsweb.repair.DataBase.printCardStoredRefund.flow?token="+token;
 		p.name="储值卡退款";
-	}
 	nui.open({
         url: sourceUrl,
         title: p.name + "打印",

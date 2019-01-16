@@ -156,7 +156,7 @@
       <sourceNode>subprocess3</sourceNode>
       <targetNode>assign4</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
+        <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">record/id</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>

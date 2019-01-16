@@ -407,6 +407,7 @@ function noPay(){
 function pay(){
 	var accountTypeList =[];
 	var accountDetail = {};
+	var count = scount();
 	for(var i = 0;i<tableNum+1;i++){
 		var  Sel=document.getElementById("optaccount"+i);
 		if(Sel!=null){
@@ -425,7 +426,7 @@ function pay(){
 			}
 		}
 	}
-		var count = scount();
+		
 		
 /*		if(count==0){
 			nui.alert("请选择结算账户,并填写结算金额","提示");

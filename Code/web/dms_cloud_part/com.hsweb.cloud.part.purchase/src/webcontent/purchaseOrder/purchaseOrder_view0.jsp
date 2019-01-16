@@ -319,7 +319,7 @@ body .mini-grid-row-selected{
                 showSummaryRow="false">
                <div property="columns">
                    <div allowSort="true" field="name" width="100" headerAlign="center" header="价格类型"></div>
-                   <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="售价">
+                   <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="销售价">
                         <input property="editor" vtype="float" class="nui-textbox"/>
                    </div>
                    <div allowSort="true" datatype="float" field="wholePrice" width="60" headerAlign="center" header="批发价">

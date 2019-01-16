@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/commonPart.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -11,7 +11,7 @@
 <head>
 <title>储值卡退款</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/refundList.js?v=1.1.9"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/refundList.js?v=1.2.6"></script>
     <style type="text/css">
         body { 
             margin: 0;
@@ -289,19 +289,18 @@ body,
 						<tr>
 							<td colspan="4">
 								<div class="tips">
-								<span class="fa fa-exclamation-triangle fa-lg" style="margin-left: 10px;"></span>退款会清空赠送金额并只能退赠送金额除外的余额<br>
-								<span class="fa fa-exclamation-triangle fa-lg" style="margin-left: 10px;"></span>您只用输入退款金额，其余系统计算得出<br>
-								<span class="fa fa-exclamation-triangle fa-lg" style="margin-left: 10px;"></span>退款请对清明细，谨慎操作！<br>
+								<span class="fa fa-exclamation-triangle fa-lg" style="margin-left: 10px;"></span>储值卡退款会清空赠送金额并只能退赠送金额除外的余额<br>
+								<span class="fa fa-exclamation-triangle fa-lg" style="margin-left: 10px;"></span>退款请对清明细，退款成功无法撤回，谨慎操作！<br>
 								</div>
 							</td>
 						</tr>
 						
 						<tr >
 							<td align="right" width="100px" colspan="1" >
-								会员卡名称：		
+								<font color="red">*</font>储值卡<font color="red">*</font>：		
 							</td>
 							<td align="left" width="100px" colspan="3">
-								<input class="mini-combobox" id="cardName" name="cardName" width="300"  onchange="onChanged()"/>
+								<input class="mini-combobox" id="cardName" name="cardName" width="300"  />
 							</td>
 
 						</tr>

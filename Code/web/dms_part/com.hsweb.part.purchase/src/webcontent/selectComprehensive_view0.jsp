@@ -104,7 +104,7 @@
                onrowdblclick=""
                allowCellSelect="true"
                editNextOnEnterKey="true"
-               allowCellWrap = true
+               allowCellWrap = "true"
                onshowrowdetail="onShowRowDetail"
                url="">
               <div property="columns">

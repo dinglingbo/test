@@ -223,6 +223,8 @@ function doSearch(params) {
     mainGrid.load({
         token:token,
         params: gsparams
+    },function(){
+    	mergeCells();
     });
 }
 function getSearchParam() {
@@ -247,4 +249,53 @@ function getSearchParam() {
 
 function carNoSearch(){
 	onSearch();
+}
+
+function mergeCells(){//动态合并行
+	var dataAll = mainGrid.getData();
+       var arr = new Array;
+        for(var i = 0 ; i < dataAll.length ;i ++){
+    		if(arr.indexOf(dataAll[i].id) == -1){
+    			arr[arr.length] = dataAll[i].id;
+    		}
+        }
+        var brr = new Array;
+       		for(var i = 0 ; i < arr.length ; i ++){
+       			var row = mainGrid.findRow(function(row){
+       				if(arr[i] == row.id){
+       					var index = mainGrid.indexOf(row);
+       					brr[i] = index;
+       				}
+       			});    
+       		}
+	var cells = [];
+	for(var i = 0 ; i < arr.length;i ++){
+		 var index = brr[i];
+		 index = parseInt(index);
+		 if(i == 0){
+			 cells[0] = { rowIndex: 0, columnIndex: 1, rowSpan: index + 1, colSpan: 0 };
+			 cells[1] = { rowIndex: 0, columnIndex: 2, rowSpan: index + 1, colSpan: 0 };
+			 cells[2] = { rowIndex: 0, columnIndex: 3, rowSpan: index + 1, colSpan: 0 };
+			 cells[3] = { rowIndex: 0, columnIndex: 4, rowSpan: index + 1, colSpan: 0 };
+			 cells[4] = { rowIndex: 0, columnIndex: 5, rowSpan: index + 1, colSpan: 0 };
+			 cells[5] = { rowIndex: 0, columnIndex: 6, rowSpan: index + 1, colSpan: 0 };
+			 cells[6] = { rowIndex: 0, columnIndex: 7, rowSpan: index + 1, colSpan: 0 };
+			 cells[7] = { rowIndex: 0, columnIndex: 8, rowSpan: index + 1, colSpan: 0 };
+		 }else{
+		 	 var last = brr[i-1];
+		 	 last = parseInt(last);
+		 	 var one = brr[i];
+		 	 one = parseInt(one);
+		 	 cells[8*i+0] = { rowIndex: last + 1, columnIndex: 1, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[8*i+1] = { rowIndex: last + 1, columnIndex: 2, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[8*i+2] = { rowIndex: last + 1, columnIndex: 3, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[8*i+3] = { rowIndex: last + 1, columnIndex: 4, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[8*i+4] = { rowIndex: last + 1, columnIndex: 5, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[8*i+5] = { rowIndex: last + 1, columnIndex: 6, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[8*i+6] = { rowIndex: last + 1, columnIndex: 7, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[8*i+7] = { rowIndex: last + 1, columnIndex: 8, rowSpan: one - last, colSpan: 0 }; 
+		 	 
+		 }
+	}
+	mainGrid.mergeCells(cells);
 }

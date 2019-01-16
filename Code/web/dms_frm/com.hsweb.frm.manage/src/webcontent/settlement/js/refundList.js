@@ -109,6 +109,7 @@ function setGuest(item){
 
 			token:token
 		};
+
 	nui.ajax({
 		url : queryCardUrl,
 		type : 'POST',
@@ -136,7 +137,7 @@ function setGuest(item){
 	
 			} else {
 				nui.unmask(document.body);
-				showMsg(returnJson.errMsg||"获取数据失败","W");
+				parent.parent.showMsg(returnJson.errMsg||"获取数据失败","W");
 
 			}
 		}
@@ -343,10 +344,10 @@ function pay(){
 		    			success : function(data) {
 		    				nui.unmask(document.body);
 		    				if(data.errCode=="S"){  					
-		    					showMsg("退款成功!","W");
+		    					parent.parent.showMsg("退款成功!","W");
 		    					print();
 		    				}else{
-		    					showMsg(data.errMsg||"退款失败!","E");
+		    					parent.parent.showMsg(data.errMsg||"退款失败!","E");
 		    				}
 
 		    			},

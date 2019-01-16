@@ -21,9 +21,7 @@
     </style>
 </head>
 <body style="margin:0;width: 98%; height:100%;overflow-x:hidden">	
-<!-- 	<div class="tips">
-		<span class="fa fa-exclamation-triangle fa-lg"></span>请确认数据,谨慎操作！<br>
-	</div> -->
+
 	<div id ="tabs" class="nui-tabs" width="100%" height="100%">
 		<div title="储值卡退款" url="<%=request.getContextPath() %>/manage/settlement/statement/refundList.jsp">
 		</div>

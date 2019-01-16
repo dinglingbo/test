@@ -1393,27 +1393,12 @@ function addPrdt(data){
                             }else*/ 
                         	if(interType == 'item'){
                                 rpsItemGrid.clearRows();
-                                /*rpsItemGrid.addRows(data);
+                                rpsItemGrid.addRows(data);
                                 if(main.status<2){
                                 	var row = rpsItemGrid.findRow(function(row){
                                 		rpsItemGrid.beginEditRow(row);
                                     });
-                                }*/
-                                var p1 = {
                                 }
-                                var p2 = {
-                                    interType: "item",
-                                    data:{
-                                        serviceId: main.id||0
-                                    }
-                                }
-                                var p3 = {
-                                    interType: "part",
-                                    data:{
-                                        serviceId: main.id||0
-                                    }
-                                }
-                        		loadDetail(p1, p2, p3,main.status);
                             }
                         }
                     }, function(){});
@@ -1457,31 +1442,12 @@ function addPrdt(data){
                     var data = text.data||[];
                     if(errCode == "S"){
                         rpsItemGrid.clearRows();
-                        /*if(data.qty==0){
-                        	data.qty = 1;
-                        }
                         rpsItemGrid.addRows(data);
                         if(main.status<2){
                         	var row = rpsItemGrid.findRow(function(row){
                         		rpsItemGrid.beginEditRow(row);
                             });
-                        }*/
-                        var p1 = {
                         }
-                        var p2 = {
-                            interType: "item",
-                            data:{
-                                serviceId: main.id||0
-                            }
-                        }
-                        var p3 = {
-                            interType: "part",
-                            data:{
-                                serviceId: main.id||0
-                            }
-                        }
-                        loadDetail(p1, p2, p3,main.status);
-                    	
                     }
                 }, function(){});
             }else{
@@ -2192,30 +2158,17 @@ function selecCardTimes(main){
                     if(errCode == "S"){
                     	if(interType == 'item'){
                             rpsItemGrid.clearRows();
-                            /*if(data.qty==0){
-                            	data.qty = 1;
-                            }
                             rpsItemGrid.addRows(data);
                             if(main.status<2){
                             	var row = rpsItemGrid.findRow(function(row){
                             		rpsItemGrid.beginEditRow(row);
                                 });
-                            }*/
-                            var p1 = {
                             }
-                            var p2 = {
-                                interType: "item",
-                                data:{
-                                    serviceId: main.id||0
-                                }
+                    		//显示项目颜色
+                    		var strId = forFrom();
+                            if(strId!=null){
+                            	showTab(strId);
                             }
-                            var p3 = {
-                                interType: "part",
-                                data:{
-                                    serviceId: main.id||0
-                                }
-                            }
-                            loadDetail(p1, p2, p3,main.status);
                         }
                     }
                 }, function(){});
@@ -4013,9 +3966,11 @@ function forFrom(){
 	return strId;
 }
 
+var addF = 0;
 function selectclick() {
     $("a[name=HotWord]").click(function () {
 //        $(this).siblings().removeClass("xz");
+    	addF = 0;
     	var main = billForm.getData();
         var isSettle = main.isSettle||0;
         var status = main.status||0;
@@ -4027,12 +3982,14 @@ function selectclick() {
             return;
         }else{
         	if($(this)[0].classList.length==1){
+        		addF = 1;
             	$(this).toggleClass("xz");
             }
             var rpbId = $(this)[0].id;
             //等于2添加，1删除
-            if($(this)[0].classList.length==2){
+            if($(this)[0].classList.length==2 && addF == 1){
             	//if(itemGridHash)
+            	addF = 0;
             	var row = itemGridHash[rpbId];
             	var type = 2;
     			var resultData = {

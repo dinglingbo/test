@@ -75,7 +75,7 @@
     <script type="text/javascript">
        	var COF_YESORNO =[{dictID:"0",dictName:"否"},{dictID:"1",dictName:"是"}];
     	var COF_APPTYPE =[{dictID:"0",dictName:"本地"},{dictID:"1",dictName:"远程"}];
-    	var COF_FUNCTYPE =[{dictID:"flow",dictName:"页面流"},{dictID:"form",dictName:"表单"},
+    	var COF_FUNCTYPE =[{dictID:"flow",dictName:"页面流"},{dictID:"app",dictName:"APP"},{dictID:"form",dictName:"表单"},
     					{dictID:"order",dictName:"其他"},{dictID:"page",dictName:"页面"},{dictID:"startprocess",dictName:"启动流程"}];
         nui.parse();
         var form = new nui.Form("form1");  

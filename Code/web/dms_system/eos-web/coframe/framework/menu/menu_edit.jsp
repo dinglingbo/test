@@ -51,6 +51,22 @@
                 	<input id="funccode" class="nui-buttonedit nui-form-input" onbuttonclick="onButtonEdit" name="appmenu.funccode" textName="appmenu.funcname"/>    
                 </td>
             </tr>
+            <tr class="odd">
+                <th class="nui-form-label"><label for="appmenu.imagepath$text">菜单图标：</label></th>
+                <td>    
+                    <input id="appmenu.imagepath" name="appmenu.imagepath" class="nui-textbox nui-form-input" />
+                </td>
+                <th class="nui-form-label"><label for="appmenu.expandpath$text">菜单颜色：</label></th>
+                <td>    
+                    <input id="appmenu.expandpath" name="appmenu.expandpath" class="nui-textbox nui-form-input" />
+                </td>
+            </tr>
+            <tr class="odd">
+                <th class="nui-form-label"><label for="appmenu.app_id$text">APP_ID：</label></th>
+                <td>    
+                    <input id="appmenu.app_id" name="appmenu.app_id" class="nui-textbox nui-form-input" />
+                </td>
+            </tr>
         </table>
         <div class="nui-toolbar" style="text-align:center;padding-top:5px;padding-bottom:5px;" borderStyle="border:0;">
 	        <a class="nui-button" style="width:60px;" iconCls="icon-save" onclick="onOk()">保存</a>

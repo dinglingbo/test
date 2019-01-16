@@ -329,6 +329,14 @@ a {
 	</div>
 </form>	
 
+	<form method="post"	name="ysweepCodeForm" onsubmit="" action="">
+	<div class="login" id="ysweepCodeBox">
+		<div class="title"><font color="#0050fb9e" >扫码登录| <span class="blue1" id="login2">账号登录</span></font></div>
+		<div style="margin-left: 85px;"><img src="images/xiongying.jpg" /></div>
+		<div style="margin-left: 120px;" >已扫码，请在手机上确认！</div>
+	</div>
+</form>	
+
 <!--<form method="post"	name="loginForm"  action="login.jsp">-->
 <form method="post"	name="loginForm" onsubmit="return login();"  action="<%=url%>">	
 	<div class="login" id="loginBox">
@@ -422,10 +430,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	     	}
 		  %>
 		 var  msgCode = "";
+		 var  kaiguan = 0//0发请求，1取消请求
 $(function () {
 	//显示登录框
 	$("#login").click(openLogin);
 	$("#login1").click(openLogin);
+	$("#login2").click(openLogin);
 	//显示注册框
 	$("#register").click(openRegister);
 	
@@ -461,12 +471,22 @@ function openLogin() {
 	$("#registerBox").hide();
 	$("#loginBox").show();
 	$("#sweepCodeBox").hide();
+	$("#ysweepCodeBox").hide();
+	kaiguan = 1;
 }
 //显示注册框
 function openRegister() {
 	$("#registerBox").show();
 	$("#loginBox").hide();
 	$("#sweepCodeBox").hide();
+	$("#ysweepCodeBox").hide();
+}
+//显示二维码已扫
+function openYSweepCode() {
+	$("#registerBox").hide();
+	$("#loginBox").hide();
+	$("#sweepCodeBox").hide();
+	$("#ysweepCodeBox").show();
 }
 
 //显示扫码框
@@ -474,6 +494,7 @@ function openSweepCode() {
 	$("#registerBox").hide();
 	$("#loginBox").hide();
 	$("#sweepCodeBox").show();
+	$("#ysweepCodeBox").hide();
 	sweepCode();
 	setCode(60);
 }
@@ -710,6 +731,7 @@ function login(){
 		}
 	var code = "";	
 		function sweepCode() {
+				kaiguan = 0;
 				$("#qrcode").empty();
 				 code = guid();
 				
@@ -732,7 +754,7 @@ function login(){
 			  } else { 
 			  			var json = {
 			  				webId : code,
-			  				type : check
+			  				type : "check"
 			  			}
 				  		nui.ajax({
 						url : "<%=apiPath%><%=sysApi%>/com.hsapi.system.auth.LoginManager.qrcodeCheck.biz.ext",
@@ -742,13 +764,20 @@ function login(){
 						contentType : 'text/json',
 						success : function(text) {
 							var record = text.record||{};
-							if(record.status==0){
-								setTimeout(function () { setCode(time); }, 1000);
+							if(record.status==0&&record.id){								
+								if(kaiguan==0){
+									openYSweepCode();
+									setTimeout(function () { setCode(time); }, 1000);
+								}
+																
 							}else if(record.status==1){
 								//document.loginForm.submit();
 								window.location.href="<%=sweepCodeUrl%>?webId="+code;
 							}else if(record.status==2){
 								$("#error").html("已拒绝");
+								openLogin();
+							}else{
+								setTimeout(function () { setCode(time); }, 1000);
 							}
 						}
 					});			

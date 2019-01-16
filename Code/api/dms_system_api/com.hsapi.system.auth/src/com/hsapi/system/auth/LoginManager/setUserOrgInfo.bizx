@@ -186,6 +186,14 @@
       <process:to type="query">m:userObject/attributes/slogan2</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">u/orgname</process:from>
+      <process:to type="query">m:userObject/userOrgName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">u/orgid</process:from>
+      <process:to type="query">m:userObject/userOrgId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>

@@ -2782,7 +2782,6 @@ function loadDetail(p1, p2, p3,status){
 
 //Y表示保存过，N表示没有保存
 var falg="Y";
-var openIF = 1;
 function chooseItem(){
     var data = billForm.getData();
     var isSettle = data.isSettle||0;
@@ -2815,16 +2814,19 @@ function chooseItem(){
   	  return;
   	}
     if(!data.id || falg=="N"){
-      openIF = 0;
       falg="Y";
+      nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '数据加载中...'
+	 });
 	  saveNoshowMsg(function(){
 		  var main = billForm.getData();
 		  var param = {};
 	      param.carModelIdLy = main.carModelIdLy;
 	      param.serviceId = main.id;
 	      doSelectItem(addToBillItem, delFromBillItem, checkFromBillItem, param, function(text){
-	    	 openIF = 1;   
-	    	 main = billForm.getData();
+    	     main = billForm.getData();
 		     var p1 = { }
 		     var p2 = {
 		         interType: "item",
@@ -2834,9 +2836,10 @@ function chooseItem(){
 		     };
 		     var p3 = {};
 		     loadDetail(p1, p2, p3,main.status);
+		     nui.unmask(document.body);
 	    }); 
 	  });
-    }else if(openIF == 1){
+    }else{
     	var main = billForm.getData();
     	var param = {};
         param.carModelIdLy = main.carModelIdLy;
@@ -2853,10 +2856,11 @@ function chooseItem(){
     	        var p3 = {};
     	        loadDetail(p1, p2, p3,main.status);
     	    }); 
-    }  
+    }   
 }
 
-var openPF = 1;
+
+/*var openPF = 1;*/
 function choosePackage(){
     var data = billForm.getData();
     var isSettle = data.isSettle||0;
@@ -2889,16 +2893,21 @@ function choosePackage(){
   	  return;
   	}
     if(!data.id || falg=="N"){
+       // showMsg("请选择保存工单!","S");
+       // return;
       falg="Y";
-      openPF = 0;
+      nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '数据加载中...'
+	   });
 	  saveNoshowMsg(function(){
 		var main = billForm.getData();
 		var param = {};
 	    param.carModelIdLy = main.carModelIdLy;
 	    param.serviceId = main.id;
 	    doSelectPackage(addToBillPackage, delFromBillPackage, checkFromBillPackage, param, function(text){
-	    	openPF = 1;
-	    	main = billForm.getData();
+	        main = billForm.getData();
 	        var p1 = { 
 	    		interType: "package",
 	            data:{
@@ -2908,9 +2917,10 @@ function choosePackage(){
 	        var p2 = {};
 	        var p3 = {};
 	        loadDetail(p1, p2, p3,main.status);
+	        nui.unmask(document.body);
 	    });
 	  });
-    }else if(openPF == 1){
+    }else{
     	var main = billForm.getData();
     	var param = {};
         param.carModelIdLy = main.carModelIdLy;
@@ -2929,7 +2939,6 @@ function choosePackage(){
         });
     }   
 }
-
 function addToBillPackage(row, callback, unmaskcall){
     var main = billForm.getData();
     var data = {};

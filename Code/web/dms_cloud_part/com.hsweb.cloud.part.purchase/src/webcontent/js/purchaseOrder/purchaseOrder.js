@@ -6,6 +6,8 @@ var leftGridUrl = baseUrl
 		+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderMainList.biz.ext";
 var rightGridUrl = baseUrl
 		+ "com.hsapi.cloud.part.invoicing.svr.queryPjPchsOrderDetailList.biz.ext";
+var priceGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getPartPriceInfo.biz.ext";
+var priceGrid=null;
 var advancedSearchWin = null;
 var advancedMorePartWin = null;
 var advancedAddWin = null;
@@ -38,8 +40,8 @@ var quickAddShow=0;
 var provinceList = [];
 var cityList = [];
 var advancedTipWin = null;
-
-
+var setPriceWin=null;
+var partPrice=0;
 // 单据状态
 var AuditSignList = [ {
 	customid : '0',
@@ -72,6 +74,8 @@ $(document).ready(function(v) {
 
 	rightGrid = nui.get("rightGrid");
 	rightGrid.setUrl(rightGridUrl);
+	priceGrid=nui.get("priceGrid");
+	priceGrid.setUrl(priceGridUrl);
 	advancedSearchWin = nui.get("advancedSearchWin");
 	advancedMorePartWin = nui.get("advancedMorePartWin");
 	advancedAddWin = nui.get("advancedAddWin");
@@ -93,7 +97,7 @@ $(document).ready(function(v) {
 	partInfoTab = mainTabs.getTab("partInfoTab");
 
 	advancedTipWin = nui.get("advancedTipWin");
-
+	setPriceWin=nui.get("setPriceWin");
 	//setTimeout(function(){ 
 	document.getElementById("formIframe").src=webPath + contextPath + "/common/embedJsp/containBottom.jsp";
 	document.getElementById("formIframePart").src=webPath + contextPath + "/common/embedJsp/containPartInfo.jsp";
@@ -103,7 +107,15 @@ $(document).ready(function(v) {
 
 
 	//document.getElementById("formIframePart").contentWindow.setInitTab('purchase');
+	
+	rightGrid.on("rowdblclick", function(e) {
+		var row = rightGrid.getSelected();
+		var rowc = nui.clone(row);
+		if (!rowc)
+			return;
+		loadPartPrice();
 
+	});
 	$("#guestId").bind("keydown", function (e) {
         /*if (e.keyCode == 13) {
             var orderMan = nui.get("orderMan");
@@ -191,6 +203,9 @@ $(document).ready(function(v) {
             }
             if(quickAddShow==1){
             	onAdvancedAddCancel();
+            }
+            if(partPrice == 1){
+            	setPriceWin.hide();
             }
         }
 	 
@@ -2467,4 +2482,111 @@ function setInitExportData(main, detail){
 
     var serviceId = main.serviceId?main.serviceId:"";
     method5('tableExcel',"采购订单"+serviceId,'tableExportA');
+}
+
+function loadPartPrice(){
+	var row=rightGrid.getSelected();
+	if(!row || !row.comPartCode){
+		showMsg("请选择一条记录!","W");
+		return;
+	}
+	var partId=row.partId
+	setPriceWin.show();
+	partPrice=1;
+	var params = {partId:partId,show:1};
+	 if(!params.partId || params.partId<=0){
+         priceGrid.setData([]);
+         return;
+     }
+ 
+     priceGrid.load({
+         params:params,
+         token:token
+     });
+}
+
+var savePriceUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveUpdatePrice.biz.ext";
+function savePrice(){
+    var data = priceGrid.getChanges("modified");
+    if(!data || data.length<=0){
+    	showMsg("修改后才能保存！","W");
+    	return;
+    }
+    if(data && data.length>0){
+        nui.mask({
+            el : document.body,
+            cls : 'mini-mask-loading',
+            html : '保存中...'
+        });
+    
+        nui.ajax({
+            url : savePriceUrl,
+            type : "post",
+            data : JSON.stringify({
+                data : data
+            }),
+            success : function(data) {
+                nui.unmask(document.body);
+                data = data || {};
+                if (data.errCode == "S") {
+                    showMsg("保存成功","S");
+                    
+                } else {
+                    showMsg(data.errMsg || "保存失败!","E");
+                }
+            },
+            error : function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.responseText);
+            }
+        });
+    }
+}
+
+function onCellCommit(e){
+	var editor = e.editor;
+	var record = e.record;
+	var row = e.row;
+	if(editor!=null){
+		editor.validate();
+		if (editor.isValid() == false) {
+			showMsg("请输入数字!","W");
+			e.cancel = true;
+		}else{
+			if (e.field == "lowestSellPrice") {
+				var lowestSellPrice = e.value;
+				 var sellPrice=e.record.sellPrice;
+				if(e.value >sellPrice){
+					e.value = 0;
+					showMsg('最低售价不能比售价低!',"W");
+					return;
+				}
+				if (e.value < 0) {
+					e.value = 0;
+					lowestSellPrice = 0;
+					showMsg("请输入正确的最低售价!","W");
+					return;
+				}
+			}
+			if(e.field == 'sellPrice'){
+				var sellPrice =e.value;
+				if(e.value < 0){
+					e.value = 0;
+					lowestSellPrice = 0;
+					showMsg("请输入正确的售价!","W");
+					return;
+				}
+			}
+			if(e.field == 'wholePrice'){
+				var wholePrice =e.value;
+				if(e.value < 0){
+					e.value = 0;
+					wholePrice = 0;
+					showMsg("请输入正确的批发价!","W");
+					return;
+				}
+			}
+			
+		}
+	}
+	
 }

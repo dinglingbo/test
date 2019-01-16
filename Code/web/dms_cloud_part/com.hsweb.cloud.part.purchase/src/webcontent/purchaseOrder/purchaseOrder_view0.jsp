@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购订单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrder/purchaseOrder.js?v=2.8.11"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrder/purchaseOrder.js?v=2.8.24"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -293,5 +293,45 @@ body .mini-grid-row-selected{
         </div>
     </div>
 
+<div id="setPriceWin" class="nui-window"
+        title="设置价格" style="width:600px;height:200px;"
+        showModal="true"
+        allowResize="false"
+        allowDrag="true">
+        <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
+        <table style="width:100%;">
+            <tr>
+                <td colspan="">
+                    <a class="nui-button" iconCls="" plain="true" onclick="savePrice()"><span class="fa fa-save fa-lg"></span>&nbsp;设置价格</a>
+                </td>
+            </tr>  
+        </table>
+        </div>
+ 		<div id="priceGrid" class="nui-datagrid" style="width:100%;height:80%;"
+                showPager="false"
+                dataField="price"
+                allowCellSelect="true"
+                allowCellEdit="true"
+                sortMode="client"
+                pageSize="10000"
+                sizeList="[1000,5000,10000]"
+                oncellcommitedit="onCellCommit"
+                showSummaryRow="false">
+               <div property="columns">
+                   <div allowSort="true" field="name" width="100" headerAlign="center" header="价格类型"></div>
+                   <div allowSort="true" datatype="float" field="sellPrice" width="60" headerAlign="center" header="销售价">
+                        <input property="editor" vtype="float" class="nui-textbox"/>
+                   </div>
+                   <div allowSort="true" datatype="float" field="wholePrice" width="60" headerAlign="center" header="批发价">
+                        <input property="editor" vtype="float" class="nui-textbox"/>
+                   </div>
+                   <div allowSort="true" datatype="float" field="lowestSellPrice" width="60" headerAlign="center" header="最低销售价">
+                        <input property="editor" vtype="float" class="nui-textbox"/>
+                   </div>
+                   <div allowSort="true" datatype="float" field="operator" width="60" headerAlign="center" header="创建人"></div>
+                   <div allowSort="true" field="operateDate" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+               </div>
+          </div>
+    </div>
 </body>
 </html>

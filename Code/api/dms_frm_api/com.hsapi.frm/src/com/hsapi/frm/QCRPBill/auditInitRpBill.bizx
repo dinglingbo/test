@@ -166,19 +166,19 @@
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
       <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">f/billStatus</process:to>
+      <process:to type="query">f/auditSign</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">operateDate</process:from>
-      <process:to type="query">f/recordDate</process:to>
+      <process:to type="query">f/auditDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">f/recorder</process:to>
+      <process:to type="query">f/auditor</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">f/rpAmt</process:from>
-      <process:to type="query">f/noCharOffAmt</process:to>
+      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
+      <process:to type="query">f/auditorId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">

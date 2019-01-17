@@ -232,7 +232,7 @@ function settleOK() {
 		var nowAmt = guestData[0].nowAmt || 0;
 		var nowVoidAmt = guestData[0].nowVoidAmt || 0;
 
-		accountDetail.rpDc = -1;
+		accountDetail.rpDc = 1;
 		nowAmt = parseFloat(nowAmt);
 		nowVoidAmt = parseFloat(nowVoidAmt);
 		pRPAmt += rpAmt;

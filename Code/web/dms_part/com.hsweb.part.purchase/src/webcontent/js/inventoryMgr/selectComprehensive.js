@@ -14,7 +14,7 @@ var endDateEl = null;
 var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
 var brandList = [];
 var brandHash = {};
-var servieTypeList = [];
+var servieTypeList = [];  
 var servieTypeHash = {};
 var receTypeIdList = [];
 var receTypeIdHash = {};
@@ -88,6 +88,8 @@ $(document).ready(function ()
             if (servieTypeHash && servieTypeHash[e.value]) {
                 e.cellHtml = servieTypeHash[e.value].name;
             }
+        }else if (e.field == "serviceTypeName") {
+                e.cellHtml = retSerTypeStyle(e.cellHtml);
         }else if(e.field == "isSettle"){
             if(e.value == 1){
                 e.cellHtml = "已结算";
@@ -444,3 +446,41 @@ function showCarInfo(row_uid){
 	}
 }
 
+function retSerTypeStyle(string) {
+    // var string = '洗车,美容,保养,机电,钣金,理赔,改装,轮胎,喷漆,代办,其它,34,55';
+    //  var resText = '<div style="display:flex;height:100%;width:100%"><span class="tb-tag">' + string + '</span></div>';
+    //var resText = '<div style="display:flex;height:100%;width:100%">';
+    var resText = '';
+    var styleTemp = '';
+    var temp = '';
+    var styleText = 'style="display: inline-block;padding: 2px 10px;font-size: 12px;border-radius: 4px;box-sizing: border-box;white-space: nowrap;'
+    var colorArr = [
+        { id: '041301', name: '洗车', col: '#409eff', backcol: 'rgba(64,158,255,.1)', borcol: 'rgba(64,158,255,.2)' },
+        { id: '041302', name: '美容', col: '#67c23a', backcol: 'rgba(103,194,58,.1)', borcol: 'rgba(103,194,58,.2)' },
+        { id: '041303', name: '保养', col: 'rgb(182, 202, 34)', backcol: 'rgba(182, 202, 34,.1)', borcol: 'rgba(182, 202, 34,.2)' },
+        { id: '041304', name: '机电', col: '#e6a23c', backcol: 'rgba(230,162,60,.1)', borcol: 'rgba(230,162,60,.2)' },
+        { id: '041305', name: '钣金', col: '#f56c6c', backcol: 'hsla(0,87%,69%,.1)', borcol: 'hsla(0,87%,69%,.2)' },
+        { id: '041306', name: '理赔', col: 'rgba(230, 60, 192,.9)', backcol: 'rgba(230, 60, 192,.1)', borcol: 'rgba(230, 60, 192,.2)' },
+        { id: '041307', name: '改装', col: 'rgba(136, 51, 226,.9)', backcol: 'rgba(136, 51, 226,.1)', borcol: 'rgba(136, 51, 226,.2)' },
+        { id: '041308', name: '轮胎', col: 'rgba(63, 51, 226,.9)', backcol: 'rgba(63, 51, 226,.1)', borcol: 'rgba(63, 51, 226,.2)' },
+        { id: '041309', name: '喷漆', col: 'rgba(51, 226, 147,.9)', backcol: 'rgba(51, 226, 147,.1)', borcol: 'rgba(51, 226, 147,.2)' },
+        { id: '041310', name: '代办', col: 'rgba(77, 226, 51,.9)', backcol: 'rgba(77, 226, 51,.1)', borcol: 'rgba(77, 226, 51,.2)' },
+        { id: '041311', name: '其它', col: 'rgba(63, 96, 138,.9)', backcol: 'rgba(63, 96, 138,.1)', borcol: 'rgba(63, 96, 138,.2)' },
+        { id: '04131X', name: '    ', col: 'rgb(144, 147, 153)', backcol: 'rgba(144, 147, 153,.1)', borcol: 'rgba(144, 147, 153,.2)' }
+    ];
+    if (string) {
+        var strArr = string.split(",");
+        for (var i = 0; i < strArr.length; i++) {
+            styleTemp = styleText + 'color:rgb(144, 147, 153);background-color:rgba(144, 147, 153,.1);border: 1px solid rgba(144, 147, 153,.2);"';
+            for (var j = 0; j < colorArr.length; j++) {
+                if (strArr[i] == colorArr[j].name) {
+                    styleTemp = styleText + 'color:' + colorArr[j].col + ';background-color:' + colorArr[j].backcol + ';border: 1px solid ' +colorArr[j].borcol + ';"';
+                }
+            }
+            temp = '<span '+styleTemp+'>' + strArr[i] + '</span>&nbsp;';
+            resText += temp;
+        }
+    }
+    //resText += '</div>';
+    return resText;
+}

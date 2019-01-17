@@ -42,6 +42,7 @@ var cityList = [];
 var advancedTipWin = null;
 var setPriceWin=null;
 var partPrice=0;
+var guestIdEl=null;
 // 单据状态
 var AuditSignList = [ {
 	customid : '0',
@@ -98,13 +99,36 @@ $(document).ready(function(v) {
 
 	advancedTipWin = nui.get("advancedTipWin");
 	setPriceWin=nui.get("setPriceWin");
+	guestIdEl=nui.get('guestId');
 	//setTimeout(function(){ 
 	document.getElementById("formIframe").src=webPath + contextPath + "/common/embedJsp/containBottom.jsp";
 	document.getElementById("formIframePart").src=webPath + contextPath + "/common/embedJsp/containPartInfo.jsp";
 		//document.getElementById("formIframeStock").src=webPath + contextPath + "/common/embedJsp/containStock.jsp";
 		//document.getElementById("formIframePchs").src=webPath + contextPath + "/common/embedJsp/containPchsAdvance.jsp";
 	//}, 3000);
+	
+	guestIdEl.setUrl(getGuestInfo);
+	guestIdEl.on("beforeload",function(e){
+      
+        var data = {};
+        var params = {};
+        var value = e.data.key;
+        value = value.replace(/\s+/g, "");
+        if(value.length<3){
+            e.cancel = true;
+            return;
+        }
+        var params = {};
+    	params.pny = e.data.key;
+    	params.isSupplier = 1;
 
+        data.params = params;
+        e.data =data;
+        return;
+            
+       
+        
+    });
 
 	//document.getElementById("formIframePart").contentWindow.setInitTab('purchase');
 	
@@ -1862,10 +1886,28 @@ function onDrawSummaryCell(e) {
 }
 function onGuestValueChanged(e) {
 	// 供应商中直接输入名称加载供应商信息
-	var params = {};
-	params.pny = e.value;
-	params.isSupplier = 1;
-	setGuestInfo(params);
+//	var params = {};
+//	params.pny = e.value;
+//	params.isSupplier = 1;
+//	setGuestInfo(params);
+	var data = e.selected;
+	if (data) { 
+		var id = data.id;
+		var text = data.fullName;
+		var row = leftGrid.getSelected();
+		var newRow = {
+			guestFullName : text
+		};
+		leftGrid.updateRow(row, newRow);
+
+		var billTypeIdV = data.billTypeId;
+		var settTypeIdV = data.settTypeId;
+
+		nui.get("billTypeId").setValue(billTypeIdV);
+		nui.get("settleTypeId").setValue(settTypeIdV);
+
+		addNewRow(true);
+    }
 }
 var getGuestInfo = baseUrl
 		+ "com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
@@ -1882,13 +1924,13 @@ function setGuestInfo(params) {
 			if (text) {
 				var supplier = text.suppliers;
 				if (supplier && supplier.length > 0) {
-					var data = supplier[0];
-					var value = data.id;
-					var text = data.fullName;
-					var el = nui.get('guestId');
-					el.setValue(value);
-					el.setText(text);
-
+//					var data = supplier[0];
+//					var value = data.id;
+//					var text = data.fullName;
+//					var el = nui.get('guestId');
+//					el.setValue(value);
+//					el.setText(text);
+					nui.get('guestId').setData(supplier);
 					var row = leftGrid.getSelected();
 					var newRow = {
 						guestFullName : text
@@ -1942,12 +1984,12 @@ function setGuestInfo(params) {
 	});
 }
 function addGuest(){
-	nui.confirm("此供应商不存在，是否新增?", "友情提示", function(action) {
-		if (action == "ok") {
+//	nui.confirm("此供应商不存在，是否新增?", "友情提示", function(action) {
+//		if (action == "ok") {
 			nui.open({
 				// targetWindow: window,
 				url: webPath+contextPath+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
-				title: "供应商资料", width: 530, height: 480,
+				title: "供应商资料", width: 570, height: 530,
 				allowDrag:true,
 				allowResize:false,
 				onload: function ()
@@ -1973,10 +2015,10 @@ function addGuest(){
 				}
 			});
 
-		}else{
-			nui.get("guestId").focus();
-		}
-	});
+//		}else{
+//			nui.get("guestId").focus();
+//		}
+//	});
 }
 function onPrint(){
 	var from = basicInfoForm.getData();

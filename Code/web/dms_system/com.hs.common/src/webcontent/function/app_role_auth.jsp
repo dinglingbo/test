@@ -63,7 +63,7 @@
 	var baseUrl = apiPath + sysApi + "/";
 
 	function setRoleId(){
-		return {"roleId":"<%= request.getParameter("roleId")%>","type":"PC","token":token};
+		return {"roleId":"<%= request.getParameter("roleId")%>","type":"APP","token":token};
 	}
 
 	function saveTree(){

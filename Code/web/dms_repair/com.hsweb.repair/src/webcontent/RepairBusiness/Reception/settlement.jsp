@@ -539,8 +539,12 @@
 	        		}
 	        		var serviceCode = list.serviceCode || "";
 	        		var guestDesc = list.guestDesc || "";
-	        		var carM = text.car.carModel || "";
-	        		var carModel = list.carModel || carM || "";
+	        		if(text.car){
+	        		    var carM = text.car.carModel || "";
+	        		    var carModel = list.carModel || carM || "";
+	        		}else{
+	        		    var carModel = list.carModel || "";
+	        		}
 	        		var faultPhen = list.faultPhen || "";
 	        		var solveMethod = list.solveMethod || "";
 	        		var guestAddr = list.guestAddr || "";

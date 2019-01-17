@@ -73,6 +73,7 @@
     <location x="216" y="175"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="rpBill" iterableElement="rp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -178,7 +179,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.com.ComGuest</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.frm.data.com.ComGuest</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -467,7 +468,7 @@
       <targetNode>assign11</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">partMsg</process:leftOperand>
+          <process:leftOperand type="query">guestMsg</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -698,6 +699,10 @@
       <process:from type="literal" pattern="reference">期初应付单</process:from>
       <process:to type="query">rpBillTemp/billServiceId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">3</process:from>
+      <process:to type="query">rpBillTemp/rpTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
     <location x="610" y="276"/>
@@ -796,6 +801,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">期初应收单</process:from>
       <process:to type="query">rpBillTemp/billServiceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">3</process:from>
+      <process:to type="query">rpBillTemp/rpTypeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">

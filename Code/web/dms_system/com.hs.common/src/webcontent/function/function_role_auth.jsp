@@ -95,6 +95,7 @@
 			type: 'POST',
 			data:nui.encode({
 				roleId:"<%=request.getParameter("roleId") %>",
+				type: "pc",
 				functions:leafNodes,
 				token:token
 			}),

@@ -58,6 +58,7 @@
         <result column="billStatusId" javaType="string" property="billStatusId"/>
         <result column="guestFullName" javaType="string" property="guestFullName"/>
         <result column="guestShortName" javaType="string" property="guestShortName"/>
+        <result column="srmGuestId" javaType="string" property="srmGuestId"/>
         <result column="versionNo" javaType="java.sql.Timestamp" property="versionNo"/>
     </resultMap>
     <!-- 根据单号，供应商，订货日期，创建日期，审核日期，配件编码，配件名称，配件ID，创建人，公司ID orgid -->
@@ -112,6 +113,7 @@
             M.billStatusId,
             M.guestFullName,
             M.guestShortName,
+            M.srmGuestId,
             M.versionNo
         FROM (
             SELECT DISTINCT
@@ -162,6 +164,7 @@
                 A.BILL_STATUS_ID as billStatusId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
+                b.srm_guest_id as srmGuestId,
                 a.version_no as versionNo,
                 c.order_price as orderPrice
                 FROM
@@ -291,6 +294,7 @@
                 A.BILL_STATUS_ID as billStatusId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
+                b.srm_guest_id as srmGuestId,
                 a.version_no as versionNo,
                 c.order_price as orderPrice
                 FROM
@@ -1402,6 +1406,7 @@
                 a.rtn_reason_id as rtnReasonId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
+                b.srm_guest_id as srmGuestId,
                 a.version_no as versionNo,
                 a.is_diff_order as isDiffOrder,
                <!-- c.store_id as storeId,-->
@@ -1543,6 +1548,7 @@
                 a.rtn_reason_id as rtnReasonId,
                 B.FULL_NAME AS guestFullName,
                 B.SHORT_NAME AS guestShortName,
+                B.srm_guest_id as srmGuestId,
                 a.version_no as versionNo,
                 a.is_diff_order as isDiffOrder,
                <!-- c.store_id as storeId,-->

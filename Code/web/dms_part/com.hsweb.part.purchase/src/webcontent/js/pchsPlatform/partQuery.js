@@ -1,6 +1,5 @@
 
 var baseUrl = apiPath + partApi + "/";
-var protoken=null;
 var partGrid=null;
 var protokenEl=null;
 var partDetailGrid=null;
@@ -15,6 +14,7 @@ var categoryF=null;
 var tree = null;
 var brandId =null;
 var carId=null;
+var protoken = "";
 var treeUrl = baseUrl+"com.hsapi.part.invoice.partInterface.queryPartType.biz.ext";
 var dictDefs ={"billTypeIdE":"DDT20130703000008", "settleTypeIdE":"DDT20130703000035",};
 var getToeknUrl='http://124.172.221.179:83/srm/router/rest?method=sys.sys.loginIndex&account=000dlb&password=123456&system=0';
@@ -41,7 +41,8 @@ $(document).ready(function() {
 		}
 	}
        
-
+    protoken = getProToken();
+    
     partDetailGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -60,35 +61,35 @@ $(document).ready(function() {
     
 });
 //实际添加到采购车方法
-function addOrderCar()
+function addOrderCar(guest, part)
 {
 	var  type = 'pchsCart';
-    var data = partDetailGrid.getSelected();
+	var data = partDetailGrid.getSelected();
     var detail=[];
-	if(!data.guestId){
+	if(!guest.id){
 		parent.parent.parent.showMsg("请选择往来单位!","W");
         return;
 	}
 
-	data.partId=partData.id;
-	data.partCode=partData.code;
-	data.partName=partData.name;
-	data.fullName=partData.fullName;
-	data.unit=partData.unit;
+	data.partId=part.id;
+	data.partCode=part.code;
+	data.partName=part.name;
+	data.fullName=part.fullName;
+	data.unit=part.unit;
     data.orderQty=data.qty;
     data.orderPrice=data.price;
     detail.push(data);
    	
 	
 	var main={};
-	main.guestId=guestData.id;
-	main.guestName=data.guestName;
-	main.shortName=data.guestName;
+	main.guestId=guest.id;
+	main.guestName=guest.fullName;
+	main.shortName=guest.fullName;
 	main.storeId='';
 	main.shopType = 1;
 	main.remark='';
-	main.billTypeId=billTypeIdList[0].customid;
-	main.settleTypeId=settleTypeIdList[0].customid;
+	main.billTypeId=guest.billTypeId;
+	main.settleTypeId=guest.settTypeId;
 	main.type = "";
 	generateOrderByBatch(main, detail, type);
  
@@ -168,12 +169,11 @@ function verifyGuestForCar(){
             data = data.data || {};
             guestData=data.guest;
             partData=data.part;
-            console.log(data);
             if(partData.status==-1){
         		parent.parent.showMsg(partData.msg);
         		addOrEditPart(jsonData);
         	}else{
-    			addOrderCar();      		 
+    			addOrderCar(guestData,partData);      		 
         	}
            
             return true;   
@@ -260,7 +260,7 @@ function generateOrderByBatch(main,detail,type){
                 if(type == "pchsOrder" || type == "sellOrder"){
                     //更新采购车或是销售车的状态
                 }
-                CloseWindow("ok");
+                //CloseWindow("ok");
             } else {
                 parent.parent.parent.showMsg(data.errMsg || "操作失败!","W");
             }
@@ -321,46 +321,59 @@ function openGeneratePop(partList, type, title){
         }
     });
 }
-function getToken(){
-	nui.ajax({
-        url : getToeknUrl,
+
+function getProToken(){
+	var systoken = "";
+    nui.ajax({
+        url : webPath + contextPath + "/com.hs.common.sysService.srmAuthPro.biz.ext",
         type : "post",
-        data : '',
+        async: true,
+        data : {
+        },
         success : function(data) {
-            nui.unmask(document.body);
-            data = data.data || {};
-            if (data.status == "0") {
-            	protoken=data.protoken;
-            	protokenEl.setValue(protoken);
+            var errCode = data.errCode;
+            if(errCode == "S"){
+            	systoken = data.systoken;
+            	protoken = systoken;
+            	
+            	queryCarplate();
+            	queryPartBrand();
+
+            	tree.load({
+            		parentId :0,
+            		protoken:protoken
+            	});
+            	
+            }else {
+            	systoken = "";
             }
-               
+            
         },
         error : function(jqXHR, textStatus, errorThrown) {
             // nui.alert(jqXHR.responseText);
             console.log(jqXHR.responseText);
         }
     });
+    
+    
+	
+    return systoken;
 }
+
+
 function onSearch (){
-	queryCarplate();
-	queryPartBrand();
-//	var carId=nui.get("Carplate").value;
-//	var brandId=nui.get("partBrandId").value;
+
 	var key =nui.get('key').value;
 	if(!key){
 		parent.parent.showMsg("请填写关键词！","W");
 	}
-	protoken =protokenEl.value;
+
 	partGrid.load({
 		protoken :protoken,
 		categoryF :categoryF ||"",
 		carId :carId || "",
 		brandId :brandId ||"",
 		key  :key
-	});
-	tree.load({
-		parentId :0,
-		protoken:protoken
 	});
 }
 

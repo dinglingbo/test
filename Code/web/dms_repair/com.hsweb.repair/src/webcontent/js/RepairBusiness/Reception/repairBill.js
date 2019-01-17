@@ -4317,6 +4317,10 @@ function openItemSaleMans(e){
 function toChangBillTypeId(billTypeId){
 	var data =  billForm.getData();
 	var serviceId = data.id;
+	if(data.status == 2){
+		showMsg("工单已完工，不能转单!","W");
+		return;
+	}
 	if(serviceId){
 		nui.ajax({
 	        url: baseUrl + "com.hsapi.repair.repairService.crud.transformBill.biz.ext",
@@ -4353,10 +4357,10 @@ function toChangBillTypeId(billTypeId){
                 	window.parent.activeTabAndInit(item,params);
 	            }else{
 	            	if(billTypeId==2){
-	                	showMsg("转为洗美开单失败","E");
+	                	showMsg(data.errMsg || "转为洗美开单失败","E");
 	                }
 	                if(billTypeId==4){
-	                	showMsg("转为理赔开单失败","E");
+	                	showMsg(data.errMsg || "转为理赔开单失败","E");
 	                }
 	            }
 	        }

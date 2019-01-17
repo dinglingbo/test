@@ -27,7 +27,7 @@ $(document).ready(function(v)
     var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035"};
     initDicts(dictDefs, null);
     initMember("orderManId",function(){
-        memList = nui.get('orderMan').getData();
+        //memList = nui.get('orderMan').getData();
     });
     guestIdEl.focus();
 
@@ -301,7 +301,7 @@ function onCellCommitEdit(e) {
 
     editor.validate();
     if (editor.isValid() == false) {
-        showMsg("请输入数字!","W");
+    	parent.parent.showMsg("请输入数字!","W");
         e.cancel = true;
     }
 }
@@ -327,13 +327,13 @@ function generateOrderByBatch(main,detail,type){
             nui.unmask(document.body);
             var errCode = data.errCode;
             if(errCode == "S"){
-                showMsg("操作成功!","S");
+            	parent.parent.showMsg("操作成功!","S");
                 if(type == "pchsOrder" || type == "sellOrder"){
                     //更新采购车或是销售车的状态
                 }
                 CloseWindow("ok");
             } else {
-                showMsg(data.errMsg || "操作失败!","W");
+            	parent.parent.showMsg(data.errMsg || "操作失败!","W");
             }
 
         },
@@ -347,20 +347,20 @@ function onOk()
 {
     var data = batchInfoForm.getData();
     if(!data.guestId){
-        showMsg("请选择往来单位!","W");
+    	parent.parent.showMsg("请选择往来单位!","W");
         return;
     }
     if(!data.orderManId || !data.orderMan){
-    	showMsg("请选择采购员!","W");
+    	parent.parent.showMsg("请选择采购员!","W");
         return;
     }
     if(!data.planArriveDate){
-    	showMsg("请填写预计到货日期!","W");
+    	parent.parent.showMsg("请填写预计到货日期!","W");
         return;
     }
     var detail = mainGrid.getData();
     if(detail.length <= 0){
-        showMsg("明细为空!","W");
+    	parent.parent.showMsg("明细为空!","W");
         return;
     }
 

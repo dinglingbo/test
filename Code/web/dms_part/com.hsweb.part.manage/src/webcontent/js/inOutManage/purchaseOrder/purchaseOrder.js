@@ -2307,8 +2307,9 @@ function setInitData(params){
 var pushOrderUrl=baseUrl+"com.hsapi.part.invoice.ordersettle.pushSupplierOrder.biz.ext";
 function pushSupplierOrder(){
 	var payType = '';
-	var companyId='COM00000000000001';
-	var settleType=nui.get('settleTypeId').getText();
+	var data = basicInfoForm.getData();
+	var settleType = nui.get('settleTypeId').getText();
+	var mem = nui.get('orderMan').getText();
 	if(settleType=='现结'){
 		payType='JS01';
 	}else if(settleType=='月结'){
@@ -2319,7 +2320,17 @@ function pushSupplierOrder(){
         type : "post",
         data : JSON.stringify({
         	payType : payType,
-        	companyId : companyId
+        	address:"",
+        	isInsurance:0,
+        	isDeposit:0,
+        	isScene:0,
+        	isTax:1,
+        	receiver:mem,
+        	remark:data.remark,
+        	mobile:"",
+        	userName:mem,
+        	guestId:data.srmGuestId,
+        	mainId:data.id
         }),
         success : function(data) {
             nui.unmask(document.body);

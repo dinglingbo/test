@@ -229,8 +229,10 @@ function doSearch(params) {
 }
 function getSearchParam() {
     var params = {};
-    params.sRecordDate = beginDateEl.getFormValue();
-    params.eRecordDate = addDate(endDateEl.getValue(),1);
+    params.soutDate = beginDateEl.getFormValue();
+    params.eoutDate = addDate(endDateEl.getValue(),1);
+    params.partCode = nui.get("partCode").getValue();
+    params.partName = nui.get("partName").getValue();
     params.isSettle=1;
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
@@ -281,19 +283,23 @@ function mergeCells(){//动态合并行
 			 cells[5] = { rowIndex: 0, columnIndex: 6, rowSpan: index + 1, colSpan: 0 };
 			 cells[6] = { rowIndex: 0, columnIndex: 7, rowSpan: index + 1, colSpan: 0 };
 			 cells[7] = { rowIndex: 0, columnIndex: 8, rowSpan: index + 1, colSpan: 0 };
+			 cells[8] = { rowIndex: 0, columnIndex: 9, rowSpan: index + 1, colSpan: 0 };
+			 cells[9] = { rowIndex: 0, columnIndex: 10, rowSpan: index + 1, colSpan: 0 };
 		 }else{
 		 	 var last = brr[i-1];
 		 	 last = parseInt(last);
 		 	 var one = brr[i];
 		 	 one = parseInt(one);
-		 	 cells[8*i+0] = { rowIndex: last + 1, columnIndex: 1, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[8*i+1] = { rowIndex: last + 1, columnIndex: 2, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[8*i+2] = { rowIndex: last + 1, columnIndex: 3, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[8*i+3] = { rowIndex: last + 1, columnIndex: 4, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[8*i+4] = { rowIndex: last + 1, columnIndex: 5, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[8*i+5] = { rowIndex: last + 1, columnIndex: 6, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[8*i+6] = { rowIndex: last + 1, columnIndex: 7, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[8*i+7] = { rowIndex: last + 1, columnIndex: 8, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[10*i+0] = { rowIndex: last + 1, columnIndex: 1, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[10*i+1] = { rowIndex: last + 1, columnIndex: 2, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[10*i+2] = { rowIndex: last + 1, columnIndex: 3, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[10*i+3] = { rowIndex: last + 1, columnIndex: 4, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[10*i+4] = { rowIndex: last + 1, columnIndex: 5, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[10*i+5] = { rowIndex: last + 1, columnIndex: 6, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[10*i+6] = { rowIndex: last + 1, columnIndex: 7, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[10*i+7] = { rowIndex: last + 1, columnIndex: 8, rowSpan: one - last, colSpan: 0 };
+		 	 cells[10*i+8] = { rowIndex: last + 1, columnIndex: 9, rowSpan: one - last, colSpan: 0 };
+		 	 cells[10*i+9] = { rowIndex: last + 1, columnIndex: 10, rowSpan: one - last, colSpan: 0 };
 		 	 
 		 }
 	}

@@ -174,7 +174,18 @@
 		from com_cap_resauth a
 		inner join com_app_function b
 		on a.res_id = b.funccode
-		where b.functype = #type# and a.party_id = #roleId#
+		where 1 = 1
+		<isNotEmpty prepend="" property="type">  
+			        <isEqual prepend="and" property="type" compareValue="app">
+						b.functype = 'app'
+					</isEqual>
+					<isEqual prepend="and" property="type" compareValue="pc">
+						b.functype != 'app'
+					</isEqual>
+                    
+              </isNotEmpty>
+		
+		and a.party_id = #roleId#
 	</delete>
 	
 </sqlMap>

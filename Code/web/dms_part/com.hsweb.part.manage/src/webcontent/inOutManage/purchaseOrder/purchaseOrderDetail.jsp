@@ -53,6 +53,7 @@
                           <input class="nui-hidden" name="billStatusId" id="billStatusId"/>
                           <input class="nui-hidden" name="guestFullName" id="guestFullName"/>
                           <input class="nui-hidden" name="serviceId" id="serviceId"/>
+                          <input class="nui-hidden" name="srmGuestId" id="srmGuestId"/>
                           <input class="nui-textbox" visible="false" width="100%" id="isInner" name="isInner"/>
                           <table style="width: 100%;">
                               <tr>

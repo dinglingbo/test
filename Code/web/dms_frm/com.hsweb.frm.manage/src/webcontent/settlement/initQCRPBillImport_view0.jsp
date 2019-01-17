@@ -11,7 +11,7 @@
 <title>期初应收应付导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=1.0.0"></script>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/initQCRPBillImport.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/initQCRPBillImport.js?v=1.0.1"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -108,6 +108,8 @@
 					应收</div>
 				<div field="应付" width="80px" headerAlign="center" allowSort="true">
 					应付</div>
+				<div field="备注" width="150px" headerAlign="center" allowSort="true">
+					备注</div>
 			</div>
 		</div>
 	</div>

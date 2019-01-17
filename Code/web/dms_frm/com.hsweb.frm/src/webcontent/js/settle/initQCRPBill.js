@@ -19,6 +19,7 @@ $(document).ready(function(v)
 function doSearch() {
     var params = {};
     params.auditSign = 0;
+    params.rpTypeId = 3;
     mainGrid.load({
         params: params,
         pageSize: 1000,
@@ -141,15 +142,13 @@ function save(){
             temp.guestName = temp.guestFullName;
             
             if(temp.ramt) {
-            	showMsg(temp.ramt,"W");
                 temp.rpAmt = temp.ramt;
-                temp.rptype = 1;
-                temp.rpAmtNo = temp.ramt;
+                temp.rpTypeId = 3;
+                temp.billDc = 1;
             }else if(temp.pamt) {
-            	showMsg(temp.ramt,"W");
             	temp.rpAmt = temp.pamt;
-                temp.rptype = -1;
-                temp.rpAmtNo = temp.pamt;
+                temp.rpTypeId = 3;
+                temp.billDc = -1;
             }
             rpAddList.push(temp);
         }
@@ -164,8 +163,8 @@ function save(){
             if(temp.billDc == 1) {
                 if(temp.ramt) {
                     temp.rpAmt = temp.ramt;
-                    temp.rptype = 1;
-                    temp.rpAmtNo = temp.ramt;
+                    temp.rpTypeId = 3;
+                    temp.billDc = 1;
                     rpUpdateList.push(temp);
                 }else if(temp.pamt) {
                     //先添加到删除里面
@@ -174,8 +173,8 @@ function save(){
 
                     temp.id = null;
                     temp.rpAmt = temp.pamt;
-                    temp.rptype = -1;
-                    temp.rpAmtNo = temp.pamt;
+                    temp.rpTypeId = 3;
+                    temp.billDc = -1;
                     rpAddList.push(temp);
                 }
                 
@@ -183,8 +182,8 @@ function save(){
             }else if(temp.billDc == -1) {
                 if(temp.pamt) {
                     temp.rpAmt = temp.pamt;
-                    temp.rptype = -1;
-                    temp.rpAmtNo = temp.pamt;
+                    temp.rpTypeId = 3;
+                    temp.billDc = -1;
                     rpUpdateList.push(temp);
                 }else if(temp.ramt) {
                     //先添加到删除里面
@@ -193,8 +192,8 @@ function save(){
 
                     temp.id = null;
                     temp.rpAmt = temp.ramt;
-                    temp.rptype = 1;
-                    temp.rpAmtNo = temp.ramt;
+                    temp.rpTypeId = 3;
+                    temp.billDc = 1;
                     rpAddList.push(temp);
                 }
             }
@@ -243,7 +242,7 @@ function save(){
     
 }
 var auditUrl = baseUrl
-        + "com.hsapi.frm.QCRPBill.auditInitRpBill.biz.ext";
+        + "com.hsapi.frm.frmService.crud.auditInitRpBill.biz.ext";
 function audit(){
     var rpAdd = mainGrid.getChanges("added");
     if(rpAdd && rpAdd.length > 0){
@@ -263,7 +262,7 @@ function audit(){
         return;
     }
 
-    var data = mainGrid.getSelected();
+    var data = mainGrid.getSelecteds();
     if(data) {
         nui.mask({
             el : document.body,

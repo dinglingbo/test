@@ -79,6 +79,7 @@ function sure() {
 				guestFullName : data[i].往来单位全称||"",
 				ramt : data[i].应收||"",
 				pamt : data[i].应付||"",
+				remark : data[i].备注||"",
 				rpTypeId: 3
 			};
 			partList.push(newRow);
@@ -100,7 +101,7 @@ function close(){
     else window.close();
 }
 
-var saveUrl = baseUrl + "com.hsapi.frm.QCRPBill.getImportRPBill.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.frm.frmService.crud.getImportRPBill.biz.ext";
 function saveEnterPart(partList){
 	if(partList && partList.length>0) {
 		nui.mask({

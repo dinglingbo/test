@@ -27,21 +27,27 @@
 			a.begin_date beginDate,
 			a.end_date endDate,
 			a.settle_type_id settleTypeId,
-			d.amt amt,
-			<!--a.rtn_comp_amt rtnCompAmt,
-			a.rtn_guest_amt rtnGuestAmt,-->
+			a.modifier  modifier,
+			a.modify_date  modifyDate,
+			a.amt amt,
+			d.amt damt,
+			a.rtn_comp_amt rtnCompAmt,
+			a.rtn_guest_amt rtnGuestAmt,
 			a.record_date recordDate,
 			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
 			b.vin carVin,
 			c.name guestName,
-			c.mobile,
+			c.mobile mobile,
 			b.engine_no engineNo,
 			b.car_brand_id carBrandId,
 			c.wechat_open_id as openId,
 			a.out_date outDate,
-			d.rtn_comp_amt rtnCompAmt,
-			d.rtn_guest_amt rtnGuestAmt,
-			d.insure_type_Name  insureTypeName
+			d.rtn_comp_amt drtnCompAmt,
+			d.rtn_comp_rate drtnCompRate,
+			d.rtn_guest_rate dRtnGuestRate,
+			d.rtn_guest_amt drtnGuestAmt,
+			d.insure_type_Name  insureTypeName,
+			d.insure_no insureNo
 		FROM
 			rps_insurance_main a
 		INNER JOIN rpb_car b ON (a.car_id = b.id)
@@ -56,16 +62,22 @@
 	        <isNotEmpty prepend="and" property="status">  
 	            (a.status  = #status#)
 	        </isNotEmpty>
-					<isNotEmpty prepend="and" property="guestFullName">  
+			<isNotEmpty prepend="and" property="guestFullName">  
 	            (c.full_name like '%$guestFullName$%')
 	        </isNotEmpty>
-
-					<isNotEmpty prepend="and" property="serviceCode">  
+               <isNotEmpty prepend="and" property="name">  
+	            (c.name like '%$name$%')
+	        </isNotEmpty>
+			<isNotEmpty prepend="and" property="serviceCode">  
 	            (a.service_code like '%$serviceCode$%')
 	        </isNotEmpty>
 
 	        <isNotEmpty prepend="and" property="carNo">  
 	            (b.car_no like '%$carNo$%')
+	        </isNotEmpty>
+	        
+	        <isNotEmpty prepend="and" property="mobile">  
+	            (c.mobile like '%$mobile$%')
 	        </isNotEmpty>
 	        
 	        <isNotEmpty prepend="and" property="carVin">  
@@ -85,6 +97,12 @@
 	        </isNotEmpty>
 	        <isNotEmpty prepend="and" property="endDate">  
 	            (a.record_date &lt;= #endDate#)
+	        </isNotEmpty>
+	        <isNotEmpty prepend="and" property="soutDate">  
+	            (a.out_date &gt;= #soutDate#)
+	        </isNotEmpty>
+	        <isNotEmpty prepend="and" property="eoutDate">  
+	            (a.out_date &lt;= #eoutDate#)
 	        </isNotEmpty>
 	        	order by recordDate desc
 	    </dynamic>

@@ -20,14 +20,19 @@
     
     <!--1.获取租户自身可设置权限的应用功能-->
     <select id="queryTenantApplication" parameterClass="HashMap" resultClass="HashMap">
-    	select res_id as id, res_name as text, res_parent_id as parentId, 0 as isCheck, 'function' as type
+    	select res_id as id, res_name as text, res_parent_id as parentId, 0 as isCheck, 
+    	       'function' as type, scope as scope, type as appPc
     	from com_tenant_menu
     	where is_disabled = 0 and tenant_id = #tenantId#
+    		  <isNotEmpty prepend="and" property="type">  
+                    (type = #type#)
+              </isNotEmpty>
     </select>
     
     <!--2.获取应用功能菜单-->
     <select id="queryResMenu" parameterClass="HashMap" resultClass="HashMap">
-    	SELECT b.FUNCGROUPID as id, b.FUNCGROUPNAME as text, b.PARENTGROUP as parentId, 0 as isCheck, 'menu' as type
+    	SELECT b.FUNCGROUPID as id, b.FUNCGROUPNAME as text, b.PARENTGROUP as parentId, 0 as isCheck, 
+    	       'menu' as type, '' as scope, '' as appPc
 		from app_funcgroup b
 		order by b.FUNCGROUPID
     </select>
@@ -125,7 +130,8 @@
     
     <!--获取菜单结构-->
     <select id="queryMenu" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
-    	SELECT m.menuid, m.menuname, m.menucode, m.imagepath, m.parentsid, m.funccode, m.DISPLAYORDER, null as funcaction
+    	SELECT m.menuid, m.menuname, m.menucode, m.imagepath, m.parentsid, m.funccode, 
+    	       m.DISPLAYORDER, null as funcaction, m.EXPANDPATH as expandpath, m.APP_ID as appId
 		from app_menu m
 		where ifnull(m.funccode, '') = ''
 		order by m.DISPLAYORDER asc
@@ -133,7 +139,8 @@
     
     <!--获取菜单列表功能RES-->
     <select id="queryMenuRes" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
-    	SELECT DISTINCT a.menuid, a.menuname, a.menucode, a.imagepath, a.parentsid, b.funccode, a.DISPLAYORDER,  b.funcaction
+    	SELECT DISTINCT a.menuid, a.menuname, a.menucode, a.imagepath, a.parentsid, b.funccode, 
+    	       a.DISPLAYORDER,  b.funcaction, a.EXPANDPATH as expandpath, a.APP_ID as appId
 		from app_menu a
 		inner join com_app_function b
 		on a.funccode = b.FUNCCODE
@@ -146,6 +153,17 @@
               <isEmpty prepend="and" property="roleIds">  
                     c.PARTY_ID = -1
               </isEmpty>
+              
+		      <isNotEmpty prepend="" property="type">  
+			        <isEqual prepend="and" property="type" compareValue="app">
+						b.FUNCTYPE = 'app'
+					</isEqual>
+					<isEqual prepend="and" property="type" compareValue="pc">
+						b.FUNCTYPE != 'app'
+					</isEqual>
+                    
+              </isNotEmpty>
+              
 		order by a.DISPLAYORDER asc
     </select>
     

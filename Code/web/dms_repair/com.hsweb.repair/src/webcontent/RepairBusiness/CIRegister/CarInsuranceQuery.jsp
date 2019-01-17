@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>保险开单查询</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceQuery.js?v=1.0.27"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceQuery.js?v=1.0.30"></script>
     <style type="text/css">
 
     table {
@@ -33,7 +33,7 @@ pageEncoding="UTF-8" session="false"%>
                     <label style="font-family:Verdana;">快速查询：</label>
                 </td>
                 <td>
-                    <a class="nui-menubutton" plain="false" iconCls="" id="searchByDateBtn" menu="#popupMenu" >本日</a>
+                    <a class="nui-menubutton" plain="false" iconCls="" id="menunamedate" menu="#popupMenu" >本日</a>
                     <ul id="popupMenu" class="nui-menu" style="display:none;">
                         <li iconCls="" onclick="quickSearch(0)">本日</li>
                         <li iconCls="" onclick="quickSearch(1)">昨日</li>
@@ -46,11 +46,9 @@ pageEncoding="UTF-8" session="false"%>
                     </ul>
                 </td>
                 <td>
-                    <label class="form_label">车牌号：</label>
-                    <input class="nui-textbox" name="carNo" id="carNo-search" onenter="carNoSearch"/>
-                    <label class="form_label">客户名称：</label>
-                    <input class="nui-textbox" name="guestName" id="guestName" onenter="guestNameSearch"/>
-                    <label class="form_label">开单日期&nbsp;从：</label>
+                    <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"  onenter="onSearch()"/>
+                    <label class="form_label">结算日期&nbsp;从：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
@@ -60,47 +58,66 @@ pageEncoding="UTF-8" session="false"%>
             </tr>
         </table> 
     </div> 
-            <div class="nui-fit">
+            <div  class="nui-fit">
                 <div id="leftGrid" dataField="list" class="nui-datagrid" 
-                style="width: 100%; height: 100%;"
-                pageSize="50"
-                totalField="page.count"
-                sortMode="client"
-                selectOnLoad="true"
-                onrowdblclick=""
-               	allowCellSelect="true"
-               	editNextOnEnterKey="true"
-              	onshowrowdetail="onShowRowDetail"
-               	allowCellEdit="true"
-               	allowCellWrap = true
-                allowSortColumn="true">
+                 selectOnLoad="true"
+                 showPager="true"
+                 pageSize="50"
+                 totalField="page.count"
+                 sizeList=[20,50,100,200]
+                 dataField="list" 
+                 showModified="false"
+                 onrowdblclick=""
+                 allowCellSelect="true"
+                 editNextOnEnterKey="true"
+                 allowCellWrap = true
+                 style="height:100%;width:100%;"
+                 onshowrowdetail="onShowRowDetail">
                 <div property="columns">
                     <div type="indexcolumn" headeralign="center" allowsort="true" visible="true" width="30">序号</div>
                     <div type="expandcolumn" width="20" visible="false"><span class="fa fa-plus fa-lg"></span></div>
-                    <div field="id" headeralign="center" allowsort="true" visible="false" width="80px">主键</div>
-                    <div field="carNo" headeralign="center" allowsort="true" visible="true" width="90px">车牌号</div>
-                    <!-- <div field="carBrandId" headeralign="center" allowsort="true" visible="true" width="80px">品牌</div> -->
-                    <div field="carModel" headeralign="center" allowsort="true" visible="true" width="180px">品牌车型</div>
-                    <div field="carVin" headeralign="center" allowsort="true" visible="true" width="150px">车架号(VIN)</div>
-                    <div field="guestName" headeralign="center" allowsort="true" visible="true" width="80px">客户名称</div>
-<!--                     <div field="mobile" headeralign="center" allowsort="true" visible="true" width="100px">客户手机</div> -->
-                    <div field="insureCompName" headeralign="center" allowsort="true" visible="true" width="230px">保险公司</div>
-					<div field="saleMans" headeralign="center" allowsort="true" visible="true" width="100px">销售员</div>
-                    <div field="serviceCode" headeralign="center" allowsort="true" visible="true" width="120px">工单号</div>
-                    <div field="outDate" name="" width="130" headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div field="beginDate" name="" width="130" headerAlign="center" header="有效开始日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div field="endDate" name="" width="130" headerAlign="center" header="有效结束日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div field="settleTypeId" headeralign="center" allowsort="true" visible="true" width="100px">保费收取方式</div>
-		            <div field="insureTypeName" headerAlign="center" allowSort="false" visible="true" width="100" header="险种"></div> 
-		            <div field="amt" headerAlign="center" allowSort="false"  width="80px" header="保司保费" align="center"></div>   
-		            <div field="rtnCompAmt" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="保司返点" > </div>
-		            <div field="rtnGuestAmt" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="客户返点"> </div>
-                    <!-- <div field="amt" name="amt" width="100" headerAlign="center" header="保司保费总金额"></div>
-                    <div field="rtnCompAmt" name="partAmt" width="100" headerAlign="center" header="保司返点总金额"></div>
-                    <div field="rtnGuestAmt" name="partAmt" width="100" headerAlign="center" header="客户返点总金额"></div> -->
+                    <div header="客户车辆信息" headerAlign="center">
+                      <div property="columns" >	
+		                <div field="id" headeralign="center" allowsort="true" visible="false" >主键</div>
+		                <div field="guestName" headeralign="center" allowsort="true" visible="true" >客户名称</div>
+		                <div field="mobile" headeralign="center" allowsort="true" visible="true" >客户手机</div>
+		                <div field="carNo" headeralign="center" allowsort="true" visible="true" >车牌号</div>
+		                <div field="carModel" headeralign="center" allowsort="true" visible="true">品牌车型</div>
+		                <div field="carVin" headeralign="center" allowsort="true" visible="true">车架号(VIN)</div>
+                      </div>
+                    </div>
+	                <div header="保单信息" headerAlign="center">
+	                   <div property="columns" >
+	                     <div field="serviceCode" headeralign="center" allowsort="true" visible="true" >工单号</div>
+	                     <div field="outDate" name=""  headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+	                     <div field="insureCompName" headeralign="center" allowsort="true" visible="true" >保险公司</div>
+	                     <div field="mtAdvisor" headeralign="center" allowsort="true" visible="true">服务顾问</div>
+	                     <div field="saleMans" headeralign="center" allowsort="true" visible="true" >销售员</div>
+	                     <div field="beginDate" name=""  headerAlign="center" header="有效开始日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+	                     <div field="endDate" name=""  headerAlign="center" header="有效结束日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+	                     <div field="settleTypeId" headeralign="center" allowsort="true" visible="true" >保费收取方式</div>
+	                     <div field="amt" name="amt"  headerAlign="center" header="保费总金额"></div>
+	                     <div field="rtnCompAmt" name="partAmt"  headerAlign="center" header="保司返点总金额"></div>
+	                     <div field="rtnGuestAmt" name="partAmt"  headerAlign="center" header="客户返点总金额"></div> 
+	                     <div field="modifier" name="modifier" headerAlign="center" header="修改人"></div> 
+                        <div field="modifyDate" name="modifyDate"  headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                       </div>
+                     </div>					
+                    <div header="保费信息" headerAlign="center">
+                       <div property="columns" >
+		                <div field="insureTypeName" headerAlign="center" allowSort="false" visible="true" width="100" header="险种名称"></div>
+		                <div field="insureNo" name=""  headerAlign="center" header="交强险/商业险单号" ></div>
+		                <div field="damt" headerAlign="center" allowSort="false" header="保司保费" align="center"></div>
+		                <div field="drtnCompRate" headerAlign="center" allowSort="false" header="保司返点" align="center"></div>
+		                <div field="drtnCompAmt" headerAlign="center" allowSort="false" header="保司返点金额" align="center"></div>
+		                <div field="drtnCompRate" headerAlign="center" allowSort="false" header="客户返点" align="center"></div>
+		                <div field="drtnCompAmt" headerAlign="center" allowSort="false" header="客户返点金额" align="center"></div>
+                     </div>
+                   </div>
                 </div>
             </div>
-            <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
+   </div>
+  <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
              <div id="innerPartGrid"
              dataField="list"
              class="nui-datagrid"
@@ -115,9 +132,9 @@ pageEncoding="UTF-8" session="false"%>
                  <div field="rtnGuestAmt" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="客户返点"> </div>
              </div>
          </div>
-     </div>
-     
- </div>
+       </div>
+ 
+ 
  <div id="advancedSearchWin" class="nui-window"
  title="高级查询" style="width:420px;height:300px;"
  showModal="true"

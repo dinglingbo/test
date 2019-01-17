@@ -74,6 +74,10 @@
                     (a.bill_type_id = #billTypeId#)
                 </isNotEmpty>
                 
+                <isNotEmpty prepend="and" property="rpTypeId"> 
+                    (a.rp_type_id = #rpTypeId#)
+                </isNotEmpty>
+                                
                 <!--本日 昨日 本周 上周 本月 下月 -->
                 <isNotEmpty prepend="and" property="startDate">  
                     (a.create_date &gt;= #startDate#)

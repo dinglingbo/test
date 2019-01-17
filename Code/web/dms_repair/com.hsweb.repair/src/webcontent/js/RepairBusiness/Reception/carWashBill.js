@@ -990,7 +990,7 @@ function setFrom(data){
                     }
                 }
                 loadDetail(p1, p2, p3,status);
-                nui.unmask(document.body)
+                nui.unmask(document.body);
             }else{
             	nui.unmask(document.body)
                 showMsg("数据加载失败,请重新打开工单!","E");
@@ -1393,27 +1393,12 @@ function addPrdt(data){
                             }else*/ 
                         	if(interType == 'item'){
                                 rpsItemGrid.clearRows();
-                                /*rpsItemGrid.addRows(data);
+                                rpsItemGrid.addRows(data);
                                 if(main.status<2){
                                 	var row = rpsItemGrid.findRow(function(row){
                                 		rpsItemGrid.beginEditRow(row);
                                     });
-                                }*/
-                                var p1 = {
                                 }
-                                var p2 = {
-                                    interType: "item",
-                                    data:{
-                                        serviceId: main.id||0
-                                    }
-                                }
-                                var p3 = {
-                                    interType: "part",
-                                    data:{
-                                        serviceId: main.id||0
-                                    }
-                                }
-                        		loadDetail(p1, p2, p3,main.status);
                             }
                         }
                     }, function(){});
@@ -1457,31 +1442,12 @@ function addPrdt(data){
                     var data = text.data||[];
                     if(errCode == "S"){
                         rpsItemGrid.clearRows();
-                        /*if(data.qty==0){
-                        	data.qty = 1;
-                        }
                         rpsItemGrid.addRows(data);
                         if(main.status<2){
                         	var row = rpsItemGrid.findRow(function(row){
                         		rpsItemGrid.beginEditRow(row);
                             });
-                        }*/
-                        var p1 = {
                         }
-                        var p2 = {
-                            interType: "item",
-                            data:{
-                                serviceId: main.id||0
-                            }
-                        }
-                        var p3 = {
-                            interType: "part",
-                            data:{
-                                serviceId: main.id||0
-                            }
-                        }
-                        loadDetail(p1, p2, p3,main.status);
-                    	
                     }
                 }, function(){});
             }else{
@@ -2192,30 +2158,17 @@ function selecCardTimes(main){
                     if(errCode == "S"){
                     	if(interType == 'item'){
                             rpsItemGrid.clearRows();
-                            /*if(data.qty==0){
-                            	data.qty = 1;
-                            }
                             rpsItemGrid.addRows(data);
                             if(main.status<2){
                             	var row = rpsItemGrid.findRow(function(row){
                             		rpsItemGrid.beginEditRow(row);
                                 });
-                            }*/
-                            var p1 = {
                             }
-                            var p2 = {
-                                interType: "item",
-                                data:{
-                                    serviceId: main.id||0
-                                }
+                    		//显示项目颜色
+                    		var strId = forFrom();
+                            if(strId!=null){
+                            	showTab(strId);
                             }
-                            var p3 = {
-                                interType: "part",
-                                data:{
-                                    serviceId: main.id||0
-                                }
-                            }
-                            loadDetail(p1, p2, p3,main.status);
                         }
                     }
                 }, function(){});
@@ -3078,7 +3031,12 @@ function pay(){
           	 showMsg("工单已结算!","W");
                return;
           }
-        if(data.status != 2){
+        if(data.status != 2 ){
+        	 nui.mask({
+        	        el: document.body,
+        	        cls: 'mini-mask-loading',
+        	        html: '数据加载中...'
+        	 });
             //showMsg("工单未完工,不能结算!","W");
             //return;
         	var params = {
@@ -3090,7 +3048,7 @@ function pay(){
         	    svrRepairAudit(params, function(data1){
         	        data1 = data1||{};
         	        var errCode = data1.errCode||"";
-        	        var errMsg = data1.errMsg||"";
+        	        var errMsg = data1.errMsg||"操作失败,请重新操作";
         	        if(errCode == 'S'){
         	        	//成功之后，重新设置表单值*******************
                         var olddata = billForm.getData();
@@ -3117,13 +3075,15 @@ function pay(){
                             }
                         }
                         loadDetail(p1, p2, p3,status);
+                        nui.unmask(document.body);
                         onPay(data);
         	        }else{
-        	        	showMsg("操作失败,请重新操作","E");
+        	        	nui.unmask(document.body)
+        	        	showMsg(errMsg,"E");
         	        }
         	    }, function(){
         	    });
-        }else{
+        }else {
         	onPay(data);
         }  
     }
@@ -4006,9 +3966,11 @@ function forFrom(){
 	return strId;
 }
 
+var addF = 0;
 function selectclick() {
     $("a[name=HotWord]").click(function () {
 //        $(this).siblings().removeClass("xz");
+    	addF = 0;
     	var main = billForm.getData();
         var isSettle = main.isSettle||0;
         var status = main.status||0;
@@ -4020,12 +3982,14 @@ function selectclick() {
             return;
         }else{
         	if($(this)[0].classList.length==1){
+        		addF = 1;
             	$(this).toggleClass("xz");
             }
             var rpbId = $(this)[0].id;
             //等于2添加，1删除
-            if($(this)[0].classList.length==2){
+            if($(this)[0].classList.length==2 && addF == 1){
             	//if(itemGridHash)
+            	addF = 0;
             	var row = itemGridHash[rpbId];
             	var type = 2;
     			var resultData = {

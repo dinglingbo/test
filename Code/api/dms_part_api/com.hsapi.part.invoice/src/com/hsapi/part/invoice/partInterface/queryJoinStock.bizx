@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryJoinStock" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询SRM库存&#xD;&#xA;http://14.23.35.20:5781/srm/router/rest&#xD;&#xA;{&quot;method&quot;:&quot;sys.sys.loginIndex&quot;,&quot;account&quot;:&quot;hstest&quot;,&quot;password&quot;:&quot;hstest&quot;}&#xD;&#xA;&#xD;&#xA;http://14.23.35.20:5781/srm/router/rest?token=2B9CE39B6B200D867146AFF56BB1967A&#xD;&#xA;{method:&quot;product.guestInvQty.getPartInv&quot;,code:&quot;A2782000400&quot;,qty:1}" title="Administrator&#x9;18-12-25 下午4:56">
-    <location x="-28" y="-30"/>
-    <size height="141" width="579"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查询SRM库存&#xD;&#xA;http://14.23.35.20:5781/srm/router/rest&#xD;&#xA;{&quot;method&quot;:&quot;sys.sys.loginIndex&quot;,&quot;account&quot;:&quot;hstest&quot;,&quot;password&quot;:&quot;hstest&quot;}&#xD;&#xA;&#xD;&#xA;http://14.23.35.20:5781/srm/router/rest?token=2B9CE39B6B200D867146AFF56BB1967A&#xD;&#xA;{method:&quot;product.guestInvQty.getPartInv&quot;,code:&quot;A2782000400&quot;,qty:1}&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;18-12-25 下午4:56">
+    <location x="-105" y="-150"/>
+    <size height="248" width="566"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="link11" isDefault="true" type="transition">
@@ -15,8 +15,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" nodeType="label">
-    <location x="-16" y="252"/>
-    <figSize height="20" width="31"/>
+    <location x="-13" y="252"/>
+    <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="api验证" displayName="api验证" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -57,8 +57,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="506" y="177"/>
-    <figSize height="20" width="53"/>
+    <location x="511" y="177"/>
+    <figSize height="17" width="43"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="getEnv" displayName="getEnv" collapsed="false" type="subprocess">
@@ -82,8 +82,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="235" y="176"/>
-    <figSize height="20" width="51"/>
+    <location x="240" y="176"/>
+    <figSize height="17" width="40"/>
     <node>subprocess1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值2" displayName="赋值" collapsed="false" type="assign">
@@ -130,8 +130,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="389" y="177"/>
-    <figSize height="20" width="40"/>
+    <location x="393" y="177"/>
+    <figSize height="17" width="32"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="str2Map" displayName="str2Map" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -157,8 +157,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="644" y="253"/>
-    <figSize height="20" width="62"/>
+    <location x="650" y="253"/>
+    <figSize height="17" width="50"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值3" displayName="赋值" collapsed="false" type="assign">
@@ -202,8 +202,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="798" y="252"/>
-    <figSize height="20" width="40"/>
+    <location x="802" y="252"/>
+    <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值1" displayName="赋值" collapsed="false" type="assign">
@@ -227,8 +227,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="798" y="379"/>
-    <figSize height="20" width="40"/>
+    <location x="802" y="379"/>
+    <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值5" displayName="赋值" collapsed="false" type="assign">
@@ -266,8 +266,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
-    <location x="959" y="253"/>
-    <figSize height="20" width="40"/>
+    <location x="963" y="253"/>
+    <figSize height="17" width="32"/>
     <node>assign6</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值6" displayName="赋值" collapsed="false" type="assign">
@@ -309,8 +309,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
-    <location x="119" y="253"/>
-    <figSize height="20" width="40"/>
+    <location x="123" y="253"/>
+    <figSize height="17" width="32"/>
     <node>assign7</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值" displayName="赋值" collapsed="false" type="assign">
@@ -332,8 +332,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="517" y="111"/>
-    <figSize height="20" width="31"/>
+    <location x="520" y="111"/>
+    <figSize height="17" width="25"/>
     <node>assign1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值4" displayName="赋值" collapsed="false" type="assign">
@@ -361,8 +361,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="513" y="380"/>
-    <figSize height="20" width="40"/>
+    <location x="517" y="380"/>
+    <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值7" displayName="赋值" collapsed="false" type="assign">
@@ -386,8 +386,8 @@
     <nodeLabel>assign5label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="513" y="464"/>
-    <figSize height="20" width="40"/>
+    <location x="517" y="464"/>
+    <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值8" displayName="赋值" collapsed="false" type="assign">
@@ -406,8 +406,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="119" y="463"/>
-    <figSize height="20" width="40"/>
+    <location x="123" y="463"/>
+    <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" collapsed="false" type="end">
@@ -423,8 +423,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="655" y="146"/>
-    <figSize height="20" width="40"/>
+    <location x="659" y="146"/>
+    <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess2" name="srmAuth" displayName="srmAuth" type="subprocess">
@@ -450,8 +450,8 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="107" y="336"/>
-    <figSize height="20" width="63"/>
+    <location x="114" y="336"/>
+    <figSize height="17" width="49"/>
     <node>subprocess2</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="querySRMSKUList" displayName="querySRMSKUList" type="invoke" index="10" invokeType="invoke_pojo" varArgs="false">
@@ -485,8 +485,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="343" y="253"/>
-    <figSize height="20" width="132"/>
+    <location x="357" y="253"/>
+    <figSize height="17" width="104"/>
     <node>invokePojo2</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
@@ -503,8 +503,8 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="964" y="380"/>
-    <figSize height="20" width="31"/>
+    <location x="967" y="380"/>
+    <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign9" name="赋值9" displayName="赋值" type="assign">
@@ -529,8 +529,8 @@
     <nodeLabel>assign9label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="246" y="253"/>
-    <figSize height="20" width="40"/>
+    <location x="250" y="253"/>
+    <figSize height="17" width="32"/>
     <node>assign9</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" type="assign">
@@ -548,8 +548,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="242" y="337"/>
-    <figSize height="20" width="49"/>
+    <location x="247" y="337"/>
+    <figSize height="17" width="39"/>
     <node>assign10</node>
   </nodes>
   <topRuler>

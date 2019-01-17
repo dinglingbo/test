@@ -10,7 +10,7 @@
  var advancedSearchWin = null; 
  var advancedSearchForm = null;
  var advancedSearchFormData = null;
- 
+ var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"客户名称"},{id:"2",name:"手机号"}];
  var editFormDetail = null;
  var innerPartGrid = null;
  var settleTypeIdList=[{id :1,name :"保司直收"},{id :2,name :"门店代收全款"},{id :3,name :"代收减返点"}];
@@ -20,14 +20,9 @@
     advancedSearchForm = new nui.Form("#advancedSearchWin");
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
-    
+    nui.get("search-type").setData(statusList);
     beginDateEl = nui.get("sRecordDate");
     endDateEl = nui.get("eRecordDate");
-    var date = new Date();
-    var sdate = new Date();
-    sdate.setMonth(date.getMonth()-3);
-    endDateEl.setValue(date);
-    beginDateEl.setValue(sdate);
     
     editFormDetail = document.getElementById("editFormDetail");
     innerPartGrid = nui.get("innerPartGrid");
@@ -56,7 +51,7 @@
 
  var searchByDateBtnTextHash = ["本日","昨日","本周","上周","本月","上月","本年","上年"];
  var currType = 0;
- function quickSearch(type) {
+/* function quickSearch(type) {
 
     currType = type;
 
@@ -79,17 +74,104 @@
     }
     advancedSearchForm.setData(data);
     var params = getSearchParams();
+    
     doSearch(params);
+}*/
+ 
+ function quickSearch(type){
+    var params = getSearchParams();
+    var querysign = 1;
+    var queryname = "本日";
+    switch (type)
+    {
+        case 0:
+            params.today = 1;
+            params.sOutDate = getNowStartDate();
+            params.eOutDate = addDate(getNowEndDate(), 1);
+            querysign = 1;
+            queryname = "本日";
+            break;
+        case 1:
+            params.yesterday = 1;
+            params.sOutDate = getPrevStartDate();
+            params.eOutDate = addDate(getPrevEndDate(), 1);
+            querysign = 1;
+            queryname = "昨日";
+            break;
+        case 2:
+            params.thisWeek = 1;
+            params.sOutDate = getWeekStartDate();
+            params.eOutDate = addDate(getWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "本周";
+            break;
+        case 3:
+            params.lastWeek = 1;
+            params.sOutDate = getLastWeekStartDate();
+            params.eOutDate = addDate(getLastWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "上周";
+            break;
+        case 4:
+            params.thisMonth = 1;
+            params.sOutDate = getMonthStartDate();
+            params.eOutDate = addDate(getMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "本月";
+            break;
+        case 5:
+            params.lastMonth = 1;
+            params.sOutDate = getLastMonthStartDate();
+            params.eOutDate = addDate(getLastMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "上月";
+            break;
+        case 6:
+            params.thisYear = 1;
+            params.sOutDate = getYearStartDate();
+            params.eOutDate = getYearEndDate();
+            querysign = 1;
+            queryname = "本年";
+            break;
+        case 7:
+            params.lastYear = 1;
+            params.sOutDate = getPrevYearStartDate();
+            params.eOutDate = getPrevYearEndDate();
+            querysign = 1;
+            queryname = "上年";
+            break;
+       
+        default:
+            break;
+    }
+    
+    beginDateEl.setValue(params.sOutDate);
+    endDateEl.setValue(addDate(params.eOutDate,-1));
+    if(querysign == 1){
+    	var menunamedate = nui.get("menunamedate");
+    	menunamedate.setText(queryname); 	
+    }
+    
+    onSearch();
 }
 function getSearchParams()
 {
     var params = {};
     var data = advancedSearchForm.getData();
-    params.startDate = beginDateEl.getFormValue();
-    params.endDate = addDate(endDateEl.getFormValue(),1);
-    params.carNo = nui.get("carNo-search").getValue();
-    params.guestFullName = nui.get("guestName").getValue();
+    params.soutDate = beginDateEl.getFormValue();
+    params.eoutDate = addDate(endDateEl.getFormValue(),1);
+  /*  params.carNo = nui.get("carNo-search").getValue();
+    params.guestFullName = nui.get("guestName").getValue();*/
     params.isSettle=1;
+    var type = nui.get("search-type").getValue();
+    var typeValue = nui.get("carNo-search").getValue();
+    if(type==0){
+        params.carNo = typeValue;
+    }else if(type==1){
+        params.name = typeValue;
+    }else if(type==2){
+        params.mobile = typeValue;
+    }
     return params;
 }
 function onSearch()
@@ -103,6 +185,8 @@ function doSearch(params) {
     leftGrid.load({
         token:token, 
         params: params
+    },function(){
+    	mergeCells();
     });
 
 }
@@ -163,3 +247,72 @@ function carNoSearch(){
 function guestNameSearch(){
 	onSearch();
 }
+
+
+function mergeCells(){//动态合并行
+	var dataAll = leftGrid.getData();
+       var arr = new Array;
+        for(var i = 0 ; i < dataAll.length ;i ++){
+    		if(arr.indexOf(dataAll[i].id) == -1){
+    			arr[arr.length] = dataAll[i].id;
+    		}
+        }
+        var brr = new Array;
+       		for(var i = 0 ; i < arr.length ; i ++){
+       			var row = leftGrid.findRow(function(row){
+       				if(arr[i] == row.id){
+       					var index = leftGrid.indexOf(row);
+       					brr[i] = index;
+       				}
+       			});    
+       		}
+	var cells = [];
+	for(var i = 0 ; i < arr.length;i ++){
+		 var index = brr[i];
+		 index = parseInt(index);
+		 if(i == 0){
+			 cells[0] = { rowIndex: 0, columnIndex: 1, rowSpan: index + 1, colSpan: 0 };
+			 cells[1] = { rowIndex: 0, columnIndex: 2, rowSpan: index + 1, colSpan: 0 };
+			 cells[2] = { rowIndex: 0, columnIndex: 3, rowSpan: index + 1, colSpan: 0 };
+			 cells[3] = { rowIndex: 0, columnIndex: 4, rowSpan: index + 1, colSpan: 0 };
+			 cells[4] = { rowIndex: 0, columnIndex: 5, rowSpan: index + 1, colSpan: 0 };
+			 cells[5] = { rowIndex: 0, columnIndex: 6, rowSpan: index + 1, colSpan: 0 };
+			 cells[6] = { rowIndex: 0, columnIndex: 7, rowSpan: index + 1, colSpan: 0 };
+			 cells[7] = { rowIndex: 0, columnIndex: 8, rowSpan: index + 1, colSpan: 0 };
+			 cells[8] = { rowIndex: 0, columnIndex: 9, rowSpan: index + 1, colSpan: 0 };
+			 cells[9] = { rowIndex: 0, columnIndex: 10, rowSpan: index + 1, colSpan: 0 };
+			 cells[10] = { rowIndex: 0, columnIndex: 11, rowSpan: index + 1, colSpan: 0 };
+			 cells[11] = { rowIndex: 0, columnIndex: 12, rowSpan: index + 1, colSpan: 0 };
+			 cells[12] = { rowIndex: 0, columnIndex: 13, rowSpan: index + 1, colSpan: 0 };
+			 cells[13] = { rowIndex: 0, columnIndex: 14, rowSpan: index + 1, colSpan: 0 };
+			 cells[14] = { rowIndex: 0, columnIndex: 15, rowSpan: index + 1, colSpan: 0 };
+			 cells[15] = { rowIndex: 0, columnIndex: 16, rowSpan: index + 1, colSpan: 0 };
+		 }else{
+		 	 var last = brr[i-1];
+		 	 last = parseInt(last);
+		 	 var one = brr[i];
+		 	 one = parseInt(one);
+		 	 cells[16*i+0] = { rowIndex: last + 1, columnIndex: 1, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[16*i+1] = { rowIndex: last + 1, columnIndex: 2, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[16*i+2] = { rowIndex: last + 1, columnIndex: 3, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[16*i+3] = { rowIndex: last + 1, columnIndex: 4, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[16*i+4] = { rowIndex: last + 1, columnIndex: 5, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[16*i+5] = { rowIndex: last + 1, columnIndex: 6, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[16*i+6] = { rowIndex: last + 1, columnIndex: 7, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[16*i+7] = { rowIndex: last + 1, columnIndex: 8, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[16*i+8] = { rowIndex: last + 1, columnIndex: 9, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[16*i+9] = { rowIndex: last + 1, columnIndex: 10, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[16*i+10] = { rowIndex: last + 1, columnIndex: 11, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[16*i+11] = { rowIndex: last + 1, columnIndex: 12, rowSpan: one - last, colSpan: 0 };
+		 	 cells[16*i+12] = { rowIndex: last + 1, columnIndex: 13, rowSpan: one - last, colSpan: 0 };
+		 	 cells[16*i+13] = { rowIndex: last + 1, columnIndex: 14, rowSpan: one - last, colSpan: 0 };
+		 	 cells[16*i+14] = { rowIndex: last + 1, columnIndex: 15, rowSpan: one - last, colSpan: 0 };
+		 	 cells[16*i+15] = { rowIndex: last + 1, columnIndex: 16, rowSpan: one - last, colSpan: 0 };
+		 }
+	}
+	leftGrid.mergeCells(cells);
+}
+
+
+
+

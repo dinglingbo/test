@@ -141,7 +141,7 @@ function finish(){
 	    	            showMsg("操作成功","S");
 	    	            CloseWindow('ok');
 	    	        }else{
-	    	        	showMsg(errMsg||"操作失败","W");
+	    	        	showMsg(errMsg||"操作失败","E");
 	    	            //resultData.action = 'cancel';
 	    	            //CloseWindow("cancel");
 	    	        }

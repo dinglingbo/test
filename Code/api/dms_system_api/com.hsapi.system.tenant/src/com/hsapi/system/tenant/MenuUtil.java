@@ -32,7 +32,7 @@ import commonj.sdo.helper.DataFactory;
 public class MenuUtil {
 	
 	@Bizlet
-	public static List  getMenuData(String userId)throws Throwable  {
+	public static List  getMenuData(String userId, String type)throws Throwable  {
 		try {
 			//查询用户对应的角色
 			DataObject criteria = com.eos.foundation.data.DataObjectUtil
@@ -56,6 +56,7 @@ public class MenuUtil {
 	    	//查询角色对应的资源
 	    	HashMap pr = new HashMap();
 	    	pr.put("roleIds",roleIds);
+	    	pr.put("type", type);
 	    	Object[] objr = DatabaseExt.queryByNamedSql("default","com.hsapi.system.tenant.permissionsMgr.queryMenuRes", pr);
 	    	List<DataObject> menuResList = new ArrayList<DataObject>();
 	    	CollectionUtils.addAll(menuResList, objr);
@@ -78,7 +79,7 @@ public class MenuUtil {
 	                }
 	            }
 	        });
-	        
+	        System.out.println(c);
 	        List<Menu> list=new ArrayList<Menu>();
 	        for(int i = 0; i<c.size(); i++) {
 	        	DataObject d = c.get(i);
@@ -95,6 +96,8 @@ public class MenuUtil {
 	        	String linkAction = d.getString("funcaction");
 	        	String linkResId = d.getString("funccode");
 	        	String parentId = d.getString("parentsid");
+	        	String imageColor = d.getString("expandpath");
+	        	String appId = d.getString("appId");
 	        	Menu menu=new Menu();
 		        menu.setMenuPrimeKey(menuPrimeKey);
 		        menu.setMenuName(menuName);
@@ -102,6 +105,8 @@ public class MenuUtil {
 		        menu.setLinkAction(linkAction);
 		        menu.setLinkResId(linkResId);
 		        menu.setParentId(parentId);
+		        menu.setImageColor(imageColor);
+		        menu.setAppId(appId);
 		        list.add(menu);
 	        }
 	        

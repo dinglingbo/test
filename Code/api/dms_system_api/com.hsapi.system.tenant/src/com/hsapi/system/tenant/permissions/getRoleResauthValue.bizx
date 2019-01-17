@@ -52,6 +52,10 @@
       <process:from type="query" pattern="reference">roleId</process:from>
       <process:to type="query">p/roleId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">type</process:from>
+      <process:to type="query">p/type</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="148" y="187"/>
@@ -62,6 +66,7 @@
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>subprocess0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="270" y="151"/>
@@ -134,6 +139,7 @@
     <location x="535" y="151"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="data" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -169,6 +175,7 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart1</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link11" name="link11" displayName="连接线" type="transition">
       <sourceNode>loopstart1</sourceNode>
@@ -184,6 +191,7 @@
     <location x="630" y="60"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart1label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="roleResauth" iterableElement="resTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart1label" name="label" nodeType="label">
@@ -372,6 +380,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="roleId" primitiveType="String"/>
+    <process:input description="APP,PC" isArray="false" name="type" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="true" name="data"/>

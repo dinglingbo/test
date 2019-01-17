@@ -29,6 +29,8 @@ public class Menu implements TreeEntity<Menu>{
     public String expandPath;
     public String functionCode;
     public String imagePath;
+    public String imageColor;
+    public String appId;
     public Integer level;
     public String linkAction;
     public String linkResId;
@@ -85,6 +87,18 @@ public class Menu implements TreeEntity<Menu>{
 	}
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+	public String getImageColor() {
+		return imageColor;
+	}
+	public void setImageColor(String imageColor) {
+		this.imageColor = imageColor;
+	}
+	public String getAppId() {
+		return appId;
+	}
+	public void setAppId(String appId) {
+		this.appId = appId;
 	}
 	public Integer getLevel() {
 		return level;

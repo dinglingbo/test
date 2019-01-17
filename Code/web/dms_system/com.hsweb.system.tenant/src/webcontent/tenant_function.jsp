@@ -84,6 +84,7 @@
 					<div field="resId" width="100" headeralign="left" ><strong>res_id</strong><input property="editor" class="nui-textbox" /></div>
 					<div field="resType" width="50" headeralign="left" ><strong>res_type</strong><input property="editor" class="nui-textbox" /></div>
 					<div field="resName" width="100" headeralign="left" ><strong>res_name</strong><input property="editor" class="nui-textbox" /></div>
+					<div field="type" width="30" headeralign="left" ><strong>type</strong><input property="editor" class="nui-textbox" /></div>
 					<div field="resParentId" width="50" headeralign="left" ><strong>res_parent_id</strong><input property="editor" class="nui-textbox" /></div>
 					<div field="isDisabled" width="50" headeralign="left" ><strong>is_disabled</strong><input property="editor" class="nui-textbox" /></div>
 					<div field="scope" width="50" headeralign="left" ><strong>scope</strong><input property="editor" class="nui-textbox" /></div>
@@ -235,7 +236,8 @@
 						resName: row.text,
 						resParentId: row.parentId,
 						isDisabled: 0,
-						scope: 'PART'
+						scope: row.scope,
+						type: row.appPc
 					};
 					arr.push(obj);
 				}

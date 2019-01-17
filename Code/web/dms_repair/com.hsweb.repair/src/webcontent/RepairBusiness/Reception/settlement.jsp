@@ -457,6 +457,17 @@
 	        	   document.getElementById("spstorename").innerHTML = "报价单";
 	        	   document.getElementById("show").innerHTML = params.currRepairEntrustPrintContent||"";
 	        	}
+	        }else{
+		        if(params.printName){
+			        if(params.printName == "结账单"){
+		        	   document.getElementById("spstorename").innerHTML = "结账单";
+		        	   document.getElementById("show").innerHTML = params.currRepairSettPrintContent||"";
+		        	}else if(params.printName == "报价单"){
+		        	   document.getElementById("spstorename").innerHTML = "报价单";
+		        	   document.getElementById("show").innerHTML = params.currRepairEntrustPrintContent||"";
+		        	}
+		        }
+	           
 	        }
 	      
 	        document.getElementById("comp").innerHTML = params.comp;
@@ -470,7 +481,7 @@
     		document.getElementById("phone").innerHTML = params.currCompTel;
     		document.getElementById("slogan1").innerHTML = params.currSlogan1;
     		document.getElementById("slogan2").innerHTML = params.currSlogan2;
-    		  document.getElementById("makeMan").innerHTML="制单:" + params.currUserName;
+    		document.getElementById("makeMan").innerHTML="制单:" + params.currUserName;
 	        $.ajaxSettings.async = false;//设置为同步执行
 	        var url = null;
 	        if(params.type){
@@ -528,7 +539,12 @@
 	        		}
 	        		var serviceCode = list.serviceCode || "";
 	        		var guestDesc = list.guestDesc || "";
-	        		var carModel = list.carModel || "";
+	        		if(text.car){
+	        		    var carM = text.car.carModel || "";
+	        		    var carModel = list.carModel || carM || "";
+	        		}else{
+	        		    var carModel = list.carModel || "";
+	        		}
 	        		var faultPhen = list.faultPhen || "";
 	        		var solveMethod = list.solveMethod || "";
 	        		var guestAddr = list.guestAddr || "";
@@ -687,7 +703,7 @@
     					var itemTime = null;
     					var itemName = null;
     					if(params.type){
-    						 itemTime = data[i].itemTime || "";
+    						 itemTime = data[i].itemTime || 0;
     						 itemName = data[i].itemName || "";
     						 if(data[i].billItemId != 0 ){
     						   itemName = "&nbsp;&nbsp;&nbsp;&nbsp;" + itemName;

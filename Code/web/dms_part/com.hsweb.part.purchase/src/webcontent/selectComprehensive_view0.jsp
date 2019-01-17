@@ -10,13 +10,13 @@
 -->
 <head>
 <title>已结算工单表明细查询</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.16"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.19"></script>
 <style type="text/css">
 
 .title {
   width: 60px;
-  text-align: right;
-}
+  text-align: right; 
+} 
 
 .form_label {
 	width: 72px;
@@ -40,7 +40,19 @@
     margin-top: 20px;
     background-size: 50%;
 }
-
+.tb-tag {
+    background-color: rgba(230,162,60,.1);
+    display: inline-block;
+    padding: 2px 10px;
+    /* height: 32px; */
+    /* line-height: 30px; */
+    font-size: 12px;
+    color: #e6a23c;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 1px solid rgba(230,162,60,.2);
+    white-space: nowrap;
+}
 </style>
 
 </head>
@@ -116,7 +128,7 @@
 		                  <div field="carNo" name="carNO" width="80" headerAlign="center" header="车牌号"></div>
 		                  <div field="carModel" name="carModel" width="120" headerAlign="center" header="品牌车型"></div>
 		                  <div field="serviceCode" name="serviceCode" width="160" headerAlign="center" header="工单号"></div>
-		                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" header="业务类型"></div> 
+		                  <div field="serviceTypeName" name="serviceTypeName" width="210" headerAlign="center" header="业务类型"></div> 
 		                  <div field="enterKilometers" name="enterKilometers" width="80" headerAlign="center" header="进厂里程"></div>
 		                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" header="服务顾问"></div>
 		                  <!-- <div field="guestFullName" name="guestFullName" width="60" headerAlign="center" header="客户姓名"></div> -->

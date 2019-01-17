@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.34"></script>
+<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.35"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -213,15 +213,14 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 								            <div type="indexcolumn">序号</div>
 								            <div allowSort="true" field="guestName" width="80" headerAlign="center" header="供应商名称"></div>
 								            <div allowSort="true" field="code" width="60" headerAlign="center" header="配件编码"></div>
-								            <div allowSort="true" field="fullName" width="60" headerAlign="center" header="配件全称"></div>
-								            <div allowSort="true" field="unit" width="60" headerAlign="center" header="单位"></div>
+								            <div allowSort="true" field="full_name" width="60" headerAlign="center" header="配件全称"></div>
 								            <div allowSort="true" field="qualityName" width="60" headerAlign="center" header="品质"></div>
 								            <div allowSort="true" field="brandName" width="60" headerAlign="center" header="品牌"></div>
-								            <div allowSort="true" field="carNmae" width="60" headerAlign="center" header="厂牌"></div>
+								            <div allowSort="true" field="carName" width="60" headerAlign="center" header="厂牌"></div>
 								            <div allowSort="true" field="qty" width="60" headerAlign="center" header="库存数量"></div>
-								            <div allowSort="true" field="price" width="60" headerAlign="center" header="含税单价"></div>
-								            <div allowSort="true" field="warranty" width="60" headerAlign="center" header="质保天数"></div>
-								            <div allowSort="true" field="batchCode" width="60" headerAlign="center" header="年份周期"></div>
+								            <div allowSort="true" field="price" width="60" headerAlign="center" header="单价"></div>
+								            <div allowSort="true" field="rangeName" width="100" headerAlign="center" header="库存所在地"></div>
+								            <div allowSort="true" field="warehouseName" width="60" headerAlign="center" header="仓库"></div>
 								        </div>
 								    </div>
 								</div>

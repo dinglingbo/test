@@ -55,11 +55,20 @@ public class PurchaseService {
 		String apiurl = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", envType);
 		String urlParam = apiurl + "srm/router/rest?token="+access_token;
+		if(mobile == null) {
+			mobile = "";
+		}
+		if(address == null) {
+			address = "";
+		}
+		if(remark == null) {
+			remark = "";
+		}
 		Map main = new HashMap();   
 		main.put("ProcurementType", 2); //订单是否过账订单中心  1是，2否 必传
 		main.put("address", address); //收货地址
 		main.put("company_id", companyId); //	公司组织ID
-		main.put("enquiry_code", null);  //询价单号
+		main.put("enquiry_code", "");  //询价单号
 		main.put("isInsurance", isInsurance);  //是否含轮胎险
 		main.put("is_deposit", isDeposit);  //是否有定金
 		main.put("is_scene", isScene);  //车辆是否在场
@@ -95,9 +104,14 @@ public class PurchaseService {
 		params.put("mainId",mainId);
     	Object[] objs = DatabaseExt.queryByNamedSql("part","com.hsapi.part.invoice.orderSettle.queryPchsOrderDetail", params);
     	List<HashMap> detailList = new ArrayList<HashMap>();
+    	List<HashMap> mater = new ArrayList<HashMap>();
     	CollectionUtils.addAll(detailList, objs);
     	for(int  i=0;i<objs.length;i++){
     		HashMap m = new HashMap();
+    		String detailRemark = (String) detailList.get(i).get("remark");
+    		if(detailRemark == null) {
+    			detailRemark = "";
+    		}
     		m.put("amout",detailList.get(i).get("orderAmt"));
     		m.put("brand_id",detailList.get(i).get("srmBrandId"));
     		m.put("code",detailList.get(i).get("partCode"));
@@ -108,20 +122,16 @@ public class PurchaseService {
     		m.put("oem_code",detailList.get(i).get("oemCode"));
     		m.put("qty",detailList.get(i).get("orderQty"));
     		m.put("quality_id",detailList.get(i).get("srmQualityId"));
-    		m.put("remark",detailList.get(i).get("remark"));
+    		m.put("remark",detailRemark);
     		m.put("sales_price",detailList.get(i).get("orderPrice"));
     		m.put("unit",detailList.get(i).get("enterUnitId"));
-    		detailList.add(m);
-		}
-    	
-    	HashMap[] details = detailList.toArray(new HashMap[detailList.size()]);
-    	
-		for(int i=0; i<details.length; i++) {
-			HashMap m = details[i];
 			m.put("isMatchPrice", 1);
 			m.put("isPlatOuter", 0);
 			m.put("guest_id", guestId);
+    		mater.add(m);
 		}
+    	
+    	HashMap[] details = mater.toArray(new HashMap[mater.size()]);
 
 		main.put("mater", details);
 		
@@ -178,6 +188,28 @@ public class PurchaseService {
 		main.put("key", key);
 		main.put("sortOrder", sortOrder);  // ‘asc’ 升序 'desc' 降序
 		
+		JSONObject jsonObj = JSONObject.fromObject(main);
+		String json = jsonObj.toString();
+		
+		String msg = sendPostByJson(urlParam, json);
+		return msg;	
+				
+	}
+	
+	@Bizlet("根据配件编码查询SRM库存")
+	public static String querySRMStockByCode(String access_token,String code) {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", "serverType");
+		String apiurl = Env.getContributionConfig("com.vplus.login",
+				"cfg", "SRMAPI", envType);
+		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+				//apiurl + "srm/router/rest?token="+access_token;
+		if(code == null || code.equals("")) {
+			return "{\"status\":\"-1\", \"resultMsg\":\"请输入查询条件!\"}";
+		}
+		Map main = new HashMap();   
+		main.put("partCode", code); //固定值 1
+		main.put("method", "base.partQuery.getInvList");
 		JSONObject jsonObj = JSONObject.fromObject(main);
 		String json = jsonObj.toString();
 		

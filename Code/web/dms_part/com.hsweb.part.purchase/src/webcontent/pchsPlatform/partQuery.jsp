@@ -10,7 +10,7 @@
 <head>
 <title>配件查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.80"></script>
+    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.82"></script>
     <style type="text/css">
 		.table-label {
 			text-align: right;
@@ -57,8 +57,8 @@
                     <span class="separator"></span>
                     
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <label style="font-family:Verdana;">token：</label>
-                    <input class="nui-textbox" width="180" id="protoken" name="protoken"/>
+                  
+                    <input class="nui-hidden" width="180" id="protoken" name="protoken"/>
 <!-- 					<a class="nui-button" iconCls="" plain="true" onclick="getToken()"><span class=""></span>&nbsp;获取token</a> -->
                 </td>
             </tr>
@@ -101,10 +101,9 @@
 	                     sortMode="client"
 	                     onshowrowdetail="onShowRowDetail"
      					 allowCellWrap = true
-	                     showFilterRow="false" allowCellSelect="true" allowCellEdit="false">
+	                     showFilterRow="false" allowCellSelect="false" allowCellEdit="false">
 		          	 	<div property="columns">
 		          	 		<div type="indexcolumn">序号</div>
-		          	 		<div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
 		          	 		<div allowSort="true" field="partId" width="50" headerAlign="center" allowSort="true">配件内码</div>
 		          	 		<div allowSort="true" field="code" width="100" headerAlign="center" allowSort="true">配件编码</div>
 		          	 		<div allowSort="true" field="fullName" width="300" headerAlign="center" allowSort="true">全称</div>
@@ -138,19 +137,19 @@
 	                     pageIndexField="currpage"
 	                     pageSizeField="count"			       
 	                     allowCellSelect="true"
-	                     allowCellWrap = true
+	                     allowCellWrap = "false"
 				       allowSortColumn="true">
 				      <div property="columns">
 				      	   <div headerAlign="center" type="indexcolumn" width="30">序号</div>
-				           <div field="partId" name="partId" width="80" headerAlign="center" header="内码"></div>
-					       <div field="code" headerAlign="code" width="80"header="编码"></div>
-					       <div field="full_name" id="full_name" width="260" headerAlign="center" header="全称"></div>
-					       <div field="qualityName" name="qualityName" width="60" headerAlign="center" header="品质"></div>
-					       <div field="brandName" name="brandName" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="品牌"></div>
-					       <div field="carName"  width="60" headerAlign="center" header="厂牌"></div>
+				           <div field="partId" name="partId" width="80" visible="true" headerAlign="center" header="内码"></div>
+					       <div field="code" headerAlign="code" visible="false" width="80"header="编码"></div>
+					       <div field="full_name" id="full_name" visible="false" width="260" headerAlign="center" header="全称"></div>
+					       <div field="qualityName" name="qualityName" visible="false" width="60" headerAlign="center" header="品质"></div>
+					       <div field="brandName" name="brandName" visible="false" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="品牌"></div>
+					       <div field="carName"  width="60" visible="false" headerAlign="center" header="厂牌"></div>
+						   <div field="guestName" width="150" headerAlign="center" allowSort="true" header="配件商"></div>
 					       <div field="qty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center"header="库存" ></div>
 						   <div field="price" width="60" headerAlign="center" allowSort="true" header="销售价"></div>
-						   <div field="guestName" width="150" headerAlign="center" allowSort="true" header="配件商"></div>
 					   	   <div field="warehouseName" id="warehouseName" width="140" headerAlign="center" header="仓库"></div>
 						   <div field="rangeName" width="80" headerAlign="center" allowSort="true" header="仓库所在地"></div>
 						   <div field="action" width="180" headerAlign="center" allowSort="true" header="操作"></div>

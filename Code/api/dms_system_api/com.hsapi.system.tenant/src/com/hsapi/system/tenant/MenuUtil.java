@@ -79,7 +79,7 @@ public class MenuUtil {
 	                }
 	            }
 	        });
-	        System.out.println(c);
+	        
 	        List<Menu> list=new ArrayList<Menu>();
 	        for(int i = 0; i<c.size(); i++) {
 	        	DataObject d = c.get(i);
@@ -98,6 +98,8 @@ public class MenuUtil {
 	        	String parentId = d.getString("parentsid");
 	        	String imageColor = d.getString("expandpath");
 	        	String appId = d.getString("appId");
+	        	String params = d.getString("params");
+	        	
 	        	Menu menu=new Menu();
 		        menu.setMenuPrimeKey(menuPrimeKey);
 		        menu.setMenuName(menuName);
@@ -107,6 +109,7 @@ public class MenuUtil {
 		        menu.setParentId(parentId);
 		        menu.setImageColor(imageColor);
 		        menu.setAppId(appId);
+		        menu.setParams(params);
 		        list.add(menu);
 	        }
 	        

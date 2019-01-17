@@ -47,7 +47,7 @@
                 <th class="nui-form-label"><label for="test1$text">功能调用入口：</label></th>
                 <td colspan="3">
                 	<input id="test1" class="nui-buttonedit nui-form-input" onbuttonclick="onButtonEdit" name="appfunction.funcaction" 
-                		onvalidation="urlvalidation" textName="test2" style="width:420px;"/>  
+                		onvalidation="" textName="test2" style="width:420px;"/>  
                 </td>
             </tr>
             <tr>
@@ -214,10 +214,10 @@
        	function urlvalidation(e){
         	if(e.value == "") return;
         	if(e.isValid){
-        		 if (e.value.substring(0,1) != "/") {
-                    e.errorText = "必须以/开头";
-                    e.isValid = false;
-                }
+        		 //if (e.value.substring(0,1) != "/") {
+                //    e.errorText = "必须以/开头";
+                //    e.isValid = false;
+                //}
         	}
         }    
     </script>

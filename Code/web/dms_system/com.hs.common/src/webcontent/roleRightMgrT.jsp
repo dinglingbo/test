@@ -88,8 +88,8 @@
         </div>
         <div showcollapsebutton="true">
             <div id="mainTabs" name="mainTabs" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;padding:0px;" bodyStyle="padding:0;border:0;" onactivechanged="ontopTabChanged">
-                <div title="PC" name="resTab"  url=""></div>
-                <div title="APP" name="appTab"  url=""></div>
+                <div title="PC权限" name="resTab"  url=""></div>
+                <div title="APP权限" name="appTab"  url=""></div>
                 <div title="员工" name="userTab" url=""></div>
              </div>
         </div>

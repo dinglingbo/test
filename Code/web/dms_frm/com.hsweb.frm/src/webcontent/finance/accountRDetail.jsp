@@ -63,9 +63,9 @@ pageEncoding="UTF-8" session="false" %>
              pageSize="100" sizeList="[50,100,200,500]" showSummaryRow="true">
             <div property="columns">
                 <div type="indexcolumn"  headeralign="center" width="20">序号</div>
-                <div field="settAccountId" name="code" width="60" summaryType="count"  headeralign="center" >账户编码</div>
-                <div field="settAccountId" name="name" width="100"  headeralign="center" >账户名称</div>
-                <div field="billServiceId" name="name" width="100"  headeralign="center" >业务单号</div>
+                <div field="settAccountId" name="code" width="60" summaryType="count"  headeralign="center" visible="false">账户编码</div>
+                <div field="settAccountId" name="name" width="100"  headeralign="center" visible="false">账户名称</div>
+                <div field="billServiceId" name="name" width="150"  headeralign="center" >业务单号</div>
                 <div field="billTypeId" name="name" width="100"  headeralign="center" >收支类型</div>
                 <div field="isPrimaryBusiness" name="name" width="100"  headeralign="center" >是否主营业务</div>
                 <div field="shortName" name="name" width="100"  headeralign="center" >客户简称</div>

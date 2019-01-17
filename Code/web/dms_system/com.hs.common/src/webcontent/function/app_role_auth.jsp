@@ -96,6 +96,7 @@
 			data:nui.encode({
 				roleId:"<%=request.getParameter("roleId") %>",
 				functions:leafNodes,
+				type: "app",
 				token:token
 			}),
 			cache: false,

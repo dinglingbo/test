@@ -1,7 +1,7 @@
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
-var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryMainPartList.biz.ext";
+var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryMainReturnPartList.biz.ext";
 var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
 var beginDateEl = null;
 var endDateEl = null;
@@ -62,6 +62,11 @@ $(document).ready(function ()
         	}else{
         		e.cellHtml="";
         	}
+        }else if(e.field == "xAmt"){
+        	var xAmt = record.qty*record.xUnitPrice;
+        	xAmt = xAmt.toFixed(4);
+        	e.cellHtml = xAmt;
+        	
         }
     });
 
@@ -222,15 +227,21 @@ function doSearch(params) {
     mainGrid.load({
         token:token,
         params: gsparams
+    },function(){
+    	mergeCells();
     });
 }
 function getSearchParam() {
     var params = {};
-    params.sRecordDate = beginDateEl.getFormValue();
-    params.eRecordDate = addDate(endDateEl.getValue(),1);
+    params.soutDate = beginDateEl.getFormValue();
+    params.eoutDate = addDate(endDateEl.getValue(),1);
+    params.partCode = nui.get("partCode").getValue();
+    params.partName = nui.get("partName").getValue();
+    params.returnPart = 1;
     params.isSettle=1;
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
+    
     if(type==0){
         params.carNo = typeValue;
     }else if(type==1){
@@ -239,11 +250,67 @@ function getSearchParam() {
         params.name = typeValue;
     }else if(type==3){
         params.mobile = typeValue;
-    }
-    
+    } 
     return params;
 }
 
 function carNoSearch(){
 	onSearch();
 }
+
+function mergeCells(){//动态合并行
+	var dataAll = mainGrid.getData();
+       var arr = new Array;
+        for(var i = 0 ; i < dataAll.length ;i ++){
+    		if(arr.indexOf(dataAll[i].id) == -1){
+    			arr[arr.length] = dataAll[i].id;
+    		}
+        }
+        var brr = new Array;
+       		for(var i = 0 ; i < arr.length ; i ++){
+       			var row = mainGrid.findRow(function(row){
+       				if(arr[i] == row.id){
+       					var index = mainGrid.indexOf(row);
+       					brr[i] = index;
+       				}
+       			});    
+       		}
+	var cells = [];
+	for(var i = 0 ; i < arr.length;i ++){
+		 var index = brr[i];
+		 index = parseInt(index);
+		 if(i == 0){
+			 cells[0] = { rowIndex: 0, columnIndex: 1, rowSpan: index + 1, colSpan: 0 };
+			 cells[1] = { rowIndex: 0, columnIndex: 2, rowSpan: index + 1, colSpan: 0 };
+			 cells[2] = { rowIndex: 0, columnIndex: 3, rowSpan: index + 1, colSpan: 0 };
+			 cells[3] = { rowIndex: 0, columnIndex: 4, rowSpan: index + 1, colSpan: 0 };
+			 cells[4] = { rowIndex: 0, columnIndex: 5, rowSpan: index + 1, colSpan: 0 };
+			 cells[5] = { rowIndex: 0, columnIndex: 6, rowSpan: index + 1, colSpan: 0 };
+			 cells[6] = { rowIndex: 0, columnIndex: 7, rowSpan: index + 1, colSpan: 0 };
+			 cells[7] = { rowIndex: 0, columnIndex: 8, rowSpan: index + 1, colSpan: 0 };
+			 cells[8] = { rowIndex: 0, columnIndex: 9, rowSpan: index + 1, colSpan: 0 };
+			 cells[9] = { rowIndex: 0, columnIndex: 10, rowSpan: index + 1, colSpan: 0 };
+			 cells[10] = { rowIndex: 0, columnIndex: 11, rowSpan: index + 1, colSpan: 0 };
+		 }else{
+		 	 var last = brr[i-1];
+		 	 last = parseInt(last);
+		 	 var one = brr[i];
+		 	 one = parseInt(one);
+		 	 cells[11*i+0] = { rowIndex: last + 1, columnIndex: 1, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[11*i+1] = { rowIndex: last + 1, columnIndex: 2, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[11*i+2] = { rowIndex: last + 1, columnIndex: 3, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[11*i+3] = { rowIndex: last + 1, columnIndex: 4, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[11*i+4] = { rowIndex: last + 1, columnIndex: 5, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[11*i+5] = { rowIndex: last + 1, columnIndex: 6, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[11*i+6] = { rowIndex: last + 1, columnIndex: 7, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[11*i+7] = { rowIndex: last + 1, columnIndex: 8, rowSpan: one - last, colSpan: 0 };
+		 	 cells[11*i+8] = { rowIndex: last + 1, columnIndex: 9, rowSpan: one - last, colSpan: 0 };
+		 	 cells[11*i+9] = { rowIndex: last + 1, columnIndex: 10, rowSpan: one - last, colSpan: 0 };
+		 	cells[11*i+10] = { rowIndex: last + 1, columnIndex: 11, rowSpan: one - last, colSpan: 0 };
+		 	 
+		 }
+	}
+	mainGrid.mergeCells(cells);
+}
+
+

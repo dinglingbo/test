@@ -10,7 +10,7 @@
 -->
 <head>
 <title>销售开单查询</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellQuery.js?v=1.0.18"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellQuery.js?v=1.0.19"></script>
 <style type="text/css">
 
 .title {
@@ -74,7 +74,9 @@
                     <span class="separator"></span>
                     <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="carNoSearch"/>
-                    <label class="form_label">开单日期&nbsp;从：</label>
+                    <input class="nui-textbox" id="partCode" emptyText="配件编码" width="120" onenter="carNoSearch"/>
+                    <input class="nui-textbox" id="partName" emptyText="配件名称" width="120" onenter="carNoSearch"/>
+                    <label class="form_label">结算日期&nbsp;从：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
@@ -107,26 +109,37 @@
                url="">
               <div property="columns">
                   <div type="indexcolumn" width="20">序号</div>
-                  <div field="id" name="id" width="120" headerAlign="center" header="工单id" visible="false"></div>
-                  <div field="serviceCode" name="serviceCode" width="130" headerAlign="center" header="工单号"></div>
-                  <div field="mtAdvisor" name="mtAdvisor" width="90" headerAlign="center" header="服务顾问"></div>
-                  <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="开单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                  <div field="outDate" name="outDate" width="90" headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                  <div field="contactName" name="contactName" width="65" headerAlign="center" header="联系人姓名"></div>
-                  <div field="contactMobile" name="contactMobile" width="90" headerAlign="center" header="联系人手机"></div> 
-                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号" ></div>           
-                  <div field="carModel" name="carModel" width="180" headerAlign="center" header="品牌车型" visible="false"></div>
-                  <div field="carVin" name="carVin" width="150" headerAlign="center" header="车架号(VIN)" visible="true"></div>
-                  <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码" align="center"></div>
-                  <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div> 
-                  <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="销售数量" name="partQty"> </div>
-                  <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="单价" name="partUnitPrice"> </div>
-	              <div field="amt" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="金额"> </div>
-                  <div field="recorder" name="recorder" width="50" headerAlign="center" header="销售员"></div>
-                  <div field="status" name="status" width="50" headerAlign="center" header="状态"></div> 
-                  <div field="modifier" name="modifier" width="50" headerAlign="center" header="修改人"></div> 
-                  <div field="modifyDate" name="modifyDate" width="100" headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm"></div> 
-	              <div field="remark" name="carModel" width="180" headerAlign="center" header="备注" ></div>
+                  <div header="客户车辆信息" headerAlign="center">
+                      <div property="columns" >	
+		                <div field="id" headeralign="center" allowsort="true" visible="false" >主键</div>
+		                <div field="contactName" headeralign="center" allowsort="true" visible="true" >客户名称</div>
+		                <div field="contactMobile" headeralign="center" allowsort="true" visible="true" >客户手机</div>
+		                <div field="carNo" headeralign="center" allowsort="true" visible="true" >车牌号</div>
+		                <div field="carModel" headeralign="center" allowsort="true" visible="true">品牌车型</div>
+		                <div field="carVin" headeralign="center" allowsort="true" visible="true">车架号(VIN)</div>
+                      </div>
+                    </div>
+                   <div header="工单信息" headerAlign="center">
+                      <div property="columns" >	
+                          <div field="serviceCode" name="serviceCode" width="140" headerAlign="center" header="工单号"></div> 
+                          <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="开单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                          <div field="partAmt" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="结算金额"> </div>
+                          <div field="outDate" name="outDate" width="100" headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                          <div field="mtAdvisor" name="recorder" width="50" headerAlign="center" header="销售员"></div>
+                      </div>
+                   </div>
+                   <div header="配件信息" headerAlign="center">
+                      <div property="columns" >	
+                         <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
+                         <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码" align="center"></div>
+                         <div field="partCodel" headerAlign="center" allowSort="false"  width="80px" header="配件类型" align="center"></div>
+                         <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="int" align="center" header="数量" name="partQty"> </div>
+                         <div field="unitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="销售单价" name="partUnitPrice"> </div>
+                         <div field="amt" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="销售金额"> </div>
+                         <div field="camt" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="成本"> </div>
+                         <div field="mamt" headerAlign="center" allowSort="false" visible="true" width="70" datatype="float" align="center" header="毛利"> </div>
+                      </div>
+                   </div>
                  </div>
          </div>
   <div id="editFormDetail" style="display:none;padding:5px;position:relative;">

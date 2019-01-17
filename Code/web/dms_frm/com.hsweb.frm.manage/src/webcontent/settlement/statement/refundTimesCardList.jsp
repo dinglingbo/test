@@ -296,7 +296,7 @@ body,
 						
 						<tr >
 							<td align="right" width="100px" colspan="1" >
-								计次卡：		
+								<font color="red">*</font>计次卡<font color="red">*</font>：		
 							</td>
 							<td align="left" width="100px" colspan="3">
 								<input class="mini-combobox" id="cardName" name="cardName" textField="text" valueField="value" width="300"  />

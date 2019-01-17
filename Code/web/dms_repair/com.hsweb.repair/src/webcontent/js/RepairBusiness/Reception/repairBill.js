@@ -4599,3 +4599,15 @@ function savePkg(callback){
     	callback && callback();
     }
 }
+function showPrdt() {
+	var brand = nui.get("carModel").getText();
+    var item={};
+    item.id = "5263";
+    item.text = "维保项目";
+    item.url = webPath + contextPath + "/repair/linshi.jsp?token="+token;
+    item.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    var params = {brand:brand};//是否刷新页面，解决工单详情界面结算之后不能再选择客户
+    window.parent.activeTabAndInit(item,params);
+    
+}

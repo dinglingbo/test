@@ -127,9 +127,9 @@
 
         function showGrid(e) {
 
-            nui.get("tyear").setValue();
-            nui.get("tmonth").setValue();
-            nui.get("kili").setValue();
+            nui.get("tyear").setValue("2015年");
+            nui.get("tmonth").setValue("8月");
+            nui.get("kili").setValue("12万公里");
             if (e == 1) { //丰田卡罗拉
                 grid1.setData(da1);
                 grid2.setData(da2);
@@ -155,6 +155,29 @@
                 nui.get("kili").setValue();
             }
         }
+        
+        function setInitData(params, yearp, monthp, milep) {
+        	var brand = params.brand||"";
+        	var index1 = brand.indexOf("丰田");
+        	var index2 = brand.indexOf("宝马");
+        	var index3 = brand.indexOf("奥迪");
+        	var index4 = brand.indexOf("大众");
+        	var e = 2;
+        	if(index1 >= 0) {
+        		e = 1;
+        	}
+        	if(index2 >= 0) {
+        		e = 2;
+        	}
+        	if(index3 >= 0) {
+        		e = 3;
+        	}
+        	if(index4 >= 0) {
+        		e = 4;
+        	}
+        	
+			showGrid(e);
+		}
     </script>
 </body>
 

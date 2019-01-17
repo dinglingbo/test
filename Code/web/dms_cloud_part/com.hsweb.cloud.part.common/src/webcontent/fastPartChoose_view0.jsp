@@ -169,7 +169,7 @@ body .mini-grid-row-selected{
 
 
 <div id="advancedAddWin" class="nui-window"
-     title="数量单价录入" style="width:400px;height:200px;"
+     title="数量单价录入" style="width:400px;height:230px;"
      showModal="true" showHeader="false"
      allowResize="false"
      allowDrag="true">
@@ -236,7 +236,7 @@ body .mini-grid-row-selected{
         </div>
         <div title="销价参数" id="priceTab" name="priceTab" >
             <div class="nui-fit">
-                <div id="priceGrid" class="nui-datagrid" style="width:100%;height:100%;"
+                <div id="priceGrid" class="nui-datagrid" style="width:100%;height:80%;"
                     showPager="false"
                     dataField="price"
                     allowCellSelect="true"

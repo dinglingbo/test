@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/1/31.
  */
 var baseUrl = apiPath + cloudPartApi + "/";
-var gridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryCustomList.biz.ext";
+var gridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryCustomList.biz.ext";
 var treeUrl = baseUrl+"";
 
 var advancedSearchWin = null;

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.1"></script>
+<script src="<%=webPath + contextPath%>/settlement/js/billStatement.js?v=1.2.3"></script>
 <style type="text/css">
 .title {
   width: 85px;
@@ -161,14 +161,22 @@
                                       </td>
                                       <td colspan="3">
                                           <input id="guestId"
-                                                 name="guestId"
-                                                 class="nui-buttonedit"
-                                                 emptyText="请选择往来单位..."
-                                                 onvaluechanged="onGuestValueChanged"
-                                                 onbuttonclick="selectSupplier('guestId')"
-                                                 width="100%"
-                                                 placeholder="请选择往来单位"
-                                                 selectOnFocus="true" />
+                                             name="guestId"
+                                             enterQuery="true"
+                                             dataField="suppliers"
+                                             textField="fullName"
+                                             loadingText="查询中"
+                                             valueField="id"
+                                             class="nui-autocomplete"
+                                             emptyText="请选择往來单位..."
+                                             allowInput="true"
+                                             onvaluechanged="onGuestValueChanged"
+                                             popupEmptyText="未找到往来单位"
+                                             url=""  searchField="key"
+                                             width="90%"
+                                             placeholder="请选择往来单位"
+                                             selectOnFocus="true" />
+                                      	<input id="btnEdit1" width="8%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
                                       </td>
                                       <td class="title required">
                                           <label>对账员：</label>

@@ -65,7 +65,7 @@ function addGuest(){
     var supplier = null;
     nui.open({
         // targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.cloud.part.common.supplierSelect.flow?token="+token,
         title: "往来单位", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,

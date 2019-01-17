@@ -136,7 +136,8 @@
 								<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 								<a class="nui-button" id="add" iconCls="" onclick="add()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增项目</a>
 								<a class="nui-button" plain="true" iconCls="" onclick="onClear()"><span class="fa fa-trash-o"></span>&nbsp;清空</a>
-							<a class="nui-button" id="selectBtn" iconCls="" onclick="choose()" plain="true" visible="true"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
+								<a class="nui-button" id="selectBtn" iconCls="" onclick="choose()" plain="true" visible="true"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>
+								<a class="nui-button" id="" iconCls="" onclick="" plain="true" visible="true"><span class="fa fa-user-circle-o fa-lg"></span>&nbsp;语音输入</a>
 							</td>
 							
 						</tr>

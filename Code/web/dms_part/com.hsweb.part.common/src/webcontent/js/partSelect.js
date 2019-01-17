@@ -5,7 +5,7 @@ var baseUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/
 var treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
 var partGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryPartList.biz.ext";
 var partGrid = null;
-var stockUrl = baseUrl+"com.hsapi.part.invoice.partInterface.queryJoinStock.biz.ext";
+var stockUrl = baseUrl+"com.hsapi.part.invoice.partInterface.queryStockByCode.biz.ext";
 
 var qualityList = [];
 var qualityHash = {};
@@ -18,6 +18,7 @@ var chooseType = null;
 var codeEl = null;
 var tempGrid = null;
 var rightGrid = null;
+var protoken = "";
 
 var isChooseClose = 1;//默认选择后就关闭窗体
 
@@ -38,8 +39,9 @@ $(document).ready(function(v)
         var row = partGrid.getSelected();
         var code = row.code;
         rightGrid.load({
-        	key:code,
-        	token:token
+        	code: code,
+        	protoken: protoken,
+        	token: token
         });
     });
     partGrid.on("drawcell",function(e)
@@ -87,7 +89,7 @@ $(document).ready(function(v)
         }else if(field == "code"){
                 //e.cellHtml = '<a href="javascript:choosePart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;配件</a>' +'<a href="javascript:showBasicDataPart(\'' + uid + '\')" class="chooseClass" ><span class="fa fa-plus"></span>&nbsp;标准配件</a>'+ e.value;
             
-                e.cellHtml = e.value + '</br><a href="javascript:showMorePart(\'' + uid + '\')" class="chooseClass" >询价</a>&nbsp;<a href="javascript:showMorePart(\'' + uid + '\')" class="chooseClass" >采购</a>';	
+                //e.cellHtml = e.value + '</br><a href="javascript:showMorePart(\'' + uid + '\')" class="chooseClass" >询价</a>&nbsp;<a href="javascript:showMorePart(\'' + uid + '\')" class="chooseClass" >采购</a>';	
                 			 //'<ul class="add_ul" style="z-index: 99; display: none;">' +
 		            		 //'<li>< a href="javascript:choosePart(\'' + uid + '\')">添加配件</ a></li>' +
 		            		 //'<li>< a href="javascript:showBasicDataPart(\'' + uid + '\')" class="xzpj">选择配件</ a></li>' +
@@ -138,6 +140,8 @@ $(document).ready(function(v)
     });
 
     codeEl.focus();
+    
+    protoken = getProToken();
 
     $("#search-code").bind("keydown", function (e) {
         if (e.keyCode == 13) {
@@ -512,4 +516,29 @@ function getDataAll(){
 function setValueData(){
 	nui.get("state").setValue(6);
 	partGrid.showColumn("checkcolumn");
+}
+
+function getProToken(){
+	var systoken = "";
+    nui.ajax({
+        url : webPath + contextPath + "/com.hs.common.sysService.srmAuthPro.biz.ext",
+        type : "post",
+        async: false,
+        data : {
+        },
+        success : function(data) {
+            var errCode = data.errCode;
+            if(errCode == "S"){
+            	systoken = data.systoken;
+            }else {
+            	systoken = "";
+            }
+            
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+    return systoken;
 }

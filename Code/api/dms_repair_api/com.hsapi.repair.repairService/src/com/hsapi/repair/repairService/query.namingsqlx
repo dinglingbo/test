@@ -191,6 +191,38 @@
 	</select>
 	
 	
+	<select id="getGuestStoredRecordAmt" parameterClass="java.util.HashMap" resultClass="com.hsapi.repair.data.rps.RpsStoredRecord">
+		SELECT
+			a.id as id,
+			a.tenant_id as tenantId,
+			a.orgid as orgid,
+			a.`code` as code,
+			a.guest_id as guestId,
+			a.guest_name as guestName,
+			a.card_id as cardId,
+			a.card_name as cardName,
+			a.period_validity as periodValidity,
+			a.recharge_amt as rechargeAmt,
+			a.give_amt as giveAmt,
+			a.total_amt as totalAmt,
+			a.use_amt as useAmt,
+			a.bala_amt as balaAmt,
+			a.refund_amt as refundAmt,
+			a.cut_amt as cutAmt,
+			a.integral as integral,
+			a.sales_deduct_type as salesDeductType,
+			a.sales_deduct_origin_value AS salesDeductOriginValue,
+			a.sales_deduct_value as salesDeductValue,
+			a.sale_man_id AS saleManId,
+			a.sale_man AS saleMan,
+			a.use_remark AS useRemark,
+			a.remark AS remark
+		FROM
+			rps_stored_record AS a
+			WHERE a.is_settle = 1 and a.guest_id = #guestId# and a.orgid = #orgid#
+	</select>
+	
+	
 	<select id="countPrebook" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT count(1) as ct from rps_prebook
 		where 1 =1 

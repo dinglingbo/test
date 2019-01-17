@@ -126,6 +126,22 @@
       <process:to type="query">m:userObject/attributes/compAddress</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">comp/srmCompanyId</process:from>
+      <process:to type="query">m:userObject/attributes/srmCompanyId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/srmUserId</process:from>
+      <process:to type="query">m:userObject/attributes/srmUserId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/srmUserPd</process:from>
+      <process:to type="query">m:userObject/attributes/srmUserPd</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/srmGuestId</process:from>
+      <process:to type="query">m:userObject/attributes/srmGuestId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">comp/isMaster</process:from>
       <process:to type="query">m:userObject/attributes/isMaster</process:to>
     </process:copy>

@@ -364,6 +364,9 @@
             <isNotEmpty prepend="and" property="mainFinish">
                 (b.is_finish = #mainFinish#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="isRefund">
+                (b.is_refund = #isRefund#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="detailFinish">  
                 (a.is_finish = #detailFinish#)
             </isNotEmpty>

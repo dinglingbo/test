@@ -45,18 +45,29 @@
 	            order by b.audit_date desc
     </select>
     
-    <!--收付款明细  rpDc 1收  -1付-->
+    <!--收付款明细  rpDc 1收  -1付
+	    SELECT a.bill_main_id as billMainId, a.bill_service_id as billServiceId, a.bill_type_id as billTypeId,
+				       a.bill_type_code as billTypeCode, c.sett_account_id settAccountId, c.char_off_amt as charOffAmt,
+				       d.full_name as fullName, d.short_name as shortName, b.auditor as auditor, b.audit_date as auditDate,
+				       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc
+				from fis_rp_account_detail a
+				inner join fis_rp_account b
+				on a.main_id = b.id
+				inner join fis_rp_account_d_type c
+				on a.main_id = c.main_id
+				inner join wb_common.com_guest d
+				on b.guest_id = d.id
+				inner join fib_income_expenses e
+				on a.bill_type_id = e.id
+    -->
 	<select id="queryRPAccountDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-    	
-            SELECT a.bill_main_id as billMainId, a.bill_service_id as billServiceId, a.bill_type_id as billTypeId,
-			       a.bill_type_code as billTypeCode, c.sett_account_id settAccountId, c.char_off_amt as charOffAmt,
+    	SELECT a.bill_main_id as billMainId, a.bill_service_id as billServiceId, a.bill_type_id as billTypeId,
+			       a.bill_type_code as billTypeCode, b.char_off_amt as charOffAmt,
 			       d.full_name as fullName, d.short_name as shortName, b.auditor as auditor, b.audit_date as auditDate,
 			       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc
 			from fis_rp_account_detail a
 			inner join fis_rp_account b
 			on a.main_id = b.id
-			inner join fis_rp_account_d_type c
-			on a.main_id = c.main_id
 			inner join wb_common.com_guest d
 			on b.guest_id = d.id
 			inner join fib_income_expenses e

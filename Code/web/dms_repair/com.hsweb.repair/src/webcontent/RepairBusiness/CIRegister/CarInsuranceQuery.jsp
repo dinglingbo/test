@@ -99,8 +99,6 @@ pageEncoding="UTF-8" session="false"%>
 	                     <div field="amt" name="amt"  headerAlign="center" header="保费总金额"></div>
 	                     <div field="rtnCompAmt" name="partAmt"  headerAlign="center" header="保司返点总金额"></div>
 	                     <div field="rtnGuestAmt" name="partAmt"  headerAlign="center" header="客户返点总金额"></div> 
-	                     <div field="modifier" name="modifier" headerAlign="center" header="修改人"></div> 
-                        <div field="modifyDate" name="modifyDate"  headerAlign="center" header="修改日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                        </div>
                      </div>					
                     <div header="保费信息" headerAlign="center">

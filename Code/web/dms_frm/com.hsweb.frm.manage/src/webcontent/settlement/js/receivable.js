@@ -232,7 +232,7 @@ function settleOK() {
 		var nowAmt = guestData[0].nowAmt || 0;
 		var nowVoidAmt = guestData[0].nowVoidAmt || 0;
 
-		accountDetail.rpDc = -1;
+		accountDetail.rpDc = 1;
 		nowAmt = parseFloat(nowAmt);
 		nowVoidAmt = parseFloat(nowVoidAmt);
 		pRPAmt += rpAmt;
@@ -252,7 +252,7 @@ function settleOK() {
 		account.charOffAmt = pVoidAmt + pTrueAmt;
 		
 		if(deductible!=0){
-			var list={balaTypeCode:"020107",charOffAmt:deductible,settAccountId:"274"};
+			var list={balaTypeCode:"020107",charOffAmt:deductible,settAccountId:"274",settAccountName: "储值卡支付"};
 			accountTypeList.push(list);
 		}
 

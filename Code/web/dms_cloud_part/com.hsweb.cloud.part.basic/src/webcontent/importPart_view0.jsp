@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/commonPart.jsp"%>
+<%@include file="/common/sysCommon.jsp"%>
+<%@include file="/common/commonCloudPart.jsp"%>
 <html>
 <!-- 
   - Author(s): Administrator

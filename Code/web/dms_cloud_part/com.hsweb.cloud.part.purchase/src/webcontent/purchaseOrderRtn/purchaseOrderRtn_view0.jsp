@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.2"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.3"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -142,15 +142,23 @@ body .mini-grid-row-selected{
                                       </td>
                                       <td colspan="3">
                                           <input id="guestId"
-                                                 name="guestId"
-                                                 enabled="true"
-                                                 class="nui-buttonedit"
-                                                 emptyText="请选择供应商..."
-                                                 onbuttonclick="selectSupplier('guestId')"
-                                                 onvaluechanged="onGuestValueChanged"
-                                                 width="100%"
-                                                 placeholder="请选择供应商"
-                                                 selectOnFocus="true" />
+                                             name="guestId"
+                                             enterQuery="true"
+                                             dataField="suppliers"
+                                             textField="fullName"
+                                             loadingText="查询中"
+                                             valueField="id"
+                                             class="nui-autocomplete"
+                                             emptyText="请选择供应商..."
+                                             allowInput="true"
+                                             onvaluechanged="onGuestValueChanged"
+                                             popupEmptyText="未找到供应商"
+                                             url=""  searchField="key"
+                                             width="91.5%"
+                                             placeholder="请选择供应商"
+                                             selectOnFocus="true" />
+                                      	<input id="btnEdit1" width="7.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
+<!--                                          <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn"><span class="fa fa-plus fa-lg"></span></a> -->
                                       </td>
                                       <td class="title required">
                                           <label>退货员：</label>

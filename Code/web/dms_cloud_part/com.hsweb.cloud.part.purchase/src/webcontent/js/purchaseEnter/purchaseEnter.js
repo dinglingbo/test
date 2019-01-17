@@ -612,7 +612,7 @@ function selectSupplier(elId) {
     supplier = null;
     nui.open({
         targetWindow : window,
-        url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
         title : "供应商资料",
         width : 980,
         height : 560,
@@ -861,6 +861,13 @@ function orderEnter(mainId) {
                         leftGrid.updateRow(row, newRow);
 
                         basicInfoForm.setData(newRow);
+                        nui.confirm("是否打印？", "友情提示", function(action) {
+							if(action== 'ok'){
+								onPrint();
+							}else{
+								
+							}
+						});
 
                     } else {
                         showMsg(data.errMsg || "入库失败!","W");
@@ -962,7 +969,7 @@ function addGuest(){
 		if (action == "ok") {
 			nui.open({
 				// targetWindow: window,
-				url: webPath+contextPath+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
+				url: webPath+contextPath+"/com.hsweb.cloud.part.basic.supplierDetail.flow?token=" + token,
 				title: "供应商资料", width: 530, height: 480,
 				allowDrag:true,
 				allowResize:false,

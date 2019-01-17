@@ -9,7 +9,7 @@
 -->
 <head>
 <title>打包发货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.12"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -149,14 +149,22 @@
                                       </td>
                                       <td colspan="3">
                                           <input id="guestId"
-                                                 name="guestId"
-                                                 class="nui-buttonedit"
-                                                 emptyText="请选择客户..."
-                                                 onvaluechanged="onGuestValueChanged"
-                                                 onbuttonclick="selectSupplier('guestId')"
-                                                 width="100%"
-                                                 placeholder="请选择客户"
-                                                 selectOnFocus="true" />
+	                                             name="guestId"
+	                                             enterQuery="true"
+	                                             dataField="suppliers"
+	                                             textField="fullName"
+	                                             loadingText="查询中"
+	                                             valueField="id"
+	                                             class="nui-autocomplete"
+	                                             emptyText="请选择客户..."
+	                                             allowInput="true"
+	                                             onvaluechanged="onGuestValueChanged"
+	                                             popupEmptyText="未找到客户"
+	                                             url=""  searchField="key"
+	                                             width="87%"
+	                                             placeholder="请选择客户"
+	                                             selectOnFocus="true" />
+	                                      <input id="btnEdit1" width="11%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
                                           <input class="nui-textbox" id="guestName" name="guestName" width="100%" visible="false">
                                       </td>
                                       <td class="title required">
@@ -165,13 +173,21 @@
                                       <td colspan="1">
                                           <input id="logisticsGuestId"
                                                  name="logisticsGuestId"
-                                                 class="nui-buttonedit"
-                                                 allowInput="false"
+                                                 enterQuery="true"
+                                                 loadingText="查询中"
+	                                             valueField="id"
+	                                             dataField="suppliers"
+	                                             textField="fullName"
+	                                             class="nui-autocomplete"
+                                                 allowInput="true"
+                                                 placeholder="请选择物流公司..."
                                                  emptyText="请选择物流公司..."
-                                                 onbuttonclick="selectLogisticsSupplier('logisticsGuestId')"
-                                                 width="100%"
+                                                 popupEmptyText="未找到物流公司"
+                                                 width="63%"
                                                  placeholder="请选择物流公司"
                                                  selectOnFocus="true" />
+                                          <input id="btnEdit1" width="15%" class="mini-buttonedit"  onbuttonclick="selectLogisticsSupplier('logisticsGuestId')"/>
+                                          <a class="nui-button" iconCls="" plain="false" onclick="addLogistics()" id="addBtn"><span class="fa fa-plus fa-lg"></span></a>
                                           <input class="nui-textbox" id="logisticsName" name="logisticsName" width="100%" visible="false">
                                       </td>
                                       <td class="title required">
@@ -204,7 +220,7 @@
                                       </td>
                                       <td colspan="1">
                                           <input class="nui-combobox" id="receiveMan" name="receiveMan" width="100%" textField="receiveMan"
-                                           valueField="receiveMan" valuefromselect="true"
+                                           valueField="receiveMan" valuefromselect="false"
                                            onvaluechanged="onReceiveManChanged"
                                            allowInput="true" selectOnFocus="true">
                                       </td>

@@ -388,6 +388,11 @@ hr {
 		        }
 		
 		    }
+		    setTimeout(function(){
+		    	$(".print_btn").hide();
+	            document.getElementById("query-table").style.overflow="hidden"
+	            window.print();
+		    },500);
     	});
     	
     	function CloseWindow(action) {

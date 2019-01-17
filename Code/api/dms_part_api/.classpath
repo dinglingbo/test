@@ -19,6 +19,5 @@
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/json.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/gson-2.7.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/fastjson-1.1.32.jar"/>
-	<classpathentry kind="src" path="/dms_system"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

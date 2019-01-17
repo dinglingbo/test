@@ -2,7 +2,7 @@
  * Created by Administrator on 2018/1/27.
  */
 
-var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 //var gridUrl = baseUrl+"com.hsapi.part.common.svr.queryPartName.biz.ext"; 
 //var  treeUrl = baseUrl+"com.hsapi.part.common.svr.getPartTypeTree.biz.ext";
 

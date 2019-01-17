@@ -32,6 +32,7 @@ var oldRow = null;
 var mainTabs = null;
 var billmainTab = null;
 var partInfoTab = null;
+var guestIdEl=null;
 
 $(document).ready(function(v) {
     nui.mask({
@@ -52,7 +53,29 @@ $(document).ready(function(v) {
 
     advancedSearchForm = new nui.Form("#advancedSearchForm");
     basicInfoForm = new nui.Form("#basicInfoForm");
+    guestIdEl=nui.get('guestId');
+    guestIdEl.setUrl(getGuestInfo);
+	guestIdEl.on("beforeload",function(e){
+      
+        var data = {};
+        var params = {};
+        var value = e.data.key;
+        value = value.replace(/\s+/g, "");
+        if(value.length<3){
+            e.cancel = true;
+            return;
+        }
+        var params = {};
+    	params.pny = e.data.key;
+    	params.isSupplier = 1;
 
+        data.params = params;
+        e.data =data;
+        return;
+            
+       
+        
+    });
 
     gsparams.startDate = getNowStartDate();
     gsparams.endDate = addDate(getNowEndDate(), 1);
@@ -724,7 +747,7 @@ function selectSupplier(elId) {
     supplier = null;
     nui.open({
         targetWindow : window,
-        url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url : webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
         title : "客户资料",
         width : 980,
         height : 560,
@@ -1002,6 +1025,13 @@ function orderEnter(mainId) {
                         leftGrid.updateRow(row, newRow);
 
                         basicInfoForm.setData(newRow);
+                        nui.confirm("是否打印？", "友情提示", function(action) {
+							if(action== 'ok'){
+								onPrint();
+							}else{
+								
+							}
+						});
 
                     } else {
                         showMsg(data.errMsg || "入库失败!","W");
@@ -1048,12 +1078,31 @@ function updatePchsRtnStatus(mainId) {
 
     
 }
-function onGuestValueChanged(e) {
-    // 供应商中直接输入名称加载供应商信息
-    var params = {};
-    params.pny = e.value;
-    params.isClient = 1;
-    setGuestInfo(params);
+function onGuestValueChanged(e)
+{
+    //供应商中直接输入名称加载供应商信息
+//    var params = {};
+//    params.pny = e.value;
+//    params.isSupplier = 1;
+//    setGuestInfo(params);
+	var data = e.selected;
+	if (data) { 
+		var id = data.id;
+		var text = data.fullName;
+		var row = leftGrid.getSelected();
+		var newRow = {
+			guestFullName : text
+		};
+		leftGrid.updateRow(row, newRow);
+
+		var billTypeIdV = data.billTypeId;
+		var settTypeIdV = data.settTypeId;
+
+		nui.get("billTypeId").setValue(billTypeIdV);
+		nui.get("settleTypeId").setValue(settTypeIdV);
+
+		addNewRow(true);
+    }
 }
 var getGuestInfo = baseUrl
         + "com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
@@ -1069,12 +1118,12 @@ function setGuestInfo(params) {
             if (text) {
                 var supplier = text.suppliers;
                 if (supplier && supplier.length > 0) {
-                    var data = supplier[0];
-                    var value = data.id;
-                    var text = data.fullName;
-                    var el = nui.get('guestId');
-                    el.setValue(value);
-                    el.setText(text);
+//                    var data = supplier[0];
+//                    var value = data.id;
+//                    var text = data.fullName;
+//                    var el = nui.get('guestId');
+//                    el.setValue(value);
+//                    el.setText(text);
 
                     var row = leftGrid.getSelected();
                     var newRow = {

@@ -398,7 +398,7 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         // targetWindow: window,
-        url: "com.hsweb.part.common.supplierSelect.flow",
+        url: "com.hsweb.cloud.part.common.supplierSelect.flow",
         title: "结算单位资料", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,

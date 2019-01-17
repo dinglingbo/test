@@ -110,7 +110,9 @@
     <figSize height="20" width="40"/>
     <node>assign1</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="929" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-01-23 15:48:24" date="2018-01-23Z" description="" name="queryPartList" version="7.0.0.0"/>
   <process:variables/>

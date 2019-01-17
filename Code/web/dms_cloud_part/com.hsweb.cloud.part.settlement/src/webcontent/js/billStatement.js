@@ -36,7 +36,7 @@ var editFormSellOutDetail = null;
 var innerSellOutGrid = null;
 var editFormSellRtnDetail = null;
 var innerSellRtnGrid = null;
-
+var guestIdEl=null;
 //单据状态
 var AuditSignList = [
   {
@@ -76,7 +76,29 @@ $(document).ready(function(v)
     innerPchsRtnGrid = nui.get("innerPchsRtnGrid");
     editFormPchsRtnDetail = document.getElementById("editFormPchsRtnDetail");
     innerPchsRtnGrid.setUrl(innerSellGridUrl);
+    
+    guestIdEl=nui.get('guestId');
+    guestIdEl.setUrl(getGuestInfo);
+	guestIdEl.on("beforeload",function(e){
+      
+        var data = {};
+        var params = {};
+        var value = e.data.key;
+        value = value.replace(/\s+/g, "");
+        if(value.length<3){
+            e.cancel = true;
+            return;
+        }
+        var params = {};
+    	params.pny = e.data.key;
 
+        data.params = params;
+        e.data =data;
+        return;
+            
+       
+        
+    });
 /*    innerSellOutGrid = nui.get("innerSellOutGrid");
     editFormSellOutDetail = document.getElementById("editFormSellOutDetail");
     innerSellOutGrid.setUrl(innerSellGridUrl);
@@ -599,7 +621,7 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         // targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
         title: "往来单位", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -620,6 +642,7 @@ function selectSupplier(elId)
                 supplier = data.supplier;
                 var value = supplier.id;
                 var text = supplier.fullName;
+                var shortName=supplier.shortName;
                 var billTypeIdV = supplier.billTypeId;
                 var settTypeIdV = supplier.settTypeId;
                 var el = nui.get(elId);
@@ -628,7 +651,7 @@ function selectSupplier(elId)
 
                 if(elId == 'guestId') {
                     var row = leftGrid.getSelected();
-                    var newRow = {guestFullName: text};
+                    var newRow = {guestFullName: text,guestName:shortName};
                     leftGrid.updateRow(row,newRow);
 
                 }
@@ -839,13 +862,22 @@ function save() {
 function onGuestValueChanged(e)
 {
     //供应商中直接输入名称加载供应商信息
-    var params = {};
-    params.pny = e.value;
-    setGuestInfo(params);
+//    var params = {};
+//    params.pny = e.value;
+//    setGuestInfo(params);
+	var data = e.selected;
+	var value = data.id;
+    var text = data.fullName;
 
+    var row = leftGrid.getSelected();
+    var newRow = {guestName: text};
+    leftGrid.updateRow(row,newRow);
+    
     var data = rightGrid.getData();
     rightGrid.removeRows(data);
 }
+
+
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
 {

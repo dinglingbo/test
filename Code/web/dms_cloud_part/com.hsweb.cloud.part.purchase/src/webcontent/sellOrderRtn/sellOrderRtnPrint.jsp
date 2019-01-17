@@ -389,6 +389,7 @@ hr {
 		        }
 		
 		    }
+		    
     	});
     	
     	function CloseWindow(action) {

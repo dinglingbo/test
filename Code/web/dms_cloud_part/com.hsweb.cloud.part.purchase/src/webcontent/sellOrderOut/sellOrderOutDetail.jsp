@@ -109,14 +109,23 @@
                                       </td>
                                       <td colspan="3">
                                           <input id="guestId"
-                                                 name="guestId"
-                                                 class="nui-buttonedit"
-                                                 emptyText="请选择客户..."
-                                                 onbuttonclick="selectSupplier('guestId')"
-                                                 onvaluechanged="onGuestValueChanged"
-                                                 width="100%"
-                                                 placeholder="请选择客户"
-                                                 selectOnFocus="true" />
+                                             name="guestId"
+                                             enterQuery="true"
+                                             dataField="suppliers"
+                                             textField="fullName"
+                                             loadingText="查询中"
+                                             valueField="id"
+                                             class="nui-autocomplete"
+                                             emptyText="请选择客户..."
+                                             allowInput="true"
+                                             onvaluechanged="onGuestValueChanged"
+                                             popupEmptyText="未找到客户"
+                                             url=""  searchField="key"
+                                             width="83%"
+                                             placeholder="请选择客户"
+                                             selectOnFocus="true" />
+                                      	 <input id="btnEdit1" width="7.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
+                                       	 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn"><span class="fa fa-plus fa-lg"></span></a>
                                       </td>
                                       <td class="title required">
                                           <label>销售员：</label>

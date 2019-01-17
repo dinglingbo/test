@@ -37,7 +37,8 @@ var streetAddressEl = null;
 
 var editFormSellOutDetail = null;
 var innerSellOutGrid = null;
-
+var guestIdEl=null;
+var logisticsGuestIdEl=null;
 //单据状态
 var AuditSignList = [
   {
@@ -77,7 +78,52 @@ $(document).ready(function(v)
     gsparams.startDate = getNowStartDate();
     gsparams.endDate = addDate(getNowEndDate(), 1);
     gsparams.auditSign = 0;
+    guestIdEl=nui.get('guestId');
+    guestIdEl.setUrl(getGuestInfo);
+    logisticsGuestIdEl=nui.get('logisticsGuestId');
+    logisticsGuestIdEl.setUrl(getGuestInfo);
+	guestIdEl.on("beforeload",function(e){
+      
+        var data = {};
+        var params = {};
+        var value = e.data.key;
+        value = value.replace(/\s+/g, "");
+        if(value.length<3){
+            e.cancel = true;
+            return;
+        }
+        var params = {};
+    	params.pny = e.data.key;
+    	params.isSupplier = 1;
 
+        data.params = params;
+        e.data =data;
+        return; 
+        
+    });
+	
+	logisticsGuestIdEl.on("beforeload",function(e){
+      
+        var data = {};
+        var params = {};
+        var value = e.data.key;
+        value = value.replace(/\s+/g, "");
+        if(value.length<2){
+            e.cancel = true;
+            return;
+        }
+        var params = {};
+
+    	params.pny = e.data.key;
+    	params.isSupplier = 1;
+    	params.guestType='01020204',
+    	params.isDisabled=0;
+        data.params = params;
+        e.data =data;
+        return; 
+        
+    });
+    
     billTypeIdEl = nui.get("billTypeId");
     settleTypeIdEl = nui.get("settleTypeId");
     sCreateDate = nui.get("sCreateDate");
@@ -561,7 +607,7 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         // targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
         title: "客户选择", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -822,13 +868,24 @@ function save() {
 function onGuestValueChanged(e)
 {
     //供应商中直接输入名称加载供应商信息
-    var params = {};
-    params.pny = e.value;
-    setGuestInfo(params);
+//    var params = {};
+//    params.pny = e.value;
+//    params.isSupplier = 1;
+//    setGuestInfo(params);
+	var data = e.selected;
+	if (data) { 
+		var id = data.id;
+		var text = data.fullName;
+		var value = data.id;
+		nui.get("guestName").setValue(text);
 
-    var data = rightGrid.getData();
-    rightGrid.removeRows(data);
+        var row = leftGrid.getSelected();
+        var newRow = {guestName: text};
+        leftGrid.updateRow(row,newRow);
 
+        setGuestLogistics(value,false);
+
+    }
 }
 var getGuestInfo = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
 function setGuestInfo(params)
@@ -1055,7 +1112,7 @@ function onLeftGridBeforeDeselect(e)
         leftGrid.removeRow(row);
     }
 }
-var getLogisticsUrl = apiPath + partApi + "/com.hsapi.part.baseDataCrud.crud.getLogisticsByGuestId.biz.ext";
+var getLogisticsUrl = apiPath + cloudPartApi + "/com.hsapi.cloud.part.baseDataCrud.crud.getLogisticsByGuestId.biz.ext";
 function getLogistics(guestId,callback) {
     nui.ajax({
         url : getLogisticsUrl,
@@ -1092,7 +1149,7 @@ function selectLogisticsSupplier(elId)
     supplier = null;
     nui.open({
         // targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
         title: "物流公司选择", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -1123,6 +1180,33 @@ function selectLogisticsSupplier(elId)
 
                 settleTypeIdEl.setValue(settTypeIdV);
 
+            }
+        }
+    });
+}
+
+function addLogistics() 
+{
+	var comguest={};
+	comguest.fullName=nui.get('logisticsGuestId').getText();
+	var title = "新增物流公司";
+    nui.open({
+        // targetWindow: window,
+        url: webPath+contextPath+"/com.hsweb.cloud.part.basic.LogisticsDetail.flow?token="+token,
+        allowResize:false,
+        title: title, width: 470, height: 250,
+        onload: function ()
+        {
+            var iframe = this.getIFrameEl();
+            var params = {};
+            if (comguest) {
+                params.comguest = comguest;
+            }
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy: function (action) {
+            if (action == "ok") {
+//                dataGrid.reload();
             }
         }
     });

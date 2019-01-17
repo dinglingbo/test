@@ -13,7 +13,7 @@
 <script src="<%=webPath + contextPath%>/common/js/packPopOperate.js?v=1.0.0"></script>
 <style type="text/css">
 .title {
-	width: 60px;
+	width: 80px;
 	text-align: right;
 }
 

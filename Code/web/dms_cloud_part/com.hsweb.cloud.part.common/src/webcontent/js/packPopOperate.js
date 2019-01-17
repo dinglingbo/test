@@ -130,7 +130,7 @@ function selectSupplier(elId)
     supplier = null;
     nui.open({
         // targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
         title: "客户选择", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,
@@ -377,7 +377,7 @@ function setGuestLogistics(guestId,setNull){
 
     }
 }
-var getLogisticsUrl = apiPath + partApi + "/com.hsapi.part.baseDataCrud.crud.getLogisticsByGuestId.biz.ext";
+var getLogisticsUrl = apiPath + cloudPartApi + "/com.hsapi.cloud.part.baseDataCrud.crud.getLogisticsByGuestId.biz.ext";
 function getLogistics(guestId,callback) {
     nui.ajax({
         url : getLogisticsUrl,
@@ -414,7 +414,7 @@ function selectLogisticsSupplier(elId)
     supplier = null;
     nui.open({
         // targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+        url: webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
         title: "物流公司选择", width: 980, height: 560,
         allowDrag:true,
         allowResize:true,

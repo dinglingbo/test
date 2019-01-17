@@ -22,7 +22,7 @@ function toComAttributeSet(){
 	var item={};
 	item.id = "1463";
 	item.text = "配件管理";
-	item.url = webPath + contextPath + "/com.hsweb.part.baseData.partMgr.flow";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.partMgr.flow";
 	item.iconCls = "fa fa-file";
 	window.parent.activeTab(item);
 }
@@ -31,7 +31,7 @@ function toComStoreSet(){
 	var item={};
 	item.id = "1467";
 	item.text = "仓库管理";
-	item.url = webPath + contextPath + "/com.hsweb.part.baseData.storehouseMgr.flow";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.storehouseMgr.flow";
 	item.iconCls = "fa fa-file";
 	window.parent.activeTab(item);
 }
@@ -40,7 +40,7 @@ function toComGuestSet(){
 	var item={};
 	item.id = "1462";
 	item.text = "供应商管理";
-	item.url = webPath + contextPath + "/com.hsweb.part.baseData.supplierMgr.flow";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.supplierMgr.flow";
 	item.iconCls = "fa fa-file";
 	window.parent.activeTab(item);
 }

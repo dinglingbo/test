@@ -32,7 +32,7 @@ var oldValue = null;
 var oldRow = null;
 var partShow = 0;
 var autoNew = 0;
-
+var guestIdEl=null;
 
 // 单据状态
 var AuditSignList = [ {
@@ -67,7 +67,30 @@ $(document).ready(function(v) {
 	advancedAddForm  = new nui.Form("#advancedAddForm");
 	//bottomInfoForm = new nui.Form("#bottomForm");
 	//fastPartEntryEl = nui.get("fastPartEntry");
+    guestIdEl=nui.get('guestId');
+    guestIdEl.setUrl(getGuestInfo);
+	guestIdEl.on("beforeload",function(e){
+      
+        var data = {};
+        var params = {};
+        var value = e.data.key;
+        value = value.replace(/\s+/g, "");
+        if(value.length<3){
+            e.cancel = true;
+            return;
+        }
+        var params = {};
+    	params.pny = e.data.key;
+    	params.isSupplier = 1;
 
+        data.params = params;
+        e.data =data;
+        return;
+            
+       
+        
+    });
+	
 	gsparams.startDate = getNowStartDate();
 	gsparams.endDate = addDate(getNowEndDate(), 1);
 
@@ -864,7 +887,7 @@ function selectSupplier(elId) {
 	supplier = null;
 	nui.open({
 		targetWindow : window,
-		url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
+		url : webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
 		title : "供应商资料",
 		width : 980,
 		height : 560,
@@ -1535,11 +1558,18 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								var leftRow = pjPchsOrderMainList[0];
 								var row = leftGrid.getSelected();
 								leftGrid.updateRow(row, leftRow);
-	
+								nui.confirm("是否打印？", "友情提示", function(action) {
+									if(action== 'ok'){
+										onPrint();
+									}else{
+										
+									}
+								});
+
 								// 保存成功后重新加载数据
 								//loadMainAndDetailInfo(leftRow);
-								rightGrid.setData([]);
-								add();
+//								rightGrid.setData([]);
+//								add();
 	
 							}
 						} else {
@@ -1599,11 +1629,17 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 								var leftRow = pjPchsOrderMainList[0];
 								var row = leftGrid.getSelected();
 								leftGrid.updateRow(row, leftRow);
-	
+								nui.confirm("是否打印？", "友情提示", function(action) {
+									if(action== 'ok'){
+										onPrint();
+									}else{
+										
+									}
+								});
 								// 保存成功后重新加载数据
 								//loadMainAndDetailInfo(leftRow);
-								rightGrid.setData([]);
-								add();
+//								rightGrid.setData([]);
+//								add();
 	
 							}
 						} else {
@@ -1633,12 +1669,31 @@ function onDrawSummaryCell(e) {
 		//nui.get("orderAmt").setValue(orderAmt);
 	}
 }
-function onGuestValueChanged(e) {
-	// 供应商中直接输入名称加载供应商信息
-	var params = {};
-	params.pny = e.value;
-	params.isSupplier = 1;
-	setGuestInfo(params);
+function onGuestValueChanged(e)
+{
+    //供应商中直接输入名称加载供应商信息
+//    var params = {};
+//    params.pny = e.value;
+//    params.isSupplier = 1;
+//    setGuestInfo(params);
+	var data = e.selected;
+	if (data) { 
+		var id = data.id;
+		var text = data.fullName;
+		var row = leftGrid.getSelected();
+		var newRow = {
+			guestFullName : text
+		};
+		leftGrid.updateRow(row, newRow);
+
+		var billTypeIdV = data.billTypeId;
+		var settTypeIdV = data.settTypeId;
+
+		nui.get("billTypeId").setValue(billTypeIdV);
+		nui.get("settleTypeId").setValue(settTypeIdV);
+
+		addNewRow(true);
+    }
 }
 var getGuestInfo = baseUrl
 		+ "com.hsapi.cloud.part.baseDataCrud.crud.querySupplierList.biz.ext";
@@ -1654,12 +1709,12 @@ function setGuestInfo(params) {
 			if (text) {
 				var supplier = text.suppliers;
 				if (supplier && supplier.length > 0) {
-					var data = supplier[0];
-					var value = data.id;
-					var text = data.fullName;
-					var el = nui.get('guestId');
-					el.setValue(value);
-					el.setText(text);
+//					var data = supplier[0];
+//					var value = data.id;
+//					var text = data.fullName;
+//					var el = nui.get('guestId');
+//					el.setValue(value);
+//					el.setText(text);
 
 					var row = leftGrid.getSelected();
 					var newRow = {
@@ -1713,12 +1768,12 @@ function setGuestInfo(params) {
 	});
 }
 function addGuest(){
-	nui.confirm("此供应商不存在，是否新增?", "友情提示", function(action) {
-		if (action == "ok") {
+//	nui.confirm("此供应商不存在，是否新增?", "友情提示", function(action) {
+//		if (action == "ok") {
 			nui.open({
 				// targetWindow: window,
-				url: webPath+contextPath+"/com.hsweb.part.baseData.supplierDetail.flow?token=" + token,
-				title: "供应商资料", width: 530, height: 480,
+				url: webPath+contextPath+"/com.hsweb.cloud.part.basic.supplierDetail.flow?token=" + token,
+				title: "供应商资料", width: 570, height: 530,
 				allowDrag:true,
 				allowResize:false,
 				onload: function ()
@@ -1744,10 +1799,10 @@ function addGuest(){
 				}
 			});
 
-		}else{
-			nui.get("guestId").focus();
-		}
-	});
+//		}else{
+//			nui.get("guestId").focus();
+//		}
+//	});
 }
 
 function onPrint(){

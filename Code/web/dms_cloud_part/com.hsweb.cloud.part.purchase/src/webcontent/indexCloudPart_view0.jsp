@@ -40,14 +40,14 @@
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="toPchsOrder()">
                             <i class="fa fa-cart-plus fa-4x  fa-inverse"></i>
-                            <p>新建采购订单</p> 
+                            <p>新建采购单</p> 
                         </a> 
 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
                         <a onclick="toSellOrder()">
                             <i class="fa fa-calendar-plus-o fa-4x  fa-inverse"></i>
-                            <p>新建销售订单</p> 
+                            <p>新建销售单</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">

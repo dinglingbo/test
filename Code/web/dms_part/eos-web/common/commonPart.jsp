@@ -3,7 +3,7 @@
 <%@page import="com.eos.data.datacontext.IMUODataContext"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%> 
-<%@include file="/common/sysCommon.jsp"%> 
+  <%@include file="/common/sysCommon.jsp"%>
 <link href="<%=webPath + contextPath %>/common/nui/res/fonts/font-awesome/css/font-awesome.min.css?v=1.0.0" rel="stylesheet">
 
 <script type="text/javascript">
@@ -65,6 +65,7 @@
 	//console.log(window._rootUrl);
 	</script>
 <script src="<%=request.getContextPath()%>/common/js/partUtil.js?v=1.0.13" type="text/javascript"></script>
+<%-- <link href="<%=webPath + contextPath%>/common/nui/themes/bootstrap/skin.css" rel="stylesheet"	type="text/css" />  --%>
 <style type="text/css">
 html,body {
 	margin: 0;

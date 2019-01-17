@@ -341,12 +341,12 @@ a {
 <form method="post"	name="loginForm" onsubmit="return login();"  action="<%=url%>">	
 	<div class="login" id="loginBox">
 		<div class="loginTitle">
-			<div class="weixinbox">
+<!-- 			<div class="weixinbox">
 				<img src="images/weixin-min-img.png" />
 				<div class="weixin_max_img">
 					<img src="images/xiongying.jpg"  />
 				</div>
-			</div>		
+			</div> -->		
 			<div class="log">
 				欢迎登录车道商户版
 				<span>为了保障您顺畅的使用，建议使用谷歌/火孤/360浏览器</span>
@@ -774,7 +774,7 @@ function login(){
 								//document.loginForm.submit();
 								window.location.href="<%=sweepCodeUrl%>?webId="+code;
 							}else if(record.status==2){
-								$("#error").html("已拒绝");
+								$("#error").html("APP扫码已取消登录！");
 								openLogin();
 							}else{
 								setTimeout(function () { setCode(time); }, 1000);

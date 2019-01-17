@@ -219,7 +219,7 @@
 			a.remark AS remark
 		FROM
 			rps_stored_record AS a
-			WEHRE A.is_settle = 1 and a.guest_id = #guestId# and a.orgid = #orgid#
+			WHERE a.is_settle = 1 and a.guest_id = #guestId# and a.orgid = #orgid#
 	</select>
 	
 	

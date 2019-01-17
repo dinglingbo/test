@@ -252,7 +252,7 @@ function settleOK() {
 		account.charOffAmt = pVoidAmt + pTrueAmt;
 		
 		if(deductible!=0){
-			var list={balaTypeCode:"020107",charOffAmt:deductible,settAccountId:"274"};
+			var list={balaTypeCode:"020107",charOffAmt:deductible,settAccountId:"274",settAccountName: "储值卡支付"};
 			accountTypeList.push(list);
 		}
 

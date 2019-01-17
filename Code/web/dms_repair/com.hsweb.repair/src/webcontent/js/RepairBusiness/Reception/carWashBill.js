@@ -1735,7 +1735,7 @@ function showCarSellPointInfo(){
 var showcF = 1;
 function doSearchCardTimes(guestId)
 {
-    cardTimescardTimesGridGrid.clearRows();
+    cardTimesGrid.clearRows();
     if(!guestId) return;
     var p = {};
     p.detailFinish = 0;  

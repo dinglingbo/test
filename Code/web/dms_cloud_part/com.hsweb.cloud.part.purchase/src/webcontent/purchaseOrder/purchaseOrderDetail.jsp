@@ -143,13 +143,22 @@
                                   <td colspan="3">
                                       <input id="guestId"
                                              name="guestId"
-                                             class="nui-buttonedit"
+                                             enterQuery="true"
+                                             dataField="suppliers"
+                                             textField="fullName"
+                                             loadingText="查询中"
+                                             valueField="id"
+                                             class="nui-autocomplete"
                                              emptyText="请选择供应商..."
-                                             onbuttonclick="selectSupplier('guestId')"
+                                             allowInput="true"
                                              onvaluechanged="onGuestValueChanged"
-                                             width="100%"
+                                             popupEmptyText="未找到供应商"
+                                             url=""  searchField="key"
+                                             width="83%"
                                              placeholder="请选择供应商"
                                              selectOnFocus="true" />
+                                      <input id="btnEdit1" width="7.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
+                                       <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn"><span class="fa fa-plus fa-lg"></span></a>
                                   </td>
                                   <td class="title required">
                                       <label>采购员：</label>

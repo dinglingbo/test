@@ -11,7 +11,7 @@
 <head>
 <title>计次卡退款</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/refundTimesCardList.js?v=1.2.5"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/refundTimesCardList.js?v=1.2.6"></script>
     <style type="text/css">
         body { 
             margin: 0;
@@ -288,7 +288,7 @@ body,
 						<tr>
 							<td colspan="4">
 								<div class="tips">
-								<span class="fa fa-exclamation-triangle fa-lg" style="margin-left: 10px;"></span>计次卡退款只能退未使用过的计次卡<br>
+								<span class="fa fa-exclamation-triangle fa-lg" style="margin-left: 10px;"></span>计次卡退款只能退未使用过的计次卡并且只能退全款！<br>
 								<span class="fa fa-exclamation-triangle fa-lg" style="margin-left: 10px;"></span>退款请对清明细，退款成功无法撤回，谨慎操作！<br>
 								</div>
 							</td>
@@ -296,10 +296,10 @@ body,
 						
 						<tr >
 							<td align="right" width="100px" colspan="1" >
-								计次卡：		
+								<font color="red">*</font>计次卡<font color="red">*</font>：		
 							</td>
 							<td align="left" width="100px" colspan="3">
-								<input class="mini-combobox" id="cardName" name="cardName" width="300"  />
+								<input class="mini-combobox" id="cardName" name="cardName" textField="text" valueField="value" width="300"  />
 							</td>
 
 						</tr>

@@ -289,7 +289,7 @@ body,
 						<tr>
 							<td colspan="4">
 								<div class="tips">
-								<span class="fa fa-exclamation-triangle fa-lg" style="margin-left: 10px;"></span>储值卡退款会清空赠送金额并只能退赠送金额除外的余额<br>
+								<span class="fa fa-exclamation-triangle fa-lg" style="margin-left: 10px;"></span>储值卡退款会清空赠送金额并只能退赠送金额除外的余额！<br>
 								<span class="fa fa-exclamation-triangle fa-lg" style="margin-left: 10px;"></span>退款请对清明细，退款成功无法撤回，谨慎操作！<br>
 								</div>
 							</td>
@@ -300,7 +300,7 @@ body,
 								<font color="red">*</font>储值卡<font color="red">*</font>：		
 							</td>
 							<td align="left" width="100px" colspan="3">
-								<input class="mini-combobox" id="cardName" name="cardName" width="300"  />
+								<input class="mini-combobox" id="cardName" name="cardName" textField="text" valueField="value" width="300"  />
 							</td>
 
 						</tr>

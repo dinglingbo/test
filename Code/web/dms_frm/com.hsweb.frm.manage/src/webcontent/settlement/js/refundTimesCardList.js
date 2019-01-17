@@ -381,7 +381,7 @@ function print(){
 	};
 	params = {
 			printGuest:printGuest,
-		guestData:guestData,
+		guestData:printcard,
 		p:p
 	};
 		sourceUrl = webPath + contextPath + "/com.hsweb.repair.DataBase.printCardRefund.flow?token="+token;

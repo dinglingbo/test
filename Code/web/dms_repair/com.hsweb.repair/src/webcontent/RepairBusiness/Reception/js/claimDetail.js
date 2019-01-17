@@ -2090,6 +2090,7 @@ function doSearchCardTimes(guestId)
     p.guestId = guestId;
     p.notPast = 1;
     p.status = 2;
+    p.isRefund = 0;
     cardTimesGrid.load({
     	token:token,
         p:p

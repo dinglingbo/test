@@ -437,13 +437,13 @@ public class PurchaseService {
         		return rs;
     			
         	}else {
-        		HashMap pm = new HashMap();
-        		pm.put("guestId", guestId);
-        		pm.put("id", result[0].get("id"));
-        		DatabaseExt.executeNamedSql(
-						"common",
-						"com.hsapi.part.invoice.orderSettle.updateGuestInfo",
-						pm);
+        		//HashMap pm = new HashMap();
+        		//pm.put("guestId", guestId);
+        		//pm.put("id", result[0].get("id"));
+        		//DatabaseExt.executeNamedSql(
+				//		"common",
+				//		"com.hsapi.part.invoice.orderSettle.updateGuestInfo",
+				//		pm);
         		DataObject rs = result[0];
         		rs.set("status", "0");
         		return rs;

@@ -61,7 +61,7 @@ function quickSearchType(type) {
 function doSearch(params) {
     var params = form.getData(true);
     var eDate = endDateEl.getFormValue()+ " 23:59:59";
-    params.orgid = currOrgid;
+    params.orgid = currOrgId;
     params.status = statusType;
     params.endDate = eDate;
     leftGrid.load({

@@ -113,9 +113,10 @@ body .mini-grid-row-selected{
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
+                      	<div field="auditSign" width="65" headerAlign="center" header="状态"></div>
                         <div field="guestFullName" width="120" headerAlign="center" header="供应商"></div>
                         <div field="createDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="退货日期"></div>
-                        <div field="orderMan" width="60" headerAlign="center" header="退货员"></div><div field="auditSign" width="65" headerAlign="center" header="状态"></div>
+                        <div field="orderMan" width="60" headerAlign="center" header="退货员"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="采退单号"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
                         <div field="auditor" width="60" headerAlign="center" header="审核人"></div>

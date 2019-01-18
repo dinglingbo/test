@@ -353,6 +353,10 @@ hr {
 		var settleTypeIdList=[];
 		var billTypeIdHash={};
 		var settleTypeIdHash={};
+		var brandHash = {};
+		var brandList = [];
+		var storehouse = [];
+		var storeHash={};
 		var dictDefs ={"billTypeIdE":"DDT20130703000008", "settleTypeIdE":"DDT20130703000035"};
 		var baseUrl = apiPath + cloudPartApi + "/";
 		var supplierUrl=apiPath + partApi + "/"+"com.hsapi.part.baseDataCrud.crud.queryGuestList.biz.ext";
@@ -378,6 +382,20 @@ hr {
 	        	});
 	        	
 	        });
+	        
+	        getStorehouse(function(data) {
+				storehouse = data.storehouse || [];
+				storehouse.forEach(function(v){
+        		storeHash[v.id]=v;
+        	});
+        	});
+	        	
+    		getAllPartBrand(function(data) {
+				brandList = data.brand;
+				brandList.forEach(function(v) {
+					brandHash[v.id] = v;
+			});
+			});
 	         document.onkeyup = function(event) {
 		        var e = event || window.event;
 		        var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -392,7 +410,7 @@ hr {
 		    	$(".print_btn").hide();
 	            document.getElementById("query-table").style.overflow="hidden"
 	            window.print();
-		    },500);
+		    },1000);
     	});
     	
     	function CloseWindow(action) {
@@ -463,7 +481,7 @@ hr {
 									.replace("[comPartCode]",data[i].comPartCode ||"")
 									.replace("[comOemCode]",data[i].comOemCode ||"")
 									.replace("[comPartName]",data[i].comPartName ||"")
-									.replace("[comPartBrindId]",data[i].comPartBrindId ||"")
+									.replace("[comPartBrindId]",data[i].comPartBrandId?brandHash[data[i].comPartBrandId].name :"")
 									.replace("[comApplyCarModel]",data[i].comApplyCarModel ||"")
 									.replace("[comSpec]",data[i].comSpec ||"")
 									.replace("[comUnit]",data[i].comUnit ||"")
@@ -471,7 +489,7 @@ hr {
 									.replace("[orderPrice]",data[i].orderPrice ||"")
 									.replace("[orderAmt]",data[i].orderAmt ||"")
 									.replace("[remark]",data[i].remark ||"")
-									.replace("[storehouse]",data[i].storehouse ||"")
+									.replace("[storehouse]",data[i].storeId?storeHash[data[i].storeId].name :"")
 									.replace("[storeShelf]",data[i].storeShelf ||""));
 							tBody.append(tr);
 							sumOrderQty +=parseFloat(data[i].orderQty);

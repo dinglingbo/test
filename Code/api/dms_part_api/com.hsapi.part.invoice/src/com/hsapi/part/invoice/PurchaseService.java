@@ -22,6 +22,7 @@ import net.sf.json.JSONObject;
 
 import com.eos.data.datacontext.DataContextManager;
 import com.eos.data.datacontext.IMUODataContext;
+import com.eos.engine.component.ILogicComponent;
 import com.eos.foundation.data.DataObjectUtil;
 import com.eos.foundation.database.DatabaseExt;
 import com.eos.system.annotation.Bizlet;
@@ -29,7 +30,7 @@ import com.google.gson.Gson;
 import com.hs.common.Env;
 import com.hs.common.HttpUtils;
 import com.hs.common.Utils;
-import com.hs.utils.APIUtils;
+import com.primeton.ext.engine.component.LogicComponentFactory;
 
 import commonj.sdo.DataObject;
 
@@ -413,7 +414,7 @@ public class PurchaseService {
         			params.add(guest);
         			params.add(orgid);
         			params.add(userName);
-        			Object[] resultRes = APIUtils.callLogicFlowMethd("com.hsapi.part.baseDataCrud.crud", "saveSupplier", params.toArray(new Object[params.size()]));
+        			Object[] resultRes = callLogicFlowMethd("com.hsapi.part.baseDataCrud.crud", "saveSupplier", params.toArray(new Object[params.size()]));
         			String errCode = (String) resultRes[0];
         			String errMsg = (String) resultRes[1];
         			Integer gstId = (Integer) resultRes[2];
@@ -437,13 +438,13 @@ public class PurchaseService {
         		return rs;
     			
         	}else {
-        		//HashMap pm = new HashMap();
-        		//pm.put("guestId", guestId);
-        		//pm.put("id", result[0].get("id"));
-        		//DatabaseExt.executeNamedSql(
-				//		"common",
-				//		"com.hsapi.part.invoice.orderSettle.updateGuestInfo",
-				//		pm);
+        		HashMap pm = new HashMap();
+        		pm.put("guestId", guestId);
+        		pm.put("id", result[0].get("id"));
+        		DatabaseExt.executeNamedSql(
+						"common",
+						"com.hsapi.part.invoice.orderSettle.updateGuestInfo",
+						pm);
         		DataObject rs = result[0];
         		rs.set("status", "0");
         		return rs;
@@ -474,6 +475,9 @@ public class PurchaseService {
     	if(result.length <= 0) {
     		//如果不存在，后台自动新增，然后返回新增后的结果
     		//com.hsapi.part.invoice.orderSettle.queryPartByPartBrand
+    		if(brandName.equals("原厂品牌")) {
+    			brandName = "原厂";
+    		}
     		HashMap params = new HashMap();
     		params.put("partCode",partCode);
     		params.put("brandName",brandName);
@@ -611,6 +615,21 @@ public class PurchaseService {
 				}
 			}
 		}
+	}
+	
+	@Bizlet("方法调用API")
+	public static Object[] callLogicFlowMethd(String componentName,
+			String operationName, Object... params) throws Throwable {
+		int len = params == null ? 0 : params.length;
+		ILogicComponent logicComponent = LogicComponentFactory
+				.create(componentName);
+		Object[] ps = new Object[len];
+		int idx = 0;
+		for (Object o : params) {
+			ps[idx] = o;
+			idx++;
+		}
+		return logicComponent.invoke(operationName, ps);
 	}
 	
 }

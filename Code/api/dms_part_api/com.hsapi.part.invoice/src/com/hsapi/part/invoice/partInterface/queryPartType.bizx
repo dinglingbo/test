@@ -102,7 +102,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">查询库存失败</process:from>
+      <process:from type="query" pattern="reference">result/msg</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>
@@ -151,7 +151,7 @@
     <node>assign6</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值6" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="link35" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="link35" isDefault="false" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>subprocess2</targetNode>
       <process:transitionCondition>
@@ -161,7 +161,7 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="link0" isDefault="false" type="transition">
+    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="link0" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>assign9</targetNode>
       <process:transitionCondition>
@@ -192,6 +192,7 @@
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="link28" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>assign2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link10" name="登录超时" displayName="登录超时" type="transition">
       <sourceNode>assign3</sourceNode>
@@ -300,6 +301,7 @@
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="2" language="java.util.List" name="data" type="query" valueType="Java">data</process:return>
       <process:return id="3" language="com.eos.foundation.PageCond" name="page" type="query" valueType="DataObject">page</process:return>
+      <process:return id="4" language="String" name="msg" type="query" valueType="Primitive">msg</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
@@ -384,7 +386,6 @@
   <process:info author="Administrator" createTime="2019-01-10 18:15:11" date="2019-01-10Z" description="" name="queryPartBrand" version="7.0.0.0"/>
   <process:variables>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="param"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="msg" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="apiPath" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="t" primitiveType="Int"/>
@@ -402,6 +403,7 @@
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output anyType="java.util.List" description="" isArray="false" name="data"/>
     <process:output description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
+    <process:output description="" isArray="false" name="msg" primitiveType="String"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

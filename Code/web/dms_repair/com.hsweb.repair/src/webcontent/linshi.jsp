@@ -12,7 +12,7 @@
 <head>
     <title>业务产值汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/repair/js/linshi.js" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/repair/js/linshi.js?v=1.0.0" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
     <style>
         .titleTextDiv{

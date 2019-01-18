@@ -373,7 +373,7 @@ hr {
 		    	$(".print_btn").hide();
 	            document.getElementById("query-table").style.overflow="hidden"
 	            window.print();
-		    },500);
+		    },1000);
     	});
     	
     	 function CloseWindow(action) {

@@ -244,3 +244,34 @@ function onNodeDblClick(e)
     }
     doSearch(params);
 }
+
+function onDrawCell(e){
+	var field = e.field;
+    if("isDisabled" == field)
+    {
+        e.cellHtml = e.value==1?"失效":"有效";
+    }
+    else if("provinceId" == field)
+    {
+        if(provinceHash[e.value])
+        {
+            e.cellHtml = provinceHash[e.value].name;
+        }
+    }
+    else if("cityId" == field)
+    {
+        if(cityHash[e.value])
+        {
+            e.cellHtml = cityHash[e.value].name;
+        }
+    }
+    else if("tgrade" == field)
+    {
+        if(tgradeHash[e.value]){
+            e.cellHtml = tgradeHash[e.value].name||"";
+        }
+    }else if("isInternal" == field)
+    {
+        e.cellHtml = e.value==1?"是":"否";
+    }
+}

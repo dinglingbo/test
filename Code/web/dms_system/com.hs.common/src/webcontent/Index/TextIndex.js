@@ -136,8 +136,8 @@ function toCarInsuranceDetail(){
         };
     window.parent.activeTabAndInit(item,params);
 }
-function addCustomer(){
-    var title = "新增客户资料";
+function toRepairBillTable(){
+    /*var title = "新增客户资料";addCustomer()
     nui.open({
         url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
         title: title, width: 560, height: 630,
@@ -149,7 +149,13 @@ function addCustomer(){
         ondestroy: function (action)
         {
         }
-    });
+    });*/
+	var item={};
+    item.id = "2189";
+    item.text = "维修档案";
+    item.url = webPath + contextPath + "/com.hsweb.part.purchase.selectComprehensive.flow?token="+token;
+    item.iconCls = "fa fa-file-text";
+    window.parent.activeTab(item);
 }
 
 function toRepairOut(){

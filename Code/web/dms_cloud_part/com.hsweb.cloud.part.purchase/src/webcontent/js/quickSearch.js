@@ -502,7 +502,7 @@ function addOrEditPart(row)
         // targetWindow: window,
         url: webPath+contextPath+"/com.hsweb.cloud.part.basic.partDetail.flow?token=" + token,
         title: "配件资料",
-        width: 470, height: 300,
+        width: 470, height: 340,
         allowDrag:true,
         allowResize:false,
         onload: function ()

@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>查车单明细表</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkMainDetail.js?v=1.0.0"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkMainDetail.js?v=1.0.1"></script>
     <style type="text/css">
 
     table {
@@ -47,14 +47,16 @@ pageEncoding="UTF-8" session="false"%>
                 </td>
                 <td>
                     <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
-                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="carNoSearch"/>
-                    <input class="nui-textbox" id="checkMan" emptyText="查车技师名称" width="120" onenter="carNoSearch"/>
+                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch"/>
+                    <input class="nui-textbox" id="checkMan" emptyText="查车技师名称" width="120" onenter="onSearch"/>
                     <label class="form_label">查车日期&nbsp;从：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
                     <a class="nui-button" iconCls="" onclick="onSearch()" plain="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <!-- <a class="nui-button" iconCls="" onclick="advancedSearch()" plain="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
+                <input  class="nui-combobox" style="display:none; width:100%;" name="checkTypeA" id="checkTypeA"
+	                     textfield="name" valuefield="customid" dataFile="data"  allowInput="true" visible="false"/>
                 </td>
             </tr>
         </table> 
@@ -106,15 +108,18 @@ pageEncoding="UTF-8" session="false"%>
              <div id="innerPartGrid"
              dataField="list"
              class="nui-datagrid"
-             style="width: 100%; height: 100px;"
+             style="width: 100%; height: 200px;"
              showPager="false"
              allowSortColumn="true">
              <div property="columns">
                  <div headerAlign="center" type="indexcolumn" width="20">序号</div>
-                 <div field="insureTypeName" headerAlign="center" allowSort="false" visible="true" width="100" header="险种"></div> 
-                 <div field="amt" headerAlign="center" allowSort="false"  width="80px" header="保司保费" align="center"></div>   
-                 <div field="rtnCompAmt" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="保司返点" > </div>
-                 <div field="rtnGuestAmt" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="客户返点"> </div>
+                 <div field="checkType" headerAlign="center" allowSort="false" visible="true" width="100" header="检查类型"></div> 
+                 <div field="checkName" headerAlign="center" allowSort="false"  width="80px" header="检查项目" align="center"></div>   
+                 <div field="status" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="是否正常" > </div>
+                 <div field="checkRemark" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="检查说明"> </div>
+                 <div field="settleType" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="处理意见"> </div>
+                 <div field="careDueDate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="下次处理时间" dateFormat="yyyy-MM-dd HH:mm"> </div>
+                 <div field="careDueMileage" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="下次处理里程"> </div>
              </div>
          </div>
        </div>

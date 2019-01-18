@@ -8,7 +8,7 @@ var insurance = [];
 var mainListUrl = baseUrl+"com.hsapi.repair.repairService.repairInterface.queryCheckMainDetailList.biz.ext";
 var detailGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceDetailList.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
-var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgid+"&params/isDisabled=0";
+var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgId+"&params/isDisabled=0";
 var servieIdEl = null;
 var searchNameEl = null; 
 var searchKeyEl = null;
@@ -206,6 +206,7 @@ $(document).ready(function ()
     document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号/VIN码)");
     InsuranceQuery();//查出保险公司，用于带出返点
 
+    
 });
 
 function ManChanged(e){

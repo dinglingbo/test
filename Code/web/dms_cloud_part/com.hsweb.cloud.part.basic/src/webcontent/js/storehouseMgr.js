@@ -1,11 +1,11 @@
 /**
  * Created by Administrator on 2018/1/24.
  */
-var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
+var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var tree = null;
 var rightGrid = null;
-var treeUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.getStorehouse.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.getSorehouseLocation.biz.ext";
+var treeUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.getStorehouse.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.getSorehouseLocation.biz.ext";
 $(document).ready(function(v)
 {
 	tree = nui.get("tree1");
@@ -118,7 +118,7 @@ function addPosition()
     var storehouseList = tree.getList()||[];
     nui.open({
         // targetWindow: window,
-        url: webPath+contextPath+"/com.hsweb.part.baseData.positionDetail.flow?token=" + token,
+        url: webPath+contextPath+"/com.hsweb.cloud.part.basic.positionDetail.flow?token=" + token,
         title: "仓位定义",
         width: 525, height: 230,
         allowDrag:true,
@@ -161,7 +161,7 @@ function onDrawCell(e){
     }
 }
 
-var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.updateStorehouseLocation.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.updateStorehouseLocation.biz.ext";
 function disableLocation(){
     var row = rightGrid.getSelected();
     if(!row)

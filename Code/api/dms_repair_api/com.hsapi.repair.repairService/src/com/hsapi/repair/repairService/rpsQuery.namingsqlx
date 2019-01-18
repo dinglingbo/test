@@ -1656,13 +1656,11 @@
 			A.record_date as recordDate,
 			A.modifier as modifier,
 			A.modify_date as modifyDate,
-			b.check_name checkName,
-			b.check_type checkType,
-			b.check_code checkCode,
-			b.status status,
-			b.check_remark checkRemark
+			c.name contactName,
+			c.mobile contactMobile
 			from rps_check_main A
-			inner join rps_check_detail b on b.main_id = A.id
+			INNER JOIN rpb_car b ON (a.car_id = b.id)
+		    INNER JOIN rpb_contactor c ON (a.contactor_id = c.id)
 			where A.orgid = #orgid# 
 			<isNotEmpty prepend="and" property="carNo">  
 				A. car_no like '%$carNo$%'
@@ -1670,6 +1668,15 @@
 			
 			<isNotEmpty prepend="and" property="serviceCode">  
 				a.service_code like '%$serviceCode$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="checkMan">  
+				a.check_man like '%$checkMan$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="name">  
+				c.name like '%$name$%'
+			</isNotEmpty>
+			<isNotEmpty prepend="and" property="mobile">  
+				c.mobile like '%$mobile$%'
 			</isNotEmpty>
             <isNotEmpty prepend="and" property="sRecordDate">  
                 (a.record_date &gt;= #sRecordDate#)

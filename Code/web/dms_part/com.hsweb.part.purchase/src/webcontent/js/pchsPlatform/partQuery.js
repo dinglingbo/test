@@ -17,7 +17,6 @@ var carId=null;
 var protoken = "";
 var treeUrl = baseUrl+"com.hsapi.part.invoice.partInterface.queryPartType.biz.ext?token="+token;
 var dictDefs ={"billTypeIdE":"DDT20130703000008", "settleTypeIdE":"DDT20130703000035",};
-var getToeknUrl='http://124.172.221.179:83/srm/router/rest?method=sys.sys.loginIndex&account=000dlb&password=123456&system=0';
 var getDetailPartUrl =baseUrl+"com.hsapi.part.invoice.partInterface.queryDetailStock.biz.ext";
 var partGridUrl=baseUrl+"com.hsapi.part.invoice.partInterface.queryJoinStock.biz.ext";
 var CarplateUrl= baseUrl+"com.hsapi.part.invoice.partInterface.queryCarplate.biz.ext";
@@ -30,7 +29,7 @@ $(document).ready(function() {
     partDetailGrid.setUrl(getDetailPartUrl);
     
     tree = nui.get("tree1");
-    tree.setUrl(treeUrl);
+    //tree.setUrl(treeUrl);
     document.onkeyup = function(event) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -222,7 +221,7 @@ function verifyGuestForOrder(){
             data = data.data || {};
             guestData=data.guest;
             partData=data.part;
-            console.log(data);
+            
             if(partData.status==-1){
         		parent.parent.showMsg(partData.msg);
         		addOrEditPart(jsonData);
@@ -344,10 +343,13 @@ function getProToken(){
             	queryCarplate();
             	queryPartBrand();
 
-            	tree.load({
-            		parentId :0,
-            		protoken:protoken
-            	});
+            	//tree.load({
+            	//	parentId :0,
+            	//	protoken:protoken
+            	//});
+            	
+            	var url = baseUrl+"com.hsapi.part.invoice.partInterface.queryPartType.biz.ext?token="+token+"&protoken="+protoken;
+            	tree.load(url);
             	
             }else {
             	systoken = "";

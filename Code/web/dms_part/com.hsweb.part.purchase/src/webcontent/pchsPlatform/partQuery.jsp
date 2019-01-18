@@ -10,7 +10,7 @@
 <head>
 <title>配件查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.83"></script>
+    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.85"></script>
     <style type="text/css">
 		.table-label {
 			text-align: right;
@@ -76,7 +76,7 @@
             <div class="nui-fit">
                 <ul id="tree1" class="nui-tree" url="" style="width:100%;"
                     dataField="data"
-                    ondrawnode="onDrawNode"
+                    ondrawnode="onDrawNode" 
                     onnodedblclick="onNodeDblClick" ajaxData="setRoleId"
                     showTreeIcon="true" textField="name" idField="id" parentField="parentId" resultAsTree="false">
                 </ul>

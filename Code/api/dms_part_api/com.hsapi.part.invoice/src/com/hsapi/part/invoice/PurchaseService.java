@@ -438,13 +438,13 @@ public class PurchaseService {
         		return rs;
     			
         	}else {
-        		//HashMap pm = new HashMap();
-        		//pm.put("guestId", guestId);
-        		//pm.put("id", result[0].get("id"));
-        		//DatabaseExt.executeNamedSql(
-				//		"common",
-				//		"com.hsapi.part.invoice.orderSettle.updateGuestInfo",
-				//		pm);
+        		HashMap pm = new HashMap();
+        		pm.put("guestId", guestId);
+        		pm.put("id", result[0].get("id"));
+        		DatabaseExt.executeNamedSql(
+						"common",
+						"com.hsapi.part.invoice.orderSettle.updateGuestInfo",
+						pm);
         		DataObject rs = result[0];
         		rs.set("status", "0");
         		return rs;
@@ -475,6 +475,9 @@ public class PurchaseService {
     	if(result.length <= 0) {
     		//如果不存在，后台自动新增，然后返回新增后的结果
     		//com.hsapi.part.invoice.orderSettle.queryPartByPartBrand
+    		if(brandName.equals("原厂品牌")) {
+    			brandName = "原厂";
+    		}
     		HashMap params = new HashMap();
     		params.put("partCode",partCode);
     		params.put("brandName",brandName);

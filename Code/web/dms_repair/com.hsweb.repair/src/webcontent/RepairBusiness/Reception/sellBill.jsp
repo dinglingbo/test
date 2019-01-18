@@ -234,7 +234,7 @@
             </tr>
             <tr> 
                  <td class="title required">
-                    <label>销售员：</label>
+                    <label>服务顾问:</label>
                 </td>
                 <td>
                     <input name="mtAdvisorId"

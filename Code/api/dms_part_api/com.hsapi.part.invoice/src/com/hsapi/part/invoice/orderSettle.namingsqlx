@@ -11,14 +11,20 @@
     <!--根据中文的品牌 + 配件编码 查询配件信息存不存在-->
     <select id="queryPartByPartBrand" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT
-			a.id, a.orgid, a.`code`, a.`name`, a.full_name, a.brand_code, a.oem_code,
-			a.common_code, a.query_code, a.quality_type_id, a.part_name_id,
-			a.name_py, a.name_en, a.goods_code, a.tax_rate, a.part_brand_id,
-			a.apply_carbrand_id, a.apply_car_model, a.car_type_id_f,
-			a.car_type_id_s, a.car_type_id_t, a.spec, a.direction, a.model,
+			a.id, a.orgid, a.`code`, a.`name`, a.full_name as fullName, a.full_name as full_name,
+			a.brand_code as brandCode, a.oem_code as oemCode,
+			a.common_code as commonCode, a.query_code as queryCode, 
+			a.quality_type_id as qualityTypeId, a.part_name_id as partNameId,
+			a.name_py as namePy, a.name_en as nameEn, a.goods_code as goodsCode, 
+			a.tax_rate as taxRate, a.part_brand_id as partBrandId,
+			a.apply_carbrand_id as applyCarBrandId, a.apply_car_model as applyCarModel, 
+			a.car_type_id_f as carTypeIdF,
+			a.car_type_id_s as carTypeIdS, a.car_type_id_t as carTypeIdT, 
+			a.spec, a.direction, a.model,
 			a.unit, a.retail_price, a.whole_sale_price, a.usage_qty, a.picture,
-			a.source_id, a.common_id, a.srm_brand_id, a.srm_quality_id,
-			a.srm_part_id, a.remark
+			a.source_id as sourceId, a.common_id as commonId, 
+			a.srm_brand_id as srmBrandId, a.srm_quality_id as srmQualityId,
+			a.srm_part_id as srmPartId, a.remark
 		from com_attribute a
 			inner join com_part_brand b
 			on a.part_brand_id = b.id

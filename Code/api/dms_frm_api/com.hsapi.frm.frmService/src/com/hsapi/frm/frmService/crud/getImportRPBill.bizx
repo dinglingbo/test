@@ -696,8 +696,16 @@
       <process:to type="query">rpBillTemp/noCharOffAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">rpBillTemp/billMainId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">期初应付单</process:from>
       <process:to type="query">rpBillTemp/billServiceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">232</process:from>
+      <process:to type="query">rpBillTemp/billTypeId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">3</process:from>
@@ -799,8 +807,16 @@
       <process:to type="query">rpBillTemp/noCharOffAmt</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">rpBillTemp/billMainId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">期初应收单</process:from>
       <process:to type="query">rpBillTemp/billServiceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">118</process:from>
+      <process:to type="query">rpBillTemp/billTypeId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">3</process:from>

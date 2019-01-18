@@ -1684,7 +1684,20 @@
             <isNotEmpty prepend="and" property="eRecordDate">  
                 (a.record_date &lt; #eRecordDate#)
             </isNotEmpty>
-            
 			ORDER BY A.record_date desc
-      </select>    	
+      </select>   
+       <select id="queryExpenseSummaryList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+       	SELECT
+       	b.type_code typeCode,
+       	b.type_id typeId,
+       	b.dc dc,
+       	SUM(b.amt) amt,
+       	b.remark remark
+       	    from rps_maintain a
+       	    INNER JOIN rps_expense b ON (a.id = b.service_id )
+			INNER JOIN rpb_car c ON (a.car_id = c.id)
+		    INNER JOIN rpb_contactor d ON (a.contactor_id = d.id)
+		where a.orgid = #orgid# and a.is_settle = 1
+		GROUP BY b.type_id
+       </select>
 </sqlMap>

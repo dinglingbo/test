@@ -1736,7 +1736,7 @@ function audit()
                     leftGrid.updateRow(row,leftRow);
 
                     //保存成功后重新加载数据
-                    //loadMainAndDetailInfo(leftRow);
+                    loadMainAndDetailInfo(leftRow);
                     nui.confirm("是否打印？", "友情提示", function(action) {
 						if(action== 'ok'){
 							onPrint();

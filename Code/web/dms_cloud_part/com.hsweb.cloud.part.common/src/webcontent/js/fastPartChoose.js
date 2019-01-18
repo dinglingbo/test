@@ -541,7 +541,7 @@ function onMoreTabChanged(e){
         
     }else if(name == "partInfoTab"){
         //nui.get("showStock").show();
-        nui.get("showStock").setValue(1);
+//        nui.get("showStock").setValue(0);
     }
     
 }

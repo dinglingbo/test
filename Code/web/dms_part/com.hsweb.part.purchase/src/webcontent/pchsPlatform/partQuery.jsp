@@ -10,7 +10,7 @@
 <head>
 <title>配件查询</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.82"></script>
+    <script src="<%=webPath + contextPath%>/purchasePart/js/pchsPlatform/partQuery.js?v=1.0.83"></script>
     <style type="text/css">
 		.table-label {
 			text-align: right;
@@ -77,7 +77,7 @@
                 <ul id="tree1" class="nui-tree" url="" style="width:100%;"
                     dataField="data"
                     ondrawnode="onDrawNode"
-                    onnodedblclick="onNodeDblClick"
+                    onnodedblclick="onNodeDblClick" ajaxData="setRoleId"
                     showTreeIcon="true" textField="name" idField="id" parentField="parentId" resultAsTree="false">
                 </ul>
             </div>
@@ -108,7 +108,7 @@
 		          	 		<div allowSort="true" field="code" width="100" headerAlign="center" allowSort="true">配件编码</div>
 		          	 		<div allowSort="true" field="fullName" width="300" headerAlign="center" allowSort="true">全称</div>
 		          	 		<div allowSort="true" field="qualityName" width="50" headerAlign="center" allowSort="true">品质</div>
-		          	 		<div allowSort="true" field="brandName" width="100" headerAlign="center" allowSort="true">厂牌</div>
+		          	 		<div allowSort="true" field="brandName" width="100" headerAlign="center" allowSort="true">品牌</div>
 		          	 		<div allowSort="true" field="countQty" width="100" headerAlign="center" allowSort="true">库存量</div>
 		          	 	</div>
 		          </div>

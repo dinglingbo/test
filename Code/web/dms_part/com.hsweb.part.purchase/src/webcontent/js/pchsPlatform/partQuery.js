@@ -15,7 +15,7 @@ var tree = null;
 var brandId =null;
 var carId=null;
 var protoken = "";
-var treeUrl = baseUrl+"com.hsapi.part.invoice.partInterface.queryPartType.biz.ext";
+var treeUrl = baseUrl+"com.hsapi.part.invoice.partInterface.queryPartType.biz.ext?token="+token;
 var dictDefs ={"billTypeIdE":"DDT20130703000008", "settleTypeIdE":"DDT20130703000035",};
 var getToeknUrl='http://124.172.221.179:83/srm/router/rest?method=sys.sys.loginIndex&account=000dlb&password=123456&system=0';
 var getDetailPartUrl =baseUrl+"com.hsapi.part.invoice.partInterface.queryDetailStock.biz.ext";
@@ -60,6 +60,9 @@ $(document).ready(function() {
     });
     
 });
+function setRoleId() {
+	return {"token":token,"protoken":protoken};
+}
 //实际添加到采购车方法
 function addOrderCar(guest, part)
 {
@@ -162,7 +165,8 @@ function verifyGuestForCar(){
     		qualityId :jsonData.qualityId,
     		qualityName: jsonData.qualityName,
     		partName :jsonData.name,
-    		protoken: protoken
+    		protoken: protoken,
+    		token:token
         },
         success : function(data) {
             nui.unmask(document.body);
@@ -210,7 +214,8 @@ function verifyGuestForOrder(){
     		qualityId :jsonData.qualityId,
     		qualityName: jsonData.qualityName,
     		partName :jsonData.name,
-    		protoken: protoken
+    		protoken: protoken,
+    		token:token
         },
         success : function(data) {
             nui.unmask(document.body);
@@ -373,7 +378,8 @@ function onSearch (){
 		categoryF :categoryF ||"",
 		carId :carId || "",
 		brandId :brandId ||"",
-		key  :key
+		key  :key,
+		token:token
 	});
 }
 
@@ -440,7 +446,7 @@ function queryCarplate(){
 	nui.ajax({
         url : CarplateUrl,
         type : "post",
-        data : {protoken:protoken},
+        data : {protoken:protoken,token:token},
         success : function(data) {
             nui.unmask(document.body);
             var list = data.data || {};
@@ -461,7 +467,7 @@ function queryPartBrand(){
 	nui.ajax({
         url : partBrandUrl,
         type : "post",
-        data : {protoken:protoken},
+        data : {protoken:protoken,token:token},
         success : function(data) {
             nui.unmask(document.body);
             list = data.data || {};

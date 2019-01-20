@@ -36,8 +36,6 @@ $(document).ready(function ()
     searchKeyEl = nui.get("search_key");
     searchNameEl = nui.get("search_name");
     searchKeyEl = nui.get("search_key");
-
-
     searchKeyEl.setUrl(guestInfoUrl);
     insuranceComp.setUrl(insuranceInfoUrl);
     searchKeyEl.on("beforeload",function(e){

@@ -433,7 +433,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="pyname" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.part.data.com.ComPartBrand" name="brand"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComPartBrand" name="brand"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
     <process:input description="" isArray="false" name="userName" primitiveType="String"/>
   </process:inputs>

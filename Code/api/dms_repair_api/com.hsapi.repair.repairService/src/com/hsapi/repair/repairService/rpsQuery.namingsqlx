@@ -1698,6 +1698,27 @@
 			INNER JOIN rpb_car c ON (a.car_id = c.id)
 		    INNER JOIN rpb_contactor d ON (a.contactor_id = d.id)
 		where a.orgid = #orgid# and a.is_settle = 1
+		<isNotEmpty prepend="and" property="carNo">  
+				a. car_no like '%$carNo$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="name">  
+				d.name like '%$name$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="mobile">  
+				d.mobile like '%$mobile$%'
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="sRecordDate">  
+                (a.out_date &gt;= #sRecordDate#)
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="eRecordDate">  
+                (a.out_date &lt; #eRecordDate#)
+         </isNotEmpty>
+         <isNotEmpty prepend="and" property="typeId">  
+				b.type_id = #typeId#
+		</isNotEmpty>
+		<isNotEmpty prepend="and" property="dc">  
+				b.dc  = #dc#
+		</isNotEmpty>
 		GROUP BY b.type_id
        </select>
 </sqlMap>

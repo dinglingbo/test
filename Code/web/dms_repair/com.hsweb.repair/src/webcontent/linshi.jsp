@@ -96,8 +96,6 @@
             </div>
         </div>
 
-
-
         <div class="titleTextDiv">
             <span class="titleText">检查项信息</span>
         </div>
@@ -105,7 +103,6 @@
         <div id="grid2" class="nui-datagrid" style="width:100%;height:auto;margin-top:10px;" allowResize="false"
             showPager="false" showSummaryRow="false">
             <div property="columns">
-
                 <div field="val1" width="130" headerAlign="center" align="left">配件名称</div>
                 <div field="val2" width="100" headerAlign="center" align="left">配件编号</div>
                 <div field="val3" width="100" headerAlign="center" align="left">用量</div>

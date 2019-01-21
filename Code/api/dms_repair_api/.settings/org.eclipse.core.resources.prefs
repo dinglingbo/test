@@ -7,7 +7,6 @@ encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/crud/quer
 encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/crud/queryTimesCard.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/item/saveItem1.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/item/saveRpbItem.bizx.eosdebug=UTF-8
-encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/report/yingyemingxi.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/team/queryWorkTeam.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.baseData/eosdebug/com/hsapi/repair/baseData/team/saveTeam.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/UpdateMainStatusAndRpsPart.bizx.eosdebug=UTF-8
@@ -19,7 +18,6 @@ encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/saveCustomerInfo.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/saveRpsMaintain.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/crud/updRpsPackage.bizx.eosdebug=UTF-8
-encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/query/querySettleList.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/repairInterface/partToOutInterface.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/repairInterface/queryCheckMainbyServiceId.bizx.eosdebug=UTF-8
 encoding//com.hsapi.repair.repairService/eosdebug/com/hsapi/repair/repairService/repairInterface/settleRepairInfo.bizx.eosdebug=UTF-8

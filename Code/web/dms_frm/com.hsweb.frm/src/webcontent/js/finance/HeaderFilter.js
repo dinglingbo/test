@@ -89,49 +89,10 @@ HeaderFilter.prototype = {
         return result;
     },
 
-    _getFilterValues: function (column) {
-        var win = this.filterWindow;
-        var values = [];
-        win.find("input:checked").not(".checkall").each(function () {
-            values.push(this.value);
-        });
-
-        return values;
-    },
-
-    doFilter: function () {
-        var me = this,
-            columns = me.filterColumns;
-
-        if (me.hasFiltered()) {
-
-            grid.filter(function (record) {
-                var pass = true;
-                for (var i = 0, l = columns.length; i < l; i++) {
-                    var column = columns[i];
-                    if (column.filterData) {
-                        var text = column.displayField ? record[column.displayField] : record[column.field];
-                        if (text == null) text = "";
-                        text = String(text);
-                        if (!column._filterMap[text]) {
-                            pass = false;
-                            break;
-                        }
-                    }
-                }
-                return pass;
-            });
-        } else {
-            grid.clearFilter();
-        }
-
-        me._updateFilterStatus();
-        //alert("doFilter");
-    },
 
     _createFilterWindow: function (column) {
         var me = this;
-        var el = $('<div class="filterwindow mini-popup"><div class="filterwindow-content"></div><div class="filterwindow-footer"><button class="filterwindow-button filter mini-button" noparser>确定</button><button class="filterwindow-button clearfilter mini-button" noparser>取消</button></div></div>').appendTo('body');
+        var el = $('<div class="filterwindow mini-popup"><div class="filterwindow-content"></div><div class="filterwindow-footer"><button class="filterwindow-button filter mini-button" noparser onclick="ojbk()">确定</button><button class="filterwindow-button clearfilter mini-button" noparser>取消</button></div></div>').appendTo('body');
 
         var data = this._createFilterListData(column),
             sb = [];
@@ -147,41 +108,6 @@ HeaderFilter.prototype = {
             sb[sb.length] = '<div class="filterwindow-item"><label><input class="filterwindow-item-checkbox ' + (i == 0 ? "checkall" : "") + '" type="checkbox" ' + (checked ? 'checked' : '') + ' value="' + text + '"/>' + text + '</label></div>';
         }
         el.find('.filterwindow-content').html(sb.join(''));
-
-        el.find(".filter").on("click", function () {
-            var values = me._getFilterValues(column);
-            if (values.length) {
-                me.filter(column, values);
-            } else {
-                me.clearFilter(column);
-            }
-        });
-
-        el.find(".clearfilter").on("click", function () {
-            me.clearFilter(column);
-        });
-
-        el.find("input[type=checkbox]").on("click", function () {
-            //me.clearFilter(column);
-
-            var jq = $(this);
-            var checked = jq.is(":checked");
-
-            if (jq.hasClass("checkall")) {
-                el.find("input[type=checkbox]").prop("checked", checked);
-            } else {
-                updateCheckAll();
-            }
-        });
-
-        function updateCheckAll() {
-            var len1 = el.find("input[type=checkbox]").not(".checkall").length
-            var len2 = el.find("input[type=checkbox]:checked").not(".checkall").length
-            //alert(len1 + ":" + len2);
-            el.find(".checkall").prop("checked", len1 == len2);
-        }
-
-        updateCheckAll();
 
         return el;
     },
@@ -301,5 +227,9 @@ HeaderFilter.prototype = {
         me.hideFilterWindow();
     }
 };
+
+function ojbk(){
+	alert(1);
+}
 
 

@@ -301,8 +301,10 @@ public class LogicFlowFilter implements Filter {
 		try {
 			jedis = RedisPoolUtils.getJedis();
 			jedis.hset(tokenKey, "userInfo", userKey);
-			jedis.expire(tokenKey, 3600);
-			jedis.expire(userKey, 3600);
+			//jedis.expire(tokenKey, 3600);
+			//jedis.expire(userKey, 3600);
+			jedis.expire(tokenKey, 14400);
+			jedis.expire(userKey, 14400);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

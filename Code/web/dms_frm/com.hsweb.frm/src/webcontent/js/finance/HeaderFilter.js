@@ -69,7 +69,7 @@ HeaderFilter.prototype = {
             result = [];
 
         var blank = {};
-        blank[column.displayField || column.field] = 'All';     //暂不知道具体逻辑
+        blank[column.displayField || column.field] = '全部';     //暂不知道具体逻辑
         result.push(blank);
 
         for (var i = 0, l = data.length; i < l; i++) {

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购入库查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/pchsOrderEnterQuery.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderEnter/pchsOrderEnterQuery.js?v=1.0.5"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -103,7 +103,7 @@
                     <div field="guestFullName" width="250" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
-                    <div allowSort="true" field="settelTypeId" width="60" headerAlign="center" header="结算方式"></div>
+                    <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="createDate"width="140" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="storeId" width="90" headerAlign="center" header="仓库"></div>
                 </div>

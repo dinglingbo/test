@@ -9,7 +9,7 @@
 -->
 <head>
 <title>往来单位选择界面</title>
-<script src="<%=webPath + contextPath%>/commonPart/js/guestSelect.js?v=1.0.6"></script>
+<script src="<%=webPath + contextPath%>/commonPart/js/guestSelect.js?v=1.1.1"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -39,7 +39,12 @@
                 <span class="separator"></span>
                 <label style="font-family:Verdana;">显示禁用：</label>
                 <input class="nui-checkbox" width="100" id="showDisabled" trueValue="1" falseValue="0"/>
+                <label style="font-family:Verdana;" id="showGuestText">显示客户：</label>
+                <input class="nui-checkbox" width="100" id="showGuest" trueValue="1" falseValue="0"/>
+                                <label style="font-family:Verdana;" id="showgysText">显示供应商：</label>
+                <input class="nui-checkbox" width="100" id="showgys" trueValue="1" falseValue="0"/>
                 <span class="separator"></span>
+
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onOk()"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>

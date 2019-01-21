@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/sysCommon.jsp"%>
+<%@include file="/common/commonPart.jsp"%>
 <html>
 <!-- 
   - Author(s): Administrator
@@ -92,7 +92,7 @@
               <div field="fullName" width="150" headerAlign="center" header="往来单位名称"></div>
               <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
               <div field="orderTypeId" width="60" headerAlign="center" header="业务类型"></div>
-              <div field="orderAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
+              <div field="billAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
               <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
               <div field="remark" width="120" headerAlign="center" header="备注"></div>
               <div allowSort="true" summaryType="count" field="serviceId" width="150" summaryType="count" headerAlign="center" header="业务单号"></div>

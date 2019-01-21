@@ -154,10 +154,10 @@
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到供应商"
                                              url=""  searchField="key"
-                                             width="83%"
+                                             width="82%"
                                              placeholder="请选择供应商"
                                              selectOnFocus="true" />
-                                      <input id="btnEdit1" width="7.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
+                                      <input id="btnEdit1" width="8.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
                                        <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn"><span class="fa fa-plus fa-lg"></span></a>
                                   </td>
                                   <td class="title required">

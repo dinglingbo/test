@@ -354,7 +354,7 @@ function onDrawCell(e)
                 e.cellHtml = billTypeIdHash[e.value].name;
             }
             break;
-        case "settelTypeId":
+        case "settleTypeId":
             if(settTypeIdHash && settTypeIdHash[e.value])
             {
                 e.cellHtml = settTypeIdHash[e.value].name;

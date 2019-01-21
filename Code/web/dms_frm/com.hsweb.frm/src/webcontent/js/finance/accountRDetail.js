@@ -44,6 +44,15 @@ $(document).ready(function(v) {
         });
 
     });
+    
+    var filter = new HeaderFilter(mainGrid, {
+        columns: [
+            { name: 'shortName' }
+        ],
+        callback: function (column, filtered) {
+            
+        }
+    });
 
 	quickSearch(2);
 });
@@ -191,7 +200,7 @@ function selectSupplier(elId) {
                 var el = nui.get(elId);
                 el.setValue(value);
                 el.setText(text);
-
+                onSearch();
             }
         }
     });

@@ -151,7 +151,7 @@ function addSuplier() {
 						+ token,
 				title : "供应商资料",
 				width : 550,
-				height : 520,
+				height : 550,
 				allowDrag : true,
 				allowResize : false,
 				onload : function() {
@@ -260,3 +260,4 @@ function importGuest() {
 				}
 			});
 }
+

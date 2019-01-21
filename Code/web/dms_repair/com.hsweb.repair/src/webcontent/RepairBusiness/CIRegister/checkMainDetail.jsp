@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>查车单明细表</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkMainDetail.js?v=1.0.1"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkMainDetail.js?v=1.0.2"></script>
     <style type="text/css">
 
     table {
@@ -48,7 +48,18 @@ pageEncoding="UTF-8" session="false"%>
                 <td>
                     <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch"/>
-                    <input class="nui-textbox" id="checkMan" emptyText="查车技师名称" width="120" onenter="onSearch"/>
+                    <!-- <input class="nui-textbox" id="checkMan" emptyText="查车技师名称" width="120" onenter="onSearch"/> -->
+                    <input name="mtAdvisorId"
+                       id="mtAdvisorId"
+                       class="nui-combobox width1"
+                       textField="empName"
+                       valueField="empId"
+                       emptyText="查车技师"
+                       url=""
+                       allowInput="true"
+                       showNullItem="false"
+                       valueFromSelect="true"
+                       nullItemText="请选择..." onenter="onSearch" onvaluechanged="onSearch"/>
                     <label class="form_label">查车日期&nbsp;从：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
 	                <label class="form_label">至：</label>
@@ -86,7 +97,7 @@ pageEncoding="UTF-8" session="false"%>
 		                <div field="contactMobile" headeralign="center" allowsort="true" visible="true" >客户手机</div>
 		                <div field="carNo" headeralign="center" allowsort="true" visible="true" >车牌号</div>
 		                <div field="carModel" headeralign="center" allowsort="true" visible="true">品牌车型</div>
-		                <div field="carVin" headeralign="center" allowsort="true" visible="true">车架号(VIN)</div>
+		                <div field="carVin" headeralign="center" allowsort="true" visible="true" width="120">车架号(VIN)</div>
                       </div>
                     </div>
                     <div header="工单信息" headerAlign="center">
@@ -96,7 +107,7 @@ pageEncoding="UTF-8" session="false"%>
                           <div field="checkPoint" headerAlign="center" allowSort="false" visible="true"  align="center" header="本次检查得分"> </div>
                           <div field="lastPoint" headerAlign="center" allowSort="false" visible="true"  align="center" header="上次次检查得分"> </div>
                           <div field="lastCheckDate" name="lastCheckDate" width="100" headerAlign="center" header="上次检查时间" dateFormat="yyyy-MM-dd HH:mm"></div>
-                          <div field="checkDate" name="checkDate" width="50" headerAlign="center" header="本次检查时间" dateFormat="yyyy-MM-dd HH:mm"></div>
+                          <div field="checkDate" name="checkDate" width="100" headerAlign="center" header="本次检查时间" dateFormat="yyyy-MM-dd HH:mm"></div>
                           <div field="enterKilometers" headerAlign="center" allowSort="false" visible="true"   align="center" header="本次检查里程"> </div>
                           <div field="lastKilometers" headerAlign="center" allowSort="false" visible="true"   align="center" header="上次检查里程"> </div>
                       </div>

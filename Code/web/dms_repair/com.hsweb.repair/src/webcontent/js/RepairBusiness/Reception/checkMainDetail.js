@@ -58,6 +58,8 @@
     		checkTypeHash[v.customid] = v;
         });
     });
+    initMember("mtAdvisorId",function(){
+    });
     quickSearch(4);
 }); 
 
@@ -171,7 +173,7 @@ function getSearchParams()
     var params = {};
     params.sRecordDate = beginDateEl.getFormValue();
     params.eRecordDate = addDate(endDateEl.getFormValue(),1);
-    params.checkMan = nui.get("checkMan").getValue();
+    params.checkMan = nui.get("mtAdvisorId").getText();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){

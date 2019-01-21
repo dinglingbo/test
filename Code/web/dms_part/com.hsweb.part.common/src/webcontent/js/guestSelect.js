@@ -122,6 +122,8 @@ function setGuestData(data){
                 },null);
             }
             nui.get("type").show();
+            nui.get("showgys").hide();
+            document.getElementById("showgysText").style.display="none";
         }
         if(data.isClient){
             isClient = data.isClient;
@@ -131,6 +133,8 @@ function setGuestData(data){
                 },null);
             }
             nui.get("type").show();
+            nui.get("showGuest").hide();
+            document.getElementById("showGuestText").style.display="none";
         }
         if(data.guestType){
             guestType = data.guestType;
@@ -170,8 +174,21 @@ function getSearchParam()
 }
 function doSearch(params)
 {
-    params.isSupplier = isSupplier;
-    params.isClient = isClient;
+    var showGuest = nui.get("showGuest").getValue();
+    if(showGuest == 1)
+    {        
+        
+    }else{
+    	params.isSupplier = isSupplier;
+    }
+    var showgys = nui.get("showgys").getValue();
+    if(showgys == 1)
+    {
+    	
+    }else{
+    	params.isClient = isClient;
+    }
+
     params.supplierType = supplierType;
     params.guestType = nui.get("type").getValue();
     grid.load({

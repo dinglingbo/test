@@ -42,9 +42,32 @@ $(document).ready(function(v) {
         });
 
     });
+    
+    var filter = new HeaderFilter(mainGrid, {
+        columns: [
+            { name: 'shortName' }
+        ],
+        callback: function (column, filtered) {
+        }
+    });
+    
+
 
 	quickSearch(2);
 });
+
+var Genders = [{ id: 1, text: '男' }, { id: 2, text: '女'}];
+function onGenderRenderer(e) {
+    for (var i = 0, l = Genders.length; i < l; i++) {
+        var g = Genders[i];
+        if (g.id == e.value) return g.text;
+    }
+    return "";
+}
+
+function clearFilter() {
+    filter.clearAllFilter();
+}
 
 function quickSearch(type){
 	var params = getSearchParam();
@@ -173,9 +196,9 @@ var supplier = null;
 function selectSupplier(elId) {
     supplier = null;
     nui.open({
-        targetWindow : window,
+        //targetWindow : window,
         url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
-        title : "供应商资料",
+        title : "结算单位资料",
         width : 980,
         height : 560,
         allowDrag : true,
@@ -260,3 +283,5 @@ function getItemType(callback) {
         }
     });
 }
+
+

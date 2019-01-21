@@ -44,6 +44,15 @@ $(document).ready(function(v) {
         });
 
     });
+    
+    var filter = new HeaderFilter(mainGrid, {
+        columns: [
+            { name: 'shortName' }
+        ],
+        callback: function (column, filtered) {
+            
+        }
+    });
 
 	quickSearch(2);
 });

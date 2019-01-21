@@ -18,6 +18,14 @@
 		order by id, parentId
     </select>
     
+    <!--获取所有应用功能，用于租户资源分配-->
+    <select id="queryComAppFunction" parameterClass="HashMap" resultClass="HashMap">
+    	SELECT funccode as id, funcname text, funcgroupid as parentId, 0 as isCheck,   
+			   'function' as type, funcdesc as scope, 
+		       case when functype = 'app' then 'app' else 'pc' end as appPc
+		from dms_system.com_app_function
+    </select>
+    
     <!--1.获取租户自身可设置权限的应用功能-->
     <select id="queryTenantApplication" parameterClass="HashMap" resultClass="HashMap">
     	select res_id as id, res_name as text, res_parent_id as parentId, 0 as isCheck, 

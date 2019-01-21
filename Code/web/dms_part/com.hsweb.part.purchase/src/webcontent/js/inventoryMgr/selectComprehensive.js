@@ -399,7 +399,7 @@ function add(){
 //根据开单界面传递的车牌号查询未结算的工单
 function setInitData(params){
     var carNo = params.carNo||"";
-    var type = params.type||""
+    var type = params.type||"";
     if(type=='view' && carNo != ""){
         var p = {
             carNoEqual: carNo,

@@ -184,17 +184,17 @@ function toAskPartPrice(){
 }
 function toPchsOrder(){
 	var item={};
-	item.id = "1184";
-	item.text = "采购订单";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrder.flow";
+	item.id = "1681";
+	item.text = "采购入库";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.purchaseOrderEnter.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }
 function toSellOrder(){
 	var item={};
-	item.id = "1269";
-	item.text = "销售订单";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrder.flow";
+	item.id = "1682";
+	item.text = "销售出库";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.purchase.sellOrderOut.flow";
 	item.iconCls = "fa fa-file-text";
 	window.parent.activeTab(item);
 }

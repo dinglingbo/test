@@ -45,7 +45,7 @@
     String currentLanguage = request.getLocale().getLanguage().toLowerCase();
 %>
 
-<script src="<%=contextPath%>/common/nui/nui.js" type="text/javascript"></script> 
+<script src="<%=contextPath%>/common/nui/nui.js?v=1.0.0" type="text/javascript"></script> 
 
 <script src="<%=contextPath%>/common/nui/locale/zh_CN.js" type="text/javascript"></script>
 <script type="text/javascript">

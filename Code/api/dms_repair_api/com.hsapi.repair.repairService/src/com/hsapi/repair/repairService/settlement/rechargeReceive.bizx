@@ -282,7 +282,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="insertEntity" displayName="insertEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
-      <targetNode>assign5</targetNode>
+      <targetNode>assign1</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo2</sourceNode>
@@ -311,10 +311,10 @@
     <sourceConnections xsi:type="process:tLink" id="link11" name="link11" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
       <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
-    <targetConnections>link10</targetConnections>
-    <location x="411" y="146"/>
+    <location x="384" y="147"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -357,89 +357,23 @@
       <process:from type="query" pattern="reference">stored/id</process:from>
       <process:to type="query">guestJoin/cardNo</process:to>
     </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">stored/isSettle</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">2</process:from>
-      <process:to type="query">stored/status</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/orgid</process:from>
-      <process:to type="query">deduct/orgid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/id</process:from>
-      <process:to type="query">deduct/serviceId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/code</process:from>
-      <process:to type="query">deduct/serviceCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/saleManId</process:from>
-      <process:to type="query">deduct/workerId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/saleMan</process:from>
-      <process:to type="query">deduct/worker</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/salesDeductValue</process:from>
-      <process:to type="query">deduct/salesDeductValue</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/salesDeductValue</process:from>
-      <process:to type="query">deduct/totalDeductAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/recorder</process:from>
-      <process:to type="query">deduct/recorder</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">d</process:from>
-      <process:to type="query">deduct/recordDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/recorder</process:from>
-      <process:to type="query">deduct/modifier</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">d</process:from>
-      <process:to type="query">deduct/modifyDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">7</process:from>
-      <process:to type="query">deduct/billTypeId</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="409" y="182"/>
+    <location x="382" y="183"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="updateEntity" displayName="updateEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo3</sourceNode>
-      <targetNode>assign8</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" lineType="note" type="exception">
+    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" lineType="note" isDefault="false" type="exception">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>assign6</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link33" name="link33" displayName="连接线" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link41" name="link41" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
-      <targetNode>assign18</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">payType</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
+      <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
-    <location x="480" y="146"/>
+    <location x="435" y="148"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -453,7 +387,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="455" y="182"/>
+    <location x="410" y="184"/>
     <figSize height="17" width="73"/>
     <node>invokePojo3</node>
   </nodes>
@@ -1695,6 +1629,97 @@
     <location x="710" y="183"/>
     <figSize height="17" width="73"/>
     <node>invokePojo0</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign8</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link33" name="link33" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign18</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">payType</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link10</targetConnections>
+    <targetConnections>link41</targetConnections>
+    <location x="504" y="95"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">stored/isSettle</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">2</process:from>
+      <process:to type="query">stored/status</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">stored/orgid</process:from>
+      <process:to type="query">deduct/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">stored/id</process:from>
+      <process:to type="query">deduct/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">stored/code</process:from>
+      <process:to type="query">deduct/serviceCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">stored/saleManId</process:from>
+      <process:to type="query">deduct/workerId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">stored/saleMan</process:from>
+      <process:to type="query">deduct/worker</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">stored/salesDeductValue</process:from>
+      <process:to type="query">deduct/salesDeductValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">stored/salesDeductValue</process:from>
+      <process:to type="query">deduct/totalDeductAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">stored/recorder</process:from>
+      <process:to type="query">deduct/recorder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">deduct/recordDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">stored/recorder</process:from>
+      <process:to type="query">deduct/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">deduct/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">7</process:from>
+      <process:to type="query">deduct/billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">stored/isSettle</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">2</process:from>
+      <process:to type="query">stored/status</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="502" y="131"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
   </nodes>
   <topRuler/>
   <leftRuler>

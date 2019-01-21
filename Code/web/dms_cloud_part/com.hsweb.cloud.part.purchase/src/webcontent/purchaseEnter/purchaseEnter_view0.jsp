@@ -122,10 +122,10 @@
                    url="">
                   <div property="columns">
                     <div type="indexcolumn">序号</div>
+                      <div field="auditSign" visible="false" width="35" headerAlign="center" header="状态"></div>
                       <div field="guestFullName" width="80" headerAlign="center" header="供应商"></div>
                       <div field="createDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期"></div>
                       <div field="billStatusId" width="60" headerAlign="center" header="状态"></div>
-                      <div field="auditSign" visible="false" width="35" headerAlign="center" header="状态"></div>
                       <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
                       <div field="serviceId" headerAlign="center" width="150" header="订单号"></div>
                       <!-- <div field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div> -->

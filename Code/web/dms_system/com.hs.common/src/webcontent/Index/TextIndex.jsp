@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
   <title>首页</title> 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.85"></script>
+    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.88"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css" rel="stylesheet" type="text/css" />
@@ -57,9 +57,9 @@ pageEncoding="UTF-8" session="false" %>
                     </div>
 
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="toRepairOut()">
-                            <i class="fa fa-imdb fa-4x  fa-inverse"></i>
-                            <p>配件出库</p> 
+                        <a onclick="toRepairBillTable()">
+                            <i class="fa fa-car fa-4x  fa-inverse"></i>
+                            <p>维修档案</p> 
                         </a>
                     </div>
                 </div>
@@ -91,9 +91,9 @@ pageEncoding="UTF-8" session="false" %>
                     </div>
 
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="addCustomer()">
-                            <i class="fa fa-car fa-4x  fa-inverse"></i>
-                            <p>车辆新建</p> 
+                        <a onclick="toRepairOut()">
+                            <i class="fa fa-imdb fa-4x  fa-inverse"></i>
+                            <p>配件出库</p> 
                         </a>
                     </div>
                 </div>

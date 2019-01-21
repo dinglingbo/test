@@ -111,9 +111,9 @@
                      url="">
                     <div property="columns">
                     	<div type="indexcolumn">序号</div>
+                        <div field="auditSign" width="35" headerAlign="center" header="状态"></div>
                         <div field="serviceId" headerAlign="center" width="150" header="退货单号"></div>
                         <!-- <div field="enterDate" width="80" headerAlign="center" header="入库日期" dateFormat="yyyy-MM-dd H:ss:mm"></div> -->
-                        <div field="auditSign" width="35" headerAlign="center" header="状态"></div>
                         <div field="guestFullName" width="80" headerAlign="center" header="客户"></div>
                         <div field="printTimes" width="60" headerAlign="center" header="打印次数"></div>
                     </div>

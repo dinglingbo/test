@@ -4,6 +4,8 @@ var HeaderFilter = function (grid, options) {
     me.options = options || {};
     me.init();
 }
+var xyme = null;
+var xycolumn = null;
 HeaderFilter.prototype = {
 
     init: function () {
@@ -69,7 +71,7 @@ HeaderFilter.prototype = {
             result = [];
 
         var blank = {};
-        blank[column.displayField || column.field] = '全部';     //暂不知道具体逻辑
+        blank[column.displayField || column.field] = 'All';     //暂不知道具体逻辑
         result.push(blank);
 
         for (var i = 0, l = data.length; i < l; i++) {
@@ -88,6 +90,7 @@ HeaderFilter.prototype = {
 
         return result;
     },
+    
 
     _getFilterValues: function (column) {
         var win = this.filterWindow;
@@ -105,7 +108,7 @@ HeaderFilter.prototype = {
 
         if (me.hasFiltered()) {
 
-            grid.filter(function (record) {
+            me.grid.filter(function (record) {
                 var pass = true;
                 for (var i = 0, l = columns.length; i < l; i++) {
                     var column = columns[i];
@@ -122,16 +125,16 @@ HeaderFilter.prototype = {
                 return pass;
             });
         } else {
-            grid.clearFilter();
+           me.grid.clearFilter();
         }
 
         me._updateFilterStatus();
         //alert("doFilter");
     },
-
     _createFilterWindow: function (column) {
-        var me = this;
-        var el = $('<div class="filterwindow mini-popup"><div class="filterwindow-content"></div><div class="filterwindow-footer"><button class="filterwindow-button filter mini-button" noparser>确定</button><button class="filterwindow-button clearfilter mini-button" noparser>取消</button></div></div>').appendTo('body');
+         xyme = this;
+         xycolumn = column;
+        var el = $('<div class="filterwindow mini-popup"><div class="filterwindow-content"></div><div class="filterwindow-footer"><button class="filterwindow-button filter mini-button" noparser onclick="ok()">确定</button><button class="filterwindow-button clearfilter mini-button" noparser onclick="cancel()">取消</button></div></div>').appendTo('body');
 
         var data = this._createFilterListData(column),
             sb = [];
@@ -147,41 +150,6 @@ HeaderFilter.prototype = {
             sb[sb.length] = '<div class="filterwindow-item"><label><input class="filterwindow-item-checkbox ' + (i == 0 ? "checkall" : "") + '" type="checkbox" ' + (checked ? 'checked' : '') + ' value="' + text + '"/>' + text + '</label></div>';
         }
         el.find('.filterwindow-content').html(sb.join(''));
-
-        el.find(".filter").on("click", function () {
-            var values = me._getFilterValues(column);
-            if (values.length) {
-                me.filter(column, values);
-            } else {
-                me.clearFilter(column);
-            }
-        });
-
-        el.find(".clearfilter").on("click", function () {
-            me.clearFilter(column);
-        });
-
-        el.find("input[type=checkbox]").on("click", function () {
-            //me.clearFilter(column);
-
-            var jq = $(this);
-            var checked = jq.is(":checked");
-
-            if (jq.hasClass("checkall")) {
-                el.find("input[type=checkbox]").prop("checked", checked);
-            } else {
-                updateCheckAll();
-            }
-        });
-
-        function updateCheckAll() {
-            var len1 = el.find("input[type=checkbox]").not(".checkall").length
-            var len2 = el.find("input[type=checkbox]:checked").not(".checkall").length
-            //alert(len1 + ":" + len2);
-            el.find(".checkall").prop("checked", len1 == len2);
-        }
-
-        updateCheckAll();
 
         return el;
     },
@@ -303,3 +271,17 @@ HeaderFilter.prototype = {
 };
 
 
+
+function ok(){
+    var values = xyme._getFilterValues(xycolumn);
+    if (values.length) {
+        xyme.filter(xycolumn, values);
+    } else {
+        xyme.clearFilter(xycolumn);
+    }
+}
+
+
+function cancel(){
+	xyme.clearFilter(xycolumn);
+}

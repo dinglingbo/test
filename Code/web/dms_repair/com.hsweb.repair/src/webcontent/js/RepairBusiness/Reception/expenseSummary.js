@@ -5,6 +5,7 @@ var mainGridUrl = baseUrl+"com.hsapi.repair.repairService.query.queryExpenseSumm
 var beginDateEl = null;
 var endDateEl = null;
 var typeIdHash = {};
+var plist = [];
 $(document).ready(function ()
 {
 	mainGrid = nui.get("mainGrid"); 
@@ -14,10 +15,12 @@ $(document).ready(function ()
 	nui.get("search-type").setData(statusList);
 	var params = {isMain:0};
 	svrInComeExpenses(params,function(data) {
-		var list = data.list||{};
+	    var list = data.list||{};
 		list.forEach(function(v) {
+			plist.push(v);
 			typeIdHash[v.id] = v;
         });
+		nui.get("billTypeList").setData(plist);
     });
 	mainGrid.on("drawcell",function(e){
 		if(e.field=="typeId"){
@@ -28,7 +31,6 @@ $(document).ready(function ()
 		  e.cellHtml = (e.value == 1 ?"应收":"应付"); 
 		}
 	});
-	
 	quickSearch(4);
 });
 
@@ -114,7 +116,8 @@ function getSearchParams()
     var params = {};
     params.sRecordDate = beginDateEl.getFormValue();
     params.eRecordDate = addDate(endDateEl.getFormValue(),1);
-    params.checkMan = nui.get("checkMan").getValue();
+    params.dc = nui.get("typeList").getValue();
+    params.typeId = nui.get("billTypeList").getValue();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){

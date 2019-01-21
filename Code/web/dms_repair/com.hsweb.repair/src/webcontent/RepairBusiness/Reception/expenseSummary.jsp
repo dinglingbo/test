@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>费用汇总表</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/expenseSummary.js?v=1.0.2"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/expenseSummary.js?v=1.0.4"></script>
     <style type="text/css">
 
     table {
@@ -48,20 +48,12 @@ pageEncoding="UTF-8" session="false"%>
                 <td>
                     <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch"/>
-                    <input class="nui-textbox" id="dc" emptyText="费用分类" width="120" onenter="onSearch"/>
-                    <input class="nui-textbox" id="typeId" emptyText="费用名称" width="120" onenter="onSearch"/>
-                    <!-- <input name="typeId"
-                       id="typeId"
-                       class="nui-combobox width1"
-                       textField="name"
-                       valueField="id"
-                       emptyText="请选择..."
-                       url=""
-                       allowInput="true"
-                       showNullItem="false"
-                       width="100%"
-                       valueFromSelect="true"
-                       nullItemText="请选择..."/> -->
+                    <input  property="editor" enabled="true" id="typeList" name="list" data="[{dc:1,text:'应收'},{dc:-1,text:'应付'}]" dataField="" class="nui-combobox" 
+								valueField="dc"  textField="text" url="" emptyText="费用分类"  vtype="required"/> 
+                  
+                    <input  property="editor" enabled="true" id="billTypeList" name="list" data="plist" dataField="plist" class="nui-combobox" 
+								valueField="id"  textField="name" url="" emptyText="费用名称"  /> 
+                  
                     <label class="form_label">结算日期&nbsp;从：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
 	                <label class="form_label">至：</label>

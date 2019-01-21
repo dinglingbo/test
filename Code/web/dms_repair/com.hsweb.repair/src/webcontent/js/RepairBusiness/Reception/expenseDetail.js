@@ -153,6 +153,8 @@ function doSearch(params) {
 }
 var typeId = null;
 function setInitData(data){
+	beginDateEl.setValue(data.sRecordDate);
+	endDateEl.setValue(addDate(data.eRecordDate,-1));
 	var params=getSearchParams();
 	typeId = data.typeId;
 	params.typeId = typeId;

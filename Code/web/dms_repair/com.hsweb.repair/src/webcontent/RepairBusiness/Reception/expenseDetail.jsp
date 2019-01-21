@@ -120,7 +120,7 @@ pageEncoding="UTF-8" session="false"%>
                       <div property="columns" >	
                         <div field="dc" headerAlign="center" allowSort="false"  header="费用分类"></div>
                         <div field="typeId" headerAlign="center" allowSort="false"  header="费用名称"></div>
-                        <div field="amt" headerAlign="center" allowSort="false"  header="金额"></div>
+                        <div field="amt" headerAlign="center" allowSort="false"  header="金额"  summaryType="sum"></div>
                         <div field="recorder" headerAlign="center" allowSort="false"  header="备注" align="center"></div>
                       </div>
                    </div>

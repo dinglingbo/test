@@ -55,51 +55,47 @@ order by b.datekey desc
     
     </select>
        <!--  返工台次，返工台次占比-->
-        <select id="selectItemTotalreportB" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-    
+    <select id="selectItemTotalreportB" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     SELECT
-      <isEqual  prepend=""  property="groupByType"   compareValue="0">
-     b.datekey as groupName,
-         </isEqual>
+     <isEqual  prepend=""  property="groupByType"   compareValue="0">
+       b.datekey as groupName,
+     </isEqual>
          
-                  <isEqual  prepend="" property="groupByType"    compareValue="1">
-      a.service_type_id as groupName,
+     <isEqual  prepend="" property="groupByType"    compareValue="1">
+       a.service_type_id as groupName,
      </isEqual>
      
-                   <isEqual  prepend="" property="groupByType"   compareValue="2">
-     a.item_name as groupName, 
+     <isEqual  prepend="" property="groupByType"   compareValue="2">
+       a.item_name as groupName, 
      </isEqual>
       count(DISTINCT b.id) as retc
-from wb_repair.rps_item a
-inner join wb_repair.rps_maintain b
-on a.service_id = b.id
-where b.is_settle = 1 
-and ifnull(a.is_back,0) = 1
-and b.orgid =#orgid#
-		     <dynamic>
-			<isNotEmpty prepend="and" property="startDate"> 
-                b.out_date &gt;= #startDate#
-            </isNotEmpty>
+         from wb_repair.rps_item a
+         inner join wb_repair.rps_maintain b
+         on a.service_id = b.id
+         where b.is_settle = 1 
+         and ifnull(a.is_back,0) = 1
+         and b.orgid =#orgid#
+	<dynamic>
+		<isNotEmpty prepend="and" property="startDate"> 
+            b.out_date &gt;= #startDate#
+        </isNotEmpty>
             
-            <isNotEmpty prepend="and" property="endDate">
-               b.out_date &lt;= #endDate#
-            </isNotEmpty>   
+        <isNotEmpty prepend="and" property="endDate">
+            b.out_date &lt;= #endDate#
+        </isNotEmpty>   
     </dynamic>  
 
-
     <isEqual  prepend="" property="groupByType"   compareValue="0">
-GROUP BY b.datekey
-  </isEqual>
-      <isEqual  prepend=""  property="groupByType"   compareValue="1">
+        GROUP BY b.datekey
+   </isEqual>
+   <isEqual  prepend=""  property="groupByType"   compareValue="1">
      GROUP BY a.service_type_id
-     </isEqual>
-                <isEqual  prepend="" property="groupByType"   compareValue="2">
+   </isEqual>
+   <isEqual  prepend="" property="groupByType"   compareValue="2">
      GROUP BY a.item_name
-     </isEqual>
-order by retc
-    
-    
-    </select>
+   </isEqual>
+    order by retc
+   </select>
    
      <select id="selectItemTotalreportDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
      SELECT 
@@ -311,4 +307,57 @@ where b.orgid =#orgid#
     </dynamic>    
         </select>
         
+        
+        
+        
+    <!-- 预约汇总表-->
+    <select id="BookingManagementSummaryList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    SELECT
+     <isEqual  prepend=""  property="groupByType"   compareValue="0">
+       a.record_date as groupName,
+     </isEqual>
+         
+     <isEqual  prepend="" property="groupByType"    compareValue="1">
+       a.mt_advisor_id as groupName,
+     </isEqual>
+     
+     <isEqual  prepend="" property="groupByType"   compareValue="2">
+       a.car_model as groupName, 
+     </isEqual>
+        SUM(
+            CASE WHEN status = 1 or status = 2  or status = 0 THEN 1 ELSE 0 end
+          ) sumNum,
+          SUM(
+            CASE WHEN status = 0 THEN 1 ELSE 0 end
+          ) confirmNo,
+        SUM(
+            CASE WHEN status = 1 THEN 1 ELSE 0 end
+          ) cancelSum,
+         SUM(
+            CASE WHEN status = 2 THEN 1 ELSE 0 end
+          ) confirmSum,
+          SUM(
+            CASE WHEN is_open_bill = 1 THEN 1 ELSE 0 end
+          ) isOpenBillSum
+        from wb_repair.rps_prebook a
+        where a.orgid =#orgid#
+	<dynamic>
+		<isNotEmpty prepend="and" property="startDate"> 
+            a.record_date &gt;= #startDate#
+        </isNotEmpty>
+            
+        <isNotEmpty prepend="and" property="endDate">
+            a.record_date &lt;= #endDate#
+        </isNotEmpty>   
+    </dynamic>  
+    <isEqual  prepend="" property="groupByType"   compareValue="0">
+        GROUP BY a.record_date
+   </isEqual>
+   <isEqual  prepend=""  property="groupByType"   compareValue="1">
+     GROUP BY a.mt_advisor_id
+   </isEqual>
+   <isEqual  prepend="" property="groupByType"   compareValue="2">
+     GROUP BY a.car_model
+   </isEqual>
+   </select>      
 </sqlMap>

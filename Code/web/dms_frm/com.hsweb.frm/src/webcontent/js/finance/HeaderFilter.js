@@ -43,11 +43,11 @@ HeaderFilter.prototype = {
             me._updateFilterStatus();
         });
 
-        $(document).on("mousedown", function (event) {
+/*        $(document).on("mousedown", function (event) {
             if (!$(event.target).closest(".filterwindow")[0]) {
                 $(".filterwindow").hide();
             }
-        });
+        });*/
 
         ///////////////////////////////////////////////////////////////
 
@@ -71,7 +71,7 @@ HeaderFilter.prototype = {
             result = [];
 
         var blank = {};
-        blank[column.displayField || column.field] = 'All';     //暂不知道具体逻辑
+        blank[column.displayField || column.field] = '全部';     //暂不知道具体逻辑
         result.push(blank);
 
         for (var i = 0, l = data.length; i < l; i++) {

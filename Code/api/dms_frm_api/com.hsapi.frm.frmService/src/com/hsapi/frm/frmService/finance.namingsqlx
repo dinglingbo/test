@@ -64,7 +64,7 @@
     	SELECT a.bill_main_id as billMainId, a.bill_service_id as billServiceId, a.bill_type_id as billTypeId,
 			       a.bill_type_code as billTypeCode, b.char_off_amt as charOffAmt,
 			       d.full_name as fullName, d.short_name as shortName, b.auditor as auditor, b.audit_date as auditDate,
-			       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc
+			       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc, f.car_no as carNo
 			from fis_rp_account_detail a
 			inner join fis_rp_account b
 			on a.main_id = b.id
@@ -72,6 +72,7 @@
 			on b.guest_id = d.id
 			inner join fib_income_expenses e
 			on a.bill_type_id = e.id
+			left join fis_rp_bill f on a.bill_rp_id = f.id
 			where b.audit_sign = 1 
 				<isNotEmpty prepend="and" property="orgid"> 
                     (b.orgid = #orgid#)
@@ -98,6 +99,7 @@
                 <isNotEmpty prepend="order by" property="sortField">  
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
+	            order by b.audit_date desc
     </select>
     
     <!--往来单位余额表 -->

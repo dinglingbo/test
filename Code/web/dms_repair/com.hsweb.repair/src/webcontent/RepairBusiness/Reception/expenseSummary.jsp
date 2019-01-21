@@ -102,13 +102,15 @@ pageEncoding="UTF-8" session="false"%>
                  editNextOnEnterKey="true"
                  allowCellWrap = true
                  style="height:100%;width:100%;"
+                 showSummaryRow="true"
+                 
                 >
                 <div property="columns">
-                    <div type="indexcolumn" headeralign="center" allowsort="true" visible="true" width="30">序号</div>
+                    <div type="indexcolumn" headeralign="center" allowsort="true" visible="true" width="30" >序号</div>
                     <!-- <div type="expandcolumn" width="20" visible="true"><span class="fa fa-plus fa-lg"></span></div> -->
                     <div field="dc" headerAlign="center" allowSort="false"  header="费用分类"></div>
                     <div field="typeId" headerAlign="center" allowSort="false"  header="费用名称"></div>
-                    <div field="amt" headerAlign="center" allowSort="false"  header="金额"></div>
+                    <div field="amt" headerAlign="center" allowSort="false"  header="金额" summaryType="sum"></div>
                     <div field="expenseOptBtn" headerAlign="center" allowSort="false"  header="操作" align="center"></div>
                 </div>
             </div>

@@ -159,6 +159,8 @@ function openDetail(row_uid){
 	if(typeId ){
 		var data = {};
 		data.typeId = typeId;
+		data.sRecordDate = beginDateEl.getFormValue();
+		data.eRecordDate = addDate(endDateEl.getFormValue(),1);
 		var item={};
 		item.id = "openDetail";
 	    item.text = "费用明细表";

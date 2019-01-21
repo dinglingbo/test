@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>付款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPDetail.js?v=1.1.2"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPDetail.js?v=1.1.4"></script>
         <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">

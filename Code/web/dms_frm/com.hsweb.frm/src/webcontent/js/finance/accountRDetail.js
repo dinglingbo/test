@@ -200,7 +200,7 @@ function selectSupplier(elId) {
                 var el = nui.get(elId);
                 el.setValue(value);
                 el.setText(text);
-
+                onSearch();
             }
         }
     });

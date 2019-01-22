@@ -98,6 +98,8 @@ $(document).ready(function ()
             if (servieTypeHash && servieTypeHash[e.value]) {
                 e.cellHtml = servieTypeHash[e.value].name;
             }
+        }else if (e.field == "serviceTypeName") {
+                e.cellHtml = retSerTypeStyle(e.cellHtml);
         }else if(e.field == "balaAuditSign"){
             if(e.value == 1){
                 e.cellHtml = "预结算";

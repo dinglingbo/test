@@ -110,7 +110,7 @@
 			provinceList = window.top._provinceList;
 			cityList = window.top._cityList;
 			provinceList.forEach(function(v) {
-				provinceHash[v.id] = v;
+				provinceHash[v.code] = v;
 			});
 			cityList.forEach(function(v) {
 				cityHash[v.code] = v;

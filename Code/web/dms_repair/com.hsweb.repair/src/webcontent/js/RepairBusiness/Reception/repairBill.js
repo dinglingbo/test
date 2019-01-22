@@ -190,7 +190,12 @@ $(document).ready(function ()
             return;
         }
         if (item) { 
-        	setGuest(item);
+        	if(item.guestMobile == "10000"){
+        		addOrEdit(item);
+        	}else{
+        		setGuest(item);
+        	}
+        	
         }
     });
     
@@ -200,11 +205,14 @@ $(document).ready(function ()
             return;
         }
         if (item) { 
-        	setGuest(item);
+        	if(item.guestMobile == "10000"){
+        		addOrEdit(item);
+        	}else{
+        		setGuest(item);
+        	}
+        	
         }
     });
-    
-    
     
     searchKeyEl.focus();
     initMember("mtAdvisorId",function(){
@@ -4611,3 +4619,63 @@ function showPrdt() {
     window.parent.activeTabAndInit(item,params);
     
 }
+
+
+function addOrEdit(item)
+{
+    title = "完善散客信息";
+    var guest = {};
+    guest.guestId = item.guestId;
+    guest.carNo = item.carNo;
+    if(!item.guestId){
+    	showMsg("数据获取失败,请重新操作!","W");
+    	return;
+    }
+    nui.open({
+        url:"com.hsweb.repair.DataBase.AddEditCustomer.flow",
+        title:title,
+        width:560,
+        height:630,
+        onload:function(){
+            var iframe = this.getIFrameEl();
+            var params = {};
+            params.guest = guest;
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy:function(action)
+        {
+            if(action  == "ok")
+            {   //var iframe = this.getIFrameEl();
+                //var data = iframe.contentWindow.getSaveData();
+            	//setGuest(item);
+            	var params = {};
+            	params.carNo = item.carNo;
+            	var json = nui.encode({
+            		params:params
+            	});
+            	 //查找上次里程
+                nui.ajax({
+            		url :guestInfoUrl,
+            		type : 'POST',
+            		data : json,
+            		cache : false,
+            		contentType : 'text/json',
+            		success : function(text) {
+            			var returnJson = nui.decode(text);
+            			if (returnJson.errCode == "S") {
+            				var data = returnJson.list;
+            				if(data && data.length>0){
+            					setGuest(data[0]);
+            				}
+            			}else {
+            				showMsg("数据加载失败,请重新操作!","E");
+            				return;
+            		    }
+            		}
+            	 });
+            }
+        }
+    });
+}
+
+

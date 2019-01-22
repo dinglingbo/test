@@ -412,8 +412,8 @@ function addLocalBrand()
 {
     nui.open({
         // targetWindow: window,
-        url: webPath + contextPath + "/com.hsweb.cloud.part.basic.partBrandDetail.flow?token=" + token,
-        title: "新增关注品牌", width: 350, height: 220,
+        url: webPath + contextPath + "/com.hsweb.cloud.part.basic.partBrandOrgDetail.flow?token=" + token,
+        title: "新增关注品牌", width: 600, height: 350,
         allowDrag:true,
         allowResize:true,
         onload: function ()

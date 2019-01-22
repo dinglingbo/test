@@ -227,11 +227,14 @@ $(document).ready(function(v)
 
     $("#remark").bind("keydown", function (e) {
         if (e.keyCode == 13) {
+        	nui.get('remark').blur();
             var chooseBtn = nui.get("chooseBtn");
             chooseBtn.focus();
+            onAdvancedAddOk();
+        
         }
     });
-
+    
     document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;//38向上 40向下

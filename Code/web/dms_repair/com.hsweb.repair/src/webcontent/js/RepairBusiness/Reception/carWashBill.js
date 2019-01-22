@@ -640,7 +640,6 @@ function doSetMainInfo(car){
     	 });
     }
 }
-
 function setInitData(params){
     fserviceId = params.id;
     var data = {
@@ -932,6 +931,7 @@ function setFrom(data){
         getGuestContactorCar(params, function(text){
             var errCode = text.errCode||"";
             var guest = text.guest||{};
+            var car = text.car || {};
             var contactor = text.contactor||{};
             var car = text.car || {};
             if(errCode == 'S'){
@@ -3701,53 +3701,61 @@ function toChangBillTypeId(billTypeId){
 		showMsg("工单已完工，不能转单!","W");
 		return;
 	}
+	if(data.guestMobile=="10000" && serviceId){
+		showMsg("请完善散客信息","W");
+		addOrEdit(serviceId,billTypeId);
+		return;
+	}
 	if(serviceId){
-		nui.ajax({
-	        url: baseUrl + "com.hsapi.repair.repairService.crud.transformBill.biz.ext",
-	        type:"post",
-	        //async: false,
-	        data:{ 
-	        	serviceId:serviceId,
-	        	billTypeId:billTypeId
-	        },
-	        cache: false,
-	        success: function (data) {  
-	            if(data.errCode=="S"){
-	            	//showMsg("转为洗美开单成功","S");
-	            	add();
-	            	var item={};
-	            	var main = data.main;
-	                if(billTypeId==0){
-	                	item.id = "2000";
-	                    item.text = "综合开单详情";
-	                    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow";
-	                    item.iconCls = "fa fa-file-text";
-                	    //window.parent.activeTab(item);
-	                }
-	                if(billTypeId==4){
-	                	//showMsg("转为理赔开单成功","S");
-	                	item.id = "4000";
-	                    item.text = "理赔开单详情";
-	                    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.claimDetail.flow";
-	                    item.iconCls = "fa fa-file-text";
-	                }
-	                var params = {
-                	        id: main.id
-                	    };
-                	window.parent.activeTabAndInit(item,params);
-	            }else{
-	            	if(billTypeId==0){
-	                	showMsg(data.errMsg || "转为综合开单失败","E");
-	                }
-	                if(billTypeId==4){
-	                	showMsg(data.errMsg || "转为理赔开单失败","E");
-	                }
-	            }
-	        }
-	    });
+		toChangBill(serviceId,billTypeId);
 	}	 
 }
 
+function toChangBill(serviceId,billTypeId){
+	nui.ajax({
+        url: baseUrl + "com.hsapi.repair.repairService.crud.transformBill.biz.ext",
+        type:"post",
+        //async: false,
+        data:{ 
+        	serviceId:serviceId,
+        	billTypeId:billTypeId
+        },
+        cache: false,
+        success: function (data) {  
+            if(data.errCode=="S"){
+            	//showMsg("转为洗美开单成功","S");
+            	add();
+            	var item={};
+            	var main = data.main;
+                if(billTypeId==0){
+                	item.id = "2000";
+                    item.text = "综合开单详情";
+                    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.repairBill.flow";
+                    item.iconCls = "fa fa-file-text";
+            	    //window.parent.activeTab(item);
+                }
+                if(billTypeId==4){
+                	//showMsg("转为理赔开单成功","S");
+                	item.id = "4000";
+                    item.text = "理赔开单详情";
+                    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.claimDetail.flow";
+                    item.iconCls = "fa fa-file-text";
+                }
+                var params = {
+            	        id: main.id
+            	    };
+            	window.parent.activeTabAndInit(item,params);
+            }else{
+            	if(billTypeId==0){
+                	showMsg(data.errMsg || "转为综合开单失败","E");
+                }
+                if(billTypeId==4){
+                	showMsg(data.errMsg || "转为理赔开单失败","E");
+                }
+            }
+        }
+    });
+}
 var itemF = "S";
 var partF = "S";
 function saveItem(callback){
@@ -4067,7 +4075,19 @@ function addFit(){
  		success : function(text) {
  			var returnJson = nui.decode(text);
  			if (returnJson.errCode == "S") {
- 				showMsg("新增成功","S");
+ 				nui.get("search_key").setValue("");
+ 				nui.get("search_key").setText("");
+ 				var sk = document.getElementById("search_key");
+ 	            sk.style.display = "none";
+ 	            searchNameEl.setVisible(true);
+ 	            var tel = "/"+"10000";
+ 	            var guestName = "/"+"散客";
+ 	            var t = carNo + tel + guestName;
+ 	            searchNameEl.setValue(t);
+ 	            var item = text.retData;
+ 	            item.guestMobile = "10000";
+ 	            doSetMainInfo(item);
+ 	            showMsg("新增成功","S");
  				nui.unmask(document.body);
  				return;
  			} else {
@@ -4088,6 +4108,37 @@ function isVehicleNumber(vehicleNumber) {
     return result;
 }
 
+function addOrEdit(serviceId,billTypeId)
+{
+	var data = billForm.getData();
+    title = "完善散客信息";
+    var guest = {};
+    guest.guestId = data.guestId;
+    guest.carNo = nui.get("carNo").getValue();
+    if(!data.guestId){
+    	showMsg("数据获取失败,请重新操作!","W");
+    	return;
+    }
+    nui.open({
+        url:"com.hsweb.repair.DataBase.AddEditCustomer.flow",
+        title:title,
+        width:560,
+        height:630,
+        onload:function(){
+            var iframe = this.getIFrameEl();
+            var params = {};
+            params.guest = guest;
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy:function(action)
+        {
+            if(action  == "ok")
+            {
+            	toChangBill(serviceId,billTypeId);
+            }
+        }
+    });
+}
 
 
 

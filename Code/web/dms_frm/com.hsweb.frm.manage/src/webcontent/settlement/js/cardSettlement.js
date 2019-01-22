@@ -209,7 +209,9 @@ function settleOK() {
 				totalAmt 	: row.totalAmt,
 				balaAmt		: row.totalAmt,
 				periodValidity : row.periodValidity,
-				sellAmt :row.rechargeAmt
+				sellAmt :row.rechargeAmt,
+				carId:guestData.carId,
+				carNo:guestData.carNo
 		};
 
 		json={
@@ -404,7 +406,9 @@ function noPayOk(){
 				rechargeAmt	: row.rechargeAmt,
 				totalAmt 	: row.totalAmt,
 				periodValidity : row.periodValidity,
-				balaAmt : row.totalAmt
+				balaAmt : row.totalAmt,
+				carId:guestData.carId,
+				carNo:guestData.carNo
 		};
 	    json = nui.encode({
 		    "stored":stored,

@@ -35,6 +35,7 @@
                 
                 <a class="nui-button" iconCls="" visible="false" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
+                
                 <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
             </td>
@@ -50,6 +51,7 @@
                 <a class="nui-button" plain="true" onclick="unAudit()" id="unAuditBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>
                 <a class="nui-button" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
                 <a class="nui-button" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+                <span id="status"></span>
            
             </td>
         </tr>
@@ -124,7 +126,7 @@
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到客户"
                                              url=""  searchField="key"
-                                             width="83%"
+                                             width="81%"
                                              placeholder="请选择客户"
                                              selectOnFocus="true" />
                                       	<input id="btnEdit1" width="7.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>

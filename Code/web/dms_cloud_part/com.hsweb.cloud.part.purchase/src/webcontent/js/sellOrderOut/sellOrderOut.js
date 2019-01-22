@@ -320,6 +320,12 @@ function loadMainAndDetailInfo(row)
 {
     if(row) {    
        basicInfoForm.setData(row);
+       var auditSign=row.auditSign;
+       if(auditSign==0){
+    	   $('#status').text("草稿");	   
+       }else if(auditSign==1){
+    	   $('#status').text("已出库");
+       }
        //bottomInfoForm.setData(row);
        nui.get("guestId").setText(row.guestFullName);
 
@@ -1933,7 +1939,9 @@ function onPrint(){
 		currOrgName : currOrgName,
 		currUserName : currUserName,
 		currCompAddress : currCompAddress,
-		currCompTel : currCompTel
+		currCompTel : currCompTel,
+		storeHash : storeHash,
+		brandHash: brandHash
 	};
 	var detailParams={
 			mainId :from.id,

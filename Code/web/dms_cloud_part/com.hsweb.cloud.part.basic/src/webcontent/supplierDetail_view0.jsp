@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/supplierDetail.js?v=1.1.7"></script>
+<script src="<%=webPath + contextPath%>/basic/js/supplierDetail.js?v=1.1.8"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -95,11 +95,11 @@
     <span>是否禁用</span>
     <div id="isDisabled" name="isDisabled" class="nui-checkbox" text="" trueValue="1" falseValue="0"></div>
 </div>
-<div class="nui-fit">
-<div id="tabs1" class="nui-tabs" activeIndex="0"  style="width:97%;height:100%;margin-left: 1.5%;"
+<!-- <div class="nui-fit"> -->
+<div id="tabs1" class="nui-tabs" activeIndex="0"  style="width:97%;height:87%;margin-left: 1.5%;"
          arrowPosition="side" showNavMenu="true">
         <div name="tab1" title="基本信息">
-            <div class="nui-fit" id= "mainForm">
+            <div class="form" id= "mainForm">
               <div class="vpanel mainwidth" style="height:auto;">
                   <!-- <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>基本信息</span></div> -->
                   <div class="vpanel_body vpanel_bodyww">
@@ -174,10 +174,14 @@
                                   nullitemtext="选择省份..." emptytext="选择省份" shownullitem="true"></td>
                               <td class=" right fwidthb required">城市:</td>
                               <td>
-                                  <input id="cityId" name="cityId" class="nui-combobox" textField="name" valueField="code"     dataField="" 
+                                  <input id="cityId" name="cityId" class="nui-combobox" textField="name" valueField="code"     dataField="" onvaluechanged="onCitySelected('cityId')"
                                   url="" valueFromSelect="true" allowinput="true" width="100%"
                                   nullitemtext="选择市..." emptytext="选择市" shownullitem="true">
                               </td>
+                          </tr>
+                          <tr class="htr">
+                          	  <td class=" right fwidtha">地址:</td>
+                              <td colspan="3"><input id="addr" name="addr" width="100%" class="nui-textbox" ></td>
                           </tr>
                           <tr class="htr">
                               <td class=" right fwidthb">业务员:</td>
@@ -185,10 +189,7 @@
                               <td class=" right fwidtha">业务员手机:</td>
                               <td ><input id="contactorTel" name="contactorTel" width="100%" class="nui-textbox" vtype="int" ></td>
                           </tr>
-                          <tr class="htr">
-                              <td class=" right fwidthb">电话:</td>
-                              <td colspan="3"><input id="tel" name="tel" width="100%" class="nui-textbox" ></td>
-                          </tr>
+                         
                           <tr class="htr">
                               
                               <td class=" right fwidtha">职务:</td>
@@ -242,9 +243,9 @@
                                  allowInput="true"
                                  showNullItem="true"
                                  nullItemText="请选择..."/>
-                              </td>
-                              <td class=" right fwidtha">地址:</td>
-                              <td ><input id="addr" name="addr" width="100%" class="nui-textbox" ></td>
+                              </td>                         
+                              <td class=" right fwidthb">电话:</td>
+                              <td colspan=""><input id="tel" name="tel" width="100%" class="nui-textbox" ></td>
                           </tr>
                           <tr class="htr">
                               <td class=" right fwidthb">邮箱:</td>
@@ -266,7 +267,7 @@
             </div>
         </div>
         <div name="tab2" title="其他信息">
-            <div class="nui-fit" id= "otherForm">
+            <div class="form" id= "otherForm">
               <div class="vpanel mainwidth" style="height:auto;">
                   <!-- <div class="vpanel_heading" style="background-color:#f3f4f6;color:#2d95ff;"><span>基本信息</span></div> -->
                   <div class="vpanel_body vpanel_bodyww">
@@ -324,7 +325,7 @@
             </div>
         </div>
 </div>
-</div>
+<!-- </div> -->
 
 </body>
 </html>

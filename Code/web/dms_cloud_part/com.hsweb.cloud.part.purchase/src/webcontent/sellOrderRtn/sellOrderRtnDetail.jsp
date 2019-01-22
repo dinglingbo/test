@@ -44,6 +44,7 @@
                 <!-- <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="auditToEnter()" id="auditToEnterBtn"><span class="fa fa-check fa-lg"></span>&nbsp;入库</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
+                <span id="status"></span>
                 <!-- <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="unAudit()" id="uAuditBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a> -->
             </td>
@@ -126,7 +127,7 @@
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到客户"
                                              url=""  searchField="key"
-                                             width="91.5%"
+                                             width="90%"
                                              placeholder="请选择客户"
                                              selectOnFocus="true" />
                                       	<input id="btnEdit1" width="7.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>

@@ -162,7 +162,7 @@
 	                                             onvaluechanged="onGuestValueChanged"
 	                                             popupEmptyText="未找到客户"
 	                                             url=""  searchField="key"
-	                                             width="87%"
+	                                             width="84%"
 	                                             placeholder="请选择客户"
 	                                             selectOnFocus="true" />
 	                                      <input id="btnEdit1" width="11%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>

@@ -1,10 +1,12 @@
  var baseUrl = apiPath + repairApi + "/";
-var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"客户名称"},{id:"2",name:"手机号"}];
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"客户名称"}];
 var mainGrid = null;
 var mainGridUrl = baseUrl+"com.hsapi.repair.repairService.query.queryExpenseSummaryList.biz.ext";
 var beginDateEl = null;
 var endDateEl = null;
 var typeIdHash = {};
+var plist = [];
+var mtAdvisorIdEl = null;
 $(document).ready(function ()
 {
 	mainGrid = nui.get("mainGrid"); 
@@ -12,14 +14,22 @@ $(document).ready(function ()
 	beginDateEl = nui.get("sRecordDate");
     endDateEl = nui.get("eRecordDate");
 	nui.get("search-type").setData(statusList);
+	mtAdvisorIdEl = nui.get("mtAdvisorId");
 	var params = {isMain:0};
 	svrInComeExpenses(params,function(data) {
-		var list = data.list||{};
+	    var list = data.list||{};
 		list.forEach(function(v) {
+			plist.push(v);
 			typeIdHash[v.id] = v;
         });
+		nui.get("billTypeList").setData(plist);
     });
+	initMember("mtAdvisorId",function(){
+    });
+	
 	mainGrid.on("drawcell",function(e){
+        var record = e.record;
+        var uid = record._uid;
 		if(e.field=="typeId"){
 			var num = parseInt(e.value);
 			 e.cellHtml = typeIdHash[num].name;
@@ -27,8 +37,11 @@ $(document).ready(function ()
 		if(e.field=="dc"){
 		  e.cellHtml = (e.value == 1 ?"应收":"应付"); 
 		}
+		if(e.field == "expenseOptBtn"){
+			var s =  '<a class="optbtn" href="javascript:openDetail(\'' + uid + '\')">查看明细</a>'; 
+			e.cellHtml = s;
+		}
 	});
-	
 	quickSearch(4);
 });
 
@@ -114,15 +127,15 @@ function getSearchParams()
     var params = {};
     params.sRecordDate = beginDateEl.getFormValue();
     params.eRecordDate = addDate(endDateEl.getFormValue(),1);
-    params.checkMan = nui.get("checkMan").getValue();
+    params.dc = nui.get("typeList").getValue();
+    params.typeId = nui.get("billTypeList").getValue();
+    params.mtAdvisorId = nui.get("mtAdvisorId").getValue();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){
         params.carNo = typeValue;
     }else if(type==1){
         params.name = typeValue;
-    }else if(type==2){
-        params.mobile = typeValue;
     }
     return params;
 }
@@ -137,4 +150,40 @@ function doSearch(params) {
         token:token, 
         params: params
     });
+}
+
+
+function openDetail(row_uid){
+	var row = mainGrid.getRowByUID(row_uid);
+	var typeId = row.typeId || 0;
+	if(typeId ){
+		var data = {};
+		data.typeId = typeId;
+		data.sRecordDate = beginDateEl.getFormValue();
+		data.eRecordDate = addDate(endDateEl.getFormValue(),1);
+		var item={};
+		item.id = "openDetail";
+	    item.text = "费用明细表";
+		item.url =webPath + contextPath + "/repair/RepairBusiness/Reception/expenseDetail.jsp?token="+token;
+		item.iconCls = "fa fa-file-text";
+		window.parent.parent.activeTabAndInit(item,data);
+	}
+	/*nui.open({
+		url :  webPath + contextPath + "/repair/RepairBusiness/Reception/expenseDetail.jsp?token="+token,
+		title : "费用明细",
+		width : 600,
+		height : 630,
+		allowResize: false,
+		onload : function() {
+			var iframe = this.getIFrameEl(); 
+			var data = {
+					typeId : row.typeId
+			};
+			iframe.contentWindow.setData(data);
+		},
+		ondestroy : function(action) {
+			
+		}
+		
+		})*/
 }

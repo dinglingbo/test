@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" session="false" %>
-<%@include file="/common/sysCommon.jsp"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!--
@@ -11,7 +11,10 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>收款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountRDetail.js?v=1.1.0"></script>
+    <%@include file="/common/sysCommon.jsp"%>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountRDetail.js?v=1.1.1"></script>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -50,7 +53,7 @@ pageEncoding="UTF-8" session="false" %>
         <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
         
         <input id="accountId" width="100px" textField="name" valueField="id" emptyText="结算账户" onvalueChanged="onSearch()" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
-        <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择客户..." onvalueChanged="onSearch()" onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
+        <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择客户..." onvalueChanged="onSearch()" onbuttonclick="selectSupplier('advanceGuestId')" allowInput="false" width="150px" selectOnFocus="true" />
 
         <input id="isMain" width="100px" data="pList" textField="text" valueField="id"  emptyText="是否主营业务" onvalueChanged="onSearch()" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
 
@@ -68,7 +71,8 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="billServiceId" name="name" width="150"  headeralign="center" >业务单号</div>
                 <div field="billTypeId" name="name" width="100"  headeralign="center" >收支类型</div>
                 <div field="isPrimaryBusiness" name="name" width="100"  headeralign="center" >是否主营业务</div>
-                <div field="shortName" name="name" width="100"  headeralign="center" >客户简称</div>
+                <div field="shortName" name="shortName" width="100"  headeralign="center" >客户简称</div>
+                <div field="carNo" name="carNo" width="70"  headeralign="center" >车牌号</div>
                 <div field="charOffAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" >收款金额</div>
                 <div field="feeService" name="feeService" width="50" summaryType="sum" headeralign="center" >手续费</div>
                 <div field="trueInoutAmt" name="trueInoutAmt" width="50" summaryType="sum" headeralign="center" >实收金额 </div>

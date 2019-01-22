@@ -25,6 +25,7 @@
 	%>
 	var currUserName = <%="'"+currUserName+"'"%>;
 	var currOrgid = <%="'"+currOrgid+"'"%>;
+	var currentTimeMillis =<%=System.currentTimeMillis()%>
 	var cloudPartApiUrl = apiPath + cloudPartApi + "/";
 	var cloudPartWebUrl = apiPath + contextPath + "/";
 </script>
@@ -48,17 +49,32 @@
 	var cityList = [];
 	var provinceEl = null;
 	var cityEl = null;
+	var addrEl=null;
 	function onProvinceSelected(cityId) {
 		if (provinceEl) {
 			cityEl = nui.get(cityId);
+			addrEl=nui.get('addr');
 			var id = provinceEl.getValue();
+			var code = provinceHash[id].code;
 			var currCityList = cityList.filter(function(v) {
-				return v.provinceId == id;
+				return v.parentid == code;
 			});
 			cityEl.setData(currCityList);
+			addrEl.setValue(provinceEl.getText());
 		}
 	}
-
+	
+	function onCitySelected(cityId){
+		if(provinceEl && cityEl){
+			cityEl = nui.get(cityId);
+			addrEl=nui.get('addr');
+			addrEl.setValue('');
+			var text=cityEl.getText();
+			if(text){
+				addrEl.setValue(provinceEl.getText()+text);
+			}	
+		}
+	}
 	var getDictItemsUrl = apiPath + cloudPartApi + "/" + "com.hsapi.cloud.part.common.svr.getDictItems.biz.ext";//window._rootUrl		
 	function getDictItems(dictIdList, callback) {
 		var params = {};
@@ -84,13 +100,52 @@
 	}
 	var getProvinceAndCityUrl = apiPath + cloudPartApi + "/" + "com.hsapi.cloud.part.common.svr.getProvinceAndCity.biz.ext";
 	function getProvinceAndCity(callback) {
+		if (!provinceHash) {
+			provinceHash = {};
+		}
+		if (!cityHash) {
+			cityHash = {};
+		}
+		if (window.top._provinceList && window.top._cityList) {
+			provinceList = window.top._provinceList;
+			cityList = window.top._cityList;
+			provinceList.forEach(function(v) {
+				provinceHash[v.id] = v;
+			});
+			cityList.forEach(function(v) {
+				cityHash[v.code] = v;
+			});
+			if (provinceEl) {
+				provinceEl.setData(provinceList);
+			}
+			callback && callback({
+				province : provinceList,
+				city : cityList
+			});
+			console.log("getProvinceAndCity from client");
+			return;
+		}
 		nui.ajax({
 			url : getProvinceAndCityUrl,
 			data: {token: token},
 			type : "post",
 			success : function(data) {
-				if (data) {
+				if (data && data.province) {
+					window.top._provinceList = data.province;
+					provinceList = window.top._provinceList;
+					window.top._cityList = data.city;
+					provinceList.forEach(function(v) {
+						provinceHash[v.id] = v;
+					});
+					if (provinceEl) {
+						provinceEl.setData(provinceList);
+					}
+					cityList = window.top._cityList;
+					cityList.forEach(function(v) {
+						cityHash[v.code] = v;
+					});
 					callback && callback(data);
+				//	console.log("getProvinceAndCity from server");
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -370,6 +425,32 @@
 		}
 
 		return 3;
+	}
+	
+	var dictField = ["enterTypeId","settType","settTypeId","billTypeId","managerDuty","guestType","supplierType"];
+dictField.push("backReasonId");
+var insureField = ["insureCompCode","insuranceSaliComany","insuranceBizComany"];
+	function onDrawCell(e) {
+		var hash = _initDmsHash || {};
+		var field = e.field;
+		var value = e.value;
+		if (field == "carBrandId") {// 车辆品牌
+			var carBrand = hash.carBrand || {};
+			carBrand[value] && (e.cellHtml = carBrand[value].nameCn);
+		} else if (dictField.indexOf(field) > -1) {
+			var dict = hash.dict || {};
+			dict[value] && (e.cellHtml = dict[value].name);
+		}
+		else if(field == "orgid")
+		{
+			var comp = hash.comp || {};
+			comp[value] && (e.cellHtml = comp[value].orgname);
+		}
+		else if (insureField.indexOf(field) > -1)
+		{
+			var insureComp = hash.insureComp || {};
+			insureComp[value] && (e.cellHtml = insureComp[value].fullName);
+		}
 	}
     
 </script>

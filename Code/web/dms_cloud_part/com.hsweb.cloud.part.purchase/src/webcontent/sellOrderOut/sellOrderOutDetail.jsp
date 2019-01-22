@@ -48,6 +48,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="addPchsEnter()" id="fastEnterBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入采购</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="addMorePart()" id="fastEnterBtn"><span class="fa fa-hand-o-right fa-lg"></span>&nbsp;快速录入配件</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
+                <span id="status"></span>
            
             </td>
         </tr>
@@ -122,7 +123,7 @@
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到客户"
                                              url=""  searchField="key"
-                                             width="83%"
+                                             width="81%"
                                              placeholder="请选择客户"
                                              selectOnFocus="true" />
                                       	 <input id="btnEdit1" width="7.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>

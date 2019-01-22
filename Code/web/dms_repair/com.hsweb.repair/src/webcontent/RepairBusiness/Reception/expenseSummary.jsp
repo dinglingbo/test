@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>费用汇总表</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/expenseSummary.js?v=1.0.2"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/expenseSummary.js?v=1.0.5"></script>
     <style type="text/css">
 
     table {
@@ -21,6 +21,20 @@ pageEncoding="UTF-8" session="false"%>
     .form_label {
         width: 84px;
     }
+    
+    a.optbtn {
+            width: 60px;
+            /* height: 26px; */
+            border: 1px #d2d2d2 solid;
+            background: #f2f6f9;
+            text-align: center;
+            display: inline-block;
+            /* line-height: 26px; */
+            margin: 0 4px;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 5px;
+        }
 </style>
 
 </head>
@@ -47,21 +61,24 @@ pageEncoding="UTF-8" session="false"%>
                 </td>
                 <td>
                     <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
-                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch"/>
-                    <input class="nui-textbox" id="dc" emptyText="费用分类" width="120" onenter="onSearch"/>
-                    <input class="nui-textbox" id="typeId" emptyText="费用名称" width="120" onenter="onSearch"/>
-                    <!-- <input name="typeId"
-                       id="typeId"
-                       class="nui-combobox width1"
-                       textField="name"
-                       valueField="id"
-                       emptyText="请选择..."
-                       url=""
-                       allowInput="true"
-                       showNullItem="false"
-                       width="100%"
-                       valueFromSelect="true"
-                       nullItemText="请选择..."/> -->
+                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch" />
+                    <input  property="editor" enabled="true" id="typeList" name="list" data="[{dc:1,text:'应收'},{dc:-1,text:'应付'}]" dataField="" class="nui-combobox" 
+								valueField="dc"  textField="text" url="" emptyText="费用分类" allowInput="true" vtype="required" onenter="onSearch" onvaluechanged="onSearch"/> 
+                  
+                    <input  property="editor" enabled="true" id="billTypeList" name="list" data="plist" dataField="plist" class="nui-combobox" 
+								valueField="id"  textField="name" url="" emptyText="费用名称" allowInput="true" onenter="onSearch" onvaluechanged="onSearch"/> 
+                         <input name="mtAdvisorId"
+                                   id="mtAdvisorId"
+                                   class="nui-combobox width1"
+                                   textField="empName"
+                                   valueField="empId"
+                                   emptyText="服务顾问"
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   valueFromSelect="true"
+                                   nullItemText="请选择..." onenter="onSearch" onvaluechanged="onSearch"/>
+                                   
                     <label class="form_label">结算日期&nbsp;从：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
 	                <label class="form_label">至：</label>
@@ -85,14 +102,16 @@ pageEncoding="UTF-8" session="false"%>
                  editNextOnEnterKey="true"
                  allowCellWrap = true
                  style="height:100%;width:100%;"
+                 showSummaryRow="true"
+                 
                 >
                 <div property="columns">
-                    <div type="indexcolumn" headeralign="center" allowsort="true" visible="true" width="30">序号</div>
+                    <div type="indexcolumn" headeralign="center" allowsort="true" visible="true" width="30" >序号</div>
                     <!-- <div type="expandcolumn" width="20" visible="true"><span class="fa fa-plus fa-lg"></span></div> -->
                     <div field="dc" headerAlign="center" allowSort="false"  header="费用分类"></div>
                     <div field="typeId" headerAlign="center" allowSort="false"  header="费用名称"></div>
-                    <div field="amt" headerAlign="center" allowSort="false"  header="金额"></div>
-                    <div field="partName" headerAlign="center" allowSort="false"  header="操作"></div>
+                    <div field="amt" headerAlign="center" allowSort="false"  header="金额" summaryType="sum"></div>
+                    <div field="expenseOptBtn" headerAlign="center" allowSort="false"  header="操作" align="center"></div>
                 </div>
             </div>
        </div>

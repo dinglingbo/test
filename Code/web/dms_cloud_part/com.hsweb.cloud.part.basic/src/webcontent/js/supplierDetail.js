@@ -284,6 +284,9 @@ function setData(data)
         nui.get("isSupplier").setValue(supplier.isSupplier);
         nui.get("isDisabled").setValue(supplier.isDisabled);
         nui.get("isInternal").setValue(supplier.isInternal);
+        if(provinceEl.getText()){	
+        	onCitySelected("cityId");
+        }
         if(supplier.isInternal == 1)
         {
             nui.get("fullName").hide();

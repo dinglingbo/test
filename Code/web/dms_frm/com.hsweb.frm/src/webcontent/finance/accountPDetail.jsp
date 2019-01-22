@@ -75,6 +75,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div name="shortName" field="shortName"  width="100"  headeralign="center" allowSort="true" >结算单位简称
 
                 </div>
+                <div field="carNo" name="carNo" width="70"  headeralign="center" >车牌号</div>
                 <div field="charOffAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" >付款金额</div>
                 <div field="feeService" name="feeService" width="50" summaryType="sum" headeralign="center" >手续费</div>
                 <div field="trueInoutAmt" name="trueInoutAmt" width="50" summaryType="sum" headeralign="center" >实付金额 </div>

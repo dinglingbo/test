@@ -109,6 +109,12 @@ function loadMainAndDetailInfo(row)
 {
     if(row) {    
        basicInfoForm.setData(row);
+       var auditSign=row.auditSign;
+       if(auditSign==0){
+    	   $('#status').text("草稿");	   
+       }else if(auditSign==1){
+    	   $('#status').text("已审");
+       }
        //bottomInfoForm.setData(row);
 
        var row = leftGrid.getSelected();

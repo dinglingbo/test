@@ -20,6 +20,7 @@ var formJson = null;
 var brandHash = {};
 var brandList = [];
 var storehouse = null;
+var storeHash={};
 var gsparams = {};
 var sOrderDate = null;
 var eOrderDate = null;
@@ -200,6 +201,9 @@ $(document).ready(function(v) {
 			storehouse = data.storehouse || [];
 			if(storehouse && storehouse.length>0){
 				FStoreId = storehouse[0].id;
+				storehouse.forEach(function(v){
+	        		storeHash[v.id]=v;
+	        	});
 			}else{
 				isNeedSet = true;
 			}
@@ -287,6 +291,12 @@ function getParentStoreId(){
 function loadMainAndDetailInfo(row) {
 	if (row) {
 		basicInfoForm.setData(row);
+		 var auditSign=row.auditSign;
+	       if(auditSign==0){
+	    	   $('#status').text("草稿");	   
+	       }else if(auditSign==1){
+	    	   $('#status').text("已入库");
+	       }
 		//bottomInfoForm.setData(row);
 		nui.get("guestId").setText(row.guestFullName);
 
@@ -1824,7 +1834,9 @@ function onPrint(){
 		currOrgName : currOrgName,
 		currUserName : currUserName,
 		currCompAddress : currCompAddress,
-		currCompTel : currCompTel
+		currCompTel : currCompTel,
+		storeHash : storeHash,
+		brandHash: brandHash
 	};
 	var detailParams={
 			mainId :from.id

@@ -115,9 +115,9 @@ a#car{
         <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
 <!--         <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div> -->
         <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
-        <div field="carModel" name="carModel" width="130" headerAlign="center" align="center">品牌车型</div>
-        <div field="billTypeId" name="billTypeId" width="30" headerAlign="center" align="center">工单类型</div>
-        <div field="serviceTypeName" name="serviceTypeName" width="80" headerAlign="center" align="center">业务类型</div>
+        <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">品牌车型</div>
+        <div field="billTypeId" name="billTypeId" width="50" headerAlign="center" align="center">工单类型</div>
+        <div field="serviceTypeName" name="serviceTypeName" width="100" headerAlign="center" align="center">业务类型</div>
 <!--         <div field="isSettle" name="isSettle" width="30" headerAlign="center" align="center">结算状态</div> -->
         <div field="enterDate" name="recordDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">进厂日期</div>
         <div field="action" name="action" width="60" headerAlign="center" header="操作" align="center" align="center"></div>
@@ -306,6 +306,8 @@ a#car{
             }else if(value == 1){
             	e.cellHtml = "已结算";
             }
+        }else if (e.field == "serviceTypeName") {
+                e.cellHtml = retSerTypeStyle(e.cellHtml);
         }else if(e.field == "billTypeId"){
         	if (value == 0) {
                 e.cellHtml = "综合开单";

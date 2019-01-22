@@ -369,11 +369,7 @@ hr {
 		        }
 		
 		    }
-		    setTimeout(function(){
-		    	$(".print_btn").hide();
-	            document.getElementById("query-table").style.overflow="hidden"
-	            window.print();
-		    },1000);
+		    
     	});
     	
     	 function CloseWindow(action) {
@@ -452,6 +448,11 @@ hr {
 				$('#sumOrderQty').text("合计:"+parseFloat(sumOrderQty).toFixed(1));
 				$('#sumOrderAmt').text(""+parseFloat(sumOrderAmt).toFixed(1));
 				$('#sum').text("合计:"+sum);
+				setTimeout(function(){
+			    	$(".print_btn").hide();
+		            document.getElementById("query-table").style.overflow="hidden"
+		            window.print();
+			    },1000);
     	}
     </script>
 </body>

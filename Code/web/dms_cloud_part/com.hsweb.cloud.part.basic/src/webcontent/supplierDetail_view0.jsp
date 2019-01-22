@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/supplierDetail.js?v=1.1.7"></script>
+<script src="<%=webPath + contextPath%>/basic/js/supplierDetail.js?v=1.1.8"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -174,7 +174,7 @@
                                   nullitemtext="选择省份..." emptytext="选择省份" shownullitem="true"></td>
                               <td class=" right fwidthb required">城市:</td>
                               <td>
-                                  <input id="cityId" name="cityId" class="nui-combobox" textField="name" valueField="code"     dataField="" 
+                                  <input id="cityId" name="cityId" class="nui-combobox" textField="name" valueField="code"     dataField="" onvaluechanged="onCitySelected('cityId')"
                                   url="" valueFromSelect="true" allowinput="true" width="100%"
                                   nullitemtext="选择市..." emptytext="选择市" shownullitem="true">
                               </td>

@@ -24,7 +24,8 @@ $(document).ready(function() {
     });*/
     tree = nui.get("tree1");
     tree.setUrl(treeUrl);
-
+    tree.load({token:token});
+    
     getAllPartBrand(function(data) {
         qualityList = data.quality;
         qualityList.forEach(function(v) {
@@ -91,6 +92,10 @@ function onNodeDblClick(e)
         carTypeIdS:cartypes,
         carTypeIdT:cartypet
     };
+    var params = getSearchParams();
+    for(var key in params){
+    	partName[key]=params[key];
+    }
     doSearch(partName);
 }
 var partTypeHash = null;
@@ -269,6 +274,11 @@ function getData(){
     return resultData;
 }
 function setData(data,ck,cck){
+    callback = ck;
+    checkcallback = cck;
+}
+function setCloudPartData(type,ck,cck){
+    chooseType = type;
     callback = ck;
     checkcallback = cck;
 }

@@ -143,7 +143,7 @@ HeaderFilter.prototype = {
             var text = record[column.field];
             if (column.displayField) text = record[column.displayField];
             if (text == null) text = '';
-
+            
             var checked = false;
             if (column._filterMap) checked = !!column._filterMap[text];
 

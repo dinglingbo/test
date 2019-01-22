@@ -452,7 +452,7 @@ hr {
 			    	$(".print_btn").hide();
 		            document.getElementById("query-table").style.overflow="hidden"
 		            window.print();
-			    },1000);
+			    },100);
     	}
     </script>
 </body>

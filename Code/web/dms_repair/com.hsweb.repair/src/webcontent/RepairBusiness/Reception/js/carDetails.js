@@ -94,17 +94,6 @@ $(document).ready(function () {
       },function(){
     	  var identityList = nui.get("identity").getData();
       });
-      /*var checkComplete = function()
-      {
-      	var keyList = ['initInsureComp','initDicts'];
-          for(var i=0;i<keyList.length;i++)
-          {
-              if(!hash[keyList[i]])
-              {
-                  return;
-              }
-          }
-      };*/
 });
 
 //取消

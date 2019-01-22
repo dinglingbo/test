@@ -88,7 +88,7 @@ $(document).ready(function(v)
         var params = {};
         var value = e.data.key;
         value = value.replace(/\s+/g, "");
-        if(value.length<3){
+        if(value.length<2){
             e.cancel = true;
             return;
         }

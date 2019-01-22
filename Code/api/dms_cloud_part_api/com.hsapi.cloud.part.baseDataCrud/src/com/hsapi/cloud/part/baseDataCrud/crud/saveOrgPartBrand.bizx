@@ -342,12 +342,12 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-07-11 17:12:39" date="2018-07-11Z" description="" name="saveOrgPartBrand" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.part.data.com.ComPartBrandOrg" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.cloud.part.data.com.ComPartBrandOrg" name="temp"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.com.ComPartBrandOrg" name="addList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.com.ComPartBrandOrg" name="deleteList"/>
-    <process:input description="" isArray="true" modelType="com.hsapi.part.data.com.ComPartBrandOrg" name="updateList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.com.ComPartBrandOrg" name="addList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.com.ComPartBrandOrg" name="deleteList"/>
+    <process:input description="" isArray="true" modelType="com.hsapi.cloud.part.data.com.ComPartBrandOrg" name="updateList"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

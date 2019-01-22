@@ -142,7 +142,7 @@ public class RedisUtils {
 		Jedis jedis = null;
 		try {
 			jedis = RedisPoolUtils.getJedis();
-			jedis.expire(hsetName, 3600);
+			jedis.expire(hsetName, 14400);
 			return jedis.hget(hsetName, key);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -199,7 +199,7 @@ public class RedisUtils {
 				jedis.hdel(hsetName, key);
 			} else {
 				jedis.hset(hsetName, key, value.toString());
-				jedis.expire(hsetName, 3600);
+				jedis.expire(hsetName, 14400);
 			}
 
 		} catch (Exception e) {

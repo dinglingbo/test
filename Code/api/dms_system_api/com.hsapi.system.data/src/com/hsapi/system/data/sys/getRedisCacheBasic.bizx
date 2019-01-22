@@ -90,15 +90,6 @@
       <sourceNode>invokePojo5</sourceNode>
       <targetNode>subprocess1</targetNode>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" type="transition">
-      <sourceNode>invokePojo5</sourceNode>
-      <targetNode>assign1</targetNode>
-      <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>1==1</process:code>
-        </process:complexCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link9</targetConnections>
     <location x="589" y="206"/>
     <size height="28" width="22"/>
@@ -246,7 +237,6 @@
     </sourceConnections>
     <targetConnections>link19</targetConnections>
     <targetConnections>link24</targetConnections>
-    <targetConnections>link5</targetConnections>
     <location x="825" y="154"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>

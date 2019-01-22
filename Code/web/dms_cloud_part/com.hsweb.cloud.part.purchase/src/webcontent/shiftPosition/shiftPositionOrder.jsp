@@ -9,7 +9,7 @@
 -->
 <head>
 <title>移仓单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/shiftPosition/shiftPositionOrder.js?v=1.1.0"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/shiftPosition/shiftPositionOrder.js?v=1.1.1"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -77,7 +77,7 @@
                 <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
                 <span class="separator"></span>
                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
-           
+           		<span id="status"></span>
             </td>
         </tr>
     </table>

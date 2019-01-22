@@ -46,6 +46,19 @@ $(document).ready(function (v) {
         onupGridSelectionchanged();
     });
     
+    var filter = new HeaderFilter(upGrid, {
+        columns: [
+            { name: 'status' },
+            { name: 'prebookSource' },
+            { name: 'serviceTypeId' },
+            { name: 'prebookCategory' },
+            { name: 'mtAdvisor' },
+            { name: 'mtAdvisorId' },
+            { name: 'isOpenBill' }
+        ],
+        callback: function (column, filtered) {
+        }
+    });
 });
 
 function init() {

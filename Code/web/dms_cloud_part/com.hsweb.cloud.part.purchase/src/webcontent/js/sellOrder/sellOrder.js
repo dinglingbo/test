@@ -20,6 +20,7 @@ var formJson = null;
 var brandHash = {};
 var brandList = [];
 var storehouse = null;
+var storeHash ={};
 var gsparams = {};
 var sOrderDate = null;
 var eOrderDate = null;
@@ -37,7 +38,6 @@ var morePartCodeEl = null;
 var morePartNameEl = null;
 var showStockEl = null;
 var sortTypeEl = null;
-var storeHash = {};
 var morePartTabs = null;
 var enterTab = null;
 var partInfoTab = null;
@@ -48,6 +48,11 @@ var AuditSignHash = {
   "1":"已审",
   "2":"已过账",
   "3":"已取消"
+};
+var StatusHash={
+	"0"	:"草稿",
+	"1"	:"已提交",
+	"2"	:"已出库"
 };
 $(document).ready(function(v)
 {
@@ -332,6 +337,8 @@ function loadMainAndDetailInfo(row)
 {
     if(row) {    
        basicInfoForm.setData(row);
+       var billStatusId=row.billStatusId;
+	   $('#status').text(StatusHash[billStatusId]);
        //bottomInfoForm.setData(row);
        nui.get("guestId").setText(row.guestFullName);
 
@@ -736,14 +743,14 @@ function quickSearch(type){
             break;
         case 6:
             params.auditSign = 0;
-            params.billStatusId = 0;
+            gsparams.billStatusId = 0;
             querytypename = "草稿";
             querysign = 2;
             gsparams.auditSign = 0;
             break;
         case 7:
             params.auditSign = 1;
-            params.billStatusId = 1;
+            gsparams.billStatusId = 1;
             querytypename = "已提交";
             querysign = 2;
             gsparams.auditSign = 1;
@@ -753,7 +760,7 @@ function quickSearch(type){
             break;
         case 9:
             querytypename = "已出库";
-            params.billStatusId = 2;
+            gsparams.billStatusId = 2;
             querysign = 2;
             gsparams.auditSign = 1;
             break;
@@ -762,7 +769,7 @@ function quickSearch(type){
             params.startDate = getNowStartDate();
             params.endDate = addDate(getNowEndDate(), 1);
             querytypename = "草稿";
-            params.billStatusId = 0;
+            gsparams.billStatusId = 0;
             gsparams.startDate = getNowStartDate();
             gsparams.endDate = addDate(getNowEndDate(), 1);
             gsparams.auditSign = 0;
@@ -1957,7 +1964,9 @@ function onPrint(){
 		currOrgName : currOrgName,
 		currUserName : currUserName,
 		currCompAddress : currCompAddress,
-		currCompTel : currCompTel
+		currCompTel : currCompTel,
+		storeHash : storeHash,
+		brandHash: brandHash
 	};
 	var detailParams={
 			mainId :from.id,

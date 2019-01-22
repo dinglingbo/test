@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.20"></script>
+<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.22"></script>
 <style type="text/css">
 .title {
   text-align: right;
@@ -161,13 +161,17 @@
                               <td>
                                   <input id="provinceId" name="provinceId" class="nui-combobox" textField="name" valueField="code"     dataField="" onvaluechanged="onProvinceSelected('cityId')"
                                   url="" valueFromSelect="true" allowinput="true" width="100%"
-                                  nullitemtext="选择省份..." emptytext="选择省份" shownullitem="true"></td>
+                                  nullitemtext="选择省份..." emptytext="选择省份" shownullitem="true" ></td>
                               <td class=" right fwidthb required">城市:</td>
                               <td>
-                                  <input id="cityId" name="cityId" class="nui-combobox" textField="name" valueField="code"     dataField="" 
+                                  <input id="cityId" name="cityId" class="nui-combobox" textField="name" valueField="code"     dataField="" onvaluechanged="onCitySelected('cityId')"
                                   url="" valueFromSelect="true" allowinput="true" width="100%"
                                   nullitemtext="选择市..." emptytext="选择市" shownullitem="true">
                               </td>
+                          </tr>
+                           <tr class="htr">
+                          	  <td class=" right fwidtha">地址:</td>
+                              <td colspan="3"><input id="addr" name="addr" width="100%" class="nui-textbox" ></td>
                           </tr>
                           <tr class="htr">
                               <td class=" right fwidthb">业务员:</td>
@@ -176,14 +180,11 @@
                               <td ><input id="contactorTel" name="contactorTel" width="100%" class="nui-textbox" ></td>
                           </tr>
                           <tr class="htr">
-                              <td class=" right fwidthb">电话:</td>
-                              <td colspan="3"><input id="tel" name="tel" width="100%" class="nui-textbox" ></td>
-                          </tr>
-                          <tr class="htr">
                               <td class=" right fwidthb">邮政编码:</td>
                               <td>
                                   <input id="postalCode" name="postalCode" width="100%" class="nui-textbox" >
                               </td>
+                              <td class=" right fwidtha"></td>
                               <td><input id="isNeedPack" name="isNeedPack" class="nui-checkbox" text="需要打包发货" onvaluechanged="onValueChanged" trueValue="1" falseValue="0"></td>
                           </tr>
                           <tr class="htr">
@@ -201,8 +202,8 @@
                                  showNullItem="true"
                                  nullItemText="请选择..."/>
                               </td>
-                              <td class=" right fwidtha">地址:</td>
-                              <td ><input id="addr" name="addr" width="100%" class="nui-textbox" ></td>
+                              <td class=" right fwidthb">电话:</td>
+                              <td colspan=""><input id="tel" name="tel" width="100%" class="nui-textbox" ></td>
                           </tr>
                           <tr class="htr">
                               <td class=" right fwidthb">邮箱:</td>

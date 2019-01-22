@@ -406,12 +406,9 @@ hr {
 		        }
 		
 		    }
-		    setTimeout(function(){
-		    	$(".print_btn").hide();
-	            document.getElementById("query-table").style.overflow="hidden"
-	            window.print();
-		    },1000);
+		    
     	});
+    	
     	
     	function CloseWindow(action) {
             if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
@@ -455,7 +452,8 @@ hr {
 	    		});
     		}
     		if(detailParms.mainId){
-    	
+    			brandHash=params.brandHash;
+    			storeHash=params.storeHash;
 	    		$.post(DetailUrl+"?params/mainId="+detailParms.mainId+"&params/auditSign="+detailParms.auditSign+"&token="+token,{},function(text){
 					var data= text.pjPchsOrderDetailList;
 					var tBody = $("#tbodyId");
@@ -499,7 +497,12 @@ hr {
 						$('#sumOrderQty').text("合计:"+parseFloat(sumOrderQty).toFixed(1));
 						$('#sumOrderAmt').text(""+parseFloat(sumOrderAmt).toFixed(1));
 						$('#sum').text("合计:"+sum);
-				});
+						setTimeout(function(){
+					    	$(".print_btn").hide();
+				            document.getElementById("query-table").style.overflow="hidden"
+				            window.print();
+					    },1000);
+					});
 			}
     	}
     </script>

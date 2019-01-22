@@ -939,26 +939,39 @@
 			AND a.orgid = #orgid#
 			AND a.mt_advisor_id = #mtAdvisorId#
 	</select>
-		<select id="throughQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	<select id="throughQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 
 			SELECT 
 				count(1) as throughQuantity
 			FROM 
 				wb_repair.rps_maintain a
-			where
-				EXISTS(select 1 from wb_repair.rps_item b where a.id = b.service_id and ifnull(b.status,0)=0)
-			and a.orgid = #orgid# 
-			and a.status = 1
-			AND a.mt_advisor_id = #mtAdvisorId#
+			where a.is_disabled = 0 and a.orgid = #orgid# 
+			      and a.status = 1 AND a.mt_advisor_id = #mtAdvisorId#
+	</select>
+	<select id="throughCheckQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+
+			SELECT 
+				count(1) as throughQuantity
+			FROM 
+				wb_repair.rps_check_main a
+			where a.is_finish = 0 and a.orgid = #orgid# 
+			      AND a.check_main_id = #mtAdvisorId#
+	</select>
+	<select id="throughPickQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+
+			SELECT 
+				count(1) as throughQuantity
+			FROM 
+				wb_repair.rps_pick_main a
+			where a.`status` = 0 and a.orgid = #orgid# 
+			      AND a.mt_advisor_id = #mtAdvisorId#
 	</select>
 	<select id="settleQuantity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 			SELECT
 				count(1) as  settleQuantity
 			FROM
 				wb_repair.rps_maintain a
-			WHERE
-			    a.bala_audit_sign = 1 
-			and	a.is_settle = 0
+			WHERE 	a.is_settle = 0
 			AND a.STATUS = 2	
 			AND a.is_disabled = 0
 			AND a.orgid = #orgid#

@@ -49,18 +49,32 @@
 	var cityList = [];
 	var provinceEl = null;
 	var cityEl = null;
+	var addrEl=null;
 	function onProvinceSelected(cityId) {
 		if (provinceEl) {
 			cityEl = nui.get(cityId);
+			addrEl=nui.get('addr');
 			var id = provinceEl.getValue();
 			var code = provinceHash[id].code;
 			var currCityList = cityList.filter(function(v) {
 				return v.parentid == code;
 			});
 			cityEl.setData(currCityList);
+			addrEl.setValue(provinceEl.getText());
 		}
 	}
-
+	
+	function onCitySelected(cityId){
+		if(provinceEl && cityEl){
+			cityEl = nui.get(cityId);
+			addrEl=nui.get('addr');
+			addrEl.setValue('');
+			var text=cityEl.getText();
+			if(text){
+				addrEl.setValue(provinceEl.getText()+text);
+			}	
+		}
+	}
 	var getDictItemsUrl = apiPath + cloudPartApi + "/" + "com.hsapi.cloud.part.common.svr.getDictItems.biz.ext";//window._rootUrl		
 	function getDictItems(dictIdList, callback) {
 		var params = {};

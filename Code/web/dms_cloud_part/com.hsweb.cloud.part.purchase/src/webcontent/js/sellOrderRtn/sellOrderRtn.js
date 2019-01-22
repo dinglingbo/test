@@ -20,6 +20,7 @@ var formJson = null;
 var brandHash = {};
 var brandList = [];
 var storehouse = null;
+var storeHash={};
 var gsparams = {};
 var sOrderDate = null;
 var eOrderDate = null;
@@ -33,6 +34,11 @@ var mainTabs = null;
 var billmainTab = null;
 var partInfoTab = null;
 var guestIdEl=null;
+var StatusHash={
+	"0"	:"草稿",
+	"1":"已提交",
+	"4":"已入库"
+}
 
 $(document).ready(function(v) {
     nui.mask({
@@ -105,6 +111,9 @@ $(document).ready(function(v) {
             storehouse = data.storehouse || [];
             if(storehouse && storehouse.length>0){
                 FStoreId = storehouse[0].id;
+                storehouse.forEach(function(v){
+            		storeHash[v.id]=v;
+            	});
             }else{
                 isNeedSet = true;
             }
@@ -153,6 +162,8 @@ function getParentStoreId(){
 function loadMainAndDetailInfo(row) {
     if (row) {
         basicInfoForm.setData(row);
+        var billStatusId=row.billStatusId;
+		$('#status').text(StatusHash[billStatusId]);
         //bottomInfoForm.setData(row);
         nui.get("guestId").setText(row.guestFullName);
 
@@ -301,6 +312,7 @@ function quickSearch(type) {
     case 6:
         params.auditSign = 0;
         params.billStatusId = 0;
+        gsparams.billStatusId=0;
         querytypename = "草稿";
         querysign = 2;
         gsparams.auditSign = 0;
@@ -308,6 +320,7 @@ function quickSearch(type) {
     case 7:
         params.auditSign = 1;
         params.billStatusId = 1;
+        gsparams.billStatusId=1;
         querytypename = "已提交";
         querysign = 2;
         gsparams.auditSign = 1;
@@ -315,6 +328,7 @@ function quickSearch(type) {
     case 14:
         params.auditSign = 1;
         params.billStatusId = 4;
+        gsparams.billStatusId=4;
         querytypename = "已入库";
         querysign = 2;
         gsparams.auditSign = 1;
@@ -1180,7 +1194,9 @@ function onPrint(){
 		currOrgName : currOrgName,
 		currUserName : currUserName,
 		currCompAddress : currCompAddress,
-		currCompTel : currCompTel
+		currCompTel : currCompTel,
+		storeHash : storeHash,
+		brandHash: brandHash
 	};
 	var detailParams={
 			mainId :from.id,

@@ -22,6 +22,7 @@ var formJson = null;
 var brandHash = {};
 var brandList = [];
 var storehouse = null;
+var storeHash={};
 var gsparams = {};
 var sOrderDate = null;
 var eOrderDate = null;
@@ -248,8 +249,12 @@ $(document).ready(function(v) {
 	initDicts(dictDefs, function(){
 		getStorehouse(function(data) {
 			storehouse = data.storehouse || [];
+			
 			if(storehouse && storehouse.length>0){
 				FStoreId = storehouse[0].id;
+				storehouse.forEach(function(v){
+	        		storeHash[v.id]=v;
+	        	});
 			}else{
 				isNeedSet = true;
 			}
@@ -260,8 +265,8 @@ $(document).ready(function(v) {
 					brandHash[v.id] = v;
 				});
 		
-				gsparams.billStatusId = 2;
-				gsparams.auditSign = 1;
+				gsparams.billStatusId = 0;
+				gsparams.auditSign = 0;
 				quickSearch(0);
 
 				nui.unmask();
@@ -368,6 +373,9 @@ function getParentStoreId(){
 function loadMainAndDetailInfo(row) {
 	if (row) {
 		basicInfoForm.setData(row);
+		var billStatusId=row.billStatusId;
+		$('#status').text(StatusHash[billStatusId]);
+		
 		//bottomInfoForm.setData(row);
 		nui.get("guestId").setText(row.guestFullName);
 
@@ -993,6 +1001,7 @@ function save() {
 
 					// 保存成功后重新加载数据
 					loadMainAndDetailInfo(leftRow);
+				
 
 				}
 			} else {
@@ -2037,7 +2046,9 @@ function onPrint(){
 		currOrgName : currOrgName,
 		currUserName : currUserName,
 		currCompAddress : currCompAddress,
-		currCompTel : currCompTel
+		currCompTel : currCompTel,
+		storeHash : storeHash,
+		brandHash: brandHash
 	};
 	var detailParams={
 			mainId :from.id,

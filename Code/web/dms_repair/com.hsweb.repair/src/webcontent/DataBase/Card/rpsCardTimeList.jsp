@@ -54,12 +54,12 @@
 				
 				<div field="fullName" headerAlign="center" allowSort="true"
 					>姓名</div>
-				
+				<div field="carOn" headerAlign="center" allowSort="true">
+					车牌号</div>
 				<div field="mobile" headerAlign="center" allowSort="true"  >
 					电话</div>
 
-				<!-- <div field="carOn" headerAlign="center" allowSort="true">
-					车牌号</div> -->
+				 
 				<div field="cardName" headerAlign="center" allowSort="true">
 				  计次卡名称</div>
 				

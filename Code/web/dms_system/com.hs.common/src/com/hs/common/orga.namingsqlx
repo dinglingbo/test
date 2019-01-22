@@ -18,4 +18,47 @@
 		AND DA.dept_type='COMP' AND DA.dept_status='A'
      </select>
     -->
+    
+    <!--
+	缓存策略：
+	1、user_id,role_id...
+	2、role_id,res_id...
+	3、res_id,resInfo
+    -->
+    <!--根据用户ID获取用户对应角色ID-->
+    <select id="queryUserRoles" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT role_id as roleId from com_cap_partyauth 
+    	where party_id = #userId#
+    </select>
+    <!--根据角色ID获取角色对应资源ID-->
+    <select id="queryRoleRes" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT res_id as resId from com_cap_resauth 
+    	where party_id = #roleId#
+    </select>
+    <!--根据资源ID获取资源对应的资源详情-->
+    <select id="queryResInfo" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT DISTINCT a.menuid, a.menuname, a.menucode, a.imagepath, a.parentsid, b.funccode, 
+				 a.DISPLAYORDER,  b.funcaction, a.EXPANDPATH as expandpath, 
+				 a.APP_ID as appId, b.parainfo as params
+		from app_menu a
+		inner join com_app_function b
+		on a.funccode = b.FUNCCODE
+		where b.FUNCCODE = #roleId#
+    </select>
+    <!--获取菜单结构-->
+    <select id="queryMenu" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT m.menuid, m.menuname, m.menucode, m.imagepath, m.parentsid, m.funccode, 
+			   m.DISPLAYORDER, null as funcaction, m.EXPANDPATH as expandpath, 
+			   m.APP_ID as appId, m.parameter as params
+		from app_menu m
+		where ifnull(m.funccode, '') = ''
+		order by m.DISPLAYORDER asc
+    </select>
+    
+    
+    
+    
+    
+    
+    
 </sqlMap>

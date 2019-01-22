@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
+	<%@include file="/common/common.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-    <%@include file="/common/commonRepair.jsp"%>
         <html>
         <!-- 
   - Author(s): localhost
@@ -12,7 +13,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.11" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.12" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -228,7 +229,7 @@
                                             <label>身份：</label>
                                         </td>
                                         <td>
-                                            <input class="nui-textbox" id="identity" name="identity"  width="100%" />
+                                            <input class="nui-combobox" name="identity" id="source" valueField="customid" textField="name" width="100%" value="060301" />
                                         </td>
                                     </tr>
                                     

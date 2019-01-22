@@ -63,7 +63,7 @@ $(document).ready(function(v)
         var params = {};
         var value = e.data.key;
         value = value.replace(/\s+/g, "");
-        if(value.length<3){
+        if(value.length<2){
             e.cancel = true;
             return;
         }
@@ -746,6 +746,13 @@ function audit()
 
                     //保存成功后重新加载数据
                     loadMainAndDetailInfo(leftRow);
+                    nui.confirm("是否打印？", "友情提示", function(action) {
+    					if(action== 'ok'){
+    						onPrint();
+    					}else{
+    						
+    					}
+    				});
                 }
             } else {
                 showMsg(data.errMsg || "退货失败!","W");

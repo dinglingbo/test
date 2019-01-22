@@ -640,7 +640,6 @@ function doSetMainInfo(car){
     	 });
     }
 }
-
 function setInitData(params){
     fserviceId = params.id;
     var data = {
@@ -932,6 +931,7 @@ function setFrom(data){
         getGuestContactorCar(params, function(text){
             var errCode = text.errCode||"";
             var guest = text.guest||{};
+            var car = text.car || {};
             var contactor = text.contactor||{};
             var car = text.car || {};
             if(errCode == 'S'){
@@ -3701,6 +3701,11 @@ function toChangBillTypeId(billTypeId){
 		showMsg("工单已完工，不能转单!","W");
 		return;
 	}
+	if(data.guestMobile=="10000"){
+		showMsg("请完善散客信息","W");
+		addOrEdit();
+		return;
+	}
 	if(serviceId){
 		nui.ajax({
 	        url: baseUrl + "com.hsapi.repair.repairService.crud.transformBill.biz.ext",
@@ -4067,7 +4072,19 @@ function addFit(){
  		success : function(text) {
  			var returnJson = nui.decode(text);
  			if (returnJson.errCode == "S") {
- 				showMsg("新增成功","S");
+ 				nui.get("search_key").setValue("");
+ 				nui.get("search_key").setText("");
+ 				var sk = document.getElementById("search_key");
+ 	            sk.style.display = "none";
+ 	            searchNameEl.setVisible(true);
+ 	            var tel = "/"+"10000";
+ 	            var guestName = "/"+"散客";
+ 	            var t = carNo + tel + guestName;
+ 	            searchNameEl.setValue(t);
+ 	            var item = text.retData;
+ 	            item.guestMobile = "10000";
+ 	            doSetMainInfo(item);
+ 	            showMsg("新增成功","S");
  				nui.unmask(document.body);
  				return;
  			} else {
@@ -4088,6 +4105,37 @@ function isVehicleNumber(vehicleNumber) {
     return result;
 }
 
+function addOrEdit()
+{
+	var data = billForm.getData();
+    title = "完善散客信息";
+    var guest = {};
+    guest.guestId = data.guestId;
+    guest.carNo = nui.get("carNo").getValue();
+    if(!data.guestId){
+    	showMsg("数据获取失败,请重新操作!","W");
+    	return;
+    }
+    nui.open({
+        url:"com.hsweb.repair.DataBase.AddEditCustomer.flow",
+        title:title,
+        width:560,
+        height:630,
+        onload:function(){
+            var iframe = this.getIFrameEl();
+            var params = {};
+            params.guest = guest;
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy:function(action)
+        {
+            if(action  == "ok")
+            {
+               // grid.reload();
+            }
+        }
+    });
+}
 
 
 

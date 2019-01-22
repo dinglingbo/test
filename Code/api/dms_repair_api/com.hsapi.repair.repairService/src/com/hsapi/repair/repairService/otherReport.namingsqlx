@@ -314,11 +314,15 @@ where b.orgid =#orgid#
     <select id="BookingManagementSummaryList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     SELECT
      <isEqual  prepend=""  property="groupByType"   compareValue="0">
-       a.record_date as groupName,
+        DATE_FORMAT(a.record_date,'%Y-%m-%d')  as groupName,
      </isEqual>
          
      <isEqual  prepend="" property="groupByType"    compareValue="1">
-       a.mt_advisor_id as groupName,
+       a.mt_advisor_id ,a.mt_advisor as groupName,
+     </isEqual>
+     
+     <isEqual  prepend="" property="groupByType"    compareValue="1">
+       a.mt_advisor as groupName1,
      </isEqual>
      
      <isEqual  prepend="" property="groupByType"   compareValue="2">
@@ -348,14 +352,20 @@ where b.orgid =#orgid#
             
         <isNotEmpty prepend="and" property="endDate">
             a.record_date &lt;= #endDate#
+        </isNotEmpty>
+        
+        <isNotEmpty prepend="and" property="mtAdvisorId">
+            a.mt_advisor_id =  #mtAdvisorId#
         </isNotEmpty>   
     </dynamic>  
     <isEqual  prepend="" property="groupByType"   compareValue="0">
-        GROUP BY a.record_date
+        GROUP BY DATE_FORMAT(a.record_date,'%Y-%m-%d')
    </isEqual>
+   
    <isEqual  prepend=""  property="groupByType"   compareValue="1">
-     GROUP BY a.mt_advisor_id
+     GROUP BY a.mt_advisor_id,a.mt_advisor
    </isEqual>
+   
    <isEqual  prepend="" property="groupByType"   compareValue="2">
      GROUP BY a.car_model
    </isEqual>

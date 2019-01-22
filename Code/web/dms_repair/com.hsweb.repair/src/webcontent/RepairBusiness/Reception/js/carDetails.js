@@ -24,7 +24,7 @@ var grid3 = null;
 var grid4 = null;
 var servieTypeList = [];
 var servieTypeHash = {};
-
+var hash = {};
 $(document).ready(function () {
 	datagrid1 = nui.get("datagrid1");
 	datagrid2 = nui.get("datagrid2");
@@ -86,6 +86,25 @@ $(document).ready(function () {
                   break;
           }
       });
+      initDicts({
+          //carSpec:CAR_SPEC,//车辆规格
+          //kiloType:KILO_TYPE,//里程类别
+          //source:GUEST_SOURCE,//客户来源
+          identity:IDENTITY //客户身份
+      },function(){
+    	  var identityList = nui.get("identity").getData();
+      });
+      /*var checkComplete = function()
+      {
+      	var keyList = ['initInsureComp','initDicts'];
+          for(var i=0;i<keyList.length;i++)
+          {
+              if(!hash[keyList[i]])
+              {
+                  return;
+              }
+          }
+      };*/
 });
 
 //取消
@@ -142,9 +161,12 @@ function SetData(params){
         	guestId : params.guestId
         },
         success: function (data) {
-        	var contactList = data.contactList||[{}];
+        	var guest = data.guest||[{}];
             var form1 = new nui.Form("#editForm4");
-            form1.setData(contactList[0]);
+            form1.setData(guest);
+        	var contactList = data.contactList||[{}];
+            var form5 = new nui.Form("#editForm5");
+            form5.setData(contactList[0]);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR.responseText);

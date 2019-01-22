@@ -10,7 +10,7 @@
 -->
 <head>
 <title>综合开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.4.12"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/ReceptionMain.js?v=1.4.13"></script>
 <style type="text/css">
 
 .title {
@@ -103,18 +103,18 @@
                   <div type="indexcolumn">序号</div>
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
                   <div field="status" name="status" width="40px" headerAlign="center" header="进程"></div>
-                  <div field="serviceCode" name="serviceCode" width="150px" headerAlign="center" header="工单号"></div>
-                  <div field="carNo" name="carNo" width="80px" headerAlign="center" header="车牌号"></div>
-                  <div field="enterDate" name="enterDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂时间"></div>
-                  <div field="serviceTypeName" name="serviceTypeName" width="100px" headerAlign="center" header="业务类型"></div>
+                  <div field="serviceCode" name="serviceCode" width="160px" headerAlign="center" header="工单号"></div>
+                  <div field="carNo" name="carNo" width="75px" headerAlign="center" header="车牌号"></div>
+                  <div field="enterDate" name="enterDate" width="115px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂时间"></div>
+                  <div field="serviceTypeName" name="serviceTypeName" width="160px" headerAlign="center" header="业务类型"></div>
                   <!-- <div field="carBrandId" name="carBrandId" width="70px" headerAlign="center"  header="品牌车型"></div> -->
-                  <div field="carModel" name="carModel" width="70px" headerAlign="center"  header="品牌车型"></div>
-                  <div field="carVin" name="carVin" width="135px" headerAlign="center" header="车架号(VIN)"></div>
-                  <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
+                  <div field="carModel" name="carModel" width="110px" headerAlign="center"  header="品牌车型"></div>
+                  <div field="carVin" name="carVin" width="150px" headerAlign="center" header="车架号(VIN)"></div>
+                  <div field="contactName" name="contactName" width="70px" headerAlign="center" header="联系人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
-                  <div field="balaAuditSign" name="balaAuditSign" width="60px" headerAlign="center" header="结算状态"></div>
-                  <div field="planFinishDate" name="planFinishDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计交车时间"></div>
+                  <div field="balaAuditSign" name="balaAuditSign" width="55px" headerAlign="center" header="结算状态"></div>
+                  <div field="planFinishDate" name="planFinishDate" width="115px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计交车时间"></div>
               </div>
           </div>
     </div>
@@ -153,7 +153,7 @@
            <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
            <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>
            <div field="prdtName" headerAlign="center" allowSort="false" visible="true" width="100">项目名称</div>
-	       <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="60" align="center">业务类型 </div>
+	       <div field="serviceTypeId" headerAlign="center" allowSort="false" visible="true" width="100" align="center">业务类型 </div>
 	       <div field="qty" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" name="itemItemTime">工时/数量 </div>
 	       <div field="unitPrice" name="itemUnitPrice" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center">单价 </div>
 	       <div field="rate" name="itemRate" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" >优惠率</div>            

@@ -4009,7 +4009,6 @@ function selectclick() {
     	
     });
 }
-
 function unique(arr) {
     var result = [], hash = {};
     for (var i = 0, elem; (elem = arr[i]) != null; i++) {
@@ -4020,4 +4019,79 @@ function unique(arr) {
     }
     return result;
 }
+
+//新增散客
+var FitUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveCustomerInfo.biz.ext";
+function addFit(){
+	//获取输入框的值
+	var carNo = nui.get("search_key").getValue();
+	var result = isVehicleNumber(carNo);
+	if(!result){
+		showMsg("请输入正确的车牌号","W");
+		return;
+	}
+	var name = "散客";
+	 var guest = { 
+			 fullName:name,
+			 shortName:name,
+			 mobile:"10000"
+	 };
+	 var insCarList = [];
+	 var insCar = {
+			 carNo : carNo
+	 };
+	 insCarList.push(insCar);
+	 var insContactList = [];
+	 var insContact = {
+			 mobile:"10000",
+			 name:name
+	 };
+	 insContactList.push(insContact);
+	 nui.mask({
+         el: document.body,
+         cls: 'mini-mask-loading',
+         html: '保存中...'
+     });
+	 var json = nui.encode({
+		 guest:guest,
+		 insCarList:insCarList,
+		 insContactList:insContactList,
+ 		 token:token
+ 	  });
+	 nui.ajax({
+ 		url : FitUrl,
+ 		type : 'POST',
+ 		data : json,
+ 		cache : false,
+ 		contentType : 'text/json',
+ 		success : function(text) {
+ 			var returnJson = nui.decode(text);
+ 			if (returnJson.errCode == "S") {
+ 				showMsg("新增成功","S");
+ 				nui.unmask(document.body);
+ 				return;
+ 			} else {
+ 				nui.unmask(document.body);
+ 				showMsg(returnJson.errMsg || "新增失败","E");
+ 				return;
+ 		    }
+ 		}
+ 	 });
+}
+
+function isVehicleNumber(vehicleNumber) {
+    var result = false;
+    if (vehicleNumber.length == 7){
+      var express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
+      result = express.test(vehicleNumber);
+    }
+    return result;
+}
+
+
+
+
+
+
+
 

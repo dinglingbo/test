@@ -13,6 +13,9 @@ var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesBy
 var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
+var sellUrl = apiPath + crmApi
++ "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
+var hash = new Array("尚未联系", "有兴趣", "意向明确", "成交" ,"输单");
 var ycAmt = 0;
 var tcAmt = 0;
 var gsAmt = 0;
@@ -72,6 +75,8 @@ var mitemRate = 0;
 var mpartRate = 0;
 var x = 0;
 var y = 0;
+var showSellEl=null;
+var sfData = {};
 var prdtTypeHash = {
     "1":"套餐",
     "2":"项目",
@@ -117,7 +122,7 @@ $(document).ready(function ()
     cardTimesGrid.setUrl(cardTimesGridUrl);
     
     carSellPointGrid = nui.get("carSellPointGrid");
-    var data = [{prdtName:'保养到期提醒',amt:'3850',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'保养到期提醒'},
+/*    var data = [{prdtName:'保养到期提醒',amt:'3850',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'保养到期提醒'},
                 {prdtName:'商业险到期提醒',amt:'2600',status:'未联系',creator:'杨超越',doTimes:'2018-12-15',type:'商业险到期提醒'},
                 {prdtName:'交强险到期提醒',amt:'3460',status:'未联系',creator:'杨超越',doTimes:'2018-12-26',type:'交强险到期提醒'},
                 {prdtName:'更换机油',amt:'360',status:'意向明确',creator:'杨超越',doTimes:'2018-12-05',type:'车况检查'},
@@ -125,8 +130,8 @@ $(document).ready(function ()
                 {prdtName:'储值卡到期',amt:'1000',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'储值卡到期'},
                 {prdtName:'贴膜',amt:'50',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'},
                 {prdtName:'镀金',amt:'330',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'},
-                {prdtName:'更换机油',amt:'35',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'}];
-    carSellPointGrid.setData(data);
+                {prdtName:'更换机油',amt:'35',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'}];*/
+    carSellPointGrid.setUrl(sellUrl);
     advancedMemCardWin = nui.get("advancedMemCardWin");
     memCardGrid = nui.get("memCardGrid");
     memCardGrid.setUrl(memCardGridUrl);
@@ -134,12 +139,20 @@ $(document).ready(function ()
     pkgRateEl = nui.get("pkgRateEl");
     itemRateEl = nui.get("itemRateEl");
     partRateEl = nui.get("partRateEl");
+    showSellEl = nui.get("showSellEl");
     mtAdvisorIdEl = nui.get("mtAdvisorId");
     serviceTypeIdEl = nui.get("serviceTypeId");
     searchNameEl = nui.get("search_name");
     servieIdEl = nui.get("servieIdEl");
     searchKeyEl = nui.get("search_key");
     searchKeyEl.setUrl(guestInfoUrl);
+    
+    initDicts({
+    	chanceType:SELL_TYPE//商机
+    },function(data){
+    	
+    });
+   
     searchKeyEl.on("beforeload",function(e){
         if(fserviceId){
             e.cancel = true;
@@ -325,6 +338,24 @@ $(document).ready(function ()
                 break;
         }
     });
+    
+    carSellPointGrid.on("drawcell", function(e) {
+		switch (e.field) {
+		case "status":
+			e.cellHtml = hash[e.value];
+			break;
+		case "chanceType":
+			for(var i=0;i<sfData.length;i++){
+				if(e.value==sfData[i].customid){
+					e.cellHtml =sfData[i].name;
+					}
+				}
+			break;
+		default:
+			break;
+		}
+
+	});
     rpsPackageGrid.on("cellbeginedit",function(e){
         var field=e.field; 
         var editor = e.editor;
@@ -751,6 +782,7 @@ function doSetMainInfo(car){
 
     doSearchCardTimes(fguestId);
     doSearchMemCard(fguestId);
+    doSearchSell(fguestId);
     
     $("#guestNameEl").html(car.guestFullName);
     $("#showCarInfoEl").html(car.carNo);
@@ -907,6 +939,7 @@ function setInitData(params){
 
                         doSearchCardTimes(fguestId);
                         doSearchMemCard(fguestId);
+                        doSearchSell(fguestId);
                         
                         billForm.setData(data);
                         insuranceForm.setData(data);
@@ -1958,6 +1991,7 @@ function showCardTimes(){
 
     doSearchCardTimes(fguestId);
 }
+
 function showCard(){
     if(!fguestId || advancedMemCardWin.visible) {
         advancedMemCardWin.hide();
@@ -1971,7 +2005,6 @@ function showCard(){
     cardTimesGrid.clearRows();
     doSearchMemCard(fguestId);
 }
-
 function doSearchCardTimes(guestId)
 {
     cardTimesGrid.clearRows();
@@ -2008,6 +2041,23 @@ function doSearchMemCard(guestId)
         $("#showCardEl").html("储值卡("+len+")");
     });
 }
+function doSearchSell(guestId)
+{
+    memCardGrid.clearRows();
+    if(!guestId) return;
+    var params = {
+    		 guestId:guestId
+    }
+    carSellPointGrid.load({
+    	token:token,
+    	params:params
+    },function(){
+        var data = carSellPointGrid.getData();
+        var len = data.length||0;
+        $("#showSellEl").html("销售机会("+len+")");
+    });
+}
+
 function addGuest(){
     doApplyCustomer({},function(adction){
         if("ok" == action)
@@ -3093,6 +3143,7 @@ function showCarCheckInfo(){
 }
 
 function showSellPoint() {
+	 sfData = nui.get("chanceType").data;
 	showCarSellPointInfo();
 }
 
@@ -3110,7 +3161,7 @@ function showCarSellPointInfo(){
     advancedCardTimesWin.hide();
     carCheckInfo.hide();
     advancedMemCardWin.hide();
-    //SearchCheckMain(changeCheckInfoTab);
+    doSearchSell(fguestId);
 }
 
 //结算界面关掉之后，还是可以再次结算？？

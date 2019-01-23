@@ -29,6 +29,7 @@ pageEncoding="UTF-8" session="false" %>
 </head>
 <body>
     <div class="nui-toolbar" style="padding:2px;border-top:0;border-left:0;border-right:0;">
+    <input class="nui-combobox" name="chanceType" id="chanceType" valueField="customid" textField="name"  visible="false" />
 		 <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
          <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onenterSearch(this.value)"/>
         <span class="separator"></span>

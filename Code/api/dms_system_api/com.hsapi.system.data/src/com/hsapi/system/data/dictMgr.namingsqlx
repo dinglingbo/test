@@ -226,6 +226,7 @@
         where is_disabled = 0 and (orgid = #orgid# or orgid = 0 )
         order by id
     </select>   
+
     
     <!--查询本店系统参数 设置-->
     <select id="queryBillParams" parameterClass="HashMap" resultClass="HashMap">

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件选择</title>
-<script src="<%=webPath + contextPath%>/repair/js/DataBase/Part/partSelect.js?v=2.1.10"></script>
+<script src="<%=webPath + contextPath%>/repair/js/DataBase/Part/partSelect.js?v=2.1.11"></script>
 <style type="text/css">
 .table-label {
     text-align: right;
@@ -193,7 +193,7 @@
                           width="20" headerAlign="center" header="">操作
                         </div>
                         <div field="name" headerAlign="center" allowSort="true" width="80px">配件名称</div>
-                        <div field="unitPrice" headerAlign="center" allowSort="true" width="20px">金额</div>                
+                       <div field="id" headerAlign="center" allowSort="true" width="20px" visible="false">id</div>                
                       </div>
                     </div>
                   </div>

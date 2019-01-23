@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-销售单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=2.0.15"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=2.0.18"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -288,7 +288,6 @@
      editNextOnEnterKey="true"
      allowSortColumn="true"
      allowCellSelect="true"
-     oncellcommitedit="onCellCommitEdit"
      ondrawsummarycell="onDrawSummaryCell"
      allowSortColumn="false"
      >
@@ -322,11 +321,16 @@
                 </div>
                 <div field="subtotal" summaryType="sum" name="subtotal" width="60" headerAlign="center" header="小计" align="center" visible="false">
                 </div>
-                <div field="saleMan" headerAlign="center"
+                <!-- <div field="saleMan" headerAlign="center"
                      allowSort="false" visible="true" width="50" header="销售员" align="center" align="center">
                      <input  property="editor" enabled="true" dataField="memList" 
                              class="nui-combobox" valueField="empName" textField="empName" data="memList"
                              url="" onvaluechanged="onpartsalemanChanged" emptyText=""  vtype="required"/> 
+                </div> -->
+                <div field="saleMan" headerAlign="center"
+                     allowSort="false" visible="true" width="50" header="" align="center" name="saleMan">
+                                                   销售员<a href="javascript:setPartSaleMans()" title="批量设置销售员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+                     <input class="nui-textbox" property="editor" id="saleMansName" name="saleMansName"  onclick="openItemSaleMans" width="60%"/> 
                 </div>
                 <div field="saleManId" headerAlign="center"
                      allowSort="false" visible="false" width="80" header="销售员" align="center" align="center">

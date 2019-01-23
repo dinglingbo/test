@@ -160,7 +160,9 @@ $(document).ready(function(v)
 			delcallback && delcallback(row,function(){
 				tempGrid.removeRow(row);
 			});
+        	
 			tempGrid.removeRow(row);
+			
         }
     });
 	
@@ -169,6 +171,7 @@ $(document).ready(function(v)
 		var row = e.row;
         if(field=="check" ){
 			tempGrid2.removeRow(row);
+			partList = tempGrid2.getData();
         }
     });
 	
@@ -441,7 +444,7 @@ function sellOnOk(){
 			}else{
 			   row.check = 1;
 			   tempGrid2.addRow(row);
-			   partList.push(row);
+			   partList = tempGrid2.getData();
 			}
 		}
 	}

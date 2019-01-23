@@ -9,6 +9,7 @@ var repairApiUrl = apiPath + repairApi + "/";
 var grid = null;
 var gridUrl = apiPath + crmApi
 + "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
+var sfData = {};
 var hash = new Array("尚未联系", "有兴趣", "意向明确", "成交" ,"输单");
 var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"联系人名称"},{id:"2",name:"手机号"}];
 var statusList1 = [{id:"0",name:"尚未联系0%"},{id:"1",name:"有兴趣30%"},{id:"2",name:"意向明确50%"},{id:"3",name:"成交100%"},{id:"4",name:"输单0%"}];
@@ -29,11 +30,24 @@ $(document).ready(function(v) {
 		case "status":
 			e.cellHtml = hash[e.value];
 			break;
+		case "chanceType":
+			for(var i=0;i<sfData.length;i++){
+				if(e.value==sfData[i].customid){
+					e.cellHtml =sfData[i].name;
+					}
+				}
+			break;
 		default:
 			break;
 		}
 
 	});
+	
+    initDicts({
+    	chanceType:SELL_TYPE//商机
+    },function(){
+    	sfData = nui.get("chanceType").data;
+    });
 	
     //服务顾问
     initMember("chanceManId", function () {

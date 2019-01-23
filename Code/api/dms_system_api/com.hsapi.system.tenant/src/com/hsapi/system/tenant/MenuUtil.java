@@ -84,12 +84,6 @@ public class MenuUtil {
 	        for(int i = 0; i<c.size(); i++) {
 	        	DataObject d = c.get(i);
 	        	
-	        	/*
-	        	 *  menuName: "预约管理"      ----------
-					menuPrimeKey: "2081"      ----------
-					imagePath: null            ----------
-					linkAction: "/com.hsweb.RepairBusiness.BookingManagementList.flow"        ---------------
-					linkResId: "dms_booking"*/
 	        	String menuName = d.getString("menuname");
 	        	String menuPrimeKey = d.getString("menuid");
 	        	String imagePath = d.getString("imagepath");

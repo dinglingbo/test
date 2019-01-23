@@ -51,7 +51,7 @@
     <figSize height="17" width="25"/>
     <node>assign2</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="hgetAndExtend" displayName="hgetAndExtend" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo2" name="hgetAndExtend" displayName="hgetAndExtend" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>invokePojo8</targetNode>
@@ -64,13 +64,14 @@
     <location x="492" y="102"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hs.common.RedisUtils.hgetAndExtend</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ResauthUtils.hgetAndExtend</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="hsetName" type="query" value="java.lang.String" valueType="Java" pattern="reference">cacheName</process:inputVariable>
       <process:inputVariable id="1" name="key" type="query" value="java.lang.String" valueType="Java" pattern="reference">key</process:inputVariable>
+      <process:inputVariable id="2" name="expireTime" type="query" value="int" valueType="Java" pattern="reference">expireTimes</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
       <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">cacheValue</process:outputVariable>
@@ -81,7 +82,7 @@
     <figSize height="17" width="89"/>
     <node>invokePojo2</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="hsetAndExtend" displayName="" collapsed="false" type="invoke" index="3" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="hsetAndExtend" displayName="hsetAndExtend" collapsed="false" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo5</sourceNode>
       <targetNode>assign2</targetNode>
@@ -94,14 +95,15 @@
     <location x="589" y="206"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo5label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.hs.common.RedisUtils.hsetAndExtend</process:partner>
+    <process:pojo methodType="static" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ResauthUtils.hsetAndExtend</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="hsetName" type="query" value="java.lang.String" valueType="Java" pattern="reference">cacheName</process:inputVariable>
       <process:inputVariable id="1" name="key" type="query" value="java.lang.String" valueType="Java" pattern="reference">key</process:inputVariable>
       <process:inputVariable id="2" name="value" type="query" value="java.lang.Object" valueType="Java" pattern="reference">cacheValue</process:inputVariable>
+      <process:inputVariable id="3" name="expireTime" type="query" value="int" valueType="Java" pattern="reference">expireTimes</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -183,7 +185,7 @@
     <figSize height="17" width="116"/>
     <node>invokePojo7</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo8" name="gzipStr2Obj" displayName="" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo8" name="gzipStr2Obj" displayName="gzipStr2Obj" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo8</sourceNode>
       <targetNode>assign2</targetNode>
@@ -219,7 +221,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="java.util.HashMap[]" name="data" type="query" valueType="Java">data</process:return>
+      <process:return id="0" language="commonj.sdo.DataObject[]" name="data" type="query" valueType="Java">data</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="2" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
     </process:returns>
@@ -364,7 +366,7 @@
       <targetNode>assign2</targetNode>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
-    <location x="780" y="190"/>
+    <location x="780" y="206"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -382,7 +384,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="752" y="225"/>
+    <location x="752" y="241"/>
     <figSize height="17" width="83"/>
     <node>subprocess1</node>
   </nodes>
@@ -428,9 +430,10 @@
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
     <process:input description="" isArray="false" name="title" primitiveType="String"/>
     <process:input description="强制从数据库查询" isArray="false" name="fromDb" primitiveType="String"/>
+    <process:input description="" isArray="false" name="expireTimes" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
-    <process:output anyType="java.util.HashMap" description="" isArray="true" name="data"/>
+    <process:output anyType="commonj.sdo.DataObject" description="" isArray="true" name="data"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
   </process:outputs>

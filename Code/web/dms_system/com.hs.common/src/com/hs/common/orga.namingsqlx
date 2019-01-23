@@ -39,17 +39,17 @@
     <select id="queryResInfo" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT DISTINCT a.menuid, a.menuname, a.menucode, a.imagepath, a.parentsid, b.funccode, 
 				 a.DISPLAYORDER,  b.funcaction, a.EXPANDPATH as expandpath, 
-				 a.APP_ID as appId, b.parainfo as params
+				 a.APP_ID as appId, b.parainfo as params, b.FUNCTYPE as functype
 		from app_menu a
 		inner join com_app_function b
 		on a.funccode = b.FUNCCODE
-		where b.FUNCCODE = #roleId#
+		where b.FUNCCODE = #resId#
     </select>
     <!--获取菜单结构-->
     <select id="queryMenu" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT m.menuid, m.menuname, m.menucode, m.imagepath, m.parentsid, m.funccode, 
 			   m.DISPLAYORDER, null as funcaction, m.EXPANDPATH as expandpath, 
-			   m.APP_ID as appId, m.parameter as params
+			   m.APP_ID as appId, m.parameter as params, 'menu' as functype
 		from app_menu m
 		where ifnull(m.funccode, '') = ''
 		order by m.DISPLAYORDER asc

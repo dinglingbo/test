@@ -97,43 +97,82 @@ $(document).ready(function ()
 
     searchKeyEl.on("valuechanged",function(e){
         var item = e.selected;
-        if(!item){
-    		item = e.sender.listbox.oOolo0;
-    	}
         if(fserviceId){
             return;
         }
         if (item) {
-            var carNo = item.carNo||"";
-            var tel = item.guestMobile||"";
-            var guestName = item.guestFullName||"";
-            var carVin = item.vin||"";
-
-
-
-            if(tel){
-                tel = "/"+tel;
-            }
-            if(guestName){
-                guestName = "/"+guestName;
-            }
-            if(carVin){
-                carVin = "/"+carVin;
-            }
-            var t = carNo + tel + guestName + carVin;
-
-            var sk = document.getElementById("search_key");
-            sk.style.display = "none";
-            searchNameEl.setVisible(true);
-
-
-            searchNameEl.setValue(t);
-            //searchNameEl.setEnabled(false);
-
-            doSetMainInfo(item);
+       	   if(item.guestMobile == "10000"){
+        		addOrEdit(item);
+        	}else{
+		         var carNo = item.carNo||"";
+		         var tel = item.guestMobile||"";
+		         var guestName = item.guestFullName||"";
+		         var carVin = item.vin||"";
+		
+		         if(tel){
+		             tel = "/"+tel;
+		         }
+		         if(guestName){
+		             guestName = "/"+guestName;
+		         }
+		         if(carVin){
+		             carVin = "/"+carVin;
+		         }
+		         var t = carNo + tel + guestName + carVin;
+		
+		         var sk = document.getElementById("search_key");
+		         sk.style.display = "none";
+		         searchNameEl.setVisible(true);
+		         searchNameEl.setValue(t);
+		         //searchNameEl.setEnabled(false);	
+		         doSetMainInfo(item);
+           }
         }
 
     });
+    
+    
+    searchKeyEl.on("itemclick",function(e){
+    	 var item = e.item;
+         if(fserviceId){
+             return;
+         }
+         if (item) {
+        	 if(item.guestMobile == "10000"){
+         		addOrEdit(item);
+         	}else{
+		         var carNo = item.carNo||"";
+		         var tel = item.guestMobile||"";
+		         var guestName = item.guestFullName||"";
+		         var carVin = item.vin||"";
+		
+		         if(tel){
+		             tel = "/"+tel;
+		         }
+		         if(guestName){
+		             guestName = "/"+guestName;
+		         }
+		         if(carVin){
+		             carVin = "/"+carVin;
+		         }
+		         var t = carNo + tel + guestName + carVin;
+		
+		         var sk = document.getElementById("search_key");
+		         sk.style.display = "none";
+		         searchNameEl.setVisible(true);
+		
+		
+		         searchNameEl.setValue(t);
+		         //searchNameEl.setEnabled(false);
+		
+		         doSetMainInfo(item);
+           }
+         }
+     });
+    
+    
+    
+    
     
 //    mainGrid.on("drawcell",function(e){
 //        switch (e.field)
@@ -1095,6 +1134,84 @@ function setNormal(){
 			}
 				
 		}
-	
-	
 }
+
+
+function addOrEdit(item)
+{
+    title = "完善散客信息";
+    var guest = {};
+    guest.guestId = item.guestId;
+    guest.carNo = item.carNo;
+    if(!item.guestId){
+    	showMsg("数据获取失败,请重新操作!","W");
+    	return;
+    }
+    nui.open({
+        url:"com.hsweb.repair.DataBase.AddEditCustomer.flow",
+        title:title,
+        width:560,
+        height:630,
+        onload:function(){
+            var iframe = this.getIFrameEl();
+            var params = {};
+            params.guest = guest;
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy:function(action)
+        {
+            if(action  == "ok")
+            {  
+            	var params = {};
+            	params.carNo = item.carNo;
+            	var json = nui.encode({
+            		params:params
+            	});
+            	 //查找上次里程
+                nui.ajax({
+            		url :guestInfoUrl,
+            		type : 'POST',
+            		data : json,
+            		cache : false,
+            		contentType : 'text/json',
+            		success : function(text) {
+            			var returnJson = nui.decode(text);
+            			if (returnJson.errCode == "S") {
+            				var data = returnJson.list;
+            				if(data && data.length>0){
+            					var item = data[0];
+            					var carNo = item.carNo||"";
+            			         var tel = item.guestMobile||"";
+            			         var guestName = item.guestFullName||"";
+            			         var carVin = item.vin||"";
+            			
+            			         if(tel){
+            			             tel = "/"+tel;
+            			         }
+            			         if(guestName){
+            			             guestName = "/"+guestName;
+            			         }
+            			         if(carVin){
+            			             carVin = "/"+carVin;
+            			         }
+            			         var t = carNo + tel + guestName + carVin;
+            			
+            			         var sk = document.getElementById("search_key");
+            			         sk.style.display = "none";
+            			         searchNameEl.setVisible(true);
+            			         searchNameEl.setValue(t);
+            			         //searchNameEl.setEnabled(false);	
+            			         doSetMainInfo(item);
+            				}
+            			}else {
+            				showMsg("数据加载失败,请重新操作!","E");
+            				return;
+            		    }
+            		}
+            	 });
+            }
+        }
+    });
+}
+
+

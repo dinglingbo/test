@@ -716,6 +716,14 @@
       <process:from type="literal" pattern="reference">104</process:from>
       <process:to type="query">params/BillTypeCode</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">stored/carId</process:from>
+      <process:to type="query">params/carId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">stored/carNo</process:from>
+      <process:to type="query">params/carNo</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
     <location x="737" y="181"/>

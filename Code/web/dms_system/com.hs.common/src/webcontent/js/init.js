@@ -40,6 +40,7 @@ var OUT_TYPE = "DDT20130703000065";//出库类型
 var BACK_REASON = "DDT20130703000072";//采购退货原因
 var COST_TYPE = "10101";//维修项目成本分类
 var ITEM_TYPE = 'DDT20130703000063';
+var SELL_TYPE = "10201";//销售机会
  
 var _sysApiRoot = apiPath + sysApi;
 var _initDmsObj = {};
@@ -88,11 +89,28 @@ function initCarBrand(id,callback){
         callAjax(url, {}, processAjax, processCarBrand, null); 
     }
 }
+
 function processCarBrand(data){
     _initDmsObj["initCarBrand"].setData(data);
     setDataToHash(data,"carBrand","id");
     _initDmsCallback["initCarBrand"] && _initDmsCallback["initCarBrand"]() && (_initDmsCallback["initCarBrand"] = null);
 }
+
+
+//销售机会
+function initSell(id,callback){
+	_initDmsCallback["initSell"] = callback;
+  if(checkObjExists(id, "initSell")){
+      var url = _sysApiRoot + "/com.hsapi.system.dict.dictMgr.querySell.biz.ext";
+      callAjax(url, {}, processAjax, processCarBrand, null); 
+  }
+}
+function processSell(data){
+    _initDmsObj["initSell"].setData(data);
+    setDataToHash(data,"sell","id");
+    _initDmsCallback["initSell"] && _initDmsCallback["initSell"]() && (_initDmsCallback["initSell"] = null);    
+}
+
 
 //车系
 function initCarSeries(id, carBrandId, callback){	

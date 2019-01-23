@@ -7,132 +7,66 @@ var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var partApiUrl = apiPath + partApi + "/";
 var repairApiUrl = apiPath + repairApi + "/";
 var grid = null;
-var gridUrl = repairApiUrl+ "com.hsapi.repair.repairService.query.queryRepairOut.biz.ext";
-var queryInfoForm = null;
-
+var gridUrl = apiPath + crmApi
++ "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
+var hash = new Array("尚未联系", "有兴趣", "意向明确", "成交" ,"输单");
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"联系人名称"},{id:"2",name:"手机号"}];
+var statusList1 = [{id:"0",name:"尚未联系0%"},{id:"1",name:"有兴趣30%"},{id:"2",name:"意向明确50%"},{id:"3",name:"成交100%"},{id:"4",name:"输单0%"}];
+var beginDateEl = null;
+var endDateEl = null;
+var chanceManIdEl = null;
 $(document).ready(function(v) {
 
-	queryInfoForm = new nui.Form("#queryInfoForm").getData(false, false);
-	grid = nui.get("grid");
-
-	grid.load(queryInfoForm);
+	grid = nui.get("mainGrid");
 	grid.setUrl(gridUrl);
-	grid.on("drawcell", onDrawCell);
-
-
-
-
-
-	
-	grid.on("rowdblclick", function(e) {
-		var row = grid.getSelected();
-		var rowc = nui.clone(row);
-		if (!rowc)
-			return;
-
-
-	});
+	beginDateEl = nui.get("beginDate");
+	endDateEl = nui.get("endDate");
+	chanceManIdEl = nui.get("chanceManId");
+    beginDateEl.setValue(getMonthStartDate());
+    endDateEl.setValue(addDate(getMonthEndDate(), 1));
 	grid.on("drawcell", function(e) {
 		switch (e.field) {
-		case "partBrandId":
-			if (brandHash[e.value]) {
-				e.cellHtml = brandHash[e.value].name || "";
-			} else {
-				e.cellHtml = "";
-			}
-			break;
-		case "storeId":
-			if (storeHash[e.value]) {
-				e.cellHtml = storeHash[e.value].name || "";
-			} else {
-				e.cellHtml = "";
-			}
-			break;
-		case "billTypeId":
-			if (billTypeHash[e.value]) {
-				e.cellHtml = billTypeHash[e.value].name || "";
-			} else {
-				e.cellHtml = "";
-			}
+		case "status":
+			e.cellHtml = hash[e.value];
 			break;
 		default:
 			break;
 		}
 
 	});
+	
+    //服务顾问
+    initMember("chanceManId", function () {
+        var data = nui.get("chanceManId").getData();
+        data.forEach(function (v) {
+            //mtAdvisorHash[v.id] = v;
+        });
+    });
+	grid.load({
+		token:token
+	});
 
 });
 
 
-function quickSearch(type){
-    var params = getSearchParams();
-    var querysign = 1;
-    var queryname = "本日";
-    switch (type)
-    {
-        case 0:
-            params.today = 1;
-            params.sCreateDate = getNowStartDate();
-            params.eCreateDate = addDate(getNowEndDate(), 1);
-            querysign = 1;
-            queryname = "本日";
-            break;
-        case 1:
-            params.yesterday = 1;
-            params.sCreateDate = getPrevStartDate();
-            params.eCreateDate = addDate(getPrevEndDate(), 1);
-            querysign = 1;
-            queryname = "昨日";
-            break;
-        case 2:
-            params.thisWeek = 1;
-            params.sCreateDate = getWeekStartDate();
-            params.eCreateDate = addDate(getWeekEndDate(), 1);
-            querysign = 1;
-            queryname = "本周";
-            break;
-        case 3:
-            params.lastWeek = 1;
-            params.sCreateDate = getLastWeekStartDate();
-            params.eCreateDate = addDate(getLastWeekEndDate(), 1);
-            querysign = 1;
-            queryname = "上周";
-            break;
-        case 4:
-            params.thisMonth = 1;
-            params.sCreateDate = getMonthStartDate();
-            params.eCreateDate = addDate(getMonthEndDate(), 1);
-            querysign = 1;
-            queryname = "本月";
-            break;
-        case 5:
-            params.lastMonth = 1;
-            params.sCreateDate = getLastMonthStartDate();
-            params.eCreateDate = addDate(getLastMonthEndDate(), 1);
-            querysign = 1;
-            queryname = "上月";
-            break;
-        default:
-            break;
-    }
-    
-    sCreateDateEl.setValue(params.sCreateDate);
-    eCreateDateEl.setValue(addDate(params.eCreateDate,-1));
-    currType = type;
-    if(querysign == 1){
-    	var menunamedate = nui.get("menunamedate");
-    	menunamedate.setText(queryname); 	
-    }
-    doSearch(params);
-}
-function getSearchParams() {
+
+function getSearchParams() {	
 	var params = {};
-	params.returnSign=0;
-	params.billTypeId='050207';
-	params.sCreateDate = sCreateDateEl.getText();
-	params.eCreateDate = addDate(eCreateDateEl.getText(),1);
-	params.pickMan = nui.get('pickMan1').getText();
-	return params;
+	params.status = nui.get("status").getValue();
+    params.startDate = beginDateEl.getValue();
+    var eRecordDate = endDateEl.getValue();
+    params.endDate = addDate(eRecordDate,1);
+    params.chanceManId = chanceManIdEl.getValue();
+    var type = nui.get("search-type").getValue();
+    var typeValue = nui.get("carNo-search").getValue();
+    if(type==0){
+        params.carNo = typeValue;
+    }else if(type==1){
+        params.guestName = typeValue;
+    }else if(type==2){
+        params.guestMobile = typeValue;
+    }
+    return params;
 }
 function onSearch() {
 	var params = getSearchParams();
@@ -154,7 +88,7 @@ function add() {
 				+ token,
 		title : "添加商机",
 		width : 550,
-		height : 450,
+		height : 410,
 		onload : function() {
 			var iframe = this.getIFrameEl();
 			var list = [];
@@ -175,12 +109,12 @@ function edit() {
 		var row = grid.getSelected();
 		if (row) {
 			nui.open({
-				url :  webPath + contextPath
+				url : webPath + contextPath
 				+ "/com.hsweb.part.manage.businessOpportunityEdit.flow?token="
 				+ token,
-				title : "修改计次卡",
-				width : 900,
-				height : 580,
+				title : "更新商机",
+				width : 550,
+				height : 410,
 				onload : function() {
 					var iframe = this.getIFrameEl();
 					var data = row;

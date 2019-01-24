@@ -262,7 +262,8 @@ HeaderFilter.prototype = {
            var checked = false;
            if (column._filterMap) checked = !!column._filterMap[text];
            arr[arr.length] = text;
-           showcheckBox(column,text,sb,data);
+           var me = this;
+           showcheckBox(column,text,sb,data,me);
        }
        
        el.find('.filterwindow-content').html(sb.join(''));
@@ -286,29 +287,15 @@ function cancel(){
 	xyme.clearFilter(xycolumn);
 }
 
-function showcheckBox(column,text,sb,data){
+function showcheckBox(column,text,sb,data,me){
 	var value = null;
 	var index = 0;
-	switch(column.field){
-		case "status" ://状态 
-			value = prebookStatusHash;// [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, {name: '已取消' , id: '2' }, { name: '已开单', id: '3' }, { name: '已评价', id: '4' }];
-			break;
-		case "prebookSource"://预约来源
-			value = prebookSourceHash;
-			break;
-		case "serviceTypeId" : //业务类型
-			value = serviceTypeHash;
-			break;
-		case "prebookCategory" : // 预约类型
-			value = prebookCategoryHash;
-			break;
+	if(me.options.tranCallBack) {
+		value = me.options.tranCallBack(column.field);
 	}
 	if(!sb.length){
 		sb[sb.length] = '<div class="filterwindow-item"><label><input class="filterwindow-item-checkbox checkall" type="checkbox"  value="全部"/>全部</label></div>';
 		index ++;
-	}
-	if(!value){//如果跟上面类型不匹配则处理自定义类型
-		value = dataProcessing(column);
 	}
 	if(value){
 		for(var j = 0 ,  l = value.length ; j < l ; j ++){//判断是否已经存了相同数据到数组上
@@ -341,13 +328,4 @@ function contains(arr, obj) {//判断数组是否包含元素
         }
     }
     return false;
-}
-
-function dataProcessing(column){//自定义类型  根据表头（如多处表头field相同且定义了data在switch上添加）
-	var header = column.header;
-	var value = null;
-	if(header.indexOf("是否") > -1){//数据显示 是否类型
-		value =[{ name: '否', id: '0' }, { name: '是', id: '1' }];
-	}
-	return value;
 }

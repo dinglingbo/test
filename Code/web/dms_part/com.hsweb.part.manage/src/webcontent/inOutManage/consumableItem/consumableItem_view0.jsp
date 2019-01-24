@@ -10,7 +10,11 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>耗材出库</title>
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.0"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.2"></script>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" 
+rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" 
+type="text/javascript"></script>
     <style type="text/css">
     html,body {
        margin: 0;
@@ -119,7 +123,7 @@ pageEncoding="UTF-8" session="false"%>
                    <div field="applyCarModel" name="applyCarModel" width="200" headerAlign="center" header="品牌车型"></div>
                    <div field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
                    <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="150px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
-                   <div field="guestName" width="280px" headerAlign="center" allowSort="true" header="供应商"></div>  
+                   <div field="guestName" name="guestName" width="280px" headerAlign="center" allowSort="true" header="供应商"></div>  
 
                    <div field="fullName" name="fullName" width="300" headerAlign="center" header="配件全称"></div> 
                 <div field="pickMan" visible="false"  name="pickMan" width="50" headerAlign="center" header="领料人">

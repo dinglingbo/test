@@ -88,7 +88,7 @@ $(document).ready(function(v) {
 
 	});
 	
-	grid.on("rowdblclick", function(e) {
+	grid.on("rowdblclick", function(e) {    
 		var row = grid.getSelected();
 		var rowc = nui.clone(row);
 		if (!rowc)
@@ -96,6 +96,23 @@ $(document).ready(function(v) {
 		onBlack();
 
 	});
+	 var filter = new HeaderFilter(enterGrid, {
+	        columns: [
+	            { name: 'applyCarModel' },
+	            { name: 'guestName' },
+	            { name: 'pickMan' }
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
+	
 	enterGrid.on("drawcell", function(e) {
 		switch (e.field) {
 		case "partBrandId":

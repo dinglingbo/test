@@ -8,7 +8,9 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.0.8"></script>
+		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -112,14 +114,14 @@
          onshowrowdetail="onShowRowDetail"
          allowCellWrap = true
          showSummaryRow="true">
-        <div property="columns">
+        <div property="columns"> 
                 <div type="indexcolumn">序号</div>
                 <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-                <div field="guestName" width="80" headerAlign="center" header="往来单位"></div>
+                <div field="guestName" name="guestName" width="80" headerAlign="center" header="往来单位"></div>
                 <div field="createDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="对账日期"></div>
-                <div field="stateMan" width="60" headerAlign="center" header="对账员"></div><div field="auditSign" width="35" headerAlign="center" header="状态"></div>
+                <div field="stateMan" name="stateMan" width="60" headerAlign="center" header="对账员"></div><div field="auditSign" width="35" headerAlign="center" header="状态"></div>
                 <div field="serviceId" headerAlign="center" width="150" header="对账单号"></div>
-                <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
+                <div field="auditor" name="auditor" width="60" headerAlign="center" header="审核人"></div>
                 <div field="auditDate" width="60" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="审核日期"></div>
         </div>
       </div>

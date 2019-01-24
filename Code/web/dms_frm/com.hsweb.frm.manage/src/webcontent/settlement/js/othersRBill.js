@@ -35,8 +35,23 @@ $(document).ready(function(v)
     auditSignEl = nui.get("auditSign");
 
     searchBeginDate.setValue(getNowStartDate());
-    searchEndDate.setValue(getNowEndDate());
+    searchEndDate.setValue(getNowEndDate());    
+	  var filter = new HeaderFilter(mainGrid, {
+	        columns: [
+	            { name: 'auditor' },
+		            { name: 'guestName' },
+	            { name: 'carNo' },
+	        ],
+	        callback: function (column, filtered) {
+	        },
 
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
     getInComeExpenses(function(data) {
         Rlist = data.list;
         //billTypeListEl.setUrl(list);

@@ -11,7 +11,8 @@ var gAuditSign=[{
 	"id":2,
 	"text":"不通过"
 }];
-
+var headerHash = [{ name: '未审核', id: '0' }, { name: '通过', id: '1' }, { name: '不通过', id: '2' }];
+var headerHash1 = [{ name: '首次到店', id: '1' }, { name: '再次回厂', id: '2' }, { name: '流失召回', id: '3' }];
 var brandList=[];
 var brandHash={};
 var serviceList=[];
@@ -30,7 +31,31 @@ $(document).ready(function(){
 		serviceList.forEach(function(v) {serviceHash[v.id] = v;});
 	});
 	
-	
+	   
+	   var filter = new HeaderFilter(investGrid, {
+	        columns: [
+	            { name: 'visitMan' },
+	            { name: 'recorder' },
+	            { name: 'auditSign' },
+	            { name: 'carType' }
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    		
+		    		case "auditSign" : // 预约类型
+		    			value = headerHash;
+		    			break;
+		    		case "carType" : // 预约类型
+		    			value = headerHash1;
+		    			break;
+		    	}
+	        	return value;
+	        }
+	    });
 	investGrid.on("rowdblclick", function(e) {
 		var row = investGrid.getSelected();
 		var rowc = nui.clone(row);

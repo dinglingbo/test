@@ -50,7 +50,7 @@ pageEncoding="UTF-8" session="false" %>
     </div>
     <div class="nui-fit">
         <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" 
-              showPager="true"  dataField="list"   url="" sortMode="client" 
+              showPager="true"  dataField="list"   url="" sortMode="client"  totalField="page.count"
              pageSize="100" sizeList="[50,100,200,500]" showSummaryRow="true" allowResize="true" multiSelect="true" >
             <div property="columns">   
                 <div type="indexcolumn"  headeralign="center" width="30">序号</div>

@@ -9,6 +9,8 @@
 <head>
     <title>移仓单主界面</title>
     <script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrderMain.js?v=1.1.21"></script>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
     .title {
         width: 90px;
@@ -132,13 +134,13 @@
         <!--             <div header="订单信息" headerAlign="center"> -->
             <div type="indexcolumn" width="20">序号</div>
             <div type="expandcolumn" width="15" ><span class="fa fa-plus fa-lg"></span></div>
-			<div field="auditSign" width="60" headerAlign="center" header="状态"></div>
+			<div field="auditSign" name="auditSign" width="60" headerAlign="center" header="状态"></div>
             <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
             <div allowSort="true" field="storeId" width="90" headerAlign="center" header="移出仓库"></div>
             <div allowSort="true" field="receiveStoreId" width="90" headerAlign="center" header="移入仓库"></div>
             <div allowSort="true" field="createDate" headerAlign="center" header="移仓日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-            <div field="orderMan" width="60" headerAlign="center" header="业务员"></div>
-            <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
+            <div field="orderMan" name="orderMan" width="60" headerAlign="center" header="业务员"></div>
+            <div field="auditor" name="auditor" width="60" headerAlign="center" header="审核人"></div>
             <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
         </div>
         <!--             </div> -->

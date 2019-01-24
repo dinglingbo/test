@@ -84,7 +84,24 @@ $(document).ready(function(v)
 			return;
 		edit();
 
-	});
+	});    
+	
+	  var filter = new HeaderFilter(rightGrid, {
+	        columns: [
+	            { name: 'stateMan' },
+		            { name: 'guestName' },
+	            { name: 'auditor' },
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
     innerPartGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;

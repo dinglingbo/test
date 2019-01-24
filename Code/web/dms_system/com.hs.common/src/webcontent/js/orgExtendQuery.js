@@ -29,8 +29,25 @@ $(document).ready(function(v) {
     var request = {
     		"params":{
     			
-    		}
-    };   
+    		}    
+    }; 
+	  var filter = new HeaderFilter(grid, {
+	        columns: [
+	            { name: 'code' },
+		            { name: 'name' },
+	            { name: 'shortName' },
+	            { name: 'recorder' }
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
     grid.load(request,function(){
         //成功;
        // nui.alert("数据成功！");

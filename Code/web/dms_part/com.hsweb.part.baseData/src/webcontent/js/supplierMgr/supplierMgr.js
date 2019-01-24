@@ -40,9 +40,28 @@ $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid.setUrl(gridUrl);
 	search();
-	grid.on("beforeload", function(e) {
+	grid.on("beforeload", function(e) {     
 		e.data.token = token;
 	});
+	  var filter = new HeaderFilter(grid, {
+	        columns: [
+	            { name: 'manager' },
+		            { name: 'managerDuty' },
+	            { name: 'contactor' },
+	            { name: 'shortName' },
+	            { name: 'fullName' }
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
+	
 	grid.on("drawcell", function(e) {
 		var field = e.field;
 		if ("isDisabled" == field) {

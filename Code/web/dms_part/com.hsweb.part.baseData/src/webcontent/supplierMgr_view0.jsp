@@ -9,7 +9,9 @@
 -->
 <head>
 <title>供应商管理</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.1.10"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierMgr.js?v1.1.11"></script>
+<link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -82,47 +84,47 @@
             <!--<div type="checkcolumn" ></div>-->
             <div header="基本信息" headerAlign="center">
                 <div property="columns">
-                    <!-- <div allowSort="true" field="orgid" width="100" headerAlign="center" header="店名"></div> -->
+                    <!-- <div  field="orgid" width="100" headerAlign="center" header="店名"></div> -->
                     <div type="checkcolumn" >选择</div>
-                    <div allowSort="true" field="shortName" width="140" headerAlign="center" header="供应商简称"></div>
-                    <div allowSort="true" field="fullName" width="240" headerAlign="center" header="供应商全称"></div>
-                    <div allowSort="true" field="isInternal" width="100" headerAlign="center" header="是否内部供应商"></div>
-                    <div allowSort="true" field="tel" width="140" headerAlign="center" header="电话"></div>
-                    <div allowSort="true" field="supplierType" width="100" headerAlign="center" header="供应商类型"></div>
-                    <div allowSort="true" field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>
+                    <div  field="shortName" name="shortName" width="140" headerAlign="center" header="供应商简称"></div>
+                    <div  field="fullName" name="fullName" width="240" headerAlign="center" header="供应商全称"></div>
+                    <div  field="isInternal" width="100" headerAlign="center" header="是否内部供应商"></div>
+                    <div  field="tel" width="140" headerAlign="center" header="电话"></div>
+                    <div  field="supplierType" width="100" headerAlign="center" header="供应商类型"></div>
+                    <div  field="advantageCarbrandId" width="100" headerAlign="center" header="优势品牌/产品"></div>
                 </div>
             </div>
             <div header="联系人信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="manager" width="80" headerAlign="center">联系人</div>
-                    <div allowSort="true" field="managerDuty" width="80" headerAlign="center">职务</div>
-                    <div allowSort="true" field="mobile" width="90" headerAlign="center">联系人手机</div>
-                    <div allowSort="true" field="contactor" width="80" headerAlign="center">业务员</div>
-                    <div allowSort="true" field="contactorTel" width="100" headerAlign="center">业务员手机</div>
+                    <div  field="manager" name="manager"  width="80" headerAlign="center">联系人</div>
+                    <div  field="managerDuty" name="managerDuty"  width="80" headerAlign="center">职务</div>
+                    <div  field="mobile" width="90" headerAlign="center">联系人手机</div>
+                    <div  field="contactor" name="contactor"  width="80" headerAlign="center">业务员</div> 
+                    <div  field="contactorTel" width="100" headerAlign="center">业务员手机</div>
                 </div>
             </div>
             <div header="财务信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="tgrade" width="100" headerAlign="center">信誉等级</div>
-                    <div allowSort="true" field="creditLimit" width="100" headerAlign="center">信誉额度</div>
-                    <div allowSort="true" field="billTypeId" width="100" headerAlign="center">票据类型</div>
-                    <div allowSort="true" field="settTypeId" width="100" headerAlign="center">结算方式</div>
+                    <div  field="tgrade" width="100" headerAlign="center">信誉等级</div>
+                    <div  field="creditLimit" width="100" headerAlign="center">信誉额度</div>
+                    <div  field="billTypeId" width="100" headerAlign="center">票据类型</div>
+                    <div  field="settTypeId" width="100" headerAlign="center">结算方式</div>
                 </div>
             </div>
             <div header="其他信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="provinceId" width="80" headerAlign="center">省份 </div>
-                    <div allowSort="true" field="cityId" width="100" headerAlign="center">城市</div>
-                    <div allowSort="true" field="fax" width="100" headerAlign="center">传真</div>
-                    <div allowSort="true" field="remark" width="200" headerAlign="center">备注</div>
+                    <div  field="provinceId" width="80" headerAlign="center">省份 </div>
+                    <div  field="cityId" width="100" headerAlign="center">城市</div>
+                    <div  field="fax" width="100" headerAlign="center">传真</div>
+                    <div  field="remark" width="200" headerAlign="center">备注</div>
                 </div>
             </div>
             <div header="操作信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="modifier" width="100" headerAlign="center">最后操作人</div>
-                    <div allowSort="true" field="modifyDate" width="135" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm">最后操作时间</div>
-                    <div allowSort="true" field="isDisabled" width="30" headerAlign="center" align="center">禁用</div>
-                    <div allowSort="true" field="code" width="120" headerAlign="center">供应商编码</div>
+                    <div  field="modifier" width="100" headerAlign="center">最后操作人</div>
+                    <div  field="modifyDate" width="135" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm">最后操作时间</div>
+                    <div  field="isDisabled" width="30" headerAlign="center" align="center">禁用</div>
+                    <div  field="code" width="120" headerAlign="center">供应商编码</div>
                 </div>
             </div>
         </div>

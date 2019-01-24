@@ -56,6 +56,22 @@ $(document).ready(function ()
     beginDateEl.setValue(getMonthStartDate());
     endDateEl.setValue(addDate(getMonthEndDate(), 1));
     onSearch();
+	  var filter = new HeaderFilter(mainGrid, {
+	        columns: [
+	            { name: 'mtAdvisor' },
+		            { name: 'guestFullName' },
+	            { name: 'carModel' },
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
     initMember("mtAdvisorId",function(){     
         initServiceType("serviceTypeId",function(data) {
             servieTypeList = nui.get("serviceTypeId").getData();

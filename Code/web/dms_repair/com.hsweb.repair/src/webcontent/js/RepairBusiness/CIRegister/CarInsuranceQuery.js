@@ -17,7 +17,7 @@
  $(document).ready(function ()
  {
     advancedSearchWin = nui.get("advancedSearchWin");
-    advancedSearchForm = new nui.Form("#advancedSearchWin");
+    advancedSearchForm = new nui.Form("#advancedSearchWin");     
     leftGrid = nui.get("leftGrid");
     leftGrid.setUrl(leftGridUrl);
     nui.get("search-type").setData(statusList);
@@ -28,7 +28,25 @@
     innerPartGrid = nui.get("innerPartGrid");
     innerPartGrid.setUrl(getInsuranceUrl);
 
-    
+	  var filter = new HeaderFilter(leftGrid, {
+	        columns: [
+	            { name: 'saleMans' },
+	            { name: 'guestName' },
+		            { name: 'mtAdvisor' },
+	            { name: 'insureTypeName' },
+	            { name: 'carModel' },
+	            { name: 'insureCompName' }
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
     leftGrid.on("drawcell", function (e) {
  
         if(e.field == "settleTypeId"){

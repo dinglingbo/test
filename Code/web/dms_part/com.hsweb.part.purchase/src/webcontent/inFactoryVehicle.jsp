@@ -10,7 +10,9 @@
 -->
 <head>
 <title>未结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.25"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.26"></script>
+<link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
 
 .title {
@@ -114,18 +116,18 @@
 				<div type="indexcolumn" width="40" >序号</div>
                   <div header="工单信息" headerAlign="center">
                   	 <div property="columns" >
-	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>
+	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>  
 	                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div> 
 	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号"></div>
-	                  <div field="status" name="status" width="40px" headerAlign="center" header="进程"></div> 
+	                  <div field="status" name="status" width="70px" headerAlign="center" header="进程"></div> 
 	                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" header="业务类型"></div>
-	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" header="服务顾问"></div>
+	                  <div field="mtAdvisor" name="mtAdvisor" width="100" headerAlign="center" header="服务顾问"></div>
 	                 </div>
                   </div>
-                  <div header="客户/车辆信息" headerAlign="center">客户名称，联系人，车牌号，品牌/车型，车架号(VIN)
+                  <div header="客户/车辆信息" headerAlign="center">
 	                  <div property="columns" >	                  
-		                  <div field="guestFullName" name="guestFullName" width="80" headerAlign="center" header="客户名称"></div>
-		                  <div field="carNo" name="carNO" width="80" headerAlign="center" header="车牌号"></div>
+		                  <div field="guestFullName" name="guestFullName" width="110" headerAlign="center" header="客户名称"></div>
+		                  <div field="carNo" name="carNO" width="110" headerAlign="center" header="车牌号"></div>
 		                  <div field="carModel" name="carModel" width="120" headerAlign="center" header="品牌/车型"></div>
 		                  
 		                  <div field="carVin" name="carVin" width="150" headerAlign="center" header="车架号(VIN)"></div>

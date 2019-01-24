@@ -11,6 +11,7 @@
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link1</targetConnections>
+    <targetConnections>link5</targetConnections>
     <location x="400" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -34,12 +35,11 @@
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link2</targetConnections>
-    <targetConnections>link4</targetConnections>
-    <location x="285" y="150"/>
+    <targetConnections>link6</targetConnections>
+    <location x="287" y="45"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hsapi.system.tenant.MenuUtil.getMenuData</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
@@ -52,14 +52,14 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="253" y="186"/>
+    <location x="255" y="81"/>
     <figSize height="17" width="87"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
-      <targetNode>invokePojo1</targetNode>
+      <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" type="transition">
       <sourceNode>assign0</sourceNode>
@@ -88,7 +88,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
-      <targetNode>invokePojo1</targetNode>
+      <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="186" y="45"/>
@@ -103,6 +103,42 @@
     <location x="184" y="81"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="getMenuData" displayName="getMenuData" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1!=1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <targetConnections>link4</targetConnections>
+    <location x="287" y="150"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo0label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.MenuUtil.getMenuData</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="userId" type="query" value="java.lang.String" valueType="Java" pattern="reference">userId</process:inputVariable>
+      <process:inputVariable id="1" name="type" type="query" value="java.lang.String" valueType="Java" pattern="reference">type</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out1" type="query" value="java.util.List" valueType="Java">treeNodes</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
+    <location x="258" y="186"/>
+    <figSize height="17" width="80"/>
+    <node>invokePojo0</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

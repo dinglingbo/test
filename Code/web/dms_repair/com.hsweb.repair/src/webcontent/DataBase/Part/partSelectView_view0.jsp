@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件选择</title>
-<script src="<%=webPath + contextPath%>/repair/js/DataBase/Part/partSelect.js?v=2.1.9"></script>
+<script src="<%=webPath + contextPath%>/repair/js/DataBase/Part/partSelect.js?v=2.1.13"></script>
 <style type="text/css">
 .table-label {
     text-align: right;
@@ -98,7 +98,8 @@
                      idField="id"
                      totalField="page.count"
                      pageSize="50"
-                     showFilterRow="false"multiSelect="true" >
+                     showFilterRow="false"
+                     multiSelect="false" >
                     <div property="columns">
                         <div header="基础信息" headerAlign="center">
                             <div property="columns">
@@ -107,7 +108,7 @@
                                 <div field="fullName" width="150" headerAlign="center" allowSort="true">全称</div>
                                 <div field="qualityTypeId" width="60" headerAlign="center">品质</div>
                                 <div field="partBrandId" width="70" headerAlign="center">品牌</div>
-                                <div field="code" width="80" headerAlign="center" allowSort="true">编码</div>
+                                <div field="code" width="80" headerAlign="center">编码</div>
        							<div allowSort="true" field="stockQty" width="60" headerAlign="center" allowSort="true">本店库存</div>
                                 <div field="applyCarModel" width="70" headerAlign="center" allowSort="true">品牌车型</div>
                                 <div field="unit" width="30" headerAlign="center" allowSort="true">单位</div>
@@ -173,6 +174,31 @@
                     </div>
                   </div>
                 </div>
+                 
+                <div id="splitDiv2" style="float:left;width:1%;height:100%;display:none"></div>
+                <div id="tempGrid2" class="nui-datagrid" style="float:left;width:29%;height:100%;display:none"
+                  showPager="false"
+                  pageSize="1000"
+                  selectOnLoad="true"
+                  showModified="false"
+                  onrowdblclick=""
+                  multiSelect="true"
+                  dataField="parts"
+                  url="">
+                  <div property="columns" >
+                    <div type="indexcolumn" width="20px" headerAlign="center">序号</div>
+                    <div header="已添加配件" headerAlign="left">
+                      <div property="columns">
+                        <div type="checkboxcolumn" field="check" trueValue="1" falseValue="0" 
+                          width="20" headerAlign="center" header="">操作
+                        </div>
+                        <div field="name" headerAlign="center" allowSort="true" width="80px">配件名称</div>
+                       <div field="id" headerAlign="center" allowSort="true" width="20px" visible="false">id</div>                
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
 
             </div>
         </div>

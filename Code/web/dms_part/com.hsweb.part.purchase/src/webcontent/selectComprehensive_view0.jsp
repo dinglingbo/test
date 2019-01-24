@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>已结算工单表明细查询</title>
+<title>已结算工单明细表</title>
 <script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.20"></script>
 <style type="text/css">
 

@@ -1028,6 +1028,17 @@
 			AND a.pick_qty &gt; a.out_return_qty
 			AND a.detail_id = 0
 			and ifnull(a.is_disabled,0) = 0
+			<dynamic>
+			<isNotEmpty prepend="and" property="serviceCode">
+                (b.service_code = #serviceCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">
+                (a.part_code = #partCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">
+                (a.part_name = #partName#)
+            </isNotEmpty>
+            </dynamic>
 	</select>
 	
 	    <select id="queryComprehensive" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -1111,7 +1122,7 @@
 			inner join rps_settlement d on (a.id =  d.service_id)
 		WHERE 1 = 1
 			and a.orgid = #orgid#
-<dynamic>
+      <dynamic>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
             </isNotEmpty>
@@ -1373,9 +1384,12 @@
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
 	       where e.service_id = a.id) as serviceTypeName,
-		      (SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id) as pkgSubtotal,
-		      (SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id) as itemSubtotal,
-		      (SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id) as partSubtotal
+		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0) as pkgSubtotal,
+		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id),0) as itemSubtotal,
+		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as partSubtotal,
+		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0)+
+		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id),0)+
+		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as total 
 		from rps_maintain a
 		inner JOIN rpb_car b ON ( a.car_id = b.id )
 		INNER JOIN wb_common.com_guest c on a.guest_id = c.id

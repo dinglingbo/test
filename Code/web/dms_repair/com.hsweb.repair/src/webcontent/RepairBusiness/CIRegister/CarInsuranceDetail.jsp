@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>保险开单明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.63"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.65"></script>
     <style type="text/css">
    .title {
         width: 80px;
@@ -42,11 +42,11 @@ pageEncoding="UTF-8" session="false"%>
         text-decoration: underline; 
         }  
    a.chooseClass{ background:#578ccd; font-size:13px; color:#fff; text-decoration:none;  padding:0px 8px; border-radius:20px;}
-  a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}  
+   a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}  
    a.healthview{ background:#78c800; font-size:13px; color:#fff; text-decoration:none;  padding:0px 8px; border-radius:20px;}
    a.healthview:hover{ background:#f00000;color:#fff;text-decoration:none;}
    
-    a.optbtn {
+   a.optbtn {
             width: 44px;
             /* height: 26px; */
             border: 1px #d2d2d2 solid;

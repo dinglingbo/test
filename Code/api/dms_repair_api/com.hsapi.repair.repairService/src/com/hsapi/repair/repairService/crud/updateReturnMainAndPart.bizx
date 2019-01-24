@@ -407,12 +407,12 @@
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link38</targetConnections>
-    <location x="450" y="187"/>
+    <location x="439" y="186"/>
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
-    <location x="445" y="223"/>
+    <location x="434" y="222"/>
     <figSize height="17" width="39"/>
     <node>assign14</node>
   </nodes>

@@ -457,6 +457,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
 
         new MenuPop(menu);
 
+		//com.hsapi.system.tenant.permissions.getMenuData.biz.ext
         $.ajax({
             url:  defDomin + "/com.hsapi.system.tenant.permissions.getMenuData.biz.ext",//defDomin + "/org.gocom.components.coframe.auth.LoginManager.getMenuData.biz.ext",
             type: "POST",

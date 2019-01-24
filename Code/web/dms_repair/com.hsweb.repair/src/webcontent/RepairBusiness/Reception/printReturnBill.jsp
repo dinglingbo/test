@@ -463,8 +463,8 @@
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="table tlist mt10" style="table-layout: fixed;">
             <tr>
                 <td width="30" height="30" align="center" bgcolor="#f5f5f5">序号</td>
-                <td align="center" bgcolor="#f5f5f5">配件编号</td>
                 <td width="50%" align="center" bgcolor="#f5f5f5">配件名称</td>
+                <td align="center" bgcolor="#f5f5f5">配件编号</td>
                 <td width="40" align="center" bgcolor="#f5f5f5">单位</td>
                 <td width="40" align="center" bgcolor="#f5f5f5">数量</td>
                 <td width="60" align="center" bgcolor="#f5f5f5">单价</td>
@@ -563,16 +563,16 @@ function SetData(params){
             	  sumAmt = parseFloat(sumAmt) + parseFloat(data[i].amt);
 		           var tr = $("<tr></tr>");
 	               var tds =  '<td align="center">[id]</td>' +
-				    		   "<td>[partCode]</td>"+
-				    			"<td align='center'>[partName]</td>"+ 
+				    		   "<td align='center'>[partName]</td>"+
+				    			"<td>[partCode]</td>"+ 
 				    			"<td align='center'>[unit]</td>"+
 				    			"<td align='center'>[qty]</td>"+
 				    			"<td align='center'>[nuitPrice]</td>"+
 				    			"<td align='center'>[amt]</td>";
 				  tr.append(
 		    				tds.replace("[id]",i +1)
+		    				    .replace("[partName]",data[i].partName || "")
 				    			.replace("[partCode]",data[i].partCode || "")
-				    			.replace("[partName]",data[i].partName || "")
 				    			.replace("[unit]",data[i].unit || "")
 				    			.replace("[qty]",data[i].qty || "")
 				    			.replace("[nuitPrice]",data[i].unitPrice || "")

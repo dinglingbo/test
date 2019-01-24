@@ -26,6 +26,7 @@ $(document).ready(function(v)
     partGrid = nui.get("partGrid");
     partGrid.setUrl(partGridUrl);
     tempGrid=nui.get("tempGrid");
+    tempGrid2=nui.get("tempGrid2");
     codeEl = nui.get("search-code");
     partGrid.on("beforeload",function(e){
         e.data.token = token;
@@ -142,7 +143,12 @@ $(document).ready(function(v)
     });
     
     partGrid.on("rowdblclick",function(e){
-		onOk();
+    	if(sellPartF == "sellPart"){
+    		sellOnOk();
+    	}else{
+    		onOk();
+    	}
+		
 	});
 	tempGrid.on("cellclick",function(e){ 
 		var field=e.field;
@@ -155,6 +161,15 @@ $(document).ready(function(v)
 				tempGrid.removeRow(row);
 			});
 			tempGrid.removeRow(row);
+        }
+    });
+	
+	tempGrid2.on("cellclick",function(e){ 
+		var field=e.field;
+		var row = e.row;
+        if(field=="check" ){
+			tempGrid2.removeRow(row);
+			partList = tempGrid2.getData();
         }
     });
 	
@@ -311,9 +326,14 @@ function setViewData(tId,ck, delck, cck){
 	document.getElementById("splitDiv").style.display="";
 }
 
-function setCkcallback(ck){
+var sellPartF = null;
+function setCkcallback(ck,param){
+	sellPartF = param;
 	isChooseClose = 1;
 	ckcallback = ck;
+	partGrid.setWidth("70%");
+	tempGrid2.setStyle("display:inline");
+	document.getElementById("splitDiv2").style.display="";
 }
 
 function getDataAll(){
@@ -323,6 +343,10 @@ function getDataAll(){
 
 function onOk()
 {
+	if(sellPartF == "sellPart"){
+       sellOnOk();
+       return;
+	}
 	if(nui.get("state").value){
 		CloseWindow("ok");
 	}else{
@@ -407,3 +431,32 @@ function setValueData(){
 	nui.get("state").setValue(6);
 	partGrid.showColumn("checkcolumn");
 }
+
+
+var partList = [];
+function sellOnOk(){
+	var row = partGrid.getSelected();
+	if(row)
+	{
+		if(ckcallback){
+			var rs = ckcallback(row);
+			if(rs){
+				showMsg("此配件已添加,请返回查看!","W");
+				return;
+			}else{
+			   row.check = 1;
+			   var rows= nui.clone(row);
+			   tempGrid2.addRow(rows);
+			   partList = tempGrid2.getData();
+			}
+		}
+	}
+	else{
+		showMsg("请选择一个配件", "W");
+		return;
+	}
+}
+function getPartList(){
+	return partList;
+}
+

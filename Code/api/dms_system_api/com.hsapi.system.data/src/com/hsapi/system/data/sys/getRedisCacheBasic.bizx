@@ -183,7 +183,7 @@
     <figSize height="17" width="116"/>
     <node>invokePojo7</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo8" name="gzipStr2Obj" displayName="gzipStr2Obj" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo8" name="gzipStr2Obj" displayName="" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo8</sourceNode>
       <targetNode>assign2</targetNode>

@@ -131,29 +131,6 @@ HeaderFilter.prototype = {
         me._updateFilterStatus();
         //alert("doFilter");
     },
-    _createFilterWindow: function (column) {
-         xyme = this;
-         xycolumn = column;
-        var el = $('<div class="filterwindow mini-popup"><div class="filterwindow-content"></div><div class="filterwindow-footer"><button class="filterwindow-button filter mini-button" noparser onclick="ok()">确定</button><button class="filterwindow-button clearfilter mini-button" noparser onclick="cancel()">取消</button></div></div>').appendTo('body');
-
-        var data = this._createFilterListData(column),
-            sb = [];
-        for (var i = 0, l = data.length; i < l; i++) {
-            var record = data[i];
-            var text = record[column.field];
-            if (column.displayField) text = record[column.displayField];
-            if (text == null) text = '';
-            
-            var checked = false;
-            if (column._filterMap) checked = !!column._filterMap[text];
-
-            sb[sb.length] = '<div class="filterwindow-item"><label><input class="filterwindow-item-checkbox ' + (i == 0 ? "checkall" : "") + '" type="checkbox" ' + (checked ? 'checked' : '') + ' value="' + text + '"/>' + text + '</label></div>';
-        }
-        el.find('.filterwindow-content').html(sb.join(''));
-
-        return el;
-    },
-
     _updateFilterStatus: function () {
         var me = this,
             grid = me.grid,
@@ -267,7 +244,31 @@ HeaderFilter.prototype = {
         me.clearAllFilterData();
         me.grid.clearFilter();
         me.hideFilterWindow();
-    }
+    },
+    _createFilterWindow: function (column) {
+        xyme = this;
+        xycolumn = column;
+       var el = $('<div class="filterwindow mini-popup"><div class="filterwindow-content"></div><div class="filterwindow-footer"><button class="filterwindow-button filter mini-button" noparser onclick="ok()">确定</button><button class="filterwindow-button clearfilter mini-button" noparser onclick="cancel()">取消</button></div></div>').appendTo('body');
+
+       var data = this._createFilterListData(column),
+           sb = [];
+       var arr = [];
+       for (var i = 0, l = data.length; i < l; i++) {
+           var record = data[i];
+           var text = record[column.field];
+           if (column.displayField) text = record[column.displayField];
+           if (text == null) text = '';
+           
+           var checked = false;
+           if (column._filterMap) checked = !!column._filterMap[text];
+           arr[arr.length] = text;
+           showcheckBox(column,text,sb,data);
+       }
+       
+       el.find('.filterwindow-content').html(sb.join(''));
+
+       return el;
+   }
 };
 
 
@@ -281,7 +282,72 @@ function ok(){
     }
 }
 
-
 function cancel(){
 	xyme.clearFilter(xycolumn);
+}
+
+function showcheckBox(column,text,sb,data){
+	var value = null;
+	var index = 0;
+	switch(column.field){
+		case "status" ://状态 
+			value = prebookStatusHash;// [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, {name: '已取消' , id: '2' }, { name: '已开单', id: '3' }, { name: '已评价', id: '4' }];
+			break;
+		case "prebookSource"://预约来源
+			value = prebookSourceHash;
+			break;
+		case "serviceTypeId" : //业务类型
+			value = serviceTypeHash;
+			break;
+		case "prebookCategory" : // 预约类型
+			value = prebookCategoryHash;
+			break;
+	}
+	if(!sb.length){
+		sb[sb.length] = '<div class="filterwindow-item"><label><input class="filterwindow-item-checkbox checkall" type="checkbox"  value="全部"/>全部</label></div>';
+		index ++;
+	}
+	if(!value){//如果跟上面类型不匹配则处理自定义类型
+		value = dataProcessing(column);
+	}
+	if(value){
+		for(var j = 0 ,  l = value.length ; j < l ; j ++){//判断是否已经存了相同数据到数组上
+			if(value[j] != undefined){
+				if(value[j].id == text){
+					var str = '<div class="filterwindow-item"><label><input name="check" type="checkbox" value="'+text+'" />'+value[j].name+'</label></label></div>';
+					var boo = contains(sb, str);
+					if(!boo){
+						sb[sb.length] = str;
+						break;
+					}
+				}
+			}
+		}
+	}
+	if(!value && !index){//不需要特殊显示处理（value == text）
+		var str = '<div class="filterwindow-item"><label><input name="check" type="checkbox" value="'+text+'" />'+text+'</label></label></div>';
+		var boo = contains(sb, str);
+		if(!boo){
+			sb[sb.length] = str;
+		}
+	}
+}
+
+function contains(arr, obj) {//判断数组是否包含元素
+    var i = arr.length;
+    while (i--) {
+        if (arr[i] == obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function dataProcessing(column){//自定义类型  根据表头（如多处表头field相同且定义了data在switch上添加）
+	var header = column.header;
+	var value = null;
+	if(header.indexOf("是否") > -1){//数据显示 是否类型
+		value =[{ name: '否', id: '0' }, { name: '是', id: '1' }];
+	}
+	return value;
 }

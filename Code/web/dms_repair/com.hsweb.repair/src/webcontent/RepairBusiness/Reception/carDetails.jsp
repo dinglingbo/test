@@ -229,7 +229,7 @@
                                             <label>身份：</label>
                                         </td>
                                         <td>
-                                            <input class="nui-combobox" name="identity" id="source" valueField="customid" textField="name" width="100%" value="060301" />
+                                            <input class="nui-combobox" name="identity" id="identity" valueField="customid" textField="name" width="100%" value="060301" />
                                         </td>
                                     </tr>
                                     

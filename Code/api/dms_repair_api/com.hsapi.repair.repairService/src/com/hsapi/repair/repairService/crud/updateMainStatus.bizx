@@ -474,7 +474,7 @@
       <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="495" y="162"/>
+    <location x="480" y="162"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
@@ -492,7 +492,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="457" y="197"/>
+    <location x="442" y="197"/>
     <figSize height="17" width="102"/>
     <node>subprocess0</node>
   </nodes>

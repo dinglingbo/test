@@ -12,6 +12,21 @@ $(document).ready(function () {
 	grid.setUrl(baseUrl+"com.hsapi.repair.repairService.query.selectInvoiceMain.biz.ext");
 	grid.load({token : token});
 	
+	  var filter = new HeaderFilter(grid, {
+	        columns: [
+	            { name: 'recorder' }
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
+	
 	 grid.on("drawcell",function(e){
      	var field = e.field,
      	value = e.value;

@@ -343,6 +343,10 @@ function getDataAll(){
 
 function onOk()
 {
+	if(sellPartF == "sellPart"){
+       sellOnOk();
+       return;
+	}
 	if(nui.get("state").value){
 		CloseWindow("ok");
 	}else{
@@ -441,13 +445,15 @@ function sellOnOk(){
 				return;
 			}else{
 			   row.check = 1;
-			   tempGrid2.addRow(row);
+			   var rows= nui.clone(row);
+			   tempGrid2.addRow(rows);
 			   partList = tempGrid2.getData();
 			}
 		}
 	}
 	else{
 		showMsg("请选择一个配件", "W");
+		return;
 	}
 }
 function getPartList(){

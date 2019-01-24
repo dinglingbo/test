@@ -72,7 +72,6 @@ HeaderFilter.prototype = {
 
         var blank = {};
         blank[column.displayField || column.field] = '全部';     //暂不知道具体逻辑
-        console.log(blank);
         result.push(blank);
 
         for (var i = 0, l = data.length; i < l; i++) {
@@ -253,6 +252,7 @@ HeaderFilter.prototype = {
 
        var data = this._createFilterListData(column),
            sb = [];
+       var arr = [];
        for (var i = 0, l = data.length; i < l; i++) {
            var record = data[i];
            var text = record[column.field];
@@ -261,8 +261,11 @@ HeaderFilter.prototype = {
            
            var checked = false;
            if (column._filterMap) checked = !!column._filterMap[text];
-           showcheckBox(column,text,sb,data);
+           arr[arr.length] = text;
+           var me = this;
+           showcheckBox(column,text,sb,data,me);
        }
+       
        el.find('.filterwindow-content').html(sb.join(''));
 
        return el;
@@ -284,29 +287,18 @@ function cancel(){
 	xyme.clearFilter(xycolumn);
 }
 
-function showcheckBox(column,text,sb,data){
+function showcheckBox(column,text,sb,data,me){
 	var value = null;
 	var index = 0;
-	switch(column.field){
-		case "status" ://状态 
-			value = prebookStatusHash;// [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, {name: '已取消' , id: '2' }, { name: '已开单', id: '3' }, { name: '已评价', id: '4' }];
-			break;
-		case "prebookSource"://预约来源
-			value = prebookSourceHash;
-			break;
-		case "serviceTypeId" : //业务类型
-			value = serviceTypeHash;
-			break;
-		case "prebookCategory" : // 预约类型
-			value = prebookCategoryHash;
-			break;
+	if(me.options.tranCallBack) {
+		value = me.options.tranCallBack(column.field);
 	}
 	if(!sb.length){
 		sb[sb.length] = '<div class="filterwindow-item"><label><input class="filterwindow-item-checkbox checkall" type="checkbox"  value="全部"/>全部</label></div>';
 		index ++;
 	}
 	if(value){
-		for(var j = 0 ,  l = value.length ; j < l ; j ++){
+		for(var j = 0 ,  l = value.length ; j < l ; j ++){//判断是否已经存了相同数据到数组上
 			if(value[j] != undefined){
 				if(value[j].id == text){
 					var str = '<div class="filterwindow-item"><label><input name="check" type="checkbox" value="'+text+'" />'+value[j].name+'</label></label></div>';

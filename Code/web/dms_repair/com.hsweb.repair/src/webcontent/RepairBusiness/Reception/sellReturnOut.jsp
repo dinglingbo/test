@@ -10,7 +10,11 @@
 -->
 <head>
 <title>退货归库</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellReturnOut.js?v=1.0.36"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellReturnOut.js?v=1.0.37"></script>
+ <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" 
+rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" 
+type="text/javascript"></script>
 <style type="text/css">
 
 .title {
@@ -124,11 +128,11 @@ a {
                   <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div>
                   <div field="recorder" name="recorder" width="50" headerAlign="center" header="销售员"></div>   
 	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="退货日期" dateFormat="  yyyy-MM-dd HH:mm"></div>
-	              <div field="remark" name="carModel" width="170" headerAlign="center" header="备注" ></div>
+	              <div field="remark"  width="170" headerAlign="center" header="备注" ></div>
 	              <div field="action" name="action" width="40" headerAlign="center" header="操作" align="center" align="center"></div>
                  </div>
          </div>
-  <div id="editFormDetail" style="display:none;padding:5px;position:relative;">
+  <div id="editFormDetail" style="display:none;padding:5px;position:relative;"> 
        <div id="innerPartGrid"
        dataField="data"
        class="nui-datagrid"

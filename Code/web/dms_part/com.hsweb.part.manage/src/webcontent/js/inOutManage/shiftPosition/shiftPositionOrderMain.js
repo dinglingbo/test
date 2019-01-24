@@ -25,6 +25,7 @@ var auditSignHash = {
 		"1" : "已审",
 
 	};
+var headerHash =[{ name: '草稿', id: '0' },{ name: '已审', id: '0' }];
 var innerPartGrid=null;
 var editFormDetail = null;
 $(document).ready(function(v)
@@ -51,9 +52,29 @@ $(document).ready(function(v)
 		var rowc = nui.clone(row);
 		if (!rowc)
 			return;
-		edit();
+		edit(); 
 
 	});
+    
+    var filter = new HeaderFilter(rightGrid, {
+        columns: [
+            { name: 'orderMan' },
+            { name: 'auditor' },
+            { name: 'auditSign' }
+        ],
+        callback: function (column, filtered) {
+        },
+
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+    		case "auditSign": 
+    			value = headerHash;
+    			break;
+	    	}
+        	return value;
+        }
+    });
     innerPartGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;

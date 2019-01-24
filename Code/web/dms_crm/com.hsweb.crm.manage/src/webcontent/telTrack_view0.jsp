@@ -12,6 +12,8 @@
 <title>电话跟踪</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%=webPath + contextPath%>/manage/js/telTrack.js?v=1.0.16"></script>
+        <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -132,18 +134,18 @@
                                     <div field="orgid" width="100" headerAlign="center" allowSort=false>所在分店</div>
                                     <div field="carNo" width="80" headerAlign="center" allowSort=false>车牌号</div>
                                    
-                                    <div field="carModel" width="250" headerAlign="center">品牌车型</div>
+                                    <div field="carModel" name="carModel" width="250" headerAlign="center">品牌车型</div>
                                     <div field="vin" width="150" headerAlign="center" allowSort=false>车架号(VIN)</div>
                                     <div field="firstRegDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>上牌日期</div>
                                     <div field="annualInspectionDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
-                                    <div field="recorder" width="80" headerAlign="center" allowSort=false>建档人</div>
+                                    <div field="recorder" name="recorder" width="80" headerAlign="center" allowSort=false>建档人</div>
                                     <div field="recordDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" allowSort=false>建档日期</div>
                                 </div>
-                            </div>
+                            </div> 
                             <div headerAlign="center">客户信息
                                 <div property="columns">
                                     <div field="guestId" visible=false>客户ID</div>
-                                    <div field="guestName" width="80" headerAlign="center" summaryType="" allowSort=false>客户名称</div>
+                                    <div field="guestName" name="guestName" width="80" headerAlign="center" summaryType="" allowSort=false>客户名称</div>
                                     <div field="tel" width="100" headerAlign="center" summaryType="" allowSort=false>手机号</div>
                                     <div field="address" width="150" headerAlign="center" summaryType="" allowSort=false>地址</div>
                                     <!--

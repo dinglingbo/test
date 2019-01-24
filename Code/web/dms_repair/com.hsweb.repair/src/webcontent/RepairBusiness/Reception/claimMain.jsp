@@ -11,6 +11,8 @@
 <head>
 <title>理赔开单</title>
 <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/claimMain.js?v=1.2.0"></script>
+<link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
 
 .title {
@@ -100,7 +102,7 @@
               <div property="columns">
                   <div type="indexcolumn">序号</div>
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-                  <div field="status" name="status" width="40px" headerAlign="center" header="进程"></div>
+                  <div field="status" name="status" width="70px" headerAlign="center" header="进程"></div>
                   <div field="serviceCode" name="serviceCode" width="170px" headerAlign="center" header="工单号"></div>
                   <div field="carNo" name="carNo" width="80px" headerAlign="center" header="车牌号"></div>
                   <div field="insureClaimCompName" name="insureClaimCompName" width="110px" headerAlign="center"  header="保险公司"></div>
@@ -110,8 +112,8 @@
                   <div field="carVin" name="carVin" width="140px" headerAlign="center" header="车架号(VIN)"></div>
                   <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
-                  <div field="mtAdvisor" name="mtAdvisor" width="60px" headerAlign="center" header="服务顾问"></div>
-                  <div field="balaAuditSign" name="isSettle" width="60px" headerAlign="center" header="结算状态"></div>
+                  <div field="mtAdvisor" name="mtAdvisor" width="90px" headerAlign="center" header="服务顾问"></div>
+                  <div field="balaAuditSign" name="balaAuditSign" width="90px" headerAlign="center" header="结算状态"></div>
                   <div field="planFinishDate" name="planFinishDate" width="120px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="预计交车时间"></div>
               </div>
           </div>

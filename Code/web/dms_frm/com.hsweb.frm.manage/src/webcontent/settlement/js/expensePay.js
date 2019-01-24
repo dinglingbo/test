@@ -37,8 +37,22 @@ $(document).ready(function(v)
 
     getInComeExpenses(function(data) {
         IClist = data.list||[];
-    });
+    });  
+	  var filter = new HeaderFilter(mainGrid, {
+	        columns: [
+	            { name: 'auditor' },
+		            { name: 'guestName' }
+	        ],
+	        callback: function (column, filtered) {
+	        },
 
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
     getAccountList(function(data) {
         accountList = data.settleAccount;
     });

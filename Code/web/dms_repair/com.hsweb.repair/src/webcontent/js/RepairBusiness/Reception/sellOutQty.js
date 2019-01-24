@@ -95,6 +95,25 @@ $(document).ready(function(v)
 		}
 
 	}
+	
+	var filter = new HeaderFilter(rightGrid, {
+	        columns: [
+	            { name: 'partCode' },
+	            { name: 'partName' }
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+	        	   default:
+	    			  break;
+		    	}
+	        	return value;
+	        }
+	    });
+	
     quickSearch(4);
 
 	getAllPartType(function(data){

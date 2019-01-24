@@ -100,7 +100,24 @@ $(document).ready(function(v)
 		if ((keyCode == 13)) { // F9
 			onSearch();
 		}
-	}
+	};
+	var filter = new HeaderFilter(rightGrid, {
+        columns: [
+            { name: 'partCode' },
+            { name: 'pickMan' },
+            {name:'partName'}
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+	    		default:
+	                break;
+	    	}
+        	return value;
+        }
+    });
 	
     quickSearch(4);
 

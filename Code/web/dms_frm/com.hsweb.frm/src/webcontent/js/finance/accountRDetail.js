@@ -47,10 +47,18 @@ $(document).ready(function(v) {
     
     var filter = new HeaderFilter(mainGrid, {
         columns: [
-            { name: 'shortName' }
+            { name: 'auditor' },
+             {name:'shortName'}
         ],
         callback: function (column, filtered) {
-            
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+	    		default:
+	                break;
+	    	}
+        	return value;
         }
     });
 

@@ -14,6 +14,8 @@
     <%@include file="/common/sysCommon.jsp" %>
     <script src="<%=crmDomain%>/common/crmcommon.js?v=1.0" type="text/javascript"></script> 
     <script src="<%=crmDomain%>/telsales/js/R.js?v=1.0" type="text/javascript"></script> 
+        <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -171,18 +173,18 @@
                                     <div field="orgid" width="60" headerAlign="center" allowSort=false>所在分店</div>
                                     <div field="carNo" width="70" headerAlign="center" allowSort=false>车牌号</div>
                                     <div field="carBrandId" width="50" headerAlign="center" allowSort=false>品牌</div>
-                                    <div field="carModel" width="60" headerAlign="center" allowSort=false>品牌车型</div>
+                                    <div field="carModel" name="carModel"  width="60" headerAlign="center" allowSort=false>品牌车型</div>
                                     <div field="underpanNo" width="60" headerAlign="center" allowSort=false>VIN</div>
                                     <div field="firstRegDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>初登日期</div>
                                     <div field="annualInspectionDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>保险到期</div>
-                                    <div field="recorder" width="60" headerAlign="center" allowSort=false>建档人</div>
+                                    <div field="recorder" name="recorder" width="60" headerAlign="center" allowSort=false>建档人</div>
                                     <div field="recordDate" width="80" headerAlign="center" dateFormat="yyyy-MM-dd" allowSort=false>建档日期</div>
                                 </div>
                             </div>
                             <div headerAlign="center"><strong>客户信息</strong>
                                 <div property="columns">
                                     <div field="guestId" visible=false>客户ID</div>
-                                    <div field="guestName" width="80" headerAlign="center" summaryType="" allowSort=false>客户名称</div>
+                                    <div field="guestName" name="guestName" width="80" headerAlign="center" summaryType="" allowSort=false>客户名称</div>
                                     <div field="address" width="50" headerAlign="center" summaryType="" allowSort=false>地址</div>
                                     <!--
                                     <div field="recorder" width="30" headerAlign="center" summaryType="" allowSort=false>客户等级</div>

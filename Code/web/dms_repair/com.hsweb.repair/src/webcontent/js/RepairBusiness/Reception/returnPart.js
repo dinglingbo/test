@@ -7,8 +7,10 @@ var isChooseClose = 1;//默认选择后就关闭窗体
 
 var rpsPartGrid = null;
 var resultData = {};
+var tempGrid2 = null;
 $(document).ready(function(v)
 {
+	tempGrid2=nui.get("tempGrid2");
 	rpsPartGrid = nui.get("rpsPartGrid");
 	rpsPartGrid.setUrl(partGridUrl);
 	/*params.guestId = mainData.guestId;
@@ -40,7 +42,6 @@ $(document).ready(function(v)
           onCancel();
       }
     };
-
    
 });
 
@@ -111,6 +112,9 @@ var ckcallback = null;
 function setCkcallback(main,ck){
 	isChooseClose = 1;
 	ckcallback = ck;
+	rpsPartGrid.setWidth("60%");
+	tempGrid2.setStyle("display:inline");
+	document.getElementById("splitDiv2").style.display="";
 	var mainData = main;
 	var params = {};
 	params.guestId = mainData.guestId;

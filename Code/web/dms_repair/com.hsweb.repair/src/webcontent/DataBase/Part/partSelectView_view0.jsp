@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件选择</title>
-<script src="<%=webPath + contextPath%>/repair/js/DataBase/Part/partSelect.js?v=2.1.11"></script>
+<script src="<%=webPath + contextPath%>/repair/js/DataBase/Part/partSelect.js?v=2.1.12"></script>
 <style type="text/css">
 .table-label {
     text-align: right;
@@ -99,7 +99,7 @@
                      totalField="page.count"
                      pageSize="50"
                      showFilterRow="false"
-                     multiSelect="true" >
+                     multiSelect="false" >
                     <div property="columns">
                         <div header="基础信息" headerAlign="center">
                             <div property="columns">
@@ -108,7 +108,7 @@
                                 <div field="fullName" width="150" headerAlign="center" allowSort="true">全称</div>
                                 <div field="qualityTypeId" width="60" headerAlign="center">品质</div>
                                 <div field="partBrandId" width="70" headerAlign="center">品牌</div>
-                                <div field="code" width="80" headerAlign="center" allowSort="true">编码</div>
+                                <div field="code" width="80" headerAlign="center">编码</div>
        							<div allowSort="true" field="stockQty" width="60" headerAlign="center" allowSort="true">本店库存</div>
                                 <div field="applyCarModel" width="70" headerAlign="center" allowSort="true">品牌车型</div>
                                 <div field="unit" width="30" headerAlign="center" allowSort="true">单位</div>

@@ -10,7 +10,7 @@
 <head>
 <title>可退配件</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnPart.js?v=1.0.6"></script> 
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnPart.js?v=1.0.8"></script> 
 </head>
 <body>
   
@@ -31,7 +31,7 @@
      <div id="rpsPartGrid"
      dataField="list"
      class="nui-datagrid"
-     style="width: 100%; height:100%;"
+     style="float:left;height:100%;"
      showPager="false"
      showModified="false"
      editNextOnEnterKey="true"
@@ -43,6 +43,9 @@
         <div headerAlign="center" type="indexcolumn" width="20">序号</div>
           <div header="配件信息" headerAlign="center">
             <div property="columns">
+               <div type="checkboxcolumn" field="check" trueValue="1" falseValue="0" 
+                          width="20" headerAlign="center" header="">操作
+                </div>
                 <div field="serviceCode" headerAlign="serviceCode" allowSort="false" visible="true" width="90" header="所属工单号"></div>
                 <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
                 <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码"></div> 
@@ -64,8 +67,30 @@
        </div>
       </div>
     </div>
+   <div id="splitDiv2" style="float:left;width:10%;height:100%;display:none"></div>
+    <div id="tempGrid2" class="nui-datagrid" style="float:left;width:29%;height:100%;display:none"
+      showPager="false"
+      pageSize="1000"
+      selectOnLoad="true"
+      showModified="false"
+      onrowdblclick=""
+      multiSelect="true"
+      dataField="parts"
+      url="">
+      <div property="columns" >
+        <div type="indexcolumn" width="20px" headerAlign="center">序号</div>
+        <div header="已添加配件" headerAlign="left">
+          <div property="columns">
+            <div type="checkboxcolumn" field="check" trueValue="1" falseValue="0" 
+              width="20" headerAlign="center" header="">操作
+            </div>
+            <div field="name" headerAlign="center" allowSort="true" width="80px">配件名称</div>
+           <div field="id" headerAlign="center" allowSort="true" width="20px" visible="false">id</div>                
+          </div>
+        </div>
+      </div>
+    </div>
  </div>
-</div>
 	<script type="text/javascript">
     	nui.parse();
     </script>

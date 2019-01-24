@@ -160,9 +160,7 @@ $(document).ready(function(v)
 			delcallback && delcallback(row,function(){
 				tempGrid.removeRow(row);
 			});
-        	
 			tempGrid.removeRow(row);
-			
         }
     });
 	

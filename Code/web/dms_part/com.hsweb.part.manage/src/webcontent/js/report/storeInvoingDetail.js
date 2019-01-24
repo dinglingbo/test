@@ -25,6 +25,19 @@ var billTypeIdHash = {
 		"050204" :"移仓出库",
 		"050108" :"退货归库"
 	};
+var billTypeIdHashType = [
+	{name:"采购入库",id:"050101"},
+	{name:"采购退货",id:"050201"},
+	{name:"盘盈入库",id:"050103"},
+	{name:"盘亏出库" ,id:"050203"},
+	{name:"配件领料",id:"050106"},
+	{name:"配件归库",id:"050206"},
+	{name:"耗材入库",id:"050107"},
+	{name:"耗材归库",id:"050207"},
+	{name:"移仓入库",id:"050104"},
+	{name:"移仓出库",id:"050204"},
+	{naem:"退货归库",id:"050108"}
+];
 var settTypeIdHash = {};
 var outTypeIdHash = {};
 $(document).ready(function(v)
@@ -86,6 +99,28 @@ $(document).ready(function(v)
 		}
 
 	}
+   var filter = new HeaderFilter(rightGrid, {
+	        columns: [
+	            { name: 'partName' },
+	            { name: 'applyCarModel' },
+	            { name: 'billTypeId' },
+	            { name: 'operator' }
+	            
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    		case "billTypeId" ://状态 
+		    			value = billTypeIdHashType;// [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, {name: '已取消' , id: '2' }, { name: '已开单', id: '3' }, { name: '已评价', id: '4' }];
+		    			break;
+		    	}
+	        	return value;
+	        }
+	    });
+	
     quickSearch(4);
 
 

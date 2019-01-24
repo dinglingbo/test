@@ -9,8 +9,8 @@
   - Description:  
 -->   
 <head>
-    <title>工单-销售单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnBill.js?v=1.3.21"></script>
+    <title>工单-退货单</title>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnBill.js?v=1.3.26"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -285,7 +285,6 @@
      editNextOnEnterKey="true"
      allowSortColumn="true"
      allowCellSelect="true"
-     allowCellEdit="true"
      oncellcommitedit="onCellCommitEdit"
      ondrawsummarycell="onDrawSummaryCell"
      >
@@ -303,27 +302,27 @@
         <div headerAlign="center" type="indexcolumn" width="20">序号</div>
         <div header="配件信息" headerAlign="center">
             <div property="columns">
-                <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称">
+                <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称" align="center">
                 </div>
                 
-                <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码">
-                </div>           
-                <div field="unitPrice"  width="60" headerAlign="center" header="单价">
-                   <!-- <input property="editor" vtype="float" class="nui-textbox"/> -->
+                <div field="partCode" headerAlign="center" allowSort="false"  width="80px" header="配件编码" align="center">
+                </div>   
+                <div field="qty" summaryType="sum" name="qty" width="60" headerAlign="center" header="退货数量" align="center" >
+                   <input property="editor"  width="100" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onValueChangedComQty"/>
+                </div>        
+                <div field="unitPrice" name="unitPrice" width="60" headerAlign="center" header="单价" align="center">
                 </div>
-                <div field="amt" summaryType="sum"  width="60" headerAlign="center" header="金额"></div>
+                <div field="amt" summaryType="sum" name="amt" width="60" headerAlign="center" header="金额" align="center">
+                <input property="editor" vtype="float" class="nui-textbox" selectOnFocus="true" onvaluechanged="onValueChangedAmt"  width="100"/>
+                </div>
                 <div field="saleMan" headerAlign="center"
-                     allowSort="false" visible="true" width="50" header="退货员" align="center">
-                     <input  enabled="true" dataField="memList" 
-                             class="nui-combobox" valueField="empName" textField="empName" data="memList"
-                             url="" onvaluechanged="onpartsalemanChanged" emptyText=""  vtype="required" property="editor" /> 
+                     allowSort="false" visible="true" width="50" header="" align="center" name="saleMan" align="center">
+                                                   退货员<a href="javascript:setPartSaleMans()" title="批量设置销售员" style="text-decoration:none;">&nbsp;&nbsp;<span class="fa fa-edit fa-lg"></span></a>
+                     <input class="nui-textbox" property="editor" id="saleMansName" name="saleMansName"  onclick="openItemSaleMans" width="60%"/> 
                 </div>
                 <div field="saleManId" headerAlign="center"
-                     allowSort="false" visible="false" width="80" header="销售员" align="center">
+                     allowSort="false" visible="false" width="80" header="销售员" align="center" align="center">
                 </div>  
-                 <div field="qty" summaryType="sum"  width="60" headerAlign="center" header="退货数量" >
-                   <input property="editor" vtype="float" class="nui-textbox"/>
-                </div>
                 <div field="partOptBtn" name="partOptBtn" width="100" headerAlign="center" header="操作" align="center" align="center"></div>
             </div>
         </div>

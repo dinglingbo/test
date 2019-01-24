@@ -1028,6 +1028,17 @@
 			AND a.pick_qty &gt; a.out_return_qty
 			AND a.detail_id = 0
 			and ifnull(a.is_disabled,0) = 0
+			<dynamic>
+			<isNotEmpty prepend="and" property="serviceCode">
+                (b.service_code = #serviceCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">
+                (a.part_code = #partCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">
+                (a.part_name = #partName#)
+            </isNotEmpty>
+            </dynamic>
 	</select>
 	
 	    <select id="queryComprehensive" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -1111,7 +1122,7 @@
 			inner join rps_settlement d on (a.id =  d.service_id)
 		WHERE 1 = 1
 			and a.orgid = #orgid#
-<dynamic>
+      <dynamic>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
             </isNotEmpty>

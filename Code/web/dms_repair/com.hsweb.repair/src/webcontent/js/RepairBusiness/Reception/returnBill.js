@@ -578,7 +578,7 @@ function save(){
 }
 
 
-function saveNoShowMsg(){
+function saveNoShowMsg(callback){
     saveMaintain(function(data){
  
         if(data.id){
@@ -624,8 +624,8 @@ function saveNoShowMsg(){
                             serviceId: data.id||0
                         }
                     }
-                    loadDetail(p3);
-
+                    loadDetail(p3,data.status);
+                    callback && callback();
                 }else{
                     showMsg("数据加载失败,请重新打开工单!","E");
                 }
@@ -677,6 +677,7 @@ function saveMaintain(callback,unmaskcall){
             unmaskcall && unmaskcall();
             var main = text.data||{};
             fserviceId = main.id||0;
+            billForm.setData(main);
             callback && callback(main);
         } else {
             unmaskcall && unmaskcall();
@@ -936,7 +937,20 @@ function checkFromBillPart(data){
 //配件
 function chooseReturnPart(){
     var main = billForm.getData();
+    var status = main.status;
     var isSettle = main.isSettle||0;
+    if(main.status == 2){
+        showMsg("工单已归库,不能添加配件!","W");
+        return;
+    }
+    if(main.status == 1){
+        showMsg("工单已审核,不能添加配件!","W");
+        return;
+    }
+    if(isSettle == 1){
+        showMsg("工单已结算,不能添加配件!","W");
+        return;
+    }
      if(!main.id){
     	 var data = billForm.getData();
  		for ( var key in requiredField) {
@@ -945,22 +959,73 @@ function chooseReturnPart(){
  				return;
  			}
  	    }
- 		saveNoShowMsg();
-    }
-     if(main.status == 2){
-         showMsg("工单已归库,不能添加配件!","W");
-         return;
-     }
-     if(main.status == 1){
-         showMsg("工单已审核,不能添加配件!","W");
-         return;
-     }
-     if(isSettle == 1){
-         showMsg("工单已结算,不能添加配件!","W");
-         return;
-     }
-    nui.open({
-		targetWindow : window,
+ 		 nui.mask({
+  	        el: document.body,
+  	        cls: 'mini-mask-loading',
+  	        html: '数据加载中...'
+  	     });
+ 		saveNoShowMsg(function(){
+ 			 nui.open({
+ 				url : webPath + contextPath + "/com.hsweb.RepairBusiness.returnPart.flow?token=" + token,
+ 				title : "配件选择",
+ 				width : "60%",
+ 				height : "50%",
+ 				allowDrag : true,
+ 				allowResize : true,
+ 				onload : function() {
+ 					var iframe = this.getIFrameEl();
+ 		            //iframe.contentWindow.setCkcallback(checkFromBillPart);
+ 		            iframe.contentWindow.setCkcallback(main,checkFromBillPart);
+ 				},
+ 				ondestroy : function(action) {
+ 					var iframe = this.getIFrameEl();
+ 		            var partList = iframe.contentWindow.getPartList();
+ 		            var setPartList = [];
+ 		            if(partList && partList.length>0){
+ 		            	for(var i = 0;i<partList.length;i++){
+ 		            		var data = partList[i]; 
+ 		            		//计算单价
+ 		                    var unitPrice = data.subtotal/data.pickQty;
+ 		                    unitPrice = unitPrice.toFixed(2);
+ 		                    var part = {}; 
+ 		                    //把该传的字段对应好
+ 		                    part = {
+ 		                    	serviceId:main.id,
+ 		                    	serviceTypeId:main.serviceTypeId,
+ 		                    	packageId:0,
+ 		                    	partName:data.partName,
+ 		                    	partCode:data.partCode,
+ 		                    	unitPrice:unitPrice,
+ 		                    	saleMan:data.saleMan,
+ 		                    	saleManId:data.saleManId,
+ 		                    	detailId:data.id,
+ 		                    	partId:data.partId,
+ 		                    	outReturnQty:0,
+ 		                    	qty:1,
+ 		                    	subtotal:unitPrice*1,
+ 		                    	amt:unitPrice*1,
+ 		                    	unit:data.unit,
+ 		                    	rate:0,
+ 		                    	partBrandId:data.partBrandId,
+ 		                    	partNameId:data.partNameId,
+ 		                    	cardDetailId:data.cardDetailId,
+ 		                    	sourceId:data.sourceId
+ 		                    };
+ 		                    setPartList.push(part);
+ 		            	}
+ 		            }
+ 		            rpsPartGrid.addRows(setPartList);
+ 		            if(status<1){
+ 		            	var row = rpsPartGrid.findRow(function(row){
+ 		            		rpsPartGrid.beginEditRow(row);
+ 		                });
+ 		            }
+ 				}
+ 			});
+ 			nui.unmask(document.body);
+ 		});
+    }else{
+     nui.open({
 		url : webPath + contextPath + "/com.hsweb.RepairBusiness.returnPart.flow?token=" + token,
 		title : "配件选择",
 		width : "60%",
@@ -974,42 +1039,50 @@ function chooseReturnPart(){
 		},
 		ondestroy : function(action) {
 			var iframe = this.getIFrameEl();
-            data = iframe.contentWindow.getData();
-            data = data.part;
-            //计算单价
-            var unitPrice = data.subtotal/data.pickQty;
-            unitPrice = unitPrice.toFixed(2);
-            var part = {}; 
-            //把该传的字段对应好
-            part = {
-            	serviceId:main.id,
-            	serviceTypeId:main.serviceTypeId,
-            	packageId:0,
-            	partName:data.partName,
-            	partCode:data.partCode,
-            	unitPrice:unitPrice,
-            	saleMan:data.saleMan,
-            	saleManId:data.saleManId,
-            	detailId:data.id,
-            	partId:data.partId,
-            	outReturnQty:0,
-            	qty:1,
-            	subtotal:unitPrice*1,
-            	amt:unitPrice*1,
-            	unit:data.unit,
-            	rate:0,
-            	partBrandId:data.partBrandId,
-            	partNameId:data.partNameId,
-            	cardDetailId:data.cardDetailId,
-            	sourceId:data.sourceId
-            };
-            rpsPartGrid.addRow(part);
-			/*var p3 = {
-					 interType: "part",
-		        };
-		        loadDetail(p3);*/
+            var partList = iframe.contentWindow.getPartList();
+            var setPartList = [];
+            if(partList && partList.length>0){
+            	for(var i = 0;i<partList.length;i++){
+            		var data = partList[i];
+            		//计算单价
+                    var unitPrice = data.subtotal/data.pickQty;
+                    unitPrice = unitPrice.toFixed(2);
+                    var part = {}; 
+                    //把该传的字段对应好
+                    part = {
+                    	serviceId:main.id,
+                    	serviceTypeId:main.serviceTypeId,
+                    	packageId:0,
+                    	partName:data.partName,
+                    	partCode:data.partCode,
+                    	unitPrice:unitPrice,
+                    	saleMan:data.saleMan,
+                    	saleManId:data.saleManId,
+                    	detailId:data.id,
+                    	partId:data.partId,
+                    	outReturnQty:0,
+                    	qty:1,
+                    	subtotal:unitPrice*1,
+                    	amt:unitPrice*1,
+                    	unit:data.unit,
+                    	rate:0,
+                    	partBrandId:data.partBrandId,
+                    	partNameId:data.partNameId,
+                    	cardDetailId:data.cardDetailId,
+                    	sourceId:data.sourceId
+                    };
+                    setPartList.push(part);
+            	}
+            }           
+            rpsPartGrid.addRows(setPartList);
+            if(status<1){
+            	var row = rpsPartGrid.findRow(function(row){
+            		rpsPartGrid.beginEditRow(row);
+                });
+            }
 		}
 	});
+   }
 }
 function addToBillPart(row, callback, unmaskcall){
     var main = billForm.getData();
@@ -1057,7 +1130,7 @@ function setyouhuilu(){
 
 
 //提交单元格编辑数据前激发
-function onCellCommitEdit(e) {
+/*function onCellCommitEdit(e) {
 	var main = billForm.getData();
 	var isSettle = main.isSettle||0;
 	var editor = e.editor;
@@ -1105,7 +1178,83 @@ function onCellCommitEdit(e) {
 			rpsPartGrid.updateRow(e.row, newRow);
 		} 
 	}
+}*/
+
+function onValueChangedComQty(e){
+	var el = e.sender;
+	var flag = isNaN(e.value);
+	var rowtime = rpsPartGrid.getEditorOwnerRow(el);
+	var setItemTime = rpsPartGrid.getCellEditor("qty", rowtime);
+	var qty = el.getValue();
+	if (flag) {
+		showMsg("请输入数字!","W");
+		setItemTime.setValue(e.oldValue);
+		e.cancel = true; 
+	}else if(qty<0){
+		showMsg("数量不能小于0","W");
+		setItemTime.setValue(e.oldValue);
+		e.cancel = true; 
+		return;
+	}else if(qty == "" || qty == null){	
+		setItemTime.setValue(e.oldValue);
+		e.cancel = true; 
+		return;
+	}else{		
+		//获取指定列和行的编辑器控件对象
+		var setAmt = rpsPartGrid.getCellEditor("amt", rowtime);
+		/*var setUnitPrice = rpsPartGrid.getCellEditor("unitPrice", rowtime);
+		var unitPrice = setUnitPrice.getValue()||0;*/
+		var unitPrice = rowtime.unitPrice || 0;
+		var amt = 0;
+		//设置工时总金额
+		if(unitPrice>0 && qty>0){
+		   amt = qty*unitPrice;
+		   amt = amt.toFixed(2);
+		}
+		setAmt.setValue(amt);
+		setItemTime.setValue(qty);
+		rowtime.subtotal = amt;
+		rowtime.qty = qty;
+		rowtime.amt = amt;
+  }
 }
+
+function onValueChangedAmt(e){
+	var el = e.sender;
+	var flag = isNaN(e.value);
+	var rowtime = rpsPartGrid.getEditorOwnerRow(el);
+	var setAmt = rpsPartGrid.getCellEditor("amt", rowtime);
+	var amt = el.getValue();
+	if (flag) {
+		showMsg("请输入数字!","W");
+		setAmt.setValue(e.oldValue);
+		e.cancel = true; 
+	}else if(amt<0){
+		showMsg("数量不能小于0","W");
+		setAmt.setValue(e.oldValue);
+		e.cancel = true; 
+		return;
+	}else if(amt == "" || amt == null){	
+		setAmt.setValue(e.oldValue);
+		e.cancel = true; 
+		return;
+	}else{		
+		//获取指定列和行的编辑器控件对象
+		var setQty = rpsPartGrid.getCellEditor("qty", rowtime);
+		var unitPrice = rowtime.unitPrice || 0; 
+		var qty = 0;
+		//设置工时总金额
+		if(unitPrice>0){
+			qty = amt/unitPrice;
+			qty = qty.toFixed(2);	
+		}
+		setAmt.setValue(amt);
+		setQty.setValue(qty);
+		rowtime.subtotal = amt;
+		rowtime.amt = amt;
+  }
+}
+
 
 /*
  * 修改维修主表的信息
@@ -1212,15 +1361,22 @@ function saveBatch(){
     }else{
 		var maintain = billForm.getData();
 		delete maintain.recordDate;
-		var addSellPart = nui.get("rpsPartGrid").getData();
-		var sellPartAdd = rpsPartGrid.getChanges("added");
-		var sellPartUpdate = rpsPartGrid.getChanges("modified");
+		maintain.partAmt = total;
+		total = null;
+		var sellPartAdd = [];
+		var sellPartUpdate = [];
 		var sellPartDelete = rpsPartGrid.getChanges("removed");
 		maintain.partAmt = total;
 		total = null;
+		var row = rpsPartGrid.findRow(function(row){
+			if(!row.id){
+				sellPartAdd.push(row);
+			}else{
+				sellPartUpdate.push(row);
+			}
+        });
 		var json = nui.encode({
 			"maintain" : maintain,
-			"addSellPart" : addSellPart,
 			"sellPartAdd" : sellPartAdd,
 			"sellPartUpdate" : sellPartUpdate,
 			"sellPartDelete" : sellPartDelete,
@@ -1242,7 +1398,7 @@ function saveBatch(){
                                 serviceId: maintain.id||0
                             }
                         }
-                        loadDetail(p3);
+                        loadDetail(p3,maintain.status);
 					showMsg("保存成功","S");
 													
 				} else {
@@ -1288,11 +1444,18 @@ function finish(){
         html: '审核中...'
     });
 	var maintain = billForm.getData();
-	var sellPartAdd = rpsPartGrid.getChanges("added");
-	var sellPartUpdate = rpsPartGrid.getChanges("modified");
-	var sellPartDelete = rpsPartGrid.getChanges("removed");
 	maintain.partAmt = total;
 	total = null;
+	var sellPartAdd = [];
+	var sellPartUpdate = [];
+	var sellPartDelete = rpsPartGrid.getChanges("removed");
+	var row = rpsPartGrid.findRow(function(row){
+		if(!row.id){
+			sellPartAdd.push(row);
+		}else{
+			sellPartUpdate.push(row);
+		}
+    });
 	var json = nui.encode({
 		"main" : maintain,
 		"sellPartAdd" : sellPartAdd,
@@ -1405,4 +1568,76 @@ function pay(){
 	});		
 }
 
+function setPartSaleMans(){
+    var main =  billForm.getData();
+    if(!main.id){
+        return;
+    }else{
+        var status = main.status||0;
+        if(status == 2){
+            showMsg("工单已完工,不能修改!","W");
+            return;
+        }else{
+        	//saleManIdBat = "";
+        	//saleManNameBat = "";
+        	nui.open({
+        		url :  webPath + contextPath + "/com.hsweb.repair.DataBase.Salesperson.flow?token="+token,
+        		title : "批量设置销售员",
+        		width : 600,
+        		height : 380,
+        		allowResize: false,
+        		onload : function() {
+        			var iframe = this.getIFrameEl(); 
+        			var data = {
+        			};// 传入页面的json数据
+        			iframe.contentWindow.setData(data);
+        		},
+        		ondestroy : function(action) {// 弹出页面关闭前
+        			if (action == "ok") {
+        				var iframe = this.getIFrameEl();
+        	        	var data = iframe.contentWindow.getData();
+        	        	var row = rpsPartGrid.findRow(function(row){
+                    			var saleMan = rpsPartGrid.getCellEditor("saleMan", row);
+                    			saleMan.setValue(data.emlpszName);
+                		        row.saleManId = data.emlpszId;
+                		        row.saleMan = data.emlpszName;
+                        });
+        			}
+        		}
+        	});
+        }
+    }
+}
 
+function openItemSaleMans(e){
+	var el = e.sender;
+    var row = rpsPartGrid.getEditorOwnerRow(el);
+	var saleMan = rpsPartGrid.getCellEditor("saleMan", row);
+    var data = {};
+    data = {
+    	saleMan:row.saleMan,
+    	saleManId:row.saleManId
+    };
+ 	 $('.mini-textbox-input').blur();
+     nui.open({
+ 		url :  webPath + contextPath + "/com.hsweb.repair.DataBase.Salesperson.flow?token="+token,
+ 		title : "设置销售员",
+ 		width : 600,
+ 		height : 380,
+ 		allowResize: false,
+ 		onload : function() {
+ 			var iframe = this.getIFrameEl(); 
+ 			iframe.contentWindow.setData(data);
+ 		},
+ 		ondestroy : function(action) {// 弹出页面关闭前
+ 			if (action == "ok") {
+ 			    var iframe = this.getIFrameEl();
+		        var data = iframe.contentWindow.getData();
+		       // __saleManId = data.emlpszId;
+		        saleMan.setValue(data.emlpszName);
+		        row.saleManId = data.emlpszId;
+		        row.saleMan = data.emlpszName;
+ 			}
+ 		}
+ 	});
+}

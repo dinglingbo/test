@@ -996,11 +996,6 @@ function choosePart(){
         return;
     }
      if(!main.id){
-    	 nui.mask({
- 	        el: document.body,
- 	        cls: 'mini-mask-loading',
- 	        html: '数据加载中...'
- 	     });
     	var data = billForm.getData();
 		for ( var key in requiredField) {
 			if (!data[key] || $.trim(data[key]).length == 0) {
@@ -1008,6 +1003,11 @@ function choosePart(){
 				return;
 			}
 	    }
+		nui.mask({
+ 	        el: document.body,
+ 	        cls: 'mini-mask-loading',
+ 	        html: '数据加载中...'
+ 	     });
 		saveNoShowMsg(function(){
 			  nui.open({
 					url : webPath + contextPath + "/com.hsweb.repair.DataBase.partSelectView.flow?token=" + token,
@@ -1381,14 +1381,14 @@ function saveBatch(){
 	}else{		
 		var maintain = billForm.getData();
 	    delete maintain.recordDate;
+	    maintain.partAmt = total;
+		total = null;
 		//var addSellPart = nui.get("rpsPartGrid").getData();
 		//var sellPartAdd = rpsPartGrid.getChanges("added");
 		//var sellPartUpdate = rpsPartGrid.getChanges("modified");
 		var sellPartAdd = [];
 		var sellPartUpdate = [];
 		var sellPartDelete = rpsPartGrid.getChanges("removed");
-		maintain.partAmt = total;
-		total = null;
 		var row = rpsPartGrid.findRow(function(row){
 			if(!row.id){
 				sellPartAdd.push(row);
@@ -1464,11 +1464,20 @@ function finish(){
 	        cls: 'mini-mask-loading',
 	        html: '审核中...'
 	});
-	var sellPartAdd = rpsPartGrid.getChanges("added");
-	var sellPartUpdate = rpsPartGrid.getChanges("modified");
-	var sellPartDelete = rpsPartGrid.getChanges("removed");
-	main.partAmt = total;
+	var maintain = billForm.getData();
+    delete maintain.recordDate;
+    maintain.partAmt = total;
 	total = null;
+	var sellPartAdd = [];
+	var sellPartUpdate = [];
+	var sellPartDelete = rpsPartGrid.getChanges("removed");
+	var row = rpsPartGrid.findRow(function(row){
+		if(!row.id){
+			sellPartAdd.push(row);
+		}else{
+			sellPartUpdate.push(row);
+		}
+     });
 	var json = nui.encode({
 		"main" : main,
 		"sellPartAdd" : sellPartAdd,

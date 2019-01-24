@@ -10,7 +10,9 @@
 -->
 <head>
 <title>已结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.21"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.22"></script>
+<link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
 
 .title {
@@ -128,14 +130,14 @@
 	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号"></div>
 	                  <div field="billTypeId" name="billTypeId" width="80" headerAlign="center" header="工单类型"></div>
 	                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" header="业务类型"></div>
-	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" header="服务顾问"></div>
+	                  <div field="mtAdvisor" name="mtAdvisor" width="110" headerAlign="center" header="服务顾问"></div>
 	                   <div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="结算日期"></div>
 	                 </div>
                   </div>
                   <div type="checkcolumn" name="checkcolumn" visible="false"></div>
                   <div header="客户车辆信息" headerAlign="center">
 	                  <div property="columns" > 
-	                 	  <div field="guestFullName" name="guestFullName" width="60" headerAlign="center" header="客户姓名"></div> 
+	                 	  <div field="guestFullName" name="guestFullName" width="100" headerAlign="center" header="客户姓名"></div> 
 		                  <div field="carNo" name="carNO" width="80" headerAlign="center" header="车牌号"></div>
 		                  <div field="carModel" name="carModel" width="120" headerAlign="center" header="品牌/车型"></div>
 						  <div field="carVin" name="carVin" width="150" headerAlign="center" header="车架号(VIN)"></div>
@@ -155,7 +157,7 @@
 	                  	  <div field="partAmt" name="partAmt" width="70" headerAlign="center" header="配件金额"></div>
 	                  	  <div field="partPrefAmt" name="partPrefAmt" width="70" headerAlign="center" header="配件优惠"></div>		                  
 		                  <div field="partSubtotal" name="partSubtotal" width="70" headerAlign="center" header="配件小计"></div>
-		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" header="其他收入"></div>
+		                  <div field="otherAmt" name="" width="70" headerAlign="center" header="其他收入"></div>
 		                  <div field="incomeTotal" name="incomeTotal" width="70" headerAlign="center" header="收入合计"></div>
 		              </div>
 		           </div>      

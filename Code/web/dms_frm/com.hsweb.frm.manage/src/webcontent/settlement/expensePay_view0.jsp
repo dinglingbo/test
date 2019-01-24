@@ -1,5 +1,6 @@
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/sysCommon.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" session="false"%>
+<%@include file="/common/commonPart.jsp"%>
 <html>
 <!-- 
   - Author(s): Administrator
@@ -8,7 +9,9 @@
 -->
 <head>
 <title>费用支出单</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/expensePay.js?v=2.0.4"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/expensePay.js?v=2.0.5"></script>
+		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -49,7 +52,7 @@
                             <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" onvaluechanged="refresh" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
 
                             <label style="font-family:Verdana;">审核状态：</label>
-                            <input class="nui-combobox" id="auditSign" name="auditSign" value="0" onitemclick="refresh"  nullitemtext="请选择..." emptyText="审核状态" data="auditSignList" width="70px" />
+                            <input class="nui-combobox" id="auditSign" name="auditSign" value="0" onitemclick="refresh"  nullitemtext="请选择..." emptyText="审核状态" data="auditSignList" width="100px" />
                             <input id="searchGuestId" class="nui-buttonedit" emptyText="请选择往来单位..."  onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
                             <a class="nui-button" iconCls="" plain="true" onclick="refresh()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                             <a class="nui-button" plain="true" iconCls="" onclick="addGuest()" id="addGuestBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
@@ -81,8 +84,8 @@
                         <div type="indexcolumn" width="25">序号</div>
                         <div type="checkcolumn" field="check" width="25"></div>
                         <div field="guestId" width="50" headerAlign="center" visible="false"></div>
-                        <div field="billDc" width="50" headerAlign="center" visible="false"></div>
-                        <div field="guestName" summaryType="count" width="50" headerAlign="center" header="往来单位名称"></div>
+                        <div field="billDc" width="50" headerAlign="center" visible="false"></div> 
+                        <div field="guestName" name="guestName" summaryType="count" width="80" headerAlign="center" header="往来单位名称"></div>
                         <div field="balaAccountId" type="comboboxcolumn" width="100" headerAlign="center" header="结算账户">
                             <input  property="editor" enabled="true" id="balaAccountList" name="list" data="accountList" class="nui-combobox" valueField="id" textField="name" onvaluechanged="onAccountValueChanged" url="" emptyText=""  vtype="required"/> 
                         </div>
@@ -102,8 +105,8 @@
                         <div field="remark" width="80" headerAlign="center" header="备注">
                             <input property="editor" class="nui-textbox"/>
                         </div>
-                        <div field="auditSign" width="30" headerAlign="center" header="是否审核"></div>
-                        <div field="auditor" width="30" headerAlign="center" header="审核人"></div>
+                        <div field="auditSign" width="50" headerAlign="center" header="是否审核"></div>
+                        <div field="auditor" name="auditor" width="60" headerAlign="center" header="审核人"></div>
                         <div allowSort="true" field="auditDate" width="60" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                         <div field="rpAccountId" width="60" headerAlign="center" header="单号"></div>
                         <div allowSort="true" field="createDate" width="60" headerAlign="center" visible="false" dateFormat="yyyy-MM-dd HH:mm"></div>

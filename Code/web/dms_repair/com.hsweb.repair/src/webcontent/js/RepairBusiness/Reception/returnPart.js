@@ -21,7 +21,7 @@ $(document).ready(function(v)
 	rpsPartGrid.on("rowdblclick",function(e){
 		onOk();
 	});
-  rpsPartGrid.on("drawcell",function(e)
+   rpsPartGrid.on("drawcell",function(e)
     {
 	  var grid = e.sender;
       var record = e.record;
@@ -33,7 +33,15 @@ $(document).ready(function(v)
           	break;
       }
     });
-  nui.get("onOk").focus();
+    nui.get("onOk").focus();
+    tempGrid2.on("cellclick",function(e){ 
+		var field=e.field;
+		var row = e.row;
+        if(field=="check" ){
+			tempGrid2.removeRow(row);
+			partList = tempGrid2.getData();
+        }
+    });
 	document.onkeyup=function(event){
       var e=event||window.event;
       var keyCode=e.keyCode||e.which;//38向上 40向下
@@ -57,7 +65,7 @@ function getDataAll(){
 	return row;
 }
 
-function onOk()
+/*function onOk()
 {
 	var row = rpsPartGrid.getSelected();
 	if(row)
@@ -104,20 +112,42 @@ function onOk()
 	else{
 		 parent.showMsg("请选择一个配件", "W");
 	}
+}*/
+var partList = [];
+function onOk(){
+	var row = rpsPartGrid.getSelected();
+	if(row)
+	{
+		if(ckcallback){
+			var rs = ckcallback(row);
+			if(rs){
+				parent.showMsg("此配件已添加,请返回查看!","W");
+				return;
+			}else{
+			   row.check = 1;
+			   var rows= nui.clone(row);
+			   tempGrid2.addRow(rows);
+			   partList = tempGrid2.getData();
+			}
+		}
+	}else{
+		showMsg("请选择一个配件", "W");
+	}
 }
-
 var callback = null;
 var delcallback = null;
 var ckcallback = null;
+var guestId = null;
 function setCkcallback(main,ck){
 	isChooseClose = 1;
 	ckcallback = ck;
-	rpsPartGrid.setWidth("60%");
+	rpsPartGrid.setWidth("79%");
 	tempGrid2.setStyle("display:inline");
 	document.getElementById("splitDiv2").style.display="";
 	var mainData = main;
 	var params = {};
 	params.guestId = mainData.guestId;
+	guestId = mainData.guestId;
 	rpsPartGrid.load({
 		params:params,
 		token:token
@@ -153,4 +183,19 @@ function onCancel(e) {
 function setValueData(){
 	nui.get("state").setValue(6);
 	partGrid.showColumn("checkcolumn");
+}
+function onSearch(){
+	var params = {};
+	params.serviceCode = nui.get("search-serviceCode").getValue();
+	params.partCode = nui.get("search-code").getValue();
+	params.partName = nui.get("search-name").getValue();
+	params.guestId = guestId;
+	rpsPartGrid.load({
+		params:params,
+		token:token
+	});
+}
+
+function getPartList(){
+	return partList;
 }

@@ -97,6 +97,7 @@
                editNextOnEnterKey="true"
                onshowrowdetail="onShowRowDetail"
                allowCellEdit="true"
+               allowCellWrap = "true"
                url="">
               <div property="columns">
                   <div type="indexcolumn">序号</div>

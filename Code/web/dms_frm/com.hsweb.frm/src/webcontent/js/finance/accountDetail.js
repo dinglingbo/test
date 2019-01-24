@@ -11,7 +11,7 @@ var advanceGuestIdEl = null;
 var rpDcEl = null;
 var accountList = null;
 var accountHash = {};
-
+var dcListType = [{name:"收",id:"1"},{id:"-1",name:"支"}];
 $(document).ready(function(v) {
 	mainGrid = nui.get("mainGrid");
 	mainGrid.setUrl(queryUrl);
@@ -32,7 +32,25 @@ $(document).ready(function(v) {
             accountHash[v.id] = v;
         });
     });
-
+	 var filter = new HeaderFilter(mainGrid, {
+	        columns: [
+	            { name: 'auditor' },
+	             {name:'shortName'},
+	             {name:'rpDc'}
+	        ],
+	        callback: function (column, filtered) {
+	        },
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+	        	case "rpDc":
+	    			value = dcListType;
+		    		default:
+		                break;
+		    	}
+	        	return value;
+	        }
+	    });
 	quickSearch(2);
 });
 function doSearch() {

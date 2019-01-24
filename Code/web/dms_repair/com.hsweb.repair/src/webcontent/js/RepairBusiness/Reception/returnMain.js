@@ -88,7 +88,35 @@ $(document).ready(function ()
             default:
                 break;
         }
-    });  
+    });
+    
+    var filter = new HeaderFilter(mainGrid, {
+        columns: [
+            { name: 'status' },
+            { name: 'contactName' },
+            { name: 'carModel' },
+            { name: 'isSettle' },
+            { name: 'mtAdvisor' },
+            {name:'mtAdvisorId'}
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+	    		case "status" ://状态 
+	    			value = prebookStatusHash;// [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, {name: '已取消' , id: '2' }, { name: '已开单', id: '3' }, { name: '已评价', id: '4' }];
+	    			break;
+	    		case "isSettle":
+	    			value = isSettleHash;
+	    			break;
+	    		default:
+	                break;
+	    	}
+        	return value;
+        }
+    });
+    
     quickSearch(5);
     mainGrid.on("rowdblclick",function(e){
     	editSell();
@@ -103,7 +131,8 @@ var statusHash = {
     "5" : "全部"
     
 };
-
+var prebookStatusHash = [{ name: '草稿', id: '0' },{ name: '待出库', id: '1' },{ name: '已出库', id: '2' }];
+var isSettleHash = [{name:"未结算",id:"0"},{name:"已结算",id:"1"}];
 function clear(){
     advancedSearchForm.setData([]); 
     beginDateEl.setValue(getMonthStartDate());

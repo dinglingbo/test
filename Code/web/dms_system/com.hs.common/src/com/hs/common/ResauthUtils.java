@@ -154,7 +154,19 @@ public class ResauthUtils {
 		Jedis jedis = null;
 		try {
 			jedis = RedisPoolUtils.getJedis();
-			if (value == null) {
+			boolean bool = hExists(hsetName, key);
+			if(bool) {
+				jedis.hdel(hsetName, key);
+			}
+			
+			if(value != null) {
+				jedis.hset(hsetName, key, value.toString());
+				//如果expireTime<0，则不设置过期时间，永久有效
+				if(expireTime >= 0) {
+					jedis.expire(hsetName, expireTime);
+				}
+			}
+			/*if (value == null) {
 				jedis.hdel(hsetName, key);
 			} else {
 				jedis.hset(hsetName, key, value.toString());
@@ -162,7 +174,7 @@ public class ResauthUtils {
 				if(expireTime >= 0) {
 					jedis.expire(hsetName, expireTime);
 				}
-			}
+			}*/
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -209,7 +221,54 @@ public class ResauthUtils {
 		HashMap pm = new HashMap();
 		
 		return getRedisCache("default", "com.hs.common.orga.queryMenu", 
-				pm, "资源详情数据", "false", -1, false, null);
+				pm, "菜单数据", "false", -1, false, null);
+	}
+	
+	@Bizlet("获取所有资源信息")
+	public static DataObject[] getComAppFunction() throws Throwable {
+		HashMap pm = new HashMap();
+		
+		return getRedisCache("default", "com.hs.common.orga.queryComAppFunction", 
+				pm, "资源数据", "false", -1, false, null);
+	}
+	
+	@Bizlet("清除并重新设置缓存")
+	public static boolean clearAndResetCache(String dsName, String nameSqlId, 
+			HashMap params, String title, String fromDb, int expireTimes,
+			boolean setDe, DataObject deData) throws Throwable {
+		HashMap cachePm = genenCacheKey(nameSqlId, params);
+		String cacheName = (String) cachePm.get("cacheName");
+		String key = cachePm.get("key").toString();
+		if(cacheName == null || cacheName.equals("")) {
+			return false;
+		}
+		
+		Object[] objs = DatabaseExt.queryByNamedSql(dsName,nameSqlId, params);
+		List<DataObject> detailList = new ArrayList<DataObject>();
+		CollectionUtils.addAll(detailList, objs);
+		String cacheValue = null;
+		int size = detailList.size();
+		DataObject[] data = (DataObject[]) detailList.toArray(new DataObject[size]);
+		if(objs.length == 0 && setDe) {
+			cacheValue = Utils.obj2GzipStr(deData);
+		} else {
+			cacheValue = Utils.obj2GzipStr(data);
+		}
+    	hsetAndExtend(cacheName, key, cacheValue, -1);
+    	
+    	List<Object> p = new ArrayList<Object>();
+		p.add(dsName);
+		p.add(nameSqlId);
+		p.add(params);
+		p.add(title);
+		
+		try {
+			Object[] resultRes = callLogicFlowMethd("com.hs.common.uitls", "saveCacheKey", p.toArray(new Object[p.size()]));
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		
+		return true;
 	}
 	
 	@Bizlet("方法调用API")

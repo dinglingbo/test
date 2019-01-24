@@ -10,7 +10,7 @@
 -->
 <head>
 <title>未结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.22"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.25"></script>
 <style type="text/css">
 
 .title {
@@ -67,14 +67,16 @@
                     <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul> -->
-                     <input class="nui-combobox" id="billTypeId" emptyText="综合开单" name="billTypeId" data="[{billTypeId:999,text:'全部'},{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'}]"
+                     工单类型:<input class="nui-combobox" id="billTypeId" emptyText="综合开单" name="billTypeId" data="[{billTypeId:999,text:'全部工单'},{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'}]"
                           width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="999"/>
+                          <span class="separator"></span>
                     <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="carNoSearch"/>
-                    <input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
+                    <span class="separator"></span>
+                    服务顾问：<input name="mtAdvisorId" id="mtAdvisorId" class="nui-combobox width1" textField="empName" valueField="empId"
                         emptyText="服务顾问" url=""  allowInput="true" showNullItem="false" width="90" valueFromSelect="true"/>
  
-  进厂日期:
+<!--   进厂日期:
                     <input id="sEnterDate" name="sEnterDate" class="nui-datepicker"/>
 至:
                     <input id="eEnterDate" name="eEnterDate" class="nui-datepicker"
@@ -82,7 +84,7 @@
                            timeFormat="H:mm:ss"
                            showTime="false"
                            showOkButton="false"
-                           showClearButton="false"/>
+                           showClearButton="false"/> -->
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 <!--                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>    -->         
@@ -108,20 +110,27 @@
                showSummaryRow = "true"
                onshowrowdetail="onShowRowDetail"
                url="">
-              <div property="columns">
-                  <div type="indexcolumn" width="40" >序号</div>
-                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>
-                  <div header="客户车辆信息" headerAlign="center">
-	                  <div property="columns" >
-		                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>  
-		                  <div field="carNo" name="carNO" width="80" headerAlign="center" header="车牌号"></div>
+             	<div property="columns">
+				<div type="indexcolumn" width="40" >序号</div>
+                  <div header="工单信息" headerAlign="center">
+                  	 <div property="columns" >
+	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>
+	                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div> 
+	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号"></div>
+	                  <div field="status" name="status" width="40px" headerAlign="center" header="进程"></div> 
+	                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" header="业务类型"></div>
+	                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" header="服务顾问"></div>
+	                 </div>
+                  </div>
+                  <div header="客户/车辆信息" headerAlign="center">客户名称，联系人，车牌号，品牌/车型，车架号(VIN)
+	                  <div property="columns" >	                  
 		                  <div field="guestFullName" name="guestFullName" width="80" headerAlign="center" header="客户名称"></div>
-		                  <div field="carModel" name="carModel" width="120" headerAlign="center" header="品牌车型"></div>
-		                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号"></div>
-		                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" header="业务类型"></div> 
-		                  <div field="enterKilometers" name="enterKilometers" width="80" headerAlign="center" header="进厂里程"></div>
-		                  <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" header="服务顾问"></div>
-		                  <!-- <div field="guestFullName" name="guestFullName" width="60" headerAlign="center" header="客户姓名"></div> -->
+		                  <div field="carNo" name="carNO" width="80" headerAlign="center" header="车牌号"></div>
+		                  <div field="carModel" name="carModel" width="120" headerAlign="center" header="品牌/车型"></div>
+		                  
+		                  <div field="carVin" name="carVin" width="150" headerAlign="center" header="车架号(VIN)"></div>
+		                   
+		                <!--   <div field="enterKilometers" name="enterKilometers" width="80" headerAlign="center" header="进厂里程"></div> -->
 		                  
 <!-- 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div> -->
 	                  </div>
@@ -136,16 +145,16 @@
 	<!-- 	                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum"  header="预存抵扣"></div>
 		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" summaryType="sum"  header="优惠金额"></div>
 		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" summaryType="sum"  header="其他收入"></div>
-		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" summaryType="sum"  header="其他支出"></div>
-	                  </div> -->
+		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" summaryType="sum"  header="其他支出"></div> -->
+	                  </div>
                   </div>
                   
                    <div header="其他" headerAlign="center">
 	                  <div property="columns" >
 		                 <!--  <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div> 
 		                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="车架号(VIN)"></div> -->
-		                  <div field="enterDate" name="enterDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="进厂时间"></div>
-		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="完工时间"></div>
+		                  <div field="enterDate" name="enterDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="进厂日期"></div>
+		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="完工日期"></div>
 	                  </div>
                   </div>
                   

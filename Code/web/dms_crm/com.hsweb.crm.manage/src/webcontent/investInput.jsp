@@ -7,7 +7,9 @@ pageEncoding="UTF-8" session="false" %>
   <%@include file="/common/sysCommon.jsp" %>
   <title>业绩录入</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <script src="<%=webPath + contextPath%>/manage/js/investInput.js?v=1.0.7"></script>
+  <script src="<%=webPath + contextPath%>/manage/js/investInput.js?v=1.0.8"></script>
+          <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 </head>
 <body> 
   <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
@@ -71,7 +73,7 @@ pageEncoding="UTF-8" session="false" %>
      <div property="columns">
       <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号"></div>
       <div field="serviceCode" name="serviceCode" width="135" headerAlign="center" header="工单号"></div>
-      <div field="visitMan" name="visitMan" width="80" headerAlign="center" header="营销员"></div>
+      <div field="visitMan" name="visitMan" width="80" headerAlign="center" header="营销员"></div> 
       <div field="carType" name="carType" width="80" headerAlign="center" header="来厂类型"></div>
       <div field="recorder" name="recorder" width="80" headerAlign="center" header="录入人"></div>
       <div field="recordDate" name="recordDate" width="130" headerAlign="center" header="录入日期" dateFormat="yyyy-MM-dd HH:mm"></div>

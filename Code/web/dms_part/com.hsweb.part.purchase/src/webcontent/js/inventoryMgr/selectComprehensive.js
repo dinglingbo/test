@@ -12,6 +12,7 @@ var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart
 var beginDateEl = null;
 var endDateEl = null;
 var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"},{id:"4",name:"工单号"}];
+var billTypeIdList = [{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"}];
 var brandList = [];
 var brandHash = {};
 var servieTypeList = [];  
@@ -84,6 +85,8 @@ $(document).ready(function ()
             if (brandHash && brandHash[e.value]) {
                 e.cellHtml = brandHash[e.value].name;
             }
+        }else if (e.field == "billTypeId") {
+                e.cellHtml = billTypeIdList[e.value].name;
         }else if (e.field == "serviceTypeId") {
             if (servieTypeHash && servieTypeHash[e.value]) {
                 e.cellHtml = servieTypeHash[e.value].name;

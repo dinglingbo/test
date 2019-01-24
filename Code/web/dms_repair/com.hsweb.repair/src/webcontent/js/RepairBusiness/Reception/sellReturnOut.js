@@ -59,6 +59,27 @@ $(document).ready(function ()
              
     });
     
+    var filter = new HeaderFilter(mainGrid, {
+        columns: [
+            { name: 'guestFullName' },
+            { name: 'carModel' },
+            { name: 'recorder' },
+            { name: 'isSettle' }
+        ], 
+        callback: function (column, filtered) {
+        },
+
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+	    		case "isSettle":
+	    			value = [{name:"未结算",id:"0"},{name:"已结算",id:"1"}];
+	    			break;
+	    	}
+        	return value;
+        }
+    });
+    
     mainGrid.on("celldblclick",function(e){
         var field = e.field;
         var record = e.record;

@@ -25,6 +25,7 @@ var auditSignHash = {
 		"1" : "已审",
 
 	};
+var headerHash = [{ name: '草稿', id: '0' }, { name: '已审', id: '1' }];
 var dcHash={
 		"-1" : "盘亏",
 		"0"  : "无盈亏",
@@ -60,6 +61,27 @@ $(document).ready(function(v)
 		edit();
 
 	});
+    var filter = new HeaderFilter(rightGrid, {
+        columns: [
+            { name: 'auditSign' },
+            { name: 'orderMan' },
+            { name: 'auditor' }
+        ],
+        callback: function (column, filtered) {
+        },
+
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+	    		
+	    		case "auditSign" : // 预约类型
+	    			value = headerHash;
+	    			break;
+	    	}
+        	return value;
+        }
+    });
+    
     innerPartGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;

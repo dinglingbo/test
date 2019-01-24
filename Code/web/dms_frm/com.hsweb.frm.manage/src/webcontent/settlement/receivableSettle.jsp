@@ -9,7 +9,9 @@
 
 <head>
 	<title>应收账款管理</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.6.2"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.6.3"></script>
+	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">
 		.title {
 			width: 90px;
@@ -165,12 +167,12 @@
 						 oncellcommitedit="onCellCommitEdit" showSummaryRow="false">
 							<div property="columns">
 								<div type="indexcolumn">序号</div>
-								<div type="checkcolumn" field="check" width="20"></div>
+								<div type="checkcolumn" field="check" width="20"></div> 
 								<!-- <div type="expandcolumn" width="20">#</div> -->
-								<div field="guestName" width="150" headerAlign="center" header="结算单位"></div>
-								<div field="carNo" width="80" headerAlign="center" header="车牌号"></div>
+								<div field="guestName" name="guestName" width="150" headerAlign="center" header="结算单位"></div>
+								<div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号"></div>
 								<div allowSort="true" summaryType="count" field="billServiceId" width="120" summaryType="count" headerAlign="center" header="业务单号"></div>
-								<div field="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
+								<div field="billTypeId" name="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
 								<div field="remark" width="120" headerAlign="center" header="业务备注"></div>
 								<div field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="应收金额"></div>
 								<div field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额">
@@ -180,7 +182,7 @@
 									<input property="editor" vtype="float" class="nui-textbox" />
 								</div>
 								<div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-								<div field="settleStatus" width="60" headerAlign="center" header="结算状态"></div>
+								<div field="settleStatus" name="settleStatus" width="60" headerAlign="center" header="结算状态"></div>
 								<div field="charOffAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="已结金额"></div>
 								<!-- <div field="balanceSign" type="checkboxcolumn" trueValue="1" falseValue="0" width="60" headerAlign="center" header="是否对账"></div>
                         <div field="balancer" width="60" headerAlign="center" header="对账人"></div>

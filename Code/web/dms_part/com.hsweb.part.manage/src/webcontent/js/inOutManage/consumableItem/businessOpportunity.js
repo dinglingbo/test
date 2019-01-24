@@ -43,6 +43,12 @@ $(document).ready(function(v) {
 
 	});
 	
+	grid.on("rowdblclick",function(e){
+
+			edit();
+
+	});
+	
     initDicts({
     	chanceType:SELL_TYPE//商机
     },function(){

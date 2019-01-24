@@ -62,6 +62,10 @@ $(document).ready(function ()
         	}else{
         		e.cellHtml="";
         	}
+        }else if(e.field == "serviceCode"){
+        	e.cellHtml ='<a href="##" onclick="editSell('+e.record._uid+')">'+e.record.serviceCode+'</a>';
+        }else if(e.field == "carNo"){
+        	e.cellHtml ='<a href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
         }
     });
 
@@ -235,8 +239,12 @@ function addSell(){
     window.parent.activeTabAndInit(part,params);
 
 }
-function editSell(){
-    var row = mainGrid.getSelected();
+function editSell(row_uid){
+	if(!row_uid){
+		var row = mainGrid.getSelected();
+	}else{
+		var row = mainGrid.getRowByUID(row_uid);
+	}
     if(!row) return;
     var part={};
     part.id = "5000";
@@ -458,6 +466,17 @@ function pay(){
 	}
 	else{
 		showMsg("请选择单据", "W");
+	}
+}
+
+function showCarInfo(row_uid){
+	var row = mainGrid.getRowByUID(row_uid);
+	if(row){
+		var params = {
+				carId : row.carId,
+				guestId : row.guestId
+		};
+		doShowCarInfo(params);
 	}
 }
 

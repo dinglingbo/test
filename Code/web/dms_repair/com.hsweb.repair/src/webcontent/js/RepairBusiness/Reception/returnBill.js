@@ -413,6 +413,7 @@ function setInitData(params){
         getMaintain(params, function(text){
             var errCode = text.errCode||"";
             var data = text.maintain||{};
+            var status = data.status;
             if(errCode == 'S'){
                 var p = {
                     data:{
@@ -472,7 +473,7 @@ function setInitData(params){
                                 serviceId: data.id||0
                             }
                         }
-                        loadDetail(p3);
+                        loadDetail(p3,status);
 
                     }else{
                         showMsg("数据加载失败,请重新打开工单!","E");
@@ -901,7 +902,7 @@ function onpartsalemanChanged(e){
 }
 
 
-function loadDetail(p3){
+function loadDetail(p3,status){
     if(p3 && p3.interType){
         getBillDetail(p3, function(text){
             var errCode = text.errCode;
@@ -910,6 +911,11 @@ function loadDetail(p3){
                 rpsPartGrid.clearRows();
                 rpsPartGrid.addRows(data);
                 rpsPartGrid.accept();
+                if(status<1){
+                	var row = rpsPartGrid.findRow(function(row){
+                		rpsPartGrid.beginEditRow(row);
+                    });
+                }
             }
         }, function(){});
     }

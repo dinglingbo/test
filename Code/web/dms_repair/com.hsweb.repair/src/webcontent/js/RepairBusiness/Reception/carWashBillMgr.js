@@ -13,6 +13,8 @@ var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart
 var beginDateEl = null;
 var endDateEl = null;
 var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"联系人名称"},{id:"3",name:"手机号"}];
+var prebookStatusHash = [{ name: '草稿', id: '0' }, { name: '施工中', id: '1' }, {name: '完工' , id: '2' }];
+var headerHash = [{ name: '未结算', id: '0' }, { name: '预结算', id: '1' }, {name: '未结算' , id: '2' }, {name: '未结算' , id: '3' }];
 var brandList = [];
 var brandHash = {};
 var servieTypeList = [];
@@ -79,6 +81,30 @@ $(document).ready(function ()
             });
         });
 
+    });
+    
+    var filter = new HeaderFilter(mainGrid, {
+        columns: [
+            { name: 'status' },
+            { name: 'mtAdvisor' },
+            { name: 'balaAuditSign' }
+        ],
+        callback: function (column, filtered) {
+        },
+
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+	    		case "status" ://状态 
+	    			value = prebookStatusHash;// [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, {name: '已取消' , id: '2' }, { name: '已开单', id: '3' }, { name: '已评价', id: '4' }];
+	    			break;
+	    		case "balaAuditSign" ://状态 
+	    			value = headerHash;// [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, {name: '已取消' , id: '2' }, { name: '已开单', id: '3' }, { name: '已评价', id: '4' }];
+	    			break;
+
+	    	}
+        	return value;
+        }
     });
     // initCustomDicts("receTypeId", "0415",function(data) {
     //     receTypeIdList = nui.get("receTypeId").getData();

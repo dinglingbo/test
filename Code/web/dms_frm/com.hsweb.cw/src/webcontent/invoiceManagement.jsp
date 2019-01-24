@@ -14,6 +14,8 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/cw/js/invoiceManagement/invoiceManagement.js?v=1.0.5" type="text/javascript"></script>
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/date.js" type="text/javascript"></script>
+    		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 </head>
 <style type="text/css">
     body {
@@ -61,21 +63,21 @@
                 <div property="columns">
                 <div width="30" type="indexcolumn">序号</div>
                 	<div field="main" name="main" headeralign="center" align="center" width="40"visible="false"></div>
-                    <div field="code" name="code" headeralign="center" align="center" width="40">开票单号</div>
-                    <div field="serviceCode" name="serviceCode" headeralign="center" align="center"width="55">源单号</div>
-                    <div field="guestFullName"  name="guestFullName" headeralign="center" align="center"width="30">客户姓名</div>
-                    <div field="carNo"  name="carNo" headeralign="center" align="center"width="40">车牌号</div>
-                    <div field="guestMobile"  name="guestMobile" headeralign="center" align="center"width="40">手机号</div>
+                    <div field="code" name="code" headeralign="center" align="center" width="100">开票单号</div>
+                    <div field="serviceCode" name="serviceCode" headeralign="center" align="center"width="100">源单号</div>
+                    <div field="guestFullName"  name="guestFullName" headeralign="center" align="center"width="60">客户姓名</div>
+                    <div field="carNo"  name="carNo" headeralign="center" align="center"width="80">车牌号</div>
+                    <div field="guestMobile"  name="guestMobile" headeralign="center" align="center"width="80">手机号</div>
                     <div field="invoiceType"  name="invoiceType" headeralign="center" align="center"width="40">发票类型</div>
-                    <div field="rate"  name="rate" headeralign="center" align="center"width="20">税率</div>
-                    <div field="invoiceAmt"  name="invoiceAmt" headeralign="center" align="center"width="40">开票金额</div>
-                    <div field="rateAmt"  name="rateAmt" headeralign="center" align="center"width="40">税额</div>
-                    <div field="invoiceNo"  name="invoiceNo" headeralign="center" align="center"width="40">发票号</div>
+                    <div field="rate"  name="rate" headeralign="center" align="center"width="40">税率</div>
+                    <div field="invoiceAmt"  name="invoiceAmt" headeralign="center" align="center"width="60">开票金额</div>
+                    <div field="rateAmt"  name="rateAmt" headeralign="center" align="center"width="60">税额</div>
+                    <div field="invoiceNo"  name="invoiceNo" headeralign="center" align="center"width="60">发票号</div>
                     <div field="invoiceName"  name="invoiceName" headeralign="center" align="center"width="40">发票抬头</div>
-                    <div field="recordDate"  name="recordDate" headeralign="center" align="center"width="35">开票日期</div>
-                    <div field="recordDateMain"  name="recordDateMain" headeralign="center" align="center"width="35">源单日期</div>
-                    <div field="recorder"  name="recorder" headeralign="center" align="center"width="30">开票人</div>
-                    <div field="remark"  name="remark" headeralign="center" align="center"width="40">开票备注</div>
+                    <div field="recordDate"  name="recordDate" headeralign="center" align="center"width="60">开票日期</div>
+                    <div field="recordDateMain"  name="recordDateMain" headeralign="center" align="center"width="60">源单日期</div>
+                    <div field="recorder"  name="recorder" headeralign="center" align="center"width="60">开票人</div>
+                    <div field="remark"  name="remark" headeralign="center" align="center"width="60">开票备注</div>
                 </div>
             </div>
         </div>

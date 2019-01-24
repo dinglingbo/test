@@ -11,7 +11,9 @@
 <head>
 <title>储值卡消费记录</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.3.4"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.3.5"></script>
+		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
 html,body {
 	margin: 0;
@@ -53,18 +55,18 @@ html,body {
 				</div>
 				<div class="nui-fit">
 					<div id="datagrid1" dataField="data" class="nui-datagrid"
-						pageSize="50" onDrawCell="onDrawCell"
+						pageSize="50" onDrawCell="onDrawCell" 
 						onselectionchanged="selectionChanged" onrowclick=""
 						allowSortColumn="true" style="width: 100%; height: 100%;">
 						<div property="columns">
 							<div type="indexcolumn">序号</div>
 							<div field="id" headerAlign="center" allowSort="true"
 								visible="false">会员卡ID</div>
-							<div field="guestName" headerAlign="center" align="center"
+							<div field="guestName" name="guestName" headerAlign="center" align="center"
 								allowSort="true">客户名称</div>
 							<div field="mobile" headerAlign="center" align="center"
 								allowSort="true">电话</div>
-							<div field="cardName" headerAlign="center" align="center"
+							<div field="cardName" name="cardName" headerAlign="center" align="center"
 								allowSort="true">会员卡名称</div>
 							<div field="rechargeAmt" headerAlign="center" align="center"
 								allowSort="true">充值金额</div>
@@ -78,7 +80,7 @@ html,body {
 								allowSort="true">剩余金额</div>	
 							<div field="refundAmt" headerAlign="center" align="center"
 								allowSort="true">已退款金额</div>									
-							<div field="saleMan" headerAlign="center" align="center"
+							<div field="saleMan" name="saleMan" headerAlign="center" align="center"
 								allowSort="true">销售员</div>
 							<div field="recordDate"  align="center"
 								headerAlign="center" dateFormat="yyyy-MM-dd HH:ss" allowSort="true">充值日期</div>

@@ -11,6 +11,8 @@
 
 <head>
   <title>维修出库</title>  
+  	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
   <style type="text/css">
   .title {
     width: 60px;
@@ -112,11 +114,11 @@ a#car{
     	<div type="indexcolumn" width="15">序号</div>
         <div field="id" name="id" visible="false">id</div>
         <div field="serviceCode" name="serviceCode" width="100" headerAlign="center" align="center">单号</div>
-        <div field="guestFullName" name="guestFullName" width="40" headerAlign="center" align="center">客户姓名</div>
+        <div field="guestFullName" name="guestFullName" width="80" headerAlign="center" align="center">客户姓名</div>
 <!--         <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div> -->
         <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
         <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">品牌车型</div>
-        <div field="billTypeId" name="billTypeId" width="50" headerAlign="center" align="center">工单类型</div>
+        <div field="billTypeId" name="billTypeId" width="80" headerAlign="center" align="center">工单类型</div>
         <div field="serviceTypeName" name="serviceTypeName" width="100" headerAlign="center" align="center">业务类型</div>
 <!--         <div field="isSettle" name="isSettle" width="30" headerAlign="center" align="center">结算状态</div> -->
         <div field="enterDate" name="recordDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">进厂日期</div>
@@ -124,7 +126,7 @@ a#car{
     </div> 
 </div>
 </div>
-
+   
 <script type="text/javascript">
 	var webBaseUrl = webPath + contextPath + "/";
     var con_data_status = [{id:0,text:"草稿"},{id:1,text:"施工中"},{id:2,text:"已完工"}];
@@ -324,7 +326,7 @@ a#car{
             }
         }
     });
-
+var headerHash = [{ name: '综合开单', id: '0' }, { name: '检查开单', id: '1' }, {name: '洗美开单' , id: '2' }, { name: '销售开单', id: '3' }, { name: '理赔开单', id: '4' }, { name: '退货开单', id: '4' }];
     function newrepairOut(type) {
         var row = mainGrid.getSelected();
         if(row){ 
@@ -382,6 +384,25 @@ function showCarInfo(row_uid){
 		doShowCarInfo(params);
 	}
 }
+
+var filter = new HeaderFilter(mainGrid, {
+        columns: [
+            { name: 'guestFullName' },
+            { name: 'billTypeId' }
+        ],
+        callback: function (column, filtered) {
+        },
+
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+	    		case "billTypeId"://预约来源
+	    			value = headerHash;
+	    			break;
+	    	}
+        	return value;
+        }
+    });
 /*function edit() {
     var row = mainGrid.getSelected();
     if(row){ 

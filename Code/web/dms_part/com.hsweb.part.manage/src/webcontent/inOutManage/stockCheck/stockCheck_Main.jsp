@@ -8,7 +8,9 @@
 -->
 <head>
     <title>盘点单主界面</title>
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheckMain.js?v=1.1.15"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheckMain.js?v=1.1.16"></script>
+        <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
     .title {
         width: 90px;
@@ -113,12 +115,12 @@
     <div property="columns">
             <div type="indexcolumn" width="20">序号</div>
             <div type="expandcolumn" width="15" ><span class="fa fa-plus fa-lg"></span></div>
-			<div field="auditSign" width="60" headerAlign="center" header="状态"></div>
+			<div field="auditSign" name="auditSign" width="60" headerAlign="center" header="状态"></div>
             <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
             <div allowSort="true" field="storeId" width="90" headerAlign="center" header="盘点仓库"></div>
             <div allowSort="true" field="createDate" headerAlign="center" header="盘点日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-            <div field="orderMan" width="60" headerAlign="center" header="盘点员"></div>
-            <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
+            <div field="orderMan" name="orderMan" width="60" headerAlign="center" header="盘点员"></div>
+            <div field="auditor" name="auditor" width="60" headerAlign="center" header="审核人"></div>
             <div field="remark" width="60" headerAlign="center" header="备注"></div>
             <div allowSort="true" field="auditDate" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
         </div>

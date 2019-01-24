@@ -33,6 +33,8 @@ var prdtTypeHash = {
 	    "2":"项目",
 	    "3":"配件"
 };
+var prebookStatusHash = [{ name: '草稿', id: '0' }, { name: '施工', id: '1' }, {name: '完工' , id: '2' }];
+var headerHash = [{ name: '未结算', id: '0' }, { name: '预结算', id: '1' }, {name: '未结算' , id: '2' }, {name: '未结算' , id: '3' }];
 var seeBill = true;
 $(document).ready(function ()
 {
@@ -78,6 +80,30 @@ $(document).ready(function ()
             });
         });
 
+    });
+    
+    var filter = new HeaderFilter(mainGrid, {
+        columns: [
+            { name: 'status' },
+            { name: 'mtAdvisor' },
+            { name: 'balaAuditSign' }
+        ],
+        callback: function (column, filtered) {
+        },
+
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+	    		case "status" ://状态 
+	    			value = prebookStatusHash;// [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, {name: '已取消' , id: '2' }, { name: '已开单', id: '3' }, { name: '已评价', id: '4' }];
+	    			break;
+	    		case "balaAuditSign" ://状态 
+	    			value = headerHash;// [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, {name: '已取消' , id: '2' }, { name: '已开单', id: '3' }, { name: '已评价', id: '4' }];
+	    			break;
+
+	    	}
+        	return value;
+        }
     });
     // initCustomDicts("receTypeId", "0415",function(data) {
     //     receTypeIdList = nui.get("receTypeId").getData();

@@ -32,6 +32,7 @@ var StatusHash = {
 		"2" : "待收货",
 		"4" : "已入库",
 	};
+var headerHash = [{ name: '草稿', id: '0' }, { name: '待发货', id: '1' }, {name: '待收货' , id: '2' }, {name: '未结算' , id: '3' }, {name: '已入库' , id: '4' }];
 var innerPartGrid=null;
 var editFormDetail = null;
 
@@ -63,6 +64,38 @@ $(document).ready(function(v)
 		edit();
 
 	});
+    
+
+
+   var filter = new HeaderFilter(rightGrid, {
+        columns: [
+                  { name: 'billStatusId' },
+                  { name: 'orderMan' },
+                  { name: 'creator' },
+                  { name: 'guestFullName' }
+        ],
+        callback: function (column, filtered) {
+        },
+
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+	    		case "status" ://状态 
+	    			value = prebookStatusHash;// [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, {name: '已取消' , id: '2' }, { name: '已开单', id: '3' }, { name: '已评价', id: '4' }];
+	    			break;
+	    		case "billStatusId":
+	    			value = headerHash;
+	    			break;
+	    		case "storeId":
+	    			value = storehouseHash;
+	    			break;
+	    		case "settleTypeId":
+	    			value = settTypeIdHash;
+	    			break;
+	    	}
+        	return value;
+        }
+    });
     innerPartGrid.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;

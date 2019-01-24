@@ -24,6 +24,24 @@ $(document).ready(function(v){
 //    dgGrid.on("beforeload",function(e){
 //    	e.data.token = token;
 //    });
+    
+    var filter = new HeaderFilter(dgGrid, {
+        columns: [
+            { name: 'carModel' },
+            { name: 'recorder' },
+            { name: 'guestName' }
+        ],
+        callback: function (column, filtered) {
+        },
+
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+
+	    	}
+        	return value;
+        }
+    });
 dgGrid.load({token :token});
     dgGrid.on("drawcell", function (e) { //表格绘制
         var field = e.field;

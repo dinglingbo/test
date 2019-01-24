@@ -1,5 +1,6 @@
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/sysCommon.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" session="false"%>
+<%@include file="/common/commonPart.jsp"%>
 <html>
 <!-- 
   - Author(s): Administrator
@@ -8,7 +9,11 @@
 -->
 <head>
 <title>其他应付单</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/othersPBill.js?v=2.0.8"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/othersPBill.js?v=2.0.9"></script>
+
+		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
+   
 <style type="text/css">
 .title {
   width: 60px;
@@ -86,8 +91,8 @@
                         <div type="checkcolumn" field="check" width="25"></div>
                         <div field="guestId" width="50" headerAlign="center" visible="false"></div>
                         <div field="billDc" width="50" headerAlign="center" visible="false"></div>
-                        <div field="guestName" summaryType="count" width="50" headerAlign="center" header="往来单位名称"></div>
-                        <div field="carNo" summaryType="count" width="50" headerAlign="center" header="车牌号"></div>
+                        <div field="guestName" name="guestName" summaryType="count" width="80" headerAlign="center" header="往来单位名称"></div>
+                        <div field="carNo" name="carNo"  summaryType="count" width="80" headerAlign="center" header="车牌号"></div>
                         <div field="billTypeId" type="comboboxcolumn" width="100" headerAlign="center" header="收支项目">
                             <input  property="editor" enabled="true" id="billTypeList" name="list" data="list" dataField="list" class="nui-combobox" onvaluechanged="onbillTypeChange" valueField="id" textField="name" url="" emptyText=""  vtype="required"/> 
                         </div>
@@ -99,7 +104,7 @@
                             <input property="editor" class="nui-textbox"/>
                         </div>
                         <div field="auditSign" width="30" headerAlign="center" header="是否审核"></div>
-                        <div field="auditor" width="30" headerAlign="center" header="审核人"></div>
+                        <div field="auditor" name="auditor"  width="60" headerAlign="center" header="审核人"></div>
                         <div allowSort="true" field="auditDate" width="60" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                         <div field="settleStatus" width="30" headerAlign="center" header="结算状态"></div>
                         <div field="rpBillId" width="60" headerAlign="center" header="应付单单号"></div>

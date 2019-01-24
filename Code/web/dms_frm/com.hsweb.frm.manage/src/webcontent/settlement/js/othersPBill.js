@@ -36,7 +36,22 @@ $(document).ready(function(v)
 
     searchBeginDate.setValue(getNowStartDate());
     searchEndDate.setValue(getNowEndDate());
+	  var filter = new HeaderFilter(mainGrid, {
+	        columns: [
+	            { name: 'auditor' },
+		            { name: 'guestName' },
+	            { name: 'carNo' },
+	        ],
+	        callback: function (column, filtered) {
+	        },
 
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
     getInComeExpenses(function(data) {
         list = data.list;
         //billTypeListEl.setUrl(list);

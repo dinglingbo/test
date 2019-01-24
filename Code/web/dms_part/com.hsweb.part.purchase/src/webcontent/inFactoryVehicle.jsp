@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>在厂车辆查询</title>
+<title>未结算工单明细表</title>
 <script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.22"></script>
 <style type="text/css">
 
@@ -130,13 +130,14 @@
                   <div header="估算费用信息" headerAlign="center">
 	                  <div property="columns" >	                  
 		                  <div field="pkgSubtotal" name="status" width="70" headerAlign="center" summaryType="sum" header="套餐小计"></div>
-		                  <div field="itemSubtotal" name="carNO" width="70" headerAlign="center" summaryType="sum" header="工时小计"></div>
+		                  <div field="itemSubtotal" name="carNO" width="70" headerAlign="center" summaryType="sum" header="项目小计"></div>
 		                  <div field="partSubtotal" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="配件小计"></div>
-		                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum"  header="预存抵扣"></div>
+		                  <div field="total" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="合计"></div>
+	<!-- 	                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum"  header="预存抵扣"></div>
 		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" summaryType="sum"  header="优惠金额"></div>
 		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" summaryType="sum"  header="其他收入"></div>
 		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" summaryType="sum"  header="其他支出"></div>
-	                  </div>
+	                  </div> -->
                   </div>
                   
                    <div header="其他" headerAlign="center">

@@ -72,7 +72,6 @@ HeaderFilter.prototype = {
 
         var blank = {};
         blank[column.displayField || column.field] = '全部';     //暂不知道具体逻辑
-        console.log(blank);
         result.push(blank);
 
         for (var i = 0, l = data.length; i < l; i++) {
@@ -253,6 +252,7 @@ HeaderFilter.prototype = {
 
        var data = this._createFilterListData(column),
            sb = [];
+       var arr = [];
        for (var i = 0, l = data.length; i < l; i++) {
            var record = data[i];
            var text = record[column.field];
@@ -261,8 +261,10 @@ HeaderFilter.prototype = {
            
            var checked = false;
            if (column._filterMap) checked = !!column._filterMap[text];
+           arr[arr.length] = text;
            showcheckBox(column,text,sb,data);
        }
+       
        el.find('.filterwindow-content').html(sb.join(''));
 
        return el;
@@ -305,8 +307,11 @@ function showcheckBox(column,text,sb,data){
 		sb[sb.length] = '<div class="filterwindow-item"><label><input class="filterwindow-item-checkbox checkall" type="checkbox"  value="全部"/>全部</label></div>';
 		index ++;
 	}
+	if(!value){//如果跟上面类型不匹配则处理自定义类型
+		value = dataProcessing(column);
+	}
 	if(value){
-		for(var j = 0 ,  l = value.length ; j < l ; j ++){
+		for(var j = 0 ,  l = value.length ; j < l ; j ++){//判断是否已经存了相同数据到数组上
 			if(value[j] != undefined){
 				if(value[j].id == text){
 					var str = '<div class="filterwindow-item"><label><input name="check" type="checkbox" value="'+text+'" />'+value[j].name+'</label></label></div>';
@@ -336,4 +341,13 @@ function contains(arr, obj) {//判断数组是否包含元素
         }
     }
     return false;
+}
+
+function dataProcessing(column){//自定义类型  根据表头（如多处表头field相同且定义了data在switch上添加）
+	var header = column.header;
+	var value = null;
+	if(header.indexOf("是否") > -1){//数据显示 是否类型
+		value =[{ name: '否', id: '0' }, { name: '是', id: '1' }];
+	}
+	return value;
 }

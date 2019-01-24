@@ -351,6 +351,9 @@ $(document).ready(function ()
 					}
 				}
 			break;
+		case "cardTimesOpt":
+			e.cellHtml = '<a class="optbtn" href="javascript:void()" onclick="editSell()">跟进</a>';
+			break;
 		default:
 			break;
 		}
@@ -517,12 +520,7 @@ $(document).ready(function ()
             }
         }
     });
-    carSellPointGrid.on("drawcell",function(e)
-    {
-        if(e.field == 'cardTimesOpt'){
-            e.cellHtml = '<a class="optbtn" href="javascript:void()">查看</a>';
-        }
-    });
+
     
     document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号/VIN码)");
     // document.onmousedown=function(event){ 
@@ -4729,4 +4727,55 @@ function addOrEdit(item)
     });
 }
 
+function addSell() {
+	
+	nui.open({
+		url : webPath + contextPath
+				+ "/com.hsweb.part.manage.businessOpportunityEdit.flow?token="
+				+ token,
+		title : "添加商机",
+		width : 550,
+		height : 410,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			var list = [];
+			var params = {
+					type : "add"
+			};
+			iframe.contentWindow.setData(params);
+		},
+		ondestroy : function(action) {
+			if (action == "saveSuccess") {
+				grid.reload();
+			}
+		}
+	});
+}
 
+function editSell() {
+		var row = carSellPointGrid.getSelected();
+		if (row) {
+			nui.open({
+				url : webPath + contextPath
+				+ "/com.hsweb.part.manage.businessOpportunityEdit.flow?token="
+				+ token,
+				title : "更新商机",
+				width : 550,
+				height : 410,
+				onload : function() {
+					var iframe = this.getIFrameEl();
+					var data = row;
+					data.type = 'editT';
+					// 直接从页面获取，不用去后台获取
+					iframe.contentWindow.setData(data);
+				},
+				ondestroy : function(action) {
+					if (action == "saveSuccess") {
+						grid.reload();
+					}
+				}
+			});
+		} else {
+			showMsg("请选中一条记录!", "W");
+		}
+	}

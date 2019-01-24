@@ -1373,9 +1373,12 @@
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
 	       where e.service_id = a.id) as serviceTypeName,
-		      (SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id) as pkgSubtotal,
-		      (SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id) as itemSubtotal,
-		      (SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id) as partSubtotal
+		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0) as pkgSubtotal,
+		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id),0) as itemSubtotal,
+		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as partSubtotal,
+		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0)+
+		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id),0)+
+		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as total 
 		from rps_maintain a
 		inner JOIN rpb_car b ON ( a.car_id = b.id )
 		INNER JOIN wb_common.com_guest c on a.guest_id = c.id

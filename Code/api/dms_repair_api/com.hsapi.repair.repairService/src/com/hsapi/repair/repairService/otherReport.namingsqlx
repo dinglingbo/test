@@ -321,10 +321,6 @@ where b.orgid =#orgid#
        a.mt_advisor_id ,a.mt_advisor as groupName,
      </isEqual>
      
-     <isEqual  prepend="" property="groupByType"    compareValue="1">
-       a.mt_advisor as groupName1,
-     </isEqual>
-     
      <isEqual  prepend="" property="groupByType"   compareValue="2">
        a.car_model as groupName, 
      </isEqual>

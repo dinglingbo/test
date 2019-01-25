@@ -160,9 +160,9 @@
 				        var minutes=Math.floor(leave2/(60*1000));
 
 				        if(minutes<0){
-				        	days=days-days-days;
+				        	days=days-days-days-1;//Math.floor函数向下取整，负数多1
 				        	hours=hours-hours-hours;
-				        	minutes=minutes-minutes-hours;
+				        	minutes=minutes-minutes-minutes;
 				        	e.cellHtml=("超时"+days+"天 "+hours+"时 "+minutes+" 分");
 				        }else{
 				        	e.cellHtml=(days+"天 "+hours+"时 "+minutes+" 分");

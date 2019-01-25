@@ -59,8 +59,8 @@
                     <input class="nui-combobox" id="memberLevelId" name="memberLevelId" required="false" style="width: 107px;display: none;" emptytext="选择技师等级" textField="name" valueField="id"/>
                           <!--<div id="isArtificer" name="isArtificer" class="nui-radiobuttonlist" repeatItems="1" repeatLayout="table" repeatDirection="vertical"
                           textField="name" valueField="id" value="1"  width="100%"
-                          url="" > -->
-                      </div>
+                          url="" > 
+                      </div>-->
                   </td>
               </tr>
 

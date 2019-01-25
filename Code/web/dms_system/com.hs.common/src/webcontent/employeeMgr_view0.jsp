@@ -39,6 +39,7 @@
 					<a class="nui-button" plain="true" iconCls="" id="btnisDimission" name="btnisDimission" onclick="dimssion()"><span class="fa fa-user-times"></span>&nbsp;离职</a>
 					<a class="nui-button" plain="true" id="btnisOpenAccount" name="btnisOpenAccount" iconCls="" onclick="stoporstart()" ><span class="fa fa-key"></span>&nbsp;开通账号</a>
 					<a class="nui-button" plain="true" id="resetPasswordBtn" name="resetPasswordBtn" iconCls="" onclick="resetPassword()" ><span class="fa fa-key"></span>&nbsp;重置密码</a>
+					<a class="nui-button" plain="true" id="resetPasswordBtn" name="resetPasswordBtn" iconCls="" onclick="resetPassword()" ><span class="fa fa-key"></span>&nbsp;选择兼职门店</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="importGuest()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
 				</td>
 			</tr>
@@ -77,5 +78,47 @@
 			</div>
 		</div>
 	</div>
+	
+	<div id="advancedOrgWin" class="nui-window"
+     title="公司选择" style="width:530px;height:340px;"
+     showModal="true"
+     showHeader="false"
+     allowResize="false"
+     style="padding:2px;border-bottom:0;"
+     allowDrag="true">
+     <div class="nui-toolbar" >
+        <table style="width:100%;">
+            <tr>
+                <td style="width:100%;">
+                    <input class="nui-textbox" id="orgidOrName" name="orgidOrName" width="160px" emptyText="请输入店号或公司名">
+                    <a class="nui-button" iconCls="" plain="true" onclick="searchOrg()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="addOrg" id=""><span class="fa fa-check fa-lg"></span>&nbsp;确定</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="onOrgClose" id=""><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="nui-fit">
+          <div id="moreOrgGrid" class="nui-datagrid" style="width:100%;height:100%;"
+               selectOnLoad="true"
+               showPager="false"
+               dataField="orgList"
+               onrowdblclick="addOrg"
+               allowCellSelect="true"
+               editNextOnEnterKey="true"
+               allowCellWrap = true
+               allowCellSelect="true" 
+               multiSelect="false"
+               url="">
+              <div property="columns">
+              	<div type="checkcolumn" width="15" class="mini-radiobutton" header="选择"></div>
+                <div field="orgcode" name="orgid" width="15" align="center"  visible="true" headerAlign="center" header="企业号"></div>
+                <div field="orgname" name="orgname" width="" align="center"  headerAlign="center" header="公司名称"></div>
+              </div>
+          </div>
+    </div>
+</div>
+	
+	
 </body>
 </html>

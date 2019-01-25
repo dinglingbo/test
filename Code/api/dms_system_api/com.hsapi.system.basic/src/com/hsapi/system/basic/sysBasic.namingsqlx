@@ -43,4 +43,33 @@
         ORDER BY  CREATETIME DESC
     </select>
     
+    <select id="getCompanyAll" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+    	    a.orgid orgid,
+    	    a.tenant_id tenantId,
+			a.code code,
+			a.name name,
+			a.short_name shortName,
+			a.province_id provinceId,
+			a.city_id cityId,
+			a.county_id countyId,
+			a.street_address streetAddress,
+			a.address address,
+			a.longitude longitude,
+			a.latitude latitude,
+			a.tel tel,
+			a.complain_tel complainTel
+		FROM  wb_common.com_company a
+			where a.tenant_id = #tenantId#
+		<dynamic>
+             <isNotEmpty prepend="and" property="code">
+            	(a.code like '%$code$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="name">
+            	(a.name like '%$name$%')
+            </isNotEmpty>
+        </dynamic>
+             ORDER BY  a.record_date  DESC
+    </select>
+    
 </sqlMap>

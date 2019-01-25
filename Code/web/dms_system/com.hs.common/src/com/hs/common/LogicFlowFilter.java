@@ -88,10 +88,11 @@ public class LogicFlowFilter implements Filter {
 		if(url.indexOf(".flow") > 0) {
 			boolean check = MenuUtil.checkActionAuth(requestWrapper);
 			if(!check) {
-				String contextPath = StringUtil.htmlFilter(req.getContextPath());
-				url=contextPath + "/coframe/auth/noAuth.jsp";
-				RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-				dispatcher.forward(requestWrapper, response);
+				//String contextPath = StringUtil.htmlFilter(req.getContextPath());
+				//url=contextPath + "/coframe/auth/noAuth.jsp";
+				//RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+				//dispatcher.forward(requestWrapper, response);
+				request.getRequestDispatcher("/coframe/auth/noAuth.jsp").forward(request, response);
 				return;
 			}
 		}

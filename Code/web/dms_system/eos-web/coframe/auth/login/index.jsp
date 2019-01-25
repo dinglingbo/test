@@ -20,9 +20,10 @@
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css" rel="stylesheet" type="text/css" />
     <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css" rel="stylesheet"	type="text/css" />
     <link href="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+    <link href="<%=request.getContextPath()%>/coframe/auth/login/feedback/feedback.css" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
-    
-
+    <script src="<%=request.getContextPath()%>/coframe/auth/login/feedback/html2canvas.min.js" type="text/javascript"></script>
+	
     <style type="text/css">
 	a {
 	cursor: pointer;
@@ -154,6 +155,11 @@
         <ul class="nav navbar-nav navbar-right">
             <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
+           	<li class="dropdown">
+           		<a class="feedback-bt FeedBackButton" style="padding-top: 18px; ">
+				    反馈
+				</a>
+           	</li>
             <li class="dropdown">
                 <a  onClick="OrgShow()" style="padding-top: 18px; ">
                         <span  class="org_hover" id="currOrgName">公司</span>
@@ -168,6 +174,7 @@
                 </ul>
             </li>
             <li class="dropdown">
+            	
                 <!--<a class="dropdown-toggle userinfo">
                     <img class="user-img" src="res/images/user.jpg" />个人资料<i class="fa fa-angle-down"></i>
                 </a>-->
@@ -208,6 +215,7 @@
     <input type="hidden" name="orgid" value="" id="orgid">
 </form> 
 
+<script src="<%=request.getContextPath()%>/coframe/auth/login/feedback/drawDom.js" type="text/javascript"></script>
 
 </body>
 </html>
@@ -597,7 +605,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     //切换角色
     function changeOrgs(orgid) {
         if (orgid != currOrgId) {
-            $("#toggleRole")[0].action = "com.hsapi.system.auth.login.wlogin.flow";
+            $("#toggleRole")[0].action = "com.hsapi.system.auth.login.login.flow";
             $("#operatorId").val(currUserId);
             $("#orgid").val(orgid);
             $("#toggleRole")[0].submit();

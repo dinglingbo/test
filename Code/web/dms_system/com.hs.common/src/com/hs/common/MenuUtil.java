@@ -69,17 +69,22 @@ public class MenuUtil {
 				DataObject[] resArr = ResauthUtils.getRoleRes(roleId);
 				CollectionUtils.addAll(resList, resArr);
 			}
-			//取唯一资源ID
+			//取唯一资源ID			
 			Set<DataObject> set = new HashSet<DataObject>();    //去重
 			set.addAll(resList); 
 			List<DataObject> resIdList = new ArrayList<DataObject>(set);
 			//资源ID对应的详细资源信息
 			List<DataObject> resInfoList = new ArrayList<DataObject>();
+			HashMap ex = new HashMap();
 			for(int j=0; j<resIdList.size(); j++) {
 				DataObject resObj = resIdList.get(j);
 				String resId = resObj.getString("resId");
-				DataObject[] resInfo = ResauthUtils.getResInfo(resId);
-				CollectionUtils.addAll(resInfoList, resInfo);
+				if(!ex.containsKey(resId)) {
+					DataObject[] resInfo = ResauthUtils.getResInfo(resId);
+					CollectionUtils.addAll(resInfoList, resInfo);
+					ex.put(resId, resId);
+				}
+				
 			}
 			Set<DataObject> setAll = new HashSet<DataObject>();    //去重
 			setAll.addAll(menuList);    

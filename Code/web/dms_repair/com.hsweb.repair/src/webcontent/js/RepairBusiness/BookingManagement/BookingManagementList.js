@@ -46,6 +46,41 @@ $(document).ready(function (v) {
         onupGridSelectionchanged();
     });
     
+    var filter = new HeaderFilter(upGrid, {
+        columns: [
+            { name: 'status' },
+            { name: 'prebookSource' },
+            { name: 'serviceTypeId' },
+            { name: 'prebookCategory' },
+            { name: 'mtAdvisor' },
+            { name: 'mtAdvisorId' },
+            { name: 'isOpenBill' }
+        ],
+        callback: function (column, filtered) {
+        },
+
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+	    		case "status" ://状态 
+	    			value = prebookStatusHash;// [{ name: '待确认', id: '0' }, { name: '已确认', id: '1' }, {name: '已取消' , id: '2' }, { name: '已开单', id: '3' }, { name: '已评价', id: '4' }];
+	    			break;
+	    		case "prebookSource"://预约来源
+	    			value = prebookSourceHash;
+	    			break;
+	    		case "serviceTypeId" : //业务类型
+	    			value = serviceTypeHash;
+	    			break;
+	    		case "prebookCategory" : // 预约类型
+	    			value = prebookCategoryHash;
+	    			break;
+	    		case "isOpenBill": case "isJudge": // 是否开单是否评价
+	    			value = [{name:"否",id:"0"},{name:"是",id:"1"}];
+	    			break;
+	    	}
+        	return value;
+        }
+    });
 });
 
 function init() {

@@ -49,8 +49,24 @@ $(document).ready(function(v)
 
         if ((keyCode == 13)) { // F9
             onSearch();
-        }
+        }  
     }
+	  var filter = new HeaderFilter(rightGrid, {
+	        columns: [
+	            { name: 'guestFullName' },
+	            { name: 'orderMan' },
+		            { name: 'applyCarModel' }
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
     getAllPartBrand(function(data)
     {
         var partBrandList = data.brand;

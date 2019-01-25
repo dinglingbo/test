@@ -71,6 +71,7 @@ var settleStatusHash = {
 	"1" : "部分结算",
 	"2" : "已结算"
 };
+var headerHash = [{ name: '未结算', id: '0' }, { name: '部分结算', id: '1' }, { name: '已结算', id: '2' }];
 var balanceList = [ {
 	id : 0,
 	text : "未对"
@@ -166,7 +167,29 @@ $(document).ready(
 				partBrandList.forEach(function(v) {
 					partBrandIdHash[v.id] = v;
 				});
-			});
+			});     
+			  var filter = new HeaderFilter(rRightGrid, {
+			        columns: [
+			            { name: 'guestName' },
+/*			            { name: 'settleStatus' },*/
+			            { name: 'carNo' },
+			        ],
+			        callback: function (column, filtered) {
+			        },
+
+			        tranCallBack: function (field) {
+			        	var value = null;
+			        	switch(field){
+				    		case "settleStatus" : // 预约类型
+				    			value = headerHash;
+				    			break;
+				    		case "isOpenBill": case "isJudge": // 是否开单是否评价
+				    			value = [{name:"否",id:"0"},{name:"是",id:"1"}];
+				    			break;
+				    	}
+			        	return value;
+			        }
+			    });
 			getStorehouse(function(data) {
 				var storehouse = data.storehouse || [];
 				// nui.get("storeId").setData(storehouse);

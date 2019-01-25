@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.56"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.62"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -236,9 +236,9 @@ html, body{
                 showClose="false"
                 allowInput="true"/>
                 <a class="nui-button" iconCls="" plain="false" onclick="addGuest()" id="addBtn">新增客户</a>
+                <a class="nui-button" iconCls="" plain="false" onclick="addFit()" id="addFit">标记为散客</a>
                 <label style="font-family:Verdana;">工单号:</label>
                 <label id="servieIdEl" style="font-family:Verdana;"></label>
-                
             </td>     
           
             <td style="text-align:right;">
@@ -741,6 +741,7 @@ allowDrag="false">
           </div>
     </div>
 </div>
+
 <script type="text/javascript">
  nui.parse();
 </script>

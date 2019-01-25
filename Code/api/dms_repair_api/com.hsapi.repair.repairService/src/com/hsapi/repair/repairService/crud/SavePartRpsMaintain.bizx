@@ -356,7 +356,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="serviceno" type="query" value="String" valueType="Primitive">serviceNo</process:outputVariable>
-        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"></process:outputVariable>
+        <process:outputVariable id="1" name="billrecords" type="query" value="com.hs.common.com.ComBillRecord[]" valueType="DataObject"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -401,7 +401,6 @@
     <targetConnections>link30</targetConnections>
     <targetConnections>link33</targetConnections>
     <targetConnections>link36</targetConnections>
-    <targetConnections>link28</targetConnections>
     <location x="438" y="534"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
@@ -558,23 +557,13 @@
       <targetNode>assign12</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" description="" id="link27" name="link27" displayName="连接线" type="transition">
-      <sourceNode>assign8</sourceNode>
-      <targetNode>assign11</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">carVin</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <targetConnections>link23</targetConnections>
-    <location x="390" y="338"/>
+    <location x="409" y="338"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="388" y="374"/>
+    <location x="407" y="374"/>
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
@@ -609,7 +598,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link26</targetConnections>
-    <location x="340" y="417"/>
+    <location x="328" y="417"/>
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
     <process:copy>
@@ -622,33 +611,9 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="335" y="453"/>
+    <location x="323" y="453"/>
     <figSize height="17" width="39"/>
     <node>assign10</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign11" name="赋值11" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link28" name="link28" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign11</sourceNode>
-      <targetNode>end1</targetNode>
-      <process:transitionCondition/>
-    </sourceConnections>
-    <targetConnections>link27</targetConnections>
-    <location x="400" y="417"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign11label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">E</process:from>
-      <process:to type="query">errCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">VIN不能为空</process:from>
-      <process:to type="query">errMsg</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
-    <location x="395" y="453"/>
-    <figSize height="17" width="39"/>
-    <node>assign11</node>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign12" name="赋值12" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link31" name="link31" displayName="连接线" isDefault="true" type="transition">

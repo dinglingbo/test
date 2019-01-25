@@ -10,7 +10,9 @@
 -->
 <head>
 <title>销售开单</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellMain.js?v=1.3.7"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellMain.js?v=1.4.0"></script>
+ <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+ <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
 
 .title {
@@ -20,7 +22,7 @@
 
 .form_label {
 	width: 72px;
-	text-align: right;
+	text-align: right;`
 }
 .required {
 	color: red;
@@ -97,21 +99,24 @@
                editNextOnEnterKey="true"
                onshowrowdetail="onShowRowDetail"
                allowCellEdit="true"
+               allowCellWrap = "true"
                url="">
               <div property="columns">
                   <div type="indexcolumn">序号</div>
                   <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
+                  <div field="status" name="status" width="50" headerAlign="center" header="状态"></div>
+                  <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
+                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌" ></div>
+                  <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="开单时间" dateFormat="  yyyy-MM-dd HH:mm"></div>
+                  <div field="carModel" name="carModel" width="80" headerAlign="center" header="品牌车型" ></div>
+                  <div field="carVin" name="carVin" width="80" headerAlign="center" header="车架号(VIN)" ></div>
                   <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
-                  <div field="carNO" name="carNO" width="80" headerAlign="center" header="车牌" visible="false"></div>           
-                  <div field="carModel" name="carModel" width="180" headerAlign="center" header="品牌车型" visible="false"></div>
-                  <div field="partAmt" name="partAmt" width="40" headerAlign="center" header="金额"></div>
+                  <div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" header="服务顾问"></div>
+                  <div field="mtAdvisorId" name="mtAdvisorId" width="50" headerAlign="center" header="服务顾问" visible="false"></div>
+                  <div field="partAmt" name="partAmt" width="40" headerAlign="center" header="结算金额"></div>
                   <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div>
-                  <div field="status" name="status" width="50" headerAlign="center" header="状态"></div>
-                  <div field="recorder" name="recorder" width="50" headerAlign="center" header="销售员"></div>
-	              <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
-	              <div field="recordDate" name="recordDate" width="100" headerAlign="center" header="开单日期" dateFormat="  yyyy-MM-dd HH:mm"></div>
-	              <div field="remark" name="carModel" width="100" headerAlign="center" header="备注" ></div>
+	              <div field="remark" name="remark" width="100" headerAlign="center" header="备注" ></div>
                  </div>
          </div>
   <div id="editFormDetail" style="display:none;padding:5px;position:relative;">

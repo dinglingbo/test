@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
+	<%@include file="/common/common.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-    <%@include file="/common/commonRepair.jsp"%>
         <html>
         <!-- 
   - Author(s): localhost
@@ -12,7 +13,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.9" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.12" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -37,9 +38,9 @@
                 <div id="editForm1" style="width:100%;height:100%;">
                     <div id="mainTabs" class="nui-tabs" name="mainTabs" activeIndex="0" style="width:100%; height:100%;" plain="false" onactivechanged="">
                         <div title="客户信息" id="main" name="main">
-							                            <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:40%;">
-                                <legend>客户信息</legend>
-                            <div id="editForm4" style="padding:5px;">
+					<fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:40%;">
+                         <legend>客户信息</legend>
+                             <div id="editForm4" style="padding:5px;">
                                 <table class="nui-form-table" style="width:99%">
                                     <tr>
                                         <td class="form_label required" align="right">
@@ -47,7 +48,7 @@
                                         </td>
                                         <td>
                                             <input class="nui-hidden" name="id" id="guestId" />
-                                            <input class="nui-textbox" id="name" name="name" width="100%" onvaluechanged="onChanged(this.id)" />
+                                            <input class="nui-textbox" id="fullName" name="fullName" width="100%" onvaluechanged="onChanged(this.id)" />
                                         </td>
                                         <td class="form_label required" align="right">
                                             <label>手机号码：</label>
@@ -68,7 +69,7 @@
                                             <label>客户简称：</label>
                                         </td>
                                         <td>
-                                            <input class="nui-textbox" id="" name="" onValuechanged="processMobile(this.value)" width="100%" />
+                                            <input class="nui-textbox" id="shortName" name="shortName"  width="100%" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -95,8 +96,8 @@
                                         </td>
                                     </tr>
                                 </table>
-                            </div>
-</fieldset>
+                          </div>
+            </fieldset>
                             <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;">
                                 <legend>车辆信息</legend>
                                 <div id="editForm" style="padding:5px;">
@@ -109,7 +110,7 @@
                                             </td>
                                             <td style="width:80px;" align="right">车架号(VIN)：</td>
                                             <td style="width:150px;">
-                                                <input class="nui-textbox" id="carVin" name="carVin" width="100%" allowInput="false" />
+                                                <input class="nui-textbox" id="vin" name="vin" width="100%" allowInput="false" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -197,12 +198,48 @@
                                     </table>
                                 </div>
                             </fieldset>
-                        </div>
+                <fieldset style="width:90%;border:solid 1px #aaa;margin-top:8px;position:relative;height:25%;">
+                         <legend>联系人信息</legend>
+                             <div id="editForm5" style="padding:5px;">
+                                <table class="nui-form-table" style="width:99%">
+                                    <tr>
+                                        <td class="form_label required" align="right">
+                                            <label>联系人名称：</label>
+                                        </td>
+                                        <td>
+                                            <input class="nui-hidden" name="id" id="guestId" />
+                                            <input class="nui-textbox" id="name" name="name" width="100%" onvaluechanged="onChanged(this.id)" />
+                                        </td>
+                                        <td class="form_label required" align="right">
+                                            <label>手机号码：</label>
+                                        </td>
+                                        <td>
+                                            <input class="nui-textbox" id="mobile" name="mobile" width="100%" onvaluechanged="onChanged(this.id)" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="form_label" align="right">
+                                            <label>性别：</label>
+                                        </td>
+                                        <td>
+                                            <input class="nui-combobox" data="[{value:'0',text:'男',},{value:'1',text:'女'},]" textField="text" valueField="value" name="sex"
+                                                value="0" width="100%" />
+                                        </td>
+                                        <td class="form_label " align="right">
+                                            <label>身份：</label>
+                                        </td>
+                                        <td>
+                                            <input class="nui-combobox" name="identity" id="identity" valueField="customid" textField="name" width="100%" value="060301" />
+                                        </td>
+                                    </tr>
+                                    
+                                </table>
+                          </div>
+                      </fieldset>
+                   </div>
 
 
                         <div title="计次卡" id="main" name="main">
-
-
                             <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" totalField="page.count" dataField="data"
                                 onrowdblclick="" allowCellSelect="true" url="">
                                 <div property="columns">

@@ -35,8 +35,23 @@ $(document).ready(function ()
     serviceTypeIdEl = nui.get("serviceTypeId");
     serviceTypeIds = nui.get("serviceTypeIds");
     beginDateEl =nui.get('sOutDate');
-    endDateEl =nui.get('eOutDate');
+    endDateEl =nui.get('eOutDate');   
+	  var filter = new HeaderFilter(mainGrid, {
+	        columns: [
+	            { name: 'carModel' },
+		            { name: 'mtAdvisor' },
+	            { name: 'worker' },
+	        ],
+	        callback: function (column, filtered) {
+	        },
 
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
     initMember("mtAdvisorId",function(){     
         initServiceType("serviceTypeId",function(data) {
             servieTypeList = nui.get("serviceTypeId").getData();

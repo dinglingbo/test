@@ -10,7 +10,7 @@ var advanceGuestIdEl = null;
 var settleStatusEl = null;
 var enterTypeIdList = [];
 var enterTypeIdHash = {};
-
+var settleStatusHashType=[{name:"未结算",id:"0"},{name:"部分结算",id:"1"},{name:"已结算",id:"2"}];
 $(document).ready(function(v) {
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(queryUrl);
@@ -30,7 +30,25 @@ $(document).ready(function(v) {
         });
 
     });
-
+    var filter = new HeaderFilter(mainGrid, {
+        columns: [
+            { name: 'shortName' },
+            { name: 'settleStatus' }
+        ],
+        callback: function (column, filtered) {
+        },
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+        	    case "settleStatus":
+    			value = settleStatusHashType;
+    			break;
+	    		default:
+	                break;
+	    	}
+        	return value;
+        }
+    });
     quickSearch(2);
 });
 

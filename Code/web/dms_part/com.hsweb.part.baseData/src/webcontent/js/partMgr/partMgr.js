@@ -79,8 +79,27 @@ $(document).ready(function() {
         }
         else{
             onDrawCell(e);
-        }
+        }       
     });
+	  var filter = new HeaderFilter(partGrid, {
+	        columns: [
+	            { name: 'name' },
+		            { name: 'model' },
+	            { name: 'applyCarModel' },
+            { name: 'produceFactory' },
+            { name: 'fullName' },
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
+    
     partLoalGrid.on("beforeload",function(e){
         e.data.token = token;
     });

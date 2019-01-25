@@ -37,8 +37,23 @@ $(document).ready(function(v) {
         servieTypeList.forEach(function(v) {
             servieTypeHash[v.id] = v;
         });
-    });
-   
+    });  
+	  var filter = new HeaderFilter(grid, {
+	        columns: [
+	            { name: 'saleMan' },
+		            { name: 'guestName' },
+	            { name: 'cardName' },
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
     grid2.on("drawcell", function (e) {
         switch (e.field) {
             case "serviceTypeId":

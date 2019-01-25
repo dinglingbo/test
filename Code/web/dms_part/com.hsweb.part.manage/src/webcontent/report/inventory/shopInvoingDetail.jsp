@@ -9,7 +9,9 @@
 -->
 <head>
     <title>门店进销存明细</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/shopInvoingDetail.js?v=1.0.12"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/report/shopInvoingDetail.js?v=1.0.13"></script>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -97,18 +99,20 @@
      onrowdblclick="" 
      allowCellWrap = true
     frozenStartColumn="0"
-    frozenEndColumn="0">
+    frozenEndColumn="0"
+    sortMode="client"
+    >
     <div property="columns">
         <div type="indexcolumn">序号</div>
         <div header="配件信息" headerAlign="center">
             <div property="columns">
 <!--                 <div allowSort="true" field="partId" width="100" headerAlign="center" header="配件内码"></div> -->
-                <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                <div allowSort="true" field="partName" width="150" headerAlign="center" header="配件名称"></div>
-   				<div allowSort="true" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
-   				<div allowSort="true" field="applyCarModel" width="200" headerAlign="center" header="品牌车型"></div>
-   				<div allowSort="true" field="direction" width="100" headerAlign="center" header="方向"></div>
-   				<div allowSort="true" field="operateDate" width="150" headerAlign="center" dateFormat ="yyyy-MM-dd HH:mm" format="yyyy-MM-dd HH:mm:ss" header="操作日期"></div>
+                <div allowSort="false" field="partCode"  width="100" headerAlign="center" header="配件编码"></div>
+                <div allowSort="false" field="partName"  name="partName" width="150" headerAlign="center" header="配件名称"></div>
+   				<div allowSort="false" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
+   				<div allowSort="false" field="applyCarModel" width="200" name="applyCarModel" headerAlign="center" header="品牌车型"></div>
+   				<div allowSort="false" field="direction" width="100" headerAlign="center" header="方向"></div>
+   				<div allowSort="false" field="operateDate" width="150" headerAlign="center" dateFormat ="yyyy-MM-dd HH:mm" format="yyyy-MM-dd HH:mm:ss" header="操作日期"></div>
             </div>
         </div>
         
@@ -130,9 +134,9 @@
         
          <div header="其他信息" headerAlign="center">
             <div property="columns">
-                <div allowSort="true"  field="billTypeId" width="90" headerAlign="center" header="操作类型" dataType="float" align="left"></div>
-                <div allowSort="true"  field="operator" headerAlign="center" header="操作员" dataType="float" align="left"></div>
-                <div allowSort="true"  field="guestName" width="250" headerAlign="center" header="客户/供应商" dataType="float" align="left"></div>
+                <div allowSort="false"  field="billTypeId" name="billTypeId" width="90" headerAlign="center" header="操作类型" dataType="float" align="left"></div>
+                <div allowSort="false"  field="operator" name="operator" headerAlign="center" header="操作员" dataType="float" align="left"></div>
+                <div allowSort="false"  field="guestName" name="guestName" width="250" headerAlign="center" header="客户/供应商" dataType="float" align="left"></div>
             </div>
         </div>
         

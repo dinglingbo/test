@@ -12,8 +12,8 @@ pageEncoding="UTF-8" session="false" %>
     <title>付款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPDetail.js?v=1.1.4"></script>
-        <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPDetail.js?v=1.1.5"></script>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
     body {
@@ -72,7 +72,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="billServiceId" name="name" width="150"  headeralign="center" >业务单号</div>
                 <div field="billTypeId" name="name" width="100"  headeralign="center" >收支类型</div>
                 <div field="isPrimaryBusiness" name="name" width="100"  headeralign="center" >是否主营业务</div>
-                <div name="shortName" field="shortName"  width="100"  headeralign="center" allowSort="true" >结算单位简称
+                <div name="shortName" field="shortName"  width="100"  headeralign="center" allowSort="false" >结算单位简称
 
                 </div>
                 <div field="carNo" name="carNo" width="70"  headeralign="center" >车牌号</div>

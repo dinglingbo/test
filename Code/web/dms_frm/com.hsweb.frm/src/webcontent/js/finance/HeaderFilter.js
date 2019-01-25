@@ -131,29 +131,6 @@ HeaderFilter.prototype = {
         me._updateFilterStatus();
         //alert("doFilter");
     },
-    _createFilterWindow: function (column) {
-         xyme = this;
-         xycolumn = column;
-        var el = $('<div class="filterwindow mini-popup"><div class="filterwindow-content"></div><div class="filterwindow-footer"><button class="filterwindow-button filter mini-button" noparser onclick="ok()">确定</button><button class="filterwindow-button clearfilter mini-button" noparser onclick="cancel()">取消</button></div></div>').appendTo('body');
-
-        var data = this._createFilterListData(column),
-            sb = [];
-        for (var i = 0, l = data.length; i < l; i++) {
-            var record = data[i];
-            var text = record[column.field];
-            if (column.displayField) text = record[column.displayField];
-            if (text == null) text = '';
-
-            var checked = false;
-            if (column._filterMap) checked = !!column._filterMap[text];
-
-            sb[sb.length] = '<div class="filterwindow-item"><label><input class="filterwindow-item-checkbox ' + (i == 0 ? "checkall" : "") + '" type="checkbox" ' + (checked ? 'checked' : '') + ' value="' + text + '"/>' + text + '</label></div>';
-        }
-        el.find('.filterwindow-content').html(sb.join(''));
-
-        return el;
-    },
-
     _updateFilterStatus: function () {
         var me = this,
             grid = me.grid,
@@ -267,7 +244,32 @@ HeaderFilter.prototype = {
         me.clearAllFilterData();
         me.grid.clearFilter();
         me.hideFilterWindow();
-    }
+    },
+    _createFilterWindow: function (column) {
+        xyme = this;
+        xycolumn = column;
+       var el = $('<div class="filterwindow mini-popup"><div class="filterwindow-content"></div><div class="filterwindow-footer"><button class="filterwindow-button filter mini-button" noparser onclick="ok()">确定</button><button class="filterwindow-button clearfilter mini-button" noparser onclick="cancel()">取消</button></div></div>').appendTo('body');
+
+       var data = this._createFilterListData(column),
+           sb = [];
+       var arr = [];
+       for (var i = 0, l = data.length; i < l; i++) {
+           var record = data[i];
+           var text = record[column.field];
+           if (column.displayField) text = record[column.displayField];
+           if (text == null) text = '';
+           
+           var checked = false;
+           if (column._filterMap) checked = !!column._filterMap[text];
+           arr[arr.length] = text;
+           var me = this;
+           showcheckBox(column,text,sb,data,me);
+       }
+       
+       el.find('.filterwindow-content').html(sb.join(''));
+
+       return el;
+   }
 };
 
 
@@ -281,7 +283,49 @@ function ok(){
     }
 }
 
-
 function cancel(){
 	xyme.clearFilter(xycolumn);
+}
+
+function showcheckBox(column,text,sb,data,me){
+	var value = null;
+	var index = 0;
+	if(me.options.tranCallBack) {
+		value = me.options.tranCallBack(column.field);
+	}
+	if(!sb.length){
+		sb[sb.length] = '<div class="filterwindow-item"><label><input class="filterwindow-item-checkbox checkall" type="checkbox"  value="全部"/>全部</label></div>';
+		index ++;
+	}
+	if(value){
+		for(var j = 0 ,  l = value.length ; j < l ; j ++){//判断是否已经存了相同数据到数组上
+			if(value[j] != undefined){
+				if(value[j].id == text){
+					var str = '<div class="filterwindow-item"><label><input name="check" type="checkbox" value="'+text+'" />'+value[j].name+'</label></label></div>';
+					var boo = contains(sb, str);
+					if(!boo){
+						sb[sb.length] = str;
+						break;
+					}
+				}
+			}
+		}
+	}
+	if(!value && !index){//不需要特殊显示处理（value == text）
+		var str = '<div class="filterwindow-item"><label><input name="check" type="checkbox" value="'+text+'" />'+text+'</label></label></div>';
+		var boo = contains(sb, str);
+		if(!boo){
+			sb[sb.length] = str;
+		}
+	}
+}
+
+function contains(arr, obj) {//判断数组是否包含元素
+    var i = arr.length;
+    while (i--) {
+        if (arr[i] == obj) {
+            return true;
+        }
+    }
+    return false;
 }

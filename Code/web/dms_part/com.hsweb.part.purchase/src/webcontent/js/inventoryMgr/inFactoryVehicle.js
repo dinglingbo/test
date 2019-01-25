@@ -35,8 +35,8 @@ var prdtTypeHash = {
 };
 $(document).ready(function ()
 {
-    beginDateEl = nui.get("sEnterDate");
-	endDateEl = nui.get("eEnterDate");
+    //beginDateEl = nui.get("sEnterDate");
+	//endDateEl = nui.get("eEnterDate");
 
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
@@ -52,9 +52,25 @@ $(document).ready(function ()
     innerItemGrid.setUrl(getRpsItemUrl);
     innerpackGrid.setUrl(getdRpsPackageUrl);
 
-    beginDateEl.setValue(getMonthStartDate());
-    endDateEl.setValue(addDate(getMonthEndDate(), 1));
-    onSearch();
+    //beginDateEl.setValue(getMonthStartDate());
+    //endDateEl.setValue(addDate(getMonthEndDate(), 1));
+    onSearch();   
+	  var filter = new HeaderFilter(mainGrid, {
+	        columns: [
+	            { name: 'mtAdvisor' },
+		            { name: 'guestFullName' },
+	            { name: 'carModel' },
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
     initMember("mtAdvisorId",function(){     
         initServiceType("serviceTypeId",function(data) {
             servieTypeList = nui.get("serviceTypeId").getData();
@@ -88,6 +104,8 @@ $(document).ready(function ()
             if (servieTypeHash && servieTypeHash[e.value]) {
                 e.cellHtml = servieTypeHash[e.value].name;
             }
+        }else if (e.field == "serviceTypeName") {
+                e.cellHtml = retSerTypeStyle(e.cellHtml);
         }else if(e.field == "isSettle"){
             if(e.value == 1){
                 e.cellHtml = "已结算";
@@ -161,6 +179,10 @@ $(document).ready(function ()
 	                e.cellHtml = servieTypeHash[e.value].name;
 	            }
             break;
+	        case "serviceTypeName":
+	        	e.cellHtml = retSerTypeStyle(e.cellHtml);
+            break;
+           
             case "saleMan":
                 var type = record.type||0;
                 var cardDetailId = record.cardDetailId||0;
@@ -213,8 +235,8 @@ var statusHash = {
 
 function clear(){
     advancedSearchForm.setData([]); 
-    beginDateEl.setValue(getMonthStartDate());
-    endDateEl.setValue(addDate(getMonthEndDate(), 1));
+    //beginDateEl.setValue(getMonthStartDate());
+   // endDateEl.setValue(addDate(getMonthEndDate(), 1));
 }
 function onShowRowDetail(e) {
     var row = e.record;
@@ -332,8 +354,8 @@ function doSearch() {
 }
 function getSearchParam() {
     var params = {};
-    params.sEnterDate = nui.get("sEnterDate").getValue();
-    params.eEnterDate = addDate(endDateEl.getValue(),1);  
+    //params.sEnterDate = nui.get("sEnterDate").getValue();
+  //  params.eEnterDate = addDate(endDateEl.getValue(),1);  
     params.mtAuditorId = mtAdvisorIdEl.getValue();
     if((nui.get("billTypeId").getValue())!=999){
     	params.billTypeId = nui.get("billTypeId").getValue();

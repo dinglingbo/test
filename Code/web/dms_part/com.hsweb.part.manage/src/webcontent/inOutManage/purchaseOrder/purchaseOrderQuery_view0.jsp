@@ -8,7 +8,10 @@
 -->
 <head>
 <title>采购订单查询</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderQuery.js?v=1.0.11"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrder/purchaseOrderQuery.js?v=1.0.12"></script>
+	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
+
 <style type="text/css">
 .title {
 	width: 90px; 
@@ -107,13 +110,13 @@
          pageSize="10000"
          sizeList="[1000,5000,10000]"
          showSummaryRow="true">
-        <div property="columns">
+        <div property="columns"> 
             <div type="indexcolumn">序号</div>
             <div header="订单信息" headerAlign="center">
                 <div property="columns">
                     <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
-                    <div field="guestFullName" width="210" headerAlign="center" header="供应商"></div>
-                    <div field="orderMan" width="60" headerAlign="center" header="采购员"></div>
+                    <div field="guestFullName" name="guestFullName"  width="210" headerAlign="center" header="供应商"></div>
+                    <div field="orderMan" name="orderMan"  width="60" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>
                     <div allowSort="true" field="settleTypeId" width="60" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true"  width="140" field="createDate" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
@@ -130,7 +133,7 @@
                     <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
                     <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
                     <div allowSort="true" field="partBrandId" width="80" headerAlign="center" header="品牌"></div>
-                    <div allowSort="true" field="applyCarModel" width="120" headerAlign="center" header="品牌车型"></div>
+                    <div allowSort="true" field="applyCarModel" name="applyCarModel" width="120" headerAlign="center" header="品牌车型"></div>
                     <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
                 </div>
             </div>

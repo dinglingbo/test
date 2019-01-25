@@ -1028,6 +1028,17 @@
 			AND a.pick_qty &gt; a.out_return_qty
 			AND a.detail_id = 0
 			and ifnull(a.is_disabled,0) = 0
+			<dynamic>
+			<isNotEmpty prepend="and" property="serviceCode">
+                (b.service_code = #serviceCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partCode">
+                (a.part_code = #partCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partName">
+                (a.part_name = #partName#)
+            </isNotEmpty>
+            </dynamic>
 	</select>
 	
 	    <select id="queryComprehensive" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
@@ -1067,7 +1078,6 @@
 			a.bala_audit_sign AS balaAuditSign,
 			a.bala_auditor AS balaAuditor,
 			a.bala_audit_date AS balaAuditDate,
-			a.package_amt AS packageAmt,
 			a.is_check AS isCheck,
 			SUBSTRING_INDEX(b.car_model,' ',2) as carModel,
 			b.car_brand_id AS carBrandId,
@@ -1085,21 +1095,37 @@
 			c.tel AS guestTel,
 			c.mobile AS guestMobile,
 			c.addr AS guestAddr,
+			d.package_amt AS packageAmt,
+			d.package_pref_amt AS packagePrefAmt,
 			d.package_subtotal AS packageSubtotal,
+			d.item_total_amt AS itemAmt,
+			d.item_pref_amt AS itemPrefAmt,
 			d.item_subtotal AS itemSubtotal,
+			d.part_total_amt AS partAmt,
+			d.part_pref_amt AS partPrefAmt,
 			d.part_subtotal AS partSubtotal,
+			d.other_amt AS otherAmt,
+			d.package_subtotal+d.item_subtotal+d.part_subtotal+d.other_amt AS incomeTotal,
+			
 			d.card_times_amt AS cardTimesAmt,
 			d.total_pref_amt AS totalPrefAmt,
-			d.bala_amt AS balaAmt,
-			d.other_amt AS otherAmt,
+			d.bala_amt AS balaAmt,		
 			d.other_cost_amt AS otherCostAmt,
 			d.part_true_cost AS partTrueCost,
+			d.part_no_tax_cost AS partNoTaxCost,
+			d.part_tax_cost AS partTaxCost,
 			d.tech_deduct_value AS techDeductValue,
 			d.sales_deduct_value AS salesDeductValue,
 			d.advisor_deduct_value AS advisorDeductValue,
+			
+			d.advisor_deduct_value+d.sales_deduct_value+d.tech_deduct_value+d.part_true_cost+d.other_cost_amt AS expenditureTotal,
+			
 			d.total_deduct_amt AS totalDeductAmt,
 			d.gross_profit AS grossProfit,
 			d.gross_profit_rate AS grossProfitRate,
+			d.gross_profit_remark AS grossProfitRemark,
+			d.netin_amt AS netinAmt,
+			d.total_pref_rate AS totalPrefRate,
 
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
@@ -1111,7 +1137,7 @@
 			inner join rps_settlement d on (a.id =  d.service_id)
 		WHERE 1 = 1
 			and a.orgid = #orgid#
-<dynamic>
+      <dynamic>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
             </isNotEmpty>
@@ -1373,9 +1399,12 @@
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
 	       where e.service_id = a.id) as serviceTypeName,
-		      (SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id) as pkgSubtotal,
-		      (SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id) as itemSubtotal,
-		      (SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id) as partSubtotal
+		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0) as pkgSubtotal,
+		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id),0) as itemSubtotal,
+		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as partSubtotal,
+		      ifnull((SELECT sum(g.subtotal) from rps_package g where a.id = g.service_id),0)+
+		      ifnull((SELECT sum(h.subtotal) from rps_item h where a.id = h.service_id),0)+
+		      ifnull((SELECT sum(i.subtotal) from rps_part i where a.id = i.service_id),0) as total 
 		from rps_maintain a
 		inner JOIN rpb_car b ON ( a.car_id = b.id )
 		INNER JOIN wb_common.com_guest c on a.guest_id = c.id

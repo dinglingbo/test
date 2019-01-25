@@ -93,6 +93,7 @@
 	                <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="clear()" id="saveBtn"><span class="fa fa-trash fa-lg"></span>&nbsp;清空</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="close()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+	                <a class="nui-button" plain="true" href="<%=request.getContextPath() %>/common/template/importClient.xlsx"><span class="fa fa-arrow-down fa-lg"></span>下载模板</a>
 				</td>
 	        </tr>
 	    </table>

@@ -30,6 +30,24 @@ $(document).ready(function(v){
             }
         }
     });
+      
+    var filter = new HeaderFilter(dgGrid, {
+        columns: [
+            { name: 'carModel' },
+            { name: 'recorder' },
+            { name: 'guestName' }
+        ],
+        callback: function (column, filtered) {
+        },
+
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+
+	    	}
+        	return value;
+        }
+    });
     document.onkeyup = function(event) {
         var e = event || window.event;
         var keyCode = e.keyCode || e.which;// 38向上 40向下

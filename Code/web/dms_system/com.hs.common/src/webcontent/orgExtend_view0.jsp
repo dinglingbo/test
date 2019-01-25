@@ -11,7 +11,9 @@
 <head>
 	<title>门店管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<script src="<%=webPath + contextPath%>/common/js/orgExtendQuery.js?v=1.9.7" type="text/javascript"></script>
+	<script src="<%=webPath + contextPath%>/common/js/orgExtendQuery.js?v=1.9.8" type="text/javascript"></script>
+	<link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">
 		body {
 			margin: 0;
@@ -70,16 +72,16 @@
 					<div property="columns">
 						<div type="checkcolumn">选择</div>
 						<div field="orgid" width="120" headerAlign="center" align="center" visible="false">企业ID</div>
-						<div field="code" width="60" headerAlign="center" align="center">企业号</div>
-						<div field="name" width="100" align="center" headerAlign="center" align="center">公司全称</div>
-						<div field="shortName" width="60" align="center" headerAlign="center" align="center">公司简称</div>
+						<div field="code" name="code" width="90" headerAlign="center" align="center">企业号</div>
+						<div field="name" name="name" width="100" align="center" headerAlign="center" align="center">公司全称</div>
+						<div field="shortName" name="shortName" width="90" align="center" headerAlign="center" align="center">公司简称</div>
 						<div field="tel" headerAlign="center" width="60" align="center">电话</div>
 						<div field="provinceId" width="50" headerAlign="center" align="center">省份</div>
 						<div field="cityId" width="50" headerAlign="center" align="center">城市</div>
 						<div field="address" width="100" headerAlign="center" align="center">地址</div>
 						<div field="isOpenSystem" width="40" headerAlign="center" align="center">状态</div>
 						<div field="softOpenDate" width="60" headerAlign="center" align="center" dateFormat="yyyy-MM-dd" allowSort="true">开店日期</div>
-						<div field="recorder" width="60" headerAlign="center" align="center">建档人</div>
+						<div field="recorder" name="recorder" width="90" headerAlign="center" align="center">建档人</div>
 						<div field="recordDate" width="60" headerAlign="center" align="center" dateFormat="yyyy-MM-dd" allowSort="true">建档日期</div>
 					</div>
 				</div>

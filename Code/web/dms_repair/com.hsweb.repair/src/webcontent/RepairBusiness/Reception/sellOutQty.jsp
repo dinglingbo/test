@@ -10,6 +10,8 @@
 <head>
     <title>销售出库查询</title>
     <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellOutQty.js?v=1.0.31"></script>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -120,40 +122,40 @@
         <div type="indexcolumn">序号</div>
         <div header="工单信息" headerAlign="center">
             <div property="columns">
-            	<div allowSort="true" field="serviceCode" width="130" headerAlign="center" header="业务单号"></div>
-            	<div allowSort="true" field="carNo" width="100" headerAlign="center" header="车牌号"></div>
-            	<div allowSort="true" field="storeId" width="100" headerAlign="center" header="仓库"></div>
-                <div allowSort="true" field="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                <div allowSort="true" field="partName" width="150" headerAlign="center" header="配件名称"></div>
-                <div allowSort="true" field="oemCode" width="100" headerAlign="center" header="OEM码"></div>
-   				<div allowSort="true" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
-   				<div allowSort="true" field="applyCarModel" width="200" headerAlign="center" header="适用车型"></div>
-                <div allowSort="true" field="unit" width="50" headerAlign="center" header="单位"></div>
-                <div allowSort="true" field="carTypeIdF" width="100" headerAlign="center" header="配件分类一级"></div>
-                <div allowSort="true" field="carTypeIdS" width="100" headerAlign="center" header="配件分类二级"></div>
-                <div allowSort="true" field="carTypeIdT" width="100" headerAlign="center" header="配件分类三级"></div>
-                <div allowSort="true" field="spec" width="100" headerAlign="center" header="规格"></div>
+            	<div allowSort=false field="serviceCode" width="130" headerAlign="center" header="业务单号"></div>
+            	<div allowSort="false" field="carNo" width="100" headerAlign="center" header="车牌号"></div>
+            	<div allowSort="false" field="storeId"  width="100" headerAlign="center" header="仓库"></div>
+                <div allowSort="false" field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
+                <div allowSort="false" field="partName" name="partName" width="150" headerAlign="center" header="配件名称"></div>
+                <div allowSort="false" field="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+   				<div allowSort="false" field="partBrandId"  width="100" headerAlign="center" header="品牌"></div>
+   				<div allowSort="false" field="applyCarModel" width="200" headerAlign="center" header="适用车型"></div>
+                <div allowSort="false" field="unit" width="50" headerAlign="center" header="单位"></div>
+                <div allowSort="false" field="carTypeIdF" width="100" headerAlign="center" header="配件分类一级"></div>
+                <div allowSort="false" field="carTypeIdS" width="100" headerAlign="center" header="配件分类二级"></div>
+                <div allowSort="false" field="carTypeIdT" width="100" headerAlign="center" header="配件分类三级"></div>
+                <div allowSort="false" field="spec" width="100" headerAlign="center" header="规格"></div>
             </div>
         </div>
         
         <div header="成本信息" headerAlign="center">
             <div property="columns">
-                 <div summaryType="sum" field="trueUnitPrice" width="60" headerAlign="center" header="成本单价" dataType="float" align="left"></div>
-                <div summaryType="sum" field="trueCost" headerAlign="center" header="成本金额" dataType="float" align="left"></div>
+                 <div summaryType="sum" field="trueUnitPrice" allowSort="true" width="60" headerAlign="center" header="成本单价" dataType="float" align="left"></div>
+                <div summaryType="sum" field="trueCost" allowSort="true" headerAlign="center" header="成本金额" dataType="float" align="left"></div>
             </div>
         </div>
         
          <div header="销售信息" headerAlign="center">
             <div property="columns">
-                <div allowSort="true" summaryType="sum"  field="sellUnitPrice" width="60" headerAlign="center" header="销售单价" dataType="float" align="left"></div>
-                <div allowSort="true" summaryType="sum" field="sellAmt" headerAlign="center" header="销售金额" dataType="float" align="left"></div>
+                <div allowSort="true" summaryType="sum" allowSort="true" field="sellUnitPrice" width="60" headerAlign="center" header="销售单价" dataType="float" align="left"></div>
+                <div allowSort="true" summaryType="sum" allowSort="true" field="sellAmt" headerAlign="center" header="销售金额" dataType="float" align="left"></div>
             </div>
         </div>
         <div header="盈利信息" headerAlign="center">
             <div property="columns">
-                <div allowSort="true" summaryType="sum" field="gross" width="80" headerAlign="center" header="毛利" dataType="float" align="left"></div>
-                <div allowSort="true" summaryType="sum" field="grossRate" headerAlign="center" header="配件毛利率" dataType="float" align="left"></div>
-                <div allowSort="true" summaryType="sum" field="costRate" headerAlign="center" header="成本率" dataType="float" align="left"></div>
+                <div allowSort="true" summaryType="sum" field="gross" allowSort="true"width="80" headerAlign="center" header="毛利" dataType="float" align="left"></div>
+                <div allowSort="true" summaryType="sum" field="grossRate"  allowSort="true" headerAlign="center" header="配件毛利率" dataType="float" align="left"></div>
+                <div allowSort="true" summaryType="sum" field="costRate" allowSort="true" headerAlign="center" header="成本率" dataType="float" align="left"></div>
             </div>
         </div>
         <div header="出库信息" headerAlign="center">

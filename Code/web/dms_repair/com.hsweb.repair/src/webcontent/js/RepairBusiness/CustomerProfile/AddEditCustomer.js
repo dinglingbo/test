@@ -225,6 +225,11 @@ function onOk()
 		return;
 	}
     var guest = basicInfoForm.getData();
+    var name = guest.fullName || "";
+    if(name=="散客"){
+    	showMsg("请修改客户名称!","W");
+    	return;
+    }
     guest.guestType = "01020103";
     carList[currCarIdx] = carInfoFrom.getData();
     //carList[currCarIdx].carModel = nui.get("carModelId").getText();

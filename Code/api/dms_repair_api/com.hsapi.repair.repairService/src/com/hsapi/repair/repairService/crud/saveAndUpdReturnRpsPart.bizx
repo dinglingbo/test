@@ -954,7 +954,7 @@
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="467" y="210"/>
+    <location x="467" y="224"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo8label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -969,7 +969,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo8label" name="label" nodeType="label">
-    <location x="423" y="246"/>
+    <location x="423" y="260"/>
     <figSize height="17" width="110"/>
     <node>invokePojo8</node>
   </nodes>

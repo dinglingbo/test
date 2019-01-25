@@ -22,6 +22,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.eos.access.http.MUOCommonUtil;
 import com.eos.data.datacontext.IUserObject;
 import com.eos.data.datacontext.UserObject;
+import com.eos.system.utility.StringUtil;
 import com.hs.reRead.BodyReaderHttpServletRequestWrapper;
 
 //import com.ybt.toolutils.HttpUtils;
@@ -83,6 +84,17 @@ public class LogicFlowFilter implements Filter {
 
 			requestWrapper = new MyHttpServletRequestWrapper(
 					(HttpServletRequest) req);
+		}
+		if(url.indexOf(".flow") > 0) {
+			boolean check = MenuUtil.checkActionAuth(requestWrapper);
+			if(!check) {
+				//String contextPath = StringUtil.htmlFilter(req.getContextPath());
+				//url=contextPath + "/coframe/auth/noAuth.jsp";
+				//RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+				//dispatcher.forward(requestWrapper, response);
+				request.getRequestDispatcher("/coframe/auth/noAuth.jsp").forward(request, response);
+				return;
+			}
 		}
 		// 检查是否客户端发送的请求
 		boolean b = isClientRequest(requestWrapper);

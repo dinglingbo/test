@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.12"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -229,7 +229,7 @@ body .mini-grid-row-selected{
                         
                     </table>
                     <div style="text-align:center;padding:10px;">
-                        <a class="nui-button" id="chooseBtn" onclick="onAdvancedAddOk" style="width:60px;margin-right:20px;">确定</a>
+                        <a class="nui-button" id="chooseBtn" checkOnClick="true" onclick="onAdvancedAddOk" style="width:60px;margin-right:20px;">确定</a>
                         <a class="nui-button" onclick="onAdvancedAddCancel" style="width:60px;">取消</a>
                     </div>
                 </div>

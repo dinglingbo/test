@@ -374,3 +374,29 @@ function resetPassword(){
         nui.alert("请选中一条记录！");
     }
  }
+
+function selectCom(){
+	var rows = grid.getSelecteds();
+    if(rows.length>0){
+    	nui.open({
+            // targetWindow: window,
+            url: webPath + contextPath + "/common/employeeHaveCompany.jsp?token="+token,
+            title: "选择兼职门店", 
+            width: 730, 
+            height: 360,
+            allowDrag:true,
+            allowResize:true,
+            onload: function ()
+            {
+            },
+            ondestroy: function (action)
+            {
+                
+            }
+        });  
+    }else{
+        nui.alert("请选中一条记录！");
+    }
+}
+
+

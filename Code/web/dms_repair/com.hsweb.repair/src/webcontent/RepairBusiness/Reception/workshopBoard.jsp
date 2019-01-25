@@ -138,9 +138,9 @@
 						e.cellHtml = time;
 					}
 				}
-								if (e.field == "syDate") {
+				if (e.field == "syDate") {
 					if(e.record.enterDate!=null&&e.record.planFinishDate!=null){
-						var date1= new Date(e.record.enterDate);  //开始时间
+						var date1= new Date();  //开始时间
 				        var date2 = new Date(e.record.planFinishDate);    //结束时间
 				        var date3 = date2.getTime() - new Date(date1).getTime();   //时间差的毫秒数      
 				 
@@ -157,9 +157,9 @@
 				        var leave2=leave1%(3600*1000);        //计算小时数后剩余的毫秒数
 				        var minutes=Math.floor(leave2/(60*1000));
 				        if(minutes<0){
-				        	days=days-days-days;
+				        	days=days-days-days-1;
 				        	hours=hours-hours-hours;
-				        	minutes=minutes-minutes-hours;
+				        	minutes=minutes-minutes-minutes;
 				        	e.cellHtml=("超时"+days+"天 "+hours+"时 "+minutes+" 分");
 				        }else{
 				        	e.cellHtml=(days+"天 "+hours+"时 "+minutes+" 分");

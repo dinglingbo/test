@@ -9,7 +9,7 @@
   - Description:
 -->
 <head>
-<title>已结算工单明细表</title>
+<title>维修档案</title>
 <script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.22"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
@@ -162,7 +162,7 @@
 		                  <div field="incomeTotal" name="incomeTotal" width="70" headerAlign="center" summaryType="sum" header="收入合计"></div>
 		              </div>
 		           </div>      
-		           <div header="成本" headerAlign="center">
+<!-- 		           <div header="成本" headerAlign="center">
 	                  <div property="columns" >	
 	                  	  <div field="partTaxCost"  width="70" headerAlign="center" summaryType="sum" header="配件含税成本"></div>
 	                  	  <div field="partNoTaxCost"  width="70" headerAlign="center" summaryType="sum" header="配件不含税成本"></div>
@@ -174,7 +174,7 @@
 		                  <div field="expenditureTotal" name="expenditureTotal" width="70" headerAlign="center" summaryType="sum" header="成本合计"></div>
 		             
             		  </div>
-		           </div>  
+		           </div> -->  
 		            <div header="毛利" headerAlign="center">
 	                  <div property="columns" >		
 	                  	  <div field="netinAmt" name="netinAmt" width="70" headerAlign="center" summaryType="sum" header="营收金额"></div>	

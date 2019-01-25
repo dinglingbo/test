@@ -33,6 +33,7 @@
                 <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">草稿</a>
 
                 <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                	<li iconCls="" onclick="quickSearch(8)" id="type8">所有</li>
                     <li iconCls="" onclick="quickSearch(10)" id="type10">草稿</li>
                     <li iconCls="" onclick="quickSearch(14)" id="type14">已入库</li>
                     <!-- <li class="separator"></li>

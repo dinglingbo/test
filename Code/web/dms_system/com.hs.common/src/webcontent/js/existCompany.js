@@ -4,7 +4,7 @@
 
 var baseUrl = apiPath + sysApi + "/";
 var repairUrl = apiPath + repairApi + "/";
-var queryUrl = baseUrl + "com.hsapi.system.basic.organization.getCompanyAll.biz.ext";//"com.hsapi.system.employee.employeeMgr.employeeSave.biz.ext";
+var queryUrl = baseUrl + "com.hsapi.system.basic.organization.getExistCompany.biz.ext";
 var moreOrgGrid = null;
 var empId = null;
 $(document).ready(function(v) {
@@ -21,11 +21,11 @@ $(document).ready(function(v) {
         	Oncancel();
         }
       };
-      onSearch();
 });
 
 function onSearch(){
 	var params = {};
+	params.empId = empId;
 	params.name = nui.get("name").getValue();
 	params.code = nui.get("code").getValue();
 	moreOrgGrid.load({
@@ -50,13 +50,13 @@ function Oncancel(){
 
 function setData(row){
 	empId = row.empid;
+	onSearch();
 }
-function addOrg(){
+function cancelOrg(){
 	var rows = moreOrgGrid.getSelecteds();
 	if(rows.length>0){
 		var json = nui.encode({
-			intCompanyList:rows,
-			empId:empId,
+			companyList:rows,
 			token:token});
 		 nui.mask({
 	            el: document.body,
@@ -64,7 +64,7 @@ function addOrg(){
 	            html: '保存中...'
 	    });
 		$.ajax({
-            url:apiPath + sysApi + "/com.hsapi.system.basic.organization.saveMyCompany.biz.ext",
+            url:apiPath + sysApi + "/com.hsapi.system.basic.organization.deletExistCompany.biz.ext",
             type:'POST',
             data:json,
             cache: false,
@@ -73,16 +73,21 @@ function addOrg(){
               var returnJson = nui.decode(text);
               if(returnJson.errCode == 'S'){
             	  nui.unmask(document.body);
-                  showMsg(returnJson.errMsg || "保存成功!", "S");
+                  showMsg(returnJson.errMsg || "取消兼职成功!", "S");
+                  var params = {};
+              	  params.empId = empId;
+                  moreOrgGrid.load({
+              		params:params,
+              		token : token
+              	});
               }else{
             	  nui.unmask(document.body);
-                  showMsg(returnJson.errMsg || "保存失败!", "E");
+                  showMsg(returnJson.errMsg || "取消兼职失败!", "E");
               }
             }
           });
 	}else{
-		nui.alert("请选择兼职门店!");
+		nui.alert("请选择门店!");
 	}
 }
-
 

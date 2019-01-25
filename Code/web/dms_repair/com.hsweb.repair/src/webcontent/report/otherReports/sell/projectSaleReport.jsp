@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false" %>
-
+   <%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -10,12 +10,9 @@
 -->
 
 <head>
-    <title>项目销售报表</title>
+    <title>项目销售明细表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://unpkg.com/echarts@3.5.3/dist/echarts.js"></script>
-
-    <%@include file="/common/commonRepair.jsp"%>
+<script src="<%=webPath + contextPath%>/repair/js/sell/projectSaleReport.js?v=1.0.25"></script>
     <style>
 
         .titleText{
@@ -30,371 +27,127 @@
 </head>
 
 <body>
+  <div class="nui-toolbar" style="padding:2px;" id="form1">
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <label style="font-family:Verdana;">快速查询：</label>
+                    <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+                    <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+                        <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+                        <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+                        <li class="separator"></li>
+                        <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+                        <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+                        <li class="separator"></li>
+                        <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+                        <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+                        <li class="separator"></li>
+                        <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+                        <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+                    </ul>
+                    结算日期:
+                    <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" />
+                    至
+                    <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
+                    <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="carNoSearch"/>
+                            <input name="mtAdvisorId"
+                                   id="mtAdvisorId"
+                                   class="nui-combobox width1"
+                                   textField="empName"
+                                   valueField="empId"
+                                   emptyText="服务顾问"
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="100px"
+                                   valueFromSelect="true"
+                                   nullItemText="服务顾问" onenter="load()" onvaluechanged="load()"/>
+                             <input name="mtAdvisorId"
+                                   id="mtAdvisorId"
+                                   class="nui-combobox width1"
+                                   textField="empName"
+                                   valueField="empId"
+                                   emptyText="施工员"
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="100px"
+                                   valueFromSelect="true"
+                                   nullItemText="施工员" onenter="load()" onvaluechanged="load()"/>
+                             <input name="mtAdvisorId"
+                                   id="mtAdvisorId"
+                                   class="nui-combobox width1"
+                                   textField="empName"
+                                   valueField="empId"
+                                   emptyText="销售员"
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="100px"
+                                   valueFromSelect="true"
+                                   nullItemText="销售员" onenter="load()" onvaluechanged="load()"/>
+                             <input name="serviceTypeId"
+                                   id="serviceTypeId"
+                                   class="nui-combobox width1"
+                                   textField="name"
+                                   valueField="id"
+                                   emptyText="项目类型"
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="100px"
+                                   valueFromSelect="true"
+                                   nullItemText="项目类型" onenter="load()" onvaluechanged="load()"/>
+                   			  <input class="nui-combobox" id="billTypeId" emptyText="综合开单" name="billTypeId" data="[{billTypeId:5,text:'全部工单'},{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'}]"
+                          width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="5"/>
+                    <a class="nui-button" plain="true" onclick="onSearch()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="showDiv" class="tipStyle"></div>
     <div class="nui-fit">
-        <div class="mini-tabs" activeIndex="0" style="width:100%;height:100%;">
-            <div title="项目销售汇总表">
-                <div class="nui-fit">
+        <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="false"
+            pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick=""
+            allowCellSelect="true" editNextOnEnterKey="true" onshowrowdetail="onShowRowDetail" url="" showSummaryRow="true" allowCellWrap=true>
+            <div property="columns">
+            	<div type="indexcolumn">序号</div>
+                <div field="id" name="id" visible="false" width="100">id</div>
+                <div  field="groupName" name="groupName"  width="100" headerAlign="center" header="业务类型"></div>
+                <div field="ct" name="ct" width="100" headerAlign="center" align="center" summaryType="sum">单数</div>
+                <div field="totalPrefAmt" name="totalPrefAmt" width="100" headerAlign="center" align="center" summaryType="sum">优惠合计&nbsp;</div>
+                <div field="allowanceAmt" name="allowanceAmt" width="100" headerAlign="center" align="center" summaryType="sum">结算优惠&nbsp;</div>
+                <div field="balaAmt" name="balaAmt" width="100" headerAlign="center" align="center" summaryType="sum">实收合计&nbsp;</div>
+                <div field="pkgAmt" name="pkgAmt" width="100" headerAlign="center" align="center" summaryType="sum">套餐金额</div>
+                <div field="pkgPrefAmt" name="pkgPrefAmt" width="100" headerAlign="center" align="center" summaryType="sum">套餐优惠金额</div>
+                 <div field="pkgSubtotal" name="pkgAmt" width="100" headerAlign="center" align="center" summaryType="sum">套餐小计</div>
+                 <div field="itemTotalAmt" name="itemTotalAmt" width="100" headerAlign="center" align="center" summaryType="sum">项目金额</div>
+                <div field="itemPrefAmt" name="itemPrefAmt" width="100" headerAlign="center" align="center" summaryType="sum">项目优惠金额</div>
+                 <div field="itemSubtotal" name="itemSubtotal" width="100" headerAlign="center" align="center" summaryType="sum">项目小计</div>
+                <div field="partTotalAmt" name="partTotalAmt" width="100" headerAlign="center" align="center" summaryType="sum">配件金额</div>
+                <div field="partPrefAmt" name="partPrefAmt" width="100" headerAlign="center" align="center" summaryType="sum">配件优惠金额</div>
+                 <div field="partSubtotal" name="partSubtotal" width="100" headerAlign="center" align="center" summaryType="sum">配件小计</div>
+ 				<div field="partTrueCost"  width="70" headerAlign="center" header="配件成本" summaryType="sum"></div>
+                <div field="cardTimesAmt" name="cardTimesAmt" width="100" headerAlign="center" align="center" summaryType="sum">计次卡抵扣</div>       
+                <div field="otherAmt" name="otherAmt" width="100" headerAlign="center" align="center" summaryType="sum">其他费用收入</div>
+                <div field="otherCostAmt" name="other_cost_amt" width="100" headerAlign="center" align="center" summaryType="sum">其他费用成本</div>
+                <div field="salesDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center" summaryType="sum">销售提成</div>
+                <div field="techDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center" summaryType="sum">技师提成</div>
+                <div field="advisorDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center" summaryType="sum">服务顾问提成</div>
+                <div field="totalDeductAmt" name="salesDeductValue" width="100" headerAlign="center" align="center" summaryType="sum">总提成金额</div>
+                <div field="netinAmt" name="netinAmt" width="100" headerAlign="center" align="center" summaryType="sum">营收金额</div>
+                <div field="grossProfit" name="grossProfit" width="100" headerAlign="center" align="center" summaryType="sum">毛利&nbsp;
+                    <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
+                        onmouseout="outHide()"></span></div>
+                <div field="grossProfitRate" name="grossProfitRate" width="100" numberFormat="p" headerAlign="center" align="center" summaryType="sum">毛利率&nbsp;
+                    <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
+                        onmouseout="outHide()"></span></div>
 
-                    <div class="nui-toolbar" style="padding:2px;" id="queryForm">
-                        <table style="width:100%;">
-                            <tr>
-                                <td>
-                                    <label style="font-family:Verdana;">快速查询：</label>
-                                    <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
-                                    <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-                                        <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
-                                        <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
-                                        <li class="separator"></li>
-                                        <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
-                                        <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
-                                        <li class="separator"></li>
-                                        <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
-                                        <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
-                                        <li class="separator"></li>
-                                        <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
-                                        <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
-                                    </ul>
-                                    结算日期:
-                                    <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd"
-                                        style="width:100px" />
-                                    至
-                                    <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd"
-                                        style="width:100px" />
-                                    <input class="nui-textbox" style="widows: 100px;" emptyText="客户">
-                                    <input class="nui-textbox" style="widows: 100px;" emptyText="项目分类">
-                                    <input class="nui-combobox" style="widows: 100px;" emptyText="项目">
-                                    <input class="nui-combobox" style="widows: 100px;" emptyText="业务类型">
-                                    <input class="nui-combobox" style="widows: 100px;" emptyText="工单类型">
-                                    <a class="nui-button" plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                                    <li class="separator"></li>
-                                    <a class="nui-button" plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查看明细</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div class="nui-fit">
-                        <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true"
-                            showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                            onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true" onshowrowdetail="onShowRowDetail"
-                            url="" allowCellWrap=true>
-                            <div property="columns">
-                                <div type="indexcolumn" width="40" headerAlign="center" align="center">序号</div>
-                                <div field="id" name="id" visible="false" width="100">id</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">项目名称</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">数量</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">合计</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">单项优惠和</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">实际售价和</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">套餐抵扣数量</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">套餐抵扣金额</div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
             </div>
-            <div title="项目销售趋势">
-                <div class="nui-fit">
-
-                    <div class="nui-toolbar" style="padding:2px;" id="queryForm">
-                        <table style="width:100%;">
-                            <tr>
-                                <td>
-                                    <label style="font-family:Verdana;">快速查询：</label>
-                                    <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
-                                    <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-                                        <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
-                                        <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
-                                        <li class="separator"></li>
-                                        <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
-                                        <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
-                                        <li class="separator"></li>
-                                        <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
-                                        <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
-                                        <li class="separator"></li>
-                                        <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
-                                        <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
-                                    </ul>
-                                    结算日期:
-                                    <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd"
-                                        style="width:100px" />
-                                    至
-                                    <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd"
-                                        style="width:100px" />
-                                    <a class="nui-button" plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                                    <!-- <li class="separator"></li> -->
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div style="border-bottom:1px solid #ccc;margin-top: 20px;">
-                        <span class="titleText"> 现金收入统计图</span>
-                    </div>
-                    <div class="nui-fit">
-                        <div id="t2" style="float:left;width: 100%; height: 450px;">
-
-                            <div class="nui-fit">
-                                <div id="lindChatA" style="width:1000px;height:400px;"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div title="项目销售明细表">
-                <div class="nui-fit">
-
-
-
-                    <div class="nui-toolbar" style="padding:2px;" id="queryForm">
-                        <table style="width:100%;">
-                            <tr>
-                                <td>
-                                    <label style="font-family:Verdana;">快速查询：</label>
-                                    <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
-                                    <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-                                        <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
-                                        <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
-                                        <li class="separator"></li>
-                                        <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
-                                        <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
-                                        <li class="separator"></li>
-                                        <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
-                                        <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
-                                        <li class="separator"></li>
-                                        <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
-                                        <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
-                                    </ul>
-                                    结算日期:
-                                    <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd"
-                                        style="width:100px" />
-                                    至
-                                    <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd"
-                                        style="width:100px" />
-                                    <input class="nui-textbox" style="widows: 100px;" emptyText="客户">
-                                    <input class="nui-textbox" style="widows: 100px;" emptyText="项目分类">
-                                    <input class="nui-combobox" style="widows: 100px;" emptyText="项目">
-                                    <input class="nui-combobox" style="widows: 100px;" emptyText="业务类型">
-                                    <input class="nui-combobox" style="widows: 100px;" emptyText="类型">
-                                    <input class="nui-combobox" style="widows: 100px;" emptyText="车牌号">
-                                    <input class="nui-combobox" style="widows: 100px;" emptyText="接待人员">
-                                    <input class="nui-combobox" style="widows: 100px;" emptyText="销售人员">
-                                    <input class="nui-combobox" style="widows: 100px;" emptyText="技师">
-                                    <a class="nui-button" plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div class="nui-fit">
-                        <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true"
-                            showPager="true" pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="list"
-                            onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true" onshowrowdetail="onShowRowDetail"
-                            url="" allowCellWrap=true>
-                            <div property="columns">
-                                <div type="indexcolumn" width="40" headerAlign="center" align="center">序号</div>
-                                <div field="id" name="id" visible="false" width="100">id</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">单据编号</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">项目编号</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">项目名称</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">类型</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">车牌号</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">售价</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">数量</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">优惠</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">金额</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">套餐抵扣数量</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">套餐抵扣金额</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">单据日期</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">接待</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">销售</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">技师</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">备注</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">结算时间</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">添加时间</div>
-                                <div field="carNo" name="carNo" width="100" headerAlign="center" align="center">所属分店</div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
-
-
-    <script type="text/javascript">
-        nui.parse();
-
-
-        var startDateEl = nui.get('startDate');
-        var endDateEl = nui.get('endDate');
-        var currType = 2;
-        quickSearch(1);
-
-        function quickSearch(type) {
-            //var params = getSearchParams();
-            var params = {};
-            var queryname = "本日";
-            switch (type) {
-                case 0:
-                    params.today = 1;
-                    params.startDate = getNowStartDate();
-                    params.endDate = addDate(getNowEndDate(), 1);
-                    queryname = "本日";
-                    break;
-                case 1:
-                    params.yesterday = 1;
-                    params.startDate = getPrevStartDate();
-                    params.endDate = addDate(getPrevEndDate(), 1);
-                    queryname = "昨日";
-                    break;
-                case 2:
-                    params.thisWeek = 1;
-                    params.startDate = getWeekStartDate();
-                    params.endDate = addDate(getWeekEndDate(), 1);
-                    queryname = "本周";
-                    break;
-                case 3:
-                    params.lastWeek = 1;
-                    params.startDate = getLastWeekStartDate();
-                    params.endDate = addDate(getLastWeekEndDate(), 1);
-                    queryname = "上周";
-                    break;
-                case 4:
-                    params.thisMonth = 1;
-                    params.startDate = getMonthStartDate();
-                    params.endDate = addDate(getMonthEndDate(), 1);
-                    queryname = "本月";
-                    break;
-                case 5:
-                    params.lastMonth = 1;
-                    params.startDate = getLastMonthStartDate();
-                    params.endDate = addDate(getLastMonthEndDate(), 1);
-                    queryname = "上月";
-                    break;
-
-                case 10:
-                    params.thisYear = 1;
-                    params.startDate = getYearStartDate();
-                    params.endDate = getYearEndDate();
-                    queryname = "本年";
-                    break;
-                case 11:
-                    params.lastYear = 1;
-                    params.startDate = getPrevYearStartDate();
-                    params.endDate = getPrevYearEndDate();
-                    queryname = "上年";
-                    break;
-                default:
-                    break;
-            }
-            currType = type;
-            startDateEl.setValue(params.startDate);
-            endDateEl.setValue(addDate(params.endDate, -1));
-            var menunamedate = nui.get("menunamedate");
-            menunamedate.setText(queryname);
-            //doSearch(params);
-        }
-
-
-
-        showMainA();
-
-        function showMainA() {
-            var option = {
-                title: {
-                    text: '销售趋势',
-                    x: "center"
-
-                },
-                tooltip: {
-                    trigger: 'axis'
-                },
-                legend: {
-                    orient: 'vertical',
-                    data: ['收入'],
-                    x: "right",
-                    y: "center"
-                },
-                toolbox: {
-                    show: true,
-                    feature: {
-                        dataZoom: {
-                            yAxisIndex: 'none'
-                        },
-                        dataView: {
-                            readOnly: false
-                        },
-                        magicType: {
-                            type: ['line', 'bar']
-                        },
-                        restore: {},
-                        saveAsImage: {}
-                    }
-                },
-                dataZoom: [{
-                    startValue: '2014-06-01'
-                }, {
-                    type: 'inside'
-                }],
-                xAxis: {
-                    type: 'category',
-                    boundaryGap: false,
-                    data: ['2018-10-1', '2018-10-2', '2018-10-3', '2018-10-4', '2018-10-5', '2018-10-6',
-                        '2018-10-7'
-                    ]
-                },
-                yAxis: {
-                    type: 'value',
-                    name: "销量（元）",
-                    splitLine: {
-                        show: true,
-                        lineStyle: {
-                            color: '#CCC',
-                            width: 1
-                        }
-                    },
-                    axisLabel: {
-                        formatter: function (value) {
-                            return parseInt(value) + 'K';
-                        }
-                    },
-                    axisLine: {
-                        show: false
-                    },
-                    axisTick: {
-                        show: false
-                    },
-                },
-                series: [
-
-                    {
-                        name: '收入',
-                        type: 'line',
-                        data: [1, -2, 2, 5, 3, 2, 0],
-                        smooth: false
-                    }
-                ]
-            };
-
-
-            var myChartB = echarts.init(document.getElementById('lindChatA'), 'macarons');
-            //使用刚指定的配置项和数据显示图表。
-            myChartB.setOption(option, true);
-            window.onresize = function () {
-                myChartB.resize();
-            };
-        }
-
-        function showMainB() {
-
-
-        }
-    </script>
 </body>
 
 </html>

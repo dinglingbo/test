@@ -39,7 +39,8 @@
 					<a class="nui-button" plain="true" iconCls="" id="btnisDimission" name="btnisDimission" onclick="dimssion()"><span class="fa fa-user-times"></span>&nbsp;离职</a>
 					<a class="nui-button" plain="true" id="btnisOpenAccount" name="btnisOpenAccount" iconCls="" onclick="stoporstart()" ><span class="fa fa-key"></span>&nbsp;开通账号</a>
 					<a class="nui-button" plain="true" id="resetPasswordBtn" name="resetPasswordBtn" iconCls="" onclick="resetPassword()" ><span class="fa fa-key"></span>&nbsp;重置密码</a>
-					<a class="nui-button" plain="true" id="resetPasswordBtn" name="resetPasswordBtn" iconCls="" onclick="resetPassword()" ><span class="fa fa-key"></span>&nbsp;选择兼职门店</a>
+					<a class="nui-button" plain="true" id="selectComBtn" name="selectComBtn" iconCls="" onclick="selectCom()" ><span class="fa fa-check fa-lg"></span>&nbsp;选择兼职门店</a>
+					<a class="nui-button" plain="true" id="lookComBtn" name="lookComBtn" iconCls="" onclick="lookCom()" ><span class="fa fa-search fa-lg"></span>&nbsp;查看兼职门店</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="importGuest()" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
 				</td>
 			</tr>

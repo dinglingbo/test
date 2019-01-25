@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getCompanyAll" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="saveMyCompany" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link0" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -143,23 +143,29 @@
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
-    <location x="255" y="170"/>
+    <location x="226" y="170"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
       <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
       <process:to type="query">params/tenantId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">cd/_entity</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="253" y="206"/>
+    <location x="224" y="206"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-01-04 11:08:45" date="2019-01-04Z" description="" name="getUserOrgAll" version="7.0.0.0"/>
-  <process:variables/>
+  <process:variables>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cd"/>
+  </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>

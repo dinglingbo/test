@@ -88,13 +88,11 @@
     sortMode="client"
     url=""
     totalField="page.count"
-    pageSize="10000"
-    sizeList="[1000,5000,10000]"
+    pageSize="50"
+    sizeList="[50,100,200]"
     showSummaryRow="true">
-    <div property="columns">
-        <div type="indexcolumn">序号</div>
-        <div header="预约信息" headerAlign="center">
             <div property="columns">
+        		<div type="indexcolumn">序号</div>
                 <div allowSort="true" field="groupName" name="groupName"  width="60" headerAlign="center" header="业务类型"></div>
                 <div allowSort="true" field="sumNum" width="60" headerAlign="center" header="总数" summaryType="sum"></div>
                 <div allowSort="true" field="confirmNo" width="60" headerAlign="center" header="待确认" summaryType="sum"></div>
@@ -102,8 +100,6 @@
                 <div allowSort="true" field="cancelSum" width="60" headerAlign="center" header="已取消" summaryType="sum"></div>
                 <div allowSort="true" field="isOpenBillSum" width="60" headerAlign="center" header="已开单" summaryType="sum"></div>
             </div>
-        </div>
-    </div>
 </div>
 </div>
 <script type="text/javascript">
@@ -120,7 +116,7 @@
     var params ={
         groupByType:0 // 0按日期分组  1业务类型  2工时项目
     };
-    quickSearch(3);
+    quickSearch(2);
     grid1.on("drawcell", function (e) {
         if(e.field =="groupName" && cType == 1){
             /* e.cellHtml = servieTypeHash[e.value].name; */

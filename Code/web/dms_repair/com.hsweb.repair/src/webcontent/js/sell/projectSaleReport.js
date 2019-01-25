@@ -14,6 +14,7 @@ var servieTypeHash = {};
 var cType = 0;
 var form=null;
 var billTypeHash=[{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"}];
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"项目名称"}];
 $(document).ready(function ()
 {
 	 form=new nui.Form("#form1");

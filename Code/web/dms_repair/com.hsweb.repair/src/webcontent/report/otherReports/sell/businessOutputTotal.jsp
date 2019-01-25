@@ -10,9 +10,9 @@
 -->
 
 <head>
-    <title>业务产值汇总表</title>
+    <title>已结算工单汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/repair/js/sell/businessOutputTotal.js?v=1.0.19"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/sell/businessOutputTotal.js?v=1.0.25"></script>
 
     <style>
 
@@ -46,7 +46,7 @@
 
 <body>
 
-    <div class="nui-toolbar" style="padding:2px;" id="queryForm">
+    <div class="nui-toolbar" style="padding:2px;" id="form1">
         <table style="width:100%;">
             <tr>
                 <td>
@@ -81,7 +81,7 @@
                                    showNullItem="false"
                                    width="100px"
                                    valueFromSelect="true"
-                                   nullItemText="请选择..."/>
+                                   nullItemText="请选择..." onenter="load()" onvaluechanged="load()"/>
                                    <label>&nbsp;&nbsp;&nbsp;&nbsp;业务类型：</label>
                                                 <input name="serviceTypeId"
                                    id="serviceTypeId"
@@ -94,8 +94,14 @@
                                    showNullItem="false"
                                    width="100px"
                                    valueFromSelect="true"
-                                   nullItemText="请选择..."/>
+                                   nullItemText="请选择..." onenter="load()" onvaluechanged="load()"/>
                     <a class="nui-button" plain="true" onclick="onSearch()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    </br>
+     				<a class="nui-button" iconcls=""  name="" plain="true" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>
+     				<a class="nui-button" iconcls=""  name="" plain="true" onclick="load(3)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按业务类型汇总</a>
+     				<a class="nui-button" iconcls=""  name="" plain="true" onclick="load(4)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按工单类型汇总</a>
+  					<a class="nui-button" iconcls=""  name="" plain="true" onclick="load(1)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按服务顾问汇总</a>
+     				<a class="nui-button" iconcls=""  name="" plain="true" onclick="load(2)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按品牌车型汇总</a>
                 </td>
             </tr>
         </table>
@@ -104,41 +110,43 @@
     <div class="nui-fit">
         <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="false"
             pageSize="50" totalField="page.count" sizeList=[20,50,100,200] dataField="data" onrowdblclick=""
-            allowCellSelect="true" editNextOnEnterKey="true" onshowrowdetail="onShowRowDetail" url="" allowCellWrap=true>
+            allowCellSelect="true" editNextOnEnterKey="true" onshowrowdetail="onShowRowDetail" url="" showSummaryRow="true" allowCellWrap=true>
             <div property="columns">
+            	<div type="indexcolumn">序号</div>
                 <div field="id" name="id" visible="false" width="100">id</div>
-                <div field="ct" name="ct" width="100" headerAlign="center" align="center">单数</div>
-                <div field="totalPrefAmt" name="totalPrefAmt" width="100" headerAlign="center" align="center">优惠合计&nbsp;
+                <div  field="groupName" name="groupName"  width="100" headerAlign="center" header="业务类型"></div>
+                <div field="ct" name="ct" width="100" headerAlign="center" align="center" summaryType="sum">单数</div>
+                <div field="totalPrefAmt" name="totalPrefAmt" width="100" headerAlign="center" align="center" summaryType="sum">优惠合计&nbsp;
                     <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
                         onmouseout="outHide()"></span></div>
-                <div field="allowanceAmt" name="allowanceAmt" width="100" headerAlign="center" align="center">结算优惠&nbsp;
+                <div field="allowanceAmt" name="allowanceAmt" width="100" headerAlign="center" align="center" summaryType="sum">结算优惠&nbsp;
                     <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
                         onmouseout="outHide()"></span></div>
-                <div field="balaAmt" name="balaAmt" width="100" headerAlign="center" align="center">实收合计&nbsp;
+                <div field="balaAmt" name="balaAmt" width="100" headerAlign="center" align="center" summaryType="sum">实收合计&nbsp;
                     <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
                         onmouseout="outHide()"></span></div>
-                <div field="pkgAmt" name="pkgAmt" width="100" headerAlign="center" align="center">套餐金额</div>
-                <div field="pkgPrefAmt" name="pkgPrefAmt" width="100" headerAlign="center" align="center">套餐优惠金额</div>
-                 <div field="pkgSubtotal" name="pkgAmt" width="100" headerAlign="center" align="center">套餐小计</div>
-                 <div field="itemTotalAmt" name="itemTotalAmt" width="100" headerAlign="center" align="center">项目金额</div>
-                <div field="itemPrefAmt" name="itemPrefAmt" width="100" headerAlign="center" align="center">项目优惠金额</div>
-                 <div field="itemSubtotal" name="itemSubtotal" width="100" headerAlign="center" align="center">项目小计</div>
-                <div field="partTotalAmt" name="partTotalAmt" width="100" headerAlign="center" align="center">配件金额</div>
-                <div field="partPrefAmt" name="partPrefAmt" width="100" headerAlign="center" align="center">配件优惠金额</div>
-                 <div field="partSubtotal" name="partSubtotal" width="100" headerAlign="center" align="center">配件小计</div>
- 				<div field="partTrueCost"  width="70" headerAlign="center" header="配件成本"></div>
-                <div field="cardTimesAmt" name="cardTimesAmt" width="100" headerAlign="center" align="center">计次卡抵扣</div>       
-                <div field="otherAmt" name="otherAmt" width="100" headerAlign="center" align="center">其他费用收入</div>
-                <div field="otherCostAmt" name="other_cost_amt" width="100" headerAlign="center" align="center">其他费用成本</div>
-                <div field="salesDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center">销售提成</div>
-                <div field="techDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center">技师提成</div>
-                <div field="advisorDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center">服务顾问提成</div>
-                <div field="totalDeductAmt" name="salesDeductValue" width="100" headerAlign="center" align="center">总提成金额</div>
-                <div field="netinAmt" name="netinAmt" width="100" headerAlign="center" align="center">营收金额</div>
-                <div field="grossProfit" name="grossProfit" width="100" headerAlign="center" align="center">毛利&nbsp;
+                <div field="pkgAmt" name="pkgAmt" width="100" headerAlign="center" align="center" summaryType="sum">套餐金额</div>
+                <div field="pkgPrefAmt" name="pkgPrefAmt" width="100" headerAlign="center" align="center" summaryType="sum">套餐优惠金额</div>
+                 <div field="pkgSubtotal" name="pkgAmt" width="100" headerAlign="center" align="center" summaryType="sum">套餐小计</div>
+                 <div field="itemTotalAmt" name="itemTotalAmt" width="100" headerAlign="center" align="center" summaryType="sum">项目金额</div>
+                <div field="itemPrefAmt" name="itemPrefAmt" width="100" headerAlign="center" align="center" summaryType="sum">项目优惠金额</div>
+                 <div field="itemSubtotal" name="itemSubtotal" width="100" headerAlign="center" align="center" summaryType="sum">项目小计</div>
+                <div field="partTotalAmt" name="partTotalAmt" width="100" headerAlign="center" align="center" summaryType="sum">配件金额</div>
+                <div field="partPrefAmt" name="partPrefAmt" width="100" headerAlign="center" align="center" summaryType="sum">配件优惠金额</div>
+                 <div field="partSubtotal" name="partSubtotal" width="100" headerAlign="center" align="center" summaryType="sum">配件小计</div>
+ 				<div field="partTrueCost"  width="70" headerAlign="center" header="配件成本" summaryType="sum"></div>
+                <div field="cardTimesAmt" name="cardTimesAmt" width="100" headerAlign="center" align="center" summaryType="sum">计次卡抵扣</div>       
+                <div field="otherAmt" name="otherAmt" width="100" headerAlign="center" align="center" summaryType="sum">其他费用收入</div>
+                <div field="otherCostAmt" name="other_cost_amt" width="100" headerAlign="center" align="center" summaryType="sum">其他费用成本</div>
+                <div field="salesDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center" summaryType="sum">销售提成</div>
+                <div field="techDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center" summaryType="sum">技师提成</div>
+                <div field="advisorDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center" summaryType="sum">服务顾问提成</div>
+                <div field="totalDeductAmt" name="salesDeductValue" width="100" headerAlign="center" align="center" summaryType="sum">总提成金额</div>
+                <div field="netinAmt" name="netinAmt" width="100" headerAlign="center" align="center" summaryType="sum">营收金额</div>
+                <div field="grossProfit" name="grossProfit" width="100" headerAlign="center" align="center" summaryType="sum">毛利&nbsp;
                     <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
                         onmouseout="outHide()"></span></div>
-                <div field="grossProfitRate" name="grossProfitRate" width="100" numberFormat="p" headerAlign="center" align="center">毛利率&nbsp;
+                <div field="grossProfitRate" name="grossProfitRate" width="100" numberFormat="p" headerAlign="center" align="center" summaryType="sum">毛利率&nbsp;
                     <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
                         onmouseout="outHide()"></span></div>
 

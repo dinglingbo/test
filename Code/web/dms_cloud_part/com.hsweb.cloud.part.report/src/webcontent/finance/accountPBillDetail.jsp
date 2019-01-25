@@ -47,7 +47,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div type="indexcolumn"  headeralign="center" width="30">序号</div>
                 <div field="billServiceId" name="name" summaryType="count" width="100"  headeralign="center" >业务单号</div>
                 <div field="billTypeId" name="name" width="100"  headeralign="center" >收支类型</div>
-                <div field="shortName" name="name" width="120"  headeralign="center" >供应商简称</div>
+                <div field="shortName" name="shortName" width="120"  headeralign="center" >供应商简称</div>
                 <div field="rpAmt" name="rpAmt" width="60" summaryType="sum" headeralign="center" >应付金额</div>
                 <div field="trueCharOffAmt" name="trueCharOffAmt" summaryType="sum" width="60"  headeralign="center" >已付金额</div>
                 <div field="noCharOffAmt" name="noCharOffAmt" summaryType="sum" width="60"  headeralign="center" >未付金额</div>

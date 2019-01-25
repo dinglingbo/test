@@ -161,6 +161,33 @@ public class MenuUtil {
 			if(muo == null) {
 				check = true;
 				return check;
+			} 
+	        String sysDomain = Env.getContributionConfig("system", "url", "webDomain", "SYS");
+	        String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();  
+	    	
+			DataObject[] appArr = ResauthUtils.getComAppFunction();
+			if(appArr.length > 0) {
+				boolean isExists = false;
+				for(int k=0; k<appArr.length; k++) {
+					DataObject appObj = appArr[k];
+					String parentId = appObj.getString("parentsid");
+		        	String linkAction = appObj.getString("funcaction");
+		        	if(parentId != null && parentId != "") {
+		        		linkAction = webPath + sysDomain + linkAction;
+		        	} else {
+		        		linkAction = webPath + linkAction;
+		        	}
+		        	if(actionUrl.equals(linkAction)) {
+		        		isExists = true;
+		        		break;
+		        	}else {
+		        		isExists = false;
+		        	}
+				}
+				if(!isExists) {
+					check = true;
+		    		return true;
+				}
 			}
 	        Map<String, Object> attrMap = muo.getUserObject().getAttributes();
 	        String userId = (String) attrMap.get("loginName");
@@ -196,10 +223,7 @@ public class MenuUtil {
 			Set<DataObject> setAll = new HashSet<DataObject>();    //去重
 			setAll.addAll(menuList);    
 			setAll.addAll(resInfoList);  
-	        List<DataObject> c = new ArrayList<DataObject>(setAll); 
-	        String sysDomain = Env.getContributionConfig("system", "url", "webDomain", "SYS");
-	        String webPath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();  
-	    	
+	        List<DataObject> c = new ArrayList<DataObject>(setAll);
 	        for(int i = 0; i<c.size(); i++) {
 	        	DataObject d = c.get(i);
 	        	String parentId = d.getString("parentsid");

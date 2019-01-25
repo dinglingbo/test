@@ -101,6 +101,42 @@ where ifnull(a.parentgroup,'') != '' and b.funcgroupname = '客户'
 
 
 
+<delete id="deleteComCapResauth" parameterClass="java.util.HashMap">
+		DELETE a
+		from com_cap_resauth a
+		inner join com_app_function b
+		on a.res_id = b.funccode
+		where 1 = 1
+		<isNotEmpty prepend="" property="type">  
+			        <isEqual prepend="and" property="type" compareValue="app">
+						b.functype = 'app'
+					</isEqual>
+					<isEqual prepend="and" property="type" compareValue="pc">
+						b.functype != 'app'
+					</isEqual>
+                    
+              </isNotEmpty>
+		
+		and a.party_id = #roleId#
+	</delete>
+
+权限保存提示保存失败，后台提示 Duplicate entry '1901-role-dms_bill_model-function' for key 'PRIMARY'
+需要保存  com_cap_resauth  的应用功能在 com_app_function 存在
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

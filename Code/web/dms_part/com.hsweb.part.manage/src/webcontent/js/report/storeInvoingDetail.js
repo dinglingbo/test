@@ -36,7 +36,7 @@ var billTypeIdHashType = [
 	{name:"耗材归库",id:"050207"},
 	{name:"移仓入库",id:"050104"},
 	{name:"移仓出库",id:"050204"},
-	{naem:"退货归库",id:"050108"}
+	{name:"退货归库",id:"050108"}
 ];
 var settTypeIdHash = {};
 var outTypeIdHash = {};

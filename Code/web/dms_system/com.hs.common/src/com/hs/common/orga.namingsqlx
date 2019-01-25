@@ -54,6 +54,15 @@
 		where ifnull(m.funccode, '') = ''
 		order by m.DISPLAYORDER asc
     </select>
+    <!--获取所有授权限控制的应用信息com_app_function-->
+    <select id="queryComAppFunction" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT DISTINCT a.menuid, a.menuname, a.menucode, a.imagepath, a.parentsid, b.funccode, 
+				 a.DISPLAYORDER,  b.funcaction, a.EXPANDPATH as expandpath, 
+				 a.APP_ID as appId, b.parainfo as params, b.FUNCTYPE as functype
+		from app_menu a
+		inner join com_app_function b
+		on a.funccode = b.FUNCCODE
+    </select>
     
     
     

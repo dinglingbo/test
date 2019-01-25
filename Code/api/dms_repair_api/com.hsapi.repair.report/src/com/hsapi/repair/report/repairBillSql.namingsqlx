@@ -159,14 +159,23 @@
 	<!--业务产值汇总统计，可以根据工单的业务类型，也可以根据工单服务顾问进行统计-->
 	<select id="queryOutputAnalysis" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT  
-    	
-	    	 <isEqual  prepend="" property="groupByType"  compareValue="0">
-		     	a.service_type_id as groupName,
-		     </isEqual>
-		     <isEqual  prepend="" property="groupByType"  compareValue="1">
-		     	a.mt_advisor_id as groupName,
-		     </isEqual>
-    	       
+    	     <isEqual  prepend=""  property="groupByType"   compareValue="0">
+        DATE_FORMAT(a.out_date,'%Y-%m-%d')  as groupName,
+     </isEqual>
+         
+     <isEqual  prepend="" property="groupByType"    compareValue="1">
+       a.mt_advisor_id ,a.mt_advisor as groupName,
+     </isEqual>
+     
+     <isEqual  prepend="" property="groupByType"   compareValue="2">
+       c.car_model as groupName, 
+     </isEqual>
+      <isEqual  prepend="" property="groupByType"  compareValue="3">
+	     	 a.service_type_id as groupName,
+	    </isEqual>  
+	          <isEqual  prepend="" property="groupByType"  compareValue="4">
+	     	 a.bill_type_id as groupName,
+	    </isEqual>  	       
     	       count(1) as ct, sum(b.package_amt) as pkgAmt, sum(b.package_pref_amt) as pkgPrefAmt,
 		       sum(b.package_subtotal) as pkgSubtotal, sum(b.item_total_amt) as itemTotalAmt, sum(b.item_pref_amt) as itemPrefAmt,
 		       sum(b.item_subtotal) as itemSubtotal, sum(b.part_total_amt) as partTotalAmt, sum(b.part_pref_amt) as partPrefAmt,
@@ -179,8 +188,8 @@
 		       else (sum(b.netin_amt) - sum(b.tech_deduct_value) - sum(b.part_true_cost) - sum(b.other_cost_amt))*1.0/sum(b.netin_amt)
 		       end as grossProfitRate
 		from rps_maintain a
-		inner join rps_settlement b
-		on a.id = b.service_id
+		inner join rps_settlement b on a.id = b.service_id
+		inner join rpb_car c on a.car_id = c.id
 		where a.is_settle = 1 and a.orgid = #orgid#
 		and a.bill_type_id in (0,2,4)
 		
@@ -210,15 +219,24 @@
             
         </dynamic>  
         
-        <isEqual  prepend="" property="groupByType"  compareValue="0">
+        <isEqual  prepend="" property="groupByType"  compareValue="3">
 	     	group by a.service_type_id
-	     	order by a.service_type_id
 	    </isEqual>
-	    <isEqual  prepend="" property="groupByType"  compareValue="1">
-	     	group by a.mt_advisor_id 
-	     	order by a.mt_advisor_id
-	    </isEqual>
-		
+	    
+	   <isEqual  prepend="" property="groupByType"   compareValue="0">
+	        GROUP BY DATE_FORMAT(a.record_date,'%Y-%m-%d')
+	   </isEqual>
+	   
+	   <isEqual  prepend=""  property="groupByType"   compareValue="1">
+	     GROUP BY a.mt_advisor_id,a.mt_advisor
+	   </isEqual>
+	   
+	   <isEqual  prepend="" property="groupByType"   compareValue="2">
+	     GROUP BY c.car_model
+	   </isEqual>
+		<isEqual  prepend="" property="groupByType"  compareValue="4">
+	     	GROUP BY a.bill_type_id 
+	    </isEqual> 
 		
 		
 	</select>

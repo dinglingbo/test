@@ -156,11 +156,6 @@
             <!-- <li><a href="#"><i class="fa fa-paper-plane"></i> 代办事项</a></li>
             <li><a href="javascript:updatePassWord();"><i class="fa fa-pencil-square-o"></i> 修改密码</a></li> -->
            	<li class="dropdown">
-           		<a class="feedback-bt FeedBackButton" style="padding-top: 18px; ">
-				    反馈
-				</a>
-           	</li>
-            <li class="dropdown">
                 <a  onClick="OrgShow()" style="padding-top: 18px; ">
                         <span  class="org_hover" id="currOrgName">公司</span>
                 </a>
@@ -191,6 +186,11 @@
                     <li><a href="<%=request.getContextPath()%>/coframe/auth/login/logout.jsp"><i class="fa fa-user"></i> 退出登录</a></li>
                 </ul>
             </li>
+            <li class="dropdown">
+           		<a class="feedback-bt FeedBackButton" style="padding-top: 18px; ">
+				    反馈
+				</a>
+           	</li>
         </ul>
     </div>
     

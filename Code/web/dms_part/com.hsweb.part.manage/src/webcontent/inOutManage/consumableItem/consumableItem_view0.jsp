@@ -111,9 +111,9 @@ type="text/javascript"></script>
                    <div field="partCode" name="partCode" width="120" headerAlign="center" header="配件编码"></div>
                    <div field="oemCode" name="oemCode" width="190" headerAlign="center" header="OEM码"></div>
                    <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
-                   <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" headerAlign="center" header="库存数量"></div>
-                   <div allowSort="true" visible="false"  datatype="int" width="60" field="preOutQty" headerAlign="center" header="待出库数量"></div>
-                   <div allowSort="true" visible="false"  datatype="float" width="60" field="outQty" headerAlign="center" header="出库数量">
+                   <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" headerAlign="center" header="库存数量" summaryType="sum" ></div>
+                   <div allowSort="true" visible="false"  datatype="int" width="60" field="preOutQty" headerAlign="center" header="待出库数量" summaryType="sum" ></div>
+                   <div allowSort="true" visible="false"  datatype="float" width="60" field="outQty" headerAlign="center" header="出库数量" summaryType="sum" >
                        <input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                    </div>
                    <div field="enterPrice" width="60px" headerAlign="center" allowSort="true" header="库存单价"></div>
@@ -209,10 +209,10 @@ type="text/javascript"></script>
             
             <div field="partCode" name="partCode" width="80" headerAlign="center" header="配件编码"></div>
             <div field="partName" headerAlign="center" allowSort="true" visible="true" width="">配件名称</div>
-            <div field="outQty" headerAlign="center" allowSort="true" visible="true" width="">出库数量</div>
+            <div field="outQty" headerAlign="center" allowSort="true" visible="true" width="" summaryType="sum" >出库数量</div>
 
             <div field="sellUnitPrice" headerAlign="center" allowSort="true" visible="true" width="">单价</div>
-            <div field="sellAmt" headerAlign="center" allowSort="true" visible="true" width="">金额</div>
+            <div field="sellAmt" headerAlign="center" allowSort="true" visible="true" width="" summaryType="sum" >金额</div>
             <div field="remark" id="remark" headerAlign="center" allowSort="true" visible="true" width="">备注</div>
             <div field="pickDate" headerAlign="center" allowSort="true" visible="true" width="" format="yyyy-MM-dd" dateFormat="yyyy-MM-dd HH:mm">出库日期</div>  
             <div field="pickMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>

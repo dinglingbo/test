@@ -6,8 +6,11 @@ var queryFormUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.q
 
 var grid = null;
 var queryForm = null;
-var statusList = [{id:"0",name:"客户名称"},{id:"1",name:"客户电话"}];
-
+var statusList = [{id:"0",name:"客户名称"},{id:"1",name:"车牌号"},{id:"2",name:"客户电话"}];
+var billType = [{id:"0",name:"全部退款"},{id:"1",name:"计次卡退款"},{id:"2",name:"储值卡退款"}];
+var hash = new Array("计次卡退款","储值卡退款");
+var beginDateEl = null;
+var endDateEl = null;
 $(document).ready(function (v)
 {
     grid  = nui.get("datagrid1");
@@ -16,30 +19,130 @@ $(document).ready(function (v)
     var sdate = new Date();
     sdate.setMonth(date.getMonth()-3);
    
-    var startDate = mini.get("startDate");
-    //startDate.setValue(sdate);
+    beginDateEl = nui.get("sOutDate");
+	endDateEl = nui.get("eOutDate");
+    beginDateEl.setValue(getMonthStartDate());
+    endDateEl.setValue(addDate(getMonthEndDate(), 1));
+    onSearch();
     
-    var endDate = mini.get("endDate");
-    endDate.setValue(date);
-    
-    
- 
     grid.setUrl(queryFormUrl);
-
-       
+    quickSearch(2);
 });
 
-
+function quickSearch(type){
+    var params = getSearchParam();
+    var querysign = 1;
+    var queryname = "本日";
+    switch (type)
+    {
+        case 0:
+            params.today = 1;
+            params.sOutDate = getNowStartDate();
+            params.eOutDate = addDate(getNowEndDate(), 1);
+            querysign = 1;
+            queryname = "本日";
+            break;
+        case 1:
+            params.yesterday = 1;
+            params.sOutDate = getPrevStartDate();
+            params.eOutDate = addDate(getPrevEndDate(), 1);
+            querysign = 1;
+            queryname = "昨日";
+            break;
+        case 2:
+            params.thisWeek = 1;
+            params.sOutDate = getWeekStartDate();
+            params.eOutDate = addDate(getWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "本周";
+            break;
+        case 3:
+            params.lastWeek = 1;
+            params.sOutDate = getLastWeekStartDate();
+            params.eOutDate = addDate(getLastWeekEndDate(), 1);
+            querysign = 1;
+            queryname = "上周";
+            break;
+        case 4:
+            params.thisMonth = 1;
+            params.sOutDate = getMonthStartDate();
+            params.eOutDate = addDate(getMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "本月";
+            break;
+        case 5:
+            params.lastMonth = 1;
+            params.sOutDate = getLastMonthStartDate();
+            params.eOutDate = addDate(getLastMonthEndDate(), 1);
+            querysign = 1;
+            queryname = "上月";
+            break;
+        case 10:
+            params.thisYear = 1;
+            params.sOutDate = getYearStartDate();
+            params.eOutDate = getYearEndDate();
+            querysign = 1;
+            queryname = "本年";
+            break;
+        case 11:
+            params.lastYear = 1;
+            params.sOutDate = getPrevYearStartDate();
+            params.eOutDate = getPrevYearEndDate();
+            querysign = 1;
+            queryname = "上年";
+            break;
+       
+        default:
+            break;
+    }
     
-
-var hash = new Array("计次卡退款","储值卡退款");
-
-function setData(params){
+    beginDateEl.setValue(params.sOutDate);
+    endDateEl.setValue(addDate(params.eOutDate,-1));
+    if(querysign == 1){
+    	var menunamedate = nui.get("menunamedate");
+    	menunamedate.setText(queryname); 	
+    }
+    
+    doSearch(params);
+}
+    
+function onSearch()
+{
+    doSearch();
+}
+function doSearch() {
+    var gsparams = getSearchParam();
     grid.load({
-    	params:params,
-    	token : token
+        token:token,
+        params: gsparams
     });
 }
+function getSearchParam() {
+    var params = {};
+    params.sOutDate = nui.get("sOutDate").getValue();
+    params.eOutDate = addDate(endDateEl.getValue(),1);  
+    var type = nui.get("search-type").getValue();
+    var typeValue = nui.get("carNo-search").getValue();
+    if(type==0){
+        params.fullName = typeValue||"";
+    }else if(type==1){
+        params.carNo = typeValue||"";
+    }else if(type==2){
+        params.mobile = typeValue||"";
+    }
+    var billType = nui.get("search-billType").getValue();
+    if(billType==0){
+    	
+    }else if(billType==1){
+    	params.type=1;
+    }else if(billType==2){
+    	params.type=2;
+    }
+    return params;
+}
+
+
+
 
  function onDrawCell(e)
   {
@@ -57,54 +160,6 @@ function setData(params){
     }
 }
 
- //快速查询
- 
- function search(){
-	    nui.mask({
-	        el : document.body,
-		    cls : 'mini-mask-loading',
-		    html : '查询中...'
-	    });
-		var guestName =  null;
-		var mobile = null;
-		var cardName = null;
-		var startDate = nui.get("startDate").getFormValue();
-		var endDate = nui.get("endDate").getValue();
-		endDate = addDate(endDate, 1);
-	    var type = nui.get("search-type").getValue();
-	    var typeValue = nui.get("carNo-search").getValue();
-	    if(type==0){
-	    	guestName = typeValue;
-	    }else if(type==1){
-	    	mobile = typeValue;
-	    }else if(type==2){
-	    	cardName = typeValue;
-	    }
-		var params = {
-				guestName:guestName,
-				mobile:mobile,
-				cardName:cardName,
-				startDate:startDate,
-				endDate:endDate
-		}
-		var json1 = {
-				params:params,
-				token:token
-		}
-		nui.ajax({
-			url : queryFormUrl,
-			type : 'POST',
-			data : json1,
-			cache : false,
-			contentType : 'text/json',
-			success : function(text) {
-				grid.setData(text.data);
-				nui.unmask(document.body);
-				
-				
-			}
-		});
-	}
 
  
 

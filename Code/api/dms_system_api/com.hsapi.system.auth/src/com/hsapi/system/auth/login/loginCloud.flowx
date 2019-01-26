@@ -230,15 +230,15 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="link10" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>subprocess0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="link12" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="OBJNE">
-          <process:leftOperand type="query">rCode</process:leftOperand>
-          <process:rightOperand type="query">code</process:rightOperand>
-        </process:simpleCondition>
+        <process:complexCondition>
+          <process:code>1==2</process:code>
+        </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
@@ -248,6 +248,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">sessionContext.getString(&quot;rCode&quot;)</process:from>
       <process:to type="query">rCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">sysadmin</process:from>
+      <process:to type="query">userId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">000000</process:from>
+      <process:to type="query">password</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">

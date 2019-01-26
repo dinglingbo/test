@@ -116,13 +116,14 @@ a#car{
         <div field="serviceCode" name="serviceCode" width="100" headerAlign="center" align="center">单号</div>
         <div field="guestFullName" name="guestFullName" width="80" headerAlign="center" align="center">客户姓名</div>
 <!--         <div field="guestMobile" name="guestMobile" width="40" headerAlign="center" align="center">手机号码</div> -->
-        <div field="carNo" name="carNo" width="40" headerAlign="center" align="center">车牌号</div>
+        <div field="carNo" name="carNo" width="80" headerAlign="center" align="center">车牌号</div>
+        <div field="mtAdvisor" name="mtAdvisor" width="80" headerAlign="center" align="center">服务顾问</div>
         <div field="carModel" name="carModel" width="100" headerAlign="center" align="center">品牌车型</div>
         <div field="billTypeId" name="billTypeId" width="80" headerAlign="center" align="center">工单类型</div>
         <div field="serviceTypeName" name="serviceTypeName" width="100" headerAlign="center" align="center">业务类型</div>
 <!--         <div field="isSettle" name="isSettle" width="30" headerAlign="center" align="center">结算状态</div> -->
-        <div field="enterDate" name="recordDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">进厂日期</div>
-        <div field="action" name="action" width="60" headerAlign="center" header="操作" align="center" align="center"></div>
+        <div field="enterDate" name="recordDate" width="100" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">进厂日期</div>
+        <div field="action" name="action" width="80" headerAlign="center" header="操作" align="center" align="center"></div>
     </div> 
 </div>
 </div>

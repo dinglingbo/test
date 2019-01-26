@@ -11,14 +11,15 @@
     <!--账户结算明细-->
 	<select id="queryAccountDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	
-            SELECT a.sett_account_id as settAccountId, a.rp_dc as rpDc, a.char_off_amt as charOffAmt,
+            SELECT a.sett_account_code as settAccountCode, a.sett_account_name as settAccountName ,a.rp_dc as rpDc, a.char_off_amt as charOffAmt,
 				   b.guest_id as guestId, b.auditor as auditor, b.audit_date as auditDate,
-				   c.full_name as fullName, c.short_name as shortName
+				   c.full_name as fullName, c.short_name as shortName,e.car_no as carNo ,d.bill_type_id as billTypeId
 			from fis_rp_account_d_type a
-			inner join fis_rp_account b
-			on a.main_id = b.id
-			inner join wb_common.com_guest c
-			on b.guest_id = c.id
+			inner join fis_rp_account b on a.main_id = b.id
+			inner join wb_common.com_guest c on b.guest_id = c.id
+			inner join fis_rp_account_detail d on a.main_id = d.main_id
+			inner join fis_rp_bill e on d.bill_rp_id= e.id
+			
 			where b.audit_sign = 1
 				<isNotEmpty prepend="and" property="orgid"> 
                     (b.orgid = #orgid#)

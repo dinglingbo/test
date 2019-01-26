@@ -1,4 +1,5 @@
-cdnHost = 'https://cdns.007vin.com'
+cdnHost = 'https://cdns.007vin.com';
+alert(titleUrl);
 var canvasContainer =   '<div class="FeedbackContainer" style="display:none">'
     canvasContainer +=     '<div class="textAreaContainer">'
     canvasContainer +=       '<div class="chooseItem">'
@@ -534,12 +535,19 @@ window.onload = function() {
         $(".itemsBody .selected").each(function(i) {
            advise_type+= ($(this).html() + ",")
         })
+        var funcName = "";//菜单功能
+        var funcAction = "";//菜单功能id
         resetAndClear()
         var objData = {
           "imageData": Pic,
-          "advise_type": advise_type,
-          "advise": advise,
-          "header": canverauth
+          "adviseType": advise_type,//问题类型
+          //"advise": advise,
+          "questionContent":advise,//问题描述
+          "questionSource":"web",
+          "header": canverauth,
+          "status":0,
+          "funcName":funcName,
+          "funcAction":funcAction
         }
         $.ajax({
           type: 'POST',

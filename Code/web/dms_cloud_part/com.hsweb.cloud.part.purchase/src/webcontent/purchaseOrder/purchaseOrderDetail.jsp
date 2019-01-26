@@ -23,7 +23,7 @@
 
                 <a class="nui-menubutton " visible="false" menu="#popupMenuType" id="menunametype">未审</a>
 
-                <ul id="popupMenuType" class="nui-menu" style="display:none;">
+                <ul id="popupMenuType" class="nui-menu" style="display:none;">	
                     <li iconCls="" onclick="quickSearch(6)" id="type6">未审</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已审</li>
                     <!-- <li class="separator"></li>
@@ -33,6 +33,7 @@
                 <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">草稿</a>
 
                 <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                	<li iconCls="" onclick="quickSearch(17)" id="type17">所有</li>
                     <li iconCls="" onclick="quickSearch(10)" id="type10">草稿</li>
                     <li iconCls="" onclick="quickSearch(11)" id="type11">待发货</li>
                     <li iconCls="" onclick="quickSearch(12)" id="type12">待收货</li>
@@ -40,6 +41,7 @@
                     <li iconCls="" onclick="quickSearch(14)" id="type14">已入库</li>
                     <li iconCls="" onclick="quickSearch(15)" id="type15">已退回</li>
                     <li iconCls="" onclick="quickSearch(16)" id="type16">已关闭</li>
+                    
                     <!-- <li class="separator"></li>
                     <li iconCls="" onclick="quickSearch(17)" id="type17">全部</li> -->
                 </ul>

@@ -12,9 +12,10 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>施工项目明细（应收）</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <%@include file="/common/commonRepair.jsp"%>
+
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-    <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
+         <%@include file="/common/commonRepair.jsp"%>
+ <%--    <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" /> --%>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     
@@ -67,7 +68,7 @@ pageEncoding="UTF-8" session="false" %>
         <div id="grid" class="nui-datagrid" datafield="list" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:100%;"
             totalField="page.count"> 
             <div property="columns">
-                <div field="serviceCode" name="serviceCode" headeralign="center" width="130" align="center">工单号</div>
+                <div field="serviceCode" name="serviceCode" headeralign="center" width="170" align="center">工单号</div>
                 <div field="serviceTypeId" name="serviceTypeId" headeralign="center" width="80" align="center">业务类型</div>
                 <div field="itemName" name="itemName" headeralign="center" width="100" align="center">项目名称</div>
                 <div field="carNo" name="carNo" headeralign="center" width="80" align="center">车牌号</div>

@@ -595,12 +595,12 @@ function quickSearch(type) {
 		gsparams.auditSign = 1;
 		querysign = 3;
 		break;
-	/*case 17:
-		querystatusname = "全部";
+	case 17:
+		querystatusname = "所有";
 		gsparams.billStatusId = null;
-		gsparams.auditSign = null;
+		gsparams.auditSign = -1;
 		querysign = 3;
-		break;*/
+		break;
 	/*case 9:
 		querytypename = "全部";
 		querysign = 2;

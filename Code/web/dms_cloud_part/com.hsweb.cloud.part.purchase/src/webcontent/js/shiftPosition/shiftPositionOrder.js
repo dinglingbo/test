@@ -265,6 +265,12 @@ function quickSearch(type){
             querysign = 2;
             gsparams.auditSign = 1;
             break;
+        case 8:
+            params.isOut = null;
+            querytypename = "所有";
+            querysign = 2;
+            gsparams.auditSign = null;
+            break;
         default:
             params.today = 1;
             params.startDate = getNowStartDate();

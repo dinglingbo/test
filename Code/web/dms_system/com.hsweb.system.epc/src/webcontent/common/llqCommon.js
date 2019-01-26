@@ -34,6 +34,7 @@ function callAjax(url, params, processAjax, callBack){
     //url = url.replace("llq.","llqapitm.");
     params.token = token;//"214e2f71-4237-4601-9a1a-538bf982b995";
 	nui.ajax({
+		async: false,
 		url: url,
 		type: "post",
         data: params,
@@ -106,6 +107,7 @@ var partData = {}
 function setPartImg(data, rs){
     partData = data;
     $('.j_part-img').attr({'src': "", 'width': '0px', height: '0px'}).show();
+    
     loading();
     var img = new Image();
     img.onload = function () {

@@ -677,6 +677,12 @@ function onLeftGridDrawCell(e)
                 e.cellHtml = AuditSignHash[e.value];
             }
             break;
+        case "billStatusId":
+            if(StatusHash && StatusHash[e.value])
+            {
+                e.cellHtml = StatusHash[e.value];
+            }
+            break;
     }
 }
 var currType = 2;
@@ -763,6 +769,12 @@ function quickSearch(type){
             gsparams.billStatusId = 2;
             querysign = 2;
             gsparams.auditSign = 1;
+            break;
+        case 10:
+            querytypename = "所有";
+            gsparams.billStatusId = null;
+            querysign = 2;
+            gsparams.auditSign = -1;
             break;
         default:
         	params.today = 1;

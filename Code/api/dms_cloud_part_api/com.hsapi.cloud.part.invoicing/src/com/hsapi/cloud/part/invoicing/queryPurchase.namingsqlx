@@ -21,7 +21,7 @@
         <result column="orderManId" javaType="string" property="orderManId"/>
         <result column="orderMan" javaType="string" property="orderMan"/>
         <result column="billTypeId" javaType="string" property="billTypeId"/>
-        <result column="payModeId" javaType="int" property="payModeId"/>
+      <!--  <result column="payModeId" javaType="int" property="payModeId"/>-->
         <result column="taxSign" javaType="int" property="taxSign"/>
         <result column="taxRate" javaType="double" property="taxRate"/>
         <result column="taxAmt" javaType="double" property="taxAmt"/>
@@ -37,7 +37,7 @@
         <result column="adjustQty" javaType="double" property="adjustQty"/>
         <result column="isFinished" javaType="int" property="isFinished"/>
         <result column="finishDate" javaType="java.sql.Timestamp" property="finishDate"/>
-        <result column="sendTypeId" javaType="int" property="sendTypeId"/>
+     <!--   <result column="sendTypeId" javaType="int" property="sendTypeId"/>-->
         <result column="printTimes" javaType="int" property="printTimes"/>
         <result column="printManId" javaType="string" property="printManId"/>
         <result column="printMan" javaType="string" property="printMan"/>
@@ -74,7 +74,7 @@
             M.orderManId,
             M.orderMan,
             M.billTypeId,
-            M.payModeId,
+         <!-- M.payModeId,-->
             M.taxSign,
             M.taxRate,
             M.taxAmt,
@@ -90,7 +90,7 @@
             M.adjustQty,
             M.isFinished,
             M.finishDate,
-            M.sendTypeId,
+          <!--  M.sendTypeId,-->
             M.printTimes,
             M.printManId,
             M.printMan,
@@ -124,7 +124,7 @@
                 A.ORDER_MAN_ID as orderManId,
                 A.ORDER_MAN as orderMan,
                 A.BILL_TYPE_ID as billTypeId,
-                A.PAY_MODE_ID as payModeId,
+              <!-- A.PAY_MODE_ID as payModeId,-->
                 A.TAX_SIGN as taxSign,
                 A.TAX_RATE as taxRate,
                 A.TAX_AMT as taxAmt,
@@ -133,14 +133,14 @@
                 A.ORDER_QTY as orderQty,
                 A.ORDER_ITEM as orderItem,
                 A.ORDER_AMT as orderAmt,
-                A.TRUE_ENTER_QTY as trueEnterQty,
-                A.TRUE_ENTER_AMT as trueEnterAmt,
-                A.NOT_ENTER_QTY as notEnterQty,
-                A.NOT_ENTER_AMT as notEnterAmt,
-                A.ADJUST_QTY as adjustQty,
+                C.TRUE_ENTER_QTY as trueEnterQty,
+                C.TRUE_ENTER_AMT as trueEnterAmt,
+                C.NOT_ENTER_QTY as notEnterQty,
+                C.NOT_ENTER_AMT as notEnterAmt,
+                C.ADJUST_QTY as adjustQty,
                 A.IS_FINISHED as isFinished,
                 A.FINISH_DATE as finishDate,
-                A.SEND_TYPE_ID as sendTypeId,
+               <!-- A.SEND_TYPE_ID as sendTypeId,-->
                 A.PRINT_TIMES as printTimes,
                 A.PRINT_MAN_ID as printManId,
                 A.PRINT_MAN as printMan,
@@ -174,6 +174,15 @@
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
                 </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="orderTypeId"> 
+                    (a.order_type_id = #orderTypeId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="isDiffOrder"> 
+                    (a.is_diff_order = #isDiffOrder#)
+                </isNotEmpty>
+                
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sOrderDate">  
                     A.ORDER_DATE &gt;= #sOrderDate#
@@ -213,7 +222,8 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="auditSign">  
                 <!--审核状态-->
-                    (A.AUDIT_SIGN = #auditSign#)
+                   <!-- (A.AUDIT_SIGN = #auditSign#)-->
+                   (A.AUDIT_SIGN is not null)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
                     (A.ID in ($serviceIdList$))
@@ -237,7 +247,7 @@
                 A.ORDER_MAN_ID as orderManId,
                 A.ORDER_MAN as orderMan,
                 A.BILL_TYPE_ID as billTypeId,
-                A.PAY_MODE_ID as payModeId,
+             <!--   A.PAY_MODE_ID as payModeId,-->
                 A.TAX_SIGN as taxSign,
                 A.TAX_RATE as taxRate,
                 A.TAX_AMT as taxAmt,
@@ -246,14 +256,14 @@
                 A.ORDER_QTY as orderQty,
                 A.ORDER_ITEM as orderItem,
                 A.ORDER_AMT as orderAmt,
-                A.TRUE_ENTER_QTY as trueEnterQty,
-                A.TRUE_ENTER_AMT as trueEnterAmt,
-                A.NOT_ENTER_QTY as notEnterQty,
-                A.NOT_ENTER_AMT as notEnterAmt,
-                A.ADJUST_QTY as adjustQty,
+                C.TRUE_ENTER_QTY as trueEnterQty,
+                C.TRUE_ENTER_AMT as trueEnterAmt,
+                C.NOT_ENTER_QTY as notEnterQty,
+                C.NOT_ENTER_AMT as notEnterAmt,
+                C.ADJUST_QTY as adjustQty,
                 A.IS_FINISHED as isFinished,
                 A.FINISH_DATE as finishDate,
-                A.SEND_TYPE_ID as sendTypeId,
+                <!--    A.SEND_TYPE_ID as sendTypeId,-->
                 A.PRINT_TIMES as printTimes,
                 A.PRINT_MAN_ID as printManId,
                 A.PRINT_MAN as printMan,
@@ -286,6 +296,14 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="id">  
                     (a.id = #id#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="orderTypeId"> 
+                    (a.order_type_id = #orderTypeId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="isDiffOrder"> 
+                    (a.is_diff_order = #isDiffOrder#)
                 </isNotEmpty>
                 <!--订货日期 -->
                 <isNotEmpty prepend="and" property="sOrderDate">  
@@ -326,7 +344,8 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="auditSign">  
                 <!--审核状态-->
-                    (A.AUDIT_SIGN = #auditSign#)
+                   <!-- (A.AUDIT_SIGN = #auditSign#)-->
+                   (A.AUDIT_SIGN is not null)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
                     (A.ID in ($serviceIdList$))
@@ -337,7 +356,7 @@
             </dynamic>  
         )M
     	
-        
+        group by M.id
         ORDER BY M.operateDate DESC
     </select>
     

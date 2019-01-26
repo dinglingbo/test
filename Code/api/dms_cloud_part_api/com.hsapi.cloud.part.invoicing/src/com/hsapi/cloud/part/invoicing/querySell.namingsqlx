@@ -186,7 +186,8 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="auditSign">  
                 <!--审核状态-->
-                    (A.AUDIT_SIGN = #auditSign#)
+                    <!-- (A.AUDIT_SIGN = #auditSign#)-->
+                    A.AUDIT_SIGN is NOT NULL
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
                     (A.ID in ($serviceIdList$))
@@ -194,6 +195,12 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
+                <isNotEmpty prepend="and" property="orderTypeId">  
+                    (A.order_type_id = #orderTypeId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isDiffOrder">  
+                    (A.is_diff_order = #isDiffOrder#)
+                </isNotEmpty>
             </dynamic>  
             
             union all
@@ -290,7 +297,8 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="auditSign">  
                 <!--审核状态-->
-                    (A.AUDIT_SIGN = #auditSign#)
+                    <!-- (A.AUDIT_SIGN = #auditSign#)-->
+                    A.AUDIT_SIGN is NOT NULL
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
                     (A.ID in ($serviceIdList$))
@@ -298,10 +306,17 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (D.CODE in ($partCodeList$))
                 </isNotEmpty> 
+                
+                <isNotEmpty prepend="and" property="orderTypeId">  
+                    (A.order_type_id = #orderTypeId#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="isDiffOrder">  
+                    (A.is_diff_order = #isDiffOrder#)
+                </isNotEmpty>
             </dynamic>  
         )M
     	
-        
+        GROUP BY M.Id
         ORDER BY M.operateDate DESC
     </select>
     

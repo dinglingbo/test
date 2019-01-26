@@ -2,6 +2,7 @@
 var dgbasic;
 var dgprice;
 var dgreplace;
+var dgreplace2;
 var dgarticle;
 var dgcompt;
 var dgbaseinfo;
@@ -9,17 +10,25 @@ var dgcompatible;
 var dgstock;
 var ntab;
 var detailCatch = {};
+var pids=[];
+var pidHash={};
+var innnerData=[];
+var editFormDetail = null;
+var innerPartGrid=null;
 
 $(document).ready(function(v){
     dgbasic = nui.get("dgbasic");
     dgprice = nui.get("dgprice");
     dgreplace = nui.get("dgreplace");
+    dgreplace2 =nui.get("dgreplace2");
+    innerPartGrid = nui.get("innerPartGrid");
     dgarticle = nui.get("dgarticle");
     dgcompt = nui.get("dgcompt");
     dgbaseinfo = nui.get("dgbaseinfo");
     dgcompatible = nui.get("dgcompatible");
     dgstock = nui.get("dgstock");
     ntab = nui.get("tabs");
+    editFormDetail = document.getElementById("editFormDetail");
 });
 
 function changeTabs(e){
@@ -147,8 +156,54 @@ function queryReplace(){
 }
 
 function setReplace(data){
-    dgreplace.setData(data);
+	var direct=[]; //直接替换
+	var indirectd=[]; //间接替换
+	var arr=[];
+	var hash={};
+	var inData=[];
+	if(data.length<0){
+		return;
+	}
+	for(var i=0;i<data.length;i++){
+		data[i].lable='';
+		data[i].prices='';
+		data[i].ptype='';
+		data[i].brandcn='';
+		if(data[i].parentnum=='root'){
+			delete data[i];
+			i++;
+		}
+		if(data[i].isre==1){
+			direct.push(data[i]);
+		}else{
+			indirectd.push(data[i]);
+		}
+		
+		if(data[i].pid.length>1){
+			innnerData[data[i].parentnum]=data[i].pid;
+
+		}
+		for(var j=0;j<data[i].pid.length;j++){
+			arr.push(data[i].pid[j]);
+		}
+
+		
+	}
+	for(var k=0;k<arr.length;k++){
+		if(!hash[arr[k].pid]){
+			pids.push(arr[k]);
+			hash[arr[k].pid]=true;
+		}
+	}
+	
+	pids.forEach(function(v){
+		pidHash[v.pid]=v;
+	});
+    dgreplace.setData(direct);
+    dgreplace2.setData(indirectd);
     detailCatch['replace'] = data;
+    console.log(pids);
+//    console.log(pidHash);
 }
 
 /*
@@ -268,4 +323,55 @@ function queryChainStock(){
 function setChainStock(data){
     dgstock.setData(data);
     detailCatch['stock'] = 1;
+}
+
+function onDeReplaceDraw(e){
+	var field = e.field;
+	var parentnum=e.record.parentnum;
+	if(!pidHash[parentnum]){
+		return;
+	}
+	if(e.field=='lable'){
+		e.cellHtml = pidHash[parentnum].lable || "";
+	}
+	if(e.field=='prices'){
+		e.cellHtml = pidHash[parentnum].prices || "";
+	}
+	if(e.field=='ptype'){
+		e.cellHtml = pidHash[parentnum].ptype || "";
+	}
+	if(e.field=='brandcn'){
+		e.cellHtml = pidHash[parentnum].brandcn || "";
+	}
+}
+
+function onShowRowDetail(e) {
+    var row = e.record;
+    var parentnum=row.parentnum;
+    //将editForm元素，加入行详细单元格内
+ 
+    if(!innnerData[parentnum]){
+    	innerPartGrid.setData([]);
+    }else{
+    	var td = dgreplace.getRowDetailCellEl(row);
+    	td.appendChild(editFormDetail);
+    	editFormDetail.style.display = "";
+    	innerPartGrid.setData(innnerData[parentnum]);
+    }
+    
+}
+
+function onShowRowDetail2(e) {
+    var row = e.record;
+    var parentnum=row.parentnum;  
+    //将editForm元素，加入行详细单元格内
+
+    if(!innnerData[parentnum]){
+    	innerPartGrid.setData([]);
+    }else{
+        var td = dgreplace2.getRowDetailCellEl(row);
+        td.appendChild(editFormDetail);
+        editFormDetail.style.display = "";
+    	innerPartGrid.setData(innnerData[parentnum]);
+    }
 }

@@ -376,8 +376,8 @@ function resetPassword(){
  }
 
 function selectCom(){
-	var rows = grid.getSelecteds();
-    if(rows.length>0){
+	var row = grid.getSelected();
+    if(row){
     	nui.open({
             // targetWindow: window,
             url: webPath + contextPath + "/common/employeeHaveCompany.jsp?token="+token,
@@ -387,7 +387,9 @@ function selectCom(){
             allowDrag:true,
             allowResize:true,
             onload: function ()
-            {
+            { 
+            	var iframe = this.getIFrameEl();
+                iframe.contentWindow.setDataSelect(row);
             },
             ondestroy: function (action)
             {
@@ -399,4 +401,28 @@ function selectCom(){
     }
 }
 
-
+function lookCom(){
+	var row = grid.getSelected();
+    if(row){
+    	nui.open({
+            // targetWindow: window,
+            url: webPath + contextPath + "/common/existCompany.jsp?token="+token,
+            title: "兼职门店", 
+            width: 700, 
+            height: 300,
+            allowDrag:true,
+            allowResize:true,
+            onload: function ()
+            { 
+            	var iframe = this.getIFrameEl();
+                iframe.contentWindow.setData(row);
+            },
+            ondestroy: function (action)
+            {
+                
+            }
+        });  
+    }else{
+        nui.alert("请选中一条记录！");
+    }
+}

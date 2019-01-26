@@ -10,6 +10,7 @@ var endDateEl = null;
 var advanceGuestIdEl = null;
 var rpDcEl = null;
 var accountList = null;
+var enterTypeIdHash = {};
 var accountHash = {};
 var dcListType = [{name:"收",id:"1"},{id:"-1",name:"支"}];
 $(document).ready(function(v) {
@@ -24,7 +25,14 @@ $(document).ready(function(v) {
 
 	beginDateEl.setValue(getMonthStartDate());
 	endDateEl.setValue(addDate(getMonthEndDate(), 1));
+	
+    getItemType(function(data) {
+        enterTypeIdList = data.list || [];
+        enterTypeIdList.filter(function(v){
+            enterTypeIdHash[v.id] = v;
+        });
 
+    });
 	getAccountList(function(data) {
         accountList = data.settleAccount;
         accountIdEl.setData(accountList);
@@ -129,7 +137,7 @@ function onDrawCell(e){
                 e.cellHtml = "";
             }
             break;
-        case "settAccountId":
+/*        case "settAccountId":
             if (accountHash[e.value]) {
                 if(e.column.header == "账户编码"){
                     e.cellHtml = accountHash[e.value].code || "";
@@ -138,6 +146,13 @@ function onDrawCell(e){
                 }else{
                     e.cellHtml = "";
                 }
+            } else {
+                e.cellHtml = "";
+            }*/
+        case "billTypeId":
+            if(enterTypeIdHash && enterTypeIdHash[e.value])
+            {
+                e.cellHtml = enterTypeIdHash[e.value].name;
             } else {
                 e.cellHtml = "";
             }
@@ -220,4 +235,24 @@ function quickSearch(type){
         menunamedate.setText(queryname);    
     }
     doSearch(params);
+}
+var typeUrl = baseUrl
++ "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
+function getItemType(callback) {
+    nui.ajax({
+        url : typeUrl,
+        data : {
+            token: token
+        },
+        type : "post",
+        success : function(data) {
+            if (data && data.list) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
 }

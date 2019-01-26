@@ -13,8 +13,8 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp" %>    
     
-    <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.0" type="text/javascript"></script>
-    <script src="<%=contextPath%>/epc/vin/js/partDetail.js?v=1.0" type="text/javascript"></script>
+    <script src="<%=contextPath%>/epc/common/llqCommon.js?v=1.2" type="text/javascript"></script>
+    <script src="<%=contextPath%>/epc/vin/js/partDetail.js?v=1.23" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit">
@@ -27,7 +27,7 @@
             <!--渠道价格-->
             <%@include file="/epc/vin/partDetail_price.jsp" %>
             <!--替换件-->
-            <%@include file="/epc/vin/partDetail_replace.jsp" %>
+            <%@include file="/epc/vin/PartDetail_replace_2.jsp" %>
             <!--品牌件-->
             <%@include file="/epc/vin/partDetail_article.jsp" %>
             <!--组件-->

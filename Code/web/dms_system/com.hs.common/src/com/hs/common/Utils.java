@@ -472,7 +472,6 @@ public class Utils {
 		BASE64Decoder decoder = new BASE64Decoder();
 		try {
 			//解密
-			byte[] uploadBytes = "hello qiniu cloud".getBytes("utf-8");
 			byte[] b = decoder.decodeBuffer(imgStr);
 			//处理数据
 			for (int i=0; i<b.length; i++) {

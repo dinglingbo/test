@@ -23,6 +23,7 @@
                 <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">草稿</a>
 
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
+                	<li iconCls="" onclick="quickSearch(15)" id="type15">所有</li>
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已提交</li>
                     <li iconCls="" onclick="quickSearch(14)" id="type14">已入库</li>
@@ -75,7 +76,8 @@
                    url="">
                   <div property="columns">
                     <div type="indexcolumn">序号</div>
-                      <div field="auditSign" width="55" headerAlign="center" header="状态"></div>
+                      <div field="auditSign" width="55" headerAlign="center"visible="false" header="状态"></div>
+                      <div field="billStatusId" width="55" headerAlign="center"  header="状态"></div>
                       <div field="guestFullName" width="140" headerAlign="center" header="客户"></div>
                       <div field="createDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="退货日期"></div>
                       <div field="orderMan" width="60" headerAlign="center" header="退货员"></div>

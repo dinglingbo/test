@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.62"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.64"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -741,6 +741,38 @@ allowDrag="false">
           </div>
     </div>
 </div>
+
+<div id="advancedGuest" class="nui-window"
+     title="设置散客" style="width:300px;height:150px;"
+     showModal="true"
+     showHeader="false"
+     allowResize="false"
+     allowDrag="true">
+    <div class="nui-fit">
+        <table style="width: 100%;height: 100%;">
+            <tr >
+                <td colspan="2"  style="text-align: left;">
+                    <label style="color: #9e9e9e;">设置散客</label>
+                </td>
+            </tr>
+            <tr >
+                <td style="text-align: right;">
+                    车牌号：
+                </td>
+                <td >
+                 <input class="nui-textbox" property="editor" id="guestCarNo" name="guestCarNo"  onclick="" />  
+                    
+                 </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <a class="nui-button"  plain="false" onclick="sureAdvancedGuest()" id="guestOk">确定</a>
+                    <a class="nui-button"  plain="false" onclick="closeAdvancedGuest()">取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>  
 
 <script type="text/javascript">
  nui.parse();

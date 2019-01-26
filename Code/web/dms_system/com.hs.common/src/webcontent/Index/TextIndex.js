@@ -151,7 +151,7 @@ function toRepairBillTable(){
         }
     });*/
 	var item={};
-    item.id = "2189";
+    item.id = "maintenanceFiles";
     item.text = "维修档案";
     item.url = webPath + contextPath + "/com.hsweb.part.purchase.maintenanceFiles.flow?token="+token;
     item.iconCls = "fa fa-file-text";

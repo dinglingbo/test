@@ -227,10 +227,13 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     var defDomin = "<%=request.getContextPath()%>";
     var baseUrl = apiPath + repairApi + "/";
     var mainTabs = mini.get("mainTabs");
+    var tabs1 = null;
     var loadingV = false;
     var obj = {};
     var advancedOrgWin = null;
     var moreOrgGrid =null;
+    var title = null;
+   	var titleUrl = null;
     var moreOrgGridUrl=apiPath + sysApi + "/com.hsapi.system.basic.organization.getUserOrg.biz.ext";
     var show=0;
     
@@ -599,7 +602,17 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
 	        	onOrgClose();
 	        }
 	    }
-
+		
+		//alert(mini.get("mainTabs"));
+		tabs1 = mini.get("mainTabs");
+		
+		tabs1.on("activechanged",function(e){
+			var index = e.index;
+			var tab = e.tab;
+			titleUrl = tab.url;
+			title = tab.title;
+			console.log("titleUrl"+titleUrl +"-----"+"title"+title);
+		});
     });
     
     //切换角色

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/commonRepair.jsp"%>
+<%@include file="/common/commonPart.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -10,7 +10,7 @@
 -->
 <head>
 <title>已结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.22"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.30"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -99,7 +99,8 @@
                            showClearButton="false"/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <span class="separator"></span>
-                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>            
+                    <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a> 
+                    <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>             
                 </td>
             </tr>
         </table>
@@ -180,7 +181,7 @@
 	                  	  <div field="netinAmt" name="netinAmt" width="70" headerAlign="center" summaryType="sum" header="营收金额"></div>	
 		                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum" header="计次卡抵扣"></div>
 	                  	  <div field="balaAmt" name="contactName" width="70" headerAlign="center" summaryType="sum" header="结算金额"></div>	
-	                  	  <div field="totalPrefRate" name="totalPrefRate" width="70" headerAlign="center" summaryType="sum" header="整单优惠率"></div> 	                  	                 
+	                  	 <!--  <div field="totalPrefRate" name="totalPrefRate" width="70" headerAlign="center" summaryType="sum" header="整单优惠率"></div> 	 -->                  	                 
 		                 <!--  <div field="totalPrefAmt" name="totalPrefAmt" width="70" headerAlign="center" header="整单优惠金额"></div> -->
 		                  <div field="grossProfit"  width="70" headerAlign="center" summaryType="sum" header="毛利"></div>
 		                  <div field="grossProfitRate"  width="70" headerAlign="center" numberFormat="p" summaryType="sum" header="毛利率"></div>
@@ -306,5 +307,58 @@
     </div>
 </div>
 
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>  
+        	<td colspan="1" align="center">工单号</td>
+            <td colspan="1" align="center">工单类型</td>
+            <td colspan="1" align="center">业务类型</td>
+            <td colspan="1" align="center">服务顾问</td>
+             <td colspan="1" align="center">结算日期</td>
+             
+            <td colspan="1" align="center">客户姓名</td>
+            <td colspan="1" align="center">车牌号</td>
+            <td colspan="1" align="center">品牌/车型</td>          
+            <td colspan="1" align="center">车架号(VIN)</td>
+            
+            <td colspan="1" align="center">套餐金额</td>
+            <td colspan="1" align="center">套餐优惠</td>
+            <td colspan="1" align="center">套餐小计</td>
+            <td colspan="1" align="center">项目金额</td>
+            <td colspan="1" align="center">项目优惠</td>
+            <td colspan="1" align="center">项目小计</td>
+            <td colspan="1" align="center">配件金额</td>
+            <td colspan="1" align="center">配件优惠</td>            
+            <td colspan="1" align="center">配件小计</td>         
+            <td colspan="1" align="center">其他收入</td>
+            <td colspan="1" align="center">收入合计</td>
+            
+            <td colspan="1" align="center">配件含税成本</td>
+            <td colspan="1" align="center">配件不含税成本</td>
+            <td colspan="1" align="center">配件实际成本</td>
+            <td colspan="1" align="center">销售提成</td>
+            <td colspan="1" align="center">服务顾问提成</td>
+            <td colspan="1" align="center">施工员提成</td>
+            <td colspan="1" align="center">其他支出</td>
+            <td colspan="1" align="center">成本合计</td>
+            
+            <td colspan="1" align="center">营收金额</td>
+            <td colspan="1" align="center">计次卡抵扣</td>
+            <td colspan="1" align="center">结算金额</td>
+            <!-- <td colspan="1" align="center">整单优惠率</td>  -->         
+            <td colspan="1" align="center">毛利</td>
+            <td colspan="1" align="center">毛利率</td>
+            <td colspan="1" align="center">毛利备注</td> 
+                      
+            <td colspan="1" align="center">进厂里程</td>
+            <td colspan="1" align="center">进厂时间</td>
+            <td colspan="1" align="center">完工时间</td>            
+            
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div>  
 </body>
 </html>

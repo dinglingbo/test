@@ -55,12 +55,15 @@
 	   <select id="queryRefundRecord" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
        SELECT
          a.id id,
+         a.code code,
          c.full_name fullName,
          a.guest_id  guestId,
+         a.car_no  carNo,
          a.type type,
          a.guest_name guestName,
          c.mobile mobile,
          a.refund_amt refundAmt,
+         a.cut_amt cutAmt,
 		 a.remark remark,
 		 a.recorder recorder,
          a.record_date as recordDate
@@ -70,18 +73,24 @@
          <dynamic>
          <isNotEmpty prepend="and" property="guestName">  
 	            (a.guest_name like '%$guestName$%')
-	     </isNotEmpty>          
+	     </isNotEmpty>  
+	      <isNotEmpty prepend="and" property="carNo">  
+	            (a.car_no like '%$carNo$%')
+	     </isNotEmpty>         
 	     <isNotEmpty prepend="and" property="mobile">  
 	            (c.mobile like '%$mobile$%')
 	    </isNotEmpty>
 	    <isNotEmpty prepend="and" property="guestId">  
 	            (a.guest_id = #guestId#)
 	    </isNotEmpty>
-    	<isNotEmpty prepend="and" property="startDate"> 
-                (a.record_date &gt;= #startDate#)
+	    <isNotEmpty prepend="and" property="type">  
+	            (a.type = #type#)
+	    </isNotEmpty>
+    	<isNotEmpty prepend="and" property="sOutDate"> 
+                (a.record_date &gt;= #sOutDate#)
          </isNotEmpty>
-         <isNotEmpty prepend="and" property="endDate">
-                (a.record_date &lt;= #endDate#)
+         <isNotEmpty prepend="and" property="eOutDate">
+                (a.record_date &lt;= #eOutDate#)
          </isNotEmpty>
         </dynamic>
         order by a.record_date desc

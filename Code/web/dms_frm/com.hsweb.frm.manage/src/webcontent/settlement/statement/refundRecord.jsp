@@ -9,9 +9,9 @@
   - Description:
 -->
 <head>
-<title>退款记录</title>
+<title>客户退款明细表</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/refundRecord.js?v=1.0.4"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/refundRecord.js?v=1.0.7"></script>
 </head>
 
 <body>
@@ -21,12 +21,35 @@
 		<table>
 			<tr>
 				<td>
+				  <label style="font-family:Verdana;">快速查询：</label>
+                    <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+                    <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+                        <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+                        <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+                        <li class="separator"></li>
+                        <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+                        <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+                        <li class="separator"></li>
+                        <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+                        <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+                        <li class="separator"></li>
+                        <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+                        <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+                    </ul>
 				<input name="serviceTypeId" id="serviceTypeId" visible="false" class="nui-combobox" textField="name" valueField="id"/>
 					   <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
            			   <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="search()" />
-						退款日期: <input id="startDate" class="mini-datepicker" required="true" />-至-
-						         <input id="endDate" class="mini-datepicker" required="true" /> 
-						<a class="nui-button" onclick="search()" plain="true"> <span class="fa fa-search fa-lg"></span>&nbsp; 查询</a>
+						退款日期:                     
+						<input id="sOutDate" name="sOutDate" class="nui-datepicker"/>
+						至:
+                   		 <input id="eOutDate" name="eOutDate" class="nui-datepicker"
+                           format="yyyy-MM-dd"
+                           timeFormat="H:mm:ss"
+                           showTime="false"
+                           showOkButton="false"
+                           showClearButton="false"/> 
+						        <input class="nui-combobox" id="search-billType" width="100" textField="name" valueField="id" value="0" data="billType" onvalueChanged="onSearch()" allowInput="false" />
+						<a class="nui-button" onclick="onSearch()" plain="true"> <span class="fa fa-search fa-lg"></span>&nbsp; 查询</a>
 
 				</td>			
 			</tr>
@@ -46,20 +69,25 @@
                    allowCellWrap = "true"
 			      allowSortColumn="true" style="width: 100%;height:100% ">
 			<div property="columns">
-				<div type="checkcolumn" >序号</div> 
-				
+				<div field="code" headerAlign="center" allowSort="true" width="120px">
+				退款单号</div>		
 				<div field="fullName" headerAlign="center" allowSort="true" width="80px">
-				姓名</div>
-				
+				客户名称</div>
+				<div field="carNo" headerAlign="center" allowSort="true" width="80px">
+				车牌号</div>				
 				<div field="mobile" headerAlign="center" allowSort="true"  width="90px">
 					电话</div>
 
 				<div field="refundAmt" headerAlign="center" allowSort="true" width="70px">
 					退款金额</div>
+				<div field="cutAmt" headerAlign="center" allowSort="true" width="70px">
+					扣减金额</div>					
 				<div field="type" headerAlign="center" allowSort="true" width="90px">
 					退款类型</div>
+				<div field="remark" headerAlign="center" allowSort="true" width="70px">
+				备注</div>			
 				<div field="recorder" headerAlign="center" allowSort="true" width="70px">
-				退款人</div>				
+				退款人</div>	
 				<div field="recordDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="110px">
 					退款日期</div> 
 			</div>

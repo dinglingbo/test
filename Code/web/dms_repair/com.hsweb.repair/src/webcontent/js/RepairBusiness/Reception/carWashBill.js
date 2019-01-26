@@ -51,6 +51,7 @@
  //var advancedPkgSaleMansSetWin = null;
  //var advancedItemWorkersSetWin = null;
  var advancedItemPartSaleManSetWin = null;
+ var advancedGuest = null;
  
  var cardTimesGrid = null;
  var advancedMemCardWin = null;
@@ -107,7 +108,7 @@ $(document).ready(function ()
     advancedPkgRateSetWin = nui.get("advancedPkgRateSetWin");
     advancedItemPartRateSetWin = nui.get("advancedItemPartRateSetWin");
     advancedItemPartSaleManSetWin = nui.get("advancedItemPartSaleManSetWin");
-   
+    advancedGuest = nui.get("advancedGuest");
     carCheckInfo = nui.get("carCheckInfo");
     carSellPointInfo = nui.get("carSellPointInfo");
     cardTimesGrid = nui.get("cardTimesGrid");
@@ -4028,11 +4029,31 @@ function unique(arr) {
     return result;
 }
 
+
+
+function addFit(){
+	var addFitEl = document.getElementById("addFit");  
+	advancedGuest.showAtEl(addFitEl, {xAlign:"right",yAlign:"below"});
+	var carNo = nui.get("search_key").getValue();
+	if(carNo!="carNo"){
+		nui.get("guestCarNo").setValue(carNo);
+	}
+	
+}
+
+function closeAdvancedGuest(){
+	advancedGuest.hide();
+}
+
 //新增散客
 var FitUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveCustomerInfo.biz.ext";
-function addFit(){
+function sureAdvancedGuest(){
 	//获取输入框的值
-	var carNo = nui.get("search_key").getValue();
+	var data = billForm.getData();
+	if(data.id || data.guestId){
+		add();
+	}
+	var carNo = nui.get("guestCarNo").getValue();
 	var result = isVehicleNumber(carNo);
 	if(!result){
 		showMsg("请输入正确的车牌号","W");
@@ -4086,9 +4107,12 @@ function addFit(){
  	            searchNameEl.setValue(t);
  	            var item = text.retData;
  	            item.guestMobile = "10000";
+ 	            item.id = item.carId;
+ 	            item.vin = item.carVin;
  	            doSetMainInfo(item);
  	            showMsg("新增成功","S");
  				nui.unmask(document.body);
+ 				advancedGuest.hide();
  				return;
  			} else {
  				nui.unmask(document.body);

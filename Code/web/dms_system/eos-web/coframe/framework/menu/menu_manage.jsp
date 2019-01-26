@@ -34,9 +34,15 @@
     </div>
     <div title="center" region="center" style="border:0;padding-left:5px;padding-top:5px;">
     	<!--Tabs-->
-       <div id="menutabs" class="nui-tabs  bg-toolbar" activeIndex="0" style="width:100%;height:100%;">
-		    <div name="menu_list_tab" title="菜单列表" url="<%=request.getContextPath() %>/coframe/framework/menu/menu_list.jsp" visible="true" >
-		    </div>
+    	<div class="nui-fit">
+	        <div class="nui-toolbar"  >
+	            <a class="nui-button" plain="true" onclick="refreshMenuCache()"><i class="fa fa-refresh"></i>&nbsp;刷新菜单缓存</a>
+	
+	        </div>
+	       <div id="menutabs" class="nui-tabs  bg-toolbar" activeIndex="0" style="width:100%;height:100%;">
+			    <div name="menu_list_tab" title="菜单列表" url="<%=request.getContextPath() %>/coframe/framework/menu/menu_list.jsp" visible="true" >
+			    </div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -198,6 +204,25 @@
 	            	tree.loadNode(parentNode);
 	            	tree.selectNode(parentNode);
 	            	refreshTab(parentNode);
+	            },
+	            error: function () {
+	            }
+	        });
+        });
+	}
+	
+	function refreshMenuCache() {
+		nui.confirm("是否确定刷新菜单相关缓存数据？","温馨提示",function(action){
+		    if(action!="ok") return;
+	        $.ajax({
+	            url: apiPath + sysDomain + "/com.hs.common.login.clearAndResetMenuCache.biz.ext",
+	            type: 'POST',
+	            data: {},
+	            cache: false,
+	            contentType:'text/json',
+	            success: function (text) {
+	            	var errCode = text.errCode;
+	            	console.log(errCode);
 	            },
 	            error: function () {
 	            }

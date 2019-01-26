@@ -473,6 +473,12 @@ function quickSearch(type) {
 		querysign = 2;
 		//gsparams.auditSign = 1;
 		break;
+	case 8:
+		querystatusname = "所有";
+		gsparams.auditSign = -1;
+		gsparams.isFinished = null;
+		querysign = 3;
+		break;
 	case 10:
 		querystatusname = "草稿";
 		gsparams.auditSign = 0;

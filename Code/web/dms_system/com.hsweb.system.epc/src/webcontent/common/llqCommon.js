@@ -106,6 +106,7 @@ var partData = {}
 function setPartImg(data, rs){
     partData = data;
     $('.j_part-img').attr({'src': "", 'width': '0px', height: '0px'}).show();
+    
     loading();
     var img = new Image();
     img.onload = function () {

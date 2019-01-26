@@ -24,6 +24,7 @@
                 <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">草稿</a>
 
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
+                	<li iconCls="" onclick="quickSearch(10)" id="type10">所有</li>
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(9)" id="type9">已出库</li>
                 </ul>

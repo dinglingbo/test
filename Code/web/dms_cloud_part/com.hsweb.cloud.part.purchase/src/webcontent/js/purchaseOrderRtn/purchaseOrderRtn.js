@@ -33,7 +33,7 @@ var guestIdEl=null;
 
 var AuditSignHash = {
   "0":"草稿",
-  "1":"已提交"
+  "1":"已退货"
 };
 
 $(document).ready(function(v)
@@ -310,6 +310,12 @@ function quickSearch(type){
             querytypename = "已退货";
             querysign = 2;
             gsparams.auditSign = 1;
+            break;
+        case 9:
+            params.billStatusId = null;
+            querytypename = "所有";
+            querysign = 2;
+            gsparams.auditSign = -1;
             break;
         default:
             params.today = 1;

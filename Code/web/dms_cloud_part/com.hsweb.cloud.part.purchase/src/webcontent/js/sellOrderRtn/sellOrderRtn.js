@@ -244,6 +244,11 @@ function onLeftGridDrawCell(e) {
                 e.cellHtml = AuditSignHash[e.value];
             }
             break;
+        case "billStatusId":
+            if (StatusHash && StatusHash[e.value]) {
+                e.cellHtml = StatusHash[e.value];
+            }
+            break;
     }
 
 }
@@ -332,6 +337,14 @@ function quickSearch(type) {
         querytypename = "已入库";
         querysign = 2;
         gsparams.auditSign = 1;
+        break;
+    case 15:
+        params.auditSign = -1;
+        params.billStatusId = null;
+        gsparams.billStatusId=null;
+        querytypename = "所有";
+        querysign = 2;
+        gsparams.auditSign = -1;
         break;
     default:
         params.today = 1;

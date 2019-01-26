@@ -9,7 +9,7 @@
 -->
 <head>
 <title>移仓单</title>
-<script src="<%=webPath + contextPath%>/purchase/js/shiftPosition/shiftPositionOrder.js?v=1.1.1"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/shiftPosition/shiftPositionOrder.js?v=1.1.2"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -57,6 +57,7 @@
                 <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">草稿</a>
 
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
+                	<li iconCls="" onclick="quickSearch(8)" id="type8">所有</li>
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(7)" id="type7">已审</li>
                 </ul>

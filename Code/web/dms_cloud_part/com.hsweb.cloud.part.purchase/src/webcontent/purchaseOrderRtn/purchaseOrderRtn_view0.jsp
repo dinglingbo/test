@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购退货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.5"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/purchaseOrderRtn/purchaseOrderRtn.js?v=1.1.8"></script>
 <style type="text/css">
 .title {
 	width: 70px;
@@ -60,6 +60,7 @@ body .mini-grid-row-selected{
                 <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">草稿</a>
 
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
+                	<li iconCls="" onclick="quickSearch(9)" id="type9">所有</li>
                     <li iconCls="" onclick="quickSearch(6)" id="type6">草稿</li>
                     <li iconCls="" onclick="quickSearch(8)" id="type7">已退货</li>
                 </ul>

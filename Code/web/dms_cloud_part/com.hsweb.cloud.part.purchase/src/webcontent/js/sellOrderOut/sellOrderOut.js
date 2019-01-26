@@ -725,6 +725,12 @@ function quickSearch(type){
             querysign = 2;
             gsparams.auditSign = 1;
             break;
+        case 10:
+            querytypename = "所有";
+            params.billStatusId = null;
+            querysign = 2;
+            gsparams.auditSign = -1;
+            break;
         default:
         	params.today = 1;
             params.startDate = getNowStartDate();

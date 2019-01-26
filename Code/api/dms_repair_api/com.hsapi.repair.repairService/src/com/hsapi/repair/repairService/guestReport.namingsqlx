@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- author:Administrator -->
+<sqlMap>
+    <parameterMap class="commonj.sdo.DataObject" id="parameterMap">
+        <parameter javaType="date" jdbcType="DATE" property="dateType"/>
+    </parameterMap>
+    <resultMap class="commonj.sdo.DataObject" id="resultMap">
+        <result column="TYPEID" javaType="string" property="typeId"/>
+    </resultMap>
+    <!-- 已来厂客户统计 -->
+    <select id="guestComeSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            <isEqual prepend = "" property = "groupByType" compareValue="0">
+                a.car_model,	
+            </isEqual>
+            <isEqual prepend = "" property = "groupByType" compareValue="1">
+                b.chain_come_times,	
+            </isEqual>
+            <isEqual prepend = "" property = "groupByType" compareValue="2">
+                b.mt_advisor_id,b.mt_advisor_name,	
+            </isEqual>
+            sum(
+                CASE
+                WHEN B.CHAIN_COME_TIMES = 1
+                AND B.FIRST_COME_DATE &gt;= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) THEN
+                    1
+                END
+            ) AS firstCarNum,
+            sum(
+                CASE
+                WHEN B.CHAIN_COME_TIMES = 2
+                AND B.LAST_COME_DATE &gt;= DATE_SUB(CURDATE(), INTERVAL 1 MONTH) THEN
+                    1
+                END
+            ) AS activeCarNum,
+            sum(
+                CASE
+                WHEN B.CHAIN_COME_TIMES &gt;= 2
+                AND B.LAST_COME_DATE &lt; DATE_SUB(CURDATE(), INTERVAL 30 DAY)
+                AND B.LAST_COME_DATE &gt;= DATE_SUB(CURDATE(), INTERVAL 90 DAY) THEN
+                    1
+                END
+            ) AS stableCarNum,
+            sum(
+                CASE
+                WHEN B.CHAIN_COME_TIMES &gt; 0
+                AND B.LAST_COME_DATE &lt; DATE_SUB(CURDATE(), INTERVAL 90 DAY)
+                AND B.LAST_COME_DATE &gt;= DATE_SUB(CURDATE(), INTERVAL 180 DAY) THEN
+                    1
+                END
+            ) AS sleepCarNum,
+            sum(
+                CASE
+                WHEN B.CHAIN_COME_TIMES &gt; 0
+                AND B.LAST_COME_DATE &lt; DATE_SUB(CURDATE(), INTERVAL 180 DAY) THEN
+                    1
+                END
+            ) AS loseCarNum,
+            sum(
+                CASE
+                WHEN B.CHAIN_COME_TIMES &lt; 1 THEN
+                    1
+                END
+            ) AS notypeCarNum,
+            count(1) AS allCarNum
+        FROM
+            rpb_car a
+        INNER JOIN rpb_car_extend b ON a.id = b.car_id
+        LEFT JOIN wb_common.com_guest c ON c.id = a.guest_id
+        WHERE A.ORGID = #orgid#
+            <isEqual prepend = "" property = "groupByType" compareValue="0">
+                group by a.car_model
+            </isEqual>
+            <isEqual prepend = "" property = "groupByType" compareValue="1">
+                group by b.chain_come_times	
+            </isEqual>
+            <isEqual prepend = "" property = "groupByType" compareValue="2">
+                group by b.mt_advisor_id,b.mt_advisor_name
+            </isEqual>
+    </select>
+</sqlMap>

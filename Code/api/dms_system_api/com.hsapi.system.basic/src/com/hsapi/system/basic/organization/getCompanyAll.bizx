@@ -159,9 +159,7 @@
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-01-04 11:08:45" date="2019-01-04Z" description="" name="getUserOrgAll" version="7.0.0.0"/>
-  <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="type" primitiveType="String"/>
-  </process:variables>
+  <process:variables/>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
   </process:inputs>

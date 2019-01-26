@@ -10,7 +10,7 @@
 <head>
     <title>账户结算明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountDetail.js?v=1.0.3"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountDetail.js?v=1.0.7"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -62,9 +62,11 @@
              pageSize="100" sizeList="[50,100,200,500]" showSummaryRow="true">
             <div property="columns">
                 <div type="indexcolumn"  headeralign="center" width="20">序号</div>
-                <div field="settAccountId" name="code" width="60" summaryType="count"  headeralign="center" >账户编码</div>
-                <div field="settAccountId" name="name" width="100"  headeralign="center" >账户名称</div>
+                <div field="settAccountCode" name="code" width="60" summaryType="count"  headeralign="center" >账户编码</div>
+                <div field="settAccountName" name="name" width="100"  headeralign="center" >账户名称</div>
                 <div field="shortName" name="shortName" width="100"  headeralign="center" >客户简称</div>
+                <div field="carNo" name="rpDc" width="50"  headeralign="center" >车牌号</div>
+                <div field="billTypeId" name="rpDc" width="70"  headeralign="center" >收支类型</div>
                 <div field="rpDc" name="rpDc" width="50"  headeralign="center" >收/支</div>
                 <div field="charOffAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" >结算金额</div>
                 <div field="auditor" name="auditor" width="60"  headeralign="center" >结算人</div>

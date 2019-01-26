@@ -103,6 +103,7 @@ type="text/javascript"></script>
                 allowCellEdit="true"  
                 multiSelect="false" 
                 allowCellWrap = true
+                showSummaryRow="true"
                 >
                 <div property="columns">
                    <div type="checkcolumn" width="40" class="mini-radiobutton" header="选择"></div>
@@ -201,7 +202,7 @@ type="text/javascript"></script>
         <div  id="grid" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
         pageSize="50"
         totalField="page.count" allowSortColumn="true"   allowCellSelect="true" 
-        allowCellEdit="true"  multiSelect="false" allowCellWrap = true
+        allowCellEdit="true"  multiSelect="false" allowCellWrap = true showSummaryRow="true"
         frozenStartColumn="0" frozenEndColumn="0">
         <div property="columns">
             <div type="indexcolumn" headerAlign="center" width="30">序号</div>

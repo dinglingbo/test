@@ -48,7 +48,7 @@ function Oncancel(){
 	close();
 }
 
-function setData(row){
+function setDataSelect(row){
 	empId = row.empid;
 }
 function addOrg(){

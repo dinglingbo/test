@@ -389,7 +389,7 @@ function selectCom(){
             onload: function ()
             { 
             	var iframe = this.getIFrameEl();
-                iframe.contentWindow.setData(row);
+                iframe.contentWindow.setDataSelect(row);
             },
             ondestroy: function (action)
             {

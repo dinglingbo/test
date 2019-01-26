@@ -176,4 +176,11 @@
 		where ifnull(a.is_cal_times,0) = 0 
 	</update>
 
+	<!--员工生日-->
+	<select id="getVisitMaintainList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		select * from rps_maintain  a
+		where TIMESTAMPDIFF(DAY,  a.out_date, NOW()) = #day#
+	</select>
+
+
 </sqlMap>

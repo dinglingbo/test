@@ -72,7 +72,7 @@
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign1" name="赋值1" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>assign0</targetNode>
@@ -81,6 +81,10 @@
     <location x="101" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">params/orgid</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="99" y="96"/>

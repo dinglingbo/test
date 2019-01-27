@@ -8,7 +8,7 @@
 -->
 <head>
 <title>应付账款管理</title>
-    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.1.9"></script> 
+    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.2.2"></script> 
         <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -108,7 +108,7 @@
                     <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                 </ul>
 										<input class="nui-combobox"
-						data="[{value:'0',text:'未结算',},{value:'1',text:'部分结算'},{value:'2',text:'已结算'}]"
+						data="[{value:'0',text:'未结算',},{value:'1',text:'部分结算'},{value:'2',text:'已结算'},{value:'3',text:'全部'}]"
 						textField="text" valueField="value" name="settleStatus" id="settleStatus" width="90px"
 						value="0" onvalidation="onSearch()"  />
                 <label style="font-family:Verdana;">转单日期 从：</label>
@@ -134,6 +134,8 @@
                 						<a class="nui-button" iconCls="" plain="true" onclick="openOrderDetail()">
 							<span class="fa fa-search fa-lg"></span>&nbsp;详情</a>
                  <a class="nui-button" iconCls="" plain="true" onclick="doDelete()"><span class="fa fa-trash fa-lg"></span>&nbsp;作废</a> -->
+                 <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn">
+                 	<span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
             </td>
         </tr>
     </table>
@@ -165,7 +167,7 @@
                      oncellclick="onPGridbeforeselect"
                      onheadercellclick="onPGridheadercellclick"
                      oncellcommitedit="onCellCommitEdit"
-                     showSummaryRow="false">
+                     showSummaryRow="true">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div type="checkcolumn" field="check" width="20"></div>
@@ -175,7 +177,7 @@
                         <div allowSort="true" summaryType="count" field="billServiceId" width="130" summaryType="count" headerAlign="center" header="业务单号"></div>
                         <div field="billTypeId" width="100" headerAlign="center" header="收支项目"></div>
                         <div field="remark" width="120" headerAlign="center" header="业务备注"></div>
-                        <div field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="应付金额"></div>
+                        <div field="rpAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" summaryType="sum" header="应付金额"></div>
                         <div field="nowAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="结算金额">
                             <input property="editor" vtype="float" class="nui-textbox"/>
                         </div>
@@ -184,7 +186,7 @@
                         </div>
                         <div allowSort="true" field="createDate" headerAlign="center" header="转单日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                         <div field="settleStatus" name="settleStatus" width="60" headerAlign="center" header="结算状态"></div>
-                        <div field="charOffAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" header="已结金额"></div>
+                        <div field="charOffAmt" width="60" headerAlign="center" align="right" numberFormat="0.00" summaryType="sum" header="已结金额"></div>
                         <!-- <div field="balanceSign" type="checkboxcolumn" trueValue="1" falseValue="0" width="60" headerAlign="center" header="是否对账"></div>
                         <div field="balancer" width="60" headerAlign="center" header="对账人"></div>
                         <div allowSort="true" field="balanceDate" headerAlign="center" header="对账日期" dateFormat="yyyy-MM-dd HH:mm"></div> -->
@@ -685,7 +687,24 @@
     </div>
 </div>
 	
-
+	<div id="exportDiv" style="display:none">  
+	    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+	        <tr>  
+	            <td colspan="1" align="center">结算单位</td>
+	            <td colspan="1" align="center">车牌号</td>
+	            <td colspan="1" align="center">业务单号</td>
+	            <td colspan="1" align="center">收支项目</td>
+	            <td colspan="1" align="center">业务备注</td>
+	            <td colspan="1" align="center">应付金额</td>
+	            <td colspan="1" align="center">转单日期</td>
+	            <td colspan="1" align="center">结算状态</td>
+	            <td colspan="1" align="center">已结金额</td>
+	        </tr>
+	        <tbody id="tableExportContent">
+	        </tbody>
+	    </table>  
+	    <a href="" id="tableExportA"></a>
+	</div>
 
 	
 </body>

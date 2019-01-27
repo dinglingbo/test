@@ -159,6 +159,30 @@ $(document).ready(
 		    	}
 			});*/
 			
+
+			var filter = new HeaderFilter(rRightGrid, {
+		        columns: [
+		            { name: 'guestName' },
+		            { name: 'settleStatus' },
+		            { name: 'carNo' }
+		        ],
+		        callback: function (column, filtered) {
+		        },
+		        tranCallBack: function (field) {
+		        	var value = null;
+		        	switch(field){
+			    		case "settleStatus" : 
+			    			value = headerHash;
+			    			break;
+			    		case "billTypeId" :
+			    			value = enterTypeIdHash;
+			    			break;
+			    	}
+		        	return value;
+		        }
+		    });
+			
+			
 			searchBeginDate.setValue(getNowStartDate());
 			searchEndDate.setValue(addDate(getNowEndDate(), 1));
 
@@ -168,28 +192,7 @@ $(document).ready(
 					partBrandIdHash[v.id] = v;
 				});
 			});     
-			  var filter = new HeaderFilter(rRightGrid, {
-			        columns: [
-			            { name: 'guestName' },
-/*			            { name: 'settleStatus' },*/
-			            { name: 'carNo' },
-			        ],
-			        callback: function (column, filtered) {
-			        },
-
-			        tranCallBack: function (field) {
-			        	var value = null;
-			        	switch(field){
-				    		case "settleStatus" : // 预约类型
-				    			value = headerHash;
-				    			break;
-				    		case "isOpenBill": case "isJudge": // 是否开单是否评价
-				    			value = [{name:"否",id:"0"},{name:"是",id:"1"}];
-				    			break;
-				    	}
-			        	return value;
-			        }
-			    });
+			  
 			getStorehouse(function(data) {
 				var storehouse = data.storehouse || [];
 				// nui.get("storeId").setData(storehouse);
@@ -208,6 +211,8 @@ $(document).ready(
 								billTypeIdHash[v.customid] = v;
 								return true;
 							}
+							
+							
 						});
 						// nui.get("billTypeId").setData(billTypeIdList);
 						var settTypeIdList = dataItems.filter(function(v) {
@@ -227,12 +232,12 @@ $(document).ready(
 				});
 			});
 
+			 
 			getItemType(function(data) {
 				enterTypeIdList = data.list || [];
 				enterTypeIdList.filter(function(v) {
 					enterTypeIdHash[v.id] = v;
 				});
-
 			});
 			quickSearch(currType);
 		});
@@ -262,7 +267,11 @@ function getSearchParam() {
 
 	params.sCreateDate = searchBeginDate.getFormValue();
 	params.eCreateDate = searchEndDate.getValue();
-	params.settleStatus = nui.get("settleStatus").getValue();
+	var settleStatus = nui.get("settleStatus").getValue();
+	if(settleStatus != 3) {
+		params.settleStatus = settleStatus;
+	}
+	
 	return params;
 }
 var currType = 2;
@@ -414,6 +423,12 @@ function onAdvancedSearchOk() {
 	if (searchData.balanceSign) {
 		if (searchData.balanceSign == 2) {
 			searchData.balanceSign = null;
+		}
+	}
+	if(searchData.settleStatus) {
+		var settleStatus = searchData.settleStatus;
+		if(settleStatus == 3) {
+			searchData.settleStatus = null;
 		}
 	}
 	
@@ -1622,4 +1637,55 @@ function openOrderDetail(){
 	}
 
 
+}
+
+function onExport(){
+
+	var detail = rRightGrid.getData();
+	
+	if(detail && detail.length > 0){
+		setInitExportData(detail);
+	}else{
+		showMsg("没有可导出数据！","W");
+	}
+}
+function setInitExportData(detail){
+    var tds = '<td  colspan="1" align="left">[guestName]</td>' +
+        "<td  colspan='1' align='left'>[carNo]</td>" +
+        "<td  colspan='1' align='left'>[billServiceId]</td>" +
+        "<td  colspan='1' align='left'>[billTypeId]</td>" +
+        "<td  colspan='1' align='left'>[remark]</td>" +
+        "<td  colspan='1' align='left'>[rpAmt]</td>" +
+        "<td  colspan='1' align='left'>[createDate]</td>" +
+        "<td  colspan='1' align='left'>[settleStatus]</td>"+
+        "<td  colspan='1' align='left'>[charOffAmt]</td>";
+        
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        if(row){
+        	var billTypeName = detail[i].billTypeId;
+        	var settleStatus = detail[i].settleStatus;
+        	if(billTypeName) {
+        		billTypeName = enterTypeIdHash[billTypeName].name;
+        	}
+        	settleStatus = settleStatusHash[settleStatus];
+            var tr = $("<tr></tr>");
+            tr.append(tds.replace("[guestName]", detail[i].guestName?detail[i].guestName:"")
+                         .replace("[carNo]", detail[i].carNo?detail[i].carNo:"")
+                         .replace("[billServiceId]", detail[i].billServiceId?detail[i].billServiceId:"")
+                         .replace("[billTypeId]", billTypeName?billTypeName:"")
+                         .replace("[remark]", detail[i].remark?detail[i].remark:"")
+                         .replace("[rpAmt]", detail[i].rpAmt?detail[i].rpAmt:0)
+                         .replace("[createDate]", detail[i].createDate?detail[i].createDate.Format("yyyy-MM-dd HH:mm:ss"):"")
+                         .replace("[settleStatus]", settleStatus?settleStatus:"")
+                         .replace("[charOffAmt]", detail[i].charOffAmt?detail[i].charOffAmt:0)
+                         .replace("[saleMan]", detail[i].saleMan?detail[i].saleMan:"")
+                         .replace("[recordDate]", detail[i].recordDate?detail[i].recordDate.Format("yyyy-MM-dd HH:mm:ss"):""));
+            tableExportContent.append(tr);
+        }
+    }
+
+    method5('tableExcel',"应收账款管理",'tableExportA');
 }

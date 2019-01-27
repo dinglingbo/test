@@ -121,24 +121,24 @@ html,body {
 	</div>
 	
 	<div id="exportDiv" style="display:none">  
-    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
-        <tr>  
-            <td colspan="1" align="center">客户名称</td>
-            <td colspan="1" align="center">电话</td>
-            <td colspan="1" align="center">会员卡名称</td>
-            <td colspan="1" align="center">充值金额</td>
-            <td colspan="1" align="center">赠送金额</td>
-            <td colspan="1" align="center">总金额</td>
-            <td colspan="1" align="center">已使用金额</td>
-            <td colspan="1" align="center">剩余金额</td>
-            <td colspan="1" align="center">已退款金额</td>
-            <td colspan="1" align="center">销售员</td>
-            <td colspan="1" align="center">充值日期</td>
-        </tr>
-        <tbody id="tableExportContent">
-        </tbody>
-    </table>  
-    <a href="" id="tableExportA"></a>
-</div>  
+	    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+	        <tr>  
+	            <td colspan="1" align="center">客户名称</td>
+	            <td colspan="1" align="center">电话</td>
+	            <td colspan="1" align="center">会员卡名称</td>
+	            <td colspan="1" align="center">充值金额</td>
+	            <td colspan="1" align="center">赠送金额</td>
+	            <td colspan="1" align="center">总金额</td>
+	            <td colspan="1" align="center">已使用金额</td>
+	            <td colspan="1" align="center">剩余金额</td>
+	            <td colspan="1" align="center">已退款金额</td>
+	            <td colspan="1" align="center">销售员</td>
+	            <td colspan="1" align="center">充值日期</td>
+	        </tr>
+	        <tbody id="tableExportContent">
+	        </tbody>
+	    </table>  
+	    <a href="" id="tableExportA"></a>
+	</div>  
 </body>
 </html>

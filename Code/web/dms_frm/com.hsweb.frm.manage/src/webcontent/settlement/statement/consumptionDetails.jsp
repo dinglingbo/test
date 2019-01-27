@@ -11,7 +11,7 @@
 <head>
 <title>储值卡消费记录</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.3.5"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.3.8"></script>
 		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -47,6 +47,7 @@ html,body {
 									办卡日期: <input id="startDate" class="mini-datepicker" required="true" />-至-
 									         <input id="endDate" class="mini-datepicker" required="true" /> 
 									<a class="nui-button" onclick="search()" plain="true"> <span class="fa fa-search fa-lg"></span>&nbsp; 查询</a>
+									<a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>
 <!-- 									<a class="nui-button" onclick="refund()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款</a>
 									<a class="nui-button" onclick="refundRecord()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款记录</a> -->
 							</td>
@@ -56,6 +57,7 @@ html,body {
 				<div class="nui-fit">
 					<div id="datagrid1" dataField="data" class="nui-datagrid"
 						pageSize="50" onDrawCell="onDrawCell" 
+						sizeList="[50,100,500,1000]"
 						onselectionchanged="selectionChanged" onrowclick=""
 						allowSortColumn="true" style="width: 100%; height: 100%;">
 						<div property="columns">
@@ -117,5 +119,26 @@ html,body {
 			</div>
 		</div>
 	</div>
+	
+	<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>  
+            <td colspan="1" align="center">客户名称</td>
+            <td colspan="1" align="center">电话</td>
+            <td colspan="1" align="center">会员卡名称</td>
+            <td colspan="1" align="center">充值金额</td>
+            <td colspan="1" align="center">赠送金额</td>
+            <td colspan="1" align="center">总金额</td>
+            <td colspan="1" align="center">已使用金额</td>
+            <td colspan="1" align="center">剩余金额</td>
+            <td colspan="1" align="center">已退款金额</td>
+            <td colspan="1" align="center">销售员</td>
+            <td colspan="1" align="center">充值日期</td>
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div>  
 </body>
 </html>

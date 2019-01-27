@@ -303,3 +303,51 @@ function refundRecord(){
         }
     });
 }
+
+
+function onExport(){
+
+	var detail = grid.getData();
+	
+	if(detail && detail.length > 0){
+		setInitExportData(detail);
+	}else{
+		showMsg("没有可导出数据！","W");
+	}
+}
+function setInitExportData(detail){
+    var tds = '<td  colspan="1" align="left">[guestName]</td>' +
+        "<td  colspan='1' align='left'>[mobile]</td>" +
+        "<td  colspan='1' align='left'>[cardName]</td>" +
+        "<td  colspan='1' align='left'>[rechargeAmt]</td>" +
+        "<td  colspan='1' align='left'>[giveAmt]</td>" +
+        "<td  colspan='1' align='left'>[totalAmt]</td>" +
+        "<td  colspan='1' align='left'>[useAmt]</td>" +
+        "<td  colspan='1' align='left'>[balaAmt]</td>"+
+        "<td  colspan='1' align='left'>[refundAmt]</td>"+
+        "<td  colspan='1' align='left'>[saleMan]</td>"+
+        "<td  colspan='1' align='left'>[recordDate]</td>";
+        
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        if(row){
+            var tr = $("<tr></tr>");
+            tr.append(tds.replace("[guestName]", detail[i].guestName?detail[i].guestName:"")
+                         .replace("[mobile]", detail[i].mobile?detail[i].mobile:"")
+                         .replace("[cardName]", detail[i].cardName?detail[i].cardName:"")
+                         .replace("[rechargeAmt]", detail[i].rechargeAmt?detail[i].rechargeAmt:0)
+                         .replace("[giveAmt]", detail[i].giveAmt?detail[i].giveAmt:0)
+                         .replace("[totalAmt]", detail[i].totalAmt?detail[i].totalAmt:0)
+                         .replace("[useAmt]", detail[i].useAmt?detail[i].useAmt:0)
+                         .replace("[balaAmt]", detail[i].balaAmt?detail[i].balaAmt:0)
+                         .replace("[refundAmt]", detail[i].refundAmt?detail[i].refundAmt:0)
+                         .replace("[saleMan]", detail[i].saleMan?detail[i].saleMan:"")
+                         .replace("[recordDate]", detail[i].recordDate?detail[i].recordDate.Format("yyyy-MM-dd HH:mm:ss"):""));
+            tableExportContent.append(tr);
+        }
+    }
+
+    method5('tableExcel',"客户储值卡明细表",'tableExportA');
+}

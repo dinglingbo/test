@@ -1,5 +1,4 @@
 cdnHost = 'https://cdns.007vin.com';
-alert(titleUrl);
 var canvasContainer =   '<div class="FeedbackContainer" style="display:none">'
     canvasContainer +=     '<div class="textAreaContainer">'
     canvasContainer +=       '<div class="chooseItem">'
@@ -538,9 +537,9 @@ window.onload = function() {
         var funcName = "";//菜单功能
         var funcAction = "";//菜单功能id
         resetAndClear()
-        var objData = {
+        var feedback = {
           "imageData": Pic,
-          "adviseType": advise_type,//问题类型
+          "questionType": advise_type,//问题类型,question_type
           //"advise": advise,
           "questionContent":advise,//问题描述
           "questionSource":"web",
@@ -549,10 +548,16 @@ window.onload = function() {
           "funcName":funcName,
           "funcAction":funcAction
         }
+        feedback = JSON.stringify(feedback);
+        /*var str = "feedback/imageData="+Pic+"&feedback/adviseType="+advise_type+"&feedback/questionContent="+advise+
+                   "&feedback/questionSource='web'"+"&feedback/status=0"*/
+        
+        //com.hsapi.system.employee.feedback.saveFeedBackInfo
+        var url = "http://127.0.0.1:8080/default/com.hsapi.system.employee.feedback.saveFeedBackInfo.biz.ext?feedback/questionType="+advise_type;
         $.ajax({
           type: 'POST',
-          url: '/userfeedback',
-          data: objData,
+          url: url,
+          //data: data,
           success: function(data) {
             if (data.code == 1) {
               // window.open(Pic)

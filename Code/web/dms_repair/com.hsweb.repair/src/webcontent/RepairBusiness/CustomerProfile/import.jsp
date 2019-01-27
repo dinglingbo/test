@@ -48,7 +48,8 @@
 		</div>
 		<div title="工单配件导入" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/oldPart.jsp">
 		</div>
-
+		<div title="员工导入" url="<%=request.getContextPath() %>/common/importEmployee_view0.jsp">
+		</div>
 	</div>
 
 	<script type="text/javascript">

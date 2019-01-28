@@ -170,8 +170,10 @@ function setReplace(data){
 		data[i].ptype='';
 		data[i].brandcn='';
 		if(data[i].parentnum=='root'){
-			delete data[i];
-			i++;
+//			delete data[i];
+//			i++;
+			data.splice(i,1);
+			break;
 		}
 		if(data[i].isre==1){
 			direct.push(data[i]);

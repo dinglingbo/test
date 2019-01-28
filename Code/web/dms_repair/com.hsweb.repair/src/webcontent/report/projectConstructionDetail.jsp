@@ -66,7 +66,7 @@ pageEncoding="UTF-8" session="false" %>
 
     <div class="nui-fit">
         <div id="grid" class="nui-datagrid" datafield="list" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:100%;"
-            totalField="page.count"> 
+            totalField="page.count" showSummaryRow = "true"> 
             <div property="columns">
                 <div field="serviceCode" name="serviceCode" headeralign="center" width="170" align="center">工单号</div>
                 <div field="serviceTypeId" name="serviceTypeId" headeralign="center" width="80" align="center">业务类型</div>
@@ -75,11 +75,11 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="carModel" name="carModel" headeralign="center" width="200" align="center" width="160">品牌车型</div>
                 <div field="guestName" name="guestName" headeralign="center" width="100" align="center">客户名称</div>
                 <div field="carVin" name="carVin" headeralign="center" width="150" align="center">车架号(VIN)</div>
-                <div field="itemTime" name="itemTime" headeralign="center" width="80" align="center">工时</div>
-                <div field="unitPrice" name="unitPrice" headeralign="center" width="80" align="center">单价</div>
-                <div field="amt" name="amt" headeralign="center" width="80" align="center">金额</div>
-                <div field="rate" name="rate" headeralign="center" width="80" align="center">优惠率</div>
-                <div field="subtotal" name="subtotal" headeralign="center" width="80" align="center">小计</div>
+                <div field="itemTime" name="itemTime" headeralign="center" width="80" align="center" summaryType="sum">工时</div>
+                <div field="unitPrice" name="unitPrice" headeralign="center" width="80" align="center" summaryType="sum">单价</div>
+                <div field="amt" name="amt" headeralign="center" width="80" align="center" summaryType="sum">金额</div>
+                <div field="rate" name="rate" headeralign="center" width="80" align="center" summaryType="sum">优惠率</div>
+                <div field="subtotal" name="subtotal" headeralign="center" width="80" align="center" summaryType="sum">小计</div>
                 <!-- <div field="" name="" headeralign="center" width="100" align="center">来店途径</div> -->
                 <div field="workers" name="workers" headeralign="center" width="100" align="center">施工员</div>
                 <div field="status" name="status" renderer="onStatusRenderer" headeralign="center" width="80" align="center">状态</div>
@@ -169,6 +169,7 @@ pageEncoding="UTF-8" session="false" %>
 	        columns: [
 	            { name: 'itemName' },
 	            { name: 'carModel' },
+	            { name: 'carNo' },
 		            { name: 'workers' },
 	            { name: 'mtAdvisor' },
 	            { name: 'guestName' }

@@ -24,6 +24,23 @@ $(document).ready(function(v) {
         accountList = data.settleAccount;
         accountIdEl.setData(accountList);
     });
+	 var filter = new HeaderFilter(mainGrid, {
+	        columns: [
+	            { name: 'settAccountName' }
+	        ],
+	        callback: function (column, filtered) {
+	        },
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+	        	case "rpDc":
+	    			value = dcListType;
+		    		default:
+		                break;
+		    	}
+	        	return value;
+	        }
+	    });
 
 	doSearch();
 });

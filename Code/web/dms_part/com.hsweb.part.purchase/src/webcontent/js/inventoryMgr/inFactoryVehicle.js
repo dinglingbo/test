@@ -60,6 +60,7 @@ $(document).ready(function ()
 	            { name: 'mtAdvisor' },
 		            { name: 'guestFullName' },
 	            { name: 'carModel' },
+	            { name: 'carNo' },
 	        ],
 	        callback: function (column, filtered) {
 	        },

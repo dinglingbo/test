@@ -117,14 +117,11 @@
                 <div  field="groupName" name="groupName"  width="100" headerAlign="center" header="业务类型"></div>
                 <div field="ct" name="ct" width="100" headerAlign="center" align="center" summaryType="sum">单数</div>
                 <div field="totalPrefAmt" name="totalPrefAmt" width="100" headerAlign="center" align="center" summaryType="sum">优惠合计&nbsp;
-                    <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
-                        onmouseout="outHide()"></span></div>
+</div>
                 <div field="allowanceAmt" name="allowanceAmt" width="100" headerAlign="center" align="center" summaryType="sum">结算优惠&nbsp;
-                    <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
-                        onmouseout="outHide()"></span></div>
+</div>
                 <div field="balaAmt" name="balaAmt" width="100" headerAlign="center" align="center" summaryType="sum">实收合计&nbsp;
-                    <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
-                        onmouseout="outHide()"></span></div>
+</div>
                 <div field="pkgAmt" name="pkgAmt" width="100" headerAlign="center" align="center" summaryType="sum">套餐金额</div>
                 <div field="pkgPrefAmt" name="pkgPrefAmt" width="100" headerAlign="center" align="center" summaryType="sum">套餐优惠金额</div>
                  <div field="pkgSubtotal" name="pkgAmt" width="100" headerAlign="center" align="center" summaryType="sum">套餐小计</div>
@@ -144,11 +141,9 @@
                 <div field="totalDeductAmt" name="salesDeductValue" width="100" headerAlign="center" align="center" summaryType="sum">总提成金额</div>
                 <div field="netinAmt" name="netinAmt" width="100" headerAlign="center" align="center" summaryType="sum">营收金额</div>
                 <div field="grossProfit" name="grossProfit" width="100" headerAlign="center" align="center" summaryType="sum">毛利&nbsp;
-                    <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
-                        onmouseout="outHide()"></span></div>
+</div>
                 <div field="grossProfitRate" name="grossProfitRate" width="100" numberFormat="p" headerAlign="center" align="center" summaryType="sum">毛利率&nbsp;
-                    <span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)"
-                        onmouseout="outHide()"></span></div>
+</div>
 
             </div>
         </div>

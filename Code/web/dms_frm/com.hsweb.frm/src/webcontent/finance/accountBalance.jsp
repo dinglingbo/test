@@ -11,7 +11,9 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>账户余额表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountBalance.js?v=1.0.1"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountBalance.js?v=1.0.2"></script>
+        <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -54,7 +56,7 @@ pageEncoding="UTF-8" session="false" %>
             <div property="columns">
                 <div type="indexcolumn"  headeralign="center" width="20">序号</div>
                 <div field="settAccountCode" name="code" width="60" summaryType="count"  headeralign="center" >账户编码</div>
-                <div field="settAccountName" name="name" width="100"  headeralign="center" >账户名称</div>
+                <div field="settAccountName" name="settAccountName" width="100"  headeralign="center" >账户名称</div>
                 <div field="fyear" name="fyear" width="50"  headeralign="center" >年份</div>
                 <div field="fmonth" name="fmonth" width="50"  headeralign="center" >月份</div>
                 <div field="beginBala" name="beginBala" width="60"  headeralign="center" >期初</div>

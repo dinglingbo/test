@@ -111,15 +111,15 @@
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
                showPager="true"
-               pageSize="50"
+               pageSize="100" allowSortColumn="client"
                totalField="page.count"
-               sizeList=[20,50,100,200]
+               sizeList=[100,200,500]
                dataField="list"
                showModified="false"
                onrowdblclick=""
                allowCellSelect="true"
                editNextOnEnterKey="true"
-               allowCellWrap = "true"
+               allowCellWrap = "true" 
                showSummaryRow = "true"
                onshowrowdetail="onShowRowDetail"
                url="">
@@ -130,7 +130,7 @@
 	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>
 	                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div> 
 	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号"></div>
-	                  <div field="billTypeId" name="billTypeId" width="80" headerAlign="center" header="工单类型"></div>
+	                  <div field="billTypeId" name="billTypeId" width="80" headerAlign="center" allowsort="ture"  header="工单类型"></div>
 	                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" header="业务类型"></div>
 	                  <div field="mtAdvisor" name="mtAdvisor" width="110" headerAlign="center" header="服务顾问"></div>
 	                   <div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="结算日期"></div>
@@ -139,8 +139,8 @@
                   <div type="checkcolumn" name="checkcolumn" visible="false"></div>
                   <div header="客户车辆信息" headerAlign="center">
 	                  <div property="columns" > 
-	                 	  <div field="guestFullName" name="guestFullName" width="100" headerAlign="center" header="客户姓名"></div> 
-		                  <div field="carNo" name="carNO" width="80" headerAlign="center" header="车牌号"></div>
+	                 	  <div field="guestFullName" name="guestFullName" width="100" headerAlign="center" header="客户姓名" allowsort="ture"></div> 
+		                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号" allowsort="ture"></div>
 		                  <div field="carModel" name="carModel" width="120" headerAlign="center" header="品牌/车型"></div>
 						  <div field="carVin" name="carVin" width="150" headerAlign="center" header="车架号(VIN)"></div>
 		                 
@@ -209,7 +209,7 @@
 	    dataField="data"
 	    showPager="false"
 	    showModified="false"
-	    allowSortColumn="false" >
+	    allowSortColumn="true" >
       <div property="columns">
     	   <div type="indexcolumn" headerAlign="center" name="index" visible="false">序号</div>
            <div headerAlign="center" field="orderIndex" width="25" align="right" name="num">序号</div>

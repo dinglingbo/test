@@ -10,7 +10,7 @@
 -->
 <head>
 <title>未结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.26"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.27"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -100,9 +100,9 @@
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
                showPager="true"
-               pageSize="50"
+               pageSize="100"
                totalField="page.count"
-               sizeList=[20,50,100,200]
+               sizeList=[100,200,500]
                dataField="data"
                showModified="false"
                onrowdblclick=""
@@ -127,7 +127,7 @@
                   <div header="客户/车辆信息" headerAlign="center">
 	                  <div property="columns" >	                  
 		                  <div field="guestFullName" name="guestFullName" width="110" headerAlign="center" header="客户名称"></div>
-		                  <div field="carNo" name="carNO" width="110" headerAlign="center" header="车牌号"></div>
+		                  <div field="carNo" name="carNo" width="110" headerAlign="center" header="车牌号"></div>
 		                  <div field="carModel" name="carModel" width="120" headerAlign="center" header="品牌/车型"></div>
 		                  
 		                  <div field="carVin" name="carVin" width="150" headerAlign="center" header="车架号(VIN)"></div>

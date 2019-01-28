@@ -58,7 +58,9 @@ $(document).ready(function (v)
 	  var filter = new HeaderFilter(grid, {
 	        columns: [
 	            { name: 'partName' },
+	            { name: 'carNo' },
 	            { name: 'mtAdvisor' },
+	            { name: 'carModel' },
 	            { name: 'guestName' }
 	        ],
 	        callback: function (column, filtered) {

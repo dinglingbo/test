@@ -61,7 +61,7 @@
 		<div id="datagrid1" dataField="data" class="nui-datagrid"
 			pageSize="50" onDrawCell="onDrawCell"  		
 			     showPager="true"    
-                    totalField="page.count"
+                    totalField="page.count" showSummaryRow = "true"
                     sortMode="client"
                     allowCellSelect="true"
                     allowCellEdit="true"
@@ -78,11 +78,11 @@
 				<div field="mobile" headerAlign="center" allowSort="true"  width="90px">
 					电话</div>
 
-				<div field="refundAmt" headerAlign="center" allowSort="true" width="70px">
+				<div field="refundAmt" headerAlign="center" allowSort="true" width="70px" summaryType="sum">
 					退款金额</div>
-				<div field="cutAmt" headerAlign="center" allowSort="true" width="70px">
+				<div field="cutAmt" headerAlign="center" allowSort="true" width="70px" summaryType="sum">
 					扣减金额</div>					
-				<div field="type" headerAlign="center" allowSort="true" width="90px">
+				<div field="type" headerAlign="center" allowSort="true" width="90px" >
 					退款类型</div>
 				<div field="remark" headerAlign="center" allowSort="true" width="70px">
 				备注</div>			

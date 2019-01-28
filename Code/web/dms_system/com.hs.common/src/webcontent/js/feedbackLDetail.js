@@ -81,6 +81,9 @@ function showTab(str,questionContent){
 
 
 function updFinish(){
+	if(rowData.status == 2){
+		return;
+	}
 	var updaFree = rowData;
 	updaFree.status = 2;
 	//获取回复的值

@@ -12,7 +12,7 @@
 <head>
     <title>用户反馈管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/feedbackLDetail.js?v=1.0.6" type="text/javascript"></script>       
+    <script src="<%=webPath + contextPath%>/common/js/feedbackLDetail.js?v=1.0.7" type="text/javascript"></script>       
 </head>
  <style type="text/css"> 
    a.optbtn {
@@ -47,17 +47,11 @@
  </style>
 <body>
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;" >
-	 <input class="nui-hidden" name="criteria/_entity" value="" />
 		<table id="form" style="width:100%;">
 			 <tr>
-			 <td class="pay_top" width="150" height="38">
-			 <a class="mini-button" iconCls="icon-edit" onclick="updFinish()" style="height:38" >标记为已解决</a>
-  	            <!-- <div class="mini-radiobuttonlist" repeatItems="1"
-				      repeatLayout="table" repeatDirection="vertical" name="status"
-				      textField="text" valueField="value" id = "radiobuttonlist"
-				      data="[{value:'1',text:'处理中',},{value:'2',text:'已解决'}]" value="0" >
-		        </div> -->
-		        <a class="nui-button" iconCls="" plain="true" onclick="Oncancel" id=""><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+			 <td >
+			   <a class="mini-button" iconCls="" onclick="updFinish()" plain="true"  ><span class="fa fa-save fa-lg"></span>标记为已解决</a>
+		       <a class="nui-button" iconCls="" plain="true" onclick="Oncancel" id=""><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
 		    </td>
 	  	    </tr>
 		</table>
@@ -127,7 +121,7 @@
 		
 	</div> -->
 	<div style="padding-top: 30px;">
-		<font size="4">回复：</font>
+		<font>回复：</font>
 		<input class="nui-TextArea" name="settleContent" id="settleContent" style="width: 93%; height: 100px;" />
 	</div>
 

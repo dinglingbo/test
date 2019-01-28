@@ -32,10 +32,12 @@
 	        columns: [
 	            { name: 'saleMans' },
 	            { name: 'guestName' },
-		            { name: 'mtAdvisor' },
+		        { name: 'mtAdvisor' },
 	            { name: 'insureTypeName' },
 	            { name: 'carModel' },
-	            { name: 'insureCompName' }
+	            { name: 'insureCompName' },
+	            { name: 'carNo' },
+	            {name: 'serviceCode'}
 	        ],
 	        callback: function (column, filtered) {
 	        },
@@ -51,6 +53,12 @@
  
         if(e.field == "settleTypeId"){
         	 e.cellHtml = settleTypeIdList[e.value-1].name ||"";
+        }
+        if(e.field == "drtnCompRate"){
+        	e.cellHtml = e.value + "%";
+        }
+        if(e.field == "drtnGuestRate"){
+        	e.cellHtml = e.value + "%";
         }
     });
     leftGrid.on("rowclick", function (e) {

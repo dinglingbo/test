@@ -101,7 +101,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">查询失败</process:from>
+      <process:from type="query" pattern="reference">_exception</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
     <process:copy>

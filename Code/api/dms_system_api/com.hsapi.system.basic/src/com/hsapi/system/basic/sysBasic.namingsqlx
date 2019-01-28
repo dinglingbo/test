@@ -65,6 +65,9 @@
              <isNotEmpty prepend="and" property="code">
             	(a.code like '%$code$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">
+            	(a.orgid = $orgid$)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="name">
             	(a.name like '%$name$%')
             </isNotEmpty>

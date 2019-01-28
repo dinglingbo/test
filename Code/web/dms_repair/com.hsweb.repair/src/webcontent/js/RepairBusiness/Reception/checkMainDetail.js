@@ -60,6 +60,27 @@
     });
     initMember("mtAdvisorId",function(){
     });
+    var filter = new HeaderFilter(leftGrid, {
+        columns: [
+            { name: 'contactName' },
+	        { name: 'checkMan' },
+            { name: 'carModel' },
+            { name: 'carNo' },
+            {name: 'serviceCode'},
+            {name: 'checkPoint'},
+            {name: 'lastPoint'}
+            
+        ],
+        callback: function (column, filtered) {
+        },
+
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+	    	}
+        	return value;
+        }
+    });
     quickSearch(4);
 }); 
 

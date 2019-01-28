@@ -83,6 +83,25 @@ $(document).ready(function ()
                 break;
         }
     });  
+    
+    var filter = new HeaderFilter(mainGrid, {
+        columns: [
+            { name: 'contactName' },
+	        { name: 'mtAdvisor' },
+            { name: 'carModel' },
+            { name: 'carNo' },
+            {name: 'serviceCode'}
+        ],
+        callback: function (column, filtered) {
+        },
+
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+	    	}
+        	return value;
+        }
+    });
     quickSearch(4);
 });
 var statusHash = {

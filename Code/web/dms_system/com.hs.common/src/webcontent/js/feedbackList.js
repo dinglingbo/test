@@ -26,16 +26,21 @@ $(document).ready(function(v) {
           var record = e.record;
           var uid = record._uid;
           var rowIndex = e.rowIndex;
+          var s = "";
     	  if(e.field == "status"){
     		  if(e.value == 0){
-	      		s =  ' <a class="optbtn" href="javascript:deleteItemRow(\'' + uid + '\')">待处理</a>';
+	      		  s = "待处理";
 	           }else if(e.value == 1){
 	          	 //删除配件信息
-	          	 s =  ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">处理中</a>';
+	        	   s = "处理中";
 	           }else{
-	        	   s =  ' <a class="optbtn" href="javascript:deletePartRow(\'' + uid + '\')">已解决</a>'; 
+	        	  s = "已解决"; 
 	           }
-    	      e.cellHtml = s; 
+    		   //s =  s + "&nbsp&nbsp&nbsp" +' <a class="optbtn" href="javascript:solveFeedBack(\'' + uid + '\')">查看</a>';
+    		  e.cellHtml = s;
+    	  };
+    	  if(e.field == "feedOptBtn"){
+    		  e.cellHtml = ' <a class="optbtn" href="javascript:solveFeedBack(\'' + uid + '\')">查看</a>'  
     	  }
     	  
       });
@@ -72,41 +77,22 @@ function Oncancel(){
 	close();
 }
 
-function setData(row){
-	empId = row.empid;
-}
-function addOrg(){
-	var rows = moreOrgGrid.getSelecteds();
-	if(rows.length>0){
-		var json = nui.encode({
-			intCompanyList:rows,
-			empId:empId,
-			token:token});
-		 nui.mask({
-	            el: document.body,
-	            cls: 'mini-mask-loading',
-	            html: '保存中...'
-	    });
-		$.ajax({
-            url:apiPath + sysApi + "/com.hsapi.system.basic.organization.saveMyCompany.biz.ext",
-            type:'POST',
-            data:json,
-            cache: false,
-            contentType:'text/json',
-            success:function(text){
-              var returnJson = nui.decode(text);
-              if(returnJson.errCode == 'S'){
-            	  nui.unmask(document.body);
-                  showMsg(returnJson.errMsg || "保存成功!", "S");
-              }else{
-            	  nui.unmask(document.body);
-                  showMsg(returnJson.errMsg || "保存失败!", "E");
-              }
-            }
-          });
-	}else{
-		nui.alert("请选择兼职门店!");
+function solveFeedBack(row_uid){
+	var row = moreOrgGrid.getRowByUID(row_uid);
+	if(row){
+		 nui.open({
+	         url: webPath + contextPath + "/common/feedbackDetail.jsp?token="+token,
+	         title: '反馈处理',
+	         width: 850, height: 770,
+	         onload: function () {
+	             var iframe = this.getIFrameEl();
+	             iframe.contentWindow.setFeedbackData(row);
+	         },
+	         ondestroy: function (action)
+	         {
+	        	 onSearch();
+	         }
+	     });
 	}
 }
-
 

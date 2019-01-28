@@ -545,25 +545,35 @@ window.onload = function() {
           "questionSource":"web",
           "header": canverauth,
           "status":0,
-          "funcName":funcName,
-          "funcAction":funcAction
+          "funcName":title,
+          "funcAction":titleUrl,
+          //"recordMobile":recordMobile
         }
-        feedback = JSON.stringify(feedback);
-        /*var str = "feedback/imageData="+Pic+"&feedback/adviseType="+advise_type+"&feedback/questionContent="+advise+
-                   "&feedback/questionSource='web'"+"&feedback/status=0"*/
-        
-        //com.hsapi.system.employee.feedback.saveFeedBackInfo
-        var url = "http://127.0.0.1:8080/default/com.hsapi.system.employee.feedback.saveFeedBackInfo.biz.ext?feedback/questionType="+advise_type;
-        $.ajax({
+        var url = apiPath + sysApi +"/com.hsapi.system.employee.feedback.saveFeedBackInfo.biz.ext";
+        nui.ajax({
+            url : url,
+            type : "post",
+            cache : false,
+            data : JSON.stringify({
+            		feedback : feedback
+            		}),
+            success : function(text) {
+            	
+            }
+        });
+            
+        /*$.ajax({
           type: 'POST',
           url: url,
-          //data: data,
+          data: JSON.stringify({
+        	  feedback : feedback
+          }),
           success: function(data) {
             if (data.code == 1) {
               // window.open(Pic)
             }
           }
-        });
+        });*/
         $(".textAreaInput").val("");
         $(".textAreaContainer").css({
           "bottom": '-179px',

@@ -1,209 +1,108 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" session="false" %>
+pageEncoding="UTF-8" session="false" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
-  - Author(s): Administrator
-  - Date: 2018-12-24 11:02:48
+  - Author(s): localhost
+  - Date: 2018-07-04 17:02:13
   - Description:
 -->
 
 <head>
-    <title>每日技师明细</title>
+    <title>技师提成明细表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-
     <%@include file="/common/commonRepair.jsp"%>
-    <style>
+    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/technicianCommissionDetail.js?v=1.0.5"></script>
 
-        .titleText{
-            font-weight: 400;
-            font-size: 18px;
-            color: #666;
-            border-bottom: 2px solid #23c0fa;
-            display: inline-block;
-            line-height: 35px;
-        }
-        .iconStyle{
-            font-size: 14px;
-            margin-top: 2px;
-            position: absolute;
-            color:#f0ce25;
-        }
-        .tipStyle{
-            position: absolute; 
-            background-color: #595959; 
-            color:#fff;
-            border-radius: 4px;
-            padding:5px 10px 5px 10px;
-            opacity:0.9;
-            font-size:14px;
-            display: none;
-            z-index:999;
-        }
-
-    </style>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
+    
 </head>
+<style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+</style>
 
 <body>
-        <div id="showDiv" class="tipStyle"></div>
-        <div class="nui-toolbar" style="padding:2px;" id="queryForm">
-            <table style="width:100%;">
-                <tr>
-                    <td>
-                        <label style="font-family:Verdana;">快速查询：</label>
-                        <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
-                        <ul id="popupMenuDate" class="nui-menu" style="display:none;">
-                            <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
-                            <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
-                            <li class="separator"></li>
-                            <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
-                            <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
-                            <li class="separator"></li>
-                            <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
-                            <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
-                            <li class="separator"></li>
-                            <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
-                            <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
-                        </ul>
-                        结算日期:
-                        <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" />
-                        至
-                        <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
-                        <input class="nui-textbox" style="widows: 100px;" emptyText="单据日期">
-                        <input class="nui-textbox" style="widows: 100px;" emptyText="结算状态">
-                        <input class="nui-textbox" style="widows: 100px;" emptyText="技师">
-                        <input class="nui-textbox" style="widows: 100px;" emptyText="质检状态">
-                        <input class="nui-textbox" style="widows: 100px;" emptyText="是否超时">
-                        <input class="nui-textbox" style="widows: 100px;" emptyText="类型">
-                        <input class="nui-textbox" style="widows: 100px;" emptyText="单据编号">
-                        <input class="nui-textbox" style="widows: 100px;" emptyText="项目">
-                        <input class="nui-textbox" style="widows: 100px;" emptyText="业务类型">
-                        <a class="nui-button" plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                        <!-- <li class="separator"></li> -->
-                    </td>
-                </tr>
-            </table>
+    <input name="serviceTypeId" id="serviceTypeId" class="nui-combobox " textField="name" valueField="id" visible="false" />
+    <div id="form1" class="mini-toolbar" style="padding:10px;">
+        <label style="font-family:Verdana;">快速查询：</label>
+        <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+        <ul id="popupMenuDate" class="nui-menu" style="display:none;">
+            <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
+            <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
+            <li class="separator"></li>
+            <li iconCls="" onclick="quickSearch(2)" id="type2">本周</li>
+            <li iconCls="" onclick="quickSearch(3)" id="type3">上周</li>
+            <li class="separator"></li>
+            <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
+            <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
+            <li class="separator"></li>
+            <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+            <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+        </ul>
+                    结算日期:
+                    <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" />
+                    至
+                    <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
+                    <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+                    <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch()"/>
+                            <input name="mtAdvisorId"
+                                   id="mtAdvisorId"
+                                   class="nui-combobox width1"
+                                   textField="empName"
+                                   valueField="empId"
+                                   emptyText="技师"
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="100px"
+                                   valueFromSelect="true"
+                                   nullItemText="技师" onenter="onSearch()" onvaluechanged="onSearch()"/>
+
+                   			  <input class="nui-combobox" id="billTypeId" emptyText="综合开单" name="billTypeId" data="[{billTypeId:5,text:'全部工单'},{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'}]"
+                          width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="5"/>
+                    <a class="nui-button" plain="true" onclick="onSearch()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+    </div>
+
+
+    <div class="nui-fit">
+        <div id="grid" class="nui-datagrid" datafield="list" allowcelledit="true" url="" allowcellwrap="true"                allowCellSelect="true"
+               editNextOnEnterKey="true"
+               allowCellWrap = "true"     pageSize="500" sortMode="client"
+    			sizeList="[500,1000,2000]"
+               showSummaryRow = "true" style="width:100%;height:100%;"
+           		 totalField="page.count"> 
+            		<div property="columns" >	
+            		<div type="indexcolumn" header="序号" width="40px"></div>
+						<div header="提成信息" headerAlign="center"> 
+		                    <div property="columns" >	
+					          <div field="worker" name="worker" headeralign="center" width="100" align="center" allowsort="true" >施工员</div>
+					          <div field="techDeductValue" name="techDeductValue" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true" >技师提成</div>
+					        </div>
+				        </div>
+				     	<div header="业务信息" headerAlign="center"> 
+		                    <div property="columns" >   
+					          <div field="serviceCode" name="serviceCode" headeralign="center" width="170" align="center" summaryType="count" allowsort="true" >工单号</div>
+					          <div field="billTypeId" name="billTypeId" headeralign="center" width="80" align="center" allowsort="true" >工单类型</div>
+					          <div field="serviceTypeId" name="serviceTypeId" headeralign="center" width="80" align="center" allowsort="true" >业务类型</div>
+					          <div field="carNo" name="carNo" headeralign="center" width="80" align="center" allowsort="true" >车牌号</div>
+					          <div field="carModel" name="carModel" headeralign="center" width="200" align="center" width="160" allowsort="true" >品牌车型</div>
+					          <div field="mtAdvisor" name="mtAdvisor" headeralign="center" width="200" align="center" width="160" allowsort="true" >服务顾问</div>
+					          <div field="outDate" name="outDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd" allowsort="true" >结算日期</div>
+							</div>
+						</div>
+
+	 		</div>
         </div>
-        
-        <div class="nui-fit">
-            <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
-            totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
-            onshowrowdetail="onShowRowDetail" url="" allowCellWrap=true>
-            <div property="columns">
-              <div type="indexcolumn" width="40" headerAlign="center" align="center">序号</div>
-              <div field="id" name="id" visible="false" width="100" >id</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">单据日期</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">单据编号</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">车牌号</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">员工</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">业绩</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">提成金额</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">评价加成</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">工时</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">项目/配件</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">业务类型</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">状态</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">质检</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">结算时间</div>
-          </div>
-          </div>
-          </div>
-
-    <script type="text/javascript">
-        nui.parse();
-        var con8='这是一个提示';
-
-        var startDateEl = nui.get('startDate');
-        var endDateEl = nui.get('endDate');
-        var currType = 2;
-        quickSearch(1);
-
-        function quickSearch(type) {
-            //var params = getSearchParams();
-            var params = {};
-            var queryname = "本日";
-            switch (type) {
-                case 0:
-                    params.today = 1;
-                    params.startDate = getNowStartDate();
-                    params.endDate = addDate(getNowEndDate(), 1);
-                    queryname = "本日";
-                    break;
-                case 1:
-                    params.yesterday = 1;
-                    params.startDate = getPrevStartDate();
-                    params.endDate = addDate(getPrevEndDate(), 1);
-                    queryname = "昨日";
-                    break;
-                case 2:
-                    params.thisWeek = 1;
-                    params.startDate = getWeekStartDate();
-                    params.endDate = addDate(getWeekEndDate(), 1);
-                    queryname = "本周";
-                    break;
-                case 3:
-                    params.lastWeek = 1;
-                    params.startDate = getLastWeekStartDate();
-                    params.endDate = addDate(getLastWeekEndDate(), 1);
-                    queryname = "上周";
-                    break;
-                case 4:
-                    params.thisMonth = 1;
-                    params.startDate = getMonthStartDate();
-                    params.endDate = addDate(getMonthEndDate(), 1);
-                    queryname = "本月";
-                    break;
-                case 5:
-                    params.lastMonth = 1;
-                    params.startDate = getLastMonthStartDate();
-                    params.endDate = addDate(getLastMonthEndDate(), 1);
-                    queryname = "上月";
-                    break;
-
-                case 10:
-                    params.thisYear = 1;
-                    params.startDate = getYearStartDate();
-                    params.endDate = getYearEndDate();
-                    queryname = "本年";
-                    break;
-                case 11:
-                    params.lastYear = 1;
-                    params.startDate = getPrevYearStartDate();
-                    params.endDate = getPrevYearEndDate();
-                    queryname = "上年";
-                    break;
-                default:
-                    break;
-            }
-            currType = type;
-            startDateEl.setValue(params.startDate);
-            endDateEl.setValue(addDate(params.endDate, -1));
-            var menunamedate = nui.get("menunamedate");
-            menunamedate.setText(queryname);
-            //doSearch(params);
-        }
-
-
-
-        function overShow(e,con) {
-            var showDiv = document.getElementById('showDiv');
-            var pos = e.getBoundingClientRect();
-            $("#showDiv").css("top", pos.bottom); //设置提示div的位置
-            $("#showDiv").css("left", pos.right);
-            showDiv.style.display = 'block';
-            showDiv.innerHTML = con;
-        }
-
-        function outHide() {
-            var showDiv = document.getElementById('showDiv');
-            showDiv.style.display = 'none';
-            showDiv.innerHTML = '';
-        }
-
-
-    </script>
+     </div>
 </body>
 
 </html>

@@ -163,8 +163,8 @@ $(document).ready(
 			  var filter = new HeaderFilter(pRightGrid, {
 			        columns: [
 			            { name: 'guestName' },
-			          /*  { name: 'settleStatus' },*/
-			            { name: 'carNo' },
+			            { name: 'settleStatus' },
+			            { name: 'carNo' }
 			        ],
 			        callback: function (column, filtered) {
 			        },
@@ -175,8 +175,8 @@ $(document).ready(
 				    		case "settleStatus" : // 预约类型
 				    			value = headerHash;
 				    			break;
-				    		case "isOpenBill": case "isJudge": // 是否开单是否评价
-				    			value = [{name:"否",id:"0"},{name:"是",id:"1"}];
+				    		case "billTypeId": 
+				    			value = billTypeIdHash;
 				    			break;
 				    	}
 			        	return value;
@@ -191,7 +191,7 @@ $(document).ready(
 					}
 				});
 				var dictIdList = [];
-				dictIdList.push('DDT20130703000064');// 入库类型
+				dictIdList.push('DDT20130703000064');
 				getDictItems(dictIdList, function(data) {
 					if (data && data.dataItems) {
 						var dataItems = data.dataItems || [];
@@ -255,7 +255,11 @@ function getSearchParam() {
 
 	params.sCreateDate = searchBeginDate.getFormValue();
 	params.eCreateDate = searchEndDate.getValue();
-	params.settleStatus = nui.get("settleStatus").getValue();
+	//params.settleStatus = nui.get("settleStatus").getValue();
+	var settleStatus = nui.get("settleStatus").getValue();
+	if(settleStatus != 3) {
+		params.settleStatus = settleStatus;
+	}
 	return params;
 }
 var currType = 2;
@@ -411,6 +415,12 @@ function onAdvancedSearchOk() {
 	if (searchData.balanceSign) {
 		if (searchData.balanceSign == 2) {
 			searchData.balanceSign = null;
+		}
+	}
+	if(searchData.settleStatus) {
+		var settleStatus = searchData.settleStatus;
+		if(settleStatus == 3) {
+			searchData.settleStatus = null;
 		}
 	}
 
@@ -1731,4 +1741,55 @@ function openOrderDetail(){
 		return;
 	}
 
+}
+
+function onExport(){
+
+	var detail = pRightGrid.getData();
+	
+	if(detail && detail.length > 0){
+		setInitExportData(detail);
+	}else{
+		showMsg("没有可导出数据！","W");
+	}
+}
+function setInitExportData(detail){
+    var tds = '<td  colspan="1" align="left">[guestName]</td>' +
+        "<td  colspan='1' align='left'>[carNo]</td>" +
+        "<td  colspan='1' align='left'>[billServiceId]</td>" +
+        "<td  colspan='1' align='left'>[billTypeId]</td>" +
+        "<td  colspan='1' align='left'>[remark]</td>" +
+        "<td  colspan='1' align='left'>[rpAmt]</td>" +
+        "<td  colspan='1' align='left'>[createDate]</td>" +
+        "<td  colspan='1' align='left'>[settleStatus]</td>"+
+        "<td  colspan='1' align='left'>[charOffAmt]</td>";
+        
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        if(row){
+        	var billTypeName = detail[i].billTypeId;
+        	var settleStatus = detail[i].settleStatus;
+        	if(billTypeName) {
+        		billTypeName = enterTypeIdHash[billTypeName].name;
+        	}
+        	settleStatus = settleStatusHash[settleStatus];
+            var tr = $("<tr></tr>");
+            tr.append(tds.replace("[guestName]", detail[i].guestName?detail[i].guestName:"")
+                         .replace("[carNo]", detail[i].carNo?detail[i].carNo:"")
+                         .replace("[billServiceId]", detail[i].billServiceId?detail[i].billServiceId:"")
+                         .replace("[billTypeId]", billTypeName?billTypeName:"")
+                         .replace("[remark]", detail[i].remark?detail[i].remark:"")
+                         .replace("[rpAmt]", detail[i].rpAmt?detail[i].rpAmt:0)
+                         .replace("[createDate]", detail[i].createDate?detail[i].createDate.Format("yyyy-MM-dd HH:mm:ss"):"")
+                         .replace("[settleStatus]", settleStatus?settleStatus:"")
+                         .replace("[charOffAmt]", detail[i].charOffAmt?detail[i].charOffAmt:0)
+                         .replace("[saleMan]", detail[i].saleMan?detail[i].saleMan:"")
+                         .replace("[recordDate]", detail[i].recordDate?detail[i].recordDate.Format("yyyy-MM-dd HH:mm:ss"):""));
+            tableExportContent.append(tr);
+        }
+    }
+
+    method5('tableExcel',"应付账款管理",'tableExportA');
 }

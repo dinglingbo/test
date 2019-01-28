@@ -4,10 +4,10 @@
  var statusList = [{id: 0,text: '草稿'}, {id: 1,text: '已完工'}];
  var isBackList = [{ id: 0,text: '未返工'}, {id: 1,text: '已返工'}];
  var billTypeIdList=[{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"}];
- var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"配件名称"}];
+ var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"工单号"}];
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var webBaseUrl = webPath + contextPath + "/";
-var gridUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.report.queryPartSeladetailed.biz.ext';
+var gridUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.report.queryTechnicianDetail.biz.ext';
 var mtAdvisorIdEl = null;
 var grid = null;
 var form = null;
@@ -57,12 +57,11 @@ $(document).ready(function (v)
 
 	  var filter = new HeaderFilter(grid, {
 	        columns: [
-	            { name: 'partName' },
 	            { name: 'serviceCode' },
+	            { name: 'worker' },
 	            { name: 'carNo' },
-	            { name: 'mtAdvisor' },
 	            { name: 'carModel' },
-	            { name: 'guestName' }
+	            { name: 'mtAdvisor' },
 	        ],
 	        callback: function (column, filtered) {
 	        },
@@ -207,7 +206,7 @@ function getSearchParam() {
     if(type==0){
         params.carNo = typeValue;
     }else if(type==1){
-        params.partName = typeValue;
+        params.serviceCode = typeValue;
     }
     return params;
 }

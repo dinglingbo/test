@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>配件销售明细表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/partSaleDetailed.js?v=1.0.3"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/partSaleDetailed.js?v=1.0.4"></script>
 
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
@@ -75,7 +75,8 @@ pageEncoding="UTF-8" session="false" %>
     <div class="nui-fit">
         <div id="grid" class="nui-datagrid" datafield="list" allowcelledit="true" url="" allowcellwrap="true"                allowCellSelect="true"
                editNextOnEnterKey="true"
-               allowCellWrap = "true"
+               allowCellWrap = "true"     pageSize="500"
+    			sizeList="[500,1000,2000]"
                showSummaryRow = "true" style="width:100%;height:100%;"
            		 totalField="page.count"> 
             		<div property="columns" >	
@@ -94,14 +95,14 @@ pageEncoding="UTF-8" session="false" %>
  			            <div header="配件信息" headerAlign="center">
 				             <div property="columns" >	   
 				                <div field="partName" name="partName" headeralign="center" width="100" align="center">配件名称</div>                        
-				          		<div field="partCode" name="partCode" headeralign="center" width="100" align="center">配件名称</div> 
-				                <div field="qty" name="qty" headeralign="center" width="150" align="center">数量</div>
-				                <div field="unitPrice" name="unitPrice" headeralign="center" width="80" align="center">销售单价</div>
-				                <div field="amt" name="amt" headeralign="center" width="80" align="center">销售金额</div>
-				                <div field="discountAmt" name="discountAmt" headeralign="center" width="80" align="center">优惠金额</div>
-<!-- 				                <div field="partTrueCost" name="partTrueCost" headeralign="center" width="80" align="center">配件成本 </div> -->
+				          		<div field="partCode" name="partCode" headeralign="center" width="100" align="center">配件编码</div> 
+				                <div field="qty" name="qty" headeralign="center" width="150" align="center" summaryType="sum">数量</div>
+				                <div field="unitPrice" name="unitPrice" headeralign="center" width="80" align="center" summaryType="sum">销售单价</div>
+				                <div field="amt" name="amt" headeralign="center" width="80" align="center" summaryType="sum">销售金额</div>
+				                <div field="discountAmt" name="discountAmt" headeralign="center" width="80" align="center" summaryType="sum">优惠金额</div>
+<!-- 				                <div field="partTrueCost" name="partTrueCost" headeralign="center" width="80" align="center" summaryType="sum">配件成本 </div> -->
 
-				                <div field="subtotal" name="subtotal" headeralign="center" width="80" align="center">配件小计</div>
+				                <div field="subtotal" name="subtotal" headeralign="center" width="80" align="center" summaryType="sum">配件小计</div>
 				                <div field="mtAdvisor" name="mtAdvisor" headeralign="center" width="100" align="center">服务顾问</div>
 				                <div field="saleMan" name="saleMan" headeralign="center" width="100" align="center">销售员</div>
 				                <div field="outDate" name="outDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd">结算日期</div>

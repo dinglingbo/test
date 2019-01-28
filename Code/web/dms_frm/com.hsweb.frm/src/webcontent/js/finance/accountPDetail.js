@@ -43,10 +43,12 @@ $(document).ready(function(v) {
 
     });
        
-    var filter = new HeaderFilter(mainGrid, {
+    var filter = new HeaderFilter(mainGrid, {   
         columns: [
             { name: 'auditor' },
-             {name:'shortName'}
+             {name:'shortName'},
+             {name:'billServiceId'},
+             { name: 'carNo' }
         ],
         callback: function (column, filtered) {
         },

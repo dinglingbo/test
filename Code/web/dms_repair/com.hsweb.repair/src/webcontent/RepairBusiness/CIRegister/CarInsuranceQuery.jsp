@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>保险开单查询</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceQuery.js?v=1.0.31"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceQuery.js?v=1.0.35"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -64,16 +64,18 @@ pageEncoding="UTF-8" session="false"%>
                 <div id="leftGrid" dataField="list" class="nui-datagrid" 
                  selectOnLoad="true"
                  showPager="true"
-                 pageSize="50"
+                 pageSize="500"
                  totalField="page.count"
-                 sizeList=[20,50,100,200]
+                 sizeList=[500,1000,2000]
                  dataField="list" 
                  showModified="false"
+                 showSummaryRow="true"
                  onrowdblclick=""
                  allowCellSelect="true"
                  editNextOnEnterKey="true"
                  allowCellWrap = true
                  style="height:100%;width:100%;"
+                 sortMode="client"
                  onshowrowdetail="onShowRowDetail">
                 <div property="columns">
                     <div type="indexcolumn" headeralign="center" allowsort="true" visible="true" width="30">序号</div>
@@ -81,37 +83,37 @@ pageEncoding="UTF-8" session="false"%>
                     <div header="客户车辆信息" headerAlign="center">
                       <div property="columns" >	
 		                <div field="id" headeralign="center" allowsort="true" visible="false" >主键</div>
-		                <div field="guestName" name="guestName" headeralign="center" allowsort="true" visible="true" >客户名称</div>
-		                <div field="mobile" headeralign="center" allowsort="true" visible="true" >客户手机</div>
-		                <div field="carNo" headeralign="center" allowsort="true" visible="true" >车牌号</div>
-		                <div field="carModel" name="carModel"  headeralign="center" allowsort="true" visible="true">品牌车型</div>
-		                <div field="carVin" headeralign="center" allowsort="true" visible="true">车架号(VIN)</div>
+		                <div field="guestName" name="guestName" headeralign="center" allowsort="false" visible="true" >客户名称</div>
+		                <div field="mobile" headeralign="center" allowsort="false" visible="true" >客户手机</div>
+		                <div field="carNo" name="carNo" headeralign="center" allowsort="false" visible="true" >车牌号</div>
+		                <div field="carModel" name="carModel"  headeralign="ture" allowsort="false" visible="true">品牌车型</div>
+		                <div field="carVin" headeralign="center" allowsort="false" visible="true">车架号(VIN)</div>
                       </div>
                     </div>
 	                <div header="保单信息" headerAlign="center">
 	                   <div property="columns" >
-	                     <div field="serviceCode" headeralign="center" allowsort="true" visible="true" >工单号</div>
+	                     <div field="serviceCode" name="serviceCode" headeralign="center" allowsort="false" visible="true" >工单号</div>
 	                     <div field="outDate" name=""  headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-	                     <div field="insureCompName" name="insureCompName"  headeralign="center" allowsort="true" visible="true" >保险公司</div>
-	                     <div field="mtAdvisor" name="mtAdvisor"  headeralign="center" allowsort="true" visible="true">服务顾问</div>
-	                     <div field="saleMans" name="saleMans"  headeralign="center" allowsort="true" visible="true" >销售员</div>
+	                     <div field="insureCompName" name="insureCompName"  headeralign="center" allowsort="false" visible="true" >保险公司</div>
+	                     <div field="mtAdvisor" name="mtAdvisor"  headeralign="center" ture visible="true">服务顾问</div>
+	                     <div field="saleMans" name="saleMans"  headeralign="center" allowsort="false" visible="true" >销售员</div>
 	                     <div field="beginDate" name=""  headerAlign="center" header="有效开始日期" dateFormat="yyyy-MM-dd HH:mm"></div>
 	                     <div field="endDate" name=""  headerAlign="center" header="有效结束日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-	                     <div field="settleTypeId" headeralign="center" allowsort="true" visible="true" >保费收取方式</div>
-	                     <div field="amt" name="amt"  headerAlign="center" header="保费总金额"></div>
-	                     <div field="rtnCompAmt" name="partAmt"  headerAlign="center" header="保司返点总金额"></div>
-	                     <div field="rtnGuestAmt" name="partAmt"  headerAlign="center" header="客户返点总金额"></div>  
+	                     <div field="settleTypeId" headeralign="center" allowsort="ture" visible="true" >保费收取方式</div>
+	                     <div field="amt" name="amt"  headerAlign="center" header="保费总金额" ></div>
+	                     <div field="rtnCompAmt" name="partAmt"  headerAlign="center" header="保司返点总金额" ></div>
+	                     <div field="rtnGuestAmt" name="partAmt"  headerAlign="center" header="客户返点总金额" ></div>  
                        </div>
                      </div>					
                     <div header="保费信息" headerAlign="center">
                        <div property="columns" >
 		                <div field="insureTypeName" name="insureTypeName"  headerAlign="center" allowSort="false" visible="true" width="100" header="险种名称"></div>
 		                <div field="insureNo" name=""  headerAlign="center" header="交强险/商业险单号" ></div>
-		                <div field="damt" headerAlign="center" allowSort="false" header="保司保费" align="center"></div>
+		                <div field="damt" headerAlign="center" allowSort="false" header="保司保费" align="center" summaryType="sum"></div>
 		                <div field="drtnCompRate" headerAlign="center" allowSort="false" header="保司返点" align="center"></div>
-		                <div field="drtnCompAmt" headerAlign="center" allowSort="false" header="保司返点金额" align="center"></div>
-		                <div field="drtnCompRate" headerAlign="center" allowSort="false" header="客户返点" align="center"></div>
-		                <div field="drtnCompAmt" headerAlign="center" allowSort="false" header="客户返点金额" align="center"></div>
+		                <div field="drtnCompAmt" headerAlign="center" allowSort="false" header="保司返点金额" align="center" summaryType="sum"></div>
+		                <div field="drtnGuestRate" headerAlign="center" allowSort="false" header="客户返点" align="center" ></div>
+		                <div field="drtnGuestAmt" headerAlign="center" allowSort="false" header="客户返点金额" align="center" summaryType="sum"></div>
                      </div>
                    </div>
                 </div>

@@ -12,8 +12,7 @@
 <head>
     <title>用户反馈管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/feedbackList.js?v=1.0.4" type="text/javascript"></script>    
-    
+    <script src="<%=webPath + contextPath%>/common/js/feedbackLDetail.js?v=1.0.6" type="text/javascript"></script>       
 </head>
  <style type="text/css"> 
    a.optbtn {
@@ -29,49 +28,108 @@
         text-decoration: none;
         border-radius: 5px; 
     }
+    		.pay_top  {
+			font-size: 16px;
+			line-height: 38px;
+		}
+    html, body{
+        margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
+    }
+    
+    .addyytime a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 40px -1px no-repeat; padding-right:22px; color:#888; text-decoration:none;}
+    .addyytime a.hui{padding-left: 5px;padding-right: 5px;height:;line-height:24px;border:1px #a6e0f5 solid;display:block;float:left;text-decoration:none;
+        text-align:center;color:#00b4f6;border-radius:4px;margin:0 5px 5px 0;}
+    .addyytime a.hui{border:1px #e6e6e6 solid;color:#555555;background:#5ab1ef;}
+    .addyytime a.xz{ font-size: 13px; color: #555555 !important; background:#5ab1ef !important;}
+    .addyytime a:link, a:visited { font-family: 微软雅黑, Arial, Helvetica, sans-serif; font-size: 13px; color: #555555; text-decoration: none; }
+    .addyytime a .hui{text-decoration:none;transition:all .4s ease;}
+    .addyytime a.backRed{border:1px #e6e6e6 solid;color:#555555;background:#5ab1ef ;}  
  </style>
 <body>
-	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
-		<input class="nui-hidden" name="criteria/_entity" value="" />
-		<span>用户信息：</span>
+	<div class="nui-toolbar" style="padding:2px;border-bottom:0;" >
+	 <input class="nui-hidden" name="criteria/_entity" value="" />
 		<table id="form" style="width:100%;">
-			<tr>
-				<td class="title required">
-                    <label>手机号：</label>
-                </td>
-                <td class="" ><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
-                <td class="title required">
-                    <label>用户名：</label>
-                </td>
-                <td class="" ><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
-                <td class="title required">
-                    <label>公司：</label>
-                </td>
-                <td class="" ><input  class="nui-textbox" name="carNo" id="carNo" enabled="false" width="100%"/></td>
-			</tr>
+			 <tr>
+			 <td class="pay_top" width="150" height="38">
+			 <a class="mini-button" iconCls="icon-edit" onclick="updFinish()" style="height:38" >标记为已解决</a>
+  	            <!-- <div class="mini-radiobuttonlist" repeatItems="1"
+				      repeatLayout="table" repeatDirection="vertical" name="status"
+				      textField="text" valueField="value" id = "radiobuttonlist"
+				      data="[{value:'1',text:'处理中',},{value:'2',text:'已解决'}]" value="0" >
+		        </div> -->
+		        <a class="nui-button" iconCls="" plain="true" onclick="Oncancel" id=""><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+		    </td>
+	  	    </tr>
 		</table>
 	</div> 
-	 <div class="nui-fit">
-          <div id="moreOrgGrid" class="nui-datagrid" style="width:100%;height:100%;"
-               selectOnLoad="false"
-               showPager="true"
-               dataField="data"
-               allowCellSelect="true"
-               editNextOnEnterKey="true"
-               allowCellWrap = true
-               multiSelect="false"
-               url="">
-              <div property="columns">
-              	<div type="checkcolumn" width="15" class="mini-radiobutton" header="选择"></div>
-                <div field="recordMobile" name="recordMobile" width="30" align="center"  visible="true" headerAlign="center" header="手机号"></div>
-                <div field="recorder" name="recorder" width="30" align="center"  visible="true" headerAlign="center" header="姓名"></div>
-                <div field="orgname" name="orgname" width="" align="center"  headerAlign="center" header="公司"></div>
-                <div field="questionType" name="questionType" width="" align="center"  headerAlign="center" header="问题摘要"></div>
-                <div field="recordDate" name="recordDate" width="" align="center"  headerAlign="center" header="反馈时间" dateFormat="yyyy-MM-dd"></div>
-                <div field="questionSource" name="questionSource" width="" align="center"  headerAlign="center" header="来源"></div>
-                <div field="status" name="status" width="" align="center"  headerAlign="center" header="状态"></div>
-              </div>
-          </div>
-    </div>	
+		<fieldset
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
+		<legend>用户信息</legend> 
+		<div id="dataform1" style="padding-top: 5px;" >
+			<table>
+			<tr>
+			    <td class="title required" width="200" height="28">
+			    	手机号：
+					<span style="padding-top: 2px;"  id="recordMobile" name="recordMobile"></span>
+                </td>
+                <td class="title required" width="200" height="28">
+			    	用户名：
+					<span style="padding-top: 2px;"  id="recorder" name="recorder"></span>
+                </td>
+                <td class="title required" width="200" height="28">
+			    	公司：
+					<span style="padding-top: 2px;"  id="orgname" name="orgname"></span>
+                </td>
+
+		   </tr>
+		   </table>
+		</div>
+	</fieldset>
+	
+     
+    <fieldset
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
+		<legend>问题描述</legend> 
+		 <div class="addyytime" style="display:''" id="showHot" >
+              <table style="width:100%;height:50px;">
+              	<tr>
+	              	<td class="title required" width="100" height="28">
+				    	来源：
+						<span style="padding-top: 2px;padding-right: 200px;"  id="questionSource" name="questionSource"></span>
+						反馈日期：
+						<span style="padding-top: 2px;"  id="recordDate" name="recordDate"></span>
+	                </td>
+              	</tr>
+              	<tr>
+	              	<td class="title required" width="100" height="28">
+				    	功能标题：
+						<span style="padding-top: 2px;padding-right: 150px;"  id="funcName" name="funcName"></span>
+						功能路径：
+						<span style="padding-top: 2px;"  id="funcAction" name="funcAction"></span>
+	                </td>
+              	</tr>
+                <tr>
+                    <td id="addAEl">
+                     
+                    </td>
+               </tr>
+            </table>
+        </div>
+	</fieldset>
+	 <fieldset
+		style="border: solid 1px #aaa; position: relative; margin: 5px 2px 0px 2px;">
+		<legend>反馈图片</legend> 
+		 <div style="padding-top: 10px;padding-left:30px; width:620px;height:250px">
+		 <img src="http://127.0.0.1:8080/default/repair/prototype/images/11.jpg" width="620px" height="250px" text-align="center"/>
+	    </div>
+	</fieldset>
+	<!-- <div style="padding-top: 10px;padding-left:30px; width:620px;height:250px">
+		
+	</div> -->
+	<div style="padding-top: 30px;">
+		<font size="4">回复：</font>
+		<input class="nui-TextArea" name="settleContent" id="settleContent" style="width: 93%; height: 100px;" />
+	</div>
+
 </body>
 </html>

@@ -10,7 +10,9 @@
 -->
 <head>
 <title>退货开单查询</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnQuery.js?v=1.0.7"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnQuery.js?v=1.0.8"></script>
+<link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+<script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
 
 .title {
@@ -112,16 +114,18 @@
                onshowrowdetail="onShowRowDetail"
                allowCellEdit="true"
                allowCellWrap = "true"
+               sortMode="client"
+               showSummaryRow = "true"
                url="">
               <div property="columns">
                   <div type="indexcolumn" width="50">序号</div>
                   <div header="客户车辆信息" headerAlign="center">
                       <div property="columns" >	
 		                <div field="id" headeralign="center" allowsort="true" visible="false" >主键</div>
-		                <div field="contactName" headeralign="center" allowsort="true" visible="true" >客户名称</div>
+		                <div field="contactName" name="contactName" headeralign="center" allowsort="true" visible="true" >客户名称</div>
 		                <div field="contactMobile" headeralign="center" allowsort="true" visible="true" >客户手机</div>
-		                <div field="carNo" headeralign="center" allowsort="true" visible="true" >车牌号</div>
-		                <div field="carModel" headeralign="center" allowsort="true" visible="true">品牌车型</div>
+		                <div field="carNo" name="carNo" headeralign="center" allowsort="true" visible="true" >车牌号</div>
+		                <div field="carModel"  name="carModel" headeralign="center" allowsort="true" visible="true">品牌车型</div>
 		                <div field="carVin" headeralign="center" allowsort="true" visible="true" width="150">车架号(VIN)</div>
                       </div>
                     </div>
@@ -131,7 +135,7 @@
                           <div field="recordDate" name="recordDate"  headerAlign="center" header="退货日期" dateFormat="yyyy-MM-dd HH:mm" width="130"></div>
                           <div field="partAmt" headerAlign="center" allowSort="false" visible="true"  datatype="float" align="center" header="结算金额"> </div>
                           <div field="outDate" name="outDate"  headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd HH:mm" width="130"></div>
-                          <div field="mtAdvisor" name="recorder"  headerAlign="center" header="服务顾问"></div>
+                          <div field="mtAdvisor" name="mtAdvisor"  headerAlign="center" header="服务顾问"></div>
                           <div field="remak" name="recorder"  headerAlign="center" header="备注" width="150"></div>
                       </div>
                    </div>
@@ -140,11 +144,11 @@
                          <div field="partName" headerAlign="center" allowSort="false" visible="true" width="100" header="配件名称"></div>
                          <div field="partCode" headerAlign="center" allowSort="false"   header="配件编码" align="center"></div>
                         <!--  <div field="partCodel" headerAlign="center" allowSort="false"   header="配件类型" align="center"></div> -->
-                         <div field="qty" headerAlign="center" allowSort="false" visible="true"   align="center" header="数量" name="partQty"> </div>
-                         <div field="unitPrice" headerAlign="center" allowSort="false" visible="true"   align="center" header="退货单价" name="partUnitPrice"> </div>
-                         <div field="amt" headerAlign="center" allowSort="false" visible="true" width="70"  align="center" header="退货金额"> </div>
-                         <div field="xUnitPrice" headerAlign="center" allowSort="false" visible="true" align="center" header="销售单价" name="partUnitPrice"> </div>
-                         <div field="xAmt" headerAlign="center" allowSort="false" visible="true" datatype="float" align="center" header="销售金额"> </div>
+                         <div field="qty" headerAlign="center" allowSort="false" visible="true"   align="center" header="数量" name="partQty" summaryType="sum"> </div>
+                         <div field="unitPrice" headerAlign="center" allowSort="false" visible="true"   align="center" header="退货单价" name="partUnitPrice" > </div>
+                         <div field="amt" headerAlign="center" allowSort="false" visible="true" width="70"  align="center" header="退货金额" summaryType="sum"> </div>
+                         <div field="xUnitPrice" headerAlign="center" allowSort="false" visible="true" align="center" header="销售单价" name="partUnitPrice" > </div>
+                         <div field="xAmt" headerAlign="center" allowSort="false" visible="true" datatype="float" align="center" header="销售金额" > </div>
                       </div>
                    </div>
                  </div>

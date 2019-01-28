@@ -10,7 +10,7 @@
 -->
 <head>
 <title>未结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.27"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/inFactoryVehicle.js?v=1.0.28"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -100,9 +100,9 @@
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
                showPager="true"
-               pageSize="100"
+               pageSize="500"
                totalField="page.count"
-               sizeList=[100,200,500]
+               sizeList=[500,1000,2000]
                dataField="data"
                showModified="false"
                onrowdblclick=""
@@ -110,6 +110,7 @@
                editNextOnEnterKey="true"
                allowCellWrap = "true"
                showSummaryRow = "true"
+               sortMode="client"
                onshowrowdetail="onShowRowDetail"
                url="">
              	<div property="columns">
@@ -118,45 +119,45 @@
                   	 <div property="columns" >
 	                  <div type="checkcolumn" name="checkcolumn" visible="false"></div>  
 	                  <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div> 
-	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号"></div>
-	                  <div field="status" name="status" width="70px" headerAlign="center" header="进程"></div> 
-	                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" header="业务类型"></div>
-	                  <div field="mtAdvisor" name="mtAdvisor" width="100" headerAlign="center" header="服务顾问"></div>
+	                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号" summaryType="sum" allowsort="true"></div>
+	                  <div field="status" name="status" width="70px" headerAlign="center" header="进程" allowsort="true"></div> 
+	                  <div field="serviceTypeName" name="serviceTypeName" width="120" headerAlign="center" header="业务类型" allowsort="true"></div>
+	                  <div field="mtAdvisor" name="mtAdvisor" width="100" headerAlign="center" header="服务顾问" allowsort="true"></div>
 	                 </div>
                   </div>
                   <div header="客户/车辆信息" headerAlign="center">
 	                  <div property="columns" >	                  
-		                  <div field="guestFullName" name="guestFullName" width="110" headerAlign="center" header="客户名称"></div>
-		                  <div field="carNo" name="carNo" width="110" headerAlign="center" header="车牌号"></div>
-		                  <div field="carModel" name="carModel" width="120" headerAlign="center" header="品牌/车型"></div>
+		                  <div field="guestFullName" name="guestFullName" width="110" headerAlign="center" header="客户名称" allowsort="true"></div>
+		                  <div field="carNo" name="carNo" width="110" headerAlign="center" header="车牌号" allowsort="true"></div>
+		                  <div field="carModel" name="carModel" width="120" headerAlign="center" header="品牌/车型" allowsort="true"></div>
 		                  
-		                  <div field="carVin" name="carVin" width="150" headerAlign="center" header="车架号(VIN)"></div>
+		                  <div field="carVin" name="carVin" width="150" headerAlign="center" header="车架号(VIN)" allowsort="true"></div>
 		                   
-		                <!--   <div field="enterKilometers" name="enterKilometers" width="80" headerAlign="center" header="进厂里程"></div> -->
+		                <!--   <div field="enterKilometers" name="enterKilometers" width="80" headerAlign="center" header="进厂里程" allowsort="true"></div> -->
 		                  
-<!-- 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div> -->
+<!-- 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机" allowsort="true"></div> -->
 	                  </div>
                   </div>
                
                   <div header="估算费用信息" headerAlign="center">
 	                  <div property="columns" >	                  
-		                  <div field="pkgSubtotal" name="status" width="70" headerAlign="center" summaryType="sum" header="套餐小计"></div>
-		                  <div field="itemSubtotal" name="carNO" width="70" headerAlign="center" summaryType="sum" header="项目小计"></div>
-		                  <div field="partSubtotal" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="配件小计"></div>
-		                  <div field="total" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="合计"></div>
-	<!-- 	                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum"  header="预存抵扣"></div>
-		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" summaryType="sum"  header="优惠金额"></div>
-		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" summaryType="sum"  header="其他收入"></div>
-		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" summaryType="sum"  header="其他支出"></div> -->
+		                  <div field="pkgSubtotal" name="status" width="70" headerAlign="center" summaryType="sum" header="套餐小计" allowsort="true"></div>
+		                  <div field="itemSubtotal" name="carNO" width="70" headerAlign="center" summaryType="sum" header="项目小计" allowsort="true"></div>
+		                  <div field="partSubtotal" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="配件小计" allowsort="true"></div>
+		                  <div field="total" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="合计" allowsort="true"></div>
+	<!-- 	                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum"  header="预存抵扣" allowsort="true"></div>
+		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" summaryType="sum"  header="优惠金额" allowsort="true"></div>
+		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" summaryType="sum"  header="其他收入" allowsort="true"></div>
+		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" summaryType="sum"  header="其他支出" allowsort="true"></div> -->
 	                  </div>
                   </div>
                   
                    <div header="其他" headerAlign="center">
 	                  <div property="columns" >
-		                 <!--  <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌"></div> 
-		                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="车架号(VIN)"></div> -->
-		                  <div field="enterDate" name="enterDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="进厂日期"></div>
-		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="完工日期"></div>
+		                 <!--  <div field="carBrandId" name="carBrandId" width="60" headerAlign="center" header="品牌" allowsort="true"></div> 
+		                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="车架号(VIN)" allowsort="true"></div> -->
+		                  <div field="enterDate" name="enterDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="进厂日期" allowsort="true"></div>
+		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="完工日期" allowsort="true"></div>
 	                  </div>
                   </div>
                   

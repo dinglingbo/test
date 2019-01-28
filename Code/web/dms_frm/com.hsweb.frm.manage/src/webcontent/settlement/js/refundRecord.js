@@ -26,7 +26,26 @@ $(document).ready(function (v)
     onSearch();
     
     grid.setUrl(queryFormUrl);
-    quickSearch(2);
+    
+	  var filter = new HeaderFilter(grid, {     
+	        columns: [
+	            { name: 'code' },
+	            { name: 'fullName' },
+		            { name: 'carNo' },
+	            { name: 'mobile' },
+	            { name: 'recorder' },
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
+    quickSearch(4);
 });
 
 function quickSearch(type){

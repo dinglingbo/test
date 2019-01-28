@@ -422,10 +422,21 @@ where b.orgid =#orgid#
    
            <select id="queryTechnicianDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
      SELECT 
-			a.
+		a.service_code as serviceCode,
+		a.worker as worker,
+		a.worker_id as workerId,
+		b.bill_type_id as billTypeId,
+		a.tech_deduct_value as techDeductValue,
+		a.recorder as recorder,
+		b.car_no as carNo,
+		c.car_model as carModel,
+		b.out_date as outDate,
+		b.service_type_id as serviceTypeId,
+		b.mt_advisor as mtAdvisor
 		from wb_repair.rps_deduct_detail a
 		inner join wb_repair.rps_maintain b on a.service_code = b.service_code
-		where b.is_settle = 1 and  b.bill_type_id in (0,2,4)
+		inner join rpb_car c on b.car_id = c.id
+		where b.is_settle = 1 and  b.bill_type_id in (0,2,4) and a.tech_deduct_value &gt; 0
 				and b.orgid =#orgid#
 		     <dynamic>
 			<isNotEmpty prepend="and" property="sOutDate"> 
@@ -437,11 +448,11 @@ where b.orgid =#orgid#
             </isNotEmpty>    
 
             <isNotEmpty prepend="and" property="mtAuditorId">  
-                a.sale_man_Id =  #mtAuditorId#
+                a.worker_id =  #mtAuditorId#
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="mtAdvisor">  
-                b.sale_man =  #mtAdvisor#
+                b.worker =  #mtAdvisor#
             </isNotEmpty>
             
              <isNotEmpty prepend="and" property="billTypeIds">  
@@ -449,16 +460,13 @@ where b.orgid =#orgid#
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="serviceCode">  
-                b.service_code =   #serviceCode#
+                b.service_code like  '%$serviceCode$%'
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="carNo">  
                 b.car_no like   '%$carNo$%'
             </isNotEmpty>
 
-            <isNotEmpty prepend="and" property="partName">  
-                a.part_name like   '%$partName$%'
-            </isNotEmpty>
             
 
            order by b.out_date desc

@@ -75,8 +75,8 @@
     sortMode="client"
     url=""
     totalField="page.count"
-    pageSize="10000"
-    sizeList="[1000,5000,10000]" showSummaryRow = "true"
+    pageSize="500"
+    sizeList="[500,1000,2000]" showSummaryRow = "true"
     showSummaryRow="true">
     <div property="columns">
         <div type="indexcolumn">序号</div>

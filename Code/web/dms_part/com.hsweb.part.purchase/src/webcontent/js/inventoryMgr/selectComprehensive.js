@@ -59,6 +59,7 @@ $(document).ready(function ()
 	  var filter = new HeaderFilter(mainGrid, {
 	        columns: [
 	            { name: 'mtAdvisor' },
+	            { name: 'serviceCode' },
 		            { name: 'guestFullName' },
 	            { name: 'carModel' },
 	            { name: 'carNo' },

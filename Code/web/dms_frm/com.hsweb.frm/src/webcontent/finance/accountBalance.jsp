@@ -35,7 +35,7 @@ pageEncoding="UTF-8" session="false" %>
     	<ul id="popupMenuDate" class="nui-menu" style="display:none;">
             <li iconCls="" onclick="quickSearch(0)" id="type0">本月</li>
             <li iconCls="" onclick="quickSearch(1)" id="type1">上月</li>
-            <li iconCls="" onclick="quickSearch(2)" id="type2">本季度</li>
+            <li iconCls="" onclick="quickSearch(2)" id="type2">本季</li>
             <li iconCls="" onclick="quickSearch(3)" id="type3">本年</li>
             <li iconCls="" onclick="quickSearch(4)" id="type4">上年</li>
         </ul>
@@ -52,17 +52,17 @@ pageEncoding="UTF-8" session="false" %>
     <div class="nui-fit">
         <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" 
              showPager="true"  dataField="list"   url="" sortMode="client" ondrawcell=""
-              pageSize="100" sizeList="[50,100,200,500]" showSummaryRow="true">
+              pageSize="500" sizeList="[500,1000,2000]" showSummaryRow="true" sortMode="client">
             <div property="columns">
                 <div type="indexcolumn"  headeralign="center" width="20">序号</div>
-                <div field="settAccountCode" name="code" width="60" summaryType="count"  headeralign="center" >账户编码</div>
-                <div field="settAccountName" name="settAccountName" width="100"  headeralign="center" >账户名称</div>
-                <div field="fyear" name="fyear" width="50"  headeralign="center" >年份</div>
-                <div field="fmonth" name="fmonth" width="50"  headeralign="center" >月份</div>
-                <div field="beginBala" name="beginBala" width="60"  headeralign="center" >期初</div>
-                <div field="debit" name="debit" width="60" summaryType="sum"  headeralign="center" >收入</div>
-                <div field="credit" name="credit" width="60" summaryType="sum"  headeralign="center" >支出</div>
-                <div field="endBala" name="endBala" width="60"  headeralign="center" >余额</div>
+                <div field="settAccountCode" name="code" width="60" summaryType="count"  headeralign="center" allowsort="true" >账户编码</div>
+                <div field="settAccountName" name="settAccountName" width="100"  headeralign="center" allowsort="true">账户名称</div>
+                <div field="fyear" name="fyear" width="50"  headeralign="center" allowsort="true">年份</div>
+                <div field="fmonth" name="fmonth" width="50"  headeralign="center" allowsort="true" >月份</div>
+                <div field="beginBala" name="beginBala" width="60"  headeralign="center" allowsort="true">期初</div>
+                <div field="debit" name="debit" width="60" summaryType="sum"  headeralign="center" allowsort="true">收入</div>
+                <div field="credit" name="credit" width="60" summaryType="sum"  headeralign="center" allowsort="true">支出</div>
+                <div field="endBala" name="endBala" width="60"  headeralign="center" summaryType="sum" allowsort="true">余额</div>
            
             </div>
         </div>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-	<%@include file="/common/sysCommon.jsp"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -10,8 +10,12 @@
 -->
 <head>
 <title>客户退款明细表</title>
+	<%@include file="/common/sysCommon.jsp"%>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/refundRecord.js?v=1.0.7"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/refundRecord.js?v=1.0.8"></script>
+	
+	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -59,23 +63,25 @@
 </div>
 <div class="nui-fit">
 		<div id="datagrid1" dataField="data" class="nui-datagrid"
-			pageSize="50" onDrawCell="onDrawCell"  		
+			pageSize="500" onDrawCell="onDrawCell"  		
 			     showPager="true"    
                     totalField="page.count" showSummaryRow = "true"
                     sortMode="client"
-                    allowCellSelect="true"
+                    allowCellSelect="true" 
+                    sizeList="[500,1000,2000]"
                     allowCellEdit="true"
                     showModified="false"
                    allowCellWrap = "true"
 			      allowSortColumn="true" style="width: 100%;height:100% ">
 			<div property="columns">
-				<div field="code" headerAlign="center" allowSort="true" width="120px">
+			<div type="indexcolumn">序号</div>
+				<div field="code" name="code" headerAlign="center" allowSort="true" summaryType="count" width="120px">
 				退款单号</div>		
-				<div field="fullName" headerAlign="center" allowSort="true" width="80px">
+				<div field="fullName" name="fullName" headerAlign="center" allowSort="true" width="80px"> 
 				客户名称</div>
-				<div field="carNo" headerAlign="center" allowSort="true" width="80px">
+				<div field="carNo" name="carNo" headerAlign="center" allowSort="true" width="80px">
 				车牌号</div>				
-				<div field="mobile" headerAlign="center" allowSort="true"  width="90px">
+				<div field="mobile" name="mobile" headerAlign="center" allowSort="true"  width="90px">
 					电话</div>
 
 				<div field="refundAmt" headerAlign="center" allowSort="true" width="70px" summaryType="sum">
@@ -86,7 +92,7 @@
 					退款类型</div>
 				<div field="remark" headerAlign="center" allowSort="true" width="70px">
 				备注</div>			
-				<div field="recorder" headerAlign="center" allowSort="true" width="70px">
+				<div field="recorder" name="recorder" headerAlign="center" allowSort="true" width="70px">
 				退款人</div>	
 				<div field="recordDate" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="110px">
 					退款日期</div> 

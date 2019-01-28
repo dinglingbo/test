@@ -59,19 +59,19 @@
     <div class="nui-fit">
         <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" 
              ondrawcell="onDrawCell" showPager="true"  dataField="list"   url="" sortMode="client" 
-             pageSize="100" sizeList="[50,100,200,500]" showSummaryRow="true">
+             pageSize="500" sizeList="[500,1000,2000]" showSummaryRow="true">
             <div property="columns">
                 <div type="indexcolumn"  headeralign="center" width="20">序号</div>
-                <div field="settAccountCode" name="code" width="60" summaryType="count"  headeralign="center" >账户编码</div>
-                <div field="settAccountName" name="name" width="100"  headeralign="center" >账户名称</div>
-                <div field="shortName" name="shortName" width="100"  headeralign="center" >客户简称</div>
-                <div field="carNo" name="carNo" width="80"  headeralign="center" >车牌号</div>
-                <div field="billTypeId" name="rpDc" width="70"  headeralign="center" >收支类型</div>
-                <div field="rpDc" name="rpDc" width="50"  headeralign="center" >收/支</div>
-                <div field="charOffAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" >结算金额</div>
-                <div field="auditor" name="auditor" width="60"  headeralign="center" >结算人</div>
-                <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" >结算日期</div>
-                <div field="fullName" name="name" width="120"  headeralign="center" >客户全称</div>
+                <div field="settAccountCode" name="code" width="60" summaryType="count" allowsort="true"  headeralign="center" >账户编码</div>
+                <div field="settAccountName" name="name" width="100"  headeralign="center" allowsort="true" >账户名称</div>
+                <div field="shortName" name="shortName" width="100"  headeralign="center" allowsort="true">客户简称</div>
+                <div field="carNo" name="carNo" width="80"  headeralign="center" allowsort="true">车牌号</div>
+                <div field="billTypeId" name="rpDc" width="70"  headeralign="center" allowsort="true">收支类型</div>
+                <div field="rpDc" name="rpDc" width="50"  headeralign="center" allowsort="true">收/支</div>
+                <div field="charOffAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" allowsort="true">结算金额</div>
+                <div field="auditor" name="auditor" width="60"  headeralign="center" allowsort="true">结算人</div>
+                <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true">结算日期</div>
+                <div field="fullName" name="name" width="120"  headeralign="center" allowsort="true">客户全称</div>
            
             </div>
         </div>

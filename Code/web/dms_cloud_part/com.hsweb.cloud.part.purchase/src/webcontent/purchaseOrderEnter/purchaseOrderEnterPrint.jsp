@@ -60,15 +60,22 @@ table,td#tbody{
 		font-family: Tahoma, Geneva, sans-serif;
         font-size: 12px;
         color: #000;
-        word-wrap:break-word
-}
+       word-wrap:break-word; 
+		white-space:nowrap; 
+		overflow:hidden;
+		text-overflow:ellipsis;
+
 }
 table, td {
         font-family: Tahoma, Geneva, sans-serif;
         font-size: 12px;
         color: #000;
-        word-wrap:break-word
+        word-wrap:break-word; 
+        white-space:nowrap; 
+		overflow:hidden;
+		text-overflow:ellipsis;
     }
+
 table#ybk td{
     
 	border: 1px solid #000;

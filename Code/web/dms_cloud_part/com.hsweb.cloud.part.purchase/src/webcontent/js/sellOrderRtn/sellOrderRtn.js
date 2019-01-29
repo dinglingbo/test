@@ -35,6 +35,7 @@ var billmainTab = null;
 var partInfoTab = null;
 var guestIdEl=null;
 var autoNew = 0;
+var advancedSearchShow=0;
 var StatusHash={
 	"0"	:"草稿",
 	"1":"已提交",
@@ -103,9 +104,14 @@ $(document).ready(function(v) {
         if((keyCode==80)&&(event.altKey))  {   //打印
             onPrint();
         } 
-     
+        if((keyCode==27))  {  
+            if(advancedSearchShow==1){
+            	onAdvancedSearchCancel();
+            }
+        }
     }
-
+    
+    
     var dictDefs ={"rtnReasonId":"DDT20130703000073", "settleTypeId":"DDT20130703000035"};
     initDicts(dictDefs, function(){
         getStorehouse(function(data) {
@@ -126,7 +132,7 @@ $(document).ready(function(v) {
                 });
         
                 gsparams.auditSign = 0;
-                quickSearch(0);
+                quickSearch(15);
 
                 nui.unmask();
             });
@@ -446,6 +452,7 @@ function doSearch(params) {
 }
 function advancedSearch() {
     advancedSearchWin.show();
+    advancedSearchShow=1;
     // advancedSearchForm.clear();
     if (advancedSearchFormData) {
         advancedSearchForm.setData(advancedSearchFormData);

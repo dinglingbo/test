@@ -45,6 +45,7 @@ var setPriceWin=null;
 var partPrice=0;
 var guestIdEl=null;
 var partIn=null;
+var advancedSearchShow=0;
 // 单据状态
 var AuditSignList = [ {
 	customid : '0',
@@ -237,6 +238,8 @@ $(document).ready(function(v) {
             }
             if(partPrice == 1){
             	setPriceWin.hide();
+            }if(advancedSearchShow==1){
+            	onAdvancedSearchCancel();
             }
         }
 	 
@@ -273,7 +276,7 @@ $(document).ready(function(v) {
 		
 				gsparams.billStatusId = 0;
 				gsparams.auditSign = 0;
-				quickSearch(0);
+				quickSearch(17);
 
 				nui.unmask();
 			});
@@ -707,6 +710,7 @@ function doSearch(params) {
 }
 function advancedSearch() {
 	advancedSearchWin.show();
+	advancedSearchShow=1;
 	// advancedSearchForm.clear();
 	if (advancedSearchFormData) {
 		advancedSearchForm.setData(advancedSearchFormData);

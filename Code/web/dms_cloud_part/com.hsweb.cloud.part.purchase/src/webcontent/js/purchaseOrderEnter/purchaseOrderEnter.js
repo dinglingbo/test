@@ -35,6 +35,8 @@ var partShow = 0;
 var autoNew = 0;
 var guestIdEl=null;
 var partIn=null;
+var quickAddShow=0;
+var advancedSearchShow=0;
 
 // 单据状态
 var AuditSignList = [ {
@@ -188,6 +190,12 @@ $(document).ready(function(v) {
             if(partShow == 1){
                 onPartClose();
             }
+            if(quickAddShow==1){
+            	onAdvancedAddCancel();
+            }
+            if(advancedSearchShow==1){
+            	onAdvancedSearchCancel();
+            }
         }
 	}
 
@@ -221,7 +229,7 @@ $(document).ready(function(v) {
 		
 				gsparams.isFinished = 0;
 				gsparams.auditSign = 0;
-				quickSearch(0);
+				quickSearch(8);
 
 				nui.unmask();
 			});
@@ -596,6 +604,7 @@ function doSearch(params) {
 }
 function advancedSearch() {
 	advancedSearchWin.show();
+	advancedSearchShow=1;
 	// advancedSearchForm.clear();
 	if (advancedSearchFormData) {
 		advancedSearchForm.setData(advancedSearchFormData);
@@ -979,10 +988,10 @@ function onCellEditEnter(e){
 		var column = cell[1];
 		if(column.field == "orderQty"){
 			if(orderPrice){
-				addNewKeyRow();
+//				addNewKeyRow();
 			}
 		}else if(column.field == "orderPrice"){
-			addNewKeyRow();
+//			addNewKeyRow();
 		}else if(column.field == "remark"){
 			addNewKeyRow();
 		}else if(column.field == "comPartCode"){
@@ -2018,7 +2027,7 @@ function addMorePart(){
 	}
 	advancedAddForm.setData([]);
 	advancedAddWin.show();
-	partShow = 1;
+	quickAddShow = 1;
 
 	var fastCodeList = nui.get("fastCodeList");
 	fastCodeList.focus();
@@ -2225,7 +2234,23 @@ function setInitExportData(main, detail){
 }
 function addPchsOrder(type)
 {
+	
+	var row = leftGrid.getSelected();
+	if(row.auditSign == 1){
+		showMsg("此单已入库!","W");
+		return;
+	}
 
+	var main = basicInfoForm.getData();
+	if(!main.id){
+		showMsg("请先保存数据!","W");
+		return;
+	}
+	var data = rightGrid.getChanges()||[];
+	if (data.length>0) {
+		showMsg("请先保存数据!","W");
+		return;
+	}
     setBtnable(true);
 	setEditable(true);
 
@@ -2272,7 +2297,7 @@ function addPchsOrder(type)
 }
 
 function addOrderToEnter(data){
-
+	
     setBtnable(true);
 	setEditable(true);
 

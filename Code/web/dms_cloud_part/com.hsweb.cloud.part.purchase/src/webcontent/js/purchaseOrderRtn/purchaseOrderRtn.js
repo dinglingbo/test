@@ -113,7 +113,7 @@ $(document).ready(function(v)
                 });
     
                 gsparams.auditSign = 0;
-                quickSearch(0);
+                quickSearch(9);
 
                 nui.unmask();
             });

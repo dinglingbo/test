@@ -33,7 +33,8 @@ $(document).ready(function(v) {
     var filter = new HeaderFilter(mainGrid, {
         columns: [
             { name: 'shortName' },
-            { name: 'settleStatus' }
+            { name: 'settleStatus' },
+            { name: 'billServiceId' }
         ],
         callback: function (column, filtered) {
         },

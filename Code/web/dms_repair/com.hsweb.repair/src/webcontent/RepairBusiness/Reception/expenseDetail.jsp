@@ -10,8 +10,10 @@ pageEncoding="UTF-8" session="false"%>
   - Description:
 -->
 <head>
-    <title>费用汇总表</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/expenseDetail.js?v=1.0.0"></script>
+    <title>费用明细表</title>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/expenseDetail.js?v=1.0.4"></script>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
 
     table {
@@ -93,9 +95,9 @@ pageEncoding="UTF-8" session="false"%>
                 <div id="mainGrid" dataField="list" class="nui-datagrid" 
                  selectOnLoad="true"
                  showPager="true"
-                 pageSize="50"
+                 pageSize="500"
                  totalField="page.count"
-                 sizeList=[20,50,100,200]
+                 sizeList=[500,1000,2000]
                  dataField="list" 
                  showModified="false"
                  onrowdblclick=""
@@ -103,24 +105,26 @@ pageEncoding="UTF-8" session="false"%>
                  editNextOnEnterKey="true"
                  allowCellWrap = true
                  style="height:100%;width:100%;"
+                 sortMode="client"
+                 showSummaryRow = "true"
                 >
                 <div property="columns">
                     <div type="indexcolumn" headeralign="center" allowsort="true" visible="true" width="30">序号</div>
                       <div header="工单信息" headerAlign="center">
                         <div property="columns" >	
 		                <div field="id" headeralign="center" allowsort="true" visible="false" >主键</div>
-		                <div field="serviceCode" name="serviceCode" width="140" headerAlign="center" header="工单号"></div>
-		                <div field="contactName" headeralign="center" allowsort="true" visible="true" >客户名称</div>
-		                <div field="carNo" headeralign="center" allowsort="true" visible="true" >车牌号</div>
+		                <div field="serviceCode" name="serviceCode" width="140" headerAlign="center" header="工单号" summaryType="count"></div>
+		                <div field="contactName" name="contactName" headeralign="center" allowsort="true" visible="true" >客户名称</div>
+		                <div field="carNo" name="carNo" headeralign="center" allowsort="true" visible="true" >车牌号</div>
 		                <div field="outDate" headeralign="center" allowsort="true" visible="true" dateFormat="yyyy-MM-dd HH:mm">结算日期</div>
-		                <div field="mtAdvisor" headeralign="center" allowsort="true" visible="true">服务顾问</div>
+		                <div field="mtAdvisor" name="mtAdvisor" headeralign="center" allowsort="true" visible="true">服务顾问</div>
                       </div>
                     </div>
                     <div header="费用信息" headerAlign="center">
                       <div property="columns" >	
                         <div field="dc" headerAlign="center" allowSort="false"  header="费用分类"></div>
                         <div field="typeId" headerAlign="center" allowSort="false"  header="费用名称"></div>
-                        <div field="amt" headerAlign="center" allowSort="false"  header="金额"  summaryType="sum"></div>
+                        <div field="amt" name="amt" headerAlign="center" allowSort="false"  header="金额"  summaryType="sum"></div>
                         <div field="recorder" headerAlign="center" allowSort="false"  header="备注" align="center"></div>
                       </div>
                    </div>

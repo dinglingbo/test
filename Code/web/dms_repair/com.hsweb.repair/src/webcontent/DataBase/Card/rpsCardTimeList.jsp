@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-	<%@include file="/common/sysCommon.jsp"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -10,6 +10,7 @@
 -->
 <head>
 <title>计次卡查询</title>
+	<%@include file="/common/sysCommon.jsp"%>
 <script
 	src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.1.2"></script>
 </head>
@@ -24,7 +25,7 @@
 				<input name="serviceTypeId" id="serviceTypeId" visible="false" class="nui-combobox" textField="name" valueField="id"/>
 					   <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false" />
            			   <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="search()" />
-						办卡日期: <input id="startDate" class="mini-datepicker" required="true" />-至-
+						办卡日期 <input id="startDate" class="mini-datepicker" required="true" />-至-
 						         <input id="endDate" class="mini-datepicker" required="true" /> 
 						<a class="nui-button" onclick="search()" plain="true"> <span class="fa fa-search fa-lg"></span>&nbsp; 查询</a>
 						<a class="nui-button" onclick="searchOne()" plain="true"> <span class="fa fa-search fa-lg"></span>&nbsp; 查看详情</a>	

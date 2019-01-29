@@ -11,7 +11,8 @@ var endDateEl = null;
 var serviceTypeIdEl = null;
 var servieTypeList = [];
 var servieTypeHash = {};
-var gridUrl = apiPath + repairApi+'/com.hsapi.repair.repairService.report.queryItemTotalReport.biz.ext';
+var cType = 0;
+var gridUrl = apiPath + repairApi+'/com.hsapi.repair.report.dataStatistics.queryPartSummary.biz.ext';
 $(document).ready(function (v)
 {
 
@@ -36,10 +37,8 @@ $(document).ready(function (v)
     });
     
     grid1.setUrl(gridUrl);
-    var params ={
-        groupByType:2 // 0按日期分组  1业务类型  2工时项目
-    };
-    quickSearch(3);
+
+    quickSearch(4);
 });
 
 function load(e){
@@ -57,14 +56,18 @@ function load(e){
 
 function updateGridColoumn(e){
     var column = grid1.getColumn("groupName");
+    var partName = grid1.getColumn("partName");
     if(e == 0){
         grid1.updateColumn(column,{header:"日期"});
+        grid1.hideColumn ( partName );
     }
     if(e == 1){
         grid1.updateColumn(column,{header:"业务类型"});
+        grid1.hideColumn ( partName );
     }
     if(e == 2){
-        grid1.updateColumn(column,{header:"工时项目"});
+        grid1.updateColumn(column,{header:"配件编码"});
+        grid1.showColumn ( partName );
     }
 
 }

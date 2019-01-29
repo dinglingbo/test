@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>供应商欠款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPBillDetail.js?v=1.0.2"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPBillDetail.js?v=1.0.3"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -59,18 +59,18 @@ pageEncoding="UTF-8" session="false" %>
     <div class="nui-fit">
         <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" 
              ondrawcell="onDrawCell" showPager="true"  dataField="list"   url="" sortMode="client" 
-             pageSize="100" sizeList="[50,100,200,500]" showSummaryRow="true">
+             pageSize="500" sizeList="[500,1000,2000]" showSummaryRow="true">
             <div property="columns">
                 <div type="indexcolumn"  headeralign="center" width="20">序号</div>
-                <div field="billServiceId" name="name" summaryType="count" width="100"  headeralign="center" >业务单号</div>
-                <div field="billTypeId" name="name" width="100"  headeralign="center" >收支类型</div>
-                <div field="shortName" name="shortName" width="100"  headeralign="center" >供应商简称</div>
-                <div field="rpAmt" name="rpAmt" width="50" summaryType="sum" headeralign="center" >应付金额</div>
-                <div field="trueCharOffAmt" name="trueCharOffAmt" summaryType="sum" width="60"  headeralign="center" >已付金额</div>
-                <div field="noCharOffAmt" name="noCharOffAmt" summaryType="sum" width="60"  headeralign="center" >未付金额</div>
-                <div field="settleStatus" name="settleStatus" width="100" headeralign="center" >结算状态</div>
-                <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" >单据日期</div>
-                <div field="fullName" name="name" width="120"  headeralign="center" >供应商全称</div>
+                <div field="billServiceId" name="billServiceId" summaryType="count" width="100"  headeralign="center" allowsort="true" summaryType="count" >业务单号</div>
+                <div field="billTypeId" name="name" width="100"  headeralign="center" allowsort="true"  >收支类型</div>
+                <div field="shortName" name="shortName" width="100"  headeralign="center" allowsort="true" >供应商简称</div>
+                <div field="rpAmt" name="rpAmt" width="50" summaryType="sum" headeralign="center" allowsort="true" >应付金额</div>
+                <div field="trueCharOffAmt" name="trueCharOffAmt" summaryType="sum" width="60"  headeralign="center" allowsort="true" >已付金额</div>
+                <div field="noCharOffAmt" name="noCharOffAmt" summaryType="sum" width="60"  headeralign="center" allowsort="true" >未付金额</div>
+                <div field="settleStatus" name="settleStatus" width="100" headeralign="center" allowsort="true" >结算状态</div>
+                <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true" >单据日期</div>
+                <div field="fullName" name="name" width="120"  headeralign="center" allowsort="true" >供应商全称</div>
            
             </div>
         </div>

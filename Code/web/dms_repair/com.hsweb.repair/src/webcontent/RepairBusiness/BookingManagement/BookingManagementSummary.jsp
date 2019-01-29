@@ -11,6 +11,8 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -88,9 +90,10 @@
     sortMode="client"
     url=""
     totalField="page.count"
-    pageSize="50"
-    sizeList="[50,100,200]"
-    showSummaryRow="true">
+    pageSize="500"
+    sizeList="[500,1000,2000]"
+    showSummaryRow="true"
+    >
             <div property="columns">
         		<div type="indexcolumn">序号</div>
                 <div allowSort="true" field="groupName" name="groupName"  width="60" headerAlign="center" header="业务类型"></div>
@@ -137,17 +140,61 @@
         grid1.load({params:data,token :token});
     }
 
-
     function updateGridColoumn(e){
         var column = grid1.getColumn("groupName");
         if(e == 0){
             grid1.updateColumn(column,{header:"日期"});
+           /*  var filter = new HeaderFilter(grid1, {
+		        columns: [
+		            { name: 'groupName' }
+			        
+		        ],
+		        callback: function (column, filtered) {
+		        },
+		
+		        tranCallBack: function (field) {
+		        	var value = null;
+		        	switch(field){
+			    	}
+		        	return value;
+		        }
+		    }); */
         }
         if(e == 1){
             grid1.updateColumn(column,{header:"服务顾问"});
+              /* var filter = new HeaderFilter(grid1, {
+		        columns: [
+		            { name: 'groupName' }
+			        
+		        ],
+		        callback: function (column, filtered) {
+		        },
+		
+		        tranCallBack: function (field) {
+		        	var value = null;
+		        	switch(field){
+			    	}
+		        	return value;
+		        }
+		    }); */
         }
         if(e == 2){
             grid1.updateColumn(column,{header:"品牌车型"});
+               /* var filter = new HeaderFilter(grid1, {
+		        columns: [
+		            { name: 'groupName' }
+			        
+		        ],
+		        callback: function (column, filtered) {
+		        },
+		
+		        tranCallBack: function (field) {
+		        	var value = null;
+		        	switch(field){
+			    	}
+		        	return value;
+		        }
+		    }); */
         }
     }
 

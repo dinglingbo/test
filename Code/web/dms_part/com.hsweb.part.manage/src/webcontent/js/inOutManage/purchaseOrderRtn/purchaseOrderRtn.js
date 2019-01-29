@@ -1003,7 +1003,7 @@ function add()
     					nui.get("orderMan").setText(orderMan);
     				}
                     addNewRow();
-
+                    
                     var guestId = nui.get("guestId");
                     guestId.focus();
 

@@ -65,28 +65,29 @@ pageEncoding="UTF-8" session="false" %>
     </div>
 
     <div class="nui-fit">
-        <div id="grid" class="nui-datagrid" datafield="list" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:100%;"
-            totalField="page.count"> 
+        <div id="grid" class="nui-datagrid" datafield="list" allowcelledit="true"     pageSize="500" sizeList="[500,1000,2000]"url="" allowcellwrap="true" style="width:100%;height:100%;" sortMode="client"
+            totalField="page.count" showSummaryRow = "true" allowSortColumn="true"> 
             <div property="columns">
-                <div field="serviceCode" name="serviceCode" headeralign="center" width="170" align="center">工单号</div>
-                <div field="serviceTypeId" name="serviceTypeId" headeralign="center" width="80" align="center">业务类型</div>
-                <div field="itemName" name="itemName" headeralign="center" width="100" align="center">项目名称</div>
-                <div field="carNo" name="carNo" headeralign="center" width="80" align="center">车牌号</div>
-                <div field="carModel" name="carModel" headeralign="center" width="200" align="center" width="160">品牌车型</div>
-                <div field="guestName" name="guestName" headeralign="center" width="100" align="center">客户名称</div>
-                <div field="carVin" name="carVin" headeralign="center" width="150" align="center">车架号(VIN)</div>
-                <div field="itemTime" name="itemTime" headeralign="center" width="80" align="center">工时</div>
-                <div field="unitPrice" name="unitPrice" headeralign="center" width="80" align="center">单价</div>
-                <div field="amt" name="amt" headeralign="center" width="80" align="center">金额</div>
-                <div field="rate" name="rate" headeralign="center" width="80" align="center">优惠率</div>
-                <div field="subtotal" name="subtotal" headeralign="center" width="80" align="center">小计</div>
+            	<div type="indexcolumn" width="40" >序号</div>
+                <div field="serviceCode" name="serviceCode" headeralign="center" width="170" align="center" summaryType="count" allowsort="true">工单号</div>
+                <div field="serviceTypeId" name="serviceTypeId" headeralign="center" width="80" align="center" allowsort="true">业务类型</div>
+                <div field="itemName" name="itemName" headeralign="center" width="100" align="center" allowsort="true">项目名称</div>
+                <div field="carNo" name="carNo" headeralign="center" width="80" align="center" allowsort="true">车牌号</div>
+                <div field="carModel" name="carModel" headeralign="center" width="200" align="center" width="160" allowsort="true">品牌车型</div>
+                <div field="guestName" name="guestName" headeralign="center" width="100" align="center" allowsort="true">客户名称</div>
+                <div field="carVin" name="carVin" headeralign="center" width="150" align="center" allowsort="true">车架号(VIN)</div>
+                <div field="itemTime" name="itemTime" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true">工时</div>
+                <div field="unitPrice" name="unitPrice" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true">单价</div>
+                <div field="amt" name="amt" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true">金额</div>
+                <div field="rate" name="rate" headeralign="center" width="80" align="center"  allowsort="true">优惠率</div>
+                <div field="subtotal" name="subtotal" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true">小计</div>
                 <!-- <div field="" name="" headeralign="center" width="100" align="center">来店途径</div> -->
-                <div field="workers" name="workers" headeralign="center" width="100" align="center">施工员</div>
-                <div field="status" name="status" renderer="onStatusRenderer" headeralign="center" width="80" align="center">状态</div>
-                <div field="isBack" name="isBack" renderer="onIsBackRenderer" headeralign="center" width="80" align="center">是否返工</div>
-                <div field="mtAdvisor" name="mtAdvisor" headeralign="center" width="100" align="center">服务顾问</div>
-                <div field="finishDate" name="finishDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd">完工日期</div>
-                <div field="outDate" name="outDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd">结算日期</div>
+                <div field="workers" name="workers" headeralign="center" width="100" align="center" allowsort="true">施工员</div>
+                <div field="status" name="status" renderer="onStatusRenderer" headeralign="center" width="80" align="center" allowsort="true">状态</div>
+                <div field="isBack" name="isBack" renderer="onIsBackRenderer" headeralign="center" width="80" align="center" allowsort="true">是否返工</div>
+                <div field="mtAdvisor" name="mtAdvisor" headeralign="center" width="100" align="center" allowsort="true">服务顾问</div>
+                <div field="finishDate" name="finishDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd" allowsort="true">完工日期</div>
+                <div field="outDate" name="outDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd" allowsort="true">结算日期</div>
             </div>
         </div>
     </div>
@@ -153,7 +154,9 @@ pageEncoding="UTF-8" session="false" %>
             if (e.field == "serviceTypeId") {
                 e.cellHtml = servieTypeHash[e.value].name;
             }
-
+			if (e.field == "rate") {
+                e.cellHtml = e.value+"%";
+            }
             document.onkeyup = function (event) {
                 var e = event || window.event;
                 var keyCode = e.keyCode || e.which; // 38向上 40向下
@@ -169,6 +172,8 @@ pageEncoding="UTF-8" session="false" %>
 	        columns: [
 	            { name: 'itemName' },
 	            { name: 'carModel' },
+	            { name: 'serviceCode' },
+	            { name: 'carNo' },
 		            { name: 'workers' },
 	            { name: 'mtAdvisor' },
 	            { name: 'guestName' }

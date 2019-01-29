@@ -34,6 +34,7 @@ var oldRow = null;
 var partShow = 0;
 var autoNew = 0;
 var guestIdEl=null;
+var partIn=null;
 
 // 单据状态
 var AuditSignList = [ {
@@ -172,10 +173,14 @@ $(document).ready(function(v) {
 
 		if((keyCode==13))  {  //新建
             if(partShow == 1) {
-				var row = morePartGrid.getSelected();
-				if(row){
-					addSelectPart();
-				}
+            	if(partIn!=false){
+            		var row = morePartGrid.getSelected();
+    				if(row){
+    					addSelectPart();
+    				}
+    				
+            	}
+            	partIn=true;
 			}
         } 
 
@@ -1140,6 +1145,12 @@ function getPartInfo(params){
 					morePartGrid.setData(partlist);
 					partShow = 1;
 					event.keyCode = null;
+					var row = morePartGrid.getRow(0);
+			        if(row){
+			            morePartGrid.select(row,true);
+			        }
+			        partIn=false;
+
 				}
 				
 			}else{
@@ -1651,7 +1662,8 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 									if(action== 'ok'){
 										onPrint();
 									}else{
-										
+										rightGrid.setData([]);
+			    						add();
 									}
 								});
 								// 保存成功后重新加载数据
@@ -1863,6 +1875,11 @@ function onPrint(){
            iframe.contentWindow.SetData(params,detailParams);
        },
    });
+    if(checkNew() > 0){
+    	return;
+    }
+    rightGrid.setData([]);
+	add();
 }
 //function onPrint() {
 //	var row = leftGrid.getSelected();

@@ -11,7 +11,9 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>查车单明细表</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkMainDetail.js?v=1.0.2"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkMainDetail.js?v=1.0.5"></script>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
 
     table {
@@ -76,9 +78,9 @@ pageEncoding="UTF-8" session="false"%>
                 <div id="leftGrid" dataField="list" class="nui-datagrid" 
                  selectOnLoad="true"
                  showPager="true"
-                 pageSize="50"
+                 pageSize="500"
                  totalField="page.count"
-                 sizeList=[20,50,100,200]
+                 sizeList=[500,1000,2000]
                  dataField="list" 
                  showModified="false"
                  onrowdblclick=""
@@ -86,30 +88,32 @@ pageEncoding="UTF-8" session="false"%>
                  editNextOnEnterKey="true"
                  allowCellWrap = true
                  style="height:100%;width:100%;"
-                 onshowrowdetail="onShowRowDetail">
+                 onshowrowdetail="onShowRowDetail"
+                 sortMode="client"
+                 >
                 <div property="columns">
                     <div type="indexcolumn" headeralign="center" allowsort="true" visible="true" width="30">序号</div>
                     <div type="expandcolumn" width="20" visible="true"><span class="fa fa-plus fa-lg"></span></div>
                     <div header="客户车辆信息" headerAlign="center">
                        <div property="columns" >	
 		                <div field="id" headeralign="center" allowsort="true" visible="false" >主键</div>
-		                <div field="contactName" headeralign="center" allowsort="true" visible="true" >客户名称</div>
+		                <div field="contactName" name="contactName" headeralign="center" allowsort="true" visible="true" >客户名称</div>
 		                <div field="contactMobile" headeralign="center" allowsort="true" visible="true" >客户手机</div>
-		                <div field="carNo" headeralign="center" allowsort="true" visible="true" >车牌号</div>
-		                <div field="carModel" headeralign="center" allowsort="true" visible="true">品牌车型</div>
+		                <div field="carNo"  name="carNo" headeralign="center" allowsort="true" visible="true" >车牌号</div>
+		                <div field="carModel" name="carModel" headeralign="center" allowsort="true" visible="true">品牌车型</div>
 		                <div field="carVin" headeralign="center" allowsort="true" visible="true" width="120">车架号(VIN)</div>
                       </div>
                     </div>
                     <div header="工单信息" headerAlign="center">
                       <div property="columns" >	
-                          <div field="serviceCode" name="serviceCode" width="140" headerAlign="center" header="工单号"></div> 
-                          <div field="checkMan" name="recordDate" width="100" headerAlign="center" header="查车技师" ></div>
-                          <div field="checkPoint" headerAlign="center" allowSort="false" visible="true"  align="center" header="本次检查得分"> </div>
-                          <div field="lastPoint" headerAlign="center" allowSort="false" visible="true"  align="center" header="上次次检查得分"> </div>
-                          <div field="lastCheckDate" name="lastCheckDate" width="100" headerAlign="center" header="上次检查时间" dateFormat="yyyy-MM-dd HH:mm"></div>
-                          <div field="checkDate" name="checkDate" width="100" headerAlign="center" header="本次检查时间" dateFormat="yyyy-MM-dd HH:mm"></div>
-                          <div field="enterKilometers" headerAlign="center" allowSort="false" visible="true"   align="center" header="本次检查里程"> </div>
-                          <div field="lastKilometers" headerAlign="center" allowSort="false" visible="true"   align="center" header="上次检查里程"> </div>
+                          <div field="serviceCode" name="serviceCode" allowsort="true" width="140" headerAlign="center" header="工单号"></div> 
+                          <div field="checkMan" name="checkMan" width="100" allowsort="true" headerAlign="center" header="查车技师" ></div>
+                          <div field="checkPoint" name="checkPoint" headerAlign="center" allowsort="true" visible="true"  align="center" header="本次检查得分"> </div>
+                          <div field="lastPoint" name="lastPoint" headerAlign="center" allowsort="true" visible="true"  align="center" header="上次次检查得分"> </div>
+                          <div field="lastCheckDate" name="lastCheckDate" allowsort="true" width="100" headerAlign="center" header="上次检查时间" dateFormat="yyyy-MM-dd HH:mm"></div>
+                          <div field="checkDate" name="checkDate" width="100" allowsort="true" headerAlign="center" header="本次检查时间" dateFormat="yyyy-MM-dd HH:mm"></div>
+                          <div field="enterKilometers" headerAlign="center" allowsort="true" visible="true"   align="center" header="本次检查里程"> </div>
+                          <div field="lastKilometers" headerAlign="center" allowsort="true" visible="true"   align="center" header="上次检查里程"> </div>
                       </div>
                    </div>
                 </div>

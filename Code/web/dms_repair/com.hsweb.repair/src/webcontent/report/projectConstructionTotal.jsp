@@ -75,19 +75,19 @@
     sortMode="client"
     url=""
     totalField="page.count"
-    pageSize="10000"
-    sizeList="[1000,5000,10000]"
+    pageSize="500"
+    sizeList="[500,1000,2000]" showSummaryRow = "true"
     showSummaryRow="true">
     <div property="columns">
         <div type="indexcolumn">序号</div>
         <div header="业务信息" headerAlign="center">
             <div property="columns">
                 <div allowSort="true" field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型"></div>
-                <div allowSort="true" field="tc" width="60" headerAlign="center" header="施工台次"></div>
-                <div allowSort="true" field="itemTime" width="60" headerAlign="center" header="工时时间"></div>
-                <div allowSort="true" field="subtotal" width="60" headerAlign="center" header="工时收入"></div>
-                <div allowSort="true" field="costAmt" width="60" headerAlign="center" header="工时成本"></div>
-                <div allowSort="true" field="retc" width="60" headerAlign="center" header="返工台次"></div>
+                <div allowSort="true" field="tc" width="60" headerAlign="center" summaryType="sum" header="施工台次"></div>
+                <div allowSort="true" field="itemTime" width="60" headerAlign="center" summaryType="sum" header="工时时间"></div>
+                <div allowSort="true" field="subtotal" width="60" headerAlign="center" summaryType="sum" header="工时收入"></div>
+                <div allowSort="true" field="costAmt" width="60" headerAlign="center" summaryType="sum" header="工时成本"></div>
+                <div allowSort="true" field="retc" width="60" headerAlign="center" summaryType="sum" header="返工台次"></div>
                 <div allowSort="true" field="retcRate" width="60" headerAlign="center" header="返工占比"></div>
             </div>
         </div>
@@ -112,7 +112,7 @@
         groupByType:2 // 0按日期分组  1业务类型  2工时项目
     };
 
-quickSearch(3);
+quickSearch(4);
 
 
     initServiceType("serviceTypeId",function(data) {

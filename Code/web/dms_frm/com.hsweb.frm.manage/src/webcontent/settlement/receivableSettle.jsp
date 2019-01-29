@@ -9,7 +9,7 @@
 
 <head>
 	<title>应收账款管理</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.6.6"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/receivableSettle.js?v=1.6.7"></script>
 	    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">
@@ -119,7 +119,7 @@
 							<li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
 						</ul>
 						<input class="nui-combobox"
-						data="[{value:'0',text:'未结算',},{value:'1',text:'部分结算'},{value:'2',text:'已结算'},{value:'3',text:'全部'}]"
+						data="[{value:'0',text:'未收款',},{value:'1',text:'部分收款'},{value:'2',text:'已收款'},{value:'3',text:'全部'}]"
 						textField="text" valueField="value" name="settleStatus" id="settleStatus" width="90px"
 						value="0" onvalidation="onSearch()"  />
 						<label style="font-family: Verdana;">转单日期 从：</label>

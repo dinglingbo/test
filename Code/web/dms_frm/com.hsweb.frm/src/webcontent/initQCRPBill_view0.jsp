@@ -8,7 +8,7 @@
 -->
 <head>
 <title>期初应收应付</title>
-<script src="<%=webPath + contextPath%>/frm/js/settle/initQCRPBill.js?v=1.1.7"></script>
+<script src="<%=webPath + contextPath%>/frm/js/settle/initQCRPBill.js?v=1.1.9"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -71,7 +71,8 @@
                         <div type="indexcolumn">序号</div>
                         <div field="guestId" width="50" headerAlign="center" visible="false"></div>
                         <div field="billDc" width="50" headerAlign="center" visible="false"></div>
-                        <div field="guestFullName" summaryType="count" width="50" headerAlign="center" header="往来单位全称"></div>
+                        <div field="guestFullName" summaryType="count" width="100" headerAlign="center" header="往来单位全称"></div>
+                         <div field="carNo" name="carNo" width="70" headerAlign="center" header="车牌号"></div>
                         <div field="guestShortName" width="100" headerAlign="center" header="往来单位简称"></div>
                         <div field="code" headerAlign="center" header="往来单位编码"></div>
                         <div field="ramt" width="60" summaryType="sum" headerAlign="center" header="应收">
@@ -80,7 +81,9 @@
                         <div field="pamt" width="60" summaryType="sum" headerAlign="center" header="应付">
                           <input property="editor" vtype="float" class="nui-textbox"/>
                         </div>
-                        <div field="remark" width="40" headerAlign="center" header="备注"></div>
+                        <div field="remark" width="40" headerAlign="center" header="备注">
+                        	<input property="editor"  class="nui-textbox"/>
+                        </div>
                             
                     </div>  
                   

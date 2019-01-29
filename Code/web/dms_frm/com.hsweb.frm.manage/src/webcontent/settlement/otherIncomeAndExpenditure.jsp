@@ -12,8 +12,11 @@
 <head>
 <title>其他收支明细</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/otherIncomeAndExpenditure.js?v=1.0.8">
+	src="<%=request.getContextPath()%>/manage/settlement/js/otherIncomeAndExpenditure.js?v=1.0.9">
 	</script>
+	
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -58,28 +61,27 @@
 	</div>
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="list" class="nui-datagrid" 
-			style="width: 100%; height: 100%;" pageSize="20" showPageInfo="true" totalField="page.count" allowCellWrap="true"
-			onDrawCell="onDrawCell" onselectionchanged="selectionChanged"
-			allowSortColumn="false">
+			style="width: 100%; height: 100%;" pageSize="500" sizeList="[500,1000,2000]" showPageInfo="true" totalField="page.count" allowCellWrap="true"
+			onDrawCell="onDrawCell" onselectionchanged="selectionChanged" sortMode="client" showSummaryRow = "true" >
 			<div property="columns">
-				<div type="indexcolumn" header="序号" width="20px"></div>
-				<div field="guestName" headerAlign="center" allowSort="true" width="120px">往来单位名称</div>
-				<div field="billTypeId" headerAlign="center" allowSort="true" width="80px">
+				<div type="indexcolumn"  header="序号" width="20px"></div>
+				<div field="guestName" name="guestName" headerAlign="center" allowSort="true" width="120px">往来单位名称</div>
+				<div field="billTypeId" name="" headerAlign="center" allowSort="true" width="80px">
 					收支项目</div>
-				<div field="charOffAmt" headerAlign="center" allowSort="true" width="40px">
+				<div field="charOffAmt" name="" headerAlign="center" allowSort="true" width="40px" summaryType="sum">
 					金额</div>
-				<div field="remark" headerAlign="center" allowSort="true" width="140px">
+				<div field="remark" name="" headerAlign="center" allowSort="true" width="140px">
 					备注</div>
-				<div field="billDc" headerAlign="center" allowSort="true" width="40px">
+				<div field="billDc" name="" headerAlign="center" allowSort="true" width="40px">
 					交易类型</div>
 
-				<div field="createDate" headerAlign="center" allowSort="true" width="80px" dateFormat="yyyy-MM-dd HH:mm">发生日期</div>
-				<div field="rpBillId" headerAlign="center" allowSort="true" width="120px">
+				<div field="createDate" name="" headerAlign="center" allowSort="true" width="80px" dateFormat="yyyy-MM-dd HH:mm">发生日期</div>
+				<div field="rpBillId" name="rpBillId" headerAlign="center" allowSort="true" width="120px" summaryType="count">
 					收支单号</div>
-				<div field="auditor" headerAlign="center" allowSort="true" width="50px">审核人</div>
-				<div field="auditDate" headerAlign="center" allowSort="true" width="80px" dateFormat="yyyy-MM-dd HH:mm">审核日期</div>
-				<div field="auditSign" headerAlign="center" allowSort="true" width="40px">审核状态</div>
-				<div field="settleStatus" headerAlign="center" allowSort="true" width="40px">结算状态</div>
+				<div field="auditor" name="" headerAlign="center" allowSort="true" width="50px">审核人</div>
+				<div field="auditDate" name="" headerAlign="center" allowSort="true" width="80px" dateFormat="yyyy-MM-dd HH:mm">审核日期</div>
+				<div field="auditSign" name="" headerAlign="center" allowSort="true" width="60px">审核状态</div>
+				<div field="settleStatus" name="" headerAlign="center" allowSort="true" width="60px">结算状态</div>
 			</div>
 		</div>
 	</div>

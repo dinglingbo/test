@@ -324,7 +324,7 @@
 				a.bala_type_code
     </select>
     
-    <select id="queryOtherIncomeAndExpenditure" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    <select id="queryOtherIncomeAndExpenditureSummary" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 			SELECT
 				a.guest_name AS guestName,
 				b.name    AS billTypeId,
@@ -412,5 +412,56 @@
     	where is_default = 1 and orgid=#orgid#
     </update> 
     
+    
+    <!--其他收支汇总表-->
+	<select id="queryTechnicianSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+    <isEqual  prepend=""  property="groupByType"   compareValue="0">
+        DATE_FORMAT(b.out_date,'%Y-%m-%d')  as groupName,
+     </isEqual>
+        
+     
+      <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	 b.service_type_id as groupName,
+	    </isEqual> 
+	     
+	   <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	 a.worker as groupName,
+	    </isEqual> 
+	      	       
+    	
+    	  	sum(a.sales_deduct_value) as salesDeductValue,
+    	  	sum(a.tech_deduct_value) as techDeductValue,
+       		sum(a.advisor_deduct_value) as advisorDeductValue, 
+       		sum(a.annual_inspection_deduct_value) as annualInspectionDeductValue, 
+       		sum(a.insure_due_deduct_value) as insureDueDeductValue,
+       		sum(a.vessel_tax_deduct_value) as vesselTaxDeductValue,
+       		sum(a.total_deduct_amt) as totalDeductAmt
+		from wb_repair.rps_deduct_detail a
+		inner join wb_repair.rps_maintain b on a.service_id = b.id 
+		inner join rps_settlement c on (b.id =  c.service_id)
+		where b.is_settle = 1 and b.orgid = #orgid#
+		and b.bill_type_id in (0,2,4)
+		
+            <isNotEmpty prepend="and" property="startDate">  
+                (b.out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (b.out_date &lt; #endDate#)
+            </isNotEmpty>
+ 
+        <isEqual  prepend="" property="groupByType"   compareValue="0">
+	        GROUP BY DATE_FORMAT(b.out_date,'%Y-%m-%d')
+	   </isEqual>
+	   
+        <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	group by b.service_type_id
+	    </isEqual>
+	    
+	    <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	group by a.worker 
+	    </isEqual>  
+	    	
+	</select>
     
     </sqlMap>

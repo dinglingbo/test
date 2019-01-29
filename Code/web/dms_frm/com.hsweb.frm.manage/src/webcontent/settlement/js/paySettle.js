@@ -67,11 +67,11 @@ var billStatusHash = {
 	"3" : "已取消"
 };
 var settleStatusHash = {
-	"0" : "未结算",
-	"1" : "部分结算",
-	"2" : "已结算"
+	"0" : "未付款",
+	"1" : "部分付款",
+	"2" : "已付款"
 };
-var headerHash = [{ name: '未结算', id: '0' }, { name: '部分结算', id: '1' }, { name: '已结算', id: '2' }];
+var headerHash = [{ name: '未付款', id: '0' }, { name: '部分付款', id: '1' }, { name: '已付款', id: '2' }];
 var balanceList = [ {
 	id : 0,
 	text : "未对"
@@ -84,13 +84,13 @@ var balanceList = [ {
 } ];
 var settleStatusList = [ {
 	id : 0,
-	text : "未结算"
+	text : "未付款"
 }, {
 	id : 1,
-	text : "部分结算"
+	text : "部分付款"
 }, {
 	id : 2,
-	text : "已结算"
+	text : "已付款"
 } ];
 var typeIdHash = {
 	1 : "采购订单",

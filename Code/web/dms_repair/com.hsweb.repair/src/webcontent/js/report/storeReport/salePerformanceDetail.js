@@ -7,7 +7,7 @@
  var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"工单号"}];
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var webBaseUrl = webPath + contextPath + "/";
-var gridUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.report.queryTechnicianDetail.biz.ext';
+var gridUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.report.querysaleDetail.biz.ext';
 var mtAdvisorIdEl = null;
 var grid = null;
 var form = null;

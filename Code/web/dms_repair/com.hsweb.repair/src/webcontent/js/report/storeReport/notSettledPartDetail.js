@@ -18,19 +18,19 @@ var storeHash = {};
 var billTypeIdHash = {};
 var settTypeIdHash = {};
 var outTypeIdHash = {};
-var sOutDateEl=null;
-var eOutDateEl =null;
-var sPickDateEl =null;
-var ePickDateEl=null;
+//var sOutDateEl=null;
+//var eOutDateEl =null;
+//var sPickDateEl =null;
+//var ePickDateEl=null;
 $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
-    sOutDateEl =nui.get('sOutDate');
-    eOutDateEl = nui.get('eOutDate');
+    //sOutDateEl =nui.get('sOutDate');
+   // eOutDateEl = nui.get('eOutDate');
     
-    sPickDateEl =nui.get('sPickDate');
-    ePickDateEl = nui.get('ePickDate');
+   // sPickDateEl =nui.get('sPickDate');
+   // ePickDateEl = nui.get('ePickDate');
     setReturnSign = mini.get("ReturnSign");
 	document.onkeyup = function(event) {
 		var e = event || window.event;
@@ -131,8 +131,8 @@ $(document).ready(function(v)
 	
 	
 	
-    quickSearch(4);
-
+    //quickSearch(4);
+	onSearch();
 	getAllPartType(function(data){
 		partTypeList=data.partTypes;
 		nui.get('partTypeId').setData(partTypeList);
@@ -148,19 +148,19 @@ function getSearchParams(){
     params.partBrandId=nui.get("partBrandId").getValue();
     params.partTypeId=nui.get("partTypeId").value;
     params.storeId=nui.get("storeId").getValue();
-    params.sPickDate=nui.get("sPickDate").getFormValue();
+   // params.sPickDate=nui.get("sPickDate").getFormValue();
     params.carNo = nui.get("carNo").getValue();
-    if(eOutDateEl.getValue()){ 	
+   /* if(eOutDateEl.getValue()){ 	
     	params.ePickDate=addDate(eOutDateEl.getValue(),1);
-    }
-    params.sOutDate=nui.get("sOutDate").getFormValue();
-    if(eOutDateEl.getValue()){
+    }*/
+   // params.sOutDate=nui.get("sOutDate").getFormValue();
+    /*if(eOutDateEl.getValue()){
     	params.eOutDate=addDate(eOutDateEl.getValue(),1);	
-    }
+    }*/
     return params;
 }
-var currType = 2;
-function quickSearch(type){
+//var currType = 2;
+/*function quickSearch(type){
 	var params = getSearchParams();
     var queryname = "本日";
     switch (type)
@@ -220,10 +220,10 @@ function quickSearch(type){
     currType = type;
     sPickDateEl.setValue(params.sPickDate);
     ePickDateEl.setValue(addDate(params.ePickDate,-1));
-    var menunamedate = nui.get("menunamedate");
-    menunamedate.setText(queryname);
+   // var menunamedate = nui.get("menunamedate");
+   // menunamedate.setText(queryname);
     doSearch(params);
-}
+}*/
 
 function onSearch(){
 	var params=getSearchParams();
@@ -232,12 +232,12 @@ function onSearch(){
 function doSearch(params)
 {
 	params.orgid = currOrgId;
-  //params.returnSign = 0; //出库
-//	params.isSettle=1; //已结算
-//	params.status=2; //状态已完工
 	if(!setReturnSign.checked){	
 		params.returnSign = 0;
 	}
+  //params.returnSign = 0; //出库
+	params.isSettle=0; //已结算
+//	params.status=2; //状态已完工
     rightGrid.load({
         params:params,
         token :token     
@@ -295,6 +295,7 @@ function editSell(){
 function changed(){
 	var params=getSearchParams();
 	params.orgid = currOrgId;
+	params.isSettle=0;
 	if(!setReturnSign.checked){	
 		params.returnSign = 0;
 	}

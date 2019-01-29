@@ -44,6 +44,8 @@ var advancedTipWin = null;
 var setPriceWin=null;
 var partPrice=0;
 var guestIdEl=null;
+var partIn=null;
+var advancedSearchShow=0;
 // 单据状态
 var AuditSignList = [ {
 	customid : '0',
@@ -177,6 +179,7 @@ $(document).ready(function(v) {
     	
 	});
 	
+    
 	morePartGrid.on("drawcell",function(e){
         switch (e.field)
         {
@@ -214,11 +217,15 @@ $(document).ready(function(v) {
 		} 
 		
 		if((keyCode==13))  {  //新建
-            if(partShow == 1) {
-				var row = morePartGrid.getSelected();
-				if(row){
-					addSelectPart();
-				}
+            if(partShow == 1 ) {
+            	if(partIn!=false){
+            		var row = morePartGrid.getSelected();
+    				if(row){
+    					addSelectPart();
+    				}
+    				
+            	}
+            	partIn=true;
 			}
         } 
 
@@ -231,6 +238,8 @@ $(document).ready(function(v) {
             }
             if(partPrice == 1){
             	setPriceWin.hide();
+            }if(advancedSearchShow==1){
+            	onAdvancedSearchCancel();
             }
         }
 	 
@@ -267,7 +276,7 @@ $(document).ready(function(v) {
 		
 				gsparams.billStatusId = 0;
 				gsparams.auditSign = 0;
-				quickSearch(0);
+				quickSearch(17);
 
 				nui.unmask();
 			});
@@ -701,6 +710,7 @@ function doSearch(params) {
 }
 function advancedSearch() {
 	advancedSearchWin.show();
+	advancedSearchShow=1;
 	// advancedSearchForm.clear();
 	if (advancedSearchFormData) {
 		advancedSearchForm.setData(advancedSearchFormData);
@@ -1259,6 +1269,11 @@ function getPartInfo(params){
 					advancedMorePartWin.show();
 					morePartGrid.setData(partlist);
 					partShow = 1;
+				    var row = morePartGrid.getRow(0);
+			        if(row){
+			            morePartGrid.select(row,true);
+			        }
+			        partIn=false;
 					//mainTabs.activeTab(partInfoTab);
 					//var partCode = params.partCode;
 					//var partName = params.partName;
@@ -1485,6 +1500,10 @@ function addInsertRow(value,row) {
 			rightGrid.updateRow(row,newRow);
 			rightGrid.beginEditCell(row, "comPartCode");
 		}
+//	    var row2 = morePartGrid.getRow(0);
+//        if(row2){
+//            morePartGrid.select(row2,true);
+//        }
 		return true;
 	}
 
@@ -1867,7 +1886,8 @@ function orderEnter(mainId) {
 							if(action== 'ok'){
 								onPrint();
 							}else{
-								
+								rightGrid.setData([]);
+	    						add();
 							}
 						});
 //						rightGrid.setData([]);
@@ -2068,6 +2088,11 @@ function onPrint(){
            iframe.contentWindow.SetData(params,detailParams);
        },
    });
+    if(checkNew() > 0){
+    	return;
+    }
+    rightGrid.setData([]);
+	add();
 }
 //function onPrint() {
 //	var row = leftGrid.getSelected();

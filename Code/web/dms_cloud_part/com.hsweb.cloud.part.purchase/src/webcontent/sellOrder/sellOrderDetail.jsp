@@ -21,7 +21,7 @@
                     <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
                 </ul>
 
-                <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">草稿</a>
+                <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">所有</a>
 
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
                 	<li iconCls="" onclick="quickSearch(10)" id="type10">所有</li>
@@ -44,9 +44,9 @@
                 <span class="separator"></span>
                 <a class="nui-button" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
-                <a class="nui-button" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
-                <a class="nui-button" plain="true" onclick="auditToOut()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a>
-                <a class="nui-button" plain="true" onclick="packOut()" id="auditBtn"><span class="fa fa-truck fa-lg"></span>&nbsp;发货</a>
+                <a class="nui-button"  plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;提交</a>
+                <a class="nui-button" style="display:none;"plain="true" onclick="auditToOut()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;出库</a>
+                <a class="nui-button" style="display:none;" plain="true" onclick="packOut()" id="auditBtn"><span class="fa fa-truck fa-lg"></span>&nbsp;发货</a>
                 <a class="nui-button" plain="true" onclick="onPrint()" id="printBtn"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                 <span class="separator"></span>
                 <a class="nui-button" plain="true" onclick="unAudit()" id="unAuditBtn"><span class="fa fa-mail-reply fa-lg"></span>&nbsp;返单</a>

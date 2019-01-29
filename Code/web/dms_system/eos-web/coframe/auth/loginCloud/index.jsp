@@ -40,8 +40,7 @@
     #_sys_tip_msg_ {
         z-index: 9999;
         position: fixed;
-        left: -20;
-        top: 190;
+        top: 50%;
         text-align: center;/* right*/        
 
 

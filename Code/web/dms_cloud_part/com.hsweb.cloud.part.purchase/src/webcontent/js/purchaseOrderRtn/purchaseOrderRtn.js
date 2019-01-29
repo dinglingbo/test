@@ -30,6 +30,10 @@ var isNeedSet = false;
 var oldValue = null;
 var oldRow = null;
 var guestIdEl=null;
+var partShow=0;
+var moreSearchShow=0;
+var autoNew = 0;
+var partIn=null;
 
 var AuditSignHash = {
   "0":"草稿",
@@ -87,6 +91,8 @@ $(document).ready(function(v)
     eOrderDate = nui.get("eOrderDate");
 
     var dictDefs ={"rtnReasonId":"DDT20130703000072", "settleTypeId":"DDT20130703000035"};
+    
+    
     initDicts(dictDefs, function(){
         getStorehouse(function(data)
         {
@@ -107,14 +113,55 @@ $(document).ready(function(v)
                 });
     
                 gsparams.auditSign = 0;
-                quickSearch(0);
+                quickSearch(9);
 
                 nui.unmask();
             });
         });
     });
     
+    document.onkeyup=function(event){
+	    var e=event||window.event;
+	    var keyCode=e.keyCode||e.which;
+	  
+	    if((keyCode==78)&&(event.altKey))  {  //新建
+			add();	
+	    } 
+	  
+	    if((keyCode==83)&&(event.altKey))  {   //保存
+			save();
+	    } 
+	  
+	    if((keyCode==80)&&(event.altKey))  {   //打印
+			onPrint();
+	    } 
+	    if((keyCode==113))  {  
+			addMorePart();
+		} 
 
+		if((keyCode==13))  {  //新建
+            if(partShow == 1) {
+            	if(partIn!=false){
+            		var row = morePartGrid.getSelected();
+    				if(row){
+    					addSelectPart();
+    				}
+    				
+            	}
+            	partIn=true;
+			}
+        } 
+
+        if((keyCode==27))  {  //ESC
+            if(partShow == 1){
+                onPartClose();
+            }
+            if(moreSearchShow==1){
+            	onAdvancedSearchCancel();
+            }
+        }
+	}
+    
     $("#guestId").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             var rtnReasonId = nui.get("rtnReasonId");
@@ -126,6 +173,7 @@ $(document).ready(function(v)
             addNewRow(true);
         }
     });
+    add();
 });
 //返回类型给srvBottom，用于srvBottom初始化
 function confirmType(){
@@ -188,6 +236,11 @@ function loadRightGridData(mainId)
     },function(){
 
         var data = rightGrid.getData();
+        
+        if(autoNew == 0){
+			add();
+			autoNew = 1;
+        }
         if(data && data.length <= 0){
             addNewRow(false);
         }else{
@@ -538,6 +591,11 @@ function doSearch(params)
             setBtnable(false);
             setEditable(false);
             
+            if(autoNew == 0){
+				add();
+				autoNew = 1;
+			}
+            
         }else {
             var row = leftGrid.getSelected();
             if(row.auditSign == 1) {
@@ -555,6 +613,7 @@ function doSearch(params)
 function advancedSearch()
 {
     advancedSearchWin.show();
+    moreSearchShow=1;
 //    advancedSearchForm.clear();
     if(advancedSearchFormData)
     {
@@ -756,7 +815,8 @@ function audit()
     					if(action== 'ok'){
     						onPrint();
     					}else{
-    						
+    						rightGrid.setData([]);
+    						add();
     					}
     				});
                 }
@@ -820,11 +880,13 @@ function auditToOut()
                 leftGrid.updateRow(row, newRow);
 
                 setBtnable(false);
+				loadMainAndDetailInfo(leftRow);
                 nui.confirm("是否打印？", "友情提示", function(action) {
 					if(action== 'ok'){
 						onPrint();
 					}else{
-						
+						rightGrid.setData([]);
+						add();
 					}
 				});
                 
@@ -870,6 +932,12 @@ function onPrint(){
            iframe.contentWindow.SetData(params,detailParams);
        },
    });
+    if(checkNew() > 0){
+    	return;
+    }
+    rightGrid.setData([]);
+	add();
+	
 }
 //function onPrint() {
 //    var row = leftGrid.getSelected();
@@ -935,7 +1003,6 @@ function add()
                     nui.get("orderMan").setValue(currUserName);
                     
                     addNewRow();
-
                     var guestId = nui.get("guestId");
                     guestId.focus();
 
@@ -964,7 +1031,6 @@ function add()
         nui.get("orderMan").setValue(currUserName);
 
         addNewRow();
-        
         var guestId = nui.get("guestId");
         guestId.focus();
     }
@@ -1257,6 +1323,8 @@ function getPartInfo(params){
                 }else{
                     advancedMorePartWin.show();
                     morePartGrid.setData(partlist);
+                    partShow = 1;
+					event.keyCode = null;
                 }
                 
             }else{
@@ -1555,16 +1623,21 @@ function addSelectPart(){
             systemUnitId : row.unit,
             outUnitId : row.unit
         };
-
+        
+        advancedMorePartWin.hide();
+        morePartGrid.setData([]);
+        partShow = 0;
+        
         if(rightGrid.getSelected()){
             rightGrid.updateRow(rightGrid.getSelected(),newRow);
         }else{
             rightGrid.addRow(newRow);
         }
         rightGrid.beginEditCell(rightGrid.getSelected(), "orderQty");
-
+        
         advancedMorePartWin.hide();
         morePartGrid.setData([]);
+        
     }else{
         showMsg("请选择配件!","W");
         return;
@@ -1574,7 +1647,8 @@ function addSelectPart(){
 function onPartClose(){
     advancedMorePartWin.hide();
     morePartGrid.setData([]);
-
+    partShow = 0;
+    
     var newRow = {comPartCode: oldValue};
     rightGrid.updateRow(oldRow, newRow);
     rightGrid.beginEditCell(oldRow, "comPartCode");
@@ -1595,6 +1669,16 @@ function OnrpMainGridCellBeginEdit(e){
     if(data.codeId && data.codeId>0){
         e.cancel = true;
     }
+    
+    if(advancedMorePartWin.visible) {
+		e.cancel = true;
+		morePartGrid.focus();
+		var row = morePartGrid.getRow(0);   //默认不能选中，回车事件会有影响
+        if(row){
+            morePartGrid.select(row,true);
+        }
+        partIn=false;
+	}
 
 }
 function addMorePart(){
@@ -1616,6 +1700,7 @@ function addMorePart(){
     }
     advancedAddForm.setData([]);
     advancedAddWin.show();
+    partShow = 1;
 }
 function addNewKeyRow(){
     var data = basicInfoForm.getData();

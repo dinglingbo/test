@@ -34,6 +34,8 @@ var mainTabs = null;
 var billmainTab = null;
 var partInfoTab = null;
 var guestIdEl=null;
+var autoNew = 0;
+var advancedSearchShow=0;
 var StatusHash={
 	"0"	:"草稿",
 	"1":"已提交",
@@ -102,9 +104,14 @@ $(document).ready(function(v) {
         if((keyCode==80)&&(event.altKey))  {   //打印
             onPrint();
         } 
-     
+        if((keyCode==27))  {  
+            if(advancedSearchShow==1){
+            	onAdvancedSearchCancel();
+            }
+        }
     }
-
+    
+    
     var dictDefs ={"rtnReasonId":"DDT20130703000073", "settleTypeId":"DDT20130703000035"};
     initDicts(dictDefs, function(){
         getStorehouse(function(data) {
@@ -125,7 +132,7 @@ $(document).ready(function(v) {
                 });
         
                 gsparams.auditSign = 0;
-                quickSearch(0);
+                quickSearch(15);
 
                 nui.unmask();
             });
@@ -225,6 +232,10 @@ function loadRightGridData(mainId, auditSign) {
     },function(){
 
         var data = rightGrid.getData();
+        if(autoNew == 0){
+			add();
+			autoNew = 1;
+		}
         if(data && data.length <= 0){
             addNewRow(false);
         }else{
@@ -420,6 +431,10 @@ function doSearch(params) {
 
             setBtnable(false);
             setEditable(false);
+            if(autoNew == 0){
+				add();
+				autoNew = 1;
+			}
 
         } else {
             var row = leftGrid.getSelected();
@@ -437,6 +452,7 @@ function doSearch(params) {
 }
 function advancedSearch() {
     advancedSearchWin.show();
+    advancedSearchShow=1;
     // advancedSearchForm.clear();
     if (advancedSearchFormData) {
         advancedSearchForm.setData(advancedSearchFormData);
@@ -1063,7 +1079,11 @@ function orderEnter(mainId) {
 							if(action== 'ok'){
 								onPrint();
 							}else{
-								
+								if(checkNew() > 0){
+							    	return;
+							    }
+							    rightGrid.setData([]);
+								add();
 							}
 						});
 
@@ -1237,6 +1257,11 @@ function onPrint(){
            iframe.contentWindow.SetData(params,detailParams);
        },
    });
+    if(checkNew() > 0){
+    	return;
+    }
+    rightGrid.setData([]);
+	add();
 }
 //function onPrint() {
 //    var row = leftGrid.getSelected();

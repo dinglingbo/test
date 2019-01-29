@@ -625,10 +625,26 @@ $("#password").focus(function(){
 	$("#error").html("");
 });
  
+$("#userId").bind("keydown", function (e) {
+    if (e.keyCode == 13) {
+        $("#password").focus();
+    }
+});
+//Enter建响应
+$("#password").bind("keydown", function (e) {
+    if (e.keyCode == 13) {
+        $("#code").focus();
+    }
+});
+$("#code").bind("keydown", function (e) {
+    if (e.keyCode == 13) {
+        login();
+    }
+});
  //获取键盘 Enter 键事件并响应登录
-function keyboardLogin(e){
-  login();
-}
+// function keyboardLogin(e){
+//   login();
+// }
 function login(){
 	//var form = new nui.Form("#form1");
    //form.validate();

@@ -77,7 +77,7 @@ $(document).ready(function(v)
 
     searchBeginDate.setValue(getNowStartDate());
     searchEndDate.setValue(addDate(getNowEndDate(), 1));
-    
+    nui.get('serviceId').focus();
     sellOrderGrid = nui.get("sellOrderGrid");
     innerSellOutGrid = nui.get("innerSellOutGrid");
     sellOrderGrid.setUrl("sellOrderGridUrl");
@@ -118,6 +118,19 @@ $(document).ready(function(v)
             }
         });
     });
+    
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+        
+        if((keyCode==13))  {  
+        	onSearch();
+        }
+        if((keyCode==27))  {  
+        	onCancel();
+        }
+     
+    }
 
 });
 function setInitData(params){

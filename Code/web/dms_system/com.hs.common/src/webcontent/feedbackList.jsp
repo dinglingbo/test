@@ -12,12 +12,12 @@
 <head>
     <title>用户反馈管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/feedbackList.js?v=1.0.4" type="text/javascript"></script>    
+    <script src="<%=webPath + contextPath%>/common/js/feedbackList.js?v=1.0.12" type="text/javascript"></script>    
     
 </head>
  <style type="text/css"> 
    a.optbtn {
-        width: 60px; 
+        width: 40px; 
         /* height: 26px; */
         border: 1px #d2d2d2 solid;
         background: #f2f6f9;
@@ -57,8 +57,12 @@
                allowCellSelect="true"
                editNextOnEnterKey="true"
                allowCellWrap = true
-               multiSelect="false"
-               url="">
+               multiSelect="false" 
+               url=""
+               totalField="page.count"
+			   pageSize="500"
+			   sizeList="[500,1000,2000]"
+               >
               <div property="columns">
               	<div type="checkcolumn" width="15" class="mini-radiobutton" header="选择"></div>
                 <div field="recordMobile" name="recordMobile" width="30" align="center"  visible="true" headerAlign="center" header="手机号"></div>
@@ -66,8 +70,9 @@
                 <div field="orgname" name="orgname" width="" align="center"  headerAlign="center" header="公司"></div>
                 <div field="questionType" name="questionType" width="" align="center"  headerAlign="center" header="问题摘要"></div>
                 <div field="recordDate" name="recordDate" width="" align="center"  headerAlign="center" header="反馈时间" dateFormat="yyyy-MM-dd"></div>
-                <div field="questionSource" name="questionSource" width="" align="center"  headerAlign="center" header="来源"></div>
+                <div field="source" name="questionSource" width="" align="center"  headerAlign="center" header="来源"></div>
                 <div field="status" name="status" width="" align="center"  headerAlign="center" header="状态"></div>
+                <div field="feedOptBtn" name="feedOptBtn" width="" align="center"  headerAlign="center" header="操作"></div>
               </div>
           </div>
     </div>	

@@ -156,27 +156,27 @@ order by b.datekey desc
 		inner join wb_repair.rpb_car c on b.car_id = c.id
 		inner join wb_common.com_guest d  on b.guest_id = d.id
 		inner join rps_settlement e on (b.id =  e.service_id)
-		where b.is_settle = 1
+		where b.is_settle = 1 and  b.bill_type_id in (0,2,4)
 				and b.orgid =#orgid#
 		     <dynamic>
-			<isNotEmpty prepend="and" property="startDate"> 
-                b.out_date &gt;= #startDate#
+			<isNotEmpty prepend="and" property="sOutDate"> 
+                b.out_date &gt;= #sOutDate#
             </isNotEmpty>
             
-            <isNotEmpty prepend="and" property="endDate">
-               b.out_date &lt;= #endDate#
-            </isNotEmpty>   
+            <isNotEmpty prepend="and" property="eOutDate">
+               b.out_date &lt;= #eOutDate#
+            </isNotEmpty>    
 
-            <isNotEmpty prepend="and" property="saleManId">  
-                a.sale_man_Id =  #saleManId#
+            <isNotEmpty prepend="and" property="mtAuditorId">  
+                a.sale_man_Id =  #mtAuditorId#
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="mtAdvisor">  
                 b.sale_man =  #mtAdvisor#
             </isNotEmpty>
             
-             <isNotEmpty prepend="and" property="billTypeId">  
-                b.bill_type_id =  #billTypeId#
+             <isNotEmpty prepend="and" property="billTypeIds">  
+                b.bill_type_id =  #billTypeIds#
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="serviceCode">  
@@ -418,5 +418,59 @@ where b.orgid =#orgid#
    <isEqual  prepend="" property="groupByType"   compareValue="2">
      GROUP BY a.car_model
    </isEqual>
-   </select>      
+   </select>  
+   
+           <select id="queryTechnicianDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+     SELECT 
+		a.service_code as serviceCode,
+		a.worker as worker,
+		a.worker_id as workerId,
+		b.bill_type_id as billTypeId,
+		a.tech_deduct_value as techDeductValue,
+		a.recorder as recorder,
+		b.car_no as carNo,
+		c.car_model as carModel,
+		b.out_date as outDate,
+		b.service_type_id as serviceTypeId,
+		b.mt_advisor as mtAdvisor
+		from wb_repair.rps_deduct_detail a
+		inner join wb_repair.rps_maintain b on a.service_code = b.service_code
+		inner join rpb_car c on b.car_id = c.id
+		where b.is_settle = 1 and  b.bill_type_id in (0,2,4) and a.tech_deduct_value &gt; 0
+				and b.orgid =#orgid#
+		     <dynamic>
+			<isNotEmpty prepend="and" property="sOutDate"> 
+                b.out_date &gt;= #sOutDate#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="eOutDate">
+               b.out_date &lt;= #eOutDate#
+            </isNotEmpty>    
+
+            <isNotEmpty prepend="and" property="mtAuditorId">  
+                a.worker_id =  #mtAuditorId#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="mtAdvisor">  
+                b.worker =  #mtAdvisor#
+            </isNotEmpty>
+            
+             <isNotEmpty prepend="and" property="billTypeIds">  
+                b.bill_type_id =  #billTypeIds#
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="serviceCode">  
+                b.service_code like  '%$serviceCode$%'
+            </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="carNo">  
+                b.car_no like   '%$carNo$%'
+            </isNotEmpty>
+
+            
+
+           order by b.out_date desc
+            
+    </dynamic>    
+     </select>    
 </sqlMap>

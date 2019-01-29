@@ -19,7 +19,7 @@
 			a.orgid orgid,
 			a.orgname orgname,
 			a.question_content questionContent,
-			a.question_source questionSource,
+			a.question_source source,
 			a.question_type questionType,
 			a.read_date readDate,
 			a.reader reader,

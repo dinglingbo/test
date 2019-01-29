@@ -10,8 +10,8 @@ pageEncoding="UTF-8" session="false"%>
   - Description:
 -->
 <head>
-    <title>费用汇总表</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/expenseSummary.js?v=1.0.5"></script>
+    <title>费用登记汇总表</title>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/expenseSummary.js?v=1.0.6"></script>
     <style type="text/css">
 
     table {
@@ -92,9 +92,9 @@ pageEncoding="UTF-8" session="false"%>
                 <div id="mainGrid" dataField="list" class="nui-datagrid" 
                  selectOnLoad="true"
                  showPager="true"
-                 pageSize="50"
+                 pageSize="500"
                  totalField="page.count"
-                 sizeList=[20,50,100,200]
+                 sizeList=[500,1000,2000]
                  dataField="list" 
                  showModified="false"
                  onrowdblclick=""
@@ -103,14 +103,14 @@ pageEncoding="UTF-8" session="false"%>
                  allowCellWrap = true
                  style="height:100%;width:100%;"
                  showSummaryRow="true"
-                 
+                 sortMode="client"
                 >
                 <div property="columns">
                     <div type="indexcolumn" headeralign="center" allowsort="true" visible="true" width="30" >序号</div>
                     <!-- <div type="expandcolumn" width="20" visible="true"><span class="fa fa-plus fa-lg"></span></div> -->
-                    <div field="dc" headerAlign="center" allowSort="false"  header="费用分类"></div>
-                    <div field="typeId" headerAlign="center" allowSort="false"  header="费用名称"></div>
-                    <div field="amt" headerAlign="center" allowSort="false"  header="金额" summaryType="sum"></div>
+                    <div field="dc" headerAlign="center" allowSort="true"  header="费用分类"></div>
+                    <div field="typeId"  headerAlign="center" allowSort="true"  header="费用名称"></div>
+                    <div field="amt" name="amt" headerAlign="center" allowSort="true"  header="金额" summaryType="sum"></div>
                     <div field="expenseOptBtn" headerAlign="center" allowSort="false"  header="操作" align="center"></div>
                 </div>
             </div>

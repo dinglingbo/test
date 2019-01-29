@@ -44,7 +44,7 @@
 			a.out_date outDate,
 			d.rtn_comp_amt drtnCompAmt,
 			d.rtn_comp_rate drtnCompRate,
-			d.rtn_guest_rate dRtnGuestRate,
+			d.rtn_guest_rate drtnGuestRate,
 			d.rtn_guest_amt drtnGuestAmt,
 			d.insure_type_Name  insureTypeName,
 			d.insure_no insureNo

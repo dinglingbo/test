@@ -40,7 +40,7 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
+        <process:simpleCondition operator="LE">
           <process:leftOperand type="query">status</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
@@ -81,6 +81,10 @@
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">updaFree/settleDate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">2</process:from>
+      <process:to type="query">updaFree/status</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="363" y="204"/>
@@ -103,6 +107,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">d</process:from>
       <process:to type="query">updaFree/readDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">updaFree/status</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">

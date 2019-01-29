@@ -23,6 +23,7 @@ $(document).ready(function ()
 			typeIdHash[v.id] = v;
         });
 		nui.get("billTypeList").setData(plist);
+		quickSearch(4);
     });
 	initMember("mtAdvisorId",function(){
     });
@@ -42,7 +43,7 @@ $(document).ready(function ()
 			e.cellHtml = s;
 		}
 	});
-	quickSearch(4);
+	
 });
 
 function quickSearch(type){

@@ -229,14 +229,15 @@
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>subprocess0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link12" name="link12" displayName="连接线" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="OBJNE">
+        <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">rCode</process:leftOperand>
-          <process:rightOperand type="query">code</process:rightOperand>
+          <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -247,6 +248,14 @@
     <process:copy>
       <process:from type="expression" pattern="reference">sessionContext.getString(&quot;rCode&quot;)</process:from>
       <process:to type="query">rCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">000000</process:from>
+      <process:to type="query">password</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">yx001</process:from>
+      <process:to type="query">userId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
@@ -274,7 +283,9 @@
     <node>assign3</node>
   </nodes>
   <topRuler/>
-  <leftRuler/>
+  <leftRuler>
+    <guides position="145" horizontal="true"/>
+  </leftRuler>
   <process:info author="cuizhichao" createTime="2014-07-23 13:47:13" date="2014-07-23Z" description="" name="login" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="result" primitiveType="Int"/>

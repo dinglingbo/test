@@ -43,6 +43,7 @@ $(document).ready(function(v) {
 	 var filter = new HeaderFilter(mainGrid, {
 	        columns: [
 	            { name: 'auditor' },
+	            { name: 'carNo' },
 	             {name:'shortName'},
 	             {name:'rpDc'}
 	        ],

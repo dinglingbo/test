@@ -15,15 +15,6 @@ $(document).ready(function ()
     endDateEl = nui.get("eRecordDate");
 	nui.get("search-type").setData(statusList);
 	mtAdvisorIdEl = nui.get("mtAdvisorId");
-	var params = {isMain:0};
-	svrInComeExpenses(params,function(data) {
-	    var list = data.list||{};
-		list.forEach(function(v) {
-			//plist.push(v);
-			typeIdHash[v.id] = v;
-        });
-		//nui.get("billTypeList").setData(plist);
-    });
 	initMember("mtAdvisorId",function(){
     });
 	
@@ -41,7 +32,25 @@ $(document).ready(function ()
 			e.cellHtml = s;
 		}
 	});
-	quickSearch(4);
+	var filter = new HeaderFilter(mainGrid, {
+        columns: [
+            { name: 'contactName' },
+	        { name: 'mtAdvisor' },
+            { name: 'carNo' },
+            {name: 'serviceCode'},
+            {name: 'amt'}
+        ],
+        callback: function (column, filtered) {
+        },
+
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+	    	}
+        	return value;
+        }
+    });
+	
 });
 
 function quickSearch(type){
@@ -158,5 +167,15 @@ function setInitData(data){
 	var params=getSearchParams();
 	typeId = data.typeId;
 	params.typeId = typeId;
-	doSearch(params);
+	var params2 = {isMain:0};
+	svrInComeExpenses(params2,function(data) {
+	    var list = data.list||{};
+		list.forEach(function(v) {
+			//plist.push(v);
+			typeIdHash[v.id] = v;
+        });
+		//nui.get("billTypeList").setData(plist);
+		doSearch(params);
+    });
+	
 }

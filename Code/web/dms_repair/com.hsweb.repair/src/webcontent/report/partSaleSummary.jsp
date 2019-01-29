@@ -9,8 +9,8 @@
 <head>
     <title>配件销售汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/partSaleSummary.js?v=1.0.0"></script>
     <%@include file="/common/commonRepair.jsp"%>
+  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/partSaleSummary.js?v=1.0.3"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -63,34 +63,28 @@
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(1)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按业务类型汇总</a>
-     <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(2)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按项目名称汇总</a>
+     <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(2)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按配件编码汇总</a>
 <!--      <a class="nui-button" iconcls=""  name="" plain="true" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a> -->
  </div>
  <div class="nui-fit">
     <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;"
-    showPager="true"
-    dataField="list1"
+    dataField="data"
     idField="detailId"
     ondrawcell=""
     sortMode="client"
     url=""
-    totalField="page.count"
-    pageSize="10000"
-    sizeList="[1000,5000,10000]"
     showSummaryRow="true">
-    <div property="columns">
+            <div property="columns">          
         <div type="indexcolumn">序号</div>
-        <div header="业务信息" headerAlign="center">
-            <div property="columns">
-                <div allowSort="true" field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型"></div>
-                <div allowSort="true" field="tc" width="60" headerAlign="center" header="施工台次"></div>
-                <div allowSort="true" field="itemTime" width="60" headerAlign="center" header="工时时间"></div>
-                <div allowSort="true" field="subtotal" width="60" headerAlign="center" header="工时收入"></div>
-                <div allowSort="true" field="costAmt" width="60" headerAlign="center" header="工时成本"></div>
-                <div allowSort="true" field="retc" width="60" headerAlign="center" header="返工台次"></div>
-                <div allowSort="true" field="retcRate" width="60" headerAlign="center" header="返工占比"></div>
-            </div>
-        </div>
+                <div  field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型"></div>
+                <div  field="partName" name="partName" width="60" headerAlign="center" header="配件名称"></div> 
+                <div  field="qty" width="60" headerAlign="center" summaryType="sum" header="数量"></div>
+                <div  field="partTrueCost" width="60" headerAlign="center" summaryType="sum" header="成本"></div>
+                <div  field="amt" width="60" headerAlign="center" summaryType="sum" header="销售金额 "></div>
+                <div  field="discountAmt" width="60" headerAlign="center" summaryType="sum" header="优惠金额"></div>
+                <div  field="subtotal" width="60" headerAlign="center" summaryType="sum" header="配件小计"></div>
+<!--                  <div  field="costAmt" width="60" headerAlign="center" header="计次卡抵扣次数"></div>
+                  <div  field="costAmt" width="60" headerAlign="center" header="计次卡抵扣金额"></div> -->
     </div>
 </div>
 </div>

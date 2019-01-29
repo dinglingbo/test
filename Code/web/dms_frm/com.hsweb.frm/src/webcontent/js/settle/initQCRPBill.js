@@ -94,7 +94,7 @@ function addGuest(){
                     var shortName  = supplier.shortName;
                     var code = supplier.code;
 
-                    var newRow = {guestId: guestId, guestFullName: fullName, guestShortName: shortName, code: code, rpTypeId: 3};
+                    var newRow = {guestId: guestId, guestFullName: fullName,  carNo: carNo,guestShortName: shortName, code: code, rpTypeId: 3};
                     mainGrid.addRow(newRow);
                 }
                 
@@ -110,11 +110,16 @@ function OnMainGridCellBeginEdit(e){
         if (column.field == "pamt") {
             e.cancel = true;
         }
+       
     }else if(row.pamt){
         if (column.field == "ramt") {
             e.cancel = true;
         }
     }
+    
+/*    if (column.field == "remark") {
+        e.cancel = false;
+    }*/
 
 }
 function deleteGuest(){

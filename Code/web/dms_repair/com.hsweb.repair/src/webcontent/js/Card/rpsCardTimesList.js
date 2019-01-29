@@ -6,12 +6,16 @@ var queryFormUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.q
 var CardUrl = webPath + contextPath + "/repair/DataBase/Card/rpsCardTimesBase.jsp?token="+token;
 //var getTimes = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimesDe.biz.ext";
 var grid = null;
+var grid2 = null;
 var queryForm = null;
+var servieTypeList = [];
+var servieTypeHash = {};
 var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"客户名称"},{id:"2",name:"客户电话"},{id:"3",name:"计次卡名称"}];
 /*进来该页面，加载套餐列表数据*/
 $(document).ready(function (v)
 {
     grid  = nui.get("datagrid1");
+    grid2 = nui.get("datagrid2");
     queryForm = new nui.Form("#queryForm");
     var date = new Date();
     var sdate = new Date();
@@ -23,6 +27,12 @@ $(document).ready(function (v)
     var endDate = mini.get("endDate");
     endDate.setValue(date);
     
+    initServiceType("serviceTypeId",function(data) {
+        servieTypeList = nui.get("serviceTypeId").getData();
+        servieTypeList.forEach(function(v) {
+            servieTypeHash[v.id] = v;
+        });
+    });
     
     var query = {
     		startDate:sdate,
@@ -32,6 +42,22 @@ $(document).ready(function (v)
     grid.load({
     	query:query,
     	token : token
+    });
+    grid2.on("drawcell", function (e) {
+        var grid = e.sender;
+        var record = e.record;
+        switch (e.field) {
+           case "qty":
+        	   if(!record.qty){
+        		   e.cellHtml = 1;
+        	   }
+        	   break;
+           case "serviceTypeId":
+        	   e.cellHtml = servieTypeHash[e.value].name;
+        	   break;
+           default:
+               break;
+        }
     });
        
 });
@@ -96,7 +122,12 @@ function refresh(){
     grid.load();*/
   }
 
-      
+  
+  var prdtTypeHash = {
+	    "1":"套餐",
+        "2":"项目",
+        "3":"配件"
+  };
   var hash = new Array("草稿","已提交","已结算");
   var isRefundList = new Array("未退款","已退款");
   //剩余次数
@@ -108,8 +139,7 @@ function refresh(){
   var id = null;
  function onDrawCell(e)
   {
-	  var  d = totalTimes;
-	
+	 var record = e.record;
     switch (e.field)
     {
         
@@ -125,6 +155,9 @@ function refresh(){
     	break;
     case "isRefund":
     	e.cellHtml = isRefundList[e.value];
+    	break;
+    case "prdtType":
+    	e.cellHtml = prdtTypeHash[e.value];
     	break;
     default:
         break;
@@ -142,6 +175,7 @@ function refresh(){
 		var guestName =  null;
 		var mobile = null;
 		var cardName = null;
+		var carNo = null;
 		var startDate = nui.get("startDate").getFormValue();
 		var endDate = nui.get("endDate").getValue();
 		endDate = addDate(endDate, 1);
@@ -160,6 +194,7 @@ function refresh(){
 				guestName:guestName,
 				mobile:mobile,
 				cardName:cardName,
+				carNo:carNo,
 				startDate:startDate,
 				endDate:endDate
 		}
@@ -174,7 +209,7 @@ function refresh(){
 			cache : false,
 			contentType : 'text/json',
 			success : function(text) {
-				grid.setData(text.params);
+				grid.setData(text.cardData);
 				nui.unmask(document.body);
 				
 				
@@ -220,7 +255,7 @@ function refresh(){
 		if(row){
 			
 		}else{
-			showMsg("请选一张储值卡!","W");
+			//showMsg("请选一张储值卡!","W");
 			return;
 		}
 		nui.open({
@@ -237,7 +272,7 @@ function refresh(){
 	        },
 			ondestroy : function(action) {// 弹出页面关闭前
 				if (action == "saveSuccess") {
-					showMsg("退款成功!", "S");
+					//showMsg("退款成功!", "S");
 					var query = queryForm.getData();
 					grid.load({
 				    	query:query,
@@ -247,4 +282,32 @@ function refresh(){
 				}
 			}
 	    });
-	}
+}
+ 
+ var queryCardUr2 = apiPath + repairApi +"/com.hsapi.repair.baseData.cardTimes.queryCardTimesMaintain.biz.ext";
+ function selectionChanged() {
+	    nui.mask({
+	        el: document.body,
+	        cls: 'mini-mask-loading',
+	        html: '数据加载中...'
+	    });
+		var row = grid.getSelected();
+		var cardDetailId = row.cardDetailId;
+		var params = {};
+		params.cardDetailId = cardDetailId;
+		params.type = row.prdtType;
+		var json1 = {
+				params:	params
+		};
+		nui.ajax({
+			url : queryCardUr2,
+			type : 'POST',
+			data : json1,
+			cache : false,
+			contentType : 'text/json',
+			success : function(text) {
+				nui.unmask(document.body);
+				grid2.setData(text.cardMaintain);
+			}
+		});
+}

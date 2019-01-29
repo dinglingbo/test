@@ -75,7 +75,7 @@ $(document).ready(function (v)
 	    });
 	 
     grid.setUrl(gridUrl);
-    quickSearch(3);
+    quickSearch(4);
 });
 
 

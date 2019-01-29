@@ -9,7 +9,7 @@
 -->
 <head>
     <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.38"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.41"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -97,6 +97,8 @@
  至:
     <input class="nui-datepicker" width="100px"id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+    <input type="checkbox" id="ReturnSign" class="mini-checkbox"  onclick="changed()" >
+	<span >是否显示归库</span>
 </div>
 
 <div class="nui-fit">
@@ -105,12 +107,12 @@
     dataField="list"
     idField="partId"
     sortMode="client"
-    pageSize="100"
+    pageSize="500"
     showSummaryRow="true"
     totalField="page.count" 
-    sizeList=[50,100,500,1000] 
+    sizeList=[500,1000,2000] 
      onrowdblclick="" 
-     allowCellWrap = true
+     allowCellWrap = "false"
     frozenStartColumn="0"
     sortMode="client"
     frozenEndColumn="0">
@@ -124,13 +126,7 @@
                 <div allowSort="false" field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
                 <div allowSort="false" field="partName" name="partName" width="150" headerAlign="center" header="配件名称"></div>
                 <div allowSort="false" field="oemCode" width="100" headerAlign="center" header="OEM码"></div>
-   				<div allowSort="false" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
-   				<div allowSort="false" field="applyCarModel" width="200" headerAlign="center" header="适用车型"></div>
-                <div allowSort="false" field="unit" width="50" headerAlign="center" header="单位"></div>
-                <div allowSort="false" field="carTypeIdF" width="100" headerAlign="center" header="配件分类一级"></div>
-                <div allowSort="false" field="carTypeIdS" width="100" headerAlign="center" header="配件分类二级"></div>
-                <div allowSort="false" field="carTypeIdT" width="100" headerAlign="center" header="配件分类三级"></div>
-                <div allowSort="false" field="spec" width="100" headerAlign="center" header="规格"></div>
+   				
             </div>
         </div>
         
@@ -158,6 +154,19 @@
             <div property="columns">
                 <div allowSort="true"  field="pickMan" width="60" name="pickMan" headerAlign="center" header="出库人" dataType="float" align="left"></div>
                 <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd HH:mm" field="outDate" headerAlign="center" header="出库日期" dataType="float" align="left"></div>
+            </div>
+        </div>
+        <div header="其他" headerAlign="center">
+            <div property="columns">
+               <div allowSort="false" field="returnSign" width="80" headerAlign="center" header="是否归库" ></div>
+               <div allowSort="false" field="returnDate" width="120" headerAlign="center" header="归库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                <div allowSort="false" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
+   				<div allowSort="false" field="applyCarModel" width="200" headerAlign="center" header="适用车型"></div>
+                <div allowSort="false" field="unit" width="50" headerAlign="center" header="单位"></div>
+                <div allowSort="false" field="carTypeIdF" width="100" headerAlign="center" header="配件分类一级"></div>
+                <div allowSort="false" field="carTypeIdS" width="100" headerAlign="center" header="配件分类二级"></div>
+                <div allowSort="false" field="carTypeIdT" width="100" headerAlign="center" header="配件分类三级"></div>
+                <div allowSort="false" field="spec" width="100" headerAlign="center" header="规格"></div>
             </div>
         </div>
     </div>

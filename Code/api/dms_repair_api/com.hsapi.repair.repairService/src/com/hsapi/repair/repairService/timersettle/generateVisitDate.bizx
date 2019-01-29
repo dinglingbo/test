@@ -128,7 +128,7 @@
       <targetNode>subprocess0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -157,6 +157,7 @@
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>subprocess1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link16" name="link16" displayName="连接线" type="transition">
       <sourceNode>assign3</sourceNode>
@@ -185,7 +186,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">f/scoutDay3</process:leftOperand>
+          <process:leftOperand type="query">f/scoutDisabled3</process:leftOperand>
           <process:rightOperand type="literal">0</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -195,7 +196,7 @@
       <targetNode>subprocess2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -236,10 +237,12 @@
     <location x="194" y="224"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.repairInterface.setVisitMaintainList</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="day" type="query" value="Int" valueType="Primitive" pattern="reference">f/scoutDay1</process:inputVariable>
+        <process:inputVariable id="1" name="visitType" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
+        <process:inputVariable id="2" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">f/orgid</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables/>
     </process:flow>
@@ -258,10 +261,12 @@
     <location x="345" y="224"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.repairInterface.setVisitMaintainList</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="day" type="query" value="Int" valueType="Primitive" pattern="reference">f/scoutDay2</process:inputVariable>
+        <process:inputVariable id="1" name="visitType" type="literal" value="Int" valueType="Primitive" pattern="reference">2</process:inputVariable>
+        <process:inputVariable id="2" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">f/orgid</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables/>
     </process:flow>
@@ -280,10 +285,12 @@
     <location x="495" y="224"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">com.hsapi.repair.repairService.repairInterface.setVisitMaintainList</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="day" type="query" value="Int" valueType="Primitive" pattern="reference">f/scoutDay3</process:inputVariable>
+        <process:inputVariable id="1" name="visitType" type="literal" value="Int" valueType="Primitive" pattern="reference">3</process:inputVariable>
+        <process:inputVariable id="2" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">f/orgid</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables/>
     </process:flow>

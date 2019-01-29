@@ -10,7 +10,7 @@
 <head>
 <title>期初应收应付导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=1.0.0"></script>
+<script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=1.0.2"></script>
 <script src="<%=webPath + contextPath%>/manage/settlement/js/initQCRPBillImport.js?v=1.0.1"></script>
 <style type="text/css">
 /*.a-upload {
@@ -104,6 +104,8 @@
 				<div type="indexcolumn">序号</div>
 				<div field="往来单位全称" width="150px" summaryType="count" headerAlign="center" allowSort="true">
 					往来单位全称</div>
+				<div field="车牌号" width="80px" headerAlign="center" allowSort="true">
+					车牌号</div>
 				<div field="应收" width="80px" headerAlign="center" allowSort="true">
 					应收</div>
 				<div field="应付" width="80px" headerAlign="center" allowSort="true">

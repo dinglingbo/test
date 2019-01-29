@@ -31,6 +31,7 @@ $(document).ready(function(v)
     
     sPickDateEl =nui.get('sPickDate');
     ePickDateEl = nui.get('ePickDate');
+    setReturnSign = mini.get("ReturnSign");
 	document.onkeyup = function(event) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -94,6 +95,8 @@ $(document).ready(function(v)
 	                e.cellHtml = "";
 	            }
 			 break;
+		 case "returnSign":
+			 e.cellHtml =  e.value==0 ? "否":"是";
 		default:
 			break;
 		}
@@ -229,9 +232,12 @@ function onSearch(){
 function doSearch(params)
 {
 	params.orgid = currOrgId;
-	params.returnSign = 0; //出库
+  //params.returnSign = 0; //出库
 //	params.isSettle=1; //已结算
 //	params.status=2; //状态已完工
+	if(!setReturnSign.checked){	
+		params.returnSign = 0;
+	}
     rightGrid.load({
         params:params,
         token :token     
@@ -284,4 +290,17 @@ function editSell(){
         id: row.id
     };
     window.parent.activeTabAndInit(part,params);
+}
+
+function changed(){
+	var params=getSearchParams();
+	params.orgid = currOrgId;
+	if(!setReturnSign.checked){	
+		params.returnSign = 0;
+	}
+	rightGrid.load({
+        params:params,
+        token :token     
+    });
+	
 }

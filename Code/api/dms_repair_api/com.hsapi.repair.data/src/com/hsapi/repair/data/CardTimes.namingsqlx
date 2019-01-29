@@ -11,13 +11,13 @@
    <select id="queryCardTimesList" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
        SELECT
          a.id id,
+         b.id cardDetailId,
          c.full_name fullName,
          a.guest_name guestName,
          a.guest_id guestId,
          c.mobile mobile,
          a.card_name cardName,
          a.record_date recordData,
-         a.sell_amt sellAmt,
          a.status status,
          a.is_refund isRefund,
          a.refunder refunder,
@@ -25,18 +25,28 @@
          a.past_date pastDate,
          a.period_validity periodValidity,
          a.settle_date as settleDate,
-         a.car_no as carNo
+         a.car_no as carNo,
+         b.prdt_name prdtName,
+         b.prdt_type prdtType,
+         b.sell_amt sellAmt,
+         b.bala_times balaTimes,
+         b.use_times useTimes,
+         b.total_times totalTimes
          FROM rps_card_times a 
+         INNER JOIN rps_card_times_detail b ON(b.main_id = a.id)
          INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
          WHERE  a.orgid = #orgid# and a.status = 2
          <dynamic>
          <isNotEmpty prepend="and" property="guestName">  
 	            (a.guest_name like '%$guestName$%')
-	     </isNotEmpty>          
+	     </isNotEmpty>  
+	     <isNotEmpty prepend="and" property="carNo">  
+	            (a.car_no like '%$carNo$%')
+	     </isNotEmpty>        
 	     <isNotEmpty prepend="and" property="mobile">  
 	            (c.mobile like '%$mobile$%')
 	    </isNotEmpty>
-	    	    <isNotEmpty prepend="and" property="guestId">  
+	    <isNotEmpty prepend="and" property="guestId">  
 	            (a.guest_id = #guestId#)
 	    </isNotEmpty>
 	    <isNotEmpty prepend="and" property="cardName">  
@@ -53,7 +63,12 @@
  
 	</select>
 	
-	   <select id="queryRefundRecord" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
+	
+	
+	
+	
+	
+	 <select id="queryRefundRecord" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
        SELECT
          a.id id,
          a.code code,
@@ -193,4 +208,51 @@
         order by a.settle_date desc
  
 	</select>
+	
+	
+	<select id="queryCardTimesItem" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
+       SELECT
+         a.item_time qty,
+         a.subtotal subtotal,
+         b.id id,
+         b.car_no carNo,
+         b.car_vin carVin,
+         b.service_type_id serviceTypeId,
+         b.service_code serviceCode,
+         b.mt_advisor mtAdvisor
+         FROM rps_item a
+         INNER JOIN rps_maintain b ON(b.id = a.service_id)
+         WHERE  a.card_detail_id = #cardDetailId#
+	</select>
+	
+	<select id="queryCardTimesPkg" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
+       SELECT
+         
+         a.subtotal subtotal,
+         b.id id,
+         b.car_no carNo,
+         b.car_vin carVin,
+         b.service_type_id serviceTypeId,
+         b.service_code serviceCode,
+         b.mt_advisor mtAdvisor
+         FROM rps_package a
+         INNER JOIN rps_maintain b ON(b.id = a.service_id)
+         WHERE  a.card_detail_id = #cardDetailId#
+	</select>
+	
+	<select id="queryCardTimesPart" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
+       SELECT
+         a.qty qty,
+         a.subtotal subtotal,
+         b.id id,
+         b.car_no carNo,
+         b.car_vin carVin,
+         b.service_type_id serviceTypeId,
+         b.service_code serviceCode,
+         b.mt_advisor mtAdvisor
+         FROM rps_part a
+         INNER JOIN rps_maintain b ON(b.id = a.service_id)
+         WHERE  a.card_detail_id = #cardDetailId#
+	</select>
+	
 </sqlMap>

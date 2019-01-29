@@ -42,6 +42,8 @@ var morePartTabs = null;
 var enterTab = null;
 var partInfoTab = null;
 var guestIdEl=null;
+var quickAddShow=0;
+var advancedSearchShow=0;
 
 var AuditSignHash = {
   "0":"未审",
@@ -241,6 +243,14 @@ $(document).ready(function(v)
         if((keyCode==80)&&(event.altKey))  {   //打印
             onPrint();
         } 
+        if((keyCode==27))  {  
+            if(quickAddShow==1){
+            	onAdvancedAddCancel();
+            }
+            if(advancedSearchShow==1){
+            	onAdvancedSearchCancel();
+            }
+        }
      
     }
 
@@ -269,7 +279,7 @@ $(document).ready(function(v)
             });
 
             gsparams.auditSign = 0;
-            quickSearch(0);
+            quickSearch(10);
 
             nui.unmask();
         });
@@ -663,9 +673,11 @@ function loadRightGridData(mainId)
             var data = rightGrid.getData();
             var leftRow = leftGrid.getSelected();
             if(leftRow.auditSign && leftRow.auditSign == 1) return;
-            addNewRow(false);   
+            if(data && data.length <= 0){
+				addNewRow(false);
+			}	  
         }
-
+        
     });
 }
 function onLeftGridDrawCell(e)
@@ -878,6 +890,7 @@ function doSearch(params)
 function advancedSearch()
 {
     advancedSearchWin.show();
+    advancedSearchShow=1;
 //    advancedSearchForm.clear();
     if(advancedSearchFormData)
     {
@@ -957,6 +970,7 @@ function onAdvancedSearchCancel()
 {
 //    advancedSearchForm.clear();
     advancedSearchWin.hide();
+    
 }
 function checkNew() 
 {
@@ -2160,6 +2174,7 @@ function addMorePart(){
     }
     advancedAddForm.setData([]);
     advancedAddWin.show();
+    quickAddShow=1;
 }
 
 function onAdvancedAddOk(){
@@ -2232,6 +2247,7 @@ function onAdvancedAddOk(){
 function onAdvancedAddCancel(){
     advancedAddWin.hide();
     advancedAddForm.setData([]);
+    
 }
 function addRtnList(partList){
     if(partList && partList.length>0){      

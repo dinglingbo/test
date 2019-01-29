@@ -77,6 +77,7 @@ function sure() {
 			//partid  partcode  partname  enterqty  enterunit  enterprice  enteramt
 			var newRow = {
 				guestFullName : data[i].往来单位全称||"",
+				carNo : data[i].车牌号||"",
 				ramt : data[i].应收||"",
 				pamt : data[i].应付||"",
 				remark : data[i].备注||"",

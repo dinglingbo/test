@@ -98,7 +98,6 @@
                 
 			
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-            
         </td>
     </tr>
 </table>

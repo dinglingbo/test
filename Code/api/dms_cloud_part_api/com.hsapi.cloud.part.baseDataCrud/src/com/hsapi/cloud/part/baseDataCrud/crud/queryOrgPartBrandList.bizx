@@ -25,7 +25,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.cloud.part.data.com.ComPartBrand[]" name="brands" type="query" valueType="DataObject">brands</process:return>
+      <process:return id="0" language="com.hsapi.cloud.part.data.com.ComPartBrandOrg[]" name="brands" type="query" valueType="DataObject">brands</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -59,7 +59,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.com.ComPartBrand</process:from>
+      <process:from type="literal" pattern="reference">com.hsapi.cloud.part.data.com.ComPartBrandOrg</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
@@ -219,7 +219,7 @@
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.com.ComPartBrand" name="brands"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.cloud.part.data.com.ComPartBrandOrg" name="brands"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

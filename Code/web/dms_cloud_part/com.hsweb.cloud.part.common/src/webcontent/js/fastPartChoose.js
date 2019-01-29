@@ -385,8 +385,8 @@ function setInitData(params, ck, cck){
         });
     }else if(tab.name == "partInfoTab"){
         params.showStock = showStockEl.getValue();
-        params.sortField = "b.last_enter_date";
-        params.sortOrder = "asc";
+        params.sortField = "b.stock_qty";
+        params.sortOrder = "desc";
 
         morePartGrid.load({params:params},function(e){
             morePartGrid.focus();

@@ -478,6 +478,10 @@
       <process:to type="query">enterPrice</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">enterDetail/taxSign</process:from>
+      <process:to type="query">temp/taxSign</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="expression" pattern="reference">qty*noTaxPrice</process:from>
       <process:to type="query">temp/noTaxAmt</process:to>
     </process:copy>

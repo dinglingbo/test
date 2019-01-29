@@ -7,7 +7,7 @@
         	<div class="nui-fit">
         		<div class="nui-toolbar" style="border-bottom: 0;">
 					<span>直接替换</span>
-					<a href="javascript:;">看不懂请点我<img style="display:none;" src="https://cdns.007vin.com/img/interpretation.png"></a>
+					<a style="display:none;"href="javascript:;">看不懂请点我<img style="display:none;" src="https://cdns.007vin.com/img/interpretation.png"></a>
 		        </div>
 		        <div id="dgreplace" class="nui-datagrid" onDrawcell="onDeReplaceDraw"
 		             allowCellEdit="true" allowCellSelect="true"

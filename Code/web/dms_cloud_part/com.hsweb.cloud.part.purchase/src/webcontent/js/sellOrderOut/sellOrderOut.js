@@ -1753,7 +1753,11 @@ function audit()
 						if(action== 'ok'){
 							onPrint();
 						}else{
-							
+						 if(checkNew() > 0){
+						    	return;
+						    }
+						    rightGrid.setData([]);
+							add();
 						}
 					});
 //                    rightGrid.setData([]);
@@ -1967,6 +1971,11 @@ function onPrint(){
            iframe.contentWindow.SetData(params,detailParams);
        },
    });
+    if(checkNew() > 0){
+    	return;
+    }
+    rightGrid.setData([]);
+	add();
 }
 //function onPrint() {
 //    var row = leftGrid.getSelected();

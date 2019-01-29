@@ -118,6 +118,13 @@ $(document).ready(function(v) {
     	
 	});
 	
+    morePartGrid.on("load", function(e) {
+        var row = morePartGrid.getRow(0);
+        if(row){
+            morePartGrid.select(row,true);
+        }
+    });
+    
 	morePartGrid.on("drawcell",function(e){
         switch (e.field)
         {

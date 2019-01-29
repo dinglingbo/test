@@ -416,7 +416,7 @@ where b.orgid =#orgid#
    <isEqual  prepend="" property="groupByType"   compareValue="2">
      GROUP BY a.car_model
    </isEqual>
-
+   </select>    
    
            <select id="queryTechnicianDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
      SELECT 

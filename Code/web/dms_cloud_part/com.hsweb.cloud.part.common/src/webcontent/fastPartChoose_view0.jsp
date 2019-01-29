@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.12"></script>
+<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.14"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -55,7 +55,7 @@ body .mini-grid-row-selected{
                                 <input class="nui-textbox" width="100px" id="moreServiceId" emptyText="入库单号" selectOnFocus="true" name="moreServiceId"/>
                                 <span class="separator"></span>
                                 <input id="sortType" class="nui-combobox" width="100px" textField="text" valueField="id" emptyText="排序类型"
-                                        value="1"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..."/> 
+                                        value="4"  required="true" allowInput="false" showNullItem="true" nullItemText="请选择..."/> 
                                 <input class="nui-checkbox"  id="showStock" trueValue="1" falseValue="0" text="库存数量>0"/>
                                 <span class="separator"></span>
                                 <a class="nui-button" iconCls="" plain="true" onclick="morePartSearch" id="saveBtn"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>

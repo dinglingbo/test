@@ -8,8 +8,8 @@
   - Description:
 -->
 <head>
-    <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.41"></script>
+    <title>未结算配件明细表</title>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/notSettledPartDetail.js?v=1.0.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -31,7 +31,7 @@
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
 
     <label style="font-family:Verdana;">快速查询：</label>
-    <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
+     <!-- <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate" >本日</a>
     <ul id="popupMenuDate" class="nui-menu" style="display:none;">
        <li iconCls="" onclick="quickSearch(0)" id="type0">本日</li>
        <li iconCls="" onclick="quickSearch(1)" id="type1">昨日</li>
@@ -42,10 +42,10 @@
        <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
        <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
        <li class="separator"></li>
-       <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
+       <li iconCls="" onclick="quickSearch(10)" id="type10" >本年</li>
        <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
    </ul>
-   <span class="separator"></span>
+   <span class="separator"></span> -->
  	<input class="nui-textbox" width="80px" id="partCode" name="partCode" selectOnFocus="true" enabled="true" emptyText="配件编码"/>
     <input class="nui-textbox" width="80px" id="partName" emptyText="配件名称"  selectOnFocus="true" name="partName"/>
    
@@ -88,7 +88,7 @@
       valueFromSelect="false"
       width="100px" onvaluechanged="onSearch">
       <input class="nui-textbox" width="80px" id="carNo" name="carNo" selectOnFocus="true" enabled="true" emptyText="车牌号"/>
-  出库日期 从:
+ <!--  出库日期 从:
      <input class="nui-datepicker"width="100px" id="sPickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
  至:
     <input class="nui-datepicker" width="100px"id="ePickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
@@ -96,6 +96,7 @@
      <input class="nui-datepicker"width="100px" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
  至:
     <input class="nui-datepicker" width="100px"id="eOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+ -->    
     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     <input type="checkbox" id="ReturnSign" class="mini-checkbox"  onclick="changed()" >
 	<span >是否显示归库</span>
@@ -111,8 +112,8 @@
     showSummaryRow="true"
     totalField="page.count" 
     sizeList=[500,1000,2000] 
-     onrowdblclick="" 
-     allowCellWrap = "false"
+    onrowdblclick="" 
+    allowCellWrap = "false"
     frozenStartColumn="0"
     sortMode="client"
     frozenEndColumn="0">

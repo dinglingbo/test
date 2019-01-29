@@ -35,7 +35,7 @@ html,body {
 		style="width: 100%; height: 100%;" allowResize="true">
 		<!-- 上 -->
 		
-		<div size="50%" showCollapseButton="false">
+		<div size="70%" showCollapseButton="false">
 			<div class="nui-fit">
 				<div class="nui-toolbar" style="padding: 2px; height: 35px">
 					<table id="table1">
@@ -56,10 +56,14 @@ html,body {
 				</div>
 				<div class="nui-fit">
 					<div id="datagrid1" dataField="data" class="nui-datagrid"
-						pageSize="50" onDrawCell="onDrawCell" 
-						sizeList="[50,100,500,1000]"
+						pageSize="500" onDrawCell="onDrawCell" 
+						sizeList="[1000,1000,2000]"
 						onselectionchanged="selectionChanged" onrowclick=""
-						allowSortColumn="true" style="width: 100%; height: 100%;">
+						allowSortColumn="true" 
+						style="width: 100%; 
+						height: 100%;"
+						showSummaryRow = "true"
+						>
 						<div property="columns">
 							<div type="indexcolumn">序号</div>
 							<div field="id" headerAlign="center" allowSort="true"
@@ -67,21 +71,21 @@ html,body {
 							<div field="guestName" name="guestName" headerAlign="center" align="center"
 								allowSort="true">客户名称</div>
 							<div field="mobile" headerAlign="center" align="center"
-								allowSort="true">电话</div>
+								allowSort="true" >电话</div>
 							<div field="cardName" name="cardName" headerAlign="center" align="center"
 								allowSort="true">会员卡名称</div>
 							<div field="rechargeAmt" headerAlign="center" align="center"
-								allowSort="true">充值金额</div>
+								allowSort="true" summaryType="sum">充值金额</div>
 							<div field="giveAmt" headerAlign="center" align="center"
-								allowSort="true">赠送金额</div>
+								allowSort="true" summaryType="sum">赠送金额</div>
 							<div field="totalAmt" headerAlign="center" align="center"
-								allowSort="true">总金额</div>
+								allowSort="true" summaryType="sum">总金额</div>
 							<div field="useAmt" headerAlign="center" align="center"
-								allowSort="true">已使用金额</div>
+								allowSort="true" summaryType="sum">已使用金额</div>
 							<div field="balaAmt" headerAlign="center" align="center"
-								allowSort="true">剩余金额</div>	
+								allowSort="true" summaryType="sum">剩余金额</div>	
 							<div field="refundAmt" headerAlign="center" align="center"
-								allowSort="true">已退款金额</div>									
+								allowSort="true" summaryType="sum">已退款金额</div>									
 							<div field="saleMan" name="saleMan" headerAlign="center" align="center"
 								allowSort="true">销售员</div>
 							<div field="recordDate"  align="center"
@@ -91,9 +95,7 @@ html,body {
 				</div>
 			</div>
 		</div>
-
-   
-         
+        
 		<!-- 下 -->
 		<div showCollapseButton="false">
 			<div class="nui-fit">

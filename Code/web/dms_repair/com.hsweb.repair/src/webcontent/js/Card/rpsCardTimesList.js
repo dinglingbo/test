@@ -7,7 +7,7 @@ var CardUrl = webPath + contextPath + "/repair/DataBase/Card/rpsCardTimesBase.js
 //var getTimes = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimesDe.biz.ext";
 var grid = null;
 var queryForm = null;
-var statusList = [{id:"0",name:"客户名称"},{id:"1",name:"客户电话"},{id:"2",name:"计次卡名称"}];
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"客户名称"},{id:"2",name:"客户电话"},{id:"3",name:"计次卡名称"}];
 /*进来该页面，加载套餐列表数据*/
 $(document).ready(function (v)
 {
@@ -148,10 +148,12 @@ function refresh(){
 	    var type = nui.get("search-type").getValue();
 	    var typeValue = nui.get("carNo-search").getValue();
 	    if(type==0){
-	    	guestName = typeValue;
+	    	carNo = typeValue;
 	    }else if(type==1){
-	    	mobile = typeValue;
+	    	guestName = typeValue;
 	    }else if(type==2){
+	    	mobile = typeValue;
+	    }else if(type==3){
 	    	cardName = typeValue;
 	    }
 		var params = {

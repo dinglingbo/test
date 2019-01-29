@@ -8,12 +8,12 @@
 -->
  
 <head>
-    <title>计次卡汇总报表</title>
+    <title>储值卡汇总报表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
     <style type="text/css">
-        body {
+        body {  
             margin: 0;
             padding: 0;
             border: 0;
@@ -44,7 +44,7 @@
 
 <body>
         <div id="tabs" class="nui-tabs" activeIndex="0" style="width:100%;height:100%;" plain="false">
-                <div title="计次卡汇总表" >
+                <div title="储值卡汇总表" >
 
  
     <div id="form1" class="mini-toolbar" style="padding:10px;">
@@ -68,7 +68,7 @@
         <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
         <input class="nui-textbox" id="cardName" name="cardName" emptyText="输入计次卡名称" width="120"  onenter="onenterSearch(this.value)"/>
         <input name="saleManId" id="saleManId" class="nui-combobox " textField="empName" valueField="empId" visible="false"
-        emptyText="销售员" url=""  allowInput="true" showNullItem="true"  nullItemText="请选择..." width="100" valueFromSelect="true"  onenter=""/>
+        emptyText="销售员" url=""  allowInput="true" showNullItem="true"  nullItemText="请选择..." width="100" valueFromSelect="true"/>
         <a class="nui-button" iconcls="" name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span> 
         <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按计次卡汇总</a>
@@ -84,14 +84,18 @@
                 <div allowSort="true" field="cardId" name="cardId" width="60" headerAlign="center" visible="false" header="计次卡ID"></div>
                 <div allowSort="true" field="groupName" name="groupName" width="60" headerAlign="center" header="计次卡名称"></div>
                 <div allowSort="true" field="num" width="60" headerAlign="center" summaryType="sum" dataType="int" header="数量"></div>
-                <div allowSort="true" field="money" width="60" headerAlign="center" summaryType="sum" dataType="int" header="金额"></div>
+                <div allowSort="true" field="rechargeAmt" width="60" headerAlign="center" summaryType="sum" dataType="int" header="充值金额"></div>
+                <div allowSort="true" field="giveAmt" width="60" headerAlign="center" summaryType="sum" dataType="int" header="赠送金额"></div>
+                <div allowSort="true" field="totalAmt" width="60" headerAlign="center" summaryType="sum" dataType="int" header="总金额"></div>
+                <div allowSort="true" field="balaAmt" width="60" headerAlign="center" summaryType="sum" dataType="int" header="已消费金额"></div>
+                <div allowSort="true" field="useAmt" width="60" headerAlign="center" summaryType="sum" dataType="int" header="剩余金额"></div>
                 <div field="action" width="60" headerAlign="center" header="操作"></div>
             </div>
         </div>
     </div>
 
 </div>
-<div title="计次卡明细表" >
+<div title="储值卡明细表" >
     
         <div id="form2" class="nui-toolbar" style="padding:10px;">
                 <label style="font-family:Verdana;">快速查询：</label>
@@ -116,8 +120,7 @@
                 <input class="nui-textbox" id="searchText" name="searchText" emptyText="输入查询条件" width="120" onenter=""/>
                 <input name="saleManIdDet" id="saleManIdDet" class="nui-combobox " textField="empName" valueField="empId" 
                 emptyText="销售员" showNullItem="true"  nullItemText="请选择..." width="100"/>
-                <input class="nui-textbox" id="cardNameDet"  name="cardNameDet" emptyText="计次卡名称" width="120" />
-                <div id="finish" name="finish" class="nui-checkbox" readOnly="false" text="只显示未消费完" trueValue="0" falseValue="1"></div>
+                <input class="nui-textbox" id="cardNameDet"  name="cardNameDet" emptyText="储值卡名称" width="120" />
                 <a class="nui-button" iconcls="" name="" plain="true" onclick="loadB()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         
             </div>
@@ -128,16 +131,14 @@
                     <div property="columns">
                         <div type="indexcolumn" headerAlign="center">序号</div>
                         <div allowSort="true" field="cardName" name="cardName" width="60" headerAlign="center" header="计次卡名称"></div>
-                        <div allowSort="true" field="prdtName" name="cardName" width="60" headerAlign="center" header="项目名称"></div>
-                        <div allowSort="true" field="prdtType" name="cardName" width="60" headerAlign="center" header="细目类型"></div>
                         <div allowSort="true" field="guestName" width="60" headerAlign="center"  header="客户名称"></div>
                         <div allowSort="true" field="mobile" width="60" headerAlign="center" header="手机号"></div>
                         <div allowSort="true" field="carNo" width="60" headerAlign="center"  header="车牌号"></div>
-                        <div allowSort="true" field="sellAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
-                        <div allowSort="true" field="totalTimes" width="60" headerAlign="center" summaryType="sum" header="总次数"></div>
-                        <div allowSort="true" field="useTimes" width="60" headerAlign="center" summaryType="sum" header="已使用次数"></div>
-                        <div allowSort="true" field="isFinish" width="60" headerAlign="center"  header="是否已消费完"></div>
-                        <div allowSort="true" field="useRemark" width="60" headerAlign="center" header="使用情况"></div>
+                        <div allowSort="true" field="rechargeAmt" width="60" headerAlign="center" summaryType="sum" dataType="int" header="充值金额"></div>
+                        <div allowSort="true" field="giveAmt" width="60" headerAlign="center" summaryType="sum" dataType="int" header="赠送金额"></div>
+                        <div allowSort="true" field="totalAmt" width="60" headerAlign="center" summaryType="sum" dataType="int" header="总金额"></div>
+                        <div allowSort="true" field="balaAmt" width="60" headerAlign="center" summaryType="sum" dataType="int" header="已消费金额"></div>
+                        <div allowSort="true" field="useAmt" width="60" headerAlign="center" summaryType="sum" dataType="int" header="剩余金额"></div>
                         <div allowSort="true" field="saleMan" width="60" headerAlign="center"  header="销售员"></div>
                         <div allowSort="true" field="settleDate" width="60" headerAlign="center"  header="结算日期"dateFormat="yyyy-MM-dd HH:mm"></div>
                     </div>
@@ -162,8 +163,8 @@
         var endDateEl2 = nui.get("endDate2");
         var saleManIdEl = nui.get("saleManId");
         var saleManIdDetEl = nui.get("saleManIdDet");
-        var gridUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.report.queryTimeCard.biz.ext';
-        var gridUrl2 = apiPath + repairApi + '/com.hsapi.repair.repairService.report.queryTimeCardDetail.biz.ext';
+        var gridUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.report.queryStoredCard.biz.ext';
+        var gridUrl2 = apiPath + repairApi + '/com.hsapi.repair.repairService.report.queryStoredCardDetail.biz.ext';
         var su = '<a  href="javascript:viewDet()"style="color:blue;text-decoration:underline">查看明细</a>';
         var cType = 0;//分组类型
         var params = {
@@ -187,14 +188,6 @@
             }
         }); 
         grid2.on("drawcell", function (e) {
-            if(e.field =="isFinish" ){
-                if(e.value == 0){
-                    e.cellHtml = '未用完';
-                }
-                if(e.value == 1){
-                    e.cellHtml = '已用完'; 
-                }
-            }
             if(e.field == "mobile"){
                 var value = e.value;
                 value = "" + value;

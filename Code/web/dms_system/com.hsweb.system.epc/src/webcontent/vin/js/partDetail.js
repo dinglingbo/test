@@ -169,12 +169,7 @@ function setReplace(data){
 		data[i].prices='';
 		data[i].ptype='';
 		data[i].brandcn='';
-		if(data[i].parentnum=='root'){
-//			delete data[i];
-//			i++;
-			data.splice(i,1);
-			break;
-		}
+		
 		if(data[i].isre==1){
 			direct.push(data[i]);
 		}else{
@@ -185,6 +180,7 @@ function setReplace(data){
 			innnerData[data[i].parentnum]=data[i].pid;
 
 		}
+
 		for(var j=0;j<data[i].pid.length;j++){
 			arr.push(data[i].pid[j]);
 		}

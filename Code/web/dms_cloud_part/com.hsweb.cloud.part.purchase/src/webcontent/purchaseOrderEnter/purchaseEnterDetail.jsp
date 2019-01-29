@@ -30,7 +30,7 @@
                     <li iconCls="" onclick="quickSearch(9)" id="type9">全部</li> -->
                 </ul>
 
-                <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">草稿</a>
+                <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
 
                 <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
                 	<li iconCls="" onclick="quickSearch(8)" id="type8">所有</li>

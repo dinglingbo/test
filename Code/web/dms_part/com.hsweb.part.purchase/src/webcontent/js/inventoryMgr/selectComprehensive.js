@@ -639,3 +639,14 @@ function setInitExportData( detail){
  
     method5('tableExcel',"已结算工单明细表导出",'tableExportA');
 }
+
+function showCarInfo(row_uid){
+	var row = mainGrid.getRowByUID(row_uid);
+	if(row){
+		var params = {
+				carId : row.carId,
+				guestId : row.guestId
+		};
+		doShowCarInfo(params);
+	}
+}

@@ -43,6 +43,23 @@ $(document).ready(function(v) {
             }
         }
     });
+    
+	  var filter = new HeaderFilter(datagrid1, {  
+	        columns: [
+	            { name: 'rpBillId' },
+	            { name: 'guestName' }
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
+	  
     quickSearch(2);
 });
 

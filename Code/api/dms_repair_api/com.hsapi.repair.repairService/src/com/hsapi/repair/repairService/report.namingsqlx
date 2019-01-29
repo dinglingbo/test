@@ -1352,7 +1352,10 @@
 			d.worker_id workerId,
 			d.sales_deduct_value salesDeductValue,
 			d.tech_deduct_value techDeductValue,
-			d.advisor_deduct_value advisorDeductValue,
+			d.advisor_deduct_value advisorDeductValue,			
+			d.annual_inspection_deduct_value annualInspectionDeductValue,
+			d.insure_due_deduct_value insureDueDeductValue,
+			d.vessel_tax_deduct_value vesselTaxDeductValue,
 			d.total_deduct_amt totalDeductAmt,
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id

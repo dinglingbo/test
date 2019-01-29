@@ -34,7 +34,7 @@ $(document).ready(function(v)
 
     searchBeginDate.setValue(getNowStartDate());
     searchEndDate.setValue(addDate(getNowEndDate(), 1));
-   
+    nui.get('serviceId').focus();
     getAllPartBrand(function(data)
     {
         var partBrandList = data.brand;
@@ -140,7 +140,19 @@ $(document).ready(function(v)
                 break;
         }
     });
-
+    
+    document.onkeyup=function(event){
+        var e=event||window.event;
+        var keyCode=e.keyCode||e.which;
+        
+        if((keyCode==13))  {  
+        	onSearch();
+        }
+        if((keyCode==27))  {  
+        	onCancel();
+        }
+     
+    }
 });
 
 function getSearchParam(){

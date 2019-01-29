@@ -40,6 +40,8 @@ var enterTab = null;
 var partInfoTab = null;
 var autoNew = 0;
 var guestIdEl=null;
+var quickAddShow=0;
+var advancedSearchShow=0;
 
 var AuditSignHash = {
   "0":"草稿",
@@ -223,6 +225,14 @@ $(document).ready(function(v)
         if((keyCode==80)&&(event.altKey))  {   //打印
             onPrint();
         } 
+        if((keyCode==27))  {  
+            if(quickAddShow==1){
+            	onAdvancedAddCancel();
+            }
+            if(advancedSearchShow==1){
+            	onAdvancedSearchCancel();
+            }
+        }
      
     }
 
@@ -251,7 +261,7 @@ $(document).ready(function(v)
     
                 gsparams.auditSign = 0;
                 gsparams.isDiffOrder = 1;
-                quickSearch(0);
+                quickSearch(10);
 
                 nui.unmask();
             });
@@ -838,6 +848,7 @@ function doSearch(params)
 function advancedSearch()
 {
     advancedSearchWin.show();
+    advancedSearchShow=1;
 //    advancedSearchForm.clear();
     if(advancedSearchFormData)
     {
@@ -2133,6 +2144,7 @@ function addMorePart(){
     }
     advancedAddForm.setData([]);
     advancedAddWin.show();
+    quickAddShow=1;
 }
 
 function onAdvancedAddOk(){

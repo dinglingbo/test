@@ -57,7 +57,7 @@ body .mini-grid-row-selected{
                     <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
                 </ul>
 
-                <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">草稿</a>
+                <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">所有</a>
 
                 <ul id="popupMenuType" class="nui-menu" style="display:none;">
                 	<li iconCls="" onclick="quickSearch(9)" id="type9">所有</li>

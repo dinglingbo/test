@@ -33,11 +33,12 @@
 			a.audit_date as auditDate,
 			b.short_name as guestShortName,
 			b.code as code,
+			c.car_no as carNo,
 			case when a.rp_type = 1 then a.rp_amt else 0 end as ramt,
 			case when a.rp_type = -1 then a.rp_amt else 0 end as pamt
 		from fis_rp_account a
-		inner join wb_common.com_guest b
-		on a.guest_id = b.id
+		inner join wb_common.com_guest b on a.guest_id = b.id
+		inner join wb_repair.rpb_car c on b. = c.guest_id
 		where 1 = 1
 
 				

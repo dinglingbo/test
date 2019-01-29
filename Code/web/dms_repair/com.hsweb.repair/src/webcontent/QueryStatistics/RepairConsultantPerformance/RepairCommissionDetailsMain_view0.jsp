@@ -104,9 +104,9 @@
           <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;"
                selectOnLoad="true"
                showPager="true"
-               pageSize="50"
+               pageSize="500"
                totalField="page.count"
-               sizeList=[20,50,100,200]
+               sizeList=[500,1000,2000]
                dataField="data"
                showModified="false"
                onrowdblclick=""
@@ -114,32 +114,37 @@
                editNextOnEnterKey="true"
                allowCellWrap = "true"
                onshowrowdetail="onShowRowDetail"
+               sortMode="client"
+               showSummaryRow="true"
                url="">
               <div property="columns">
                   <div type="indexcolumn">序号</div>
                   <div header="提成信息" headerAlign="center"> 
 	                  <div property="columns" >	                  
-		                  <div field="worker" name="worker" width="80" headerAlign="center" header="姓名"></div>
-		                  <div field="salesDeductValue" name="salesDeductValue" width="60" headerAlign="center" header="销售提成"></div>
-		                  <div field="techDeductValue" name="techDeductValue" width="60" headerAlign="center" header="施工提成"></div>
-		                  <div field="advisorDeductValue" name="advisorDeductValue" width="60" headerAlign="center" header="服务提成"></div>
-		                  <div field="totalDeductAmt" name="totalDeductAmt" width="60" headerAlign="center" header="总提成"></div>
+		                  <div field="worker" name="worker" width="80" headerAlign="center" header="姓名" allowsort="true" ></div>
+		                  <div field="salesDeductValue" name="salesDeductValue" width="60" headerAlign="center" header="销售提成" allowsort="true" summaryType="sum"></div>
+		                  <div field="techDeductValue" name="techDeductValue" width="60" headerAlign="center" header="施工提成" allowsort="true" summaryType="sum"></div>
+		                  <div field="advisorDeductValue" name="advisorDeductValue" width="60" headerAlign="center" header="服务提成" allowsort="true" summaryType="sum"></div>
+		                  <div field="annualInspectionDeductValue" name="annualInspectionDeductValue" width="90" headerAlign="center" header="商业险提成" summaryType="sum" allowsort="true" ></div>		                  
+		                  <div field="insureDueDeductValue" name="insureDueDeductValue" width="90" headerAlign="center" header="交强险提成" summaryType="sum" allowsort="true" ></div>
+             			  <div field="vesselTaxDeductValue" name="vesselTaxDeductValue" width="90" headerAlign="center" header="车船税提成" summaryType="sum" allowsort="true" ></div>
+		                  <div field="totalDeductAmt" name="totalDeductAmt" width="60" headerAlign="center" header="总提成" allowsort="true" summaryType="sum"></div>
 	                  </div>
                   </div>
                   
                   <div header="业务信息" headerAlign="center">
 	                  <div property="columns" >
-		                  <div field="serviceCode" name="serviceCode" width="110" headerAlign="center" header="工单号"></div>
-		                  <div field="carNo" name="carNO" width="70" headerAlign="center" header="车牌号"></div>
-		                  <div field="enterDate" name="enterDate" width="85" headerAlign="center" header="进厂时间" dateFormat="yyyy-MM-dd HH:mm"></div>
-		                  <div field="carBrandId" name="carBrandId" width="80" headerAlign="center" visible="false" header="品牌"></div>
-		                  <div field="carModel" name="carModel" width="140" headerAlign="center" header="品牌车型"></div>
-		                  <div field="carVin" name="carVin" width="130" headerAlign="center" header="车架号(VIN码)"></div>
-		                  <div field="guestFullName" name="guestFullName" width="50" headerAlign="center" header="客户姓名"></div>
-<!-- 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机"></div> -->
-		                  <div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" header="服务顾问"></div>
-		                  <div field="serviceTypeId" name="serviceTypeId" width="90" headerAlign="center" header="业务类型"></div> 
-		                  <div field="outDate" name="outDate" width="100" headerAlign="center" header="出厂时间" dateFormat="yyyy-MM-dd HH:mm"></div>
+		                  <div field="serviceCode" name="serviceCode" width="170" headerAlign="center" header="工单号" allowsort="true" summaryType="count"></div>
+		                  <div field="carNo" name="carNO" width="90" headerAlign="center" header="车牌号" allowsort="true" ></div>
+		                  <div field="enterDate" name="enterDate" width="130" headerAlign="center" header="进厂时间" dateFormat="yyyy-MM-dd HH:mm" allowsort="true" ></div>
+		                  <div field="carBrandId" name="carBrandId" width="110" headerAlign="center" visible="false" header="品牌" allowsort="true" ></div>
+		                  <div field="carModel" name="carModel" width="140" headerAlign="center" header="品牌车型" allowsort="true" ></div>
+		                  <div field="carVin" name="carVin" width="140" headerAlign="center" header="车架号(VIN码)" allowsort="true" ></div>
+		                  <div field="guestFullName" name="guestFullName" width="70" headerAlign="center" header="客户姓名" allowsort="true" ></div>
+<!-- 		                  <div field="guestMobile" name="guestMobile" width="90" headerAlign="center" header="客户手机" allowsort="true" ></div> -->
+		                  <div field="mtAdvisor" name="mtAdvisor" width="70" headerAlign="center" header="服务顾问" allowsort="true" ></div>
+		                  <div field="serviceTypeId" name="serviceTypeId" width="90" headerAlign="center" header="业务类型" allowsort="true" ></div> 
+		                  <div field="outDate" name="outDate" width="130" headerAlign="center" header="出厂时间" dateFormat="yyyy-MM-dd HH:mm" allowsort="true" ></div>
 	                  </div>
                   </div>
               </div>

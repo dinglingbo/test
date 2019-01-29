@@ -98,7 +98,7 @@ $(document).ready(function() {
             showTabInfo(gpartId,gpartCode);
             document.getElementById("epcFormIframe").src=webPath + contextPath+"/purchase/epcTip.html";
         }else if(row.brand && row.partCode){
-            showTabInfo(0,"");
+            showTabInfo(0,gpartCode);
             document.getElementById("epcFormIframe").src=webPath + contextPath + "/com.hsweb.system.epc.partDetail.flow?brand=" + row.brand + "&pid=" + row.partCode;
         }else{
             showTabInfo(0,"");

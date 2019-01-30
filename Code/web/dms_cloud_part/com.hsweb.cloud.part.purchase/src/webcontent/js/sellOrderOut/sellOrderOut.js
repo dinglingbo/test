@@ -1973,7 +1973,7 @@ function onPrint(){
        url: openUrl,
        width: "100%",
        title : "销售打印",
-       height: "100%",
+       height: "80%",
        showMaxButton: false,
        allowResize: false,
        showHeader: true,
@@ -2114,7 +2114,7 @@ function OnrpMainGridCellBeginEdit(e){
 
     if(row.partId) {
         if(row.isMarkBatch && row.isMarkBatch == 1){
-            if(column.field != "remark" && column.field != "orderPrice" && column.field != "orderAmt"){
+            if(column.field != "remark" && column.field != "orderPrice" && column.field != "orderAmt" && column.field != "orderQty"){
                 e.cancel = true;
             }
         }else{

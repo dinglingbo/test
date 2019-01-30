@@ -466,18 +466,65 @@
 	</select>
 	
 <!--其他收支汇总表-->
-	<select id="queryOtherIncomeAndExpenditureSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	<select id="queryOtherIncomeAndExpenditureSummaryshou" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	SELECT  
     <isEqual  prepend=""  property="groupByType"   compareValue="0">
-        DATE_FORMAT(b.create_date,'%Y-%m-%d')  as groupName,a.bill_dc as billDc,
+        DATE_FORMAT(a.create_date,'%Y-%m-%d')  as groupName,
      </isEqual>
            
       <isEqual  prepend="" property="groupByType"  compareValue="1">
-	     	 a.bill_type_id as groupName,a.bill_dc as billDc,
+	     	 b.name as groupName,
 	    </isEqual> 
 	     
 	   <isEqual  prepend="" property="groupByType"  compareValue="2">
-	     	 a.guest_name as groupName,a.bill_dc as billDc,
+	     	 a.guest_name as groupName,
+	    </isEqual> 
+	      	       
+    	
+    	  	sum(a.rp_amt) as rpAmt
+
+		from 
+			wb_frm.fis_rp_bill a
+			LEFT JOIN wb_frm.fib_income_expenses b on (b.id=a.bill_type_id)
+			
+		WHERE
+			a.rp_type_id = 2 and a.bill_dc=1 and a.orgid =#orgid# 
+			
+		
+            <isNotEmpty prepend="and" property="startDate">  
+                (a.create_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (a.create_date &lt; #endDate#)
+            </isNotEmpty>
+ 
+        <isEqual  prepend="" property="groupByType"   compareValue="0">
+	        GROUP BY DATE_FORMAT(a.create_date,'%Y-%m-%d')
+	   </isEqual>
+	   
+        <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	group by a.bill_type_id
+	    </isEqual>
+	    
+	    <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	group by a.guest_name 
+	    </isEqual>  
+	    	
+	</select>
+	
+	<!--其他收支汇总表-->
+	<select id="queryOtherIncomeAndExpenditureSummaryzhi" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT  
+    <isEqual  prepend=""  property="groupByType"   compareValue="0">
+        DATE_FORMAT(a.create_date,'%Y-%m-%d')  as groupName,
+     </isEqual>
+           
+      <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	 b.name as groupName,
+	    </isEqual> 
+	     
+	   <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	 a.guest_name as groupName,
 	    </isEqual> 
 	      	       
     	
@@ -487,7 +534,7 @@
 			wb_frm.fis_rp_bill a
 			LEFT JOIN wb_frm.fib_income_expenses b on (b.id=a.bill_type_id)
 		WHERE
-			rp_type_id = 2
+			a.rp_type_id = 2 and a.bill_dc=-1 and a.orgid =#orgid# 
 
 		
             <isNotEmpty prepend="and" property="startDate">  
@@ -498,15 +545,15 @@
             </isNotEmpty>
  
         <isEqual  prepend="" property="groupByType"   compareValue="0">
-	        GROUP BY DATE_FORMAT(a.create_date,'%Y-%m-%d'),a.bill_dc
+	        GROUP BY DATE_FORMAT(a.create_date,'%Y-%m-%d')
 	   </isEqual>
 	   
         <isEqual  prepend="" property="groupByType"  compareValue="1">
-	     	group by a.bill_type_id ,a.bill_dc 
+	     	group by a.bill_type_id 
 	    </isEqual>
 	    
 	    <isEqual  prepend="" property="groupByType"  compareValue="2">
-	     	group by a.guest_name ,a.bill_dc 
+	     	group by a.guest_name 
 	    </isEqual>  
 	    	
 	</select>

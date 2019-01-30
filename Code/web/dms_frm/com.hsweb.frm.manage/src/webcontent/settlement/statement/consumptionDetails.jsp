@@ -57,7 +57,7 @@ html,body {
 				<div class="nui-fit">
 					<div id="datagrid1" dataField="data" class="nui-datagrid"
 						pageSize="500" onDrawCell="onDrawCell" 
-						sizeList="[1000,1000,2000]"
+						sizeList="[1000,1000,2000]" sortMode="client"
 						onselectionchanged="selectionChanged" onrowclick=""
 						allowSortColumn="true" 
 						style="width: 100%; 

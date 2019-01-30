@@ -10,11 +10,9 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>耗材出库</title>
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.2"></script>
-    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" 
-rel="stylesheet" type="text/css" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" 
-type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.4"></script>
+    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
     html,body {
        margin: 0;
@@ -106,36 +104,36 @@ type="text/javascript"></script>
                 showSummaryRow="true"
                 >
                 <div property="columns">
-                   <div type="checkcolumn" width="40" class="mini-radiobutton" header="选择"></div>
+                   <div type="checkcolumn" width="40" class="mini-radiobutton" header="选择"></div> 
                    <div type="indexcolumn" width="40">序号</div>
-                   <div field="partCode" name="partCode" width="120" headerAlign="center" header="配件编码"></div>
-                   <div field="oemCode" name="oemCode" width="190" headerAlign="center" header="OEM码"></div>
-                   <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>
+                   <div allowSort="true" field="partCode" name="partCode" width="120" headerAlign="center" header="配件编码"></div>
+                   <div allowSort="true" field="oemCode" name="oemCode" width="190" headerAlign="center" header="OEM码"></div>
+                   <div allowSort="true" field="partName" name="partName" width="100" headerAlign="center" header="配件名称"></div>
                    <div allowSort="true" datatype="float" width="60" field="stockQty" name="stockQty" headerAlign="center" header="库存数量" summaryType="sum" ></div>
                    <div allowSort="true" visible="false"  datatype="int" width="60" field="preOutQty" headerAlign="center" header="待出库数量" summaryType="sum" ></div>
                    <div allowSort="true" visible="false"  datatype="float" width="60" field="outQty" headerAlign="center" header="出库数量" summaryType="sum" >
                        <input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                    </div>
-                   <div field="enterPrice" width="60px" headerAlign="center" allowSort="true" header="库存单价"></div>
-                   <div field="billTypeId" align="left" width="60px" headerAlign="center" allowSort="true" header="票据类型"></div>
-                   <div field="storeId" name="storeId"  id="storeId" width="100" headerAlign="center" allowSort="true" header="仓库"></div>
-                   <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
-                   <div field="partBrandId" name="partBrandId" width="70" headerAlign="center" header="品牌"></div>
-                   <div field="applyCarModel" name="applyCarModel" width="200" headerAlign="center" header="品牌车型"></div>
-                   <div field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
-                   <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="150px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
-                   <div field="guestName" name="guestName" width="280px" headerAlign="center" allowSort="true" header="供应商"></div>  
+                   <div allowSort="true" field="enterPrice" width="60px" headerAlign="center" allowSort="true" header="库存单价"></div>
+                   <div allowSort="true" field="billTypeId" align="left" width="60px" headerAlign="center" allowSort="true" header="票据类型"></div>
+                   <div allowSort="true" field="storeId" name="storeId"  id="storeId" width="100" headerAlign="center" allowSort="true" header="仓库"></div>
+                   <div allowSort="true" field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
+                   <div allowSort="true" field="partBrandId" name="partBrandId" width="70" headerAlign="center" header="品牌"></div>
+                   <div allowSort="true" field="applyCarModel" name="applyCarModel" width="200" headerAlign="center" header="品牌车型"></div>
+                   <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
+                   <div allowSort="true" field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="150px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
+                   <div allowSort="true" field="guestName" name="guestName" width="280px" headerAlign="center" allowSort="true" header="供应商"></div>  
 
-                   <div field="fullName" name="fullName" width="300" headerAlign="center" header="配件全称"></div> 
-                <div field="pickMan" visible="false"  name="pickMan" width="50" headerAlign="center" header="领料人">
+                   <div allowSort="true" field="fullName" name="fullName" width="300" headerAlign="center" header="配件全称"></div> 
+                <div allowSort="true" field="pickMan" visible="false"  name="pickMan" width="50" headerAlign="center" header="领料人">
                    <input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                </div>
-               <div field="remark" visible="false"  name="remark" width="50" headerAlign="center" header="备注">
+               <div allowSort="true" field="remark" visible="false"  name="remark" width="50" headerAlign="center" header="备注">
                    <input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
                </div>
-               <div field="sourceId" name="sourceId" width="50" headerAlign="center" header="" visible="flase">明细Id</div>
-               <div field="partNameId" name="partNameId" width="50" headerAlign="center" header="" visible="flase">配件名称ID</div>
-               <div field="pickType" name="pickType" width="50" headerAlign="center" header="" visible="flase">配件名称ID</div>
+               <div allowSort="true" field="sourceId" name="sourceId" width="50" headerAlign="center" header="" visible="flase">明细Id</div>
+               <div allowSort="true" field="partNameId" name="partNameId" width="50" headerAlign="center" header="" visible="flase">配件名称ID</div>
+               <div allowSort="true" field="pickType" name="pickType" width="50" headerAlign="center" header="" visible="flase">配件名称ID</div>
            </div>
        </div>
    </div>
@@ -191,7 +189,7 @@ type="text/javascript"></script>
                        <td><a class="nui-button"  plain="true" onclick="onSearch()"> <span class="fa fa-search fa-lg"></span> 查询</a>
                            <a class="nui-button"  plain="true" onclick="onOut()"> <span class="fa fa-cubes fa-lg"></span> 领料</a>
                            <a class="nui-button"  plain="true" onclick="onBlack()"> <span class="fa fa-check fa-lg"></span> 归库</a>
-                           
+						   <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>                             
                        </td>
                        
                    </tr>
@@ -200,29 +198,29 @@ type="text/javascript"></script>
        </div>
        <div class="nui-fit">
         <div  id="grid" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;"
-        pageSize="50"
+        pageSize="500" sizeList=[500,1000,2000] sortMode="client"
         totalField="page.count" allowSortColumn="true"   allowCellSelect="true" 
         allowCellEdit="true"  multiSelect="false" allowCellWrap = true showSummaryRow="true"
         frozenStartColumn="0" frozenEndColumn="0">
         <div property="columns">
-            <div type="indexcolumn" headerAlign="center" width="30">序号</div>
+            <div allowSort="true" type="indexcolumn" headerAlign="center" width="30">序号</div> 
             
-            <div field="partCode" name="partCode" width="80" headerAlign="center" header="配件编码"></div>
-            <div field="partName" headerAlign="center" allowSort="true" visible="true" width="">配件名称</div>
+            <div allowSort="true" field="partCode" name="partCode" width="80" headerAlign="center" header="配件编码"></div>
+            <div field="partName" name="partName" headerAlign="center" allowSort="true" visible="true" width="">配件名称</div>
             <div field="outQty" headerAlign="center" allowSort="true" visible="true" width="" summaryType="sum" >出库数量</div>
 
             <div field="sellUnitPrice" headerAlign="center" allowSort="true" visible="true" width="">单价</div>
             <div field="sellAmt" headerAlign="center" allowSort="true" visible="true" width="" summaryType="sum" >金额</div>
-            <div field="remark" id="remark" headerAlign="center" allowSort="true" visible="true" width="">备注</div>
+            <div field="remark" id="remark" name="remark" headerAlign="center" allowSort="true" visible="true" width="">备注</div>
             <div field="pickDate" headerAlign="center" allowSort="true" visible="true" width="" format="yyyy-MM-dd" dateFormat="yyyy-MM-dd HH:mm">出库日期</div>  
-            <div field="pickMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
+            <div field="pickMan" name="pickMan" headerAlign="center" allowSort="true" visible="true" width=""  align="right">领料人</div>
             <div field="returnReasonId" id="returnReasonId" headerAlign="center" allowSort="true" visible="false" width="">归库原因ID
                <input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
            </div>
            <div field="returnRemark" id="returnRemark" headerAlign="center" allowSort="true" visible="false" width="">归库原因
                <input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
            </div>
-           <div field="returnMan" id="returnMan" headerAlign="center" allowSort="true" visible="false" width=""  align="right">归库人
+           <div field="returnMan" id="returnMan" name="returnMan" headerAlign="center" allowSort="true" visible="false" width=""  align="right">归库人
                <input property="editor" class="mini-textbox" style="width:20%;" minWidth="20" />
            </div> 
            
@@ -233,7 +231,26 @@ type="text/javascript"></script>
 </div>
 
 </div>
-
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>  
+        
+        	<td colspan="1" align="center">配件编码</td>
+            <td colspan="1" align="center">配件名称</td>
+            <td colspan="1" align="center">出库数量</td>
+            <td colspan="1" align="center">单价</td>
+             <td colspan="1" align="center">金额</td>
+             
+            <td colspan="1" align="center">备注</td>
+            <td colspan="1" align="center">出库日期</td>
+            <td colspan="1" align="center">领料人</td>          
+                        
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div> 
 
 </body>
 </html>

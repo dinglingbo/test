@@ -163,8 +163,9 @@ $(document).ready(
 			  var filter = new HeaderFilter(pRightGrid, {
 			        columns: [
 			            { name: 'guestName' },
-			            { name: 'settleStatus' },
-			            { name: 'carNo' }
+			            { name: 'settleStatus' },  
+			            { name: 'carNo' },
+			            { name: 'billServiceId' }
 			        ],
 			        callback: function (column, filtered) {
 			        },

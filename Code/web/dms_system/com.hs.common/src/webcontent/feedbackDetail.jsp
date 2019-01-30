@@ -124,13 +124,12 @@
 		<font>回复：</font>
 		<input class="nui-TextArea" name="settleContent" id="settleContent" style="width: 93%; height: 100px;" />
 	</div>
-	
-	 <img src="" id="imga" style="width: 100px;height: 100px"><br>
+	 <!-- <img src="" id="imga" style="width: 100px;height: 100px"><br>
      <input id="fileupload2" style="width:300px;"  class="mini-fileupload" 
         name="fileimg1" limitType="*.bmp;*.png;*.jpg"  
         flashUrl="js/swfupload.swf"
         onuploadsuccess="onUploadSuccess" 
         onuploaderror="onUploadError" 
-        onfileselect="onFileSelect2"/>
+        onfileselect="onFileSelect2"/> -->
 </body>
 </html>

@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.64"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.68"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -68,7 +68,9 @@
     #wechatTag{
         color:#62b900;
     }
-
+    #wechatTag1{
+        color:#ccc;
+    }
 
     /* font-family:Verdana;color:white;background:#62b900;padding:0px 8px;border-radius:90px; display:block;  padding:4px 15px;*/
     a.healthview{ background:#78c800; font-size:13px; color:#fff; text-decoration:none;  padding:0px 8px; border-radius:20px;}
@@ -418,7 +420,10 @@ html, body{
                     </div>
                 </td>
                 <td>
-                    <span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp;
+                    <!-- <span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp; -->
+                     <a href="javascript:bindWechat()" id="showA" style="display:none"><span id="wechatTag" class="fa fa-wechat fa-lg"></span></a>&nbsp;
+                     <a href="javascript:bindWechat()" id="showA1" style="display:none"><span id="wechatTag1" class="fa fa-wechat fa-lg"></span></a>&nbsp;
+                   
                     <label style="font-family:Verdana;">客户名称:</label>
                     <label id="guestInfo" style="font-family:Verdana;"><a id="guestNameEl" href="javascript:checkGuest()"></a></label>&nbsp;
                     <label id="guestTab" style="font-family:Verdana;color:#578ccd;"><a id="" href="javascript:GuestTabShow()" >客户标签</a></label>&nbsp;

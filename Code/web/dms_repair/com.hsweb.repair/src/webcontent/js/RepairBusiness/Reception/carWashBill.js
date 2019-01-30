@@ -733,6 +733,11 @@ function setInitData(params){
 
                         var sk = document.getElementById("search_key");
                         sk.style.display = "none";
+                        if(contactor.wechatOpenId){
+                        	document.getElementById("showA").style.display = "";
+                        }else{
+                        	document.getElementById("showA1").style.display = "";
+                        }
                         searchNameEl.setVisible(true);
 
                         searchNameEl.setValue(t);
@@ -862,6 +867,7 @@ function add(){
 		var s = "#"+natureId;
 		$(s).toggleClass("xz");
 	}
+	document.getElementById("showA1").style.display = ""; 
 }
 function save(){
 	itemF = "S";

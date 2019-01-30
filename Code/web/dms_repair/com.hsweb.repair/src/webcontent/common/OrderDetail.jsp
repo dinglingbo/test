@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/orderDetail.js?v=1.3.40"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/orderDetail.js?v=1.3.49"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -23,6 +23,24 @@
         height: 100%;
         overflow: hidden;
     }
+    .zffs td {
+			font-size: 16px;
+		}
+	.zffs {
+			padding: 15px 0;
+		}
+		.pay_tcbk {
+			border: 1px #dcdcdc solid;
+		}
+		.pay_tcbk_list ul li a {
+			width: 180px;
+			height: 33px;
+			display: block;
+			background: #75b7ea;
+			border-radius: 3px;
+			color: #fff;
+			text-decoration: none;
+		}
     .btnType{
         font-family:Verdana;
         font-size: 14px;
@@ -316,6 +334,64 @@ allowSortColumn="true" ondrawsummarycell="onDrawSummaryCellItem" allowCellEdit="
 </div>
 </div>
 </div>
+
+<div class="pay_list">
+						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">其它收入</span></h2>
+						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
+							<div id="dataform">
+								<div class="skbox2" id="div0" name="div0">
+									<table name="account0" id="account0" width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+										<tbody>
+											<tr>
+												<td width="50%" height="&quot;44&quot;">
+											
+												</td>
+												<td>
+												</td>
+											
+											</tr>
+										</tbody>
+									</table>
+									<table name="paytype0" id="paytype0" width="96%" border="0" cellpadding="0" cellspacing="0">
+										<tbody>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+					
+						</div>
+					</div>
+
+					
+					<div class="pay_list">
+						<h2><span style="font-size: 10;    margin-bottom: 10px;">费用支出</span></h2>
+						<div class="pay_tcbk zffs" style="padding: 0 0 14px 0;">
+							<div id="dataform">
+								<div class="skbox2" id="div0" name="div0">
+									<table name="account0" id="account0" width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
+										<tbody>
+											<tr>
+												<td width="50%" height="&quot;44&quot;">
+									
+												</td>
+												<td>
+												</td>
+									
+											</tr>
+										</tbody>
+									</table>
+									<table name="paytype1" id="paytype1" width="96%" border="0" cellpadding="0" cellspacing="0">
+										<tbody>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
 </div>
 <div style="height: 11%;"></div>
 </div>

@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>收款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountRDetail.js?v=1.1.2"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountRDetail.js?v=1.1.4"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -59,6 +59,7 @@ pageEncoding="UTF-8" session="false" %>
 
         <span class="separator"></span> 
         <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+        <a class="nui-button" iconCls="" plain="true" onclick="openOrderDetail()"><span class="fa fa-search fa-lg"></span>&nbsp;详情</a>
     </div>
     <div class="nui-fit">
         <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" 

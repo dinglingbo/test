@@ -324,7 +324,9 @@
 				a.bala_type_code
     </select>
     
-    <select id="queryOtherIncomeAndExpenditureSummary" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+ 
+    
+     <select id="queryOtherIncomeAndExpenditure" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 			SELECT
 				a.guest_name AS guestName,
 				b.name    AS billTypeId,
@@ -369,7 +371,6 @@
         </dynamic>  
         order by a.create_date desc
 	</select>
-    
     
     	<!--结算账户余额表-->
      <select id="querySummaryAccountBalances" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
@@ -460,6 +461,52 @@
 	    
 	    <isEqual  prepend="" property="groupByType"  compareValue="2">
 	     	group by a.worker 
+	    </isEqual>  
+	    	
+	</select>
+	
+<!--其他收支汇总表-->
+	<select id="queryOtherIncomeAndExpenditureSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+    <isEqual  prepend=""  property="groupByType"   compareValue="0">
+        DATE_FORMAT(b.create_date,'%Y-%m-%d')  as groupName,a.bill_dc as billDc,
+     </isEqual>
+           
+      <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	 a.bill_type_id as groupName,a.bill_dc as billDc,
+	    </isEqual> 
+	     
+	   <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	 a.guest_name as groupName,a.bill_dc as billDc,
+	    </isEqual> 
+	      	       
+    	
+    	  	sum(a.rp_amt) as rpAmt
+
+		from 
+			wb_frm.fis_rp_bill a
+			LEFT JOIN wb_frm.fib_income_expenses b on (b.id=a.bill_type_id)
+		WHERE
+			rp_type_id = 2
+
+		
+            <isNotEmpty prepend="and" property="startDate">  
+                (a.create_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (a.create_date &lt; #endDate#)
+            </isNotEmpty>
+ 
+        <isEqual  prepend="" property="groupByType"   compareValue="0">
+	        GROUP BY DATE_FORMAT(a.create_date,'%Y-%m-%d'),a.bill_dc
+	   </isEqual>
+	   
+        <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	group by a.bill_type_id ,a.bill_dc 
+	    </isEqual>
+	    
+	    <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	group by a.guest_name ,a.bill_dc 
 	    </isEqual>  
 	    	
 	</select>

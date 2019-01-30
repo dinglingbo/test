@@ -11,7 +11,7 @@
     <!--取code,parentid-->
 	<select id="getRegion" parameterClass="HashMap" resultClass="HashMap">
     	SELECT code, parentId, name, shortName, pYCode, areaCode, 
-    		postalCode, longitude, latitude, level, isEnd
+    		postalCode, longitude, latitude, level, isEnd, longitude, latitude
 		FROM com_area 
 		WHERE parentId=#parentId# AND isDisabled=0
 	

@@ -96,11 +96,34 @@ $(document).ready(function(v) {
 		onBlack();
 
 	});
-	 var filter = new HeaderFilter(enterGrid, {
+	 var filter = new HeaderFilter(enterGrid, {   
 	        columns: [
 	            { name: 'applyCarModel' },
 	            { name: 'guestName' },
-	            { name: 'pickMan' }
+	            { name: 'pickMan' },
+	            { name: 'partCode' },
+	            { name: 'oemCode' },
+	            { name: 'remark' },
+	            { name: 'partName' }
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });     
+	 
+	 var filter = new HeaderFilter(grid, {
+	        columns: [
+	            { name: 'partCode' },
+	            { name: 'partName' },
+	            { name: 'remark' },
+	            { name: 'pickMan' },
+	            { name: 'returnMan' }
 	        ],
 	        callback: function (column, filtered) {
 	        },
@@ -639,3 +662,62 @@ function onBlack() {
 }
 
 
+function onExport(){
+	
+	var billTypeIdHash = [{name:"综合",id:"0"},{name:"检查",id:"1"},{name:"洗美",id:"2"},{name:"销售",id:"3"},{name:"理赔",id:"4"},{name:"退货",id:"5"}];
+
+	var detail = grid.getData();
+	
+	for(var i=0;i<detail.length;i++){
+		for(var j=0;j<billTypeIdHash.length;j++){
+			if(detail[i].billTypeId==billTypeIdHash[j].id){
+				detail[i].billTypeId=billTypeIdHash[j].name;
+			}
+		}
+	}
+	
+
+	
+	if(detail && detail.length > 0){
+		setInitExportData( detail);
+	}
+}
+
+
+function setInitExportData( detail){
+	
+
+
+    var tds = '<td  colspan="1" align="left">[partCode]</td>' +
+        "<td  colspan='1' align='left'>[partName]</td>" +
+        "<td  colspan='1' align='left'>[outQty]</td>" +
+        "<td  colspan='1' align='left'>[sellUnitPrice]</td>" +
+        "<td  colspan='1' align='left'>[sellAmt]</td>" +        
+        "<td  colspan='1' align='left'>[remark]</td>" +
+        "<td  colspan='1' align='left'>[pickDate]</td>" +
+        "<td  colspan='1' align='left'>[pickMan]</td>" ;
+        
+        
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        if(row.id){
+            var tr = $("<tr></tr>");
+            tr.append(tds.replace("[partCode]", detail[i].partCode?detail[i].partCode:"")
+                         .replace("[partName]", detail[i].partName?detail[i].partName:"")
+                         .replace("[outQty]", detail[i].outQty?detail[i].outQty:"")
+                         .replace("[sellUnitPrice]", detail[i].sellUnitPrice?detail[i].sellUnitPrice:"")
+                         .replace("[sellAmt]", detail[i].sellAmt?detail[i].sellAmt:"")
+                          
+                         
+                         .replace("[remark]", detail[i].remark?detail[i].remark:"")                        
+                          .replace("[pickDate]", nui.formatDate(detail[i].pickDate?detail[i].pickDate:"",'yyyy-MM-dd HH:mm'))
+                         .replace("[pickMan]", detail[i].pickMan?detail[i].pickMan:""));
+            tableExportContent.append(tr);
+        }
+    }
+
+ 
+    method5('tableExcel',"耗材出库导出",'tableExportA');
+}

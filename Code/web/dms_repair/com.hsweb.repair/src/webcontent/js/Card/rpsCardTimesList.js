@@ -17,15 +17,33 @@ $(document).ready(function (v)
     grid  = nui.get("datagrid1");
     grid2 = nui.get("datagrid2");
     queryForm = new nui.Form("#queryForm");
-    var date = new Date();
-    var sdate = new Date();
-    sdate.setMonth(date.getMonth()-3);
-   
-    var startDate = mini.get("startDate");
-    //startDate.setValue(sdate);
-    
+
+    var startDate = mini.get("startDate");   
     var endDate = mini.get("endDate");
-    endDate.setValue(date);
+         
+    startDate1 = getMonthStartDate();
+    endDate1 = getMonthEndDate();
+    startDate.setValue(startDate1);
+    endDate.setValue(endDate1);
+    
+	  var filter = new HeaderFilter(grid, {
+	        columns: [
+	            { name: 'fullName' },
+	            { name: 'carNo' },
+		            { name: 'mobile' },
+	            { name: 'cardName' },
+	            { name: 'prdtName' },
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
     
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
@@ -34,15 +52,7 @@ $(document).ready(function (v)
         });
     });
     
-    var query = {
-    		startDate:sdate,
-    		endDate:date
-    }; 
     grid.setUrl(queryFormUrl);
-    grid.load({
-    	query:query,
-    	token : token
-    });
     grid2.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -59,6 +69,7 @@ $(document).ready(function (v)
                break;
         }
     });
+    search();
        
 });
 
@@ -77,7 +88,7 @@ function searchOne() {
     	var iframe = this.getIFrameEl();
         var data = row;
         //直接从页面获取，不用去后台获取
-        
+		data.type = 'VIEW';
         iframe.contentWindow.setData(data);
         
         },
@@ -167,56 +178,37 @@ function refresh(){
  //快速查询
  
  function search(){
-	    nui.mask({
-	        el : document.body,
-		    cls : 'mini-mask-loading',
-		    html : '查询中...'
-	    });
-		var guestName =  null;
-		var mobile = null;
-		var cardName = null;
-		var carNo = null;
-		var startDate = nui.get("startDate").getFormValue();
-		var endDate = nui.get("endDate").getValue();
-		endDate = addDate(endDate, 1);
-	    var type = nui.get("search-type").getValue();
-	    var typeValue = nui.get("carNo-search").getValue();
-	    if(type==0){
-	    	carNo = typeValue;
-	    }else if(type==1){
-	    	guestName = typeValue;
-	    }else if(type==2){
-	    	mobile = typeValue;
-	    }else if(type==3){
-	    	cardName = typeValue;
-	    }
-		var params = {
-				guestName:guestName,
-				mobile:mobile,
-				cardName:cardName,
-				carNo:carNo,
-				startDate:startDate,
-				endDate:endDate
-		}
-		var json1 = {
-				query:params,
-				token:token
-		}
-		nui.ajax({
-			url : queryFormUrl,
-			type : 'POST',
-			data : json1,
-			cache : false,
-			contentType : 'text/json',
-			success : function(text) {
-				grid.setData(text.cardData);
-				nui.unmask(document.body);
-				
-				
-			}
-		});
+	var guestName =  null;
+	var mobile = null;
+	var cardName = null;
+	var carNo = null;
+	var startDate = nui.get("startDate").getFormValue();
+	var endDate = nui.get("endDate").getValue();
+	endDate = addDate(endDate, 1);
+    var type = nui.get("search-type").getValue();
+    var typeValue = nui.get("carNo-search").getValue();
+    if(type==0){
+    	carNo = typeValue;
+    }else if(type==1){
+    	guestName = typeValue;
+    }else if(type==2){
+    	mobile = typeValue;
+    }else if(type==3){
+    	cardName = typeValue;
+    }
+	var params = {
+			guestName:guestName,
+			mobile:mobile,
+			cardName:cardName,
+			carNo:carNo,
+			startDate:startDate,
+			endDate:endDate
 	}
-
+	grid.load({
+		query:params,
+    	token : token
+    });
+}
  
  //查明细
  var searchDetialUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimesDe.biz.ext";
@@ -311,3 +303,78 @@ function refresh(){
 			}
 		});
 }
+
+
+		
+		
+		function onExport(){
+			
+			
+			var billTypeIdHash = [{name:"套餐",id:"1"},{name:"项目",id:"2"},{name:"配件",id:"3"}]; 
+
+			var detail = grid.getData();
+			
+			for(var i=0;i<detail.length;i++){
+				for(var j=0;j<billTypeIdHash.length;j++){
+					if(detail[i].prdtType==billTypeIdHash[j].id){
+						detail[i].prdtType=billTypeIdHash[j].name;
+					}
+				}
+			}
+			for(var i=0;i<detail.length;i++){
+
+					if(detail[i].periodValidity==-1){
+						detail[i].periodValidity="永久有效";
+					}
+			}
+
+			
+			if(detail && detail.length > 0){
+				setInitExportData( detail);
+			}
+		}
+
+
+		function setInitExportData( detail){
+			
+
+		    var tds = '<td  colspan="1" align="left">[fullName]</td>' +
+		        "<td  colspan='1' align='left'>[carNo]</td>" +
+		        "<td  colspan='1' align='left'>[mobile]</td>" +
+		        "<td  colspan='1' align='left'>[cardName]</td>" +
+		        "<td  colspan='1' align='left'>[periodValidity]</td>" +        
+		        "<td  colspan='1' align='left'>[prdtType]</td>" +
+		        "<td  colspan='1' align='left'>[prdtName]</td>" +		        
+		        "<td  colspan='1' align='left'>[totalTimes]</td>" +
+		        "<td  colspan='1' align='left'>[useTimes]</td>" +        
+		        "<td  colspan='1' align='left'>[balaTimes]</td>" +
+		        "<td  colspan='1' align='left'>[sellAmt]</td>" +
+		        "<td  colspan='1' align='left'>[remainAmt]</td>" ;
+		        
+		        
+		    var tableExportContent = $("#tableExportContent");
+		    tableExportContent.empty();
+		    for (var i = 0; i < detail.length; i++) {
+		        var row = detail[i];
+		        if(row.id){
+		            var tr = $("<tr></tr>");
+		            tr.append(tds.replace("[fullName]", detail[i].fullName?detail[i].fullName:"")
+		                         .replace("[carNo]", detail[i].carNo?detail[i].carNo:"")
+		                         .replace("[mobile]", detail[i].mobile?detail[i].mobile:"")
+		                         .replace("[cardName]", detail[i].cardName?detail[i].cardName:"")
+		                         .replace("[periodValidity]", detail[i].periodValidity?detail[i].periodValidity:"")
+		                         .replace("[prdtType]", detail[i].prdtType?detail[i].prdtType:"")
+		                         .replace("[prdtName]", detail[i].prdtName?detail[i].prdtName:"")
+		                         .replace("[totalTimes]", detail[i].totalTimes?detail[i].totalTimes:0)
+		                         .replace("[useTimes]", detail[i].useTimes?detail[i].useTimes:0)	
+		                         .replace("[balaTimes]", detail[i].balaTimes?detail[i].balaTimes:0)
+		                         .replace("[sellAmt]", detail[i].sellAmt?detail[i].sellAmt:0)		                         
+		                         .replace("[remainAmt]", detail[i].remainAmt?detail[i].remainAmt:0));                        
+
+		            tableExportContent.append(tr);
+		        }
+		    }
+
+		 
+		    method5('tableExcel',"客户计次卡明细表导出",'tableExportA');
+		}

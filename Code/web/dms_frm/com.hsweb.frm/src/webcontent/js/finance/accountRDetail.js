@@ -1,6 +1,7 @@
 /**
  * Created by Administrator on 2018/5/5.
  */
+var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + frmApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var queryUrl = baseUrl + "com.hsapi.frm.frmService.finance.queryRPAccountDetail.biz.ext";
 var mainGrid = null;
@@ -271,4 +272,29 @@ function getItemType(callback) {
             console.log(jqXHR.responseText);
         }
     });
+}
+
+function openOrderDetail(){
+	var row = mainGrid.getSelected();
+	if(row){
+		if(row.billTypeId==103||row.billTypeId==106||row.billTypeId==108){		
+			var data={};
+			data.id=row.billMainId;
+
+			if(data.id){
+				var item={};
+				item.id = "11111";
+			    item.text = "应收详情页";
+				item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+data.id;
+				item.iconCls = "fa fa-cog";
+				window.parent.activeTabAndInit(item,data);
+			}	
+		}else{
+		showMsg("无详情！","W");
+		}
+	}else{
+		showMsg("请选择单据!", "W");
+		return;
+	}
+
 }

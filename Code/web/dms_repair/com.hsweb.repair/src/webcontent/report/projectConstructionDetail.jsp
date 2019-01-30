@@ -14,7 +14,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-         <%@include file="/common/commonRepair.jsp"%>
+<%@include file="/common/commonPart.jsp"%>
  <%--    <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" /> --%>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
@@ -61,7 +61,7 @@ pageEncoding="UTF-8" session="false" %>
         <!-- <input class="nui-textbox" id=""name=""emptytext="配件分类"> -->
 
         <a class="nui-button" iconcls="" plain="true" name="" onclick="Search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-        <!--      <a class="nui-button" iconcls="" plain="true" name="" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a> -->
+       <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>  
     </div>
 
     <div class="nui-fit">
@@ -91,7 +91,36 @@ pageEncoding="UTF-8" session="false" %>
             </div>
         </div>
     </div>
-
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>  
+        	<td colspan="1" align="center">工单号</td>
+            <td colspan="1" align="center">业务类型</td>
+            <td colspan="1" align="center">项目名称</td>
+             <td colspan="1" align="center">车牌号</td>           
+            <td colspan="1" align="center">品牌/车型</td>          
+            <td colspan="1" align="center">客户名称</td>
+            <td colspan="1" align="center">车架号(VIN)</td>        
+            <td colspan="1" align="center">工时</td>
+            <td colspan="1" align="center">单价</td>
+            <td colspan="1" align="center">金额</td>
+            
+            <td colspan="1" align="center">优惠率</td>
+            <td colspan="1" align="center">小计</td>
+            <td colspan="1" align="center">施工员</td>
+            <td colspan="1" align="center">状态</td>
+           <!--  <td colspan="1" align="center">是否返工</td>  -->           
+            <td colspan="1" align="center">服务顾问</td>         
+            <td colspan="1" align="center">完工日期</td>
+            <td colspan="1" align="center">结算日期</td>
+                     
+            
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
+</div>  
     <script type="text/javascript">
         nui.parse();
         var statusList = [{
@@ -273,6 +302,99 @@ pageEncoding="UTF-8" session="false" %>
                 params: params
             });
         }
+        
+ function onExport(){
+	
+	var billTypeIdHash = [{name:"综合",id:"0"},{name:"检查",id:"1"},{name:"洗美",id:"2"},{name:"销售",id:"3"},{name:"理赔",id:"4"},{name:"退货",id:"5"}];
+
+	var detail = grid.getData();
+	
+	for(var i=0;i<detail.length;i++){
+		for(var j=0;j<billTypeIdHash.length;j++){
+			if(detail[i].billTypeId==billTypeIdHash[j].id){
+				detail[i].billTypeId=billTypeIdHash[j].name;
+			}
+		}
+		
+		for(var key in servieTypeHash){
+			if(detail[i].serviceTypeId==servieTypeHash[key].id){
+				detail[i].serviceTypeId=servieTypeHash[key].name;
+			}
+		}
+		for(var j=0;j<statusList.length;j++){
+			if(detail[i].status==statusList[j].id){
+				detail[i].status=statusList[j].text;
+			}
+		}
+
+	}
+	
+
+	
+	if(detail && detail.length > 0){
+		setInitExportData( detail);
+	}
+}
+
+function setInitExportData( detail){
+
+    var tds = '<td  colspan="1" align="left">[serviceCode]</td>' +
+        "<td  colspan='1' align='left'>[serviceTypeId]</td>" +
+        "<td  colspan='1' align='left'>[itemName]</td>" +
+        "<td  colspan='1' align='left'>[carNo]</td>" +
+        "<td  colspan='1' align='left'>[carModel]</td>" +
+        
+        "<td  colspan='1' align='left'>[guestName]</td>" +
+        "<td  colspan='1' align='left'>[carVin]</td>" +
+        "<td  colspan='1' align='left'>[itemTime]</td>" +
+        "<td  colspan='1' align='left'>[unitPrice]</td>" +
+        
+        "<td  colspan='1' align='left'>[amt]</td>" +
+        "<td  colspan='1' align='left'>[rate]</td>" +
+        "<td  colspan='1' align='left'>[subtotal]</td>"+
+        "<td  colspan='1' align='left'>[workers]</td>"+
+        "<td  colspan='1' align='left'>[status]</td>"+
+      /*   "<td  colspan='1' align='left'>[isBack]</td>"+  */     
+        "<td  colspan='1' align='left'>[mtAdvisor]</td>" +
+        "<td  colspan='1' align='left'>[finishDate]</td>" +
+        "<td  colspan='1' align='left'>[outDate]</td>" ;
+        
+    
+    var tableExportContent = $("#tableExportContent");
+    tableExportContent.empty();
+    for (var i = 0; i < detail.length; i++) {
+        var row = detail[i];
+        if(row.serviceCode){
+            var tr = $("<tr></tr>");
+            tr.append(tds.replace("[serviceCode]", detail[i].serviceCode?detail[i].serviceCode:"")
+                         .replace("[serviceTypeId]", detail[i].serviceTypeId?detail[i].serviceTypeId:"")
+                         .replace("[itemName]", detail[i].itemName?detail[i].itemName:"")
+                         .replace("[carNo]", detail[i].carNo?detail[i].carNo:"")
+                         .replace("[carModel]", detail[i].carModel?detail[i].carModel:"")
+                         
+                         .replace("[guestName]", detail[i].guestName?detail[i].guestName:"")                        
+                         .replace("[carVin]", detail[i].carVin?detail[i].carVin:"")
+                         .replace("[itemTime]", detail[i].itemTime?detail[i].itemTime:0)                       
+                         .replace("[unitPrice]", detail[i].unitPrice?detail[i].unitPrice:0)
+                         
+                         .replace("[amt]", detail[i].amt?detail[i].amt:0)                        
+                         .replace("[rate]", detail[i].rate?detail[i].rate*100+"%":"0%")
+                         .replace("[subtotal]", detail[i].subtotal?detail[i].subtotal:0)
+                         .replace("[workers]", detail[i].workers?detail[i].workers:"")
+                         .replace("[status]", detail[i].status?detail[i].status:"")
+                        /*  .replace("[isBack]", detail[i].isBack?detail[i].isBack:"") */
+                         .replace("[mtAdvisor]", detail[i].mtAdvisor?detail[i].mtAdvisor:"")
+                         .replace("[finishDate]", nui.formatDate(detail[i].finishDate?detail[i].finishDate:"",'yyyy-MM-dd HH:mm'))
+                         .replace("[outDate]", nui.formatDate(detail[i].outDate?detail[i].outDate:"",'yyyy-MM-dd HH:mm'))
+                         );       
+                        
+            tableExportContent.append(tr);
+        }
+    }
+
+ 
+    method5('tableExcel',"施工项目明细表",'tableExportA');
+}
     </script>
 </body>
 

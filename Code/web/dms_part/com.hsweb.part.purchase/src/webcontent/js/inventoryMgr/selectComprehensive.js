@@ -225,7 +225,7 @@ $(document).ready(function ()
                 break;
         }
     });
-    quickSearch(2);
+    quickSearch(4);
     
 });
 var statusHash = {

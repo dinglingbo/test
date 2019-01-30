@@ -164,7 +164,8 @@ $(document).ready(
 		        columns: [
 		            { name: 'guestName' },
 		            { name: 'settleStatus' },
-		            { name: 'carNo' }
+		            { name: 'carNo' },
+		            { name: 'billServiceId' }
 		        ],
 		        callback: function (column, filtered) {
 		        },
@@ -1613,31 +1614,7 @@ function onChanged() {
 }
 
 
-function openOrderDetail(){
-	var row = rRightGrid.getSelected();
-	if(row.billTypeId==103||row.billTypeId==106||row.billTypeId==108){
-		if(row){
-			var data={};
-			data.id=row.billMainId;
 
-			if(data.id){
-				var item={};
-				item.id = "11111";
-			    item.text = "应收详情页";
-				item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+data.id;
-				item.iconCls = "fa fa-cog";
-				window.parent.activeTabAndInit(item,data);
-			}	
-		}else{
-			showMsg("请选择单据!", "W");
-			return;
-		}
-	}else{
-		showMsg("无详情！","W");
-	}
-
-
-}
 
 function onExport(){
 
@@ -1688,4 +1665,29 @@ function setInitExportData(detail){
     }
 
     method5('tableExcel',"应收账款管理",'tableExportA');
+}
+
+function openOrderDetail(){
+	var row = rRightGrid.getSelected();
+	if(row){
+		if(row.billTypeId==103||row.billTypeId==106||row.billTypeId==108){		
+			var data={};
+			data.id=row.billMainId;
+
+			if(data.id){
+				var item={};
+				item.id = "11111";
+			    item.text = "应收详情页";
+				item.url =webBaseUrl+  "com.hsweb.repair.DataBase.orderDetail.flow?sourceServiceId="+data.id;
+				item.iconCls = "fa fa-cog";
+				window.parent.activeTabAndInit(item,data);
+			}	
+		}else{
+		showMsg("无详情！","W");
+		}
+	}else{
+		showMsg("请选择单据!", "W");
+		return;
+	}
+
 }

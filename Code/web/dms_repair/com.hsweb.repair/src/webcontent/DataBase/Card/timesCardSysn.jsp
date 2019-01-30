@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.1.16"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.1.18"></script>
 </head>
 <body>
 		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
@@ -150,7 +150,7 @@
 								headerAlign="center" width="">项目类型</div>
 							<div field="qty" allowSort="true" align="left"
 								headerAlign="center" width="">
-								工时/数量 <input class="nui-textbox" name="qty" property="editor" onvaluechanged ="onValueChangedQty" />
+								工时/数量 <input class="nui-textbox" name="qty" property="editor" />
 							</div>
 							<div field="oldPrice" allowSort="true" align="left"
 								headerAlign="center" width="">

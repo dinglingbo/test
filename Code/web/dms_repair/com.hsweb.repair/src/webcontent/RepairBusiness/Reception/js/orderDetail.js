@@ -8,9 +8,13 @@ var FItemRow = {};
 var advancedMorePartWin = null;
 var baseUrl = apiPath + repairApi + "/";
 var webBaseUrl = webPath + contextPath + "/";  
+var frmUrl = apiPath + frmApi + "/";
 var serviceId=null;
 var sellForm=null;
 var servieIdEl = null;
+var plist = [];
+var rlist = [];
+var amt = 0;//其他收入支出金额
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"项目",
@@ -147,7 +151,19 @@ $(document).ready(function () {
 });
 
 function setInitData(params){
-
+	var param = {isMain:0};
+	svrInComeExpenses(param,function(data) {
+		var list = data.list||{};
+		for(var i = 0; i<list.length; i++){
+			var obj = list[i];
+			if(obj.itemTypeId==1){
+				rlist.push(obj);
+			}else if(obj.itemTypeId==-1){
+				plist.push(obj);
+			}
+		}
+    });
+	order(params.id);	
 	 var params = {
 	            data: {
 	                id: params.id
@@ -295,17 +311,18 @@ function onDrawSummaryCellItem(e){
 			  sumItemPrefAmt = sumItemPrefAmt.toFixed(2);
 			  data.itemSubtotal = sumItemSubtotal;
 			  data.itemPrefAmt = sumItemPrefAmt;
-			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal)+parseFloat(amt);//加上其他支出收入
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
 			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
 			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
 			  data.totalAmt = totalAmt.toFixed(2);
+			  
 			  sellForm.setData(data);
 		  }else{
 			  data.itemSubtotal = 0;
 			  data.itemPrefAmt = 0;
-			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal)+parseFloat(amt);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
 			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
@@ -320,7 +337,7 @@ function onDrawSummaryCellItem(e){
 			  sumPartPrefAmt = sumPartPrefAmt.toFixed(2);
 			  data.partSubtotal = sumPartSubtotal;
 			  data.partPrefAmt = sumPartPrefAmt;
-			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal)+parseFloat(amt);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
 			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
@@ -330,7 +347,7 @@ function onDrawSummaryCellItem(e){
 		  }else{
 			  data.partSubtotal = 0;
 			  data.partPrefAmt = 0;
-			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal)+parseFloat(amt);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
 			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
@@ -376,7 +393,7 @@ function onDrawSummaryCellPack(e){
 			  
 			  data.packageSubtotal = sumPkgSubtotal;
 			  data.packagePrefAmt = sumPkgPrefAmt;
-			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal)+parseFloat(amt);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
 			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
@@ -386,7 +403,7 @@ function onDrawSummaryCellPack(e){
 		  }else{
 			  data.packageSubtotal = 0;
 			  data.packagePrefAmt = 0;
-			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal);
+			  var mtAmt = parseFloat(data.packageSubtotal)+parseFloat(data.itemSubtotal)+parseFloat(data.partSubtotal)+parseFloat(amt);
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
 			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
@@ -422,4 +439,131 @@ function onPrint(e){
     }
 }
 
+//查询其他收入支出
+function order(serviceId){
+	
+	var json = {
+			serviceId: serviceId,
+			dc: 1,
+			token: token
+	}
+	nui.ajax({
+		url : baseUrl
+		+ "com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext" ,
+		type : "post",
+		data : json,
+		async: false,
+		success : function(rs) {
+			var str = "";
+			var srnum = rs.data;
+			if(srnum.length>0){
+				for(var i = 0;i<rs.data.length;i++){
+					for(var j =0;j<rlist.length;j++){
+						if(rs.data[i].typeCode==rlist[j].code){
+							rs.data[i].typeCode=rlist[j].name;
+						}
+					}
+					if(rs.data[i].remark==null){
+						rs.data[i].remark="无";
+					}
+					var ss = '<td width="110" height="44" align="right">收入项目</td>'+'<td>'+'<input class="nui-textbox" enabled="false" id ='+i+'stypeCode name ="amount" value='+rs.data[i].typeCode+' style="width: 100px;">'+'</td>   <td width="110" height="44" align="right">收入金额</td>'+'<td>'+'<input class="nui-textbox" enabled="false" value='+rs.data[i].amt+' id ='+i+'sAmt name ="amount"  style="width: 100px;">'+'</td> <td width="110" height="44" align="right">备注</td>'+'<td>'+'<input class="nui-textbox" enabled="false" value='+rs.data[i].remark+' id ='+i+'sremark name ="amount"  style="width: 100px;">'+'</td>';
+						ss=ss+'</tr>'+'<tr>';
+					str = str+ss;
+				}
+				str='<tr>'+str+'</tr>';
+			}else{
+				str='<tr><td align="center" ><spand style="color: #ff7800;">无其他收入</spand></td></tr>';
+			}
+			for(var i = 0;i<srnum.length;i++){
+				amt=amt+parseFloat(srnum[i].amt);
+			}
+			document.getElementById('paytype0').innerHTML = str;
+			for(var i = 0;i<rs.data.length;i++){
+				//nui.get().enable();
+				document.getElementById(i+"stypeCode").disabled =true;
+				document.getElementById(i+"sAmt").disabled =true;
+				document.getElementById(i+"sremark").disabled =true;
+			}
 
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+	var json1 = {
+			serviceId: serviceId,
+			dc: -1,
+			token: token
+	}
+	nui.ajax({
+		url : baseUrl
+		+ "com.hsapi.repair.repairService.svr.getRpsExpense.biz.ext" ,
+		type : "post",
+		data : json1,
+		async: false,
+		success : function(rs) {
+			var str = "";
+			var srnum = rs.data;
+			if(srnum.length>0){
+				for(var i = 0;i<rs.data.length;i++){
+					for(var j =0;j<plist.length;j++){
+						if(rs.data[i].typeCode==plist[j].code){
+							rs.data[i].typeCode=plist[j].name;
+						}
+					}
+					if(rs.data[i].remark==null){
+						rs.data[i].remark="无";
+					}
+					var ss = '<td width="110" height="44" align="right">费用项目</td>'+'<td>'+'<input class="nui-textbox" readonly="readonly" id ='+i+'ztypeCode name ="amount" value='+rs.data[i].typeCode+' style="width: 100px;">'+'</td>   <td width="110" height="44" align="right">支出金额</td>'+'<td>'+'<input class="nui-textbox" readonly="readonly" value='+rs.data[i].amt+' id ='+i+'zAmt name ="amount"  style="width: 100px;">'+'</td> <td width="110" height="44" align="right">备注</td>'+'<td>'+'<input class="nui-textbox" enabled="false" value='+rs.data[i].remark+' id ='+i+'zremark name ="amount"  style="width: 100px;">'+'</td>';
+						ss=ss+'</tr>'+'<tr>';
+					str = str+ss;
+				}
+				str='<tr>'+str+'</tr>';
+			}else{
+				str='<tr><td align="center" ><spand style="color: #ff7800;">无费用支出</spand></td></tr>';
+			}
+			
+/*			for(var i = 0;i<srnum.length;i++){
+				amt=amt+parseFloat(srnum[i].amt);
+			}*/
+			document.getElementById('paytype1').innerHTML = str;
+			for(var i = 0;i<rs.data.length;i++){
+				//nui.get().enable();
+				document.getElementById(i+"ztypeCode").disabled =true;
+				document.getElementById(i+"zAmt").disabled =true;
+				document.getElementById(i+"zremark").disabled =true;
+			}
+
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+
+}
+
+var inComeExpensesUrl = frmUrl + "com.hsapi.frm.frmService.crud.queryFibInComeExpenses.biz.ext";
+function svrInComeExpenses(params, callback) {
+    //var params = {itemTypeId : 1, isMain: 0};
+    nui.ajax({
+        url : inComeExpensesUrl,
+        data : {
+            params: params,
+            token: token
+        },
+        type : "post",
+        async: false,
+        success : function(data) {
+            if (data && data.list) {
+                callback && callback(data);
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            //  nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+}

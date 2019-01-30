@@ -10,7 +10,7 @@
     <title>其他收支汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/otherGainPayReport.js?v=1.0.1"></script>
+  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/otherGainPayReport.js?v=1.0.2"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -62,8 +62,8 @@
      <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>
-     <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(1)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按业务类型汇总</a>
-     <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(2)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按提成人汇总</a>
+     <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(1)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按收支项目汇总</a>
+<!--      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(2)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按提成人汇总</a> -->
 <!--      <a class="nui-button" iconcls=""  name="" plain="true" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a> -->
  </div>
  <div class="nui-fit">
@@ -78,7 +78,8 @@
             <div property="columns">          
         <div type="indexcolumn">序号</div>
               <div  field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型" allowsort="true" ></div>
-              <div field="salesDeductValue" name="salesDeductValue" width="60" headerAlign="center" header="销售提成" summaryType="sum" allowsort="true" ></div> 
+              <div field="billDc" name="billDc" width="60" headerAlign="center" header="收支" summaryType="sum" allowsort="true" ></div> 
+              <div field="rpAmt" name="rpAmt" width="60" headerAlign="center" header="金额" summaryType="sum" allowsort="true" ></div> 
 <!--               <div field="techDeductValue" name="techDeductValue" width="60" headerAlign="center" header="施工提成" summaryType="sum" allowsort="true" ></div> -->
 <!--               <div field="advisorDeductValue" name="advisorDeductValue" width="60" headerAlign="center" header="服务提成" summaryType="sum" allowsort="true" ></div>
               <div field="annualInspectionDeductValue" name="annualInspectionDeductValue" width="60" headerAlign="center" header="商业险提成" summaryType="sum" allowsort="true" ></div>

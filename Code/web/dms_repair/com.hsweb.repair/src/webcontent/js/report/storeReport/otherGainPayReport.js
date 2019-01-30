@@ -12,7 +12,7 @@ var serviceTypeIdEl = null;
 var servieTypeList = [];
 var servieTypeHash = {};
 var cType = 0;
-var gridUrl = apiPath + repairApi+'/com.hsapi.repair.report.dataStatistics.queryTechnicianSummary.biz.ext';
+var gridUrl = apiPath + repairApi+'/com.hsapi.frm.setting.queryOtherIncomeAndExpenditureSummary.biz.ext';
 $(document).ready(function (v)
 {
 

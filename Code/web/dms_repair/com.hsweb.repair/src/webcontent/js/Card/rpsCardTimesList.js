@@ -17,15 +17,33 @@ $(document).ready(function (v)
     grid  = nui.get("datagrid1");
     grid2 = nui.get("datagrid2");
     queryForm = new nui.Form("#queryForm");
-    var startDate = mini.get("startDate");
-  
+
+    var startDate = mini.get("startDate");   
     var endDate = mini.get("endDate");
-    
+         
     startDate1 = getMonthStartDate();
     endDate1 = getMonthEndDate();
     startDate.setValue(startDate1);
     endDate.setValue(endDate1);
     
+	  var filter = new HeaderFilter(grid, {
+	        columns: [
+	            { name: 'fullName' },
+	            { name: 'carNo' },
+		            { name: 'mobile' },
+	            { name: 'cardName' },
+	            { name: 'prdtName' },
+	        ],
+	        callback: function (column, filtered) {
+	        },
+
+	        tranCallBack: function (field) {
+	        	var value = null;
+	        	switch(field){
+		    	}
+	        	return value;
+	        }
+	    });
     
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
@@ -33,8 +51,8 @@ $(document).ready(function (v)
             servieTypeHash[v.id] = v;
         });
     });
-    grid.setUrl(queryFormUrl);
     
+    grid.setUrl(queryFormUrl);
     grid2.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -50,8 +68,9 @@ $(document).ready(function (v)
            default:
                break;
         }
-    }); 
+    });
     search();
+       
 });
 
 
@@ -190,7 +209,6 @@ function refresh(){
     	token : token
     });
 }
-
  
  //查明细
  var searchDetialUrl = apiPath + repairApi + "/com.hsapi.repair.baseData.cardTimes.getCardTimesDe.biz.ext";
@@ -285,3 +303,78 @@ function refresh(){
 			}
 		});
 }
+
+
+		
+		
+		function onExport(){
+			
+			
+			var billTypeIdHash = [{name:"套餐",id:"1"},{name:"项目",id:"2"},{name:"配件",id:"3"}]; 
+
+			var detail = grid.getData();
+			
+			for(var i=0;i<detail.length;i++){
+				for(var j=0;j<billTypeIdHash.length;j++){
+					if(detail[i].prdtType==billTypeIdHash[j].id){
+						detail[i].prdtType=billTypeIdHash[j].name;
+					}
+				}
+			}
+			for(var i=0;i<detail.length;i++){
+
+					if(detail[i].periodValidity==-1){
+						detail[i].periodValidity="永久有效";
+					}
+			}
+
+			
+			if(detail && detail.length > 0){
+				setInitExportData( detail);
+			}
+		}
+
+
+		function setInitExportData( detail){
+			
+
+		    var tds = '<td  colspan="1" align="left">[fullName]</td>' +
+		        "<td  colspan='1' align='left'>[carNo]</td>" +
+		        "<td  colspan='1' align='left'>[mobile]</td>" +
+		        "<td  colspan='1' align='left'>[cardName]</td>" +
+		        "<td  colspan='1' align='left'>[periodValidity]</td>" +        
+		        "<td  colspan='1' align='left'>[prdtType]</td>" +
+		        "<td  colspan='1' align='left'>[prdtName]</td>" +		        
+		        "<td  colspan='1' align='left'>[totalTimes]</td>" +
+		        "<td  colspan='1' align='left'>[useTimes]</td>" +        
+		        "<td  colspan='1' align='left'>[balaTimes]</td>" +
+		        "<td  colspan='1' align='left'>[sellAmt]</td>" +
+		        "<td  colspan='1' align='left'>[remainAmt]</td>" ;
+		        
+		        
+		    var tableExportContent = $("#tableExportContent");
+		    tableExportContent.empty();
+		    for (var i = 0; i < detail.length; i++) {
+		        var row = detail[i];
+		        if(row.id){
+		            var tr = $("<tr></tr>");
+		            tr.append(tds.replace("[fullName]", detail[i].fullName?detail[i].fullName:"")
+		                         .replace("[carNo]", detail[i].carNo?detail[i].carNo:"")
+		                         .replace("[mobile]", detail[i].mobile?detail[i].mobile:"")
+		                         .replace("[cardName]", detail[i].cardName?detail[i].cardName:"")
+		                         .replace("[periodValidity]", detail[i].periodValidity?detail[i].periodValidity:"")
+		                         .replace("[prdtType]", detail[i].prdtType?detail[i].prdtType:"")
+		                         .replace("[prdtName]", detail[i].prdtName?detail[i].prdtName:"")
+		                         .replace("[totalTimes]", detail[i].totalTimes?detail[i].totalTimes:0)
+		                         .replace("[useTimes]", detail[i].useTimes?detail[i].useTimes:0)	
+		                         .replace("[balaTimes]", detail[i].balaTimes?detail[i].balaTimes:0)
+		                         .replace("[sellAmt]", detail[i].sellAmt?detail[i].sellAmt:0)		                         
+		                         .replace("[remainAmt]", detail[i].remainAmt?detail[i].remainAmt:0));                        
+
+		            tableExportContent.append(tr);
+		        }
+		    }
+
+		 
+		    method5('tableExcel',"客户计次卡明细表导出",'tableExportA');
+		}

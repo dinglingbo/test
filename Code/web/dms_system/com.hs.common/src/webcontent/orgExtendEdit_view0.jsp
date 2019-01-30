@@ -11,7 +11,7 @@
 <head>
     <title>门店信息</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  	<script src="<%=webPath + contextPath%>/common/js/orgExtendEdit.js?v=2.0.0" type="text/javascript"></script>
+  	<script src="<%=webPath + contextPath%>/common/js/orgExtendEdit.js?v=2.0.4" type="text/javascript"></script>
 
   <style type="text/css">
     body {
@@ -273,7 +273,6 @@ border-radius: 4px;
 
             </tr>
             
-
             <tr>
                 <td class="tbtext">最后操作人<span style="color:red"></span></td>
                 <td colspan="5" ><input class="nui-textbox inline " style="" name="modifier" id="modifier" readonly="readonly" enabled="false"/>

@@ -606,8 +606,11 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
 		tabs1.on("activechanged",function(e){
 			var index = e.index;
 			var tab = e.tab;
-			titleUrl = tab.url || "";
-			title = tab.title;
+			if(tab){
+			   titleUrl = tab.url || "";
+			   title = tab.title;
+			}
+			
 			//console.log("titleUrl"+titleUrl +"-----"+"title"+title);
 		});
 		

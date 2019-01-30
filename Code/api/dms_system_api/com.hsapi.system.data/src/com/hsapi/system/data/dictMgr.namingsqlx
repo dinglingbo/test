@@ -150,7 +150,7 @@
     </select>
     <!--省份-->
     <select id="getProvince" parameterClass="HashMap" resultClass="HashMap">
-    	select id, parentid, name, shortname, pycode, code, areacode, postalcode 
+    	select id, parentid, name, shortname, pycode, code, areacode, postalcode
     	from com_area where `level` = 1 and isdisabled = 0
     </select>
     <!--城市-->

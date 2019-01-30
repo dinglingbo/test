@@ -9,7 +9,7 @@
 -->
 <head>
     <title>未结算配件明细表</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/notSettledPartDetail.js?v=1.0.1"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/notSettledPartDetail.js?v=1.0.2"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -121,12 +121,12 @@
         <div type="indexcolumn">序号</div>
         <div header="工单信息" headerAlign="center">
             <div property="columns">
-            	<div allowSort="false" field="serviceCode" width="180" headerAlign="center" header="业务单号"></div>
-            	<div allowSort="false" field="carNo" width="100" headerAlign="center" header="车牌号"></div>
-            	<div allowSort="false" field="storeId" width="100" headerAlign="center" header="仓库"></div>
-                <div allowSort="false" field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
-                <div allowSort="false" field="partName" name="partName" width="150" headerAlign="center" header="配件名称"></div>
-                <div allowSort="false" field="oemCode" width="100" headerAlign="center" header="OEM码"></div>
+            	<div allowSort="true" field="serviceCode" name="serviceCode" width="180" headerAlign="center" header="业务单号"></div>
+            	<div allowSort="true" field="carNo" name="carNo" width="100" headerAlign="center" header="车牌号"></div>
+            	<div allowSort="true" field="storeId" width="100" headerAlign="center" header="仓库"></div>
+                <div allowSort="true" field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
+                <div allowSort="true" field="partName" name="partName" width="150" headerAlign="center" header="配件名称"></div>
+                <div allowSort="true" field="oemCode" width="100" headerAlign="center" header="OEM码"></div>
    				
             </div>
         </div>
@@ -154,20 +154,20 @@
         <div header="出库信息" headerAlign="center">
             <div property="columns">
                 <div allowSort="true"  field="pickMan" width="60" name="pickMan" headerAlign="center" header="出库人" dataType="float" align="left"></div>
-                <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd HH:mm" field="outDate" headerAlign="center" header="出库日期" dataType="float" align="left"></div>
+                <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd HH:mm" field="pickDate" headerAlign="center" header="出库日期" dataType="float" align="left"></div>
             </div>
         </div>
         <div header="其他" headerAlign="center">
             <div property="columns">
-               <div allowSort="false" field="returnSign" width="80" headerAlign="center" header="是否归库" ></div>
-               <div allowSort="false" field="returnDate" width="120" headerAlign="center" header="归库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                <div allowSort="false" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
-   				<div allowSort="false" field="applyCarModel" width="200" headerAlign="center" header="适用车型"></div>
-                <div allowSort="false" field="unit" width="50" headerAlign="center" header="单位"></div>
-                <div allowSort="false" field="carTypeIdF" width="100" headerAlign="center" header="配件分类一级"></div>
-                <div allowSort="false" field="carTypeIdS" width="100" headerAlign="center" header="配件分类二级"></div>
-                <div allowSort="false" field="carTypeIdT" width="100" headerAlign="center" header="配件分类三级"></div>
-                <div allowSort="false" field="spec" width="100" headerAlign="center" header="规格"></div>
+               <div allowSort="true" field="returnSign" width="80" headerAlign="center" header="是否归库" ></div>
+               <div allowSort="true" field="returnDate" width="120" headerAlign="center" header="归库日期" dateFormat="yyyy-MM-dd HH:mm"></div>
+                <div allowSort="true" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
+   				<div allowSort="true" field="applyCarModel" width="200" headerAlign="center" header="适用车型"></div>
+                <div allowSort="true" field="unit" width="50" headerAlign="center" header="单位"></div>
+                <div allowSort="true" field="carTypeIdF" width="100" headerAlign="center" header="配件分类一级"></div>
+                <div allowSort="true" field="carTypeIdS" width="100" headerAlign="center" header="配件分类二级"></div>
+                <div allowSort="true" field="carTypeIdT" width="100" headerAlign="center" header="配件分类三级"></div>
+                <div allowSort="true" field="spec" width="100" headerAlign="center" header="规格"></div>
             </div>
         </div>
     </div>

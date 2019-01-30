@@ -346,6 +346,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
         });
     }
     
+    
     function updatePassWord(){
         nui.open({
             url: defDomin + "/coframe/rights/user/update_password.jsp",
@@ -354,6 +355,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
             height: "200px"
         });
     }
+    
     function updateEmployee(){
     var queryEmployeeUrl = baseUrl+"com.hsapi.system.tenant.employee.queryEmployee.biz.ext";
     nui.ajax({

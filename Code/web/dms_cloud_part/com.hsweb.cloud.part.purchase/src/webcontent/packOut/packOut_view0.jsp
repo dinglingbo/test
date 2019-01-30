@@ -151,7 +151,6 @@
                                       <td colspan="3">
                                           <input id="guestId"
 	                                             name="guestId"
-	                                             enterQuery="true"
 	                                             dataField="suppliers"
 	                                             textField="fullName"
 	                                             loadingText="查询中"
@@ -174,7 +173,6 @@
                                       <td colspan="1">
                                           <input id="logisticsGuestId"
                                                  name="logisticsGuestId"
-                                                 enterQuery="true"
                                                  loadingText="查询中"
 	                                             valueField="id"
 	                                             dataField="suppliers"

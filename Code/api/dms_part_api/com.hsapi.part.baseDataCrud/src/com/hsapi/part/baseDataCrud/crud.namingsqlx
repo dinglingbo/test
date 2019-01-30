@@ -379,7 +379,7 @@
 		from pj_sell_price_part a
 			inner join wb_common.com_attribute c
 				on a.part_id = c.id
-		WHERE 1 = 1
+		WHERE 1 = 1 and c.is_disabled=0
     	<dynamic>
     		<isNotEmpty prepend="and" property="strategyId">  
                 (a.strategy_id = #strategyId#)
@@ -416,7 +416,7 @@
 		from pj_part_price a
 			inner join wb_common.com_attribute c
 				on a.part_id = c.id
-		WHERE 1 = 1
+		WHERE 1 = 1 and c.is_disabled=0
     	<dynamic>
     		<isNotEmpty prepend="and" property="strategyId">  
                 (a.strategy_id = #strategyId#)

@@ -123,7 +123,7 @@
 					on a.id = b.part_id and b.orgid = #orgid#
         		left join pj_part_price c
 					on a.id = c.part_id and c.orgid = #orgid#
-        where 1=1
+        where 1=1 and a.is_disabled=0
     	<dynamic>
     		<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid# or a.orgid = 0)
@@ -390,7 +390,7 @@
 					on a.id = b.part_id and b.orgid = #orgid#
 			</isNull>
 			
-		where 1=1
+		where 1=1 and a.is_disabled=0
     	<dynamic>
     		<isNotNull prepend = "" property = "showStock">
     		

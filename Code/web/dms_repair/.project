@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>dms_repair</name>
+	<name>dms_frm</name>
 	<comment></comment>
 	<projects>
-		<project>dms_repair_api</project>
 	</projects>
 	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.wst.jsdt.core.javascriptValidator</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
 		<buildCommand>
 			<name>com.primeton.studio.builder</name>
 			<arguments>
@@ -20,7 +14,6 @@
 				</dictionary>
 				<dictionary>
 					<key>database</key>
-					<value>hsOrg_repair</value>
 				</dictionary>
 				<dictionary>
 					<key>server</key>
@@ -37,6 +30,5 @@
 	<natures>
 		<nature>com.primeton.studio.nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
-		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
 </projectDescription>

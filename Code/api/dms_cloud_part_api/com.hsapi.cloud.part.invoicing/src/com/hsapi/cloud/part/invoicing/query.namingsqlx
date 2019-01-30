@@ -764,7 +764,7 @@
 		inner join wb_common.com_attribute b
 		on a.part_id = b.id
 
-		WHERE 1 = 1
+		WHERE 1 = 1 and b.is_disabled=0
 				
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>

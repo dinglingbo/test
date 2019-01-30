@@ -541,8 +541,10 @@ function onMoreTabChanged(e){
   
     if(name == "enterTab"){
         //nui.get("showStock").hide();
+    	morePartSearch();
         
     }else if(name == "partInfoTab"){
+    	morePartSearch();
         //nui.get("showStock").show();
 //        nui.get("showStock").setValue(0);
     }
@@ -622,8 +624,22 @@ function onAdvancedAddOk(){
         }else{
             doAdd();
         }
-    }else{
-        doAdd();
+    }else if(tab.name == "partInfoTab"){
+    	var row = morePartGrid.getSelected();
+    	var costPrice = row.costPrice;
+    	if(data.price < costPrice){
+            nui.confirm("单价低于成本，是否继续？", "友情提示",
+                function (action) { 
+                    if (action == "ok") {
+                        doAdd();
+                    }else {
+                        return;
+                    }
+                }
+            );
+        }else{
+            doAdd();
+        }
 
     }
 }

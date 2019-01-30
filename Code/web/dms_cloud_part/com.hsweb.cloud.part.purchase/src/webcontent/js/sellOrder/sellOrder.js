@@ -2003,7 +2003,7 @@ function onPrint(){
        url: openUrl,
        width: "100%",
        title : "销售订单打印",
-       height: "100%",
+       height: "80%",
        showMaxButton: false,
        allowResize: false,
        showHeader: true,

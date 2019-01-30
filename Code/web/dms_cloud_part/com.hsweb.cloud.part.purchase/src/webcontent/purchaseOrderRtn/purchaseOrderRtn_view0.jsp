@@ -146,7 +146,7 @@ body .mini-grid-row-selected{
                                       <td colspan="3">
                                           <input id="guestId"
                                              name="guestId"
-                                             enterQuery="true"
+                                            
                                              dataField="suppliers"
                                              textField="fullName"
                                              loadingText="查询中"

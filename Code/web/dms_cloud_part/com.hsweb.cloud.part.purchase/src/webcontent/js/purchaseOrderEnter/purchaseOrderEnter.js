@@ -1875,7 +1875,7 @@ function onPrint(){
     nui.open({
        url: openUrl,
        width: "100%",
-       height: "100%",
+       height: "80%",
        showMaxButton: false,
        allowResize: false,
        showHeader: true,

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>采购入库选择</title>
-<script src="<%=webPath + contextPath%>/purchase/js/sellOrderOut/pchsOrderEnterSelect.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/sellOrderOut/pchsOrderEnterSelect.js?v=1.0.8"></script>
 <style type="text/css">
 .title {
     width: 90px;
@@ -93,13 +93,16 @@
             showPager="true"
             dataField="detailList"
             sortMode="client"
-            multiSelect="false"
+             allowCellEdit="true" allowCellSelect="true" multiSelect="true" 
             showReloadButton="false"
             pageSize="50"
             sizeList="[50,100,200]"
+             autoHideRowDetail="false"
+             enableHotTrack="false"
             showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
+            <div type="checkcolumn"></div>
             <div type="expandcolumn" width="20" >#</div>
             <div field="guestShortName" width="150" headerAlign="center" header="供应商名称"></div>
             <div allowSort="true" summaryType="count" field="code" width="150" summaryType="count" headerAlign="center" header="单号"></div>
@@ -124,9 +127,11 @@
             dataField="detailList"
             sortMode="client"
             idField="id"
+            allowCellEdit="true" multiSelect="true" 
             allowCellSelect="true" allowCellEdit="false">
         <div property="columns">
             <div type="indexcolumn">序号</div>
+            <div type="checkcolumn"></div>
             <div field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>
             <div field="comOemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
             <div field="partName" partName="name" width="100" headerAlign="center" header="配件名称"></div>

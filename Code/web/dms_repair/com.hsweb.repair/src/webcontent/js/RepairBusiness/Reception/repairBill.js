@@ -1043,10 +1043,9 @@ function add(){
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
-
     nui.get("ExpenseAccount").setVisible(true);
     nui.get("ExpenseAccount1").setVisible(false);
-
+    document.getElementById("showA").hide();
 }
 function save(){
 	itemF = "S";

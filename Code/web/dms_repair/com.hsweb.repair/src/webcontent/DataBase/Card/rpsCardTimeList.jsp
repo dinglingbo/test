@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-	
+	<%@include file="/common/commonPart.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!-- 
@@ -10,8 +10,10 @@
 -->
 <head>
 <title>计次卡查询</title>
-<%@include file="/common/sysCommon.jsp"%>
-<script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.1.9"></script>
+
+<script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.2.2"></script>
+<link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	
 </head>
 
@@ -37,6 +39,7 @@
 									<a class="nui-button" onclick="searchOne()" plain="true"> <span class="fa fa-search fa-lg"></span>&nbsp; 查看详情</a>	
 				   					<a class="nui-button" onclick="dealtWithCard()" plain="true"> <span class="fa fa-address-card-o fa-lg"></span>&nbsp;次卡办理</a>
 				<!-- 						<a class="nui-button" onclick="refund()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款</a> -->
+                    				<a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a> 				
 								</td>			
 							</tr>
 						</table>
@@ -63,22 +66,22 @@
 					       >
 					  <div property="columns">
 						<!-- <div type="indexcolumn"></div>-->
-						<div type="checkcolumn" ></div> 
+						<div type="checkcolumn" ></div>  
 						
-						<div field="fullName" headerAlign="center" allowSort="true"
+						<div field="fullName" name="fullName" headerAlign="center" allowSort="true"
 							>客户名称</div>
-						<div field="carNo" headerAlign="center" allowSort="true">
+						<div field="carNo" name="carNo" headerAlign="center" allowSort="true">
 							车牌号</div>
-						<div field="mobile" headerAlign="center" allowSort="true"  >
+						<div field="mobile" name="mobile" headerAlign="center" allowSort="true"  >
 							电话</div>		 
-						<div field="cardName" headerAlign="center" allowSort="true">
+						<div field="cardName" name="cardName" headerAlign="center" allowSort="true">
 						  计次卡名称</div>
 						<div field="periodValidity" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">
 							有效期</div>
 						<div field="prdtType" headerAlign="center" allowSort="true">
 							项目类型
 						</div>
-						<div field="prdtName" headerAlign="center" allowSort="true">
+						<div field="prdtName" name="prdtName" headerAlign="center" allowSort="true">
 							项目名称
 						</div>
 						<div field="totalTimes" headerAlign="center" allowSort="true">
@@ -121,6 +124,29 @@
 				</div>
 			</div>
 		</div>
+</div>
+
+<div id="exportDiv" style="display:none">  
+    <table id="tableExcel" width="100%" border="0" cellspacing="0" cellpadding="0">  
+        <tr>  
+               
+        	<td colspan="1" align="center">客户名称</td>
+            <td colspan="1" align="center">车牌号</td>
+            <td colspan="1" align="center">电话</td>
+            <td colspan="1" align="center">计次卡名称</td>
+             <td colspan="1" align="center">有效期</td>            
+            <td colspan="1" align="center">项目类型</td>
+            <td colspan="1" align="center">项目名称</td>
+            <td colspan="1" align="center">总次数</td>                                 
+            <td colspan="1" align="center">已使用次数</td>
+            <td colspan="1" align="center">剩余次数</td>
+            <td colspan="1" align="center">总金额</td>  
+            <td colspan="1" align="center">剩余金额</td>  
+        </tr>
+        <tbody id="tableExportContent">
+        </tbody>
+    </table>  
+    <a href="" id="tableExportA"></a>
 </div>
 </body>
 </html>

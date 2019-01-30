@@ -35,7 +35,7 @@
          FROM rps_card_times a 
          INNER JOIN rps_card_times_detail b ON(b.main_id = a.id)
          INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
-         WHERE  a.orgid = #orgid# and a.status = 2
+         WHERE  a.orgid = #orgid# and a.status = 2 and a.is_refund
          <dynamic>
          <isNotEmpty prepend="and" property="guestName">  
 	            (a.guest_name like '%$guestName$%')

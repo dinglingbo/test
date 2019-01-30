@@ -16,6 +16,7 @@ var enterTypeIdList = [];
 var enterTypeIdHash = {};
 var pList = [];
 var pHash = {};
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"业务单号"}];
 var type=0;
 $(document).ready(function(v) {
 	mainGrid = nui.get("mainGrid");
@@ -150,6 +151,13 @@ function getSearchParam(){
     params.guestId = advanceGuestIdEl.getValue();
     params.isMain = isMainEl.getValue();
     params.rpDc = 1;
+    var type = nui.get("search-type").getValue();
+    var typeValue = nui.get("carNo-search").getValue();
+    if(type==0){
+        params.carNo = typeValue;
+    }else if(type==1){
+        params.billServiceId = typeValue;
+    }
     return params;
 }
 

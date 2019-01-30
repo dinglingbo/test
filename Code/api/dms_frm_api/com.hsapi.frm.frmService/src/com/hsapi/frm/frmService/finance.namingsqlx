@@ -88,6 +88,12 @@
                 <isNotEmpty prepend="and" property="guestId">  
                     (b.guest_id = #guestId#)
                 </isNotEmpty>
+                 <isNotEmpty prepend="and" property="billServiceId">  
+                    (a.bill_service_id like '%$billServiceId$%')
+                </isNotEmpty> 
+                <isNotEmpty prepend="and" property="carNo">  
+                    (f.car_no like '%$carNo$%')
+                </isNotEmpty>        
                 <isNotEmpty prepend="and" property="settAccountId">  
                     (c.sett_account_id = #settAccountId#)
                 </isNotEmpty>

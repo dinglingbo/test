@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>付款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPDetail.js?v=1.1.6"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPDetail.js?v=1.1.8"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -57,7 +57,8 @@ pageEncoding="UTF-8" session="false" %>
 
 
         <input id="isMain" width="100px" data="pList" textField="text" valueField="id"  emptyText="是否主营业务" onvalueChanged="onSearch()" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
-        
+                <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+        <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"  onenter="onSearch(this.value)"/>
         <span class="separator"></span> 
         <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     </div>

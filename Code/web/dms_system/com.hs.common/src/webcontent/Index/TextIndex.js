@@ -30,7 +30,7 @@ $(document).ready(function(v) {
 			var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];
 				e.cellHtml = time;
 			}
-		if (e.field == "enterDate") {
+		if (e.field == "enterDate") { 
 			var str =e.cellHtml.split(" "); 
 			var qian = str[0].split("-");
 			var time = qian[1]+"月"+qian[2]+"日"+" "+str[1];

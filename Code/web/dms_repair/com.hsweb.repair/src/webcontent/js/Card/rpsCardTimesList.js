@@ -17,15 +17,21 @@ $(document).ready(function (v)
     grid  = nui.get("datagrid1");
     grid2 = nui.get("datagrid2");
     queryForm = new nui.Form("#queryForm");
-    var date = new Date();
-    var sdate = new Date();
-    sdate.setMonth(date.getMonth()-3);
+    //var date = new Date();
+    //var sdate = new Date();
+    //sdate.setMonth(date.getMonth()-3);
    
     var startDate = mini.get("startDate");
     //startDate.setValue(sdate);
     
     var endDate = mini.get("endDate");
-    endDate.setValue(date);
+    //endDate.setValue(date);
+    
+    startDate1 = getMonthStartDate();
+    endDate1 = getMonthEndDate();
+    startDate.setValue(startDate1);
+    endDate.setValue(endDate1);
+    
     
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
@@ -34,15 +40,12 @@ $(document).ready(function (v)
         });
     });
     
-    var query = {
+    /*var query = {
     		startDate:sdate,
     		endDate:date
-    }; 
+    };*/ 
     grid.setUrl(queryFormUrl);
-    grid.load({
-    	query:query,
-    	token : token
-    });
+    
     grid2.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -58,8 +61,8 @@ $(document).ready(function (v)
            default:
                break;
         }
-    });
-       
+    }); 
+    search();
 });
 
 
@@ -167,55 +170,37 @@ function refresh(){
  //快速查询
  
  function search(){
-	    nui.mask({
-	        el : document.body,
-		    cls : 'mini-mask-loading',
-		    html : '查询中...'
-	    });
-		var guestName =  null;
-		var mobile = null;
-		var cardName = null;
-		var carNo = null;
-		var startDate = nui.get("startDate").getFormValue();
-		var endDate = nui.get("endDate").getValue();
-		endDate = addDate(endDate, 1);
-	    var type = nui.get("search-type").getValue();
-	    var typeValue = nui.get("carNo-search").getValue();
-	    if(type==0){
-	    	carNo = typeValue;
-	    }else if(type==1){
-	    	guestName = typeValue;
-	    }else if(type==2){
-	    	mobile = typeValue;
-	    }else if(type==3){
-	    	cardName = typeValue;
-	    }
-		var params = {
-				guestName:guestName,
-				mobile:mobile,
-				cardName:cardName,
-				carNo:carNo,
-				startDate:startDate,
-				endDate:endDate
-		}
-		var json1 = {
-				query:params,
-				token:token
-		}
-		nui.ajax({
-			url : queryFormUrl,
-			type : 'POST',
-			data : json1,
-			cache : false,
-			contentType : 'text/json',
-			success : function(text) {
-				grid.setData(text.cardData);
-				nui.unmask(document.body);
-				
-				
-			}
-		});
+	var guestName =  null;
+	var mobile = null;
+	var cardName = null;
+	var carNo = null;
+	var startDate = nui.get("startDate").getFormValue();
+	var endDate = nui.get("endDate").getValue();
+	endDate = addDate(endDate, 1);
+    var type = nui.get("search-type").getValue();
+    var typeValue = nui.get("carNo-search").getValue();
+    if(type==0){
+    	carNo = typeValue;
+    }else if(type==1){
+    	guestName = typeValue;
+    }else if(type==2){
+    	mobile = typeValue;
+    }else if(type==3){
+    	cardName = typeValue;
+    }
+	var params = {
+			guestName:guestName,
+			mobile:mobile,
+			cardName:cardName,
+			carNo:carNo,
+			startDate:startDate,
+			endDate:endDate
 	}
+	grid.load({
+		query:params,
+    	token : token
+    });
+}
 
  
  //查明细

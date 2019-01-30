@@ -11,7 +11,7 @@
 <head>
 <title>计次卡查询</title>
 <%@include file="/common/sysCommon.jsp"%>
-<script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.1.9"></script>
+<script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.1.11"></script>
 	
 </head>
 
@@ -44,8 +44,8 @@
 				</div>
 				</div>
 			<div class="nui-fit">
-				<div id="datagrid1" dataField="cardData" class="nui-datagrid"
-					       onDrawCell="onDrawCell"  		
+				   <div id="datagrid1" dataField="cardData" class="nui-datagrid"
+					        onDrawCell="onDrawCell"  		
 					        showPager="true"  
 					        sortMode="client"  
 		                    totalField="page.count"
@@ -62,8 +62,8 @@
                             sortMode="client"
 					       >
 					  <div property="columns">
-						<!-- <div type="indexcolumn"></div>-->
-						<div type="checkcolumn" ></div> 
+						<div type="indexcolumn"></div>
+						<!-- <div type="checkcolumn" ></div>  -->
 						
 						<div field="fullName" headerAlign="center" allowSort="true"
 							>客户名称</div>

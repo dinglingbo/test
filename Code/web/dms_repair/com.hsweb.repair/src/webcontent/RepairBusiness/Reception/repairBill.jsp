@@ -248,7 +248,7 @@
                     </div>
                 </td>
                 <td>
-                    <span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp;
+                     <a href="javascript:bindWechat()"><span id="wechatTag" class="fa fa-wechat fa-lg"></span></a>&nbsp;
                     <label style="font-family:Verdana;">客户名称:</label>
                     <label id="guestInfo" style="font-family:Verdana;"><a id="guestNameEl" href="javascript:checkGuest()"></a></label>&nbsp;
                     <label id="guestTab" style="font-family:Verdana;color:#578ccd;"><a id="" href="javascript:GuestTabShow()" >客户标签</a></label>&nbsp;

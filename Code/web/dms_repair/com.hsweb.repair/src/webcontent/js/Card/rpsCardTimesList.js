@@ -17,15 +17,9 @@ $(document).ready(function (v)
     grid  = nui.get("datagrid1");
     grid2 = nui.get("datagrid2");
     queryForm = new nui.Form("#queryForm");
-    //var date = new Date();
-    //var sdate = new Date();
-    //sdate.setMonth(date.getMonth()-3);
-   
     var startDate = mini.get("startDate");
-    //startDate.setValue(sdate);
-    
+  
     var endDate = mini.get("endDate");
-    //endDate.setValue(date);
     
     startDate1 = getMonthStartDate();
     endDate1 = getMonthEndDate();
@@ -39,11 +33,6 @@ $(document).ready(function (v)
             servieTypeHash[v.id] = v;
         });
     });
-    
-    /*var query = {
-    		startDate:sdate,
-    		endDate:date
-    };*/ 
     grid.setUrl(queryFormUrl);
     
     grid2.on("drawcell", function (e) {

@@ -75,6 +75,7 @@ var requiredField = {
     shortName : "公司简称",
     provinceId : "省份",
     cityId : "城市",
+    countyId : "地区",
     streetAddress : "详细地址",
     tel : "公司电话",
     softOpenDate:"开店日期"
@@ -82,11 +83,16 @@ var requiredField = {
 function save(action) {
 	var form = new nui.Form("#basicInfoForm");
     var data = form.getData();
-
+    var provinceId = 0;
     for ( var key in requiredField) {
+    	if(key == "provinceId"){
+    		provinceId = data[key];
+    	}
         if (!data[key] || $.trim(data[key]).length == 0) {
+        	if(key == "cityId" && (provinceId==81 || provinceId==82) ){
+        		continue;
+        	}
             showMsg(requiredField[key] + "不能为空!","W");
-
             return;
         }
     }
@@ -411,3 +417,13 @@ jQuery.extend({
         return data;
     }
 })
+
+function onCountyChange(e){
+   var data = e.selected;
+   if(data.latitude){
+      nui.get("latitude").setValue(data.latitude);
+   }
+   if(data.longitude){
+       nui.get("longitude").setValue(data.longitude);
+   }
+}

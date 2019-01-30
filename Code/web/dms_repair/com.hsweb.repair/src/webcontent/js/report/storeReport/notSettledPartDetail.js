@@ -115,7 +115,9 @@ $(document).ready(function(v)
         columns: [
             { name: 'partCode' },
             { name: 'pickMan' },
-            {name:'partName'}
+            {name:'partName'},
+            {name:'serviceCode'},
+            {name:'carNo'}
         ],
         callback: function (column, filtered) {
         },

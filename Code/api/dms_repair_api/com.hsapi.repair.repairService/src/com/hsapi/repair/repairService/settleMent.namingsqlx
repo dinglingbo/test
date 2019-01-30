@@ -80,8 +80,8 @@
 	<select id="getPartCost" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			ifnull(sum(true_cost),0) partTrueCost,
-			ifnull(sum(no_tax_amt),0) partNoTaxCost,
-			ifnull(sum(tax_amt),0) partTaxCost 
+			sum(case when tax_sign = 0 then no_tax_amt else 0 end) partNoTaxCost,
+			sum(case when tax_sign = 1 then tax_amt else 0 end ) partTaxCost 
 		FROM
 			wb_part.pj_repair_out 
 		WHERE

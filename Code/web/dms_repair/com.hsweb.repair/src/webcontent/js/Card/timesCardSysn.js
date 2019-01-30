@@ -98,7 +98,9 @@ function onValueChangedQty(e){
 	oldAmt = null;
 	sellAmt = null;
 	var row = timesCardDetail.getSelected();
-	
+	if(row.prdtType==3){
+		return;
+	}
 	var oldPrice = isNaN(row.oldPrice);
 	var b = isNaN(e.value);
 	var sellPrice = isNaN(row.sellPrice);

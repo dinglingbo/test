@@ -77,7 +77,7 @@ function searchOne() {
     	var iframe = this.getIFrameEl();
         var data = row;
         //直接从页面获取，不用去后台获取
-        
+		data.type = 'VIEW';
         iframe.contentWindow.setData(data);
         
         },

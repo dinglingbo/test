@@ -2386,6 +2386,8 @@ function addPchsEnter()
     }
 
 }
+
+
 function showPchsEnter(mainId,serviceId,guestId){
     nui.open({
         // targetWindow: window,
@@ -2401,21 +2403,25 @@ function showPchsEnter(mainId,serviceId,guestId){
                 type: "sellOut",
                 guestId: guestId
             };
-            iframe.contentWindow.setInitData(params);
+            iframe.contentWindow.setInitData(params,function(data){
+            	rightGrid.addRows(data);
+            });
+
         },
         ondestroy: function (action)
         {
-        	if(action == 'ok')
-            {
-                var iframe = this.getIFrameEl();
-                var data = iframe.contentWindow.getData();
-                var id = data.orderMainId;
-                if(id && id>0){
-                    getPchsOrderEnterDetail(id,mainId,serviceId,guestId);
-                }
-            }else{
-                showMsg("没有选择采购单!","W");
-            }
+//        	if(action == 'ok')
+//            {
+//                var iframe = this.getIFrameEl();
+//                var data = iframe.contentWindow.getData();
+//                rightGrid.setData(data);
+//                var id = data.orderMainId;
+//                if(id && id>0){
+//                    getPchsOrderEnterDetail(id,mainId,serviceId,guestId);
+//                }
+//            }else{
+//                showMsg("没有选择采购单!","W");
+//            }
             
         }
     });

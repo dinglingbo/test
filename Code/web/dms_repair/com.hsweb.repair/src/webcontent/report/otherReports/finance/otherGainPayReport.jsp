@@ -10,7 +10,7 @@
     <title>其他收支汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/otherGainPayReport.js?v=1.0.2"></script>
+  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/otherGainPayReport.js?v=1.0.7"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -63,31 +63,51 @@
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(1)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按收支项目汇总</a>
-<!--      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(2)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按提成人汇总</a> -->
+     <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(2)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按往来单位名称汇总</a> 
 <!--      <a class="nui-button" iconcls=""  name="" plain="true" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a> -->
  </div>
- <div class="nui-fit">
-    <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;"
-    dataField="data"
-    idField="detailId"
-    ondrawcell=""
-    sortMode="client"
-    showPager="false"
-    url=""
-    showSummaryRow="true">
-            <div property="columns">          
-        <div type="indexcolumn">序号</div>
-              <div  field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型" allowsort="true" ></div>
-              <div field="billDc" name="billDc" width="60" headerAlign="center" header="收支" summaryType="sum" allowsort="true" ></div> 
-              <div field="rpAmt" name="rpAmt" width="60" headerAlign="center" header="金额" summaryType="sum" allowsort="true" ></div> 
-<!--               <div field="techDeductValue" name="techDeductValue" width="60" headerAlign="center" header="施工提成" summaryType="sum" allowsort="true" ></div> -->
-<!--               <div field="advisorDeductValue" name="advisorDeductValue" width="60" headerAlign="center" header="服务提成" summaryType="sum" allowsort="true" ></div>
-              <div field="annualInspectionDeductValue" name="annualInspectionDeductValue" width="60" headerAlign="center" header="商业险提成" summaryType="sum" allowsort="true" ></div>
-              <div field="insureDueDeductValue" name="insureDueDeductValue" width="60" headerAlign="center" header="交强险提成" summaryType="sum" allowsort="true" ></div>
-              <div field="vesselTaxDeductValue" name="vesselTaxDeductValue" width="60" headerAlign="center" header="车船税提成" summaryType="sum" allowsort="true" ></div>
-              <div field="totalDeductAmt" name="totalDeductAmt" width="60" headerAlign="center" header="总提成" summaryType="sum" allowsort="true" ></div> -->
-    </div>
-</div>
+ <div id ="tabs" class="nui-tabs" width="100%" height="100%">
+ 		<div title="收" >
+ 			 
+			    <div id="grids" class="nui-datagrid" style="width:100%;height:100%;"
+			    dataField="data"
+			    idField="detailId"
+			    ondrawcell=""
+			    pageSize="500"
+				sizeList=[500,1000,2000] 
+			    sortMode="client"
+			    showPager="false"
+			    url=""
+			    showSummaryRow="true">
+			            <div property="columns">          
+			        <div type="indexcolumn">序号</div>
+			              <div  field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型" allowsort="true" ></div>
+			              <div field="rpAmt" name="rpAmt" width="60" headerAlign="center" header="收" summaryType="sum" allowsort="true" ></div> 
+
+			    </div>
+			</div>
+		</div>
+		<div title="支" >
+		
+			<div id="gridz" class="nui-datagrid" style="width:100%;height:100%;"
+			    dataField="data"
+			    idField="detailId"
+			    ondrawcell=""
+			    pageSize="500"
+				sizeList=[500,1000,2000] 
+			    sortMode="client"
+			    showPager="false"
+			    url=""
+			    showSummaryRow="true">
+			            <div property="columns">          
+			        <div type="indexcolumn">序号</div>
+			              <div  field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型" allowsort="true" ></div>
+			              <div field="rpAmt" name="rpAmt" width="60" headerAlign="center" header="支" summaryType="sum" allowsort="true" ></div>
+			    </div>
+			</div>
+		</div>
+ </div>
+
 </div>
 
 

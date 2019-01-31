@@ -4,7 +4,8 @@
 
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
-var grid1 = null;
+var grids = null;
+var gridz = null;
 var form = null;
 var startDateEl = null;
 var endDateEl = null;
@@ -12,11 +13,13 @@ var serviceTypeIdEl = null;
 var servieTypeList = [];
 var servieTypeHash = {};
 var cType = 0;
-var gridUrl = apiPath + repairApi+'/com.hsapi.frm.setting.queryOtherIncomeAndExpenditureSummary.biz.ext';
+var gridsUrl = apiPath + repairApi+'/com.hsapi.frm.setting.queryOtherIncomeAndExpenditureSummaryshou.biz.ext';
+var gridzUrl = apiPath + repairApi+'/com.hsapi.frm.setting.queryOtherIncomeAndExpenditureSummaryzhi.biz.ext';
 $(document).ready(function (v)
 {
 
-	grid1 = nui.get("grid1");
+	grids = nui.get("grids");
+	gridz = nui.get("gridz");
     form=new nui.Form("#form1");
     startDateEl = nui.get("startDate");
     endDateEl = nui.get("endDate");
@@ -29,14 +32,6 @@ $(document).ready(function (v)
     });
 
 
-    grid1.on("drawcell", function (e) {
-        if(e.field =="groupName" && cType == 1){
-            e.cellHtml = servieTypeHash[e.value].name;
-        }
-
-    });
-    
-    grid1.setUrl(gridUrl);
 
     quickSearch(4);
 });
@@ -50,19 +45,45 @@ function load(e){
 	data.endDate = formatDate(data.endDate) +" 23:59:59";
     data.groupByType = cType;
     updateGridColoumn(cType);
-    grid1.load({params:data,token :token});
+
+    nui.ajax({
+    	url : gridsUrl,
+    	type : 'POST',
+    	data : {params:data},
+    	cache : false,
+    	contentType : 'text/json',
+    	success : function(text) {
+    		nui.unmask(document.body);
+    		grids.setData(text.list);
+    	}
+    });
+    nui.ajax({
+    	url : gridzUrl,
+    	type : 'POST',
+    	data : {params:data},
+    	cache : false,
+    	contentType : 'text/json',
+    	success : function(text) {
+    		nui.unmask(document.body);
+    		gridz.setData(text.list);
+    	}
+    });
 }
 
 
 function updateGridColoumn(e){
-    var column = grid1.getColumn("groupName");
+    var columns = grids.getColumn("groupName");
+    var columnz = gridz.getColumn("groupName");
     if(e == 0){
-        grid1.updateColumn(column,{header:"日期"});
+        grids.updateColumn(columns,{header:"日期"});
+        gridz.updateColumn(columnz,{header:"日期"});
     }else if(e == 1){
-        grid1.updateColumn(column,{header:"业务类型"});
+        grids.updateColumn(columns,{header:"收支项目"});
+        gridz.updateColumn(columnz,{header:"收支项目"});
 
     }else if(e == 2){
-        grid1.updateColumn(column,{header:"提成人"});
+        grids.updateColumn(columns,{header:"往来单位名称"});
+        gridz.updateColumn(columnz,{header:"往来单位名称"});
 
     }
 
@@ -136,6 +157,28 @@ function quickSearch(type){
 //  if(params.endDate){
 //  params.endDate = params.endDate +" 23:59:59";
 //}
-grid1.load({params:params});
+
+nui.ajax({
+	url : gridsUrl,
+	type : 'POST',
+	data : {params:params},
+	cache : false,
+	contentType : 'text/json',
+	success : function(text) {
+		nui.unmask(document.body);
+		grids.setData(text.list);
+	}
+});
+nui.ajax({
+	url : gridzUrl,
+	type : 'POST',
+	data : {params:params},
+	cache : false,
+	contentType : 'text/json',
+	success : function(text) {
+		nui.unmask(document.body);
+		gridz.setData(text.list);
+	}
+});
 updateGridColoumn(cType);
 }

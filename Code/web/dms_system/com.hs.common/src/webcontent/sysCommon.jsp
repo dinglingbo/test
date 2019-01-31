@@ -44,7 +44,7 @@
 	response.addCookie(cookie);
     String currentLanguage = request.getLocale().getLanguage().toLowerCase();
 %>
-
+<meta http-equiv="refresh"content="7200"/>
 <script src="<%=contextPath%>/common/nui/nui.js?v=1.0.0" type="text/javascript"></script> 
 
 <script src="<%=contextPath%>/common/nui/locale/zh_CN.js" type="text/javascript"></script>

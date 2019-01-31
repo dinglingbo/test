@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.14"></script>
+<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.18"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -99,6 +99,7 @@ body .mini-grid-row-selected{
                                         <div allowSort="true" datatype="float" name="outableQty" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
                                         <!-- <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div> -->
                                         <div allowSort="true" datatype="float" field="stockQty" summaryType="sum" width="60" headerAlign="center" header="库存数量"></div>
+                                        <div allowSort="true" datatype="float" field="costPrice" summaryType="sum" width="60" headerAlign="center" header="成本单价"></div>
                                         <!-- <div allowSort="true" datatype="float" field="onRoadQty" summaryType="sum" width="60" headerAlign="center" header="在途数量"></div> -->
                                         <div field="fullName" name="fullName" width="200" headerAlign="center" header="配件全称"></div>
                                     </div>

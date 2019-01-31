@@ -251,6 +251,14 @@ function onOk()
         CloseWindow("ok");
     }
 }
+
+//function onOk(){
+//	 if(!FGuestId){
+//       showMsg("请选择客户后再选择采购单!","W");
+//       return;
+//    }
+//	 var node = rightGrid.getSelecteds();
+//}
 function getData(){
     return resultData;
 }

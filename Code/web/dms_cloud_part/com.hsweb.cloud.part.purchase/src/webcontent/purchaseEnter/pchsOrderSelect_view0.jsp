@@ -114,9 +114,11 @@
                         pageSize="50"
                         sizeList="[50,100,200]"
                         onshowrowdetail="onShowRowDetail"
+                       
                         showSummaryRow="true">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
+                        
                         <div type="expandcolumn" width="20" >#</div>
                         <div field="operateBtn" name="operateBtn" align="center" width="70" headerAlign="center" align="center" header="操作"></div>
                         <div field="fullName" width="150" headerAlign="center" header="供应商名称"></div>
@@ -183,6 +185,7 @@
          showSummaryRow="true">
         <div property="columns">
             <div type="indexcolumn">序号</div>
+            
             <div allowSort="true" field="comPartCode" width="60" headerAlign="center" header="配件编码"></div>
             <div allowSort="true" field="comPartName" headerAlign="center" header="配件名称"></div>
             <div allowSort="true" field="comOemCode" headerAlign="center" header="OEM码"></div>
@@ -206,6 +209,7 @@
              ondrawcell="onSellDrawCell"
              sortMode="client"
              url=""
+         
              showSummaryRow="true">
             <div property="columns">
                 <div type="indexcolumn">序号</div>

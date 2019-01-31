@@ -11,7 +11,7 @@
 -->
 <head>
     <title>选择联系人</title>
-     <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/selectContactor.js?v=1.0.0"></script> 
+     <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/bindWechatContactor.js?v=1.0.1"></script> 
     <style type="text/css">
         table {
             font-size: 12px;
@@ -25,6 +25,20 @@
         .required {
             color: red;
         }
+        
+        a.optbtn {
+        width: 44px; 
+        /* height: 26px; */
+        border: 1px #d2d2d2 solid;
+        background: #f2f6f9;
+        text-align: center;
+        display: inline-block;    
+        /* line-height: 26px; */
+        margin: 0 4px;
+        color: #000000;
+        text-decoration: none;
+        border-radius: 5px; 
+    }
     </style>
 </head>
 <body>
@@ -33,8 +47,8 @@
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                    <a class="nui-button" onclick="save()" plain="true" style="width: 60px;" id="save"><span class="fa fa-save fa-lg"></span>&nbsp;确定</ a>
-                    <a class="nui-button" onclick="CloseWindow('cancle')" plain="true"  style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
+                    <a class="nui-button" onclick="save()" plain="true" style="width: 60px;" id="save" visible="false"><span class="fa fa-save fa-lg"></span>&nbsp;确定</ a>
+                    <a class="nui-button" onclick="CloseWindow('cancle')" plain="true" id="cancle" style="width: 60px;"><span class="fa fa-remove fa-lg"></span>&nbsp;取消</ a>
                 </td>
             </tr>
         </table>
@@ -54,8 +68,10 @@
            <div field="identity" headerAlign="center" name="identity" allowSort="false" visible="true" width="50" header="身份" align="center"> </div>
            <div field="sex" headerAlign="center" name="sex" allowSort="false" visible="true" width="50" header="性别" align="center" ></div>
            <div field="mobile" headerAlign="center" allowSort="false" visible="true" width="120" header="联系人手机" align="center"></div>
-           <div field="idNo" headerAlign="center" allowSort="false" visible="true" width="160" header="证件号" align="center"></div> 
-           <div field="remark" headerAlign="center" name="remark" allowSort="false" visible="true" width="200" header="备注" align="center"></div>
+           <div field="wechatServiceId" headerAlign="center" allowSort="false" visible="true" width="120" header="服务号" align="center">
+            <input property="editor" vtype="int" class="nui-textbox" onvaluechanged="" selectOnFocus="true" width="80%"/>
+           </div>
+           <div field="wechatOptBtn" name="itemOptBtn" width="100" headerAlign="center" header="操作" align="center" ></div>
      </div>
     </div>
    </div>

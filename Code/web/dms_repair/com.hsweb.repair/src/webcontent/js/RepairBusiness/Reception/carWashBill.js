@@ -4150,7 +4150,7 @@ function addOrEdit(serviceId,billTypeId)
     	return;
     }
     nui.open({
-        url:"com.hsweb.repair.DataBase.AddEditCustomer.flow",
+        url: webBaseUrl + "com.hsweb.repair.DataBase.AddEditCustomer.flow",
         title:title,
         width:560,
         height:630,
@@ -4170,6 +4170,30 @@ function addOrEdit(serviceId,billTypeId)
     });
 }
 
+var binUrl = webBaseUrl + "repair/RepairBusiness/Reception/bindWechatContactor.jsp"
+function bindWechat(){
+	var data = billForm.getData();
+	var guestId = data.guestId;
+	nui.open({
+        url:binUrl,
+        title:"绑定联系人",
+        width:750, 
+        height:300,
+        onload:function(){
+        	var iframe = this.getIFrameEl();
+            var params = {};	
+            params.guestId=guestId;
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy:function(action)
+        {
+            if(action  == "ok")
+            {
+            	//toChangBill(serviceId,billTypeId);
+            }
+        }
+    });
+}
 
 
 

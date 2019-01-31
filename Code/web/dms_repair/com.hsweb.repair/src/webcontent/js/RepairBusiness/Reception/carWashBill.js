@@ -8,7 +8,7 @@
  var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
  var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
  var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestIdNopage.biz.ext";
- var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestId.biz.ext";
+ var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage.biz.ext";
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
  var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
  var itemRpbGridUrl = baseUrl + "com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
@@ -813,6 +813,7 @@ function setInitData(params){
     }
 }
 function add(){
+	showcF = 1;
     searchNameEl.setVisible(false);
     searchNameEl.setEnabled(false);
     searchNameEl.setValue("");
@@ -867,7 +868,8 @@ function add(){
 		var s = "#"+natureId;
 		$(s).toggleClass("xz");
 	}
-	document.getElementById("showA1").style.display = ""; 
+	document.getElementById("showA1").style.display = "";
+	advancedCardTimesWin.hide();
 }
 function save(){
 	itemF = "S";
@@ -4150,7 +4152,7 @@ function addOrEdit(serviceId,billTypeId)
     	return;
     }
     nui.open({
-        url:"com.hsweb.repair.DataBase.AddEditCustomer.flow",
+        url: webBaseUrl + "com.hsweb.repair.DataBase.AddEditCustomer.flow",
         title:title,
         width:560,
         height:630,
@@ -4170,6 +4172,30 @@ function addOrEdit(serviceId,billTypeId)
     });
 }
 
+var binUrl = webBaseUrl + "repair/RepairBusiness/Reception/bindWechatContactor.jsp"
+function bindWechat(){
+	var data = billForm.getData();
+	var guestId = data.guestId;
+	nui.open({
+        url:binUrl,
+        title:"绑定联系人",
+        width:750, 
+        height:300,
+        onload:function(){
+        	var iframe = this.getIFrameEl();
+            var params = {};	
+            params.guestId=guestId;
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy:function(action)
+        {
+            if(action  == "ok")
+            {
+            	//toChangBill(serviceId,billTypeId);
+            }
+        }
+    });
+}
 
 
 

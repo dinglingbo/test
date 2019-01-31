@@ -64,12 +64,13 @@
 			   sizeList="[500,1000,2000]"
                >
               <div property="columns">
-              	<div type="checkcolumn" width="15" class="mini-radiobutton" header="选择"></div>
-                <div field="recordMobile" name="recordMobile" width="30" align="center"  visible="true" headerAlign="center" header="手机号"></div>
-                <div field="recorder" name="recorder" width="30" align="center"  visible="true" headerAlign="center" header="姓名"></div>
+                <div type="indexcolumn">序号</div>
+              	<!-- <div type="checkcolumn" width="15" class="mini-radiobutton" header="选择"></div> -->
+                <div field="recordMobile" name="recordMobile" width="60" align="center"  visible="true" headerAlign="center" header="手机号"></div>
+                <div field="recorder" name="recorder" width="60" align="center"  visible="true" headerAlign="center" header="姓名"></div>
                 <div field="orgname" name="orgname" width="" align="center"  headerAlign="center" header="公司"></div>
                 <div field="questionType" name="questionType" width="" align="center"  headerAlign="center" header="问题摘要"></div>
-                <div field="recordDate" name="recordDate" width="" align="center"  headerAlign="center" header="反馈时间" dateFormat="yyyy-MM-dd"></div>
+                <div field="recordDate" name="recordDate" width="" align="center"  headerAlign="center" width="60" header="反馈时间" dateFormat="yyyy-MM-dd"></div>
                 <div field="source" name="questionSource" width="" align="center"  headerAlign="center" header="来源"></div>
                 <div field="status" name="status" width="" align="center"  headerAlign="center" header="状态"></div>
                 <div field="feedOptBtn" name="feedOptBtn" width="" align="center"  headerAlign="center" header="操作"></div>

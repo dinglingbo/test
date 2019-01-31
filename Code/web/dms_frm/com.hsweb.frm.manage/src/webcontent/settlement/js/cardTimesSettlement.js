@@ -3,7 +3,7 @@ var baseUrl = apiPath + repairApi + "/";
 var frmUrl = apiPath + frmApi + "/";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var netInAmt = 0;//应结金额
-var cardType = 2;//什么界面过来的  1计次卡，2储值卡
+var cardType = 1;//什么界面过来的  1计次卡，2储值卡
 var tableNum = 0;
 var card = [];//传进逻辑流的卡
 var form = null;
@@ -21,7 +21,7 @@ $(document).ready(function (){
 	searchKeyEl = nui.get("search_key");
 	searchNameEl = nui.get("search_name");
     searchKeyEl.setUrl(guestInfoUrl);
-    addCardList();
+    addTimesCardList();
     searchKeyEl.on("beforeload",function(e){
         var data = {};
         var params = {};

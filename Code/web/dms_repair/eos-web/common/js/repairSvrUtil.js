@@ -497,7 +497,31 @@ function doSelectPackage(dock, dodelck, docck, param, callback) {
 	});
 }
 
+function doAddcardTime(xyguest){
+    var item={};
+    item.id = "timesCard";
+    item.text = "计次卡销售";
+    item.url = webPath + contextPath + "/com.hsweb.frm.manage.cardTimesSettlement.flow?token="+token;
+    item.iconCls = "fa fa-file-text";
+    var params = {
+    		xyguest:xyguest,
+    			cardType:1 //计次卡
+    		};
+    window.parent.activeTabAndInit(item,params);
+}
 
+function doAddcard(xyguest){
+    var item={};
+    item.id = "card";
+    item.text = "储值卡充值";
+    item.url = webPath + contextPath + "/com.hsweb.frm.manage.cardSettlement.flow?token="+token;
+    item.iconCls = "fa fa-file-text";
+    var params = {
+    		xyguest:xyguest,
+    			cardType:2 
+    		};
+    window.parent.activeTabAndInit(item,params);
+}
 
 /*var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token;
 function doAddcardTime(params,callback){	
@@ -523,7 +547,7 @@ function doAddcardTime(params,callback){
 	
 }*/
 
-var addcardTimeUrl = webPath + contextPath  + "/com.hsweb.frm.manage.cardSettlement.flow?token="+token;
+/*var addcardTimeUrl = webPath + contextPath  + "/com.hsweb.frm.manage.cardSettlement.flow?token="+token;
 function doAddcardTime(params,callback){	
 	
 	nui.open({
@@ -547,7 +571,7 @@ function doAddcardTime(params,callback){
 		}
 	});
 	
-}
+}*/
 
 /*function doAddcard(params,callback){
 
@@ -570,7 +594,7 @@ function doAddcardTime(params,callback){
 
 }*/
 
-function doAddcard(params,callback){
+/*function doAddcard(params,callback){
 	nui.open({
 		url:webPath + contextPath +"/com.hsweb.frm.manage.cardSettlement.flow?token?token"+token,
 		title: "储值卡充值",
@@ -592,7 +616,7 @@ function doAddcard(params,callback){
 		}
 	});
 
-}
+}*/
 
 //产品录入
 function addPackage(data,callback){

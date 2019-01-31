@@ -220,12 +220,11 @@ function toCardList(){
 
 function toTimesCardList(){
     var item={};
-    item.id = "2107-1";
+    item.id = "timesCard";
     item.text = "计次卡销售";
-    item.url = webPath + contextPath + "/com.hsweb.frm.manage.cardSettlement.flow?token="+token;
+    item.url = webPath + contextPath + "/com.hsweb.frm.manage.cardTimesSettlement.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     var params = {
-    		xyguest:xyguest,
     			cardType:1 //计次卡
     		};
     window.parent.activeTabAndInit(item,params);
@@ -233,12 +232,11 @@ function toTimesCardList(){
 
 function toCardList(){
     var item={};
-    item.id = "2107-1";
+    item.id = "card";
     item.text = "储值卡充值";
     item.url = webPath + contextPath + "/com.hsweb.frm.manage.cardSettlement.flow?token="+token;
     item.iconCls = "fa fa-file-text";
     var params = {
-    		xyguest:xyguest,
     			cardType:2 
     		};
     window.parent.activeTabAndInit(item,params);

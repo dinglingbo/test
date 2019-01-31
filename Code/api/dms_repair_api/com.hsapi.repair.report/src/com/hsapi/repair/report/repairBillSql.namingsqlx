@@ -291,7 +291,95 @@
 	</select>
 	
 	
-		<!--员工提成汇总表-->
+		<!--应付汇总表 -->
+	<select id="queryPaySummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+    <isEqual  prepend=""  property="groupByType"   compareValue="0">
+        DATE_FORMAT(a.operate_date,'%Y-%m-%d')  as groupName,
+     </isEqual>
+        
+     
+      <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	 b.bill_type_id as groupName,
+	    </isEqual> 
+	     
+	   <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	 a.guest_name as groupName,
+	    </isEqual> 
+	      	       
+    	
+    	  	sum(a.true_char_off_amt) as trueCharOffAmt
+					
+		from  wb_frm.fis_rp_account a
+			inner join wb_frm.fis_rp_account_detail  b on b.main_id = a.id
+		where a.audit_sign = 1 and a.rp_dc = -1
+		
+            <isNotEmpty prepend="and" property="startDate">  
+                (a.operate_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (a.operate_date &lt; #endDate#)
+            </isNotEmpty>
+ 
+        <isEqual  prepend="" property="groupByType"   compareValue="0">
+	        GROUP BY DATE_FORMAT(a.operate_date,'%Y-%m-%d')
+	   </isEqual>
+	   
+        <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	group by b.bill_type_id
+	    </isEqual>
+	    
+	    <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	group by a.guest_name 
+	    </isEqual>  
+	    	
+	</select>
+	
+		<!--应收汇总表 -->
+	<select id="queryCollectSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+    <isEqual  prepend=""  property="groupByType"   compareValue="0">
+        DATE_FORMAT(a.operate_date,'%Y-%m-%d')  as groupName,
+     </isEqual>
+        
+     
+      <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	 b.bill_type_id as groupName,
+	    </isEqual> 
+	     
+	   <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	 a.guest_name as groupName,
+	    </isEqual> 
+	      	       
+    	
+    	  	sum(a.true_char_off_amt) as trueCharOffAmt
+					
+		from  wb_frm.fis_rp_account a
+			inner join wb_frm.fis_rp_account_detail  b on b.main_id = a.id
+		where a.audit_sign = 1 and a.rp_dc = 1
+		
+            <isNotEmpty prepend="and" property="startDate">  
+                (a.operate_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (a.operate_date &lt; #endDate#)
+            </isNotEmpty>
+ 
+        <isEqual  prepend="" property="groupByType"   compareValue="0">
+	        GROUP BY DATE_FORMAT(a.operate_date,'%Y-%m-%d')
+	   </isEqual>
+	   
+        <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	group by b.bill_type_id
+	    </isEqual>
+	    
+	    <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	group by a.guest_name 
+	    </isEqual>  
+	    	
+	</select>
+	
+			<!--员工提成汇总表-->
 	<select id="queryTechnicianSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT  
     <isEqual  prepend=""  property="groupByType"   compareValue="0">

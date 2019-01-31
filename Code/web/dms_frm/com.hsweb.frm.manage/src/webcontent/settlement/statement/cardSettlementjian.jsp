@@ -11,7 +11,7 @@
 
 <head>
 	<title>计次卡/储值卡结算</title>
-	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlement.js?v=1.3.8"></script>
+	<script src="<%=webPath + contextPath%>/manage/settlement/js/cardSettlementjian.js?v=1.3.0"></script>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<style>
 		html {
@@ -95,11 +95,14 @@
 		.pay_top dl dd {
 			font-size: 24px;
 			font-weight: bold;
+			color: #ff3200;
 			line-height: 58px;
-			padding-top: 10px;
 		}
 
-
+		.pay_top dl dt {
+			font-size: 16px;
+			margin: 21px 5px 0 0;
+		}
 
 		.fw {
 			margin-top: 10px;
@@ -133,7 +136,7 @@
 		}
 
 		.pay_js_right {
-			margin-left: 16px;
+			margin-left: 160px;
 			height: auto;
 			overflow: hidden;
 		}
@@ -170,8 +173,8 @@
 		}
 
 		.pay_top {
-
-		
+			background: #f9fafb;
+			border-bottom: 1px #dde0e6 solid;
 			height: 58px;
 		}
 
@@ -190,7 +193,7 @@
 			margin-right: 8px;
 		}
 
-  		select {
+		select {
 			appearance: none;
 			-moz-appearance: none;
 			-webkit-appearance: none;
@@ -200,7 +203,7 @@
 			height: 30px;
 			font-family: "微软雅黑";
 			text-indent: 5px;
-		}  
+		}
 
 		.pay_tcbk_list ul li a font {
 			background: url(manage/settlement/images/yw_bg2.png) 0 -154px no-repeat;
@@ -231,114 +234,93 @@
 		.zffs {
 			padding: 15px 0;
 		}
-		
-		.tishi{
-	margin-top: 5px;
-}
-.btn .mini-buttonedit{
-	height:36px;
-}
-.btn .aa{
-	height:36px;
-	width: 300px;
-}
-.btn .mini-buttonedit .mini-corner-all{
-	height:33px;
-	background: #368bf447;
-}
-.btn .aa .mini-corner-all{
-	height:33px;
-}
-.mini-corner-all .nui-textbox{
-	height:30px;
-}
-.btn .mini-corner-all .mini-buttonedit-input{
-	font-size: 16px;
-	margin-top: 8px;
-	
-}
-.btn .mini-corner-all .mini-textbox-input{
-	font-size: 14px;
-	margin-top: 8px;
-	
-}
-
- 
-    	.tips {
-    	width:100%;
-    color: #8a6d3b;
-    background-color: #fcf8e3;
-    border-color: #faebcc;
-}
 	</style>
 </head>
 
 <body>
 	<div style="position: relative;">
 		<div class="fw">
+			<div class="fw_top" style="text-align: center; background: #dcdcdc; font-size: 25px; line-height: 64px;">
+				结算收款
+			</div>
 			<div class="pay_top">
 				<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
 					<tbody>
 						<tr>
-							<td class="btn">
-                	<div class="nui-autocomplete" emptyText="客户查询(车牌号/客户名称/手机号/VIN码)" 
-                    style="width:400px;height: 50px !important;"  popupWidth="600" textField="text" valueField="id" 
-                    id="search_key" url="" value="carNo"   searchField="key" multiSelect="false" 
-                    dataField="list" placeholder="请输入..."  >     
-                    <div property="columns">
-                        <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
-                        <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
-                        <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
-                        <div header="联系人名称" field="contactName" width="30" headerAlign="center"></div>
-                        <div header="联系人手机" field="mobile" width="60" headerAlign="center"></div>
-                        <div header="车架号(VIN)" field="vin" width="70" headerAlign="center"></div>
-                    </div>
-                </div>
-                <input id="search_name"
-                name="search_name"
-                class="nui-textbox aa"
-                emptyText="车牌号/客户名称/手机号/VIN码"
-                onbuttonclick="onSearchClick()"
-                visible="false"
-                enabled="false"
-                showClose="false"
-                allowInput="true"/>
-                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-history fa-lg"></span>&nbsp;清空</a>
-<!--                 <a class="nui-button" onclick="refund()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款</a>
-				<a class="nui-button" onclick="refundRecord()" plain="true"> <span class="fa fa-user-circle fa-lg"></span>&nbsp;退款记录</a> -->
-            </td> 
-
+							<td width="200" height="58">
+								车辆：
+								
+								<span style="padding-top: 2px;"  id="carNo" name="carNo">></span>
+							</td>
+							<td align="center">
+								客户：
+								
+									<span style="padding-top: 2px;" id="guest" name="guest"></span>
+								
+								&nbsp;&nbsp;
+								<span name="mobile" id="mobile"></span>
+							</td>
+							<td align="center" style="padding-left: 10px;">
+								挂账：
+								<span style="color: #ff7800;">0.00元</span>
+							</td>
+							<td width="320" valign="top" style="position: relative;">
+								<dl>
+									<dt>待收金额：</dt>
+									<dd totalmoney="0" totalpaid="0" id="totalAmt" name="totalAmt"></dd>
+								</dl>
+							</td>
+ 					<td >
+						<a id="btnsettle" style="    width: 100px;
+							height: 40px;
+							font-size: 18px;
+							background: #578ccd;
+							color: #fff;
+							text-align: center;
+							display: block;
+							border-radius: 5px;
+							text-decoration: none;
+							line-height: 2;" 
+							href="javascript:void(0)" onclick="selectCustomer()">选择客户</a>
+					</td> 
 						</tr>
 					</tbody>
 				</table>
 			</div>
- 			<div class="pay_list" >
-				<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">充值/购买</span></h2>
+<!-- 			<div class="pay_list" >
+				<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">优惠/抵扣</span></h2>
 				<div class="pay_tcbk">
 					<div id="benefitdeductionbox">
 
 						<div class="pay_jshj_list">
-
-
-								<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+							<div class="pay_js_left">
+								<a href="javascript:;" class="xz">储值卡抵扣</a>
+							</div>
+							<div class="pay_js_right" id = "dk" style="display:none;">
+								<table width="100%" border="0" cellspacing="0" cellpadding="0">
 									<tbody>
 										<tr>
-											<td width="50%" height="&quot;44&quot;">
-												<select name="cardList" id="cardList" onchange="payCard(this.id)" style="width: 94%; height: 33px; font-weight: bold; font-size: 15px; color: #578ccd;border:0;">
+											<td width="15%">
+												<span>储值卡余额：</span>
 
+											</td>
+											<td height="40" class="line24">
+												<input class="nui-textbox" id="rechargeBalaAmt" name="rechargeBalaAmt" enabled="false" m="1" cardid="" amount="" style="width: 100px; float: left;">
+											</td>
+											<td width="10%">
+												<span>抵扣金额：</span>
 
-													</select>
-												</td>
-												<td>
-												</td>
+											</td>
+											<td height="40" class="line24">
+												<input class="mini-spinner" id="deductible" name="deductible" width="100px" minValue="0" maxValue="1000000" showbutton="false" changeOnMousewheel="false" showbutton="false"
+												 allowNull="false" onvaluechanged="onChanged" />
+											</td>
 										</tr>
 									</tbody>
 								</table>
-
 							</div>
 						</div>
-					</div>
-			</div> 
+			</div> -->
 
 
 					<div class="pay_list">
@@ -465,7 +447,7 @@
 							href="javascript:void(0)" onclick="noPayOk()">转预结算</a>
 					</td>
 					<td >
-						<a id="settle" style="    width: 120px;
+						<a id="btnsettle" style="    width: 120px;
 							height: 40px;
 							font-size: 18px;
 							background: #578ccd;

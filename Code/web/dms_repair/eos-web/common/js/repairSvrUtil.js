@@ -497,7 +497,9 @@ function doSelectPackage(dock, dodelck, docck, param, callback) {
 	});
 }
 
-var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token;
+
+
+/*var addcardTimeUrl = webPath + contextPath  + "/repair/DataBase/Card/timesCardList.jsp?token="+token;
 function doAddcardTime(params,callback){	
 	
 	nui.open({
@@ -519,9 +521,35 @@ function doAddcardTime(params,callback){
 		}
 	});
 	
+}*/
+
+var addcardTimeUrl = webPath + contextPath  + "/com.hsweb.frm.manage.cardSettlement.flow?token="+token;
+function doAddcardTime(params,callback){	
+	
+	nui.open({
+		url : addcardTimeUrl,
+		title : "计次卡购买",
+		width : "100%",
+		height : "100%",
+		onload : function() {
+		    var iframe = this.getIFrameEl();
+		    params.cardType=1;//计次卡
+			iframe.contentWindow.setData(params);
+		},
+		ondestroy : function(action) {// 弹出页面关闭前
+            var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getData();
+            if(data.action == "ok"){
+                showMsg("结算成功!","S");
+            }else if(data.action == "onok"){
+            	showMsg("转预结算成功!","S");
+            }
+		}
+	});
+	
 }
 
-function doAddcard(params,callback){
+/*function doAddcard(params,callback){
 
 	nui.open({
 		url:webPath + contextPath +"/com.hsweb.repair.DataBase.cardList.flow?token"+token,
@@ -540,28 +568,32 @@ function doAddcard(params,callback){
 		}
 	});
 
-}
-/*function doAddcard(params,callback){
-		var p={
-				data:params
-		};
-		nui.open({
-			url:webPath + contextPath +"/repair/RepairBusiness/CustomerProfile/CardUp.jsp?token"+token,
-			title: "储值卡充值", width: 600, height: 460,
-			onload: function(){
-				var iframe=this.getIFrameEl();	
-				iframe.contentWindow.SetData(p);		
-			},
-			onedestroy: function(action){
-	            var iframe = this.getIFrameEl();
-	            var data = iframe.contentWindow.getData();
-	            data = data || {};
-	            data.action = action;
-	            callback && callback(data);
-			}
-		});
-
 }*/
+
+function doAddcard(params,callback){
+	nui.open({
+		url:webPath + contextPath +"/com.hsweb.frm.manage.cardSettlement.flow?token?token"+token,
+		title: "储值卡充值",
+		width : "100%",
+		height : "100%",
+		onload: function(){
+			var iframe=this.getIFrameEl();	
+			 params.cardType=2;//储值卡卡
+			iframe.contentWindow.setData(params);		
+		},
+		onedestroy: function(action){
+            var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getData();
+            if(data.action == "ok"){
+                showMsg("结算成功!","S");
+            }else if(data.action == "onok"){
+            	showMsg("转预结算成功!","S");
+            }
+		}
+	});
+
+}
+
 //产品录入
 function addPackage(data,callback){
 	//获取到套餐的数据

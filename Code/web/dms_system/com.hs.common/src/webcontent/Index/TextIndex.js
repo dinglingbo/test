@@ -198,7 +198,7 @@ function toStockCheck(){
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
 }
-function toTimesCardList(){
+/*function toTimesCardList(){
     var item={};
     item.id = "2107-1";
     item.text = "计次卡销售";
@@ -215,6 +215,32 @@ function toCardList(){
     item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.cardList.flow?token="+token
     item.iconCls = "fa fa-file-text";
     var params = {};
+    window.parent.activeTabAndInit(item,params);
+}*/
+
+function toTimesCardList(){
+    var item={};
+    item.id = "2107-1";
+    item.text = "计次卡销售";
+    item.url = webPath + contextPath + "/com.hsweb.frm.manage.cardSettlement.flow?token="+token;
+    item.iconCls = "fa fa-file-text";
+    var params = {
+    		xyguest:xyguest,
+    			cardType:1 //计次卡
+    		};
+    window.parent.activeTabAndInit(item,params);
+}
+
+function toCardList(){
+    var item={};
+    item.id = "2107-1";
+    item.text = "储值卡充值";
+    item.url = webPath + contextPath + "/com.hsweb.frm.manage.cardSettlement.flow?token="+token;
+    item.iconCls = "fa fa-file-text";
+    var params = {
+    		xyguest:xyguest,
+    			cardType:2 
+    		};
     window.parent.activeTabAndInit(item,params);
 }
 

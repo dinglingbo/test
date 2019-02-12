@@ -57,7 +57,7 @@
 					<td colspan="1"><input class="nui-combobox"
 						data="[{value:'1',text:'按原价比例',},{value:'2',text:'按折后价比例'},{value:'3',text:'按产值比例',},{value:'4',text:'固定金额'}]"
 						textField="text" valueField="value" name="salesDeductType"
-						value="0" onvalidation="updateError()" id="x" /></td>
+						value="1" onvalidation="updateError()" id="x" /></td>
 					<td class="form_label" align="right" colspan="1">销售提成值:</td>
 					<td colspan="1" style="width: 40%"><input class="nui-textbox" style="width: 60%"
 						name="salesDeductValue" requiredErrorText="元" vtype="range:0,1000" style="width: 40%" /> <span id="y">&nbsp;%</span></td>

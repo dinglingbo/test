@@ -296,7 +296,7 @@
       <targetNode>invokePojo3</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -1338,6 +1338,10 @@
     <process:copy>
       <process:from type="query" pattern="reference">rpsStoredRecord/carId</process:from>
       <process:to type="query">rpsRefundRecord/carId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsStoredRecord/carNo</process:from>
+      <process:to type="query">rpsRefundRecord/carNo</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">

@@ -13,7 +13,7 @@
         <head>
             <title>车辆详情</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.12" type="text/javascript"></script>
+            <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/carDetails.js?v=1.1.13" type="text/javascript"></script>
         </head>
         <style type="text/css">
             body {
@@ -245,6 +245,7 @@
                                 <div property="columns">
                                     <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
                                     <div field="prdtType" name="prdtType" width="50" headerAlign="center" header="产品类别"></div>
+                                    <div field="totalTimes" name="totalTimes" width="50" headerAlign="center" header="总次数"></div>
                                     <div field="canUseTimes" name="canUseTimes" width="50" headerAlign="center" header="可使用次数"></div>
                                     <div field="doTimes" name="doTimes" width="50" headerAlign="center" header="使用中次数"></div>
                                     <div field="balaTimes" name="balaTimes" width="50" headerAlign="center" header="剩余次数"></div>

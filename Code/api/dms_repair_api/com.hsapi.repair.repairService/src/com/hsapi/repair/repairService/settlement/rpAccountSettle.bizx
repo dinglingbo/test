@@ -218,6 +218,7 @@
     <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="link14" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link20" name="link20" displayName="link16" type="transition">
       <sourceNode>invokePojo0</sourceNode>
@@ -734,6 +735,7 @@
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopend1</sourceNode>
       <targetNode>assign5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
     <targetConnections>link23</targetConnections>

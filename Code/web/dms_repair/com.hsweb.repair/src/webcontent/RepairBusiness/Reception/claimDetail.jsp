@@ -395,7 +395,7 @@
 </div>
 
 <div id="advancedCardTimesWin" class="nui-window"
-     title="" style="width:450px;height:200px;"
+     title="" style="width:550px;height:200px;"
      showModal="false"
      showHeader="false"
      allowResize="false"
@@ -419,13 +419,14 @@
                editNextOnEnterKey="true"
                url="">
               <div property="columns">
-                  <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
-                  <div field="prdtType" name="prdtType" width="50" headerAlign="center" header="产品类别"></div>
-                  <div field="canUseTimes" name="canUseTimes" width="50" headerAlign="center" header="可使用次数"></div>
-                  <div field="doTimes" name="doTimes" width="50" headerAlign="center" header="使用中次数"></div>
-                  <div field="balaTimes" name="balaTimes" width="50" headerAlign="center" header="剩余次数"></div>
-                  <div field="cardTimesOpt" name="cardTimesOpt" width="50" headerAlign="center"  header="操作"></div>
-              </div>
+		          <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
+		          <div field="prdtType" name="prdtType" width="60" headerAlign="center" header="产品类别"></div>
+		          <div field="totalTimes" name="totalTimes" width="50" headerAlign="center" header="总次数"></div>
+		          <div field="balaTimes" name="balaTimes" width="60" headerAlign="center" header="剩余次数"></div>
+		          <div field="doTimes" name="doTimes" width="70" headerAlign="center" header="使用中次数"></div>
+		          <div field="canUseTimes" name="canUseTimes" width="70" headerAlign="center" header="可使用次数"></div>
+		          <div field="cardTimesOpt" name="cardTimesOpt" width="60" headerAlign="center"  header="操作"></div>
+	          </div>
           </div>
     </div>
 </div> 
@@ -463,7 +464,6 @@
           </div>
     </div>
 </div> 
-
 
 <div id="carCheckInfo" class="nui-window"
     title="" style="width:400px;height:200px;"

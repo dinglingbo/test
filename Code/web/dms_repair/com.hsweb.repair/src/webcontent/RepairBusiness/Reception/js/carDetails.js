@@ -82,6 +82,11 @@ $(document).ready(function () {
               case "prdtType":
             	  e.cellHtml = prdtTypeHash[e.value];
             	  break;
+              case "doTimes":
+            	  var row = e.row;
+                  var balaTimes = row.balaTimes || 0;
+                  var canUseTimes = row.canUseTimes||0;
+                  e.cellHtml = balaTimes - canUseTimes;
               default:
                   break;
           }

@@ -166,7 +166,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="LE">
           <process:leftOperand type="query">pastDate</process:leftOperand>
-          <process:rightOperand type="literal">nowDate</process:rightOperand>
+          <process:rightOperand type="query">nowDate</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>

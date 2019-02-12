@@ -4669,6 +4669,18 @@ function showPrdt() {
     window.parent.activeTabAndInit(item,params);
     
 }
+function showthD() {
+	var brand = nui.get("carModel").getText();
+    var item={};
+    item.id = "5264";
+    item.text = "3D模型";
+    item.url = webPath + contextPath + "/commonRepair/threeD/index.html?token="+token;
+    item.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    var params = {brand:brand};//是否刷新页面，解决工单详情界面结算之后不能再选择客户
+    window.parent.activeTabAndInit(item,params);
+    
+}
 
 
 function addOrEdit(item)

@@ -359,6 +359,40 @@
             </isNotEmpty>  
         </dynamic>  
     </select>
+
+    <select id="queryStrategyStock" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.part_id as partId,
+			a.cost_price as costPrice,
+			c.`code` as partCode,
+			c.full_name as fullName,
+			c.oem_code as oemCode,
+			null as sellPrice,
+			'' as operator,
+			null as operateDate,
+			null as strategyId
+		from pj_part_stock a
+			inner join wb_common.com_attribute c
+				on a.part_id = c.id
+		WHERE 1 = 1 and c.is_disabled=0
+    	<dynamic>
+    		<isNotEmpty prepend="and" property="fullName">  
+                (c.full_name like '%$fullName$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="queryCode">  
+                (c.query_code like '%$queryCode$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="partBrandId">  
+                (c.part_brand_id = #partBrandId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="namePy">  
+                (c.name_py like '%$namePy$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="sortField">  
+                $sortField$ $sortOrder$
+            </isNotEmpty>  
+        </dynamic>  
+    </select>
     
     <select id="querySellStrategyPart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
@@ -405,24 +439,22 @@
     	SELECT
 			a.orgid as orgid,
 			a.part_id as partId,
-			a.sell_price as sellPrice,
-			a.operator as operator,
-			a.operate_date as operateDate,
-			a.remark as remark,
+			b.sell_price as sellPrice,
+			b.operator as operator,
+			b.operate_date as operateDate,
 			c.`code` as partCode,
 			c.full_name as fullName,
 			c.oem_code as oemCode
-		from pj_part_price a
-			inner join wb_common.com_attribute c
-				on a.part_id = c.id
+		FROM
+			pj_part_stock a
+		LEFT JOIN pj_part_price b ON a.part_id = b.part_id
+		INNER JOIN wb_common.com_attribute c ON a.part_id = c.id
 		WHERE 1 = 1 and c.is_disabled=0
     	<dynamic>
     		<isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
             </isNotEmpty>
-    		<isNotEmpty prepend="and" property="strategyId">  
-                (a.strategy_id = #strategyId#)
-            </isNotEmpty>
+
     		<isNotEmpty prepend="and" property="fullName">  
                 (c.full_name like '%$fullName$%')
             </isNotEmpty>

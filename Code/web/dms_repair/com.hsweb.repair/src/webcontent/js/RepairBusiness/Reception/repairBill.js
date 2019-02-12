@@ -120,7 +120,7 @@ $(document).ready(function ()
     carSellPointInfo = nui.get("carSellPointInfo");
     cardTimesGrid = nui.get("cardTimesGrid");
     cardTimesGrid.setUrl(cardTimesGridUrl);
-    
+    nui.get("enterDate").setValue(now);
     carSellPointGrid = nui.get("carSellPointGrid");
 /*    var data = [{prdtName:'保养到期提醒',amt:'3850',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'保养到期提醒'},
                 {prdtName:'商业险到期提醒',amt:'2600',status:'未联系',creator:'杨超越',doTimes:'2018-12-15',type:'商业险到期提醒'},
@@ -4663,6 +4663,18 @@ function showPrdt() {
     item.id = "5263";
     item.text = "维保项目";
     item.url = webPath + contextPath + "/repair/linshi.jsp?token="+token;
+    item.iconCls = "fa fa-file-text";
+    //window.parent.activeTab(item);
+    var params = {brand:brand};//是否刷新页面，解决工单详情界面结算之后不能再选择客户
+    window.parent.activeTabAndInit(item,params);
+    
+}
+function showthD() {
+	var brand = nui.get("carModel").getText();
+    var item={};
+    item.id = "5264";
+    item.text = "3D模型";
+    item.url = webPath + contextPath + "/commonRepair/threeD/index.html?token="+token;
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {brand:brand};//是否刷新页面，解决工单详情界面结算之后不能再选择客户

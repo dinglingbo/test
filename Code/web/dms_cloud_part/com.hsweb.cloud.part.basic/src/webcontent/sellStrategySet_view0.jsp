@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销价策略定义</title>
-<script src="<%=webPath + contextPath%>/basic/js/sellStrategySet.js?v=1.0.3"></script>
+<script src="<%=webPath + contextPath%>/basic/js/sellStrategySet.js?v=1.0.82"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -74,7 +74,7 @@
                        onactivechanged=""
                        ontabload="onMainTabLoad"
                        >
-                      <div title="客户信息" name="guestInfo" url="" >
+                      <div title="客户信息" name="guestInfo" id="guestInfo" url="" >
                             <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
                                 <table style="width:100%;">
                                     <tr>
@@ -95,6 +95,7 @@
                                      showPager="true"
                                      dataField="list"
                                      pageSize="50"
+                                    
                                      sizeList=[20,50,100,200]
                                      idField="id"
                                      showReloadButton="false"
@@ -127,9 +128,10 @@
                                             <input id="fullName" name="fullName" width="120px" emptyText="名称" class="nui-textbox"/>
                                             <a class="nui-button" plain="true" iconCls="" onclick="onPartSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                                             <span class="separator"></span>
-                                            <a class="nui-button" plain="true" iconCls="" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
-                                            <a class="nui-button" plain="true" iconCls="" onclick="delStraPart()"><span class="fa fa-close fa-lg"></span>&nbsp;删除配件</a>
-                                            <a class="nui-button" plain="true" iconCls="" onclick="saveStraPart()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+<!--                                             <a class="nui-button" plain="true" iconCls="" onclick="addPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a> -->
+<!--                                             <a class="nui-button" plain="true" iconCls="" onclick="delStraPart()"><span class="fa fa-close fa-lg"></span>&nbsp;删除配件</a> -->
+                                            <a class="nui-button" id="saveStraPart" plain="true" iconCls="" onclick="saveStraPart()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                                            <a class="nui-button" visible="false" id="saveUnifyPart" plain="true" iconCls="" onclick="saveUnifyPart()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                                             <a class="nui-button" plain="true" iconCls="" onclick="importPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
                                         </td>
                                     </tr>
@@ -140,11 +142,13 @@
                                      showPager="true"
                                      dataField="list"
                                      idField="id"
-                                     pageSize="50"
-                                     sizeList=[20,50,100,200]
+                                     pageSize="200"
+                                     sizeList=[50,100,200,500]
+                                     totalField="page.count"
                                      allowCellEdit="true"
                                      allowCellSelect="true"
                                      ondrawcell=""
+                                      allowInput="true"
                                      showReloadButton="false"
                                      showModified="false"
                                      oncellcommitedit="onCellCommitEdit"
@@ -155,13 +159,21 @@
                                     <div property="columns">
                                         <div type="indexcolumn" width="20">序号</div>
                                         <div type="checkcolumn" width="25"></div>
+                                        <div field="strategyId" visible="true" name="strategyId" width="120"headerAlign="center" allowSort="true" header="策略ID">
+                                        	 <input property="editor" vtype="float"  allowInput="false" class="nui-textbox"/>
+                                        </div>
                                         <div field="partCode" name="partCode" width="120"headerAlign="center" allowSort="true">配件编码</div>
                                         <div field="fullName" name="fullName" width="450"headerAlign="center" allowSort="true">配件全称</div>
+                                        <div field="costPrice" name="sellPrice" width="60"headerAlign="center" allowSort="true" header="成本单价"></div>
                                         <div field="sellPrice" name="sellPrice" width="60"headerAlign="center" allowSort="true" header="销售单价">
-                                            <input property="editor" vtype="float" class="nui-textbox"/>
+                                            <input property="editor" vtype="float"  allowInput="true" class="nui-textbox"/>
                                         </div>
-                                        <div field="operator" width="60" headerAlign="center" allowSort="true">操作人</div>
-                                        <div field="operateDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm">操作日期</div>
+                                        <div field="operator" width="60" headerAlign="center" allowSort="true" header="操作人">
+                                        	<input property="editor"   allowInput="false" class="nui-textbox"/>
+                                        </div>
+                                        <div field="operateDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" header="操作日期">
+                                        	<input property="editor"  allowInput="false" class="nui-textbox"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -188,8 +200,8 @@
                           <input id="fullNameSearch" name="fullNameSearch" width="120px" emptyText="名称" class="nui-textbox"/>
                           <a class="nui-button" plain="true" iconCls="" onclick="onUnifySearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                           <span class="separator"></span>
-                          <a class="nui-button" plain="true" iconCls="" onclick="addUnifyPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a>
-                          <a class="nui-button" plain="true" iconCls="" onclick="delUnifyPart()"><span class="fa fa-close fa-lg"></span>&nbsp;删除配件</a>
+<!--                           <a class="nui-button" plain="true" iconCls="" onclick="addUnifyPart()"><span class="fa fa-plus fa-lg"></span>&nbsp;添加配件</a> -->
+<!--                           <a class="nui-button" plain="true" iconCls="" onclick="delUnifyPart()"><span class="fa fa-close fa-lg"></span>&nbsp;删除配件</a> -->
                           <a class="nui-button" plain="true" iconCls="" onclick="saveUnifyPart()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                           <a class="nui-button" plain="true" iconCls="" onclick="importUnifyPart()" id="importPartBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
                       </td>

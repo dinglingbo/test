@@ -59,11 +59,11 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="guestMobile" name="guestMobile" width="150"  headeralign="center" >手机号</div>
                 <div field="chanceType" name="chanceType" width="100"  headeralign="center" >机会类型</div>
                 <div field="prdtName" name="prdtName" width="100"  headeralign="center" >产品/项目</div>
-                <div field="prdtAmt" name="prdtAmt" width="100"  headeralign="center" >销售金额</div>
+                <div field="prdtAmt" name="prdtAmt" width="100"  headeralign="center" summaryType="sum">销售金额</div>
                 <div name="chanceMan" field="chanceMan"  width="100"  headeralign="center" allowSort="true" >商机所有者</div>
-                <div field="status" name="status" width="50" summaryType="sum" headeralign="center" >阶段 </div>
-                <div field="nextFollowDate" name="nextFollowDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" >下次跟进时间</div>
- 				<div field="planFinishDate" name="planFinishDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" >预计成单时间</div>
+                <div field="status" name="status" width="50"  headeralign="center" >阶段 </div>
+                <div field="nextFollowDate" name="nextFollowDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >下次跟进时间</div>
+ 				<div field="planFinishDate" name="planFinishDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >预计成单时间</div>
            
             </div>
         </div>

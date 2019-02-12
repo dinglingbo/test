@@ -226,29 +226,44 @@ function CloseWindow(action)
 function onCancel(e) {
     CloseWindow("cancel");
 }
-var resultData = {};
+var resultData = [];
 function onOk()
 {
     if(!FGuestId){
         showMsg("请选择客户后再选择采购单!","W");
         return;
     }
-    var node = rightGrid.getSelected();
-    if(node)
-    {
-    
-        resultData = {
-            orderMainId:node.id,
-            orderServiceId:node.serviceId,
-            billTypeId:node.billTypeId,
-            orderMan:node.orderMan,
-            settleTypeId:node.settleTypeId,
-            guestId:node.guestId,
-            fullName:node.fullName,
-            type:"pchs"
-        };
+//    var node = rightGrid.getSelected();
+//    if(node)
+//    {
+//    
+//        resultData = {
+//            orderMainId:node.id,
+//            orderServiceId:node.serviceId,
+//            billTypeId:node.billTypeId,
+//            orderMan:node.orderMan,
+//            settleTypeId:node.settleTypeId,
+//            guestId:node.guestId,
+//            fullName:node.fullName,
+//            type:"pchs"
+//        };
         //  return;
-        CloseWindow("ok");
+//        CloseWindow("ok");
+//    }
+    var parts=innerPchsEnterGrid.getSelecteds();
+    for(var i=0;i<parts.length;i++){
+    	parts[i].comPartBrandId=parts[i].partBrandId;
+    	parts[i].comApplyCarModel=parts[i].applyCarModel;
+    	parts[i].comUnit=parts[i].enterUnitId;
+    	parts[i].orderQty =parts[i].enterQty;
+    	parts[i].orderPrice=parts[i].enterPrice;
+    	parts[i].orderAmt=parts[i].enterAmt;
+    	parts[i].comSpec=parts[i].spec;
+    	parts[i].outUnitId=parts[i].enterUnitId;
+    }
+    if(parts){
+    	resultData=parts;
+    	callback(parts);
     }
 }
 
@@ -262,7 +277,12 @@ function onOk()
 function getData(){
     return resultData;
 }
-function setInitData(params){
+
+var callback=null;
+var checkcallback=null;
+function setInitData(params, ck,cck){
     FGuestId = params.guestId;
+    callback = ck;
+    checkcallback = cck;
     onSearch();
 }

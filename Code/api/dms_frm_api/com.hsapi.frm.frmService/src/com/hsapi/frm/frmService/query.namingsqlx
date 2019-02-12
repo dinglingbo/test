@@ -386,7 +386,6 @@
             order by  a.create_date desc
 	</select>
 	
-	
 	<select id="queryRPAccountSum" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 			SELECT sum(debit) debit, sum(credit) credit, sum(end_bala) as bala from fis_settle_account_bala 
             where orgid = #orgid# and operate_date &gt;= #startDate# and operate_date &lt; #endDate# 

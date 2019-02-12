@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="unRepairAudit" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="更新预结算状态bala_audit_sign = 1，" title="Administrator&#x9;18-8-11 下午2:56">
-    <location x="255" y="291"/>
+    <location x="3" y="360"/>
     <size height="100" width="451"/>
   </nodes>
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="返单如果存在应收记录，需要删除应收记录&#xD;&#xA;com.hsapi.frm.frmService.rpinterface.delFisRpBillByServiceId.biz.ext&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;18-8-7 下午7:47">
@@ -194,7 +194,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link22</targetConnections>
-    <location x="589" y="105"/>
+    <location x="645" y="106"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -208,17 +208,17 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="564" y="141"/>
+    <location x="620" y="142"/>
     <figSize height="17" width="73"/>
     <node>invokePojo1</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link45" name="link45" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
-    <location x="400" y="105"/>
+    <location x="360" y="105"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
@@ -271,7 +271,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="398" y="141"/>
+    <location x="358" y="141"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -282,7 +282,7 @@
     </sourceConnections>
     <targetConnections>link11</targetConnections>
     <targetConnections>link23</targetConnections>
-    <location x="477" y="206"/>
+    <location x="688" y="180"/>
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
@@ -295,7 +295,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
-    <location x="475" y="242"/>
+    <location x="686" y="216"/>
     <figSize height="17" width="32"/>
     <node>assign4</node>
   </nodes>
@@ -320,12 +320,12 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link19</targetConnections>
-    <location x="325" y="105"/>
+    <location x="270" y="106"/>
     <size height="28" width="28"/>
     <nodeLabel>transactionbegin0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="transactionbegin0label" name="label" nodeType="label">
-    <location x="315" y="141"/>
+    <location x="260" y="142"/>
     <figSize height="17" width="49"/>
     <node>transactionbegin0</node>
   </nodes>
@@ -417,8 +417,8 @@
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>assign4</targetNode>
     </sourceConnections>
-    <targetConnections>link6</targetConnections>
-    <location x="480" y="106"/>
+    <targetConnections>link45</targetConnections>
+    <location x="510" y="105"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -432,7 +432,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="457" y="142"/>
+    <location x="487" y="141"/>
     <figSize height="17" width="68"/>
     <node>invokePojo2</node>
   </nodes>
@@ -443,7 +443,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="663" y="105"/>
+    <location x="736" y="105"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -461,7 +461,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="638" y="141"/>
+    <location x="711" y="141"/>
     <figSize height="17" width="73"/>
     <node>invokePojo3</node>
   </nodes>
@@ -471,7 +471,7 @@
       <targetNode>invokePojo5</targetNode>
     </sourceConnections>
     <targetConnections>link27</targetConnections>
-    <location x="759" y="105"/>
+    <location x="793" y="105"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -489,7 +489,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
-    <location x="746" y="141"/>
+    <location x="780" y="141"/>
     <figSize height="17" width="48"/>
     <node>invokePojo4</node>
   </nodes>
@@ -500,7 +500,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="827" y="105"/>
+    <location x="862" y="105"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo5label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -518,7 +518,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
-    <location x="814" y="141"/>
+    <location x="849" y="141"/>
     <figSize height="17" width="49"/>
     <node>invokePojo5</node>
   </nodes>

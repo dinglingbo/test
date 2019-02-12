@@ -201,7 +201,7 @@ function addOrEditPart(row)
         // targetWindow: window,
         url: "com.hsweb.cloud.part.basic.partDetail.flow",
         title: "配件资料",
-        width: 740, height: 370,
+        width: 480, height: 370,
         allowDrag:true,
         allowResize:false,
         onload: function ()

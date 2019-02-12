@@ -7,9 +7,11 @@ var rightGuestGrid = null;
 var rightPartGrid = null;
 var rightUnifyGrid = null;
 var mainTabs = null;
+var priceList=[];
+var priceHash={};
 var straGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySellStrategy.biz.ext";
 var rightGuestGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyGuest.biz.ext";
-var rightPartGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyPrice.biz.ext";
+var rightPartGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyStock.biz.ext";
 var rightUnifyGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryUnifyPrice.biz.ext";
 $(document).ready(function(v)
 {
@@ -22,11 +24,41 @@ $(document).ready(function(v)
     rightGuestGrid.setUrl(rightGuestGridUrl);
 
     rightPartGrid = nui.get("rightPartGrid");
-    rightPartGrid.setUrl(rightPartGridUrl);
+//    rightPartGrid.setUrl(rightPartGridUrl);
 
     rightUnifyGrid = nui.get("rightUnifyGrid");
     rightUnifyGrid.setUrl(rightUnifyGridUrl);
-
+    
+    rightPartGrid.on("drawcell",function(e){
+    	var row=straGrid.getSelected();
+    	var field=e.field;
+    	var record=e.record;
+    	var partId=record.partId;
+    	if(row._id==1){
+    		//不用处理
+    	}else{
+    		if(field=='strategyId' && priceHash[partId] && !e.value){
+    			e.value=priceHash[partId].strategyId || null;
+    			e.cellHtml=priceHash[partId].strategyId || '';
+//    			record.strategyId=priceHash[partId].strategyId || null;
+    		}
+    		if(field=='sellPrice' && priceHash[partId] && !e.value){
+    			e.value=priceHash[partId].sellPrice || null;
+    			e.cellHtml=priceHash[partId].sellPrice || '';
+//    			record.sellPrice=priceHash[partId].sellPrice || null;
+    		}
+    		if(field=='operator' && priceHash[partId] && !e.value){
+    			e.value=priceHash[partId].operator || null;
+    			e.cellHtml=priceHash[partId].operator || '';
+//    			record.operator=priceHash[partId].operator || '';
+    		}
+			if(field=='operateDate' && priceHash[partId] && !e.value){
+				e.value=priceHash[partId].operateDate || null;
+				e.cellHtml=priceHash[partId].operateDate || '';
+//				record.operateDate=priceHash[partId].operateDate || null;
+    		}
+    	}
+    });
     $("#queryCode").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
@@ -71,18 +103,90 @@ $(document).ready(function(v)
     });
 
 });
+
+var StrategyPriceUrl=baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyPrice.biz.ext";
+function getStrategyPrice(){
+	nui.mask({
+		el : document.body,
+		cls : 'mini-mask-loading',
+		html : '查询中...'
+	});
+	var row=straGrid.getSelected();
+	var strategyId=row.id;
+	var params={
+		strategyId:strategyId
+	}
+	nui.ajax({
+		url :StrategyPriceUrl,
+		data :{params:params,token:token},
+		type : "post",
+		async:false,
+		success:function(data){
+			nui.unmask(document.body);
+			priceList = data.list || {};
+			console.log(priceList);
+			priceList.forEach(function(v){
+				priceHash[v.partId]=v;
+			});
+			console.log(priceHash);
+		}
+	});
+}
 function onStraGridClick(e){
     var row = e.row;
+    var guestInfo=mainTabs.getTab("guestInfo");
+    if(row._id==1){
+    	mainTabs.updateTab(guestInfo, { visible: false });
+    	nui.get('saveStraPart').setVisible(false);
+    	nui.get('saveUnifyPart').setVisible(true);
+    	
+    }else{
+		mainTabs.updateTab(guestInfo, { visible: true });
+		nui.get('saveStraPart').setVisible(true);
+    	nui.get('saveUnifyPart').setVisible(false);
+    	
+    }
     var tab = mainTabs.getActiveTab();
     var strategyId = row.id||0;
     var params = {strategyId: strategyId,token:token};
     if(tab.name == "guestInfo"){
         rightGuestGrid.load({params:params});
     }else if(tab.name == "partInfo"){
-        rightPartGrid.load({params:params});  
+    	if(row._id ==1){
+    		rightPartGrid.setUrl(rightUnifyGridUrl);
+    		rightPartGrid.load({params:{},token:token});
+    		
+    	}else{
+    		rightPartGridLoad();	
+    	}
     }
 }
 
+
+function rightPartGridLoad(){
+	var row=straGrid.getSelected();
+	var strategyId=row.id;
+	var params = {strategyId: strategyId,token:token};
+	getStrategyPrice();
+	rightPartGrid.setUrl(rightPartGridUrl);
+	rightPartGrid.load({params:params},function(){
+//		var data=rightPartGrid.getData();
+//		var list=[];
+//		var newRow={};
+//		for(var i=0;i<data.length;i++){
+//			for(var j=0;j<priceList.length;i++){
+//				if(data[i].partId==priceList[j].partId){
+//					newRow.strategyId=priceList[j].strategyId;
+//					newRow.sellPrice=priceList[j].sellPrice;
+//					newRow.operator=priceList[j].operator;
+//					newRow.operateDate=priceList[j].operateDate;
+//					rightPartGrid.updateRow(data[i],newRow);
+//					newRow={};
+//				}
+//			}		
+//		}
+	});     	
+}
 function onGuestSearch() {
     var row = straGrid.getSelected();
     if(row && row.id){
@@ -94,6 +198,7 @@ function onGuestSearch() {
     }
 }
 function onPartSearch() {
+	getStrategyPrice();
     var row = straGrid.getSelected();
     if(row && row.id){
         var params = {};
@@ -101,7 +206,23 @@ function onPartSearch() {
         params.queryCode = nui.get("queryCode").getValue();
         params.namePy = nui.get("namePy").getValue();
         params.fullName = nui.get("fullName").getValue();
-        rightPartGrid.load({params:params,token:token});
+        rightPartGrid.load({params:params,token:token},function(){
+//        	var data=rightPartGrid.getData();
+//			var list=[];
+//			var newRow={};
+//			for(var i=0;i<data.length;i++){
+//				for(var j=0;j<priceList.length;i++){
+//					if(data[i].partId==priceList[j].partId){
+//						newRow.strategyId=priceList[j].strategyId;
+//						newRow.sellPrice=priceList[j].sellPrice;
+//						newRow.operator=priceList[j].operator;
+//						newRow.operateDate=priceList[j].operateDate;
+//						rightPartGrid.updateRow(data[i],newRow);
+//						newRow={};
+//					}
+//				}		
+//			}
+        });
     }
 }
 function onUnifySearch() {
@@ -261,6 +382,7 @@ function saveStraGuest(){
     }
     var data = rightGuestGrid.getChanges();
     if(data.length<=0) return;
+    
     var addList = rightGuestGrid.getChanges("added");
     var deleteList = rightGuestGrid.getChanges("removed");
 
@@ -478,11 +600,22 @@ function saveStraPart(){
         showMsg("请先选择对应级别再操作!","W");
         return;
     }
+    var addList=[];
+    var updateList=[];
+    var deleteList=[];
     var data = rightPartGrid.getChanges();
     if(data.length<=0) return;
-    var addList = rightPartGrid.getChanges("added");
-    var deleteList = rightPartGrid.getChanges("removed");
-    var updateList = rightPartGrid.getChanges("modified");
+    for(var i=0;i<data.length;i++){
+    	if(!data[i].strategyId){
+    		data[i].strategyId =row.id;
+    		addList.push(data[i]);
+    	}else{
+    		updateList.push(data[i]);
+    	}
+    }
+//    var addList = rightPartGrid.getChanges("added");
+//    var deleteList = rightPartGrid.getChanges("removed");
+//    var updateList = rightPartGrid.getChanges("modified");
 
     nui.mask({
         el : document.body,
@@ -505,7 +638,7 @@ function saveStraPart(){
             data = data || {};
             if (data.errCode == "S") {
                 showMsg("保存成功!","S");
-                rightPartGrid.reload();
+                rightPartGridLoad();
                 
             } else {
                 showMsg(data.errMsg || "保存失败!","E");
@@ -547,11 +680,21 @@ function delStraGuest(){
 var saveUnifyUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.savePartPrice.biz.ext";
 function saveUnifyPart(){
 
-    var data = rightUnifyGrid.getChanges();
+    var data = rightPartGrid.getChanges();
     if(data.length<=0) return;
-    var addList = rightUnifyGrid.getChanges("added");
-    var deleteList = rightUnifyGrid.getChanges("removed");
-    var updateList = rightUnifyGrid.getChanges("modified");
+    var addList = [];
+    var deleteList = [];
+    var updateList = [];
+//    var addList = rightUnifyGrid.getChanges("added");
+//    var deleteList = rightUnifyGrid.getChanges("removed");
+//    var updateList = rightUnifyGrid.getChanges("modified");
+    for(var i=0;i<data.length;i++){
+    	if(data[i].operateDate==null){
+    		addList.push(data[i]);
+    	}else{
+    		updateList.push(data[i]);
+    	}
+    }
 
     nui.mask({
         el : document.body,

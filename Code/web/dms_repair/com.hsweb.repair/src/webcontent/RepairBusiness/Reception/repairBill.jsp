@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>综合开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.2.43"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairBill.js?v=2.2.42"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -264,6 +264,7 @@
                         <label id="guestCarEl" style="font-family:Verdana;"><a id="showCarInfoEl" href="javascript:showBillInfo()"></a></label>&nbsp;
                         <!-- <label id="basicDataEl" style="font-family:Verdana;color:blue;"><a id="showBasicDataEl" href="javascript:showBasicData()">产品录入</a></label> -->
                         <label id="prdtDEl" style="font-family:Verdana;color:blue;"><a id="prdtEl" href="javascript:showPrdt()">维保推荐</a></label>
+                        <label id="thDEl" style="font-family:Verdana;color:blue;"><a id="tdEl" href="javascript:showthD()">3D模型</a></label>
                         <label id="cardPackageEl" style="font-family:Verdana;color:blue;"><a id="showCardTimesEl" href="javascript:showCardTimes()">次卡套餐(0)</a></label>
                         <label id="clubCardEl" style="font-family:Verdana;color:blue;"><a id="showCardEl" href="javascript:showCard()">储值卡(0)</a></label>
                         <label id="creditEl" style="font-family:Verdana;color:#578ccd;">挂账:0</label><span>&nbsp;&nbsp;</span>
@@ -395,7 +396,7 @@
     </div>
 </div>
 <div id="advancedCardTimesWin" class="nui-window"
-     title="" style="width:450px;height:200px;"
+     title="" style="width:550px;height:200px;"
      showModal="false"
      showHeader="false"
      allowResize="false"
@@ -418,14 +419,15 @@
                allowCellSelect="true"
                editNextOnEnterKey="true"
                url="">
-              <div property="columns">
-                  <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
-                  <div field="prdtType" name="prdtType" width="50" headerAlign="center" header="产品类别"></div>
-                  <div field="balaTimes" name="balaTimes" width="50" headerAlign="center" header="剩余次数"></div>
-                  <div field="doTimes" name="doTimes" width="50" headerAlign="center" header="使用中次数"></div>
-                  <div field="canUseTimes" name="canUseTimes" width="50" headerAlign="center" header="可使用次数"></div>
-                  <div field="cardTimesOpt" name="cardTimesOpt" width="50" headerAlign="center"  header="操作"></div>
-              </div>
+	          <div property="columns">
+		          <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="产品名称"></div>
+		          <div field="prdtType" name="prdtType" width="60" headerAlign="center" header="产品类别"></div>
+		          <div field="totalTimes" name="totalTimes" width="50" headerAlign="center" header="总次数"></div>
+		          <div field="balaTimes" name="balaTimes" width="60" headerAlign="center" header="剩余次数"></div>
+		          <div field="doTimes" name="doTimes" width="70" headerAlign="center" header="使用中次数"></div>
+		          <div field="canUseTimes" name="canUseTimes" width="70" headerAlign="center" header="可使用次数"></div>
+		          <div field="cardTimesOpt" name="cardTimesOpt" width="60" headerAlign="center"  header="操作"></div>
+	        </div>
           </div>
     </div>
 </div> 

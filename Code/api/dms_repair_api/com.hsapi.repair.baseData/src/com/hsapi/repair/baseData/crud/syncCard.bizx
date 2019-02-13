@@ -444,7 +444,7 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="checkCardTypeExit" displayName="checkCardIdExists" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link41" name="link41" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>subprocess0</sourceNode>
-      <targetNode>end7</targetNode>
+      <targetNode>assign18</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">errCode</process:leftOperand>
@@ -476,7 +476,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errrMsg</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -686,7 +686,7 @@
     <node>invokePojo3</node>
   </nodes>
   <nodes xsi:type="process:tEnd" description="" id="end7" name="结束7" displayName="结束" collapsed="false" type="end">
-    <targetConnections>link41</targetConnections>
+    <targetConnections>link0</targetConnections>
     <location x="356" y="409"/>
     <size height="28" width="28"/>
     <nodeLabel>end7label</nodeLabel>
@@ -905,6 +905,21 @@
     <location x="767" y="148"/>
     <figSize height="17" width="56"/>
     <node>transactionrollback1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign18" name="赋值18" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign18</sourceNode>
+      <targetNode>end7</targetNode>
+    </sourceConnections>
+    <targetConnections>link41</targetConnections>
+    <location x="355" y="349"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign18label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign18label" name="label" nodeType="label">
+    <location x="350" y="385"/>
+    <figSize height="17" width="39"/>
+    <node>assign18</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

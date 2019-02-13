@@ -165,6 +165,9 @@ function doSearch(params)
 	if(isOpenWin == 1){
 		params.isDisabled = 0;
 	}
+	if(isCanOrder == 1){
+	    params.isCanOrder = 1;
+	}
 	rightGrid.load({
 		token:token,
 		params:params
@@ -445,9 +448,10 @@ function selectionChanged() {
 	}
 }
 
-
+var isCanOrder = null;
 function setItemName(itemName){
 	mini.get("search-name").setValue(itemName);
+	isCanOrder = 1;
 	isOpenWin = 1;
 	onSearch();
 }

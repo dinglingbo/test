@@ -6,7 +6,7 @@ const layer = scene.layer();
 let isloaderImg = false; // 图片是否加载完
 let activeImgindex = 0; // 当前图片索引
 let rate = 3; // 原图 与 场景  3 : 1
-let imgs = null
+let imgs = null;
 let activeCarPart 
 let isRenderChejia = false;
 

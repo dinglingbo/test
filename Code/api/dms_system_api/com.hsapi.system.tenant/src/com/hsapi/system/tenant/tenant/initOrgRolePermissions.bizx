@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="initOrgRolePermissions.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="初始子公司&#xD;&#xA;1、根据com_company新增组织机构org_organization&#xD;&#xA;2、当天添加人新增到org_emporg且配置管理员角色(查询模版角色)&#xD;&#xA;3、添加当前用户到cap_partyauth（添加管理员角色）&#xD;&#xA;4、角色权限，资源cap_resauth&#xD;&#xA;5、初始往来单位com_guest&#xD;&#xA;6、初始仓库com_store&#xD;&#xA;7、不用添加员工信息和用户信息（需要切换到新增的机构添加员工）&#xD;&#xA;&#xD;&#xA;目前汽修只取管理员角色 15  对应的角色资源  com_cap_resauth&#xD;&#xA;com_tenant_menu -1&#xD;&#xA;&#xD;&#xA;目前汽配只取管理员角色 24  对应的角色资源  com_cap_resauth&#xD;&#xA;com_tenant_menu -2&#xD;&#xA;&#xD;&#xA;20190106：注册审批通过时，要生成两条数据到com_guest，一个代表往来单位，一个代表散客（用于新增车辆但是没有提供客户信息），新增联系人信息" title="Administrator&#x9;18-6-14 上午10:51">
-    <location x="57" y="-165"/>
-    <size height="331" width="480"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" collapsed="false" nodeType="note" type="note" content="初始子公司&#xD;&#xA;1、根据com_company新增组织机构org_organization&#xD;&#xA;2、当天添加人新增到org_emporg且配置管理员角色(查询模版角色)&#xD;&#xA;3、添加当前用户到cap_partyauth（添加管理员角色）&#xD;&#xA;4、角色权限，资源cap_resauth&#xD;&#xA;5、初始往来单位com_guest&#xD;&#xA;6、初始仓库com_store&#xD;&#xA;7、不用添加员工信息和用户信息（需要切换到新增的机构添加员工）&#xD;&#xA;&#xD;&#xA;目前汽修只取管理员角色 15  对应的角色资源  com_cap_resauth&#xD;&#xA;com_tenant_menu -1&#xD;&#xA;&#xD;&#xA;目前汽配只取管理员角色 24  对应的角色资源  com_cap_resauth&#xD;&#xA;com_tenant_menu -2&#xD;&#xA;&#xD;&#xA;20190106：注册审批通过时，要生成两条数据到com_guest，一个代表往来单位，一个代表散客（用于新增车辆但是没有提供客户信息），新增联系人信息&#xD;&#xA;&#xD;&#xA;初始用户角色缓存，初始角色资源缓存" title="Administrator&#x9;18-6-14 上午10:51">
+    <location x="56" y="-231"/>
+    <size height="367" width="480"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" description="" id="link57" name="link57" displayName="link0" isDefault="true" type="transition">
@@ -204,6 +204,10 @@
       <process:from type="expression" pattern="reference">new Date()</process:from>
       <process:to type="query">tmpPartyauth/createtime</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">userId</process:from>
+      <process:to type="query">params/userId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
     <location x="1347" y="253"/>
@@ -213,7 +217,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo10" name="当前新建人添加管理员角色" displayName="设为管理员" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link81" name="link81" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo10</sourceNode>
-      <targetNode>assign17</targetNode>
+      <targetNode>subprocess3</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link92" name="link92" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo10</sourceNode>
@@ -243,7 +247,7 @@
       <sourceNode>assign17</sourceNode>
       <targetNode>invokePojo6</targetNode>
     </sourceConnections>
-    <targetConnections>link81</targetConnections>
+    <targetConnections>link21</targetConnections>
     <location x="1537" y="217"/>
     <size height="28" width="28"/>
     <nodeLabel>assign17label</nodeLabel>
@@ -880,6 +884,7 @@
     <location x="893" y="220"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart2label</nodeLabel>
+    <process:condition/>
     <process:iterate iterable="tCapResauth" iterableElement="resauthTemp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart2label" name="label" nodeType="label">
@@ -1150,8 +1155,8 @@
     <node>end2</node>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
-    <targetConnections>link7</targetConnections>
-    <location x="2576" y="217"/>
+    <targetConnections>link29</targetConnections>
+    <location x="2835" y="219"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -1160,7 +1165,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" nodeType="label">
-    <location x="2578" y="253"/>
+    <location x="2837" y="255"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -1303,7 +1308,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="可维护权限的菜单" displayName="角色权限新增" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo5</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>loopstart3</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo5</sourceNode>
@@ -1509,7 +1514,131 @@
     <figSize height="17" width="92"/>
     <node>invokePojo8</node>
   </nodes>
-  <topRuler/>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess3" name="用户角色数据缓存" displayName="clearAndResetCache" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess3</sourceNode>
+      <targetNode>assign17</targetNode>
+    </sourceConnections>
+    <targetConnections>link81</targetConnections>
+    <location x="1492" y="135"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess3label</nodeLabel>
+    <process:flow index="8" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.login.clearAndResetCache</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">default</process:inputVariable>
+        <process:inputVariable id="1" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">com.hs.common.orga.queryUserRoles</process:inputVariable>
+        <process:inputVariable id="2" name="title" type="literal" value="String" valueType="Primitive" pattern="reference">用户角色数据</process:inputVariable>
+        <process:inputVariable id="3" name="fromDb" type="literal" value="String" valueType="Primitive" pattern="reference">false</process:inputVariable>
+        <process:inputVariable id="4" name="expireTimes" type="literal" value="Int" valueType="Primitive" pattern="reference">-1</process:inputVariable>
+        <process:inputVariable id="5" name="setDe" type="literal" value="Boolean" valueType="Primitive" pattern="reference">false</process:inputVariable>
+        <process:inputVariable id="6" name="deData" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="7" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">params</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
+    <location x="1457" y="170"/>
+    <figSize height="17" width="97"/>
+    <node>subprocess3</node>
+  </nodes>
+  <nodes xsi:type="process:tLoopStart" description="" id="loopstart3" name="循环3" displayName="循环" grouped="true" type="loopstart" matchedName="loopend3" loopType="iterate">
+    <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>loopstart3</sourceNode>
+      <targetNode>assign13</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="2587" y="220"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopstart3label</nodeLabel>
+    <process:iterate iterable="roleList" iterableElement="roleTemp"/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopstart3label" name="label" nodeType="label">
+    <location x="2583" y="252"/>
+    <figSize height="17" width="32"/>
+    <node>loopstart3</node>
+  </nodes>
+  <nodes xsi:type="process:tLoopEnd" id="loopend3" name="循环结束3" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart3">
+    <sourceConnections xsi:type="process:tLink" id="link29" name="link29" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>loopend3</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link32</targetConnections>
+    <location x="2736" y="220"/>
+    <size height="24" width="24"/>
+    <nodeLabel>loopend3label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="loopend3label" name="label" nodeType="label">
+    <location x="2720" y="252"/>
+    <figSize height="17" width="56"/>
+    <node>loopend3</node>
+  </nodes>
+  <nodes xsi:type="model:GroupNode" id="group3" name="group3" grouped="true" gstart="loopstart3" gend="loopend3">
+    <location x="2587" y="156"/>
+    <size height="168" width="174"/>
+    <chidren>loopend3</chidren>
+    <chidren>loopstart3</chidren>
+    <chidren>subprocess4</chidren>
+    <chidren>assign13</chidren>
+  </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="角色资源数据缓存" displayName="clearAndResetCache" collapsed="false" grouped="true" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>loopend3</targetNode>
+    </sourceConnections>
+    <targetConnections>link31</targetConnections>
+    <location x="2685" y="219"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess4label</nodeLabel>
+    <process:flow index="8" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.login.clearAndResetCache</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">default</process:inputVariable>
+        <process:inputVariable id="1" name="nameSqlId" type="literal" value="String" valueType="Primitive" pattern="reference">com.hs.common.orga.queryRoleRes</process:inputVariable>
+        <process:inputVariable id="2" name="title" type="literal" value="String" valueType="Primitive" pattern="reference">角色资源数据</process:inputVariable>
+        <process:inputVariable id="3" name="fromDb" type="literal" value="String" valueType="Primitive" pattern="reference">false</process:inputVariable>
+        <process:inputVariable id="4" name="expireTimes" type="literal" value="Int" valueType="Primitive" pattern="reference">-1</process:inputVariable>
+        <process:inputVariable id="5" name="setDe" type="literal" value="Boolean" valueType="Primitive" pattern="reference">false</process:inputVariable>
+        <process:inputVariable id="6" name="deData" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="7" name="params" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">p</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
+    <location x="2650" y="254"/>
+    <figSize height="17" width="97"/>
+    <node>subprocess4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign13" name="赋值13" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link31" name="link31" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign13</sourceNode>
+      <targetNode>subprocess4</targetNode>
+    </sourceConnections>
+    <targetConnections>link30</targetConnections>
+    <location x="2632" y="218"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign13label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">roleTemp/roleId</process:from>
+      <process:to type="query">p/roleId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
+    <location x="2627" y="254"/>
+    <figSize height="17" width="39"/>
+    <node>assign13</node>
+  </nodes>
+  <topRuler>
+    <guides position="2448" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-06-14 11:18:53" date="2018-06-14Z" description="" name="initOrgRolePermissions" version="7.0.0.0"/>
   <process:variables>
@@ -1534,6 +1663,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="inx" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.sys.ComGuest" name="guestC"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.system.data.repair.RpbContactor" name="rpbContactor"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="params"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.system.data.sys.ComCompany" name="comCompany"/>

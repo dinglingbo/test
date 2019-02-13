@@ -126,7 +126,10 @@
 											valueField="id"
 											textField="nameCn"
 											onValuechanged="initCarSeries('carSeriesId', e.value)"
-											width="100%" popupHeight="100%"/>
+											width="100%" popupHeight="100%"
+											allowInput="true"
+											valueFromSelect="true"
+											/>
 								</td>
 								
 							  <td class="form_label">
@@ -137,7 +140,10 @@
 											valueField="carSeriesId"
 											textField="carSeriesName"
 											onValuechanged="initCarModel('carModelId', '', e.value)"
-											width="100%" popupHeight="100%"/>
+											width="100%" popupHeight="100%"
+											allowInput="true"
+											valueFromSelect="true"
+											/>
 								</td>
 								
 							</tr>
@@ -149,7 +155,10 @@
 									<input class="nui-combobox" name="carModelId" id="carModelId"
 											valueField="carModelId"
 											textField="carModel"
-											width="100%" popupHeight="100%"/>
+											width="100%" popupHeight="100%"
+											allowInput="true"
+											valueFromSelect="true"
+											/>
 								</td>
 							</tr>
 							<tr>
@@ -164,11 +173,13 @@
 											format="0"
 											value="0" maxValue="1000000000"
 											changeOnMousewheel="true" showButton="false"
-											width="30%"  selectOnFocus="true"/>
+											width="20%"  selectOnFocus="true"/>
 								    <label id="isCalTimes">是否禁用计数：</label>
 								   <input name="isCalTimes" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
 								   <label id="isShareTd">是否共享：</label> 
 								   <input id="isShare" name="isShare" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
+								   <label id="isCanOrderTd">是否可预约：</label>
+								   <input name="isCanOrder" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
 								   <label id="isDisabledTd">是否禁用：</label>
 								   <input name="isDisabled" class="nui-checkbox" trueValue="1" falseValue="0" width="10%"/>
 								</td>

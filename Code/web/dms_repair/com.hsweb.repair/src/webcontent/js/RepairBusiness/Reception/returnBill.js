@@ -1361,7 +1361,6 @@ function saveBatch(){
     }else{
 		var maintain = billForm.getData();
 		delete maintain.recordDate;
-		maintain.partAmt = total;
 		total = null;
 		var sellPartAdd = [];
 		var sellPartUpdate = [];
@@ -1370,11 +1369,14 @@ function saveBatch(){
 		total = null;
 		var row = rpsPartGrid.findRow(function(row){
 			if(!row.id){
+				total += parseFloat(row.amt);
 				sellPartAdd.push(row);
 			}else{
+				total += parseFloat(row.amt);
 				sellPartUpdate.push(row);
 			}
         });
+		maintain.partAmt = total;
 		var json = nui.encode({
 			"maintain" : maintain,
 			"sellPartAdd" : sellPartAdd,
@@ -1444,18 +1446,20 @@ function finish(){
         html: '审核中...'
     });
 	var maintain = billForm.getData();
-	maintain.partAmt = total;
 	total = null;
 	var sellPartAdd = [];
 	var sellPartUpdate = [];
 	var sellPartDelete = rpsPartGrid.getChanges("removed");
 	var row = rpsPartGrid.findRow(function(row){
 		if(!row.id){
+			total += parseFloat(row.amt);
 			sellPartAdd.push(row);
 		}else{
+			total += parseFloat(row.amt);
 			sellPartUpdate.push(row);
 		}
     });
+	maintain.partAmt = total;
 	var json = nui.encode({
 		"main" : maintain,
 		"sellPartAdd" : sellPartAdd,
@@ -1499,7 +1503,7 @@ function finish(){
 }
 
 var total = null;
-function onDrawSummaryCell(e){	
+/*function onDrawSummaryCell(e){	
 	  var rows = e.data;
 	  var sum = null;
 	  if(e.field == "amt") 
@@ -1510,7 +1514,7 @@ function onDrawSummaryCell(e){
 			  total = sum;
 		  }
 	  } 
-}
+}*/
 //转结算(可能有问题)
 //转结算
 function pay(){	

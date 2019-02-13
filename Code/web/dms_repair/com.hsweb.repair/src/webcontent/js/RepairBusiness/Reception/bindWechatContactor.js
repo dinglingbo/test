@@ -54,12 +54,12 @@ var result=null;
 var saveOpenIdUrl = baseUrl + "com.hsapi.repair.repairService.svr.saveWechatOpenId.biz.ext";
 function wechatBin(row_uid){
 	var row = contactorGrid.getRowByUID(row_uid);
-	var wechatService = contactorGrid.getCellEditor("wechatServiceId", row);
-	var wechatServiceId = wechatService.getValue();
 	if(row.wechatOpenId){
 		showMsg("此联系人已绑定!","W");
 		return 0;
 	}
+	var wechatService = contactorGrid.getCellEditor("wechatServiceId", row);
+	var wechatServiceId = wechatService.getValue();
 	if(!wechatServiceId){
 		 showMsg("请输入服务号!","W");
 		 return 0; 

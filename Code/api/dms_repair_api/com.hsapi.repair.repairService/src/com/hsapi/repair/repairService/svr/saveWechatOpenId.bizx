@@ -63,6 +63,7 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>assign8</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="465" y="150"/>
@@ -130,7 +131,7 @@
       <process:to type="query">token</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">8cf3ea17-9c9e-42e0-b78a-14ae851175ab</process:from>
+      <process:from type="literal" pattern="reference">a3a1032e-9b42-48de-9667-754726310269</process:from>
       <process:to type="query">token</process:to>
     </process:copy>
     <process:copy>

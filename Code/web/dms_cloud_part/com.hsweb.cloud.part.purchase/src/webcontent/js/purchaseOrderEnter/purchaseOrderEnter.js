@@ -37,7 +37,10 @@ var guestIdEl=null;
 var partIn=null;
 var quickAddShow=0;
 var advancedSearchShow=0;
-
+var priceList=[];
+var partPriceList=[];
+var partPriceHash = {};
+var StratePrice=[];
 // 单据状态
 var AuditSignList = [ {
 	customid : '0',
@@ -136,7 +139,50 @@ $(document).ready(function(v) {
         
     	
 	});
-	
+	rightGrid.on("preload",function(e){
+		var result=e.result;
+		var resultList=result.data;
+		
+		getSellStrategy();
+		var sender=e.sender;
+		var columnsList = [];
+	    columnsList=sender.columns;
+	    columnsObjList=columnsList[3].columns;
+	    //获取下标
+	    var index=null;
+	    for(var i=0;i<columnsObjList.length;i++){
+	    	if(columnsObjList[i].header=="统一销价"){
+	    		index=i+1;
+	    	}
+	    }
+	    if(priceList.length<=0)return;
+	    for(var i=0;i<priceList.length;i++){
+//	    	columnsObjList[index+i].field=priceList[i].id;
+	    	columnsObjList[index+i].visible=true;
+		    columnsObjList[index+i].header=priceList[i].name;
+	    }
+	    
+	    for(var i=0;i<resultList.length;i++){
+			var partId=resultList[i].partId;
+			getStratePrice(partId);
+		}
+//	    columnsObjList.push({field: "sellUnitPrice",width:"60", headerAlign: "center", allowSort: true,header: "统一销价"});
+
+//		var obj = {header:year,columns:[
+//		            	{header:month,columns:[
+//				        	{field: orderQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库数量"},
+//				        	{field: orderAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库金额"},
+//				        	{field: orderRtnQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货数量"},
+//				        	{field: orderRtnAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货金额"},
+//				        	{field: trueQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库数量"},
+//				        	{field: trueAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额"}
+//			          	]}
+//		           ]};
+//		columnsList.push(obj);
+		rightGrid.set({
+	        columns: columnsList
+	    });
+	});
 	morePartGrid.on("drawcell",function(e){
         switch (e.field)
         {
@@ -149,6 +195,7 @@ $(document).ready(function(v) {
                     e.cellHtml = "";
                 }
                 break;
+                
             default:
                 break;
         }
@@ -249,6 +296,62 @@ var StatusHash = {
 	"5" : "已退回",
 	"6" : "已关闭"
 };
+
+var StratePriceUrl = baseUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getPartPriceInfo.biz.ext";
+function getStratePrice(partId){
+
+	partPriceList=null;
+	partPriceHash={};
+	nui.ajax({
+		url : StratePriceUrl,
+		type : "post",
+		async: false,
+		data : {
+			params: {partId:partId,show:1},
+			token: token
+		},
+		success: function(data) {
+			partPriceList =data.price;	
+			var length=partPriceList.length;
+			partPriceList.forEach(function(v){
+//				if(!v.stragegyId){
+					partPriceHash[v.name]=v;
+//				}else{
+//					partPriceHash[v.stragegyId]=v;
+//				}
+				
+				
+				StratePrice[partId]=partPriceHash;
+			});
+//			var newRow={
+//					sellUnitPrice :	partPriceHash["统一售价"].sellPrice
+//			};
+//			rightGrid.updateRow(e.row, newRow);
+		},error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+var SellStrategyUrl= baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.querySellStrategy.biz.ext";
+function getSellStrategy(){
+	priceList=[];
+	nui.ajax({
+		url : SellStrategyUrl,
+		type : "post",
+		async: false,
+		data : {
+			params: {},
+			token: token
+		},
+		success: function(data) {
+			priceList =data.list;
+		},error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
 function addNewRow(check){
 	var data = basicInfoForm.getData();
 
@@ -347,6 +450,7 @@ function onLeftGridBeforeDeselect(e)
 
         leftGrid.removeRow(row);
     }
+
 }
 function onLeftGridSelectionChanged() {
 	var row = leftGrid.getSelected();
@@ -374,17 +478,21 @@ function setBottomData(row){
 	var type = row.type;
 	document.getElementById("formIframe").contentWindow.setInitEmbedParams(row);
 }
+function initGrid(){
+	
+}
 function loadRightGridData(mainId, auditSign) {
 	editPartHash = {};
 	var params = {};
 	params.mainId = mainId;
 	params.auditSign = auditSign;
+	initGrid();
 	rightGrid.load({
 		params : params,
 		token : token
 	},function(){
 
-		var data = rightGrid.getData();
+		var data=rightGrid.getData();
 		if(data && data.length <= 0){
 			addNewRow(false);
 		}	
@@ -963,22 +1071,48 @@ function selectSupplier(elId) {
 	});
 }
 function onRightGridDraw(e) {
-	switch (e.field) {
-	case "comPartBrandId":
+	//获取hashmap除了统一售价的长度
+	var length=Object.getOwnPropertyNames(partPriceHash).length-1;
+	var record=e.record;
+	var header = e.column.header;
+	var str = header.replace(/\"/g, "");
+
+	if(e.field== "comPartBrandId"){
 		if (brandHash[e.value]) {
 			e.cellHtml = brandHash[e.value].name || "";
 		} else {
 			e.cellHtml = "";
 		}
-		break;
-	case "operateBtn":
+	}
+	
+	if(e.field== "operateBtn"){
             e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
             			'<span class="fa fa-plus" onClick="javascript:addNewRow(true)" title="添加行">&nbsp;&nbsp;</span>' +
                         ' <span class="fa fa-close" onClick="javascript:deletePart()" title="删除行"></span>';
-            break;
-	default:
-		break;
 	}
+	if(e.field=="sellUnitPrice"){
+    	if(StratePrice[record.partId] && !e.value){
+    		e.cellHtml = StratePrice[record.partId].统一售价.sellPrice||"";
+    		e.value= StratePrice[record.partId].统一售价.sellPrice||"";
+    	}
+	}
+	
+	if(header==partPriceHash[header]){
+		if(StratePrice[record.partId] && !e.value){
+    		e.cellHtml = StratePrice[record.partId].str.sellPrice||"";
+    		e.value= StratePrice[record.partId].str.sellPrice||"";
+    	}
+	}
+//	for(var i=0;i<priceList.length;i++){
+//		var id=priceList[i].id;
+//		if(e.field== id ){
+//			if(StratePrice[record.partId] && !e.value){
+//	    		e.cellHtml = StratePrice[record.partId].id.sellPrice||"";
+//	    		e.value= StratePrice[record.partId].id.sellPrice||"";
+//	    	}
+//		}
+//	}
+
 }
 function onCellEditEnter(e){
 	var record = e.record;

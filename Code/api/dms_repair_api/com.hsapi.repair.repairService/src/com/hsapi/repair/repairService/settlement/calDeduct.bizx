@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="calDeduct.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="结算后计算员工提成信息,更新套餐，工时，配件的提成金额&#xD;&#xA;（套餐，工时一定设置了提成信息；配件可能没设置需要用到通用提成）&#xD;&#xA;如果是产值提成，需要等到工单结算后再计算提成信息&#xD;&#xA;&#xD;&#xA; 预存的套餐，工时，配件不计算销售提成，只计算服务和技师提成&#xD;&#xA;&#xD;&#xA;套餐只计算 销售提成 和 服务顾问提成，没有技师提成&#xD;&#xA;技师提成在套餐的工时当中去计算；&#xD;&#xA;工时需要计算   销售，服务和技师提成；&#xD;&#xA;配件只计算销售提成，没有设置的取通用提成；&#xD;&#xA;建议通用提成只用于配件，套餐和工时必须设置提成信息；&#xD;&#xA;预存的配件不计算销售提成,套餐的配件不计算销售提成&#xD;&#xA;生成 rps_deduct_detail 数据&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.repairService.settleMent.getRpsDeductDetailAmt&#xD;&#xA;com.hsapi.repair.repairService.settleMent.getRpsDeductDetailAmt" title="Administrator&#x9;18-8-22 下午8:05">
-    <location x="15" y="-285"/>
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="结算后计算员工提成信息,更新套餐，工时，配件的提成金额&#xD;&#xA;（套餐，工时一定设置了提成信息；配件可能没设置需要用到通用提成）&#xD;&#xA;如果是产值提成，需要等到工单结算后再计算提成信息&#xD;&#xA;&#xD;&#xA; 预存的套餐，工时，配件不计算销售提成，只计算服务和技师提成&#xD;&#xA;&#xD;&#xA;套餐只计算 销售提成 和 服务顾问提成，没有技师提成&#xD;&#xA;技师提成在套餐的工时当中去计算；&#xD;&#xA;工时需要计算   销售，服务和技师提成；&#xD;&#xA;配件只计算销售提成，没有设置的取通用提成；&#xD;&#xA;建议通用提成只用于配件，套餐和工时必须设置提成信息；&#xD;&#xA;预存的配件不计算销售提成,套餐的配件不计算销售提成&#xD;&#xA;生成 rps_deduct_detail 数据&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.repairService.settleMent.getRpsDeductDetailAmt&#xD;&#xA;删除提成值为0的数据" title="Administrator&#x9;18-8-22 下午8:05">
+    <location x="-7" y="-330"/>
     <size height="316" width="483"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
@@ -52,7 +52,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="90" y="150"/>
+    <location x="91" y="150"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -60,6 +60,11 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
         <process:inputVariable id="1" name="totalPrefRate" type="query" value="Double" valueType="Primitive" pattern="reference">totalPrefRate</process:inputVariable>
+        <process:inputVariable id="2" name="mtAdvisorId" type="query" value="Int" valueType="Primitive" pattern="reference">mtAdvisorId</process:inputVariable>
+        <process:inputVariable id="3" name="mtAdvisor" type="query" value="String" valueType="Primitive" pattern="reference">mtAdvisor</process:inputVariable>
+        <process:inputVariable id="4" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/orgid</process:inputVariable>
+        <process:inputVariable id="5" name="serviceCode" type="query" value="String" valueType="Primitive" pattern="reference">maintain/serviceCode</process:inputVariable>
+        <process:inputVariable id="6" name="billTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/billTypeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -68,7 +73,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="37" y="185"/>
+    <location x="38" y="185"/>
     <figSize height="17" width="132"/>
     <node>subprocess1</node>
   </nodes>
@@ -96,6 +101,11 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
         <process:inputVariable id="1" name="totalPrefRate" type="query" value="Double" valueType="Primitive" pattern="reference">totalPrefRate</process:inputVariable>
+        <process:inputVariable id="2" name="mtAdvisorId" type="query" value="Int" valueType="Primitive" pattern="reference">mtAdvisorId</process:inputVariable>
+        <process:inputVariable id="3" name="mtAdvisor" type="query" value="String" valueType="Primitive" pattern="reference">mtAdvisor</process:inputVariable>
+        <process:inputVariable id="4" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/orgid</process:inputVariable>
+        <process:inputVariable id="5" name="serviceCode" type="query" value="String" valueType="Primitive" pattern="reference">maintain/serviceCode</process:inputVariable>
+        <process:inputVariable id="6" name="billTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/billTypeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -132,6 +142,11 @@
       <process:inputVariables>
         <process:inputVariable id="0" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
         <process:inputVariable id="1" name="totalPrefRate" type="query" value="Double" valueType="Primitive" pattern="reference">totalPrefRate</process:inputVariable>
+        <process:inputVariable id="2" name="mtAdvisorId" type="query" value="Int" valueType="Primitive" pattern="reference">mtAdvisorId</process:inputVariable>
+        <process:inputVariable id="3" name="mtAdvisor" type="query" value="String" valueType="Primitive" pattern="reference">mtAdvisor</process:inputVariable>
+        <process:inputVariable id="4" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/orgid</process:inputVariable>
+        <process:inputVariable id="5" name="serviceCode" type="query" value="String" valueType="Primitive" pattern="reference">maintain/serviceCode</process:inputVariable>
+        <process:inputVariable id="6" name="billTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/billTypeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

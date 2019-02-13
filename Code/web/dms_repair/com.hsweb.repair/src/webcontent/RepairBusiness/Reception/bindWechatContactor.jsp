@@ -11,7 +11,7 @@
 -->
 <head>
     <title>选择联系人</title>
-     <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/bindWechatContactor.js?v=1.0.1"></script> 
+     <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/bindWechatContactor.js?v=1.0.10"></script> 
     <style type="text/css">
         table {
             font-size: 12px;
@@ -68,8 +68,8 @@
            <div field="identity" headerAlign="center" name="identity" allowSort="false" visible="true" width="50" header="身份" align="center"> </div>
            <div field="sex" headerAlign="center" name="sex" allowSort="false" visible="true" width="50" header="性别" align="center" ></div>
            <div field="mobile" headerAlign="center" allowSort="false" visible="true" width="120" header="联系人手机" align="center"></div>
-           <div field="wechatServiceId" headerAlign="center" allowSort="false" visible="true" width="120" header="服务号" align="center">
-            <input property="editor" vtype="int" class="nui-textbox" onvaluechanged="" selectOnFocus="true" width="80%"/>
+           <div field="wechatServiceId" name="wechatServiceId" headerAlign="center" allowSort="false" visible="true" width="120" header="服务号" align="center">
+            <input property="editor"  class="nui-textbox" id="wechatId" onvaluechanged="wechatServiceIdChange" selectOnFocus="true" width="80%"/>
            </div>
            <div field="wechatOptBtn" name="itemOptBtn" width="100" headerAlign="center" header="操作" align="center" ></div>
      </div>

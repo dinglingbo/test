@@ -209,4 +209,10 @@
             </isNotEmpty>
 	</update>
 	
+	
+	<delete id="deleteDeductZero" parameterClass="java.util.HashMap">
+		DELETE from rps_deduct_prdt_detail 
+		where service_id = #serviceId# and service_code = #serviceCode#
+	</delete>
+	
 </sqlMap>

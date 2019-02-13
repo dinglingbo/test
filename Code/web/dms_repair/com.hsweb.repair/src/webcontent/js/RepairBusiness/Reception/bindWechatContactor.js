@@ -21,6 +21,8 @@ $(document).ready(function (){
 	  contactorGrid = nui.get("contactorGrid");
 	  contactorGrid.setUrl(contactorGridUrl);
 	  contactorGrid.on("drawcell",function(e){
+		    var record = e.record;
+	        var uid = record._uid;
 	         switch (e.field) {
 	             case "identity":
 	            	 e.cellHtml = identityTypeHash[e.value];
@@ -29,7 +31,7 @@ $(document).ready(function (){
 	            	 e.cellHtml = sexTypeHash[e.value];
 	            	 break;
 	             case "wechatOptBtn":
-	            	 e.cellHtml = '<a class="optbtn" href="javascript:void()" onclick="wechatBin()">绑定</a>';
+	            	 e.cellHtml = '<a class="optbtn" href="javascript:void()" onclick="wechatBin(\'' + uid + '\')">绑定</a>';
 	            	 break;
 	             default:
 	                 break;
@@ -49,11 +51,65 @@ $(document).ready(function (){
 });
 var result=null;
 //wechatApi/com.hsapi.wechat.autoServiceBackstage.weChatInterface.addBoundUser.biz.ext
-function wechatBin(){
-	var row  = contactorGrid.getSelected();
-	if(row){
-		result=row;
-		 CloseWindow('cancle');
+var saveOpenIdUrl = baseUrl + "com.hsapi.repair.repairService.svr.saveWechatOpenId.biz.ext";
+function wechatBin(row_uid){
+	var row = contactorGrid.getRowByUID(row_uid);
+	var wechatService = contactorGrid.getCellEditor("wechatServiceId", row);
+	var wechatServiceId = wechatService.getValue();
+	if(row.wechatOpenId){
+		showMsg("此联系人已绑定!","W");
+		return 0;
+	}
+	if(!wechatServiceId){
+		 showMsg("请输入服务号!","W");
+		 return 0; 
+	 }
+	 if(row){
+		 result=row;
+		 if(!carNo){
+			 showMsg("车牌号为空!","W");
+			 return 0;
+		 }else{
+			 var wechatUser = {};
+			 wechatUser.userPhone = row.mobile;
+			 wechatUser.userMarke = wechatServiceId;
+			 wechatUser.id = row.id;
+			 var json = nui.encode({
+				 carNo:carNo,
+				 wechatUser:wechatUser,
+		 		 token:token
+		 	  });
+			 nui.ajax({
+			 		url : saveOpenIdUrl,
+			 		type : 'POST',
+			 		data : json,
+			 		cache : false,
+			 		contentType : 'text/json',
+			 		success : function(text) {
+			 			if(text.errCode=="S"){
+			 				var params = {};
+			 				params.guestId = guestId;
+			 				contactorGrid.load({
+			 				     token:token,
+			 				     params:params
+			 				  },function(){
+			 					 var row = contactorGrid.findRow(function(row){
+			 						 if(!row.wechatOpenId){
+			 							 contactorGrid.beginEditRow(row);
+			 						 }
+			 						 
+			 				     });
+			 				 });
+			 			showMsg(text.errMsg || "绑定成功!","S");
+			 			return;
+			 			}else{
+			 				showMsg(text.errMsg,"E");
+			 				return;
+			 			}
+			 			
+			 		}
+			});
+		 }
 	}else{
 		nui.alert("请选中一条记录", "提示");
 	}
@@ -66,18 +122,20 @@ function CloseWindow(action) {
     if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
     else window.close();
 }
+var carNo = null;
+var guestId = null;
 function setData(params){
-	 contactorGrid.load({
-         token:token,
-         params:params
-    },function(){
-    	 var row = contactorGrid.findRow(function(row){
-    		 if(!row.wechatOpenId){
-    			 contactorGrid.beginEditRow(row);
-    		 }
-    		 
-         });
-    });
-	 
+  carNo = params.carNo;
+  guestId = params.guestId;
+  contactorGrid.load({
+     token:token,
+     params:params
+  },function(){
+	 var row = contactorGrid.findRow(function(row){
+		 if(!row.wechatOpenId){
+			 contactorGrid.beginEditRow(row);
+		 }
+		 
+     });
+ });
 }
-

@@ -476,6 +476,8 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
     <process:input description="整单优惠率" isArray="false" name="totalPrefRate" primitiveType="Double"/>
+    <process:input description="服务顾问ID" isArray="false" name="mtAdvisorId" primitiveType="Int"/>
+    <process:input description="服务顾问" isArray="false" name="mtAdvisor" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

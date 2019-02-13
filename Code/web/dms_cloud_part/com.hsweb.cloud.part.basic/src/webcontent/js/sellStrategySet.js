@@ -9,7 +9,7 @@ var rightUnifyGrid = null;
 var mainTabs = null;
 var priceList=[];
 var priceHash={};
-var straGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySellStrategy.biz.ext";
+var straGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.querySellStrategyWithUnity.biz.ext";
 var rightGuestGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyGuest.biz.ext";
 var rightPartGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyStock.biz.ext";
 var rightUnifyGridUrl = baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryUnifyPrice.biz.ext";
@@ -60,23 +60,39 @@ $(document).ready(function(v)
     	}
     });
     $("#queryCode").bind("keydown", function (e) {
-
+    	
         if (e.keyCode == 13) {
-            onPartSearch();
+        	var row =straGrid.getSelected();
+        	if(row._id==1){
+        		 onUnifySearch();
+        	}else{
+        		
+        		onPartSearch();
+        	}
         }
         
     });
     $("#namePy").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
-            onPartSearch();
+        	var row =straGrid.getSelected();
+    		if(row._id==1){
+    			 onUnifySearch();
+        	}else{
+        		onPartSearch();
+        	}
         }
         
     });
     $("#fullName").bind("keydown", function (e) {
 
         if (e.keyCode == 13) {
-            onPartSearch();
+        	var row =straGrid.getSelected();
+    		if(row._id==1){
+			  onUnifySearch();
+        	}else{
+        		onPartSearch();
+        	}
         }
         
     });
@@ -106,6 +122,8 @@ $(document).ready(function(v)
 
 var StrategyPriceUrl=baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.queryStrategyPrice.biz.ext";
 function getStrategyPrice(){
+	priceList=null;
+	priceHash={};
 	nui.mask({
 		el : document.body,
 		cls : 'mini-mask-loading',
@@ -132,6 +150,13 @@ function getStrategyPrice(){
 		}
 	});
 }
+
+function OnrpMainGridCellBeginEdit(e){
+	 var row = e.row;
+	 if(row._id==1){
+		 e.cancel = true; 
+	 }
+}
 function onStraGridClick(e){
     var row = e.row;
     var guestInfo=mainTabs.getTab("guestInfo");
@@ -153,16 +178,43 @@ function onStraGridClick(e){
         rightGuestGrid.load({params:params});
     }else if(tab.name == "partInfo"){
     	if(row._id ==1){
+    		nui.get('onPartSearch').setVisible(false);
+        	nui.get('onUnifySearch').setVisible(true);
     		rightPartGrid.setUrl(rightUnifyGridUrl);
     		rightPartGrid.load({params:{},token:token});
     		
     	}else{
-    		rightPartGridLoad();	
+    		rightPartGridLoad();
+    		nui.get('onPartSearch').setVisible(true);
+        	nui.get('onUnifySearch').setVisible(false);
     	}
     }
 }
 
-
+function onMoreTabChanged(e){
+    var row = straGrid.getSelected();
+    if(!row)return;
+	var tab = e.tab;
+    var name = tab.name;
+    if(row.strategyId){
+    	var strategyId=row.strategyId;
+    }
+    var params = {strategyId: strategyId,token:token};
+    if(name == "guestInfo"){
+        rightGuestGrid.load({params:params});
+    }else if(name == "partInfo"){
+    	if(row._id ==1){
+    		nui.get('onPartSearch').setVisible(false);
+        	nui.get('onUnifySearch').setVisible(true);
+    		rightPartGrid.setUrl(rightUnifyGridUrl);
+    		rightPartGrid.load({params:{},token:token});
+    	}else{
+    		rightPartGridLoad();
+    		nui.get('onPartSearch').setVisible(true);
+        	nui.get('onUnifySearch').setVisible(false);
+    	}
+    }
+}
 function rightPartGridLoad(){
 	var row=straGrid.getSelected();
 	var strategyId=row.id;
@@ -227,10 +279,10 @@ function onPartSearch() {
 }
 function onUnifySearch() {
     var params = {};
-    params.queryCode = nui.get("queryCodeSearch").getValue();
-    params.namePy = nui.get("namePySearch").getValue();
-    params.fullName = nui.get("fullNameSearch").getValue();
-    rightUnifyGrid.load({params:params,token:token});
+    params.queryCode = nui.get("queryCode").getValue();
+    params.namePy = nui.get("namePy").getValue();
+    params.fullName = nui.get("fullName").getValue();
+    rightPartGrid.load({params:params,token:token});
  
 }
 function onAddNode()
@@ -606,10 +658,10 @@ function saveStraPart(){
     var data = rightPartGrid.getChanges();
     if(data.length<=0) return;
     for(var i=0;i<data.length;i++){
-    	if(!data[i].strategyId){
+    	if(! priceHash[data[i].partId]){
     		data[i].strategyId =row.id;
     		addList.push(data[i]);
-    	}else{
+    	}else if(priceHash && priceHash[data[i].partId]){
     		updateList.push(data[i]);
     	}
     }

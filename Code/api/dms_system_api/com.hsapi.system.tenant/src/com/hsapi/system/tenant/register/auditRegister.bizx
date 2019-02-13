@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="auditRegister" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、根据手机号判断是否已经存在&#xD;&#xA;&#xD;&#xA;不能添加相同的用户&#xD;&#xA;&#xD;&#xA;2、汽修的审核，汽配的审核" title="Administrator&#x9;18-6-14 上午10:51">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="1、根据手机号判断是否已经存在&#xD;&#xA;&#xD;&#xA;不能添加相同的用户&#xD;&#xA;&#xD;&#xA;2、汽修的审核，汽配的审核&#xD;&#xA;&#xD;&#xA;3、提示认证成功，用户名，密码及一些基本注意事项等提示信息" title="Administrator&#x9;18-6-14 上午10:51">
     <location x="-136" y="-150"/>
     <size height="163" width="571"/>
   </nodes>

@@ -5,7 +5,7 @@ var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:
 var straGrid = null;
 var rightGuestGrid = null;
 var rightPartGrid = null;
-var rightUnifyGrid = null;
+//var rightUnifyGrid = null;
 var mainTabs = null;
 var priceList=[];
 var priceHash={};
@@ -26,8 +26,8 @@ $(document).ready(function(v)
     rightPartGrid = nui.get("rightPartGrid");
 //    rightPartGrid.setUrl(rightPartGridUrl);
 
-    rightUnifyGrid = nui.get("rightUnifyGrid");
-    rightUnifyGrid.setUrl(rightUnifyGridUrl);
+//    rightUnifyGrid = nui.get("rightUnifyGrid");
+//    rightUnifyGrid.setUrl(rightUnifyGridUrl);
     
     rightPartGrid.on("drawcell",function(e){
     	var row=straGrid.getSelected();
@@ -487,8 +487,9 @@ function importPart(){
     var row = straGrid.getSelected();
     row = row||{};
     if(!row || !row.id) {
-        showMsg("请先选择对应级别再操作!","W");
-        return;
+//        showMsg("请先选择对应级别再操作!","W");
+//        return;
+    	importUnifyPart();
     }
 
     var changes = rightPartGrid.getChanges();
@@ -582,29 +583,29 @@ function onCellCommitEdit(e) {
         e.cancel = true;
     } 
 }
-function addPartDetail(row, strategyId){
-    var crow = rightUnifyGrid.findRow(function(row){
-        if(row.partId == row.id) {
-            return true;
-        }
-        return false;
-    });
-    if(crow) return;
-
-    var check = checkStraPart(strategyId, row.id);
-    if(check > 0) {
-        //showMsg("此配件已经添加，可直接查询出来修改!","W");
-        return;
-    }
-
-    var newRow = {
-        strategyId : strategyId,
-        partId: row.id,
-        partCode: row.code,
-        fullName: row.fullName
-    };
-    rightPartGrid.addRow(newRow);
-}
+//function addPartDetail(row, strategyId){
+//    var crow = rightUnifyGrid.findRow(function(row){
+//        if(row.partId == row.id) {
+//            return true;
+//        }
+//        return false;
+//    });
+//    if(crow) return;
+//
+//    var check = checkStraPart(strategyId, row.id);
+//    if(check > 0) {
+//        //showMsg("此配件已经添加，可直接查询出来修改!","W");
+//        return;
+//    }
+//
+//    var newRow = {
+//        strategyId : strategyId,
+//        partId: row.id,
+//        partCode: row.code,
+//        fullName: row.fullName
+//    };
+//    rightPartGrid.addRow(newRow);
+//}
 var checkStraPartUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.getSellPricePart.biz.ext";
 function checkStraPart(strategyId, partId){
     var check = 0;
@@ -662,6 +663,7 @@ function saveStraPart(){
     		data[i].strategyId =row.id;
     		addList.push(data[i]);
     	}else if(priceHash && priceHash[data[i].partId]){
+    		data[i].strategyId =row.id;
     		updateList.push(data[i]);
     	}
     }
@@ -714,14 +716,14 @@ function addUnifyPart() {
 
     });
 }
-function addUnifyDetail(row){
-    var newRow = {
-        partId: row.id,
-        partCode: row.code,
-        fullName: row.fullName
-    };
-    rightUnifyGrid.addRow(newRow);
-}
+//function addUnifyDetail(row){
+//    var newRow = {
+//        partId: row.id,
+//        partCode: row.code,
+//        fullName: row.fullName
+//    };
+//    rightUnifyGrid.addRow(newRow);
+//}
 function delStraGuest(){
 
     var rows = rightGuestGrid.getSelecteds();
@@ -768,7 +770,7 @@ function saveUnifyPart(){
             data = data || {};
             if (data.errCode == "S") {
                 showMsg("保存成功!","S");
-                rightUnifyGrid.reload();
+                rightPartGrid.reload();
                 
             } else {
                 showMsg(data.errMsg || "保存失败!","E");
@@ -780,15 +782,15 @@ function saveUnifyPart(){
         }
     });
 }
-function delUnifyPart(){
-    var rows = rightUnifyGrid.getSelecteds();
-    if(rows && rows.length>0){
-        rightUnifyGrid.removeRows(rows,true);
-    }
-}
+//function delUnifyPart(){
+//    var rows = rightUnifyGrid.getSelecteds();
+//    if(rows && rows.length>0){
+//        rightUnifyGrid.removeRows(rows,true);
+//    }
+//}
 function importUnifyPart(){
     
-    var changes = rightUnifyGrid.getChanges();
+    var changes = rightPartGrid.getChanges();
     if(changes.length>0){
         showMsg("请先保存数据!","W");
         return;
@@ -810,7 +812,7 @@ function importUnifyPart(){
         },
         ondestroy: function (action)
         {
-            rightUnifyGrid.reload();
+        	rightPartGrid.reload();
         }
     });
 }

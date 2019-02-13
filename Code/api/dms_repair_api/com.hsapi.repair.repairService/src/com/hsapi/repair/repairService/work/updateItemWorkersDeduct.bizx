@@ -17,12 +17,13 @@
     <targetConnections>link11</targetConnections>
     <targetConnections>link13</targetConnections>
     <targetConnections>link14</targetConnections>
-    <location x="924" y="369"/>
+    <location x="993" y="369"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
+      <process:return id="2" language="com.hsapi.repair.data.rps.RpsDeductPrdtDetail[]" name="prdtDeductList" type="query" valueType="DataObject">prdtDeductList</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -31,7 +32,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="926" y="405"/>
+    <location x="995" y="405"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -59,6 +60,10 @@
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[1]/_op</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">new Date()</process:from>
+      <process:to type="query">d</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -184,7 +189,6 @@
     <location x="630" y="151"/>
     <size height="24" width="24"/>
     <nodeLabel>loopstart0label</nodeLabel>
-    <process:condition/>
     <process:iterate iterable="itemWorkers" iterableElement="temp"/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopstart0label" name="label" nodeType="label">
@@ -197,29 +201,30 @@
       <sourceNode>loopend0</sourceNode>
       <targetNode>invokePojo2</targetNode>
     </sourceConnections>
-    <targetConnections>link7</targetConnections>
-    <targetConnections>link9</targetConnections>
-    <location x="816" y="151"/>
+    <targetConnections>link16</targetConnections>
+    <location x="906" y="151"/>
     <size height="24" width="24"/>
     <nodeLabel>loopend0label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="loopend0label" name="label" nodeType="label">
-    <location x="804" y="183"/>
+    <location x="894" y="183"/>
     <figSize height="17" width="49"/>
     <node>loopend0</node>
   </nodes>
   <nodes xsi:type="model:GroupNode" id="group0" name="group" grouped="true" gstart="loopstart0" gend="loopend0">
     <location x="630" y="60"/>
-    <size height="223" width="211"/>
+    <size height="223" width="301"/>
     <chidren>loopend0</chidren>
     <chidren>loopstart0</chidren>
     <chidren>assign3</chidren>
     <chidren>assign4</chidren>
+    <chidren>assign6</chidren>
+    <chidren>invokePojo3</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign3</sourceNode>
-      <targetNode>loopend0</targetNode>
+      <targetNode>assign6</targetNode>
     </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="705" y="150"/>
@@ -246,7 +251,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
-      <targetNode>loopend0</targetNode>
+      <targetNode>assign6</targetNode>
     </sourceConnections>
     <targetConnections>link8</targetConnections>
     <location x="703" y="75"/>
@@ -276,7 +281,7 @@
       <targetNode>assign5</targetNode>
     </sourceConnections>
     <targetConnections>link10</targetConnections>
-    <location x="930" y="150"/>
+    <location x="996" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -290,7 +295,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo2label" name="label" nodeType="label">
-    <location x="889" y="186"/>
+    <location x="955" y="186"/>
     <figSize height="17" width="105"/>
     <node>invokePojo2</node>
   </nodes>
@@ -300,7 +305,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="825" y="315"/>
+    <location x="915" y="315"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -313,9 +318,155 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="823" y="351"/>
+    <location x="913" y="351"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>invokePojo3</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <targetConnections>link9</targetConnections>
+    <location x="767" y="149"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign6label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">value</process:from>
+      <process:to type="query">prdtDeductTemp</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgid</process:from>
+      <process:to type="query">prdtDeductTemp/orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">serviceId</process:from>
+      <process:to type="query">prdtDeductTemp/serviceId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">serviceCode</process:from>
+      <process:to type="query">prdtDeductTemp/serviceCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/workerId</process:from>
+      <process:to type="query">prdtDeductTemp/workerId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/worker</process:from>
+      <process:to type="query">prdtDeductTemp/worker</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billTypeId</process:from>
+      <process:to type="query">prdtDeductTemp/billTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">2</process:from>
+      <process:to type="query">prdtDeductTemp/prdtTypeId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item/itemId</process:from>
+      <process:to type="query">prdtDeductTemp/prdtId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item/itemCode</process:from>
+      <process:to type="query">prdtDeductTemp/prdtCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item/itemName</process:from>
+      <process:to type="query">prdtDeductTemp/prdtName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item/amt</process:from>
+      <process:to type="query">prdtDeductTemp/prdtAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item/subtotal</process:from>
+      <process:to type="query">prdtDeductTemp/prdtSubtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">2</process:from>
+      <process:to type="query">prdtDeductTemp/deductMode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item/techDeductType</process:from>
+      <process:to type="query">prdtDeductTemp/deductType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item/techDeductOriginValue</process:from>
+      <process:to type="query">prdtDeductTemp/deductOriginValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">tech_deduct_value</process:from>
+      <process:to type="query">prdtDeductTemp/deductValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">len</process:from>
+      <process:to type="query">prdtDeductTemp/deductWorkerNos</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/deductValue</process:from>
+      <process:to type="query">prdtDeductTemp/deductWorkerValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/deductValue</process:from>
+      <process:to type="query">prdtDeductTemp/deductAdjustValue</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">prdtDeductTemp/recorder</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">prdtDeductTemp/recordDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">prdtDeductTemp/modifier</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">prdtDeductTemp/modifyDate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">prdtDeductTemp/adjustor</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">d</process:from>
+      <process:to type="query">prdtDeductTemp/adjustDate</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
+    <location x="765" y="185"/>
+    <figSize height="17" width="32"/>
+    <node>assign6</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="add2Array1" displayName="add2Array1" collapsed="false" grouped="true" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo3</sourceNode>
+      <targetNode>loopend0</targetNode>
+    </sourceConnections>
+    <targetConnections>link15</targetConnections>
+    <location x="840" y="150"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo3label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="value">prdtDeductTemp</process:inputVariable>
+      <process:inputVariable id="1" name="dos" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">prdtDeductList</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="commonj.sdo.DataObject[]" valueType="Java">prdtDeductList</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
+    <location x="817" y="186"/>
+    <figSize height="17" width="69"/>
+    <node>invokePojo3</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -328,14 +479,24 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItemWorkers" name="temp"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="rate" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="weight" primitiveType="Float"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsDeductPrdtDetail" name="prdtDeductTemp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="mainId" primitiveType="Int"/>
     <process:input description="" isArray="false" name="tech_deduct_value" primitiveType="Double"/>
+    <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="serviceCode" primitiveType="String"/>
+    <process:input description="" isArray="false" name="mtAdvisorId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="mtAdvisor" primitiveType="String"/>
+    <process:input description="" isArray="false" name="orgid" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="billTypeId" primitiveType="Int"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItem" name="item"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
+    <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsDeductPrdtDetail" name="prdtDeductList"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

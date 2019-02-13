@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryDeductDetail" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.repairService.query.queryDeductDetail" title="Administrator&#x9;18-12-28 下午5:18">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.repairService.query.queryDeductDetail&#xD;&#xA;&#xD;&#xA;com.hsapi.repair.repairService.query.queryDeductDetail" title="Administrator&#x9;18-12-28 下午5:18">
     <location x="-16" y="-120"/>
-    <size height="151" width="361"/>
+    <size height="151" width="482"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="link7" isDefault="true" type="transition">

@@ -376,6 +376,10 @@
 				on a.part_id = c.id
 		WHERE 1 = 1 and c.is_disabled=0
     	<dynamic>
+    	
+    		<isNotEmpty prepend="and" property="orgid">  
+                (a.orgid = #orgid#)
+            </isNotEmpty>
     		<isNotEmpty prepend="and" property="fullName">  
                 (c.full_name like '%$fullName$%')
             </isNotEmpty>

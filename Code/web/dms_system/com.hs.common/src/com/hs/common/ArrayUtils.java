@@ -7,11 +7,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import com.eos.system.annotation.Bizlet;
+
 
 
 import commonj.sdo.DataObject;
@@ -390,6 +392,13 @@ public class ArrayUtils {
 		public static HashMap[] add2Array(HashMap sourceDO, HashMap[] dos) {
 			List<HashMap> list = new ArrayList<HashMap>(Arrays.asList(dos));
 			list.add(sourceDO);
+			return list.toArray(new HashMap[list.size()]);
+		}
+	   
+	   @Bizlet("")
+		public static HashMap[] add2Array(HashMap sourceDO, HashMap[] dos,int index) {
+			List<HashMap> list = new LinkedList<HashMap>(Arrays.asList(dos));
+			list.add(index,sourceDO);
 			return list.toArray(new HashMap[list.size()]);
 		}
 	   

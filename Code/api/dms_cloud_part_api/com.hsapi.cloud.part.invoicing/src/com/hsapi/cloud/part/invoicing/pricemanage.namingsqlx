@@ -35,6 +35,12 @@
 	
     </select>
     
+      <select id="querySellPriceWithUnity" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	SELECT id,orgid,name,is_disabled from pj_sell_price_strategy
+		where 1 = 1 and orgid = #orgid#
+	
+    </select>
+    
     <select id="queryPartSellPriceHash" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	select a.id as partId, a.code as partCode, a.common_id as commonId, c.sell_price as sellPrice 
 		from wb_common.com_attribute a

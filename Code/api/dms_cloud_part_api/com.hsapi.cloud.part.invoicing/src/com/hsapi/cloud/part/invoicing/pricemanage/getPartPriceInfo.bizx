@@ -407,6 +407,7 @@
     <sourceConnections xsi:type="process:tLink" id="link14" name="link14" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>assign7</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link15" name="link15" displayName="连接线" type="transition">
       <sourceNode>assign6</sourceNode>
@@ -503,7 +504,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">stra/id</process:from>
-      <process:to type="query">t/stragegyId</process:to>
+      <process:to type="query">t/strategyId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">partId</process:from>

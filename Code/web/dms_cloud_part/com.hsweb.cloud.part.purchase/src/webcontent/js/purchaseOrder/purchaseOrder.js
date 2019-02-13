@@ -46,6 +46,13 @@ var partPrice=0;
 var guestIdEl=null;
 var partIn=null;
 var advancedSearchShow=0;
+var priceList=[];
+var partPriceList=[];
+var partPriceHash = {};
+var StratePrice=[];
+var StrateHash={
+	sellUnitPrice : {name :"统一售价"}
+};
 // 单据状态
 var AuditSignList = [ {
 	customid : '0',
@@ -111,6 +118,7 @@ $(document).ready(function(v) {
 	//}, 3000);
 	
 	guestIdEl.setUrl(getGuestInfo);
+	getSellStrategy();
 	guestIdEl.on("beforeload",function(e){
       
         var data = {};
@@ -135,14 +143,14 @@ $(document).ready(function(v) {
 
 	//document.getElementById("formIframePart").contentWindow.setInitTab('purchase');
 	
-	rightGrid.on("rowdblclick", function(e) {
-		var row = rightGrid.getSelected();
-		var rowc = nui.clone(row);
-		if (!rowc)
-			return;
-		loadPartPrice();
-
-	});
+//	rightGrid.on("rowdblclick", function(e) {
+//		var row = rightGrid.getSelected();
+//		var rowc = nui.clone(row);
+//		if (!rowc)
+//			return;
+//		loadPartPrice();
+//
+//	});
 	$("#guestId").bind("keydown", function (e) {
         /*if (e.keyCode == 13) {
             var orderMan = nui.get("orderMan");
@@ -179,6 +187,38 @@ $(document).ready(function(v) {
     	
 	});
 	
+    rightGrid.on("preload",function(e){
+		var result=e.result;
+		var resultList=result.data;
+		
+		getSellStrategy();
+		var sender=e.sender;
+		var columnsList = [];
+	    columnsList=sender.columns;
+	    columnsObjList=columnsList[3].columns;
+	    //获取下标
+	    var index=null;
+	    for(var i=0;i<columnsObjList.length;i++){
+	    	if(columnsObjList[i].header=="统一售价"){
+	    		index=i+1;
+	    	}
+	    }
+	    if(priceList.length<=0)return;
+	    for(var i=0;i<priceList.length;i++){
+//	    	columnsObjList[index+i].field=priceList[i].id;
+	    	columnsObjList[index+i].visible=true;
+		    columnsObjList[index+i].header=priceList[i].name;
+	    }
+	    
+	    for(var i=0;i<resultList.length;i++){
+			var partId=resultList[i].partId;
+			getStratePrice(partId);
+		}
+
+		rightGrid.set({
+	        columns: columnsList
+	    });
+	});
     
 	morePartGrid.on("drawcell",function(e){
         switch (e.field)
@@ -294,7 +334,77 @@ var StatusHash = {
 	"5" : "已退回",
 	"6" : "已关闭"
 };
+
+var StratePriceUrl = baseUrl+"com.hsapi.cloud.part.invoicing.pricemanage.getPartPriceInfo.biz.ext";
+function getStratePrice(partId){
+
+	partPriceList=null;
+	partPriceHash={};
+	nui.ajax({
+		url : StratePriceUrl,
+		type : "post",
+		async: false,
+		data : {
+			params: {partId:partId,show:1},
+			token: token
+		},
+		success: function(data) {
+			partPriceList =data.price;	
+			var length=partPriceList.length;
+			partPriceList.forEach(function(v){
+				partPriceHash[v.name]=v;			
+				StratePrice[partId]=partPriceHash;
+			});
+
+		},error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+var SellStrategyUrl= baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.querySellStrategy.biz.ext";
+function getSellStrategy(){
+	priceList=[];
+	nui.ajax({
+		url : SellStrategyUrl,
+		type : "post",
+		async: false,
+		data : {
+			params: {},
+			token: token
+		},
+		success: function(data) {
+			priceList =data.list;
+		},error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+function rightGridSet(){
+	var columnsList = [];
+    columnsList=rightGrid.columns;
+    columnsObjList=columnsList[3].columns;
+    //获取下标
+    var index=null;
+    for(var i=0;i<columnsObjList.length;i++){
+    	if(columnsObjList[i].header=="统一售价"){
+    		index=i+1;
+    	}
+    }
+    if(priceList.length<=0)return;
+    for(var i=0;i<priceList.length;i++){
+    	var field=columnsObjList[index+i].field;
+    	StrateHash[field]=priceList[i];
+    	columnsObjList[index+i].visible=true;
+	    columnsObjList[index+i].header=priceList[i].name;
+    }
+    rightGrid.set({
+        columns: columnsList
+    });
+}
 function addNewRow(check){
+	rightGridSet();
 	var data = basicInfoForm.getData();
 
     if(data.auditSign == 1){
@@ -947,6 +1057,51 @@ var requiredField = {
 	billTypeId : "票据类型",
 	settleTypeId : "结算方式"
 };
+
+var savePriceUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveUpdatePrice.biz.ext";
+function savePrice(){
+	var gridData=rightGrid.getChanges();
+	var data=[];
+	for(var i=0;i<gridData.length;i++){
+		for(var key in StrateHash){
+			if(gridData[i][key]){
+				var partId=gridData[i].partId;
+				//匹配
+				if(StratePrice[partId][StrateHash[key].name]){
+					var obj=StratePrice[partId][StrateHash[key].name];
+					obj.sellPrice=gridData[i][key];
+					data.push(obj);
+				}		
+			}
+		}
+	}
+	if(data.length<0)return;
+	nui.mask({
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '保存中...'
+    });
+	nui.ajax({
+        url : savePriceUrl,
+        type : "post",
+        data : JSON.stringify({
+            data : data
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                showMsg("保存成功","S");
+                
+            } else {
+                showMsg(data.errMsg || "保存失败!","E");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+        }
+    });
+}
 var saveUrl = baseUrl
 		+ "com.hsapi.cloud.part.invoicing.crud.savePjPchsOrder.biz.ext";
 function save() {
@@ -970,7 +1125,9 @@ function save() {
 	} else {
 		return;
 	}
-
+	
+	//保存价格设置
+	savePrice();
 	data = getMainData();
 
 	//由于票据类型可能修改，所以除了新建和删除，其他都应该是修改
@@ -1078,21 +1235,35 @@ function selectSupplier(elId) {
 	});
 }
 function onRightGridDraw(e) {
-	switch (e.field) {
-	case "comPartBrandId":
+	var record=e.record;
+	var header = e.column.header;
+
+	if(e.field== "comPartBrandId"){
 		if (brandHash[e.value]) {
 			e.cellHtml = brandHash[e.value].name || "";
 		} else {
 			e.cellHtml = "";
 		}
-		break;
-	case "operateBtn":
+	}
+	
+	if(e.field== "operateBtn"){
             e.cellHtml = //'<span class="fa fa-close fa-lg" onClick="javascript:deletePart()" title="删除行">&nbsp;&nbsp;&nbsp;&nbsp;</span>';
             			'<span class="fa fa-plus" onClick="javascript:addNewRow(true)" title="添加行">&nbsp;&nbsp;</span>' +
                         ' <span class="fa fa-close" onClick="javascript:deletePart()" title="删除行"></span>';
-            break;
-	default:
-		break;
+	}
+//	if(e.field=="sellUnitPrice"){
+//    	if(StratePrice[record.partId] && !e.value){
+//    		e.cellHtml = StratePrice[record.partId].统一售价.sellPrice||"";
+//    		e.value= StratePrice[record.partId].统一售价.sellPrice||"";
+//    	}
+//	}
+	if(partPriceHash[header]){
+		if(header==partPriceHash[header].name){
+			if(StratePrice[record.partId] && !e.value){
+				e.cellHtml = StratePrice[record.partId][header].sellPrice||"";
+				e.value= StratePrice[record.partId][header].sellPrice||"";
+			}
+		}
 	}
 }
 function onCellEditEnter(e){
@@ -1459,6 +1630,7 @@ function addInsertRow(value,row) {
 
 	if(part){
 		params.partId = part.id;
+		getStratePrice(part.id);
 		params.storeId = storeId;
 		var dInfo = getPartPrice(params);
 		var price = dInfo.price;
@@ -1707,7 +1879,10 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 		var partCode = p.pricePartCode;
 		nui.confirm("存在单价为0信息，是否继续?", "友情提示", function(action) {
 			if (action == "ok") {
-	
+				
+				//保存价格设置
+				savePrice();
+				
 				data = getMainData();
 	
 				//由于票据类型可能修改，所以除了新建和删除，其他都应该是修改
@@ -1772,7 +1947,10 @@ function auditOrder(flagSign, flagStr, flagRtn) {
 	}else {
 		nui.confirm("是否确定"+str+"?", "友情提示", function(action) {
 			if (action == "ok") {
-	
+				
+				//保存价格设置
+				savePrice();
+				
 				data = getMainData();
 	
 				//由于票据类型可能修改，所以除了新建和删除，其他都应该是修改
@@ -2151,7 +2329,7 @@ function addSelectPart(){
 		var dInfo = getPartPrice(params);
 		var price = dInfo.price;
 		var shelf = dInfo.shelf;
-					
+		getStratePrice(row.id);				
 		var newRow = {
 			partId : row.id,
 			comPartCode : row.code,
@@ -2569,63 +2747,63 @@ function setInitExportData(main, detail){
     method5('tableExcel',"采购订单"+serviceId,'tableExportA');
 }
 
-function loadPartPrice(){
-	var row=rightGrid.getSelected();
-	if(!row || !row.comPartCode){
-		showMsg("请选择一条记录!","W");
-		return;
-	}
-	var partId=row.partId
-	setPriceWin.show();
-	partPrice=1;
-	var params = {partId:partId,show:1};
-	 if(!params.partId || params.partId<=0){
-         priceGrid.setData([]);
-         return;
-     }
- 
-     priceGrid.load({
-         params:params,
-         token:token
-     });
-}
+//function loadPartPrice(){
+//	var row=rightGrid.getSelected();
+//	if(!row || !row.comPartCode){
+//		showMsg("请选择一条记录!","W");
+//		return;
+//	}
+//	var partId=row.partId
+//	setPriceWin.show();
+//	partPrice=1;
+//	var params = {partId:partId,show:1};
+//	 if(!params.partId || params.partId<=0){
+//         priceGrid.setData([]);
+//         return;
+//     }
+// 
+//     priceGrid.load({
+//         params:params,
+//         token:token
+//     });
+//}
 
-var savePriceUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveUpdatePrice.biz.ext";
-function savePrice(){
-    var data = priceGrid.getChanges("modified");
-    if(!data || data.length<=0){
-    	showMsg("修改后才能保存！","W");
-    	return;
-    }
-    if(data && data.length>0){
-        nui.mask({
-            el : document.body,
-            cls : 'mini-mask-loading',
-            html : '保存中...'
-        });
-    
-        nui.ajax({
-            url : savePriceUrl,
-            type : "post",
-            data : JSON.stringify({
-                data : data
-            }),
-            success : function(data) {
-                nui.unmask(document.body);
-                data = data || {};
-                if (data.errCode == "S") {
-                    showMsg("保存成功","S");
-                    
-                } else {
-                    showMsg(data.errMsg || "保存失败!","E");
-                }
-            },
-            error : function(jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR.responseText);
-            }
-        });
-    }
-}
+//var savePriceUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveUpdatePrice.biz.ext";
+//function savePrice(){
+//    var data = priceGrid.getChanges("modified");
+//    if(!data || data.length<=0){
+//    	showMsg("修改后才能保存！","W");
+//    	return;
+//    }
+//    if(data && data.length>0){
+//        nui.mask({
+//            el : document.body,
+//            cls : 'mini-mask-loading',
+//            html : '保存中...'
+//        });
+//    
+//        nui.ajax({
+//            url : savePriceUrl,
+//            type : "post",
+//            data : JSON.stringify({
+//                data : data
+//            }),
+//            success : function(data) {
+//                nui.unmask(document.body);
+//                data = data || {};
+//                if (data.errCode == "S") {
+//                    showMsg("保存成功","S");
+//                    
+//                } else {
+//                    showMsg(data.errMsg || "保存失败!","E");
+//                }
+//            },
+//            error : function(jqXHR, textStatus, errorThrown) {
+//                console.log(jqXHR.responseText);
+//            }
+//        });
+//    }
+//}
 
 function onCellCommit(e){
 	var editor = e.editor;

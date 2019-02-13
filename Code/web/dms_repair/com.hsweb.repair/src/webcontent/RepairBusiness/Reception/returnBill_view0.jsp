@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-退货单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnBill.js?v=1.3.26"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/returnBill.js?v=1.3.27"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -286,9 +286,10 @@
      allowSortColumn="true"
      allowCellSelect="true"
      oncellcommitedit="onCellCommitEdit"
-     ondrawsummarycell="onDrawSummaryCell"
+     
      >
    <!--   <div id="rpsPackageGrid" class="nui-datagrid"
+   ondrawsummarycell="onDrawSummaryCell"
      style="width:100%;height:auto;"
      dataField="list"
      showPager="false"

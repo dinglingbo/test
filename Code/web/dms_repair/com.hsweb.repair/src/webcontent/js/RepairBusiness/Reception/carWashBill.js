@@ -4172,10 +4172,10 @@ function addOrEdit(serviceId,billTypeId)
     });
 }
 
-var binUrl = webBaseUrl + "repair/RepairBusiness/Reception/bindWechatContactor.jsp"
+var binUrl = webBaseUrl + "repair/RepairBusiness/Reception/bindWechatContactor.jsp";
 function bindWechat(){
 	var data = billForm.getData();
-	var guestId = data.guestId;
+	//var guestId = data.guestId;
 	nui.open({
         url:binUrl,
         title:"绑定联系人",
@@ -4184,7 +4184,8 @@ function bindWechat(){
         onload:function(){
         	var iframe = this.getIFrameEl();
             var params = {};	
-            params.guestId=guestId;
+            params.guestId=data.guestId;
+            params.carNo = data.carNo;
             iframe.contentWindow.setData(params);
         },
         ondestroy:function(action)

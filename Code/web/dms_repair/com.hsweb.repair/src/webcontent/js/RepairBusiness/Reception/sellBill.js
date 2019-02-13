@@ -1380,9 +1380,8 @@ function saveBatch(){
 	    
 	}else{		
 		var maintain = billForm.getData();
-	    delete maintain.recordDate;
-	    maintain.partAmt = total;
-		total = null;
+	    delete maintain.recordDate;  
+	    total = null;
 		//var addSellPart = nui.get("rpsPartGrid").getData();
 		//var sellPartAdd = rpsPartGrid.getChanges("added");
 		//var sellPartUpdate = rpsPartGrid.getChanges("modified");
@@ -1391,11 +1390,14 @@ function saveBatch(){
 		var sellPartDelete = rpsPartGrid.getChanges("removed");
 		var row = rpsPartGrid.findRow(function(row){
 			if(!row.id){
+				total += parseFloat(row.amt);
 				sellPartAdd.push(row);
 			}else{
+				total += parseFloat(row.amt);
 				sellPartUpdate.push(row);
 			}
         });
+		maintain.partAmt = total;
 		var json = nui.encode({
 			"maintain" : maintain,
 			//"addSellPart" : addSellPart,
@@ -1466,20 +1468,22 @@ function finish(){
 	});
 	var maintain = billForm.getData();
     delete maintain.recordDate;
-    maintain.partAmt = total;
 	total = null;
 	var sellPartAdd = [];
 	var sellPartUpdate = [];
 	var sellPartDelete = rpsPartGrid.getChanges("removed");
 	var row = rpsPartGrid.findRow(function(row){
 		if(!row.id){
+			total += parseFloat(row.amt);
 			sellPartAdd.push(row);
 		}else{
+			total += parseFloat(row.amt);
 			sellPartUpdate.push(row);
 		}
      });
+	maintain.partAmt = total;
 	var json = nui.encode({
-		"main" : main,
+		"main" : maintain,
 		"sellPartAdd" : sellPartAdd,
 		"sellPartUpdate" : sellPartUpdate,
 		"sellPartDelete" : sellPartDelete,
@@ -1516,7 +1520,7 @@ function finish(){
 }
 
 var total = null;
-function onDrawSummaryCell(e){	
+/*function onDrawSummaryCell(e){	
 	  var rows = e.data;
 	  var sum = null;
 	  if(e.field == "amt") 
@@ -1527,7 +1531,7 @@ function onDrawSummaryCell(e){
 			  total = sum;
 		  }
 	  } 
-}
+}*/
 
 //转结算
 payUrl = webPath + contextPath +"/com.hsweb.RepairBusiness.billSettle.flow?token="+token;

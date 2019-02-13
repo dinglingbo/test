@@ -341,7 +341,7 @@
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess1" name="updateCardStored" displayName="updateCardStored" collapsed="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess1</sourceNode>
-      <targetNode>assign10</targetNode>
+      <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link23" name="link23" displayName="连接线" type="transition">
       <sourceNode>subprocess1</sourceNode>
@@ -498,7 +498,7 @@
       <targetNode>transactionbegin1</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -557,7 +557,7 @@
     <targetConnections>link21</targetConnections>
     <targetConnections>link22</targetConnections>
     <targetConnections>link29</targetConnections>
-    <targetConnections>link30</targetConnections>
+    <targetConnections>link14</targetConnections>
     <location x="557" y="398"/>
     <size height="28" width="28"/>
     <nodeLabel>assign6label</nodeLabel>
@@ -622,97 +622,6 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign10" name="赋值10" displayName="赋值" collapsed="false" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link19" name="link19" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign10</sourceNode>
-      <targetNode>invokePojo5</targetNode>
-    </sourceConnections>
-    <targetConnections>link18</targetConnections>
-    <location x="749" y="285"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign10label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/orgid</process:from>
-      <process:to type="query">deduct/orgid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/id</process:from>
-      <process:to type="query">deduct/serviceId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/code</process:from>
-      <process:to type="query">deduct/serviceCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/saleManId</process:from>
-      <process:to type="query">deduct/workerId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/saleMan</process:from>
-      <process:to type="query">deduct/worker</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/salesDeductValue</process:from>
-      <process:to type="query">deduct/salesDeductValue</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/salesDeductValue</process:from>
-      <process:to type="query">deduct/totalDeductAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/recorder</process:from>
-      <process:to type="query">deduct/recorder</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">d</process:from>
-      <process:to type="query">deduct/recordDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">stored/recorder</process:from>
-      <process:to type="query">deduct/modifier</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">d</process:from>
-      <process:to type="query">deduct/modifyDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">7</process:from>
-      <process:to type="query">deduct/billTypeId</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="744" y="321"/>
-    <figSize height="17" width="39"/>
-    <node>assign10</node>
-  </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="生成提成记录" displayName="insertEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo5</sourceNode>
-      <targetNode>transactioncommit0</targetNode>
-    </sourceConnections>
-    <sourceConnections xsi:type="process:tLink" id="link30" name="link30" displayName="连接线" lineType="note" type="exception">
-      <sourceNode>invokePojo5</sourceNode>
-      <targetNode>assign6</targetNode>
-    </sourceConnections>
-    <targetConnections>link19</targetConnections>
-    <location x="825" y="285"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo5label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.insertEntity</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">deduct</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
-    <location x="800" y="321"/>
-    <figSize height="17" width="73"/>
-    <node>invokePojo5</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" id="assign11" name="赋值11" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link37" name="link37" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign11</sourceNode>
@@ -760,7 +669,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -775,6 +684,47 @@
     <figSize height="17" width="32"/>
     <node>assign9</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="提成数据" displayName="calStoredDeduct" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link26" name="link26" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>transactioncommit0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link14" name="link14" displayName="连接线" type="transition">
+      <sourceNode>subprocess0</sourceNode>
+      <targetNode>assign6</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="OBJNE">
+          <process:leftOperand type="query">errCode</process:leftOperand>
+          <process:rightOperand type="literal">S</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link18</targetConnections>
+    <location x="777" y="285"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess0label</nodeLabel>
+    <process:flow index="7" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hsapi.repair.repairService.settlement.calStoredDeduct</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="stored" type="query" value="com.hsapi.repair.data.rps.RpsStoredRecord" valueType="DataObject" pattern="reference">stored</process:inputVariable>
+        <process:inputVariable id="1" name="serviceId" type="query" value="Int" valueType="Primitive" pattern="reference">stored/id</process:inputVariable>
+        <process:inputVariable id="2" name="serviceCode" type="query" value="String" valueType="Primitive" pattern="reference">stored/code</process:inputVariable>
+        <process:inputVariable id="3" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">stored/orgid</process:inputVariable>
+        <process:inputVariable id="4" name="mtAdvisorId" type="query" value="Int" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="5" name="mtAdvisor" type="query" value="String" valueType="Primitive" pattern="reference">value</process:inputVariable>
+        <process:inputVariable id="6" name="billTypeId" type="literal" value="Int" valueType="Primitive" pattern="reference">7</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
+    <location x="766" y="320"/>
+    <figSize height="17" width="49"/>
+    <node>subprocess0</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-09-09 17:47:57" date="2018-09-09Z" description="" name="settleRpsStoredRecord" version="7.0.0.0"/>
@@ -786,7 +736,6 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="rechargeAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="balaAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="totalAmt" primitiveType="Double"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsDeductDetail" name="deduct"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="id" primitiveType="Int"/>

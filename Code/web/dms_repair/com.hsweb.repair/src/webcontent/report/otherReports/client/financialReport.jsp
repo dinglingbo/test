@@ -9,9 +9,9 @@
   - Description:
 -->
 <head>
-<title>营业报表</title>
+<title>财务报表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/operatingStatement.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/financialReport.js?v=1.0.0"></script>
       <link href="<%=request.getContextPath()%>/repair/js/report/storeReport/reportIndex.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -21,121 +21,118 @@
 
                   <div  id="menu1" class="demo"  style="">
 				   <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="IncomeStatistics()">
-                            <i class="fa fa-pie-chart fa-4x  fa-inverse"></i>
-                            <p>仪表盘</p> 
+                        <a onclick="cashBankReport()">
+                            <i class="fa fa-bar-chart fa-4x  fa-inverse"></i>
+                            <p>现金银行汇总表</p> 
                         </a>
                     </div>
 
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="RetailStatistics()">
-                            <i class="fa fa-area-chart fa-4x  fa-inverse"></i> 
-                            <p>零售业务统计分析表</p> 
+                        <a onclick="dailySettlementReport()">
+                            <i class="fa fa-bar-chart fa-4x  fa-inverse"></i> 
+                            <p>日结算汇总表</p> 
                         </a>
                     </div> 
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="RepairConsultantPerformanceMain()">
+                        <a onclick="accountBalance()">
                             <i class="fa fa-bar-chart fa-4x  fa-inverse"></i>
-                            <p>服务顾问业绩汇总表</p> 
+                            <p>账户余额汇总表</p> 
                         </a> 
 
                     </div>
  
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="businessDaily()">
-                            <i class="fa fa-area-chart fa-4x  fa-inverse"></i>
-                            <p>营业日分析表</p> 
+                        <a onclick="accountDetail()">
+                            <i class="fa fa-calendar fa-4x  fa-inverse"></i>
+                            <p>账户明细表</p> 
                         </a>
                     </div>
 
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="carTypeCount()">
-                            <i class="fa fa-bar-chart fa-4x  fa-inverse"></i>
-                            <p>充值办卡汇总表</p> 
+                        <a onclick="otherIncomeAndExpenditure()">
+                            <i class="fa fa-calendar fa-4x  fa-inverse"></i>
+                            <p>其他收支明细表</p> 
                         </a>
                     </div>
                 </div>
 
                 <div  id="menu2" class="demo"  style="margin-top:20px;">
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="selectCompensation()">
+                        <a onclick="accountPBillDetail()">
                             <i class="fa fa-calendar fa-4x  fa-inverse"></i>
-                            <p>理赔开单明细表</p> 
+                            <p>供应商欠款明细表</p> 
                         </a> 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="checkMainDetail()">
+                        <a onclick="accountPDetail()">
                             <i class="fa fa-calendar fa-4x  fa-inverse"></i>
-                            <p>查车单明细表</p> 
+                            <p>付款明细表</p> 
                         </a> 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="CarInsuranceQuery()">
+                        <a onclick="accountRDetail()">
                             <i class="fa fa-calendar fa-4x  fa-inverse"></i>
-                            <p>保险开单明细表</p> 
+                            <p>收款明细表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="selectComprehensive()">
-                            <i class="fa fa-calendar fa-4x  fa-inverse"></i>
-                            <p>已结算工单明细表</p> 
+                        <a onclick="settlementStatement()">
+                            <i class="fa fa-bar-chart fa-4x  fa-inverse"></i>
+                            <p>经营收支统计汇总表</p> 
                         </a>
                     </div>
 
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="inFactoryVehicle()">
-                            <i class="fa fa-calendar fa-4x  fa-inverse"></i>
-                            <p>未结算工单明细表</p> 
+                        <a onclick="summaryAccountBalances()">
+                            <i class="fa fa-bar-chart fa-4x  fa-inverse"></i>
+                            <p>结算账户余额汇总表</p> 
                         </a>
                     </div>
                 </div>
                 
                  <div  id="menu3" class="demo"  style="margin-top:20px;">
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="businessOutputTotal()">
+                        <a onclick="expenseSummary()">
                             <i class="fa fa-bar-chart fa-4x  fa-inverse"></i>
-                            <p>已结算工单汇总表</p> 
+                            <p>费用汇总表</p> 
                         </a> 
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="returnQuery()">
+                        <a onclick="otherGainPayReport()">
                             <i class="fa fa-calendar fa-4x  fa-inverse"></i>
-                            <p>退货开单明细表</p> 
+                            <p>其它收支明细表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="sellQuery()">
+                        <a onclick="painReport()">
                             <i class="fa fa-calendar fa-4x  fa-inverse"></i>
-                            <p>销售开单明细表</p> 
+                            <p>应收明细表</p> 
                         </a>
                     </div>
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="sellectWash()">
+                        <a onclick="paymentReport()">
                             <i class="fa fa-calendar fa-4x  fa-inverse"></i>
-                            <p>洗美开单明细表</p> 
+                            <p>应付明细表</p> 
                         </a>
                     </div>
 
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="BookingManagementSummary()">
+                        <a onclick="profitTotal()">
                             <i class="fa fa-bar-chart fa-4x  fa-inverse"></i>
-                            <p>预约汇总表</p> 
+                            <p>利润汇总表</p> 
                         </a>
                     </div>
                 </div>
                 
                  <div  id="menu4" class="demo"  style="margin-top:20px;">
                     <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="notSettledPartDetail()">
+                        <a onclick="twoCompSettleReport()">
                             <i class="fa fa-calendar fa-4x  fa-inverse"></i>
-                            <p>未结算配件明细表</p> 
+                            <p>跨店结算明细表</p> 
                         </a> 
                     </div>
-                    <div class="menu_pannel menu_pannel_bg">
-                        <a onclick="rpsCardTimeList()">
-                            <i class="fa fa-calendar fa-4x  fa-inverse"></i>
-                            <p>计次卡消费明细表</p> 
-                        </a>
+                    <div >
+
                     </div>
                     <div >
 

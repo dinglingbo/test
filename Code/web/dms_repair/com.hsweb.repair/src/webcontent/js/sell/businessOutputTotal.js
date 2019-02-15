@@ -145,11 +145,11 @@ function getSearchParam() {
 }
 
 
-function load(e){
+function load(e){	
     if(e != undefined){
         cType = e;
-    }
-    
+    }  
+    mainGrid.setData([]);
     var data= form.getData();
 	data.endDate = formatDate(data.endDate) +" 23:59:59";
     data.groupByType = cType;

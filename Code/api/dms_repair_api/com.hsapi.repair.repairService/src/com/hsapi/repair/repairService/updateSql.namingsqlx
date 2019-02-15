@@ -212,7 +212,8 @@
 	
 	<delete id="deleteDeductZero" parameterClass="java.util.HashMap">
 		DELETE from rps_deduct_prdt_detail 
-		where service_id = #serviceId# and service_code = #serviceCode#
+		where service_id = #serviceId# and service_code = #serviceCode# 
+		      and ifnull(deduct_worker_value,0) = 0
 	</delete>
 	
 </sqlMap>

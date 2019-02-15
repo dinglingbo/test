@@ -100,6 +100,7 @@ function wechatBin(row_uid){
 			 						 
 			 				     });
 			 				 });
+			 			result.success = 1;
 			 			showMsg(text.errMsg || "绑定成功!","S");
 			 			return;
 			 			}else{

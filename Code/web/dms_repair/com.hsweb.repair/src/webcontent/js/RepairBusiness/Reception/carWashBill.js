@@ -381,6 +381,9 @@ $(document).ready(function ()
          save();
      } 
 	}
+    document.getElementById("showA1").style.display = "";
+	document.getElementById("showA").style.display='none';
+	nui.get("enterDate").setValue(now);
     doSearchItem();
 });
 
@@ -735,7 +738,9 @@ function setInitData(params){
                         sk.style.display = "none";
                         if(contactor.wechatOpenId){
                         	document.getElementById("showA").style.display = "";
+                        	document.getElementById("showA1").style.display='none';
                         }else{
+                        	document.getElementById("showA").style.display='none';
                         	document.getElementById("showA1").style.display = "";
                         }
                         searchNameEl.setVisible(true);
@@ -869,6 +874,7 @@ function add(){
 		$(s).toggleClass("xz");
 	}
 	document.getElementById("showA1").style.display = "";
+	document.getElementById("showA").style.display='none';
 	advancedCardTimesWin.hide();
 }
 function save(){
@@ -4176,6 +4182,9 @@ var binUrl = webBaseUrl + "repair/RepairBusiness/Reception/bindWechatContactor.j
 function bindWechat(){
 	var data = billForm.getData();
 	//var guestId = data.guestId;
+	if(!data.guestId){
+		return;
+	}
 	nui.open({
         url:binUrl,
         title:"绑定联系人",
@@ -4190,10 +4199,16 @@ function bindWechat(){
         },
         ondestroy:function(action)
         {
-            if(action  == "ok")
-            {
-            	//toChangBill(serviceId,billTypeId);
+        	var iframe = this.getIFrameEl();
+            var params = {};	
+            var params = iframe.contentWindow.getData();
+            if(params){
+            	if(params.success && params.success==1){
+            		document.getElementById("showA").style.display = "";
+                	document.getElementById("showA1").style.display='none';
+            	}
             }
+        	
         }
     });
 }

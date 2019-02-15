@@ -741,9 +741,9 @@
 	<select id="queryBillTypeCount" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 			SELECT a.zh, a.lp, a.xm, ifnull(a.zh,0) + ifnull(a.lp,0) + ifnull(a.xm,0) sm 
 			from (
-				SELECT count(case when bill_type_id = 0 then 1 else 0 end) as zh,
-							 count(case when bill_type_id = 4 then 1 else 0 end) as lp,
-							 count(case when bill_type_id = 2 then 1 else 0 end) as xm
+				SELECT sum(case when bill_type_id = 0 then 1 else 0 end) as zh,
+							 sum(case when bill_type_id = 4 then 1 else 0 end) as lp,
+							 sum(case when bill_type_id = 2 then 1 else 0 end) as xm
 				from rps_maintain 
 				where is_settle = 1 and orgid = #orgid#
 					  and out_date &gt;= #startDate# and out_date &lt; #endDate# 

@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>理赔开单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.6.35"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/claimDetail.js?v=1.6.36"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -67,6 +67,9 @@
 
         #wechatTag{
             color:#62b900;
+        }
+        #wechatTag1{
+            color:#ccc;
         }
 
 
@@ -251,7 +254,8 @@
                     </div>
                 </td>
                 <td>
-                    <span id="wechatTag" class="fa fa-wechat fa-lg"></span>&nbsp;
+                    <a href="javascript:bindWechat()" id="showA" style="display:none"><span id="wechatTag" class="fa fa-wechat fa-lg"></span></a>&nbsp;
+                    <a href="javascript:bindWechat()" id="showA1" style="display:none"><span id="wechatTag1" class="fa fa-wechat fa-lg"></span></a>&nbsp;
                     <label style="font-family:Verdana;">客户名称:</label>
                     <label id="guestInfo" style="font-family:Verdana;"><a id="guestNameEl" href="javascript:checkGuest()"></a></label>&nbsp;
                     <label id="guestTab" style="font-family:Verdana;color:#578ccd;"><a id="" href="javascript:GuestTabShow()" >客户标签</a></label>&nbsp;

@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>保险开单明细</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.65"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceDetail.js?v=1.1.66"></script>
     <style type="text/css">
    .title {
         width: 80px;
@@ -23,8 +23,11 @@ pageEncoding="UTF-8" session="false"%>
    .form_label {
        width: 84px;
    }
-	#wechatTag{
+	 #wechatTag{
             color:#62b900;
+        }
+        #wechatTag1{
+            color:#ccc;
         }
    #guestInfo a:link { 
         font-size: 12px; 
@@ -265,7 +268,8 @@ pageEncoding="UTF-8" session="false"%>
             <td>
             </td>
             <td>
-                <span id="wechatTag" class="fa fa-wechat fa-lg healthview"></span>&nbsp;
+                <a href="javascript:bindWechat()" id="showA" style="display:none"><span id="wechatTag" class="fa fa-wechat fa-lg"></span></a>&nbsp;
+                <a href="javascript:bindWechat()" id="showA1" style="display:none"><span id="wechatTag1" class="fa fa-wechat fa-lg"></span></a>&nbsp;
                 <label style="font-family:Verdana;">客户名称：</label>
                 <label id="guestInfo" style="font-family:Verdana;"><a id="guestNameEl" href="javascript:checkGuest()"></a></label>&nbsp;
                 <label style="font-family:Verdana;">客户手机：</label>

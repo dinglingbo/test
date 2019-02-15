@@ -98,6 +98,9 @@
 						</div>
 						<div field="remainAmt" headerAlign="center" allowSort="true" summaryType="sum">
 							剩余金额
+						</div>
+						<div field="settleDate" width="120"dateFormat="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true" >
+							办卡日期
 						</div>	
 				</div>
 			</div>

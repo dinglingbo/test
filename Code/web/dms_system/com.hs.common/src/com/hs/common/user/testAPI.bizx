@@ -5,17 +5,28 @@
       <sourceNode>start0</sourceNode>
       <targetNode>invokePojo3</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>invokePojo4</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>1==1</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <location x="45" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link0</targetConnections>
+    <targetConnections>link3</targetConnections>
     <location x="630" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
       <process:return id="0" language="String" name="token" type="query" valueType="Primitive">token</process:return>
+      <process:return id="1" language="java.util.HashMap" name="p" type="query" valueType="Java">p</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -31,10 +42,10 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="uploadToken" displayName="uploadToken" type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
-      <targetNode>invokePojo0</targetNode>
+      <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="266" y="150"/>
+    <location x="195" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -47,7 +58,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
-    <location x="238" y="186"/>
+    <location x="167" y="186"/>
     <figSize height="17" width="78"/>
     <node>invokePojo3</node>
   </nodes>
@@ -56,7 +67,7 @@
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>end0</targetNode>
     </sourceConnections>
-    <targetConnections>link6</targetConnections>
+    <targetConnections>link1</targetConnections>
     <location x="435" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -75,6 +86,59 @@
     <figSize height="17" width="91"/>
     <node>invokePojo0</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="listFile" displayName="listFile" type="invoke" index="5" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="330" y="150"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo1label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.QiNiuUtils.listFile</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="bucket" type="literal" value="java.lang.String" valueType="Java" pattern="reference">chedao-wechat</process:inputVariable>
+      <process:inputVariable id="1" name="prefix" type="query" value="java.lang.String" valueType="Java" pattern="reference">value</process:inputVariable>
+      <process:inputVariable id="2" name="marker" type="query" value="java.lang.String" valueType="Java" pattern="reference">value</process:inputVariable>
+      <process:inputVariable id="3" name="limit" type="query" value="int" valueType="Java" pattern="reference">value</process:inputVariable>
+      <process:inputVariable id="4" name="delimiter" type="query" value="java.lang.String" valueType="Java" pattern="reference">value</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables/>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
+    <location x="323" y="186"/>
+    <figSize height="17" width="36"/>
+    <node>invokePojo1</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo4" name="uploadBase64File1" displayName="uploadBase64File" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo4</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="208" y="40"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo4label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.QiNiuUtils.uploadBase64File</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="baseCode" type="query" value="java.lang.String" valueType="Java" pattern="reference">value</process:inputVariable>
+      <process:inputVariable id="1" name="key" type="literal" value="java.lang.String" valueType="Java" pattern="reference">test.bmp</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.util.Map" valueType="Java">p</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo4label" name="label" nodeType="label">
+    <location x="164" y="76"/>
+    <figSize height="17" width="110"/>
+    <node>invokePojo4</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-12-05 14:09:34" date="2018-12-05Z" description="" name="testAPI" version="7.0.0.0"/>
@@ -82,6 +146,7 @@
   <process:inputs varArgs="false"/>
   <process:outputs>
     <process:output description="" isArray="false" name="token" primitiveType="String"/>
+    <process:output anyType="java.util.HashMap" description="" isArray="false" name="p"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

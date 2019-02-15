@@ -522,6 +522,9 @@ $(document).ready(function ()
 			save();
 	    } 
 	}
+    document.getElementById("showA1").style.display = "";
+	document.getElementById("showA").style.display='none';
+	nui.get("enterDate").setValue(now);
     InsuranceQuery();
 });
 
@@ -891,6 +894,13 @@ function setInitData(params){
 
                         var sk = document.getElementById("search_key");
                         sk.style.display = "none";
+                        if(contactor.wechatOpenId){
+                        	document.getElementById("showA").style.display = "";
+                        	document.getElementById("showA1").style.display='none';
+                        }else{
+                        	document.getElementById("showA").style.display='none';
+                        	document.getElementById("showA1").style.display = "";
+                        }
                         searchNameEl.setVisible(true);
 
                         searchNameEl.setValue(t);
@@ -1046,6 +1056,8 @@ function add(){
 
     nui.get("ExpenseAccount").setVisible(true);
     nui.get("ExpenseAccount1").setVisible(false);
+    document.getElementById("showA1").style.display = "";
+	document.getElementById("showA").style.display='none';
 }
 function save(){
 	itemF = "S";
@@ -1144,7 +1156,13 @@ function setFrom(data){
                 var t = carNo + tel + guestName + carVin;
                 searchNameEl.setValue(t);
                 searchNameEl.setEnabled(false);
-
+                if(contactor.wechatOpenId){
+                	document.getElementById("showA").style.display = "";
+                	document.getElementById("showA1").style.display='none';
+                }else{
+                	document.getElementById("showA").style.display='none';
+                	document.getElementById("showA1").style.display = "";
+                }
                 data.guestFullName = guest.fullName;
                 data.guestMobile = guest.mobile;
                 data.contactorName = contactor.name;
@@ -4959,4 +4977,38 @@ function addOrEdit(item)
     });
 }
 
+var binUrl = webBaseUrl + "repair/RepairBusiness/Reception/bindWechatContactor.jsp";
+function bindWechat(){
+	var data = billForm.getData();
+	//var guestId = data.guestId;
+	if(!data.guestId){
+		return;
+	}
+	nui.open({
+        url:binUrl,
+        title:"绑定联系人",
+        width:750, 
+        height:300,
+        onload:function(){
+        	var iframe = this.getIFrameEl();
+            var params = {};	
+            params.guestId=data.guestId;
+            params.carNo = data.carNo;
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy:function(action)
+        {
+        	var iframe = this.getIFrameEl();
+            var params = {};	
+            var params = iframe.contentWindow.getData();
+            if(params){
+            	if(params.success && params.success==1){
+            		document.getElementById("showA").style.display = "";
+                	document.getElementById("showA1").style.display='none';
+            	}
+            }
+        	
+        }
+    });
+}
 

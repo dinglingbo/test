@@ -5,6 +5,8 @@ package com.hs.common;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import sun.misc.BASE64Decoder;
 
@@ -56,7 +58,7 @@ public class QiNiuUtils {
 	
 	@Bizlet("本地文件上传")
 	public static void uploadLocalFile(String localFilePath, String key) {
-		Zone z = Zone.zone2();//Zone.autoZone();
+		Zone z = Zone.autoZone();
 		Configuration c = new Configuration(Zone.zone2());
 		UploadManager uploadManager = new UploadManager(c);
 		//上传到七牛后保存的文件名  String key = null;
@@ -68,6 +70,8 @@ public class QiNiuUtils {
 		    DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
 		    System.out.println(putRet.key);
 		    System.out.println(putRet.hash);
+		    
+		    
 		} catch (QiniuException ex) {
 		    Response r = ex.response;
 		    System.err.println(r.toString());
@@ -79,8 +83,21 @@ public class QiNiuUtils {
 		}
 	}
 	
+	@Bizlet("获取七牛云域名")
+	public static String getQNDomain() {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "QNDOMAIN", "serverType");
+		String qnDomain = Env.getContributionConfig("com.vplus.login",
+				"cfg", "QNDOMAIN", envType);
+
+		return qnDomain;
+
+	}
+	
 	@Bizlet("base64编码上传")
-	public static void uploadBase64File(String baseCode, String key) {
+	public static Map uploadBase64File(String baseCode, String key) {
+		Map retMap = new HashMap();
+		String fileUrl = null;
 		Zone z = Zone.autoZone();
 		Configuration c = new Configuration(z);
 		UploadManager uploadManager = new UploadManager(c);
@@ -96,8 +113,33 @@ public class QiNiuUtils {
 		    Response response = uploadManager.put(byteInputStream, key, upToken, null, null);
 		    //解析上传成功的结果
 		    DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
-		    System.out.println(putRet.key);
-		    System.out.println(putRet.hash);
+		    fileUrl = putRet.key;
+		    String doMain = getQNDomain();
+		    fileUrl = doMain + "/" + fileUrl;
+		    retMap.put("fileUrl", fileUrl);
+		    retMap.put("fileName", putRet.key);
+		    
+		    String envType = Env.getContributionConfig("com.vplus.login",
+					"cfg", "QNACCESSKEY", "serverType");
+			String accessKey = Env.getContributionConfig("com.vplus.login",
+					"cfg", "QNACCESSKEY", envType);
+
+			String secretKey = Env.getContributionConfig("com.vplus.login",
+					"cfg", "QNSECRETKEY", envType);
+
+			String bucketName = Env.getContributionConfig("com.vplus.login",
+					"cfg", "QNBUCKETNAME", envType);
+
+			Auth auth = Auth.create(accessKey, secretKey);
+			BucketManager bucketManager = new BucketManager(auth, c);
+
+		    FileInfo fileInfo = bucketManager.stat(bucketName, key);
+		    retMap.put("fileType", fileInfo.mimeType);
+		    retMap.put("fileSize", fileInfo.fsize);
+		    retMap.put("putTime", fileInfo.putTime);
+		    
+		    //System.out.println(putRet.key);
+		    //System.out.println(putRet.hash);
 		} catch (QiniuException ex) {
 		    Response r = ex.response;
 		    System.err.println(r.toString());
@@ -110,6 +152,7 @@ public class QiNiuUtils {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
+		return retMap;
 	}
 	
 	@Bizlet("文件列表")

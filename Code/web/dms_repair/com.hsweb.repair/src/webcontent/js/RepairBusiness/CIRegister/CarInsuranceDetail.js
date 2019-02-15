@@ -171,6 +171,9 @@ $(document).ready(function ()
         saleManIds.setData(memArr);
     });
 
+    nui.get("recordDate").setValue(new Date());
+    document.getElementById("showA1").style.display = "";
+	document.getElementById("showA").style.display='none';
     document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号/VIN码)");
     InsuranceQuery();//查出保险公司，用于带出返点
 
@@ -387,6 +390,13 @@ function setInitData(params){
                     searchNameEl.setValue(t);
                     searchNameEl.setEnabled(false);
 
+                    if(contactor.wechatOpenId){
+                    	document.getElementById("showA").style.display = "";
+                    	document.getElementById("showA1").style.display='none';
+                    }else{
+                    	document.getElementById("showA").style.display='none';
+                    	document.getElementById("showA1").style.display = "";
+                    }
                     $("#guestNameEl").html(ldata.guestName);
                     $("#guestCarEl").html(ldata.carNo);
                     $("#guestTelEl").html(ldata.mobile);
@@ -479,6 +489,8 @@ function add(){
     $("#guestCarEl").html("");
     detailGrid.setData([]);
     detailGrid.setData(detailData);
+    document.getElementById("showA1").style.display = "";
+	document.getElementById("showA").style.display='none';
 }
 
 
@@ -775,6 +787,39 @@ function addOrEdit(item)
 }
 
 
-
+var binUrl = webBaseUrl + "repair/RepairBusiness/Reception/bindWechatContactor.jsp";
+function bindWechat(){
+	var data = basicInfoForm.getData();
+	//var guestId = data.guestId;
+	if(!data.guestId){
+		return;
+	}
+	nui.open({
+        url:binUrl,
+        title:"绑定联系人",
+        width:750, 
+        height:300,
+        onload:function(){
+        	var iframe = this.getIFrameEl();
+            var params = {};	
+            params.guestId=data.guestId;
+            params.carNo = data.carNo;
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy:function(action)
+        {
+        	var iframe = this.getIFrameEl();
+            var params = {};	
+            var params = iframe.contentWindow.getData();
+            if(params){
+            	if(params.success && params.success==1){
+            		document.getElementById("showA").style.display = "";
+                	document.getElementById("showA1").style.display='none';
+            	}
+            }
+        	
+        }
+    });
+}
 
 

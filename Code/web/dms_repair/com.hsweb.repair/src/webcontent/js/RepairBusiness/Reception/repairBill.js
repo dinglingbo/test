@@ -120,7 +120,6 @@ $(document).ready(function ()
     carSellPointInfo = nui.get("carSellPointInfo");
     cardTimesGrid = nui.get("cardTimesGrid");
     cardTimesGrid.setUrl(cardTimesGridUrl);
-    nui.get("enterDate").setValue(now);
     carSellPointGrid = nui.get("carSellPointGrid");
 /*    var data = [{prdtName:'保养到期提醒',amt:'3850',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'保养到期提醒'},
                 {prdtName:'商业险到期提醒',amt:'2600',status:'未联系',creator:'杨超越',doTimes:'2018-12-15',type:'商业险到期提醒'},
@@ -538,6 +537,10 @@ $(document).ready(function ()
 			save();
 	    } 	 
 	}
+    
+    document.getElementById("showA1").style.display = "";
+	document.getElementById("showA").style.display='none';
+	nui.get("enterDate").setValue(now);
 
 });
 function setGuest(item){
@@ -907,6 +910,13 @@ function setInitData(params){
 
                         var sk = document.getElementById("search_key");
                         sk.style.display = "none";
+                        if(contactor.wechatOpenId){
+                        	document.getElementById("showA").style.display = "";
+                        	document.getElementById("showA1").style.display='none';
+                        }else{
+                        	document.getElementById("showA").style.display='none';
+                        	document.getElementById("showA1").style.display = "";
+                        }
                         searchNameEl.setVisible(true);
 
                         searchNameEl.setValue(t);
@@ -1045,6 +1055,8 @@ function add(){
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
     nui.get("ExpenseAccount").setVisible(true);
     nui.get("ExpenseAccount1").setVisible(false);
+    document.getElementById("showA1").style.display = "";
+	document.getElementById("showA").style.display='none';
     //document.getElementById("showA").hide();
 }
 function save(){
@@ -1140,6 +1152,13 @@ function setFrom(data){
                  }
                  if(carVin){
                      carVin = "/"+carVin;
+                 }
+                 if(contactor.wechatOpenId){
+                 	document.getElementById("showA").style.display = "";
+                 	document.getElementById("showA1").style.display='none';
+                 }else{
+                 	document.getElementById("showA").style.display='none';
+                 	document.getElementById("showA1").style.display = "";
                  }
                  var t = carNo + tel + guestName + carVin;
                  searchNameEl.setValue(t);
@@ -4792,3 +4811,41 @@ function editSell() {
 			showMsg("请选中一条记录!", "W");
 		}
 	}
+
+
+
+
+var binUrl = webBaseUrl + "repair/RepairBusiness/Reception/bindWechatContactor.jsp";
+function bindWechat(){
+	var data = billForm.getData();
+	//var guestId = data.guestId;
+	if(!data.guestId){
+		return;
+	}
+	nui.open({
+        url:binUrl,
+        title:"绑定联系人",
+        width:750, 
+        height:300,
+        onload:function(){
+        	var iframe = this.getIFrameEl();
+            var params = {};	
+            params.guestId=data.guestId;
+            params.carNo = data.carNo;
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy:function(action)
+        {
+        	var iframe = this.getIFrameEl();
+            var params = {};	
+            var params = iframe.contentWindow.getData();
+            if(params){
+            	if(params.success && params.success==1){
+            		document.getElementById("showA").style.display = "";
+                	document.getElementById("showA1").style.display='none';
+            	}
+            }
+        	
+        }
+    });
+}

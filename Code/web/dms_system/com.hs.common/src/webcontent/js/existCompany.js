@@ -21,6 +21,11 @@ $(document).ready(function(v) {
         	Oncancel();
         }
       };
+      if(currIsMaster==1){
+      	nui.get("cancelOrg").setVisible(true);
+      }else{
+      	nui.get("cancelOrg").setVisible(false);
+      }
 });
 
 function onSearch(){

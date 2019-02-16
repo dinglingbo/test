@@ -263,7 +263,7 @@
 			a.record_date as recordDate,
 			a.modifier as modifier,
 			a.modify_date as modifyDate,
-			c.wechat_open_id as openId
+			c.wechat_open_id as wechatOpenId
 			FROM
 				rps_prebook a
 				left join rpb_contactor c on (a.contactor_id = c.id)

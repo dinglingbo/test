@@ -9,7 +9,7 @@
 -->
 <head>
     <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.42"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.44"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -87,6 +87,20 @@
       allowInput="true"
       valueFromSelect="false"
       width="100px" onvaluechanged="onSearch">
+      <input name="serviceTypeId"
+       id="serviceTypeId"
+       class="nui-combobox"
+       textField="name"
+       valueField="id"
+       emptyText="业务类型"
+       url=""
+       allowInput="true"
+       showNullItem="false"
+       width="90px"
+       valueFromSelect="true"
+       nullItemText="请选择..."
+       onvaluechanged="onSearch"
+       />
       <input class="nui-textbox" width="80px" id="carNo" name="carNo" selectOnFocus="true" enabled="true" emptyText="车牌号"/>
   出库日期 从:
      <input class="nui-datepicker"width="100px" id="sPickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
@@ -122,10 +136,12 @@
             <div property="columns">
             	<div allowSort="true" field="serviceCode" name="serviceCode" width="180" headerAlign="center" header="业务单号" ></div>
             	<div allowSort="true" field="carNo" name="carNo" width="100" headerAlign="center" header="车牌号" ></div>
+            	<div allowSort="true" field="serviceTypeId" name="serviceTypeId" width="100" headerAlign="center" header="业务类型" ></div>
             	<div allowSort="true" field="storeId" width="100" headerAlign="center" header="仓库" ></div>
                 <div allowSort="true" field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码" ></div>
                 <div allowSort="true" field="partName" name="partName" width="150" headerAlign="center" header="配件名称" ></div>
                 <div allowSort="true" field="oemCode" width="100" headerAlign="center" header="OEM码" ></div>
+                <div allowSort="true" field="outQty" name="outQty" width="100" headerAlign="center" header="数量" ></div>
             </div>
         </div>
         

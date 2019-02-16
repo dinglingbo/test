@@ -756,19 +756,33 @@
 	</select>
 	<!--员工提成汇总-->
 	<select id="queryMemDeductSum" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-			SELECT worker_id as workerId, worker as worker, sum(total_deduct_amt) as deduct
-			from rps_deduct_detail 
+			SELECT worker_id as workerId, worker as worker, sum(deduct_worker_value) as deduct
+			from rps_deduct_prdt_detail 
 			where orgid = #orgid# and record_date &gt;= #startDate# and record_date &lt; #endDate# 
 			group by worker_id, worker
 	</select>
 	<select id="queryMemFilterDeductSum" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-			SELECT a.worker_id as workerId, a.worker as worker, sum(a.total_deduct_amt) as deduct
-			from rps_deduct_detail a
+			SELECT a.worker_id as workerId, a.worker as worker, sum(a.deduct_worker_value) as deduct
+			from rps_deduct_prdt_detail a
       		inner join wb_common.com_member b
 			on a.worker_id = b.empid
 			where a.orgid = #orgid# and b.member_group_id = #groupId#
             and record_date &gt;= #startDate# and record_date &lt; #endDate# 
 			group by a.worker_id, a.worker
+	</select>
+	<!--员工提成明细-->
+	<select id="queryDeductDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+			SELECT 
+			worker_id as workerId, 
+			worker as worker,
+			service_code as serviceCode,
+			bill_type_id as billTypeId,
+			prdt_type_id prdtTypeId,
+			prdt_id as prdtId,
+			prdt_name as prdtName,
+			deduct_worker_value as deductWorkerValue
+			from rps_deduct_prdt_detail 
+			where orgid = #orgid# and worker_id = #memberId# and record_date &gt;= #startDate# and record_date &lt; #endDate# 
 	</select>
 	<!--套餐提成信息-->
 	<select id="queryPkgDeduct" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

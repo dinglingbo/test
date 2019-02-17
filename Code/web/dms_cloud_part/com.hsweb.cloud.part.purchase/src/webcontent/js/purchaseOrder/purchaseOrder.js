@@ -196,6 +196,7 @@ $(document).ready(function(v) {
 		var columnsList = [];
 	    columnsList=sender.columns;
 	    columnsObjList=columnsList[3].columns;
+	    
 	    //获取下标
 	    var index=null;
 	    for(var i=0;i<columnsObjList.length;i++){
@@ -203,17 +204,20 @@ $(document).ready(function(v) {
 	    		index=i+1;
 	    	}
 	    }
-	    if(priceList.length<=0)return;
+	    
+	    for(var i=0;i<resultList.length;i++){
+			var partId=resultList[i].partId;
+			getStratePrice(partId);
+		}
+	    
+//	    if(priceList.length<=0)return;
 	    for(var i=0;i<priceList.length;i++){
 //	    	columnsObjList[index+i].field=priceList[i].id;
 	    	columnsObjList[index+i].visible=true;
 		    columnsObjList[index+i].header=priceList[i].name;
 	    }
 	    
-	    for(var i=0;i<resultList.length;i++){
-			var partId=resultList[i].partId;
-			getStratePrice(partId);
-		}
+	    
 
 		rightGrid.set({
 	        columns: columnsList
@@ -392,7 +396,7 @@ function rightGridSet(){
     		index=i+1;
     	}
     }
-    if(priceList.length<=0)return;
+//    if(priceList.length<=0)return;
     for(var i=0;i<priceList.length;i++){
     	var field=columnsObjList[index+i].field;
     	StrateHash[field]=priceList[i];

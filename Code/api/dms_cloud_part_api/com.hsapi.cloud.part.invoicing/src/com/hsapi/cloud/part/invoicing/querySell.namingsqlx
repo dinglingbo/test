@@ -1328,6 +1328,9 @@
                 <isNotEmpty prepend="and" property="billStatusId"> 
                     (A.bill_status_id = #billStatusId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="billStatusIdList"> 
+                    (a.bill_status_id in ($billStatusIdList$))
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceId">  
                     (a.service_id like '%$serviceId$%')
                 </isNotEmpty>

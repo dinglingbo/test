@@ -282,7 +282,8 @@
 			a.city_id as cityId,
 			a.county_id as countyId,
 			a.street_address as streetAddress,
-			a.address as address
+			a.address as address,
+			a.bill_status_id as billStatusId
 		FROM
 			pj_pack_main AS a
 
@@ -342,6 +343,13 @@
                     (a.audit_sign = #auditSign#)
                 </isNotEmpty>
                 
+               <isNotEmpty prepend="and" property="billStatusId">  
+                    (a.bill_status_id = #billStatusId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billStatusIdList">  
+                    (a.bill_status_id in ($billStatusIdList$))
+                </isNotEmpty>
 	            <isNotEmpty prepend="order by" property="sortField">  
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
@@ -428,7 +436,7 @@
                 (a.id = #partId#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="partCode">  
-                (a.query_code like '$partCode$%' or a.code like '$partCode$%' or a.oem_code like '$partCode$%')
+                (a.query_code like '$%partCode$' or a.code like '$%partCode$' or a.oem_code like '$%partCode$')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partName">  
                 (a.full_name like '%$partName$%')

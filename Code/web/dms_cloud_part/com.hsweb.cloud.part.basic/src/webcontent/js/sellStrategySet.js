@@ -18,8 +18,17 @@ $(document).ready(function(v)
     mainTabs = nui.get("mainTabs");
 	straGrid = nui.get("straGrid");
     straGrid.setUrl(straGridUrl);
-    straGrid.load({token:token});
-
+    straGrid.load({token:token},function(){
+    	var row= straGrid.getRow(0);
+    	var guestInfo=mainTabs.getTab("guestInfo");
+        if(row){
+        	straGrid.select(row,true);
+        	mainTabs.updateTab(guestInfo, { visible: false });
+        	nui.get('saveStraPart').setVisible(false);
+        	nui.get('saveUnifyPart').setVisible(true);
+        }
+    });
+    
     rightGuestGrid = nui.get("rightGuestGrid");
     rightGuestGrid.setUrl(rightGuestGridUrl);
 

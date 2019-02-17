@@ -9,7 +9,7 @@
 -->
 <head>
 <title>打包发货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.12"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/packOut/packOut.js?v=1.0.21"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -54,13 +54,26 @@
                     <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
                 </ul>
 
-                <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">未审</a>
+<!--                 <a class="nui-menubutton " menu="#popupMenuType" id="menunametype">未审</a> -->
 
-                <ul id="popupMenuType" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="quickSearch(6)" id="type6">未审</li>
-                    <li iconCls="" onclick="quickSearch(7)" id="type7">已审</li>
-                    <span class="separator"></span>
-                    <li iconCls="" onclick="quickSearch(8)" id="type8">全部</li>
+<!--                 <ul id="popupMenuType" class="nui-menu" style="display:none;"> -->
+<!--                     <li iconCls="" onclick="quickSearch(6)" id="type6">未审</li> -->
+<!--                     <li iconCls="" onclick="quickSearch(7)" id="type7">已审</li> -->
+<!--                     <span class="separator"></span> -->
+<!--                     <li iconCls="" onclick="quickSearch(8)" id="type8">全部</li> -->
+<!--                 </ul> -->
+                
+                <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
+
+                <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
+                	<li iconCls="" onclick="quickSearch(9)" id="type9">所有</li>
+                    <li iconCls="" onclick="quickSearch(10)" id="type10">已出库</li>
+                    <li iconCls="" onclick="quickSearch(11)" id="type11">已打包</li>
+                    <li iconCls="" onclick="quickSearch(12)" id="type12">已发货</li>
+                    <li iconCls="" onclick="quickSearch(13)" id="type13">已收货</li>
+                    <!-- <li iconCls="" onclick="quickSearch(13)" id="type13">部分入库</li> -->
+              
+
                 </ul>
 
                 <label style="font-family:Verdana;">客户：</label>
@@ -110,7 +123,8 @@
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
-                      	<div field="auditSign" width="35" headerAlign="center" header="状态"></div>
+                      	<div field="auditSign" width="35" visible="false" headerAlign="center" header="状态"></div>
+                      	<div field="billStatusId" width="55" headerAlign="center" header="状态"></div>
                         <div field="guestName" width="120" headerAlign="center" header="客户"></div>     
                         <div field="createDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="打包日期"></div>
                         <div field="stateMan" width="60" headerAlign="center" header="打包员"></div>

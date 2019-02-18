@@ -177,6 +177,7 @@ $(document).ready(function ()
 			save();
 	    } 
 	};
+	nui.get("recordDate").setValue(now);
 });
 
 function setGuest(item){

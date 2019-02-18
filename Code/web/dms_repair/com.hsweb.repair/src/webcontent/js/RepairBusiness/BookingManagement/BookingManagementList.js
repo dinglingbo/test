@@ -46,6 +46,9 @@ $(document).ready(function (v) {
         onupGridSelectionchanged();
     });
     
+    
+    
+    
     var filter = new HeaderFilter(upGrid, {
         columns: [
             { name: 'status' },
@@ -354,7 +357,7 @@ function onDrawCell(e) {
     	var reg=/(\d{3})\d{4}(\d{4})/;
         value = value.replace(reg, "$1****$2");
     	if(e.value){
-    		if(record.openId>0){
+    		if(record.wechatOpenId){
         		e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"+value;
         	}else{
         		e.cellHtml = "<span  id='wechatTag1' class='fa fa-wechat fa-lg'></span>"+value;

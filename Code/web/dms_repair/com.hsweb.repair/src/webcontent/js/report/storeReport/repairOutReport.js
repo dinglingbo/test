@@ -22,6 +22,8 @@ var sOutDateEl=null;
 var eOutDateEl =null;
 var sPickDateEl =null;
 var ePickDateEl=null;
+var servieTypeList = [];
+var servieTypeHash = {};
 $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
@@ -58,9 +60,15 @@ $(document).ready(function(v)
 			});
 		}
 	});
-
 	
+	initServiceType("serviceTypeId",function(data) {
+	        servieTypeList = nui.get("serviceTypeId").getData();
+	        servieTypeList.forEach(function(v) {
+	            servieTypeHash[v.id] = v;
+	        });
+	});
 	rightGrid.on("drawcell",function(e){
+		var record = e.record;
 		switch (e.field) {
 		case "serviceCode":
 			e.cellHtml ='<a href="##" onclick="editSell()">'+e.value+'</a>';
@@ -97,6 +105,8 @@ $(document).ready(function(v)
 			 break;
 		 case "returnSign":
 			 e.cellHtml =  e.value==0 ? "否":"是";
+		 case "serviceTypeId":
+			 e.cellHtml = servieTypeHash[record.serviceTypeId].name;
 		default:
 			break;
 		}
@@ -152,6 +162,7 @@ function getSearchParams(){
     params.storeId=nui.get("storeId").getValue();
     params.sPickDate=nui.get("sPickDate").getFormValue();
     params.carNo = nui.get("carNo").getValue();
+    params.serviceTypeId=nui.get("serviceTypeId").value;
     if(eOutDateEl.getValue()){ 	
     	params.ePickDate=addDate(eOutDateEl.getValue(),1);
     }

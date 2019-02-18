@@ -120,7 +120,7 @@ var requiredField = {
 	    provinceId:"省份",
 	    cityId:"城市"
 	};
-var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveSupplier.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveSupplier.biz.ext";
 function onOk()
 {
     var dataList = [];

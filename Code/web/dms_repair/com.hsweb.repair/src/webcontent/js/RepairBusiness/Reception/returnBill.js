@@ -261,7 +261,7 @@ $(document).ready(function ()
 	    } 
 	 
 	};
-	
+	nui.get("recordDate").setValue(now);
 });
 
 var statusHash = {

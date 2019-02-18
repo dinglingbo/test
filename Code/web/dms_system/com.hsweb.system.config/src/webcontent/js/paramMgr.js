@@ -126,7 +126,7 @@ function showTabInfo(){
             break;
         case "other":
             if(!url){
-                mainTabs.loadTab(baseUrl + "/config/other.jsp?token="+token, tab);
+                mainTabs.loadTab(webPath + contextPath + "/config/other.jsp?token="+token, tab);
             }else{
                 mainTabs.getTabIFrameEl(tab).contentWindow.doSearch();
             }

@@ -129,17 +129,20 @@ public class QiNiuUtils {
 
 			String bucketName = Env.getContributionConfig("com.vplus.login",
 					"cfg", "QNBUCKETNAME", envType);
+			
+
+		    System.out.println("上传文件QNBUCKETNAME：" + bucketName);
 
 			Auth auth = Auth.create(accessKey, secretKey);
 			BucketManager bucketManager = new BucketManager(auth, c);
 
-		    FileInfo fileInfo = bucketManager.stat(bucketName, key);
+		    FileInfo fileInfo = bucketManager.stat(bucketName, putRet.key);
 		    retMap.put("fileType", fileInfo.mimeType);
 		    retMap.put("fileSize", fileInfo.fsize);
 		    retMap.put("putTime", fileInfo.putTime);
 		    
-		    //System.out.println(putRet.key);
-		    //System.out.println(putRet.hash);
+		    System.out.println("上传文件类型：" + fileInfo.mimeType);
+		    System.out.println("上传文件大小：" + fileInfo.fsize);
 		} catch (QiniuException ex) {
 		    Response r = ex.response;
 		    System.err.println(r.toString());

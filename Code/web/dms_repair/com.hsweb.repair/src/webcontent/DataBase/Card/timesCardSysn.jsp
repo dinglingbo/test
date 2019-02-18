@@ -12,7 +12,7 @@
 <head>
 <title>计次卡添加</title>
 <script
-	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.1.18"></script>
+	src="<%=request.getContextPath()%>/repair/js/Card/timesCardSysn.js?v=1.1.20"></script>
 </head>
 <body>
 		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">
@@ -87,7 +87,6 @@
 							data="[{value:'0',text:'不共享',},{value:'1',text:'共享'}]" value="0">
 						</div>
 					</td>
-				
 				
 				</tr>
 				<tr>

@@ -8,12 +8,12 @@
 -->
 
 <head>
-    <title>电销客户</title>
+    <title>回访明细明细表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
     <style type="text/css">
-        body {
+        body { 
             margin: 0;
             padding: 0; 
             border: 0;
@@ -62,67 +62,105 @@
                         <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
                         <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                     </ul>
-                    沟通日期:
+                    跟踪日期:
                     <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" />
                     至
                     <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
-                    <a class="nui-button" iconcls="" name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <li class="separator"></li>
-                    <a class="nui-button" plain="false" onclick="load(0)" id="" style="margin-right:5px;"><span class="fa fa-bars fa-lg"></span>&nbsp;按品牌分组</a>
-                    <a class="nui-button" plain="false" onclick="load(1)" id="" style="margin-right:5px;"><span class="fa fa-bars fa-lg"></span>&nbsp;按营销员分组</a>
+                    <input id="guestName" name="guestName" class="nui-textbox" style="width: 100px;" emptyText="客户姓名">
+                    <input id="carNo" name="carNo" class="nui-textbox" style="width: 100px;" emptyText="车牌号">
+                    <input id="mobile" name="mobile" class="nui-textbox" style="width: 100px;" emptyText="手机号">
+                    <input id="carModel" name="carModel" class="nui-textbox" style="width: 100px;" emptyText="品牌">
+                    <input id="visitId" name="visitId" class="nui-combobox" style="width: 100px;" emptyText="回访员"
+                    textField="empName" valueField="empId" emptyText="请选择..."
+                    showNullItem="true"nullItemText="请选择...">
+                    <input id="visitStatus" name="visitStatus" class="nui-combobox" style="width: 100px;" emptyText="回访状态"
+                    data="visStatus" valueField="customid" textField="name"emptyText="请选择..."
+                    allowInput="false"valueFromSelect="true" showNullItem="true"nullItemText="请选择...">
+                    <input id="serviceType" name="serviceType" class="nui-combobox" style="width: 100px;" emptyText="回访类型"
+                    data="visType" valueField="id" textField="text"emptyText="请选择..."
+                    allowInput="false"valueFromSelect="true" showNullItem="true"nullItemText="请选择...">
+                    <input id="visitMode" name="visitMode" class="nui-combobox" style="width: 100px;" emptyText="回访方式"
+                    textField="name" valueField="customid"emptyText="请选择..."
+                    allowInput="false"valueFromSelect="true" showNullItem="true"nullItemText="请选择...">
+                    <input id="visitResult" name="visitResult" class="nui-combobox"visible="false" style="width: 100px;" emptyText="回访结果"
+                    data="const_enabled_communicate" textField="text" valueField="value">
+                    <a class="nui-button" iconcls="" name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 </td>
-            </tr>
+            </tr> 
         </table>
-    </div>
+    </div> 
     <div class="nui-fit">
         <div id="grid1" class="nui-datagrid" style="width:100%;height:100%;" showPager="true" dataField="list" idField="detailId"
             ondrawcell="" sortMode="client" url="" totalField="page.count" pageSize="20" sizeList="[10,20,50,100]"
             showSummaryRow="true">
             <div property="columns">
                 <div type="indexcolumn" headerAlign="center" align="center">序号</div>
-                <div allowSort="true" field="groupName" name="groupName" width="60" headerAlign="center" align="center">品牌</div>
-                <div allowSort="true" field="total" width="60" headerAlign="center" align="center">沟通总次数</div>
-                <div header="沟通有效性" headerAlign="center">
-                    <div property="columns">
-                        <div allowSort="true" field="effective" width="60" headerAlign="center" align="center">有效沟通</div>
-                        <div allowSort="true" field="invalid" width="60" headerAlign="center" align="center">无效沟通</div>
-                    </div>
-                </div>
-                <div header="跟踪状态" headerAlign="center">
-                    <div property="columns">
-                        <div allowSort="true" field="goonScout" width="60" headerAlign="center" align="center">继续跟踪</div>
-                        <div allowSort="true" field="keyScout" width="60" headerAlign="center" align="center">重点跟踪</div>
-                        <div allowSort="true" field="stopScout" width="60" headerAlign="center" align="center">终止跟踪</div>
-                    </div>
-                </div>
-                <div header="成交信息" headerAlign="center">
-                    <div property="columns">
-                        <div allowSort="true" field="hasCome" width="60" headerAlign="center" align="center">成交量</div>
-                        <div allowSort="true" field="comeRate" width="60" headerAlign="center" align="center" numberFormat="p">成交率</div>
-                    </div>
-                </div>
-                <div header="跟踪类型" headerAlign="center">
-                    <div property="columns">
-                        <div allowSort="true" field="telToScout" width="60" headerAlign="center" align="center">电话</div>
-                        <div allowSort="true" field="infoToScout" width="60" headerAlign="center" align="center">短信</div>
-                    </div>
-                </div>
+                <div field="carNo" name="carNo" width="60" headerAlign="center" align="center">车牌号</div>
+                <div field="carModel" width="80" headerAlign="center" align="center">品牌车型</div>
+                <div field="vin" width="90" headerAlign="center" align="center">车架号(VIN)</div>
+                <div field="guestName" width="60" headerAlign="center" align="center">客户姓名</div>
+                <div field="mobile" width="60" headerAlign="center" align="center">客户手机</div>
+                <div field="serviceType" width="60" headerAlign="center" align="center">回访类型</div>
+                <div field="visitMode" width="60" headerAlign="center" align="center">回访方式</div>
+                <div field="visitResult" width="60" headerAlign="center" align="center">回访结果</div>
+                <div field="visitContent" width="60" headerAlign="center" align="center">回访内容</div>
+                <div field="visitStatus" width="60" headerAlign="center" align="center">回访状态</div>
+                <div field="visitMan" width="60" headerAlign="center" align="center">回访员</div>
+                <div field="visitDate" width="80" headerAlign="center" align="center" dateFormat="yyyy-MM-dd HH:mm">跟踪日期</div>
             </div>
         </div>
     </div>
     <script type="text/javascript">
+        
+        var visStatus = [{customid:"060701",name:"继续跟踪"},
+            {customid:"060702",name:"终止跟踪"},
+            {customid:"060703",name:"重点跟踪"},
+            {customid:"060704",name:"已来厂/已成交"}];
+        var visType = [{id:1,text:"电销回访"},{id:2,text:"电销回访"},{id:3,text:"客户回访"},{id:4,text:"流失回访"}];
         nui.parse();
         var webBaseUrl = webPath + contextPath + "/";
         var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
-        var gridUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.guestReport.queryTelGuestTotal.biz.ext';
+        var gridUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.guestReport.queryVisitDetail.biz.ext';
         var grid1 = nui.get("grid1");
         var form=new nui.Form("#form1");
         grid1.setUrl(gridUrl);
         var currType = 2;
-        var cType = 0;
         var startDateEl = nui.get("startDate");
         var endDateEl = nui.get("endDate");
-        quickSearch(3);
+        var memList = {};
+        var memHash = {};
+        quickSearch(4);
+
+
+        initDicts({
+            visitMode: "DDT20130703000021",//跟踪方式
+        });
+
+        initMember("visitId",function(){
+            memList = nui.get("visitId").getData();
+            memList.forEach(function(v) {
+                memHash[v.empId] = v;
+            });
+        });
+
+        grid1.on("drawcell", function (e) { //表格绘制
+            var field = e.field;
+            if(field == "visitResult"){//跟踪结果
+                e.cellHtml = setColVal('visitResult', 'value', 'text', e.value);
+            }else if(field == "visitMode"){//跟踪方式
+                e.cellHtml = setColVal('visitMode', 'customid', 'name', e.value);
+            }else if(field == "visitStatus"){//跟踪状态
+                e.cellHtml = setColVal('visitStatus', 'customid', 'name', e.value);
+            }else if(field == "serviceType"){//跟踪状态
+                e.cellHtml = setColVal('serviceType', 'id', 'text', e.value);
+            }else if(field == "visitId"){//营销员
+                if(memHash[e.value]){
+                    e.cellHtml = memHash[e.value].empName || "";
+                }
+            }
+        });
+
 
         function quickSearch(type) {
             var params = {};
@@ -180,37 +218,19 @@
                 default:
                     break;
             }
-            currType = type;
             startDateEl.setValue(params.startDate);
             endDateEl.setValue(addDate(params.endDate, -1));
             var menunamedate = nui.get("menunamedate");
             menunamedate.setText(queryname);
-            params.groupByType = cType;
             grid1.load({params:params});
-            updateGridColoumn(cType);
         }
-
-
-        function updateGridColoumn(e){
-            var column = grid1.getColumn("groupName");
-            if(e == 0){
-                grid1.updateColumn(column,{header:"品牌"});
-            }
-            if(e == 1){
-                grid1.updateColumn(column,{header:"营销员"});
-            }
-        }
-
 
         function load(e){
             if(e != undefined){
-                cType = e;
             }
             
             var data= form.getData();
             data.endDate = formatDate(data.endDate) +" 23:59:59";
-            data.groupByType = cType;
-            updateGridColoumn(cType);
             grid1.load({params:data,token :token});
         }
 

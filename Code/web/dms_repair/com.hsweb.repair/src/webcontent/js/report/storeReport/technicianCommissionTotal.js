@@ -50,6 +50,7 @@ function load(e){
 	data.endDate = formatDate(data.endDate) +" 23:59:59";
     data.groupByType = cType;
     updateGridColoumn(cType);
+    data.deductMode = 2;
     grid1.load({params:data,token :token});
 }
 
@@ -136,6 +137,7 @@ function quickSearch(type){
 //  if(params.endDate){
 //  params.endDate = params.endDate +" 23:59:59";
 //}
+ params.deductMode = 2;
 grid1.load({params:params});
 updateGridColoumn(cType);
 }

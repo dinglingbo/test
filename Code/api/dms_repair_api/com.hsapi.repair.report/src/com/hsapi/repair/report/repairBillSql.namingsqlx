@@ -430,4 +430,55 @@
 	    	
 	</select>
 	
+	
+	
+	<select id="queryTechnicianSummaryPrdt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+    <isEqual  prepend=""  property="groupByType"   compareValue="0">
+        DATE_FORMAT(b.out_date,'%Y-%m-%d')  as groupName,
+     </isEqual>
+        
+     
+      <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	 b.service_type_id as groupName,
+	    </isEqual> 
+	     
+	   <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	 a.worker as groupName,
+	    </isEqual> 
+	      	       
+    	  	sum(a.deduct_origin_value) as deductOriginValue,
+    	  	sum(a.deduct_worker_value) as deductWorkerValue,
+       		sum(a.deduct_value) as deductValue
+		from wb_repair.rps_deduct_prdt_detail a
+		
+		inner join wb_repair.rps_maintain b on a.service_id = b.id 
+		
+		where b.is_settle = 1 and b.orgid = #orgid# and a.deduct_mode = #deductMode#
+		
+		and b.bill_type_id in (0,2,4)
+		
+            <isNotEmpty prepend="and" property="startDate">  
+                (b.out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (b.out_date &lt; #endDate#)
+            </isNotEmpty>
+ 
+        <isEqual  prepend="" property="groupByType"   compareValue="0">
+	        GROUP BY DATE_FORMAT(b.out_date,'%Y-%m-%d')
+	   </isEqual>
+	   
+        <isEqual  prepend="" property="groupByType"  compareValue="1">
+	     	group by b.service_type_id
+	    </isEqual>
+	    
+	    <isEqual  prepend="" property="groupByType"  compareValue="2">
+	     	group by a.worker 
+	    </isEqual>  
+	    	
+	</select>
+	
+	
+	
 </sqlMap>

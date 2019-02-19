@@ -3,7 +3,7 @@
  */
  var statusList = [{id: 0,text: '草稿'}, {id: 1,text: '已完工'}];
  var isBackList = [{ id: 0,text: '未返工'}, {id: 1,text: '已返工'}];
- var billTypeIdList=[{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"}];
+ var billTypeIdList=[{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"},{name:"计次卡"},{name:"充值"},{name:"保险"}];
  var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"工单号"}];
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var webBaseUrl = webPath + contextPath + "/";
@@ -39,9 +39,7 @@ $(document).ready(function (v)
      });
      
      grid.on("drawcell", function (e) {
-         if (e.field == "serviceTypeId") {
-             e.cellHtml = servieTypeHash[e.value].name;
-         }else if (e.field == "billTypeId") {
+        if (e.field == "billTypeId") {
              e.cellHtml = billTypeIdList[e.value].name;
      }
          document.onkeyup = function (event) {
@@ -59,9 +57,7 @@ $(document).ready(function (v)
 	        columns: [
 	            { name: 'serviceCode' },
 	            { name: 'worker' },
-	            { name: 'carNo' },
-	            { name: 'carModel' },
-	            { name: 'mtAdvisor' },
+	            { name: 'carNo' }          
 	        ],
 	        callback: function (column, filtered) {
 	        },
@@ -102,13 +98,13 @@ function onSearch()
 }
 function doSearch() {
     var gsparams = getSearchParam();
-    if(gsparams.billTypeIds && gsparams.billTypeIds==5){
+    /*if(gsparams.billTypeIds && gsparams.billTypeIds==5){
     	gsparams.billTypeIds = "0,2,4";
-    }
+    }*/
     gsparams.isSettle = 1;
    // gsparams.billTypeId = 0;
     gsparams.isDisabled = 0;
-
+    gsparams.deductMode = 3;
     grid.load({
         token:token,
         params: gsparams
@@ -196,11 +192,11 @@ function getSearchParam() {
     params.eOutDate = addDate(endDateEl.getValue(),1);  
     params.mtAuditorId = mtAdvisorIdEl.getValue();
 
-    if((nui.get("billTypeId").getValue())==5){
+   /* if((nui.get("billTypeId").getValue())==5){
     	
     }else{
         params.billTypeIds = nui.get("billTypeId").getValue();
-    }
+    }*/
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){

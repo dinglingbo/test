@@ -220,6 +220,12 @@
 		FROM
 			rps_stored_record AS a
 			WHERE a.is_settle = 1 and a.guest_id = #guestId# and a.orgid = #orgid#
+			
+			<dynamic>
+		      <isNotEmpty prepend="and" property="balaAmt"> 
+                (a.bala_amt &gt; #balaAmt#)
+              </isNotEmpty>
+            </dynamic>
 	</select>
 	
 	

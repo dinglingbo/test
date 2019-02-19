@@ -178,6 +178,10 @@
 				and (a.CarModelID =  #carModelId# or a.CarModelID = '00000000' )
 			</isNotNull>
 			
+			<isNotNull property="id">
+				and (a.ID =  #id# )
+			</isNotNull>
+			
 			<isNull property="carModelId">
 				and ( a.CarModelID = '00000000' )
 			</isNull>

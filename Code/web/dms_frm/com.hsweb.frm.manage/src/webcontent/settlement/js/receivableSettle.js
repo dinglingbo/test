@@ -159,13 +159,20 @@ $(document).ready(
 		    	}
 			});*/
 			
-
+			getItemType(function(data) {
+				enterTypeIdList = data.list || [];
+				enterTypeIdList.filter(function(v) {
+					enterTypeIdHash[v.id] = v;
+				});
+			});
 			var filter = new HeaderFilter(rRightGrid, {
 		        columns: [
 		            { name: 'guestName' },
 		            { name: 'settleStatus' },
 		            { name: 'carNo' },
-		            { name: 'billServiceId' }
+		            { name: 'billServiceId' },
+		            { name: 'remark' },
+		            { name: 'billTypeId' }
 		        ],
 		        callback: function (column, filtered) {
 		        },
@@ -176,8 +183,15 @@ $(document).ready(
 			    			value = headerHash;
 			    			break;
 			    		case "billTypeId" :
-			    			value = enterTypeIdHash;
-			    			break;
+			    			var arr = [];
+			    			for (var i in enterTypeIdHash) {
+			    			    var o = {};
+			    			    o.name = enterTypeIdHash[i].name;
+			    			    o.id = enterTypeIdHash[i].id;
+			    			    arr.push(o);
+			    			}
+			    			value = arr;
+			    			break;			    			
 			    	}
 		        	return value;
 		        }
@@ -234,12 +248,7 @@ $(document).ready(
 			});
 
 			 
-			getItemType(function(data) {
-				enterTypeIdList = data.list || [];
-				enterTypeIdList.filter(function(v) {
-					enterTypeIdHash[v.id] = v;
-				});
-			});
+
 			quickSearch(currType);
 		});
 var queryUrl = baseUrl

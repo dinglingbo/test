@@ -10,7 +10,7 @@
     <title>销售提成汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/salePerformanceTotal.js?v=1.0.1"></script>
+  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/salePerformanceTotal.js?v=1.0.3"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -78,7 +78,7 @@
             <div property="columns">          
         <div type="indexcolumn">序号</div>
               <div  field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型" allowsort="true" ></div>
-              <div field="salesDeductValue" name="salesDeductValue" width="60" headerAlign="center" header="销售提成" summaryType="sum" allowsort="true" ></div> 
+              <div field="deductWorkerValue" name="deductWorkerValue" width="60" headerAlign="center" header="销售提成" summaryType="sum" allowsort="true" ></div> 
 <!--               <div field="techDeductValue" name="techDeductValue" width="60" headerAlign="center" header="施工提成" summaryType="sum" allowsort="true" ></div> -->
 <!--               <div field="advisorDeductValue" name="advisorDeductValue" width="60" headerAlign="center" header="服务提成" summaryType="sum" allowsort="true" ></div>
               <div field="annualInspectionDeductValue" name="annualInspectionDeductValue" width="60" headerAlign="center" header="商业险提成" summaryType="sum" allowsort="true" ></div>

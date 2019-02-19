@@ -143,6 +143,9 @@
         SELECT
             b.car_model groupName,
             <include refid="telGuest"/>
+            <isNotNull prepend = "" property = "carModel">
+                AND  b.car_model like '%$carModel$%' 			
+            </isNotNull>
             group by b.car_model
     </select>
 
@@ -151,6 +154,9 @@
         SELECT
             b.visit_man_id,b.visit_man groupName,	
             <include refid="telGuest"/>
+            <isNotNull prepend = "" property = "visitId">
+                AND  b.visit_man_id = #visitId#			
+            </isNotNull>
             group by b.visit_man_id,b.visit_man
     </select>
 
@@ -203,8 +209,48 @@
     </select>
 
 
-
+    <sql id="visitRecord">
+            count(*) as total,
+            sum(case when a.visit_mode = '011401' then 1 end) as telToScout,
+            sum(case when a.visit_mode = '011402' then 1 end) as infoToScout
+        from wb_crm.crm_visit_record a 
+        left JOIN wb_crm.crm_guest b on b.id = a.main_id 
+        where a.service_type != 1  and a.orgid = #orgid#
+    </sql>
     
+            <!-- 回访统计  按品牌汇总-->
+    <select id="visitSumByModel" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            b.car_model groupName,
+            <include refid="visitRecord"/>
+            <isNotNull prepend = "" property = "carModel">
+                AND  b.car_model like '%$carModel$%' 			
+            </isNotNull>
+            group by b.car_model
+    </select>
+
+            <!-- 回访统计  按销售人员汇总-->
+    <select id="visitSumBymtAdvisor" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            b.visit_man_id,b.visit_man groupName,	
+            <include refid="visitRecord"/>
+            <isNotNull prepend = "" property = "visitId">
+                AND  b.visit_man_id = #visitId#			
+            </isNotNull>
+            group by b.visit_man_id,b.visit_man
+    </select>
+
+                <!-- 回访统计  按业务类型汇总-->
+    <select id="visitSumByServiceType" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+        SELECT
+            a.service_type groupName,	
+            <include refid="visitRecord"/>
+            <isNotNull prepend = "" property = "serviceType">
+                AND  a.service_type = #serviceType#			
+            </isNotNull>
+            group by a.service_type
+    </select>
+
             <!-- 回访明细表-->
     <select id="guestVisitDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
         select 

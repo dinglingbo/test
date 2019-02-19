@@ -588,9 +588,7 @@ where b.orgid =#orgid#
      </select> 
      
                  <!-- 计次卡汇总  按计次卡分类-->
-       <select id="selectTimeCardTotalA"  parameterClass="java.util.HashMap" 
-
-resultClass="commonj.sdo.DataObject">
+       <select id="selectTimeCardTotalA"  parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     		SELECT
 					a.card_id cardId,
 					a.card_name  groupName,
@@ -619,9 +617,7 @@ resultClass="commonj.sdo.DataObject">
 
 
       <!-- 计次卡汇总  按销售员分类-->
-       <select id="selectTimeCardTotalB"  parameterClass="java.util.HashMap" 
-
-resultClass="commonj.sdo.DataObject">
+       <select id="selectTimeCardTotalB"  parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     		SELECT
 					a.sale_man_id saleManId,
 					a.sale_man  groupName,
@@ -650,19 +646,12 @@ resultClass="commonj.sdo.DataObject">
 	</select>  
        
              <!-- 计次卡明细-->
-       <select id="selectTimeCardDetail"  parameterClass="java.util.HashMap" 
-
-resultClass="commonj.sdo.DataObject">
-            SELECT a.code, a.car_no carNo, a.card_name cardName, a.sell_amt sellAmt, 
-
-a.sale_man saleMan, 
-            a.use_remark useRemark, a.settle_date settleDate,a.is_finish isFinish,
-                b.prdt_name prdtName, case when b.prdt_type = 1 then '套餐' else '项目' end 
-
-prdtType, 
-                b.total_times totalTimes, b.use_times useTimes, b.bala_times balaTimes, 
-
-b.sell_price sellPrice, 
+       <select id="selectTimeCardDetail"  parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+            SELECT  a.code, a.car_no carNo, a.card_name cardName, a.sell_amt sellAmt, 
+                    a.sale_man saleMan, 
+                    a.use_remark useRemark, a.settle_date settleDate,a.is_finish isFinish,
+                b.prdt_name prdtName, case when b.prdt_type = 1 then '套餐' else '项目' end prdtType, 
+                b.total_times totalTimes, b.use_times useTimes, b.bala_times balaTimes, b.sell_price sellPrice, 
             b.use_times * b.sell_price as useAmt,
             c.short_name guestName,c.mobile
             from rps_card_times a
@@ -701,9 +690,7 @@ b.sell_price sellPrice,
        	</select>  
 
             <!-- 储值卡汇总  按计次卡分类-->
-       <select id="selectStoredCardTotalA"  parameterClass="java.util.HashMap" 
-
-resultClass="commonj.sdo.DataObject">
+       <select id="selectStoredCardTotalA"  parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
             select 
             a.card_id cardId,
             a.card_name groupName,
@@ -735,9 +722,7 @@ resultClass="commonj.sdo.DataObject">
             </select>  
 
                  <!-- 储值卡汇总  按销售员分类-->
-       <select id="selectStoredCardTotalB"  parameterClass="java.util.HashMap" 
-
-resultClass="commonj.sdo.DataObject">
+       <select id="selectStoredCardTotalB"  parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
         select 
             a.sale_man_id saleManId,
             a.sale_man groupName,
@@ -769,15 +754,12 @@ resultClass="commonj.sdo.DataObject">
 
 
              <!-- 储值卡明细-->
-       <select id="selectStoredCardDetail"  parameterClass="java.util.HashMap" 
-
-resultClass="commonj.sdo.DataObject">
+       <select id="selectStoredCardDetail"  parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
             select a.code, a.guest_name guestName, b.mobile, a.card_name cardName, 
 
-a.recharge_amt rechargeAmt, a.give_amt giveAmt,
-                a.total_amt totalAmt, a.use_amt useAmt, a.bala_amt balaAmt, b.record_date 
-
-recordDate,a.sale_man saleMan,
+            a.recharge_amt rechargeAmt, a.give_amt giveAmt,
+            a.total_amt totalAmt, a.use_amt useAmt, a.bala_amt balaAmt, b.record_date 
+            recordDate,a.sale_man saleMan,
                 a.car_no carNo, a.settle_date settleDate
             from rps_stored_record a
             inner join wb_common.com_guest b on a.guest_id = b.id

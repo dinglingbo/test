@@ -71,7 +71,7 @@
 	<!--业务产值占比图-->
 	<select id="queryOutputValue" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	
-    	SELECT m.name, sum(m.subtotal) as outputValue
+    	SELECT n.name, sum(m.subtotal) as value
 		from (
 			SELECT a.service_type_id as serviceTypeId, a.subtotal as subtotal
 			from rps_package a
@@ -120,7 +120,7 @@
 		inner join rpb_business_type n
 		on m.serviceTypeId = n.id
 		group by n.name
-		order by m.service_type_id
+		order by m.serviceTypeId
     	
 	</select>
 	
@@ -477,6 +477,183 @@
 	     	group by a.worker 
 	    </isEqual>  
 	    	
+	</select>
+	
+	<!--bill_type_id  0综合，1检查，2洗美，3销售，4理赔，5退货    
+		总收入：  综合开单收入 + 理赔开单收入 + 洗美开单收入 + 销售开单收入 + 保险开单收入
+		总毛利： and a.bill_type_id in (0, 2, 3, 4)
+    -->
+	<select id="queryRepairIncome" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(ifnull(b.netin_amt,0)) as netinAmt, sum(ifnull(b.gross_profit,0)) as grossProfit
+		from rps_maintain a
+		inner join rps_settlement b
+		on a.id = b.service_id
+		where a.is_settle = 1 and a.orgid = #orgid# 
+		      
+		<dynamic>
+			<isNotEmpty prepend="and" property="billTypeIds">  
+                (a.bill_type_id in ($billTypeIds$))
+            </isNotEmpty>
+            
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (a.out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (a.out_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	
+	<select id="queryInsuranceIncome" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(ifnull(amt,0)) as netinAmt, sum(IFNULL(rtn_comp_amt,0)) as grossProfit 
+		from rps_insurance_main
+		where is_settle = 1 and orgid = #orgid# 
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (out_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	
+	<!--预收 储值卡充值 -->
+	<select id="queryStoredAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(ifnull(recharge_amt,0)) as amt from rps_stored_record
+		where is_settle = 1 and orgid = #orgid# 
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (settle_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (settle_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	<!--预收 计次卡购买 -->
+	<select id="queryCardTimesAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(ifnull(sell_amt,0)) as amt from rps_card_times
+		where status = 2 and orgid = #orgid# 
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (settle_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (settle_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	<!--type 1次卡   2充值 -->
+	<select id="queryRefundAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(case when type = 1 then ifnull(refund_amt,0) else 0 end ) as cardAmt,
+    	       sum(case when type = 2 then ifnull(refund_amt,0) else 0 end ) as storedAmt
+    	from rps_refund_record
+		where orgid = #orgid# 
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (record_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (record_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
+        
+	</select>
+	
+	
+	<!--bill_type_id  0综合，1检查，2洗美，3销售，4理赔，5退货    
+		客户记账
+		挂账 = （综合开单 + 理赔开单 + 洗美开单 + 销售开单 + 保险开单）转预结算未结算的
+		收款 = （综合开单 + 理赔开单 + 洗美开单 + 销售开单 + 保险开单）已结算的金额
+    -->
+	<select id="queryRepairBalaAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(ifnull(b.bala_amt,0)) as balaAmt
+		from rps_maintain a
+		inner join rps_settlement b
+		on a.id = b.service_id
+		where a.bala_audit_sign = 1 and a.is_settle = 0 and a.orgid = #orgid# 
+		      and a.bill_type_id in (0, 2, 3, 4)
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (a.bala_audit_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (a.bala_audit_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	<select id="queryInsuranceBalaAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(case when settle_type_id = 3 then ifnull(amt,0) - ifnull(rtn_guest_amt,0) else amt end ) as balaAmt
+		from rps_insurance_main
+		where bala_audit_sign = 1 and is_settle = 0 and orgid = #orgid# 
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (bala_audit_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (bala_audit_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	
+	<select id="queryRepairSettleAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(ifnull(b.bala_amt,0)) as balaAmt
+		from rps_maintain a
+		inner join rps_settlement b
+		on a.id = b.service_id
+		where a.is_settle = 1 and a.orgid = #orgid# 
+		      and a.bill_type_id in (0, 2, 3, 4)
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (a.out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (a.out_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	<select id="queryInsuranceSettleAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(case when settle_type_id = 3 then ifnull(amt,0) - ifnull(rtn_guest_amt,0) else amt end ) as balaAmt
+		from rps_insurance_main
+		where is_settle = 1 and orgid = #orgid# 
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (out_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	
+	<!--现金银行
+		收款  所有收款
+		付款  所有付款
+    -->
+	<select id="queryRPAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT sum(case when rp_dc = 1 then ifnull(true_char_off_amt,0) else 0 end ) as rAmt,
+    	       sum(case when rp_dc = -1 then ifnull(true_char_off_amt,0) else 0 end ) as pAmt
+    	from fis_rp_account
+    	where orgid = #orgid# and audit_sign = 1
+		<dynamic>
+            <!--结算日期 -->
+            <isNotEmpty prepend="and" property="startDate">  
+                (audit_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (audit_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
 	</select>
 	
 	

@@ -423,6 +423,8 @@ where b.orgid =#orgid#
      <select id="queryTechnicianDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
      SELECT 
 		a.service_code as serviceCode,
+		a.car_no as carNo,
+		a.service_type_id as serviceTypeId,
 		a.worker as worker,
 		a.worker_id as workerId,
 		a.bill_type_id as billTypeId,

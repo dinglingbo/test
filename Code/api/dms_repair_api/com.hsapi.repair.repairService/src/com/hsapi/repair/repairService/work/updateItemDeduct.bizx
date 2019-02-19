@@ -134,7 +134,6 @@
     <chidren>loopend0</chidren>
     <chidren>loopstart0</chidren>
     <chidren>assign10</chidren>
-    <chidren>assign9</chidren>
     <chidren>assign11</chidren>
     <chidren>assign12</chidren>
     <chidren>subprocess0</chidren>
@@ -159,6 +158,7 @@
     <chidren>assign16</chidren>
     <chidren>assign8</chidren>
     <chidren>invokePojo5</chidren>
+    <chidren>assign9</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="销售" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
@@ -321,6 +321,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">serviceCode</process:from>
       <process:to type="query">prdtDeductTemp/serviceCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">carNo</process:from>
+      <process:to type="query">prdtDeductTemp/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/serviceTypeId</process:from>
+      <process:to type="query">prdtDeductTemp/serviceTypeId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">temp/saleManId</process:from>
@@ -526,6 +534,14 @@
       <process:to type="query">prdtDeductTemp/serviceCode</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">carNo</process:from>
+      <process:to type="query">prdtDeductTemp/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/serviceTypeId</process:from>
+      <process:to type="query">prdtDeductTemp/serviceTypeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">mtAdvisorId</process:from>
       <process:to type="query">prdtDeductTemp/workerId</process:to>
     </process:copy>
@@ -625,7 +641,7 @@
       <targetNode>subprocess0</targetNode>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
-    <location x="644" y="103"/>
+    <location x="644" y="107"/>
     <size height="28" width="28"/>
     <nodeLabel>assign9label</nodeLabel>
     <process:copy>
@@ -634,7 +650,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
-    <location x="642" y="139"/>
+    <location x="642" y="143"/>
     <figSize height="17" width="32"/>
     <node>assign9</node>
   </nodes>
@@ -1013,6 +1029,7 @@
         <process:inputVariable id="6" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">orgid</process:inputVariable>
         <process:inputVariable id="7" name="billTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">billTypeId</process:inputVariable>
         <process:inputVariable id="8" name="item" type="query" value="com.hsapi.repair.data.rps.RpsItem" valueType="DataObject" pattern="reference">temp</process:inputVariable>
+        <process:inputVariable id="9" name="carNo" type="query" value="String" valueType="Primitive" pattern="reference">carNo</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -1244,8 +1261,8 @@
         <process:inputVariable id="1" name="serviceCode" type="query" value="String" valueType="Primitive" pattern="reference">serviceCode</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1290,6 +1307,7 @@
     <process:input description="" isArray="false" name="orgid" primitiveType="Int"/>
     <process:input description="" isArray="false" name="serviceCode" primitiveType="String"/>
     <process:input description="0综合，1检查，2洗美，3销售，4理赔，5退货，6次卡，7充值" isArray="false" name="billTypeId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="carNo" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

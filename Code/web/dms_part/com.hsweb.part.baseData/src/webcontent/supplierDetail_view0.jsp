@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierDetail.js?v=1.1.7"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/supplierMgr/supplierDetail.js?v=1.1.8"></script>
 <style type="text/css">
 .title {
 	text-align: right;
@@ -95,7 +95,7 @@
     <span>是否禁用</span>
     <div id="isDisabled" name="isDisabled" class="nui-checkbox" text="" trueValue="1" falseValue="0"></div>
 </div>
-<div class="nui-fit">
+<!-- <div class="nui-fit"> -->
 <div id="tabs1" class="nui-tabs" activeIndex="0"  style="width:97%;height:100%;margin-left: 1.5%;"
          arrowPosition="side" showNavMenu="true">
         <div name="tab1" title="基本信息">
@@ -324,7 +324,7 @@
             </div>
         </div>
 </div>
-</div>
+<!-- </div> -->
 
 </body>
 </html>

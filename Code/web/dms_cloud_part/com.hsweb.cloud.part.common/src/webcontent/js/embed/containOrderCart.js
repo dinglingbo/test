@@ -119,7 +119,7 @@ function deleteCartShop(){
 }
 function openGeneratePop(partList, type, title){
     nui.open({
-        targetWindow : window,
+        // targetWindow: window,,
         url : webPath+contextPath+"/com.hsweb.cloud.part.common.shopCarPop.flow?token="+token,
         title : title,
         width : 600,

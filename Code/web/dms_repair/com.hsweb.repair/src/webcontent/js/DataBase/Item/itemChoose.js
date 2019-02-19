@@ -24,6 +24,11 @@ var dataTypeList = [
     {id:1,name:'本地项目'},
     {id:2,name:'标准项目'}
 ];
+var WechatShow = null;
+var carBrandIdEl;
+var carSeriesId;
+var carModelIdEl;
+var carModelIdHash = {};
 $(document).ready(function()
 {	
 	queryForm = new nui.Form("#queryForm");
@@ -35,7 +40,10 @@ $(document).ready(function()
 	tempGrid = nui.get("tempGrid");
 	itemGrid.hide();
 	dataType = nui.get("dataType");
-	
+	$("#WechatShow").css("display","none");
+	carBrandIdEl = nui.get("carBrandId");
+    carSeriesId = nui.get("carSeriesId");
+	carModelIdEl = nui.get("carModelId");
 	var parentId = "DDT20130703000063";
     tree1.setUrl(treeUrl+"?p/rootId=DDT20130703000063&token="+token);
     var data = tree1.getList();
@@ -44,13 +52,10 @@ $(document).ready(function()
 		typeHash[v.customid] = v;
 	});
 	nui.get("dataType").setData(dataTypeList);
-	 initCarBrand("carBrandId",function()
-	 {
-	 });
-
-	 dataType.on("valuechanged",function(e){
+	dataType.on("valuechanged",function(e){
 		 var r = e.selected;
 		 if(r.id == 1) {
+			$("#WechatShow").css("display","none");
 			itemGrid.hide();
 	    	rightGrid.show();
 	    	nui.get("dataType").setValue(1);
@@ -76,8 +81,15 @@ $(document).ready(function()
 	    	
 	    	nui.get("serviceTypeId").setVisible(false);
 	    	nui.get("search-code").setVisible(false);
+	    	if(WechatShow==1){
+	    		$("#WechatShow").css("display","block");
+	    		 initCarBrand("carBrandId",function()
+				 {
+					 
+				 });
+	    	}
 		 }
-		 onSearch();
+		 onSearch(); 
 	 });
 	tree1.on("nodedblclick",function(e)
 	{
@@ -89,7 +101,13 @@ $(document).ready(function()
 	});
 	itemGrid.on("rowdblclick",function(e){
 		var row = e.row;
-		selectStdItem(row);
+		if(WechatShow==1){
+		  WechatData = row;
+		  WechatData.base=2;
+		  CloseWindow("ok");
+		}else{
+			selectStdItem(row);
+		}
 	});
 	
 	//右边区域
@@ -97,7 +115,15 @@ $(document).ready(function()
 	rightGrid.setUrl(rightGridUrl);
 	onSearch();
 	rightGrid.on("rowdblclick",function(e){
-		onOk();	
+		var row = e.row;
+		if(WechatShow==1){
+		  WechatData = row;
+		  WechatData.base=1;
+		  CloseWindow("ok");
+		}else{
+			onOk();
+		}
+		
 	});
     rightGrid.on("drawcell",function(e){
 		switch (e.field){
@@ -144,7 +170,6 @@ $(document).ready(function()
 	            servieTypeHash[v.id] = v;
 	        });
 	 });
-
 	nui.get("search-name").focus();
 	document.onkeyup=function(event){
         var e=event||window.event;
@@ -264,7 +289,9 @@ function setRoleId(){
 function doSearchItem(params)
 {
     params.itemName = params.name||"";
-    params.carModelId = carModelIdLy;
+    if(WechatShow!=1){
+    	params.carModelId = carModelIdLy;
+    }
     itemGrid.load({
     	token:token,
         p:params
@@ -281,8 +308,20 @@ function getSearchParams()
 function onSearch()
 {
 	if(itemGrid.visible) {
-		var params = {
-			name: nui.get("search-name").getValue()
+		if(WechatShow){
+			var carModelId = nui.get("carModelId").value || "";
+			if(!carModelId){
+				showMsg("请选择品牌车型!","W");
+				return;
+			}
+			var params = {
+					name: nui.get("search-name").getValue(),
+					carModelId:carModelId
+				}
+		}else{
+			var params = {
+					name: nui.get("search-name").getValue()
+				}
 		}
 		doSearchItem(params);
 	}else {
@@ -343,6 +382,19 @@ var list = [];
 function getData()
 {
 	return resultData;
+}
+
+function wechatSetData(data){
+	WechatShow = data.WechatShow;
+	var params = {};
+	if(data.serviceTypeId){
+		nui.get("serviceTypeId").setValue(data.serviceTypeId);
+		params.serviceTypeId = data.serviceTypeId;
+	}
+	document.getElementById("tempGrid").style.display="none";
+	rightGrid.setWidth("99%");
+	itemGrid.setWidth("99%");
+	doSearch(params);
 }
 function setData(data)
 {
@@ -420,7 +472,24 @@ function getDataAll(){
 	var row = rightGrid.getSelecteds();
 	return row;
 }
+var WechatData = null;
 function choose() {
+	if(WechatShow==1){
+		var row = rightGrid.getSelected();
+		if(row)
+		{
+			WechatData = row;
+			if(itemGrid.visible){
+				WechatData.base = 2;
+			}else{
+				WechatData.base = 1;
+			}
+			return;
+		}
+		else{
+			showMsg("请选择一个项目", "W");
+		}
+	}
 	if(itemGrid.visible) {
 		var row = itemGrid.getSelected();
 		if(!row){
@@ -431,6 +500,10 @@ function choose() {
 	}else {
 		onOk();
 	}
+}
+
+function getWechatData(){
+	return WechatData;
 }
 function onOk()
 {
@@ -643,8 +716,20 @@ function selectclick() {
         var name = $(this).text();
         nui.get("search-name").setValue(name);
         if(itemGrid.visible) {
-    		var params = {
-    			name: nui.get("search-name").getValue()
+    		if(WechatShow){
+    			var carModelId = nui.get("carModelId").value || "";
+    			if(!carModelId){
+    				showMsg("请选择品牌车型!","W");
+    				return;
+    			}
+    			var params = {
+    					name: nui.get("search-name").getValue(),
+    					carModelId:carModelId
+    				}
+    		}else{
+    			var params = {
+    					name: nui.get("search-name").getValue(),
+    				}
     		}
     		doSearchItem(params);
     	}else {

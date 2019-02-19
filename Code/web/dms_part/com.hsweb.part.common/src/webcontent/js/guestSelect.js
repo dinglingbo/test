@@ -4,7 +4,8 @@
 var baseUrl = apiPath + partApi + "/";//window._rootUrl || "http://127.0.0.1:8080/default/";
 var gridUrl = baseUrl+"com.hsapi.part.baseDataCrud.crud.queryGuestList.biz.ext";
 var treeUrl = baseUrl+"";
-
+var billTypeIdEl=null;
+var settleTypeIdEl=null;
 var advancedSearchWin = null;
 var advancedSearchForm = null;
 var advancedSearchFormData = null;
@@ -25,6 +26,8 @@ $(document).ready(function(v)
 	grid = nui.get("datagrid1");
     grid.setUrl(gridUrl);
     nameEl = nui.get("name");
+    billTypeIdEl = nui.get("billTypeId");
+    settleTypeIdEl = nui.get("settType");
     grid.on("beforeload",function(e){
         e.data.token = token;
     });
@@ -57,6 +60,16 @@ $(document).ready(function(v)
         }else if("isInternal" == field)
         {
             e.cellHtml = e.value==1?"是":"否";
+        }else if("billTypeId"== field){
+        	if(billTypeIdHash && billTypeIdHash[e.value])
+            {
+                e.cellHtml = billTypeIdHash[e.value].name;
+            }
+        }else if("settTypeId" == field){
+        	if(settTypeIdHash && settTypeIdHash[e.value])
+            {
+                e.cellHtml = settTypeIdHash[e.value].name;
+            }
         }
         else{
             onDrawCell(e);
@@ -82,6 +95,19 @@ $(document).ready(function(v)
         settType:SETT_TYPE //结算方式
     },function(){
         //grid.load();
+    	billTypeIdList = billTypeIdEl.getData();
+    	settTypeIdList = settleTypeIdEl.getData();
+    	billTypeIdList.filter(function(v)
+        {
+            billTypeIdHash[v.customid] = v;
+            return true;
+        });
+
+        settTypeIdList.filter(function(v)
+        {
+            settTypeIdHash[v.customid] = v;
+            return true;
+        });
     });
 
     nameEl.focus();

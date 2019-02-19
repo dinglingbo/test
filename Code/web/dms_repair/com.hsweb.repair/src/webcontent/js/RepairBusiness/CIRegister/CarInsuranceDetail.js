@@ -5,7 +5,7 @@ var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var detailGrid = null;
 var insurance = [];
-var mainListUrl = baseUrl+"com.hsapi.repair.repairService.repairInterface.queryCheckMainDetailList.biz.ext";
+var mainListUrl = baseUrl+"com.hsapi.repair.repairService.insurance.QueryRpsInsuranceListById.biz.ext";
 var detailGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceDetailList.biz.ext";
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgId+"&params/isDisabled=0";
@@ -350,7 +350,7 @@ function setInitData(params){
     nui.ajax({
         url:mainListUrl,
         type:"post",
-        data:{params:pid},
+        data:{id:params.id},
         success:function(text){
             var list = text.list;
             if (list.length == 1) {

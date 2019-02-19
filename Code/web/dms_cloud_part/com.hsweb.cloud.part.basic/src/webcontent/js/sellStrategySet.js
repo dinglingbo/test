@@ -346,7 +346,7 @@ function selectSupplier(elId) {
     }
     supplier = null;
     nui.open({
-        targetWindow : window,
+        // targetWindow: window,,
         url : webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
         title : "客户资料",
         width : 980,
@@ -531,7 +531,7 @@ function importPart(){
 }
 function selectPart(callback, checkcallback) {
     nui.open({
-        targetWindow : window,
+        // targetWindow: window,,
         url : webPath+contextPath+"/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
         title : "配件选择",
         width : 930,

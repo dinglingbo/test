@@ -313,6 +313,14 @@
       <process:to type="query">prdtDeductTemp/serviceCode</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">carNo</process:from>
+      <process:to type="query">prdtDeductTemp/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">temp/serviceTypeId</process:from>
+      <process:to type="query">prdtDeductTemp/serviceTypeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">temp/saleManId</process:from>
       <process:to type="query">prdtDeductTemp/workerId</process:to>
     </process:copy>
@@ -639,8 +647,8 @@
         <process:inputVariable id="1" name="serviceCode" type="query" value="String" valueType="Primitive" pattern="reference">serviceCode</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -677,6 +685,7 @@
     <process:input description="" isArray="false" name="orgid" primitiveType="Int"/>
     <process:input description="" isArray="false" name="serviceCode" primitiveType="String"/>
     <process:input description="0综合，1检查，2洗美，3销售，4理赔，5退货，6次卡，7充值" isArray="false" name="billTypeId" primitiveType="Int"/>
+    <process:input description="" isArray="false" name="carNo" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

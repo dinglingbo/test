@@ -98,27 +98,27 @@
 
         <div class="column">
             <h3 class="incomeTitle">总收入</h3>
-            <p class="incomeStyle" style="margin-top: 20px;">345342.00</p>
+            <p id="pdata1" class="incomeStyle" style="margin-top: 20px;">345342.00</p>
         </div>
         <div class="column">
             <h3 class="incomeTitle">总毛利</h3>
-            <p class="incomeStyle"  style="margin-top: 20px;">345342.00</p>
+            <p id="pdata2" class="incomeStyle"  style="margin-top: 20px;">345342.00</p>
         </div>
         <div class="column">
             <h3 class="incomeTitle">预收</h3>
-            <p class="incomeStyle2">充值：<span>34235.00</span></p>
-            <p class="incomeStyle2">套餐：<span>34235.00</span></p>
+            <p id="pdata3" class="incomeStyle2">充值：<span>34235.00</span></p>
+            <p id="pdata4" class="incomeStyle2">套餐：<span>34235.00</span></p>
         </div>
         <div class="column">
             <h3 class="incomeTitle">客户记账</h3>
-            <p class="incomeStyle2">记账：<span>34235.00</span></p>
-            <p class="incomeStyle2">收款：<span>37635.00</span></p>
+            <p id="pdata5" class="incomeStyle2">记账：<span>34235.00</span></p>
+            <p id="pdata6" class="incomeStyle2">收款：<span>37635.00</span></p>
         </div>
         <div class="column">
             <h3 class="incomeTitle">现金银行</h3>
-            <p class="incomeStyle2">收款：<span>37635.00</span></p>
-            <p style="text-align: center;margin: 0px;color:#999999">(含保险收入：<span style="color:#999999">37635.00</span>元)</p>
-            <p class="incomeStyle2" style="margin-top: 0;">收款：<span>37635.00</span></p>
+            <p id="pdata7" class="incomeStyle2">收款：<span>37635.00</span></p>
+            <p id="pdata8" style="text-align: center;margin: 0px;color:#999999">(含保险收入：<span style="color:#999999">37635.00</span>元)</p>
+            <p id="pdata9" class="incomeStyle2" style="margin-top: 0;">收款：<span>37635.00</span></p>
         </div>
 
     </div>
@@ -150,12 +150,15 @@
 
     <script type="text/javascript">
         nui.parse();
-
-
+        var webBaseUrl = webPath + contextPath + "/";
+        var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
+        var tUrl = apiPath + repairApi + '/com.hsapi.repair.report.dataStatistics.queryReceive.biz.ext';
+        var incomeUrl = apiPath + repairApi + '/com.hsapi.repair.report.dataStatistics.queryIncomePiechart.biz.ext';
+        var businessUrl = apiPath + repairApi + '/com.hsapi.repair.report.dataStatistics.queryOutputValue.biz.ext';
         var startDateEl = nui.get('startDate');
         var endDateEl = nui.get('endDate');
         var currType = 2;
-        quickSearch(1);
+        quickSearch(4);
 
         function quickSearch(type) {
             //var params = getSearchParams();
@@ -219,9 +222,19 @@
             endDateEl.setValue(addDate(params.endDate, -1));
             var menunamedate = nui.get("menunamedate");
             menunamedate.setText(queryname);
-            //doSearch(params);
+            loadData(params);
         }
 
+        function loadData(params) {
+            nui.ajax({
+                url:tUrl,
+                type:'post',
+                data:params,
+                success:function(res){
+
+                }
+            });
+        }
 
 
         showMainA();

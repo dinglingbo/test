@@ -419,7 +419,7 @@ function choosePart(row_uid){//配件
     var selectRow = rpsItemGrid.getSelected();
     var index = 0;
     nui.open({
-		targetWindow : window,
+		// targetWindow: window,,
 		url : webPath + contextPath + "/com.hsweb.part.common.partSelectView.flow?token=" + token,
 		title : "配件管理",
 		width : 1000, 
@@ -543,7 +543,7 @@ function deletePartRow(row_uid){
 var PackageDetailUrl = baseUrl + "repairApi/com.hsapi.repair.baseData.crud.queryPackageDetail.biz.ext";
 function choosePackage(){
 	nui.open({
-		targetWindow : window,
+		// targetWindow: window,,
 		url : webPath + contextPath + "/repair/DataBase/Card/packageList.jsp?token=" + token,
 		title : "套餐项目",
 		width : 1000,
@@ -658,7 +658,7 @@ function choosePackage(){
 
 function chooseItem(){
 	nui.open({
-		targetWindow : window,
+		// targetWindow: window,,
 		url : webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemMain.flow?token=" + token,
 		title : "维修项目",
 		width : 1000,

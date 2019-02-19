@@ -3,7 +3,7 @@
  */
 var baseUrl = apiPath + cloudPartApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
 var leftGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderMainList.biz.ext";
-var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.paramcrud.getPJPackDetailById.biz.ext";
+var rightGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.paramcrud.getPjPackDetailByBillMainId.biz.ext";
 var innerSellGridUrl = baseUrl+"com.hsapi.cloud.part.invoicing.svr.queryPjSellOrderDetailList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
@@ -184,60 +184,165 @@ function confirmType(){
 function getParentStoreId(){
     return FStoreId;
 }
-function loadMainAndDetailInfo(row)
-{
-    if(row) {    
-       basicInfoForm.setData(row);
-       //bottomInfoForm.setData(row);
-       nui.get("guestId").setText(row.guestName);
-       nui.get("logisticsGuestId").setText(row.logisticsName);
-
-       var row = leftGrid.getSelected();
-       if(row.auditSign == 1) {
-//            setBtnable(false);
-
-           //document.getElementById("basicInfoForm").disabled=true;
-//           setEditable(false);
-       }else {
-//           setBtnable(true);
-
-           //document.getElementById("basicInfoForm").disabled=false;
-//           setEditable(true);
-       }
-
-       getLogistics(row.guestId,function(data) {
-            var list = data.list || [];
-            receiveManEl.setData(list);
-
-        }); 
-        
-       //序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
-       formJson = nui.encode(basicInfoForm.getData());
-
-       //加载销售订单明细表信息
-       var mainId = row.id;
-        if(!mainId){
-            mainId = -1;
-        }
-       loadRightGridData(mainId);
-   }else {
-        //form.reset();
-        //grid_details.clearRows();
-   }
-}
+//function loadMainAndDetailInfo(row)
+//{
+//    if(row) {    
+//       basicInfoForm.setData(row);
+//       //bottomInfoForm.setData(row);
+//       nui.get("guestId").setText(row.guestName);
+//       nui.get("logisticsGuestId").setText(row.logisticsName);
+//
+//       var row = leftGrid.getSelected();
+//       if(row.auditSign == 1) {
+////            setBtnable(false);
+//
+//           //document.getElementById("basicInfoForm").disabled=true;
+////           setEditable(false);
+//       }else {
+////           setBtnable(true);
+//
+//           //document.getElementById("basicInfoForm").disabled=false;
+////           setEditable(true);
+//       }
+//
+//       getLogistics(row.guestId,function(data) {
+//            var list = data.list || [];
+//            receiveManEl.setData(list);
+//
+//        }); 
+//        
+//       //序列化入库主表信息，保存时判断主表信息有没有修改，没有修改则不需要保存
+//       formJson = nui.encode(basicInfoForm.getData());
+//
+//       //加载销售订单明细表信息
+//       var mainId = row.id;
+//        if(!mainId){
+//            mainId = -1;
+//        }
+//       loadRightGridData(mainId);
+//   }else {
+//        //form.reset();
+//        //grid_details.clearRows();
+//   }
+//}
 function onLeftGridSelectionChanged(){    
-   var row = leftGrid.getSelected(); 
+   var rows = leftGrid.getSelecteds(); 
+   if(rows.length<=0)return;
+   var billStatusId=rows[0].billStatusId;
+   var guestId=rows[0].guestId;
+   var billMainId=rows[0].id;
+   var guestShortName =rows[0].guestShortName;
    
-   loadMainAndDetailInfo(row);
+   
+   var existGuestRows= rows.filter(function(v){
+	   if(v.guestId !=guestId){
+		   return true;
+		  
+	   }
+   });
+   
+   var exitbillStatusId = rows.filter(function(v){
+	   if(v.billStatusId !=billStatusId){
+		   return true;		  
+	   }
+   });
+  if(existGuestRows.length>0){
+	  showMsg("客户不一致,不能一起勾选","W");
+	  leftGrid.deselects(existGuestRows); 
+	  return;
+  }
+  
+   if(billStatusId==2){
+	   if(exitbillStatusId.length>0){
+			  showMsg("销售单状态不一致，不能一起勾选","W");
+			  leftGrid.deselects(exitbillStatusId); 
+			  return;
+		  }
+	   basicInfoForm.setData({});
+	   if(rows.length==1){ 
+		   nui.get("createDate").setValue(new Date());
+		   nui.get("guestId").setText(guestShortName);
+		   nui.get("guestId").setValue(guestId);
+		   setGuestLogistics(guestId,false);
+	   }
+	   rightGrid.clearRows();
+	   addDetail(rows);
+   }
+   else{
+	   if(billStatusId==3){
+		   loadRightGridData(billMainId);
+		   var addRows = rows.filter(function(v){
+			   if(v.billStatusId ==2){
+				   return true;		  
+			   }
+			   
+		   });
+		   if(addRows){ 
+			   addDetail(addRows);
+		   }
+	   }else{
+		   if(exitbillStatusId.length>0){
+				  showMsg("销售单状态不一致，不能一起勾选","W");
+				  leftGrid.deselects(exitbillStatusId); 
+				  return;
+			  }
+		   loadRightGridData(billMainId);
+	   }
+	   
+   }
+//   var serviceId=rows[i].serviceId;
+   //已出库
+//   if(rows[i].billStatusId==2){
+//		   var check=checkBillExists(serviceId);
+//		   //存在时终止
+//		   if(check ==true)return;
+	    
+//   }	   
+
+//   loadMainAndDetailInfo(row);
 } 
-function loadRightGridData(mainId)
+function loadRightGridData(billMainId)
 {
     editPartHash={};
     var params = {};
-    params.mainId = mainId;
+    params.billMainId = billMainId;
     rightGrid.load({
         params:params,
         token:token
+    },function(){
+    	var data=rightGrid.getData();
+    	var mainId=data[0].mainId;
+    	loadMain(mainId);
+    });
+}
+var mainUrl=baseUrl+"com.hsapi.cloud.part.invoicing.paramcrud.queryPJPackList.biz.ext";
+function loadMain(mainId){
+	var params={id: mainId,token:token};
+	nui.ajax({
+        url : mainUrl,
+        type : "post",
+        data :{params:params},
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data.list || {};
+            var row=data[0];
+            if(row){
+            	basicInfoForm.setData(row);
+                nui.get("guestId").setText(row.guestName);
+                nui.get("logisticsGuestId").setText(row.logisticsName);
+                if(row.auditSign==1){
+                	setEditable(false);
+                }else{
+                	setEditable(true);
+                }
+
+            }
+            
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
     });
 }
 function onLeftGridDrawCell(e)
@@ -575,8 +680,8 @@ function audit()
 
     var row = leftGrid.getSelected();
     if(row){
-        if(row.auditSign == 1) {
-            showMsg("此单已审核!","W");
+        if(row.billStatusId != 3) {
+            showMsg("已打包状态才可打包!","W");
             return;
         } 
     }else{
@@ -616,14 +721,14 @@ function audit()
             nui.unmask(document.body);
             data = data || {};
             if (data.errCode == "S") {
-                showMsg("审核成功!","S");
-                var newRow = {auditSign: 1};
-                leftGrid.updateRow(row, newRow);
+                showMsg("发货成功!","S");
+//                var newRow = {auditSign: 1};
+//                leftGrid.updateRow(row, newRow);
 
                 setBtnable(false);
                 
             } else {
-                showMsg(data.errMsg || "审核失败!","W");
+                showMsg(data.errMsg || "发货失败!","W");
             }
         },
         error : function(jqXHR, textStatus, errorThrown) {
@@ -815,6 +920,7 @@ function getMainData()
 {
     var data = basicInfoForm.getData();
     //汇总明细数据到主表
+    data.guestName=nui.get("guestId").getText();
 
     if(data.operateDate) {
         data.operateDate = format(data.operateDate, 'yyyy-MM-dd HH:mm:ss') + '.0';//用于后台判断数据是否在其他地方已修改
@@ -851,8 +957,8 @@ function save() {
 
     var row = leftGrid.getSelected();
     if(row){
-        if(row.auditSign == 1) {
-            showMsg("此单已审核!","W");
+        if(row.billStatusId != 2 &&  row.billStatusId!=3) {
+            showMsg("已出库、已打包状态才可打包!","W");
             return;
         } 
     }else{
@@ -891,12 +997,13 @@ function save() {
                 showMsg("保存成功!","S");
                 var list = data.list;
                 if(list && list.length>0) {
-                    var leftRow = list[0];
-                    var row = leftGrid.getSelected();
-                    leftGrid.updateRow(row,leftRow);
-
-                    //保存成功后重新加载数据
-                    loadMainAndDetailInfo(leftRow);
+                	leftGrid.reload();
+//                    var leftRow = list[0];
+//                    var row = leftGrid.getSelected();
+//                    leftGrid.updateRow(row,leftRow);
+//
+//                    //保存成功后重新加载数据
+//                    loadMainAndDetailInfo(leftRow);
 
                     
                 }
@@ -1079,8 +1186,7 @@ function selectPart(guestId,callback,checkcallback)
 }
 function addDetail(rows)
 {
-    //var iframe = this.getIFrameEl();
-    //var data = iframe.contentWindow.getData();
+	if(!rows)return;
     for(var i=0; i<rows.length; i++){
         var row = rows[i];
         var newRow = {
@@ -1108,19 +1214,19 @@ function checkBillExists(serviceId){
     
     if(row) 
     {
-        return "业务单"+row.billServiceId+"在发货列表中已经存在!";
+        showMsg( "业务单"+row.billServiceId+"在发货列表中已经存在!","W");
+        return true;
     }
     
-    return null;
     
 }
 function deleteBill(){
     var row = leftGrid.getSelected();
-    if(row){
-        if(row.auditSign == 1) {
-            return;
-        } 
-    }
+//    if(row){
+//        if(row.auditSign == 1) {
+//            return;
+//        } 
+//    }
 
     var rows = rightGrid.getSelecteds();
     rightGrid.removeRows(rows);
@@ -1153,11 +1259,21 @@ function onDrawCell(e)
 }
 function onLeftGridBeforeDeselect(e)
 {
-    var row = leftGrid.getSelected(); 
-    if(row.serviceId == '新发货单'){
-
-        leftGrid.removeRow(row);
+	basicInfoForm.setData({});
+    var rows = leftGrid.getSelecteds();
+    if(rows.length>0){
+    	rightGrid.clearRows();
     }
+    var serviceId=rows[0].serviceId;
+    var deleteRow = rightGrid.findRow(function(row){
+        if(row.billServiceId == serviceId) {
+            return true;
+        }
+        return false;
+    });
+
+    rightGrid.removeRow(deleteRow);
+
 }
 var getLogisticsUrl = apiPath + cloudPartApi + "/com.hsapi.cloud.part.baseDataCrud.crud.getLogisticsByGuestId.biz.ext";
 function getLogistics(guestId,callback) {

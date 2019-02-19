@@ -229,7 +229,7 @@ function loadCheckDetail(mainId){
 }
 function addCheckType(){
     nui.open({
-		targetWindow : window,
+		// targetWindow: window,,
 		url : webPath+contextPath+"/com.hsweb.repair.DataBase.checkTypeSet.flow?token="+token,
 		title : "检查项目类型设置",
 		width : 280,
@@ -246,7 +246,7 @@ function addCheckType(){
 }
 function addOrEdit(row){
     nui.open({
-		targetWindow : window,
+		// targetWindow: window,,
 		url : webPath+contextPath+"/com.hsweb.repair.DataBase.checkDetailSet.flow?token="+token,
 		title : "检查项目设置",
 		width : 450,

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>打包发货</title>
-<script src="<%=webPath + contextPath%>/purchase/js/packOut/pack.js?v=1.0.26"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/packOut/pack.js?v=1.0.109"></script>
 <style type="text/css">
 .title {
   width: 70px;
@@ -104,6 +104,7 @@
                      showPager="true"
                      pageSize="50"
                      multiSelect="true"
+                     allowUnselect="true"
                      sizeList=[20,50,100,200]
                      selectOnLoad="true"
                      showModified="false"
@@ -115,7 +116,7 @@
                      url="">  
                     <div property="columns">
                       	<div type="indexcolumn">序号</div> 
-                      	<div type="checkcolumn" ></div>
+                      	<div type="checkcolumn"  header="#"></div>
 						<div field="auditSign" width="55" visible="false" headerAlign="center" header="状态"></div>
                         <div field="billStatusId" width="55" headerAlign="center" header="状态"></div>
                         <div field="guestFullName" width="140" headerAlign="center" header="客户"></div>
@@ -216,9 +217,9 @@
                                           <input name="createDate"
                                                  id="createDate"
                                                  width="100%"
-                                                 enabled="false"
+                                                 enabled="true"
                                                  showTime="true"
-                                                 class="nui-datepicker" enabled="false" format="yyyy-MM-dd HH:mm"/>
+                                                 class="nui-datepicker" enabled="true" format="yyyy-MM-dd HH:mm"/>
                                       </td>
                                   </tr>
                                   <tr>
@@ -327,7 +328,7 @@
                            url="">
                           <div property="columns">
                               <div type="indexcolumn">序号</div>
-                              <div type="checkcolumn" width="20"></div>
+                              <div type="checkcolumn" width="20" ></div>
                               <div type="expandcolumn" width="20" >#</div>
                               <div field="orderMan" width="60" headerAlign="center" header="业务员"></div><!-- 
                               <div field="billAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div> -->

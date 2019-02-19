@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>服务顾问提成明细表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/mtAdvisorCommissionDetail.js?v=1.0.6"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/mtAdvisorCommissionDetail.js?v=1.0.7"></script>
 
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
@@ -59,13 +59,13 @@ pageEncoding="UTF-8" session="false" %>
                                    class="nui-combobox width1"
                                    textField="empName"
                                    valueField="empId"
-                                   emptyText="技师"
+                                   emptyText="服务顾问"
                                    url=""
                                    allowInput="true"
                                    showNullItem="false"
                                    width="100px"
                                    valueFromSelect="true"
-                                   nullItemText="技师" onenter="onSearch()" onvaluechanged="onSearch()"/>
+                                   nullItemText="服务顾问" onenter="onSearch()" onvaluechanged="onSearch()"/>
 
                    			  <!-- <input class="nui-combobox" id="billTypeId" emptyText="综合开单" name="billTypeId" data="[{billTypeId:5,text:'全部工单'},{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'}]"
                           width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="5"/> -->
@@ -92,7 +92,7 @@ pageEncoding="UTF-8" session="false" %>
 		                    <div property="columns" >   
 					          <div field="serviceCode" name="serviceCode" headeralign="center" width="170" align="center" summaryType="count" allowsort="true" >工单号</div>
 					          <div field="billTypeId" name="billTypeId" headeralign="center" width="80" align="center" allowsort="true" >工单类型</div>
-					          <!-- <div field="serviceTypeId" name="serviceTypeId" headeralign="center" width="80" align="center" allowsort="true" >业务类型</div> -->
+					          <div field="serviceTypeId" name="serviceTypeId" headeralign="center" width="80" align="center" allowsort="true" >业务类型</div>
 					          <div field="carNo" name="carNo" headeralign="center" width="80" align="center" allowsort="true" vistable="false" >车牌号</div>
 					          <div field="recordDate" name="recordDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd" allowsort="true" >结算日期</div>
 							</div>

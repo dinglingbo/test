@@ -92,7 +92,7 @@ pageEncoding="UTF-8" session="false" %>
 		                    <div property="columns" >   
 					          <div field="serviceCode" name="serviceCode" headeralign="center" width="170" align="center" summaryType="count" allowsort="true" >工单号</div>
 					          <div field="billTypeId" name="billTypeId" headeralign="center" width="80" align="center" allowsort="true" >工单类型</div>
-					          <!-- <div field="serviceTypeId" name="serviceTypeId" headeralign="center" width="80" align="center" allowsort="true" >业务类型</div> -->
+					          <div field="serviceTypeId" name="serviceTypeId" headeralign="center" width="80" align="center" allowsort="true" >业务类型</div>
 					          <div field="carNo" name="carNo" headeralign="center" width="80" align="center" allowsort="true" vistable="false" >车牌号</div>
 					          <div field="recordDate" name="recordDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd" allowsort="true" >结算日期</div>
 							</div>

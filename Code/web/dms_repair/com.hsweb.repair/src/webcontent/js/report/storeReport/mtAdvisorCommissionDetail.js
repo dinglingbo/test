@@ -39,9 +39,9 @@ $(document).ready(function (v)
      });
      
      grid.on("drawcell", function (e) {
-         /*if (e.field == "serviceTypeId") {
+         if (e.field == "serviceTypeId") {
              e.cellHtml = servieTypeHash[e.value].name;
-         }else */if (e.field == "billTypeId") {
+         }else if (e.field == "billTypeId") {
              e.cellHtml = billTypeIdList[e.value].name;
      }
          document.onkeyup = function (event) {
@@ -100,13 +100,13 @@ function onSearch()
 }
 function doSearch() {
     var gsparams = getSearchParam();
-    if(gsparams.billTypeIds && gsparams.billTypeIds==5){
+    /*if(gsparams.billTypeIds && gsparams.billTypeIds==5){
     	gsparams.billTypeIds = "0,2,4";
-    }
+    }*/
     gsparams.isSettle = 1;
    // gsparams.billTypeId = 0;
     gsparams.isDisabled = 0;
-
+    gsparams.deductMode = 1;
     grid.load({
         token:token,
         params: gsparams
@@ -194,11 +194,11 @@ function getSearchParam() {
     params.eOutDate = addDate(endDateEl.getValue(),1);  
     params.mtAuditorId = mtAdvisorIdEl.getValue();
 
-    if((nui.get("billTypeId").getValue())==5){
+   /* if((nui.get("billTypeId").getValue())==5){
     	
     }else{
         params.billTypeIds = nui.get("billTypeId").getValue();
-    }
+    }*/
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){

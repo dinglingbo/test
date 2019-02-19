@@ -890,6 +890,14 @@
       <process:to type="query">prdtDeductTemp/serviceCode</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">main/carNo</process:from>
+      <process:to type="query">prdtDeductTemp/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">prdtDeductTemp/serviceTypeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">t</process:from>
       <process:to type="query">prdtDeductTemp/workerId</process:to>
     </process:copy>
@@ -1035,6 +1043,14 @@
       <process:to type="query">prdtDeductTemp/serviceCode</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">main/carNo</process:from>
+      <process:to type="query">prdtDeductTemp/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">prdtDeductTemp/serviceTypeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">t</process:from>
       <process:to type="query">prdtDeductTemp/workerId</process:to>
     </process:copy>
@@ -1178,6 +1194,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">main/serviceCode</process:from>
       <process:to type="query">prdtDeductTemp/serviceCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/carNo</process:from>
+      <process:to type="query">prdtDeductTemp/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">prdtDeductTemp/serviceTypeId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">t</process:from>
@@ -1339,8 +1363,8 @@
         <process:inputVariable id="1" name="serviceCode" type="query" value="String" valueType="Primitive" pattern="reference">main/serviceCode</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

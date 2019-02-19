@@ -101,7 +101,7 @@
             <p class="incomeStyle" style="margin-top: 20px;">345342.00</p>
         </div>
         <div class="column">
-            <h3 class="incomeTitle">总利润</h3>
+            <h3 class="incomeTitle">总毛利</h3>
             <p class="incomeStyle"  style="margin-top: 20px;">345342.00</p>
         </div>
         <div class="column">

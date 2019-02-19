@@ -129,6 +129,7 @@
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign6</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
     <location x="300" y="150"/>
@@ -259,7 +260,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
-      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">deduct</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">prdtDeductTemp</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables/>
   </nodes>
@@ -314,6 +315,7 @@
     <process:variable description="产品提成明细" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsDeductPrdtDetail" name="prdtDeductTemp"/>
     <process:variable description="产品提成明细" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rps.RpsDeductPrdtDetail" name="prdtDeductList"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="d" primitiveType="Date"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsDeductDetail" name="deduct"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsStoredRecord" name="stored"/>

@@ -103,6 +103,7 @@ $(document).ready(function()
 		var row = e.row;
 		if(WechatShow==1){
 		  WechatData = row;
+		  WechatData.base=2;
 		  CloseWindow("ok");
 		}else{
 			selectStdItem(row);
@@ -117,6 +118,7 @@ $(document).ready(function()
 		var row = e.row;
 		if(WechatShow==1){
 		  WechatData = row;
+		  WechatData.base=1;
 		  CloseWindow("ok");
 		}else{
 			onOk();
@@ -381,14 +383,21 @@ function getData()
 {
 	return resultData;
 }
+
+function wechatSetData(data){
+	WechatShow = data.WechatShow;
+	var params = {};
+	if(data.serviceTypeId){
+		nui.get("serviceTypeId").setValue(data.serviceTypeId);
+		params.serviceTypeId = data.serviceTypeId;
+	}
+	document.getElementById("tempGrid").style.display="none";
+	rightGrid.setWidth("99%");
+	itemGrid.setWidth("99%");
+	doSearch(params);
+}
 function setData(data)
 {
-	if(data.WechatShow && data.WechatShow==1){
-		WechatShow = 1;
-		if(data.serviceTypeId){
-			nui.get("serviceTypeId").setValue(data.serviceTypeId);
-		}
-	}
 	list = data.list||[];
 
 	isOpenWin = 1;
@@ -470,6 +479,11 @@ function choose() {
 		if(row)
 		{
 			WechatData = row;
+			if(itemGrid.visible){
+				WechatData.base = 2;
+			}else{
+				WechatData.base = 1;
+			}
 			return;
 		}
 		else{
@@ -725,4 +739,3 @@ function selectclick() {
         
     });
 }
-WechatData

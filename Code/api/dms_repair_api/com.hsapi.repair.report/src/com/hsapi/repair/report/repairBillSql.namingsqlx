@@ -380,7 +380,7 @@
 	</select>
 	
 			<!--员工提成汇总表-->
-	<select id="queryTechnicianSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	<select id="queryTechnicianSummary2" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT  
     <isEqual  prepend=""  property="groupByType"   compareValue="0">
         DATE_FORMAT(b.out_date,'%Y-%m-%d')  as groupName,
@@ -432,7 +432,7 @@
 	
 	
 	
-	<select id="queryTechnicianSummaryPrdt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	<select id="queryTechnicianSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT  
     <isEqual  prepend=""  property="groupByType"   compareValue="0">
         DATE_FORMAT(b.out_date,'%Y-%m-%d')  as groupName,

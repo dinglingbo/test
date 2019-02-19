@@ -12,12 +12,15 @@
 <head>
 <title>维修项目</title>
 
-<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.32" type="text/javascript"></script>
+<script src="<%= request.getContextPath() %>/repair/js/DataBase/Item/itemChoose.js?v=1.0.39" type="text/javascript"></script>
 <style type="text/css">
     html, body{
         margin:0px;padding:0px;border:0px;width:100%;height:100%;overflow:hidden;
     }
-    
+    .form_label {
+	width: 80px;
+	text-align:right;
+   }
     .addyytime a.ztedit{ height:18px; display:inline-block; background:url(../images/sjde.png) 40px -1px no-repeat; padding-right:22px; color:#888; text-decoration:none;}
     .addyytime a.hui{padding-left: 5px;padding-right: 5px;height:;line-height:24px;border:1px #a6e0f5 solid;display:block;float:left;text-decoration:none;
         text-align:center;color:#00b4f6;border-radius:4px;margin:0 5px 5px 0;}
@@ -92,8 +95,49 @@
 				<input class="nui-textbox" id="state" visible="false"/>
 				<div class="form" id="queryForm">
 					<table class="table" id="table1">
-						<tr>
+					    <tr id="WechatShow">
+					        <td style="width:40px">
+						    <label >品牌：</label>
+							</td>
 							<td >
+								<input class="nui-combobox" name="carBrandId" id="carBrandId"
+										valueField="id"
+										textField="nameCn"
+										onValuechanged="initCarSeries('carSeriesId', e.value)"
+										width="100%" popupHeight="100%"
+										allowInput="true"
+										valueFromSelect="true"
+										/>
+							</td>
+							
+						  <td style="width:40px">
+								<label>车系：</label>
+							</td>
+							<td>
+								<input class="nui-combobox" name="carSeriesId" id="carSeriesId"
+										valueField="carSeriesId"
+										textField="carSeriesName"
+										onValuechanged="initCarModel('carModelId', '', e.value)"
+										width="100%" popupHeight="100%"
+										allowInput="true"
+										valueFromSelect="true"
+										/>
+							</td>
+						   <td style="width:65px">
+								<label>品牌车型：</label>
+							</td>
+							<td colspan="1">
+								<input class="nui-combobox" name="carModelId" id="carModelId"
+										valueField="carModelId"
+										textField="carModel"
+										width="100%" popupHeight="100%"
+										allowInput="true"
+										valueFromSelect="true"
+										/>
+							</td>
+							</tr>
+						<tr>
+							<td colspan="6">
 								<input name="dataType"
 										id="dataType"
 										class="nui-combobox"
@@ -117,7 +161,7 @@
 										nullItemText="请选择..."
 										width="80px"
 										/>
-								<input id="carBrandId"
+								<!-- <input id="carBrandId"
 										name="carBrandId"
 										class="nui-combobox width1"
 										visible="false"
@@ -127,7 +171,7 @@
 										url=""
 										allowInput="false"
 										showNullItem="false"
-										nullItemText="请选择..."/>
+										nullItemText="请选择..."/> -->
 								<label style="font-family: Verdana;font-size: 12px;">项目名称：</label>
 								<input class="nui-textbox" width="80px" id="search-name" name="name" onenter="onSearch()" />
 								<label style="font-family: Verdana;font-size: 12px;" id="itemCodeLabel">项目编码：</label>

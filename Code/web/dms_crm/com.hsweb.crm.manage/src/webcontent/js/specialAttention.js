@@ -31,7 +31,7 @@ $(document).ready(function(v){
          }
      });
 	compulsoryInsurance.on("drawcell", function (e) {
-        if(e.field == "readSign"){
+        if(e.field == "insureStatus"){
             if(e.value == 0){
                 e.cellHtml = "未关怀";
             }else{
@@ -49,7 +49,7 @@ $(document).ready(function(v){
          }
      });
 	car.on("drawcell", function (e) {
-        if(e.field == "readSign"){
+        if(e.field == "veriStatus"){
             if(e.value == 0){
                 e.cellHtml = "未关怀";
             }else{

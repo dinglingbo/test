@@ -74,7 +74,7 @@ function add() {
 		url : sysnUrl,
 		title : "新增计次卡",
 		width : 890,
-		height : 580,
+		height : 600,
 		onload : function() {
 			var iframe = this.getIFrameEl();
 			var data = {
@@ -103,7 +103,7 @@ function edit() {
 			url : sysnUrl,
 			title : "修改计次卡",
 			width : 900,
-			height : 580,
+			height : 600,
 			onload : function() {
 				var iframe = this.getIFrameEl();
 				var data = row;

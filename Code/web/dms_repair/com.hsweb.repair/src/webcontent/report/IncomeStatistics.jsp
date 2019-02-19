@@ -35,7 +35,8 @@
         }
         .incomeStyle2{
             margin: 10px 0px 0px 0px;
-            text-align: center;
+            text-align: left;
+    		margin-left: 50px;
             color: #f9a52e ;
             font-size:18px;
         }
@@ -252,7 +253,7 @@
                 data:params,
                 success:function(res){
                     if(res.errCode == "S"){
-                        showMainB(rs.dim,rs.data);
+                        showMainA(res.rs.dim,res.rs.data);
                     }
                 }
             });
@@ -262,7 +263,7 @@
                 data:params,
                 success:function(res){
                     if(res.errCode == "S"){
-                        showMainB(rs.dim,rs.data);
+                        showMainB(res.rs.dim,res.rs.data);
                     }
                 }
             });

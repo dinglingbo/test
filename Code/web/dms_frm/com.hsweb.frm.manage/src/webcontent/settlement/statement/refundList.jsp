@@ -11,7 +11,7 @@
 <head>
 <title>储值卡退款</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/refundList.js?v=1.2.6"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/refundList.js?v=1.2.7"></script>
     <style type="text/css">
         body { 
             margin: 0;

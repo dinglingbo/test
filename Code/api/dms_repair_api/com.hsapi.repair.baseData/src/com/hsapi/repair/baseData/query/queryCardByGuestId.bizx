@@ -145,6 +145,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="guestId" primitiveType="Int"/>
+    <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsStoredRecord" name="data"/>

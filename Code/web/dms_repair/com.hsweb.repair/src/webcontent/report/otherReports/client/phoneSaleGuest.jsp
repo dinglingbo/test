@@ -66,6 +66,10 @@
                     <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" />
                     至
                     <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
+                    <input id="carModel" name="carModel" class="nui-textbox" style="width: 100px;" emptyText="品牌">
+                    <input id="visitId" name="visitId" class="nui-combobox" style="width: 100px;" emptyText="回访员"
+                    textField="empName" valueField="empId" emptyText="请选择..."
+                    showNullItem="true"nullItemText="请选择...">
                     <a class="nui-button" iconcls="" name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <li class="separator"></li>
                     <a class="nui-button" plain="false" onclick="load(0)" id="" style="margin-right:5px;"><span class="fa fa-bars fa-lg"></span>&nbsp;按品牌分组</a>
@@ -123,6 +127,9 @@
         var startDateEl = nui.get("startDate");
         var endDateEl = nui.get("endDate");
         quickSearch(3);
+
+
+        initMember("visitId",function(){});
 
         function quickSearch(type) {
             var params = {};
@@ -193,11 +200,15 @@
 
         function updateGridColoumn(e){
             var column = grid1.getColumn("groupName");
+            $("#carModel").hide();
+            $("#visitId").hide();
             if(e == 0){
                 grid1.updateColumn(column,{header:"品牌"});
+                $("#carModel").show();
             }
             if(e == 1){
                 grid1.updateColumn(column,{header:"营销员"});
+                $("#visitId").show();
             }
         }
 
@@ -215,7 +226,5 @@
         }
 
     </script>
-
 </body>
-
 </html>

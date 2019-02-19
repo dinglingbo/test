@@ -734,7 +734,7 @@ function checkFromBillPackage(data){
 
 function doSelectPackage(dock, dodelck, docck, callback) {
 	nui.open({
-		targetWindow : window,
+		// targetWindow: window,,
 		url : webPath + contextPath + "/repair/DataBase/Card/packageList.jsp?token=" + token,
 		title : "套餐项目",
 		width : 1000,
@@ -859,7 +859,7 @@ function checkFromBillItem(data){
 
 function doSelectItem(dock, dodelck, docck, callback) {
 	nui.open({
-		targetWindow : window,
+		// targetWindow: window,,
 		url : webPath + contextPath + "/com.hsweb.repair.DataBase.RepairItemMain.flow?token=" + token,
 		title : "维修项目",
 		width : 1000,

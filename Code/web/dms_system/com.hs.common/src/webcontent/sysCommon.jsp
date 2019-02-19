@@ -46,7 +46,7 @@
 	response.addCookie(cookie);
     String currentLanguage = request.getLocale().getLanguage().toLowerCase();
 %>
-<meta http-equiv="refresh"content="7200"/>
+<meta http-equiv="refresh"content="13680"/>
 <script src="<%=contextPath%>/common/nui/nui.js?v=1.0.0" type="text/javascript"></script> 
 
 <script src="<%=contextPath%>/common/nui/locale/zh_CN.js" type="text/javascript"></script>
@@ -326,10 +326,13 @@
 		if(window.parent!=window && ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
 			window.parent.backToLogin();
 		}
-		if(window.location.pathname.substr(-20) =="loginCloud/index.jsp"){
-			showMsg("登录超时，正在跳转！", "E");
-            window.top.location.href = sysDomain +"/coframe/auth/loginCloud/login.jsp";			
-		}	
+//	汽配
+// 		else{
+// 		//	debugger;
+// 			showMsg("登录超时，正在跳转！", "E");
+//             window.top.location.href = sysDomain + "/coframe/auth/loginCloud/login.jsp";			
+// 		}
+		//汽修 
 		else{
 		//	debugger;
 			showMsg("登录超时，正在跳转！", "E");

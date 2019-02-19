@@ -145,7 +145,7 @@ function addSuplier() {
 	managerDutyList = nui.get("managerDuty").getData();
 	nui
 			.open({
-				targetWindow : window,
+				// targetWindow: window,,
 				url : webPath + contextPath
 						+ "/com.hsweb.cloud.part.basic.supplierDetail.flow?token="
 						+ token,
@@ -187,7 +187,7 @@ function editSuplier() {
 		settTypeIdList = nui.get("settType").getData();
 		managerDutyList = nui.get("managerDuty").getData();
 		nui.open({
-//			targetWindow : window,
+//			// targetWindow: window,,
 			url : webPath + contextPath
 					+ "/com.hsweb.cloud.part.basic.supplierDetail.flow?token="
 					+ token,
@@ -237,7 +237,7 @@ function importGuest() {
 
 	nui
 			.open({
-				targetWindow : window,
+				// targetWindow: window,,
 				url : webPath + contextPath
 						+ "/com.hsweb.cloud.part.basic.importSupplier.flow?token="
 						+ token,

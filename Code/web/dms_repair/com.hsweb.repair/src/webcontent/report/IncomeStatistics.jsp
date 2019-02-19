@@ -98,27 +98,27 @@
 
         <div class="column">
             <h3 class="incomeTitle">总收入</h3>
-            <p id="pdata1" class="incomeStyle" style="margin-top: 20px;">345342.00</p>
+            <p id="pdata1" class="incomeStyle" style="margin-top: 20px;">0.00</p>
         </div>
         <div class="column">
             <h3 class="incomeTitle">总毛利</h3>
-            <p id="pdata2" class="incomeStyle"  style="margin-top: 20px;">345342.00</p>
+            <p id="pdata2" class="incomeStyle"  style="margin-top: 20px;">0.00</p>
         </div>
         <div class="column">
             <h3 class="incomeTitle">预收</h3>
-            <p id="pdata3" class="incomeStyle2">充值：<span>34235.00</span></p>
-            <p id="pdata4" class="incomeStyle2">套餐：<span>34235.00</span></p>
+            <p class="incomeStyle2">充值：<span id="pdata3">0.00</span></p>
+            <p class="incomeStyle2">套餐：<span id="pdata4">0.00</span></p>
         </div>
         <div class="column">
             <h3 class="incomeTitle">客户记账</h3>
-            <p id="pdata5" class="incomeStyle2">记账：<span>34235.00</span></p>
-            <p id="pdata6" class="incomeStyle2">收款：<span>37635.00</span></p>
+            <p class="incomeStyle2">记账：<span id="pdata5">0.00</span></p>
+            <p class="incomeStyle2">收款：<span id="pdata6">0.00</span></p>
         </div>
         <div class="column">
             <h3 class="incomeTitle">现金银行</h3>
-            <p id="pdata7" class="incomeStyle2">收款：<span>37635.00</span></p>
-            <p id="pdata8" style="text-align: center;margin: 0px;color:#999999">(含保险收入：<span style="color:#999999">37635.00</span>元)</p>
-            <p id="pdata9" class="incomeStyle2" style="margin-top: 0;">收款：<span>37635.00</span></p>
+            <p class="incomeStyle2">收款：<span id="pdata7">0.00</span></p>
+            <!-- <p style="text-align: center;margin: 0px;color:#999999">(含保险收入：<span id="pdata8" style="color:#999999">37635.00</span>元)</p> -->
+            <p class="incomeStyle2">付款：<span id="pdata9">0.00</span></p>
         </div>
 
     </div>
@@ -225,22 +225,50 @@
             loadData(params);
         }
 
+
         function loadData(params) {
-            nui.ajax({
+            nui.ajax({//加载顶部数据
                 url:tUrl,
                 type:'post',
                 data:params,
                 success:function(res){
-
+                    if(res.errCode == "S"){
+                        var data = res.data;
+                        document.getElementById("pdata1").innerHTML = data.netinAmt||0;
+                        document.getElementById("pdata2").innerHTML = data.grossProfit||0;
+                        document.getElementById("pdata3").innerHTML = data.storedAmt||0;
+                        document.getElementById("pdata4").innerHTML = data.cardTimesAmt||0;
+                        document.getElementById("pdata5").innerHTML = data.unSettleAmt||0;
+                        document.getElementById("pdata6").innerHTML = data.settleAmt||0;
+                        document.getElementById("pdata7").innerHTML = data.rAmt||0;
+                        // document.getElementById("pdata8").innerHTML = 0;
+                        document.getElementById("pdata9").innerHTML = data.pAmt||0;
+                    }
+                }
+            });
+            nui.ajax({//加载左边Echat数据  收入统计
+                url:incomeUrl,
+                type:'post',
+                data:params,
+                success:function(res){
+                    if(res.errCode == "S"){
+                        showMainB(rs.dim,rs.data);
+                    }
+                }
+            });
+            nui.ajax({//加载右边Echat数据  业务产值占比
+                url:businessUrl,
+                type:'post',
+                data:params,
+                success:function(res){
+                    if(res.errCode == "S"){
+                        showMainB(rs.dim,rs.data);
+                    }
                 }
             });
         }
 
-
-        showMainA();
-        showMainB();
-
-        function showMainA() {
+        function showMainA(dim,tdata) {
 
             var option = {
                 title: {
@@ -255,22 +283,14 @@
                 legend: {
                     orient: 'vertical',
                     left: 'left',
-                    data: ['工单销售', '其他收入']
+                    data: dim
                 },
                 series: [{
                     name: '收入类型',
                     type: 'pie',
                     radius: '55%',
                     center: ['50%', '60%'],
-                    data: [{
-                            value: 335,
-                            name: '工单销售'
-                        },
-                        {
-                            value: 310,
-                            name: '其他收入'
-                        }
-                    ],
+                    data: tdata,
                     itemStyle: {
                         emphasis: {
                             shadowBlur: 10,
@@ -291,7 +311,8 @@
             };
         }
 
-        function showMainB() {
+        function showMainB(dim,tdata) {
+
 
             var option = {
                 title: {
@@ -305,38 +326,14 @@
                 legend: {
                     orient: 'vertical',
                     left: 'left',
-                    data: ['洗车', '美容', '保养', '机电', '轮胎', '其他']
+                    data: dim
                 },
                 series: [{
                     name: '业务类型',
                     type: 'pie',
                     radius: '55%',
                     center: ['50%', '60%'],
-                    data: [{
-                            value: 335,
-                            name: '洗车'
-                        },
-                        {
-                            value: 310,
-                            name: '美容'
-                        },
-                        {
-                            value: 234,
-                            name: '保养'
-                        },
-                        {
-                            value: 135,
-                            name: '机电'
-                        },
-                        {
-                            value: 218,
-                            name: '轮胎'
-                        },
-                        {
-                            value: 1548,
-                            name: '其他'
-                        }
-                    ],
+                    data: tdata,
                     itemStyle: {
                         emphasis: {
                             shadowBlur: 10,

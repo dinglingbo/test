@@ -71,7 +71,7 @@ var supplier = null;
 function selectSupplier(elId) {
     supplier = null;
     nui.open({
-        targetWindow : window,
+        // targetWindow: window,,
         url : webPath+contextPath+"/com.hsweb.part.common.guestSelect.flow?token="+token,
         title : "往来单位",
         width : 980,

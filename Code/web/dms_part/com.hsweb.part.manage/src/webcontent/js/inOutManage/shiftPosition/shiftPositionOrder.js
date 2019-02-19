@@ -1442,7 +1442,7 @@ function addPart() {
 
 function selectPart(callback, checkcallback) {
 	nui.open({
-		targetWindow : window,
+		// targetWindow: window,,
 		url : webPath+contextPath+"/com.hsweb.part.common.partSelectView.flow?token="+token,
 		title : "配件选择",
 		width : 930,
@@ -1526,7 +1526,7 @@ function addDetail(part) {
 	}
 	
 	nui.open({
-				targetWindow : window,
+				// targetWindow: window,,
 				url : webPath+contextPath+"/com.hsweb.part.manage.detailQPAPopOperate.flow?token="+token,
 				title : "移仓数量",
 				width : 430,

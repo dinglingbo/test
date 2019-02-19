@@ -238,7 +238,7 @@ function getRoleMember(roleId, callback) {
 
 function selectOrg(elId, orgcodeEl) {
 	nui.open({
-		targetWindow : window,
+		// targetWindow: window,,
 		url : "com.hsweb.part.common.orgSelect.flow",
 		title : "请选择公司",
 		width : 200,
@@ -271,7 +271,7 @@ var supplier = null;
 function selectSupplier(elId, billTypeId, settTypeId) {
 	supplier = null;
 	nui.open({
-		targetWindow : window,
+		// targetWindow: window,,
 		url : "com.hsweb.part.common.supplierSelect.flow",
 		title : "供应商资料",
 		width : 980,

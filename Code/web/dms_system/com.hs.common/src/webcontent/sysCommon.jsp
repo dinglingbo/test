@@ -93,6 +93,7 @@
     String compTel = ""; 
     String isMaster = "";
     String empId = "";
+    String empTel = "";
     String bankName = "";
     String bankAccountNumber = "";
     String slogan1 = "";
@@ -137,6 +138,9 @@
                 }
                 if(attr.get("empId") != null){
                 	empId = attr.get("empId").toString();
+                }
+                if(attr.get("empTel") != null){
+                	empTel = attr.get("empTel").toString();
                 }
                 if(attr.get("compType") != null){
                 	compType = attr.get("compType").toString();
@@ -227,6 +231,7 @@
     var currCompType = "<%=compType %>";
     var currIsMaster = "<%=isMaster %>";
     var currEmpId = "<%=empId %>";
+    var currEmpTel = "<%=empTel %>";
     var token = "<%=token %>";
     var currCompAddress = "<%=compAddress %>";
     var currCompTel = "<%=compTel %>";

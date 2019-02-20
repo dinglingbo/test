@@ -83,9 +83,10 @@ function solveFeedBack(row_uid){
 		 nui.open({
 	         url: webPath + contextPath + "/common/feedbackDetail.jsp?token="+token,
 	         title: '反馈处理',
-	         width: 850, height: 770,
+	         width: 950, height: 770,
 	         onload: function () {
 	             var iframe = this.getIFrameEl();
+	             row.user = 0;
 	             iframe.contentWindow.setFeedbackData(row);
 	         },
 	         ondestroy: function (action)

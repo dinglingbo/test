@@ -1399,11 +1399,11 @@
 			bill_service_id AS billServiceId,
 			bill_amt AS billAmt,
 			order_man AS orderMan,
-			bill_date AS billData,
+			bill_date AS billDate,
 			remark AS remark
 		FROM
 			pj_pack_detail
-		WHERE 1=1
+		WHERE 1=1 
 		<dynamic>
             <isNotEmpty prepend="and" property="billMainId">
             main_id = (SELECT main_id FROM pj_pack_detail WHERE bill_main_id = #billMainId#)

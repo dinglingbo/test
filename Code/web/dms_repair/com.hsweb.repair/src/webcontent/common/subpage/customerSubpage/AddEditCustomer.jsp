@@ -139,7 +139,7 @@ table {
         </div>
 
         <div class="nui-fit">
-            <div class="nui-tabs" activeIndex="0"
+            <div class="nui-tabs" activeIndex="0" id="tabs"
                  style="width:100%;">
                 <div title="车辆信息" showCloseButton="false">
                     <div class="form" id="carInfoFrom">

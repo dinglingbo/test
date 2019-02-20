@@ -20,8 +20,9 @@
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css" rel="stylesheet" type="text/css" />
     <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css" rel="stylesheet"	type="text/css" />
     <link href="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
+    <link href="<%=request.getContextPath()%>/coframe/auth/login/feedback/feedback.css" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
-    
+    <script src="<%=request.getContextPath()%>/coframe/auth/login/feedback/html2canvas.min.js" type="text/javascript"></script>
 
     <style type="text/css">
 	a {
@@ -187,6 +188,11 @@
                     <li><a href="<%=request.getContextPath()%>/coframe/auth/loginCloud/logout.jsp"><i class="fa fa-user"></i> 退出登录</a></li>
                 </ul>
             </li>
+            <li class="dropdown">
+           		<a class="feedback-bt FeedBackButton" style="padding-top: 18px; ">
+				    反馈
+				</a>
+           	</li>
         </ul>
     </div>
     
@@ -211,7 +217,7 @@
     <input type="hidden" name="orgid" value="" id="orgid">
 </form> 
 
-
+<script src="<%=request.getContextPath()%>/coframe/auth/login/feedback/drawDom.js" type="text/javascript"></script>
 </body>
 </html>
 
@@ -228,6 +234,8 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     var moreOrgGrid =null;
     var moreOrgGridUrl=apiPath + sysApi + "/com.hsapi.system.basic.organization.getUserOrg.biz.ext";
     var show=0;
+    var titleUrl = null;
+    var title = null;
     
 /*     $(document).ready(function(v) {
     moreOrgGrid = nui.get("moreOrgGrid");

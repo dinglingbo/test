@@ -9,7 +9,7 @@
 -->
 <head>
     <title>用户导航</title>
-    <script src="<%= request.getContextPath() %>/config/js/cloudPartsysInitGuide.js?v=1.1.0"></script>
+    <script src="<%= request.getContextPath() %>/config/js/cloudPartsysInitGuide.js?v=1.1.3"></script>
     <style>
         .container {
             padding: 10px;
@@ -91,6 +91,15 @@
                         <br />设置系统启用之前供应商和客户的应收应付欠款余额
                         <br /><br />
                         <div align="center"><a class="mini-button mini-button-success" onclick="toRPBillSet()">设置期初应收应付</a></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="mini-panel mini-panel-info" title="公司属性" width="350px" showCollapseButton="false" showCloseButton="false">
+                        <br />设置系统公司属性
+                        <br /><br />
+                        <div align="center"><a class="mini-button mini-button-success" onclick="toOrgSetSet()" >设置公司属性</a></div>
                     </div>
                 </td>
             </tr>

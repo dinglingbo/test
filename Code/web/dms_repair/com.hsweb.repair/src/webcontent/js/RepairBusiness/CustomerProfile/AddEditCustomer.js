@@ -393,6 +393,9 @@ function setData(data)
 		carNo =data.guest.carNo;
 	    guestFullName =data.guest.contactName;
 	}
+	if(data.hidden){
+		nui.get("tabs").removeTab(0);
+	}
 	var count = 0;
     init(function()
     {

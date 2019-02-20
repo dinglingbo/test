@@ -38,11 +38,11 @@
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/redis281.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/slf4j-api-1.7.25.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/spring-core-4.3.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/qiniu-java-sdk-7.2.18.jar"/>
-	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/httpclient-4.3.5.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/happy-dns-java-0.1.6.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/httpclient-4.3.5.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/junit-4.13-beta-2.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/okhttp-3.12.1.jar"/>
 	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/okio-1.17.3.jar"/>
+	<classpathentry kind="lib" path="eos-web/WEB-INF/lib/qiniu-java-sdk-7.2.18.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

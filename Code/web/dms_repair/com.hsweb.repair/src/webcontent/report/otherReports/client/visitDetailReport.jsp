@@ -117,13 +117,13 @@
             {customid:"060702",name:"终止跟踪"},
             {customid:"060703",name:"重点跟踪"},
             {customid:"060704",name:"已来厂/已成交"}];
-        var visType = [{id:1,text:"电销回访"},{id:2,text:"电销回访"},{id:3,text:"客户回访"},{id:4,text:"流失回访"}];
+        var visType = [{id:1,text:"电销回访"},{id:2,text:"预约回访"},{id:3,text:"客户回访"},{id:4,text:"流失回访"}];
         nui.parse();
         var webBaseUrl = webPath + contextPath + "/";
         var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
         var gridUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.guestReport.queryVisitDetail.biz.ext';
         var grid1 = nui.get("grid1");
-        var form=new nui.Form("#form1");
+        var form = new nui.Form("#form1");
         grid1.setUrl(gridUrl);
         var currType = 2;
         var startDateEl = nui.get("startDate");
@@ -152,7 +152,7 @@
                 e.cellHtml = setColVal('visitMode', 'customid', 'name', e.value);
             }else if(field == "visitStatus"){//跟踪状态
                 e.cellHtml = setColVal('visitStatus', 'customid', 'name', e.value);
-            }else if(field == "serviceType"){//跟踪状态
+            }else if(field == "serviceType"){//业务类型
                 e.cellHtml = setColVal('serviceType', 'id', 'text', e.value);
             }else if(field == "visitId"){//营销员
                 if(memHash[e.value]){

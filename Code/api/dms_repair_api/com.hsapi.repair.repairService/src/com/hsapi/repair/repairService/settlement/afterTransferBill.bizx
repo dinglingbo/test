@@ -60,8 +60,8 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="maintain" type="query" value="com.hsapi.repair.data.rps.RpsMaintain" valueType="DataObject">maintain</process:outputVariable>
-        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -244,6 +244,7 @@
         <process:inputVariable id="4" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/orgid</process:inputVariable>
         <process:inputVariable id="5" name="serviceCode" type="query" value="String" valueType="Primitive" pattern="reference">maintain/serviceCode</process:inputVariable>
         <process:inputVariable id="6" name="billTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/billTypeId</process:inputVariable>
+        <process:inputVariable id="7" name="carNo" type="query" value="String" valueType="Primitive" pattern="reference">maintain/carNo</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -285,6 +286,7 @@
         <process:inputVariable id="4" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/orgid</process:inputVariable>
         <process:inputVariable id="5" name="serviceCode" type="query" value="String" valueType="Primitive" pattern="reference">maintain/serviceCode</process:inputVariable>
         <process:inputVariable id="6" name="billTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/billTypeId</process:inputVariable>
+        <process:inputVariable id="7" name="carNo" type="query" value="String" valueType="Primitive" pattern="reference">maintain/carNo</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
@@ -326,6 +328,7 @@
         <process:inputVariable id="4" name="orgid" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/orgid</process:inputVariable>
         <process:inputVariable id="5" name="serviceCode" type="query" value="String" valueType="Primitive" pattern="reference">maintain/serviceCode</process:inputVariable>
         <process:inputVariable id="6" name="billTypeId" type="query" value="Int" valueType="Primitive" pattern="reference">maintain/billTypeId</process:inputVariable>
+        <process:inputVariable id="7" name="carNo" type="query" value="String" valueType="Primitive" pattern="reference">maintain/carNo</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>

@@ -108,7 +108,7 @@ function setGuest(item){
     searchNameEl.setValue(t);
 	var json = {
 			guestId: guestId,
-
+			page : {"currentPage":1,"length":100},
 			token:token
 		};
 

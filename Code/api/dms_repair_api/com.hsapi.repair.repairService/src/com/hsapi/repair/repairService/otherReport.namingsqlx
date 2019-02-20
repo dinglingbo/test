@@ -420,36 +420,31 @@ where b.orgid =#orgid#
    </isEqual>
    </select>  
    
-           <select id="queryTechnicianDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+     <select id="queryTechnicianDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
      SELECT 
 		a.service_code as serviceCode,
+		a.car_no as carNo,
+		a.service_type_id as serviceTypeId,
 		a.worker as worker,
 		a.worker_id as workerId,
-		b.bill_type_id as billTypeId,
-		a.tech_deduct_value as techDeductValue,
-		a.sales_deduct_value as salesDeductValue,
-       	a.advisor_deduct_value as advisorDeductValue, 
-       	a.annual_inspection_deduct_value as annualInspectionDeductValue, 
-       	a.insure_due_deduct_value as insureDueDeductValue,
-       	a.vessel_tax_deduct_value as vesselTaxDeductValue,
+		a.bill_type_id as billTypeId,
+		a.deduct_worker_value as deductWorkerValue,
 		a.recorder as recorder,
-		b.car_no as carNo,
-		c.car_model as carModel,
-		b.out_date as outDate,
-		b.service_type_id as serviceTypeId,
-		b.mt_advisor as mtAdvisor
-		from wb_repair.rps_deduct_detail a
-		inner join wb_repair.rps_maintain b on a.service_code = b.service_code
-		inner join rpb_car c on b.car_id = c.id
-		where b.is_settle = 1 and  b.bill_type_id in (0,2,4) and a.tech_deduct_value &gt; 0
-				and b.orgid =#orgid#
+		a.record_date as recordDate,
+		a.prdt_type_id as prdtTypeId,
+		a.prdt_name as prdtName,
+		a.deduct_worker_nos as deductWorkerNos
+		from wb_repair.rps_deduct_prdt_detail a
+		   where  a.deduct_worker_value &gt; 0
+		        and a.orgid =#orgid#
+				and a.deduct_mode = #deductMode#
 		     <dynamic>
 			<isNotEmpty prepend="and" property="sOutDate"> 
-                b.out_date &gt;= #sOutDate#
+                a.record_date &gt;= #sOutDate#
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="eOutDate">
-               b.out_date &lt;= #eOutDate#
+               a.record_date &lt;= #eOutDate#
             </isNotEmpty>    
 
             <isNotEmpty prepend="and" property="mtAuditorId">  
@@ -457,24 +452,21 @@ where b.orgid =#orgid#
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="mtAdvisor">  
-                b.worker =  #mtAdvisor#
+                a.worker =  #mtAdvisor#
             </isNotEmpty>
             
              <isNotEmpty prepend="and" property="billTypeIds">  
-                b.bill_type_id =  #billTypeIds#
+                a.bill_type_id =  #billTypeIds#
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="serviceCode">  
-                b.service_code like  '%$serviceCode$%'
+                a.service_code like  '%$serviceCode$%'
             </isNotEmpty>
-            
+         
             <isNotEmpty prepend="and" property="carNo">  
-                b.car_no like   '%$carNo$%'
+                a.car_no like   '%$carNo$%'
             </isNotEmpty>
-
-            
-
-           order by b.out_date desc
+           order by a.record_date desc
             
     </dynamic>    
      </select>  
@@ -598,9 +590,7 @@ where b.orgid =#orgid#
      </select> 
      
                  <!-- 计次卡汇总  按计次卡分类-->
-       <select id="selectTimeCardTotalA"  parameterClass="java.util.HashMap" 
-
-resultClass="commonj.sdo.DataObject">
+       <select id="selectTimeCardTotalA"  parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     		SELECT
 					a.card_id cardId,
 					a.card_name  groupName,
@@ -629,9 +619,7 @@ resultClass="commonj.sdo.DataObject">
 
 
       <!-- 计次卡汇总  按销售员分类-->
-       <select id="selectTimeCardTotalB"  parameterClass="java.util.HashMap" 
-
-resultClass="commonj.sdo.DataObject">
+       <select id="selectTimeCardTotalB"  parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     		SELECT
 					a.sale_man_id saleManId,
 					a.sale_man  groupName,
@@ -660,19 +648,12 @@ resultClass="commonj.sdo.DataObject">
 	</select>  
        
              <!-- 计次卡明细-->
-       <select id="selectTimeCardDetail"  parameterClass="java.util.HashMap" 
-
-resultClass="commonj.sdo.DataObject">
-            SELECT a.code, a.car_no carNo, a.card_name cardName, a.sell_amt sellAmt, 
-
-a.sale_man saleMan, 
-            a.use_remark useRemark, a.settle_date settleDate,a.is_finish isFinish,
-                b.prdt_name prdtName, case when b.prdt_type = 1 then '套餐' else '项目' end 
-
-prdtType, 
-                b.total_times totalTimes, b.use_times useTimes, b.bala_times balaTimes, 
-
-b.sell_price sellPrice, 
+       <select id="selectTimeCardDetail"  parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+            SELECT  a.code, a.car_no carNo, a.card_name cardName, a.sell_amt sellAmt, 
+                    a.sale_man saleMan, 
+                    a.use_remark useRemark, a.settle_date settleDate,a.is_finish isFinish,
+                b.prdt_name prdtName, case when b.prdt_type = 1 then '套餐' else '项目' end prdtType, 
+                b.total_times totalTimes, b.use_times useTimes, b.bala_times balaTimes, b.sell_price sellPrice, 
             b.use_times * b.sell_price as useAmt,
             c.short_name guestName,c.mobile
             from rps_card_times a
@@ -711,9 +692,7 @@ b.sell_price sellPrice,
        	</select>  
 
             <!-- 储值卡汇总  按计次卡分类-->
-       <select id="selectStoredCardTotalA"  parameterClass="java.util.HashMap" 
-
-resultClass="commonj.sdo.DataObject">
+       <select id="selectStoredCardTotalA"  parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
             select 
             a.card_id cardId,
             a.card_name groupName,
@@ -745,9 +724,7 @@ resultClass="commonj.sdo.DataObject">
             </select>  
 
                  <!-- 储值卡汇总  按销售员分类-->
-       <select id="selectStoredCardTotalB"  parameterClass="java.util.HashMap" 
-
-resultClass="commonj.sdo.DataObject">
+       <select id="selectStoredCardTotalB"  parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
         select 
             a.sale_man_id saleManId,
             a.sale_man groupName,
@@ -779,15 +756,12 @@ resultClass="commonj.sdo.DataObject">
 
 
              <!-- 储值卡明细-->
-       <select id="selectStoredCardDetail"  parameterClass="java.util.HashMap" 
-
-resultClass="commonj.sdo.DataObject">
+       <select id="selectStoredCardDetail"  parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
             select a.code, a.guest_name guestName, b.mobile, a.card_name cardName, 
 
-a.recharge_amt rechargeAmt, a.give_amt giveAmt,
-                a.total_amt totalAmt, a.use_amt useAmt, a.bala_amt balaAmt, b.record_date 
-
-recordDate,a.sale_man saleMan,
+            a.recharge_amt rechargeAmt, a.give_amt giveAmt,
+            a.total_amt totalAmt, a.use_amt useAmt, a.bala_amt balaAmt, b.record_date 
+            recordDate,a.sale_man saleMan,
                 a.car_no carNo, a.settle_date settleDate
             from rps_stored_record a
             inner join wb_common.com_guest b on a.guest_id = b.id

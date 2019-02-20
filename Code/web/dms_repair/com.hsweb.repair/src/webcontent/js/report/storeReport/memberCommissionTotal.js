@@ -12,7 +12,7 @@ var serviceTypeIdEl = null;
 var servieTypeList = [];
 var servieTypeHash = {};
 var cType = 0;
-var gridUrl = apiPath + repairApi+'/com.hsapi.repair.report.dataStatistics.queryTechnicianSummary.biz.ext';
+var gridUrl = apiPath + repairApi+'/com.hsapi.repair.report.dataStatistics.queryWorkerSummary.biz.ext';
 $(document).ready(function (v)
 {
 
@@ -31,7 +31,10 @@ $(document).ready(function (v)
 
     grid1.on("drawcell", function (e) {
         if(e.field =="groupName" && cType == 1){
-            e.cellHtml = servieTypeHash[e.value].name;
+        	if(e.value){
+        		 e.cellHtml = servieTypeHash[e.value].name;
+        	}
+           
         }
 
     });

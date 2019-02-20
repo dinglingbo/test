@@ -3,7 +3,8 @@
  */
  var statusList = [{id: 0,text: '草稿'}, {id: 1,text: '已完工'}];
  var isBackList = [{ id: 0,text: '未返工'}, {id: 1,text: '已返工'}];
- var billTypeIdList=[{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"}];
+ //0综合，1检查，2洗美，3销售，4理赔，5退货，6次卡，7充值，8保险
+ var billTypeIdList=[{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"},{name:"计次卡"},{name:"充值"},{name:"保险"}];
  var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"工单号"}];
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var webBaseUrl = webPath + contextPath + "/";
@@ -39,8 +40,10 @@ $(document).ready(function (v)
      });
      
      grid.on("drawcell", function (e) {
-         if (e.field == "serviceTypeId") {
-             e.cellHtml = servieTypeHash[e.value].name;
+    	 if (e.field == "serviceTypeId") {
+    		 if(e.value){
+    			 e.cellHtml = servieTypeHash[e.value].name; 
+    		 }
          }else if (e.field == "billTypeId") {
              e.cellHtml = billTypeIdList[e.value].name;
      }
@@ -59,9 +62,7 @@ $(document).ready(function (v)
 	        columns: [
 	            { name: 'serviceCode' },
 	            { name: 'worker' },
-	            { name: 'carNo' },
-	            { name: 'carModel' },
-	            { name: 'mtAdvisor' },
+	            { name: 'carNo' }
 	        ],
 	        callback: function (column, filtered) {
 	        },
@@ -108,7 +109,7 @@ function doSearch() {
     gsparams.isSettle = 1;
    // gsparams.billTypeId = 0;
     gsparams.isDisabled = 0;
-
+    gsparams.deductMode = 2;
     grid.load({
         token:token,
         params: gsparams

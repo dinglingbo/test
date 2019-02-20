@@ -234,6 +234,8 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     var moreOrgGrid =null;
     var moreOrgGridUrl=apiPath + sysApi + "/com.hsapi.system.basic.organization.getUserOrg.biz.ext";
     var show=0;
+    var titleUrl = null;
+    var title = null;
     
 /*     $(document).ready(function(v) {
     moreOrgGrid = nui.get("moreOrgGrid");

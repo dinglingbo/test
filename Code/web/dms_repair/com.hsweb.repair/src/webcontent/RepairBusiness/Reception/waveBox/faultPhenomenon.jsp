@@ -25,6 +25,7 @@
 </style>
 <body>
 <input class="nui-hidden" name="id" id="id"/>
+<input class="nui-hidden" name="serviceId" id="serviceId"/>
 <fieldset id="fd1" style="width:100%;">
     <legend><span>锁挡：</span></legend>
     <div class="fieldset-body">
@@ -131,11 +132,11 @@
 	    </div>
 </fieldset>
 <div align="right" style="margin-top:20px; ">
-        <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="MemSelectOk" id="">
+        <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="MemSelectOk()" id="">
             确定
         </a>
 
-        <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="MemSelectCancel(1)" id="">
+        <a class="nui-button  mini-button-info" style="" iconCls="" plain="false" onclick="close()" id="">
             取消
         </a>
     </div>
@@ -217,7 +218,8 @@
 		    	attackStatus : attackStatus,
 		    	holeOilDesc : holeOilDesc,
 		    	gearMoveStatus : gearMoveStatus,
-		    	faultDesc : faultDesc
+		    	faultDesc : faultDesc,
+		    	serviceId : nui.get("serviceId").value
 		    };
 			//保存
 			nui.ajax({
@@ -232,9 +234,21 @@
                     	if(text.errCode == "S"){
                     		var fault = text.fault;
                     		nui.get("id").setValue(fault.id);
+                    		window.CloseOwnerWindow('ok');
                     	}
                     }
             });
+		}
+		
+		function getFailt(){
+			var faultDesc = $("#span1")[0].innerHTML + $("#span2")[0].innerHTML + $("#span3")[0].innerHTML + 
+		    					$("#span4")[0].innerHTML + $("#span5")[0].innerHTML + $("#span6")[0].innerHTML;
+		    return faultDesc;
+		}
+		
+		function SetData(data){
+			var ndata = nui.clone(data); 
+			nui.get("serviceId").setValue(ndata);
 		}
 		
 		function setValueMsg(data){
@@ -243,6 +257,15 @@
 		
 		function selectRedio(radio,value){//设置选中radio
 			
+		}
+		
+		function close(){
+			nui.confirm("确定关闭窗口？", "温馨提示", function(action) {
+                if (action == "ok") {
+                    if (window.CloseOwnerWindow) return window.CloseOwnerWindow('');
+                    else window.close();
+                }
+            });
 		}
     </script>
 </body>

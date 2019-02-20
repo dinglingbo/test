@@ -380,15 +380,15 @@
 	</select>
 	
 			<!--员工提成汇总表-->
-	<select id="queryTechnicianSummary2" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	<select id="queryWorkerSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT  
     <isEqual  prepend=""  property="groupByType"   compareValue="0">
-        DATE_FORMAT(b.out_date,'%Y-%m-%d')  as groupName,
+        DATE_FORMAT(a.record_date,'%Y-%m-%d')  as groupName,
      </isEqual>
         
      
       <isEqual  prepend="" property="groupByType"  compareValue="1">
-	     	 b.service_type_id as groupName,
+	     	 a.service_type_id as groupName,
 	    </isEqual> 
 	     
 	   <isEqual  prepend="" property="groupByType"  compareValue="2">
@@ -396,32 +396,27 @@
 	    </isEqual> 
 	      	       
     	
-    	  	sum(a.sales_deduct_value) as salesDeductValue,
-    	  	sum(a.tech_deduct_value) as techDeductValue,
-       		sum(a.advisor_deduct_value) as advisorDeductValue, 
-       		sum(a.annual_inspection_deduct_value) as annualInspectionDeductValue, 
-       		sum(a.insure_due_deduct_value) as insureDueDeductValue,
-       		sum(a.vessel_tax_deduct_value) as vesselTaxDeductValue,
-       		sum(a.total_deduct_amt) as totalDeductAmt
-		from wb_repair.rps_deduct_detail a
-		inner join wb_repair.rps_maintain b on a.service_id = b.id 
-		inner join rps_settlement c on (b.id =  c.service_id)
-		where b.is_settle = 1 and b.orgid = #orgid#
-		and b.bill_type_id in (0,2,4)
+    	  	sum(case when a.deduct_mode = 3 then  a.deduct_worker_value else 0 end ) as salesDeductValue,
+    	  	sum(case when a.deduct_mode = 2 then  a.deduct_worker_value else 0 end ) as techDeductValue,
+       		sum(case when a.deduct_mode = 1 then  a.deduct_worker_value else 0 end) as advisorDeductValue,
+       		sum(a.deduct_worker_value) as totalDeductAmt
+		   from wb_repair.rps_deduct_prdt_detail a
+		
+		   where a.orgid = #orgid# 
 		
             <isNotEmpty prepend="and" property="startDate">  
-                (b.out_date &gt;= #startDate#)
+                (a.record_date &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (b.out_date &lt; #endDate#)
+                (a.record_date &lt; #endDate#)
             </isNotEmpty>
  
-        <isEqual  prepend="" property="groupByType"   compareValue="0">
-	        GROUP BY DATE_FORMAT(b.out_date,'%Y-%m-%d')
+         <isEqual  prepend="" property="groupByType"   compareValue="0">
+	        GROUP BY DATE_FORMAT(a.record_date,'%Y-%m-%d')
 	   </isEqual>
 	   
         <isEqual  prepend="" property="groupByType"  compareValue="1">
-	     	group by b.service_type_id
+	     	group by a.service_type_id
 	    </isEqual>
 	    
 	    <isEqual  prepend="" property="groupByType"  compareValue="2">
@@ -435,12 +430,11 @@
 	<select id="queryTechnicianSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT  
     <isEqual  prepend=""  property="groupByType"   compareValue="0">
-        DATE_FORMAT(b.out_date,'%Y-%m-%d')  as groupName,
+        DATE_FORMAT(a.record_date,'%Y-%m-%d')  as groupName,
      </isEqual>
         
-     
       <isEqual  prepend="" property="groupByType"  compareValue="1">
-	     	 b.service_type_id as groupName,
+	     	 a.service_type_id as groupName,
 	    </isEqual> 
 	     
 	   <isEqual  prepend="" property="groupByType"  compareValue="2">
@@ -450,27 +444,23 @@
     	  	sum(a.deduct_origin_value) as deductOriginValue,
     	  	sum(a.deduct_worker_value) as deductWorkerValue,
        		sum(a.deduct_value) as deductValue
-		from wb_repair.rps_deduct_prdt_detail a
+		   from wb_repair.rps_deduct_prdt_detail a
 		
-		inner join wb_repair.rps_maintain b on a.service_id = b.id 
-		
-		where b.is_settle = 1 and b.orgid = #orgid# and a.deduct_mode = #deductMode#
-		
-		and b.bill_type_id in (0,2,4)
+		  where a.orgid = #orgid# and a.deduct_mode = #deductMode#
 		
             <isNotEmpty prepend="and" property="startDate">  
-                (b.out_date &gt;= #startDate#)
+                (a.record_date &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
-                (b.out_date &lt; #endDate#)
+                (a.record_date &lt; #endDate#)
             </isNotEmpty>
  
         <isEqual  prepend="" property="groupByType"   compareValue="0">
-	        GROUP BY DATE_FORMAT(b.out_date,'%Y-%m-%d')
+	        GROUP BY DATE_FORMAT(a.record_date,'%Y-%m-%d')
 	   </isEqual>
 	   
         <isEqual  prepend="" property="groupByType"  compareValue="1">
-	     	group by b.service_type_id
+	     	group by a.service_type_id
 	    </isEqual>
 	    
 	    <isEqual  prepend="" property="groupByType"  compareValue="2">

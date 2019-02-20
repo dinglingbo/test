@@ -39,7 +39,11 @@ $(document).ready(function (v)
      });
      
      grid.on("drawcell", function (e) {
-        if (e.field == "billTypeId") {
+    	 if (e.field == "serviceTypeId") {
+    		 if(e.value){
+    			 e.cellHtml = servieTypeHash[e.value].name; 
+    		 }
+         }else if (e.field == "billTypeId") {
              e.cellHtml = billTypeIdList[e.value].name;
      }
          document.onkeyup = function (event) {
@@ -57,7 +61,8 @@ $(document).ready(function (v)
 	        columns: [
 	            { name: 'serviceCode' },
 	            { name: 'worker' },
-	            { name: 'carNo' }          
+	            { name: 'carNo' }
+	            
 	        ],
 	        callback: function (column, filtered) {
 	        },

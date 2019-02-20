@@ -27,6 +27,7 @@
     </sourceConnections>
     <targetConnections>link13</targetConnections>
     <targetConnections>link2</targetConnections>
+    <targetConnections>link6</targetConnections>
     <location x="491" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
@@ -149,6 +150,15 @@
       <sourceNode>assign1</sourceNode>
       <targetNode>assign4</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>balaAmt==0&amp;&amp;balaTimes==0</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link16</targetConnections>
     <location x="225" y="150"/>
     <size height="28" width="28"/>
@@ -164,6 +174,14 @@
     <process:copy>
       <process:from type="query" pattern="reference">storeInvocing/balaAmt</process:from>
       <process:to type="query">qcAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">qcTimes+times*dc</process:from>
+      <process:to type="query">balaTimes</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">qcAmt+amt*dc</process:from>
+      <process:to type="query">balaAmt</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -342,14 +360,6 @@
     <size height="28" width="28"/>
     <nodeLabel>assign4label</nodeLabel>
     <process:copy>
-      <process:from type="expression" pattern="reference">qcTimes+times*dc</process:from>
-      <process:to type="query">balaTimes</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">qcAmt+amt*dc</process:from>
-      <process:to type="query">balaAmt</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="expression" pattern="reference">balaAmt/balaTimes</process:from>
       <process:to type="query">balaPrice</process:to>
     </process:copy>
@@ -358,6 +368,25 @@
     <location x="346" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link5</targetConnections>
+    <location x="346" y="210"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">balaPrice</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="344" y="246"/>
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

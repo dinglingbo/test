@@ -1378,6 +1378,9 @@
                 <isNotEmpty prepend="and" property="isOut">  
                     (A.is_out = #isOut#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="isNeedPack">  
+                    (A.is_need_pack = #isNeedPack#)
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
                     (A.ID in ($serviceIdList$))
                 </isNotEmpty>

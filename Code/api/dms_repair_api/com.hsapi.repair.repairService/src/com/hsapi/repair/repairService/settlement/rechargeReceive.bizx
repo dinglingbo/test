@@ -1683,7 +1683,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1717,7 +1717,7 @@
         <process:inputVariable id="0" name="dc" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
         <process:inputVariable id="1" name="billMainId" type="query" value="Long" valueType="Primitive" pattern="reference">stored/id</process:inputVariable>
         <process:inputVariable id="2" name="billServiceId" type="query" value="String" valueType="Primitive" pattern="reference">stored/code</process:inputVariable>
-        <process:inputVariable id="3" name="billTypeId" type="literal" value="String" valueType="Primitive" pattern="reference">1</process:inputVariable>
+        <process:inputVariable id="3" name="billTypeId" type="literal" value="String" valueType="Primitive" pattern="reference">6</process:inputVariable>
         <process:inputVariable id="4" name="amt" type="query" value="Float" valueType="Primitive" pattern="reference">stored/rechargeAmt</process:inputVariable>
         <process:inputVariable id="5" name="guestId" type="query" value="String" valueType="Primitive" pattern="reference">stored/guestId</process:inputVariable>
         <process:inputVariable id="6" name="guestName" type="query" value="String" valueType="Primitive" pattern="reference">stored/guestName</process:inputVariable>

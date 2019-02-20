@@ -161,6 +161,22 @@ function rpsCardTimeList(){
     window.parent.activeTab(item);
 }
 
+function cardRunningWaterSummary(){
+    var item={};
+    item.id = "cardRunningWaterSummary";
+    item.text = "储值卡流水汇总表";
+    item.url = webPath + contextPath + "/com.hsweb.repair.repoart.cardRunningWaterSummary.flow?token="+token
+    item.iconCls = "fa fa-file-text";
+    window.parent.activeTab(item);
+}
 
+function cardTimesRunningWaterSummary(){
+    var item={};
+    item.id = "cardTimesRunningWaterSummary";
+    item.text = "计次卡流水汇总表";
+    item.url = webPath + contextPath + "/com.hsweb.repair.repoart.cardTimesRunningWaterSummary.flow?token="+token
+    item.iconCls = "fa fa-file-text";
+    window.parent.activeTab(item);
+}
 
 

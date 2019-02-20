@@ -181,7 +181,7 @@ pageEncoding="UTF-8" session="false" %>
                         <td class=" right fwidthb">是否启用<br>数据共享</td>
                         <td><input id="isDataShare" name="isDataShare" width="100%" class="nui-combobox" data="ynData" textfield="text" valuefield="id"></td>
                     </tr>
-
+				
                 </table>
 
             </div>

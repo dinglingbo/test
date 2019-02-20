@@ -652,6 +652,209 @@
         </dynamic>  
 	</select>
 	
+	<select id="queryCardRunningWaterSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT a.id as id,
+			   a.dc as dc,
+			   a.orgid as orgid,
+			   a.bill_main_id as billMainId,
+			   a.bill_service_id as billServiceId,
+			   a.bill_type_id as billTypeId,
+			   a.guest_id as guestId,
+			   a.guest_name as guestName,
+			   a.car_id as carId,
+			   a.car_no as carNo,
+			   a.card_id as cardId,
+			   a.card_name as cardName,
+			   a.qc_amt as qcAmt,
+			   a.amt as amt,
+			   a.bala_amt as balaAmt,
+			   a.remark as remark,
+			   a.creator_id as creatorId,
+			   a.creator as creator,
+			   a.create_date as createDate,
+			   a.operator_id as operatorId,
+			   a.operator as operator,
+			   a.operate_date as operateDate
+				
+               FROM rps_stored_invocing a
+    	where orgid = #orgid# 
+		<dynamic>
+
+            <isNotEmpty prepend="and" property="startDate">  
+                (a.create_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (a.create_date &lt; #endDate#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="billTypeIds">  
+                (a.bill_type_id in ($billTypeIds$))
+            </isNotEmpty>
+            
+        </dynamic>  
+	</select>
 	
+		<select id="queryCardRunningWaterSZ" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT sum(case when dc = 1 then ifnull(amt,0) else 0 end ) as sAmt,
+    	       sum(case when a.dc = -1 and a.bill_type_id= 7 then ifnull(amt,0) else 0 end ) as tAmt,
+    	       sum(case when a.dc = -1 and a.bill_type_id &lt;&gt; 7 then ifnull(amt,0) else 0 end ) as zAmt
+				
+               FROM rps_stored_invocing a
+    	where orgid = #orgid# 
+		<dynamic>
+
+            <isNotEmpty prepend="and" property="startDate">  
+                (a.create_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (a.create_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
+	</select>
 	
+	<select id="queryCardRunningWaterQC" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+				SUM(b.qc_amt) as qcAmt
+				
+               FROM rps_stored_invocing b
+ 		WHERE id in(
+               SELECT min(a.id) from rps_stored_invocing a
+               		 where 1 = 1 
+               	<isNotNull prepend = "" property = "startDate">
+						AND  a.create_date &gt;= #startDate#					
+				</isNotNull>
+				
+				<isNotNull prepend = "" property = "endDate">
+						AND   a.create_date &lt; #endDate#						
+				</isNotNull>
+					group by a.card_id
+               		 )
+	</select>
+	
+	<select id="queryCardRunningWaterBala" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+				SUM(b.bala_amt) as balaAmt
+				
+               FROM rps_stored_invocing b
+ 		WHERE id in(
+               SELECT max(a.id) from rps_stored_invocing a
+               		 where 1 = 1 
+               	<isNotNull prepend = "" property = "startDate">
+						AND  a.create_date &gt;= #startDate#					
+				</isNotNull>
+				
+				<isNotNull prepend = "" property = "endDate">
+						AND   a.create_date &lt; #endDate#						
+				</isNotNull>
+					group by a.card_id
+               		 )
+	</select>
+	
+		<select id="queryCardTimesRunningWaterSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT a.id as id,
+			   a.dc as dc,
+			   a.orgid as orgid,
+			   a.bill_main_id as billMainId,
+			   a.bill_service_id as billServiceId,
+			   a.bill_type_id as billTypeId,
+			   a.guest_id as guestId,
+			   a.guest_name as guestName,
+			   a.car_id as carId,
+			   a.car_no as carNo,
+			   
+			   a.prdt_id as prdtId,
+			   a.prdt_name as prdtName,
+			   a.prdt_type as prdtType,
+			   a.qc_times as qcTimes,
+			   a.qc_price as qcPrice,
+			   a.qc_amt as qcAmt,
+			   a.times as times,
+			   a.price as price,
+			   a.amt as amt,
+			   a.bala_times as balaTimes,
+			   a.bala_price as balaPrice,
+			   a.bala_amt as balaAmt,
+			   
+			   a.remark as remark,
+			   a.creator_id as creatorId,
+			   a.creator as creator,
+			   a.create_date as createDate,
+			   a.operator_id as operatorId,
+			   a.operator as operator,
+			   a.operate_date as operateDate
+				
+               FROM rps_card_times_invocing a
+    	where orgid = #orgid# 
+		<dynamic>
+
+            <isNotEmpty prepend="and" property="startDate">  
+                (a.create_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (a.create_date &lt; #endDate#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="billTypeIds">  
+                (a.bill_type_id in ($billTypeIds$))
+            </isNotEmpty>
+            
+        </dynamic>  
+	</select>
+	
+		<select id="queryCardTimesRunningWaterSZ" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT sum(case when dc = 1 then ifnull(amt,0) else 0 end ) as sAmt,
+    	       sum(case when a.dc = -1 and a.bill_type_id= 7 then ifnull(amt,0) else 0 end ) as tAmt,
+    	       sum(case when a.dc = -1 and a.bill_type_id &lt;&gt; 7 then ifnull(amt,0) else 0 end ) as zAmt
+				
+               FROM rps_card_times_invocing a
+    	where orgid = #orgid# 
+		<dynamic>
+
+            <isNotEmpty prepend="and" property="startDate">  
+                (a.create_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+                (a.create_date &lt; #endDate#)
+            </isNotEmpty>
+        </dynamic>  
+	</select>
+	
+	<select id="queryCardTimesRunningWaterQC" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+				SUM(b.qc_amt) as qcAmt
+				
+               FROM rps_card_times_invocing b
+ 		WHERE id in(
+               SELECT min(a.id) from rps_card_times_invocing a
+               		 where 1 = 1 
+               	<isNotNull prepend = "" property = "startDate">
+						AND  a.create_date &gt;= #startDate#					
+				</isNotNull>
+				
+				<isNotNull prepend = "" property = "endDate">
+						AND   a.create_date &lt; #endDate#						
+				</isNotNull>
+					group by a.prdt_id
+               		 )
+	</select>
+	
+	<select id="queryCardTimesRunningWaterBala" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+
+				SUM(b.bala_amt) as balaAmt
+				
+               FROM rps_card_times_invocing b
+ 		WHERE id in(
+               SELECT max(a.id) from rps_card_times_invocing a
+               		 where 1 = 1 
+               	<isNotNull prepend = "" property = "startDate">
+						AND  a.create_date &gt;= #startDate#					
+				</isNotNull>
+				
+				<isNotNull prepend = "" property = "endDate">
+						AND   a.create_date &lt; #endDate#						
+				</isNotNull>
+					group by a.prdt_id
+               		 )
+	</select>
+	
+
 </sqlMap>

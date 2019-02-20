@@ -10,7 +10,7 @@
     <title>员工提成汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/memberCommissionTotal.js?v=1.0.1"></script>
+  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/memberCommissionTotal.js?v=1.0.2"></script>
     <style type="text/css">
     body { 
         margin: 0;
@@ -81,9 +81,6 @@
               <div field="salesDeductValue" name="salesDeductValue" width="60" headerAlign="center" header="销售提成" summaryType="sum" allowsort="true" ></div>
               <div field="techDeductValue" name="techDeductValue" width="60" headerAlign="center" header="施工提成" summaryType="sum" allowsort="true" ></div>
               <div field="advisorDeductValue" name="advisorDeductValue" width="60" headerAlign="center" header="服务提成" summaryType="sum" allowsort="true" ></div>
-              <div field="annualInspectionDeductValue" name="annualInspectionDeductValue" width="60" headerAlign="center" header="商业险提成" summaryType="sum" allowsort="true" ></div>
-              <div field="insureDueDeductValue" name="insureDueDeductValue" width="60" headerAlign="center" header="交强险提成" summaryType="sum" allowsort="true" ></div>
-              <div field="vesselTaxDeductValue" name="vesselTaxDeductValue" width="60" headerAlign="center" header="车船税提成" summaryType="sum" allowsort="true" ></div>
               <div field="totalDeductAmt" name="totalDeductAmt" width="60" headerAlign="center" header="总提成" summaryType="sum" allowsort="true" ></div>
     </div>
 </div>

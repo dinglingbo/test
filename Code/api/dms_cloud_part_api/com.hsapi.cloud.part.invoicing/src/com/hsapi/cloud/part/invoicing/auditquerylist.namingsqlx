@@ -110,6 +110,7 @@
                 <!--审核状态-->
                     (A.AUDIT_SIGN = #auditSign#)
                 </isNotEmpty>
+                
                 <isNotEmpty prepend="and" property="serviceIdList">  
                     (A.ID in ($serviceIdList$))
                 </isNotEmpty>

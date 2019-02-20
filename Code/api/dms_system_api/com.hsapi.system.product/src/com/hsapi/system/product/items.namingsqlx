@@ -169,13 +169,17 @@
     </select>
     <!--getItem a.CarModelID =  '00009402' -->
     <select id="getItem" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
-    	SELECT top 500 ItemID = a.ID, hsItemCode = 'hs' + ItemNameID, ItemNameID, b.TechType,  b.ServiceType, b.ItemKind, ItemName =  b.name,  ItemCode =  a.ItemCode,  Price = ItemPrice, AStandTime = ItemTime, 
+    	SELECT top 500  CarModelID = a.CarModelID,ItemID = a.ID, hsItemCode = 'hs' + ItemNameID, ItemNameID, b.TechType,  b.ServiceType, b.ItemKind, ItemName =  b.name,  ItemCode =  a.ItemCode,  Price = ItemPrice, AStandTime = ItemTime, 
 		         AStandSum = A.Amt, Amt4S, FactoryName = NULL, TypeID = NULL, MakeTime = NULL, b.UseCount, a.Remark, b.Business_Type as businessType 
 		 FROM wbstandard.dbo.ST_ItemCarModel a WITH(NOLOCK) INNER JOIN wbstandard.dbo.ST_ItemNameStd b WITH(NOLOCK) ON a.ItemNameID = b.ID 
 		 WHERE 1 = 1
 		 
 		 	<isNotNull property="carModelId">
 				and (a.CarModelID =  #carModelId# or a.CarModelID = '00000000' )
+			</isNotNull>
+			
+			<isNotNull property="id">
+				and (a.ID =  #id# )
 			</isNotNull>
 			
 			<isNull property="carModelId">

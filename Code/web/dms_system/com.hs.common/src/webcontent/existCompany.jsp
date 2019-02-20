@@ -12,7 +12,7 @@
 <head>
     <title>员工已有兼职</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/existCompany.js?v=1.0.0" type="text/javascript"></script>    
+    <script src="<%=webPath + contextPath%>/common/js/existCompany.js?v=1.0.1" type="text/javascript"></script>    
 </head>
 <body>
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
@@ -24,7 +24,7 @@
 					<input class="nui-textbox" id="code" name="code" width="160px" emptyText="请输入店号" onenter="onSearch">
 					<input class="nui-textbox" id="name" name="name" width="160px" emptyText="请输入公司名称" onenter="onSearch">
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                    <a class="nui-button" iconCls="" plain="true" onclick="cancelOrg()" id=""><span class="fa fa-close fa-lg"></span>&nbsp;取消兼职</a>
+                    <a class="nui-button" iconCls="" plain="true" onclick="cancelOrg()" id="cancelOrg"><span class="fa fa-close fa-lg"></span>&nbsp;取消兼职</a>
 				</td>
 			</tr>
 		</table>

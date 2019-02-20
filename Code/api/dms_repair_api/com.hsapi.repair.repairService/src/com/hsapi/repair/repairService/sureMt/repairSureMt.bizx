@@ -497,16 +497,16 @@
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
-  <nodes xsi:type="process:tEnd" id="end1" name="结束1" displayName="结束" type="end">
+  <nodes xsi:type="process:tEnd" description="" id="end1" name="结束1" displayName="结束" type="end">
     <targetConnections>link2</targetConnections>
     <targetConnections>link5</targetConnections>
     <location x="104" y="52"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
-      <process:return id="1" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
-      <process:return id="2" language="com.hsapi.repair.data.rps.RpsMaintain" name="maintain" type="query" valueType="DataObject">maintain</process:return>
+      <process:return id="0" name="errCode" type="query">errCode</process:return>
+      <process:return id="1" name="errMsg" type="query">errMsg</process:return>
+      <process:return id="2" name="maintain" type="query">maintain</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">

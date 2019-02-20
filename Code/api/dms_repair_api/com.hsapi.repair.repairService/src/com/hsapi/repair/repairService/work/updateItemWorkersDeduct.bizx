@@ -349,6 +349,14 @@
       <process:to type="query">prdtDeductTemp/serviceCode</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">carNo</process:from>
+      <process:to type="query">prdtDeductTemp/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">item/serviceTypeId</process:from>
+      <process:to type="query">prdtDeductTemp/serviceTypeId</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">temp/workerId</process:from>
       <process:to type="query">prdtDeductTemp/workerId</process:to>
     </process:copy>
@@ -492,6 +500,7 @@
     <process:input description="" isArray="false" name="orgid" primitiveType="Int"/>
     <process:input description="" isArray="false" name="billTypeId" primitiveType="Int"/>
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItem" name="item"/>
+    <process:input description="" isArray="false" name="carNo" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

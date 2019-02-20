@@ -263,7 +263,7 @@
 			a.record_date as recordDate,
 			a.modifier as modifier,
 			a.modify_date as modifyDate,
-			c.wechat_open_id as openId
+			c.wechat_open_id as wechatOpenId
 			FROM
 				rps_prebook a
 				left join rpb_contactor c on (a.contactor_id = c.id)
@@ -1794,4 +1794,81 @@
 				b.dc  = #dc#
 		</isNotEmpty>
        </select>
+       
+           <select id="getBalanceStoredInvocing" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		SELECT a.id as id,
+			   a.dc as dc,
+			   a.orgid as orgid,
+			   a.bill_main_id as billMainId,
+			   a.bill_service_id as billServiceId,
+			   a.bill_type_id as billTypeId,
+			   a.guest_id as guestId,
+			   a.guest_name as guestName,
+			   a.car_id as carId,
+			   a.car_no as carNo,
+			   a.card_id as cardId,
+			   a.card_name as cardName,
+			   a.qc_amt as qcAmt,
+			   a.amt as amt,
+			   a.bala_amt as balaAmt
+				
+               FROM rps_stored_invocing a
+               where 1 = 1 and 
+               a.id = (select max(b.id) from rps_stored_invocing b
+               		 where 1 = 1 
+               	<isNotNull prepend = "" property = "orgid">
+						AND b.orgid = #orgid#					
+				</isNotNull>
+				
+				<isNotNull prepend = "" property = "cardId">
+						AND  b.card_id = #cardId#						
+				</isNotNull>
+               		 )
+
+	                
+			
+    </select>
+    
+    <select id="getBalanceCardTimesStoredInvocing" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject"> 
+		SELECT a.id as id,
+			   a.dc as dc,
+			   a.orgid as orgid,
+			   a.bill_main_id as billMainId,
+			   a.bill_service_id as billServiceId,
+			   a.bill_type_id as billTypeId,
+			   a.guest_id as guestId,
+			   a.guest_name as guestName,
+			   a.car_id as carId,
+			   a.car_no as carNo,
+			   
+			   a.prdt_id as prdtId,
+			   a.prdt_name as prdtName,
+			   a.prdt_type as prdtType,			   
+			   a.qc_times as qcTimes,
+			   a.qc_price as qcPrice,
+			   a.qc_amt as qcAmt,			   
+			   a.times as times,
+			   a.price as price,
+			   a.amt as amt,			   
+			   a.bala_times as balaTimes,
+			   a.bala_price as balaPrice,
+			   a.bala_amt as balaAmt
+				
+               FROM rps_card_times_invocing a
+               where 1 = 1 and 
+               a.id = (select max(b.id) from rps_card_times_invocing b
+               		 where 1 = 1 
+               		 
+               	<isNotNull prepend = "" property = "orgid">
+						AND b.orgid = #orgid#					
+				</isNotNull>
+				
+				<isNotNull prepend = "" property = "prdtId">
+						AND  b.prdt_id = #prdtId#						
+				</isNotNull>
+               		 )
+
+	                
+			
+    </select>
 </sqlMap>

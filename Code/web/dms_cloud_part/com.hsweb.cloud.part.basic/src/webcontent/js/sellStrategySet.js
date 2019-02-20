@@ -18,8 +18,17 @@ $(document).ready(function(v)
     mainTabs = nui.get("mainTabs");
 	straGrid = nui.get("straGrid");
     straGrid.setUrl(straGridUrl);
-    straGrid.load({token:token});
-
+    straGrid.load({token:token},function(){
+    	var row= straGrid.getRow(0);
+    	var guestInfo=mainTabs.getTab("guestInfo");
+        if(row){
+        	straGrid.select(row,true);
+        	mainTabs.updateTab(guestInfo, { visible: false });
+        	nui.get('saveStraPart').setVisible(false);
+        	nui.get('saveUnifyPart').setVisible(true);
+        }
+    });
+    
     rightGuestGrid = nui.get("rightGuestGrid");
     rightGuestGrid.setUrl(rightGuestGridUrl);
 
@@ -337,7 +346,7 @@ function selectSupplier(elId) {
     }
     supplier = null;
     nui.open({
-        targetWindow : window,
+        // targetWindow: window,,
         url : webPath+contextPath+"/com.hsweb.cloud.part.common.guestSelect.flow?token="+token,
         title : "客户资料",
         width : 980,
@@ -522,7 +531,7 @@ function importPart(){
 }
 function selectPart(callback, checkcallback) {
     nui.open({
-        targetWindow : window,
+        // targetWindow: window,,
         url : webPath+contextPath+"/com.hsweb.cloud.part.common.partSelectView.flow?token="+token,
         title : "配件选择",
         width : 930,

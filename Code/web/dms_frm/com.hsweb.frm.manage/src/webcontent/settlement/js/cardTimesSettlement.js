@@ -175,7 +175,7 @@ function addType(){
 //查询计次卡
 function addTimesCardList(){
 	nui.ajax({
-		url : baseUrl + "com.hsapi.repair.baseData.crud.queryTimesCard.biz.ext?token="+ token,
+		url : baseUrl + "com.hsapi.repair.baseData.crud.queryTimesCardNoPage.biz.ext?token="+ token,
 		type : "post",
 		data : "",
 		success : function(data) {	

@@ -1391,6 +1391,25 @@
             <isNotEmpty prepend="order by" property="sortField">$sortField$ $sortOrder$</isNotEmpty>
         </dynamic>
     </select>
+     <select id="queryPjPackListByBillMainId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			id AS id,
+			main_id AS mainId,
+			bill_main_id AS billMainId,
+			bill_service_id AS billServiceId,
+			bill_amt AS billAmt,
+			order_man AS orderMan,
+			bill_date AS billDate,
+			remark AS remark
+		FROM
+			pj_pack_detail
+		WHERE 1=1 
+		<dynamic>
+            <isNotEmpty prepend="and" property="billMainId">
+            main_id = (SELECT main_id FROM pj_pack_detail WHERE bill_main_id = #billMainId#)
+            </isNotEmpty>	
+        </dynamic>
+    </select>
     <select id="queryPjStockCheckMainDetailList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT
 			a.service_id as serviceId,

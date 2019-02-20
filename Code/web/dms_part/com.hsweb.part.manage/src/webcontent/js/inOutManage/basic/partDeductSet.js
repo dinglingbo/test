@@ -97,7 +97,7 @@ function onUnifySearch() {
 
 function selectPart(callback, checkcallback) {
     nui.open({
-        targetWindow : window,
+        // targetWindow: window,,
         url : webPath+contextPath+"/com.hsweb.part.common.partSelectView.flow?token="+token,
         title : "配件选择",
         width : 930,

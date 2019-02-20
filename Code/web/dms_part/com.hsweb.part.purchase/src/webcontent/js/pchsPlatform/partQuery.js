@@ -300,7 +300,7 @@ function addOrder(){
 }
 function openGeneratePop(partList, type, title){
     nui.open({
-        targetWindow : window,
+        // targetWindow: window,,
         url : webPath+contextPath+"/com.hsweb.part.manage.shopCarPop.flow?token="+token,
         title : title,
         width : 600,

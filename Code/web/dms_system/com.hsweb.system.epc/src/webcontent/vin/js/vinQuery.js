@@ -246,6 +246,11 @@ function setgridMainGroup(data){
 *分组信息
 */
 function setSubGroupData(data){
+	for(var i=0;i<data.length;i++){
+		if(data[i].is_filter!=0){
+			data.splice(i--, 1);
+		}
+	}
     gridSubGroup.setData(data);
     
     //img

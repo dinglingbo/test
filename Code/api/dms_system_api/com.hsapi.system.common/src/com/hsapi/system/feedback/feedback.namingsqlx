@@ -35,6 +35,7 @@
 		WHERE
 			1=1
 			<dynamic>
+			<isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="orgname">(a.orgname like '%$orgname$%')</isNotEmpty>
             <isNotEmpty prepend="and" property="recordMobile">(a.record_mobile like '%$recordMobile$%' )</isNotEmpty>
             <isNotEmpty prepend="and" property="status">(a.status = #status#)</isNotEmpty>

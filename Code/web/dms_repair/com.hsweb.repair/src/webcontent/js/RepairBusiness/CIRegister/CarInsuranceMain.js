@@ -3,7 +3,7 @@
 */
 var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var leftGrid = null;
-var leftGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceList.biz.ext";
+var leftGridUrl = baseUrl+"com.hsapi.repair.repairService.insurance.queryRpsInsuranceMainList.biz.ext";
 
 var statusHash = ["草稿","预结算","已结算"];
 

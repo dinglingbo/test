@@ -282,7 +282,20 @@
 			a.city_id as cityId,
 			a.county_id as countyId,
 			a.street_address as streetAddress,
-			a.address as address
+			a.address as address,
+			a.destination_station as destinationStation,
+			a.transfer_station as transferStation,
+			a.transit_logistics_id as transitLogisticsId,
+			a.transit_logistics_name as transitLogisticsName,
+			a.pay_type as payType,
+			a.is_wooden as isWooden,
+			a.collect_money as collectMoney,
+			a.valuation_statement as valuationStatement,
+			a.sender_city as senderCity,
+			a.id_no as idNo,
+			a.sender_phone as senderPhone,
+			a.sender_address as senderAddress,
+			a.bill_status_id as billStatusId
 		FROM
 			pj_pack_main AS a
 
@@ -342,6 +355,13 @@
                     (a.audit_sign = #auditSign#)
                 </isNotEmpty>
                 
+               <isNotEmpty prepend="and" property="billStatusId">  
+                    (a.bill_status_id = #billStatusId#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billStatusIdList">  
+                    (a.bill_status_id in ($billStatusIdList$))
+                </isNotEmpty>
 	            <isNotEmpty prepend="order by" property="sortField">  
 	                $sortField$ $sortOrder$
 	            </isNotEmpty> 
@@ -428,7 +448,7 @@
                 (a.id = #partId#)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="partCode">  
-                (a.query_code like '$partCode$%' or a.code like '$partCode$%' or a.oem_code like '$partCode$%')
+                (a.query_code like '%$partCode$' or a.code like '%$partCode$' or a.oem_code like '%$partCode$')
             </isNotEmpty>
             <isNotEmpty prepend="and" property="partName">  
                 (a.full_name like '%$partName$%')
@@ -448,7 +468,7 @@
             </isNotEmpty>  
             <!--一般按库存的可售数量由多到少排序-->
             <isNotEmpty prepend="order by " property="sortField">  
-                $sortField$ $sortOrder$
+	 			 $sortField$ $sortOrder$
             </isNotEmpty>  
         </dynamic>  
         

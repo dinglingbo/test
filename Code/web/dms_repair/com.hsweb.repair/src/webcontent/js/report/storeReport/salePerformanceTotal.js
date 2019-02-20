@@ -31,8 +31,10 @@ $(document).ready(function (v)
 
     grid1.on("drawcell", function (e) {
         if(e.field =="groupName" && cType == 1){
-            e.cellHtml = servieTypeHash[e.value].name;
-        }
+        	if(e.value){
+   			 e.cellHtml = servieTypeHash[e.value].name; 
+   		    }
+       }
 
     });
     
@@ -50,6 +52,7 @@ function load(e){
 	data.endDate = formatDate(data.endDate) +" 23:59:59";
     data.groupByType = cType;
     updateGridColoumn(cType);
+    data.deductMode = 3;
     grid1.load({params:data,token :token});
 }
 
@@ -136,6 +139,7 @@ function quickSearch(type){
 //  if(params.endDate){
 //  params.endDate = params.endDate +" 23:59:59";
 //}
+ params.deductMode = 3;
 grid1.load({params:params});
 updateGridColoumn(cType);
 }

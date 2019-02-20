@@ -180,7 +180,7 @@ function onType2DbClick(e){
 }
 
 //设置跟踪状态、营销员
-function updateField(field, value){
+function updateField(field, value,field2,text){
     var rows = dgGrid.getSelecteds();
     if(rows.length==0){
         showMsg("请选中一条记录","W");
@@ -190,6 +190,7 @@ function updateField(field, value){
     for(var i=rows.length - 1; i>=0; i--){
         var obj={id: rows[i].id};
         obj[field] = value;
+        obj[field2] = text;
         params.push(obj);
     }
     
@@ -200,11 +201,12 @@ function updateField(field, value){
 //分配营销员
 function assignTracker(){
     var value = tracker.getValue();
+    var text = tracker.text;
     if(!value){
         showMsg("请选择营销员！","W");
         return false;
     }
-    updateField("visitManId", value);
+    updateField("visitManId", value,"visitMan",text);
 }
 
 function reLoadMain(data, json){

@@ -3,8 +3,8 @@ package com.harsons.hscp.common.util;
 import java.util.Base64;
 import java.util.Map;
 
-import org.apache.commons.codec.digest.HmacAlgorithms;
-import org.apache.commons.codec.digest.HmacUtils;
+//import org.apache.commons.codec.digest.HmacAlgorithms;
+//import org.apache.commons.codec.digest.HmacUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -12,9 +12,10 @@ import com.alibaba.fastjson.JSONObject;
 public class SignUtils {
     
     public static String sign(String signData, String signKey) {
-        byte[] hmacBytes = new HmacUtils(HmacAlgorithms.HMAC_SHA_1, signKey).hmac(signData);
-        byte[] base64Bytes = Base64.getEncoder().encode(hmacBytes);
-        return new String(base64Bytes);
+        //byte[] hmacBytes = new HmacUtils(HmacAlgorithms.HMAC_SHA_1, signKey).hmac(signData);
+        //byte[] base64Bytes = Base64.getEncoder().encode(hmacBytes);
+        //return new String(base64Bytes);
+    	return null;
     }
     
     public static String sign(Map<?, ?> signData, String signKey) {

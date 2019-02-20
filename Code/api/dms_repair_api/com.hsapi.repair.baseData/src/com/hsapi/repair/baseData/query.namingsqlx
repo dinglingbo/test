@@ -75,7 +75,15 @@
                 (settle_date &lt;= #endDate#)
             </isNotEmpty>  
         </dynamic> 
-        GROUP BY #groupName#
+        		   <isEqual prepend="" property="groupName" compareValue="card_name">
+			    GROUP BY card_name
+			</isEqual>
+			
+			<isEqual prepend="" property="groupName" compareValue="sale_man">
+			    GROUP BY sale_man
+			</isEqual>
+        
+        
         order by amt desc
 	</select>
 	
@@ -102,7 +110,13 @@
                 (settle_date &lt;= #endDate#)
             </isNotEmpty>  
         </dynamic> 
-        GROUP BY #groupName#
+                		   <isEqual prepend="" property="groupName" compareValue="card_name">
+			    GROUP BY card_name
+			</isEqual>
+			
+			<isEqual prepend="" property="groupName" compareValue="sale_man">
+			    GROUP BY sale_man
+			</isEqual>
         order by amt desc
 	</select>
 	

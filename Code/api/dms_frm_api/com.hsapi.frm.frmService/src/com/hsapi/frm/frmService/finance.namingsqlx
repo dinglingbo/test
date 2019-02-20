@@ -109,6 +109,41 @@
 	            order by b.audit_date desc
     </select>
     
+    <!--APP首页收入支出  -->
+    	<select id="queryRPAccountAPP" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
+    	SELECT  
+				sum( case when rp_dc =1 then true_char_off_amt end) as income,
+				sum( case when rp_dc =-1 then true_char_off_amt end) as expenditure
+			from  fis_rp_account a
+			where a.audit_sign = 1 
+				<isNotEmpty prepend="and" property="orgid"> 
+                    (a.orgid = #orgid#)
+                </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (a.audit_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (a.audit_date &lt; #endDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="guestId">  
+                    (a.guest_id = #guestId#)
+                </isNotEmpty>
+                 <isNotEmpty prepend="and" property="billServiceId">  
+                    (a.bill_service_id like '%$billServiceId$%')
+                </isNotEmpty> 
+                <isNotEmpty prepend="and" property="carNo">  
+                    (a.car_no like '%$carNo$%')
+                </isNotEmpty>        
+                <isNotEmpty prepend="and" property="settAccountId">  
+                    (a.sett_account_id = #settAccountId#)
+                </isNotEmpty>
+                <isNotEmpty prepend="order by" property="sortField">  
+	                $sortField$ $sortOrder$
+	            </isNotEmpty> 
+	            
+    </select>
+    
     <!--往来单位余额表 -->
 	<select id="queryGuestBalance" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	

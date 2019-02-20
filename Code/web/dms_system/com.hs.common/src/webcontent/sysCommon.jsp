@@ -46,7 +46,7 @@
 	response.addCookie(cookie);
     String currentLanguage = request.getLocale().getLanguage().toLowerCase();
 %>
-<meta http-equiv="refresh"content="7200"/>
+<meta http-equiv="refresh"content="13680"/>
 <script src="<%=contextPath%>/common/nui/nui.js?v=1.0.0" type="text/javascript"></script> 
 
 <script src="<%=contextPath%>/common/nui/locale/zh_CN.js" type="text/javascript"></script>
@@ -93,6 +93,7 @@
     String compTel = ""; 
     String isMaster = "";
     String empId = "";
+    String empTel = "";
     String bankName = "";
     String bankAccountNumber = "";
     String slogan1 = "";
@@ -137,6 +138,9 @@
                 }
                 if(attr.get("empId") != null){
                 	empId = attr.get("empId").toString();
+                }
+                if(attr.get("empTel") != null){
+                	empTel = attr.get("empTel").toString();
                 }
                 if(attr.get("compType") != null){
                 	compType = attr.get("compType").toString();
@@ -227,6 +231,7 @@
     var currCompType = "<%=compType %>";
     var currIsMaster = "<%=isMaster %>";
     var currEmpId = "<%=empId %>";
+    var currEmpTel = "<%=empTel %>";
     var token = "<%=token %>";
     var currCompAddress = "<%=compAddress %>";
     var currCompTel = "<%=compTel %>";
@@ -326,10 +331,13 @@
 		if(window.parent!=window && ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
 			window.parent.backToLogin();
 		}
-		if(window.location.pathname.substr(-20) =="loginCloud/index.jsp"){
-			showMsg("登录超时，正在跳转！", "E");
-            window.top.location.href = sysDomain +"/coframe/auth/loginCloud/login.jsp";			
-		}	
+//	汽配
+// 		else{
+// 		//	debugger;
+// 			showMsg("登录超时，正在跳转！", "E");
+//             window.top.location.href = sysDomain + "/coframe/auth/loginCloud/login.jsp";			
+// 		}
+		//汽修 
 		else{
 		//	debugger;
 			showMsg("登录超时，正在跳转！", "E");

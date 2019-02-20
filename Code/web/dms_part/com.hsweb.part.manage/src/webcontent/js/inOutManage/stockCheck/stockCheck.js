@@ -1620,7 +1620,7 @@ function setInitData(params){
 //
 //function selectPart(callback, checkcallback) {
 //	nui.open({
-//		targetWindow : window,
+//		// targetWindow: window,,
 //		url : webPath+contextPath+"/com.hsweb.part.common.partSelectView.flow?token="+token,
 //		title : "配件选择",
 //		width : 930,
@@ -1672,7 +1672,7 @@ function setInitData(params){
 //	}
 //	
 //	nui.open({
-//				targetWindow : window,
+//				// targetWindow: window,,
 //				url : webPath+contextPath+"/com.hsweb.part.manage.detailQPAPopOperate.flow?token="+token,
 //				title : "盘点实盘数量成本单价",
 //				width : 430,

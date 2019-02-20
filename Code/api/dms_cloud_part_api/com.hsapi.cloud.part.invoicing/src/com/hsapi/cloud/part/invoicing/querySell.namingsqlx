@@ -1328,6 +1328,9 @@
                 <isNotEmpty prepend="and" property="billStatusId"> 
                     (A.bill_status_id = #billStatusId#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="billStatusIdList"> 
+                    (a.bill_status_id in ($billStatusIdList$))
+                </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceId">  
                     (a.service_id like '%$serviceId$%')
                 </isNotEmpty>
@@ -1374,6 +1377,9 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="isOut">  
                     (A.is_out = #isOut#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="isNeedPack">  
+                    (A.is_need_pack = #isNeedPack#)
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="serviceIdList">  
                     (A.ID in ($serviceIdList$))

@@ -104,11 +104,11 @@
       <process:to type="query">param/method</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">000dlb</process:from>
+      <process:from type="query" pattern="reference">m:userObject/attributes/srmUserId</process:from>
       <process:to type="query">param/account</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">123456</process:from>
+      <process:from type="query" pattern="reference">m:userObject/attributes/srmUserPd</process:from>
       <process:to type="query">param/password</process:to>
     </process:copy>
     <process:copy>

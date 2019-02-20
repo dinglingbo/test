@@ -46,6 +46,12 @@ $(document).ready(function(v) {
     grid.on("drawcell", function (e){
     	onDrawCell(e);
     });
+    
+    if(currIsMaster==1){
+    	nui.get("selectComBtn").setVisible(true);
+    }else{
+    	nui.get("selectComBtn").setVisible(false);
+    }
 });
 
 

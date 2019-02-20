@@ -58,6 +58,12 @@ var accountSignHash = {
     "0":"未对账",
     "1":"已对账"
 };
+var billStatusHash={
+	"0"	 :"已出库",
+	"1"	 :"已打包",
+	"2"	 :"已发货",
+	"3"	 :"已到货"
+};
 var enterTypeIdHash = {"050101":"采购入库","050102":"销售退货","050201":"采购退货","050202":"销售出库"};
 
 $(document).ready(function(v)
@@ -77,7 +83,7 @@ $(document).ready(function(v)
 
     gsparams.startDate = getNowStartDate();
     gsparams.endDate = addDate(getNowEndDate(), 1);
-    gsparams.auditSign = 0;
+//    gsparams.auditSign = 0;
     guestIdEl=nui.get('guestId');
     guestIdEl.setUrl(getGuestInfo);
     logisticsGuestIdEl=nui.get('logisticsGuestId');
@@ -168,8 +174,8 @@ $(document).ready(function(v)
         });
     });
 
-    gsparams.auditSign = 0;
-    quickSearch(0);
+//    gsparams.auditSign = 0;
+    quickSearch(9);
 });
 //返回类型给srvBottom，用于srvBottom初始化
 function confirmType(){
@@ -243,6 +249,11 @@ function onLeftGridDrawCell(e)
                 e.cellHtml = AuditSignHash[e.value];
             }
             break;
+        case "billStatusId":
+        	if(billStatusHash && billStatusHash[e.value])
+            {
+                e.cellHtml = billStatusHash[e.value];
+            }
     }
 }
 var currType = 2;
@@ -250,7 +261,7 @@ function quickSearch(type){
     var params = {};
     var querysign = 1;
     var queryname = "本日";
-    var querytypename = "未审";
+    var querytypename = "所有";
     switch (type)
     {
         case 0:
@@ -307,29 +318,64 @@ function quickSearch(type){
             gsparams.startDate = getLastMonthStartDate();
             gsparams.endDate = addDate(getLastMonthEndDate(), 1);
             break;
-        case 6:
-            params.auditSign = 0;
-            querytypename = "未审";
-            querysign = 2;
-            gsparams.auditSign = 0;
-            break;
-        case 7:
-            params.auditSign = 1;
-            querytypename = "已审";
-            querysign = 2;
-            gsparams.auditSign = 1;
-            break;
+//        case 6:
+//            params.auditSign = 0;
+//            querytypename = "未审";
+//            querysign = 2;
+//            gsparams.auditSign = 0;
+//            break;
+//        case 7:
+//            params.auditSign = 1;
+//            querytypename = "已审";
+//            querysign = 2;
+//            gsparams.auditSign = 1;
+//            break;
         case 8:
             params.postStatus = 1;
+            break;            
+        case 9:
+        	params.billStatusIdList = "0,1,2,3";
+        	querystatusname = "所有";
+            querysign = 2;
+            gsparams.billStatusId = null;
+            gsparams.billStatusIdList = "0,1,2,3";
+            break;
+        case 10:
+        	params.billStatusId = 0;
+        	querystatusname = "已出库";
+            querysign = 2;
+            gsparams.billStatusId = 0;
+            gsparams.billStatusIdList=null;
+            break;
+        case 11:
+        	params.billStatusId = 1;
+        	querystatusname = "已打包";
+            querysign = 2;
+            gsparams.billStatusId = 1;
+            gsparams.billStatusIdList=null;
+            break;
+        case 12:
+        	params.billStatusId = 1;
+        	querystatusname = "已发货";
+            querysign = 2;
+            gsparams.billStatusId = 2;
+            gsparams.billStatusIdList=null;
+            break;
+        case 13:
+        	params.billStatusId = 1;
+        	querystatusname = "已收货";
+            querysign = 2;
+            gsparams.billStatusId = 3;
+            gsparams.billStatusIdList=null;
             break;
         default:
             params.today = 1;
             params.startDate = getNowStartDate();
             params.endDate = addDate(getNowEndDate(), 1);
-            querytypename = "未审";
+            querystatusname = "所有";
             gsparams.startDate = getNowStartDate();
             gsparams.endDate = addDate(getNowEndDate(), 1);
-            gsparams.auditSign = 0;
+//            gsparams.billStatusIdList = "0,1,2,3";
             break;
     }
     currType = type;
@@ -337,8 +383,8 @@ function quickSearch(type){
         var menunamedate = nui.get("menunamedate");
         menunamedate.setText(queryname);
     }else if(querysign == 2){
-            var menunametype = nui.get("menunametype");
-            menunametype.setText(querytypename);
+            var menubillstatus = nui.get("menubillstatus");
+            menubillstatus.setText(querystatusname);
     }
     doSearch(gsparams);
 }
@@ -1104,14 +1150,14 @@ function onDrawCell(e)
             break;
     }
 }
-function onLeftGridBeforeDeselect(e)
-{
-    var row = leftGrid.getSelected(); 
-    if(row.serviceId == '新发货单'){
-
-        leftGrid.removeRow(row);
-    }
-}
+//function onLeftGridBeforeDeselect(e)
+//{
+//    var row = leftGrid.getSelected(); 
+//    if(row.serviceId == '新发货单'){
+//
+//        leftGrid.removeRow(row);
+//    }
+//}
 var getLogisticsUrl = apiPath + cloudPartApi + "/com.hsapi.cloud.part.baseDataCrud.crud.getLogisticsByGuestId.biz.ext";
 function getLogistics(guestId,callback) {
     nui.ajax({

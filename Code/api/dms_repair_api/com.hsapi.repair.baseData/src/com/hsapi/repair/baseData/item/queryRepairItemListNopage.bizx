@@ -5,16 +5,6 @@
     <size height="100" width="437"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
-    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" isDefault="false" type="transition">
-      <sourceNode>start0</sourceNode>
-      <targetNode>assign1</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query">m:userObject/attributes/tenantId</process:leftOperand>
-          <process:rightOperand type="literal">default</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link4" name="link4" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign2</targetNode>
@@ -54,21 +44,16 @@
       <targetNode>invokePojo1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
-    <targetConnections>link3</targetConnections>
     <targetConnections>link7</targetConnections>
     <location x="355" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">tenantId</process:from>
-      <process:to type="query">params/tenantId</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="literal" pattern="reference">com.hsapi.repair.data.rpb.RpbItem</process:from>
       <process:to type="query">cond/_entity</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">tenantId</process:from>
+      <process:from type="query" pattern="reference">params/tenantId</process:from>
       <process:to type="query">cond/_or[1]/_and[1]/_expr[1]/tenantId</process:to>
     </process:copy>
     <process:copy>
@@ -84,7 +69,7 @@
       <process:to type="query">cond/_or[1]/_and[1]/_expr[2]/_op</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:from type="query" pattern="reference">params/orgid</process:from>
       <process:to type="query">cond/_or[1]/_and[2]/_expr[1]/orgid</process:to>
     </process:copy>
     <process:copy>
@@ -179,47 +164,33 @@
       <process:from type="literal" pattern="reference">=</process:from>
       <process:to type="query">cond/_expr[11]/_op</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/id</process:from>
+      <process:to type="query">cond/_expr[12]/id</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">=</process:from>
+      <process:to type="query">cond/_expr[12]/_op</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="357" y="96"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign1</sourceNode>
-      <targetNode>assign0</targetNode>
-    </sourceConnections>
-    <targetConnections>link2</targetConnections>
-    <location x="212" y="145"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign1label</nodeLabel>
-    <process:copy>
-      <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">tenantId</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="210" y="181"/>
-    <figSize height="17" width="32"/>
-    <node>assign1</node>
-  </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="195" y="60"/>
+    <location x="212" y="60"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
-      <process:to type="query">tenantId</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="193" y="96"/>
+    <location x="210" y="96"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -254,7 +225,6 @@
   <process:info author="Administrator" createTime="2018-01-30 20:05:22" date="2018-01-30Z" description="" name="queryRepairItem" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>

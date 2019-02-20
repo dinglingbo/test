@@ -69,7 +69,7 @@ function doSearch(params)
 }
 function addOrEdit(row){
     nui.open({
-		targetWindow : window,
+		// targetWindow: window,,
 		url : webPath+contextPath+"/repair/cfg/guestType.jsp?token="+token,
 		title : "客户级别设置",
 		width : 600,

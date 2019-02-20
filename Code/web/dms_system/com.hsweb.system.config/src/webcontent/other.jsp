@@ -24,7 +24,8 @@
 	<script type="text/javascript">
     	nui.parse();
     	function platformSignIn(){
-    		window.open("http://192.168.111.58:8080/srm/supplier/cusRegister.html?id="+currOrgId);    
+    		//window.open("http://192.168.111.58:8080/srm/supplier/cusRegister.html?id="+currOrgId);  
+    		window.open("http://124.172.221.179:83/srm/supplier/cusRegister.html?id="+currOrgId);     
     	}
     </script>
 </body>

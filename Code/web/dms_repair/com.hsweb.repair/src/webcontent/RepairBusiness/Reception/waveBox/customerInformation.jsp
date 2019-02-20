@@ -237,7 +237,6 @@ table {
                               '<p style="display:none"><span name="id0" discount="">' +data.id +'</span></p>' +
                               '<p style="display:none"><span name="check0" discount="">Y</span></p>' +
                         '</li>');
-                 //保存。。。。。。。。
                  
                  //清空表格
                  contactInfoForm.setData([]);     

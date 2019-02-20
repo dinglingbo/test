@@ -58,11 +58,11 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">name</process:from>
-      <process:to type="query">criteria/_expr[2]/_name</process:to>
+      <process:to type="query">criteria/_expr[2]/name</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">0</process:from>
-      <process:to type="query">criteria/_expr[3]/_status</process:to>
+      <process:to type="query">criteria/_expr[3]/status</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>

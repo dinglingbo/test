@@ -48,7 +48,7 @@
 		    <div size="20%" showCollapseButton="true" style="padding:10px;">
 		        <div id="repairPartAuditFlag" name="repairPartAuditFlag" class="nui-checkboxlist" repeatItems="1" 
                     repeatLayout="flow"  value="" 
-                    textField="name" valueField="id" onvaluechanged="onValueChanged"></div>
+                    textField="name" valueField="customid" onvaluechanged="onValueChanged"></div>
 			     </div>
 			     <div showCollapseButton="true">
 			        <div id="grid" class="nui-datagrid" style="width:100%;height:100%;" showsummaryrow="true" ondrawsummarycell="onDrawSummaryCell"
@@ -83,36 +83,27 @@
     	$(document).ready(function(v) {
     		repairPartAuditFlag = nui.get("repairPartAuditFlag");
     		grid = nui.get("grid");
-    		 getServiceTypeList();
+    		init();
     	});
     	
-		function getServiceTypeList(){
-		    var params = {sortField:'id',sortOrder:'asc',isDisabled:0};
-		    nui.ajax({
-				url : serviceTypeUrl,
-		        type : "post",
-		        async:false,
-				data : JSON.stringify({
-					params : params,
-					token: token
-				}),
-				success : function(data) {
-					nui.unmask(document.body);
-		            data = data || {};
-		            serviceTypeList = data.list;
-					if (serviceTypeList && serviceTypeList.length>0) {
-						repairPartAuditFlag.setData(serviceTypeList);
-					} else {
-						parent.showMsg("加载信息错误,请联系管理员!","W");
-					}
-				},
-				error : function(jqXHR, textStatus, errorThrown) {
-					// nui.alert(jqXHR.responseText);
-					console.log(jqXHR.responseText);
-				}
-			});
-		}
-		
+    	function init(){
+    		 nui.ajax({
+                    url: "com.hsapi.system.dict.dictMgr.queryDict.biz.ext",
+                    type: "post",
+                    cache: false,
+                    async: false,
+                    data: {
+                       dictid : "DDT20130705000001",//"10241",
+                       fromDb : true,
+                       token:token
+                    },
+                    success: function(text) {
+							var data = text.data;
+							repairPartAuditFlag.setData(data);						
+                    }
+            });
+    	}
+    	
 		function onValueChanged(e){
 			var check = e.sender.O010Item || "";
 			if(check){

@@ -283,6 +283,18 @@
 			a.county_id as countyId,
 			a.street_address as streetAddress,
 			a.address as address,
+			a.destination_station as destinationStation,
+			a.transfer_station as transferStation,
+			a.transit_logistics_id as transitLogisticsId,
+			a.transit_logistics_name as transitLogisticsName,
+			a.pay_type as payType,
+			a.is_wooden as isWooden,
+			a.collect_money as collectMoney,
+			a.valuation_statement as valuationStatement,
+			a.sender_city as senderCity,
+			a.id_no as idNo,
+			a.sender_phone as senderPhone,
+			a.sender_address as senderAddress,
 			a.bill_status_id as billStatusId
 		FROM
 			pj_pack_main AS a

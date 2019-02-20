@@ -33,7 +33,7 @@ $(document).ready(function(v) {
 	           }else if(e.value == 1){
 	          	 //删除配件信息
 	        	   s = "处理中";
-	           }else{
+	           }else if(e.value == 2){
 	        	  s = "已解决"; 
 	           }
     		   //s =  s + "&nbsp&nbsp&nbsp" +' <a class="optbtn" href="javascript:solveFeedBack(\'' + uid + '\')">查看</a>';
@@ -50,6 +50,7 @@ $(document).ready(function(v) {
 function onSearch(){
 	var params = {};
 	params.orgname = nui.get("orgname").getValue();
+	params.recordMobile = nui.get("recordMobile").getValue();
 	var sta = nui.get("statusId").getValue();
 	if(sta==3){
 		params.statusList = 1;

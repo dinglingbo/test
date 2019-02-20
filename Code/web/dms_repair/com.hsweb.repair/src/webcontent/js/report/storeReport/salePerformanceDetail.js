@@ -40,7 +40,9 @@ $(document).ready(function (v)
      
      grid.on("drawcell", function (e) {
     	 if (e.field == "serviceTypeId") {
-             e.cellHtml = servieTypeHash[e.value].name;
+    		 if(e.value){
+    			 e.cellHtml = servieTypeHash[e.value].name; 
+    		 }
          }else if (e.field == "billTypeId") {
              e.cellHtml = billTypeIdList[e.value].name;
      }

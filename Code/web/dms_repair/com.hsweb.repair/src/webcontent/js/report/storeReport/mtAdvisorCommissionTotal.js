@@ -31,7 +31,10 @@ $(document).ready(function (v)
 
     grid1.on("drawcell", function (e) {
         if(e.field =="groupName" && cType == 1){
-            e.cellHtml = servieTypeHash[e.value].name;
+        	if(e.value){
+        		e.cellHtml = servieTypeHash[e.value].name;
+        	}
+            
         }
 
     });

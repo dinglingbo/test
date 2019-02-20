@@ -11,7 +11,7 @@ $(document).ready(function(v) {
 	moreOrgGrid = nui.get("moreOrgGrid");
 	moreOrgGrid.setUrl(queryUrl);
 	
-    nui.get("recordMobile").focus();
+    nui.get("orgname").focus();
 	document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;//38向上 40向下
@@ -40,7 +40,7 @@ $(document).ready(function(v) {
     		  e.cellHtml = s;
     	  };
     	  if(e.field == "feedOptBtn"){
-    		  e.cellHtml = ' <a class="optbtn" href="javascript:solveFeedBack(\'' + uid + '\')">查看</a>'  
+    		  e.cellHtml = ' <a class="optbtn" href="javascript:solveFeedBack(\'' + uid + '\')">查看</a>';
     	  }
     	  
       });
@@ -56,7 +56,7 @@ function onSearch(){
 	}else{
 		params.status = sta;
 	}
-	params.recordMobile = nui.get("recordMobile").getValue();
+	params.orgid = currOrgId;
 	moreOrgGrid.load({
 		params:params,
 		token : token
@@ -82,16 +82,16 @@ function solveFeedBack(row_uid){
 	if(row){
 		 nui.open({
 	         url: webPath + contextPath + "/common/feedbackDetail.jsp?token="+token,
-	         title: '反馈处理',
+	         title: '查看反馈',
 	         width: 950, height: 770,
 	         onload: function () {
 	             var iframe = this.getIFrameEl();
-	             row.user = 0;
+	             row.user = 1;
 	             iframe.contentWindow.setFeedbackData(row);
 	         },
 	         ondestroy: function (action)
 	         {
-	        	 onSearch();
+	        	 //onSearch();
 	         }
 	     });
 	}

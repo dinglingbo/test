@@ -10,7 +10,7 @@
 
 <head>
     <title>预约管理</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=2.7.6"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/BookingManagement/BookingManagementEdit.js?v=2.7.8"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -99,7 +99,7 @@
 
                         </td>
                         <td class="form_label">
-                            <label><font color="red">服务顾问：</font></label>
+                            <label><font>服务顾问：</font></label>
                         </td>
                         <td>
                             <input class="nui-combobox" id="mtAdvisorId" name="mtAdvisorId" value="" textField="empName" valueField="empId" onvaluechanged="onMTAdvisorIdChange" required="true"/>

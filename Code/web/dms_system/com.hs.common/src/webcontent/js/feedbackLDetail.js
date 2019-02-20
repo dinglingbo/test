@@ -31,17 +31,28 @@ function setFeedbackData(row){
 	document.getElementById("questionSource").innerHTML = row.source || "";
 	document.getElementById("funcName").innerHTML = row.funcName || "";
 	document.getElementById("funcAction").innerHTML = row.funcAction || "";
-	recordDate = format(row.recordDate, "yyyy-MM-dd HH:mm");
+	var recordDate = format(row.recordDate, "yyyy-MM-dd HH:mm");
 	document.getElementById("recordDate").innerHTML = recordDate;
 	showTab(row.questionType,row.questionContent);//updaFree
 	var settleContent = row.settleContent || "";
 	nui.get("settleContent").setValue(settleContent);
+	$("#imgShow").attr("src",row.fileUrl);
+	$("#maxImgShow").attr("src",row.fileUrl);
+	document.getElementById("settlor").innerHTML = row.settlor || "";
+	if(row.settleDate){
+		var settleDate = format(row.settleDate, "yyyy-MM-dd HH:mm");
+		document.getElementById("settleDate").innerHTML = settleDate;
+	}
 	var updaFree = row;
 	var json = nui.encode({
 		updaFree:updaFree,
 		token:token
 	});
-	if(row.status == 0){
+	if(row.status == 0 && row.user==0){
+		/*var date = new Date();
+		document.getElementById("settlor").innerHTML = currUserName;
+		var settleDate = format(date, "yyyy-MM-dd HH:mm");
+		document.getElementById("settleDate").innerHTML = settleDate;*/
 		nui.ajax({
 	 		url : queryUrl,
 	 		type : 'POST',
@@ -53,15 +64,25 @@ function setFeedbackData(row){
 	 			if (returnJson.errCode == "S") {
 
 	 			} else {
-	 				
+	 				showMsg("打开页面有误，请重新打开！",E);
 	 		    }
 	 		}
 	 	 });
 	}
 	
-	
+	if(row.user && row.user==1){
+		$("#updFinish").hide();
+		$("#Oncancel").hide();
+	}
 }
 
+function changeShow(){
+	$(".max_img").show();
+}
+
+function changeHide(){
+	$(".max_img").hide();
+}
 function showTab(str,questionContent){
 	var list = str.split(",");
 	var temp = "";

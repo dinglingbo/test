@@ -135,6 +135,9 @@ function SetData(params) {
 
     basicInfoForm = new nui.Form("#basicInfoForm");
     basicInfoForm.setData(params.data);
+    if(params.data.mtAdvisorId){
+    	nui.get("mtAdvisorId").setText(params.data.mtAdvisor);
+    }
     if(params.data.serviceTypeId==0){
     	nui.get("serviceTypeId").setText("");
     }
@@ -186,10 +189,10 @@ function onOk() {
         showMsg('请选择预计来厂时间',"W");
         return;
     }
-    if(main.mtAdvisorId == "" || main.mtAdvisorId == undefined || main.mtAdvisorId == null){
+    /*if(main.mtAdvisorId == "" || main.mtAdvisorId == undefined || main.mtAdvisorId == null){
     	 showMsg('请选择服务顾问',"W");
          return;
-    }
+    }*/
 
     if(!checkMobile(nui.get("contactorTel").value)){
         return;

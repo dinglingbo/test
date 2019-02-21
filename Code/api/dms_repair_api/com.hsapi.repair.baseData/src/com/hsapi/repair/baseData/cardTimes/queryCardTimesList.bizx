@@ -39,6 +39,7 @@
       <targetNode>assign5</targetNode>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
+    <targetConnections>link8</targetConnections>
     <location x="255" y="195"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -66,6 +67,15 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo0</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link7" name="link7" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>orgid ==null &amp; orgids == null</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="135" y="195"/>
     <size height="28" width="28"/>
@@ -75,8 +85,12 @@
       <process:to type="query">page/isCount</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">query/orgid</process:to>
+      <process:from type="query" pattern="reference">query/orgids</process:from>
+      <process:to type="query">orgids</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">query/orgid</process:from>
+      <process:to type="query">orgid</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -176,6 +190,25 @@
     <chidren>loopstart0</chidren>
     <chidren>assign1</chidren>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="189" y="285"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">query/orgid</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="187" y="321"/>
+    <figSize height="17" width="32"/>
+    <node>assign2</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-09 15:51:47" date="2018-08-09Z" description="" name="test" version="7.0.0.0"/>
@@ -186,6 +219,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="nuipirce" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="balaTimes" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="remainAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orgid" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orgids" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>

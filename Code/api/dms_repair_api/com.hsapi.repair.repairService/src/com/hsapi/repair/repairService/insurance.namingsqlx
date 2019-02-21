@@ -92,8 +92,8 @@
     
     <select id="queryRpsInsuranceList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
    	 	SELECT
-			a.id,
-			a.orgid,
+			a.id as id,
+			a.orgid as orgid,
 			a.service_code serviceCode,
 			a.guest_id guestId,
 			a.contactor_id contactorId,
@@ -136,12 +136,17 @@
 		INNER JOIN rpb_car b ON (a.car_id = b.id)
 		INNER JOIN rpb_contactor c ON (a.contactor_id = c.id)
 		INNER JOIN rps_insurance_detail d ON (d.service_id = a.id)
-		where a.orgid = #orgid#
-		and d.amt &gt; 0
+		where d.amt &gt; 0
 		<dynamic>
 			<isNotEmpty prepend="and" property="id">  
 	            (a.id = #id#)
 	        </isNotEmpty>
+	        <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
 	        <isNotEmpty prepend="and" property="status">  
 	            (a.status  = #status#)
 	        </isNotEmpty>

@@ -28,6 +28,7 @@ var advancedSearchFormData = null;
 var editFormDetail = null;
 var innerItemGrid = null;
 var advancedSearchWin = null;
+var orgidsEl = null;
 //var serviceTypeIds = null;
 var prdtTypeHash = {
 	    "1":"套餐",
@@ -36,6 +37,14 @@ var prdtTypeHash = {
 };
 $(document).ready(function ()
 {
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
     beginDateEl = nui.get("sOutDate");
 	endDateEl = nui.get("eOutDate");
 
@@ -121,6 +130,13 @@ $(document).ready(function ()
         	e.cellHtml ='<a href="##" onclick="edit('+e.record._uid+')">'+e.record.serviceCode+'</a>';
         }else if(e.field == "carNo"){
         	e.cellHtml ='<a href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
+        }else if(e.field == "orgid"){
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name;
+        		}
+        	}
+        	
         }
     });
     innerItemGrid.on("drawcell", function (e) {
@@ -365,6 +381,12 @@ function getSearchParam() {
     params.sOutDate = nui.get("sOutDate").getValue();
     params.eOutDate = addDate(endDateEl.getValue(),1);  
     params.mtAuditorId = mtAdvisorIdEl.getValue();
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
 
     if((nui.get("billTypeId").getValue())==5){
     	

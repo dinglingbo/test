@@ -11,7 +11,7 @@
 <head>
 <title>计次卡查询</title>
 
-<script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.2.3"></script>
+<script src="<%=request.getContextPath()%>/repair/js/Card/rpsCardTimesList.js?v=1.2.4"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 	
@@ -35,6 +35,8 @@
 				       			   <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="search()" />
 									办卡日期: <input id="startDate" class="mini-datepicker" required="true" />-至-
 									         <input id="endDate" class="mini-datepicker" required="true" /> 
+									 <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        			emptyText="兼职公司" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
 									<a class="nui-button" onclick="search()" plain="true"> <span class="fa fa-search fa-lg"></span>&nbsp; 查询</a>
 									<a class="nui-button" onclick="searchOne()" plain="true"> <span class="fa fa-search fa-lg"></span>&nbsp; 查看详情</a>	
 				   					<a class="nui-button" onclick="dealtWithCard()" plain="true"> <span class="fa fa-address-card-o fa-lg"></span>&nbsp;次卡办理</a>
@@ -102,6 +104,7 @@
 						<div field="settleDate" width="120"dateFormat="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true" >
 							办卡日期
 						</div>	
+						<div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
 				</div>
 			</div>
 			</div>

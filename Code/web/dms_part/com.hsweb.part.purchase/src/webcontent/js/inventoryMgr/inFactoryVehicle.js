@@ -42,8 +42,6 @@ $(document).ready(function ()
     mainGrid.setUrl(mainGridUrl);
 
     mtAdvisorIdEl = nui.get("mtAdvisorId");
-    orgidsEl = nui.get("orgids");
-    orgidsEl.setData(currOrgList);
     serviceTypeIdEl = nui.get("serviceTypeId");
     serviceTypeIds = nui.get("serviceTypeIds");
     advancedSearchForm = new nui.Form("#advancedSearchForm");
@@ -54,8 +52,14 @@ $(document).ready(function ()
     innerItemGrid.setUrl(getRpsItemUrl);
     innerpackGrid.setUrl(getdRpsPackageUrl);
 
-    //beginDateEl.setValue(getMonthStartDate());
-    //endDateEl.setValue(addDate(getMonthEndDate(), 1));
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
     onSearch();   
 	  var filter = new HeaderFilter(mainGrid, {
 	        columns: [
@@ -95,6 +99,7 @@ $(document).ready(function ()
         });
 
     });
+
 
 
     mainGrid.on("drawcell", function (e) {
@@ -372,7 +377,7 @@ function getSearchParam() {
     if(orgidsElValue==null||orgidsElValue==""){
     	 params.orgids =  currOrgs;
     }else{
-    	params.orgids=orgidsElValue;
+    	params.orgid=orgidsElValue;
     }
     if((nui.get("billTypeId").getValue())!=999){
     	params.billTypeId = nui.get("billTypeId").getValue();

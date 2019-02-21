@@ -1920,6 +1920,7 @@
    <select id="queryPartOut" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     
 		SELECT
+			a.orgid as orgid,
 			b.id as id,
 			b.service_code AS serviceCode,
 			b.car_no AS carNo,
@@ -1961,7 +1962,10 @@
 		
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">
-                (b.orgid = #orgid#)
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="storeId">  

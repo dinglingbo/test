@@ -1416,9 +1416,11 @@
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
             </isNotEmpty>
-
+			<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="orgids">
-                (a.orgid in (#orgids#))
+                (a.orgid in ($orgids$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carId">
                 (a.car_id = #carId#)

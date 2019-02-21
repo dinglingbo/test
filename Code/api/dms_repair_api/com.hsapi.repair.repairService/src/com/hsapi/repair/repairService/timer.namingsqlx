@@ -96,7 +96,7 @@
 	<!--客户生日-->
 	<select id="getGuestBirthday" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT last_orgid as orgid, id as guestId, full_name as fullName, DATE_FORMAT(birthday,'%m-%d') as dueDate,
-			   b.mt_advisor_id as mtAdvisorId, b.mt_advisor_name as mtAdvisorName
+			   mt_advisor_id as mtAdvisorId, mt_advisor_name as mtAdvisorName
 		from rpb_guest
 		where TIMESTAMPDIFF(DAY, birthday, NOW()) = #ln# 
 	</select>

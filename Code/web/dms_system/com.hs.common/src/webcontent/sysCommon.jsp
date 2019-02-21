@@ -114,6 +114,7 @@
 	String orgJsonStr = "";
 	String isCanBelowCost="";
 	String swithBatchFlag ="";
+	String srmUserId = "";
 	
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
@@ -180,6 +181,9 @@
                 }
                 if(attr.get("orgJsonStr") != null){
                 	orgJsonStr = attr.get("orgJsonStr").toString();
+                }
+                if(attr.get("srmUserId") != null){
+                	srmUserId = attr.get("srmUserId").toString();
                 }
                 
                 if(attr.get("billParams") != null){
@@ -271,7 +275,8 @@
 	var currOrgs = "<%=orgs %>";
 	var currOrgJsonStr = "<%=orgJsonStr %>";
 	currOrgJsonStr = currOrgJsonStr.replace(/'/g,'"');
-	var currOrgList =  JSON.parse(currOrgJsonStr);
+	var currOrgList = JSON.parse(currOrgJsonStr);
+	var currSrmUserId = "<%=srmUserId %>";
     //alert("token=" + token);
     
     /* var _sysMsg_;

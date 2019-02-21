@@ -53,7 +53,7 @@
     <figSize height="17" width="75"/>
     <node>invokePojo0</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" id="assign0" name="赋值" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>end0</targetNode>
@@ -62,10 +62,6 @@
     <location x="330" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
-    <process:copy>
-      <process:from type="expression" pattern="reference">orgs.replace(&quot;\&quot;&quot;,&quot;&quot;)</process:from>
-      <process:to type="query">orgs</process:to>
-    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="332" y="186"/>

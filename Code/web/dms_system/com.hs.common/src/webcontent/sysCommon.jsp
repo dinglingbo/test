@@ -111,8 +111,7 @@
 	String repairDefaultStore = "";
 	String isCanSettle = "";
 	String orgs = "";
-	//List orgList = new ArrayList();
-	Object orgList = null;
+	String orgJsonStr = "";
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
 	}else{
@@ -174,8 +173,8 @@
                 if(attr.get("orgs") != null){
                 	orgs = attr.get("orgs").toString();
                 }
-                if(attr.get("orgList") != null){
-                	orgList = attr.get("orgList").;
+                if(attr.get("orgJsonStr") != null){
+                	orgJsonStr = attr.get("orgJsonStr").toString();
                 }
                 
                 if(attr.get("billParams") != null){
@@ -260,7 +259,9 @@
 	var currRepairDefaultStore = "<%=repairDefaultStore %>";
 	var currIsCanSettle = "<%=isCanSettle %>";
 	var currOrgs = "<%=orgs %>";
-	var currOrgList = "<%=orgList %>";
+	var currOrgJsonStr = "<%=orgJsonStr %>";
+	currOrgJsonStr = currOrgJsonStr.replace(/'/g,'"');
+	var currOrgList =  JSON.parse(currOrgJsonStr);
     //alert("token=" + token);
     
     /* var _sysMsg_;

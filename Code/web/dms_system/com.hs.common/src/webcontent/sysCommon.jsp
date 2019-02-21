@@ -175,7 +175,7 @@
                 	orgs = attr.get("orgs").toString();
                 }
                 if(attr.get("orgList") != null){
-                	orgList = attr.get("orgList");
+                	orgList = attr.get("orgList").;
                 }
                 
                 if(attr.get("billParams") != null){

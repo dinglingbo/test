@@ -19,6 +19,7 @@ var servieTypeHash = {};
 var receTypeIdList = [];
 var receTypeIdHash = {};
 var mtAdvisorIdEl = null;
+var orgidsEl = null;
 var serviceTypeIdEl = null;
 var serviceTypeIds = null;
 var advancedMore = null;
@@ -37,11 +38,12 @@ $(document).ready(function ()
 {
     //beginDateEl = nui.get("sEnterDate");
 	//endDateEl = nui.get("eEnterDate");
-
     mainGrid = nui.get("mainGrid");
     mainGrid.setUrl(mainGridUrl);
 
     mtAdvisorIdEl = nui.get("mtAdvisorId");
+    orgidsEl = nui.get("orgids");
+    orgidsHash();
     serviceTypeIdEl = nui.get("serviceTypeId");
     serviceTypeIds = nui.get("serviceTypeIds");
     advancedSearchForm = new nui.Form("#advancedSearchForm");
@@ -118,6 +120,13 @@ $(document).ready(function ()
         	e.cellHtml ='<a href="##" onclick="edit('+e.record._uid+')">'+e.record.serviceCode+'</a>';
         }else if(e.field == "carNo"){
         	e.cellHtml ='<a href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
+        }else if(e.field == "orgid"){
+        	for(var i=0;i<orgidsHash.length;i++){
+        		if(orgidsHash[i].orgid==e.value){
+        			e.cellHtml = orgidsHash[i].name;
+        		}
+        	}
+        	
         }
     });
     innerItemGrid.on("drawcell", function (e) {
@@ -359,6 +368,20 @@ function getSearchParam() {
     //params.sEnterDate = nui.get("sEnterDate").getValue();
   //  params.eEnterDate = addDate(endDateEl.getValue(),1);  
     params.mtAuditorId = mtAdvisorIdEl.getValue();
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	var orgids = "";
+    	 for(var i = 0;i<orgidsHash.length;i++){
+    		 if(i==0){
+    			 orgids = orgidsHash[i].orgid;
+    		 }else{
+    			 orgids = orgids+","+orgidsHash[i].orgid;
+    		 }
+    	 }
+    	 params.orgids =  orgids;
+    }else{
+    	params.orgids=orgidsElValue;
+    }
     if((nui.get("billTypeId").getValue())!=999){
     	params.billTypeId = nui.get("billTypeId").getValue();
     }
@@ -459,4 +482,32 @@ function showCarInfo(row_uid){
 		doShowCarInfo(params);
 	}
 }
-
+var orgidsHash=[];
+function orgidsHash(){ 
+	nui.ajax({
+		url : apiPath + sysApi + "/com.hs.common.login.getEmpOrgArr.biz.ext",
+		type : 'POST',
+		data : {empId:currEmpId},
+		cache : true,
+		contentType : 'text/json',
+		success : function(text) {
+			var returnJson = nui.decode(text);
+			orgidsHash = returnJson.data;
+		    orgidsEl.setData(orgidsHash);
+		}
+	});
+}
+function orgidsHash(){
+	nui.ajax({
+		url : apiPath + sysApi + "/com.hs.common.login.getEmpOrgArr.biz.ext",
+		type : 'POST',
+		data : {empId:currEmpId},
+		cache : true,
+		contentType : 'text/json',
+		success : function(text) {
+			var returnJson = nui.decode(text);
+			orgidsHash = returnJson.data;
+		    orgidsEl.setData(orgidsHash);
+		}
+	});
+}

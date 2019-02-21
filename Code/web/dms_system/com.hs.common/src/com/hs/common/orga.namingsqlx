@@ -66,7 +66,42 @@
     
     
     
+    <!--根据公司ID获取公司对应的公司详情-->
+    <select id="queryOrgInfo" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.orgid orgid, a.tenant_id tenantId, a.`code` code, a.`name` name,
+			a.short_name shortName, a.province_id provinceId, a.city_id cityId,
+			a.county_id countyId, a.street_address streetAddress, a.address address,
+			a.longitude longitude, a.latitude latitude, a.tel tel, a.fax fax,
+			a.bank_name bankName, a.bank_account_number bankAccountNumber,
+			a.main_brand_id mainBrandId, a.webaddress webaddress, a.wechat_img wechatImg,
+			a.logo_img logoImg, a.soft_open_date softOpenDate, a.part_expire_date partExpireDate,
+			a.is_open_system isOpenSystem, a.is_open_process isOpenProcess,
+			a.is_unify_financial isUnifyFinancial, a.is_account isAccount,
+			a.sett_comp_code settCompCode, a.unsalable_days unsalableDays,
+			a.widen_tax_rate widenTaxRate, a.part_manage_rate partManageRate,
+			a.complain_tel complainTel, a.rescue_tel rescueTel,
+			a.user_qty userQty, a.report_title reportTitle,
+			a.slogan1 slogan1, a.slogan2 slogan2, a.is_data_share isDataShare,
+			a.e_record_province eRecordProvince, a.e_record_repair_no eRecordRepairNo,
+			a.e_record_user eRecordUser, a.e_record_pwd eRecordPwd,
+			a.is_master isMaster, a.remark remark, a.property_name propertyName,
+			a.srm_company_id srmCompanyId, a.srm_guest_id srmGuestId,
+			a.srm_user_id srmUserId, a.srm_user_pd srmUserPd, a.srm_modifier srmModifier,
+			a.srm_modify_date srmModifyDate, a.recorder recorder,
+			a.record_date recordDate, a.modifier modifier, a.modify_date modifyDate
+		FROM
+			com_company AS a
+		where a.orgid = #orgid#
+    </select>
     
+    <!--根据员工ID获取员工对应的兼职公司-->
+    <select id="queryEmpOrg" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT orgid as orgid, empId as empId, isMain as isMain, 
+		       TENANT_ID as tenantId, APP_ID as appId 
+		from org_emporg
+		where empId = #empId#
+    </select>
     
     
     

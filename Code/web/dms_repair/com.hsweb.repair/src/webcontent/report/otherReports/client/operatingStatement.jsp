@@ -11,7 +11,7 @@
 <head>
 <title>营业报表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/operatingStatement.js?v=1.0.0"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/operatingStatement.js?v=1.0.3"></script>
       <link href="<%=request.getContextPath()%>/repair/js/report/storeReport/reportIndex.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -137,10 +137,18 @@
                             <p>计次卡消费明细表</p> 
                         </a>
                     </div>
-                    <div >
+                    <div class="menu_pannel menu_pannel_bg">
+                        <a onclick="cardRunningWaterSummary()">
+                            <i class="fa fa-bar-chart fa-4x  fa-inverse"></i>
+                            <p>储值卡流水汇总表</p> 
+                        </a> 
 
                     </div>
-                    <div >
+                    <div class="menu_pannel menu_pannel_bg">
+                        <a onclick="cardTimesRunningWaterSummary()">
+                            <i class="fa fa-bar-chart fa-4x  fa-inverse"></i>
+                            <p>计次卡流水汇总表</p> 
+                        </a> 
 
                     </div>
                     <div >

@@ -93,17 +93,17 @@
 					and a.last_orgid = #orgid# and a.is_veri_remind = 0
 	</update>
 	
-	<!--客户生日-->
+	<!--客户生日  按月日提醒-->
 	<select id="getGuestBirthday" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT last_orgid as orgid, id as guestId, full_name as fullName, DATE_FORMAT(birthday,'%m-%d') as dueDate,
-			   b.mt_advisor_id as mtAdvisorId, b.mt_advisor_name as mtAdvisorName
+			   mt_advisor_id as mtAdvisorId, mt_advisor_name as mtAdvisorName
 		from rpb_guest
-		where TIMESTAMPDIFF(DAY, birthday, NOW()) = #ln# 
+		where datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,birthday,NOW())/12) YEAR),NOW()) = #ln# 
 	</select>
-	<!--客户生日-->
+	<!--客户生日  按月日提醒-->
 	<update id="updateGuestBirthdayRemind" parameterClass="java.util.HashMap">
 		update rpb_contactor set is_bir_remind = 1, bir_status = 0
-		where TIMESTAMPDIFF(DAY, birthday, NOW()) = #ln#
+		where datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,birthday,NOW())/12) YEAR),NOW()) = #ln#
 					and orgid = #orgid# and is_bir_remind = 0
 	</update>
 	
@@ -126,11 +126,12 @@
 		and TIMESTAMPDIFF(HOUR, plan_arrive_date, NOW()) = #ln# 
 	</select>
 	
-	<!--员工生日-->
+	<!--员工生日  按月日提醒-->
 	<select id="getMemBirthday" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT empid, orgid, name, sex, DATE_FORMAT(birthday,'%m-%d') as dueDate,
 		from wb_common.com_member
-		where TIMESTAMPDIFF(DAY, birthday, NOW()) = #ln# and orgid = #orgid#
+		where datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,birthday,NOW())/12) YEAR),NOW()) = #ln# 
+		      and orgid = #orgid#
 	</select>
 	
 	

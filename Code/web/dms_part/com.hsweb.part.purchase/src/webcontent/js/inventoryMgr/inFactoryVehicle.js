@@ -121,9 +121,9 @@ $(document).ready(function ()
         }else if(e.field == "carNo"){
         	e.cellHtml ='<a href="##" onclick="showCarInfo('+e.record._uid+')">'+e.record.carNo+'</a>';
         }else if(e.field == "orgid"){
-        	for(var i=0;i<orgidsHash.length;i++){
-        		if(orgidsHash[i].orgid==e.value){
-        			e.cellHtml = orgidsHash[i].name;
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name;
         		}
         	}
         	

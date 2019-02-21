@@ -211,6 +211,7 @@
     </select>
     <select id="queryPjPchsEnterMainDetailList" parameterMap="parameterMap" resultClass="commonj.sdo.DataObject">
 		SELECT
+			a.id as id,
 			a.service_id as serviceId,
 			b.store_id as storeId,
 			a.orgid as orgid,
@@ -280,6 +281,7 @@
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="idList">(A.id in ($idList$))</isNotEmpty>
             <isNotEmpty prepend="and" property="mainId">(b.main_id = #mainId#)</isNotEmpty>
             <!--入库日期 -->
             <isNotEmpty prepend="and" property="sEnterDate">A.enter_date &gt;= #sEnterDate#</isNotEmpty>
@@ -764,7 +766,7 @@
 		inner join wb_common.com_attribute b
 		on a.part_id = b.id
 
-		WHERE 1 = 1 and b.is_disabled=0
+		WHERE 1 = 1 
 				
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>

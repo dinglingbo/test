@@ -46,7 +46,7 @@
 		       a.is_host isHost,
 		       a.common_id as commonId
         FROM com_attribute a
-        where 1=1
+        where 1=1 and a.is_disabled=0
     	<dynamic>
     		<isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)

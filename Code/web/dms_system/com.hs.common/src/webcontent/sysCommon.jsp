@@ -109,6 +109,9 @@
 	String repairPchsRtnFlag = "1";
 	String repairDefaultStore = "";
 	String isCanSettle = "";
+	String isCanBelowCost="";
+	String swithBatchFlag ="";
+	
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
 	}else{
@@ -166,6 +169,9 @@
                 if(attr.get("isCanSettle") != null){
                 	isCanSettle = attr.get("isCanSettle").toString();
                 }
+                if(attr.get("isCanBelowCost") != null){
+                	isCanBelowCost = attr.get("isCanBelowCost").toString();
+                }
                 
                 if(attr.get("billParams") != null){
                 	billParamsObj = attr.get("billParams");
@@ -193,6 +199,9 @@
 	                }
 	                if(billParams.get("repairDefaultStore") != null){
 	                	repairDefaultStore = billParams.get("repairDefaultStore").toString();
+	                }
+                    if(billParams.get("swithBatchFlag") != null){
+	                	swithBatchFlag = billParams.get("swithBatchFlag").toString();
 	                }
                 }
               
@@ -248,6 +257,8 @@
 	var currRepairPchsRtnFlag = "<%=repairPchsRtnFlag %>";
 	var currRepairDefaultStore = "<%=repairDefaultStore %>";
 	var currIsCanSettle = "<%=isCanSettle %>";
+	var currIsCanBelowCost ="<%=isCanBelowCost %>";
+	var currSwithBatchFlag ="<%=swithBatchFlag %>";
     //alert("token=" + token);
     
     /* var _sysMsg_;

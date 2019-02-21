@@ -1,7 +1,8 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
 <%@ page language="java" import="com.eos.data.datacontext.IUserObject"%>
 <%@page import="com.eos.data.datacontext.IMUODataContext,com.eos.data.datacontext.UserObject,com.eos.data.datacontext.DataContextManager,commonj.sdo.DataObject"%>
-<%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env,com.hs.common.Utils"%>
+<%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env,com.hs.common.Utils,java.util.List"%>
 <%@ taglib uri="http://eos.primeton.com/tags/html" prefix="h"%>
 <%@ taglib uri="http://eos.primeton.com/tags/logic" prefix="l"%>
 <%@ taglib uri="http://eos.primeton.com/tags/bean" prefix="b"%>
@@ -109,6 +110,9 @@
 	String repairPchsRtnFlag = "1";
 	String repairDefaultStore = "";
 	String isCanSettle = "";
+	String orgs = "";
+	//List orgList = new ArrayList();
+	Object orgList = null;
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
 	}else{
@@ -165,6 +169,13 @@
                 }
                 if(attr.get("isCanSettle") != null){
                 	isCanSettle = attr.get("isCanSettle").toString();
+                }
+                
+                if(attr.get("orgs") != null){
+                	orgs = attr.get("orgs").toString();
+                }
+                if(attr.get("orgList") != null){
+                	orgList = attr.get("orgList").;
                 }
                 
                 if(attr.get("billParams") != null){
@@ -248,6 +259,8 @@
 	var currRepairPchsRtnFlag = "<%=repairPchsRtnFlag %>";
 	var currRepairDefaultStore = "<%=repairDefaultStore %>";
 	var currIsCanSettle = "<%=isCanSettle %>";
+	var currOrgs = "<%=orgs %>";
+	var currOrgList = "<%=orgList %>";
     //alert("token=" + token);
     
     /* var _sysMsg_;

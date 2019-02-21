@@ -43,7 +43,7 @@ $(document).ready(function ()
 
     mtAdvisorIdEl = nui.get("mtAdvisorId");
     orgidsEl = nui.get("orgids");
-    orgidsHash();
+    orgidsEl.setData(currOrgList);
     serviceTypeIdEl = nui.get("serviceTypeId");
     serviceTypeIds = nui.get("serviceTypeIds");
     advancedSearchForm = new nui.Form("#advancedSearchForm");
@@ -370,15 +370,7 @@ function getSearchParam() {
     params.mtAuditorId = mtAdvisorIdEl.getValue();
     var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){
-    	var orgids = "";
-    	 for(var i = 0;i<orgidsHash.length;i++){
-    		 if(i==0){
-    			 orgids = orgidsHash[i].orgid;
-    		 }else{
-    			 orgids = orgids+","+orgidsHash[i].orgid;
-    		 }
-    	 }
-    	 params.orgids =  orgids;
+    	 params.orgids =  currOrgs;
     }else{
     	params.orgids=orgidsElValue;
     }
@@ -481,33 +473,4 @@ function showCarInfo(row_uid){
 		};
 		doShowCarInfo(params);
 	}
-}
-var orgidsHash=[];
-function orgidsHash(){ 
-	nui.ajax({
-		url : apiPath + sysApi + "/com.hs.common.login.getEmpOrgArr.biz.ext",
-		type : 'POST',
-		data : {empId:currEmpId},
-		cache : true,
-		contentType : 'text/json',
-		success : function(text) {
-			var returnJson = nui.decode(text);
-			orgidsHash = returnJson.data;
-		    orgidsEl.setData(orgidsHash);
-		}
-	});
-}
-function orgidsHash(){
-	nui.ajax({
-		url : apiPath + sysApi + "/com.hs.common.login.getEmpOrgArr.biz.ext",
-		type : 'POST',
-		data : {empId:currEmpId},
-		cache : true,
-		contentType : 'text/json',
-		success : function(text) {
-			var returnJson = nui.decode(text);
-			orgidsHash = returnJson.data;
-		    orgidsEl.setData(orgidsHash);
-		}
-	});
 }

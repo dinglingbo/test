@@ -547,7 +547,7 @@ window.onload = function() {
           "status":0,
           "funcName":title,
           "funcAction":titleUrl,
-          //"recordMobile":recordMobile
+          "recordMobile":currEmpTel
         }
         var url = apiPath + sysApi +"/com.hsapi.system.employee.feedback.saveFeedBackInfo.biz.ext";
         nui.ajax({

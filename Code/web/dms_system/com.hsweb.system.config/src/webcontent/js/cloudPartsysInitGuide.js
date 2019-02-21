@@ -2,9 +2,9 @@
 
 function toSysSet(){
 	var item={};
-	item.id = "sysSet";
-	item.text = "公司属性";
-	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.sysSet.flow";
+	item.id = "initCloudSysParams";
+	item.text = "系统参数";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.paramMgr.flow";
 	item.iconCls = "fa fa-cog";
 	window.parent.activeTab(item);
 }
@@ -81,12 +81,20 @@ function toRPBillSet(){
 	window.parent.activeTab(item);
 }
 
-function toTeamMainSet(){
+function toOrgSetSet(){
 	var item={};
-	item.id = "TeamMain";
-	item.text = "班组定义";
-	item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.TeamMain.flow";
-	item.iconCls = "fa fa-vcard";
+	item.id = "sysSet";
+	item.text = "公司属性";
+	item.url = webPath + contextPath + "/com.hsweb.cloud.part.basic.sysSet.flow";
+	item.iconCls = "fa fa-cog";
 	window.parent.activeTab(item);
 }
+//function toTeamMainSet(){
+//	var item={};
+//	item.id = "TeamMain";
+//	item.text = "班组定义";
+//	item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.TeamMain.flow";
+//	item.iconCls = "fa fa-vcard";
+//	window.parent.activeTab(item);
+//}
 

@@ -61,6 +61,10 @@
       <process:from type="query" pattern="reference">guestId</process:from>
       <process:to type="query">guestJoin/guestId</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">serviceId</process:from>
+      <process:to type="query">maintain/id</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="212" y="186"/>
@@ -70,7 +74,7 @@
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="expandEntity" displayName="expandEntity" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
-      <targetNode>assign2</targetNode>
+      <targetNode>invokePojo10</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" type="transition">
       <sourceNode>invokePojo0</sourceNode>
@@ -83,7 +87,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <location x="315" y="150"/>
+    <location x="300" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -99,7 +103,7 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="289" y="186"/>
+    <location x="274" y="186"/>
     <figSize height="17" width="75"/>
     <node>invokePojo0</node>
   </nodes>
@@ -160,8 +164,8 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link2</targetConnections>
-    <location x="424" y="150"/>
+    <targetConnections>link41</targetConnections>
+    <location x="465" y="150"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
@@ -174,7 +178,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="422" y="186"/>
+    <location x="463" y="186"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -997,7 +1001,7 @@
         <process:inputVariable id="0" name="dc" type="literal" value="Int" valueType="Primitive" pattern="reference">-1</process:inputVariable>
         <process:inputVariable id="1" name="billMainId" type="query" value="Long" valueType="Primitive" pattern="reference">serviceId</process:inputVariable>
         <process:inputVariable id="2" name="billServiceId" type="query" value="String" valueType="Primitive" pattern="reference">serviceCode</process:inputVariable>
-        <process:inputVariable id="3" name="billTypeId" type="query" value="String" valueType="Primitive" pattern="reference">billTypeId</process:inputVariable>
+        <process:inputVariable id="3" name="billTypeId" type="query" value="String" valueType="Primitive" pattern="reference">maintain/billTypeId</process:inputVariable>
         <process:inputVariable id="4" name="amt" type="query" value="Float" valueType="Primitive" pattern="reference">temp/consumeAmt</process:inputVariable>
         <process:inputVariable id="5" name="guestId" type="query" value="String" valueType="Primitive" pattern="reference">guestId</process:inputVariable>
         <process:inputVariable id="6" name="guestName" type="query" value="String" valueType="Primitive" pattern="reference">guestJoin/guestFullName</process:inputVariable>
@@ -1093,6 +1097,32 @@
     <figSize height="17" width="39"/>
     <node>assign13</node>
   </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo10" name="expandEntity2" displayName="expandEntity" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link41" name="link41" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo10</sourceNode>
+      <targetNode>assign2</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="375" y="148"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo10label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseUtil.expandEntity</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
+      <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">maintain</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java">len</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo10label" name="label" nodeType="label">
+    <location x="345" y="184"/>
+    <figSize height="17" width="82"/>
+    <node>invokePojo10</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-13 00:27:04" date="2018-08-12Z" description="" name="updateMemberBalance" version="7.0.0.0"/>
@@ -1115,6 +1145,7 @@
     <process:variable anyType="java.math.BigDecimal" description="" historyStateLocation="client" isArray="false" name="d2"/>
     <process:variable description="退款扣减金额" historyStateLocation="client" isArray="false" name="cutAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCardStored" name="rpbCard"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="guestId" primitiveType="Int"/>

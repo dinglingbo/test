@@ -73,7 +73,8 @@ function wechatBin(row_uid){
 			 var wechatUser = {};
 			 wechatUser.userPhone = row.mobile;
 			 wechatUser.userMarke = wechatServiceId;
-			 wechatUser.id = row.id;
+			 wechatUser.contactorId = row.id;
+			 wechatUser.guestId = guestId;
 			 var json = nui.encode({
 				 carNo:carNo,
 				 wechatUser:wechatUser,

@@ -9,7 +9,7 @@
 -->
 <head>
     <title>未结算配件明细表</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/notSettledPartDetail.js?v=1.0.2"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/notSettledPartDetail.js?v=1.0.3"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -88,6 +88,8 @@
       valueFromSelect="false"
       width="100px" onvaluechanged="onSearch">
       <input class="nui-textbox" width="80px" id="carNo" name="carNo" selectOnFocus="true" enabled="true" emptyText="车牌号"/>
+      <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="兼职公司" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
  <!--  出库日期 从:
      <input class="nui-datepicker"width="100px" id="sPickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
  至:
@@ -168,6 +170,7 @@
                 <div allowSort="true" field="carTypeIdS" width="100" headerAlign="center" header="配件分类二级"></div>
                 <div allowSort="true" field="carTypeIdT" width="100" headerAlign="center" header="配件分类三级"></div>
                 <div allowSort="true" field="spec" width="100" headerAlign="center" header="规格"></div>
+                <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
             </div>
         </div>
     </div>

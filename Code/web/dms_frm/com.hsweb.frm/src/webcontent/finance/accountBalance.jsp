@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
     <title>账户余额表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountBalance.js?v=1.0.2"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountBalance.js?v=1.0.3"></script>
         <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -47,6 +47,8 @@ pageEncoding="UTF-8" session="false" %>
         
         <input id="accountId" width="100px" textField="name" valueField="id" emptyText="结算账户" class="nui-combobox" allowinput="true" onvalueChanged="doSearch()" valueFromSelect="true"/>
         <span class="separator"></span> 
+        <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
         <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     </div>
     <div class="nui-fit">
@@ -63,6 +65,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="debit" name="debit" width="60" summaryType="sum"  headeralign="center" allowsort="true">收入</div>
                 <div field="credit" name="credit" width="60" summaryType="sum"  headeralign="center" allowsort="true">支出</div>
                 <div field="endBala" name="endBala" width="60"  headeralign="center" summaryType="sum" allowsort="true">余额</div>
+                <!-- <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div> -->
            
             </div>
         </div>

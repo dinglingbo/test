@@ -12,6 +12,7 @@
  var innerPartGrid = null;
  var checkTypeList = [];
  var checkTypeHash = {};
+ var orgidsEl = null;
  var settleTypeIdList=[{id :1,name :"保司直收"},{id :2,name :"门店代收全款"},{id :3,name :"代收减返点"}];
  var statusHash = {
 		    "0":"未检",
@@ -25,6 +26,15 @@
     nui.get("search-type").setData(statusList);
     beginDateEl = nui.get("sRecordDate");
     endDateEl = nui.get("eRecordDate");
+    
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
     
     editFormDetail = document.getElementById("editFormDetail");
     innerPartGrid = nui.get("innerPartGrid");
@@ -45,6 +55,13 @@
  
         if(e.field == "settleTypeId"){
         	 e.cellHtml = settleTypeIdList[e.value-1].name ||"";
+        }else if(e.field == "orgid"){
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name;
+        		}
+        	}
+        	
         }
     });
     leftGrid.on("rowclick", function (e) {
@@ -195,6 +212,12 @@ function getSearchParams()
     params.sRecordDate = beginDateEl.getFormValue();
     params.eRecordDate = addDate(endDateEl.getFormValue(),1);
     params.checkMan = nui.get("mtAdvisorId").getText();
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){
@@ -212,7 +235,6 @@ function onSearch()
     doSearch(params);
 } 
 function doSearch(params) {
-    params.orgid = currOrgid;
     leftGrid.load({
         token:token, 
         params: params

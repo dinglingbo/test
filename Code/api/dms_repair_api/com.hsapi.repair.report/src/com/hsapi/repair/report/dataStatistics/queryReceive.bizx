@@ -8,6 +8,7 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <location x="0" y="181"/>
     <size height="28" width="28"/>
@@ -38,9 +39,19 @@
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign0</sourceNode>
       <targetNode>invokePojo0</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link53" name="link53" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign22</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>orgid ==null &amp;&amp; orgids == null</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="60" y="181"/>
+    <location x="58" y="181"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
@@ -52,16 +63,20 @@
       <process:to type="query">params/endDate</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">params/orgid</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="literal" pattern="reference">0,2,3,4</process:from>
       <process:to type="query">params/billTypeIds</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgids</process:from>
+      <process:to type="query">params/orgids</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">orgid</process:from>
+      <process:to type="query">params/orgid</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="62" y="217"/>
+    <location x="60" y="217"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
@@ -85,6 +100,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
+    <targetConnections>link54</targetConnections>
     <location x="135" y="181"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -110,6 +126,7 @@
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign1</sourceNode>
       <targetNode>invokePojo1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
     <location x="195" y="181"/>
@@ -466,6 +483,7 @@
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign9</sourceNode>
       <targetNode>invokePojo5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
     <location x="810" y="181"/>
@@ -998,6 +1016,25 @@
     <figSize height="17" width="39"/>
     <node>assign21</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign22" name="赋值22" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link54" name="link54" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign22</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link53</targetConnections>
+    <location x="84" y="255"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign22label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">params/orgid</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign22label" name="label" nodeType="label">
+    <location x="79" y="291"/>
+    <figSize height="17" width="39"/>
+    <node>assign22</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-12-25 15:19:20" date="2018-12-25Z" description="" name="queryReceive" version="7.0.0.0"/>
@@ -1022,6 +1059,8 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="startDate" primitiveType="Date"/>
     <process:input description="" isArray="false" name="endDate" primitiveType="Date"/>
+    <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
+    <process:input description="" isArray="false" name="orgids" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output anyType="java.util.HashMap" description="" isArray="false" name="data"/>

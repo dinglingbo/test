@@ -2404,6 +2404,10 @@ function showPchsEnter(mainId,serviceId,guestId){
                 guestId: guestId
             };
             iframe.contentWindow.setInitData(params,function(data){
+            	var row=rightGrid.getData();
+            	if(!row[row.length-1].comPartCode){
+            		rightGrid.removeRow(row[row.length-1]);
+            	}
             	rightGrid.addRows(data);
             });
 

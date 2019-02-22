@@ -10,6 +10,7 @@ var grid2 = null;
 var queryForm = null;
 var servieTypeList = [];
 var servieTypeHash = {};
+var orgidsEl = null;
 var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"客户名称"},{id:"2",name:"客户电话"},{id:"3",name:"计次卡名称"}];
 /*进来该页面，加载套餐列表数据*/
 $(document).ready(function (v)
@@ -20,6 +21,15 @@ $(document).ready(function (v)
 
     var startDate = mini.get("startDate");   
     var endDate = mini.get("endDate");
+    
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
          
     startDate1 = getMonthStartDate();
     endDate1 = getMonthEndDate();
@@ -53,6 +63,7 @@ $(document).ready(function (v)
     });
     
     grid.setUrl(queryFormUrl);
+
     grid2.on("drawcell", function (e) {
         var grid = e.sender;
         var record = e.record;
@@ -170,6 +181,15 @@ function refresh(){
     case "prdtType":
     	e.cellHtml = prdtTypeHash[e.value];
     	break;
+    case "orgid":
+    	for(var i=0;i<currOrgList.length;i++){
+    		if(currOrgList[i].orgid==e.value){
+    			e.cellHtml = currOrgList[i].name;
+    		}
+    	}
+    	break;    	
+    	
+
     default:
         break;
     }
@@ -203,7 +223,15 @@ function refresh(){
 			carNo:carNo,
 			startDate:startDate,
 			endDate:endDate
-	}
+	};
+	   var orgidsElValue = orgidsEl.getValue();
+	    if(orgidsElValue==null||orgidsElValue==""){
+	    	 params.orgids =  currOrgs;
+	    }else{
+	    	params.orgid=orgidsElValue;
+	    }
+
+	
 	grid.load({
 		query:params,
     	token : token

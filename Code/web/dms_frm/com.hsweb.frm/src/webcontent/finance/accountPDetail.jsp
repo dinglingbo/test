@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>付款明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPDetail.js?v=1.1.8"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountPDetail.js?v=1.1.9"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -59,7 +59,9 @@ pageEncoding="UTF-8" session="false" %>
         <input id="isMain" width="100px" data="pList" textField="text" valueField="id"  emptyText="是否主营业务" onvalueChanged="onSearch()" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
                 <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
         <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120"  onenter="onSearch(this.value)"/>
-        <span class="separator"></span> 
+        </br>
+        <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
         <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     </div>
     <div class="nui-fit">
@@ -83,6 +85,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="auditor" name="auditor" width="60"  headeralign="center" allowsort="true"  >付款人</div>
                 <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true" >付款日期</div>
                 <div field="fullName" name="fullName" width="120"  headeralign="center" allowsort="true" >结算单位全称</div>
+                <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
            
             </div>
         </div>

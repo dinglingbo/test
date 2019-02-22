@@ -23,6 +23,7 @@ var sOutDateEl=null;
 var eOutDateEl =null;
 var sReturnDateEl =null;
 var eReturnDateEl=null;
+var orgidsEl = null;
 $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
@@ -32,6 +33,13 @@ $(document).ready(function(v)
     sOutDateEl =nui.get('sOutDate');
     eOutDateEl = nui.get('eOutDate');
     
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
 
     
 	getAllPartBrand(function(data) {
@@ -89,6 +97,13 @@ $(document).ready(function(v)
 	                e.cellHtml = "";
 	            }
 			 break;
+		 case  "orgid":
+	        	for(var i=0;i<currOrgList.length;i++){
+	        		if(currOrgList[i].orgid==e.value){
+	        			e.cellHtml = currOrgList[i].name || "";
+	        		}
+	        	}
+        	break;	
 		default:
 			break;
 		}
@@ -144,6 +159,13 @@ function getSearchParams(){
     if(eOutDateEl.getValue())  {
     	params.eOutDate=addDate(eOutDateEl.getValue(),1);
     }
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
+
     return params;
 }
 
@@ -219,7 +241,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
-	params.orgid = currOrgid;
+//	params.orgid = currOrgid;
 	params.returnSign = 1; //出库
 //	params.isSettle=1; //已结算
 //	params.status=2; //状态已完工

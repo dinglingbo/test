@@ -4,7 +4,7 @@
 
 <head>
 <title>供应商采购汇总按月排行</title>
-<script src="<%=webPath + contextPath%>/manage/js/report/supplierPchsForMonth.js?v=1.1.11"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/supplierPchsForMonth.js?v=1.1.12"></script>
 </head>
 
 <body>
@@ -37,6 +37,9 @@
                 <input id="partName" width="100px" emptyText="配件名称" class="nui-textbox"/>
                 <input id="partBrandId" width="100px" textField="name" valueField="id" emptyText="配件品牌" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
                 <input id="supplierType" width="100px" textField="name" valueField="customid" emptyText="供应商分类" visible="false" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
+                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+                
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
             </td>
@@ -61,6 +64,7 @@
                 <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >供应商简称</div>
                 <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >供应商分类</div>
                 <div field="partBrandId" allowSort="true" headerAlign="center"width="60"  >供应商全称</div>
+                <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
               </div>
             </div>
             <div header="2018">

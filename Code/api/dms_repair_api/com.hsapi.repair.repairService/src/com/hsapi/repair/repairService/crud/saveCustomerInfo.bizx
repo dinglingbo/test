@@ -617,7 +617,7 @@
     <targetConnections>link31</targetConnections>
     <targetConnections>link32</targetConnections>
     <targetConnections>link39</targetConnections>
-    <targetConnections>link41</targetConnections>
+    <targetConnections>link42</targetConnections>
     <location x="824" y="91"/>
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
@@ -776,10 +776,11 @@
     <sourceConnections xsi:type="process:tLink" id="link40" name="link40" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign15</sourceNode>
       <targetNode>assign16</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link41" name="link41" displayName="连接线" type="transition">
       <sourceNode>assign15</sourceNode>
-      <targetNode>assign10</targetNode>
+      <targetNode>assign17</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="NULLOREMPTY">
           <process:leftOperand type="query">guestData</process:leftOperand>
@@ -788,12 +789,12 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link28</targetConnections>
-    <location x="825" y="176"/>
+    <location x="825" y="208"/>
     <size height="28" width="28"/>
     <nodeLabel>assign15label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign15label" name="label" nodeType="label">
-    <location x="820" y="212"/>
+    <location x="820" y="244"/>
     <figSize height="17" width="39"/>
     <node>assign15</node>
   </nodes>
@@ -803,7 +804,7 @@
       <targetNode>assign10</targetNode>
     </sourceConnections>
     <targetConnections>link40</targetConnections>
-    <location x="762" y="122"/>
+    <location x="763" y="143"/>
     <size height="28" width="28"/>
     <nodeLabel>assign16label</nodeLabel>
     <process:copy>
@@ -820,9 +821,36 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign16label" name="label" nodeType="label">
-    <location x="757" y="158"/>
+    <location x="758" y="179"/>
     <figSize height="17" width="39"/>
     <node>assign16</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign17" name="赋值17" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link42" name="link42" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign17</sourceNode>
+      <targetNode>assign10</targetNode>
+    </sourceConnections>
+    <targetConnections>link41</targetConnections>
+    <location x="824" y="143"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign17label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">retData/guestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">retData/birthday</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">retData/guestFullName</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign17label" name="label" nodeType="label">
+    <location x="819" y="179"/>
+    <figSize height="17" width="39"/>
+    <node>assign17</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

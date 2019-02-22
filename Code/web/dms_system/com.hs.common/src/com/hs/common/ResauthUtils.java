@@ -286,4 +286,23 @@ public class ResauthUtils {
 		return logicComponent.invoke(operationName, ps);
 	}
 	
+	
+	@Bizlet("根据公司ID获取公司对应的公司详情")
+	public static DataObject[] getOrgInfo(String orgid) throws Throwable {
+		HashMap pm = new HashMap();
+		pm.put("orgid", orgid);
+		
+		return getRedisCache("common", "com.hs.common.orga.queryOrgInfo", 
+				pm, "公司详情数据", "false", -1, false, null);
+	}
+	
+	@Bizlet("根据员工ID获取员工对应机构ID")
+	public static DataObject[] getEmpOrg(String empId) throws Throwable {
+		HashMap pm = new HashMap();
+		pm.put("empId", empId);
+		
+		return getRedisCache("default", "com.hs.common.orga.queryEmpOrg", 
+				pm, "员工兼职数据", "false", -1, false, null);
+	}
+	
 }

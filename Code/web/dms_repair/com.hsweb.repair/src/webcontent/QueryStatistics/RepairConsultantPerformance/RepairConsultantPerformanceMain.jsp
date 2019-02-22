@@ -11,7 +11,7 @@
 -->
 <head>
 <title>维修顾问业绩报表</title>
-<script src="<%=request.getContextPath()%>/repair/js/RepairConsultantPerformance/RepairConsultantPerformanceMain.js?v=1.0.4"></script>
+<script src="<%=request.getContextPath()%>/repair/js/RepairConsultantPerformance/RepairConsultantPerformanceMain.js?v=1.0.5"></script>
 <style type="text/css">
 .form_label {
 	width: 72px;
@@ -68,6 +68,8 @@
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
+	                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="兼职公司" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconCls="" plain="true" onclick="query"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 					<span class="separator"></span>
 					<a class="nui-button" plain="true" iconCls="" onclick="print()"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
@@ -132,6 +134,7 @@
 					<div field="mtAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">整单优惠率</div>
 					<div field="partManageExp" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">单客值</div>
 				    <div field="cardTimesAmt" headerAlign="center" allowSort="true" visible="true" width="100" datatype="float" align="right">预存抵扣</div>
+				    <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
 				</div>
 			</div>
 		</div>

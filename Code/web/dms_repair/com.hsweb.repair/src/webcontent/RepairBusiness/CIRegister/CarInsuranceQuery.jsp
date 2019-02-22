@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>保险开单查询</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceQuery.js?v=1.0.35"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CIRegister/CarInsuranceQuery.js?v=1.0.37"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -54,6 +54,8 @@ pageEncoding="UTF-8" session="false"%>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
+	                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="兼职公司" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconCls="" onclick="onSearch()" plain="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <!-- <a class="nui-button" iconCls="" onclick="advancedSearch()" plain="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
                 </td>
@@ -103,6 +105,7 @@ pageEncoding="UTF-8" session="false"%>
 	                     <div field="amt" name="amt"  headerAlign="center" header="保费总金额" ></div>
 	                     <div field="rtnCompAmt" name="partAmt"  headerAlign="center" header="保司返点总金额" ></div>
 	                     <div field="rtnGuestAmt" name="partAmt"  headerAlign="center" header="客户返点总金额" ></div>  
+	                     <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
                        </div>
                      </div>					
                     <div header="保费信息" headerAlign="center">
@@ -114,6 +117,7 @@ pageEncoding="UTF-8" session="false"%>
 		                <div field="drtnCompAmt" headerAlign="center" allowSort="false" header="保司返点金额" align="center" summaryType="sum"></div>
 		                <div field="drtnGuestRate" headerAlign="center" allowSort="false" header="客户返点" align="center" ></div>
 		                <div field="drtnGuestAmt" headerAlign="center" allowSort="false" header="客户返点金额" align="center" summaryType="sum"></div>
+		                
                      </div>
                    </div>
                 </div>

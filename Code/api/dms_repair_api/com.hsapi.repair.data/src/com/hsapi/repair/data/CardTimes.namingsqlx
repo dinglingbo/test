@@ -11,6 +11,7 @@
    <select id="queryCardTimesList" parameterClass="java.util.HashMap"  resultClass="java.util.HashMap">
        SELECT
          a.id id,
+         a.orgid as orgid,
          b.id cardDetailId,
          c.full_name fullName,
          a.guest_name guestName,
@@ -35,8 +36,14 @@
          FROM rps_card_times a 
          INNER JOIN rps_card_times_detail b ON(b.main_id = a.id)
          INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 
-         WHERE  a.orgid = #orgid# and a.status = 2 and a.is_refund = 0
+         WHERE  a.status = 2 and a.is_refund = 0
          <dynamic>
+         <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
          <isNotEmpty prepend="and" property="guestName">  
 	            (a.guest_name like '%$guestName$%')
 	     </isNotEmpty>  

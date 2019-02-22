@@ -59,7 +59,8 @@ pageEncoding="UTF-8" session="false" %>
             emptyText="服务顾问" url="" allowInput="true" showNullItem="false" style="width:90px;" valueFromSelect="true"
             nullItemText="服务顾问" />
         <!-- <input class="nui-textbox" id=""name=""emptytext="配件分类"> -->
-
+         <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
         <a class="nui-button" iconcls="" plain="true" name="" onclick="Search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
        <a class="nui-button" iconCls="" plain="true" onclick="onExport()" id="exportBtn"><span class="fa fa-level-up fa-lg"></span>&nbsp;导出</a>  
     </div>
@@ -88,6 +89,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="mtAdvisor" name="mtAdvisor" headeralign="center" width="100" align="center" allowsort="true">服务顾问</div>
                 <div field="finishDate" name="finishDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd" allowsort="true">完工日期</div>
                 <div field="outDate" name="outDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd" allowsort="true">结算日期</div>
+                <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
             </div>
         </div>
     </div>
@@ -123,6 +125,7 @@ pageEncoding="UTF-8" session="false" %>
 </div>  
     <script type="text/javascript">
         nui.parse();
+        var orgidsEl = null;
         var statusList = [{
             id: 0,
             text: '草稿'
@@ -155,6 +158,13 @@ pageEncoding="UTF-8" session="false" %>
             //nui.get("checkManId").setData(memList);
         });
 
+        orgidsEl = nui.get("orgids");
+        orgidsEl.setData(currOrgList);
+        if(currOrgList.length==1){
+    	   orgidsEl.hide();
+        }else{
+    	  orgidsEl.setValue(currOrgid);
+        }
         initServiceType("serviceTypeId", function (data) {
             servieTypeList = nui.get("serviceTypeId").getData();
             servieTypeList.forEach(function (v) {
@@ -186,6 +196,13 @@ pageEncoding="UTF-8" session="false" %>
 			if (e.field == "rate") {
                 e.cellHtml = e.value+"%";
             }
+            if (e.field == "orgid"){
+	        	for(var i=0;i<currOrgList.length;i++){
+	        		if(currOrgList[i].orgid==e.value){
+	        			e.cellHtml = currOrgList[i].name;
+	        		}
+	        	}
+           }
             document.onkeyup = function (event) {
                 var e = event || window.event;
                 var keyCode = e.keyCode || e.which; // 38向上 40向下
@@ -223,6 +240,12 @@ pageEncoding="UTF-8" session="false" %>
             if (eDate) {
                 data.endDate = eDate + " 23:59:59";
             }
+            var orgidsElValue = orgidsEl.getValue();
+            if(orgidsElValue==null||orgidsElValue==""){
+    	      data.orgids =  currOrgs;
+           }else{
+    	      data.orgid=orgidsElValue;
+           }
             grid.load({
                 params: data
             });

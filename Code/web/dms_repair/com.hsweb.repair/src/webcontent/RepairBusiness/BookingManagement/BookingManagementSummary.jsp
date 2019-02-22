@@ -74,7 +74,8 @@
        showNullItem="false"
        valueFromSelect="true"
        nullItemText="请选择..." onenter="load()" onvaluechanged="load()"/>
-    
+    <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="兼职公司" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(1)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按服务顾问汇总</a>
@@ -119,6 +120,17 @@
     var params ={
         groupByType:0 // 0按日期分组  1业务类型  2工时项目
     };
+    
+    var orgidsEl = null;
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
+    
     quickSearch(2);
     grid1.on("drawcell", function (e) {
         if(e.field =="groupName" && cType == 1){
@@ -135,6 +147,12 @@
         
         var data= form.getData();
     	data.endDate = formatDate(data.endDate) +" 23:59:59";
+    	var orgidsElValue = orgidsEl.getValue();
+	    if(orgidsElValue==null||orgidsElValue==""){
+	    	 data.orgids =  currOrgs;
+	    }else{
+	    	data.orgid=orgidsElValue;
+	    }
         data.groupByType = cType;
         updateGridColoumn(cType);
         grid1.load({params:data,token :token});

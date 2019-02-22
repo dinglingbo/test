@@ -12,7 +12,7 @@
 <head>
     <title>用户反馈管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/feedbackList.js?v=1.0.13" type="text/javascript"></script>    
+    <script src="<%=webPath + contextPath%>/common/js/feedbackList.js?v=1.0.14" type="text/javascript"></script>    
     
 </head>
  <style type="text/css"> 
@@ -37,7 +37,7 @@
 			<tr>
 				<td style="white-space:nowrap;">
 				    <label style="font-family:Verdana;">快速查询：</label>
-				    <input class="nui-combobox" id="statusId" emptyText="全部" name="statusId" data="[{statusId:3,text:'全部'},{statusId:0,text:'待处理'},{statusId:2,text:'跟进中'}]"
+				    <input class="nui-combobox" id="statusId" emptyText="全部" name="statusId" data="[{statusId:3,text:'全部'},{statusId:0,text:'待处理'},{statusId:1,text:'处理中'},{statusId:2,text:'已解决'}]"
                           width="100px"  onvaluechanged="onSearch" textField="text" valueField="statusId" value="3"/>
 					<input class="nui-textbox" id="recordMobile" name="recordMobile" width="160px" emptyText="请输入手机号" onenter="onSearch">
 					<input class="nui-textbox" id="orgname" name="orgname" width="160px" emptyText="请输入公司名称" onenter="onSearch">

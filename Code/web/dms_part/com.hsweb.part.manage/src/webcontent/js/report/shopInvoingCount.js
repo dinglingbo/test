@@ -14,14 +14,21 @@ var storehouseHash = {};
 
 var settTypeIdHash = {};
 var outTypeIdHash = {};
-
+var orgidsEl = null;
 $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
     rightGrid.setUrl(rightGridUrl);
     startDateEl =nui.get('startDate');
     endDateEl = nui.get('endDate');
-    
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
+
 	getAllPartBrand(function(data) {
 		brandList = data.brand;
 		brandList.forEach(function(v) {
@@ -39,6 +46,14 @@ $(document).ready(function(v)
 				e.cellHtml = "";
 			}
 			break;
+		case  "orgid":
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name || "";
+        		}
+        	}
+    	break; 
+
 		default:
 			break;
 		}
@@ -61,6 +76,13 @@ function getSearchParams(){
     var params = {};
     params.startDate=nui.get("startDate").getFormValue();
     params.endDate= addDate(endDateEl.getValue(),1);
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
+
     return params;
 }
 var currType = 2;

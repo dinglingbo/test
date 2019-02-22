@@ -27,6 +27,7 @@ var advancedSearchFormData = null;
 var editFormDetail = null;
 var innerItemGrid = null;
 var advancedSearchWin = null;
+var orgidsEl = null;
 //var serviceTypeIds = null;
 var prdtTypeHash = {
 	    "1":"套餐",
@@ -56,6 +57,15 @@ $(document).ready(function ()
 	advancedSearchWin = nui.get("advancedSearchWin");
     innerItemGrid.setUrl(getRpsItemUrl);
     innerpackGrid.setUrl(getdRpsPackageUrl);
+    
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
 
     beginDateEl.setValue(getMonthStartDate());
     endDateEl.setValue(addDate(getMonthEndDate(), 1));
@@ -99,6 +109,13 @@ $(document).ready(function ()
             }else{
                 e.cellHtml = "未结算";
             }
+        }else if(e.field == "orgid"){
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name;
+        		}
+        	}
+        	
         }
     });
     innerItemGrid.on("drawcell", function (e) {
@@ -342,6 +359,12 @@ function getSearchParam() {
     params.mtAuditorId = mtAdvisorIdEl.getValue();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
     if(type==0){
         params.carNo = typeValue;
     }else if(type==1){

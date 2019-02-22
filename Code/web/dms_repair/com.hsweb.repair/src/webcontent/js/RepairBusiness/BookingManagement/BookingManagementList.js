@@ -1,4 +1,5 @@
 var baseUrl = apiPath + repairApi + "/";
+var webBaseUrl = webPath + contextPath + "/"; 
 var queryForm;
 var upGrid;
 var downGrid;
@@ -277,6 +278,7 @@ function onupGridSelectionchanged(e) {
 function onDrawCell(e) {
     var field = e.field;
     var record = e.record;
+    var uid = record._uid;
     if (field == "serviceTypeId" && serviceTypeHash[e.value]) {
         e.cellHtml = serviceTypeHash[e.value].name;
     } else if (field == "carBrandId" && carBrandHash[e.value]) {
@@ -358,9 +360,10 @@ function onDrawCell(e) {
         value = value.replace(reg, "$1****$2");
     	if(e.value){
     		if(record.wechatOpenId){
-        		e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"+value;
+                 e.cellHtml =  '<a href="javascript:bindWechat(\'' + uid + '\')" id="showA" ><span id="wechatTag" class="fa fa-wechat fa-lg"></span></a>&nbsp;'+value;
+                 /*e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"+value;*/
         	}else{
-        		e.cellHtml = "<span  id='wechatTag1' class='fa fa-wechat fa-lg'></span>"+value;
+        		e.cellHtml =  '<a href="javascript:bindWechat(\'' + uid + '\')" id="showA1" ><span id="wechatTag1" class="fa fa-wechat fa-lg"></span></a>&nbsp;'+value;
         	}
     	}else{
     		e.cellHtml="";
@@ -627,3 +630,41 @@ function setDate(){
 	var d = menuBtnDateQuickSearch.getValue();
 	quickSearch(menuBtnDateQuickSearch,d,data[d]);
 }
+
+var binUrl = webBaseUrl + "repair/RepairBusiness/Reception/bindWechatContactor.jsp";
+function bindWechat(row_uid){
+	var row = upGrid.getRowByUID(row_uid);
+	//var guestId = data.guestId;
+	if(!row.guestId){
+		showMsg("客户为新客户，请新增客户信息!","W");
+		return;
+	}
+	nui.open({
+        url:binUrl,
+        title:"绑定联系人",
+        width:750, 
+        height:300,
+        onload:function(){
+        	var iframe = this.getIFrameEl();
+            var params = {};	
+            params.guestId=row.guestId;
+            params.carNo = row.carNo;
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy:function(action)
+        {
+        	var iframe = this.getIFrameEl();
+            var params = {};	
+            var params = iframe.contentWindow.getData();
+            if(params){
+            	if(params.success && params.success==1){
+            		document.getElementById("showA").style.display = "";
+                	document.getElementById("showA1").style.display='none';
+            	}
+            }
+        	
+        }
+    });
+}
+
+

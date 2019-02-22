@@ -19,7 +19,8 @@ var keyRtnQtyList = [];
 var keyRtnAmtList = [];
 var keyTrueQtyList = [];
 var keyTrueAmtList = [];
- 
+var orgidsEl = null;
+
 $(document).ready(function(v) {
 	rightGrid = nui.get("rightGrid");
 	rightGrid.setUrl(rightGridUrl);
@@ -30,6 +31,14 @@ $(document).ready(function(v) {
     advanceGuestIdEl = nui.get("advanceGuestId");
 	beginDateEl = nui.get("beginDate");
 	endDateEl = nui.get("endDate");
+	orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
+
 
 	beginDateEl.setValue(getMonthStartDate());
 	endDateEl.setValue(addDate(getMonthEndDate(), 1));
@@ -157,6 +166,13 @@ function getSearchParam() {
 	}else{
 	params.guestId = advanceGuestIdEl.getValue();
 	}
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
+
 //    params.guestId = advanceGuestIdEl.getValue();
 	return params;
 }
@@ -239,6 +255,13 @@ function onRightGridDraw(e) {
                 e.cellHtml = "";
             }
             break;
+        case  "orgid":
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name || "";
+        		}
+        	}
+
     	default:
     		break;
 	}
@@ -252,6 +275,7 @@ function initGrid(startDate, endDate){
     columnsList.push({field: "shortName",width:"80", headerAlign: "center", allowSort: true, header: "供应商简称"});
     columnsList.push({field: "supplierType",width:"70", headerAlign: "center", allowSort: true, header: "供应商分类"});
     columnsList.push({field: "fullName",width:"120", headerAlign: "center", allowSort: true, header: "供应商全称"});
+    columnsList.push({field: "orgid",width:"120", headerAlign: "center", allowSort: true, header: "所属公司"});
 	if(columnList && columnList.length > 0){
 		for (i = 0; i < columnList.length; i++) {
 			var yearMonthObj = columnList[i];

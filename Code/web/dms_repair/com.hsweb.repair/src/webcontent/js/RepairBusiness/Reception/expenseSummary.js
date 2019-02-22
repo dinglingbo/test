@@ -7,6 +7,7 @@ var endDateEl = null;
 var typeIdHash = {};
 var plist = [];
 var mtAdvisorIdEl = null;
+var orgidsEl = null;
 $(document).ready(function ()
 {
 	mainGrid = nui.get("mainGrid"); 
@@ -15,6 +16,14 @@ $(document).ready(function ()
     endDateEl = nui.get("eRecordDate");
 	nui.get("search-type").setData(statusList);
 	mtAdvisorIdEl = nui.get("mtAdvisorId");
+	   //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
 	var params = {isMain:0};
 	svrInComeExpenses(params,function(data) {
 	    var list = data.list||{};
@@ -131,6 +140,12 @@ function getSearchParams()
     params.dc = nui.get("typeList").getValue();
     params.typeId = nui.get("billTypeList").getValue();
     params.mtAdvisorId = nui.get("mtAdvisorId").getValue();
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){
@@ -146,7 +161,6 @@ function onSearch()
     doSearch(params);
 } 
 function doSearch(params) {
-    params.orgid = currOrgid;
     mainGrid.load({
         token:token, 
         params: params

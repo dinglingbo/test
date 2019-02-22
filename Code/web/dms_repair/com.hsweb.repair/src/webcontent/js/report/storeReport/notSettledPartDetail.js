@@ -13,6 +13,7 @@ var brandHash = {};
 var brandList = [];
 partTypeList=[];
 partTypeHash={};
+var orgidsEl = null;
 var storehouse = null;
 var storeHash = {};
 var billTypeIdHash = {};
@@ -31,6 +32,15 @@ $(document).ready(function(v)
     
    // sPickDateEl =nui.get('sPickDate');
    // ePickDateEl = nui.get('ePickDate');
+    
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
     setReturnSign = mini.get("ReturnSign");
 	document.onkeyup = function(event) {
 		var e = event || window.event;
@@ -97,6 +107,12 @@ $(document).ready(function(v)
 			 break;
 		 case "returnSign":
 			 e.cellHtml =  e.value==0 ? "否":"是";
+		 case "orgid":
+	        	for(var i=0;i<currOrgList.length;i++){
+	        		if(currOrgList[i].orgid==e.value){
+	        			e.cellHtml = currOrgList[i].name;
+	        		}
+	        	}
 		default:
 			break;
 		}
@@ -237,6 +253,12 @@ function doSearch(params)
 	if(!setReturnSign.checked){	
 		params.returnSign = 0;
 	}
+	 var orgidsElValue = orgidsEl.getValue();
+	    if(orgidsElValue==null||orgidsElValue==""){
+	    	 params.orgids =  currOrgs;
+	    }else{
+	    	params.orgid=orgidsElValue;
+	    }
   //params.returnSign = 0; //出库
 	params.isSettle=0; //已结算
 //	params.status=2; //状态已完工

@@ -12,7 +12,7 @@
 <head>
 <title>结算账户余额汇总表</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/summaryAccountBalances.js?v=1.1.0">
+	src="<%=request.getContextPath()%>/manage/settlement/js/summaryAccountBalances.js?v=1.1.3">
 	</script>
 </head>
 <body>
@@ -44,6 +44,8 @@
 					结算账户；<input class="nui-combobox" id="auditSign" width="120" textField="name" valueField="id" value="0" onvaluechanged="search()" allowInput="false"/>
 							 结算日期：<input id="sDate" name="" class="nui-datepicker" value="" allowInput="false"/>
          					   至 <input id="eDate" name="" class="nui-datepicker" value="" allowInput="false"/>
+         			<input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
 				<a class="nui-button" onclick="search()" plain="true">
 						<span class="fa fa-search fa-lg"></span> 查询 </a> 
 					
@@ -69,6 +71,7 @@
 				<div field="remark" headerAlign="center" allowSort="true" width="140px">
 					备注</div>
 				<div field="createDate" headerAlign="center" allowSort="true" width="80px" dateFormat="yyyy-MM-dd HH:mm">结算日期日期</div>
+				<div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
 			</div>
 		</div>
 	</div>

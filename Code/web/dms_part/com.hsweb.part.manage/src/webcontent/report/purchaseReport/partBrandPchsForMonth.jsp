@@ -4,7 +4,7 @@
 
 <head>
 <title>品牌采购汇总按月排行</title>
-<script src="<%=webPath + contextPath%>/manage/js/report/partBrandPchsForMonth.js?v=1.6.9"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/partBrandPchsForMonth.js?v=1.7.3"></script>
 </head>
 
 <body>
@@ -32,6 +32,9 @@
                 <label style="font-family:Verdana;">至</label>
                 <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                 <span class="separator"></span> 
+				
+				<input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
 
                 <input id="partBrandId" width="100px" textField="name" valueField="id" emptyText="配件品牌" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
@@ -98,7 +101,7 @@
 							<div field="rpCode" allowSort="true" headerAlign="center"
 								width="120"  >实际入库金</div>
 					   	
-								
+							<div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>	
 						</div>
 						</div>
 						</div>

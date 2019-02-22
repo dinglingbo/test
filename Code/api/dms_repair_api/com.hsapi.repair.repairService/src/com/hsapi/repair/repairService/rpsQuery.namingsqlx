@@ -1044,6 +1044,7 @@
 	    <select id="queryComprehensive" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
 			a.id AS id,
+			a.orgid as orgid,
 			a.bill_type_id AS billTypeId,
 			a.service_type_id AS serviceTypeId,
 			a.service_code AS serviceCode,
@@ -1136,10 +1137,16 @@
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 			inner join rps_settlement d on (a.id =  d.service_id)
 		WHERE 1 = 1
-			and a.orgid = #orgid#
+			
       <dynamic>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="isDisabled">
                 (a.is_disabled = #isDisabled#)
@@ -1341,6 +1348,7 @@
 	<!--在厂车辆查询 车辆信息，套餐小计，工时小计，配件小计，查询未结算的-->
 	<select id="queryNotSettleMaintain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT a.id AS id,
+    		a.orgid AS orgid,
 			a.guest_id AS guestId,
 			a.service_code AS serviceCode,
 			a.enter_date AS enterDate,
@@ -1411,10 +1419,15 @@
 		inner join rpb_contactor d on (a.contactor_id = d.id and c.id = d.guest_id)
 		where a.is_settle = 0 and a.is_disabled = 0 
 		      and a.bill_type_id in (0,2,4)
-			  and a.orgid = #orgid#
 		<dynamic>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carId">
                 (a.car_id = #carId#)
@@ -1496,6 +1509,7 @@
 	 <select id="querySellPart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
 			a.id AS id,
+			a.orgid as orgid,
 			a.guest_id AS guestId,
 			a.service_code AS serviceCode,
 			a.car_id as carId,
@@ -1531,9 +1545,14 @@
 			INNER JOIN rpb_car b ON (a.car_id = b.id)
 			inner join rps_part e on (a.id = e.service_id)
 		WHERE 1 = 1
-			and a.orgid = #orgid#
 			and a.status = 2
 		<dynamic>
+		<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
 		    <isNotEmpty prepend="and" property="billTypeId">  
                 (a.bill_type_id = #billTypeId#)
             </isNotEmpty>
@@ -1573,6 +1592,7 @@
 	<select id="queryReturnPart" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
 			a.id AS id,
+			a.orgid as orgid,
 			a.guest_id AS guestId,
 			a.service_code AS serviceCode,
 			a.car_id as carId,
@@ -1610,9 +1630,14 @@
 			inner join rps_part e on (a.id = e.service_id)
 			inner join rps_part f on (e.detail_id = f.id)
 		WHERE 1 = 1
-			and a.orgid = #orgid#
 			and a.status = 2
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
 		    <isNotEmpty prepend="and" property="billTypeId">  
                 (a.bill_type_id = #billTypeId#)
             </isNotEmpty>
@@ -1690,29 +1715,37 @@
 			from rps_check_main A
 			INNER JOIN rpb_car b ON (a.car_id = b.id)
 		    INNER JOIN rpb_contactor c ON (a.contactor_id = c.id)
-			where A.orgid = #orgid# 
-			<isNotEmpty prepend="and" property="carNo">  
-				A. car_no like '%$carNo$%'
-			</isNotEmpty>
-			
-			<isNotEmpty prepend="and" property="serviceCode">  
-				a.service_code like '%$serviceCode$%'
-			</isNotEmpty>
-			<isNotEmpty prepend="and" property="checkMan">  
-				a.check_man like '%$checkMan$%'
-			</isNotEmpty>
-			<isNotEmpty prepend="and" property="name">  
-				c.name like '%$name$%'
-			</isNotEmpty>
-			<isNotEmpty prepend="and" property="mobile">  
-				c.mobile like '%$mobile$%'
-			</isNotEmpty>
-            <isNotEmpty prepend="and" property="sRecordDate">  
-                (a.record_date &gt;= #sRecordDate#)
-            </isNotEmpty>
-            <isNotEmpty prepend="and" property="eRecordDate">  
-                (a.record_date &lt; #eRecordDate#)
-            </isNotEmpty>
+			where 1=1
+			<dynamic>
+				<isNotEmpty prepend="and" property="orgid">
+	                (A.orgid = #orgid#)
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="orgids">
+	                (A.orgid in ($orgids$))
+	            </isNotEmpty>
+				<isNotEmpty prepend="and" property="carNo">  
+					A. car_no like '%$carNo$%'
+				</isNotEmpty>
+				
+				<isNotEmpty prepend="and" property="serviceCode">  
+					a.service_code like '%$serviceCode$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="checkMan">  
+					a.check_man like '%$checkMan$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="name">  
+					c.name like '%$name$%'
+				</isNotEmpty>
+				<isNotEmpty prepend="and" property="mobile">  
+					c.mobile like '%$mobile$%'
+				</isNotEmpty>
+	            <isNotEmpty prepend="and" property="sRecordDate">  
+	                (a.record_date &gt;= #sRecordDate#)
+	            </isNotEmpty>
+	            <isNotEmpty prepend="and" property="eRecordDate">  
+	                (a.record_date &lt; #eRecordDate#)
+	            </isNotEmpty>
+	         </dynamic> 
 			ORDER BY A.record_date desc
       </select>   
        <select id="queryExpenseSummaryList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
@@ -1726,7 +1759,13 @@
        	    INNER JOIN rps_expense b ON (a.id = b.service_id )
 			INNER JOIN rpb_car c ON (a.car_id = c.id)
 		    INNER JOIN rpb_contactor d ON (a.contactor_id = d.id)
-		where a.orgid = #orgid# and a.is_settle = 1
+		where  a.is_settle = 1
+		<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
 		<isNotEmpty prepend="and" property="carNo">  
 				a. car_no like '%$carNo$%'
 		</isNotEmpty>

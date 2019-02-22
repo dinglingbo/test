@@ -24,6 +24,7 @@ var sPickDateEl =null;
 var ePickDateEl=null;
 var servieTypeList = [];
 var servieTypeHash = {};
+var orgidsEl = null;
 $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
@@ -34,6 +35,15 @@ $(document).ready(function(v)
     sPickDateEl =nui.get('sPickDate');
     ePickDateEl = nui.get('ePickDate');
     setReturnSign = mini.get("ReturnSign");
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
+
+
 	document.onkeyup = function(event) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -105,8 +115,21 @@ $(document).ready(function(v)
 			 break;
 		 case "returnSign":
 			 e.cellHtml =  e.value==0 ? "否":"是";
+			 break;
 		 case "serviceTypeId":
-			 e.cellHtml = servieTypeHash[record.serviceTypeId].name;
+			 if(servieTypeHash[record.serviceTypeId]){		 
+				 e.cellHtml = servieTypeHash[record.serviceTypeId].name ||"";
+			 }else{
+				 e.cellHtml = '';
+			 }
+			 break
+		 case  "orgid":
+	        	for(var i=0;i<currOrgList.length;i++){
+	        		if(currOrgList[i].orgid==e.value){
+	        			e.cellHtml = currOrgList[i].name || "";
+	        		}
+	        	}
+
 		default:
 			break;
 		}
@@ -170,6 +193,14 @@ function getSearchParams(){
     if(eOutDateEl.getValue()){
     	params.eOutDate=addDate(eOutDateEl.getValue(),1);	
     }
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
+
+   
     return params;
 }
 var currType = 2;
@@ -244,7 +275,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
-	params.orgid = currOrgId;
+//	params.orgid = currOrgId;
   //params.returnSign = 0; //出库
 //	params.isSettle=1; //已结算
 //	params.status=2; //状态已完工

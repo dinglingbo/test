@@ -17,6 +17,7 @@ var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
+var partList=[];
 
 $(document).ready(function(v)
 {
@@ -250,23 +251,87 @@ function onOk()
         //  return;
 //        CloseWindow("ok");
 //    }
-    var parts=innerPchsEnterGrid.getSelecteds();
-    for(var i=0;i<parts.length;i++){
-    	parts[i].comPartBrandId=parts[i].partBrandId;
-    	parts[i].comApplyCarModel=parts[i].applyCarModel;
-    	parts[i].comUnit=parts[i].enterUnitId;
-    	parts[i].orderQty =parts[i].enterQty;
-    	parts[i].orderPrice=parts[i].enterPrice;
-    	parts[i].orderAmt=parts[i].enterAmt;
-    	parts[i].comSpec=parts[i].spec;
-    	parts[i].outUnitId=parts[i].enterUnitId;
-    }
-    if(parts){
-    	resultData=parts;
-    	callback(parts);
+    var rows=rightGrid.getSelecteds();
+    if(rows.length>1){
+    	var idList=''
+    	for(var i=0;i<rows.length;i++){
+    		idList +=rows[i].id+",";
+    	}
+    	idList=idList.substr(0, idList.length - 1);
+    	var params={idList: idList};
+        getDetailList(params);
+    	if(partList){
+    		for(var i=0;i<partList.length;i++){
+    			partList[i].comPartBrandId=partList[i].partBrandId;
+    			partList[i].comApplyCarModel=partList[i].applyCarModel;
+    			partList[i].comUnit=partList[i].enterUnitId;
+    			partList[i].orderQty =partList[i].enterQty;
+    			partList[i].orderPrice=partList[i].enterPrice;
+    			partList[i].orderAmt=partList[i].enterAmt;
+    			partList[i].comSpec=partList[i].spec;
+    			partList[i].outUnitId=partList[i].enterUnitId;
+    		}
+    		var innerPartRow=innerPchsEnterGrid.getSelecteds();
+    		if(innerPartRow){
+    			for(var i=0;i<innerPartRow.length;i++){
+    				innerPartRow[i].comPartBrandId=innerPartRow[i].partBrandId;
+    				innerPartRow[i].comApplyCarModel=innerPartRow[i].applyCarModel;
+    				innerPartRow[i].comUnit=innerPartRow[i].enterUnitId;
+    				innerPartRow[i].orderQty =innerPartRow[i].enterQty;
+    				innerPartRow[i].orderPrice=innerPartRow[i].enterPrice;
+    				innerPartRow[i].orderAmt=innerPartRow[i].enterAmt;
+    				innerPartRow[i].comSpec=innerPartRow[i].spec;
+    				innerPartRow[i].outUnitId=innerPartRow[i].enterUnitId;
+    			}
+    			var id=innerPartRow[0].id;
+    			for(var i=0;i<partList.length;i++){
+    				if(partList[i].id==id){   					
+    					partList.splice(i--, 1);
+    				}
+    			}
+    			for(var i=0;i<innerPartRow.length;i++){			
+    				partList.push(innerPartRow[i]);
+    			}
+    		}
+    		resultData=partList;
+    		callback(partList);
+    	}
+    }else{       	
+    	var parts=innerPchsEnterGrid.getSelecteds();
+    	for(var i=0;i<parts.length;i++){
+    		parts[i].comPartBrandId=parts[i].partBrandId;
+    		parts[i].comApplyCarModel=parts[i].applyCarModel;
+    		parts[i].comUnit=parts[i].enterUnitId;
+    		parts[i].orderQty =parts[i].enterQty;
+    		parts[i].orderPrice=parts[i].enterPrice;
+    		parts[i].orderAmt=parts[i].enterAmt;
+    		parts[i].comSpec=parts[i].spec;
+    		parts[i].outUnitId=parts[i].enterUnitId;
+    	}
+    	if(parts){
+    		resultData=parts;
+    		callback(parts);
+    	}
+    	
     }
 }
 
+function getDetailList(params){
+	nui.ajax({
+    	url:innerPchsGridUrl,
+    	type:"post",
+    	async: false,
+    	data:{
+    		params:params,
+    		token:token
+    	},
+    	success:function(text){
+    		partList=text.detailList;
+    		return partList;
+    		
+    	}
+    });
+}
 //function onOk(){
 //	 if(!FGuestId){
 //       showMsg("请选择客户后再选择采购单!","W");

@@ -1,7 +1,8 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" session="false" %>
 <%@ page language="java" import="com.eos.data.datacontext.IUserObject"%>
 <%@page import="com.eos.data.datacontext.IMUODataContext,com.eos.data.datacontext.UserObject,com.eos.data.datacontext.DataContextManager,commonj.sdo.DataObject"%>
-<%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env,com.hs.common.Utils"%>
+<%@page import="java.util.HashMap,java.util.Map,com.hs.common.Env,com.hs.common.Utils,java.util.List"%>
 <%@ taglib uri="http://eos.primeton.com/tags/html" prefix="h"%>
 <%@ taglib uri="http://eos.primeton.com/tags/logic" prefix="l"%>
 <%@ taglib uri="http://eos.primeton.com/tags/bean" prefix="b"%>
@@ -109,6 +110,12 @@
 	String repairPchsRtnFlag = "1";
 	String repairDefaultStore = "";
 	String isCanSettle = "";
+	String orgs = "";
+	String orgJsonStr = "";
+	String isCanBelowCost="";
+	String swithBatchFlag ="";
+	String srmUserId = "";
+	
 	if (session == null || session.getAttribute("userObject") == null) {
 		%>backToLogin();<%
 	}else{
@@ -166,6 +173,18 @@
                 if(attr.get("isCanSettle") != null){
                 	isCanSettle = attr.get("isCanSettle").toString();
                 }
+                if(attr.get("isCanBelowCost") != null){
+                	isCanBelowCost = attr.get("isCanBelowCost").toString();
+                }
+                if(attr.get("orgs") != null){
+                	orgs = attr.get("orgs").toString();
+                }
+                if(attr.get("orgJsonStr") != null){
+                	orgJsonStr = attr.get("orgJsonStr").toString();
+                }
+                if(attr.get("srmUserId") != null){
+                	srmUserId = attr.get("srmUserId").toString();
+                }
                 
                 if(attr.get("billParams") != null){
                 	billParamsObj = attr.get("billParams");
@@ -193,6 +212,9 @@
 	                }
 	                if(billParams.get("repairDefaultStore") != null){
 	                	repairDefaultStore = billParams.get("repairDefaultStore").toString();
+	                }
+	                if(billParams.get("swithBatchFlag") != null){
+	                	swithBatchFlag = billParams.get("swithBatchFlag").toString();
 	                }
                 }
               
@@ -248,6 +270,14 @@
 	var currRepairPchsRtnFlag = "<%=repairPchsRtnFlag %>";
 	var currRepairDefaultStore = "<%=repairDefaultStore %>";
 	var currIsCanSettle = "<%=isCanSettle %>";
+	var currIsCanBelowCost ="<%=isCanBelowCost %>";
+	var currSwithBatchFlag ="<%=swithBatchFlag %>";
+	var currOrgs = "<%=orgs %>";
+	//currOrgs = currOrgs.replace(/\*/g,"");
+	var currOrgJsonStr = "<%=orgJsonStr %>";
+	currOrgJsonStr = currOrgJsonStr.replace(/'/g,'"');
+	var currOrgList = JSON.parse(currOrgJsonStr);
+	var currSrmUserId = "<%=srmUserId %>";
     //alert("token=" + token);
     
     /* var _sysMsg_;

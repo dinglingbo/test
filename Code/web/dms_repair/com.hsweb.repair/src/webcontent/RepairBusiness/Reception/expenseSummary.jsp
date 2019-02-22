@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>费用登记汇总表</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/expenseSummary.js?v=1.0.6"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/expenseSummary.js?v=1.0.7"></script>
     <style type="text/css">
 
     table {
@@ -63,13 +63,14 @@ pageEncoding="UTF-8" session="false"%>
                     <input class="nui-combobox" id="search-type" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
                     <input class="nui-textbox" id="carNo-search" emptyText="输入查询条件" width="120" onenter="onSearch" />
                     <input  property="editor" enabled="true" id="typeList" name="list" data="[{dc:1,text:'应收'},{dc:-1,text:'应付'}]" dataField="" class="nui-combobox" 
-								valueField="dc"  textField="text" url="" emptyText="费用分类" allowInput="true" vtype="required" onenter="onSearch" onvaluechanged="onSearch"/> 
+								valueField="dc"  textField="text" url="" width="100" emptyText="费用分类" allowInput="true" vtype="required" onenter="onSearch" onvaluechanged="onSearch"/> 
                   
                     <input  property="editor" enabled="true" id="billTypeList" name="list" data="plist" dataField="plist" class="nui-combobox" 
-								valueField="id"  textField="name" url="" emptyText="费用名称" allowInput="true" onenter="onSearch" onvaluechanged="onSearch"/> 
+								valueField="id"  textField="name" url="" emptyText="费用名称" width="100" allowInput="true" onenter="onSearch" onvaluechanged="onSearch"/> 
                          <input name="mtAdvisorId"
                                    id="mtAdvisorId"
                                    class="nui-combobox width1"
+                                   width="100"
                                    textField="empName"
                                    valueField="empId"
                                    emptyText="服务顾问"
@@ -83,6 +84,8 @@ pageEncoding="UTF-8" session="false"%>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
+	                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconCls="" onclick="onSearch()" plain="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 </td>
             </tr>

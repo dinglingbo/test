@@ -10,7 +10,7 @@
 -->
 <head>
 <title>销售开单查询</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellQuery.js?v=1.0.20"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellQuery.js?v=1.0.21"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
 <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -82,6 +82,8 @@
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
+	                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="兼职公司" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 <!--                     <span class="separator"></span> -->
 <!--                     <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="addBtn" ><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a> -->
@@ -130,6 +132,7 @@
                           <div field="partAmt" headerAlign="center" allowSort="false" visible="true" width="60" datatype="float" align="center" header="结算金额"> </div>
                           <div field="outDate" name="outDate" width="100" headerAlign="center" header="结算日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                           <div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" header="销售员"></div>
+                          <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
                       </div>
                    </div>
                    <div header="配件信息" headerAlign="center">

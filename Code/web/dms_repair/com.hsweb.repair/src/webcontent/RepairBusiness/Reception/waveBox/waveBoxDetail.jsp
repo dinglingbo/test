@@ -348,7 +348,7 @@ html, body{
                    <label>故障描述：</label>
                 </td>
                 <td class="" colspan="1">
-                    <input  class="nui-textbox" name="faultPhen" id="faultPhen" width="100%"/>
+                    <input  class="nui-textbox" name="faultPhen" id="faultPhen" enabled="false"  width="100%"/>
                 </td>
             </tr>
             
@@ -759,7 +759,7 @@ allowDrag="false">
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage.biz.ext";
  var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
  var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
- var itemRpbGridUrl = baseUrl + "com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
+ var itemRpbGridUrl = baseUrl + "com.hsapi.repair.repairService.crud.getBXProjectMsg.biz.ext";
  var itemGrid = null;
   
  var billForm = null;   
@@ -1339,7 +1339,7 @@ function doSetMainInfo(car){
     maintain.carNo = car.carNo;
     maintain.carVin = car.vin;
     maintain.carModelIdLy = car.carModelIdLy||"";
-    maintain.engineNo = car.engineNo;
+    //maintain.engineNo = car.engineNo;
     maintain.contactorId = car.contactorId;
     maintain.contactorName = car.contactName;
     maintain.identity = car.identity;
@@ -1900,7 +1900,7 @@ function saveMaintain(callback,unmaskcall){
     if(data.id) {
     	delete data.enterDate;
     }
-    data.billTypeId = 2;
+    data.billTypeId = 6;
     if(!data.enterKilometers){
     	data.enterKilometers = lastComeKilometers;
     }
@@ -2061,7 +2061,7 @@ function loadMaintain(callback,unmaskcall){
         return;
     }
 } */
-data.billTypeId = 2;
+data.billTypeId = 6;
 
 nui.ajax({
     url : saveMaintainUrl,
@@ -4675,27 +4675,21 @@ function saveItem(callback){
 var itemGridHash = {};
 function doSearchItem()
 {
-    var p = {};
-    p.isDisabled = 0;
-    //查询洗美业务类型工时
-    p.serviceTypeIds = "1,2";   
-	var json={
-			params: p,
-			token:token
-	}
 	nui.ajax({
 		url : itemRpbGridUrl,
 		type : 'POST',
-		data : json,
 		cache : false,
 		contentType : 'text/json',
 		success : function(data) {
 			var temp = "";
-			var list = nui.clone(data.list);
-			for(var i=0;i<data.list.length;i++){
-				var key = list[i].id;
-				itemGridHash[key] = list[i];
-				var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>";
+			var partTypes = nui.clone(data.partTypes);
+			for(var i=0;i<data.partTypes.length;i++){
+				if(i >= 20){
+					break;
+				}
+				var key = partTypes[i].id;
+				itemGridHash[key] = partTypes[i];
+				var aEl = "<a href='##' id='"+partTypes[i].id+"' value="+partTypes[i].name+"  name='HotWord' class='hui'>"+partTypes[i].name+"</a>";
 				 temp +=aEl;
 			}
 			$("#addAEl").html(temp);
@@ -4977,6 +4971,11 @@ function attach(){
 	nui.get("msg").setValue("2");
 	var formData = billForm.getData();
 	if(!formData.id){
+		if(!formData.guestId){
+			nui.get("msg").setValue("");
+			nui.alert("客户ID不能为空","温馨提示");
+			return;
+		}
 		save();
 	}else{
 		nui.open({
@@ -5004,6 +5003,11 @@ function attach(){
  	nui.get("msg").setValue("1");
 	var formData = billForm.getData();
 	if(!formData.id){
+		if(!formData.guestId){
+			nui.get("msg").setValue("");
+			nui.alert("客户ID不能为空","温馨提示");
+			return;
+		}
 		save();
 	}else{
 		nui.get("msg").setValue("");

@@ -12,7 +12,7 @@
 <head>
     <title>员工已有兼职</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/existCompany.js?v=1.0.1" type="text/javascript"></script>    
+    <script src="<%=webPath + contextPath%>/common/js/existCompany.js?v=1.0.8" type="text/javascript"></script>    
 </head>
 <body>
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
@@ -38,6 +38,7 @@
                editNextOnEnterKey="true"
                allowCellWrap = true
                multiSelect="true"
+               allowUnselect="true"
                url="">
               <div property="columns">
               	<div type="checkcolumn" width="15" class="mini-radiobutton" header="选择"></div>

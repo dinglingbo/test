@@ -15,7 +15,7 @@ var cType = 0;
 var gridUrl = apiPath + repairApi+'/com.hsapi.repair.report.dataStatistics.queryTechnicianSummary.biz.ext';
 $(document).ready(function (v)
 {
-
+	var orgidsEl = null;
 	grid1 = nui.get("grid1");
     form=new nui.Form("#form1");
     startDateEl = nui.get("startDate");
@@ -28,7 +28,13 @@ $(document).ready(function (v)
         });
     });
 
-
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
     grid1.on("drawcell", function (e) {
         if(e.field =="groupName" && cType == 1){
         	if(e.value){
@@ -53,6 +59,12 @@ function load(e){
     data.groupByType = cType;
     updateGridColoumn(cType);
     data.deductMode = 2;
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	data.orgids =  currOrgs;
+    }else{
+    	data.orgid=orgidsElValue;
+    }
     grid1.load({params:data,token :token});
 }
 
@@ -140,6 +152,12 @@ function quickSearch(type){
 //  params.endDate = params.endDate +" 23:59:59";
 //}
  params.deductMode = 2;
+ var orgidsElValue = orgidsEl.getValue();
+ if(orgidsElValue==null||orgidsElValue==""){
+ 	 params.orgids =  currOrgs;
+ }else{
+ 	params.orgid=orgidsElValue;
+ }
 grid1.load({params:params});
 updateGridColoumn(cType);
 }

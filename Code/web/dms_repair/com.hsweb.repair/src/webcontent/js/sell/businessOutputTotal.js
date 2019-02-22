@@ -14,6 +14,7 @@ var servieTypeHash = {};
 var cType = 0;
 var form=null;
 var billTypeHash=[{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"}];
+var orgidsEl = null;
 $(document).ready(function ()
 {
 	 form=new nui.Form("#form1");
@@ -23,6 +24,15 @@ $(document).ready(function ()
 	mainGrid.setUrl(mainGridUrl);
      startDateEl = nui.get('startDate');
      endDateEl = nui.get('endDate');
+     
+     //判断是否有兼职门店,是否显示门店选择框
+     orgidsEl = nui.get("orgids");
+     orgidsEl.setData(currOrgList);
+     if(currOrgList.length==1){
+     	orgidsEl.hide();
+     }else{
+     	orgidsEl.setValue(currOrgid);
+     }
      
      initMember("mtAdvisorId",function(){
          memList = mtAdvisorIdEl.getData();
@@ -141,6 +151,13 @@ function getSearchParam() {
     params.endDate = addDate(endDateEl.getValue(),1);  
     params.mtAdvisorId = mtAdvisorIdEl.getValue();
     params.serviceTypeId = nui.get("serviceTypeId").getValue();
+    params.groupByType = cType;
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
     return params;
 }
 

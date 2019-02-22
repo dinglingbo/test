@@ -1268,6 +1268,12 @@
            GROUP BY a.mt_advisor_id
          ) A
          where 1=1
+         <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
          <isNotEmpty prepend="and" property="mtAdvisorId"> 
 		      A.mtAdvisorId = #mtAdvisorId#
 		 </isNotEmpty>
@@ -1276,9 +1282,6 @@
 		 </isNotEmpty>
 		 <isNotEmpty prepend="and" property="endDate"> 
 		      A.outDate &lt;= #endDate#
-		 </isNotEmpty> 
-		 <isNotEmpty prepend="and" property="orgid"> 
-		      A.orgid = #orgid#
 		 </isNotEmpty>   	
     </select>
     
@@ -1297,6 +1300,7 @@
     	SELECT
     	    a.orgid as orgid,
 			a.id AS id,
+			a.orgid,
 			a.bill_type_id AS billTypeId,
 			a.service_type_id AS serviceTypeId,
 			a.service_code AS serviceCode,

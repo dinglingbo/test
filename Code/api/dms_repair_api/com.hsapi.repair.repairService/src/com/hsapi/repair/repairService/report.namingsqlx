@@ -1300,6 +1300,7 @@
     	SELECT
     	    a.orgid as orgid,
 			a.id AS id,
+			a.orgid,
 			a.bill_type_id AS billTypeId,
 			a.service_type_id AS serviceTypeId,
 			a.service_code AS serviceCode,

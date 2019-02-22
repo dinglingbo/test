@@ -1483,6 +1483,7 @@
 			sum(b.true_cost) as trueCost,
 			(sum(b.sell_amt)-sum(b.true_cost)) as trueProfitAmt,
 			a.guest_id as guestId,
+			a.orgid as orgid,
 			b.part_id as partId,
 			d.part_brand_id as partBrandId,
 			d.car_type_id_f as carTypeIdF
@@ -1498,6 +1499,9 @@
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
             </isNotEmpty>
             
              <isNotEmpty prepend="and" property="isSettle">  

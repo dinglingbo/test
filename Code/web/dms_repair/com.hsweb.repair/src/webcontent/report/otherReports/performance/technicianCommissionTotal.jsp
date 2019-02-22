@@ -10,7 +10,7 @@
     <title>技师提成汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/technicianCommissionTotal.js?v=1.0.4"></script>
+  <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/technicianCommissionTotal.js?v=1.0.6"></script>
     <style type="text/css">
     body { 
         margin: 0;

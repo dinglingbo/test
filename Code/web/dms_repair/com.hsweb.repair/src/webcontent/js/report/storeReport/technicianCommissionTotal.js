@@ -12,10 +12,11 @@ var serviceTypeIdEl = null;
 var servieTypeList = [];
 var servieTypeHash = {};
 var cType = 0;
+var orgidsEl = null;
 var gridUrl = apiPath + repairApi+'/com.hsapi.repair.report.dataStatistics.queryTechnicianSummary.biz.ext';
 $(document).ready(function (v)
 {
-	var orgidsEl = null;
+	
 	grid1 = nui.get("grid1");
     form=new nui.Form("#form1");
     startDateEl = nui.get("startDate");

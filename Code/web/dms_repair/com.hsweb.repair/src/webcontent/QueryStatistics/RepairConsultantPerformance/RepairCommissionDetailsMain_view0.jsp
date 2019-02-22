@@ -7,7 +7,7 @@
   - Author(s): Administrator
   - Date: 2018-01-25 14:17:08
   - Description:
---> 
+-->  
 <head>
 <title>维修提成明细</title>
 <script src="<%=webPath + contextPath%>/repair/js/RepairConsultantPerformance/RepairCommissionDetailsMain.js?v=1.0.3"></script>
@@ -53,6 +53,9 @@
         <table class="table" id="table1">
             <tr>
                 <td>
+                        <!-- <input name="orgid" id="orgid" class="nui-combobox" textField="empName" valueField="empId" popupWidth="200"
+                        emptyText="公司名称" url=""  allowInput="true" showNullItem="false" width="120" valueFromSelect="true"/> -->
+
                 	<label style="font-family:Verdana;">快速查询：</label>
                 	 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
 
@@ -83,6 +86,7 @@
                            showTime="false"
                            showOkButton="false"
                            showClearButton="false"/>
+
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                    <input name="carBrandId"
 			                id="carBrandId" visible="false"
@@ -119,6 +123,7 @@
                url="">
               <div property="columns">
                   <div type="indexcolumn">序号</div>
+                  <div field="orgid" name="worker" width="80" headerAlign="center" header="公司" allowsort="true" ></div>
                   <div header="提成信息" headerAlign="center"> 
 	                  <div property="columns" >	                  
 		                  <div field="worker" name="worker" width="80" headerAlign="center" header="姓名" allowsort="true" ></div>

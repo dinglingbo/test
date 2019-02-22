@@ -108,7 +108,7 @@ function add() {
 				+ token,
 		title : "添加商机",
 		width : 550,
-		height : 410,
+		height : 430,
 		onload : function() {
 			var iframe = this.getIFrameEl();
 			var list = [];

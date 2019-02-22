@@ -6,6 +6,7 @@ $(document).ready(function(v) {
 	 basicInfoForm = new nui.Form("#basicInfoForm");
 	 swithBatchFlag =nui.get("swithBatchFlag");
 	 swithBatchFlag.setData(radioList);
+	 getComParamsList();
 });
 function doSearch()
 {

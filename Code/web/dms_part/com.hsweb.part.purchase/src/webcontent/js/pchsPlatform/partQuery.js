@@ -21,13 +21,17 @@ var getDetailPartUrl =baseUrl+"com.hsapi.part.invoice.partInterface.queryDetailS
 var partGridUrl=baseUrl+"com.hsapi.part.invoice.partInterface.queryJoinStock.biz.ext";
 var CarplateUrl= baseUrl+"com.hsapi.part.invoice.partInterface.queryCarplate.biz.ext";
 var partBrandUrl=baseUrl+"com.hsapi.part.invoice.partInterface.queryPartBrand.biz.ext";
+var signBtn=null;
 $(document).ready(function() {
     protokenEl=nui.get('protoken');
 	partGrid =nui.get('partGrid');
 	partGrid.setUrl(partGridUrl);
 	partDetailGrid = nui.get("partDetailGrid");
     partDetailGrid.setUrl(getDetailPartUrl);
-    
+    signBtn=nui.get("signBtn");
+    if(currSrmUserId=='1'){
+    	signBtn.setVisible(false);
+    }
     tree = nui.get("tree1");
     //tree.setUrl(treeUrl);
     document.onkeyup = function(event) {
@@ -59,6 +63,10 @@ $(document).ready(function() {
     });
     
 });
+function platformSignIn(){
+	//window.open("http://192.168.111.58:8080/srm/supplier/cusRegister.html?id="+currOrgId);  
+	window.open("http://124.172.221.179:83/srm/supplier/cusRegister.html?id="+currOrgId);     
+}
 function setRoleId() {
 	return {"token":token,"protoken":protoken};
 }

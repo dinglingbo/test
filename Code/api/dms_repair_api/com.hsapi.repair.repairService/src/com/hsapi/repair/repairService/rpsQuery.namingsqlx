@@ -1044,6 +1044,7 @@
 	    <select id="queryComprehensive" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
 			a.id AS id,
+			a.orgid as orgid,
 			a.bill_type_id AS billTypeId,
 			a.service_type_id AS serviceTypeId,
 			a.service_code AS serviceCode,
@@ -1136,10 +1137,16 @@
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 			inner join rps_settlement d on (a.id =  d.service_id)
 		WHERE 1 = 1
-			and a.orgid = #orgid#
+			
       <dynamic>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="isDisabled">
                 (a.is_disabled = #isDisabled#)
@@ -1341,6 +1348,7 @@
 	<!--在厂车辆查询 车辆信息，套餐小计，工时小计，配件小计，查询未结算的-->
 	<select id="queryNotSettleMaintain" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT a.id AS id,
+    		a.orgid AS orgid,
 			a.guest_id AS guestId,
 			a.service_code AS serviceCode,
 			a.enter_date AS enterDate,
@@ -1411,10 +1419,15 @@
 		inner join rpb_contactor d on (a.contactor_id = d.id and c.id = d.guest_id)
 		where a.is_settle = 0 and a.is_disabled = 0 
 		      and a.bill_type_id in (0,2,4)
-			  and a.orgid = #orgid#
 		<dynamic>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
+            </isNotEmpty>
+			<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carId">
                 (a.car_id = #carId#)

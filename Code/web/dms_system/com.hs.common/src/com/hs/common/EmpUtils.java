@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
 
@@ -62,7 +63,7 @@ public class EmpUtils {
 	}
 	
 	@Bizlet("获取员工兼职公司信息")
-	public static List getEmpOrgArr(String empId) throws Throwable {
+	public static DataObject[] getEmpOrgArr(String empId) throws Throwable {
 		HashMap pm = new HashMap();
 		
 		DataObject[] dob = ResauthUtils.getEmpOrg(empId);
@@ -90,7 +91,10 @@ public class EmpUtils {
 	            }
 	        });
 			
-			return resList;
+			DataObject[] arrEmpOrg = new DataObject[resList.size()];
+			arrEmpOrg = resList.toArray(arrEmpOrg);
+
+			return arrEmpOrg;
 			
 		}else {
 			return null;

@@ -1295,6 +1295,7 @@
     
 	 <select id="queryRepairCommission" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
+    	    a.orgid as orgid,
 			a.id AS id,
 			a.orgid,
 			a.bill_type_id AS billTypeId,
@@ -1367,8 +1368,13 @@
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 			inner join rps_deduct_detail d on (a.id =  d.service_id)
 		WHERE 1 = 1
-			and a.orgid = #orgid#
       <dynamic>
+           <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
             </isNotEmpty>
@@ -1921,6 +1927,7 @@
    <select id="queryPartOut" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     
 		SELECT
+			a.orgid as orgid,
 			b.id as id,
 			b.service_code AS serviceCode,
 			b.car_no AS carNo,
@@ -1962,7 +1969,10 @@
 		
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">
-                (b.orgid = #orgid#)
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="storeId">  

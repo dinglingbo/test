@@ -533,19 +533,7 @@
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">operateDate</process:from>
-      <process:to type="query">packMain/auditDate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
-      <process:to type="query">packMain/auditSign</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
-      <process:to type="query">packMain/auditor</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userId</process:from>
-      <process:to type="query">packMain/auditorId</process:to>
+      <process:to type="query">packMain/arriveDate</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">2</process:from>

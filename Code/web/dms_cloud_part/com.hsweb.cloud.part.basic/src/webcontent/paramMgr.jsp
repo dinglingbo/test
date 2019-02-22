@@ -10,7 +10,7 @@
 -->
 <head>
 <title>参数设置</title>
-    <script src="<%=webPath + contextPath%>/basic/js/paramMgr.js?v=1.0.8"></script>
+    <script src="<%=webPath + contextPath%>/basic/js/paramMgr.js?v=1.0.9"></script>
     <style type="text/css">
 
     .title {
@@ -51,7 +51,12 @@
 </head>
 <body>
 	<div id="basicInfoForm" class="form" contenteditable="false" >
-        <table class="table" id="table1"> 
+        <table class="table" id="table1">
+        	<tr>
+                <td class="tbCtrl" >
+                    <a class="nui-button" onclick="save()"   plain="false" >保存</a>
+                </td>
+            </tr> 
         	<tr>
                 <td class="tbtext">销售单、销售出库配件选择tab切换成批次选择：</td>
                 <td class="tbCtrl" >
@@ -60,13 +65,7 @@
                         repeatDirection="" repeatLayout="table" 
                         textField="text" valueField="id" ></div>
                 </td>      
-            </tr>
-            <tr>
-                <td class="tbtext"></td>
-                <td class="tbCtrl" >
-                    <a class="nui-button" onclick="save()"   plain="false" >保存</a>
-                </td>
-            </tr>
+            </tr>    
         </table>
     </div>
 	<script type="text/javascript">

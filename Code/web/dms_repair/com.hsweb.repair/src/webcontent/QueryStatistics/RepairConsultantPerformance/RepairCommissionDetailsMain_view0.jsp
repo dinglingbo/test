@@ -7,10 +7,12 @@
   - Author(s): Administrator
   - Date: 2018-01-25 14:17:08
   - Description:
+
 -->  
 <head>
 <title>维修提成明细</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairConsultantPerformance/RepairCommissionDetailsMain.js?v=1.0.3"></script>
+
+<script src="<%=webPath + contextPath%>/repair/js/RepairConsultantPerformance/RepairCommissionDetailsMain.js?v=1.0.5"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -86,7 +88,8 @@
                            showTime="false"
                            showOkButton="false"
                            showClearButton="false"/>
-
+                    <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="兼职公司" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                    <input name="carBrandId"
 			                id="carBrandId" visible="false"
@@ -123,7 +126,7 @@
                url="">
               <div property="columns">
                   <div type="indexcolumn">序号</div>
-                  <div field="orgid" name="worker" width="80" headerAlign="center" header="公司" allowsort="true" ></div>
+                  
                   <div header="提成信息" headerAlign="center"> 
 	                  <div property="columns" >	                  
 		                  <div field="worker" name="worker" width="80" headerAlign="center" header="姓名" allowsort="true" ></div>
@@ -150,6 +153,7 @@
 		                  <div field="mtAdvisor" name="mtAdvisor" width="70" headerAlign="center" header="服务顾问" allowsort="true" ></div>
 		                  <div field="serviceTypeId" name="serviceTypeId" width="90" headerAlign="center" header="业务类型" allowsort="true" ></div> 
 		                  <div field="outDate" name="outDate" width="130" headerAlign="center" header="出厂时间" dateFormat="yyyy-MM-dd HH:mm" allowsort="true" ></div>
+		                  <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
 	                  </div>
                   </div>
               </div>

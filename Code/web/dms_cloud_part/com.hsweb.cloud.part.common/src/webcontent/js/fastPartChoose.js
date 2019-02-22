@@ -376,6 +376,10 @@ function setInitData(params, ck, cck){
         params.namePy = value.replace(/\s+/g, "");
     }
 
+    if(currSwithBatchFlag ==1){	
+    	morePartTabs.activeTab("enterTab"); 
+    }
+
     var tab = morePartTabs.getActiveTab();
     if(tab.name == "enterTab"){
         params.sortField = "B.ENTER_DATE";
@@ -615,7 +619,12 @@ function onAdvancedAddOk(){
             nui.confirm("单价低于成本，是否继续？", "友情提示",
                 function (action) { 
                     if (action == "ok") {
-                        doAdd();
+                    	if(currIsCanBelowCost==1){
+                    		doAdd();
+                    	}else{
+                    		showMsg("您没有设置配件低于成本价的权限!","W");
+                    		return;
+                    	}
                     }else {
                         return;
                     }

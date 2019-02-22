@@ -9,7 +9,7 @@
 -->
 <head>
     <title>销售出库查询</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellOutQty.js?v=1.0.31"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/sellOutQty.js?v=1.0.33"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -96,7 +96,9 @@
                   width="120px"
                   onvaluechanged="onSearch"/>
                 
-			
+				<input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+				
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         </td>
     </tr>
@@ -161,6 +163,11 @@
             <div property="columns">
                 <div allowSort="true"  field=pickMan width="60" headerAlign="center" header="出库人" dataType="float" align="left"></div>
                 <div allowSort="true" width="130"  dateFormat="yyyy-MM-dd HH:mm" field="outDate" headerAlign="center" header="出库日期" dataType="float" align="left"></div>
+            </div>
+        </div>
+        <div header="其他" headerAlign="center">
+            <div property="columns">
+                <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
             </div>
         </div>
     </div>

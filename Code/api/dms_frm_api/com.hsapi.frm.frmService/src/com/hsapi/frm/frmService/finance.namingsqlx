@@ -11,7 +11,7 @@
     <!--账户结算明细-->
 	<select id="queryAccountDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	
-            SELECT a.sett_account_code as settAccountCode, a.sett_account_name as settAccountName ,a.rp_dc as rpDc, a.char_off_amt as charOffAmt,
+            SELECT a.sett_account_code as settAccountCode,b.orgid as orgid, a.sett_account_name as settAccountName ,a.rp_dc as rpDc, a.char_off_amt as charOffAmt,
 				   b.guest_id as guestId, b.auditor as auditor, b.audit_date as auditDate,
 				   c.full_name as fullName, c.short_name as shortName,e.car_no as carNo ,d.bill_type_id as billTypeId
 			from fis_rp_account_d_type a
@@ -21,9 +21,12 @@
 			inner join fis_rp_bill e on d.bill_rp_id= e.id
 			
 			where b.audit_sign = 1
-				<isNotEmpty prepend="and" property="orgid"> 
-                    (b.orgid = #orgid#)
-                </isNotEmpty>
+				<isNotEmpty prepend="and" property="orgid">
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (b.orgid in ($orgids$))
+            </isNotEmpty>
                 <!--本日 昨日 本周 上周 本月 下月 -->
                 <isNotEmpty prepend="and" property="startDate">  
                     (b.audit_date &gt;= #startDate#)
@@ -46,6 +49,53 @@
 	            order by b.audit_date desc
     </select>
     
+        	<select id="queryAccountBalance" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT 
+            	a.id as id,
+            	a.orgid as orgid, 
+            	a.sett_account_id as sett_account_id, 
+            	a.sett_account_code as sett_account_code,
+            	
+            	a.sett_account_name as sett_account_name,
+            	a.fyear as fyear, 
+            	a.fmonth as fmonth, 
+            	a.begin_dc as begin_dc,
+            	a.begin_bala as begin_bala,
+            	a.debit as debit, 
+            	a.credit as credit, 
+            	a.ytd_debit as ytd_debit,
+            	a.ytd_credit as ytd_credit,
+            	a.end_dc as end_dc, 
+            	a.end_bala as end_bala
+
+			from fis_settle_account_bala a
+
+			where 1 = 1
+				<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (a.create_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (a.create_date &lt; #endDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="code">  
+                    (a.sett_account_code = #code#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="name">  
+                    (a.sett_account_name = #name#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id">  
+	                (a.sett_account_id = #id#)
+	            </isNotEmpty> 
+    </select>
+    
     <!--收付款明细  rpDc 1收  -1付
 	    SELECT a.bill_main_id as billMainId, a.bill_service_id as billServiceId, a.bill_type_id as billTypeId,
 				       a.bill_type_code as billTypeCode, c.sett_account_id settAccountId, c.char_off_amt as charOffAmt,
@@ -62,7 +112,7 @@
 				on a.bill_type_id = e.id
     -->
 	<select id="queryRPAccountDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
-    	SELECT a.bill_main_id as billMainId, a.bill_service_id as billServiceId, a.bill_type_id as billTypeId,
+    	SELECT a.bill_main_id as billMainId, b.orgid as orgid,a.bill_service_id as billServiceId, a.bill_type_id as billTypeId,
 			       a.bill_type_code as billTypeCode, b.char_off_amt as charOffAmt,
 			       d.full_name as fullName, d.short_name as shortName, b.auditor as auditor, b.audit_date as auditDate,
 			       e.is_primary_business as isPrimaryBusiness, b.rp_dc as rpDc, f.car_no as carNo
@@ -75,9 +125,12 @@
 			on a.bill_type_id = e.id
 			left join fis_rp_bill f on a.bill_rp_id = f.id
 			where b.audit_sign = 1 
-				<isNotEmpty prepend="and" property="orgid"> 
-                    (b.orgid = #orgid#)
-                </isNotEmpty>
+			<isNotEmpty prepend="and" property="orgid">
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (b.orgid in ($orgids$))
+            </isNotEmpty>
                 <!--本日 昨日 本周 上周 本月 下月 -->
                 <isNotEmpty prepend="and" property="startDate">  
                     (b.audit_date &gt;= #startDate#)

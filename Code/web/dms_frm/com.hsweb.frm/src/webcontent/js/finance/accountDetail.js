@@ -12,6 +12,7 @@ var rpDcEl = null;
 var accountList = null;
 var enterTypeIdHash = {};
 var accountHash = {};
+var orgidsEl = null;
 var dcListType = [{name:"收",id:"1"},{id:"-1",name:"支"}];
 $(document).ready(function(v) {
 	mainGrid = nui.get("mainGrid");
@@ -22,6 +23,15 @@ $(document).ready(function(v) {
 	endDateEl = nui.get("endDate");
     advanceGuestIdEl = nui.get("advanceGuestId");
     rpDcEl = nui.get("rpDc");
+    
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
 
 	beginDateEl.setValue(getMonthStartDate());
 	endDateEl.setValue(addDate(getMonthEndDate(), 1));
@@ -69,6 +79,13 @@ function doSearch() {
     params.endDate = endDateEl.getValue();
     params.guestId = advanceGuestIdEl.getValue();
     params.rpDc = rpDcEl.getValue();
+    
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
 
 	mainGrid.load({
 		params:params,
@@ -158,6 +175,13 @@ function onDrawCell(e){
                 e.cellHtml = "";
             }
             break;
+        case "orgid": 
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name;
+        		}
+        	}
+        break;
         default:
             break;
     }

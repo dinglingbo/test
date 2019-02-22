@@ -21,7 +21,8 @@ var keyRtnQtyList = [];
 var keyRtnAmtList = [];
 var keyTrueQtyList = [];
 var keyTrueAmtList = [];
- 
+var orgidsEl = null;
+
 $(document).ready(function(v) {
 	rightGrid = nui.get("rightGrid");
 	rightGrid.setUrl(rightGridUrl);
@@ -34,6 +35,14 @@ $(document).ready(function(v) {
 
 	beginDateEl.setValue(getMonthStartDate());
 	endDateEl.setValue(getMonthEndDate());
+	orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
+
 
 	initGrid(getMonthStartDate(), addDate(getMonthEndDate(), 1));
 
@@ -167,6 +176,13 @@ function getSearchParam() {
 	params.partBrandId = partBrandIdEl.getValue();
     params.partNameAndPY = partNameEl.getValue();
     params.partCode = partCodeEl.getValue();
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
+
 	return params;
 }
 var currType = 2;
@@ -255,6 +271,12 @@ function onRightGridDraw(e) {
                 e.cellHtml = "";
             }
             break;
+        case  "orgid":
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name || "";
+        		}
+        	}
     	default:
     		break;
 	}
@@ -269,6 +291,7 @@ function initGrid(startDate, endDate){
     columnsList.push({field: "qualityTypeId",width:"60", headerAlign: "center", allowSort: true, header: "配件品质"});
     columnsList.push({field: "partBrandId",width:"80", headerAlign: "center", allowSort: true, header: "配件品牌"});
     columnsList.push({field: "carTypeIdF",width:"60", headerAlign: "center", allowSort: true, header: "配件类型"});
+    columnsList.push({field: "orgid",width:"130", headerAlign: "center", allowSort: true, header: "所属公司"});
 	if(columnList && columnList.length > 0){
 		for (i = 0; i < columnList.length; i++) {
 			var yearMonthObj = columnList[i];

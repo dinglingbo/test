@@ -11,7 +11,7 @@
     <!--根据条件查询有入的信息-->
 	<select id="queryInvocingInBrand" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	
-            SELECT DISTINCT b.part_brand_id as partBrandId
+            SELECT DISTINCT a.orgid as orgid, b.part_brand_id as partBrandId
 			from pj_invocing a
 			inner join wb_common.com_attribute b
 			on a.part_id = b.id
@@ -19,6 +19,11 @@
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="orgids">
+                	(a.orgid in ($orgids$))
+                </isNotEmpty>
+                
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
                     (A.create_date &gt;= #sAuditDate#)
@@ -68,7 +73,7 @@
     
     <select id="queryInvocingInPart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	
-            SELECT DISTINCT a.part_id as partId, b.oem_code as oemCode, b.part_brand_id as partBrandId,
+            SELECT DISTINCT a.orgid as orgid, a.part_id as partId, b.oem_code as oemCode, b.part_brand_id as partBrandId,
 				   b.car_type_id_f as carTypeIdF, b.car_type_id_s as carTypeIdS, b.car_type_id_t as carTypeIdT,
 		           b.`code` as partCode, b.name as partName, b.full_name as fullName, b.spec as spec, b.apply_carbrand_id as applyCarbrandId, 
 		           b.apply_car_model as applyCarModel, b.quality_type_id as qualityTypeId
@@ -79,6 +84,10 @@
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+                
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
                     (A.create_date &gt;= #sAuditDate#)
@@ -128,7 +137,7 @@
     
     <select id="queryInvocingInSupplier" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	
-            SELECT DISTINCT a.guest_id as guestId, c.`code` as supplierCode, c.full_name as fullName,
+            SELECT DISTINCT a.orgid as orgid,a.guest_id as guestId, c.`code` as supplierCode, c.full_name as fullName,
                    c.short_name as shortName, c.supplier_type as supplierType
 			from pj_invocing a
 			inner join wb_common.com_attribute b
@@ -138,6 +147,9 @@
 			where 1 = 1 and c.is_supplier = 1
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
                 </isNotEmpty>
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
@@ -191,13 +203,16 @@
     
     <select id="queryInvocingInPartType" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	
-            SELECT DISTINCT b.car_type_id_f as carTypeIdF
+            SELECT DISTINCT a.orgid as orgid,b.car_type_id_f as carTypeIdF
 			from pj_invocing a
 			inner join wb_common.com_attribute b
 			on a.part_id = b.id
 			where 1 = 1 and a.dc = 1
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+                	(a.orgid in ($orgids$))
                 </isNotEmpty>
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  

@@ -442,6 +442,7 @@ where b.orgid =#orgid#
      <select id="queryTechnicianDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
      SELECT 
 		a.service_code as serviceCode,
+		a.orgid as orgid,
 		a.car_no as carNo,
 		a.service_type_id as serviceTypeId,
 		a.worker as worker,
@@ -455,9 +456,14 @@ where b.orgid =#orgid#
 		a.deduct_worker_nos as deductWorkerNos
 		from wb_repair.rps_deduct_prdt_detail a
 		   where  a.deduct_worker_value &gt; 0
-		        and a.orgid =#orgid#
 				and a.deduct_mode = #deductMode#
 		     <dynamic>
+		     <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
 			<isNotEmpty prepend="and" property="sOutDate"> 
                 a.record_date &gt;= #sOutDate#
             </isNotEmpty>

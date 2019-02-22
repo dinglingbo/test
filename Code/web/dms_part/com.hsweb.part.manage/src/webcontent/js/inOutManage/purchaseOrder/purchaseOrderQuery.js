@@ -229,6 +229,14 @@ function doSearch(params)
     params.sortOrder = "desc";
     params.orderTypeId = 1;
     params.isFinished = 0;
+    
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
+
     rightGrid.load({
         params:params,
         token:token
@@ -412,14 +420,10 @@ function onDrawCell(e)
         case  "orgid":
         	for(var i=0;i<currOrgList.length;i++){
         		if(currOrgList[i].orgid==e.value){
-        			e.cellHtml = currOrgList[i].name;
-        		}else{
-        			e.cellHtml="";
+        			e.cellHtml = currOrgList[i].name || "";
         		}
         	}
         	
-       
-
         default:
             break;
     }

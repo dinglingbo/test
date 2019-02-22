@@ -414,15 +414,21 @@
        		sum(a.deduct_worker_value) as totalDeductAmt
 		   from wb_repair.rps_deduct_prdt_detail a
 		
-		   where a.orgid = #orgid# 
-		
+		   where 1=1 
+		     <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
                 (a.record_date &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
                 (a.record_date &lt; #endDate#)
             </isNotEmpty>
- 
+      
+    
          <isEqual  prepend="" property="groupByType"   compareValue="0">
 	        GROUP BY DATE_FORMAT(a.record_date,'%Y-%m-%d')
 	   </isEqual>
@@ -458,7 +464,7 @@
        		sum(a.deduct_value) as deductValue
 		   from wb_repair.rps_deduct_prdt_detail a
 		
-		  where a.orgid = #orgid# and a.deduct_mode = #deductMode#
+		  where a.deduct_mode = #deductMode#
 		
             <isNotEmpty prepend="and" property="startDate">  
                 (a.record_date &gt;= #startDate#)
@@ -466,7 +472,12 @@
             <isNotEmpty prepend="and" property="endDate">  
                 (a.record_date &lt; #endDate#)
             </isNotEmpty>
- 
+            <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
         <isEqual  prepend="" property="groupByType"   compareValue="0">
 	        GROUP BY DATE_FORMAT(a.record_date,'%Y-%m-%d')
 	   </isEqual>

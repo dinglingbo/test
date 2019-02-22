@@ -17,6 +17,7 @@ var endDateEl = null;
 var serviceTypeIdEl = null;
 var servieTypeList = [];
 var servieTypeHash = {};
+var orgidsEl = null;
 $(document).ready(function (v)
 {
     mtAdvisorIdEl = nui.get("mtAdvisorId");
@@ -39,6 +40,14 @@ $(document).ready(function (v)
          });
      });
      
+     orgidsEl = nui.get("orgids");
+     orgidsEl.setData(currOrgList);
+     if(currOrgList.length==1){
+     	orgidsEl.hide();
+     }else{
+     	orgidsEl.setValue(currOrgid);
+     }
+     
      grid.on("drawcell", function (e) {
     	 if (e.field == "serviceTypeId") {
     		 if(e.value){
@@ -46,17 +55,24 @@ $(document).ready(function (v)
     		 }
          }else if (e.field == "billTypeId") {
              e.cellHtml = billTypeIdList[e.value].name;
+     }else if (e.field == "orgid"){
+     	for(var i=0;i<currOrgList.length;i++){
+     		if(currOrgList[i].orgid==e.value){
+     			e.cellHtml = currOrgList[i].name;
+     		}
+     	}
+     	
      }
-         document.onkeyup = function (event) {
-             var e = event || window.event;
-             var keyCode = e.keyCode || e.which; // 38向上 40向下
+     document.onkeyup = function (event) {
+         var e = event || window.event;
+         var keyCode = e.keyCode || e.which; // 38向上 40向下
 
 
-             if ((keyCode == 13)) { // F9
-                 onSearch();
-             }
+         if ((keyCode == 13)) { // F9
+             onSearch();
          }
-     });    
+     }
+  });    
 
 	  var filter = new HeaderFilter(grid, {
 	        columns: [
@@ -208,6 +224,12 @@ function getSearchParam() {
         params.carNo = typeValue;
     }else if(type==1){
         params.serviceCode = typeValue;
+    }
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
     }
     return params;
 }

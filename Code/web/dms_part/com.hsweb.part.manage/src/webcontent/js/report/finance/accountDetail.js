@@ -12,6 +12,7 @@ var rpDcEl = null;
 var accountList = null;
 var accountHash = {};
 
+
 $(document).ready(function(v) {
 	mainGrid = nui.get("mainGrid");
 	mainGrid.setUrl(queryUrl);
@@ -24,6 +25,8 @@ $(document).ready(function(v) {
 
 	beginDateEl.setValue(getMonthStartDate());
 	endDateEl.setValue(addDate(getMonthEndDate(), 1));
+	
+
 
 	getAccountList(function(data) {
         accountList = data.settleAccount;
@@ -42,6 +45,7 @@ function doSearch() {
     params.endDate = endDateEl.getValue();
     params.guestId = advanceGuestIdEl.getValue();
     params.rpDc = rpDcEl.getValue();
+
 
 	mainGrid.load({
 		params:params,

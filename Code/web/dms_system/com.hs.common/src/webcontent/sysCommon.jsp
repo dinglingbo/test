@@ -273,6 +273,7 @@
 	var currIsCanBelowCost ="<%=isCanBelowCost %>";
 	var currSwithBatchFlag ="<%=swithBatchFlag %>";
 	var currOrgs = "<%=orgs %>";
+	//currOrgs = currOrgs.replace(/\*/g,"");
 	var currOrgJsonStr = "<%=orgJsonStr %>";
 	currOrgJsonStr = currOrgJsonStr.replace(/'/g,'"');
 	var currOrgList = JSON.parse(currOrgJsonStr);

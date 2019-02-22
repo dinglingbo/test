@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>商机列表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/sysCommon.jsp"%>
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/businessOpportunity.js?v=1.1.1"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/businessOpportunity.js?v=1.1.2"></script>
     <style type="text/css">
     body {
         margin: 0;

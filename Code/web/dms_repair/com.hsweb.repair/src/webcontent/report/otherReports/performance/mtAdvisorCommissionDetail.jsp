@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>服务顾问提成明细表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/mtAdvisorCommissionDetail.js?v=1.0.7"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/mtAdvisorCommissionDetail.js?v=1.0.8"></script>
 
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
@@ -69,6 +69,8 @@ pageEncoding="UTF-8" session="false" %>
 
                    			  <!-- <input class="nui-combobox" id="billTypeId" emptyText="综合开单" name="billTypeId" data="[{billTypeId:5,text:'全部工单'},{billTypeId:0,text:'综合开单'},{billTypeId:2,text:'洗美开单'},{billTypeId:4,text:'理赔开单'}]"
                           width="100px"  onvaluechanged="onSearch" textField="text" valueField="billTypeId" value="5"/> -->
+                          <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" plain="true" onclick="onSearch()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     </div>
 
@@ -95,6 +97,7 @@ pageEncoding="UTF-8" session="false" %>
 					          <div field="serviceTypeId" name="serviceTypeId" headeralign="center" width="80" align="center" allowsort="true" >业务类型</div>
 					          <div field="carNo" name="carNo" headeralign="center" width="80" align="center" allowsort="true" vistable="false" >车牌号</div>
 					          <div field="recordDate" name="recordDate" headeralign="center" width="100" align="center" dateFormat="yyyy-MM-dd" allowsort="true" >结算日期</div>
+					          <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
 							</div>
 						</div>
 

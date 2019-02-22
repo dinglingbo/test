@@ -135,6 +135,9 @@
 				
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
             <isNotEmpty prepend="and" property="isFinished">(a.is_finished = #isFinished#)</isNotEmpty>
@@ -381,6 +384,9 @@
 				
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="orderTypeId">(a.order_type_id = #orderTypeId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
             <isNotEmpty prepend="and" property="isOut">(a.is_out = #isOut#)</isNotEmpty>
@@ -1390,6 +1396,10 @@
 				
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
+            
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
             <isNotEmpty prepend="and" property="storeId">(a.store_id = #storeId#)</isNotEmpty>
             <isNotEmpty prepend="and" property="receiveStoreId">(a.receive_store_shelf = #receiveStoreId#)</isNotEmpty>
@@ -1474,6 +1484,10 @@
 				
 			<dynamic>
             <isNotEmpty prepend="and" property="orgid">(a.orgid = #orgid#)</isNotEmpty>
+             <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
+            
             <isNotEmpty prepend="and" property="id">(a.id = #id#)</isNotEmpty>
             <isNotEmpty prepend="and" property="storeId">(a.store_id = #storeId#)</isNotEmpty>
             <!--订货日期 -->

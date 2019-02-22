@@ -12,7 +12,7 @@
 <head>
     <title>用户反馈管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/feedbackLDetail.js?v=1.1.6" type="text/javascript"></script>       
+    <script src="<%=webPath + contextPath%>/common/js/feedbackLDetail.js?v=1.1.7" type="text/javascript"></script>       
 </head>
  <style type="text/css"> 
  
@@ -153,8 +153,8 @@
 		<input class="nui-TextArea" name="settleContent" id="settleContent" style="width: 93%; height: 100px;" />
 	    </div>
 	</fieldset>
-	   <div class="max_img" style="padding-left:0px; width:800px;height:600px">
-			<img src="" id="maxImgShow" onclick="changeHide();" width="950" height="600" />
+	   <div class="max_img" style=" width:100%;height:100%;margin:0 auto">
+			<img src="" id="maxImgShow" onclick="changeHide();" width="100%" height="100%" />
 	   </div>
 	
 	

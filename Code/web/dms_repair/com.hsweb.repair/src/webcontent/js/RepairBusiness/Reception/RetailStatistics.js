@@ -18,6 +18,7 @@ var partGrid = null;
 var partBrandGrid = null;
 var partTypeGrid = null;
 var mainTabs = null;
+var orgidsEl = null;
  
 $(document).ready(function(v) {
 	clientGrid = nui.get("clientGrid");
@@ -33,6 +34,15 @@ $(document).ready(function(v) {
     partTypeGrid.setUrl(gridUrl);
 
     mainTabs = nui.get("mainTabs");
+    
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
 	
 	partBrandIdEl = nui.get("partBrandId");
     partCodeEl = nui.get("partCode");
@@ -90,6 +100,12 @@ function getSearchParam() {
     params.partBrandId = partBrandIdEl.getValue();
     params.partNameAndPY = partNameEl.getValue();
     params.partCode = partCodeEl.getValue();
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
     if(typeof advanceGuestIdEl.getValue() !== 'number'){
     	params.guestId=null;
     	params.guestName = advanceGuestIdEl.getValue();

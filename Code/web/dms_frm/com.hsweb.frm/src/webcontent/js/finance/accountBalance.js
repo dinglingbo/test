@@ -8,6 +8,7 @@ var accountIdEl = null;
 var beginDateEl = null;
 var endDateEl = null;
 var accountList = null;
+var orgidsEl = null;
 
 $(document).ready(function(v) {
 	mainGrid = nui.get("mainGrid");
@@ -20,6 +21,25 @@ $(document).ready(function(v) {
 	beginDateEl.setValue(getMonthStartDate());
 	endDateEl.setValue(addDate(getMonthEndDate(), 1));
 
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
+    
+    mainGrid.on("drawcell", function (e) {
+        if(e.field == "orgid"){
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name;
+        		}
+        	}
+        	
+        }
+    });
 	getAccountList(function(data) {
         accountList = data.settleAccount;
         accountIdEl.setData(accountList);
@@ -49,6 +69,12 @@ function doSearch() {
 	params.id = accountIdEl.getValue();
 	params.startDate = beginDateEl.getFormValue();
     params.endDate = endDateEl.getValue();
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
 
 	mainGrid.load({
 		params:params,

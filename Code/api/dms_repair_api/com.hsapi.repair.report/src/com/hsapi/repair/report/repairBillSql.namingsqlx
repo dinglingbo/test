@@ -77,9 +77,15 @@
 			from rps_package a
 			inner join rps_maintain b
 			on a.service_id = b.id
-			where b.orgid = #orgid# and b.is_settle = 1
+			where  b.is_settle = 1
 			
 			<!--结算日期 -->
+			<isNotEmpty prepend="and" property="orgid">
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (b.orgid in ($orgids$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
                 (b.out_date &gt;= #startDate#)
             </isNotEmpty>
@@ -176,7 +182,7 @@
 	          <isEqual  prepend="" property="groupByType"  compareValue="4">
 	     	 a.bill_type_id as groupName,
 	    </isEqual>  	       
-    	       count(1) as ct, sum(b.package_amt) as pkgAmt, sum(b.package_pref_amt) as pkgPrefAmt,
+    	       count(1) as ct, a.orgid as orgid ,sum(b.package_amt) as pkgAmt, sum(b.package_pref_amt) as pkgPrefAmt,
 		       sum(b.package_subtotal) as pkgSubtotal, sum(b.item_total_amt) as itemTotalAmt, sum(b.item_pref_amt) as itemPrefAmt,
 		       sum(b.item_subtotal) as itemSubtotal, sum(b.part_total_amt) as partTotalAmt, sum(b.part_pref_amt) as partPrefAmt,
 		       sum(b.part_subtotal) as partSubtotal, sum(b.part_true_cost) as partTrueCost, sum(b.card_times_amt) as cardTimesAmt,
@@ -190,10 +196,16 @@
 		from rps_maintain a
 		inner join rps_settlement b on a.id = b.service_id
 		inner join rpb_car c on a.car_id = c.id
-		where a.is_settle = 1 and a.orgid = #orgid#
+		where a.is_settle = 1 
 		and a.bill_type_id in (0,2,4)
 		
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
             <!--结算日期 -->
             <isNotEmpty prepend="and" property="startDate">  
                 (a.out_date &gt;= #startDate#)
@@ -313,7 +325,12 @@
 		from  wb_frm.fis_rp_account a
 			inner join wb_frm.fis_rp_account_detail  b on b.main_id = a.id
 		where a.audit_sign = 1 and a.rp_dc = -1
-		
+		<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
                 (a.operate_date &gt;= #startDate#)
             </isNotEmpty>
@@ -357,7 +374,12 @@
 		from  wb_frm.fis_rp_account a
 			inner join wb_frm.fis_rp_account_detail  b on b.main_id = a.id
 		where a.audit_sign = 1 and a.rp_dc = 1
-		
+				<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
                 (a.operate_date &gt;= #startDate#)
             </isNotEmpty>
@@ -402,15 +424,21 @@
        		sum(a.deduct_worker_value) as totalDeductAmt
 		   from wb_repair.rps_deduct_prdt_detail a
 		
-		   where a.orgid = #orgid# 
-		
+		   where 1=1 
+		     <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
                 (a.record_date &gt;= #startDate#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="endDate">  
                 (a.record_date &lt; #endDate#)
             </isNotEmpty>
- 
+      
+    
          <isEqual  prepend="" property="groupByType"   compareValue="0">
 	        GROUP BY DATE_FORMAT(a.record_date,'%Y-%m-%d')
 	   </isEqual>
@@ -446,7 +474,7 @@
        		sum(a.deduct_value) as deductValue
 		   from wb_repair.rps_deduct_prdt_detail a
 		
-		  where a.orgid = #orgid# and a.deduct_mode = #deductMode#
+		  where a.deduct_mode = #deductMode#
 		
             <isNotEmpty prepend="and" property="startDate">  
                 (a.record_date &gt;= #startDate#)
@@ -454,7 +482,12 @@
             <isNotEmpty prepend="and" property="endDate">  
                 (a.record_date &lt; #endDate#)
             </isNotEmpty>
- 
+            <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
         <isEqual  prepend="" property="groupByType"   compareValue="0">
 	        GROUP BY DATE_FORMAT(a.record_date,'%Y-%m-%d')
 	   </isEqual>
@@ -478,9 +511,15 @@
 		from rps_maintain a
 		inner join rps_settlement b
 		on a.id = b.service_id
-		where a.is_settle = 1 and a.orgid = #orgid# 
+		where a.is_settle = 1 
 		      
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
 			<isNotEmpty prepend="and" property="billTypeIds">  
                 (a.bill_type_id in ($billTypeIds$))
             </isNotEmpty>
@@ -498,8 +537,14 @@
 	<select id="queryInsuranceIncome" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT sum(ifnull(amt,0)) as netinAmt, sum(IFNULL(rtn_comp_amt,0)) as grossProfit 
 		from rps_insurance_main
-		where is_settle = 1 and orgid = #orgid# 
+		where is_settle = 1
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (orgid in ($orgids$))
+            </isNotEmpty>
             <!--结算日期 -->
             <isNotEmpty prepend="and" property="startDate">  
                 (out_date &gt;= #startDate#)
@@ -513,8 +558,14 @@
 	<!--预收 储值卡充值 -->
 	<select id="queryStoredAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT sum(ifnull(recharge_amt,0)) as amt from rps_stored_record
-		where is_settle = 1 and orgid = #orgid# 
+		where is_settle = 1 
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (orgid in ($orgids$))
+            </isNotEmpty>
             <!--结算日期 -->
             <isNotEmpty prepend="and" property="startDate">  
                 (settle_date &gt;= #startDate#)
@@ -527,8 +578,14 @@
 	<!--预收 计次卡购买 -->
 	<select id="queryCardTimesAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT sum(ifnull(sell_amt,0)) as amt from rps_card_times
-		where status = 2 and orgid = #orgid# 
+		where status = 2 
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (orgid in ($orgids$))
+            </isNotEmpty>
             <!--结算日期 -->
             <isNotEmpty prepend="and" property="startDate">  
                 (settle_date &gt;= #startDate#)
@@ -543,8 +600,14 @@
     	SELECT sum(case when type = 1 then ifnull(refund_amt,0) else 0 end ) as cardAmt,
     	       sum(case when type = 2 then ifnull(refund_amt,0) else 0 end ) as storedAmt
     	from rps_refund_record
-		where orgid = #orgid# 
+		where 1=1
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (orgid in ($orgids$))
+            </isNotEmpty>
             <!--结算日期 -->
             <isNotEmpty prepend="and" property="startDate">  
                 (record_date &gt;= #startDate#)
@@ -567,9 +630,15 @@
 		from rps_maintain a
 		inner join rps_settlement b
 		on a.id = b.service_id
-		where a.bala_audit_sign = 1 and a.is_settle = 0 and a.orgid = #orgid# 
+		where a.bala_audit_sign = 1 and a.is_settle = 0 
 		      and a.bill_type_id in (0, 2, 3, 4)
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>			
             <!--结算日期 -->
             <isNotEmpty prepend="and" property="startDate">  
                 (a.bala_audit_date &gt;= #startDate#)
@@ -599,9 +668,15 @@
 		from rps_maintain a
 		inner join rps_settlement b
 		on a.id = b.service_id
-		where a.is_settle = 1 and a.orgid = #orgid# 
+		where a.is_settle = 1 
 		      and a.bill_type_id in (0, 2, 3, 4)
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
             <!--结算日期 -->
             <isNotEmpty prepend="and" property="startDate">  
                 (a.out_date &gt;= #startDate#)
@@ -614,8 +689,14 @@
 	<select id="queryInsuranceSettleAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT sum(case when settle_type_id = 3 then ifnull(amt,0) - ifnull(rtn_guest_amt,0) else amt end ) as balaAmt
 		from rps_insurance_main
-		where is_settle = 1 and orgid = #orgid# 
+		where is_settle = 1 
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (orgid in ($orgids$))
+            </isNotEmpty>
             <!--结算日期 -->
             <isNotEmpty prepend="and" property="startDate">  
                 (out_date &gt;= #startDate#)
@@ -634,8 +715,14 @@
     	SELECT sum(case when rp_dc = 1 then ifnull(true_char_off_amt,0) else 0 end ) as rAmt,
     	       sum(case when rp_dc = -1 then ifnull(true_char_off_amt,0) else 0 end ) as pAmt
     	from fis_rp_account
-    	where orgid = #orgid# and audit_sign = 1
+    	where  audit_sign = 1
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (orgid in ($orgids$))
+            </isNotEmpty>		
             <!--结算日期 -->
             <isNotEmpty prepend="and" property="startDate">  
                 (audit_date &gt;= #startDate#)

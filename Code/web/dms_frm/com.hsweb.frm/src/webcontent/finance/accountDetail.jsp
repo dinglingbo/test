@@ -1,5 +1,5 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/commonPart.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <!--
@@ -10,7 +10,7 @@
 <head>
     <title>账户结算明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountDetail.js?v=1.0.8"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountDetail.js?v=1.1.0"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -54,6 +54,8 @@
         <input id="accountId" width="100px" textField="name" valueField="id" emptyText="结算账户" onvalueChanged="doSearch()" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
         <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择往来单位..." onvalueChanged="doSearch()" onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
         <span class="separator"></span> 
+        <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
         <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     </div>
     <div class="nui-fit">
@@ -72,6 +74,7 @@
                 <div field="auditor" name="auditor" width="60"  headeralign="center" allowsort="true">结算人</div>
                 <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true">结算日期</div>
                 <div field="fullName" name="name" width="120"  headeralign="center" allowsort="true">客户全称</div>
+                 <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
            
             </div>
         </div>

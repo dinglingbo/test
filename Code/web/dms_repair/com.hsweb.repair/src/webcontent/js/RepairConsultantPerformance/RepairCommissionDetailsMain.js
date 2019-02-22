@@ -21,6 +21,7 @@ var mtAdvisorIdEl = null;
 var serviceTypeIdEl = null;
 var serviceTypeIds = null;
 var advancedMore = null;
+var orgidsEl = null;
 //var serviceTypeIds = null;
 var prdtTypeHash = {
 	    "1":"套餐",
@@ -36,22 +37,30 @@ $(document).ready(function ()
     serviceTypeIds = nui.get("serviceTypeIds");
     beginDateEl =nui.get('sOutDate');
     endDateEl =nui.get('eOutDate');   
-	  var filter = new HeaderFilter(mainGrid, {
-	        columns: [
-	            { name: 'carModel' },
-		            { name: 'mtAdvisor' },
-	            { name: 'worker' },
-	        ],
-	        callback: function (column, filtered) {
-	        },
+    var filter = new HeaderFilter(mainGrid, {
+        columns: [
+            { name: 'carModel' },
+	            { name: 'mtAdvisor' },
+            { name: 'worker' },
+        ],
+        callback: function (column, filtered) {
+        },
 
-	        tranCallBack: function (field) {
-	        	var value = null;
-	        	switch(field){
-		    	}
-	        	return value;
-	        }
-	    });
+        tranCallBack: function (field) {
+        	var value = null;
+        	switch(field){
+	    	}
+        	return value;
+        }
+    });
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
+    
     initMember("mtAdvisorId",function(){     
         initServiceType("serviceTypeId",function(data) {
             servieTypeList = nui.get("serviceTypeId").getData();
@@ -87,6 +96,13 @@ $(document).ready(function ()
             }else{
                 e.cellHtml = "未结算";
             }
+        }else if(e.field == "orgid"){
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name;
+        		}
+        	}
+        	
         }
     });
     
@@ -211,6 +227,12 @@ function getSearchParam() {
         params.name = typeValue;
     }else if(type==3){
         params.tel = typeValue;
+    }
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
     }
     return params;
 }

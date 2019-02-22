@@ -9,7 +9,7 @@
 -->
 <head>
     <title>维修归库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairReturnReport.js?v=1.0.36"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairReturnReport.js?v=1.0.37"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -100,6 +100,9 @@
                  <input class="nui-datepicker" id="sOutDate" width="100px"allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
              至:
                 <input class="nui-datepicker" id="eOutDate" width="100px"allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+                
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 </div>
 
@@ -169,6 +172,12 @@
                 <div allowSort="false"  field=outReturnSign width="60" headerAlign="center" header="退货标志" dataType="float" align="left"></div>
                 <div allowSort="false"  field=pickMan width="60" headerAlign="center" name="pickMan" header="退货人" dataType="float" align="left"></div>
                 <div allowSort="false"  field="outDate" width="130"  dateFormat="yyyy-MM-dd HH:mm"  headerAlign="center" header="退货日期"  align="left"></div>
+            </div>
+        </div>
+        <div header="其他" headerAlign="center">
+            <div property="columns">
+               <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
+                
             </div>
         </div>
     </div>

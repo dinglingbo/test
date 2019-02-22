@@ -15,7 +15,8 @@ var keyRtnQtyList = [];
 var keyRtnAmtList = [];
 var keyTrueQtyList = [];
 var keyTrueAmtList = [];
- 
+var orgidsEl = null;
+
 $(document).ready(function(v) {
 	rightGrid = nui.get("rightGrid");
 	rightGrid.setUrl(rightGridUrl);
@@ -37,6 +38,13 @@ $(document).ready(function(v) {
     keyRtnAmtList = [];
     keyTrueQtyList = [];
     keyTrueAmtList = [];
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
 
 	rightGrid.on("beforeload",function(e){
         e.data.token = token;
@@ -143,6 +151,13 @@ $(document).ready(function(v) {
 function getSearchParam() {
 	var params = {};
 	params.partBrandId = nui.get("partBrandId").getValue();
+	var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
+
 	return params;
 }
 var currType = 2;
@@ -217,6 +232,12 @@ function onRightGridDraw(e) {
     			e.cellHtml = "";
     		}
     		break;
+    	 case  "orgid":
+         	for(var i=0;i<currOrgList.length;i++){
+         		if(currOrgList[i].orgid==e.value){
+         			e.cellHtml = currOrgList[i].name || "";
+         		}
+         	}
     	default:
     		break;
 	}
@@ -245,7 +266,8 @@ function initGrid(startDate, endDate){
 					        	{field: orderRtnQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货数量"},
 					        	{field: orderRtnAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货金额"},
 					        	{field: trueQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库数量"},
-					        	{field: trueAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额"}
+					        	{field: trueAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额"},
+					        	{field: "orgid", width: 100, headerAlign: "center", summaryType:"", allowSort: true, header: "所属公司"}
 				          	]}
 			           ]};
 			columnsList.push(obj);
@@ -269,7 +291,8 @@ function initGrid(startDate, endDate){
                         {field: "sumRtnQty", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货数量"},
                         {field: "sumRtnAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货金额"},
                         {field: "sumTrueQty", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库数量"},
-                        {field: "sumTrueAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额"}
+                        {field: "sumTrueAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额"},
+                        {field: "orgid", width: 100, headerAlign: "center", summaryType:"", allowSort: true, header: "所属公司"}
                      ]};
         columnsList.push(sumObj);
 	}

@@ -21,7 +21,7 @@
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
-      <process:return id="0" language="com.hsapi.repair.data.rps.RpsFaultRecord" name="fault" type="query" valueType="DataObject">fault</process:return>
+      <process:return id="0" language="com.hsapi.repair.data.rps.RpsGearboxFault" name="fault" type="query" valueType="DataObject">fault</process:return>
       <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
     </process:returns>
@@ -120,10 +120,10 @@
   <process:info author="Administrator" createTime="2019-02-20 16:20:39" date="2019-02-20Z" description="" name="saveBXFaultRecord" version="7.0.0.0"/>
   <process:variables/>
   <process:inputs varArgs="false">
-    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsFaultRecord" name="fault"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsGearboxFault" name="fault"/>
   </process:inputs>
   <process:outputs>
-    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsFaultRecord" name="fault"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsGearboxFault" name="fault"/>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>

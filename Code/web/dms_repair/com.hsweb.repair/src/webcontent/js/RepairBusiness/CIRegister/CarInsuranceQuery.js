@@ -13,6 +13,7 @@
  var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"客户名称"},{id:"2",name:"手机号"}];
  var editFormDetail = null;
  var innerPartGrid = null;
+ var orgidsEl = null;
  var settleTypeIdList=[{id :1,name :"保司直收"},{id :2,name :"门店代收全款"},{id :3,name :"代收减返点"}];
  $(document).ready(function ()
  {
@@ -23,6 +24,15 @@
     nui.get("search-type").setData(statusList);
     beginDateEl = nui.get("sRecordDate");
     endDateEl = nui.get("eRecordDate");
+    
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
     
     editFormDetail = document.getElementById("editFormDetail");
     innerPartGrid = nui.get("innerPartGrid");
@@ -53,12 +63,17 @@
  
         if(e.field == "settleTypeId"){
         	 e.cellHtml = settleTypeIdList[e.value-1].name ||"";
-        }
-        if(e.field == "drtnCompRate"){
+        }else if(e.field == "drtnCompRate"){
         	e.cellHtml = e.value + "%";
-        }
-        if(e.field == "drtnGuestRate"){
+        }else if(e.field == "drtnGuestRate"){
         	e.cellHtml = e.value + "%";
+        }else if(e.field == "orgid"){
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name;
+        		}
+        	}
+        	
         }
     });
     leftGrid.on("rowclick", function (e) {
@@ -188,6 +203,12 @@ function getSearchParams()
     params.eoutDate = addDate(endDateEl.getFormValue(),1);
   /*  params.carNo = nui.get("carNo-search").getValue();
     params.guestFullName = nui.get("guestName").getValue();*/
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
     params.isSettle=1;
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
@@ -207,7 +228,6 @@ function onSearch()
 } 
 function doSearch(params) {
 	
-    params.orgid = currOrgid;
     leftGrid.load({
         token:token, 
         params: params
@@ -313,27 +333,29 @@ function mergeCells(){//动态合并行
 			 cells[13] = { rowIndex: 0, columnIndex: 14, rowSpan: index + 1, colSpan: 0 };
 			 cells[14] = { rowIndex: 0, columnIndex: 15, rowSpan: index + 1, colSpan: 0 };
 			 cells[15] = { rowIndex: 0, columnIndex: 16, rowSpan: index + 1, colSpan: 0 };
+			 cells[16] = { rowIndex: 0, columnIndex: 17, rowSpan: index + 1, colSpan: 0 };
 		 }else{
 		 	 var last = brr[i-1];
 		 	 last = parseInt(last);
 		 	 var one = brr[i];
 		 	 one = parseInt(one);
-		 	 cells[16*i+0] = { rowIndex: last + 1, columnIndex: 1, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[16*i+1] = { rowIndex: last + 1, columnIndex: 2, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[16*i+2] = { rowIndex: last + 1, columnIndex: 3, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[16*i+3] = { rowIndex: last + 1, columnIndex: 4, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[16*i+4] = { rowIndex: last + 1, columnIndex: 5, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[16*i+5] = { rowIndex: last + 1, columnIndex: 6, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[16*i+6] = { rowIndex: last + 1, columnIndex: 7, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[16*i+7] = { rowIndex: last + 1, columnIndex: 8, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[16*i+8] = { rowIndex: last + 1, columnIndex: 9, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[16*i+9] = { rowIndex: last + 1, columnIndex: 10, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[16*i+10] = { rowIndex: last + 1, columnIndex: 11, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[16*i+11] = { rowIndex: last + 1, columnIndex: 12, rowSpan: one - last, colSpan: 0 };
-		 	 cells[16*i+12] = { rowIndex: last + 1, columnIndex: 13, rowSpan: one - last, colSpan: 0 };
-		 	 cells[16*i+13] = { rowIndex: last + 1, columnIndex: 14, rowSpan: one - last, colSpan: 0 };
-		 	 cells[16*i+14] = { rowIndex: last + 1, columnIndex: 15, rowSpan: one - last, colSpan: 0 };
-		 	 cells[16*i+15] = { rowIndex: last + 1, columnIndex: 16, rowSpan: one - last, colSpan: 0 };
+		 	 cells[17*i+0] = { rowIndex: last + 1, columnIndex: 1, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[17*i+1] = { rowIndex: last + 1, columnIndex: 2, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[17*i+2] = { rowIndex: last + 1, columnIndex: 3, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[17*i+3] = { rowIndex: last + 1, columnIndex: 4, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[17*i+4] = { rowIndex: last + 1, columnIndex: 5, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[17*i+5] = { rowIndex: last + 1, columnIndex: 6, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[17*i+6] = { rowIndex: last + 1, columnIndex: 7, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[17*i+7] = { rowIndex: last + 1, columnIndex: 8, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[17*i+8] = { rowIndex: last + 1, columnIndex: 9, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[17*i+9] = { rowIndex: last + 1, columnIndex: 10, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[17*i+10] = { rowIndex: last + 1, columnIndex: 11, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[17*i+11] = { rowIndex: last + 1, columnIndex: 12, rowSpan: one - last, colSpan: 0 };
+		 	 cells[17*i+12] = { rowIndex: last + 1, columnIndex: 13, rowSpan: one - last, colSpan: 0 };
+		 	 cells[17*i+13] = { rowIndex: last + 1, columnIndex: 14, rowSpan: one - last, colSpan: 0 };
+		 	 cells[17*i+14] = { rowIndex: last + 1, columnIndex: 15, rowSpan: one - last, colSpan: 0 };
+		 	 cells[17*i+15] = { rowIndex: last + 1, columnIndex: 16, rowSpan: one - last, colSpan: 0 };
+		 	cells[17*i+16] = { rowIndex: last + 1, columnIndex: 17, rowSpan: one - last, colSpan: 0 };
 		 }
 	}
 	leftGrid.mergeCells(cells);

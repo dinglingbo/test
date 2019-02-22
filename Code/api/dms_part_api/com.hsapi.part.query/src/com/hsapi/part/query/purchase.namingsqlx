@@ -11,7 +11,7 @@
 	<!--按月汇总-->
     <select id="queryPartBrandEnterForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	
-            select c.part_brand_id as partBrandId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+            select  a.orgid as orgid,c.part_brand_id as partBrandId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
 						 sum(b.order_qty) as orderQty, sum(b.order_amt) as orderAmt
 			from pj_pchs_order_main_chk a
 			inner join pj_pchs_order_detail_chk b
@@ -22,6 +22,10 @@
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+                
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
                     (A.AUDIT_DATE &gt;= #sAuditDate#)
@@ -72,7 +76,7 @@
     
     <select id="queryPartBrandEnterRtnForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	
-            select c.part_brand_id as partBrandId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+            select a.orgid as orgid, c.part_brand_id as partBrandId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
 						 sum(b.order_qty) as orderRtnQty, sum(b.order_amt) as orderRtnAmt
 			from pj_sell_order_main_chk a
 			inner join pj_sell_order_detail_chk b
@@ -83,6 +87,10 @@
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+                
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
                     (A.AUDIT_DATE &gt;= #sAuditDate#)
@@ -133,7 +141,7 @@
     
     <select id="queryPartEnterForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	
-            select b.part_id as partId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+            select a.orgid as orgid, b.part_id as partId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
 						 sum(b.order_qty) as orderQty, sum(b.order_amt) as orderAmt
 			from pj_pchs_order_main_chk a
 			inner join pj_pchs_order_detail_chk b
@@ -144,6 +152,10 @@
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+                
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
                     (A.AUDIT_DATE &gt;= #sAuditDate#)
@@ -194,7 +206,7 @@
     
     <select id="queryPartEnterRtnForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	
-            select b.part_id as partId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+            select a.orgid as orgid,b.part_id as partId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
 						 sum(b.order_qty) as orderRtnQty, sum(b.order_amt) as orderRtnAmt
 			from pj_sell_order_main_chk a
 			inner join pj_sell_order_detail_chk b
@@ -205,6 +217,10 @@
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+                
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
                     (A.AUDIT_DATE &gt;= #sAuditDate#)
@@ -255,7 +271,7 @@
     
     <select id="querySupplierEnterForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	
-            select a.guest_id as guestId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+            select a.orgid as orgid,a.guest_id as guestId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
 						 sum(b.order_qty) as orderQty, sum(b.order_amt) as orderAmt
 			from pj_pchs_order_main_chk a
 			inner join pj_pchs_order_detail_chk b
@@ -267,6 +283,10 @@
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+                
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
                     (A.AUDIT_DATE &gt;= #sAuditDate#)
@@ -320,7 +340,7 @@
     
     <select id="querySupplierEnterRtnForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	
-            select a.guest_id as guestId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
+            select a.orgid as orgid,a.guest_id as guestId, month(a.audit_date) as fMonth, year(a.audit_date) as fYear,
 						 sum(b.order_qty) as orderRtnQty, sum(b.order_amt) as orderRtnAmt
 			from pj_sell_order_main_chk a
 			inner join pj_sell_order_detail_chk b
@@ -332,6 +352,10 @@
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+                
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
                     (A.AUDIT_DATE &gt;= #sAuditDate#)
@@ -396,6 +420,10 @@
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+                
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
                     (A.AUDIT_DATE &gt;= #sAuditDate#)
@@ -457,6 +485,10 @@
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+                
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
                     (A.AUDIT_DATE &gt;= #sAuditDate#)
@@ -518,6 +550,10 @@
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+                
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
                     (A.AUDIT_DATE &gt;= #sAuditDate#)
@@ -578,6 +614,10 @@
 				<isNotEmpty prepend="and" property="orgid"> 
                     (a.orgid = #orgid#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+                
                 <!--审核日期 -->
                 <isNotEmpty prepend="and" property="sAuditDate">  
                     (A.AUDIT_DATE &gt;= #sAuditDate#)

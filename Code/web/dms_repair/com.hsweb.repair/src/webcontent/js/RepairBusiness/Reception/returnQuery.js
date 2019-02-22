@@ -17,6 +17,7 @@ var editFormDetail = null;
 var innerPartGrid = null;
 var mainTabs = null;
 var settleWin = null;
+var orgidsEl = null;
 
 $(document).ready(function ()
 {
@@ -29,6 +30,15 @@ $(document).ready(function ()
     sdate.setMonth(date.getMonth()-3);
     endDateEl.setValue(date);
     beginDateEl.setValue(sdate);
+    
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
     
     editFormDetail = document.getElementById("editFormDetail");
     innerPartGrid = nui.get("innerPartGrid");
@@ -66,6 +76,13 @@ $(document).ready(function ()
         	var xAmt = record.qty*record.xUnitPrice;
         	xAmt = xAmt.toFixed(4);
         	e.cellHtml = xAmt;
+        	
+        }else if(e.field == "orgid"){
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name;
+        		}
+        	}
         	
         }
     });
@@ -257,6 +274,12 @@ function getSearchParam() {
     params.partName = nui.get("partName").getValue();
     params.returnPart = 1;
     params.isSettle=1;
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     

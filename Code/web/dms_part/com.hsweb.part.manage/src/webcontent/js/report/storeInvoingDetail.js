@@ -40,6 +40,7 @@ var billTypeIdHashType = [
 ];
 var settTypeIdHash = {};
 var outTypeIdHash = {};
+var orgidsEl = null;
 $(document).ready(function(v)
 {
     rightGrid = nui.get("rightGrid");
@@ -51,7 +52,14 @@ $(document).ready(function(v)
     	
     });
 
-    
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
+
 	getAllPartBrand(function(data) {
 		brandList = data.brand;
 		nui.get('partBrandId').setData(brandList);
@@ -85,6 +93,14 @@ $(document).ready(function(v)
 				e.cellHtml = "";
 			}
 			break;
+		case  "orgid":
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name || "";
+        		}
+        	}
+        	break; 
+
 		default:
 			break;
 		}
@@ -135,6 +151,13 @@ function getSearchParams(){
     params.operator=nui.get("operatorId").getText();
     params.OstartDate=nui.get("OstartDate").getFormValue();
     params.OendDate=addDate(endDateEl.getValue(),1);
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
+
     return params;
 }
 var currType = 2;
@@ -209,7 +232,7 @@ function onSearch(){
 }
 function doSearch(params)
 {
-	params.orgid = currOrgid;
+//	params.orgid = currOrgid;
     rightGrid.load({
         params:params,
         token :token     

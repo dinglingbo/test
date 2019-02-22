@@ -9,7 +9,7 @@
 -->
 <head>
     <title>库存周转明细查询</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/stockTurnOverDeatail.js?v=1.0.23"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/report/stockTurnOverDeatail.js?v=1.0.24"></script>
     <style type="text/css">
     .title {
       width: 60px;
@@ -74,6 +74,9 @@
                  <input class="nui-datepicker" id="startDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
   			至:
                 <input class="nui-datepicker" id="endDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+                 <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+                
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
             
         </td>
@@ -115,6 +118,7 @@
    				<div allowSort="true" field="sellAmt" width="100" headerAlign="center" header="销售总成本"></div>
    				<div allowSort="true" field="turnOverDay" numberFormat="0.00" width="100" headerAlign="center" header="库存周转天数"></div>
    				<div allowSort="true" field="turnOverRate" numberFormat="0.00" width="100" headerAlign="center" header="库存周转率"></div>
+   				<div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
             </div>
         </div>
         

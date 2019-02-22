@@ -1268,6 +1268,12 @@
            GROUP BY a.mt_advisor_id
          ) A
          where 1=1
+         <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
          <isNotEmpty prepend="and" property="mtAdvisorId"> 
 		      A.mtAdvisorId = #mtAdvisorId#
 		 </isNotEmpty>
@@ -1276,9 +1282,6 @@
 		 </isNotEmpty>
 		 <isNotEmpty prepend="and" property="endDate"> 
 		      A.outDate &lt;= #endDate#
-		 </isNotEmpty> 
-		 <isNotEmpty prepend="and" property="orgid"> 
-		      A.orgid = #orgid#
 		 </isNotEmpty>   	
     </select>
     
@@ -1295,7 +1298,9 @@
     
 	 <select id="queryRepairCommission" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT
+    	    a.orgid as orgid,
 			a.id AS id,
+			a.orgid,
 			a.bill_type_id AS billTypeId,
 			a.service_type_id AS serviceTypeId,
 			a.service_code AS serviceCode,
@@ -1366,8 +1371,13 @@
 		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
 			inner join rps_deduct_detail d on (a.id =  d.service_id)
 		WHERE 1 = 1
-			and a.orgid = #orgid#
       <dynamic>
+           <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
 			<isNotEmpty prepend="and" property="rid">
                 (a.id = #rid#)
             </isNotEmpty>
@@ -1473,6 +1483,7 @@
 			sum(b.true_cost) as trueCost,
 			(sum(b.sell_amt)-sum(b.true_cost)) as trueProfitAmt,
 			a.guest_id as guestId,
+			a.orgid as orgid,
 			b.part_id as partId,
 			d.part_brand_id as partBrandId,
 			d.car_type_id_f as carTypeIdF
@@ -1488,6 +1499,9 @@
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">
                 (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
             </isNotEmpty>
             
              <isNotEmpty prepend="and" property="isSettle">  
@@ -1579,6 +1593,7 @@
 	<select id="queryReturnOut" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     
 		SELECT
+			d.orgid as orgid,
 			d.service_code as serviceCode,
 			d.car_no as carNo,
 			a.part_code as partCode,
@@ -1620,6 +1635,9 @@
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">
                 (d.orgid = #orgid#)
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="orgids">
+                (d.orgid in ($orgids$))
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="storeId">  
@@ -1722,6 +1740,7 @@
    <select id="querySellOut" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     
 		SELECT
+			b.orgid as orgid,
 			b.id as id,
 			b.service_code AS serviceCode,
 			b.car_no AS carNo,
@@ -1761,6 +1780,11 @@
 			<isNotEmpty prepend="and" property="orgid">
                 (b.orgid = #orgid#)
             </isNotEmpty>
+            
+            <isNotEmpty prepend="and" property="orgids">
+                (b.orgid in ($orgids$))
+            </isNotEmpty>
+            
             
             <isNotEmpty prepend="and" property="storeId">  
                 (a.store_id = #storeId#)
@@ -1920,6 +1944,7 @@
    <select id="queryPartOut" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     
 		SELECT
+			a.orgid as orgid,
 			b.id as id,
 			b.service_code AS serviceCode,
 			b.car_no AS carNo,
@@ -1961,7 +1986,10 @@
 		
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">
-                (b.orgid = #orgid#)
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
             </isNotEmpty>
             
             <isNotEmpty prepend="and" property="storeId">  

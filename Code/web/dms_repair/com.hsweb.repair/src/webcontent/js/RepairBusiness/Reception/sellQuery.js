@@ -17,6 +17,7 @@ var editFormDetail = null;
 var innerPartGrid = null;
 var mainTabs = null;
 var settleWin = null;
+var orgidsEl = null;
 
 $(document).ready(function ()
 {
@@ -32,6 +33,15 @@ $(document).ready(function ()
     editFormDetail = document.getElementById("editFormDetail");
     innerPartGrid = nui.get("innerPartGrid");
     innerPartGrid.setUrl(getRpsPartUrl);
+    
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
     
     mainTabs = nui.get("mainTabs");
 	settleAccountGrid = nui.get("settleAccountGrid");
@@ -61,6 +71,13 @@ $(document).ready(function ()
         	}else{
         		e.cellHtml="";
         	}
+        }else if(e.field == "orgid"){
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name;
+        		}
+        	}
+        	
         }
     });
 
@@ -253,6 +270,13 @@ function getSearchParam() {
     params.partCode = nui.get("partCode").getValue();
     params.partName = nui.get("partName").getValue();
     params.isSettle=1;
+    
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){
@@ -304,21 +328,23 @@ function mergeCells(){//动态合并行
 			 cells[7] = { rowIndex: 0, columnIndex: 8, rowSpan: index + 1, colSpan: 0 };
 			 cells[8] = { rowIndex: 0, columnIndex: 9, rowSpan: index + 1, colSpan: 0 };
 			 cells[9] = { rowIndex: 0, columnIndex: 10, rowSpan: index + 1, colSpan: 0 };
+			 cells[10] = { rowIndex: 0, columnIndex: 11, rowSpan: index + 1, colSpan: 0 };
 		 }else{
 		 	 var last = brr[i-1];
 		 	 last = parseInt(last);
 		 	 var one = brr[i];
 		 	 one = parseInt(one);
-		 	 cells[10*i+0] = { rowIndex: last + 1, columnIndex: 1, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[10*i+1] = { rowIndex: last + 1, columnIndex: 2, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[10*i+2] = { rowIndex: last + 1, columnIndex: 3, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[10*i+3] = { rowIndex: last + 1, columnIndex: 4, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[10*i+4] = { rowIndex: last + 1, columnIndex: 5, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[10*i+5] = { rowIndex: last + 1, columnIndex: 6, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[10*i+6] = { rowIndex: last + 1, columnIndex: 7, rowSpan: one - last, colSpan: 0 }; 
-		 	 cells[10*i+7] = { rowIndex: last + 1, columnIndex: 8, rowSpan: one - last, colSpan: 0 };
-		 	 cells[10*i+8] = { rowIndex: last + 1, columnIndex: 9, rowSpan: one - last, colSpan: 0 };
-		 	 cells[10*i+9] = { rowIndex: last + 1, columnIndex: 10, rowSpan: one - last, colSpan: 0 };
+		 	 cells[11*i+0] = { rowIndex: last + 1, columnIndex: 1, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[11*i+1] = { rowIndex: last + 1, columnIndex: 2, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[11*i+2] = { rowIndex: last + 1, columnIndex: 3, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[11*i+3] = { rowIndex: last + 1, columnIndex: 4, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[11*i+4] = { rowIndex: last + 1, columnIndex: 5, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[11*i+5] = { rowIndex: last + 1, columnIndex: 6, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[11*i+6] = { rowIndex: last + 1, columnIndex: 7, rowSpan: one - last, colSpan: 0 }; 
+		 	 cells[11*i+7] = { rowIndex: last + 1, columnIndex: 8, rowSpan: one - last, colSpan: 0 };
+		 	 cells[11*i+8] = { rowIndex: last + 1, columnIndex: 9, rowSpan: one - last, colSpan: 0 };
+		 	 cells[11*i+9] = { rowIndex: last + 1, columnIndex: 10, rowSpan: one - last, colSpan: 0 };
+		 	cells[11*i+10] = { rowIndex: last + 1, columnIndex: 11, rowSpan: one - last, colSpan: 0 };
 		 	 
 		 }
 	}

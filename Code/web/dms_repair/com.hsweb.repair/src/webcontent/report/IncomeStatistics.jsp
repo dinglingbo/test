@@ -89,7 +89,9 @@
                     <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" />
                     至
                     <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
-                    <a class="nui-button" plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                    <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="兼职公司" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+                    <a class="nui-button" plain="true" onclick="onSearch" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <!-- <li class="separator"></li> -->
                 </td>
             </tr>
@@ -159,6 +161,15 @@
         var startDateEl = nui.get('startDate');
         var endDateEl = nui.get('endDate');
         var currType = 2;
+        var orgidsEl = null;
+        //判断是否有兼职门店,是否显示门店选择框
+	    orgidsEl = nui.get("orgids");
+	    orgidsEl.setData(currOrgList);
+	    if(currOrgList.length==1){
+	    	orgidsEl.hide();
+	    }else{
+	    	orgidsEl.setValue(currOrgid);
+	    }
         quickSearch(4);
 
         function quickSearch(type) {
@@ -225,7 +236,27 @@
             menunamedate.setText(queryname);
             loadData(params);
         }
+        
+		function onSearch()
+		{
+		    var params = getSearchParam();
+		    loadData(params);
+		}
 
+		function getSearchParam() {
+		    var params = {};
+ 			params.startDate = startDateEl.getValue();
+        	params.endDate = addDate(endDateEl.getValue(),1);
+		    var orgidsElValue = orgidsEl.getValue();
+		    if(orgidsElValue==null||orgidsElValue==""){
+		    	 params.orgids =  currOrgs;
+		    }else{
+		    	params.orgid=orgidsElValue;
+		    }
+
+		    
+		    return params;
+		}
 
         function loadData(params) {
             nui.ajax({//加载顶部数据

@@ -21,14 +21,20 @@
               <isEqual  prepend="" property="groupByType"   compareValue="2">
      a.item_name as groupName, 
      </isEqual>
-     count(DISTINCT b.id) as tc, sum(a.item_time) as itemTime,
-       sum(a.subtotal) as subtotal, sum(total_deduct_amt) as costAmt
-from wb_repair.rps_item a
-inner join wb_repair.rps_maintain b
-on a.service_id = b.id
-where b.is_settle = 1
-and b.orgid =#orgid#
+        count(DISTINCT b.id) as tc, sum(a.item_time) as itemTime,
+        sum(a.subtotal) as subtotal, sum(total_deduct_amt) as costAmt,
+        b.orgid as orgid
+        from wb_repair.rps_item a
+		inner join wb_repair.rps_maintain b
+		on a.service_id = b.id
+		where b.is_settle = 1
 		     <dynamic>
+		     <isNotEmpty prepend="and" property="orgid">
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (b.orgid in ($orgids$))
+            </isNotEmpty>
 			<isNotEmpty prepend="and" property="startDate"> 
                 b.out_date &gt;= #startDate#
             </isNotEmpty>
@@ -38,22 +44,19 @@ and b.orgid =#orgid#
             </isNotEmpty>   
     </dynamic>  
 
-    <isEqual  prepend="" property="groupByType"   compareValue="0">
-GROUP BY b.datekey
-order by b.datekey desc
-  </isEqual>
-      <isEqual  prepend="" property="groupByType"   compareValue="1">
-     GROUP BY a.service_type_id
-     order by tc
-     </isEqual>
-           <isEqual  prepend="" property="groupByType"   compareValue="2">
-     GROUP BY a.item_name
-     order by tc
-     </isEqual>
-
-    
-    
-    </select>
+	<isEqual  prepend="" property="groupByType"   compareValue="0">
+	  GROUP BY b.datekey
+	  order by b.datekey desc
+	</isEqual>
+	<isEqual  prepend="" property="groupByType"   compareValue="1">
+	  GROUP BY a.service_type_id
+	  order by tc
+	</isEqual>
+	<isEqual  prepend="" property="groupByType"   compareValue="2">
+	  GROUP BY a.item_name
+	  order by tc
+	</isEqual>  
+ </select>
        <!--  返工台次，返工台次占比-->
     <select id="selectItemTotalreportB" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     SELECT
@@ -74,12 +77,16 @@ order by b.datekey desc
          on a.service_id = b.id
          where b.is_settle = 1 
          and ifnull(a.is_back,0) = 1
-         and b.orgid =#orgid#
 	<dynamic>
 		<isNotEmpty prepend="and" property="startDate"> 
             b.out_date &gt;= #startDate#
         </isNotEmpty>
-            
+         <isNotEmpty prepend="and" property="orgid">
+            (b.orgid = #orgid#)
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="orgids">
+            (b.orgid in ($orgids$))
+        </isNotEmpty>  
         <isNotEmpty prepend="and" property="endDate">
             b.out_date &lt;= #endDate#
         </isNotEmpty>   
@@ -99,7 +106,8 @@ order by b.datekey desc
    
      <select id="selectItemTotalreportDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
      SELECT 
-			 a.service_type_id as serviceTypeId, a.item_name as itemName, b.car_no as carNo, c.car_model as carModel,
+       b.orgid as orgid,
+	   a.service_type_id as serviceTypeId, a.item_name as itemName, b.car_no as carNo, c.car_model as carModel,
        d.full_name as guestName, b.car_vin as carVin, a.item_time as itemTime, a.unit_price as unitPrice,
        a.amt as amt, a.rate as rate, a.subtotal as subtotal, a.workers as workers, a.status, a.is_back as isBack,
        a.finish_date as finishDate, b.mt_advisor as mtAdvisor, b.service_code as serviceCode, b.out_date as outDate,
@@ -109,8 +117,13 @@ order by b.datekey desc
 		inner join wb_repair.rpb_car c on b.car_id = c.id
 		inner join wb_common.com_guest d  on b.guest_id = d.id
 		where b.is_settle = 1
-				and b.orgid =#orgid#
 		     <dynamic>
+		     <isNotEmpty prepend="and" property="orgid">
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (b.orgid in ($orgids$))
+            </isNotEmpty>
 			<isNotEmpty prepend="and" property="startDate"> 
                 b.out_date &gt;= #startDate#
             </isNotEmpty>
@@ -395,6 +408,12 @@ where b.orgid =#orgid#
         from wb_repair.rps_prebook a
         where a.orgid =#orgid#
 	<dynamic>
+		<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
 		<isNotEmpty prepend="and" property="startDate"> 
             a.record_date &gt;= #startDate#
         </isNotEmpty>
@@ -423,6 +442,7 @@ where b.orgid =#orgid#
      <select id="queryTechnicianDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
      SELECT 
 		a.service_code as serviceCode,
+		a.orgid as orgid,
 		a.car_no as carNo,
 		a.service_type_id as serviceTypeId,
 		a.worker as worker,
@@ -436,9 +456,14 @@ where b.orgid =#orgid#
 		a.deduct_worker_nos as deductWorkerNos
 		from wb_repair.rps_deduct_prdt_detail a
 		   where  a.deduct_worker_value &gt; 0
-		        and a.orgid =#orgid#
 				and a.deduct_mode = #deductMode#
 		     <dynamic>
+		     <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
 			<isNotEmpty prepend="and" property="sOutDate"> 
                 a.record_date &gt;= #sOutDate#
             </isNotEmpty>

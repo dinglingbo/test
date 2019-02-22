@@ -46,7 +46,7 @@
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
-          <process:code>orgid ==null &amp; orgids == null</process:code>
+          <process:code>orgid ==null &amp;&amp; orgids == null</process:code>
         </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -124,7 +124,9 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="727" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-01-08 16:22:26" date="2019-01-08Z" description="" name="queryNotSettleMaintain" version="7.0.0.0"/>
   <process:variables>

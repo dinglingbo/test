@@ -9,7 +9,7 @@
 -->
 <head>
 <title>零售业务统计分析</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/RetailStatistics.js?v=1.2.12"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/RetailStatistics.js?v=1.2.13"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -68,7 +68,8 @@
                 <input id="partBrandId" width="100px" textField="name" valueField="id" emptyText="配件品牌" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
                 <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择客户..." onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
                 <input id="guestType" width="100px" textField="name" valueField="customid" emptyText="客户分类" visible="false" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
-
+				<input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
             </td>

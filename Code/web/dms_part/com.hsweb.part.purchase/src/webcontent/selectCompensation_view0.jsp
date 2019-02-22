@@ -10,7 +10,7 @@
 -->
 <head>
 <title>理赔开单查询</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectCompensation.js?v=1.0.4"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectCompensation.js?v=1.0.5"></script>
 <style type="text/css">
 
 .title {
@@ -81,6 +81,8 @@
                            showTime="false"
                            showOkButton="false"
                            showClearButton="false"/>
+                           <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <span class="separator"></span>
                     <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;查看</a>            
@@ -142,6 +144,7 @@
 		                  <div field="sureMtDate" name="sureMtDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="维修日期"></div>
 		                  <div field="checkDate" name="checkDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="完工日期"></div>
 		                  <div field="outDate" name="outDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="结算日期"></div>
+		                  <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
 	                  </div>
                   </div>
               </div>

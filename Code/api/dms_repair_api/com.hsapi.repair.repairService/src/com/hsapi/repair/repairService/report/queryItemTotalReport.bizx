@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryItemTotalReport" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="params必传参数&#xD;&#xA;groupByType:2 // 0按日期分组  1业务类型  2工时项目" title="Administrator&#x9;18-11-13 上午10:46">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="params必传参数&#xD;&#xA;groupByType:2 // 0按日期分组  1业务类型  2工时项目&#xD;&#xA;com.hsapi.repair.repairService.otherReport.selectItemTotalreportA&#xD;&#xA;com.hsapi.repair.repairService.otherReport.selectItemTotalreportB&#xD;&#xA;" title="Administrator&#x9;18-11-13 上午10:46">
     <location x="49" y="13"/>
-    <size height="100" width="369"/>
+    <size height="100" width="476"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
@@ -43,17 +43,30 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link20" name="link20" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign9</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>orgid ==null &amp;&amp; orgids == null</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="135" y="245"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">params/orgid</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="literal" pattern="reference">true</process:from>
       <process:to type="query">page/isCount</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/orgid</process:from>
+      <process:to type="query">orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/orgids</process:from>
+      <process:to type="query">orgids</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -94,6 +107,7 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
+    <targetConnections>link21</targetConnections>
     <location x="210" y="245"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -401,6 +415,25 @@
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link20</targetConnections>
+    <location x="161" y="333"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign9label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">params/orgid</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
+    <location x="159" y="369"/>
+    <figSize height="17" width="32"/>
+    <node>assign9</node>
+  </nodes>
   <topRuler>
     <guides position="21" horizontal="true"/>
   </topRuler>
@@ -414,6 +447,8 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="retcRate" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tc" primitiveType="Int"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="retc" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orgid" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orgids" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>

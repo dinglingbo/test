@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>查车单明细表</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkMainDetail.js?v=1.0.5"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/checkMainDetail.js?v=1.0.7"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -66,6 +66,8 @@ pageEncoding="UTF-8" session="false"%>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"  allowInput="false" name="startDate" id = "sRecordDate" value=""/>
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
+	                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="兼职公司" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconCls="" onclick="onSearch()" plain="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <!-- <a class="nui-button" iconCls="" onclick="advancedSearch()" plain="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
                 <input  class="nui-combobox" style="display:none; width:100%;" name="checkTypeA" id="checkTypeA"
@@ -114,6 +116,7 @@ pageEncoding="UTF-8" session="false"%>
                           <div field="checkDate" name="checkDate" width="100" allowsort="true" headerAlign="center" header="本次检查时间" dateFormat="yyyy-MM-dd HH:mm"></div>
                           <div field="enterKilometers" headerAlign="center" allowsort="true" visible="true"   align="center" header="本次检查里程"> </div>
                           <div field="lastKilometers" headerAlign="center" allowsort="true" visible="true"   align="center" header="上次检查里程"> </div>
+                          <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
                       </div>
                    </div>
                 </div>

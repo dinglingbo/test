@@ -12,6 +12,14 @@ $(document).ready(function(v) {
 	moreOrgGrid.setUrl(queryUrl);
 	
     nui.get("name").focus();
+    moreOrgGrid.on("beforeselect",function(e){
+    	var row = e.record;
+    	if(row.ismain!=0){
+    		showMsg("不能取消所属机构","W");
+    		e.cancel = true;
+    		//moreOrgGrid.deselect(row,false);
+    	}
+    });
 	document.onkeyup=function(event){
         var e=event||window.event;
         var keyCode=e.keyCode||e.which;//38向上 40向下
@@ -59,6 +67,7 @@ function setData(row){
 }
 function cancelOrg(){
 	var rows = moreOrgGrid.getSelecteds();
+	
 	if(rows.length>0){
 		var json = nui.encode({
 			companyList:rows,

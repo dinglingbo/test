@@ -44,6 +44,53 @@
 	            </isNotEmpty> 
     </select>
     
+        	<select id="queryAccountBalance" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	
+            SELECT 
+            	a.id as id,
+            	a.orgid as orgid, 
+            	a.sett_account_id as settAccountId, 
+            	a.sett_account_code as settAccountCode,
+            	
+            	a.sett_account_name as settAccountName,
+            	a.fyear as fyear, 
+            	a.fmonth as fmonth, 
+            	a.begin_dc as beginDc,
+            	a.begin_bala as beginBala,
+            	a.debit as debit, 
+            	a.credit as credit, 
+            	a.ytd_debit as ytdDebit,
+            	a.ytd_credit as ytdCredit,
+            	a.end_dc as endDc, 
+            	a.end_bala as endBala
+
+			from fis_settle_account_bala a
+
+			where 1 = 1
+				<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
+                <!--本日 昨日 本周 上周 本月 下月 -->
+                <isNotEmpty prepend="and" property="startDate">  
+                    (a.create_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                    (a.create_date &lt; #endDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="code">  
+                    (a.sett_account_code = #code#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="name">  
+                    (a.sett_account_name = #name#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="id">  
+	                (a.sett_account_id = #id#)
+	            </isNotEmpty> 
+    </select>
+    
     <!--收付款明细  rpDc 1收  -1付-->
 	<select id="queryRPAccountDetail" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	

@@ -3,8 +3,18 @@ var settleType = {};
 var settleTypeOpen =[]
 var cSettleTypeAmt = [];
 var rSettleTypeAmt = [];
+var orgidsEl = null;
 var color = "thisYear";//日，周，季，年按钮变色
 $(document).ready(function(v) {
+	
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
 	setData();
 
 });
@@ -76,14 +86,19 @@ var querySettleTypeAmtUrl = baseUrl
 + "com.hsapi.frm.setting.querySettlementAmt.biz.ext";
 
 function queryAmt(startDate,endData){
+	var params = {};
+	params.startDate = startDate;
+	params.endData = endData;
+	var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
 	nui.ajax({
 		url : querySettleTypeAmtUrl,
 		data : {
-			p:{
-					startDate:startDate,
-					endData:endData,
-					token: token
-				},
+			p:params,
 			token: token
 		},
 		type : "post",

@@ -6,6 +6,7 @@ var statusList = [{id:"4",name:"全部"},{id:"0",name:"未结算"},{id:"1",name:
 
 var statusList1 = [{id:"4",name:"全部"},{id:"1",name:"已审核"},{id:"0",name:"未审核"}];
 var statusList2 = [{id:"0",name:"发生日期"},{id:"1",name:"审核日期"}];
+var orgidsEl = null;
 
 var auditSignHash = {
 	    "0" : "未审核",
@@ -24,6 +25,14 @@ $(document).ready(function(v) {
 	sDate = nui.get("sDate");
 	eDate = nui.get("eDate");
 	datagrid1.setUrl(queryOtherIncomeAndExpenditureUrl);
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
     datagrid1.on("drawcell", function (e) {
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
@@ -41,6 +50,13 @@ $(document).ready(function(v) {
             }else{
                 e.cellHtml = "应付";
             }
+        }else if(e.field == "orgid"){
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name;
+        		}
+        	}
+        	
         }
     });
     
@@ -162,6 +178,12 @@ function search() {
     }else if(type==1){
     	params.sauditDate = nui.get("sDate").getValue();
     	params.eauditDate = nui.get("eDate").getValue();
+    }
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
     }
     datagrid1.load({params:params,token:token});
 }

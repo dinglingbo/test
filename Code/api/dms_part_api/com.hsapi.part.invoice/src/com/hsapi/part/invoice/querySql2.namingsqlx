@@ -1189,7 +1189,7 @@
     
     <select id="queryTurnOverDetail" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
     	SELECT
-    	
+    		 b.orgid as orgid,
 			 b.part_code AS partCode,
 			 b.part_name AS partName,
 			 c.oem_code AS oemCode,
@@ -1251,7 +1251,8 @@
 		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.qty END ), 0 ) inventoryLossQty, 
 		IFNULL( ( CASE a.bill_type_id WHEN '050203' THEN a.amt END ), 0 ) inventoryLossAmt, 
 					a.bala_qty,
-					a.bala_amt
+					a.bala_amt,
+					a.orgid
 		FROM pj_invocing a
 			WHERE 1=1
 			<dynamic>
@@ -1259,6 +1260,10 @@
 					a.orgid= #orgid#
 				</isNotEmpty>
 				
+				 <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+
 				<isNotEmpty prepend="and" property="partCodeOrName">  
 				a.part_code like '%$partCodeOrName$%'or a.part_name like '%$partCodeOrName$%'
 				</isNotEmpty>
@@ -1371,7 +1376,10 @@
 				<isNotEmpty prepend="and" property="orgid">  
 					a.orgid= #orgid#
 				</isNotEmpty>
-				
+				 <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
+					
 				 <isNotEmpty prepend="and" property="startDate">  
 					(date_format(a.create_date,'%Y-%m-%d')&gt;=#startDate#)
 				</isNotEmpty>
@@ -1447,7 +1455,9 @@
 				<isNotEmpty prepend="and" property="orgid">  
 					a.orgid= #orgid#
 				</isNotEmpty>
-				
+				 <isNotEmpty prepend="and" property="orgids">
+	                (a.orgid in ($orgids$))
+	            </isNotEmpty>
 				 <isNotEmpty prepend="and" property="startDate">  
 					(date_format(a.create_date,'%Y-%m-%d')&gt;=#startDate#)
 				</isNotEmpty>

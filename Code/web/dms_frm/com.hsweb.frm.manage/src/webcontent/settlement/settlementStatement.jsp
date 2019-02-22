@@ -14,7 +14,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <script src="<%= request.getContextPath() %>/repair/RepairBusiness/Reception/js/echarts.js" type="text/javascript"></script>
-    <script src="<%= request.getContextPath() %>/manage/settlement/js/settlementStatement.js?v=1.0.0" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/settlement/js/settlementStatement.js?v=1.0.1" type="text/javascript"></script>
     <style type="text/css">
 		.m{
 				width: 120px;
@@ -60,6 +60,10 @@
 					</td>
 					<td>
 						<a id="thisYear" class="n"  onclick="settleOK(5)">本年</a>
+					</td>
+					<td>
+					 <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid" onValueChanged="settleOK()"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
 					</td>
 				</tr>
 			</table>

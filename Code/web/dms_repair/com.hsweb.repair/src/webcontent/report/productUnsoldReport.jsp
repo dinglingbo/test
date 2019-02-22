@@ -51,6 +51,9 @@ body {
         emptyText="配件分类"allowInput="true"valueFromSelect="false" 
         width="130px" showNullItem="true" nullItemText="请选择...">
               <input class="nui-textbox" id="branchStockAge"name="branchStockAge" emptytext="库龄超过天数" width="130px">  
+       <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+      
         <a class="nui-button" iconcls=""  name="" onclick="Search()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <!-- <a class="nui-button" iconcls=""  name="" onclick=""><span class="fa fa-mail-forward fa-lg"></span>&nbsp;导出</a> -->
     </div>
@@ -75,6 +78,7 @@ body {
             <div field="enterAmt"  name="" headeralign="center" align="center" width="100">金额  </div>
             <div field="branchStockAge"  name="" headeralign="center" align="center" width="100">库龄  </div>
             <div field="enterDate"  name="" headeralign="center" align="center" width="100" dateFormat="yyyy-MM-dd">入库日期</div>
+            <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
 
         </div>
     </div>
@@ -94,7 +98,16 @@ body {
     var storeHash = {};
     var partTypeList=[];
     var partTypeHash={};
-    grid.setUrl(gridUrl); 
+    grid.setUrl(gridUrl);
+    var orgidsEl = null; 
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
+    
     
     Search();
 
@@ -150,6 +163,14 @@ body {
                     e.cellHtml = "";
                 }
              break;
+         case  "orgid":
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name || "";
+        		}
+        	}
+        	break; 
+             
         default:
             break;
         }
@@ -160,17 +181,31 @@ body {
 
 
     function Search() {
-        var data= form.getData();
+        var params= form.getData();
+        var orgidsElValue = orgidsEl.getValue();
+	    if(orgidsElValue==null||orgidsElValue==""){
+	    	 params.orgids =  currOrgs;
+	    }else{
+	    	params.orgid=orgidsElValue;
+	    }
+        
 //         var eDate = nui.get("endDate").getFormValue();
 //         if(eDate){
 //                 data.endDate = eDate +" 23:59:59";
 //         }
-		grid.load({params:data});
+		grid.load({params:params});
     }
     
     
     function quickSearch(type){
 	var params = form.getData();
+	var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
+	
     var queryname = "最近七天";
     switch (type)
     {

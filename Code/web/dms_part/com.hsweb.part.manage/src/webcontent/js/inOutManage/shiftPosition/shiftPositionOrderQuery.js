@@ -26,6 +26,7 @@ var billStatusHash = {
     "2":"已过账",
     "3":"已取消"
 };
+var orgidsEl = null;
 $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
@@ -41,6 +42,14 @@ $(document).ready(function(v)
 	comSearchGuestId = nui.get("searchGuestId");
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
+
     //console.log("xxx");
     getAllPartBrand(function(data)
     {
@@ -125,6 +134,13 @@ function getSearchParam(){
 	params.guestId = comSearchGuestId.getValue();
 	params.endDate = addDate(searchEndDate.getValue(),1);
 	params.startDate = searchBeginDate.getFormValue();
+	var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
+
     return params;
 }
 var currType = 2;
@@ -360,6 +376,14 @@ function onDrawCell(e)
                 e.cellHtml = storehouseHash[e.value].name;
             }
             break;
+        case  "orgid":
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name || "";
+        		}
+        	}
+        	break; 
+
         default:
             break;
     }

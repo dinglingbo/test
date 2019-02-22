@@ -1759,7 +1759,13 @@
        	    INNER JOIN rps_expense b ON (a.id = b.service_id )
 			INNER JOIN rpb_car c ON (a.car_id = c.id)
 		    INNER JOIN rpb_contactor d ON (a.contactor_id = d.id)
-		where a.orgid = #orgid# and a.is_settle = 1
+		where  a.is_settle = 1
+		<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
 		<isNotEmpty prepend="and" property="carNo">  
 				a. car_no like '%$carNo$%'
 		</isNotEmpty>

@@ -18,7 +18,7 @@ var partGrid = null;
 var partBrandGrid = null;
 var partTypeGrid = null;
 var mainTabs = null;
- 
+var orgidsEl = null;
 $(document).ready(function(v) {
 	clientGrid = nui.get("clientGrid");
 	clientGrid.setUrl(gridUrl);
@@ -40,6 +40,14 @@ $(document).ready(function(v) {
     advanceGuestIdEl = nui.get("advanceGuestId");
 	beginDateEl = nui.get("sRecordDate");
 	endDateEl = nui.get("eRecordDate");
+	 orgidsEl = nui.get("orgids");
+	    orgidsEl.setData(currOrgList);
+	    if(currOrgList.length==1){
+	    	orgidsEl.hide();
+	    }else{
+	    	orgidsEl.setValue(currOrgid);
+	    }
+
 
 	beginDateEl.setValue(getMonthStartDate());
 	endDateEl.setValue(addDate(getMonthEndDate(), 1));
@@ -93,6 +101,13 @@ function getSearchParam() {
     }else{
     	params.guestId = advanceGuestIdEl.getValue();
     }
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
+
 	return params;
 }
 var currType = 2;
@@ -143,8 +158,8 @@ function quickSearch(type){
 }
 function onSearch(){
 	var params = getSearchParam();
-    params.startDate = beginDateEl.getFormValue();
-    params.endDate = endDateEl.getValue();
+    params.sRecordDate = beginDateEl.getFormValue();
+    params.eRecordDate = endDateEl.getFormValue();
     
     doSearch(params);
 }
@@ -201,6 +216,14 @@ function onDrawCell(e) {
                 e.cellHtml = "";
             }
             break;
+        case  "orgid":
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name || "";
+        		}
+        	}
+    	break; 
+
     	default:
     		break;
 	}

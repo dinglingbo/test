@@ -60,6 +60,8 @@
      结算日期:
      <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" /> 至
      <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
+     <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+           emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(0)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按日期汇总</a>
      <a class="nui-button" iconcls=""  name="" plain="true" onclick="load(1)"><span class="fa fa-navicon fa-lg"></span>&nbsp;按业务类型汇总</a>
@@ -89,6 +91,7 @@
                 <div allowSort="true" field="costAmt" width="60" headerAlign="center" summaryType="sum" header="工时成本"></div>
                 <div allowSort="true" field="retc" width="60" headerAlign="center" summaryType="sum" header="返工台次"></div>
                 <div allowSort="true" field="retcRate" width="60" headerAlign="center" header="返工占比"></div>
+                <!-- <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div> -->
             </div>
         </div>
     </div>
@@ -96,6 +99,14 @@
 </div>
 <script type="text/javascript">
     nui.parse();
+    var orgidsEl = null;
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
     var webBaseUrl = webPath + contextPath + "/";
     var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
     var grid1 = nui.get("grid1");
@@ -112,7 +123,7 @@
         groupByType:2 // 0按日期分组  1业务类型  2工时项目
     };
 
-quickSearch(4);
+  quickSearch(4);
 
 
     initServiceType("serviceTypeId",function(data) {
@@ -127,6 +138,14 @@ quickSearch(4);
         if(e.field =="groupName" && cType == 1){
             e.cellHtml = servieTypeHash[e.value].name;
         }
+        if (e.field == "orgid"){
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name;
+        		}
+        	}
+        	
+        }
 
     });
 
@@ -140,6 +159,12 @@ quickSearch(4);
     	data.endDate = formatDate(data.endDate) +" 23:59:59";
         data.groupByType = cType;
         updateGridColoumn(cType);
+        var orgidsElValue = orgidsEl.getValue();
+        if(orgidsElValue==null||orgidsElValue==""){
+    	   data.orgids =  currOrgs;
+        }else{
+    	   data.orgid=orgidsElValue;
+        }
         grid1.load({params:data,token :token});
     }
 
@@ -227,8 +252,14 @@ quickSearch(4);
 //     if(params.endDate){
 //     params.endDate = params.endDate +" 23:59:59";
 // }
-grid1.load({params:params});
-updateGridColoumn(cType);
+     var orgidsElValue = orgidsEl.getValue();
+     if(orgidsElValue==null||orgidsElValue==""){
+    	   params.orgids =  currOrgs;
+      }else{
+    	 params.orgid=orgidsElValue;
+      }
+     grid1.load({params:params});
+     updateGridColoumn(cType);
 }
 
 

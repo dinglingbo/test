@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购排行</title>
-<script src="<%=webPath + contextPath%>/manage/js/report/purchaseRank.js?v=1.2.7"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/purchaseRank.js?v=1.2.9"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -67,7 +67,9 @@
                 <input id="partBrandId" width="100px" textField="name" valueField="id" emptyText="配件品牌" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
                 <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择供应商..." onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
                 <input id="supplierType" width="100px" textField="name" valueField="customid" emptyText="供应商分类" visible="false" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
-
+				
+				<input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
             </td>
@@ -82,7 +84,7 @@
            onactivechanged="">
 
         <div title="按供应商排行" id="supplierGridTab" name="supplierGridTab" url="" >
-            <div id="supplierGrid" class="nui-datagrid" style="width:1100px;height:100%;"
+            <div id="supplierGrid" class="nui-datagrid" style="width:1300px;height:100%;"
                  showPager="false"
                  dataField="supplierList"
                  idField="guestId"
@@ -103,14 +105,14 @@
                     <div allowSort="true" field="orderRtnAmt" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
                     <div allowSort="true" field="trueQty" summaryType="sum" width="100" headerAlign="center" header="实际入库数量"></div>
                     <div allowSort="true" field="trueAmt" summaryType="sum" width="100" headerAlign="center" header="实际入库金额"></div>
-                      
+                   
                 </div>
             </div>
 
         </div> 
         <div title="按商品排行" id="partGridTab" name="partGridTab" >
             
-            <div id="partGrid" class="nui-datagrid" style="width:1100px;height:100%;"
+            <div id="partGrid" class="nui-datagrid" style="width:1300px;height:100%;"
                  showPager="false"
                  dataField="partList"
                  idField="partId"
@@ -131,14 +133,14 @@
                     <div allowSort="true" field="orderRtnAmt" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
                     <div allowSort="true" field="trueQty" summaryType="sum" width="100" headerAlign="center" header="实际入库数量"></div>
                     <div allowSort="true" field="trueAmt" summaryType="sum" width="100" headerAlign="center" header="实际入库金额"></div>
-                      
+                     
                 </div>
             </div>
 
         </div>
         <div title="按品牌排行" name="partBrandGridTab" url="" >
           
-            <div id="partBrandGrid" class="nui-datagrid" style="width:800px;height:100%;"
+            <div id="partBrandGrid" class="nui-datagrid" style="width:1000px;height:100%;"
                  showPager="false"
                  dataField="brandList"
                  idField="partBrandId"
@@ -156,14 +158,14 @@
                     <div allowSort="true" field="orderRtnAmt" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
                     <div allowSort="true" field="trueQty" summaryType="sum" width="100" headerAlign="center" header="实际入库数量"></div>
                     <div allowSort="true" field="trueAmt" summaryType="sum" width="100" headerAlign="center" header="实际入库金额"></div>
-                      
+                    
                 </div>
             </div>
 
         </div>
         <div title="按配件类型排行" name="partTypeGridTab" url="" >
           
-            <div id="partTypeGrid" class="nui-datagrid" style="width:800px;height:100%;"
+            <div id="partTypeGrid" class="nui-datagrid" style="width:1000px;height:100%;"
                  showPager="false"
                  dataField="typeList"
                  idField="carTypeIdF"
@@ -181,7 +183,7 @@
                     <div allowSort="true" field="orderRtnAmt" summaryType="sum" width="60" headerAlign="center" header="退货金额"></div>
                     <div allowSort="true" field="trueQty" summaryType="sum" width="100" headerAlign="center" header="实际入库数量"></div>
                     <div allowSort="true" field="trueAmt" summaryType="sum" width="100" headerAlign="center" header="实际入库金额"></div>
-                      
+               
                 </div>
             </div>
 

@@ -20,7 +20,8 @@ var partGrid = null;
 var partBrandGrid = null;
 var partTypeGrid = null;
 var mainTabs = null;
- 
+var orgidsEl = null;
+
 $(document).ready(function(v) {
 	supplierGrid = nui.get("supplierGrid");
 	supplierGrid.setUrl(supplierGridUrl);
@@ -46,6 +47,15 @@ $(document).ready(function(v) {
 
 	beginDateEl.setValue(getMonthStartDate());
 	endDateEl.setValue(addDate(getMonthEndDate(), 1));
+	
+	orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
+    
 
 	supplierGrid.on("beforeload",function(e){
         e.data.token = token;
@@ -302,6 +312,12 @@ function getSearchParam() {
     }else{
     	params.guestId = advanceGuestIdEl.getValue();
     }
+	var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
 //    params.guestId = advanceGuestIdEl.getValue();
 	return params;
 }
@@ -409,6 +425,12 @@ function onDrawCell(e) {
                 e.cellHtml = "";
             }
             break;
+        case  "orgid":
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name || "";
+        		}
+        	}
     	default:
     		break;
 	}

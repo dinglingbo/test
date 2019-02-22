@@ -45,7 +45,7 @@
       <targetNode>assign2</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
-          <process:code>orgid ==null &amp; orgids == null</process:code>
+          <process:code>orgid ==null &amp;&amp; orgids == null</process:code>
         </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>

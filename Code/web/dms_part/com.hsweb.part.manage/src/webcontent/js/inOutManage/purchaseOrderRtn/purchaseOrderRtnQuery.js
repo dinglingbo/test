@@ -26,6 +26,7 @@ var billStatusHash = {
     "2":"已过账",
     "3":"已取消"
 };
+var orgidsEl = null;
 $(document).ready(function(v)
 {
 	rightGrid = nui.get("rightGrid");
@@ -41,6 +42,13 @@ $(document).ready(function(v)
 	comSearchGuestId = nui.get("searchGuestId");
     advancedSearchWin = nui.get("advancedSearchWin");
     advancedSearchForm = new nui.Form("#advancedSearchWin");
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
     //console.log("xxx");
     document.onkeyup = function(event) {
         var e = event || window.event;
@@ -206,6 +214,13 @@ function doSearch(params)
     params.isOut = 1;
 	params.sortField = "audit_date";
 	params.sortOrder = "desc";
+	
+	var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
     rightGrid.load({
         params:params,
         token:token
@@ -357,6 +372,12 @@ function onDrawCell(e)
                 e.cellHtml = storehouseHash[e.value].name;
             }
             break;
+        case  "orgid":
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name || "";
+        		}
+        	}
         default:
             break;
     }

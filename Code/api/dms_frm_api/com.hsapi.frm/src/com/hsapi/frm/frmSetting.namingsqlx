@@ -293,7 +293,12 @@
 			
 			WHERE 
 				a.rp_dc=1
-
+			<isNotEmpty prepend="and" property="orgid">
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (b.orgid in ($orgids$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
                 (b.create_date &gt;= #startDate#)
             </isNotEmpty>
@@ -313,7 +318,12 @@
 			
 			WHERE 
 				a.rp_dc=-1
-
+			<isNotEmpty prepend="and" property="orgid">
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (b.orgid in ($orgids$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
                 (b.create_date &gt;= #startDate#)
             </isNotEmpty>
@@ -329,6 +339,7 @@
      <select id="queryOtherIncomeAndExpenditure" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 			SELECT
 				a.guest_name AS guestName,
+				a.orgid as orgid,
 				b.name    AS billTypeId,
 				a.bill_dc AS billDc,
 				a.rp_amt AS rpAmt,
@@ -346,6 +357,12 @@
 			WHERE
 				rp_type_id = 2
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="guestName">  
                 (a.guest_name  like '%$guestName$%')
             </isNotEmpty>
@@ -396,7 +413,12 @@
 			
 			WHERE 
 				a.sett_account_id=#settAccountId#
-		       AND  b.orgid = #orgid#
+			<isNotEmpty prepend="and" property="orgid">
+                (b.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (b.orgid in ($orgids$))
+            </isNotEmpty>
 
             <isNotEmpty prepend="and" property="startDate">  
                 (b.create_date &gt;= #startDate#)
@@ -488,9 +510,14 @@
 			LEFT JOIN wb_frm.fib_income_expenses b on (b.id=a.bill_type_id)
 			
 		WHERE
-			a.rp_type_id = 2 and a.bill_dc=1 and a.orgid =#orgid# 
+			a.rp_type_id = 2 and a.bill_dc=1 
 			
-		
+			<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
                 (a.create_date &gt;= #startDate#)
             </isNotEmpty>
@@ -534,9 +561,14 @@
 			wb_frm.fis_rp_bill a
 			LEFT JOIN wb_frm.fib_income_expenses b on (b.id=a.bill_type_id)
 		WHERE
-			a.rp_type_id = 2 and a.bill_dc=-1 and a.orgid =#orgid# 
+			a.rp_type_id = 2 and a.bill_dc=-1 
 
-		
+			<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
                 (a.create_date &gt;= #startDate#)
             </isNotEmpty>

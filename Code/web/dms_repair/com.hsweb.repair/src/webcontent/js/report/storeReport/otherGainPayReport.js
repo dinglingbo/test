@@ -13,6 +13,7 @@ var serviceTypeIdEl = null;
 var servieTypeList = [];
 var servieTypeHash = {};
 var cType = 0;
+var orgidsEl = null;
 var gridsUrl = apiPath + repairApi+'/com.hsapi.frm.setting.queryOtherIncomeAndExpenditureSummaryshou.biz.ext';
 var gridzUrl = apiPath + repairApi+'/com.hsapi.frm.setting.queryOtherIncomeAndExpenditureSummaryzhi.biz.ext';
 $(document).ready(function (v)
@@ -24,6 +25,16 @@ $(document).ready(function (v)
     startDateEl = nui.get("startDate");
     endDateEl = nui.get("endDate");
     serviceTypeIdEl = nui.get("serviceTypeId");
+    
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
+    
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {
@@ -45,6 +56,12 @@ function load(e){
 	data.endDate = formatDate(data.endDate) +" 23:59:59";
     data.groupByType = cType;
     updateGridColoumn(cType);
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	data.orgids =  currOrgs;
+    }else{
+    	data.orgid=orgidsElValue;
+    }
 
     nui.ajax({
     	url : gridsUrl,
@@ -152,6 +169,13 @@ function quickSearch(type){
  var menunamedate = nui.get("menunamedate");
  menunamedate.setText(queryname);
  params.groupByType = cType;
+ 
+ var orgidsElValue = orgidsEl.getValue();
+ if(orgidsElValue==null||orgidsElValue==""){
+ 	 params.orgids =  currOrgs;
+ }else{
+ 	params.orgid=orgidsElValue;
+ }
  // doSearch(params);
 
 //  if(params.endDate){

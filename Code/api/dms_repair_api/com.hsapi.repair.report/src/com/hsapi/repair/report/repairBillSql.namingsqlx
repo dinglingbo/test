@@ -325,7 +325,12 @@
 		from  wb_frm.fis_rp_account a
 			inner join wb_frm.fis_rp_account_detail  b on b.main_id = a.id
 		where a.audit_sign = 1 and a.rp_dc = -1
-		
+		<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
                 (a.operate_date &gt;= #startDate#)
             </isNotEmpty>
@@ -369,7 +374,12 @@
 		from  wb_frm.fis_rp_account a
 			inner join wb_frm.fis_rp_account_detail  b on b.main_id = a.id
 		where a.audit_sign = 1 and a.rp_dc = 1
-		
+				<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="startDate">  
                 (a.operate_date &gt;= #startDate#)
             </isNotEmpty>

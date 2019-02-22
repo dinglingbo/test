@@ -182,7 +182,7 @@
 	          <isEqual  prepend="" property="groupByType"  compareValue="4">
 	     	 a.bill_type_id as groupName,
 	    </isEqual>  	       
-    	       count(1) as ct, sum(b.package_amt) as pkgAmt, sum(b.package_pref_amt) as pkgPrefAmt,
+    	       count(1) as ct, a.orgid as orgid ,sum(b.package_amt) as pkgAmt, sum(b.package_pref_amt) as pkgPrefAmt,
 		       sum(b.package_subtotal) as pkgSubtotal, sum(b.item_total_amt) as itemTotalAmt, sum(b.item_pref_amt) as itemPrefAmt,
 		       sum(b.item_subtotal) as itemSubtotal, sum(b.part_total_amt) as partTotalAmt, sum(b.part_pref_amt) as partPrefAmt,
 		       sum(b.part_subtotal) as partSubtotal, sum(b.part_true_cost) as partTrueCost, sum(b.card_times_amt) as cardTimesAmt,
@@ -196,10 +196,16 @@
 		from rps_maintain a
 		inner join rps_settlement b on a.id = b.service_id
 		inner join rpb_car c on a.car_id = c.id
-		where a.is_settle = 1 and a.orgid = #orgid#
+		where a.is_settle = 1 
 		and a.bill_type_id in (0,2,4)
 		
 		<dynamic>
+			<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
             <!--结算日期 -->
             <isNotEmpty prepend="and" property="startDate">  
                 (a.out_date &gt;= #startDate#)

@@ -395,6 +395,12 @@ where b.orgid =#orgid#
         from wb_repair.rps_prebook a
         where a.orgid =#orgid#
 	<dynamic>
+		<isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+            </isNotEmpty>
 		<isNotEmpty prepend="and" property="startDate"> 
             a.record_date &gt;= #startDate#
         </isNotEmpty>

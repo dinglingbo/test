@@ -19,6 +19,7 @@ var carBrandHash = {};
 var insuranceHash = {};
 var sRecordDate = null;
 var eRecordDate = null;
+var orgidsEl = null;
 $(document).ready(function (v)
 {
 	advancedSearchWin = nui.get("advancedSearchWin");
@@ -28,6 +29,16 @@ $(document).ready(function (v)
     mtAdvisorIdEl = nui.get("mtAdvisorId");
     sRecordDate = nui.get("sRecordDate");
     eRecordDate = nui.get("eRecordDate");
+    
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
+    
     initServiceType("serviceTypeId",function(data) {
         servieTypeList = nui.get("serviceTypeId").getData();
         servieTypeList.forEach(function(v) {
@@ -37,6 +48,17 @@ $(document).ready(function (v)
     initMember("mtAdvisorId",function(){
         memList = mtAdvisorIdEl.getData();
         //nui.get("checkManId").setData(memList);
+    });
+    
+    grid.on("drawcell", function (e) {
+        if(e.field == "orgid"){
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name;
+        		}
+        	}
+        	
+        }
     });
     quickSearch(0);
 });
@@ -114,7 +136,6 @@ function onSearch()
 
 function doSearch() {
    var params = getSearchParams();
-    params.orgid = currOrgId;
     grid.load({
         token:token,
         params: params
@@ -155,6 +176,12 @@ function getSearchParams()
 	params.startDate = sRecordDate.getValue();
     params.endDate = addDate(eRecordDate.getValue(), 1);
     params.mtAdvisorId = nui.get("mtAdvisorId").getValue();
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
    // params = getAnayType(params);
     return params;
    

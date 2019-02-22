@@ -834,11 +834,12 @@
     <location x="1011" y="382"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
-    <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
+    <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
       <process:partner type="literal">this.setBookWeChatInfo</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="rpsPrebook" type="query" value="com.hsapi.repair.data.rps.RpsPrebook" valueType="DataObject" pattern="reference">rpsPrebook</process:inputVariable>
         <process:inputVariable id="1" name="openid" type="query" value="String" valueType="Primitive" pattern="reference">openid</process:inputVariable>
+        <process:inputVariable id="2" name="url" type="query" value="String" valueType="Primitive" pattern="reference">url</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
@@ -867,7 +868,8 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPrebook" name="rpsPrebook"/>
     <process:input description="" isArray="false" name="action" primitiveType="String"/>
-    <process:input description="" isArray="false" name="openid" primitiveType="String"/>
+    <process:input description="发微信通知用" isArray="false" name="openid" primitiveType="String"/>
+    <process:input description="发微信通知用" isArray="false" name="url" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

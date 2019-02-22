@@ -54,6 +54,8 @@ pageEncoding="UTF-8" session="false" %>
         <input id="advanceGuestId" name="guestId" class="nui-buttonedit" emptyText="请选择供应商..." onvalueChanged="doSearch()" onbuttonclick="selectSupplier('advanceGuestId')" width="150px" selectOnFocus="true" />
         <input id="settleStatus" width="100px" data="settleStatusList" textField="text" valueField="id" onvalueChanged="doSearch()" emptyText="结算状态" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
         <span class="separator"></span> 
+        <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
         <a class="nui-button" iconCls="" plain="true" onclick="doSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     </div>
     <div class="nui-fit">
@@ -71,7 +73,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="settleStatus" name="settleStatus" width="100" headeralign="center" allowsort="true" >结算状态</div>
                 <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true" >单据日期</div>
                 <div field="fullName" name="name" width="120"  headeralign="center" allowsort="true" >供应商全称</div>
-           
+                <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
             </div>
         </div>
 

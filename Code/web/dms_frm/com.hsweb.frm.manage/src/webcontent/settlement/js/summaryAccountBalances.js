@@ -4,6 +4,7 @@ var statusList = [];
 var datagrid1 = null;
 var sDate = null;
 var eDate = null;
+var orgidsEl = null;
 $(document).ready(function(v) {
 	datagrid1 = nui.get("datagrid1");
 	datagrid1.setUrl(querySummaryAccountBalances);
@@ -12,6 +13,14 @@ $(document).ready(function(v) {
 	sDate.setValue(getMonthStartDate());
 	eDate.setValue(addDate(getMonthEndDate(), 1));
 	setData();
+    //判断是否有兼职门店,是否显示门店选择框
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
 
 	datagrid1.on("drawcell", function (e) {
         switch (e.field) {
@@ -22,6 +31,14 @@ $(document).ready(function(v) {
                 	e.cellHtml = "应付";
                 }
                 break;
+            case "orgid":
+            	for(var i=0;i<currOrgList.length;i++){
+            		if(currOrgList[i].orgid==e.value){
+            			e.cellHtml = currOrgList[i].name;
+            		}
+            	}
+                break;
+                
             default:
                 break;
         }
@@ -178,16 +195,31 @@ function isEmptyObject (obj){
 }
 
 function search(){
-	var settAccountId = nui.get("auditSign").getValue();
-	var startDate = nui.get("sDate").getValue();
-	var endDate =nui.get("eDate").getValue();
+	var settAccountId = nui.get("auditSign").getValue()||"";
+	var startDate = nui.get("sDate").getValue()||"";
+	var endDate =nui.get("eDate").getValue()||"";
+	 var orgidsElValue = orgidsEl.getValue();
+	    if(orgidsElValue==null||orgidsElValue==""){
+	    		datagrid1.load({
+	    			params:{
+	    				settAccountId:settAccountId,
+	    				startDate :startDate,
+	    				endDate: endDate,
+	    				orgids : currOrgs
+	    			},
+	    	        token: token
+	    	    });
+	    }else{
+    		datagrid1.load({
+    			params:{
+    				settAccountId:settAccountId,
+    				startDate :startDate,
+    				endDate: endDate,
+    				orgid : orgidsElValue
+    			},
+    	        token: token
+    	    });
+	    }
 	
-	datagrid1.load({
-		params:{
-			settAccountId:settAccountId,
-			startDate :startDate,
-			endDate: endDate
-		},
-        token: token
-    });
+
 }

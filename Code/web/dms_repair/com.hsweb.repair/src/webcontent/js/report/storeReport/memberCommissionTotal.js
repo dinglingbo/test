@@ -12,6 +12,7 @@ var serviceTypeIdEl = null;
 var servieTypeList = [];
 var servieTypeHash = {};
 var cType = 0;
+var orgidsEl = null;
 var gridUrl = apiPath + repairApi+'/com.hsapi.repair.report.dataStatistics.queryWorkerSummary.biz.ext';
 $(document).ready(function (v)
 {
@@ -27,7 +28,14 @@ $(document).ready(function (v)
             servieTypeHash[v.id] = v;
         });
     });
-
+    
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
 
     grid1.on("drawcell", function (e) {
         if(e.field =="groupName" && cType == 1){
@@ -53,6 +61,12 @@ function load(e){
 	data.endDate = formatDate(data.endDate) +" 23:59:59";
     data.groupByType = cType;
     updateGridColoumn(cType);
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	data.orgids =  currOrgs;
+    }else{
+    	data.orgid=orgidsElValue;
+    }
     grid1.load({params:data,token :token});
 }
 
@@ -139,6 +153,12 @@ function quickSearch(type){
 //  if(params.endDate){
 //  params.endDate = params.endDate +" 23:59:59";
 //}
+ var orgidsElValue = orgidsEl.getValue();
+ if(orgidsElValue==null||orgidsElValue==""){
+ 	 params.orgids =  currOrgs;
+ }else{
+ 	params.orgid=orgidsElValue;
+ }
 grid1.load({params:params});
 updateGridColoumn(cType);
 }

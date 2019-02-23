@@ -4,7 +4,7 @@
 
 <head>
 <title>配件类型汇总按月排行</title>
-<script src="<%=webPath + contextPath%>/manage/js/report/partTypePchsForMonth.js?v=1.1.7"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/partTypePchsForMonth.js?v=1.1.8"></script>
 </head>
 
 <body>
@@ -36,6 +36,9 @@
                 <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/>
                 <input id="partName" width="100px" emptyText="配件名称" class="nui-textbox"/>
                 <input id="partBrandId" width="100px" textField="name" valueField="id" emptyText="配件品牌" class="nui-combobox" allowinput="true" valueFromSelect="true"/>
+                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="兼职公司" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+                
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 
             </td>

@@ -123,7 +123,7 @@
         <div type="indexcolumn">序号</div>
         <div header="工单信息" headerAlign="center">
             <div property="columns">
-            	<div allowSort=false field="serviceCode" width="130" headerAlign="center" header="业务单号"></div>
+            	<div allowSort=false field="serviceCode" width="160" headerAlign="center" header="业务单号"></div>
             	<div allowSort="false" field="carNo" width="100" headerAlign="center" header="车牌号"></div>
             	<div allowSort="false" field="storeId"  width="100" headerAlign="center" header="仓库"></div>
                 <div allowSort="false" field="partCode" name="partCode" width="100" headerAlign="center" header="配件编码"></div>

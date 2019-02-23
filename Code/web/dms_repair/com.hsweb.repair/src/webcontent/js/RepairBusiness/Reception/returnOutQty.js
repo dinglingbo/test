@@ -215,7 +215,7 @@ function quickSearch(type){
 }
 
 function onSearch(){
-	var params=getSearchParams();r
+	var params=getSearchParams();
 	doSearch(params);
 }
 function doSearch(params)

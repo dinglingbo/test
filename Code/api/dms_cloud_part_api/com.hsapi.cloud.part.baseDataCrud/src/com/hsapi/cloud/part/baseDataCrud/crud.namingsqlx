@@ -374,7 +374,7 @@
 		from pj_part_stock a
 			inner join wb_common.com_attribute c
 				on a.part_id = c.id
-		WHERE 1 = 1 and c.is_disabled=0
+		WHERE 1 = 1 
     	<dynamic>
     	
     		<isNotEmpty prepend="and" property="orgid">  
@@ -416,7 +416,7 @@
 		from pj_sell_price_part a
 			inner join wb_common.com_attribute c
 				on a.part_id = c.id
-		WHERE 1 = 1 and c.is_disabled=0
+		WHERE 1 = 1
     	<dynamic>
     		<isNotEmpty prepend="and" property="strategyId">  
                 (a.strategy_id = #strategyId#)
@@ -454,7 +454,7 @@
 			pj_part_stock a
 		LEFT JOIN pj_part_price b ON a.part_id = b.part_id
 		INNER JOIN wb_common.com_attribute c ON a.part_id = c.id
-		WHERE 1 = 1 and c.is_disabled=0
+		WHERE 1 = 1 
     	<dynamic>
     		<isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)

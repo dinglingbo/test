@@ -38,13 +38,18 @@ $(document).ready(function(v)
 		}
 	});
 	rightGrid.on("drawcell",function(e){
+		var countWay = nui.get("countWay").getValue();
 		switch (e.field) {
 		case "storeId":
-			if (storeHash[e.value]) {
-				e.cellHtml = storeHash[e.value].name || "";
-			} else {
-				e.cellHtml = "汇总";
+			if(countWay==1){
+				e.cellHtml ="汇总";
 			}
+			else{
+				if (storeHash[e.value]) {
+					e.cellHtml = storeHash[e.value].name || "";
+				} 
+			}
+			
 			break;
 		case  "orgid":
         	for(var i=0;i<currOrgList.length;i++){

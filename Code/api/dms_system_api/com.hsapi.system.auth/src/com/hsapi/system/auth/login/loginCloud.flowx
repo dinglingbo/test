@@ -250,7 +250,7 @@
       <process:to type="query">rCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">sysadmin</process:from>
+      <process:from type="literal" pattern="reference">yx001</process:from>
       <process:to type="query">userId</process:to>
     </process:copy>
     <process:copy>

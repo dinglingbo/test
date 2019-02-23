@@ -67,7 +67,7 @@ pageEncoding="UTF-8" session="false"%>
 	                <label class="form_label">至：</label>
 	                <input format="yyyy-MM-dd"  style="width:100px"  class="mini-datepicker"   allowInput="false" name="endDate" id = "eRecordDate" value=""/>
 	                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
-                        emptyText="兼职公司" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconCls="" onclick="onSearch()" plain="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <!-- <a class="nui-button" iconCls="" onclick="advancedSearch()" plain="true"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->
                 <input  class="nui-combobox" style="display:none; width:100%;" name="checkTypeA" id="checkTypeA"

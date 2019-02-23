@@ -8,7 +8,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.0.8"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.1.0"></script>
 		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -87,7 +87,19 @@
                 <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <span class="separator"></span>
 
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
+                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->            
+                      <input name="serviceTypeId"
+                                   id="serviceTypeId"
+                                   class="nui-combobox width1"
+                                   textField="name"
+                                   valueField="id"
+                                   emptyText="请选择..."
+                                   url=""
+                                   allowInput="true"
+                                   showNullItem="false"
+                                   width="100%" 
+                                   valueFromSelect="true"
+                                   nullItemText="请选择..."/>
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
 <!--                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->

@@ -387,7 +387,7 @@ function selectCom(){
     	nui.open({
             // targetWindow: window,
             url: webPath + contextPath + "/common/employeeHaveCompany.jsp?token="+token,
-            title: "选择兼职门店", 
+            title: "选择兼职公司", 
             width: 730, 
             height: 360,
             allowDrag:true,
@@ -413,7 +413,7 @@ function lookCom(){
     	nui.open({
             // targetWindow: window,
             url: webPath + contextPath + "/common/existCompany.jsp?token="+token,
-            title: "兼职门店", 
+            title: "兼职公司", 
             width: 700, 
             height: 300,
             allowDrag:true,

@@ -68,7 +68,7 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.code in ($partCodeList$))
                 </isNotEmpty> 
-                
+                group by b.part_brand_id
     </select>
     
     <select id="queryInvocingInPart" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
@@ -132,7 +132,7 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.code in ($partCodeList$))
                 </isNotEmpty> 
-                
+                group by a.part_id
     </select>
     
     <select id="queryInvocingInSupplier" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
@@ -198,7 +198,7 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.code in ($partCodeList$))
                 </isNotEmpty> 
-                
+                group by a.guest_id
     </select>
     
     <select id="queryInvocingInPartType" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
@@ -258,7 +258,7 @@
                 <isNotEmpty prepend="and" property="partCodeList">  
                     (b.code in ($partCodeList$))
                 </isNotEmpty> 
-                
+                group by b.car_type_id_f
     </select>
     
     <!--根据条件查询有出的信息-->

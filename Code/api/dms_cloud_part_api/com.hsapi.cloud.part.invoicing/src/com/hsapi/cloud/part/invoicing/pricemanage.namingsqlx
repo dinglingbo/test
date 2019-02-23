@@ -48,7 +48,7 @@
 		on a.id = b.part_id
 		inner join pj_part_price c
 		on b.orgid = c.orgid and a.id = c.part_id
-		where 1 = 1 and a.is_disabled=0
+		where 1 = 1 
 		<dynamic>
             <isNotEmpty prepend="and" property="orgid">(b.orgid = #orgid# and b.orgid = #orgid#)</isNotEmpty>
             <isNotEmpty prepend="and" property="outableQty">(b.outable_qty &gt; 0 )</isNotEmpty>

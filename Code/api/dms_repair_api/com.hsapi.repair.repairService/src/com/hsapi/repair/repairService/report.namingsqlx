@@ -1485,6 +1485,7 @@
 			a.guest_id as guestId,
 			a.orgid as orgid,
 			b.part_id as partId,
+			a.service_type_id as serviceTypeId,
 			d.part_brand_id as partBrandId,
 			d.car_type_id_f as carTypeIdF
 		FROM

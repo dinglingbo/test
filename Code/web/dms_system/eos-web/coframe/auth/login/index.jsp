@@ -288,6 +288,16 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
                 obj = {};
                 loadingV = false;
             }
+        }else {
+         	var tabs = mini.get("mainTabs");
+	        var tab = tabs.getActiveTab();
+	        var iframe = tabs.getTabIFrameEl(tab);
+	        var params = {
+	        	resId: tab.resId
+	        };
+	        if(iframe.contentWindow && iframe.contentWindow.setInitData){
+	            iframe.contentWindow.setInitData(params);
+	        }
         }
     }
 

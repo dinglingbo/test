@@ -1025,6 +1025,7 @@ function chooseReturnPart(){
  			nui.unmask(document.body);
  		});
     }else{
+    	
      nui.open({
 		url : webPath + contextPath + "/com.hsweb.RepairBusiness.returnPart.flow?token=" + token,
 		title : "配件选择",

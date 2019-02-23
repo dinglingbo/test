@@ -41,6 +41,8 @@ $(document).ready(function (v)
         if(e.field =="groupName" && cType == 1){
         	if(e.value){
         		e.cellHtml = servieTypeHash[e.value].name;
+        	}else{
+        		e.cellHtml = "";
         	}
             
         }

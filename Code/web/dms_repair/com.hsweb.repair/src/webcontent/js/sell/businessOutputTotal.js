@@ -52,6 +52,8 @@ $(document).ready(function ()
          if(e.field =="groupName" && cType == 3){
         	 if(e.value){
         		 e.cellHtml = servieTypeHash[e.value].name;
+        	 }else{
+        		 e.cellHtml = ""; 
         	 }
          }else if(e.field =="groupName" && cType == 4){
         	 e.cellHtml = billTypeHash[e.value].name;

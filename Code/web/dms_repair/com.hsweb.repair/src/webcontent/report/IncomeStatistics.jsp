@@ -90,7 +90,7 @@
                     至
                     <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
                     <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
-                        emptyText="兼职公司" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" plain="true" onclick="onSearch" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <!-- <li class="separator"></li> -->
                 </td>

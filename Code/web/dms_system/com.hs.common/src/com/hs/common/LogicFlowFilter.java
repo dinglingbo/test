@@ -86,15 +86,15 @@ public class LogicFlowFilter implements Filter {
 					(HttpServletRequest) req);
 		}
 		if(url.indexOf(".flow") > 0) {
-			boolean check = MenuUtil.checkActionAuth(requestWrapper);
-			if(!check) {
+			//boolean check = MenuUtil.checkActionAuth(requestWrapper);
+			//if(!check) {
 				//String contextPath = StringUtil.htmlFilter(req.getContextPath());
 				//url=contextPath + "/coframe/auth/noAuth.jsp";
 				//RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 				//dispatcher.forward(requestWrapper, response);
-				request.getRequestDispatcher("/coframe/auth/noAuth.jsp").forward(request, response);
-				return;
-			}
+				//request.getRequestDispatcher("/coframe/auth/noAuth.jsp").forward(request, response);
+				//return;
+			//}
 		}
 		// 检查是否客户端发送的请求
 		boolean b = isClientRequest(requestWrapper);

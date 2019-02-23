@@ -9,7 +9,7 @@
 -->
 <head>
     <title>退货归库查询</title>
-    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnOutQty.js?v=1.0.38"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/returnOutQty.js?v=1.0.39"></script>
     <style type="text/css">
     .title {
       width: 60px;

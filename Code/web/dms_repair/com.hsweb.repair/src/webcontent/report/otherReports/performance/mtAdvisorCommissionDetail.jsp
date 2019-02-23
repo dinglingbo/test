@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>服务顾问提成明细表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/mtAdvisorCommissionDetail.js?v=1.0.8"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/mtAdvisorCommissionDetail.js?v=1.0.9"></script>
 
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>

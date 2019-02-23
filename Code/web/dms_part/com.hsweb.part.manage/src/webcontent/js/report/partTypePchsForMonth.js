@@ -19,7 +19,7 @@ var keyRtnQtyList = [];
 var keyRtnAmtList = [];
 var keyTrueQtyList = [];
 var keyTrueAmtList = [];
- 
+var orgidsEl = null;
 $(document).ready(function(v) {
 	rightGrid = nui.get("rightGrid");
 	rightGrid.setUrl(rightGridUrl);
@@ -43,6 +43,14 @@ $(document).ready(function(v) {
     keyRtnAmtList = [];
     keyTrueQtyList = [];
     keyTrueAmtList = [];
+    
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
 
 	rightGrid.on("beforeload",function(e){
         e.data.token = token;
@@ -158,6 +166,13 @@ function getSearchParam() {
     params.partBrandId = partBrandIdEl.getValue();
     params.partNameAndPY = partNameEl.getValue();
     params.partCode = partCodeEl.getValue();
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
+
 	return params;
 }
 var currType = 2;

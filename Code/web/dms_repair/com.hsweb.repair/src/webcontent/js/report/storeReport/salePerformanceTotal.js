@@ -41,6 +41,8 @@ $(document).ready(function (v)
         if(e.field =="groupName" && cType == 1){
         	if(e.value){
    			 e.cellHtml = servieTypeHash[e.value].name; 
+   		    }else{
+   		    	e.cellHtml = "";
    		    }
        }
 
@@ -55,7 +57,7 @@ function load(e){
     if(e != undefined){
         cType = e;
     }
-    
+    grid1.setData([]);
     var data= form.getData();
 	data.endDate = formatDate(data.endDate) +" 23:59:59";
     data.groupByType = cType;

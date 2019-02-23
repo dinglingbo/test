@@ -76,7 +76,7 @@ function doSearch() {
 	var params = {};
 	params.settAccountId = accountIdEl.getValue();
 	params.startDate = beginDateEl.getFormValue();
-    params.endDate = endDateEl.getValue();
+    params.endDate = addDate(endDateEl.getValue(),1); 
     params.guestId = advanceGuestIdEl.getValue();
     params.rpDc = rpDcEl.getValue();
     

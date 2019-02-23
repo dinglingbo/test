@@ -50,7 +50,11 @@ $(document).ready(function ()
      });
      mainGrid.on("drawcell", function (e) {
          if(e.field =="groupName" && cType == 3){
-        	 e.cellHtml = servieTypeHash[e.value].name;
+        	 if(e.value){
+        		 e.cellHtml = servieTypeHash[e.value].name;
+        	 }else{
+        		 e.cellHtml = ""; 
+        	 }
          }else if(e.field =="groupName" && cType == 4){
         	 e.cellHtml = billTypeHash[e.value].name;
          }

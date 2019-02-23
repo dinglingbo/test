@@ -2,207 +2,85 @@
 * Created by Administrator on 2018年9月21日19:29:11
 */
 var baseUrl = apiPath + repairApi + "/";
+apiPath + sysApi + "/";
 var webBaseUrl = webPath + contextPath + "/";
+var resId = "";
+var treeNodes = {};
 $(document).ready(function(v) {
-	readyList();
+	
+	$("body").on("blur","input[name='amount']",function(){
+		onChanged();
+	});
 
 });
 
-function readyList(){
+function readyList(resId){
+	var json = {
+			resId:resId
+	}
 	nui.ajax({
-		url : gridUrl,
+		url : apiPath + sysApi + "/com.hsapi.system.tenant.permissions.getSameLevelMenuData.biz.ext",
 		type : 'POST',
-		data : json1,
+		data : json,
 		cache : false,
 		contentType : 'text/json',
 		success : function(text) {
-			var returnJson = nui.decode(text);
-			if (returnJson.exception == null) {
-				g = nui.get("#timesCardDetail");
-				g.setData(returnJson.timesCardDetail);
-			} else {
-				nui.alert("获取明细失败", "系统提示", function(action) {
-					if (action == "ok" || action == "close") {
-						// CloseWindow("saveFailed");
-						
+			var returnJson = text.treeNodes;
+				treeNodes = text.treeNodes;
+			var str="";
+			var num=0;
+			for(var i = 0;i<returnJson.length-1;i++){
+				if(i%5==0&&i==0){
+					num++;
+					str = "<div  id='menu"+num+"' class='demo'  style=''>"
+					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i+1].funccode +"')><i class='fa "+returnJson[i+1].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i+1].funcname+"</p> </a></div>"
+				}else if(i%5==0){
+					num++;
+					str = str+"</div>"
+					str = str+ "<div  id='menu"+num+"' class='demo'  style='margin-top:20px;'>"
+					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i+1].funccode +"')><i class='fa "+returnJson[i+1].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i+1].funcname+"</p> </a></div>"
+				}else if(i==returnJson.length-2){
+					var j=i%5+1;
+					var ddiv ="";
+					for(var x = 0;x<=j;x++){
+						ddiv = ddiv+"<div></div>" 
 					}
-				});
+					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i+1].funccode +"')><i class='fa "+returnJson[i+1].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i+1].funcname+"</p> </a></div>"
+					str = str+ddiv;
+					str = str+"</div>"
+				}else{
+					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i+1].funccode +"')><i class='fa "+returnJson[i+1].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i+1].funcname+"</p> </a></div>"
+				}
 			}
+
+			 $("#tb").append(str);
+
 		}
 	});
 }
 
 
 
-function checkMainDetail(){
+
+
+//根据开单界面传递的车牌号查询未结算的工单
+function setInitData(params){
+	readyList(params.resId);
+}
+
+function toOperating(funccodeStr){
+	for(var i =0;i<treeNodes.length;i++){
+		if(treeNodes[i].funccode==funccodeStr){
+			toOpen(treeNodes[i].funccodeStr,treeNodes[i].funcname,treeNodes[i].funcactioin);
+		}
+	}
+}
+
+function toOpen(funccode,funcname,funcactioin){
     var item={};
-    item.id = "checkMainDetail";
-    item.text = "查车单明细表";
-    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.checkMainDetail.flow?token="+token;
+    item.id = funccode;
+    item.text = funcname;
+    item.url = webPath + contextPath + funcactioin+"?token="+token
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
 }
-
-function RetailStatistics(){
-    var item={};
-    item.id = "RetailStatistics";
-    item.text = "零售业务统计分析表";
-    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.RetailStatistics.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function RepairConsultantPerformanceMain(){
-    var item={};
-    item.id = "RepairConsultantPerformanceMain";
-    item.text = "服务顾问业绩汇总表";
-    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.RepairConsultantPerformanceMain.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function businessDaily(){
-    var item={};
-    item.id = "businessDaily";
-    item.text = "营业日分析表";
-    item.url = webPath + contextPath + "/com.hsweb.repair.repoart.businessDaily.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function carTypeCount(){
-    var item={};
-    item.id = "carTypeCount";
-    item.text = "充值办卡汇总表";
-    item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.carTypeCount.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function selectCompensation(){
-    var item={};
-    item.id = "selectCompensation";
-    item.text = "理赔开单明细表";
-    item.url = webPath + contextPath + "/com.hsweb.part.purchase.selectCompensation.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function IncomeStatistics(){
-    var item={};
-    item.id = "IncomeStatistics";
-    item.text = "仪表盘";
-    item.url = webPath + contextPath + "/com.hsweb.repair.repoart.IncomeStatistics.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function CarInsuranceQuery(){
-    var item={};
-    item.id = "CarInsuranceQuery";
-    item.text = "保险开单明细表";
-    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.CarInsuranceQuery.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function selectComprehensive(){
-    var item={};
-    item.id = "selectComprehensive";
-    item.text = "已结算工单明细表";
-    item.url = webPath + contextPath + "/com.hsweb.part.purchase.selectComprehensive.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function inFactoryVehicle(){
-    var item={};
-    item.id = "inFactoryVehicle";
-    item.text = "未结算工单明细表";
-    item.url = webPath + contextPath + "/com.hsweb.part.purchase.inFactoryVehicle.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function businessOutputTotal(){
-    var item={};
-    item.id = "businessOutputTotal";
-    item.text = "已结算工单汇总表";
-    item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.businessOutputTotal.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function returnQuery(){
-    var item={};
-    item.id = "returnQuery";
-    item.text = "退货开单明细表";
-    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.returnQuery.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function sellQuery(){
-    var item={};
-    item.id = "sellQuery";
-    item.text = "销售开单明细表";
-    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.sellQuery.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function sellectWash(){
-    var item={};
-    item.id = "sellectWash";
-    item.text = "洗美开单明细表";
-    item.url = webPath + contextPath + "/com.hsweb.part.purchase.sellectWash.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function BookingManagementSummary(){
-    var item={};
-    item.id = "BookingManagementSummary";
-    item.text = "预约汇总表";
-    item.url = webPath + contextPath + "/com.hsweb.RepairBusiness.BookingManagementSummary.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function notSettledPartDetail(){
-    var item={};
-    item.id = "notSettledPartDetail";
-    item.text = "未结算配件明细表";
-    item.url = webPath + contextPath + "/com.hsweb.repair.repoart.notSettledPartDetail.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function rpsCardTimeList(){
-    var item={};
-    item.id = "rpsCardTimeList";
-    item.text = "计次卡消费明细表";
-    item.url = webPath + contextPath + "/com.hsweb.repair.DataBase.rpsCardTimeList.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function cardRunningWaterSummary(){
-    var item={};
-    item.id = "cardRunningWaterSummary";
-    item.text = "储值卡流水汇总表";
-    item.url = webPath + contextPath + "/com.hsweb.repair.repoart.cardRunningWaterSummary.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-function cardTimesRunningWaterSummary(){
-    var item={};
-    item.id = "cardTimesRunningWaterSummary";
-    item.text = "计次卡流水汇总表";
-    item.url = webPath + contextPath + "/com.hsweb.repair.repoart.cardTimesRunningWaterSummary.flow?token="+token
-    item.iconCls = "fa fa-file-text";
-    window.parent.activeTab(item);
-}
-
-

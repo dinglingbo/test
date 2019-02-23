@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件维修统计分析</title>
-<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/partRepairTotal.js?v=1.2.13"></script>
+<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/Reception/partRepairTotal.js?v=1.2.15"></script>
 <style type="text/css">
 .title {
   width: 60px;
@@ -182,7 +182,7 @@
                  showSummaryRow="true">
                 <div property="columns">
                     <div type="indexcolumn">序号</div>
-                    <div allowSort="true" field="" summaryType="count" width="100" headerAlign="center" header="业务类型"></div>
+                    <div allowSort="true" field="serviceTypeName" summaryType="count" width="100" headerAlign="center" header="业务类型"></div>
                     <div field="trueQty" allowSort="true" headerAlign="center"
                       width="60" summaryType="sum"  >出库数量</div>
                     <div field="trueAmt" allowSort="true" headerAlign="center"

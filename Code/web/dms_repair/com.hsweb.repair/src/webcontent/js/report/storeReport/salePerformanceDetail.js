@@ -50,6 +50,8 @@ $(document).ready(function (v)
     	 if (e.field == "serviceTypeId") {
     		 if(e.value){
     			 e.cellHtml = servieTypeHash[e.value].name; 
+    		 }else{
+    			 e.cellHtml = "";
     		 }
          }else if (e.field == "billTypeId") {
              e.cellHtml = billTypeIdList[e.value].name;

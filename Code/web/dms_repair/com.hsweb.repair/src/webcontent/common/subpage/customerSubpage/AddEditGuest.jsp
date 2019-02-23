@@ -11,7 +11,7 @@
 -->
 <head>
     <title>新增客户档案</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.48"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.51"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -147,13 +147,16 @@
                     <td class="form_label">
                         <label>微信服务号：</label>
                     </td>
-                    <td>
-                       <input class="nui-textbox" name="wechatServiceId" width="100%" id="wechatServiceId"/>
-                    </td>
-                    <td class="form_label" colspan="1">
+                    <td nowrap="nowrap">
+                       <input class="nui-textbox" name="wechatServiceId" width="80%" id="wechatServiceId" />
                         <a class="optbtn" href="javascript:void()" onclick="wechatBin()">绑定</a>
                     </td>
-                    
+                    <td class="form_label" colspan="1">
+                       <label>微信ID：</label>
+                    </td>
+                    <td>
+                       <input class="nui-textbox" name="wechatOpenId" width="100%" id="wechatOpenId" >
+                    </td>
                 </tr>
                 <tr>
                     <td class="form_label">
@@ -547,6 +550,9 @@
                                     </div>
                                      <div field="wechatServiceId" allowSort="true" align="left" headerAlign="center" width="">
                                         微信服务号
+                                    </div>
+                                      <div field="wechatOpenId" allowSort="true" align="left" headerAlign="center" width="">
+                                        微信ID
                                     </div>
                                     <div field="remark" allowSort="true" align="left" headerAlign="center" width="">
                                         备注

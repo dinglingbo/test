@@ -10,7 +10,7 @@
 <head>
 	<title>通用提成</title>
 	
-	<script src="<%=webPath + contextPath%>/repair/cfg/js/tongyongticheng.js?v=1.0.60" ></script>
+	<script src="<%=webPath + contextPath%>/repair/cfg/js/tongyongticheng.js?v=1.0.61" ></script>
 </head>
 <style type="text/css">
 body {

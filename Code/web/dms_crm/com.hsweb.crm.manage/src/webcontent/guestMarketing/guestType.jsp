@@ -200,7 +200,9 @@ pageEncoding="UTF-8" session="false" %>
 
     <script type="text/javascript">
         nui.parse();
-        var turl = "crmApi/com.hsapi.crm.svr.guest.getGuestTypeNum.biz.ext";
+        var webBaseUrl = webPath + contextPath + "/";
+		var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/"; 
+        var turl =  baseUrl+"com.hsapi.crm.svr.guest.getGuestTypeNum.biz.ext";
         var echartData = {};
 
         $("a[name=type]").click(function () {
@@ -355,7 +357,7 @@ pageEncoding="UTF-8" session="false" %>
                 console.log(param); //重要的参数都在这里！
                 setGuestType(param);
             });
-
+ 
             var app = {};
             app.currentIndex = -1;
 
@@ -425,7 +427,7 @@ pageEncoding="UTF-8" session="false" %>
         }
 
 
-        let showTooltip = function showEchartTooltip(vla) {
+        var showTooltip = function showEchartTooltip(vla) {
             var value = 0;
             switch (vla.name) {
                 case '全 部':

@@ -71,7 +71,7 @@
                     (c.code in ($partCodeList$))
                 </isNotEmpty> 
                 
-			group by c.part_brand_id, month(a.audit_date) , year(a.audit_date)
+			group by c.part_brand_id, month(a.audit_date) , year(a.audit_date),a.orgid
     </select>
     
     <select id="queryPartBrandEnterRtnForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
@@ -136,7 +136,7 @@
                     (c.code in ($partCodeList$))
                 </isNotEmpty> 
                 
-			group by c.part_brand_id, month(a.audit_date) , year(a.audit_date)
+			group by c.part_brand_id, month(a.audit_date) , year(a.audit_date),a.orgid
     </select>
     
     <select id="queryPartEnterForMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">

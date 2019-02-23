@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getPartTypeTree" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="getBXProjectMsg" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="link0" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -54,8 +54,8 @@
       <process:to type="query">cond/_orderby[1]/_property</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">params/oldId</process:from>
-      <process:to type="query">cond/_expr[2]/oldId</process:to>
+      <process:from type="literal" pattern="reference">32</process:from>
+      <process:to type="query">cond/_expr[2]/parentId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">=</process:from>

@@ -78,16 +78,23 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>assign1</targetNode>
       <process:transitionCondition>
-        <process:simpleCondition operator="NULLOREMPTY">
-          <process:leftOperand type="query">params/orgid</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
+        <process:complexCondition>
+          <process:code>orgid ==null &amp;&amp; orgids == null</process:code>
+        </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="120" y="105"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/orgid</process:from>
+      <process:to type="query">orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/orgids</process:from>
+      <process:to type="query">orgids</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="119" y="141"/>
@@ -247,6 +254,8 @@
   <process:variables>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="pe"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="pt"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orgid" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orgids" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>

@@ -12,7 +12,7 @@
 <head>
     <title>已结算工单汇总表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/repair/js/sell/businessOutputTotal.js?v=1.0.28"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/sell/businessOutputTotal.js?v=1.0.30"></script>
 
     <style>
 

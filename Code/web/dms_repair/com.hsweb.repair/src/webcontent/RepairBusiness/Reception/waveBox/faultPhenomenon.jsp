@@ -143,12 +143,16 @@
 	<script type="text/javascript">
     	nui.parse();
     	var baseUrl = apiPath + repairApi + "/";
+    	var lockGearStatus = null;
+    	var abnormalSoundStatus = null;
+    	var skiddingStatus = null;
+    	var attackStatus = null;
      $(function()
 		{	
-			var lockGearStatus = [{id:1,text:"锁挡只有一个在工作;"},{id:2,text:"锁挡亮故障灯;"},{id:3,text:"锁挡跑不起来;"}];
-			var abnormalSoundStatus =  [{id:1,text:"波箱行车异响;"},{id:2,text:"波箱挂挡异响;"},{id:3,text:"波箱停车异响;"}];
-			var skiddingStatus =  [{id:1,text:"波箱打滑1换2;"},{id:2,text:"波箱打滑2换3;"},{id:3,text:"波箱打滑3换4;"},{id:4,text:"波箱打滑4换5;"},{id:5,text:"波箱打滑5换6;"},{id:6,text:"波箱打滑6换7;"}];
-			var attackStatus =  [{id:1,text:"波箱换挡冲击;"},{id:2,text:"波箱挂挡冲击;"},{id:3,text:"波箱降档冲击;"},{id:4,text:"波箱停车冲击;"}];
+			lockGearStatus = [{id:1,text:"锁挡只有一个在工作;"},{id:2,text:"锁挡亮故障灯;"},{id:3,text:"锁挡跑不起来;"}];
+			abnormalSoundStatus =  [{id:1,text:"波箱行车异响;"},{id:2,text:"波箱挂挡异响;"},{id:3,text:"波箱停车异响;"}];
+			skiddingStatus =  [{id:1,text:"波箱打滑1换2;"},{id:2,text:"波箱打滑2换3;"},{id:3,text:"波箱打滑3换4;"},{id:4,text:"波箱打滑4换5;"},{id:5,text:"波箱打滑5换6;"},{id:6,text:"波箱打滑6换7;"}];
+			attackStatus =  [{id:1,text:"波箱换挡冲击;"},{id:2,text:"波箱挂挡冲击;"},{id:3,text:"波箱降档冲击;"},{id:4,text:"波箱停车冲击;"}];
 			$('.label1').click(function(e){
 				/* var text=$(this).text();
 				alert(text); */
@@ -186,6 +190,7 @@
 					}
 				}
 			});
+			
 		}); 
 		
 		function OnInput(event){
@@ -202,20 +207,20 @@
 		}
 		
 		function MemSelectOk(){//确定
-		    var lockGearStatus = $('input:radio[name="lockGearStatus"]:checked').val();
-		    var abnormalSoundStatus = $('input:radio[name="abnormalSoundStatus"]:checked').val();
-		    var skiddingStatus = $('input:radio[name="skiddingStatus"]:checked').val();
-		    var attackStatus = $('input:radio[name="attackStatus"]:checked').val();
+		    var value1 = $('input:radio[name="lockGearStatus"]:checked').val();
+		    var value2 = $('input:radio[name="abnormalSoundStatus"]:checked').val();
+		    var value3 = $('input:radio[name="skiddingStatus"]:checked').val();
+		    var value4 = $('input:radio[name="attackStatus"]:checked').val();
 		    var holeOilDesc = document.getElementById("holeOilDesc").value;
 		    var gearMoveStatus = nui.get("gearMoveStatus").checked?0:1;
 		    var faultDesc = $("#span1")[0].innerHTML + $("#span2")[0].innerHTML + $("#span3")[0].innerHTML + 
 		    					$("#span4")[0].innerHTML + $("#span5")[0].innerHTML + $("#span6")[0].innerHTML;
 		    var fault = {
 		    	id : nui.get("id").value,
-		    	lockGearStatus : lockGearStatus,
-		    	abnormalSoundStatus : abnormalSoundStatus,
-		    	skiddingStatus : skiddingStatus,
-		    	attackStatus : attackStatus,
+		    	lockGearStatus : value1,
+		    	abnormalSoundStatus : value2,
+		    	skiddingStatus : value3,
+		    	attackStatus : value4,
 		    	holeOilDesc : holeOilDesc,
 		    	gearMoveStatus : gearMoveStatus,
 		    	faultDesc : faultDesc,
@@ -249,14 +254,64 @@
 		function SetData(data){
 			var ndata = nui.clone(data); 
 			nui.get("serviceId").setValue(ndata);
+			if(ndata){
+				selectRedio(ndata);
+			}
 		}
 		
-		function setValueMsg(data){
-		
-		}
-		
-		function selectRedio(radio,value){//设置选中radio
-			
+		function selectRedio(serviceId){//设置选中radio
+			nui.ajax({
+                    url: baseUrl+"com.hsapi.repair.repairService.crud.searchBXMsg.biz.ext",
+                    type: "post",
+                    cache: false,
+                    async: false,
+                    data: {
+                       serviceId : serviceId
+                    },
+                    success: function(text) {
+                    	if(text.errCode == "S"){
+                    		var msg = text.msg;
+                    		if(msg.length){
+                    			msg = msg[0];
+                    			nui.get("id").setValue(msg.id);
+                    			var value1 = msg.lockGearStatus || 0;
+	                    		var value2 = msg.abnormalSoundStatus || 0;
+	                    		var value3 = msg.skiddingStatus || 0;
+	                    		var value4 = msg.attackStatus || 0;
+	                    		var holeOilDesc = msg.holeOilDesc;
+	                    		var gearMoveStatus = msg.gearMoveStatus;
+			  	  				var faultDesc = msg.faultDesc;
+			  	  				$("input[name=lockGearStatus][value='"+value1+ "']").attr("checked",'checked');
+			  	  				$("input[name=abnormalSoundStatus][value='"+value2+ "']").attr("checked",'checked');
+			  	  				$("input[name=skiddingStatus][value='"+value3+ "']").attr("checked",'checked');
+			  	  				$("input[name=attackStatus][value='"+value4+ "']").attr("checked",'checked');
+			  	  				document.getElementById("holeOilDesc").value = holeOilDesc;
+			  	  				if(!gearMoveStatus){
+			  	  					var gearMoveStatus = nui.get("gearMoveStatus");
+			  	  					gearMoveStatus.setChecked(!gearMoveStatus.getChecked());
+			  	  				}
+			  	  				var arr = ["span1","span2","span3","span4"];
+			  	  				var brr = [value1,value2,value3,value4];
+			  	  				var params = [];
+			  	  				params.add(lockGearStatus);//0
+			  	  				params.add(lockGearStatus);//1
+			  	  				params.add(abnormalSoundStatus);//2
+			  	  				params.add(skiddingStatus);//3
+			  	  				for(var i = 0 , l = brr.length ; i < l ; i++){
+			  	  					if(brr[i] != 0){
+			  	  						document.getElementById(""+arr[i]+"").innerHTML = params[i][brr[i]-1].text;
+			  	  					}
+			  	  				}
+			  	  				if(holeOilDesc){
+			  	  					document.getElementById("span5").innerHTML = holeOilDesc;
+			  	  				}
+			  	  				if(!gearMoveStatus){
+			  	  					document.getElementById("span1").innerHTML = "挂挡不能行走;";
+			  	  				}
+                    		}
+                    	}
+                    }
+            });
 		}
 		
 		function close(){

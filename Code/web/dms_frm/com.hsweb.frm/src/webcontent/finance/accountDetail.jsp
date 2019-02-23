@@ -10,7 +10,7 @@
 <head>
     <title>账户结算明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountDetail.js?v=1.1.0"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountDetail.js?v=1.1.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">

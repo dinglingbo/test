@@ -73,6 +73,8 @@
                     <input id="serviceType" name="serviceType" class="nui-combobox" style="width: 100px;" emptyText="回访类型"
                     data="visType" valueField="id" textField="text"emptyText="请选择..."
                     allowInput="false"valueFromSelect="true" showNullItem="true"nullItemText="请选择...">
+                    <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                    emptyText="兼职公司" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconcls="" name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <li class="separator"></li>
                     <a class="nui-button" plain="false" onclick="load(0)" id="" style="margin-right:5px;"><span class="fa fa-bars fa-lg"></span>&nbsp;按品牌分组</a>
@@ -115,9 +117,16 @@
         var memHash = {};
         var startDateEl = nui.get("startDate");
         var endDateEl = nui.get("endDate");
+        var orgidsEl = nui.get("orgids");;
         quickSearch(3);
 
-
+        //判断是否有兼职门店,是否显示门店选择框
+            orgidsEl.setData(currOrgList);
+            if(currOrgList.length==1){
+                orgidsEl.hide();
+            }else{
+                orgidsEl.setValue(currOrgid);
+            }
 
         initMember("visitId",function(){
             memList = nui.get("visitId").getData();
@@ -201,6 +210,12 @@
             var menunamedate = nui.get("menunamedate");
             menunamedate.setText(queryname);
             params.groupByType = cType;
+            var orgidsElValue = orgidsEl.getValue();
+            if(orgidsElValue==null||orgidsElValue==""){
+                params.orgids =  currOrgs;
+            }else{
+                params.orgid=orgidsElValue;
+            }
             grid1.load({params:params});
             updateGridColoumn(cType);
         }
@@ -235,6 +250,14 @@
             data.endDate = formatDate(data.endDate) +" 23:59:59";
             data.groupByType = cType;
             updateGridColoumn(cType);
+
+            var orgidsElValue = orgidsEl.getValue();
+            if(orgidsElValue==null||orgidsElValue==""){
+                data.orgids =  currOrgs;
+            }else{
+                data.orgid=orgidsElValue;
+            }
+
             grid1.load({params:data,token :token});
         }
 

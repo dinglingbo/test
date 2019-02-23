@@ -46,6 +46,7 @@
         <result column="operator" javaType="string" property="operator"/>
         <result column="operateDate" javaType="java.sql.Timestamp" property="operateDate"/>
         <result column="settleTypeId" javaType="string" property="settleTypeId"/>
+        <result column="isNeedPack" javaType="int" property="isNeedPack"/>
         <result column="guestFullName" javaType="string" property="guestFullName"/>
         <result column="guestShortName" javaType="string" property="guestShortName"/>
         <result column="versionNo" javaType="java.sql.Timestamp" property="versionNo"/>
@@ -91,6 +92,7 @@
 			M.operator,
 			M.operateDate,
 			M.settleTypeId,
+			M.isNeedPack,
             M.guestFullName,
             M.guestShortName
         FROM (
@@ -132,6 +134,7 @@
 				A.operator as operator,
 				A.operate_date as operateDate,
 				A.settle_type_id as settleTypeId,
+				A.is_need_pack as isNeedPack,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM
@@ -243,6 +246,7 @@
 				A.operator as operator,
 				A.operate_date as operateDate,
 				A.settle_type_id as settleTypeId,
+				A.is_need_pack as isNeedPack,
 				B.FULL_NAME AS guestFullName,
 				B.SHORT_NAME AS guestShortName
 				FROM
@@ -1484,6 +1488,7 @@
 			A.remark as remark,
 			A.stock_out_qty as stockOutQty,
 			a.is_mark_batch as isMarkBatch,
+			a.is_need_pack as isNeedPack,
 			a.batch_source_id as batchSourceId,
 			B.`code` AS comPartCode,
 			B.`name` AS comPartName,

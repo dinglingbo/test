@@ -48,7 +48,7 @@ $(document).ready(function()
             
         }
       };
-	
+      nui.get("wechatOpenId").disable();
 });
 function init(callback)
 {
@@ -583,6 +583,8 @@ function addContact() {
 	contactInfoForm.setData("");
 	nui.get("name").setValue(fullName);
 	nui.get("mobile2").setValue(mobile);
+	nui.get("wechatOpenId").disable();
+	nui.get("wechatServiceId").enable();
 }
 
 function addCarList(){
@@ -802,7 +804,6 @@ function eaidCar(){
 	carInfoFrom.setData(row);
 	nui.get("carNo").disable();
 	nui.get("vin").disable();
-	
 }
 
 function eaidContact(){
@@ -816,7 +817,10 @@ function eaidContact(){
 	contactInfoForm.setData(row);
 	if(row.wechatOpenId && row.wechatOpenId!=null){
 		nui.get("wechatServiceId").disable();
+	}else{
+		nui.get("wechatServiceId").enable();
 	}
+	nui.get("wechatOpenId").disable();
 }
 
 function onDrawCell(e) {
@@ -895,57 +899,47 @@ function wechatBin(){
 		 showMsg("请输入服务号!","W");
 		 return; 
 	 }
-	 if(row){
-		 result=row;
-		 if(!carNo){
-			 showMsg("车牌号为空!","W");
-			 return 0;
-		 }else{
-			 var wechatUser = {};
-			 wechatUser.userPhone = row.mobile;
-			 wechatUser.userMarke = wechatServiceId;
-			 wechatUser.contactorId = row.id;
-			 wechatUser.guestId = guestId;
-			 var json = nui.encode({
-				 carNo:carNo,
-				 wechatUser:wechatUser,
-		 		 token:token
-		 	  });
-			 nui.ajax({
-			 		url : saveOpenIdUrl,
-			 		type : 'POST',
-			 		data : json,
-			 		cache : false,
-			 		contentType : 'text/json',
-			 		success : function(text) {
-			 			if(text.errCode=="S"){
-			 				var params = {};
-			 				params.guestId = guestId;
-			 				contactorGrid.load({
-			 				     token:token,
-			 				     params:params
-			 				  },function(){
-			 					 var row = contactorGrid.findRow(function(row){
-			 						 if(!row.wechatOpenId){
-			 							 contactorGrid.beginEditRow(row);
-			 						 }
-			 						 
-			 				     });
-			 				 });
-			 			result.success = 1;
-			 			showMsg(text.errMsg || "绑定成功!","S");
-			 			return;
-			 			}else{
-			 				showMsg(text.errMsg,"E");
-			 				return;
-			 			}
-			 			
-			 		}
-			});
-		 }
-	}else{
-		nui.alert("请选中一条记录", "提示");
-	}
+	var wechatUser = {};
+	 wechatUser.userPhone = data.mobile;
+	 wechatUser.userMarke = wechatServiceId;
+	 wechatUser.contactorId = data.id;
+	 wechatUser.guestId = data.guestId;
+	 var json = nui.encode({
+		 carNo:"",
+		 wechatUser:wechatUser,
+		 token:token
+	  });
+	 nui.ajax({
+	 		url : saveOpenIdUrl,
+	 		type : 'POST',
+	 		data : json,
+	 		cache : false,
+	 		contentType : 'text/json',
+	 		success : function(text) {
+	 			if(text.errCode=="S"){
+	 				var params = {};
+	 				params.guestId = guestId;
+	 				contactorGrid.load({
+	 				     token:token,
+	 				     params:params
+	 				  },function(){
+	 					 var row = contactorGrid.findRow(function(row){
+	 						 if(!row.wechatOpenId){
+	 							 contactorGrid.beginEditRow(row);
+	 						 }
+	 						 
+	 				     });
+	 				 });
+	 			result.success = 1;
+	 			showMsg(text.errMsg || "绑定成功!","S");
+	 			return;
+	 			}else{
+	 				showMsg(text.errMsg,"E");
+	 				return;
+	 			}
+	 			
+	 		}
+	});
 }
 
 

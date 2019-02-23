@@ -12,7 +12,7 @@
 <head>
     <title>员工管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-    <script src="<%=webPath + contextPath%>/common/js/employeeQuery.js?v=2.1.7" type="text/javascript"></script>    
+    <script src="<%=webPath + contextPath%>/common/js/employeeQuery.js?v=2.1.8" type="text/javascript"></script>    
 </head>
 <body>
 	<div class="nui-toolbar" style="padding:2px;border-bottom:0;">
@@ -41,8 +41,8 @@
 					<a class="nui-button" plain="true" id="btnisOpenAccount" name="btnisOpenAccount" iconCls="" onclick="stoporstart()" ><span class="fa fa-key"></span>&nbsp;开通账号</a>
 					<a class="nui-button" plain="true" id="resetPasswordBtn" name="resetPasswordBtn" iconCls="" onclick="resetPassword()" ><span class="fa fa-key"></span>&nbsp;重置密码</a>
 					<span class="separator"></span>
-					<a class="nui-button" plain="true" id="selectComBtn" name="selectComBtn" iconCls="" onclick="selectCom()" ><span class="fa fa-check fa-lg"></span>&nbsp;新增兼职门店</a>
-					<a class="nui-button" plain="true" id="lookComBtn" name="lookComBtn" iconCls="" onclick="lookCom()" ><span class="fa fa-search fa-lg"></span>&nbsp;查看兼职门店</a>
+					<a class="nui-button" plain="true" id="selectComBtn" name="selectComBtn" iconCls="" onclick="selectCom()" ><span class="fa fa-check fa-lg"></span>&nbsp;新增兼职公司</a>
+					<a class="nui-button" plain="true" id="lookComBtn" name="lookComBtn" iconCls="" onclick="lookCom()" ><span class="fa fa-search fa-lg"></span>&nbsp;查看兼职公司</a>
 					<a class="nui-button" plain="true" iconCls="" onclick="importGuest()"  visible="false" id="importGuestBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
 				</td>
 			</tr>

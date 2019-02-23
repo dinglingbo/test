@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单-销售单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=2.0.23"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/sellBill.js?v=2.0.25"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css">
@@ -290,9 +290,10 @@
      allowCellSelect="true"
     
      allowSortColumn="false"
+     ondrawsummarycell="onDrawSummaryCellPart"
      >
    <!--   <div id="rpsPackageGrid" class="nui-datagrid"
-    ondrawsummarycell="onDrawSummaryCell"
+    
      style="width:100%;height:auto;"
      dataField="list"
      showPager="false"

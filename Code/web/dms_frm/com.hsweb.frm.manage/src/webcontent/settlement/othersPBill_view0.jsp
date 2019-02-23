@@ -9,7 +9,7 @@
 -->
 <head>
 <title>其他应付单</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/othersPBill.js?v=2.0.9"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/othersPBill.js?v=2.1.0"></script>
 
 		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>

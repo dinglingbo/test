@@ -341,6 +341,7 @@
     <targetConnections>link48</targetConnections>
     <targetConnections>link52</targetConnections>
     <targetConnections>link53</targetConnections>
+    <targetConnections>link62</targetConnections>
     <location x="1145" y="608"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
@@ -524,6 +525,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link31</targetConnections>
+    <targetConnections>link64</targetConnections>
     <location x="390" y="387"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
@@ -822,12 +824,22 @@
       <sourceNode>assign18</sourceNode>
       <targetNode>assign14</targetNode>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link63" name="billTypeId = 6" displayName="连接线" type="transition">
+      <sourceNode>assign18</sourceNode>
+      <targetNode>assign29</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">billTypeId</process:leftOperand>
+          <process:rightOperand type="literal">6</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link20</targetConnections>
     <location x="-204" y="387"/>
     <size height="28" width="28"/>
     <nodeLabel>assign18label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">value</process:from>
+      <process:from type="query" pattern="reference">maintain/billTypeId</process:from>
       <process:to type="query">billTypeId</process:to>
     </process:copy>
   </nodes>
@@ -898,6 +910,16 @@
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">billTypeId</process:leftOperand>
           <process:rightOperand type="literal">5</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link61" name="link61" displayName="连接线" type="transition">
+      <sourceNode>assign19</sourceNode>
+      <targetNode>assign28</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">billTypeId</process:leftOperand>
+          <process:rightOperand type="literal">6</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -1153,7 +1175,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1190,7 +1212,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1198,6 +1220,40 @@
     <location x="1397" y="422"/>
     <figSize height="17" width="125"/>
     <node>subprocess4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign28" name="THD1" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link62" name="link62" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign28</sourceNode>
+      <targetNode>subprocess0</targetNode>
+    </sourceConnections>
+    <targetConnections>link61</targetConnections>
+    <location x="1033" y="855"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign28label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">GBD</process:from>
+      <process:to type="query">billTypeCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign28label" name="label" nodeType="label">
+    <location x="1031" y="891"/>
+    <figSize height="17" width="33"/>
+    <node>assign28</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign29" name="赋值26" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link64" name="link64" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign29</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <targetConnections>link63</targetConnections>
+    <location x="138" y="240"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign29label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign29label" name="label" nodeType="label">
+    <location x="133" y="276"/>
+    <figSize height="17" width="39"/>
+    <node>assign29</node>
   </nodes>
   <topRuler>
     <guides position="1523" horizontal="true"/>

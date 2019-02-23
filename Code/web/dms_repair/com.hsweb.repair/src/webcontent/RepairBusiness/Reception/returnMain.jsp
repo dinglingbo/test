@@ -119,6 +119,7 @@
                   <div field="contactName" name="contactName" width="80px" headerAlign="center" header="联系人姓名"></div>
                   <div field="contactMobile" name="contactMobile" width="100px" headerAlign="center" header="联系人手机"></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="50" headerAlign="center" header="服务顾问"></div>
+                  <div field="mtAdvisorId" name="mtAdvisorId" width="50" headerAlign="center" header="服务顾问"></div>
                   <div field="partAmt" name="partAmt" width="40" headerAlign="center" header="结算金额"></div>
                   <div field="isSettle" name="isSettle" width="50" headerAlign="center" header="结算状态"></div>
 	              <div field="remark" name="remark" width="100" headerAlign="center" header="备注" ></div>

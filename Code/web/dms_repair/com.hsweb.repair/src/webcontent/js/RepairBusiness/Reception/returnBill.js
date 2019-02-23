@@ -1025,6 +1025,7 @@ function chooseReturnPart(){
  			nui.unmask(document.body);
  		});
     }else{
+    	
      nui.open({
 		url : webPath + contextPath + "/com.hsweb.RepairBusiness.returnPart.flow?token=" + token,
 		title : "配件选择",
@@ -1353,7 +1354,7 @@ function saveBatch(){
 								
 				} else {
 					//数据改回原本来的数据
-					rpsPartGrid.reject();
+					//rpsPartGrid.reject();
 					showMsg(returnJson.errMsg || "保存失败","E");
 				}
 			}
@@ -1645,3 +1646,23 @@ function openItemSaleMans(e){
  		}
  	});
 }
+
+function onDrawSummaryCellPart(e){ 	  
+	  var data = billForm.getData();
+	  var rows = e.data;
+	  var sumPamt = 0;
+	  //|| e.field == "amt"
+	  if(e.field == "amt") 
+	  {   
+		  for (var i = 0; i < rows.length; i++)
+		  {
+			  
+			  if(rows[i].billPackageId=="0"){
+				  sumPamt  += parseFloat(rows[i].amt);
+			  }
+		  }
+		  total = sumPamt;
+		  
+	  } 
+}
+

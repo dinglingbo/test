@@ -16,12 +16,14 @@ var comPartNameAndPY = null;
 var comPartCode = null;
 var comServiceId = null;
 var comSearchGuestId = null;
+var serviceTypeIdEl = null;
 var gsparams = {};
 var storehouseHash = {};
 var billTypeIdHash = {};
 var settTypeIdHash = {};
 var enterTypeIdHash = {};
 var partBrandIdHash = {};
+var servieTypeHash = {};
 var billStatusHash = {
     "0":"未审",
     "1":"已审",
@@ -34,6 +36,12 @@ var StatusHash = {
 		"1" : "待发货",
 		"2" : "待收货",
 		"4" : "已入库",
+	};
+var typeIdHash = {
+		1 : "采购订单",
+		2 : "销售订单",
+		3 : "采购退货",
+		4 : "销售退货"
 	};
 
 //单据状态
@@ -64,6 +72,7 @@ $(document).ready(function(v)
     rightGrid.on("load", function () {
         rightGrid.mergeColumns(["serviceId"]);
     });
+    serviceTypeIdEl = nui.get("serviceTypeId");
     searchBeginDate = nui.get("beginDate");
     searchEndDate = nui.get("endDate");
  	comPartNameAndPY = nui.get("partNameAndPY");
@@ -85,7 +94,12 @@ $(document).ready(function(v)
 		edit();
 
 	});    
-	
+    initServiceType("serviceTypeId",function(data) {
+        servieTypeList = nui.get("serviceTypeId").getData();
+        servieTypeList.forEach(function(v) {
+            servieTypeHash[v.id] = v;
+        });
+    });
 	  var filter = new HeaderFilter(rightGrid, {
 	        columns: [
 	            { name: 'stateMan' },
@@ -115,6 +129,11 @@ $(document).ready(function(v)
                     e.cellHtml = storehouseHash[e.value].name;
                 }
                 break;
+        	case "typeCode":
+        		if (typeIdHash && typeIdHash[e.value]) {
+        			e.cellHtml = typeIdHash[e.value];
+        		}
+        		break;
             case "comPartBrandId":
             	if(partBrandIdHash && partBrandIdHash[e.value]){
             		e.cellHtml = partBrandIdHash[e.value].name;

@@ -16,9 +16,9 @@ var auditSignHash = {
     "1":"是"
 };
 var settleStatusHash = {
-    "0":"未结算",
-    "1":"部分结算",
-    "2":"已结算"
+    "0":"未收款",
+    "1":"部分收款",
+    "2":"已收款"
 };
 var auditSignList = [
     {id:0,text:"未审"},

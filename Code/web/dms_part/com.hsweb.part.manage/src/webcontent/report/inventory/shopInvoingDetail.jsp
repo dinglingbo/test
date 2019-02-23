@@ -1,5 +1,4 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
-<%@include file="/common/common.jsp"%>
 <%@include file="/common/commonPart.jsp"%>
 <html>
 <!-- 
@@ -9,7 +8,7 @@
 -->
 <head>
     <title>门店进销存明细</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/shopInvoingDetail.js?v=1.0.13"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/report/shopInvoingDetail.js?v=1.0.15"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -78,6 +77,8 @@
                   allowInput="true"
                   valueFromSelect="false"
                   width="100px">
+                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
                 
 				
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>            
@@ -136,7 +137,8 @@
             <div property="columns">
                 <div allowSort="false"  field="billTypeId" name="billTypeId" width="90" headerAlign="center" header="操作类型" dataType="float" align="left"></div>
                 <div allowSort="false"  field="operator" name="operator" headerAlign="center" header="操作员" dataType="float" align="left"></div>
-                <div allowSort="false"  field="guestName" name="guestName" width="250" headerAlign="center" header="客户/供应商" dataType="float" align="left"></div>
+                <div allowSort="false"  field="guestName" name="guestName" width="250" headerAlign="center" header="客户/供应商" dataType="float" align="left"></div>\
+                <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
             </div>
         </div>
         

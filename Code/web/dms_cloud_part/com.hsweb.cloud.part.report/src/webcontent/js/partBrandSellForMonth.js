@@ -225,7 +225,7 @@ function quickSearch(type){
 function onSearch(){
 	var params = getSearchParam();
     params.startDate = beginDateEl.getFormValue();
-    params.endDate = endDateEl.getValue();
+    params.endDate = endDateEl.getFormValue();
 
     doSearch(params);
 }
@@ -233,7 +233,7 @@ function doSearch(params)
 {
 	initGrid(beginDateEl.getFormValue(), endDateEl.getFormValue());
     params.startDate = beginDateEl.getFormValue();
-    params.endDate = endDateEl.getValue();
+    params.endDate = endDateEl.getFormValue();
 
     rightGrid.load({
         params:params,

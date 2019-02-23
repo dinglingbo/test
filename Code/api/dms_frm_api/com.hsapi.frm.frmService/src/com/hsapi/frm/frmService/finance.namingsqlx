@@ -244,9 +244,12 @@
 			inner join wb_common.com_guest b
 			on a.guest_id = b.id
 			where a.audit_sign = 1
-				<isNotEmpty prepend="and" property="orgid"> 
-                    (a.orgid = #orgid#)
+                <isNotEmpty prepend="and" property="orgid">
+                (a.orgid = #orgid#)
                 </isNotEmpty>
+                <isNotEmpty prepend="and" property="orgids">
+                (a.orgid in ($orgids$))
+               </isNotEmpty>
                 <!--本日 昨日 本周 上周 本月 下月 -->
                 <isNotEmpty prepend="and" property="startDate">  
                     (a.audit_date &gt;= #startDate#)

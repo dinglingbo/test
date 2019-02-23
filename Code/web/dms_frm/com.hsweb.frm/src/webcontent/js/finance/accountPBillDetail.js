@@ -10,6 +10,7 @@ var advanceGuestIdEl = null;
 var settleStatusEl = null;
 var enterTypeIdList = [];
 var enterTypeIdHash = {};
+var orgidsEl = null;
 var settleStatusHashType=[{name:"未结算",id:"0"},{name:"部分结算",id:"1"},{name:"已结算",id:"2"}];
 $(document).ready(function(v) {
     mainGrid = nui.get("mainGrid");
@@ -29,6 +30,22 @@ $(document).ready(function(v) {
             enterTypeIdHash[v.id] = v;
         });
 
+    });
+    orgidsEl = nui.get("orgids");
+    orgidsEl.setData(currOrgList);
+    if(currOrgList.length==1){
+    	orgidsEl.hide();
+    }else{
+    	orgidsEl.setValue(currOrgid);
+    }
+    mainGrid.on("drawcell", function (e) {
+    	if (e.field == "orgid"){
+        	for(var i=0;i<currOrgList.length;i++){
+        		if(currOrgList[i].orgid==e.value){
+        			e.cellHtml = currOrgList[i].name;
+        		}
+        	}
+        }
     });
     var filter = new HeaderFilter(mainGrid, {
         columns: [
@@ -138,7 +155,12 @@ function doSearch() {
     params.endDate = endDateEl.getValue();
     params.guestId = advanceGuestIdEl.getValue();
     params.billDc = -1;
-
+    var orgidsElValue = orgidsEl.getValue();
+    if(orgidsElValue==null||orgidsElValue==""){
+    	 params.orgids =  currOrgs;
+    }else{
+    	params.orgid=orgidsElValue;
+    }
     mainGrid.load({
         params:params,
         token : token

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryOtherIncomeAndExpenditureSummaryzhi" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryOtherIncomeAndExpenditureSummaryzhi" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.frm.frmSetting.queryOtherIncomeAndExpenditureSummaryzhi&#xD;&#xA;&#xD;&#xA;" title="Administrator&#x9;18-11-11 下午1:57">
     <location x="363" y="385"/>
     <size height="100" width="508"/>
@@ -11,6 +11,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
+    <targetConnections>link2</targetConnections>
     <location x="405" y="150"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -39,6 +40,15 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign1</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>orgid ==null &amp;&amp; orgids == null</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="242" y="150"/>
     <size height="28" width="28"/>
@@ -48,8 +58,12 @@
       <process:to type="query">page/isCount</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">params/orgid</process:to>
+      <process:from type="query" pattern="reference">params/orgids</process:from>
+      <process:to type="query">orgids</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/orgid</process:from>
+      <process:to type="query">orgid</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -88,13 +102,33 @@
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign1</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="315" y="237"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign1label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">params/orgid</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
+    <location x="313" y="273"/>
+    <figSize height="17" width="32"/>
+    <node>assign1</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-11-10 15:54:05" date="2018-11-10Z" description="" name="queryOtherIncomeAndExpenditure" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="Int"/>
     <process:variable anyType="com.alibaba.fastjson.JSONObject" description="" historyStateLocation="client" isArray="false" name="data"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="temp"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orgid" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orgids" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>
@@ -107,4 +141,5 @@
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
+  <process:transactionType>true</process:transactionType>
 </process:tBusinessLogic>

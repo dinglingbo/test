@@ -8,7 +8,7 @@
 -->
 <head>
 <title>移仓单明细</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrderQuery.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrderQuery.js?v=1.0.2"></script>
 <style type="text/css">
 .title {
 	width: 90px;
@@ -71,8 +71,12 @@
                 <span class="separator"></span>
                 <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <span class="separator"></span>
-
+				
+				
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
+                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
+                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+                
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a>
@@ -131,6 +135,7 @@
                     <div field="auditor" width="60" headerAlign="center" header="审核人"></div>
                     <div allowSort="true" field="auditDate" width="160" headerAlign="center" header="审核日期" dateFormat="yyyy-MM-dd HH:mm"></div>
                     <div allowSort="true" field="partId" width="40" headerAlign="center" header="配件ID"></div>
+                    <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
                 </div>
             </div>
         </div>

@@ -36,6 +36,15 @@
       <targetNode>invokePojo0</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>orgid ==null &amp;&amp; orgids == null</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="248" y="100"/>
     <size height="28" width="28"/>
@@ -64,6 +73,14 @@
       <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
       <process:to type="query">params/orgid</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/orgid</process:from>
+      <process:to type="query">orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/orgids</process:from>
+      <process:to type="query">orgids</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="247" y="136"/>
@@ -76,6 +93,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
+    <targetConnections>link1</targetConnections>
     <location x="395" y="100"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -120,6 +138,25 @@
     <location x="539" y="136"/>
     <figSize height="20" width="40"/>
     <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign2" name="赋值2" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign2</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="249" y="210"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign2label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">params/orgid</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
+    <location x="243" y="246"/>
+    <figSize height="20" width="40"/>
+    <node>assign2</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

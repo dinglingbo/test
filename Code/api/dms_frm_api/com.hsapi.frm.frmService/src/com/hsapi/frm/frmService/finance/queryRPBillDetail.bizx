@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="queryRPBillDetail" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="&#xD;&#xA;客户/供应商欠款，应收应付明细 orgid  startDate endDate guestId  notSettled表示未付金额大于0的 billDc sortField  $sortOrder$ &#xD;&#xA;" title="Administrator&#x9;18-6-4 下午7:57">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="&#xD;&#xA;客户/供应商欠款，应收应付明细 orgid  startDate endDate guestId  notSettled表示未付金额大于0的 billDc sortField  $sortOrder$ &#xD;&#xA;com.hsapi.frm.frmService.finance.queryRPBillDetail" title="Administrator&#x9;18-6-4 下午7:57">
     <location x="45" y="-15"/>
-    <size height="100" width="528"/>
+    <size height="106" width="528"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" collapsed="false" type="start">
     <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="link2" isDefault="true" type="transition">
@@ -51,6 +51,15 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" type="transition">
+      <sourceNode>assign0</sourceNode>
+      <targetNode>assign9</targetNode>
+      <process:transitionCondition>
+        <process:complexCondition>
+          <process:code>orgid ==null &amp;&amp; orgids == null</process:code>
+        </process:complexCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <targetConnections>link6</targetConnections>
     <location x="248" y="100"/>
     <size height="28" width="28"/>
@@ -76,8 +85,12 @@
       <process:to type="query">page/length</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
-      <process:to type="query">params/orgid</process:to>
+      <process:from type="query" pattern="reference">params/orgid</process:from>
+      <process:to type="query">orgid</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">params/orgids</process:from>
+      <process:to type="query">orgids</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -91,6 +104,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
+    <targetConnections>link1</targetConnections>
     <location x="395" y="100"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
@@ -136,11 +150,32 @@
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值9" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>invokePojo0</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="324" y="180"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign9label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">params/orgid</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
+    <location x="322" y="216"/>
+    <figSize height="17" width="32"/>
+    <node>assign9</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-06-04 19:26:42" date="2018-06-04Z" description="" name="queryAccountBalance" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" name="auditSign" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orgids" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orgid" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>

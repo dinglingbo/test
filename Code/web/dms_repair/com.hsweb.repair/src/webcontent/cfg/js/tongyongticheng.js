@@ -63,9 +63,9 @@ function saveAll(){
 		var i=grid.getData();
 		var u=[];
 	}
-	for (var j = 0; j < u.length; j++) {
+	/*for (var j = 0; j < u.length; j++) {
 		u[j].salesDeductValue = parseFloat(u[j].salesDeductValue);
-	}
+	}*/
 	nui.ajax({
         url:  apiPath + repairApi+"/com.hsapi.repair.baseData.brand.saveBusinessDeduct.biz.ext",
         type: "post",
@@ -91,9 +91,9 @@ function savePart(){
 		var i=partGrid.getData();
 		var u=[];
 	}
-	for (var j = 0; j < u.length; j++) {
+	/*for (var j = 0; j < u.length; j++) {
 		u[j].salesDeductValue = parseFloat(u[j].salesDeductValue);
-	}
+	}*/
 	nui.ajax({
         url:  apiPath + repairApi+"/com.hsapi.repair.baseData.brand.saveBusinessDeduct.biz.ext",
         type: "post",

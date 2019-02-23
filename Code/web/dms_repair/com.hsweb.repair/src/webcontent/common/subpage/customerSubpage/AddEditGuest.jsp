@@ -11,7 +11,7 @@
 -->
 <head>
     <title>新增客户档案</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.48"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/CustomerProfile/AddEditGuset.js?v=1.1.51"></script>
     <style type="text/css">
         table {
             font-size: 12px;
@@ -25,6 +25,19 @@
         .required {
             color: red;
         }
+         a.optbtn {
+        width: 60px; 
+        height: 20px; 
+        border: 1px #d2d2d2 solid;
+        background: #f2f6f9;
+        text-align: center;
+        display: inline-block;    
+        /* line-height: 26px; */
+        margin: 0 4px;
+        color: #000000;
+        text-decoration: none;
+        border-radius: 5px; 
+    }
     </style>
 </head>
 
@@ -128,6 +141,21 @@
                     </td>
                     <td>
                         <input name="birthday" allowInput="false" format="yyyy-MM-dd" class="nui-datepicker" width="100%" />
+                    </td>
+                </tr>
+                 <tr>
+                    <td class="form_label">
+                        <label>微信服务号：</label>
+                    </td>
+                    <td nowrap="nowrap">
+                       <input class="nui-textbox" name="wechatServiceId" width="80%" id="wechatServiceId" />
+                        <a class="optbtn" href="javascript:void()" onclick="wechatBin()">绑定</a>
+                    </td>
+                    <td class="form_label" colspan="1">
+                       <label>微信ID：</label>
+                    </td>
+                    <td>
+                       <input class="nui-textbox" name="wechatOpenId" width="100%" id="wechatOpenId" >
                     </td>
                 </tr>
                 <tr>
@@ -519,6 +547,12 @@
                                     </div>
                                     <div field="idNo" allowSort="true" align="left" headerAlign="center" width="">
                                         身份证号码
+                                    </div>
+                                     <div field="wechatServiceId" allowSort="true" align="left" headerAlign="center" width="">
+                                        微信服务号
+                                    </div>
+                                      <div field="wechatOpenId" allowSort="true" align="left" headerAlign="center" width="">
+                                        微信ID
                                     </div>
                                     <div field="remark" allowSort="true" align="left" headerAlign="center" width="">
                                         备注

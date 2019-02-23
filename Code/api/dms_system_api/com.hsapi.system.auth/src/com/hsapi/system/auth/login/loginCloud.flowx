@@ -236,9 +236,10 @@
       <sourceNode>assign2</sourceNode>
       <targetNode>assign3</targetNode>
       <process:transitionCondition>
-        <process:complexCondition>
-          <process:code>1==2</process:code>
-        </process:complexCondition>
+        <process:simpleCondition operator="OBJNE">
+          <process:leftOperand type="query">rCode</process:leftOperand>
+          <process:rightOperand type="query">code</process:rightOperand>
+        </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
@@ -248,14 +249,6 @@
     <process:copy>
       <process:from type="expression" pattern="reference">sessionContext.getString(&quot;rCode&quot;)</process:from>
       <process:to type="query">rCode</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">yx001</process:from>
-      <process:to type="query">userId</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="literal" pattern="reference">000000</process:from>
-      <process:to type="query">password</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">

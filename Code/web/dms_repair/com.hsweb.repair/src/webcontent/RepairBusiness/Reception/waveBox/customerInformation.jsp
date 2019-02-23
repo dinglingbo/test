@@ -52,14 +52,14 @@ table {
                         </td>
                         <td >
                          <input class="nui-hidden" name="id" id="guestId"/>
-                         <input class="nui-textbox" id="fullName" name="fullName" width="100%" onvaluechanged="onChanged(this.id)"/>
+                         <input class="nui-textbox" id="fullName" name="fullName" width="100%" />
                         </td>
                         <td class="form_label required">
                             <label>手机号码：</label>
                         </td>
                         <td>
-                            <input class="nui-textbox" id="mobile" name="mobile"  width="100%" onvaluechanged="onChanged(this.id)"  
-                            emptyText="请输入手机号查询" onenter="onChanged(this.id)"/>
+                            <input class="nui-textbox" id="mobile" name="mobile1"  width="100%" 
+                            emptyText="请输入手机号查询" />
                         </td>
                     </tr>
                     <tr>
@@ -75,7 +75,7 @@ table {
                             <label>客户简称：</label>
                         </td>
                         <td>
-                            <input class="nui-textbox" id="shortName" name="shortName" onValuechanged="processMobile(this.value)" width="100%"/>
+                            <input class="nui-textbox" id="shortName" name="shortName"  width="100%"/>
                         </td>
                     </tr>
                     <tr>
@@ -262,6 +262,8 @@ table {
         
         function onOk(){
         	var form = basicInfoForm.getData();//客户信息
+        	form.guestType ="01020103";
+        	form.mobile = form.mobile1;
         	var contact = $(".sjd li");//获取填写的联系人数据，数组类型
         	var arr = new Array;
         	var index = 0 ;
@@ -303,7 +305,9 @@ table {
                        rpb : arr
                     },
                     success: function(text) {
-							var guest = text.guest;
+                    		if(text.errCode == "S"){
+                    		showMsg("保存成功","S");
+                    			var guest = text.guest;
 							basicInfoForm.setData(guest);			 
 							var rpb = text.rpb;
 							$(".sjd").empty();
@@ -319,6 +323,7 @@ table {
 		                        '</li>');
 							}
 							clickLi();
+                    		}
                     }
             });
         }

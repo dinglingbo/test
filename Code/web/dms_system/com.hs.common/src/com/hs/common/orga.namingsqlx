@@ -63,6 +63,24 @@
 		inner join com_app_function b
 		on a.funccode = b.FUNCCODE
     </select>
+    <!--根据资源ID获取资源对应的资源详情，用于报表菜单结构输出-->
+    <select id="queryAppFunctionInfo" parameterClass="HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.FUNCCODE as funccode,
+			a.FUNCNAME as funcname,
+			a.FUNCDESC as funcdesc,
+			a.FUNCACTION as funcactioin,
+			a.PARAINFO as parainfo,
+			a.ISCHECK as ischeck,
+			a.FUNCTYPE as functype,
+			a.ISMENU as ismenu,
+			a.APP_ID appid,
+			a.TENANT_ID as tenantid,
+			a.FUNCGROUPID as funcgroupid
+		FROM
+			com_app_function AS a
+		where a.FUNCCODE = #resId#
+    </select>
     
     
     

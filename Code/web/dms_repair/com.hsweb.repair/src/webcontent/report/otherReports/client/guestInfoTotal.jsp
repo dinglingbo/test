@@ -104,8 +104,8 @@
                                     <span class="fa fa-bars fa-lg"></span>&nbsp;SA</a>
                                 <a class="nui-button" plain="false" onclick="GridLoad1(2)" id="" style="margin-right:5px;">
                                     <span class="fa fa-bars fa-lg"></span>&nbsp;来厂次数</a>
-                                <a class="nui-button" plain="false" onclick="GridLoad1(3)" id="" style="margin-right:5px;">
-                                    <span class="fa fa-bars fa-lg"></span>&nbsp;金额</a>
+                                <!-- <a class="nui-button" plain="false" onclick="GridLoad1(3)" id="" style="margin-right:5px;">
+                                    <span class="fa fa-bars fa-lg"></span>&nbsp;金额</a> -->
                             </td>
                         </tr>
                     </table>
@@ -146,8 +146,8 @@
                                     <span class="fa fa-bars fa-lg"></span>&nbsp;品牌</a>
                                 <a class="nui-button" plain="false" onclick="GridLoad2(1);" id="" style="margin-right:5px;">
                                     <span class="fa fa-bars fa-lg"></span>&nbsp;营销员</a>
-                                <a class="nui-button" plain="false" onclick="GridLoad2(0);" id="" style="margin-right:5px;">
-                                    <span class="fa fa-bars fa-lg"></span>&nbsp;意向等级</a>
+                                <!-- <a class="nui-button" plain="false" onclick="GridLoad2(0);" id="" style="margin-right:5px;">
+                                    <span class="fa fa-bars fa-lg"></span>&nbsp;意向等级</a> -->
                             </td>
                         </tr>
                     </table>

@@ -11,6 +11,7 @@
 <head>
 <title>Title</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.13"></script>
 </head>
 <style type="text/css"> 
     body {  
@@ -224,16 +225,14 @@ html, body{
                     <div property="columns" >
                         <div header="客户名称" field="guestFullName" width="30" headerAlign="center"></div>
                         <div header="客户手机" field="guestMobile" width="60" headerAlign="center"></div>
-                        <div header="车牌号" field="carNo" width="40" headerAlign="center"></div>
                         <div header="联系人名称" field="contactName" width="30" headerAlign="center"></div>
                         <div header="联系人手机" field="mobile" width="60" headerAlign="center"></div>
-                        <div header="变速箱型号" field="vin" width="70" headerAlign="center"></div>
                     </div>
                 </div>
                 <input id="search_name"
                 name="search_name"
                 class="nui-textbox aa"
-                emptyText="车牌号/客户名称/手机号/VIN码"
+                emptyText="客户名称/手机号"
                 onbuttonclick="onSearchClick()"
                 visible="false"
                 enabled="false"
@@ -249,7 +248,8 @@ html, body{
                 <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                 <a class="nui-button" iconCls="" plain="true" onclick="save()" id="addBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                 <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="addBtn"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="pay()" id="js"><span class="fa fa-dollar fa-lg"></span>&nbsp;结算</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="warehousing()" id="warehousing"visible="false">&nbsp;成品入库</a>
                 <span class="separator"></span>
 
                 <a class="nui-menubutton" plain="true" menu="#popupMenuPrint" id="menuprint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
@@ -259,6 +259,8 @@ html, body{
                     <li iconCls="" onclick="onPrint(3)" id="type11">打印结账单</li>
                     <li iconCls="" onclick="onPrint(4)" id="type11">打印结账单(小票)</li>
                     <li iconCls="" onclick="onPrint(5)" id="type11">打印领料单</li>
+                    <li iconCls="" onclick="bxOnPrint(1)" id="type11">打印报价单</li>
+                    <li iconCls="" onclick="bxOnPrint(2)" id="type11">打印结算单</li>
                 </ul>
 
 
@@ -275,7 +277,6 @@ html, body{
                 <ul id="popupMenuMore" class="nui-menu" style="display:none;">
                     <li iconCls="" onclick="unfinish()" id="addBtn">返单</li>
                     <li iconCls="" onclick="updateBillExpense()" id="billExpense">费用登记</li>
-                    <li iconCls="" onclick="updateBillExpense()" id="billExpense">成品销售</li>
                 </ul>
             </td>
         </tr>
@@ -316,8 +317,8 @@ html, body{
                       <label>驱动形式：</label>
                  </td>
                 <td class="" colspan="1">
-                	  <input name="engineModel"
-                    id="engineModel"
+                	  <input name="driveType"
+                    id="driveType"
                     class="nui-combobox width1"
                     property="editor" data="QD" emptytext="请选择驱动形式"
                     allowInput="true"
@@ -341,7 +342,7 @@ html, body{
                     property="editor" data="boxServiceTypeId" emptytext="请选择业务类型"
                     allowInput="true"
                     showNullItem="false"
-                    valueFromSelect="true"
+                    valueFromSelect="true"  onvaluechanged="changeBoxService"
                     nullItemText="请选择..." width="100%"/>
                 </td>
                 <td class="title"  style="width:100px">
@@ -748,18 +749,18 @@ allowDrag="false">
 	var boxServiceTypeId = [{id:1,text:"厂外维修"},{id:2,text:"厂内翻新"},{id:3,text:"厂外返修"}];
 	var QD = [{id:1,text:"FWD"},{id:2,text:"RWD"},{id:3,text:"4WD"}];
     	nui.parse();
-    	nui.get("billTypeId").setValue(6);
+    	
  var webBaseUrl = webPath + contextPath + "/";   
  var baseUrl = apiPath + repairApi + "/";       
  var mainGrid = null;  
- var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
+ var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainListBX.biz.ext";
  var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
  var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
  var cardTimesGridUrl = baseUrl+"com.hsapi.repair.baseData.query.queryCardTimesByGuestIdNopage.biz.ext";
  var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuestIdNoPage.biz.ext";
- var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext"; 
+ var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactListBX.biz.ext"; 
  var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
- var itemRpbGridUrl = baseUrl + "com.hsapi.repair.repairService.crud.getBXProjectMsg.biz.ext";
+ var itemRpbGridUrl = baseUrl +"com.hsapi.repair.baseData.item.queryRepairItemList.biz.ext";
  var itemGrid = null;
   
  var billForm = null;   
@@ -852,6 +853,7 @@ $(document).ready(function ()
     rpsItemGrid = nui.get("rpsItemGrid");
     billForm = new nui.Form("#billForm");
     sellForm = new nui.Form("#sellForm");
+    nui.get("billTypeId").setValue(6);
     initCarBrand("carBrandId",function(){
 				 
 	 });
@@ -1022,7 +1024,9 @@ $(document).ready(function ()
                     e.cellHtml = "--";
                     e.cancel = false;
                 }else{
-                    e.cellHtml = servieTypeHash[e.value].name;
+                	if(servieTypeHash[e.value]){
+                		e.cellHtml = servieTypeHash[e.value].name;
+                	}
                 }
                 break;
             case "workers":
@@ -1137,111 +1141,31 @@ $(document).ready(function ()
 	nui.get("enterDate").setValue(now);
     doSearchItem();
 });
-
 function setGuest(item){
-	var carNo = item.carNo||"";
+	//var carNo = item.carNo||"";
     var tel = item.guestMobile||"";
     var guestName = item.guestFullName||"";
     var carVin = item.vin||"";
-
-    var data = {
-        carNo: carNo,
-        isSettle: 0,
-        orgid: currOrgId
-    };
-    var params = {	
-    	"params":data
-    };
-    checkRpsMaintain(params, function(text){
-        var data = text.data||[];
-        if(data && data.length>0){
-            nui.showMessageBox({
-                showHeader: true,
-                width: 255,
-                title: "工单",
-                buttons: ["继续", "查看"],
-                message: "该客户存在未结算记录",
-                iconCls: "mini-messagebox-warning",
-                callback: function (action) {
-                    if(action == "继续"){
-                        var sk = document.getElementById("search_key");
-                        sk.style.display = "none";
-                        searchNameEl.setVisible(true);
-                        
-                        if(tel){
-                            tel = "/"+tel;
-                        }
-                        if(guestName){
-                            guestName = "/"+guestName;
-                        }
-                        if(carVin){
-                            carVin = "/"+carVin;
-                        }
-                        var t = carNo + tel + guestName + carVin;
-                        searchNameEl.setValue(t);
-                        //searchNameEl.setEnabled(false);
+	
+	 var sk = document.getElementById("search_key");
+     sk.style.display = "none";
+     searchNameEl.setVisible(true);
             
-                        doSetMainInfo(item);
-                    }else if(action == "查看"){
-                    	var list = data[0];
-                    	var opt={};
-                        opt.iconCls="fa fa-desktop";
-                    	if(list.billTypeId == "0"){
-                            opt.id="2082";
-                            opt.text="综合开单";
-                            opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.ReceptionMain.flow";
-                    	}
-                    	if(list.billTypeId == "2"){
-                            opt.id="2083";
-                            opt.text="洗美开单";
-                            opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.carWashBillMgr.flow";
-                    	}
-                    	if(list.billTypeId == "4"){
-                            opt.id="2084";
-                            opt.text="理赔开单";
-                            opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.claimMain.flow";
-                    	}
-                    	if(list.billTypeId == "3"){
-                            opt.id="2087";
-                            opt.text="销售开单";
-                            opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.sellMain.flow";
-                    	}
-                    	if(list.billTypeId == "5"){
-                            opt.id="2088";
-                            opt.text="退货开单";
-                            opt.url=webPath + contextPath + "/com.hsweb.RepairBusiness.sellReturn.flow";
-                    	}
-                    	var params = {
-                                type: 'view',
-                                carNo: carNo
-                            };
-                       window.parent.activeTabAndInit(opt,params);
-                    }else{
-                    	return;
-                    }
-                }
-            });
-        }else{
-            var sk = document.getElementById("search_key");
-            sk.style.display = "none";
-            searchNameEl.setVisible(true);
-            
-            if(tel){
-                tel = "/"+tel;
-            }
-            if(guestName){
-                guestName = "/"+guestName;
-            }
-            if(carVin){
-                carVin = "/"+carVin;
-            }
-            var t = carNo + tel + guestName + carVin;
-            searchNameEl.setValue(t);
-            //searchNameEl.setEnabled(false);
+    if(tel){
+        tel = +tel;
+    }
+    if(guestName){
+        guestName = "/"+guestName;
+    }
+    /* if(carVin){
+        carVin = "/"+carVin;
+    } */
+    var t =  tel + guestName ;
+    searchNameEl.setValue(t);
+    //searchNameEl.setEnabled(false);
 
-            doSetMainInfo(item);
-        }
-    });
+    doSetMainInfo(item);
+
 }
 
 
@@ -1308,6 +1232,7 @@ function onApplyClick(){
                 maintain.carModel = guest.carModel;
                 carNoEl.setText(guest.carNo);
                 billForm.setData(maintain);
+                changeBoxService(1);
                 nui.get("contactorName").setText(guest.contactName);
                 fguestId = guest.guestId||0;
                 fcarId = guest.carId||0;
@@ -1359,6 +1284,7 @@ function doSetMainInfo(car){
     mpartRate = 0;
     nui.get("contactorName").setText(car.contactName);
     billForm.setData(maintain);
+    changeBoxService(1);
     xyguest = maintain;
     fguestId = car.guestId||0;
     fcarId = car.id||0;
@@ -1517,7 +1443,7 @@ function setInitData(params){
                         xyguest = data;
                         nui.get("contactorName").setText(contactor.name);
                         billForm.setData(data);
-
+						changeBoxService(1);
                         var status = data.status||0;
                         var balaAuditSign = data.balaAuditSign||0;
                         if(balaAuditSign==1){                    	
@@ -1527,13 +1453,6 @@ function setInitData(params){
                         	doSetStyle(status, isSettle);                       	
                         }
 
-                        if(data.isOutBill){
-                        	nui.get("ExpenseAccount").setVisible(false);
-                        	nui.get("ExpenseAccount1").setVisible(true);
-                        }else{
-                        	nui.get("ExpenseAccount").setVisible(true);
-                        	nui.get("ExpenseAccount1").setVisible(false);
-                        }
 
                         var p1 = {
                         }
@@ -1613,9 +1532,6 @@ function add(){
     $("#showCarInfoEl").html("");
     $("#guestNameEl").html("");
     $("#guestTelEl").html("");
-
-    nui.get("ExpenseAccount").setVisible(true);
-    nui.get("ExpenseAccount1").setVisible(false);
     $("#statustable").find("span[name=statusvi]").attr("class", "nvstatusview");
     var tabList = document.querySelectorAll('.xz');
 	var natureId = null;
@@ -1632,6 +1548,10 @@ function save(){
 	itemF = "S";
 	partF = "S";
 	var data = billForm.getData(true);
+	if(data.boxServiceTypeId == 3){
+		unfinish();
+		return;
+	}
 	if(data.status == 2){
 		showMsg("工单已完工","W");
         return;        
@@ -1656,6 +1576,8 @@ function save(){
         	fault();
         }else if(nui.get("msg").value == 2){
         	attach();
+        }else if(nui.get("msg").value == 3){
+        	warehousing();
         }
     });
 }
@@ -1731,13 +1653,14 @@ function setFrom(data){
                 data.carModel = car.carModel;
                 data.carModelIdLy = car.carModelIdLy||"";
                 billForm.setData(data);
+                changeBoxService(1);
                 var status = data.status||0;
                 var isSettle = data.isSettle||0;
                 doSetStyle(status, isSettle);
                 nui.get("contactorName").setText(contactor.name);
                 //判断情况
                 if(itemF=="S" && partF=="S"){
-                	 alert("保存成功!");
+                	 showMsg("保存成功!","S");
                 }else if(itemF=="S" && partF=="E"){
                 	showMsg("配件修改失败!","E");
                 }else if(itemF=="E" && partF=="S"){
@@ -1846,6 +1769,7 @@ function saveNoshowMsg(callback,type){
                     data.carModel = car.carModel;
                     data.carModelIdLy = car.carModelIdLy||"";
                     billForm.setData(data);
+                    changeBoxService(1);
                     nui.get("contactorName").setText(contactor.name);
                     var status = data.status||0;
                     var isSettle = data.isSettle||0;
@@ -1922,6 +1846,7 @@ svrSaveMaintain(params, function(text){
     	 var oldData = billForm.getData();
     	 oldData.id = fserviceId;
      	 billForm.setData(oldData);
+     	 changeBoxService(1);
          var params1 = {
                  data:{
                      id:main.id||0
@@ -2021,6 +1946,7 @@ function unfinish(){
                 olddata.status = 1;
                 billForm.setData([]);
                 billForm.setData(olddata);
+                changeBoxService(1);
                 nui.get("contactorName").setText(maintain.contactorName);
                 var status = 1;
                 var isSettle = maintain.isSettle||0;
@@ -2545,49 +2471,21 @@ function doSearchMemCard(guestId)
     });
 }
 function addGuest(){
-    doApplyCustomer({},function(adction){
-        if("ok" == action)
-        {
-            var iframe = this.getIFrameEl();
-            var data = iframe.contentWindow.getSaveData();
-            var carNo = data.carNo||"";
-            var mobile = data.mobile||"";
-            var guestName = data.guestFullName||"";
-            if(carNo){
-                searchKeyEl.setValue(carNo);
-                searchKeyEl.setText(carNo);
-                searchKeyEl.doQuery();
-                return;
-            }
-            if(mobile){
-                searchKeyEl.setValue(mobile);
-                searchKeyEl.setText(mobile);
-                searchKeyEl.doQuery();
-                return;
-            }
-            if(guestName){
-                searchKeyEl.setValue(guestName);
-                searchKeyEl.setText(guestName);
-                searchKeyEl.doQuery();
-                return;
-            }
-
-        }
-    });
-    // var title = "新增客户资料";
-    // nui.open({
-    //     url: webPath + contextPath + "/com.hsweb.repair.DataBase.AddEditCustomer.flow?token="+token,
-    //     title: title, width: 560, height: 570,
-    //     onload: function () {
-    //         var iframe = this.getIFrameEl();
-    //         var params = {};
-    //         iframe.contentWindow.setData(params);
-    //     },
-    //     ondestroy: function (action)
-    //     {
-
-    //     }
-    // });
+    nui.open({
+         url: webPath + contextPath + "/com.hsweb.repair.repoart.customerInformation.flow?token="+token,
+         title: '新增客户',
+         width: 750, height: 570,
+         onload: function () {
+             var iframe = this.getIFrameEl();
+         },
+         ondestroy: function (action)
+         {
+             if("ok" == action)
+             {
+                 grid.reload();
+             }
+         }
+     });
 }
 function setPkgRate(){
     var main =  billForm.getData();
@@ -3794,10 +3692,6 @@ function showHealth(){
 }
 //var doFinishF = 1;
 function pay(){
-	if(nui.get("boxServiceTypeId").value == 2){
-		alert("厂外翻新不能结算，请选择成品销售!");
-		return;
-	}
 	var data = billForm.getData();
     if(!data.id){
         showMsg("请先保存工单!","W");
@@ -3831,6 +3725,7 @@ function pay(){
                         olddata.status = 2;
                         billForm.setData([]);
                         billForm.setData(olddata);
+                        changeBoxService(1);
                         nui.get("contactorName").setText(olddata.contactorName);
                         var status = 2;
                         var isSettle = olddata.isSettle||0;
@@ -3852,7 +3747,11 @@ function pay(){
                         }
                         loadDetail(p1, p2, p3,status);
                         nui.unmask(document.body);
-                        onPay(data);
+                        if(nui.get("boxServiceTypeId").value != 2){
+                        	onPay(data);
+                        }else{
+                        	warehousing();
+                        }
         	        }else{
         	        	nui.unmask(document.body)
         	        	showMsg(errMsg,"E");
@@ -3860,7 +3759,11 @@ function pay(){
         	    }, function(){
         	    });
         }else {
-        	onPay(data);
+        	 if(nui.get("boxServiceTypeId").value != 2){
+                	onPay(data);
+             }else{
+             	warehousing();
+             }
         }  
     }
 }
@@ -4238,6 +4141,7 @@ function chooseContactor(){
         		 maintain.contactorName = row.name;
         		 maintain.mobile = row.mobile;
         		 billForm.setData(maintain);
+        		 changeBoxService(1);
         		 saveNoshowMsg();
         	 }
          }
@@ -4675,21 +4579,27 @@ function saveItem(callback){
 var itemGridHash = {};
 function doSearchItem()
 {
+	 var p = {};
+    p.isDisabled = 0;
+    //查询洗美业务类型工时
+    p.serviceTypeIds = "6";   
+	var json={
+			params: p,
+			token:token
+	}
 	nui.ajax({
 		url : itemRpbGridUrl,
 		type : 'POST',
+		data : json,
 		cache : false,
 		contentType : 'text/json',
 		success : function(data) {
 			var temp = "";
-			var partTypes = nui.clone(data.partTypes);
-			for(var i=0;i<data.partTypes.length;i++){
-				if(i >= 20){
-					break;
-				}
-				var key = partTypes[i].id;
-				itemGridHash[key] = partTypes[i];
-				var aEl = "<a href='##' id='"+partTypes[i].id+"' value="+partTypes[i].name+"  name='HotWord' class='hui'>"+partTypes[i].name+"</a>";
+			var list = nui.clone(data.list);
+			for(var i=0;i<data.list.length;i++){
+				var key = list[i].id;
+				itemGridHash[key] = list[i];
+				var aEl = "<a href='##' id='"+list[i].id+"' value="+list[i].name+"  name='HotWord' class='hui'>"+list[i].name+"</a>";
 				 temp +=aEl;
 			}
 			$("#addAEl").html(temp);
@@ -4973,7 +4883,7 @@ function attach(){
 	if(!formData.id){
 		if(!formData.guestId){
 			nui.get("msg").setValue("");
-			nui.alert("客户ID不能为空","温馨提示");
+			showMsg("客户ID不能为空!","W");
 			return;
 		}
 		save();
@@ -5005,7 +4915,7 @@ function attach(){
 	if(!formData.id){
 		if(!formData.guestId){
 			nui.get("msg").setValue("");
-			nui.alert("客户ID不能为空","温馨提示");
+			showMsg("客户ID不能为空!","W");
 			return;
 		}
 		save();
@@ -5034,7 +4944,10 @@ function attach(){
 	                }
 	    });
 	}
-} 
+}
+
+
+
     </script>
 </body>
 </html>

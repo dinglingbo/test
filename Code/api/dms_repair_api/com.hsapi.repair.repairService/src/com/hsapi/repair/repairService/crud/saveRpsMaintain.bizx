@@ -525,7 +525,8 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link31</targetConnections>
-    <targetConnections>link64</targetConnections>
+    <targetConnections>link65</targetConnections>
+    <targetConnections>link66</targetConnections>
     <location x="390" y="387"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
@@ -1243,7 +1244,18 @@
   <nodes xsi:type="process:tAssign" id="assign29" name="赋值26" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link64" name="link64" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign29</sourceNode>
+      <targetNode>assign30</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link66" name="link66" displayName="连接线" type="transition">
+      <sourceNode>assign29</sourceNode>
       <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">maintain/carNo</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link63</targetConnections>
     <location x="138" y="240"/>
@@ -1254,6 +1266,25 @@
     <location x="133" y="276"/>
     <figSize height="17" width="39"/>
     <node>assign29</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign30" name="赋值27" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link65" name="link65" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign30</sourceNode>
+      <targetNode>assign5</targetNode>
+    </sourceConnections>
+    <targetConnections>link64</targetConnections>
+    <location x="269" y="195"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign30label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">1</process:from>
+      <process:to type="query">maintain/carNo</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign30label" name="label" nodeType="label">
+    <location x="264" y="231"/>
+    <figSize height="17" width="39"/>
+    <node>assign30</node>
   </nodes>
   <topRuler>
     <guides position="1523" horizontal="true"/>

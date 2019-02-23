@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Require-Bundle: com.hsapi.part.data,com.eos.foundation,com.hs.common
+Require-Bundle: com.hsapi.part.data,com.hs.common
 Bundle-Vendor: chenziming
 eos-webCtxPath: common1
 Bundle-Version: 1.0.0

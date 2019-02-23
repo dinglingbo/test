@@ -104,7 +104,7 @@
             <div width="40" type="indexcolumn">序号</div>
             <div header="入库信息" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" field="serviceId" width="150" summaryType="count" headerAlign="center" header="入库单号"></div>
+                    <div allowSort="true" field="serviceId" width="180" summaryType="count" headerAlign="center" header="入库单号"></div>
                     <div field="guestFullName" name="guestFullName" width="250" headerAlign="center" header="供应商"></div>
                     <div field="orderMan" name="orderMan" width="60" headerAlign="center" header="采购员"></div>
                     <div allowSort="true" field="billTypeId" width="60" headerAlign="center" header="票据类型"></div>

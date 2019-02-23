@@ -29,7 +29,7 @@ $(document).ready(function() {
 	partDetailGrid = nui.get("partDetailGrid");
     partDetailGrid.setUrl(getDetailPartUrl);
     signBtn=nui.get("signBtn");
-    if(currSrmUserId=='1'){
+    if(currSrmUserId){
     	signBtn.setVisible(false);
     }
     tree = nui.get("tree1");

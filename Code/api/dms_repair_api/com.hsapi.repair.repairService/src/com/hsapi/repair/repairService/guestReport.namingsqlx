@@ -215,7 +215,13 @@
             sum(case when a.visit_mode = '011402' then 1 end) as infoToScout
         from wb_crm.crm_visit_record a 
         left JOIN wb_crm.crm_guest b on b.id = a.main_id 
-        where a.service_type != 1  and a.orgid = #orgid#
+        where a.service_type != 1 
+            <isNotNull prepend = "" property = "orgid">
+                AND  a.orgid = #orgid# 			
+            </isNotNull>
+            <isNotNull prepend = "" property = "orgids">
+                AND  a.orgid in ($orgids$)		
+            </isNotNull>
     </sql>
     
             <!-- 回访统计  按品牌汇总-->

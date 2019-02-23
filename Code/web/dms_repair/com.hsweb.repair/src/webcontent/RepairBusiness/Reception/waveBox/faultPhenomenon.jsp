@@ -294,9 +294,9 @@
 			  	  				var brr = [value1,value2,value3,value4];
 			  	  				var params = [];
 			  	  				params.add(lockGearStatus);//0
-			  	  				params.add(lockGearStatus);//1
-			  	  				params.add(abnormalSoundStatus);//2
-			  	  				params.add(skiddingStatus);//3
+			  	  				params.add(abnormalSoundStatus);//1
+			  	  				params.add(skiddingStatus);//2
+			  	  				params.add(attackStatus);//3
 			  	  				for(var i = 0 , l = brr.length ; i < l ; i++){
 			  	  					if(brr[i] != 0){
 			  	  						document.getElementById(""+arr[i]+"").innerHTML = params[i][brr[i]-1].text;
@@ -306,7 +306,7 @@
 			  	  					document.getElementById("span5").innerHTML = holeOilDesc;
 			  	  				}
 			  	  				if(!gearMoveStatus){
-			  	  					document.getElementById("span1").innerHTML = "挂挡不能行走;";
+			  	  					document.getElementById("span6").innerHTML = "挂挡不能行走;";
 			  	  				}
                     		}
                     	}

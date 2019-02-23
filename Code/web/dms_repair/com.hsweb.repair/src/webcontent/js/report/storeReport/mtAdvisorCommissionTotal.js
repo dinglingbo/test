@@ -56,12 +56,12 @@ function load(e){
     if(e != undefined){
         cType = e;
     }
-    
+    grid1.setData([]);
     var data= form.getData();
 	data.endDate = formatDate(data.endDate) +" 23:59:59";
     data.groupByType = cType;
     updateGridColoumn(cType);
-    data.deductMode = 3;
+    data.deductMode = 1;
     var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){
     	data.orgids =  currOrgs;
@@ -160,7 +160,7 @@ function quickSearch(type){
  }else{
  	params.orgid=orgidsElValue;
  }
-params.deductMode = 3;
+params.deductMode = 1;
 grid1.load({params:params});
 updateGridColoumn(cType);
 }

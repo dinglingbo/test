@@ -97,8 +97,9 @@
                 <td>
                		 <input class="nui-combobox"  required="false" id="isCanSettle" name="isCanSettle" textField="name"  value="0" valueField="id" />
                 </td>
-                <td align="right">是否低于成本价  <br>销售权限：</td>
-                <td>
+               <!--  汽配 -->
+                <td align="right" style="display:none">是否低于成本价  <br>销售权限：</td>
+                <td style="display:none">
                		 <input class="nui-combobox"  required="false" id="isCanBelowCost" name="isCanBelowCost" textField="name"  value="0" valueField="id" />
                 </td>
              </tr>

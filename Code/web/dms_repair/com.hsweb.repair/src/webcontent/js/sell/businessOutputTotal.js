@@ -175,6 +175,7 @@ function load(e){
 }
 
 function updateGridColoumn(e){
+	
     var column = mainGrid.getColumn("groupName");
     if(e == 0){
     	mainGrid.updateColumn(column,{header:"日期"});

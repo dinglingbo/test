@@ -39,5 +39,8 @@
 			
 	</select>
 
+	<update id="updateRpsMaintain" parameterClass="java.util.HashMap">
+		update rps_maintain set car_vin = #carVin# where ifnull(car_vin,'') = '' and car_id = #carId#
+	</update>
 
 </sqlMap>

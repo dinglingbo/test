@@ -10,7 +10,7 @@
 <head>
 <title>配件品牌</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + contextPath%>/basic/js/partBrandMgr.js?v=1.0.19"></script>
+<script src="<%=webPath + contextPath%>/basic/js/partBrandMgr.js?v=1.0.32"></script>
   	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
   	    <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
  	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
@@ -111,6 +111,7 @@
                                         <div field="code" width="60" headerAlign="center" allowSort="true">编码</div>
                                         <div field="name" width="100" headerAlign="center" allowSort="true">名称</div>
                                         <div field="firstCodeCh" width="100" headerAlign="center" allowSort="true">代码</div>
+                                        <div field="imageUrl" width="30" headerAlign="center" allowSort="true">图片</div>
                                         <div field="manufacture" width="100" headerAlign="center" allowSort="true">生产产家</div>
                                         <div field="remark" headerAlign="center" allowSort="true">备注</div>
                                         <div field="isDisabled" width="60" allowSort="true" headerAlign="center">是否禁用</div>
@@ -223,8 +224,9 @@
 			            var domain = up.getOption('domain');
 			            //var sourceLink = domain + res.key;//获取上传文件的链接地址
 			            var info1 = JSON.parse(info);
-			            alert("上传成功");
-			            nui.get("logoImg").setValue("http://qxy60.7xdr.com/" + info1.hash);
+			            var imageUrl="http://qxy60.7xdr.com/" + info1.hash;
+			            savePicture(imageUrl);
+			         // nui.get("logoImg").setValue("http://qxy60.7xdr.com/" + info1.hash);
 			        },
 			        'Error': function (up, err, errTip) {
 			            alert(errTip);

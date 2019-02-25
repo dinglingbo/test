@@ -104,8 +104,8 @@
             </div>
             <div header="数量单价" headerAlign="center">
                 <div property="columns">
-                    <div allowSort="true" datatype="int" field="enterQty" width="60" headerAlign="center" header="入库数"  summaryType="sum"></div>
-                    <div allowSort="true" datatype="int" field="outableQty" width="60" headerAlign="center" header="可出库数"  summaryType="sum"></div>
+                    <div allowSort="true" datatype="float" field="enterQty" width="60" headerAlign="center" header="入库数"  summaryType="sum"></div>
+                    <div allowSort="true" datatype="float" field="outableQty" width="60" headerAlign="center" header="可出库数"  summaryType="sum"></div>
                     <div allowSort="true" datatype="float" field="noTaxUnitPrice" width="60" headerAlign="center" header="单价"></div>
                     <div allowSort="true" datatype="float" field="noTaxAmt" width="60" headerAlign="center" header="金额"  summaryType="sum"></div>
                 </div>

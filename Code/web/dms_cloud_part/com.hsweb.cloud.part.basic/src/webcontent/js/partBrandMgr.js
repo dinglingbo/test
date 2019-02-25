@@ -519,3 +519,10 @@ function ormdatasub(){
         }
     });
 }
+
+var saveUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.savePartBrand.biz.ext";
+function savePicture(){
+    var row=rightGrid.getSelected();
+    if(row.length<0) return;
+    
+}	

@@ -9,7 +9,15 @@
 -->
 <head>
 <title>配件品牌</title>
-<script src="<%=webPath + contextPath%>/basic/js/partBrandMgr.js?v=1.0.16"></script>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<script src="<%=webPath + contextPath%>/basic/js/partBrandMgr.js?v=1.0.19"></script>
+<!-- <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script> -->
+<!--  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"> -->
+<%--  <script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script> --%>
+<!--  <script src="https://cdn.staticfile.org/plupload/2.1.9/moxie.js"></script> -->
+<!-- <script src="https://cdn.staticfile.org/plupload/2.1.9/plupload.dev.js"></script>  -->
+<%--  <script src="<%= request.getContextPath() %>/common/qiniu/qiniu.js" type="text/javascript"></script> --%>
+
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -77,7 +85,8 @@
                                     <a class="nui-button" plain="true" iconCls="" onclick="addPartBrand()" id="addRight"><span class="fa fa-plus fa-lg"></span>&nbsp;新增品牌</a>
                                     <a class="nui-button" plain="true" iconCls="" onclick="editPartBrand()" id="editRight"><span class="fa fa-edit fa-lg"></span>&nbsp;修改品牌</a>
                                     <a class="nui-button" plain="true" iconCls="" onclick="disablePartBrand()" id="disabledRight" visible="false"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用品牌</a>
-                                    <a class="nui-button" plain="true" iconCls="" onclick="enablePartBrand()" id="enabledRight" visible="false"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用品牌</a>
+                                    <a class="nui-button" plain="true" iconCls="" onclick="enablePartBrand()" id="enabledRight" visible="false"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用品牌</a>          
+								
                                 </td>
                             </tr>
                         </table>

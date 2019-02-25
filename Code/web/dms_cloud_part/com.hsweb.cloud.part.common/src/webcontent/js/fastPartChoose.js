@@ -111,6 +111,7 @@ $(document).ready(function(v)
 
     enterGrid.setUrl(enterUrl);
     enterGrid.on("beforeload",function(e){
+//    	e.data.params.isDisabled=0;
         e.data.token = token;
     });
     enterGrid.on("load", function(e) {
@@ -384,6 +385,7 @@ function setInitData(params, ck, cck){
     if(tab.name == "enterTab"){
         params.sortField = "B.ENTER_DATE";
         params.sortOrder = "asc";
+//        params.isDisabled=0;
         enterGrid.load({params:params},function(e){
             enterGrid.focus();
         });

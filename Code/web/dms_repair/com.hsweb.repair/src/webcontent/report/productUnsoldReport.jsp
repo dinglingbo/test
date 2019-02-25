@@ -59,7 +59,7 @@ body {
     </div>
 
     <div class="nui-fit">
-        <div id="grid" class="nui-datagrid" datafield="list" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:100%;"
+        <div id="grid" class="nui-datagrid" datafield="list" allowcelledit="true" sortMode="client" url="" allowcellwrap="true" style="width:100%;height:100%;"
         totalField="page.count" pageSize="50" sizeList=[20,50,100]>
         <div property="columns">
             <div field="partCode"  name="" headeralign="center" align="center" width="100">配件编码 </div>
@@ -73,10 +73,10 @@ body {
             <div field="carTypeIdT"  name="" headeralign="center" align="center" width="100">配件分类三级 </div>
             <div field="spec"  name="" headeralign="center" align="center" width="100">规格 </div>
             <div field="storeId"  name="" headeralign="center" align="center" width="100">仓库 </div>
-            <div field="outableQty"  name="" headeralign="center" align="center" width="100">数量 </div>
-            <div field="enterPrice"  name="" headeralign="center" align="center" width="100">单价 </div>
-            <div field="enterAmt"  name="" headeralign="center" align="center" width="100">金额  </div>
-            <div field="branchStockAge"  name="" headeralign="center" align="center" width="100">库龄  </div>
+            <div field="outableQty"  name="" headeralign="center" align="center" width="100" dataType="float" allowSort="true">数量 </div>
+            <div field="enterPrice"  name="" headeralign="center" align="center" width="100" dataType="float" allowSort="true">单价 </div>
+            <div field="enterAmt"  name="" headeralign="center" align="center" width="100" dataType="float" allowSort="true">金额  </div>
+            <div field="branchStockAge"  name="" headeralign="center" align="center" width="100" dataType="float" allowSort="true">库龄  </div>
             <div field="enterDate"  name="" headeralign="center" align="center" width="100" dateFormat="yyyy-MM-dd">入库日期</div>
             <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
 

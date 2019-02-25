@@ -110,12 +110,12 @@ pageEncoding="UTF-8" session="false"%>
                       <div property="columns" >	
                           <div field="serviceCode" name="serviceCode" allowsort="true" width="140" headerAlign="center" header="工单号"></div> 
                           <div field="checkMan" name="checkMan" width="100" allowsort="true" headerAlign="center" header="查车技师" ></div>
-                          <div field="checkPoint" name="checkPoint" headerAlign="center" allowsort="true" visible="true"  align="center" header="本次检查得分"> </div>
-                          <div field="lastPoint" name="lastPoint" headerAlign="center" allowsort="true" visible="true"  align="center" header="上次次检查得分"> </div>
+                          <div field="checkPoint" name="checkPoint" headerAlign="center" allowsort="true" visible="true"  align="center" header="本次检查得分" dataType="float"> </div>
+                          <div field="lastPoint" name="lastPoint" headerAlign="center" allowsort="true" visible="true"  align="center" header="上次次检查得分" dataType="float"> </div>
                           <div field="lastCheckDate" name="lastCheckDate" allowsort="true" width="100" headerAlign="center" header="上次检查时间" dateFormat="yyyy-MM-dd HH:mm"></div>
                           <div field="checkDate" name="checkDate" width="100" allowsort="true" headerAlign="center" header="本次检查时间" dateFormat="yyyy-MM-dd HH:mm"></div>
-                          <div field="enterKilometers" headerAlign="center" allowsort="true" visible="true"   align="center" header="本次检查里程"> </div>
-                          <div field="lastKilometers" headerAlign="center" allowsort="true" visible="true"   align="center" header="上次检查里程"> </div>
+                          <div field="enterKilometers" headerAlign="center" allowsort="true" visible="true"   align="center" header="本次检查里程" dataType="float"> </div>
+                          <div field="lastKilometers" headerAlign="center" allowsort="true" visible="true"   align="center" header="上次检查里程" dataType="float"> </div>
                           <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
                       </div>
                    </div>

@@ -12,7 +12,7 @@
 <head>
 <title>结算账户余额汇总表</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/summaryAccountBalances.js?v=1.1.3">
+	src="<%=request.getContextPath()%>/manage/settlement/js/summaryAccountBalances.js?v=1.1.7">
 	</script>
 </head>
 <body>
@@ -57,8 +57,10 @@
 	<div class="nui-fit">
 		<div id="datagrid1" dataField="list" class="nui-datagrid" 
 			style="width: 100%; height: 100%;" pageSize="20" showPageInfo="true" totalField="page.count" allowCellWrap="true"
-			onDrawCell="onDrawCell" onselectionchanged="selectionChanged"
-			allowSortColumn="false">
+			onDrawCell="onDrawCell" onselectionchanged=""
+			allowSortColumn="false"
+			sortMode="client"
+			>
 			<div property="columns">
 				<div type="indexcolumn" header="序号" width="20px"></div>
 				<div field="rpAccountId" headerAlign="center" allowSort="true" width="120px">单号</div>
@@ -66,7 +68,7 @@
 				<div field="rpDc" headerAlign="center" allowSort="true" width="80px">
 					应收/应付</div>
 					<div field="settAccountName" headerAlign="center" allowSort="true" width="120px">结算账户</div>
-				<div field="charOffAmt" headerAlign="center" allowSort="true" width="40px">
+				<div field="charOffAmt" headerAlign="center" allowSort="true" width="40px" dataType="float">
 					金额</div>
 				<div field="remark" headerAlign="center" allowSort="true" width="140px">
 					备注</div>

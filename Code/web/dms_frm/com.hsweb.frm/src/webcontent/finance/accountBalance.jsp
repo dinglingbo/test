@@ -62,9 +62,9 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="fyear" name="fyear" width="50"  headeralign="center" allowsort="true">年份</div>
                 <div field="fmonth" name="fmonth" width="50"  headeralign="center" allowsort="true" >月份</div>
                 <div field="beginBala" name="beginBala" width="60"  headeralign="center" allowsort="true">期初</div>
-                <div field="debit" name="debit" width="60" summaryType="sum"  headeralign="center" allowsort="true">收入</div>
-                <div field="credit" name="credit" width="60" summaryType="sum"  headeralign="center" allowsort="true">支出</div>
-                <div field="endBala" name="endBala" width="60"  headeralign="center" summaryType="sum" allowsort="true">余额</div>
+                <div field="debit" name="debit" width="60" summaryType="sum"  headeralign="center" allowsort="true" dataType="float">收入</div>
+                <div field="credit" name="credit" width="60" summaryType="sum"  headeralign="center" allowsort="true" dataType="float">支出</div>
+                <div field="endBala" name="endBala" width="60"  headeralign="center" summaryType="sum" allowsort="true" dataType="float">余额</div>
                 <!-- <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div> -->
            
             </div>

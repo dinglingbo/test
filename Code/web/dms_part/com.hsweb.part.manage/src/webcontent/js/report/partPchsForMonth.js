@@ -286,11 +286,11 @@ function initGrid(startDate, endDate){
 	var columnsObj = {};
 	var columnsList = [];
 	columnsList.push({type: "indexcolumn", header: "序号" });
-	columnsList.push({field: "partCode",width:"150", summaryType:"count", headerAlign: "center", allowSort: true, header: "配件编码"});
-    columnsList.push({field: "partName",width:"110", headerAlign: "center", allowSort: true, header: "配件名称"});
-    columnsList.push({field: "qualityTypeId",width:"60", headerAlign: "center", allowSort: true, header: "配件品质"});
-    columnsList.push({field: "partBrandId",width:"80", headerAlign: "center", allowSort: true, header: "配件品牌"});
-    columnsList.push({field: "carTypeIdF",width:"60", headerAlign: "center", allowSort: true, header: "配件类型"});
+	columnsList.push({field: "partCode",width:"150", summaryType:"count", headerAlign: "center", allowSort: true, header: "配件编码", dataType:"float"});
+    columnsList.push({field: "partName",width:"110", headerAlign: "center", allowSort: true, header: "配件名称", dataType:"float"});
+    columnsList.push({field: "qualityTypeId",width:"60", headerAlign: "center", allowSort: true, header: "配件品质", dataType:"float"});
+    columnsList.push({field: "partBrandId",width:"80", headerAlign: "center", allowSort: true, header: "配件品牌", dataType:"float"});
+    columnsList.push({field: "carTypeIdF",width:"60", headerAlign: "center", allowSort: true, header: "配件类型", dataType:"float"});
     columnsList.push({field: "orgid",width:"130", headerAlign: "center", allowSort: true, header: "所属公司"});
 	if(columnList && columnList.length > 0){
 		for (i = 0; i < columnList.length; i++) {
@@ -305,12 +305,12 @@ function initGrid(startDate, endDate){
 			var trueAmtColumnName = year.toString()+month.toString()+'_trueAmt';
 			var obj = {header:year,columns:[
 			            	{header:month,columns:[
-					        	{field: orderQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库数量"},
-					        	{field: orderAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库金额"},
-					        	{field: orderRtnQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货数量"},
-					        	{field: orderRtnAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货金额"},
-					        	{field: trueQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库数量"},
-					        	{field: trueAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额"}
+					        	{field: orderQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库数量", dataType:"float"},
+					        	{field: orderAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库金额", dataType:"float"},
+					        	{field: orderRtnQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货数量", dataType:"float"},
+					        	{field: orderRtnAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货金额", dataType:"float"},
+					        	{field: trueQtyColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库数量", dataType:"float"},
+					        	{field: trueAmtColumnName, width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额", dataType:"float"}
 				          	]}
 			           ]};
 			columnsList.push(obj);
@@ -329,12 +329,12 @@ function initGrid(startDate, endDate){
 		}
 
         var sumObj = {header:"汇总",columns:[
-                        {field: "sumEnterQty", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库数量"},
-                        {field: "sumEnterAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库金额"},
-                        {field: "sumRtnQty", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货数量"},
-                        {field: "sumRtnAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货金额"},
-                        {field: "sumTrueQty", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库数量"},
-                        {field: "sumTrueAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额"}
+                        {field: "sumEnterQty", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库数量", dataType:"float"},
+                        {field: "sumEnterAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "入库金额", dataType:"float"},
+                        {field: "sumRtnQty", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货数量", dataType:"float"},
+                        {field: "sumRtnAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "退货金额", dataType:"float"},
+                        {field: "sumTrueQty", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库数量", dataType:"float"},
+                        {field: "sumTrueAmt", width: 60, headerAlign: "center", summaryType:"sum", allowSort: true, header: "实际入库金额", dataType:"float"}
                      ]};
         columnsList.push(sumObj);
 	}

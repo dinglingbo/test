@@ -252,7 +252,7 @@ function onOk()
 //        CloseWindow("ok");
 //    }
     var rows=rightGrid.getSelecteds();
-    if(rows.length>1){
+    if(rows.length>0){
     	var idList=''
     	for(var i=0;i<rows.length;i++){
     		idList +=rows[i].id+",";
@@ -272,7 +272,7 @@ function onOk()
     			partList[i].outUnitId=partList[i].enterUnitId;
     		}
     		var innerPartRow=innerPchsEnterGrid.getSelecteds();
-    		if(innerPartRow){
+    		if(innerPartRow.length>0){
     			for(var i=0;i<innerPartRow.length;i++){
     				innerPartRow[i].comPartBrandId=innerPartRow[i].partBrandId;
     				innerPartRow[i].comApplyCarModel=innerPartRow[i].applyCarModel;
@@ -296,24 +296,25 @@ function onOk()
     		resultData=partList;
     		callback(partList);
     	}
-    }else{       	
-    	var parts=innerPchsEnterGrid.getSelecteds();
-    	for(var i=0;i<parts.length;i++){
-    		parts[i].comPartBrandId=parts[i].partBrandId;
-    		parts[i].comApplyCarModel=parts[i].applyCarModel;
-    		parts[i].comUnit=parts[i].enterUnitId;
-    		parts[i].orderQty =parts[i].enterQty;
-    		parts[i].orderPrice=parts[i].enterPrice;
-    		parts[i].orderAmt=parts[i].enterAmt;
-    		parts[i].comSpec=parts[i].spec;
-    		parts[i].outUnitId=parts[i].enterUnitId;
-    	}
-    	if(parts){
-    		resultData=parts;
-    		callback(parts);
-    	}
-    	
     }
+//    	else{       	
+//    	var parts=innerPchsEnterGrid.getSelecteds();
+//    	for(var i=0;i<parts.length;i++){
+//    		parts[i].comPartBrandId=parts[i].partBrandId;
+//    		parts[i].comApplyCarModel=parts[i].applyCarModel;
+//    		parts[i].comUnit=parts[i].enterUnitId;
+//    		parts[i].orderQty =parts[i].enterQty;
+//    		parts[i].orderPrice=parts[i].enterPrice;
+//    		parts[i].orderAmt=parts[i].enterAmt;
+//    		parts[i].comSpec=parts[i].spec;
+//    		parts[i].outUnitId=parts[i].enterUnitId;
+//    	}
+//    	if(parts){
+//    		resultData=parts;
+//    		callback(parts);
+//    	}
+//    	
+//    }
 }
 
 function getDetailList(params){

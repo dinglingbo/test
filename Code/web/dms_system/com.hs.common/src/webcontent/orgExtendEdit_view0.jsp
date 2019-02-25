@@ -11,8 +11,13 @@
 <head>
     <title>门店信息</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  	<script src="<%=webPath + contextPath%>/common/js/orgExtendEdit.js?v=2.0.4" type="text/javascript"></script>
+  	<script src="<%=webPath + contextPath%>/common/js/orgExtendEdit.js?v=2.0.5" type="text/javascript"></script>
   	<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
+  	    <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
+ 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+ 	<script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
+  	<script src="https://cdn.staticfile.org/plupload/2.1.9/moxie.js"></script>
+ 	<script src="https://cdn.staticfile.org/plupload/2.1.9/plupload.dev.js"></script>  
 
 
 
@@ -132,33 +137,20 @@ border-radius: 4px;
 
 float: left;
 
-height: 41px;
+height: 120px;
 
-background: #1d9e34cc;
-
-width: 144px;
-
+width: 100px;
 position:relative;
 
 }
 
-.div2{
 
-text-align:center;
-
-padding-top:12px;
-
-font-size:15px;
-
-font-weight:800
-
-}
 
 .inputstyle{
 
-    width: 144px;
+    width: 100px;
 
-    height: 41px;
+    height: 100px;
 
     cursor: pointer;
 
@@ -195,29 +187,25 @@ font-weight:800
                     </tr>
                 </table>
             </div>
-        <div class="form"id="basicInfoForm" name="basicInfoForm" style="width:950px;height:100%;left:0;right:0;margin: 0 auto;">
+        <div class="form" id="basicInfoForm" name="basicInfoForm" style="width:950px;height:100%;left:0;right:0;margin: 0 auto;">
         		     
            <table  id="table1">
 
             <tr >
                 <td class="tbtext">LOGO图片<span class="spanwidth"></span>   </td>
-                <td  colspan="5" class="tabwidth">
-                	<div class="div1">
+                <td  colspan="5" class="tabwidth" >
+                <div class="page-header" id="btn-uploader">
+	                	<div class="div1" id="faker" onchange="xmTanUploadImg(this)">
+	                		<p >
+								
+				            </p>
+				            <img id="xmTanImg" style="width: 100px;height: 100px" onclick="xmTanUploadImg(this)"/>
+				            <div id="xmTanDiv"></div>
+				        </div>
+			        </div>
 
-    <div class="div2"><span class="fa fa-arrow-up fa-lg"></span>上传图片</div>
 
-    <input type="file" class="inputstyle">
-
-</div> 
-<div style="border:2px dashed red;">
-            <p>
-                图片上传前预览：<input type="file" id="xdaTanFileImg" onchange="xmTanUploadImg(this)" accept="image/*"/>
-                <input type="button" value="隐藏图片" onclick="document.getElementById('xmTanImg').style.display = 'none';"/>
-                <input type="button" value="显示图片" onclick="document.getElementById('xmTanImg').style.display = 'block';"/>
-            </p>
-            <img id="xmTanImg"/>
-            <div id="xmTanDiv"></div>
-        </div>
+						 <input  class="nui-textbox" id="logoImg" name="logoImg"  style="display:none" >
                 </td>
 				
             </tr> 
@@ -359,138 +347,79 @@ font-weight:800
     </div>
 </div> 
 <script type="text/javascript">
-  nui.parse();
-  function ajaxFileUpload() {
-        
-        var inputFile = $("#file1 > input:file")[0];
-
-        $.ajaxFileUpload({
-            url: 'upload.aspx',                 //用于文件上传的服务器端请求地址
-            fileElementId: inputFile,               //文件上传域的ID
-            //data: { a: 1, b: true },            //附加的额外参数
-            dataType: 'text',                   //返回值类型 一般设置为json
-            success: function (data, status)    //服务器成功响应处理函数
-            {
-                alert("上传成功: " + data);
-
-            },
-            error: function (data, status, e)   //服务器响应失败处理函数
-            {
-                alert(e);
-            },
-            complete: function () {
-                var jq = $("#file1 > input:file");
-                jq.before(inputFile);
-                jq.remove();
-            }
-        });
-    }
-    
-    
-      var uploader = Qiniu.uploader({
-      runtimes: 'html5,flash,html4',      // 上传模式，依次退化
-      browse_button: 'pickfiles',         // 上传选择的点选按钮，必需
-      // 在初始化时，uptoken，uptoken_url，uptoken_func三个参数中必须有一个被设置
-      // 切如果提供了多个，其优先级为uptoken > uptoken_url > uptoken_func
-      // 其中uptoken是直接提供上传凭证，uptoken_url是提供了获取上传凭证的地址，如果需要定制获取uptoken的过程则可以设置uptoken_func
-      uptoken : '<Your upload token>', // uptoken是上传凭证，由其他程序生成
-      // uptoken_url: '/uptoken',         // Ajax请求uptoken的Url，强烈建议设置（服务端提供）
-      // uptoken_func: function(){    // 在需要获取uptoken时，该方法会被调用
-      //    // do something
-      //    return uptoken;
-      // },
-      get_new_uptoken: false,             // 设置上传文件的时候是否每次都重新获取新的uptoken
-      // downtoken_url: '/downtoken',
-      // Ajax请求downToken的Url，私有空间时使用，JS-SDK将向该地址POST文件的key和domain，服务端返回的JSON必须包含url字段，url值为该文件的下载地址
-      // unique_names: true,              // 默认false，key为文件名。若开启该选项，JS-SDK会为每个文件自动生成key（文件名）
-      // save_key: true,                  // 默认false。若在服务端生成uptoken的上传策略中指定了sava_key，则开启，SDK在前端将不对key进行任何处理
-      domain: getToken(),            // bucket域名，下载资源时用到，必需
-      container: 'container',             // 上传区域DOM ID，默认是browser_button的父元素
-      max_file_size: '100mb',             // 最大文件体积限制
-      flash_swf_url: 'path/of/plupload/Moxie.swf',  //引入flash，相对路径
-      max_retries: 3,                     // 上传失败最大重试次数
-      dragdrop: true,                     // 开启可拖曳上传
-      drop_element: 'container',          // 拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
-      chunk_size: '4mb',                  // 分块上传时，每块的体积
-      auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传
-      //x_vars : {
-      //    查看自定义变量
-      //    'time' : function(up,file) {
-      //        var time = (new Date()).getTime();
-                // do something with 'time'
-      //        return time;
-      //    },
-      //    'size' : function(up,file) {
-      //        var size = file.size;
-                // do something with 'size'
-      //        return size;
-      //    }
-      //},
-      init: {
-          'FilesAdded': function(up, files) {
-              plupload.each(files, function(file) {
-                  // 文件添加进队列后，处理相关的事情
-              });
-          },
-          'BeforeUpload': function(up, file) {
-                 // 每个文件上传前，处理相关的事情
-          },
-          'UploadProgress': function(up, file) {
-                 // 每个文件上传时，处理相关的事情
-          },
-          'FileUploaded': function(up, file, info) {
-                 // 每个文件上传成功后，处理相关的事情
-                 // 其中info.response是文件上传成功后，服务端返回的json，形式如：
-                 // {
-                 //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
-                 //    "key": "gogopher.jpg"
-                 //  }
-                 // 查看简单反馈
-                 // var domain = up.getOption('domain');
-                 // var res = parseJSON(info.response);
-                 // var sourceLink = domain +"/"+ res.key; 获取上传成功后的文件的Url
-          },
-          'Error': function(up, err, errTip) {
-                 //上传出错时，处理相关的事情
-          },
-          'UploadComplete': function() {
-                 //队列文件处理完毕后，处理相关的事情
-          },
-          'Key': function(up, file) {
-              // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
-              // 该配置必须要在unique_names: false，save_key: false时才生效
-
-              var key = "";
-              // do something with key here
-              return key
-          }
-      }
-  });
-
-  // domain为七牛空间对应的域名，选择某个空间后，可通过 空间设置->基本设置->域名设置 查看获取
-
-  // uploader为一个plupload对象，继承了所有plupload的方法
-    
-  function getToken() {
-  	var token = "";
-  	nui.ajax({
-        url : apiPath + sysApi + "/com.hs.common.login.getQNAccessToken.biz.ext",
-        type : "post",
-        async: false,
-        data : JSON.stringify({
-        }),
-        success : function(data) {
-            data = data || {};
-            token = data.token;
-        },
-        error : function(jqXHR, textStatus, errorThrown) {
-            // nui.alert(jqXHR.responseText);
-            console.log(jqXHR.responseText);
-        }
-    });
-    return token;
-  }
-
+			uploader = Qiniu.uploader({
+			    runtimes: 'html5,flash,html4',
+			    browse_button: 'faker',//上传按钮的ID
+			    container: 'btn-uploader',//上传按钮的上级元素ID
+			    drop_element: 'btn-uploader',
+			    max_file_size: '100mb',//最大文件限制
+			    //flash_swf_url: '/static/js/plupload/Moxie.swf',
+			    dragdrop: false,
+			    chunk_size: '4mb',//分块大小
+			    uptoken_url: webPath + sysDomain + "/com.hs.common.login.getQNAccessToken.biz.ext",//设置请求qiniu-token的url
+			    //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+			    // uptoken : '<Your upload token>',
+			    //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+			    unique_names: false,
+			    // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
+			    // save_key: true,
+			    // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+			    domain: 'http://qxy60.7xdr.com/',//自己的七牛云存储空间域名
+			    multi_selection: false,//是否允许同时选择多文件
+			    //文件类型过滤，这里限制为图片类型
+			    filters: {
+			        mime_types: [
+			            {title: "Image files", extensions: "jpg,jpeg,gif,png"}
+			        ]
+			    },
+			    auto_start: true,
+			    init: {
+			        'FilesAdded': function (up, files) {
+			            //do something
+			        },
+			        'BeforeUpload': function (up, file) {
+			            //do something
+			        },
+			        'UploadProgress': function (up, file) {
+			            //可以在这里控制上传进度的显示
+			            //可参考七牛的例子
+			        },
+			        'UploadComplete': function () {
+			            //do something
+			        },
+			        'FileUploaded': function (up, file, info) {
+			            //每个文件上传成功后,处理相关的事情
+			            //其中 info 是文件上传成功后，服务端返回的json，形式如
+			            //{
+			            //  "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+			            //  "key": "gogopher.jpg"
+			            //}
+			            var domain = up.getOption('domain');
+			            //var sourceLink = domain + res.key;//获取上传文件的链接地址
+			            var info1 = JSON.parse(info);
+			            nui.get("logoImg").setValue("http://qxy60.7xdr.com/" + info1.hash);
+			        },
+			        'Error': function (up, err, errTip) {
+			            alert(errTip);
+			        },
+			        'Key': function (up, file) {
+			            //当save_key和unique_names设为false时，该方法将被调用
+			            /* var key = "";
+			             $.ajax({
+			             url: '/getToken',
+			             type: 'post',
+			             async: false,//这里应设置为同步的方式
+			             success: function(data) {
+			             var ext = Qiniu.getFileExtension(file.name);
+			             key = data + '.' + ext;
+			             },
+			             cache: false
+			             });
+			             return key;*/
+			        }
+			    }
+			});
+			
 </script>
 </body>
 </html>

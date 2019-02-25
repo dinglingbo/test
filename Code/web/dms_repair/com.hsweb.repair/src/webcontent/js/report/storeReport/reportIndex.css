@@ -38,6 +38,7 @@ body {
 .menu_pannel{
     height:115px;
     position: relative ;
+    margin: 5px;
 }
 
 #menu1 .menu_pannel_bg{

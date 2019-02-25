@@ -310,6 +310,7 @@ public class MenuUtil {
         	
         	String resfuncgroupid = d.getString("funcgroupid");
     		if(resfuncgroupid.equals(funcgroupid)) {
+    			String funccode = d.getString("funccode");
     			String paramInfoStr = d.getString("parainfo");
     			String orderIndex = "";
     			String iconCls = "";
@@ -323,7 +324,9 @@ public class MenuUtil {
     			}
     			d.set("orderIndex", orderIndex);
     			d.set("iconCls", iconCls);
-		        list.add(d);
+    			if(!funccode.equals(resId)) {
+    				list.add(d);
+    			}
     		}
         	
         }

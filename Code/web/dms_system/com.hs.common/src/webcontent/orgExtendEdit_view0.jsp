@@ -126,6 +126,61 @@ border-radius: 4px;
     width:320px ;
     display:inline-block !important;
 } 
+
+
+.div1{
+
+float: left;
+
+height: 41px;
+
+background: #1d9e34cc;
+
+width: 144px;
+
+position:relative;
+
+}
+
+.div2{
+
+text-align:center;
+
+padding-top:12px;
+
+font-size:15px;
+
+font-weight:800
+
+}
+
+.inputstyle{
+
+    width: 144px;
+
+    height: 41px;
+
+    cursor: pointer;
+
+    font-size: 30px;
+
+    outline: medium none;
+
+    position: absolute;
+
+    filter:alpha(opacity=0);
+
+    -moz-opacity:0;
+
+    opacity:0; 
+
+    left:0px;
+
+    top: 0px;
+
+}
+
+
 </style> 
 </head> 
 <body class="back">
@@ -147,7 +202,22 @@ border-radius: 4px;
             <tr >
                 <td class="tbtext">LOGO图片<span class="spanwidth"></span>   </td>
                 <td  colspan="5" class="tabwidth">
-                	<div class="pic" style="width:64px;height:64px;border:1px solid #ccc; "></div>
+                	<div class="div1">
+
+    <div class="div2"><span class="fa fa-arrow-up fa-lg"></span>上传图片</div>
+
+    <input type="file" class="inputstyle">
+
+</div> 
+<div style="border:2px dashed red;">
+            <p>
+                图片上传前预览：<input type="file" id="xdaTanFileImg" onchange="xmTanUploadImg(this)" accept="image/*"/>
+                <input type="button" value="隐藏图片" onclick="document.getElementById('xmTanImg').style.display = 'none';"/>
+                <input type="button" value="显示图片" onclick="document.getElementById('xmTanImg').style.display = 'block';"/>
+            </p>
+            <img id="xmTanImg"/>
+            <div id="xmTanDiv"></div>
+        </div>
                 </td>
 				
             </tr> 

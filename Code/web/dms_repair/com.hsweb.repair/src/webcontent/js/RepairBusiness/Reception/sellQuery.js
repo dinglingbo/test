@@ -74,7 +74,7 @@ $(document).ready(function ()
         }else if(e.field == "orgid"){
         	for(var i=0;i<currOrgList.length;i++){
         		if(currOrgList[i].orgid==e.value){
-        			e.cellHtml = currOrgList[i].name;
+        			e.cellHtml = currOrgList[i].shortName;
         		}
         	}
         	

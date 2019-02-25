@@ -101,9 +101,9 @@
                     <div allowSort="true" field="partBrandId" width="60" headerAlign="center" header="配件品牌"></div>
                     <div allowSort="true" field="oemCode" width="80" headerAlign="center" header="OEM码"></div>
                     <div field="trueQty" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum"  >出库数量</div>
+                      width="60" summaryType="sum" dataType="float" >出库数量</div>
                     <div field="trueAmt" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum" >出库金额</div>
+                      width="60" summaryType="sum" dataType="float">出库金额</div>
                     <!-- <div field="sellQty" allowSort="true" headerAlign="center"
                       width="60" summaryType="sum" >销售数量</div>
                     <div field="sellAmt" allowSort="true" headerAlign="center"
@@ -142,9 +142,9 @@
                     <div type="indexcolumn">序号</div>
                     <div allowSort="true" field="carTypeIdF" summaryType="count" width="80" headerAlign="center" header="配件类型"></div>
                     <div field="trueQty" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum"  >出库数量</div>
+                      width="60" summaryType="sum" dataType="float" >出库数量</div>
                     <div field="trueAmt" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum" >出库金额</div>
+                      width="60" summaryType="sum" dataType="float">出库金额</div>
                 </div>
             </div>
 
@@ -164,9 +164,9 @@
                     <div type="indexcolumn">序号</div>
                     <div allowSort="true" field="partBrandId" summaryType="count" width="80" headerAlign="center" header="配件品牌"></div>
                     <div field="trueQty" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum"  >出库数量</div>
+                      width="60" summaryType="sum" dataType="float" >出库数量</div>
                     <div field="trueAmt" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum" >出库金额</div>
+                      width="60" summaryType="sum" dataType="float">出库金额</div>
                 </div>
             </div>
         </div>
@@ -184,9 +184,9 @@
                     <div type="indexcolumn">序号</div>
                     <div allowSort="true" field="serviceTypeName" summaryType="count" width="100" headerAlign="center" header="业务类型"></div>
                     <div field="trueQty" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum"  >出库数量</div>
+                      width="60" summaryType="sum"  dataType="float">出库数量</div>
                     <div field="trueAmt" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum" >出库金额</div>
+                      width="60" summaryType="sum" dataType="float">出库金额</div>
                 </div>
             </div>
 

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>其他应收单</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/othersRBill.js?v=2.0.5"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/othersRBill.js?v=2.0.6"></script>
 		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -55,6 +55,10 @@
                             <input class="nui-combobox" id="auditSign" name="auditSign" value="0" nullitemtext="请选择..." emptyText="审核状态" data="auditSignList" width="70px" onvaluechanged="refresh()"/>
 
                             <span class="separator"></span> 
+                            <input class="nui-combobox"
+								data="[{value:'0',text:'未收款',},{value:'1',text:'部分收款'},{value:'2',text:'已收款'},{value:'3',text:'全部'}]"
+								textField="text" valueField="value" name="settleStatus" id="settleStatus" width="90px"
+								value="0" onvalidation="refresh()"  />
                             <input id="searchGuestId" class="nui-buttonedit"
                                    emptyText="请选择往来单位..."
                                    onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" allowInput="false" />

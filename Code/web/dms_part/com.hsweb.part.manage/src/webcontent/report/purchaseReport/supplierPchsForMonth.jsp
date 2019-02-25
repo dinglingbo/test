@@ -4,7 +4,7 @@
 
 <head>
 <title>供应商采购汇总按月排行</title>
-<script src="<%=webPath + contextPath%>/manage/js/report/supplierPchsForMonth.js?v=1.1.12"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/supplierPchsForMonth.js?v=1.1.13"></script>
 </head>
 
 <body>
@@ -72,41 +72,41 @@
             <div header="1">
             <div property="columns" width="10">
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >入库数量</div>
+                width="120"  dataType="float" >入库数量</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >入库金额</div>
+                width="120" dataType="float"  >入库金额</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >退货数量</div>
+                width="120" dataType="float"  >退货数量</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >实际入库数量</div>
+                width="120" dataType="float"  >实际入库数量</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >实际入库金</div>
+                width="120"  dataType="float" >实际入库金</div>
                 </div></div>
             <div header="2">
             <div property="columns" width="10">
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >入库数量</div>
+                width="120" dataType="float"  >入库数量</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >入库金额</div>
+                width="120" dataType="float"  >入库金额</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >退货数量</div>
+                width="120" dataType="float"  >退货数量</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >实际入库数量</div>
+                width="120" dataType="float"  >实际入库数量</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >实际入库金</div>
+                width="120" dataType="float"  >实际入库金</div>
                 </div></div></div></div>
               <div header="2018total">
               <div property="columns" width="10">
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >入库数量</div>
+                width="120"  dataType="float" >入库数量</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >入库金额</div>
+                width="120"  dataType="float" >入库金额</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >退货数量</div>
+                width="120"dataType="float"   >退货数量</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >实际入库数量</div>
+                width="120"  dataType="float" >实际入库数量</div>
               <div field="rpCode" allowSort="true" headerAlign="center"
-                width="120"  >实际入库金</div>
+                width="120" dataType="float"  >实际入库金</div>
               
                 
             </div>

@@ -89,14 +89,14 @@
             <div property="columns">
         		<div type="indexcolumn">序号</div>
                 <div allowSort="true" field="storeId" width="100" headerAlign="center" header="仓库"></div>
-   				<div allowSort="true" field="qcQty" width="100" headerAlign="center" header="期初库存数量"></div>
-   				<div allowSort="true" field="qcAmt" numberFormat="0.00" width="100" headerAlign="center" header="期初库存成本"></div>
-   				<div allowSort="true" field="balaQty" width="100" headerAlign="center" header="期末库存数量"></div>
-   				<div allowSort="true" field="balaAmt" numberFormat="0.00" width="100" headerAlign="center" header="期末库存成本"></div>
-   				<div allowSort="true" field="sellQty" width="100" headerAlign="center" header="销售数量"></div>
-   				<div allowSort="true" field="sellAmt" numberFormat="0.00" width="100" headerAlign="center" header="销售总成本"></div>
-   				<div allowSort="true" field="turnOverDay" numberFormat="0.00" width="100" headerAlign="center" header="库存周转天数"></div>
-   				<div allowSort="true" field="turnOverRate" numberFormat="0.00" width="100" headerAlign="center" header="库存周转率"></div>
+   				<div allowSort="true" field="qcQty" width="100" headerAlign="center" header="期初库存数量" allowSort="true" dataType="float"></div>
+   				<div allowSort="true" field="qcAmt" numberFormat="0.00" width="100" headerAlign="center" header="期初库存成本" allowSort="true"  dataType="float"></div>
+   				<div allowSort="true" field="balaQty" width="100" headerAlign="center" header="期末库存数量" allowSort="true"  dataType="float"></div>
+   				<div allowSort="true" field="balaAmt" numberFormat="0.00" width="100" headerAlign="center" header="期末库存成本" allowSort="true"  dataType="float"></div>
+   				<div allowSort="true" field="sellQty" width="100" headerAlign="center" header="销售数量" allowSort="true"  dataType="float"></div>
+   				<div allowSort="true" field="sellAmt" numberFormat="0.00" width="100" headerAlign="center" header="销售总成本" allowSort="true"  dataType="float"></div>
+   				<div allowSort="true" field="turnOverDay" numberFormat="0.00" width="100" headerAlign="center" header="库存周转天数" allowSort="true"  dataType="float"></div>
+   				<div allowSort="true" field="turnOverRate" numberFormat="0.00" width="100" headerAlign="center" header="库存周转率" allowSort="true"  dataType="float"></div>
 
             </div>
         </div>

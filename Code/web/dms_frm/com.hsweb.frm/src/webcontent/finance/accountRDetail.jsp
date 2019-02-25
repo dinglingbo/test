@@ -80,6 +80,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="charOffAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" allowsort="true" dataType="float">收款金额</div>
                 <div field="feeService" name="feeService" width="50" summaryType="sum" headeralign="center" allowsort="true" dataType="float">手续费</div>
                 <div field="trueInoutAmt" name="trueInoutAmt" width="50" summaryType="sum" headeralign="center" allowsort="true" dataType="float">实收金额 </div>
+                <div field="remark" name="remark" width="180"  headeralign="center" allowsort="true">收款备注</div>
                 <div field="auditor" name="auditor" width="60"  headeralign="center" allowsort="true">收款人</div>
                 <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true">收款日期</div>
                 <div field="fullName" name="name" width="120"  headeralign="center" allowsort="true">客户全称</div>

@@ -82,6 +82,7 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="feeService" name="feeService" width="50" summaryType="sum" headeralign="center" allowsort="true" dataType="float">手续费</div>
                 <div field="trueInoutAmt" name="trueInoutAmt" width="50" summaryType="sum" headeralign="center" allowsort="true" dataType="float" >实付金额 </div>
                 <div field="auditor" name="auditor" width="60"  headeralign="center" allowsort="true"  >付款人</div>
+                <div field="remark" name="remark" width="180"  headeralign="center" allowsort="true">付款备注</div>
                 <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true" >付款日期</div>
                 <div field="fullName" name="fullName" width="120"  headeralign="center" allowsort="true" >结算单位全称</div>
                 <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>

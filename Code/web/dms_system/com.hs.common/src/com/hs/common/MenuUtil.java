@@ -310,13 +310,23 @@ public class MenuUtil {
         	
         	String resfuncgroupid = d.getString("funcgroupid");
     		if(resfuncgroupid.equals(funcgroupid)) {
+    			String funccode = d.getString("funccode");
     			String paramInfoStr = d.getString("parainfo");
+    			String orderIndex = "";
+    			String iconCls = "";
     			JSONObject jsonObj = JSONObject.fromObject(paramInfoStr);
-    			String orderIndex = (String) jsonObj.get("orderIndex");
-    			String iconCls = (String) jsonObj.get("iconCls");
+    			
+    			if(jsonObj.containsKey("orderIndex")) {
+	    			orderIndex = (String) jsonObj.get("orderIndex");
+    			}
+    			if(jsonObj.containsKey("iconCls")) {
+	    			iconCls = (String) jsonObj.get("iconCls");
+    			}
     			d.set("orderIndex", orderIndex);
     			d.set("iconCls", iconCls);
-		        list.add(d);
+    			if(!funccode.equals(resId)) {
+    				list.add(d);
+    			}
     		}
         	
         }

@@ -26,7 +26,6 @@ pageEncoding="UTF-8" session="false" %>
         font-family: "微软雅黑";
     }
 
-
 </style>
 </head>
 <body>
@@ -86,11 +85,8 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true" >付款日期</div>
                 <div field="fullName" name="fullName" width="120"  headeralign="center" allowsort="true" >结算单位全称</div>
                 <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
-           
             </div>
         </div>
-
     </div>
-
 </body>
 </html>

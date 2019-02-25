@@ -202,22 +202,18 @@ font-weight:800
             <tr >
                 <td class="tbtext">LOGO图片<span class="spanwidth"></span>   </td>
                 <td  colspan="5" class="tabwidth">
+                	<div >
+			            <img id="xmTanImg" style="width: 100px;height: 100px"/>
+			            <div id="xmTanDiv"></div>
+			        </div>
                 	<div class="div1">
+    					<div class="div2"><span class="fa fa-arrow-up fa-lg"></span>上传图片</div>
+											            <p>
+							<input type="file" class="inputstyle" id="xdaTanFileImg" onchange="xmTanUploadImg(this)" accept="image/*"/>
+			            </p>
 
-    <div class="div2"><span class="fa fa-arrow-up fa-lg"></span>上传图片</div>
+					</div> 
 
-    <input type="file" class="inputstyle">
-
-</div> 
-<div style="border:2px dashed red;">
-            <p>
-                图片上传前预览：<input type="file" id="xdaTanFileImg" onchange="xmTanUploadImg(this)" accept="image/*"/>
-                <input type="button" value="隐藏图片" onclick="document.getElementById('xmTanImg').style.display = 'none';"/>
-                <input type="button" value="显示图片" onclick="document.getElementById('xmTanImg').style.display = 'block';"/>
-            </p>
-            <img id="xmTanImg"/>
-            <div id="xmTanDiv"></div>
-        </div>
                 </td>
 				
             </tr> 

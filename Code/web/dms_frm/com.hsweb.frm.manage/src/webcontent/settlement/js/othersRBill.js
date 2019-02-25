@@ -89,6 +89,10 @@ function doSearch() {
     
     params.sCreateDate = searchBeginDate.getFormValue();
     params.eCreateDate = (addDate(searchEndDate.getValue(), 1));
+	var settleStatus = nui.get("settleStatus").getValue();
+	if(settleStatus != 3) {
+		params.settleStatus = settleStatus;
+	}
     
     mainGrid.load({
         params: params,

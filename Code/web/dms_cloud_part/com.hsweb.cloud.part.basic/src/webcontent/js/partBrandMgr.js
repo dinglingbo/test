@@ -504,3 +504,18 @@ function saveLocalBrand(){
         }
     });
 }
+
+
+function ormdatasub(){
+    var formdata = new FormData($("#domeform")[0]);
+    $.ajax({
+        url: "/api/fileupload/dome1",
+        type: "POST",
+        data:formdata,
+        dataType: "json",
+        processData: false,  // 告诉jQuery不要去处理发送的数据
+        contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
+        success: function (res) {
+        }
+    });
+}

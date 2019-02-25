@@ -159,6 +159,11 @@ function onDrawCell(e)
         case "isDisabled":
             e.cellHtml = e.value==1?"禁用":"启用";
             break;
+        case "imageUrl":
+        	if(e.value){		
+        		e.cellHtml = "<img src='"+ e.value+ "'alt='配件图片' height='25px' weight='30px'/>";
+        	}
+            break;
         default:
             break;
     }
@@ -504,3 +509,57 @@ function saveLocalBrand(){
         }
     });
 }
+
+
+function ormdatasub(){
+    var formdata = new FormData($("#domeform")[0]);
+    $.ajax({
+        url: "/api/fileupload/dome1",
+        type: "POST",
+        data:formdata,
+        dataType: "json",
+        processData: false,  // 告诉jQuery不要去处理发送的数据
+        contentType: false,   // 告诉jQuery不要去设置Content-Type请求头
+        success: function (res) {
+        }
+    });
+}
+
+var savePictureUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.savePartBrand.biz.ext";
+function savePicture(imageUrl){
+    var row=rightGrid.getSelected();
+    row.imageUrl=imageUrl;
+    if(row.length<0) return;
+
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '上传中...'
+    });
+    nui.ajax({
+        url:savePictureUrl,
+        type:"post",
+        data:JSON.stringify({
+        	brand:row,
+        	orgid :currOrgid,
+        	userName :currUserName,
+            token:token
+        }),
+        success:function(rs)
+        {
+            nui.unmask();
+            rs = rs||{};
+            if(rs.errCode == "S")
+            {
+                parent.showMsg("图片上传成功","S");
+                loadBottom();
+            }
+            else{
+                parent.showMsg(data.errMsg||"图片上传失败","E");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            console.log(jqXHR.responseText);
+        }
+    });
+}	

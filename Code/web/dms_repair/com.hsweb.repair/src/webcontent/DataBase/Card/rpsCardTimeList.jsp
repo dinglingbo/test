@@ -86,19 +86,19 @@
 						<div field="prdtName" name="prdtName" headerAlign="center" allowSort="true">
 							项目名称
 						</div>
-						<div field="totalTimes" headerAlign="center" allowSort="true">
+						<div field="totalTimes" headerAlign="center" allowSort="true" dataType="int">
 							总次数
 						</div>
-						<div field="useTimes" headerAlign="center" allowSort="true">
+						<div field="useTimes" headerAlign="center" allowSort="true" dataType="int">
 							已使用次数
 						</div>
-						<div field="balaTimes" headerAlign="center" allowSort="true">
+						<div field="balaTimes" headerAlign="center" allowSort="true" dataType="int">
 							剩余次数
 						</div>
-						<div field="sellAmt" headerAlign="center" allowSort="true" summaryType="sum">
+						<div field="sellAmt" headerAlign="center" allowSort="true" summaryType="sum" dataType="int">
 							总金额
 						</div>
-						<div field="remainAmt" headerAlign="center" allowSort="true" summaryType="sum">
+						<div field="remainAmt" headerAlign="center" allowSort="true" summaryType="sum" dataType="int">
 							剩余金额
 						</div>
 						<div field="settleDate" width="120"dateFormat="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true" >

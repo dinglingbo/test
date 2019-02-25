@@ -87,7 +87,7 @@ pageEncoding="UTF-8" session="false" %>
 						<div header="提成信息" headerAlign="center"> 
 		                    <div property="columns" >	
 					          <div field="worker" name="worker" headeralign="center" width="100" align="center" allowsort="true" >服务顾问</div>
-					          <div field="deductWorkerValue" name="deductWorkerValue" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true" >服务提成</div>
+					          <div field="deductWorkerValue" name="deductWorkerValue" headeralign="center" width="80" align="center" dataType="float" summaryType="sum" allowsort="true" >服务提成</div>
 					        </div>
 				        </div>
 				     	<div header="业务信息" headerAlign="center"> 

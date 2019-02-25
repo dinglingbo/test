@@ -77,9 +77,10 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="isPrimaryBusiness" name="name" width="100"  headeralign="center" allowsort="true">是否主营业务</div>
                 <div field="shortName" name="shortName" width="100"  headeralign="center" allowsort="true">客户简称</div>
                 <div field="carNo" name="carNo" width="70"  headeralign="center" allowsort="true">车牌号</div>
-                <div field="charOffAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" allowsort="true">收款金额</div>
-                <div field="feeService" name="feeService" width="50" summaryType="sum" headeralign="center" allowsort="true" >手续费</div>
-                <div field="trueInoutAmt" name="trueInoutAmt" width="50" summaryType="sum" headeralign="center" allowsort="true">实收金额 </div>
+                <div field="charOffAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" allowsort="true" dataType="float">收款金额</div>
+                <div field="feeService" name="feeService" width="50" summaryType="sum" headeralign="center" allowsort="true" dataType="float">手续费</div>
+                <div field="trueInoutAmt" name="trueInoutAmt" width="50" summaryType="sum" headeralign="center" allowsort="true" dataType="float">实收金额 </div>
+                <div field="remark" name="remark" width="180"  headeralign="center" allowsort="true">收款备注</div>
                 <div field="auditor" name="auditor" width="60"  headeralign="center" allowsort="true">收款人</div>
                 <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true">收款日期</div>
                 <div field="fullName" name="name" width="120"  headeralign="center" allowsort="true">客户全称</div>

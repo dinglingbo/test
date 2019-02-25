@@ -80,10 +80,10 @@
             <div property="columns">          
         <div type="indexcolumn">序号</div>
               <div  field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型" allowsort="true" ></div>
-              <div field="salesDeductValue" name="salesDeductValue" width="60" headerAlign="center" header="销售提成" summaryType="sum" allowsort="true" ></div>
-              <div field="techDeductValue" name="techDeductValue" width="60" headerAlign="center" header="施工提成" summaryType="sum" allowsort="true" ></div>
-              <div field="advisorDeductValue" name="advisorDeductValue" width="60" headerAlign="center" header="服务提成" summaryType="sum" allowsort="true" ></div>
-              <div field="totalDeductAmt" name="totalDeductAmt" width="60" headerAlign="center" header="总提成" summaryType="sum" allowsort="true" ></div>
+              <div field="salesDeductValue" name="salesDeductValue" width="60" headerAlign="center" header="销售提成" dataType="float" summaryType="sum" allowsort="true" ></div>
+              <div field="techDeductValue" name="techDeductValue" width="60" headerAlign="center" header="施工提成" dataType="float" summaryType="sum" allowsort="true" ></div>
+              <div field="advisorDeductValue" name="advisorDeductValue" width="60" headerAlign="center" header="服务提成" dataType="float" summaryType="sum" allowsort="true" ></div>
+              <div field="totalDeductAmt" name="totalDeductAmt" width="60" headerAlign="center" header="总提成" dataType="float" summaryType="sum" allowsort="true" ></div>
     </div>
 </div>
 </div>

@@ -12,6 +12,7 @@ $(document).ready(function(v) {
 		onChanged();
 	});
 
+
 });
 
 function readyList(resId){
@@ -29,27 +30,27 @@ function readyList(resId){
 				treeNodes = text.treeNodes;
 			var str="";
 			var num=0;
-			for(var i = 0;i<returnJson.length-1;i++){
+			for(var i = 0;i<returnJson.length;i++){
 				if(i%5==0&&i==0){
 					num++;
 					str = "<div  id='menu"+num+"' class='demo'  style=''>"
-					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i+1].funccode +"')><i class='fa "+returnJson[i+1].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i+1].funcname+"</p> </a></div>"
+					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i].funccode +"')><i class='fa "+returnJson[i].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i].funcname+"</p> </a></div>"
 				}else if(i%5==0){
 					num++;
 					str = str+"</div>"
 					str = str+ "<div  id='menu"+num+"' class='demo'  style='margin-top:20px;'>"
-					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i+1].funccode +"')><i class='fa "+returnJson[i+1].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i+1].funcname+"</p> </a></div>"
-				}else if(i==returnJson.length-2){
+					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i].funccode +"')><i class='fa "+returnJson[i].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i].funcname+"</p> </a></div>"
+				}else if(i==returnJson.length-1){
 					var j=i%5+1;
 					var ddiv ="";
 					for(var x = 0;x<=j;x++){
 						ddiv = ddiv+"<div></div>" 
 					}
-					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i+1].funccode +"')><i class='fa "+returnJson[i+1].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i+1].funcname+"</p> </a></div>"
+					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i].funccode +"')><i class='fa "+returnJson[i].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i].funcname+"</p> </a></div>"
 					str = str+ddiv;
 					str = str+"</div>"
 				}else{
-					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i+1].funccode +"')><i class='fa "+returnJson[i+1].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i+1].funcname+"</p> </a></div>"
+					str = str+ "<div class='menu_pannel menu_pannel_bg'><a onclick=toOperating('"+returnJson[i].funccode +"')><i class='fa "+returnJson[i].iconCls+" fa-4x  fa-inverse'></i><p>"+returnJson[i].funcname+"</p> </a></div>"
 				}
 			}
 
@@ -71,7 +72,7 @@ function setInitData(params){
 function toOperating(funccodeStr){
 	for(var i =0;i<treeNodes.length;i++){
 		if(treeNodes[i].funccode==funccodeStr){
-			toOpen(treeNodes[i].funccodeStr,treeNodes[i].funcname,treeNodes[i].funcactioin);
+			toOpen(treeNodes[i].funccode,treeNodes[i].funcname,treeNodes[i].funcactioin);
 		}
 	}
 }
@@ -84,3 +85,8 @@ function toOpen(funccode,funcname,funcactioin){
     item.iconCls = "fa fa-file-text";
     window.parent.activeTab(item);
 }
+
+
+
+
+

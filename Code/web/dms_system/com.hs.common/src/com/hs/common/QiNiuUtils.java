@@ -94,6 +94,17 @@ public class QiNiuUtils {
 
 	}
 	
+	@Bizlet("获取文件上传路径")
+	public static String getFileUploadUrl() {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "QNDOMAIN", "serverType");
+		String qnDomain = Env.getContributionConfig("com.vplus.login",
+				"cfg", "QNDOMAIN", envType);
+
+		return qnDomain;
+
+	}
+	
 	@Bizlet("base64编码上传")
 	public static Map uploadBase64File(String baseCode, String key) {
 		Map retMap = new HashMap();

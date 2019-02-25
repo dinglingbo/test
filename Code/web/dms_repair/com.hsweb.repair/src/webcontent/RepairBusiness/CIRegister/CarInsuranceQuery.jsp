@@ -105,7 +105,7 @@ pageEncoding="UTF-8" session="false"%>
 	                     <div field="amt" name="amt"  headerAlign="center" header="保费总金额" ></div>
 	                     <div field="rtnCompAmt" name="partAmt"  headerAlign="center" header="保司返点总金额" ></div>
 	                     <div field="rtnGuestAmt" name="partAmt"  headerAlign="center" header="客户返点总金额" ></div>  
-	                     <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>
+	                     <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" ></div>
                        </div>
                      </div>					
                     <div header="保费信息" headerAlign="center">

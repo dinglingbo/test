@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<div  id=""  > 
+
                 <div class="nui-fit"> 
 
                   <div  id="menu1" class="demo"  style="">
@@ -156,7 +156,7 @@
                     </div>                   
                 </div>
             </div> 
-        </div>
+      
 
 	<script type="text/javascript">
     	nui.parse();

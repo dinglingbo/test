@@ -58,6 +58,7 @@ function onSearch(){
 		params.status = sta;
 	}
 	params.orgid = currOrgId;
+	params.recordId = currEmpId;
 	moreOrgGrid.load({
 		params:params,
 		token : token
@@ -84,7 +85,7 @@ function solveFeedBack(row_uid){
 		 nui.open({
 	         url: webPath + contextPath + "/common/feedbackDetail.jsp?token="+token,
 	         title: '查看反馈',
-	         width: 950, height: 770,
+	         width: "100%", height: "100%",
 	         onload: function () {
 	             var iframe = this.getIFrameEl();
 	             row.user = 1;

@@ -85,12 +85,12 @@
         <div header="业务信息" headerAlign="center">
             <div property="columns">
                 <div allowSort="true" field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型"></div>
-                <div allowSort="true" field="tc" width="60" headerAlign="center" summaryType="sum" header="施工台次"></div>
-                <div allowSort="true" field="itemTime" width="60" headerAlign="center" summaryType="sum" header="工时时间"></div>
-                <div allowSort="true" field="subtotal" width="60" headerAlign="center" summaryType="sum" header="工时收入"></div>
-                <div allowSort="true" field="costAmt" width="60" headerAlign="center" summaryType="sum" header="工时成本"></div>
-                <div allowSort="true" field="retc" width="60" headerAlign="center" summaryType="sum" header="返工台次"></div>
-                <div allowSort="true" field="retcRate" width="60" headerAlign="center" header="返工占比"></div>
+                <div allowSort="true" field="tc" width="60" headerAlign="center" summaryType="sum" header="施工台次" dataType="float"></div>
+                <div allowSort="true" field="itemTime" width="60" headerAlign="center" summaryType="sum" header="工时时间" dataType="float"></div>
+                <div allowSort="true" field="subtotal" width="60" headerAlign="center" summaryType="sum" header="工时收入" dataType="float"></div>
+                <div allowSort="true" field="costAmt" width="60" headerAlign="center" summaryType="sum" header="工时成本" dataType="float"></div>
+                <div allowSort="true" field="retc" width="60" headerAlign="center" summaryType="sum" header="返工台次" dataType="float"></div>
+                <div allowSort="true" field="retcRate" width="60" headerAlign="center" header="返工占比" dataType="float"></div>
                 <!-- <div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div> -->
             </div>
         </div>

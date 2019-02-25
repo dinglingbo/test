@@ -80,7 +80,7 @@
             <div property="columns">          
         <div type="indexcolumn">序号</div>
               <div  field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型" allowsort="true" ></div>
-              <div field="deductWorkerValue" name="deductWorkerValue" width="60" headerAlign="center" header="销售提成" summaryType="sum" allowsort="true" ></div> 
+              <div field="deductWorkerValue" name="deductWorkerValue" width="60" headerAlign="center" header="销售提成" dataType="float" summaryType="sum" allowsort="true" ></div> 
 <!--               <div field="techDeductValue" name="techDeductValue" width="60" headerAlign="center" header="施工提成" summaryType="sum" allowsort="true" ></div> -->
 <!--               <div field="advisorDeductValue" name="advisorDeductValue" width="60" headerAlign="center" header="服务提成" summaryType="sum" allowsort="true" ></div>
               <div field="annualInspectionDeductValue" name="annualInspectionDeductValue" width="60" headerAlign="center" header="商业险提成" summaryType="sum" allowsort="true" ></div>

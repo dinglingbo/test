@@ -82,7 +82,7 @@
               <div  field="groupName" name="groupName" width="60" headerAlign="center" header="业务类型" allowsort="true" ></div>
 <!--              <div field="salesDeductValue" name="salesDeductValue" width="60" headerAlign="center" header="销售提成" summaryType="sum" allowsort="true" ></div> 
               <div field="techDeductValue" name="techDeductValue" width="60" headerAlign="center" header="施工提成" summaryType="sum" allowsort="true" ></div> -->
-              <div field="deductWorkerValue" name="deductWorkerValue" width="60" headerAlign="center" header="服务提成" summaryType="sum" allowsort="true" ></div>
+              <div field="deductWorkerValue" name="deductWorkerValue" width="60" headerAlign="center" header="服务提成" dataType="float" summaryType="sum" allowsort="true" ></div>
  <!--              <div field="annualInspectionDeductValue" name="annualInspectionDeductValue" width="60" headerAlign="center" header="商业险提成" summaryType="sum" allowsort="true" ></div>
               <div field="insureDueDeductValue" name="insureDueDeductValue" width="60" headerAlign="center" header="交强险提成" summaryType="sum" allowsort="true" ></div>
               <div field="vesselTaxDeductValue" name="vesselTaxDeductValue" width="60" headerAlign="center" header="车船税提成" summaryType="sum" allowsort="true" ></div>

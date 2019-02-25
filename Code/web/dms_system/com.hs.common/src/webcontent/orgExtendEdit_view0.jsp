@@ -139,7 +139,7 @@ float: left;
 
 height: 120px;
 
-width: 100px;
+width: 120px;
 position:relative;
 
 }
@@ -148,9 +148,9 @@ position:relative;
 
 .inputstyle{
 
-    width: 100px;
+    width: 120px;
 
-    height: 100px;
+    height: 120px;
 
     cursor: pointer;
 
@@ -196,10 +196,7 @@ position:relative;
                 <td  colspan="5" class="tabwidth" >
                 <div class="page-header" id="btn-uploader">
 	                	<div class="div1" id="faker" onchange="xmTanUploadImg(this)">
-	                		<p >
-								
-				            </p>
-				            <img id="xmTanImg" style="width: 100px;height: 100px" onclick="xmTanUploadImg(this)"/>
+				            <img id="xmTanImg" style="width: 100px;height: 100px" onchange="xmTanUploadImg(this)" src="<%= request.getContextPath() %>/common/images/1551084646(1).jpg"/>
 				            <div id="xmTanDiv"></div>
 				        </div>
 			        </div>
@@ -397,6 +394,7 @@ position:relative;
 			            var domain = up.getOption('domain');
 			            //var sourceLink = domain + res.key;//获取上传文件的链接地址
 			            var info1 = JSON.parse(info);
+			            $("#xmTanImg").attr("src","http://qxy60.7xdr.com/" + info1.hash);
 			            nui.get("logoImg").setValue("http://qxy60.7xdr.com/" + info1.hash);
 			        },
 			        'Error': function (up, err, errTip) {

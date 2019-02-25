@@ -69,7 +69,7 @@
 				<div field="guestName" name="guestName" headerAlign="center" allowSort="true" width="120px">往来单位名称</div>
 				<div field="billTypeId" name="" headerAlign="center" allowSort="true" width="80px">
 					收支项目</div>
-				<div field="charOffAmt" name="" headerAlign="center" allowSort="true" width="40px" summaryType="sum">
+				<div field="charOffAmt" name="" headerAlign="center" allowSort="true" width="40px" summaryType="sum" dataType="float">
 					金额</div>
 				<div field="remark" name="" headerAlign="center" allowSort="true" width="140px">
 					备注</div>

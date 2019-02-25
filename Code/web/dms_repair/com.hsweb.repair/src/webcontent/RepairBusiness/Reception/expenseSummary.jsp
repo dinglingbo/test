@@ -113,7 +113,7 @@ pageEncoding="UTF-8" session="false"%>
                     <!-- <div type="expandcolumn" width="20" visible="true"><span class="fa fa-plus fa-lg"></span></div> -->
                     <div field="dc" headerAlign="center" allowSort="true"  header="费用分类"></div>
                     <div field="typeId"  headerAlign="center" allowSort="true"  header="费用名称"></div>
-                    <div field="amt" name="amt" headerAlign="center" allowSort="true"  header="金额" summaryType="sum"></div>
+                    <div field="amt" name="amt" headerAlign="center" allowSort="true"  header="金额" summaryType="sum" dataType="float"></div>
                     <div field="expenseOptBtn" headerAlign="center" allowSort="false"  header="操作" align="center"></div>
                 </div>
             </div>

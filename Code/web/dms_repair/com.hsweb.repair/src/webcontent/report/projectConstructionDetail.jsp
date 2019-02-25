@@ -77,11 +77,11 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="carModel" name="carModel" headeralign="center" width="200" align="center" width="160" allowsort="true">品牌车型</div>
                 <div field="guestName" name="guestName" headeralign="center" width="100" align="center" allowsort="true">客户名称</div>
                 <div field="carVin" name="carVin" headeralign="center" width="150" align="center" allowsort="true">车架号(VIN)</div>
-                <div field="itemTime" name="itemTime" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true">工时</div>
-                <div field="unitPrice" name="unitPrice" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true">单价</div>
-                <div field="amt" name="amt" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true">金额</div>
-                <div field="rate" name="rate" headeralign="center" width="80" align="center"  allowsort="true">优惠率</div>
-                <div field="subtotal" name="subtotal" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true">小计</div>
+                <div field="itemTime" name="itemTime" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true" dataType="float">工时</div>
+                <div field="unitPrice" name="unitPrice" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true" dataType="float">单价</div>
+                <div field="amt" name="amt" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true" dataType="float">金额</div>
+                <div field="rate" name="rate" headeralign="center" width="80" align="center"  allowsort="true" dataType="float">优惠率</div>
+                <div field="subtotal" name="subtotal" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true" dataType="float">小计</div>
                 <!-- <div field="" name="" headeralign="center" width="100" align="center">来店途径</div> -->
                 <div field="workers" name="workers" headeralign="center" width="100" align="center" allowsort="true">施工员</div>
                 <div field="status" name="status" renderer="onStatusRenderer" headeralign="center" width="80" align="center" allowsort="true">状态</div>

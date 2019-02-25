@@ -143,10 +143,10 @@
                
                   <div header="估算费用信息" headerAlign="center">
 	                  <div property="columns" >	                  
-		                  <div field="pkgSubtotal" name="status" width="70" headerAlign="center" summaryType="sum" header="套餐小计" allowsort="true"></div>
-		                  <div field="itemSubtotal" name="carNO" width="70" headerAlign="center" summaryType="sum" header="项目小计" allowsort="true"></div>
-		                  <div field="partSubtotal" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="配件小计" allowsort="true"></div>
-		                  <div field="total" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="合计" allowsort="true"></div>
+		                  <div field="pkgSubtotal" name="status" width="70" headerAlign="center" summaryType="sum" header="套餐小计" allowsort="true" dataType="int"></div>
+		                  <div field="itemSubtotal" name="carNO" width="70" headerAlign="center" summaryType="sum" header="项目小计" allowsort="true" dataType="int"></div>
+		                  <div field="partSubtotal" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="配件小计" allowsort="true" dataType="int"></div>
+		                  <div field="total" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="合计" allowsort="true" dataType="int"></div>
 	<!-- 	                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum"  header="预存抵扣" allowsort="true"></div>
 		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" summaryType="sum"  header="优惠金额" allowsort="true"></div>
 		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" summaryType="sum"  header="其他收入" allowsort="true"></div>

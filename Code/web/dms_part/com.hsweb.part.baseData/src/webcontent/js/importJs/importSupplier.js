@@ -218,7 +218,7 @@ function close(){
     else window.close();
 }
 
-var saveUrl = baseUrl + "com.hsapi.repair.repairService.crud.getImportGuest.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.getImportGuest.biz.ext";
 function saveEnterPart(partList){
 	if(partList && partList.length>0) {
 		nui.mask({

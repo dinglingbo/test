@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>服务顾问提成明细表</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/mtAdvisorCommissionDetail.js?v=1.0.8"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/report/storeReport/mtAdvisorCommissionDetail.js?v=1.0.9"></script>
 
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
@@ -87,7 +87,7 @@ pageEncoding="UTF-8" session="false" %>
 						<div header="提成信息" headerAlign="center"> 
 		                    <div property="columns" >	
 					          <div field="worker" name="worker" headeralign="center" width="100" align="center" allowsort="true" >服务顾问</div>
-					          <div field="deductWorkerValue" name="deductWorkerValue" headeralign="center" width="80" align="center" summaryType="sum" allowsort="true" >服务提成</div>
+					          <div field="deductWorkerValue" name="deductWorkerValue" headeralign="center" width="80" align="center" dataType="float" summaryType="sum" allowsort="true" >服务提成</div>
 					        </div>
 				        </div>
 				     	<div header="业务信息" headerAlign="center"> 

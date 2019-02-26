@@ -107,6 +107,10 @@
 				AND B.STORE_ID = #storeId#
 			</isNotNull>
 			
+			<isNotNull prepend = "" property = "isDisabled">
+				AND F.is_disabled = #isDisabled#
+			</isNotNull>
+			
 			<isNotNull prepend = "" property = "storeShelf">
 				and b.store_shelf like '%$storeShelf$%'
 			</isNotNull>
@@ -117,7 +121,7 @@
 			
 			
 			<isNotNull prepend = "" property = "partCode">
-				AND F.QUERY_CODE like '%$partCode$%'
+				AND F.QUERY_CODE like '%$partCode$%'  or F.code like '%$partCode$' or F.oem_code like '%$partCode$'
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "partName">

@@ -110,7 +110,7 @@ $(document).ready(function(v)
 		 case "orgid":
 	        	for(var i=0;i<currOrgList.length;i++){
 	        		if(currOrgList[i].orgid==e.value){
-	        			e.cellHtml = currOrgList[i].name;
+	        			e.cellHtml = currOrgList[i].shortName;
 	        		}
 	        	}
 		default:
@@ -249,7 +249,6 @@ function onSearch(){
 }
 function doSearch(params)
 {
-	params.orgid = currOrgId;
 	if(!setReturnSign.checked){	
 		params.returnSign = 0;
 	}
@@ -316,16 +315,3 @@ function editSell(){
     window.parent.activeTabAndInit(part,params);
 }
 
-function changed(){
-	var params=getSearchParams();
-	params.orgid = currOrgId;
-	params.isSettle=0;
-	if(!setReturnSign.checked){	
-		params.returnSign = 0;
-	}
-	rightGrid.load({
-        params:params,
-        token :token     
-    });
-	
-}

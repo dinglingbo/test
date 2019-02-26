@@ -274,7 +274,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
         var tabs = mini.get("mainTabs");
         var tab = tabs.getTab(item.id);
         if (!tab) {
-            tab = { name: item.id, title: item.text, url: item.url, iconCls: item.iconCls, showCloseButton: true };
+            tab = { name: item.id, title: item.text, url: item.url, iconCls: item.iconCls, resId: item.resId, showCloseButton: true };
             tab = tabs.addTab(tab);
         }
         tabs.activeTab(tab);
@@ -288,6 +288,16 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
                 obj = {};
                 loadingV = false;
             }
+        }else {
+         	var tabs = mini.get("mainTabs");
+	        var tab = tabs.getActiveTab();
+	        var iframe = tabs.getTabIFrameEl(tab);
+	        var params = {
+	        	resId: tab.resId
+	        };
+	        if(iframe.contentWindow && iframe.contentWindow.setInitData){
+	            iframe.contentWindow.setInitData(params);
+	        }
         }
     }
 
@@ -296,7 +306,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
         var tab = tabs.getTab(item.id);
         loadingV = true;
         if (!tab) {
-            tab = { name: item.id, title: item.text, url: item.url, iconCls: item.iconCls, showCloseButton: true };
+            tab = { name: item.id, title: item.text, url: item.url, iconCls: item.iconCls, resId: item.resId, showCloseButton: true };
             tab = tabs.addTab(tab);
             
             tabs.activeTab(tab);
@@ -491,6 +501,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
                 tmpObj.id = node.menuPrimeKey;
                 tmpObj.iconCls = imagePath||"fa fa-th-list";
                 tmpObj.url = node.linkAction;
+                tmpObj.resId = node.linkResId;
                 if(node.childrenMenuTreeNodeList){
                     tmpObj.children = getChildrenData(node.childrenMenuTreeNodeList);
                 }
@@ -510,6 +521,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
                 tmpObj.id = node.menuPrimeKey;
                 tmpObj.iconCls = imagePath||"fa fa-file-text";
                 tmpObj.url = defDomin + node.linkAction;
+                tmpObj.resId = node.linkResId;
                 if(node.childrenMenuTreeNodeList){
                     tmpObj.children = getChildrenData(node.childrenMenuTreeNodeList);
                 }
@@ -528,6 +540,7 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
                 var text = node.menuName;
                 var url = defDomin + node.linkAction;
                 var children = node.childrenMenuTreeNodeList;
+                var resId = node.linkResId;
 
                 var child = {};
                 child.id = id;
@@ -535,11 +548,16 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
                 child.text = text;
                 child.url = url;
                 child.children = children;
+                child.resId = resId;
 
                 getChildren(child, children);
                 node.push(child);
                 //getChildren(children);
             }
+        }
+        
+        function getMainTabs() {
+        	return mainTabs;
         }
 
         //dropdown

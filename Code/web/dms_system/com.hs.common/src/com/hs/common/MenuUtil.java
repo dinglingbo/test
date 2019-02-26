@@ -16,6 +16,8 @@ import java.util.Set;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
+import net.sf.json.JSONObject;
+
 import org.apache.commons.collections.CollectionUtils;
 
 import com.eos.data.datacontext.DataContextManager;
@@ -252,6 +254,99 @@ public class MenuUtil {
 		}finally {
 			return check;
 		}
+	}
+	
+	
+	@Bizlet
+	public static List getSameLevelRes(String userId, String resId)throws Throwable  {
+		if(userId == null || userId == "" || resId == null || resId == "") {
+			return null;
+		}
+		/*
+		 * 1、获取用户对应的角色
+		 * 2、获取角色对应的资源
+		 * 3、取唯一资源ID
+		 * 4、获取资源ID对应的详细资源信息
+		 * 5、通过资源ID的输入参数PARAINFO进行排序
+		 * */
+		String funcgroupid = "";
+		//查询用户对应的角色
+		DataObject[] roleArr = ResauthUtils.getUserRoles(userId);
+    	if(roleArr.length <= 0) {
+    		return null;
+    	}
+    	List<DataObject> resList = new ArrayList<DataObject>();
+    	//查询角色对应的资源
+		for(int i=0; i<roleArr.length; i++) {
+			DataObject roleObj = roleArr[i];
+			String roleId = roleObj.getString("roleId");
+			DataObject[] resArr = ResauthUtils.getRoleRes(roleId);
+			CollectionUtils.addAll(resList, resArr);
+		}
+		
+		//取唯一资源ID			
+		Set<DataObject> set = new HashSet<DataObject>();    //去重
+		set.addAll(resList); 
+		List<DataObject> resIdList = new ArrayList<DataObject>(set);
+		//资源ID对应的详细资源信息
+		List<DataObject> resInfoList = new ArrayList<DataObject>();
+		for(int j=0; j<resIdList.size(); j++) {
+			DataObject resObj = resIdList.get(j);
+			String funccode = resObj.getString("resId");
+			HashMap ex = new HashMap();
+			if(!ex.containsKey(funccode)) {
+				DataObject[] resInfo = ResauthUtils.getComAppFunctionByFunccode(funccode);
+				if(funccode.equals(resId)) {
+					funcgroupid = resInfo[0].getString("funcgroupid");
+				}
+				CollectionUtils.addAll(resInfoList, resInfo);
+				ex.put(funccode, funccode);
+			}
+		}
+		
+		List<DataObject> list=new ArrayList<DataObject>();
+        for(int i = 0; i<resInfoList.size(); i++) {
+        	DataObject d = resInfoList.get(i);
+        	
+        	String resfuncgroupid = d.getString("funcgroupid");
+    		if(resfuncgroupid.equals(funcgroupid)) {
+    			String funccode = d.getString("funccode");
+    			String paramInfoStr = d.getString("parainfo");
+    			String orderIndex = "";
+    			String iconCls = "";
+    			JSONObject jsonObj = JSONObject.fromObject(paramInfoStr);
+    			
+    			if(jsonObj.containsKey("orderIndex")) {
+	    			orderIndex = (String) jsonObj.get("orderIndex");
+    			}
+    			if(jsonObj.containsKey("iconCls")) {
+	    			iconCls = (String) jsonObj.get("iconCls");
+    			}
+    			d.set("orderIndex", orderIndex);
+    			d.set("iconCls", iconCls);
+    			if(!funccode.equals(resId)) {
+    				list.add(d);
+    			}
+    		}
+        	
+        }
+        
+        Collections.sort(list, new Comparator<DataObject>() {
+            public int compare(DataObject arg0, DataObject arg1) {
+                int hits0 = arg0.getInt("orderIndex");
+                int hits1 = arg1.getInt("orderIndex");
+                if (hits0 > hits1) {
+                    return 1;
+                } else if (hits1 == hits0) {
+                    return 0;
+                } else {
+                    return -1;
+                }
+            }
+        });
+		
+		return list;
+
 	}
 	
 }

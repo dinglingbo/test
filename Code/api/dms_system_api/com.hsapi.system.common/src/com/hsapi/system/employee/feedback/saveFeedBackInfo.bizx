@@ -103,6 +103,10 @@
       <process:from type="query" pattern="reference">m:userObject/userName</process:from>
       <process:to type="query">feedback/recorder</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/empId</process:from>
+      <process:to type="query">feedback/recordId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
     <location x="216" y="186"/>
@@ -187,6 +191,7 @@
     <sourceConnections xsi:type="process:tLink" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>assign4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
     <location x="300" y="150"/>

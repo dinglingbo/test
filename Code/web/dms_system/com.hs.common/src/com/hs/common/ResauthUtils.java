@@ -232,6 +232,15 @@ public class ResauthUtils {
 				pm, "资源数据", "false", -1, false, null);
 	}
 	
+	@Bizlet("获取所有资源信息")
+	public static DataObject[] getComAppFunctionByFunccode(String resId) throws Throwable {
+		HashMap pm = new HashMap();
+		pm.put("resId", resId);
+		
+		return getRedisCache("default", "com.hs.common.orga.queryAppFunctionInfo", 
+				pm, "资源数据明细详情", "false", -1, false, null);
+	}
+	
 	@Bizlet("清除并重新设置缓存")
 	public static boolean clearAndResetCache(String dsName, String nameSqlId, 
 			HashMap params, String title, String fromDb, int expireTimes,

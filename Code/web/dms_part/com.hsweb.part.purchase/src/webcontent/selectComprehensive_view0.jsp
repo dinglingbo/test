@@ -124,6 +124,9 @@
                allowCellWrap = "true" 
                showSummaryRow = "true"
                onshowrowdetail="onShowRowDetail"
+               sortable="false"
+               allowResize="true"
+
                url="">
               <div property="columns">
                   <div type="indexcolumn">序号</div>
@@ -141,7 +144,7 @@
                   <div type="checkcolumn" name="checkcolumn" visible="false"></div>
                   <div header="客户车辆信息" headerAlign="center">
 	                  <div property="columns" > 
-	                 	  <div field="guestFullName" name="guestFullName" width="100" headerAlign="center" allowsort="true" header="客户姓名" allowsort="ture"></div> 
+	                 	  <div field="guestFullName" name="guestFullName" width="100" headerAlign="center"  allowsort="true" header="客户姓名" allowsort="ture"></div> 
 		                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号" allowsort="true"></div>
 		                  <div field="carModel" name="carModel" width="120" headerAlign="center" allowsort="true" header="品牌/车型"></div>
 						  <div field="carVin" name="carVin" width="150" headerAlign="center" allowsort="true" header="车架号(VIN)"></div>
@@ -150,43 +153,43 @@
                   </div>
                   <div header="收入" headerAlign="center">
 	                  <div property="columns" >	 
-	                  	  <div field="packageAmt" name="packageAmt" width="70" headerAlign="center" allowsort="true" summaryType="sum" header="套餐金额"></div>
-	                  	  <div field="packagePrefAmt" name="packagePrefAmt" width="70" headerAlign="center" allowsort="true" summaryType="sum" header="套餐优惠"></div>                 
-		                  <div field="packageSubtotal" name="packageSubtotal" width="70" headerAlign="center" allowsort="true" summaryType="sum" header="套餐小计"></div>
+	                  	  <div field="packageAmt" name="packageAmt" width="70" headerAlign="center" allowsort="true" dataType="int" summaryType="sum" header="套餐金额"  ></div>
+	                  	  <div field="packagePrefAmt" name="packagePrefAmt" width="70" headerAlign="center" allowsort="true" summaryType="sum" header="套餐优惠" dataType="int"></div>                 
+		                  <div field="packageSubtotal" name="packageSubtotal" width="70" headerAlign="center" allowsort="true" summaryType="sum" header="套餐小计" dataType="int"></div>
 		                  
-		                  <div field="itemAmt" name="itemAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="项目金额"></div>
-	                  	  <div field="itemPrefAmt" name="itemPrefAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="项目优惠"></div> 
-	                  	  <div field="itemSubtotal" name="itemSubtotal" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="项目小计"></div>
+		                  <div field="itemAmt" name="itemAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="项目金额" dataType="int"></div>
+	                  	  <div field="itemPrefAmt" name="itemPrefAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="项目优惠" dataType="int"></div> 
+	                  	  <div field="itemSubtotal" name="itemSubtotal" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="项目小计" dataType="int"></div>
 	                  	  
-	                  	  <div field="partAmt" name="partAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="配件金额"></div>
-	                  	  <div field="partPrefAmt" name="partPrefAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="配件优惠"></div>		                  
-		                  <div field="partSubtotal" name="partSubtotal" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="配件小计"></div>
-		                  <div field="otherAmt" name="" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="其他收入"></div>
-		                  <div field="incomeTotal" name="incomeTotal" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="收入合计"></div>
+	                  	  <div field="partAmt" name="partAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="配件金额" dataType="int"></div>
+	                  	  <div field="partPrefAmt" name="partPrefAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="配件优惠" dataType="int"></div>		                  
+		                  <div field="partSubtotal" name="partSubtotal" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="配件小计" dataType="int"></div>
+		                  <div field="otherAmt" name="" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="其他收入" dataType="int"></div>
+		                  <div field="incomeTotal" name="incomeTotal" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="收入合计" dataType="int"></div>
 		              </div>
 		           </div>      
 		           <div header="成本" headerAlign="center">
 	                  <div property="columns" >	
-	                  	  <div field="partTaxCost"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="配件含税成本"></div>
-	                  	  <div field="partNoTaxCost"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="配件不含税成本"></div>
-		                  <div field="partTrueCost"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="配件实际成本"></div>
-		                  <div field="salesDeductValue" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="销售提成"></div>
-		                  <div field="advisorDeductValue"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="服务顾问提成"></div>
-		                  <div field="techDeductValue"  width="70" headerAlign="center"  summaryType="sum" allowsort="true" header="施工员提成"></div>
-		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="其他支出"></div>
-		                  <div field="expenditureTotal" name="expenditureTotal" width="70" headerAlign="center" allowsort="true" summaryType="sum" header="成本合计"></div>
+	                  	  <div field="partTaxCost"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="配件含税成本" dataType="int"></div>
+	                  	  <div field="partNoTaxCost"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="配件不含税成本" dataType="int"></div>
+		                  <div field="partTrueCost"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="配件实际成本" dataType="int"></div>
+		                  <div field="salesDeductValue" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="销售提成" dataType="int"></div>
+		                  <div field="advisorDeductValue"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="服务顾问提成" dataType="int"></div>
+		                  <div field="techDeductValue"  width="70" headerAlign="center"  summaryType="sum" allowsort="true" header="施工员提成" dataType="int"></div>
+		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="其他支出" dataType="int"></div>
+		                  <div field="expenditureTotal" name="expenditureTotal" width="70" headerAlign="center" allowsort="true" summaryType="sum" header="成本合计" dataType="int"></div>
 		             
             		  </div>
 		           </div>  
 		            <div header="毛利" headerAlign="center">
 	                  <div property="columns" >		
-	                  	  <div field="netinAmt" name="netinAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="营收金额"></div>	
-		                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="计次卡抵扣"></div>
-	                  	  <div field="balaAmt" name="contactName" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="结算金额"></div>	
+	                  	  <div field="netinAmt" name="netinAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="营收金额" dataType="int"></div>	
+		                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="计次卡抵扣" dataType="int"></div>
+	                  	  <div field="balaAmt" name="contactName" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="结算金额" dataType="int"></div>	
 	                  	 <!--  <div field="totalPrefRate" name="totalPrefRate" width="70" headerAlign="center" summaryType="sum" allowsort="true" header="整单优惠率"></div> 	 -->                  	                 
 		                 <!--  <div field="totalPrefAmt" name="totalPrefAmt" width="70" headerAlign="center" allowsort="true" header="整单优惠金额"></div> -->
-		                  <div field="grossProfit"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="毛利"></div>
-		                  <div field="grossProfitRate"  width="70" headerAlign="center" numberFormat="p" allowsort="true"  header="毛利率"></div>
+		                  <div field="grossProfit"  width="70" headerAlign="center" summaryType="sum" allowsort="true" header="毛利" dataType="int"></div>
+		                  <div field="grossProfitRate"  width="70" headerAlign="center" numberFormat="p" allowsort="true"  header="毛利率" dataType="int"></div>
 		                  <div field="grossProfitRemark"  width="70" headerAlign="center" allowsort="true" header="毛利备注"></div>		                  
 	                  </div>
                   </div>

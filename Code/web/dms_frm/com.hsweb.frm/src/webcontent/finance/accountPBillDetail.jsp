@@ -67,9 +67,9 @@ pageEncoding="UTF-8" session="false" %>
                 <div field="billServiceId" name="billServiceId" summaryType="count" width="100"  headeralign="center" allowsort="true" summaryType="count" >业务单号</div>
                 <div field="billTypeId" name="name" width="100"  headeralign="center" allowsort="true"  >收支类型</div>
                 <div field="shortName" name="shortName" width="100"  headeralign="center" allowsort="true" >供应商简称</div>
-                <div field="rpAmt" name="rpAmt" width="50" summaryType="sum" headeralign="center" allowsort="true" >应付金额</div>
-                <div field="trueCharOffAmt" name="trueCharOffAmt" summaryType="sum" width="60"  headeralign="center" allowsort="true" >已付金额</div>
-                <div field="noCharOffAmt" name="noCharOffAmt" summaryType="sum" width="60"  headeralign="center" allowsort="true" >未付金额</div>
+                <div field="rpAmt" name="rpAmt" width="50" summaryType="sum" headeralign="center" allowsort="true" dataType="float">应付金额</div>
+                <div field="trueCharOffAmt" name="trueCharOffAmt" summaryType="sum" width="60"  headeralign="center" allowsort="true" dataType="float">已付金额</div>
+                <div field="noCharOffAmt" name="noCharOffAmt" summaryType="sum" width="60"  headeralign="center" allowsort="true" dataType="float">未付金额</div>
                 <div field="settleStatus" name="settleStatus" width="100" headeralign="center" allowsort="true" >结算状态</div>
                 <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true" >单据日期</div>
                 <div field="fullName" name="name" width="120"  headeralign="center" allowsort="true" >供应商全称</div>

@@ -51,7 +51,10 @@ $(document).ready(function(v) {
 
 	beginDateEl.setValue(getMonthStartDate());
 	endDateEl.setValue(addDate(getMonthEndDate(), 1));
-
+	
+	mainTabs.on("activechanged",function(e){
+		onSearch();
+    });
 	document.onkeyup = function(event) {
 		var e = event || window.event;
 		var keyCode = e.keyCode || e.which;// 38向上 40向下
@@ -216,10 +219,13 @@ function onDrawCell(e) {
                 e.cellHtml = "";
             }
             break;
+        case "serviceTypeName":
+        	 e.cellHtml = retSerTypeStyle(e.cellHtml);
+        	 break;
         case  "orgid":
         	for(var i=0;i<currOrgList.length;i++){
         		if(currOrgList[i].orgid==e.value){
-        			e.cellHtml = currOrgList[i].name || "";
+        			e.cellHtml = currOrgList[i].shortName || "";
         		}
         	}
     	break; 

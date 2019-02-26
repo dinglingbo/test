@@ -4,7 +4,7 @@
 
 <head>
 <title>品牌采购汇总按月排行</title>
-<script src="<%=webPath + contextPath%>/manage/js/report/partBrandPchsForMonth.js?v=1.7.3"></script>
+<script src="<%=webPath + contextPath%>/manage/js/report/partBrandPchsForMonth.js?v=1.7.5"></script>
 </head>
 
 <body>
@@ -100,8 +100,7 @@
 								width="120"  >实际入库数量</div>
 							<div field="rpCode" allowSort="true" headerAlign="center"
 								width="120"  >实际入库金</div>
-					   	
-							<div field="orgid" name="orgid" width="130" headerAlign="center"  header="所属公司" allowsort="true"></div>	
+					   
 						</div>
 						</div>
 						</div>

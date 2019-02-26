@@ -1300,7 +1300,6 @@
     	SELECT
     	    a.orgid as orgid,
 			a.id AS id,
-			a.orgid,
 			a.bill_type_id AS billTypeId,
 			a.service_type_id AS serviceTypeId,
 			a.service_code AS serviceCode,
@@ -1474,18 +1473,23 @@
 			c.full_name as fullName,
 			c.short_name as shortName,
 			c.guest_type as guestType,
-			sum(b.out_qty) as sellQty,
-			sum(b.sell_amt) as sellAmt,
-			sum(b.out_return_qty) as sellRtnQty,
-			sum(b.out_return_qty*b.sell_unit_price) as sellRtnAmt,
-			(sum(b.out_qty)-sum(b.out_return_qty)) as trueQty,
-			(sum(b.sell_amt)- sum(b.out_return_qty*b.sell_unit_price))as trueAmt,
+			sum(IFNULL(b.out_qty,0)) as sellQty,
+			sum(IFNULL(b.sell_amt,0)) as sellAmt,
+			sum(IFNULL(b.out_return_qty,0)) as sellRtnQty,
+			sum(b.out_return_qty * b.sell_unit_price) as sellRtnAmt,
+			(sum(IFNULL(b.out_qty,0))-sum(IFNULL(b.out_return_qty,0))) as trueQty,
+			(sum(IFNULL(b.sell_amt,0))- sum(IFNULL(b.out_return_qty,0)*IFNULL(b.sell_unit_price,0)))as trueAmt,
 			sum(b.true_cost) as trueCost,
 			(sum(b.sell_amt)-sum(b.true_cost)) as trueProfitAmt,
 			a.guest_id as guestId,
 			a.orgid as orgid,
 			b.part_id as partId,
+			a.service_type_id as serviceTypeId,
 			d.part_brand_id as partBrandId,
+			d.oem_code as oemCode,
+			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
+	       inner join rpb_business_type f on e.service_type_id = f.id
+	       where e.service_id = a.id) as serviceTypeName,
 			d.car_type_id_f as carTypeIdF
 		FROM
 			rps_maintain  a

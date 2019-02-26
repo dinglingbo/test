@@ -99,21 +99,21 @@
                     <div allowSort="true" field="guestType" width="80" headerAlign="center" header="客户类型"></div>
                     <div allowSort="true" field="fullName" width="100" headerAlign="center" header="客户全称"></div>
                     <div field="sellQty" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum" >销售数量</div>
+                      width="60" summaryType="sum"  dataType="float">销售数量</div>
                     <div field="sellAmt" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum"  >销售金额</div>
+                      width="60" summaryType="sum" dataType="float" >销售金额</div>
                     <div field="sellRtnQty" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum" >退货数量</div>
+                      width="60" summaryType="sum" dataType="float">退货数量</div>
                     <div field="sellRtnAmt" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum" >退货金额</div>
+                      width="60" summaryType="sum"  dataType="float">退货金额</div>
                     <div field="trueQty" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum" >实销数量</div>
+                      width="60" summaryType="sum" dataType="float">实销数量</div>
                     <div field="trueAmt" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum" >实销金额</div>
+                      width="60" summaryType="sum" dataType="float">实销金额</div>
                     <div field="trueCost" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum" >实销成本</div>
+                      width="60" summaryType="sum" dataType="float">实销成本</div>
                     <div field="trueProfitAmt" allowSort="true" headerAlign="center"
-                      width="60" summaryType="sum" >实销毛利</div>
+                      width="60" summaryType="sum" dataType="float">实销毛利</div>
                       
                 </div>
             </div>

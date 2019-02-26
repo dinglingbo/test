@@ -176,8 +176,8 @@
 								<input class="nui-textbox" width="80px" id="search-name" name="name" onenter="onSearch()" />
 								<label style="font-family: Verdana;font-size: 12px;" id="itemCodeLabel">项目编码：</label>
 								<input class="nui-textbox" width="60px" id="search-code" name="code" onenter="onSearch()"/>
-								<span class="separator"></span>
 								<a class="nui-button" plain="true" iconCls="" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+								<span class="separator"></span>
 								<a class="nui-button" id="add" iconCls="" onclick="add()" plain="true"><span class="fa fa-plus fa-lg"></span>&nbsp;新增项目</a>
 								<a class="nui-button" plain="true" iconCls="" onclick="onClear()"><span class="fa fa-trash-o"></span>&nbsp;清空</a>
 								<a class="nui-button" id="selectBtn" iconCls="" onclick="choose()" plain="true" visible="true"><span class="fa fa-check fa-lg"></span>&nbsp;选择</a>

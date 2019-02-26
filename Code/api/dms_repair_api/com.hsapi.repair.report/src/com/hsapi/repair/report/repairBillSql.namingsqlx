@@ -937,5 +937,84 @@
                		 )
 	</select>
 	
-
+	
+	<select id="queryChainCarSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	       
+		    
+		       SELECT 
+				 sum(case when a.status = 0 then  1 else 0 end) as statusA,
+    	  	     sum(case when a.status = 1 then  1 else 0 end) as statusB,
+       		     sum(case when a.status = 2 then  1 else 0 end) as statusC,
+       		     sum(case when a.is_settle = 1 then  1 else 0 end) as isSettle,
+       		     sum(case when a.bala_audit_sign = 1 then  1 else 0 end) as balaAuditSign,
+       		     b.short_name shortName
+                 from rps_maintain a 
+                 inner join wb_common.com_company b on  a.orgid = b.orgid
+                 where a.tenant_id = #tenantId#
+               	<isNotEmpty prepend="and" property="startDate">  
+                   (a.record_date &gt;= #startDate#)
+                </isNotEmpty>
+                <isNotEmpty prepend="and" property="endDate">  
+                   (a.record_date &lt; #endDate#)
+                </isNotEmpty>
+					group by a.orgid
+	</select>
+	
+	
+	<!--租户下的机构-->
+	<select id="queryTenantIdSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		         SELECT 
+       		     a.tenant_id  tenantId,
+       		     a.orgid orgid,
+       		     a.short_name shortName
+                 from wb_common.com_company a
+                 where a.tenant_id = #tenantId#
+	</select>
+	
+	<!--计次卡剩余-->
+	<select id="queryChainCardTimesSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	       
+		      SELECT
+		         a.orgid  orgid, 
+       		     sum(b.can_use_times) as canUseTimesTotal,
+       		     sum(b.sell_price * b.can_use_times) as amtTotal,
+       		     c.short_name shortName
+                 from wb_common.com_company c
+                 inner join  rps_card_times a on   a.orgid = c.orgid
+                 inner join rps_card_times_detail b on  a.id = b.main_id
+                 where c.tenant_id = #tenantId#
+                 and a.is_finish = 0
+                 and a.is_refund = 0
+                 and b.is_finish = 0
+				 group by a.orgid
+	</select>
+	<!--储值卡余额 -->
+	<select id="queryChainStoredRecordSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	       
+		      SELECT 
+		         a.orgid  orgid,
+       		     sum(a.bala_amt) as balaAmtTotal,
+       		     b.short_name shortName
+                 from rps_stored_record a 
+                 inner join wb_common.com_company b on  a.orgid = b.orgid
+                 where a.tenant_id = #tenantId#
+                 and a.is_settle = 1 
+                 and a.refund_amt = 0
+            	 group by a.orgid
+	</select>
+	
+	<!--客户数量 -->
+	<select id="queryChainComGuestSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+	       
+		         SELECT
+		         a.orgid  orgid,
+       		     count(*) as guestTotal,
+       		     b.short_name shortName
+                 from wb_common.com_guest a 
+                 inner join wb_common.com_company b on  a.orgid = b.orgid
+                 where a.tenant_id = #tenantId#
+                 and a.guest_type = 01020103 
+            	 group by a.orgid
+	</select>
+	
 </sqlMap>

@@ -266,15 +266,15 @@
                 success:function(res){
                     if(res.errCode == "S"){
                         var data = res.data;
-                        document.getElementById("pdata1").innerHTML = data.netinAmt||0;
-                        document.getElementById("pdata2").innerHTML = data.grossProfit||0;
-                        document.getElementById("pdata3").innerHTML = data.storedAmt||0;
-                        document.getElementById("pdata4").innerHTML = data.cardTimesAmt||0;
-                        document.getElementById("pdata5").innerHTML = data.unSettleAmt||0;
-                        document.getElementById("pdata6").innerHTML = data.settleAmt||0;
-                        document.getElementById("pdata7").innerHTML = data.rAmt||0;
+                        document.getElementById("pdata1").innerHTML = (data.netinAmt||0).toFixed(2);
+                        document.getElementById("pdata2").innerHTML = (data.grossProfit||0).toFixed(2);
+                        document.getElementById("pdata3").innerHTML = (data.storedAmt||0).toFixed(2);
+                        document.getElementById("pdata4").innerHTML = (data.cardTimesAmt||0).toFixed(2);
+                        document.getElementById("pdata5").innerHTML = (data.unSettleAmt||0).toFixed(2);
+                        document.getElementById("pdata6").innerHTML = (data.settleAmt||0).toFixed(2);
+                        document.getElementById("pdata7").innerHTML = (data.rAmt||0).toFixed(2);
                         // document.getElementById("pdata8").innerHTML = 0;
-                        document.getElementById("pdata9").innerHTML = data.pAmt||0;
+                        document.getElementById("pdata9").innerHTML = (data.pAmt||0).toFixed(2);
                     }
                 }
             });

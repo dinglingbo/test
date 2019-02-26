@@ -35,7 +35,7 @@
 	                    <input class="nui-textbox" width="100" id="search-namePy" name="namePy"/> -->
 	                    <label style="font-family:Verdana;">品牌：</label>
                         <input id="applyCarBrandId" name="applyCarBrandId" class="nui-combobox width1" textField="nameCn" valueField="id" emptyText="请选择..."
-                            url="" allowInput="false" showNullItem="false" nullItemText="请选择..." />
+                            url="" allowInput="true" showNullItem="false" nullItemText="请选择..." />
                         <span class="separator"></span>
                         <a class="nui-button" iconCls="" plain="true" onclick="onSearch()">
                             <span class="fa fa-search fa-lg"></span>&nbsp;查询</a>

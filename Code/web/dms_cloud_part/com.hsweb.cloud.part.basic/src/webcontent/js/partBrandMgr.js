@@ -552,7 +552,7 @@ function savePicture(imageUrl){
             if(rs.errCode == "S")
             {
                 parent.showMsg("图片上传成功","S");
-                loadBottom();
+                rightGrid.reload();
             }
             else{
                 parent.showMsg(data.errMsg||"图片上传失败","E");

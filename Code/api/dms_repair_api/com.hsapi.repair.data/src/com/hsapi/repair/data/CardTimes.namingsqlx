@@ -32,7 +32,8 @@
          b.sell_amt sellAmt,
          b.bala_times balaTimes,
          b.use_times useTimes,
-         b.total_times totalTimes
+         b.total_times totalTimes,
+         (b.bala_times * b.sell_price) remainAmt
          FROM rps_card_times a 
          INNER JOIN rps_card_times_detail b ON(b.main_id = a.id)
          INNER JOIN wb_common.com_guest c ON(a.guest_id = c.id) 

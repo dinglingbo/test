@@ -126,7 +126,7 @@ public class QiNiuUtils {
 		    DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
 		    fileUrl = putRet.key;
 		    String doMain = getQNDomain();
-		    fileUrl = doMain + "/" + fileUrl;
+		    fileUrl = doMain + fileUrl;
 		    retMap.put("fileUrl", fileUrl);
 		    retMap.put("fileName", putRet.key);
 		    

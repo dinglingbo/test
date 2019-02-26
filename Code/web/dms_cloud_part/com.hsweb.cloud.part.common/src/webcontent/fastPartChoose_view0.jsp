@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.23"></script>
+<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.24"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -94,7 +94,7 @@ body .mini-grid-row-selected{
                                         <div field="code" name="code" width="100" headerAlign="center" header="配件编码"></div>
                                         <div field="oemCode" name="oemCode" width="100" headerAlign="center" header="OEM码"></div>
                                         <div field="name" name="name" width="100" headerAlign="center" header="配件名称"></div>
-                                        <div field="partBrandId" name="partBrandId" width="100" headerAlign="center" header="品牌"></div>
+                                        <div field="partBrandId" name="partBrandId" width="80" headerAlign="center" header="品牌"></div>
                                         <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
                                         <div allowSort="true" datatype="float" name="outableQty" field="outableQty" summaryType="sum" width="60" headerAlign="center" header="可售数量"></div>
                                         <!-- <div allowSort="true" datatype="float" field="orderQty" summaryType="sum" width="60" headerAlign="center" header="开单数量"></div> -->
@@ -134,7 +134,7 @@ body .mini-grid-row-selected{
                                     <div field="billTypeId" align="left" width="55px" headerAlign="center" allowSort="true" header="票据类型"></div>
                                     <div field="storeId" width="60" headerAlign="center" allowSort="true" header="仓库"></div>
                                     <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true" header="仓位"></div>
-                                    <div field="partBrandId" name="partBrandId" width="60" headerAlign="center" header="品牌"></div>
+                                    <div field="partBrandId" name="partBrandId" width="80" headerAlign="center" header="品牌"></div>
                                     <div field="applyCarModel" name="applyCarModel" width="100" headerAlign="center" header="品牌车型"></div>
                                     <div field="enterUnitId" width="30" headerAlign="center" header="单位"></div>
                                     <div field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="120px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>

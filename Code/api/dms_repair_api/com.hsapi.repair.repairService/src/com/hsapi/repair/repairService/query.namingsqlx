@@ -280,6 +280,7 @@
 		       a.car_no as carNo,
 		       a.car_vin as carVin,
 		       a.out_date outDate,
+		       a.enter_kilometers enterKilometers,
 		       c.birthday as birthday, 
 		       a.guest_id as guestId,
 		       c.name as contactName,

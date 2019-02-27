@@ -82,6 +82,8 @@
                     allowInput="false"valueFromSelect="true" showNullItem="true"nullItemText="请选择...">
                     <input id="visitResult" name="visitResult" class="nui-combobox"visible="false" style="width: 100px;" emptyText="跟踪结果"
                     data="const_enabled_communicate" textField="text" valueField="value">
+                    <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid" nullItemText="请选择..."
+                    emptyText="兼职公司" url="" allowInput="true" showNullItem="true" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconcls="" name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 </td>
             </tr> 
@@ -104,6 +106,7 @@
                 <div field="visitStatus" width="60" headerAlign="center" align="center">跟踪状态</div>
                 <div field="visitMan" width="60" headerAlign="center" align="center">跟踪员</div>
                 <div field="visitDate" width="60" headerAlign="center" align="center" dateFormat="yyyy-MM-dd">跟踪日期</div>
+                <div field="orgid" name="orgid" width="80" headerAlign="center" align="center" header="所属公司" allowsort="true"></div>
             </div>
         </div>
     </div>
@@ -123,10 +126,19 @@
         var currType = 2;
         var startDateEl = nui.get("startDate");
         var endDateEl = nui.get("endDate");
+        var orgidsEl = nui.get("orgids");
         var memList = {};
         var memHash = {};
         quickSearch(4);
 
+
+            //判断是否有兼职门店,是否显示门店选择框
+        orgidsEl.setData(currOrgList);
+        if(currOrgList.length==1){
+            orgidsEl.hide();
+        }else{
+            orgidsEl.setValue(currOrgid);
+        }
 
         initDicts({
             visitMode: "DDT20130703000021",//跟踪方式
@@ -150,6 +162,12 @@
             }else if(field == "visitId"){//营销员
                 if(memHash[e.value]){
                     e.cellHtml = memHash[e.value].empName || "";
+                }
+            }else if(e.field == "orgid"){
+                for(var i=0;i<currOrgList.length;i++){
+                    if(currOrgList[i].orgid==e.value){
+                        e.cellHtml = currOrgList[i].name;
+                    }
                 }
             }
         });
@@ -215,6 +233,12 @@
             endDateEl.setValue(addDate(params.endDate, -1));
             var menunamedate = nui.get("menunamedate");
             menunamedate.setText(queryname);
+            var orgidsElValue = orgidsEl.getValue();
+            if(orgidsElValue==null||orgidsElValue==""){
+                params.orgids =  currOrgs;
+            }else{
+                params.orgid=orgidsElValue;
+            }
             grid1.load({params:params});
         }
 
@@ -224,6 +248,12 @@
             
             var data= form.getData();
             data.endDate = formatDate(data.endDate) +" 23:59:59";
+            var orgidsElValue = orgidsEl.getValue();
+            if(orgidsElValue==null||orgidsElValue==""){
+                data.orgids =  currOrgs;
+            }else{
+                data.orgid=orgidsElValue;
+            }
             grid1.load({params:data,token :token});
         }
 

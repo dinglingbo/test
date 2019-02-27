@@ -916,6 +916,31 @@
 					group by a.prdt_id
                		 )
 	</select>
+
+		<select id="queryChainCashWaterSummary" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT 
+				sum(case when a.bill_type_id in (103,106,107,108,109)  then ifnull(a.char_off_amt,0) else 0 end ) as repairAmt,
+				sum(case when a.bill_type_id = 104  then ifnull(a.char_off_amt,0) else 0 end ) as cardAmt,
+				sum(case when a.bill_type_id = 105  then ifnull(a.char_off_amt,0) else 0 end ) as cardTimesAmt,
+				sum(char_off_amt) as zongAmt,
+				a.orgid as orgid
+               FROM wb_frm.fis_rp_bill a
+ 		WHERE settle_status = 2 and is_disabled = 0 
+ 		
+           	<isNotEmpty prepend="and" property="startDate">  
+               (a.operate_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+               (a.operate_date &lt; #endDate#)
+            </isNotEmpty>
+            <isNotNull prepend = "" property = "billDc">
+				AND   a.bill_dc = #billDc#						
+			</isNotNull>
+			 <isNotNull prepend = "" property = "orgidList">
+				AND   a.orgid in ($orgidList$)						
+			</isNotNull>
+				group by a.orgid
+	</select>
 	
 	<select id="queryCardTimesRunningWaterBala" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
 		SELECT 

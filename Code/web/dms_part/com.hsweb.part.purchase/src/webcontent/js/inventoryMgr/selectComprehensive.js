@@ -113,7 +113,7 @@ $(document).ready(function ()
                 e.cellHtml = brandHash[e.value].name;
             }
         }else if (e.field == "billTypeId") {
-                e.cellHtml = billTypeIdList[e.value].name;
+        	e.cellHtml = billTypeIdList[e.value].name; 
         }else if (e.field == "serviceTypeId") {
             if (servieTypeHash && servieTypeHash[e.value]) {
                 e.cellHtml = servieTypeHash[e.value].name;
@@ -388,11 +388,12 @@ function getSearchParam() {
     	params.orgid=orgidsElValue;
     }
 
-    if((nui.get("billTypeId").getValue())==5){
+    /*if((nui.get("billTypeId").getValue())==5){
     	
     }else{
         params.billTypeIds = nui.get("billTypeId").getValue();
-    }
+    }*/
+    params.billTypeIds = nui.get("billTypeId").getValue();
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){
@@ -671,4 +672,21 @@ function showCarInfo(row_uid){
 		};
 		doShowCarInfo(params);
 	}
+}
+
+function doShowCarInfo(params) {
+    nui.open({
+        url: webBaseUrl + "com.hsweb.RepairBusiness.carDetails.flow?token="+token,
+        width: 800, height: 500,
+		allowResize: false,
+		showHeader: true,
+        onload: function () {
+			var iframe = this.getIFrameEl();
+			iframe.contentWindow.SetData(params);
+        },
+        ondestroy: function (action) {
+            if ("ok" == action) {
+            }
+        }
+    });
 }

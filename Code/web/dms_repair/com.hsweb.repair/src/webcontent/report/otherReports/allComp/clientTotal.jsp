@@ -13,8 +13,9 @@
     <title>连锁客户汇总</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
-
     <%@include file="/common/commonRepair.jsp"%>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/clientTotal.js?v=1.0.1"></script>
+    
     <style>
 
         .titleText{
@@ -51,42 +52,20 @@
   
         
         <div class="nui-fit">
-            <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
+            <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="false" pageSize="50"
             totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
-            onshowrowdetail="onShowRowDetail" url="" allowCellWrap=true>
+            onshowrowdetail="onShowRowDetail" url="" allowCellWrap=true showSummaryRow="true" >
             <div property="columns">
               <div type="indexcolumn" width="40" headerAlign="center" align="center">序号</div>
               <div field="id" name="id" visible="false" width="100" >id</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">门店</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">客户数量</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">余额统计</div>
-              <div field="" name="" width="300" headerAlign="center" align="center">剩余套餐统计</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">剩余套餐余额</div>
+              <div field="shortName" name="shortName" width="100" headerAlign="center" align="center">门店</div>
+              <div field="guestTotal" name="guestTotal" width="100" headerAlign="center" align="center" summaryType="sum">客户数量</div>
+              <div field="balaAmtTotal" name="balaAmtTotal" width="100" headerAlign="center" align="center" summaryType="sum">余额统计</div>
+              <div field="canUseTimesTotal" name="canUseTimesTotal" width="300" headerAlign="center" align="center" summaryType="sum">剩余套餐统计</div>
+              <div field="amtTotal" name="amtTotal" width="100" headerAlign="center" align="center" summaryType="sum">剩余套餐余额</div>
           </div>
           </div>
           </div>
-
-    <script type="text/javascript">
-        nui.parse();
-        var con8='这是一个提示';
-
-        function overShow(e,con) {
-            var showDiv = document.getElementById('showDiv');
-            var pos = e.getBoundingClientRect();
-            $("#showDiv").css("top", pos.bottom); //设置提示div的位置
-            $("#showDiv").css("left", pos.right);
-            showDiv.style.display = 'block';
-            showDiv.innerHTML = con;
-        }
-
-        function outHide() {
-            var showDiv = document.getElementById('showDiv');
-            showDiv.style.display = 'none';
-            showDiv.innerHTML = '';
-        }
-
-
-    </script>
 </body>
 
 </html>

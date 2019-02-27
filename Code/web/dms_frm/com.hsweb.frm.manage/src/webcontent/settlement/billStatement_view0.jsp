@@ -8,7 +8,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.1.1"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.1.2"></script>
 		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -88,7 +88,10 @@
                 <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <span class="separator"></span>
 
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->            
+                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> --> 
+                 <label style="font-family:Verdana;">对账类型：</label>
+                 <input class="nui-combobox" id="settleTypeId" emptyText="应付月结" name="settleTypeId" data="[{settleTypeId:'020501',text:'应付现结'},{settleTypeId:'020502',text:'应付月结'}]"
+                          width="100px"  onvaluechanged="onSearch" textField="text" valueField="settleTypeId" value="020502"/>          
                       <input name="serviceTypeId"
                                    id="serviceTypeId"
                                    class="nui-combobox width1"

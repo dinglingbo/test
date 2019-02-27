@@ -10,6 +10,12 @@
 <head>
 <title>配件品牌</title>
 <script src="<%=webPath + contextPath%>/baseDataPart/js/partBrandMgr/partBrandMgr.js?v=1.0.17"></script>
+<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
+<script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+<script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
+<script src="https://cdn.staticfile.org/plupload/2.1.9/moxie.js"></script>
+<script src="https://cdn.staticfile.org/plupload/2.1.9/plupload.dev.js"></script>  
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -78,6 +84,11 @@
                                     <a class="nui-button" plain="true" iconCls="" onclick="editPartBrand()" id="editRight"><span class="fa fa-edit fa-lg"></span>&nbsp;修改品牌</a>
                                     <a class="nui-button" plain="true" iconCls="" onclick="disablePartBrand()" id="disabledRight" visible="false"><span class="fa fa-ban fa-lg"></span>&nbsp;禁用品牌</a>
                                     <a class="nui-button" plain="true" iconCls="" onclick="enablePartBrand()" id="enabledRight" visible="false"><span class="fa fa-check-circle fa-lg"></span>&nbsp;启用品牌</a>
+                                    <span class="page-header" id="btn-uploader">
+					                	<span  id="faker" >
+											<a id="faker" class="nui-button" plain="true" iconCls=""  visible=""><span class="fa fa-check-circle fa-lg"></span>&nbsp;上传配件品牌图片</a> 
+								        </span>
+							        </span>
                                 </td>
                             </tr>
                         </table>

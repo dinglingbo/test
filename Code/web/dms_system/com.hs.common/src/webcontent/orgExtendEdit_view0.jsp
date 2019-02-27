@@ -196,7 +196,7 @@ position:relative;
                 <td  colspan="5" class="tabwidth" >
                 <div class="page-header" id="btn-uploader">
 	                	<div class="div1" id="faker" onchange="xmTanUploadImg(this)">
-				            <img id="xmTanImg" style="width: 100px;height: 100px" onchange="xmTanUploadImg(this)" src="<%= request.getContextPath() %>/common/images/1551084646(1).jpg"/>
+				            <img id="xmTanImg" style="width: 100px;height: 100px" onchange="xmTanUploadImg(this)" src="<%= request.getContextPath() %>/common/images/logo.jpg"/>
 				            <div id="xmTanDiv"></div>
 				        </div>
 			        </div>

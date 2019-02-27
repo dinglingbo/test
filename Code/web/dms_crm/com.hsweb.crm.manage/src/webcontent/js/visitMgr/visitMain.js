@@ -53,13 +53,14 @@ $(document).ready(function(){
     initCarBrand("carBrandId",function() {
     	brandList = nui.get("carBrandId").getData();
     	brandList.forEach(function(v) {
-    		brandHash[v.id] = v;
+    		brandHash[v.id].id = v.id;
+    		brandHash[v.id].name = v.name;
     	});
     });
     initServiceType("serviceTypeId",function() {
     	servieTypeList = nui.get("serviceTypeId").getData();
     	servieTypeList.forEach(function(v) {
-    		servieTypeHash[v.id] = v;
+    		servieTypeHash[v.id]= v;
     	});
     });
     gridCar.on("drawcell", function (e) { 

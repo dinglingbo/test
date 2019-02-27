@@ -21,8 +21,10 @@ var statusHash = {
 	"3" : "待结算",
 	"4" : "已结算"
 };
-var brandHash = null;
-var servieTypeHash = null;
+var brandHash = [];
+var brandList = [];
+var servieTypeHash = [];
+var servieTypeList = [];
 
 $(document).ready(function(){
 	visitManEl = nui.get("visitMan");
@@ -48,13 +50,13 @@ $(document).ready(function(){
         }
     };
 
-    initCarBrand("carBrandId",function(data) {
+    initCarBrand("carBrandId",function() {
     	brandList = nui.get("carBrandId").getData();
     	brandList.forEach(function(v) {
     		brandHash[v.id] = v;
     	});
     });
-    initServiceType("serviceTypeId",function(data) {
+    initServiceType("serviceTypeId",function() {
     	servieTypeList = nui.get("serviceTypeId").getData();
     	servieTypeList.forEach(function(v) {
     		servieTypeHash[v.id] = v;

@@ -86,6 +86,10 @@
       <process:from type="query" pattern="reference">orgid</process:from>
       <process:to type="query">p/orgid</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">billTypeId</process:from>
+      <process:to type="query">p/billTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
     <location x="188" y="193"/>
@@ -285,6 +289,7 @@
     <process:input description="" isArray="false" name="day" primitiveType="Int"/>
     <process:input description="" isArray="false" name="visitType" primitiveType="Int"/>
     <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
+    <process:input description="" isArray="false" name="billTypeId" primitiveType="String"/>
   </process:inputs>
   <process:outputs/>
   <process:extAttribute1>public</process:extAttribute1>

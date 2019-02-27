@@ -73,8 +73,8 @@
                     <input id="serviceType" name="serviceType" class="nui-combobox" style="width: 100px;" emptyText="回访类型"
                     data="visType" valueField="id" textField="text"emptyText="请选择..."
                     allowInput="false"valueFromSelect="true" showNullItem="true"nullItemText="请选择...">
-                    <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
-                    emptyText="兼职公司" url=""  allowInput="true" showNullItem="false" width="130" valueFromSelect="true"/>
+                    <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid" nullItemText="请选择..."
+                    emptyText="兼职公司" url=""  allowInput="true" showNullItem="true" width="130" valueFromSelect="true"/>
                     <a class="nui-button" iconcls="" name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                     <li class="separator"></li>
                     <a class="nui-button" plain="false" onclick="load(0)" id="" style="margin-right:5px;"><span class="fa fa-bars fa-lg"></span>&nbsp;按品牌分组</a>
@@ -117,7 +117,7 @@
         var memHash = {};
         var startDateEl = nui.get("startDate");
         var endDateEl = nui.get("endDate");
-        var orgidsEl = nui.get("orgids");;
+        var orgidsEl = nui.get("orgids");
         quickSearch(3);
 
         //判断是否有兼职门店,是否显示门店选择框

@@ -11,11 +11,13 @@ var isservicelist = [{id: 1, name: '是'}, {id: 0, name: '否'}];
 var sexlist = [{id: 1, name: '男'}, {id: 0, name: '女'}]; //[{id:0, name:"女"}, {id:1, name:"男"}];
 var dimissionlist = [{id:0, name:"在职"}, {id:1, name:"离职"}];
 var basicInfoForm = null;
+var isCanBelowCost;
 
 $(document).ready(function(v) {
 	sex=nui.get("sex");
+	isCanBelowCost =nui.get("isCanBelowCost");
 	sex.setData(sexlist);
-
+	isCanBelowCost.setData(isservicelist);
     basicInfoForm = new nui.Form('#basicInfoForm');
 });
 

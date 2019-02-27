@@ -92,58 +92,58 @@
 
 </div>
 <div title="计次卡明细表" >
+
+    <div id="form2" class="nui-toolbar" style="padding:10px;">
+            <label style="font-family:Verdana;">快速查询：</label>
+            <a class="nui-menubutton " menu="#popupMenuDate2" id="menunamedate2">本日</a>
+            <ul id="popupMenuDate2" class="nui-menu" style="display:none;">
+                <li iconCls="" onclick="quickSearchB(0)" id="">本日</li>
+                <li iconCls="" onclick="quickSearchB(1)" id="">昨日</li>
+                <li class="separator"></li>
+                <li iconCls="" onclick="quickSearchB(2)" id="">本周</li>
+                <li iconCls="" onclick="quickSearchB(3)" id="">上周</li>
+                <li class="separator"></li>
+                <li iconCls="" onclick="quickSearchB(4)" id="">本月</li>
+                <li iconCls="" onclick="quickSearchB(5)" id="">上月</li>
+                <li class="separator"></li>
+                <li iconCls="" onclick="quickSearchB(10)" id="">本年</li>
+                <li iconCls="" onclick="quickSearchB(11)" id="">上年</li>
+            </ul>
+            结算日期:
+            <input class="nui-datepicker" id="startDate2" name="startDate2" dateFormat="yyyy-MM-dd" style="width:100px" /> 至
+            <input class="nui-datepicker" id="endDate2" name="endDate2" dateFormat="yyyy-MM-dd" style="width:100px" />
+            <input class="nui-combobox" id="searchType" name="searchType" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
+            <input class="nui-textbox" id="searchText" name="searchText" emptyText="输入查询条件" width="120" onenter=""/>
+            <input name="saleManIdDet" id="saleManIdDet" class="nui-combobox " textField="empName" valueField="empId" 
+            emptyText="销售员" showNullItem="true"  nullItemText="请选择..." width="100"/>
+            <input class="nui-textbox" id="cardNameDet"  name="cardNameDet" emptyText="计次卡名称" width="120" />
+            <div id="finish" name="finish" class="nui-checkbox" readOnly="false" text="只显示未消费完" trueValue="0" falseValue="1"></div>
+            <a class="nui-button" iconcls="" name="" plain="true" onclick="loadB()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
     
-        <div id="form2" class="nui-toolbar" style="padding:10px;">
-                <label style="font-family:Verdana;">快速查询：</label>
-                <a class="nui-menubutton " menu="#popupMenuDate2" id="menunamedate2">本日</a>
-                <ul id="popupMenuDate2" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="quickSearchB(0)" id="">本日</li>
-                    <li iconCls="" onclick="quickSearchB(1)" id="">昨日</li>
-                    <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearchB(2)" id="">本周</li>
-                    <li iconCls="" onclick="quickSearchB(3)" id="">上周</li>
-                    <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearchB(4)" id="">本月</li>
-                    <li iconCls="" onclick="quickSearchB(5)" id="">上月</li>
-                    <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearchB(10)" id="">本年</li>
-                    <li iconCls="" onclick="quickSearchB(11)" id="">上年</li>
-                </ul>
-                结算日期:
-                <input class="nui-datepicker" id="startDate2" name="startDate2" dateFormat="yyyy-MM-dd" style="width:100px" /> 至
-                <input class="nui-datepicker" id="endDate2" name="endDate2" dateFormat="yyyy-MM-dd" style="width:100px" />
-                <input class="nui-combobox" id="searchType" name="searchType" width="100" textField="name" valueField="id" value="0" data="statusList" allowInput="false"/>
-                <input class="nui-textbox" id="searchText" name="searchText" emptyText="输入查询条件" width="120" onenter=""/>
-                <input name="saleManIdDet" id="saleManIdDet" class="nui-combobox " textField="empName" valueField="empId" 
-                emptyText="销售员" showNullItem="true"  nullItemText="请选择..." width="100"/>
-                <input class="nui-textbox" id="cardNameDet"  name="cardNameDet" emptyText="计次卡名称" width="120" />
-                <div id="finish" name="finish" class="nui-checkbox" readOnly="false" text="只显示未消费完" trueValue="0" falseValue="1"></div>
-                <a class="nui-button" iconcls="" name="" plain="true" onclick="loadB()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-        
-            </div>
-            <div class="nui-fit">
-                <div id="grid2" class="nui-datagrid" style="width:100%;height:100%;" showPager="true" dataField="list" idField="detailId"
-                    ondrawcell="" sortMode="client" url="" totalField="page.count" pageSize="20" sizeList="[10,20,50,100]"
-                    showSummaryRow="true">
-                    <div property="columns">
-                        <div type="indexcolumn" headerAlign="center">序号</div>
-                        <div allowSort="true" field="cardName" name="cardName" width="60" headerAlign="center" header="计次卡名称"></div>
-                        <div allowSort="true" field="prdtName" name="cardName" width="60" headerAlign="center" header="项目名称"></div>
-                        <div allowSort="true" field="prdtType" name="cardName" width="60" headerAlign="center" header="细目类型"></div>
-                        <div allowSort="true" field="guestName" width="60" headerAlign="center"  header="客户名称"></div>
-                        <div allowSort="true" field="mobile" width="60" headerAlign="center" header="手机号"></div>
-                        <div allowSort="true" field="carNo" width="60" headerAlign="center"  header="车牌号"></div>
-                        <div allowSort="true" field="sellAmt" width="60" headerAlign="center" summaryType="sum" header="金额"></div>
-                        <div allowSort="true" field="totalTimes" width="60" headerAlign="center" summaryType="sum" header="总次数"></div>
-                        <div allowSort="true" field="useTimes" width="60" headerAlign="center" summaryType="sum" header="已使用次数"></div>
-                        <div allowSort="true" field="isFinish" width="60" headerAlign="center"  header="是否已消费完"></div>
-                        <div allowSort="true" field="useRemark" width="60" headerAlign="center" header="使用情况"></div>
-                        <div allowSort="true" field="saleMan" width="60" headerAlign="center"  header="销售员"></div>
-                        <div allowSort="true" field="settleDate" width="60" headerAlign="center"  header="结算日期"dateFormat="yyyy-MM-dd HH:mm"></div>
-                    </div>
+        </div>
+        <div class="nui-fit">
+            <div id="grid2" class="nui-datagrid" style="width:100%;height:100%;" showPager="true" dataField="list" idField="detailId"
+                ondrawcell="" sortMode="client" url="" totalField="page.count" pageSize="20" sizeList="[10,20,50,100]"
+                showSummaryRow="true">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center">序号</div>
+                    <div allowSort="true" field="cardName" name="cardName" width="60" headerAlign="center" header="计次卡名称"></div>
+                    <div allowSort="true" field="prdtName" name="cardName" width="60" headerAlign="center" header="项目名称"></div>
+                    <div allowSort="true" field="prdtType" name="cardName" width="60" headerAlign="center" header="细目类型"></div>
+                    <div allowSort="true" field="guestName" width="60" headerAlign="center"  header="客户名称"></div>
+                    <div allowSort="true" field="mobile" width="60" headerAlign="center" header="手机号"></div>
+                    <div allowSort="true" field="carNo" width="60" headerAlign="center"  header="车牌号"></div>
+                    <div allowSort="true" field="sellAmt" width="60" headerAlign="center" summaryType="sum" header="金额" dataType="int"></div>
+                    <div allowSort="true" field="totalTimes" width="60" headerAlign="center" summaryType="sum" header="总次数" dataType="int"></div>
+                    <div allowSort="true" field="useTimes" width="60" headerAlign="center" summaryType="sum" header="已使用次数" dataType="int"></div>
+                    <div allowSort="true" field="isFinish" width="60" headerAlign="center"  header="是否已消费完"></div>
+                    <div allowSort="true" field="useRemark" width="60" headerAlign="center" header="使用情况"></div>
+                    <div allowSort="true" field="saleMan" width="60" headerAlign="center"  header="销售员"></div>
+                    <div allowSort="true" field="settleDate" width="60" headerAlign="center"  header="结算日期"dateFormat="yyyy-MM-dd HH:mm"></div>
                 </div>
             </div>
-</div>
+        </div>
+    </div>
 </div>
 
 

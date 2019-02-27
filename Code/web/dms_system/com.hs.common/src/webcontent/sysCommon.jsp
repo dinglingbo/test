@@ -47,6 +47,7 @@
 	response.addCookie(cookie);
     String currentLanguage = request.getLocale().getLanguage().toLowerCase();
 %>
+<!-- 汽配需要 -->
 <!-- <meta http-equiv="refresh"content="13680"/> -->
 <script src="<%=contextPath%>/common/nui/nui.js?v=1.0.0" type="text/javascript"></script> 
 

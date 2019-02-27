@@ -17,7 +17,6 @@
     <script src="<%= request.getContextPath() %>/common/nui/macarons.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
     <style>
-
         .parent{display:flex;}
         .column{flex:1;border-radius:10px;background-color:#95d9f966;margin-top:20px;padding:10px;}
         .column+.column{margin-left:20px;} 
@@ -65,6 +64,18 @@
 </head>
 
 <body>
+    <div class="nui-toolbar" style="padding:2px;color:#2d79aa;margin-top: 10px;" id="form1">
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid" nullItemText="请选择..."
+                    emptyText="兼职公司" url="" allowInput="true" showNullItem="true" width="130" valueFromSelect="true"/>
+                    <a class="nui-button" iconcls="" name="" plain="true" onclick="load()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
 
     <div style="height: 150px;" class="parent">
 
@@ -207,20 +218,43 @@
         var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
         var grid1 = nui.get("datagrid1");
         var grid2 = nui.get("datagrid2");
+        var orgidsEl = nui.get("orgids");
+        var form1 = nui.get("form1");
         var mainDataUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.guestReport.queryGuestAndCar.biz.ext';
         var gridUrl = apiPath + repairApi + '/com.hsapi.repair.repairService.guestReport.queryComeGuest.biz.ext';
         var gridUrl2 = apiPath + repairApi + '/com.hsapi.repair.repairService.guestReport.queryGuestTotal.biz.ext';
         grid1.setUrl(gridUrl);
         grid2.setUrl(gridUrl2);
 
+        //判断是否有兼职门店,是否显示门店选择框
+        orgidsEl.setData(currOrgList);
+        if(currOrgList.length==1){
+            form1.hide();
+        }else{
+            orgidsEl.setValue(currOrgid);
+        }
+
         GridLoad1(0);
         GridLoad2(0);
         loadMainData();
+        function load() {
+            loadMainData();
+            GridLoad1(0);
+            GridLoad2(0);
+        }
+
         function loadMainData() {
+            var params = {};
+            var orgidsElValue = orgidsEl.getValue();
+            if(orgidsElValue==null||orgidsElValue==""){
+                params.orgids =  currOrgs;
+            }else{
+                params.orgid=orgidsElValue;
+            }
             nui.ajax({
                 url:mainDataUrl,
                 type:"post",
-                data:{},
+                data:{params:params},
                 success:function(res){
                     var data = res;
                     document.getElementById("pdata1").innerHTML= data.guestList[0].num||0;
@@ -235,6 +269,12 @@
             var column = grid1.getColumn("groupName");
             var params = {};
             params.groupByType = e;
+            var orgidsElValue = orgidsEl.getValue();
+            if(orgidsElValue==null||orgidsElValue==""){
+                params.orgids =  currOrgs;
+            }else{
+                params.orgid=orgidsElValue;
+            }
             switch (e) {
                 case 0:
                     grid1.updateColumn(column, {
@@ -269,6 +309,12 @@
             var column = grid2.getColumn("groupName");
             var params = {};
             params.groupByType = e;
+            var orgidsElValue = orgidsEl.getValue();
+            if(orgidsElValue==null||orgidsElValue==""){
+                params.orgids =  currOrgs;
+            }else{
+                params.orgid=orgidsElValue;
+            }
             switch (e) {
                 case 0:
                     grid2.updateColumn(column, {

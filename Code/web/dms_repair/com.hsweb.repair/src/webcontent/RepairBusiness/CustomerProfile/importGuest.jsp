@@ -10,8 +10,8 @@
 <head>
 <title>客户资料导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importGuest.js?v=1.0.6"></script>
+<script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.1"></script>
+<script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/js/importGuest.js?v=1.0.7"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -112,7 +112,7 @@
 				<div field="地址" width="260px" headerAlign="center" allowSort="true">
                     地址<input property="editor" class="nui-textbox"/></div>
                 <div field="厂牌车型信息" width="80px" headerAlign="center" allowSort="true">
-                    车型信息<input property="editor" class="nui-textbox"/></div>
+                    厂牌车型信息<input property="editor" class="nui-textbox"/></div>
 				<div field="发动机号" width="80px" headerAlign="center" allowSort="true">
 					发动机号<input property="editor" class="nui-textbox"/></div>
 				<div field="年审到期" width="100px" headerAlign="center" allowSort="true">

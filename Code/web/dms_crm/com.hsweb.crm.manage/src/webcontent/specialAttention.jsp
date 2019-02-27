@@ -11,7 +11,7 @@
   --%>
 <head>
 	<title>特别关怀</title>
-	<script src="<%=request.getContextPath()%>/manage/js/specialAttention.js?v=1.0.8">
+	<script src="<%=request.getContextPath()%>/manage/js/specialAttention.js?v=1.1.6">
 	</script>
 </head>
 
@@ -33,7 +33,7 @@
 			</tr>
 		</table>
 	</div> -->
-	<div id="tabs" class="nui-tabs" width="100%" height="100%" onactivechanged="change()">
+	<div id="tabs" class="nui-tabs" width="100%" height="100%" onactivechanged="change(e)"  activeIndex="0">
 				<div title="商业险到期提醒">
 						<div class="nui-toolbar" style="padding:0px;border-bottom:0;">
 								<table style="width:100%;">

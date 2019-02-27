@@ -397,11 +397,15 @@
         <isNotNull prepend = "" property = "serviceType">
             AND  a.service_type = #serviceType# 			
         </isNotNull>
+
+
+        
     </select>
 
     <!-- 总客户数-->
     <select id="guestTotal" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
         SELECT count(*) AS num FROM wb_common.com_guest a WHERE 1=1
+        and a.guest_type = '01020103'
             <isNotNull prepend = "" property = "orgid">
                 AND  a.orgid = #orgid# 			
             </isNotNull>

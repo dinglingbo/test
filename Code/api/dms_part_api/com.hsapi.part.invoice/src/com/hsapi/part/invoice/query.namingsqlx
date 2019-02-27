@@ -1758,6 +1758,11 @@
                     (a.service_id in ($serviceIdList$))
                 </isNotEmpty>
                 
+                <isNotEmpty prepend="and" property="billServiceId">
+	  				 exists(select 1 from wb_part.pj_statement_detail c where a.id = c.main_id 
+	  				            and c.bill_service_id = #billServiceId#)
+	            </isNotEmpty>
+                
                 <isNotEmpty prepend="and" property="auditSign">  
                     (a.audit_sign = #auditSign#)
                 </isNotEmpty>

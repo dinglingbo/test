@@ -11,7 +11,7 @@
 <head> 
     <title>添加员工</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/js/partEmployeeEdit.js?v=1.0.0" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/common/js/partEmployeeEdit.js?v=1.0.2" type="text/javascript"></script>
 </head>
 <body>
     <div class="nui-fit"> 
@@ -56,6 +56,12 @@
                 <td >紧急联系人电话：<span></span></td>
                 <td colspan="2"><input class="nui-textbox" name="urgencyPersonPhone" id="urgencyPersonPhone"/></td>
 
+            </tr>
+            <tr>
+            	<td align="right" >是否低于成本价  <br>销售权限：</td>
+                <td >
+               		 <input class="nui-combobox"  required="false" id="isCanBelowCost" name="isCanBelowCost" textField="name"  value="0" valueField="id" />
+                </td>
             </tr>
         </table>
     </fieldset>

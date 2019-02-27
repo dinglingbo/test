@@ -182,16 +182,21 @@ $(document).ready(function(v) {
 	morePartGrid.on("drawcell",function(e){
         switch (e.field)
         {
-            case "partBrandId":
-                if(brandHash[e.value])
-                {
-                    e.cellHtml = brandHash[e.value].name||"";
-                }
-                else{
-                    e.cellHtml = "";
-                }
-                break;
-                
+	        case "partBrandId":
+	            if(brandHash[e.value])
+	            {
+	//                e.cellHtml = brandHash[e.value].name||"";
+	            	if(brandHash[e.value].imageUrl){
+	            		
+	            		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight='30px'/><br> "+brandHash[e.value].name||"";
+	            	}else{
+	            		e.cellHtml = brandHash[e.value].name||"";
+	            	}
+	            }
+	            else{
+	                e.cellHtml = "";
+	            }
+	            break;                
             default:
                 break;
         }
@@ -1132,11 +1137,20 @@ function onRightGridDraw(e) {
 	var header = e.column.header;
 
 	if(e.field== "comPartBrandId"){
-		if (brandHash[e.value]) {
-			e.cellHtml = brandHash[e.value].name || "";
-		} else {
-			e.cellHtml = "";
-		}
+		if(brandHash[e.value])
+        {
+//            e.cellHtml = brandHash[e.value].name||"";
+        	if(brandHash[e.value].imageUrl){
+        		
+        		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight='30px'/><br> "+brandHash[e.value].name||"";
+        	}else{
+        		e.cellHtml = brandHash[e.value].name||"";
+        	}
+        }
+        else{
+            e.cellHtml = "";
+        }
+
 	}
 	
 	if(e.field== "operateBtn"){
@@ -2429,16 +2443,16 @@ function addPchsOrder(type)
 		return;
 	}
 
-	var main = basicInfoForm.getData();
-	if(!main.id){
-		showMsg("请先保存数据!","W");
-		return;
-	}
-	var data = rightGrid.getChanges()||[];
-	if (data.length>0) {
-		showMsg("请先保存数据!","W");
-		return;
-	}
+//	var main = basicInfoForm.getData();
+//	if(!main.id){
+//		showMsg("请先保存数据!","W");
+//		return;
+//	}
+//	var data = rightGrid.getChanges()||[];
+//	if (data.length>0) {
+//		showMsg("请先保存数据!","W");
+//		return;
+//	}
     setBtnable(true);
 	setEditable(true);
 
@@ -2492,10 +2506,16 @@ function addOrderToEnter(data){
 	basicInfoForm.reset();
 	rightGrid.clearRows();
 	
-	var newRow = { serviceId: '新采购入库', auditSign: 0};
-	leftGrid.addRow(newRow, 0);
-	leftGrid.clearSelect(false);
-	leftGrid.select(newRow, false);
+	var row= leftGrid.getSelected(0);
+	if(row.serviceId=='新采购入库'){
+		
+	}else{
+		var newRow = { serviceId: '新采购入库', auditSign: 0};
+		leftGrid.addRow(newRow, 0);
+		leftGrid.clearSelect(false);
+		leftGrid.select(newRow, false);
+	}
+	
 	
 	nui.get("serviceId").setValue("新采购入库");
 	nui.get("codeId").setValue(data.orderMainId);

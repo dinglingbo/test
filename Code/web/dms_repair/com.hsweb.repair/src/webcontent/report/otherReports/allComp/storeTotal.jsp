@@ -51,15 +51,15 @@
   
         
         <div class="nui-fit">
-            <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
+            <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50" ondrawcell=""
             totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
-            onshowrowdetail="onShowRowDetail" url="" allowCellWrap=true>
+            onshowrowdetail="" url="" allowCellWrap=true>
             <div property="columns">
               <div type="indexcolumn" width="40" headerAlign="center" align="center">序号</div>
               <div field="id" name="id" visible="false" width="100" >id</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">门店</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">库存数量</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">库存成本</div>
+              <div field="name" name="" width="100" headerAlign="center" align="center">门店</div>
+              <div field="stockQty" name="" width="100" headerAlign="center" align="center">库存数量</div>
+              <div field="costPrice" name="" width="100" headerAlign="center" align="center">库存成本</div>
           </div>
           </div>
           </div>
@@ -67,6 +67,14 @@
     <script type="text/javascript">
         nui.parse();
         var con8='这是一个提示';
+        var mainGrid=null;
+        var baseUrl=apiPath+partApi+"/";
+    	var mainGridUrl='com.hsapi.part.query.report.queryStoreTotal.biz.ext';
+        $(document).ready(function(){
+        	mainGrid=nui.get('mainGrid');
+        	mainGrid.setUrl(mainGridUrl);
+        	mainGrid.load({token:token});
+        });
 
         function overShow(e,con) {
             var showDiv = document.getElementById('showDiv');

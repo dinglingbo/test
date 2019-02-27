@@ -11,7 +11,7 @@
 <title>供应商导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/baseDataPart/js/importJs/importSupplier.js?v=1.0.1"></script>
+<script src="<%=webPath + contextPath%>/baseDataPart/js/importJs/importSupplier.js?v=1.0.10"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -82,6 +82,11 @@
 	<!-- <a href="javascript:;" class="a-upload">
 	    <input type="file" name="" id="" onchange="importf(this)">点击这里上传文件
 	</a> -->
+	<input class="nui-combobox" visible="false" id="orgId"/>
+    <input class="nui-combobox" visible="false" id="billTypeId"/>
+    <input class="nui-combobox" visible="false" id="managerDuty"/>
+    <input class="nui-combobox" visible="false" id="settType"/>
+    <input class="nui-combobox" visible="false" id="provinceId"/>
 	<div class="nui-toolbar" style="padding:0px;border-bottom:0;">
 	    <table style="width:100%;">
 	        <tr>

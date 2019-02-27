@@ -15,6 +15,7 @@
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
 
     <%@include file="/common/commonRepair.jsp"%>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/grossProfitTotal.js?v=1.0.2"></script>
     <style>
 
         .titleText{
@@ -48,7 +49,7 @@
 
 <body>
         <div id="showDiv" class="tipStyle"></div>
-        <div class="nui-toolbar" style="padding:2px;" id="queryForm">
+        <div class="nui-toolbar" style="padding:2px;" id="form1">
             <table style="width:100%;">
                 <tr>
                     <td>
@@ -71,7 +72,7 @@
                         <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" />
                         至
                         <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
-                        <a class="nui-button" plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                        <a class="nui-button" plain="true" onclick="onSearch()" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                         <!-- <li class="separator"></li> -->
                     </td>
                 </tr>
@@ -85,108 +86,16 @@
             <div property="columns">
               <div type="indexcolumn" width="40" headerAlign="center" align="center">序号</div>
               <div field="id" name="id" visible="false" width="100" >id</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">门店</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">工单收入</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">配件成本</div>
-              <div field="" name="" width="300" headerAlign="center" align="center">毛利</div>
+              <div field="orgid" name="orgid" width="100" headerAlign="center" align="center">门店</div>
+              <div field="repairAmt" name="repairAmt" width="100" headerAlign="center" align="center">工单收入</div>
+              <div field="partAmt" name="partAmt" width="100" headerAlign="center" align="center">配件成本</div>
+              <div field="grossProfitAmt" name="grossProfitAmt" width="300" headerAlign="center" align="center">毛利</div>
               <div field="" name="" width="100" headerAlign="center" align="center">毛利率</div>
           </div>
           </div>
           </div>
 
-    <script type="text/javascript">
-        nui.parse();
-        var con8='这是一个提示';
-
-        var startDateEl = nui.get('startDate');
-        var endDateEl = nui.get('endDate');
-        var currType = 2;
-        quickSearch(1);
-
-        function quickSearch(type) {
-            //var params = getSearchParams();
-            var params = {};
-            var queryname = "本日";
-            switch (type) {
-                case 0:
-                    params.today = 1;
-                    params.startDate = getNowStartDate();
-                    params.endDate = addDate(getNowEndDate(), 1);
-                    queryname = "本日";
-                    break;
-                case 1:
-                    params.yesterday = 1;
-                    params.startDate = getPrevStartDate();
-                    params.endDate = addDate(getPrevEndDate(), 1);
-                    queryname = "昨日";
-                    break;
-                case 2:
-                    params.thisWeek = 1;
-                    params.startDate = getWeekStartDate();
-                    params.endDate = addDate(getWeekEndDate(), 1);
-                    queryname = "本周";
-                    break;
-                case 3:
-                    params.lastWeek = 1;
-                    params.startDate = getLastWeekStartDate();
-                    params.endDate = addDate(getLastWeekEndDate(), 1);
-                    queryname = "上周";
-                    break;
-                case 4:
-                    params.thisMonth = 1;
-                    params.startDate = getMonthStartDate();
-                    params.endDate = addDate(getMonthEndDate(), 1);
-                    queryname = "本月";
-                    break;
-                case 5:
-                    params.lastMonth = 1;
-                    params.startDate = getLastMonthStartDate();
-                    params.endDate = addDate(getLastMonthEndDate(), 1);
-                    queryname = "上月";
-                    break;
-
-                case 10:
-                    params.thisYear = 1;
-                    params.startDate = getYearStartDate();
-                    params.endDate = getYearEndDate();
-                    queryname = "本年";
-                    break;
-                case 11:
-                    params.lastYear = 1;
-                    params.startDate = getPrevYearStartDate();
-                    params.endDate = getPrevYearEndDate();
-                    queryname = "上年";
-                    break;
-                default:
-                    break;
-            }
-            currType = type;
-            startDateEl.setValue(params.startDate);
-            endDateEl.setValue(addDate(params.endDate, -1));
-            var menunamedate = nui.get("menunamedate");
-            menunamedate.setText(queryname);
-            //doSearch(params);
-        }
-
-
-
-        function overShow(e,con) {
-            var showDiv = document.getElementById('showDiv');
-            var pos = e.getBoundingClientRect();
-            $("#showDiv").css("top", pos.bottom); //设置提示div的位置
-            $("#showDiv").css("left", pos.right);
-            showDiv.style.display = 'block';
-            showDiv.innerHTML = con;
-        }
-
-        function outHide() {
-            var showDiv = document.getElementById('showDiv');
-            showDiv.style.display = 'none';
-            showDiv.innerHTML = '';
-        }
-
-
-    </script>
+   
 </body>
 
 </html>

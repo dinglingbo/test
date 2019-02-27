@@ -11,9 +11,9 @@ pageEncoding="UTF-8" session="false" %>
 <head>  
     <title>工单回访</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/visitMgr/visitMain.js?v=1.0.6" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/visitMgr/visitMain.js?v=1.1.9" type="text/javascript"></script>
+    
     <style type="text/css">
     body { 
         margin: 0; 

@@ -1910,4 +1910,31 @@
 	                
 			
     </select>
+    
+    
+    	    <select id="queryGrossProfitTotal" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			sum(d.package_subtotal+d.item_subtotal+d.part_subtotal+d.other_amt ) as repairAmt,
+			sum(d.part_true_cost ) as partAmt,
+			sum(d.gross_profit ) as grossProfitAmt,
+			a.orgid as orgid
+
+		FROM
+			rps_maintain a
+			inner JOIN rpb_car b ON ( a.car_id = b.id )
+		  	INNER JOIN wb_common.com_guest c on a.guest_id = c.id
+			inner join rps_settlement d on (a.id =  d.service_id)
+		WHERE a.is_settle = 1 and a.is_disabled = 0
+			
+           	<isNotEmpty prepend="and" property="startDate">  
+               (a.out_date &gt;= #startDate#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="endDate">  
+               (a.out_date &lt; #endDate#)
+            </isNotEmpty>
+			 <isNotNull prepend = "" property = "orgidList">
+				AND   a.orgid in ($orgidList$)						
+			</isNotNull>
+				group by a.orgid
+	</select>
 </sqlMap>

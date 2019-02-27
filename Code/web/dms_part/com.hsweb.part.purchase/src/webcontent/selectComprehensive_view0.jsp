@@ -10,7 +10,7 @@
 -->
 <head>
 <title>已结算工单明细表</title>
-<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.34"></script>
+<script src="<%=webPath + contextPath%>/purchasePart/js/inventoryMgr/selectComprehensive.js?v=1.0.36"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -148,7 +148,7 @@
 		                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号" allowsort="true"></div>
 		                  <div field="carModel" name="carModel" width="120" headerAlign="center" allowsort="true" header="品牌/车型"></div>
 						  <div field="carVin" name="carVin" width="150" headerAlign="center" allowsort="true" header="车架号(VIN)"></div>
-		                 
+		                  <div field="enterKilometers" name="enterKilometers" width="150" headerAlign="center" allowsort="true" header="进厂里程"></div>
 	                  </div>
                   </div>
                   <div header="收入" headerAlign="center">

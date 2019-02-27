@@ -1488,7 +1488,6 @@
 			A.remark as remark,
 			A.stock_out_qty as stockOutQty,
 			a.is_mark_batch as isMarkBatch,
-			a.is_need_pack as isNeedPack,
 			a.batch_source_id as batchSourceId,
 			B.`code` AS comPartCode,
 			B.`name` AS comPartName,

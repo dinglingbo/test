@@ -128,5 +128,23 @@
 				
     </select>
     
+    <select id="queryPartStoreTotal" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+    	
+            SELECT
+                a.orgid as orgid,
+                b.name as name,
+				a.store_id AS storeId,
+				sum(a.stock_qty) AS stockQty,
+				sum(a.cost_price) AS costPrice
+			FROM
+				pj_part_store_stock a
+			INNER JOIN wb_common.com_company b ON a.orgid = b.orgid
+			WHERE
+				1 = 1
+			AND b.tenant_id = #tenantId#
+			GROUP BY a.orgid
+
+				
+    </select>
     
 </sqlMap>

@@ -8,7 +8,7 @@
 -->
 <head>
 <title>月结对账</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.1.0"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/billStatement.js?v=1.1.2"></script>
 		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -79,7 +79,8 @@
 <!--                 <label style="font-family:Verdana;">配件编码：</label> -->
 <!--                 <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/> -->
                 <!-- <label style="font-family:Verdana;">订单单号：</label> -->
-                <input id="serviceId" width="130px" emptyText="对账单号" class="nui-textbox"/>
+                 <input id="serviceId" width="160px" emptyText="对账单号" class="nui-textbox"/>
+                 <input id="billServiceId" width="160px" emptyText="业务单号" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">供应商：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择往来单位..."
@@ -87,19 +88,24 @@
                 <!-- <a class="nui-button" iconCls="icon-search" plain="true" onclick="onSearch()">查询</a>
                 <span class="separator"></span>
 
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->            
+                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> --> 
+                 <label style="font-family:Verdana;">对账类型：</label>
+                 <input class="nui-combobox" id="settleTypeId" emptyText="应付月结" name="settleTypeId" data="[{settleTypeId:'020501',text:'应付现结'},{settleTypeId:'020502',text:'应付月结'}]"
+                          width="100px"  onvaluechanged="onSearch" textField="text" valueField="settleTypeId" value="020502"/>          
                       <input name="serviceTypeId"
                                    id="serviceTypeId"
                                    class="nui-combobox width1"
                                    textField="name"
                                    valueField="id"
-                                   emptyText="请选择..."
+                                   emptyText="请选择业务类型..."
                                    url=""
                                    allowInput="true"
                                    showNullItem="false"
-                                   width="100%" 
+                                   width="130px" 
                                    valueFromSelect="true"
-                                   nullItemText="请选择..."/>
+                                   nullItemText="请选择..."
+                                    visible="false"
+                                   />
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
                 <span class="separator"></span>
 <!--                 <a class="nui-button" plain="true" onclick="advancedSearch()"><span class="fa fa-ellipsis-h fa-lg"></span>&nbsp;更多</a> -->

@@ -301,9 +301,18 @@ function onDrawCell(e)
     switch (e.field)
     {
 	    case "partBrandId":
-	        if(partBrandIdHash && partBrandIdHash[e.value])
+	        if(partBrandIdHash[e.value])
 	        {
-	            e.cellHtml = partBrandIdHash[e.value].name;
+	//            e.cellHtml = partBrandIdHash[e.value].name||"";
+	        	if(partBrandIdHash[e.value].imageUrl){
+	        		
+	        		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight='30px'/><br> "+partBrandIdHash[e.value].name||"";
+	        	}else{
+	        		e.cellHtml =partBrandIdHash[e.value].name||"";
+	        	}
+	        }
+	        else{
+	            e.cellHtml = "";
 	        }
 	        break;
         case "billTypeId":

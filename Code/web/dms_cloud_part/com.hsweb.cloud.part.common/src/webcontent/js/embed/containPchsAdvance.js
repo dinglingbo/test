@@ -114,7 +114,13 @@ function onPartGridDraw(e)
         case "partBrandId":
             if(brandHash[e.value])
             {
-                e.cellHtml = brandHash[e.value].name||"";
+//                e.cellHtml = brandHash[e.value].name||"";
+            	if(brandHash[e.value].imageUrl){
+            		
+            		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight='30px'/><br> "+brandHash[e.value].name||"";
+            	}else{
+            		e.cellHtml = brandHash[e.value].name||"";
+            	}
             }
             else{
                 e.cellHtml = "";

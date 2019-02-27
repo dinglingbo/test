@@ -94,8 +94,8 @@ public class QiNiuUtils {
 
 	}
 	
-	@Bizlet("获取文件上传路径")
-	public static String getFileUploadUrl() {
+	@Bizlet("获取图片上传路径")
+	public static String getCompanyLogoUrl() {
 		String envType = Env.getContributionConfig("com.vplus.login",
 				"cfg", "QNDOMAIN", "serverType");
 		String qnDomain = Env.getContributionConfig("com.vplus.login",

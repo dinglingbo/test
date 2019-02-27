@@ -164,7 +164,7 @@
                     		if(text.errCode == "S"){
                     			var params = {serviceId : nui.get("serviceId").value};
 								grid.load({params : params});
-                    			alert(text.errMsg);
+                    			showMsg("保存成功","S");
                     		} 
                     }
             });

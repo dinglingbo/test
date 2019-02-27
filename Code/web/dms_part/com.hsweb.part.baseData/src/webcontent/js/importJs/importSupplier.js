@@ -21,7 +21,7 @@ var billTypeIdList = [];
 var billTypeIdHash = {};
 var settTypeIdList = [];
 var settTypeIdHash = {};
-
+var dictDefs ={"billTypeId":"DDT20130703000008", "settType":"DDT20130703000035"};
 $(document).ready(function(v)
 {
 
@@ -36,6 +36,21 @@ $(document).ready(function(v)
         	onClose();
         }
       };
+      
+   provinceEl = nui.get("provinceId");
+  	getProvinceAndCity(function(data) {
+  	});
+  	 initDicts(dictDefs, function(){
+     	billTypeIdList=nui.get('billTypeId').getData();     		
+     	settTypeIdList=nui.get('settType').getData();
+     	billTypeIdList.forEach(function(v){
+     		billTypeIdHash[v.name]=v;
+     	});
+     	settTypeIdList.forEach(function(v){
+     		settTypeIdHash[v.name]=v;
+     	});
+     	
+     });
 
 });
 
@@ -110,9 +125,9 @@ var requiredField = {
 	billTypeId : "票据类型",
 	settTypeId : "结算方式",
 	manager : "联系人",
-	mobile : "联系人手机",
-	provinceId : "省份",
-	cityId : "城市"
+	mobile : "联系人手机"
+/*	provinceId : "省份",
+	cityId : "城市"*/
 };
 function sure() {
 	var data = mainGrid.getData();
@@ -160,7 +175,7 @@ function sure() {
 				return;
 			}
 				
-			if(provinceHash && provinceHash[newRow.provinceId]){
+/*			if(provinceHash && provinceHash[newRow.provinceId]){
 				newRow.provinceId = provinceHash[newRow.provinceId].code;
 			}else{
 				parent.parent.showMsg("第"+(i+1)+"行记录的省份信息有误!","W");
@@ -172,7 +187,7 @@ function sure() {
 			}else{
 				parent.parent.showMsg("第"+(i+1)+"行记录的城市信息有误!","W");
 				return;
-			}
+			}*/
 
 			newRow.guestType = "01020202";
 			newRow.isSupplier = 1;
@@ -203,7 +218,7 @@ function close(){
     else window.close();
 }
 
-var saveUrl = baseUrl + "com.hsapi.repair.repairService.crud.getImportGuest.biz.ext";
+var saveUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.getImportGuest.biz.ext";
 function saveEnterPart(partList){
 	if(partList && partList.length>0) {
 		nui.mask({

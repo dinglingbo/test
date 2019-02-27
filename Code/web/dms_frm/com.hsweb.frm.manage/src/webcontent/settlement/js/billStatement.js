@@ -235,6 +235,8 @@ function getSearchParam(){
 	    params.auditSign=0;
 	  }
 	 params.serviceId = comServiceId.getValue(); 
+	 params.billServiceId = nui.get("billServiceId").getValue();
+	 params.settleTypeId = nui.get("settleTypeId").getValue();
  	 params.guestId=comSearchGuestId.getValue();
 	 params.endDate = searchEndDate.getValue();
 	 params.startDate = searchBeginDate.getFormValue();

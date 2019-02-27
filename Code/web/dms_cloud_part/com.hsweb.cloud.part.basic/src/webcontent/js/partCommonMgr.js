@@ -89,14 +89,20 @@ $(document).ready(function(v) {
                 }
                 break;
             case "partBrandId":
-                if(brandHash[e.value])
-                {
-                    e.cellHtml = brandHash[e.value].name||"";
-                }
-                else{
-                    e.cellHtml = "";
-                }
-                break;
+            	  if(brandHash[e.value])
+                  {
+//                      e.cellHtml = brandHash[e.value].name||"";
+                  	if(brandHash[e.value].imageUrl){
+                  		
+                  		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight='30px'/><br> "+brandHash[e.value].name||"";
+                  	}else{
+                  		e.cellHtml = brandHash[e.value].name||"";
+                  	}
+                  }
+                  else{
+                      e.cellHtml = "";
+                  }
+                  break;
             case "code":
                 if(row.commonId && row.commonId > 0)
                 {
@@ -121,14 +127,20 @@ $(document).ready(function(v) {
                 }
                 break;
             case "partBrandId":
-                if(brandHash[e.value])
-                {
-                    e.cellHtml = brandHash[e.value].name||"";
-                }
-                else{
-                    e.cellHtml = "";
-                }
-                break;
+            	  if(brandHash[e.value])
+                  {
+//                      e.cellHtml = brandHash[e.value].name||"";
+                  	if(brandHash[e.value].imageUrl){
+                  		
+                  		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight='30px'/><br> "+brandHash[e.value].name||"";
+                  	}else{
+                  		e.cellHtml = brandHash[e.value].name||"";
+                  	}
+                  }
+                  else{
+                      e.cellHtml = "";
+                  }
+                  break;
             default:
                 break;
         }
@@ -146,14 +158,20 @@ $(document).ready(function(v) {
                 }
                 break;
             case "partBrandId":
-                if(brandHash[e.value])
-                {
-                    e.cellHtml = brandHash[e.value].name||"";
-                }
-                else{
-                    e.cellHtml = "";
-                }
-                break;
+            	  if(brandHash[e.value])
+                  {
+//                      e.cellHtml = brandHash[e.value].name||"";
+                  	if(brandHash[e.value].imageUrl){
+                  		
+                  		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight='30px'/><br> "+brandHash[e.value].name||"";
+                  	}else{
+                  		e.cellHtml = brandHash[e.value].name||"";
+                  	}
+                  }
+                  else{
+                      e.cellHtml = "";
+                  }
+                  break;
             default:
                 break;
         }

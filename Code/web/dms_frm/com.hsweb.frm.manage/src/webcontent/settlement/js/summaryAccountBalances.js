@@ -34,7 +34,7 @@ $(document).ready(function(v) {
             case "orgid":
             	for(var i=0;i<currOrgList.length;i++){
             		if(currOrgList[i].orgid==e.value){
-            			e.cellHtml = currOrgList[i].name;
+            			e.cellHtml = currOrgList[i].shortName;
             		}
             	}
                 break;
@@ -149,12 +149,12 @@ function setData(){
 				nui.get("auditSign").setData(statusList);
 				nui.get("auditSign").setValue(statusList[0].id);
 				params.balaTypeId = statusList[0].id;
-				datagrid1.load({
+				/*datagrid1.load({
 					params:{
 						settAccountId:statusList[0].id
 					},
 			        token: token
-			    });
+			    });*/
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -195,28 +195,31 @@ function isEmptyObject (obj){
 }
 
 function search(){
+	var params = {};
 	var settAccountId = nui.get("auditSign").getValue()||"";
 	var startDate = nui.get("sDate").getValue()||"";
 	var endDate =nui.get("eDate").getValue()||"";
 	 var orgidsElValue = orgidsEl.getValue();
 	    if(orgidsElValue==null||orgidsElValue==""){
+	    	params = {
+				settAccountId:settAccountId,
+				startDate :startDate,
+				endDate: endDate,
+				orgids : currOrgs
+			};
 	    		datagrid1.load({
-	    			params:{
-	    				settAccountId:settAccountId,
-	    				startDate :startDate,
-	    				endDate: endDate,
-	    				orgids : currOrgs
-	    			},
+	    			params:params,
 	    	        token: token
 	    	    });
 	    }else{
+	    	params = {
+				settAccountId:settAccountId,
+				startDate :startDate,
+				endDate: endDate,
+				orgid : orgidsElValue
+			};
     		datagrid1.load({
-    			params:{
-    				settAccountId:settAccountId,
-    				startDate :startDate,
-    				endDate: endDate,
-    				orgid : orgidsElValue
-    			},
+    			params:params,
     	        token: token
     	    });
 	    }

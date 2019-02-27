@@ -67,12 +67,12 @@
                             <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
                             <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
                         </ul>
-                        结算日期:
+                        进厂日期:
                         <input class="nui-datepicker" id="startDate" name="startDate" dateFormat="yyyy-MM-dd" style="width:100px" />
                         至
                         <input class="nui-datepicker" id="endDate" name="endDate" dateFormat="yyyy-MM-dd" style="width:100px" />
-                        <a class="nui-button" plain="true" onclick="" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                        <!-- <li class="separator"></li> -->
+                        <a class="nui-button" plain="true" onclick="doSearch" id="query" enabled="true"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
+                           <!-- <li class="separator"></li> -->
                     </td>
                 </tr>
             </table>
@@ -81,17 +81,17 @@
         <div class="nui-fit">
             <div id="mainGrid" class="nui-datagrid" style="width:100%;height:100%;" selectOnLoad="true" showPager="true" pageSize="50"
             totalField="page.count" sizeList=[20,50,100,200] dataField="list" onrowdblclick="" allowCellSelect="true" editNextOnEnterKey="true"
-            onshowrowdetail="onShowRowDetail" url="" allowCellWrap=true>
+            onshowrowdetail="onShowRowDetail" url="" allowCellWrap=true showSummaryRow="true">
             <div property="columns">
               <div type="indexcolumn" width="40" headerAlign="center" align="center">序号</div>
               <div field="id" name="id" visible="false" width="100" >id</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">门店</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">待报价</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">代派工</div>
-              <div field="" name="" width="300" headerAlign="center" align="center">待完工</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">待质检</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">待结算</div>
-              <div field="" name="" width="100" headerAlign="center" align="center">待交车</div>
+              <div field="shortName" name="shortName" width="200" headerAlign="center" align="center">门店</div>
+              <div field="statusA" name="statusA" width="100" headerAlign="center" align="center" summaryType="sum">报价</div>
+              <div field="statusB" name="statusB" width="100" headerAlign="center" align="center" summaryType="sum">施工</div>
+              <div field="statusC" name="statusC" width="100" headerAlign="center" align="center" summaryType="sum">完工</div>
+              <div field="balaAuditSign" name="balaAuditSign" width="100" headerAlign="center" align="center" summaryType="sum">待结算</div>
+              <div field="isSettle" name="isSettle" width="100" headerAlign="center" align="center" summaryType="sum">已结算</div>
+              <!-- <div field="" name="" width="100" headerAlign="center" align="center">待交车</div> -->
           </div>
           </div>
           </div>
@@ -99,11 +99,13 @@
     <script type="text/javascript">
         nui.parse();
         var con8='这是一个提示';
-
-        var startDateEl = nui.get('startDate');
+        var mainGridUrl = apiPath + repairApi+'/com.hsapi.repair.report.dataStatistics.queryChainCarSummary.biz.ext';
+        var startDateEl = nui.get('startDate'); 
         var endDateEl = nui.get('endDate');
+        var mainGrid = nui.get("mainGrid");
+        mainGrid.setUrl(mainGridUrl);
         var currType = 2;
-        quickSearch(1);
+        quickSearch(0);
 
         function quickSearch(type) {
             //var params = getSearchParams();
@@ -167,10 +169,22 @@
             endDateEl.setValue(addDate(params.endDate, -1));
             var menunamedate = nui.get("menunamedate");
             menunamedate.setText(queryname);
-            //doSearch(params);
+            doSearch();
         }
 
-
+        function doSearch(){
+           var params = {} 
+           var startDate = startDateEl.getValue();
+           var endDate = addDate(endDateEl.getValue(), 1);
+           params = {
+             startDate:startDate,
+             endDate:endDate,
+             token:token
+           }
+           mainGrid.load({params:params});
+           
+        }
+  
 
         function overShow(e,con) {
             var showDiv = document.getElementById('showDiv');

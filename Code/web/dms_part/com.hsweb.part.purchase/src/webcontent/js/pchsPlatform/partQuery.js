@@ -64,8 +64,8 @@ $(document).ready(function() {
     
 });
 function platformSignIn(){
-	//window.open("http://192.168.111.58:8080/srm/supplier/cusRegister.html?id="+currOrgId);  
-	window.open("http://124.172.221.179:83/srm/supplier/cusRegister.html?id="+currOrgId);     
+	window.open("http://192.168.111.58:8080/srm/supplier/cusRegister.html?id="+currOrgId);  
+//	window.open("http://srm.hszb.harsons.cn/srm/supplier/cusRegister.html?id="+currOrgId);     
 }
 function setRoleId() {
 	return {"token":token,"protoken":protoken};

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="querySettleList" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.repairService.settleMent.settleList" title="Administrator&#x9;18-8-15 下午8:14">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="com.hsapi.repair.repairService.query.settleList" title="Administrator&#x9;18-8-15 下午8:14">
     <location x="75" y="225"/>
     <size height="100" width="495"/>
   </nodes>
@@ -28,13 +28,13 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
-    <location x="59" y="96"/>
-    <figSize height="20" width="31"/>
+    <location x="62" y="96"/>
+    <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="497" y="96"/>
-    <figSize height="20" width="31"/>
+    <location x="500" y="96"/>
+    <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
   <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="运算逻辑" displayName="Query with page according to namedsql." type="invoke" index="0" invokeType="invoke_pojo" varArgs="false">
@@ -66,8 +66,8 @@
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
-    <location x="337" y="96"/>
-    <figSize height="20" width="61"/>
+    <location x="343" y="96"/>
+    <figSize height="17" width="49"/>
     <node>invokePojo0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign0" name="赋值" displayName="赋值" type="assign">
@@ -98,8 +98,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="207" y="96"/>
-    <figSize height="20" width="31"/>
+    <location x="210" y="96"/>
+    <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
@@ -121,8 +121,8 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="346" y="201"/>
-    <figSize height="20" width="40"/>
+    <location x="350" y="201"/>
+    <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
   <topRuler>

@@ -152,8 +152,9 @@ public class PurchaseService {
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", envType);
-		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+//		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
 				//apiurl + "srm/router/rest?token="+access_token;
+		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
 		if(key == null || key.equals("")) {
 			return "{\"status\":\"-1\", \"resultMsg\":\"请输入查询条件!\"}";
 		}
@@ -203,8 +204,9 @@ public class PurchaseService {
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", envType);
-		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+//		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
 				//apiurl + "srm/router/rest?token="+access_token;
+		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
 		if(code == null || code.equals("")) {
 			return "{\"status\":\"-1\", \"resultMsg\":\"请输入查询条件!\"}";
 		}
@@ -227,8 +229,9 @@ public class PurchaseService {
 				"cfg", "SRMAPI", "serverType");
 		String apiurl = Env.getContributionConfig("com.vplus.login",
 				"cfg", "SRMAPI", envType);
-		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
+//		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
 				//apiurl + "srm/router/rest?token="+access_token;
+		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
 		if(id == null || id.equals("")) {
 			return "{\"status\":\"-1\", \"resultMsg\":\"请输入查询条件!\"}";
 		}
@@ -281,6 +284,7 @@ public class PurchaseService {
 				"cfg", "SRMAPI", envType);
 		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
 				//apiurl + "srm/router/rest?token="+access_token;
+//		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
 		Map main = new HashMap();   
 		main.put("method", "base.brand.listAll");
 		main.put("type", 1);  
@@ -300,6 +304,7 @@ public class PurchaseService {
 				"cfg", "SRMAPI", envType);
 		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
 				//apiurl + "srm/router/rest?token="+access_token;
+//		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
 		Map main = new HashMap();   
 		main.put("method", "base.brand.listAll");
 		main.put("parent_id", 0);  
@@ -320,6 +325,7 @@ public class PurchaseService {
 				"cfg", "SRMAPI", envType);
 		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
 				//apiurl + "srm/router/rest?token="+access_token;
+//		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
 		Map main = new HashMap();   
 		main.put("method", "base.lable.listAll");
 		main.put("parent_id", 0);  
@@ -340,6 +346,7 @@ public class PurchaseService {
 				"cfg", "SRMAPI", envType);
 		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
 				//apiurl + "srm/router/rest?token="+access_token;
+//		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
 		Map main = new HashMap();   
 		main.put("method", "base.category.listAll");
 		main.put("parent_id", parentId);  
@@ -359,6 +366,7 @@ public class PurchaseService {
 				"cfg", "SRMAPI", envType);
 		String urlParam = "http://124.172.221.179:83/srm/router/rest?token="+access_token;
 				//apiurl + "srm/router/rest?token="+access_token;
+//		String urlParam = "http://srm.hszb.harsons.cn/srm/router/rest?token="+access_token;
 		Map main = new HashMap();   
 		main.put("method", "base.supplier.getGuestByCompanyName");
 		main.put("id", guestId);

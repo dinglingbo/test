@@ -124,11 +124,11 @@
                   <div header="客户车辆信息" headerAlign="center">
                       <div property="columns" >	
 		                <div field="id" headeralign="center" allowsort="true" visible="false" >主键</div>
-		                <div field="contactName" name="contactName" headeralign="center" allowsort="true" visible="true" >客户名称</div>
-		                <div field="contactMobile" headeralign="center" allowsort="true" visible="true" >客户手机</div>
-		                <div field="carNo" name="carNo" headeralign="center" allowsort="true" visible="true" >车牌号</div>
-		                <div field="carModel"  name="carModel" headeralign="center" allowsort="true" visible="true">品牌车型</div>
-		                <div field="carVin" headeralign="center" allowsort="true" visible="true" width="150">车架号(VIN)</div>
+		                <div field="contactName" name="contactName" headeralign="center" allowsort="false" visible="true" >客户名称</div>
+		                <div field="contactMobile" headeralign="center" allowsort="false" visible="true" >客户手机</div>
+		                <div field="carNo" name="carNo" headeralign="center" allowsort="false" visible="true" >车牌号</div>
+		                <div field="carModel"  name="carModel" headeralign="center" allowsort="false" visible="true">品牌车型</div>
+		                <div field="carVin" headeralign="center" allowsort="false" visible="true" width="150">车架号(VIN)</div>
                       </div>
                     </div>
                    <div header="工单信息" headerAlign="center">

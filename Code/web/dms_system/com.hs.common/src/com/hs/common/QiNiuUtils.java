@@ -94,6 +94,17 @@ public class QiNiuUtils {
 
 	}
 	
+	@Bizlet("获取图片上传路径")
+	public static String getCompanyLogoUrl() {
+		String envType = Env.getContributionConfig("com.vplus.login",
+				"cfg", "QNDOMAIN", "serverType");
+		String qnDomain = Env.getContributionConfig("com.vplus.login",
+				"cfg", "QNDOMAIN", envType);
+
+		return qnDomain;
+
+	}
+	
 	@Bizlet("base64编码上传")
 	public static Map uploadBase64File(String baseCode, String key) {
 		Map retMap = new HashMap();
@@ -115,7 +126,7 @@ public class QiNiuUtils {
 		    DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
 		    fileUrl = putRet.key;
 		    String doMain = getQNDomain();
-		    fileUrl = doMain + "/" + fileUrl;
+		    fileUrl = doMain + fileUrl;
 		    retMap.put("fileUrl", fileUrl);
 		    retMap.put("fileName", putRet.key);
 		    

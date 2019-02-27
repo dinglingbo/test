@@ -97,7 +97,7 @@ $(document).ready(function(v)
 		 case  "orgid":
 	        	for(var i=0;i<currOrgList.length;i++){
 	        		if(currOrgList[i].orgid==e.value){
-	        			e.cellHtml = currOrgList[i].name || "";
+	        			e.cellHtml = currOrgList[i].shortName || "";
 	        		}
 	        	}
         	break;
@@ -215,7 +215,7 @@ function quickSearch(type){
 }
 
 function onSearch(){
-	var params=getSearchParams();r
+	var params=getSearchParams();
 	doSearch(params);
 }
 function doSearch(params)

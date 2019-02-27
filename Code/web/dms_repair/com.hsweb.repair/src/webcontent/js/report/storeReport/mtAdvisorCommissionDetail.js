@@ -50,13 +50,15 @@ $(document).ready(function (v)
          if (e.field == "serviceTypeId") {
         	 if(e.value){
         		 e.cellHtml = servieTypeHash[e.value].name;
+        	 }else{
+        		 e.cellHtml = "";
         	 }
          }else if (e.field == "billTypeId") {
              e.cellHtml = billTypeIdList[e.value].name;
      }else if (e.field == "orgid"){
      	for(var i=0;i<currOrgList.length;i++){
     		if(currOrgList[i].orgid==e.value){
-    			e.cellHtml = currOrgList[i].name;
+    			e.cellHtml = currOrgList[i].shortName;
     		}
     	}
     }

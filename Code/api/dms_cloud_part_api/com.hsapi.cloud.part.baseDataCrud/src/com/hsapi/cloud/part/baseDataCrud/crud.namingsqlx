@@ -55,7 +55,7 @@
                 (a.orgid = #orgids# or a.orgid = 0)
             </isNotEmpty>
     		<isNotEmpty prepend="and" property="isDisabled">  
-                (is_disabled = #isDisabled#)
+                (a.is_disabled = #isDisabled#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="commonId">  
                 (a.common_id = #commonId#)
@@ -374,7 +374,7 @@
 		from pj_part_stock a
 			inner join wb_common.com_attribute c
 				on a.part_id = c.id
-		WHERE 1 = 1 and c.is_disabled=0
+		WHERE 1 = 1 
     	<dynamic>
     	
     		<isNotEmpty prepend="and" property="orgid">  
@@ -416,7 +416,7 @@
 		from pj_sell_price_part a
 			inner join wb_common.com_attribute c
 				on a.part_id = c.id
-		WHERE 1 = 1 and c.is_disabled=0
+		WHERE 1 = 1
     	<dynamic>
     		<isNotEmpty prepend="and" property="strategyId">  
                 (a.strategy_id = #strategyId#)
@@ -454,7 +454,7 @@
 			pj_part_stock a
 		LEFT JOIN pj_part_price b ON a.part_id = b.part_id
 		INNER JOIN wb_common.com_attribute c ON a.part_id = c.id
-		WHERE 1 = 1 and c.is_disabled=0
+		WHERE 1 = 1 
     	<dynamic>
     		<isNotEmpty prepend="and" property="orgid">  
                 (a.orgid = #orgid#)
@@ -684,7 +684,9 @@
             <isNotEmpty prepend="and" property="name">  
                 (a.full_name like '%$name$%' or a.short_name like '%$name$%')
             </isNotEmpty>
-      
+      		<isNotEmpty prepend="and" property="pny">  
+                (full_name like '%$pny$%' or short_name like '%$pny$%' or code like '%$pny$%' or a.py_name like '%$pny$%')
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$
             </isNotEmpty>  

@@ -15,7 +15,7 @@ import com.eos.system.annotation.Bizlet;
  * 
  */
 @Bizlet("")
-public class sendSms {
+public class SendSms {
 	private static String USER_NAME = "admin";
 	private static String PASSWORD = "123456@123456";
 
@@ -57,6 +57,8 @@ public class sendSms {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}finally{
+			method.releaseConnection();
 		}
 	}
 
@@ -76,6 +78,8 @@ public class sendSms {
 			System.out.println(result);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			method.releaseConnection();
 		}
 	}
 }

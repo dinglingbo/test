@@ -76,7 +76,7 @@ function doSearch() {
 	var params = {};
 	params.settAccountId = accountIdEl.getValue();
 	params.startDate = beginDateEl.getFormValue();
-    params.endDate = endDateEl.getValue();
+    params.endDate = addDate(endDateEl.getValue(),1); 
     params.guestId = advanceGuestIdEl.getValue();
     params.rpDc = rpDcEl.getValue();
     
@@ -178,7 +178,7 @@ function onDrawCell(e){
         case "orgid": 
         	for(var i=0;i<currOrgList.length;i++){
         		if(currOrgList[i].orgid==e.value){
-        			e.cellHtml = currOrgList[i].name;
+        			e.cellHtml = currOrgList[i].shortName;
         		}
         	}
         break;

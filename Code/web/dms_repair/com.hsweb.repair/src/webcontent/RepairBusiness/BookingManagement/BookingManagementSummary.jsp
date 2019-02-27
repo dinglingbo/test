@@ -98,11 +98,11 @@
             <div property="columns">
         		<div type="indexcolumn">序号</div>
                 <div allowSort="true" field="groupName" name="groupName"  width="60" headerAlign="center" header="业务类型"></div>
-                <div allowSort="true" field="sumNum" width="60" headerAlign="center" header="总数" summaryType="sum"></div>
-                <div allowSort="true" field="confirmNo" width="60" headerAlign="center" header="待确认" summaryType="sum"></div>
-                <div allowSort="true" field="confirmSum" width="60" headerAlign="center" header="已确认" summaryType="sum"></div>
-                <div allowSort="true" field="cancelSum" width="60" headerAlign="center" header="已取消" summaryType="sum"></div>
-                <div allowSort="true" field="isOpenBillSum" width="60" headerAlign="center" header="已开单" summaryType="sum"></div>
+                <div allowSort="true" field="sumNum" width="60" headerAlign="center" header="总数" summaryType="sum" dataType="float"></div>
+                <div allowSort="true" field="confirmNo" width="60" headerAlign="center" header="待确认" summaryType="sum" dataType="float"></div>
+                <div allowSort="true" field="confirmSum" width="60" headerAlign="center" header="已确认" summaryType="sum" dataType="float"></div>
+                <div allowSort="true" field="cancelSum" width="60" headerAlign="center" header="已取消" summaryType="sum" dataType="float"></div>
+                <div allowSort="true" field="isOpenBillSum" width="60" headerAlign="center" header="已开单" summaryType="sum" dataType="float"></div>
             </div>
 </div>
 </div>
@@ -286,6 +286,12 @@
 //     if(params.endDate){
 //     params.endDate = params.endDate +" 23:59:59";
 // }
+    var orgidsElValue = orgidsEl.getValue();
+	    if(orgidsElValue==null||orgidsElValue==""){
+	    	 params.orgids =  currOrgs;
+	    }else{
+	    	params.orgid=orgidsElValue;
+	    }
 grid1.load({params:params});
 updateGridColoumn(cType);
 }

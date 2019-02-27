@@ -10,7 +10,7 @@
 <head>
     <title>账户结算明细</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/accountDetail.js?v=1.1.0"></script>
+    <script src="<%=webPath + contextPath%>/frm/js/finance/accountDetail.js?v=1.1.1"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -70,7 +70,7 @@
                 <div field="carNo" name="carNo" width="80"  headeralign="center" allowsort="true">车牌号</div>
                 <div field="billTypeId" name="rpDc" width="70"  headeralign="center" allowsort="true">收支类型</div>
                 <div field="rpDc" name="rpDc" width="50"  headeralign="center" allowsort="true">收/支</div>
-                <div field="charOffAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" allowsort="true">结算金额</div>
+                <div field="charOffAmt" name="charOffAmt" width="50" summaryType="sum" headeralign="center" allowsort="true" dataType="float">结算金额</div>
                 <div field="auditor" name="auditor" width="60"  headeralign="center" allowsort="true">结算人</div>
                 <div field="auditDate" name="auditDate" width="100" dateFormat="yyyy-MM-dd HH:mm" headeralign="center" allowsort="true">结算日期</div>
                 <div field="fullName" name="name" width="120"  headeralign="center" allowsort="true">客户全称</div>

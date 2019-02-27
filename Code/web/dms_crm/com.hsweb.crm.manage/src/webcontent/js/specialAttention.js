@@ -6,6 +6,7 @@ var compulsoryInsurance = null;//交强险
 var drivingLicense = null;//驾照年审
 var car = null;//车辆年检提醒
 var guestBirthday = null;//客户生日
+var params={};
 
 $(document).ready(function(v){
 	business = nui.get("business");
@@ -19,6 +20,7 @@ $(document).ready(function(v){
 	drivingLicense.setUrl(queryRemindSUrl);
 	car.setUrl(querybusinessUrl);
 	guestBirthday.setUrl(queryRemindSUrl);
+
 	
 
 	business.on("drawcell", function (e) {
@@ -75,11 +77,6 @@ $(document).ready(function(v){
      }
      });
 
-
-var params = {
-	    	readSign : 1,
-	    	readerTargetId : currEmpId
-};
 	
 });
 /*function query (params){
@@ -112,7 +109,7 @@ function setInitData(params){
 
 }
 
-function change(){
+function change(e){
 	var tabs = nui.get("tabs");
 	var tab = tabs.getActiveTab();
 	query(tab);
@@ -120,6 +117,7 @@ function change(){
 }
 
 function query(tab){
+	if(tab){
 	if(tab.title=="商业险到期提醒"){
 		params={
 				isAnnualRemind:1,
@@ -170,6 +168,7 @@ function query(tab){
 		});
 		
 	}
+	}
 }
 
 function Care(){
@@ -214,8 +213,12 @@ function Care(){
 
 function setInitData(params){
 	var tab = nui.get("tabs");
-	tab.activeTab (tab.getTab ( params.id-1-2 ) );
-
-	
+	if(params.id == '' || params.id ==null){
+		tab.activeTab (0);
+	}else if(isNaN(params.id) == true){
+		tab.activeTab (0);
+	}else {
+		tab.activeTab (tab.getTab ( params.id-1-2 ) );
+	}
 	
 }

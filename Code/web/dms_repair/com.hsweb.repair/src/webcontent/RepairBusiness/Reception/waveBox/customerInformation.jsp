@@ -212,12 +212,11 @@ table {
     	var hash = {};
     	var provice = nui.get("provice");
     	var cityId = nui.get("cityId");
+    	var Url = window._rootUrl ||"http://127.0.0.1:8080/default/";
     	initProvince("provice");
     	provice.doValueChanged();
         cityId.doValueChanged();
 	    initDicts({
-	        //carSpec:CAR_SPEC,//车辆规格
-	        //kiloType:KILO_TYPE,//里程类别
 	        source:GUEST_SOURCE,//客户来源
 	        identity:IDENTITY //客户身份
 	    },function(){
@@ -226,21 +225,25 @@ table {
     
         function addContact(){
         	var data = contactInfoForm.getData();
-        	if(!data.name){
-        		alert("请输入联系人名称");
-        	}else{
-        		$(".sjd").append('<li name="name0"><font>' + data.name + '</font>' +
-                            '<p><span name="mobile0" discount="">' +data.mobile +'</span></p>' +
-                            '<p style="display:none"><span name="identity0" discount="">' +data.identity +'</span></p>' +
-                             '<p style="display:none"><span name="sex0" discount="">' +data.sex +'</span></p>' +
-                              '<p style="display:none"><span name="source0" discount="">' +data.source +'</span></p>' +
-                              '<p style="display:none"><span name="id0" discount="">' +data.id +'</span></p>' +
-                              '<p style="display:none"><span name="check0" discount="">Y</span></p>' +
-                        '</li>');
-                 
-                 //清空表格
-                 contactInfoForm.setData([]);     
+        	var check = checkContactInfoForm(data);
+        	if(!check){
+        		showMsg("请填写正确的联系人信息","W");
+        		return;
         	}
+        	if(!checkMobile(mobile)){
+        		return;
+		    }
+    		$(".sjd").append('<li name="name0"><font>' + data.name + '</font>' +
+                        '<p><span name="mobile0" discount="">' +data.mobile +'</span></p>' +
+                        '<p style="display:none"><span name="identity0" discount="">' +data.identity +'</span></p>' +
+                         '<p style="display:none"><span name="sex0" discount="">' +data.sex +'</span></p>' +
+                          '<p style="display:none"><span name="source0" discount="">' +data.source +'</span></p>' +
+                          '<p style="display:none"><span name="id0" discount="">' +data.id +'</span></p>' +
+                          '<p style="display:none"><span name="check0" discount="">Y</span></p>' +
+                    '</li>');
+             
+             //清空表格
+             contactInfoForm.setData([]);     
         	clickLi();
         }
         
@@ -263,7 +266,14 @@ table {
         function onOk(){
         	var form = basicInfoForm.getData();//客户信息
         	form.guestType ="01020103";
-        	form.mobile = form.mobile1;
+        	form.mobile = form.mobile1 || "";
+        	if(!form.mobile1){
+        		showMsg("请填写客户手机号码","W");
+        		return;
+        	}
+        	if(!checkMobile(form.mobile1)){
+        		return;
+		    }
         	var contact = $(".sjd li");//获取填写的联系人数据，数组类型
         	var arr = new Array;
         	var index = 0 ;
@@ -307,7 +317,7 @@ table {
                     success: function(text) {
                     		if(text.errCode == "S"){
                     		showMsg("保存成功","S");
-                    			var guest = text.guest;
+                    		var guest = text.guest;
 							basicInfoForm.setData(guest);			 
 							var rpb = text.rpb;
 							$(".sjd").empty();
@@ -325,6 +335,56 @@ table {
 							clickLi();
                     		}
                     }
+            });
+        }
+        
+        function checkContactInfoForm(data){
+        	var mobile = data.mobile?data.mobile.replace(/^\s+|\s+$/g,""):"";
+        	var name = data.name?data.name.replace(/^\s+|\s+$/g,""):"";
+        	var check = false;
+        	if(mobile && name){
+        		check = true;
+        	}
+        	return check;
+        }
+        
+        
+        function searchMsg(data){
+        	nui.ajax({
+                    url: Url + "com.hsapi.repair.repairService.svr.getGuestCarContactInfoById.biz.ext",
+                    type: "post",
+                    cache: false,
+                    async: false,
+                    data : {
+                    guestId : data.guestId
+                	},
+                    success: function(text) {
+                    var  dataAll = text||{};
+                    if(dataAll.guest && dataAll.guest.id){
+                    	dataAll.guest.mobile1 = dataAll.guest.mobile;
+                    	basicInfoForm.setData(dataAll.guest);
+                    	if(dataAll.contactList.length > 0){
+                    		var rpb = dataAll.contactList;
+                    		for(var i = 0 , l = rpb.length ; i < l ; i++){
+								$(".sjd").append('<li name="name0"><font>' + rpb[i].name + '</font>' +
+		                            '<p><span name="mobile0" discount="">' +rpb[i].mobile +'</span></p>' +
+		                            '<p style="display:none"><span name="identity0" discount="">' +rpb[i].identity +'</span></p>' +
+		                             '<p style="display:none"><span name="sex0" discount="">' +rpb[i].sex +'</span></p>' +
+		                              '<p style="display:none"><span name="source0" discount="">' +rpb[i].source +'</span></p>' +
+		                              '<p style="display:none"><span name="id0" discount="">' +rpb[i].id +'</span></p>' +
+		                              '<p style="display:none"><span name="check0" discount="">Y</span></p>' +
+		                        '</li>');
+							}
+							clickLi();
+                    	}
+                    }else{
+                        showMsg("获取客户信息失败", "E");
+                    }
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.responseText);
+                    showMsg("网络出错", "E");
+                }
             });
         }
     </script>

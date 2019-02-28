@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.23"></script>
+<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.24"></script>
 <style type="text/css">
 .title {
   text-align: right;
@@ -104,11 +104,19 @@
                               <td class=" right fwidtha required">客户编码:</td>
                               <td ><input id="code" name="code" width="100%" class="nui-textbox" ></td>
                               <td class=" right fwidtha required">客户属性:</td>
-                              <td ><input id="code" name="code" width="100%" class="nui-textbox" ></td>
+                              <td ><input id="gusetProperty"
+                                          allowInput="false" 
+                              			  name="gusetProperty" 
+                              			  showNullItem="false"
+                              			  class="nui-combobox" width="100%" 
+                              			  extField="name"
+                                          valueField="customid"
+                              			  emptyText="请选择客户属性...">
+                  			  </td>
                           </tr>
                           <tr class="htr">
                           	  <td class=" right fwidthb required">客户简称:</td>
-                              <td ><input id="shortName" name="shortName" width="100%" class="nui-textbox" ></td>
+                              <td ><input id="shortName" name="shortName" width="100%" class="nui-textbox"  ></td>
                               <td class=" right fwidtha required">客户全称:</td>
                               <td colspan="1">
                                   <input name="fullName"

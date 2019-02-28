@@ -191,7 +191,7 @@ var basicRequiredField = {
 var saveUrl = baseUrl+"com.hsapi.repair.repairService.crud.saveCustomerInfo.biz.ext";
 function onOk()
 {
-    var guest = basicInfoForm.getData();
+    var guest = basicInfoForm.getData(true);
     guest.guestType = "01020103";
   
     for(key in basicRequiredField){
@@ -283,7 +283,7 @@ function onOk()
             				identity :resultContact.identity,
             				source :resultContact.source
             			};
-                    var contactid = contactdatagrid.getData();
+                    var contactid = contactdatagrid.getData(true);
                     for(var i = 0 ;i<contactid.length;i++){
                     	if(contactid[i].id==contact.id){
                     		contactdatagrid.removeRow(contactid[i]);
@@ -428,7 +428,7 @@ function getCarModel(callBack) {
 		ondestroy : function(action) {
 			if (action == "ok") {
 				var iframe = this.getIFrameEl();
-				var data = iframe.contentWindow.getData();
+				var data = iframe.contentWindow.getData(true);
 				if (data && data.carModel) {
 					var carModel = data.carModel || {};
                     callBack && callBack(carModel);
@@ -562,7 +562,7 @@ function setDataQuery(data)
 
 
 function addCar() {
-	var id = basicInfoForm.getData().id;
+	var id = basicInfoForm.getData(true).id;
 	if(id==""||id==null){
 		showMsg("请先保存客户信息!","W");
 		return;
@@ -574,7 +574,7 @@ function addCar() {
 }
 
 function addContact() {
-	var id = basicInfoForm.getData().id;
+	var id = basicInfoForm.getData(true).id;
 	if(id==""||id==null){
 		showMsg("请先保存客户信息!","W");
 		return;
@@ -595,7 +595,7 @@ function addCarList(){
 	var insCarList = [];
 	var insContactList=[];
 	var updContactList = [];
-	var car = carInfoFrom.getData();
+	var car = carInfoFrom.getData(true);
 	if(car.carNo==""){
 		showMsg("车牌号不能为空!","W");
 		return;
@@ -665,7 +665,7 @@ function addCarList(){
 				firstRegDate:car.firstRegDate,
 				issuingDate:car.issuingDate
 			};
-                var cargrid = cardatagrid.getData();
+                var cargrid = cardatagrid.getData(true);
                 for(var i = 0 ;i<cargrid.length;i++){
                 	if(cargrid[i].id==car.id){
                 		cardatagrid.removeRow(cargrid[i]);
@@ -696,13 +696,13 @@ function addContactList(){
 	var insCarList = [];
 	var insContactList=[];
 	var updContactList = [];
-	var contact = contactInfoForm.getData();
+	var contact = contactInfoForm.getData(true);
 	if(contact.identity==""||contact.source==""){
 		showMsg("身份和来源不能为空!","W");
 		return;
 	}else{
 
-		var guest = basicInfoForm.getData();
+		var guest = basicInfoForm.getData(true);
     	guest.id = resultGuest.guestId;
     for(key in basicRequiredField){
         if(!nui.get(key).value){
@@ -761,7 +761,7 @@ function addContactList(){
         				remark:contact.remark
 
         			};
-                var contactid = contactdatagrid.getData();
+                var contactid = contactdatagrid.getData(true);
                 for(var i = 0 ;i<contactid.length;i++){
                 	if(contactid[i].id==contact.id){
                 		contactdatagrid.removeRow(contactid[i]);

@@ -397,7 +397,7 @@ function toMaintain(e){
 }
 
 //查询消息提醒，msg_Type消息类型
-function queryRemind (carExtendQty,contactorQty,messageQty){
+function queryRemind (carExtendQty,contactorQty,messageQty,appQty){
 /*
 	var queryAppointment = 0;//6预约到店
 	var queryEmployeeBirthday = 0;//18员工生日
@@ -408,7 +408,7 @@ function queryRemind (carExtendQty,contactorQty,messageQty){
 	$("#queryCompulsoryInsurance span").text(carExtendQty[0].insureQuantity);
 	$("#queryDrivingLicense span").text(contactorQty[0].licenseQuantity);
 	$("#queryCar span").text(carExtendQty[0].veriQuantity);
-	$("#queryAppointment span").text(messageQty[0].appQuantity);
+	$("#queryAppointment span").text(appQty[0].appQuantity);
 	$("#queryGuestBirthday span").text(contactorQty[0].birQuantity);
 	$("#queryEmployeeBirthday span").text(messageQty[0].ebirQuantity);
 }
@@ -433,7 +433,8 @@ function query (){
 			var carExtendQty = text.carExtendQty;
 			var contactorQty = text.contactorQty;
 			var messageQty = text.messageQty;
-			queryRemind(carExtendQty,contactorQty,messageQty); 
+			var appQty = text.appQty;
+			queryRemind(carExtendQty,contactorQty,messageQty,appQty); 
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR.responseText);

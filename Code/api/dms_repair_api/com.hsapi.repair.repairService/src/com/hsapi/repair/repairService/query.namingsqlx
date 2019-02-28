@@ -1312,6 +1312,13 @@
 				FROM
 					wb_common.com_message a
 				WHERE
-					a.orgid = #orgid#;
+					a.orgid = #orgid#
+			</select>
+			
+				<!--首页提醒数量 预约-->
+			<select id="homePageAppQuantity" parameterClass="commonj.sdo.DataObject" resultClass="commonj.sdo.DataObject">
+				SELECT count(*) as appQuantity from rps_prebook a
+				where to_days(a.predict_come_date) = to_days(now()) and a.orgid = #orgid#
+			
 			</select>
 </sqlMap>

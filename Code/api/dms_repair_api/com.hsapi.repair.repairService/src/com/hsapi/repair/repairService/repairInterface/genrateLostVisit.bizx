@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="setVisitMaintainList.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="genrateLostVisit" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
@@ -41,7 +41,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="dsName" type="literal" value="java.lang.String" valueType="Java" pattern="reference">repair</process:inputVariable>
-      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.repairService.timer.getVisitMaintainList</process:inputVariable>
+      <process:inputVariable id="1" name="nameSqlId" type="literal" value="java.lang.String" valueType="Java" pattern="reference">com.hsapi.repair.repairService.timer.getLostVisitMaintainList</process:inputVariable>
       <process:inputVariable id="2" name="parameterObject" type="query" value="java.lang.Object" valueType="Java" pattern="reference">p</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -79,16 +79,16 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
+      <process:from type="literal" pattern="reference">4</process:from>
+      <process:to type="query">visitType</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">180</process:from>
+      <process:to type="query">day</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">day</process:from>
       <process:to type="query">p/day</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">orgid</process:from>
-      <process:to type="query">p/orgid</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">billTypeId</process:from>
-      <process:to type="query">p/billTypeId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
@@ -152,7 +152,7 @@
       <process:to type="query">temp/orgid</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">1</process:from>
+      <process:from type="literal" pattern="reference">2</process:from>
       <process:to type="query">temp/type</process:to>
     </process:copy>
     <process:copy>
@@ -284,13 +284,10 @@
     <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="false" name="f"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.crm.CrmVisitData" name="temp"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="p"/>
+    <process:variable description="流失 180天" historyStateLocation="client" isArray="false" name="day" primitiveType="Int"/>
+    <process:variable description="流失类型  4 默认" historyStateLocation="client" isArray="false" name="visitType" primitiveType="String"/>
   </process:variables>
-  <process:inputs varArgs="false">
-    <process:input description="" isArray="false" name="day" primitiveType="Int"/>
-    <process:input description="" isArray="false" name="visitType" primitiveType="Int"/>
-    <process:input description="" isArray="false" name="orgid" primitiveType="String"/>
-    <process:input description="" isArray="false" name="billTypeId" primitiveType="String"/>
-  </process:inputs>
+  <process:inputs varArgs="false"/>
   <process:outputs/>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

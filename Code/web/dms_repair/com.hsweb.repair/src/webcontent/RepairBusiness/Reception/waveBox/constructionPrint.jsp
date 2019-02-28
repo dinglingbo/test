@@ -508,7 +508,7 @@
 		     }  
         });
         
-        function SetData(serviceId){
+        function SetData(serviceId,type){
         	showtime("date");
         	 $.post(baseUrl+mainUrl+"params/rid="+serviceId+"&token="+token,{},function(text){
 	        	 	if(text.list.length > 0){
@@ -531,7 +531,7 @@
         	 });
         	 
         	 var url_one = "com.hsapi.repair.repairService.svr.getRpsItemPPart.biz.ext?serviceId=";
-			 	 $.post(baseUrl+url_one+8087+"&token="+token,{},function(text){//套餐
+			 	 $.post(baseUrl+url_one+serviceId+"&token="+token,{},function(text){//套餐
 	        	if(text.errCode == "S"){
 	    			 var data = text.data;
 	        	    if(data.length>0){

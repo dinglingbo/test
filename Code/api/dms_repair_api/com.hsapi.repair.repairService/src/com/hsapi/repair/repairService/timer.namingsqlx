@@ -128,7 +128,7 @@
 	
 	<!--员工生日  按月日提醒-->
 	<select id="getMemBirthday" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-		SELECT empid, orgid, name, sex, DATE_FORMAT(birthday,'%m-%d') as dueDate,
+		SELECT empid, orgid, name, sex, DATE_FORMAT(birthday,'%m-%d') as dueDate
 		from wb_common.com_member
 		where datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),birthday)/12) YEAR),NOW()) = #ln# 
 		      and orgid = #orgid#

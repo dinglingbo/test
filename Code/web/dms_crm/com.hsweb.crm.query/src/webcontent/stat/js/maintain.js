@@ -16,7 +16,7 @@ $(document).ready(function(v){
 
 	appointment.on("drawcell", function (e) {
         if(e.field == "readSign"){
-             if(e.value == 0){
+             if(e.value == 1){
                  e.cellHtml = "已读";
              }else{
                  e.cellHtml = "未读";
@@ -26,7 +26,7 @@ $(document).ready(function(v){
 
 	employeeBirthday.on("drawcell", function (e) {
         if(e.field == "readSign"){
-             if(e.value == 0){
+             if(e.value == 1){
                  e.cellHtml = "已读";
              }else{
                  e.cellHtml = "未读";
@@ -35,7 +35,7 @@ $(document).ready(function(v){
      });
 
 var params = {
-	    	readSign : 1,
+	    	readSign : 0,
 /*	    	readerTargetId : currEmpId*/
 };
 	query(params);

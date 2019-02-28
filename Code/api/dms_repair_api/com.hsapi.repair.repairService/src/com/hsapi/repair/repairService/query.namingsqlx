@@ -1297,14 +1297,14 @@
 					count(
 						CASE
 						WHEN a.msg_type = 6
-						AND a.read_sign = 1 THEN
+						AND a.read_sign = 0 THEN
 							1
 						END
 					) AS appQuantity,
 					count(
 						CASE
 						WHEN a.msg_type = 18
-						AND a.read_sign = 1 THEN
+						AND a.read_sign = 0 THEN
 							1
 						END
 					) AS ebirQuantity

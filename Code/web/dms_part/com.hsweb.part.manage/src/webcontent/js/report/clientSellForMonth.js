@@ -257,12 +257,20 @@ function onRightGridDraw(e) {
     var row = e.row;
 	switch (e.field) {
     	case "partBrandId":
-    		if (brandHash[e.value]) {
-    			e.cellHtml = brandHash[e.value].name || "";
-    		} else {
-    			e.cellHtml = "";
-    		}
-    		break;
+    		 if(brandHash[e.value])
+             {
+//                 e.cellHtml = brandHash[e.value].name||"";
+             	if(brandHash[e.value].imageUrl){
+             		
+             		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' width=' '/><br> "+brandHash[e.value].name||"";
+             	}else{
+             		e.cellHtml = brandHash[e.value].name||"";
+             	}
+             }
+             else{
+                 e.cellHtml = "";
+             }
+             break;
         case "guestType":
             if (guestTypeHash[e.value]) {
                 e.cellHtml = guestTypeHash[e.value].name || "";

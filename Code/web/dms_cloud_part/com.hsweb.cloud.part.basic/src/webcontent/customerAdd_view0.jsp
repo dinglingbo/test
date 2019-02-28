@@ -103,12 +103,14 @@
                           <tr class="htr">
                               <td class=" right fwidtha required">客户编码:</td>
                               <td ><input id="code" name="code" width="100%" class="nui-textbox" ></td>
-                              <td class=" right fwidthb required">客户简称:</td>
-                              <td ><input id="shortName" name="shortName" width="100%" class="nui-textbox" ></td>
+                              <td class=" right fwidtha required">客户属性:</td>
+                              <td ><input id="code" name="code" width="100%" class="nui-textbox" ></td>
                           </tr>
                           <tr class="htr">
+                          	  <td class=" right fwidthb required">客户简称:</td>
+                              <td ><input id="shortName" name="shortName" width="100%" class="nui-textbox" ></td>
                               <td class=" right fwidtha required">客户全称:</td>
-                              <td colspan="3">
+                              <td colspan="1">
                                   <input name="fullName"
                                  id="fullName"
                                  class="nui-textbox" width="100%"/>

@@ -159,6 +159,11 @@ function onDrawCell(e)
         case "isDisabled":
             e.cellHtml = e.value==1?"禁用":"启用";
             break;
+        case "imageUrl":
+        	if(e.value){		
+        		e.cellHtml = "<img src='"+ e.value+ "'alt='配件图片' height='25px' width=' '/>";
+        	}
+            break;
         default:
             break;
     }
@@ -505,3 +510,45 @@ function saveLocalBrand(){
     });
 }
 
+var savePictureUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.savePartBrand.biz.ext";
+function savePicture(imageUrl){
+    var row=rightGrid.getSelected();
+    row.imageUrl=imageUrl;
+    if(row.length<0) {
+    	showMsg("请选择品牌!","W");
+    	return;
+    	
+    }
+
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '上传中...'
+    });
+    nui.ajax({
+        url:savePictureUrl,
+        type:"post",
+        data:JSON.stringify({
+        	brand:row,
+        	orgid :currOrgid,
+        	userName :currUserName,
+            token:token
+        }),
+        success:function(rs)
+        {
+            nui.unmask();
+            rs = rs||{};
+            if(rs.errCode == "S")
+            {
+                parent.showMsg("图片上传成功","S");
+                rightGrid.reload();
+            }
+            else{
+                parent.showMsg(data.errMsg||"图片上传失败","E");
+            }
+        },
+        error:function(jqXHR, textStatus, errorThrown){
+            console.log(jqXHR.responseText);
+        }
+    });
+}	

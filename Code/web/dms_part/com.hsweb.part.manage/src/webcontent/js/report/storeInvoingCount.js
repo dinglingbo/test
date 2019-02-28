@@ -50,12 +50,20 @@ $(document).ready(function(v)
 	rightGrid.on("drawcell",function(e){
 		switch (e.field) {
 		case "partBrandId":
-			if (brandHash[e.value]) {
-				e.cellHtml = brandHash[e.value].name || "";
-			} else {
-				e.cellHtml = "";
-			}
-			break;
+			 if(brandHash[e.value])
+             {
+//                 e.cellHtml = brandHash[e.value].name||"";
+             	if(brandHash[e.value].imageUrl){
+             		
+             		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' width=' '/><br> "+brandHash[e.value].name||"";
+             	}else{
+             		e.cellHtml = brandHash[e.value].name||"";
+             	}
+             }
+             else{
+                 e.cellHtml = "";
+             }
+             break;
 		case  "orgid":
         	for(var i=0;i<currOrgList.length;i++){
         		if(currOrgList[i].orgid==e.value){

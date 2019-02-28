@@ -161,7 +161,7 @@ function onDrawCell(e)
             break;
         case "imageUrl":
         	if(e.value){		
-        		e.cellHtml = "<img src='"+ e.value+ "'alt='配件图片' height='25px' weight='30px'/>";
+        		e.cellHtml = "<img src='"+ e.value+ "'alt='配件图片' height='25px' width=''/>";
         	}
             break;
         default:
@@ -529,7 +529,11 @@ var savePictureUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.savePartB
 function savePicture(imageUrl){
     var row=rightGrid.getSelected();
     row.imageUrl=imageUrl;
-    if(row.length<0) return;
+    if(row.length<0) {
+    	showMsg("请选择品牌!","W");
+    	return;
+    	
+    }
 
     nui.mask({
         el: document.body,

@@ -300,7 +300,7 @@
 		FROM
 			wb_frm.fis_rp_bill a
 		LEFT JOIN wb_common.com_guest b on a.guest_id= b.id	
-		where 1 = 1
+		where a.is_disabled = 0
 			<dynamic>
 			    <isNotEmpty prepend="and" property="mobile"> 
                     (b.mobile like '%$mobile$%')

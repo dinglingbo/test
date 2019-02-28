@@ -722,6 +722,18 @@ function setDataQuery(data)
 
 }
 
-
+function getWalkGuest(){
+	var car = carList[0];
+	var guest = basicInfoForm.getData();
+	var data = {};
+	data.guestId = guest.id;
+	data.guestFullName = guest.fullName;
+	data.mobile = guest.mobile;
+	if(car){
+		data.carNo = car.carNo;
+		data.carVin = car.carVin;
+	}
+	return data;
+} 
 
 

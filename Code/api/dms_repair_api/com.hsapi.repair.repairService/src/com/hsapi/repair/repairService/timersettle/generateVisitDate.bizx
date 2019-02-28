@@ -35,6 +35,7 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo0</sourceNode>
       <targetNode>loopstart0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="220" y="48"/>
@@ -80,7 +81,8 @@
   <nodes xsi:type="process:tLoopStart" description="" id="loopstart0" name="循环" displayName="循环" grouped="true" type="loopstart" matchedName="loopend0" loopType="iterate">
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopstart0</sourceNode>
-      <targetNode>assign1</targetNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="35" y="185"/>
@@ -121,6 +123,8 @@
     <chidren>subprocess0</chidren>
     <chidren>subprocess1</chidren>
     <chidren>subprocess2</chidren>
+    <chidren>assign4</chidren>
+    <chidren>assign6</chidren>
   </nodes>
   <nodes xsi:type="process:tAssign" id="assign1" name="赋值1" displayName="赋值" grouped="true" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" isDefault="true" type="transition">
@@ -139,17 +143,18 @@
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">f/scoutDisabled1</process:leftOperand>
-          <process:rightOperand type="literal">0</process:rightOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link6</targetConnections>
-    <location x="132" y="151"/>
+    <targetConnections>link1</targetConnections>
+    <targetConnections>link7</targetConnections>
+    <location x="272" y="135"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="130" y="187"/>
+    <location x="270" y="171"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -165,18 +170,18 @@
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">f/scoutDisabled2</process:leftOperand>
-          <process:rightOperand type="literal">0</process:rightOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link15</targetConnections>
     <targetConnections>link23</targetConnections>
-    <location x="284" y="151"/>
+    <location x="375" y="135"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="282" y="187"/>
+    <location x="373" y="171"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -187,7 +192,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query">f/scoutDisabled3</process:leftOperand>
-          <process:rightOperand type="literal">0</process:rightOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -203,12 +208,12 @@
     </sourceConnections>
     <targetConnections>link16</targetConnections>
     <targetConnections>link25</targetConnections>
-    <location x="418" y="151"/>
+    <location x="480" y="135"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="416" y="187"/>
+    <location x="478" y="171"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>
@@ -219,12 +224,12 @@
     </sourceConnections>
     <targetConnections>link17</targetConnections>
     <targetConnections>link24</targetConnections>
-    <location x="555" y="151"/>
+    <location x="585" y="135"/>
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign2label" name="label" nodeType="label">
-    <location x="553" y="187"/>
+    <location x="583" y="171"/>
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
@@ -234,7 +239,7 @@
       <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
-    <location x="194" y="224"/>
+    <location x="328" y="234"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -243,12 +248,13 @@
         <process:inputVariable id="0" name="day" type="query" value="Int" valueType="Primitive" pattern="reference">f/scoutDay1</process:inputVariable>
         <process:inputVariable id="1" name="visitType" type="literal" value="Int" valueType="Primitive" pattern="reference">1</process:inputVariable>
         <process:inputVariable id="2" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">f/orgid</process:inputVariable>
+        <process:inputVariable id="3" name="billTypeId" type="query" value="String" valueType="Primitive" pattern="reference">billTypeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables/>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess0label" name="label" nodeType="label">
-    <location x="152" y="259"/>
+    <location x="286" y="269"/>
     <figSize height="17" width="111"/>
     <node>subprocess0</node>
   </nodes>
@@ -258,7 +264,7 @@
       <targetNode>assign5</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="345" y="224"/>
+    <location x="434" y="200"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess1label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -267,12 +273,13 @@
         <process:inputVariable id="0" name="day" type="query" value="Int" valueType="Primitive" pattern="reference">f/scoutDay2</process:inputVariable>
         <process:inputVariable id="1" name="visitType" type="literal" value="Int" valueType="Primitive" pattern="reference">2</process:inputVariable>
         <process:inputVariable id="2" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">f/orgid</process:inputVariable>
+        <process:inputVariable id="3" name="billTypeId" type="query" value="String" valueType="Primitive" pattern="reference">billTypeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables/>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess1label" name="label" nodeType="label">
-    <location x="299" y="259"/>
+    <location x="388" y="235"/>
     <figSize height="17" width="118"/>
     <node>subprocess1</node>
   </nodes>
@@ -282,7 +289,7 @@
       <targetNode>assign2</targetNode>
     </sourceConnections>
     <targetConnections>link18</targetConnections>
-    <location x="495" y="224"/>
+    <location x="540" y="224"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
@@ -291,14 +298,63 @@
         <process:inputVariable id="0" name="day" type="query" value="Int" valueType="Primitive" pattern="reference">f/scoutDay3</process:inputVariable>
         <process:inputVariable id="1" name="visitType" type="literal" value="Int" valueType="Primitive" pattern="reference">3</process:inputVariable>
         <process:inputVariable id="2" name="orgid" type="query" value="String" valueType="Primitive" pattern="reference">f/orgid</process:inputVariable>
+        <process:inputVariable id="3" name="billTypeId" type="query" value="String" valueType="Primitive" pattern="reference">billTypeId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables/>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="449" y="259"/>
+    <location x="494" y="259"/>
     <figSize height="17" width="118"/>
     <node>subprocess2</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link2" name="link2" displayName="连接线" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign6</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">billTypeId</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="154" y="135"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">f/billTypeId</process:from>
+      <process:to type="query">billTypeId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="152" y="171"/>
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="综合开单" displayName="赋值" grouped="true" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>assign1</targetNode>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="207" y="200"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign6label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">0</process:from>
+      <process:to type="query">billTypeId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
+    <location x="197" y="236"/>
+    <figSize height="17" width="49"/>
+    <node>assign6</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -307,6 +363,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.primeton.das.criteria.criteriaType" name="cond"/>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbScoutParam" name="list"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbScoutParam" name="f"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="params"/>

@@ -1708,7 +1708,7 @@
 			inner join wb_common.com_guest b
 			on a.guest_id = b.id
 
-		WHERE
+		WHERE  
 			1 = 1
 				
 			<dynamic>
@@ -1762,6 +1762,10 @@
 	  				 exists(select 1 from wb_part.pj_statement_detail c where a.id = c.main_id 
 	  				            and c.bill_service_id = #billServiceId#)
 	            </isNotEmpty>
+	            
+                <isNotEmpty prepend="and" property="settleTypeId"> 
+                    (a.settle_type_id = #settleTypeId#)
+                </isNotEmpty>
                 
                 <isNotEmpty prepend="and" property="auditSign">  
                     (a.audit_sign = #auditSign#)

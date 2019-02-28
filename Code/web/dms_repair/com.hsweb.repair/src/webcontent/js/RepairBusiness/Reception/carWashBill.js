@@ -2512,13 +2512,22 @@ function delFromBillPart(data, callback){
         }
     });
 }
-function addcardTime(){	
+function addcardTime(){
+	var data =  billForm.getData();
+	if(data.guestMobile=="10000"){
+		buyCard("card");
+		return;
+	}
 	doAddcardTime(xyguest);
 	
 }
 
 function addcard(){
-
+	var data =  billForm.getData();
+	if(data.guestMobile=="10000"){
+		buyCard("store");
+		return;
+	}
   doAddcard(xyguest);
 }
 
@@ -4172,11 +4181,62 @@ function addOrEdit(serviceId,billTypeId)
         {
             if(action  == "ok")
             {
-            	toChangBill(serviceId,billTypeId);
+            	if(serviceId){
+            		toChangBill(serviceId,billTypeId);
+            	}
             }
         }
     });
 }
+
+function buyCard(str)
+{
+	var data = billForm.getData();
+    title = "完善散客信息";
+    var guest = {};
+    guest.guestId = data.guestId;
+    var carNo = nui.get("carNo").getValue();
+    var carId = data.carId;
+    guest.carNo = carNo;
+    if(!data.guestId){
+    	showMsg("数据获取失败,请重新操作!","W");
+    	return;
+    }
+    nui.open({
+        url: webBaseUrl + "com.hsweb.repair.DataBase.AddEditCustomer.flow",
+        title:title,
+        width:560,
+        height:630,
+        onload:function(){
+            var iframe = this.getIFrameEl();
+            var params = {};
+            params.guest = guest;
+            iframe.contentWindow.setData(params);
+        },
+        ondestroy:function(action)
+        {
+        	var iframe = this.getIFrameEl();
+            var guestData = {};
+            guestData = iframe.contentWindow.getWalkGuest();
+            guestData.carNo = carNo;
+            guestData.carId = carId;
+            if(action  == "ok")
+            {
+            	if(str=="store"){
+            		//addcard();
+            		doAddcard(guestData);
+            	}
+            	if(str=="card"){
+            		//addcardTime();
+            		doAddcardTime(guestData);
+            	}
+            }
+        }
+    });
+}
+
+
+
 
 var binUrl = webBaseUrl + "repair/RepairBusiness/Reception/bindWechatContactor.jsp";
 function bindWechat(){

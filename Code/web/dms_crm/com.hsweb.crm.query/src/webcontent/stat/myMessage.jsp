@@ -32,7 +32,7 @@
 							</div>
 						</div>
 				</div>
-				<div title="我的反馈处理" url="<%=request.getContextPath() %>/com.hs.common.userFeedbackList.flow">
+				<div title="我的反馈历史" url="<%=request.getContextPath() %>/com.hs.common.userFeedbackList.flow">
 		        </div>
        </div>
 	<script type="text/javascript">

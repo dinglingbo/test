@@ -63,6 +63,10 @@ $(document).ready(function(v) {
 	  var filter = new HeaderFilter(datagrid1, {  
 	        columns: [
 	            { name: 'rpBillId' },
+	            { name: 'billServiceId' },
+	            { name: 'carNo' },
+	            { name: 'remark' },
+	            { name: 'auditor' },
 	            { name: 'guestName' }
 	        ],
 	        callback: function (column, filtered) {

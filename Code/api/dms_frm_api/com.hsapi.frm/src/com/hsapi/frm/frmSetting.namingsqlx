@@ -338,6 +338,8 @@
     
      <select id="queryOtherIncomeAndExpenditure" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 			SELECT
+				a.bill_service_id as billServiceId,
+				a.car_no as carNo,
 				a.guest_name AS guestName,
 				a.orgid as orgid,
 				b.name    AS billTypeId,

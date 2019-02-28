@@ -996,7 +996,93 @@ function checkSettleRow() {
 
 	return msg;
 }
+
+//单条
 /*function doSettle() {
+	var msg = checkSettleRow();
+	if (msg) {
+		showMsg(msg, "W");
+		return;
+	}
+
+	var rightGrid = null;
+	var firstRow = {};
+	var guestId = null;
+	var tab = mainTabs.getActiveTab();
+	var name = tab.name;
+	switch (name) {
+
+
+	case "rRightTab":
+		rightGrid = rRightGrid;
+		break;
+
+	default:
+		break;
+	}
+
+	var rows = pRightGrid.getSelecteds();
+	if(rows[0].settleStatus==2){
+		showMsg("此单已结算", "W");
+		return;
+	}
+	if(rows[0].nowAmt>rows[0].noCharOffAmt){
+		showMsg("结算金额不能大于应付金额！", "W");
+		return;
+	}
+	var s = rows.length;
+	if (s > 0) {
+		if (name == "pRightTab") {
+			document.getElementById('rtTr').style.display = "none";
+			document.getElementById('rcTr').style.display = "none";
+			document.getElementById('ptTr').style.display = "";
+			document.getElementById('pcTr').style.display = "";
+		} else if (name == "rRightTab") {
+			document.getElementById('rtTr').style.display = "";
+			document.getElementById('rcTr').style.display = "";
+			document.getElementById('ptTr').style.display = "none";
+			document.getElementById('pcTr').style.display = "none";
+		} else {
+			document.getElementById('rtTr').style.display = "";
+			document.getElementById('rcTr').style.display = "";
+			document.getElementById('ptTr').style.display = "";
+			document.getElementById('pcTr').style.display = "";
+		}
+		if(rows[0].billTypeCode==105||rows[0].billTypeCode==104){
+			document.getElementById('ctTr').style.display = "none";
+			document.getElementById('ccTr').style.display = "none";
+		}
+		var rtn = getSettleAmount(rows);
+		var errCode = rtn.errCode;
+		if (errCode != 'S') {
+			showMsg(rtn.errMsg || "结算数据填写有问题!", "W");
+			return;
+		}		
+		settleWin.show();
+		var guestName = rows[0].guestName;
+		nui.open({
+	        url: webPath + contextPath +"/com.hsweb.frm.manage.payable.flow?token="+token,
+	         width: "100%", height: "100%", 
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.setData(rows);
+	        },
+			ondestroy : function(action) {// 弹出页面关闭前
+				if (action == "saveSuccess") {
+					showMsg("结算成功!", "S");
+					pRightGrid.reload();
+				}
+			}
+	    });
+
+
+	} else {
+		showMsg("请选择单据!", "W");
+		return;
+	}
+}*/
+//多条
+function doSettle() {
 	var msg = checkSettleRow();
 	if (msg) {
 		showMsg(msg, "W");
@@ -1024,52 +1110,31 @@ function checkSettleRow() {
 	var rows = rightGrid.getSelecteds();
 	var s = rows.length;
 	if (s > 0) {
-		if (name == "pRightTab") {
-			document.getElementById('rtTr').style.display = "none";
-			document.getElementById('rcTr').style.display = "none";
-			document.getElementById('ptTr').style.display = "";
-			document.getElementById('pcTr').style.display = "";
-		} else if (name == "rRightTab") {
-			document.getElementById('rtTr').style.display = "";
-			document.getElementById('rcTr').style.display = "";
-			document.getElementById('ptTr').style.display = "none";
-			document.getElementById('pcTr').style.display = "none";
-		} else {
-			document.getElementById('rtTr').style.display = "";
-			document.getElementById('rcTr').style.display = "";
-			document.getElementById('ptTr').style.display = "";
-			document.getElementById('pcTr').style.display = "";
-		}
 		var rtn = getSettleAmount(rows);
 		var errCode = rtn.errCode;
 		if (errCode != 'S') {
 			showMsg(rtn.errMsg || "结算数据填写有问题!", "W");
 			return;
 		}
-
-		settleWin.show();
-
-		var guestName = rows[0].guestName;
-		document.getElementById('settleGuestName').innerHTML = "结算单位："
-				+ guestName;
-		document.getElementById('settleBillCount').innerHTML = "结算单据数：" + s;
-		document.getElementById('rRPAmt').innerHTML = rtn.rRPAmt;
-		document.getElementById('rTrueAmt').innerHTML = rtn.rTrueAmt;
-		document.getElementById('rVoidAmt').innerHTML = rtn.rVoidAmt;
-		document.getElementById('rNoCharOffAmt').innerHTML = rtn.rNoCharOffAmt;
-		document.getElementById('pRPAmt').innerHTML = rtn.pRPAmt;
-		document.getElementById('pTrueAmt').innerHTML = rtn.pTrueAmt;
-		document.getElementById('pVoidAmt').innerHTML = rtn.pVoidAmt;
-		document.getElementById('pNoCharOffAmt').innerHTML = rtn.pNoCharOffAmt;
-		document.getElementById('rpAmt').innerHTML = rtn.rpAmt;
-
-		settleAccountGrid.setData([]);
-		addSettleAccountRow();
+		nui.open({
+	        url: webPath + contextPath +"/com.hsweb.frm.manage.payable.flow?token="+token,
+	         width: "100%", height: "100%", 
+	        onload: function () {
+	            var iframe = this.getIFrameEl();
+	            iframe.contentWindow.setData(rows);
+	        },
+			ondestroy : function(action) {// 弹出页面关闭前
+				if (action == "saveSuccess") {
+					showMsg("结算成功!", "S");
+					pRightGrid.reload();
+				}
+			}
+	    });
 	} else {
 		showMsg("请选择单据!", "W");
 		return;
 	}
-}*/
+}
 function getSettleAmount(rows) {
 	var tab = mainTabs.getActiveTab();
 	var name = tab.name;
@@ -1137,13 +1202,9 @@ function getSettleAmount(rows) {
 					s2 += (amt12 + amt13) * -1;
 				}
 			} else if (name == "pRightTab") {
-				var noCharOffAmt = row.noCharOffAmt || 0; // 已结金额
+				var noCharOffAmt = row.noCharOffAmt || 0; // 未结金额
 
-				if ((nowAmt + nowVoidAmt) > noCharOffAmt) {
-					errCode = 'E';
-					errMsg = "业务单：" + billServiceId + "的结算金额超出未结金额";
-					break;
-				}
+
 
 				var rpAmt = row.rpAmt || 0; // 应结金额
 				var nowAmt = row.nowAmt || 0;
@@ -1155,14 +1216,15 @@ function getSettleAmount(rows) {
 				pVoidAmt += nowVoidAmt;
 				pNoCharOffAmt += noCharOffAmt;
 				s1 += (nowAmt + nowVoidAmt);
-			} else if (name == "rRightTab") {
-				var noCharOffAmt = row.noCharOffAmt || 0; // 已结金额
-
 				if ((nowAmt + nowVoidAmt) > noCharOffAmt) {
 					errCode = 'E';
 					errMsg = "业务单：" + billServiceId + "的结算金额超出未结金额";
 					break;
 				}
+			} else if (name == "rRightTab") {
+				var noCharOffAmt = row.noCharOffAmt || 0; // 未结金额
+
+
 
 				var rpAmt = row.rpAmt || 0; // 应结金额
 				var nowAmt = row.nowAmt || 0;
@@ -1174,6 +1236,11 @@ function getSettleAmount(rows) {
 				rVoidAmt += nowVoidAmt;
 				rNoCharOffAmt += noCharOffAmt;
 				s1 += (nowAmt + nowVoidAmt);
+				if ((nowAmt + nowVoidAmt) > noCharOffAmt) {
+					errCode = 'E';
+					errMsg = "业务单：" + billServiceId + "的结算金额超出未结金额";
+					break;
+				}
 			}
 		}
 
@@ -1464,7 +1531,8 @@ function onPGridbeforeselect(e) {
 			nowAmt : row.noCharOffAmt
 		};
 		if (row.nowAmt) {
-			newRow.nowAmt = "";
+			//newRow.nowAmt = "";
+			newRow.nowAmt = row.noCharOffAmt;
 		} else {
 			newRow.nowAmt = row.noCharOffAmt;
 		}
@@ -1650,89 +1718,6 @@ function doDelete() {
 	
 }
 
-function doSettle() {
-	var msg = checkSettleRow();
-	if (msg) {
-		showMsg(msg, "W");
-		return;
-	}
-
-	var rightGrid = null;
-	var firstRow = {};
-	var guestId = null;
-	var tab = mainTabs.getActiveTab();
-	var name = tab.name;
-	switch (name) {
-
-
-	case "rRightTab":
-		rightGrid = rRightGrid;
-		break;
-
-	default:
-		break;
-	}
-
-	var rows = pRightGrid.getSelecteds();
-	if(rows[0].settleStatus==2){
-		showMsg("此单已结算", "W");
-		return;
-	}
-	if(rows[0].nowAmt>rows[0].noCharOffAmt){
-		showMsg("结算金额不能大于应付金额！", "W");
-		return;
-	}
-	var s = rows.length;
-	if (s > 0) {
-/*		if (name == "pRightTab") {
-			document.getElementById('rtTr').style.display = "none";
-			document.getElementById('rcTr').style.display = "none";
-			document.getElementById('ptTr').style.display = "";
-			document.getElementById('pcTr').style.display = "";
-		} else if (name == "rRightTab") {
-			document.getElementById('rtTr').style.display = "";
-			document.getElementById('rcTr').style.display = "";
-			document.getElementById('ptTr').style.display = "none";
-			document.getElementById('pcTr').style.display = "none";
-		} else {
-			document.getElementById('rtTr').style.display = "";
-			document.getElementById('rcTr').style.display = "";
-			document.getElementById('ptTr').style.display = "";
-			document.getElementById('pcTr').style.display = "";
-		}
-		if(rows[0].billTypeCode==105||rows[0].billTypeCode==104){
-			document.getElementById('ctTr').style.display = "none";
-			document.getElementById('ccTr').style.display = "none";
-		}
-		var rtn = getSettleAmount(rows);
-		var errCode = rtn.errCode;
-		if (errCode != 'S') {
-			showMsg(rtn.errMsg || "结算数据填写有问题!", "W");
-			return;
-		}		
-		settleWin.show();
-		var guestName = rows[0].guestName;*/
-		nui.open({
-	        url: webPath + contextPath +"/com.hsweb.frm.manage.payable.flow?token="+token,
-	         width: "100%", height: "100%", 
-	        onload: function () {
-	            var iframe = this.getIFrameEl();
-	            iframe.contentWindow.setData(rows);
-	        },
-			ondestroy : function(action) {// 弹出页面关闭前
-				if (action == "saveSuccess") {
-					showMsg("结算成功!", "S");
-					pRightGrid.reload();
-				}
-			}
-	    });
-
-
-	} else {
-		showMsg("请选择单据!", "W");
-		return;
-	}
-}
 
 function openOrderDetail(){
 	var row = pRightGrid.getSelected();

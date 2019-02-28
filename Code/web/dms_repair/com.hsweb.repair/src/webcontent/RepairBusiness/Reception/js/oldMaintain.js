@@ -117,6 +117,7 @@ function sure() {
 			newRow.enterDate = data[i].进店日期||"";
 			newRow.outDate = data[i].结算日期||"";
 			newRow.mtAdvisor = data[i].维修顾问||"";
+			newRow.distance = data[i].里程数||"";
 			newRow.remark = data[i].备注||"";
 
 

@@ -318,6 +318,8 @@
 										进店日期</div>
 									<div field="outDate"  width="160px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm">
 										结算日期</div>
+									<div field="distance" headerAlign="center" allowSort="true" width="60px">
+										里程数</div>
 									<div field="mtAdvisor" headerAlign="center" allowSort="true" width="60px">
 										维修顾问</div>
 									<div field="remark" renderer="onstatus" headerAlign="center" allowSort="true" width="120px">备注</div>

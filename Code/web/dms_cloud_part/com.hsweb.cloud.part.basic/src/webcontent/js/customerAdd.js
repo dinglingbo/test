@@ -17,7 +17,10 @@ var acountyEl = null;
 var astreetAddressEl = null;
 var aaddressEl = null;
 var nrow = null;
-
+var gusetPropertyList=[];
+var gusetPropertyHash={};
+var gusetPropertyEl=null;
+var dictDefs ={"gusetProperty":"10261"};
 function initForm(){
     mainForm = new nui.Form("#mainForm");
     otherForm = new nui.Form("#otherForm");
@@ -29,7 +32,7 @@ function initForm(){
 	acountyEl = nui.get("acountyId");
 	astreetAddressEl = nui.get("astreetAddress");
 	aaddressEl = nui.get("addressA");
-
+	gusetPropertyEl = nui.get("gusetProperty");
 	/*getRegion(null,function(data) {
 		//provinceHash = data.rs || [];
 		//provinceEl.setData(provinceHash);
@@ -54,6 +57,16 @@ $(document).ready(function(v)
 {
 	initComboBox();
     initForm();
+    initDicts(dictDefs,function()
+	    {
+          	gusetPropertyList = gusetPropertyEL.getData();
+          	gusetPropertyList.filter(function(v)
+	        {
+          		gusetPropertyHash[v.customid] = v;
+	            return true;
+	        });
+
+	    });
 });
 
 function onValueChanged(){

@@ -184,7 +184,7 @@
 		inner join com_app_function b
 		on a.res_id = b.funccode
 		where 1 = 1
-		<isNotEmpty prepend="" property="type">  
+			<isNotEmpty prepend="" property="type">  
 			        <isEqual prepend="and" property="type" compareValue="app">
 						b.functype = 'app'
 					</isEqual>

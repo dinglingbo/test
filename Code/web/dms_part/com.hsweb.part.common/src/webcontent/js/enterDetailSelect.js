@@ -31,10 +31,20 @@ $(document).ready(function(v)
         }
         else if("partBrandId" == field)
         {
-            if(partBrandIdHash  && partBrandIdHash[e.value])
-            {
-                e.cellHtml = partBrandIdHash[e.value].name;
-            }
+        	 if(partBrandIdHash[e.value])
+             {
+//                 e.cellHtml = partBrandIdHash[e.value].name||"";
+             	if(partBrandIdHash[e.value].imageUrl){
+             		
+             		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' width=' '/><br> "+partBrandIdHash[e.value].name||"";
+             	}else{
+             		e.cellHtml =partBrandIdHash[e.value].name||"";
+             	}
+             }
+             else{
+                 e.cellHtml = "";
+             }
+     
         }
         else if("storeId" == field)
         {
@@ -286,10 +296,19 @@ function onPartGridDraw(e)
     switch (e.field)
     {
 	    case "partBrandId":
-	        if(partBrandIdHash  && partBrandIdHash[e.value])
-	        {
-	            e.cellHtml = partBrandIdHash[e.value].name;
-	        }
+	    	if(partBrandIdHash[e.value])
+            {
+//                e.cellHtml = partBrandIdHash[e.value].name||"";
+            	if(partBrandIdHash[e.value].imageUrl){
+            		
+            		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' width=' '/><br> "+partBrandIdHash[e.value].name||"";
+            	}else{
+            		e.cellHtml =partBrandIdHash[e.value].name||"";
+            	}
+            }
+            else{
+                e.cellHtml = "";
+            }
 	        break;
 	    case "outQty":
 	        e.cellHtml = row.enterQty - row.outableQty;

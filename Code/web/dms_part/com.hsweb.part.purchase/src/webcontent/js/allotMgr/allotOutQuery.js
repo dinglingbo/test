@@ -43,7 +43,20 @@ $(document).ready(function(v)
             e.cellHtml = dayCount+1;
         }
         else if("partBrandId" == field && partBrandIdHash && partBrandIdHash[e.value]){
-            e.cellHtml = partBrandIdHash[e.value].name;
+        	if(partBrandIdHash[e.value])
+            {
+//                e.cellHtml = partBrandIdHash[e.value].name||"";
+            	if(partBrandIdHash[e.value].imageUrl){
+            		
+            		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight=' '/><br> "+partBrandIdHash[e.value].name||"";
+            	}else{
+            		e.cellHtml =partBrandIdHash[e.value].name||"";
+            	}
+            }
+            else{
+                e.cellHtml = "";
+            }
+
         }
         else if("billStatus" == field && billStatusHash && billStatusHash[e.value])
         {

@@ -22,9 +22,18 @@ $(document).ready(function(v)
         switch (e.field)
         {
             case "partBrandId":
-                if(partBrandHash && partBrandHash[e.value])
+            	if(partBrandIdHash[e.value])
                 {
-                    e.cellHtml = partBrandHash[e.value].name;
+//                    e.cellHtml = partBrandIdHash[e.value].name||"";
+                	if(partBrandIdHash[e.value].imageUrl){
+                		
+                		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' weight=' '/><br> "+partBrandIdHash[e.value].name||"";
+                	}else{
+                		e.cellHtml =partBrandIdHash[e.value].name||"";
+                	}
+                }
+                else{
+                    e.cellHtml = "";
                 }
                 break;
             default:

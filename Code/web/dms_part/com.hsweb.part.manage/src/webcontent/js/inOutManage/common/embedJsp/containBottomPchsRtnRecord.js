@@ -90,10 +90,20 @@ function doSearch(params) {
 function onDrawCell(e) {
 	switch (e.field) {
 	case "partBrandId":
-		if (partBrandIdHash && partBrandIdHash[e.value]) {
-			e.cellHtml = partBrandIdHash[e.value].name;
-		}
-		break;
+		 if(partBrandIdHash[e.value])
+         {
+//             e.cellHtml = partBrandIdHash[e.value].name||"";
+         	if(partBrandIdHash[e.value].imageUrl){
+         		
+         		e.cellHtml = "<img src='"+ partBrandIdHash[e.value].imageUrl+ "'alt='配件图片' height='25px' width=' '/><br> "+partBrandIdHash[e.value].name||"";
+         	}else{
+         		e.cellHtml =partBrandIdHash[e.value].name||"";
+         	}
+         }
+         else{
+             e.cellHtml = "";
+         }
+         break;
 	case "billTypeId":
 		if (billTypeIdHash && billTypeIdHash[e.value]) {
 			e.cellHtml = billTypeIdHash[e.value].name;

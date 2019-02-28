@@ -3,11 +3,15 @@
  */
 package com.hs.common;
 
+import java.io.DataInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +24,8 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.beanutils.BeanMap;
+import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.eos.data.datacontext.IMapContextFactory;
@@ -514,6 +520,210 @@ public class Utils {
 		return encoder.encode(data);
 		
 	}
+	
+	
+	/**
+	 * 
+	 * @功能： 营业执照识别
+	 */
+	@Bizlet("营业执照识别")
+	public static Map licenseRecog(String imgPath) throws Exception {
+		Map outResult = new HashMap();
+		outResult.put("errCode", "S");
+		String host = "https://dm-58.data.aliyun.com";
+		String path = "/rest/160601/ocr/ocr_business_license.json";
+		String method = "POST";
+		String appcode = "4afe7a5f18df4c978eb41e9ceeb376ae";
+		Map<String, String> headers = new HashMap<String, String>();
+		headers.put("Authorization", "APPCODE " + appcode);
+		headers.put("Content-Type", "application/json; charset=UTF-8");
+		Map<String, String> querys = new HashMap<String, String>();
+
+		//String pathP = getClasspath() + pd.getStrings("path");
+		String bodys = "{\"image\":\"" + GetImageStr(imgPath) + "\"}";
+
+		HttpResponse response = HttpUtils.doPost(host, path, method, headers,
+				querys, bodys);
+		int responseCode = response.getStatusLine().getStatusCode();
+		if (responseCode == 200) {
+			String res = EntityUtils.toString(response.getEntity());
+			JSONObject licenseObj = JSONObject.parseObject(res);
+			System.out.println(licenseObj);
+			
+			//if ((boolean) licenseObj.get("success")) {
+			if (licenseObj.getBoolean("success")) {
+
+				//PageData pdLicense = new PageData();
+				if ("FailInRecognition".equals(licenseObj.get("reg_num"))) {
+					//pdLicense.put("license_code", "");// 营业执照号
+					outResult.put("license_code", "");// 营业执照号
+				} else {
+					//pdLicense.put("license_code", licenseObj.get("reg_num"));// 营业执照号
+					outResult.put("license_code", licenseObj.get("reg_num"));// 营业执照号
+				}
+
+				if ("FailInRecognition".equals(licenseObj.get("name"))) {
+					outResult.put("name", "");// 公司名称
+				} else {
+					outResult.put("name", licenseObj.get("name"));// 公司名称
+				}
+
+				if ("FailInRecognition".equals(licenseObj.get("address"))) {
+					outResult.put("address", "");// 注册地址
+				} else {
+					outResult.put("address", licenseObj.get("address"));// 注册地址
+				}
+
+				if ("FailInRecognition".equals(licenseObj.get("captial"))) {
+					outResult.put("register_money", 0);// 注册资金
+				} else {
+					outResult.put("register_money", licenseObj.get("captial"));// 注册资金
+				}
+
+				if (!"".equals(licenseObj.get("establish_date"))) {
+					String establish_time = licenseObj
+							.getString("establish_date");
+					String establish_time1 = establish_time.substring(0, 4)
+							+ "-" + establish_time.substring(4, 6) + "-"
+							+ establish_time.substring(6, 8);
+
+					outResult.put("establish_time", establish_time1);// 注册日期
+				} else {
+					outResult.put("establish_time", "");// 注册日期
+				}
+
+				if ("FailInRecognition".equals(licenseObj.get("person"))) {
+					outResult.put("legal_person", "");
+				} else {
+					outResult.put("legal_person", licenseObj.get("person"));// 法人
+				}
+
+				// person//法人
+				return outResult;
+			} else {
+				System.out.println("识别营业执照信息失败.");
+				outResult.put("errCode", "E");
+				return outResult;
+			}
+
+		} else {
+			System.out.println("识别营业执照信息失败.");
+			outResult.put("errCode", "E");
+			return outResult;
+		}
+	}
+
+	/**
+	 * 
+	 * @功能： 身份证识别
+	 * @日期：2018年5月20日
+	 */
+	@Bizlet("身份证识别")
+	public static Map idCardRecog(String imgPath) throws Exception {
+		Map outResult = new HashMap();
+		outResult.put("errCode", "S");
+		String host = "http://dm-51.data.aliyun.com";
+		String path = "/rest/160601/ocr/ocr_idcard.json";
+		String appcode = "4afe7a5f18df4c978eb41e9ceeb376ae";
+		//String imgFile = getClasspath() + pd.getStrings("path");// 图片路径
+
+		JSONObject configObj = new JSONObject();
+		configObj.put("side", "face");// 身份证正面识别
+		String config_str = configObj.toString();
+
+		String method = "POST";
+		Map<String, String> headers = new HashMap<String, String>();
+		headers.put("Authorization", "APPCODE " + appcode);
+		Map<String, String> querys = new HashMap<String, String>();
+
+		// 拼装请求body的json字符串
+		JSONObject requestObj = new JSONObject();
+		String imgBase64 = GetImageStr(imgPath);
+		requestObj.put("image", imgBase64);
+		if (config_str.length() > 0) {
+			requestObj.put("configure", config_str);
+		}
+
+		String bodys = requestObj.toString();
+		HttpResponse response = HttpUtils.doPost(host, path, method, headers,
+				querys, bodys);
+		int responseCode = response.getStatusLine().getStatusCode();
+		if (responseCode == 200) {
+			String res = EntityUtils.toString(response.getEntity());
+			JSONObject idCardObj = JSONObject.parseObject(res);
+			
+			if (idCardObj.getBoolean("success")) {
+
+				//PageData pdCard = new PageData();
+				outResult.put("legal_person", idCardObj.get("name"));
+				outResult.put("id_card", idCardObj.get("num"));
+
+				return outResult;
+			} else {
+				System.out.println("识别身份证信息失败.");
+				outResult.put("errCode", "E");
+				return outResult;
+			}
+		} else {
+			System.out.println("识别身份证信息失败.");
+			outResult.put("errCode", "E");
+			return outResult;
+		}
+	}
+
+	/**
+	 * 
+	 * @功能：将图片文件转化为字节数组字符串，并对其进行Base64编码处理
+	 * @作者： YYH
+	 * @日期：2018年5月20日
+	 */
+	public static String GetImageStr(String imgFile) throws Exception {
+		String imgBase64 = "";
+		
+		HttpURLConnection connection = (HttpURLConnection) new URL(imgFile).openConnection();
+		connection.setRequestMethod("GET");
+		int code = connection.getResponseCode();
+	    if (code == 200 || code == 206) {
+			int contentLength = connection.getContentLength();
+			InputStream is = connection.getInputStream();
+			DataInputStream dataInputStream = new DataInputStream(is);
+			byte[] content = new byte[contentLength];//new byte[(int) dataInputStream.length()];
+			dataInputStream.readFully(content);
+			dataInputStream.close();
+			is.close();
+			
+			BASE64Encoder encoder = new BASE64Encoder();
+			imgBase64 = encoder.encode(content);
+	    }
+		
+		//File file = new File(imgFile);
+		//byte[] content = new byte[(int) file.length()];
+		//FileInputStream finputstream = new FileInputStream(file);
+		//finputstream.read(content);
+		//finputstream.close();
+		//BASE64Encoder encoder = new BASE64Encoder();
+		//imgBase64 = new String(encodeBase64(content));
+		//imgBase64 = encoder.encode(content);
+
+		return imgBase64;
+	}
+
+	/**
+	 * 
+	 * @功能： 得到 当前 class路径
+	 * @作者： YYH
+	 * @日期：2018年5月20日
+	 */
+	public String getClasspath() {
+		String path = (String.valueOf(Thread.currentThread()
+				.getContextClassLoader().getResource("")) + "../../")
+				.replaceAll("file:/", "").replaceAll("%20", " ").trim();
+		if (path.indexOf(":") != 1) {
+			path = java.io.File.separator + path;
+		}
+		return path;
+	}
+	
 
 	/*
 	 * @Bizlet("") public static String obj2json(UserObject obj) { try { String

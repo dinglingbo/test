@@ -355,12 +355,21 @@ document.getElementById("mainMenu").style.height = (document.documentElement.cli
     }
     
     function myMessage(){
-        nui.open({
+		var item={};
+		item.id = "myMessage";
+		item.text = "我的消息";
+		item.url = defDomin + "/stat.myMessage.flow?token="+token;
+		item.iconCls = "fa fa-file-text";
+		//window.parent.activeTab(item);
+		var params = {Refresh:"Refresh"};//是否刷新页面，解决工单详情界面结算之后不能再选择客户
+		window.parent.activeTab(item,params);
+    
+        /* nui.open({
             url: defDomin + "/stat.myMessage.flow?token="+token,
             title:"我的消息",
             width: "570px",
             height: "400px"
-        });
+        }); */
     }
     
     function updatePassWord(){

@@ -18,8 +18,19 @@ $(document).ready(function (){
 
 
 function setData(data){
+	var s = data.length;
 	guestData = data;
-	zongAmt = parseFloat(data[0].nowAmt);
+	if (s > 1) {
+		for(var i = 0;i<guestData.length;i++){
+			zongAmt =parseFloat(zongAmt)+parseFloat(data[i].nowAmt||0);
+			netInAmt = parseFloat(netInAmt)+parseFloat(data[i].nowAmt||0);
+		}
+	}else{
+		
+		zongAmt = parseFloat(data[0].nowAmt||0);
+		netInAmt = parseFloat(data[0].nowAmt||0);
+	}
+
 	typeUrl =  data[0].typeUrl;
 	if(typeUrl==2){
 		$("#wxbtnsettle").show();
@@ -27,12 +38,12 @@ function setData(data){
 		$("#wxbtnsettle").hide();
 	}
 
-	document.getElementById('carNo').innerHTML = data[0].carNo;
-	document.getElementById('guest').innerHTML = data[0].guestName;
-	document.getElementById('totalAmt').innerHTML = "￥"+data[0].nowAmt;
-	document.getElementById('totalAmt1').innerHTML = data[0].nowAmt;
-	document.getElementById('amount').innerHTML = data[0].nowAmt;
-	netInAmt = parseFloat(data[0].nowAmt);
+	document.getElementById('carNo').innerHTML = data[0].carNo||"";
+	document.getElementById('guest').innerHTML = data[0].guestName||"";
+	document.getElementById('totalAmt').innerHTML = "￥"+netInAmt;
+	document.getElementById('totalAmt1').innerHTML = netInAmt;
+	document.getElementById('amount').innerHTML = netInAmt;
+	
 
 	
 	addType();
@@ -138,7 +149,7 @@ function remove(id){
 var settleAuditUrl = frmUrl+ "com.hsapi.frm.frmService.rpsettle.rpAccountSettle.biz.ext";
 function settleOK() {
 	var accountTypeList =[];
-	var accountDetail = {};
+	
 	var count = scount();
 	for(var i = 0;i<tableNum+1;i++){
 		var  Sel=document.getElementById("optaccount"+i);
@@ -224,30 +235,38 @@ function settleOK() {
 			account.guestName = guestData[0].guestName;
 			account.itemQty = 1;
 			account.remark = nui.get('txtreceiptcomment').getValue();
-			accountDetail.billRpId = guestData[0].id;
-			accountDetail.billMainId = guestData[0].billMainId;
-			accountDetail.billServiceId = guestData[0].billServiceId;
-			accountDetail.billTypeId = guestData[0].billTypeId;
-			var noCharOffAmt = guestData[0].noCharOffAmt || 0; // 已结金额
-			var rpAmt = guestData[0].rpAmt || 0; // 应结金额
-			var nowAmt = guestData[0].nowAmt || 0;
-			var nowVoidAmt = guestData[0].nowVoidAmt || 0;
-			accountDetail.rpDc = -1;
-			nowAmt = parseFloat(nowAmt);
-			nowVoidAmt = parseFloat(nowVoidAmt);
-			pRPAmt += rpAmt;
-			pTrueAmt += nowAmt;
-			pVoidAmt += nowVoidAmt;
-			pNoCharOffAmt += noCharOffAmt;
-			s1 += (nowAmt + nowVoidAmt);
-			accountDetail.charOffAmt = nowAmt;
-			accountDetail.voidAmt = nowVoidAmt;
-			if(guestData[0].nowAmt!=(count)){
+
+
+			for(var i = 0;i<guestData.length;i++){
+				var accountDetail = {};
+				var noCharOffAmt = guestData[i].noCharOffAmt || 0; // 已结金额
+				var rpAmt = guestData[i].rpAmt || 0; // 应结金额
+				var nowAmt = guestData[i].nowAmt || 0;
+				var nowVoidAmt = guestData[i].nowVoidAmt || 0;
+				nowAmt = parseFloat(nowAmt);
+				nowVoidAmt = parseFloat(nowVoidAmt);
+				pRPAmt += rpAmt;
+				pTrueAmt += nowAmt;
+				pVoidAmt += nowVoidAmt;
+				pNoCharOffAmt += noCharOffAmt;
+				s1 += (nowAmt + nowVoidAmt);
+				accountDetail.charOffAmt = nowAmt;
+				accountDetail.voidAmt = nowVoidAmt;
+				accountDetail.billRpId = guestData[i].id;
+				accountDetail.billMainId = guestData[i].billMainId;
+				accountDetail.billServiceId = guestData[i].billServiceId;
+				accountDetail.billTypeId = guestData[i].billTypeId;
+				accountDetail.rpDc = -1;
+				accountDetailList.push(accountDetail);
+			}
+
+			
+			if(netInAmt!=(count)){
 				nui.alert("结算金额与应收金额不一致","提示");
 				return;
 			}
 
-			accountDetailList.push(accountDetail);
+			
 
 			account.rpDc = -1;
 			account.settleType = "应付";

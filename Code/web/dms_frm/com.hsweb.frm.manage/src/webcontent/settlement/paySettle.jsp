@@ -8,7 +8,7 @@
 -->
 <head>
 <title>应付账款管理</title>
-    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.2.5"></script> 
+    <script src="<%= webPath + contextPath %>/manage/settlement/js/paySettle.js?v=1.2.8"></script> 
         <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -159,12 +159,12 @@
                      allowCellSelect="true"
                      allowCellEdit="true"
                      url=""
-                     multiSelect="false"
+                     multiSelect="true"
                      showModified="false"
                      pageSize="500"
                      sizeList="[500,1000,2000]"
                      onshowrowdetail="onShowRowDetail"
-                     oncellclick="onPGridbeforeselect"
+                      oncellclick="onPGridbeforeselect" 
                      onheadercellclick="onPGridheadercellclick"
                      oncellcommitedit="onCellCommitEdit"
                      showSummaryRow="true">

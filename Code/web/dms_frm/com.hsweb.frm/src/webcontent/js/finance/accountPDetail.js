@@ -170,7 +170,7 @@ function getSearchParam(){
     params.endDate = addDate(endDateEl.getValue(),1);
     params.guestId = advanceGuestIdEl.getValue();
     params.isMain = isMainEl.getValue();
-    params.rpDc = 1;
+    params.rpDc = -1;
 
     return params;
 }
@@ -179,14 +179,8 @@ function onSearch(){
 	var params=getSearchParam();
 	doSearch(params);
 }
-function doSearch() {
-	var params = {};
-	params.settAccountId = accountIdEl.getValue();
-	params.startDate = beginDateEl.getFormValue();
-    params.endDate = endDateEl.getValue();
-    params.guestId = advanceGuestIdEl.getValue();
-    params.isMain = isMainEl.getValue();
-    params.rpDc = -1;
+function doSearch(params) {
+
     var orgidsElValue = orgidsEl.getValue();
     if(orgidsElValue==null||orgidsElValue==""){
     	 params.orgids =  currOrgs;

@@ -279,6 +279,7 @@
 			a.settle_sign AS settleSign,
 			a.settler_id AS settlerId, 
 			a.settler AS settler,
+			a.auditor AS auditor,
 			a.settle_date AS settleDate,
 			a.settle_status AS settleStatus,
 			a.audit_sign AS auditSign,
@@ -300,7 +301,7 @@
 		FROM
 			wb_frm.fis_rp_bill a
 		LEFT JOIN wb_common.com_guest b on a.guest_id= b.id	
-		where 1 = 1
+		where a.is_disabled = 0
 			<dynamic>
 			    <isNotEmpty prepend="and" property="mobile"> 
                     (b.mobile like '%$mobile$%')

@@ -266,7 +266,7 @@
       <targetNode>loopstart0</targetNode>
     </sourceConnections>
     <targetConnections>link3</targetConnections>
-    <location x="344" y="195"/>
+    <location x="360" y="195"/>
     <size height="28" width="28"/>
     <nodeLabel>assign5label</nodeLabel>
     <process:copy>
@@ -283,7 +283,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
-    <location x="342" y="231"/>
+    <location x="358" y="231"/>
     <figSize height="17" width="32"/>
     <node>assign5</node>
   </nodes>

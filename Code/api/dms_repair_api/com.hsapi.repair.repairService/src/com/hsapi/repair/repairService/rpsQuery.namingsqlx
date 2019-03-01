@@ -93,6 +93,9 @@
             <isNotEmpty prepend="and" property="isDisabled">
                 (a.is_disabled = #isDisabled#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">
+                (a.guest_id = #guestId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="carId">
                 (a.car_id = #carId#)
             </isNotEmpty>

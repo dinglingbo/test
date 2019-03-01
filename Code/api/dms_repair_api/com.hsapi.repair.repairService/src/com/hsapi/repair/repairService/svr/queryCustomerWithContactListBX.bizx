@@ -8,6 +8,7 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" type="transition">
       <sourceNode>start0</sourceNode>
@@ -97,8 +98,8 @@
       <process:to type="query">page/isCount</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">tenantId</process:from>
-      <process:to type="query">params/tenantId</process:to>
+      <process:from type="query" pattern="reference">orgId</process:from>
+      <process:to type="query">params/orgId</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
@@ -124,8 +125,8 @@
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">m:userObject/attributes/tenantId</process:from>
-      <process:to type="query">tenantId</process:to>
+      <process:from type="query" pattern="reference">m:userObject/userOrgId</process:from>
+      <process:to type="query">orgId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
@@ -360,11 +361,13 @@
     <figSize height="17" width="69"/>
     <node>invokePojo2</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="1044" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="chenziming" createTime="2018-03-19 16:09:10" date="2018-03-19Z" description="" name="queryCustomerList" version="7.0.0.0"/>
   <process:variables>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="tenantId" primitiveType="Int"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orgId" primitiveType="Int"/>
     <process:variable anyType="com.alibaba.fastjson.JSONObject" description="" historyStateLocation="client" isArray="false" name="data"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="temp"/>
   </process:variables>

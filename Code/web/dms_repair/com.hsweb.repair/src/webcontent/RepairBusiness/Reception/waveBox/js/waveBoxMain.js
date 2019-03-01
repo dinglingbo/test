@@ -487,7 +487,7 @@ function add(){
     var item={};
     item.id = "8000";
     item.text = "波箱开单详情";
-    item.url = webPath + contextPath + "/com.hsweb.repair.repoart.waveBoxDetail.flow";
+    item.url = webPath + contextPath + "/com.hsweb.bx.waveBoxDetail.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {};
@@ -503,8 +503,8 @@ function edit(row_uid){
     if(!row) return;
     var item={};
     item.id = "8000";
-    item.text = "波箱单详情";
-    item.url = webPath + contextPath + "/com.hsweb.repair.repoart.waveBoxDetail.flow";
+    item.text = "波箱开单详情";
+    item.url = webPath + contextPath + "/com.hsweb.bx.waveBoxDetail.flow";
     item.iconCls = "fa fa-file-text";
     //window.parent.activeTab(item);
     var params = {

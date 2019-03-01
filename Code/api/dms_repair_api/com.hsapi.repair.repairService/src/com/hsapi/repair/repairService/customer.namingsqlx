@@ -157,6 +157,7 @@
 			a.annual_inspection_comp_name annualInspectionCompName,
 			a.annual_inspection_no annualInspectionNo,
 			a.guest_id guestId,
+			a.car_model_full_name carModelFullName,
 			b.full_name guestFullName,
 			b.mobile as guestMobile,
 			a.car_model_id carModelId,
@@ -421,27 +422,53 @@
 	
 	<select id="queryCustomerWithContactListBX" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT
-			b.id as guestId,
+			a.id id,
+			a.id carId,
+			a.orgid orgid,
+			a.car_no carNo,
+			a.insure_comp_name insureCompName,
+			a.insure_no insureNo,
+			a.insure_due_date insureDueDate,
+			a.annual_inspection_comp_name annualInspectionCompName,
+			a.annual_inspection_no annualInspectionNo,
+			a.guest_id guestId,
 			b.full_name guestFullName,
 			b.mobile as guestMobile,
+			a.car_model_id carModelId,
+			a.car_model carModel,
+			a.car_brand_id carBrandId,
+			a.car_model_id_ly as carModelIdLy,
+			a.engine_no engineNo,
+			a.annual_inspection_date annualInspectionDate,
+			a.annual_verification_due_date annualVerificationDueDate,
+			a.insure_comp_code insureCompCode,
 			b.addr addr,
+			a.recorder recorder,
+			a.record_date recordDate,
+			a.produce_date produceDate,
+			a.color color,
 			d.name contactName,
 			d.identity identity,
 			d.mobile mobile,
 			d.remark  remark,
 			d.tel tel,
 			d.id contactorId,
+			a.vin as vin,
 		    d.birthday_type as birthdayType,
             d.birthday,
             d.sex,
             d.id_no as idNo,
             d.wechat_open_id wechatOpenId
 		FROM
-			wb_common.com_guest b
+			rpb_car a
+			inner join wb_common.com_guest b on (a.guest_id = b.id)
 			inner join rpb_contactor d on (b.id = d.guest_id)
 		WHERE
 			b.guest_type = '01020103'
 		<dynamic>
+            <isNotEmpty prepend="and" property="orgId">  
+                (b.orgid = #orgId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="guestId">  
                 (b.id = #guestId#)
             </isNotEmpty>
@@ -483,7 +510,12 @@
             
              <!--纯数字  手机，车牌，车驾号-->
             <isNotEmpty prepend="and" property="nums">  
-                (b.mobile like '%$nums$%' or d.mobile like '%$nums$%' )
+                (b.mobile like '%$nums$%' or d.mobile like '%$nums$%' or a.car_no like '%$nums$%' or a.vin like '%$nums$%')
+            </isNotEmpty>
+             
+             <!--纯字母   车牌，车驾号    数字+字母 车牌，车驾号-->
+            <isNotEmpty prepend="and" property="letters">  
+                (a.car_no like '%$letters$%' or a.vin like '%$letters$%')
             </isNotEmpty>
              
              <!--包含中文   只按名称查询 -->

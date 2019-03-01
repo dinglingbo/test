@@ -60,7 +60,7 @@ function onChanged() {
 	} 
 
 	if(deductible>memAmt){
-		nui.alert("储值抵扣不能大于储值余额","提示");
+		showMsg("储值抵扣不能大于储值余额","W");
 /*		nui.get("deductible").setValue(0);
 		deductible=0;
 		nui.get("PrefAmt").setValue(0);*/
@@ -68,7 +68,7 @@ function onChanged() {
 		return;
 	}
 	if(parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count) > netInAmt){
-		nui.alert("收款大于应收金额，请重新填写","提示");
+		showMsg("收款大于应收金额，请重新填写","W");
 /*		nui.get("deductible").setValue(0);
 		deductible=0;
 		nui.get("PrefAmt").setValue(0);*/
@@ -194,13 +194,13 @@ function settleOK() {
 	}
 		
 /*		if(count==0){
-			nui.alert("请选择结算账户,并填写结算金额","提示");
+			showMsg("请选择结算账户,并填写结算金额","W");
 			return;
 		}*/
 		deductible = nui.get("deductible").getValue()||0;
 		count = (count+deductible).toFixed(2);
 		if(count!=zongAmt){
-			nui.alert("结算金额和应结金额不一致，请重新确认！","提示");
+			showMsg("结算金额和应结金额不一致，请重新确认！","W");
 			return;
 		}
 		var account = {};

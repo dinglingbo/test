@@ -842,8 +842,8 @@
         <process:inputVariable id="2" name="url" type="query" value="String" valueType="Primitive" pattern="reference">url</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -864,6 +864,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="msgParamsStr" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="contentStr" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="strTemp" primitiveType="String"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="msgRecord"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPrebook" name="rpsPrebook"/>

@@ -14,9 +14,9 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
-    <targetConnections>link2</targetConnections>
     <targetConnections>link12</targetConnections>
-    <location x="1020" y="141"/>
+    <targetConnections>link16</targetConnections>
+    <location x="1186" y="141"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -32,7 +32,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="1022" y="177"/>
+    <location x="1188" y="177"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -86,9 +86,9 @@
     <node>loopstart0</node>
   </nodes>
   <nodes xsi:type="process:tLoopEnd" id="loopend0" name="循环结束" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart0">
-    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopend0</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>assign3</targetNode>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
     <location x="778" y="141"/>
@@ -161,6 +161,7 @@
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
+      <bendPoint heightToEnd="124" heightToStart="-14" widthToEnd="2" widthToStart="598"/>
       <sourceNode>assign1</sourceNode>
       <targetNode>end0</targetNode>
       <process:transitionCondition/>
@@ -202,6 +203,57 @@
     <figSize height="17" width="32"/>
     <node>assign2</node>
   </nodes>
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="saveEntity2" displayName="saveEntity" collapsed="false" type="subprocess">
+    <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <location x="960" y="141"/>
+    <size height="27" width="27"/>
+    <nodeLabel>subprocess4label</nodeLabel>
+    <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
+      <process:partner type="literal">com.hs.common.unify.saveEntity</process:partner>
+      <process:inputVariables>
+        <process:inputVariable id="0" name="dsName" type="literal" value="String" valueType="Primitive" pattern="reference">DB04_ORA_WB_REPAIR</process:inputVariable>
+        <process:inputVariable id="1" name="data" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">car</process:inputVariable>
+        <process:inputVariable id="2" name="forceInsert" type="literal" value="Boolean" valueType="Primitive" pattern="reference">false</process:inputVariable>
+      </process:inputVariables>
+      <process:outputVariables>
+        <process:outputVariable id="0" name="data" type="query" value="commonj.sdo.DataObject" valueType="Java">car</process:outputVariable>
+        <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
+        <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+      </process:outputVariables>
+    </process:flow>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
+    <location x="941" y="176"/>
+    <figSize height="17" width="65"/>
+    <node>subprocess4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign3" name="赋值3" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link13" name="link13" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign3</sourceNode>
+      <targetNode>subprocess4</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="870" y="141"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign3label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">暂无车牌</process:from>
+      <process:to type="query">car/carNo</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">guest/id</process:from>
+      <process:to type="query">car/guestId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
+    <location x="868" y="177"/>
+    <figSize height="17" width="32"/>
+    <node>assign3</node>
+  </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-02-19 19:52:20" date="2019-02-19Z" description="保存修改联系人（波箱）" name="saveBXCustomerInforMation" version="7.0.0.0"/>
@@ -211,6 +263,7 @@
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.common.ComGuest" name="guest"/>
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="rpb"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" modelType="com.hsapi.repair.data.common.ComGuest" name="guest"/>

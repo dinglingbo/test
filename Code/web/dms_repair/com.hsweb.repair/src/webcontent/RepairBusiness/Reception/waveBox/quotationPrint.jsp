@@ -140,37 +140,6 @@
 <body ><!-- oncontextmenu = "return false" -->
 <div class="boxbg" style="display:none"></div>
 <input  class="nui-combobox" name="carBrandId" id="carBrandId"  valueField="id" textField="name"width="100%" visible="false"/>
- <div class="popbox" style="height:420px; width:480px; margin:-210px 0 0 -240px; display:none">
-        <h2><a class="close2" href="javascript:box_setup_close()" title="关闭">&nbsp;</a>修改</h2>
-        <div style="padding-top:15px; margin:0 15px;">
-            <table  width="92%" border="0" align="center" cellpadding="0" cellspacing="0">
-                <tbody>
-                    <tr>
-                        <td class="color999" width="76" height="46">单据编号：</td>
-                        <td><input type="text" id="txtno" class="peijianss" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td class="color999" height="46">门店名称：</td>
-                        <td><input type="text" id="txtstorename" class="peijianss" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td class="color999" height="46">地址：</td>
-                        <td><input type="text" id="txtaddress" class="peijianss" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td class="color999" height="46">电话：</td>
-                        <td><input type="text" id="txtphoneno" class="peijianss" value="" /></td>
-                    </tr>
-                    <tr>
-                        <td class="color999" height="46">打印时间：</td>
-                        <td><input id="date1" type="datetime-local" value=""/></td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-        <div class="boxbtn"><ul><a href="javascript:box_setup_close()" class="qc">取消</a><a href="javascript:save()" id="btn_save">保存</a></ul></div>
-</div>
     <div class="print_btn">
         <a id="print" href="javascript:void(0)" style="background: #ff6600;">打印</a>
         <a id="print" href="javascript:void(0)" onclick="CloseWindow('cancle')">取消</a>
@@ -207,14 +176,13 @@
         
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
              <tr>
-                <td style="font-size:8px;" colspan="2">地址：<span id="guestAddr"></span></td>
-                <td style="font-size:8px;"  id="openBank" style="">开户银行：</td>
+                <td style="font-size:8px;" >地址：<span id="currCompAddress"></span></td>
+                <td style="font-size:8px;"  style="">开户银行：<span id="currBankName"></span></td>
                 <td style="font-size:8px;">打印时间：<span id="date"></span></td>
             </tr> 
             <tr>
-                <td style="font-size:8px;">电话：<span id="phone"></span></td>
-                <td style="font-size:8px;">传真：<span id=""></span></td>
-                <td style="font-size:8px;" id="bankNo" >银行账号：</td>
+                <td style="font-size:8px;">电话：<span id="currCompTel"></span></td>
+                <td style="font-size:8px;">银行账号：<span id="currBankAccountNumber"></span></td>
              	<td style="font-size:8px;" id="enterDate" >进厂时间：</td>
             </tr>
         </table>
@@ -234,8 +202,8 @@
                     <td id="name"></td>
                     <td id="">&nbsp;变速箱号 </td>
                     <td id="boxNo"></td>
-                    <td id="carBrand">&nbsp;车辆厂牌</td>
-                    <td></td>
+                    <td >&nbsp;波箱厂牌</td>
+                    <td id="carBrand"></td>
                 </tr>
                 <tr>
                     <td>&nbsp;客户地址</td>
@@ -326,6 +294,56 @@
                 <tr>
                    <td height="30" style="padding: 8px;" colspan="4">
                    		<span style="padding: 8px;font-size: 16px;" id="msg">尊敬的客户：以上报价在实际施工过程中可能有小幅变动，最终价格以实际结算单为准！</span>
+                   		<div style="display:none" id="hidden2" >
+                   			<table  width="100%" border="0" cellspacing="0" cellpadding="0" class="ybk"  >
+				                <tr >
+				                    <td width="5%"  align="center">序号</td>
+				                    <td align="center">波箱配件</td>
+				                    <td width="5%" align="center">数量</td>
+				                    <td width="5%" align="center">序号</td>
+				                    <td align="center">波箱配件</td>
+				                    <td width="5%" align="center">数量</td>
+				                </tr>
+				                <tr>
+				                	<td align="center">1</td>
+				                	<td align="center">总成</td>
+				                	<td align="center"></td>
+				                	<td align="center">5</td>
+				                	<td align="center">冬菇</td>
+				                	<td align="center"></td>
+				                </tr>
+				                <tr>
+				                	<td align="center">2</td>
+				                	<td align="center">波箱壳</td>
+				                	<td align="center"></td>
+				                	<td align="center">6</td>
+				                	<td align="center">内件</td>
+				                	<td align="center"></td>
+				                </tr>
+				                <tr>
+				                	<td align="center">3</td>
+				                	<td align="center">差速器</td>
+				                	<td align="center"></td>
+				                	<td align="center">7</td>
+				                	<td align="center">油泵</td>
+				                	<td align="center"></td>
+				                </tr>
+				                <tr>
+				                	<td align="center">4</td>
+				                	<td align="center">传感器</td>
+				                	<td align="center"></td>
+				                	<td align="center">8</td>
+				                	<td align="center">油路板</td>
+				                	<td align="center"></td>
+				                </tr>
+				                <tr>
+				                	<td align="center" colspan="3"></td>
+				                	<td align="center">9</td>
+				                	<td align="center">F盅</td>
+				                	<td align="center"></td>
+				                </tr>
+				            </table>
+                   		</div>
                    		<br/>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style = "margin-left: 0px;" id = "show"></span><br>
                       <span style = "margin-left: 10px;" id="makeMan">制单员：</span><span style = "margin-left: 100px;">维修顾问签名：</span><span style = "margin-left: 110px;">客户签名：</span>
@@ -371,14 +389,23 @@
         	
 			 function SetData(serviceId,type){
 				 if(type){//默认报价单
-
-				 	document.getElementById("spstorename").innerHTML = "结算单";
+					if(type == 4){
+						document.getElementById("spstorename").innerHTML = "波箱厂内翻新单";
+						document.getElementById("msg").innerHTML = "";
+						document.getElementById("hidden2").style.display =""
+					}else{
+						document.getElementById("spstorename").innerHTML = "结算单";
 				 	document.getElementById("msg").innerHTML = '服务满意度调查：<input id="satisfaction" name="satisfaction" type="checkbox" value="非常满意" onclick="return false;"/>非常满意     '+
 				 						'<input id="satisfaction" name="satisfaction" type="checkbox" value="基本满意" onclick="return false;"/>基本满意     '+
 				 						'<input id="satisfaction" name="satisfaction" type="checkbox" value="一般" onclick="return false;"/>一般     '+
 				 						'<input id="satisfaction" name="satisfaction" type="checkbox" value="不满意" onclick="return false;"/>不满意     '+
 				 						'<div>            尊敬的客户：为了维护您的利益改进本公司的工作，如您对本公司服务有不满意之处，请您拨打华胜波箱中心投诉电话：123321234567</div>'
+					}
 				 }
+				 document.getElementById("currCompTel").innerHTML = "&nbsp;&nbsp;&nbsp;"+currCompTel;
+				 document.getElementById("currCompAddress").innerHTML = "&nbsp;&nbsp;&nbsp;"+currCompAddress;
+				 document.getElementById("currBankName").innerHTML = "&nbsp;&nbsp;&nbsp;"+currBankName;
+				 document.getElementById("currBankAccountNumber").innerHTML = "&nbsp;&nbsp;&nbsp;"+currBankAccountNumber;
 			 	 $.post(baseUrl+mainUrl+"params/rid="+serviceId+"&token="+token,{},function(text){
 			 	 	   if(text.list.length > 0){
 			 	 	   		 var list = text.list[0];

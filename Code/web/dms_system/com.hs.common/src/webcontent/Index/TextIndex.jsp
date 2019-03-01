@@ -11,7 +11,7 @@ pageEncoding="UTF-8" session="false" %>
 <head>
   <title>首页</title> 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.5.97"></script>
+    <script src="<%=webPath + contextPath%>/common/Index/TextIndex.js?v=1.6.00"></script>
   <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
   <link href="<%=request.getContextPath()%>/common/nui/themes/blue2010/skin.css" rel="stylesheet" type="text/css" />
   <link href="<%=request.getContextPath()%>/common/Index/TextIndex.css" rel="stylesheet" type="text/css" />
@@ -157,7 +157,7 @@ pageEncoding="UTF-8" session="false" %>
                             
                             	<tr>  
                                    <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>预约到店提醒：</td>
-                                	<td class="tablenum"><a id="queryAppointment" href="javascript:toMaintain(1)" style="color: #61acc9;"><span></span></a></td>
+                                	<td class="tablenum"><a id="queryAppointment" href="javascript:bookingMgr()" style="color: #61acc9;"><span></span></a></td>
                                     <td style="width:0.05%;"></td>
                                     <td class="tabletext"><i class="fa fa-cube fa-lg-custom fa-fw"></i>保养到期提醒：</td>
                                     <td class="tablenum"><a id="queryMaintain" href="javascript:toMaintain(8)" style="color: #61acc9;"><span></span></a></td>

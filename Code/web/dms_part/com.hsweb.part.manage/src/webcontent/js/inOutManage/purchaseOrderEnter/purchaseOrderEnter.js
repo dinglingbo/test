@@ -1882,6 +1882,7 @@ function onPrint(){
 		currUserName :currUserName,
 		currRepairSettorderPrintShow :currRepairSettorderPrintShow,
 		currCompAddress :currCompAddress,
+		currCompLogoPath : currCompLogoPath,
 		currCompTel :currCompTel,
 		currOrgName : currOrgName
 	};

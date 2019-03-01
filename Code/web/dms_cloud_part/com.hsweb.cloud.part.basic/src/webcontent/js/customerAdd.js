@@ -51,7 +51,7 @@ function initComboBox()
     provinceEl = nui.get("provinceId");
     billTypeId = nui.get("billTypeId");
     settTypeId = nui.get("settTypeId");
-    //managerDuty = nui.get("managerDuty");
+    managerDuty = nui.get("managerDuty");
     tgrade = nui.get("tgrade");
     logisticsGrid = nui.get("logisticsGrid");
     logisticsGrid.setUrl(logisticsUrl);
@@ -256,6 +256,13 @@ function getLicense(imgPath){
 	        	nui.get('shortName').setValue(name);
         		nui.get('fullName').setValue(name);
         		nui.get('licenseCode').setValue(licenseCode);
+    			if(gusetProperty && gusetProperty!='013903'){    		
+    				var params={};
+    	        	params.licenseCode=licenseCode;
+    	        	params.noOrgId=1;
+    	        	queryCustomer(params);
+	        	}
+        		
 	        	showMsg("营业执照识别成功","S");
 	        }else{
 	            showMsg("营业执照识别失败","W");
@@ -296,8 +303,14 @@ function getIdCard(imgPath){
 	        		
 	        		nui.get('shortName').setValue(legalPerson);
 	        		nui.get('fullName').setValue(legalPerson);
+	        		var params={};
+		        	params.idCard=idCard;
+		        	params.noOrgId=1;
+		        	queryCustomer(params);
 	        	}
+	        	
 	        	showMsg("身份证识别成功","S");
+	        	
 	        }else{
 	            showMsg("身份证识别失败","W");
 	        }
@@ -307,6 +320,60 @@ function getIdCard(imgPath){
 	        //  nui.alert(jqXHR.responseText);
 	    	  nui.unmask();
 	     
+	    }
+	});
+}
+function setInitData(){
+	mainForm.setData(supplier);
+    otherForm.setData(supplier);
+
+    onProvinceSelected("cityId");
+    nui.get('cityId').setValue(supplier.cityId);     
+    nui.get("isClient").setValue(supplier.isClient);
+    nui.get("isSupplier").setValue(supplier.isSupplier);
+    nui.get("isDisabled").setValue(supplier.isDisabled);
+    nui.get("isInternal").setValue(supplier.isInternal);
+    if(provinceEl.getText()){	
+    	onCitySelected("cityId");
+    }
+    
+    if(supplier.isInternal == 1)
+    {
+        nui.get("fullName").hide();
+        nui.get("fullName1").show();
+        nui.get("fullName1").setValue(supplier.isInternalId);
+        nui.get("fullName1").setText(supplier.fullName);
+    }
+
+    logisticsGrid.load({
+    	guestId:supplier.id,
+    	token:token
+    });
+}
+function queryCustomer(params){
+	nui.mask({
+        el : document.body,
+    	cls : 'mini-mask-loading',
+    	html : '识别中...'
+    });
+	nui.ajax({
+	    url:webPath + sysDomain +"/com.hsapi.cloud.part.baseDataCrud.crud.queryCustomList.biz.ext",
+	    type:"post",
+	    data:{params: params},
+	    async:false,
+	    success:function(data)
+	    {
+	        nui.unmask();
+	        data = data||{};
+	
+	        supplier =  data.customers[0];
+	        setInitData(supplier);
+        	
+	        
+	    },
+	    error:function(jqXHR, textStatus, errorThrown){
+	        //  nui.alert(jqXHR.responseText);
+	    	  nui.unmask();
 	    }
 	});
 }
@@ -530,8 +597,8 @@ var billTypeIdList = [];
 var billTypeIdHash = {};
 var settTypeIdList = [];
 var settTypeIdHash = {};
-//var managerDutyList = [];
-//var managerDutyHash = {};
+var managerDutyList = [];
+var managerDutyHash = {};
 function setData(data)
 {
 	provinceList = data.province||[];
@@ -575,13 +642,13 @@ function setData(data)
     settTypeIdList.forEach(function(v){
         settTypeIdHash[v.customid] = v;
     });
-    /*managerDutyList = data.managerDuty||[];
+    managerDutyList = data.managerDuty||[];
     managerDutyList.forEach(function(v){
         managerDutyHash[v.customid] = v;
-    });*/
+    });
     billTypeId.setData(billTypeIdList);
     settTypeId.setData(settTypeIdList);
-    /*managerDuty.setData(managerDutyList);*/
+    managerDuty.setData(managerDutyList);
     tgrade.setData(tgradeList);
  
     if(!mainForm)
@@ -604,6 +671,22 @@ function setData(data)
         if(provinceEl.getText()){	
         	onCitySelected("cityId");
         }
+        
+        var gusetProperty =nui.get('gusetProperty').getValue();
+        if(gusetProperty){
+        	
+        	if(gusetProperty=='013903'){
+        		$('#idNo').show();
+        		$('#lince').css("display","none");
+        		$('#idNoImg').attr("src",supplier.idCardUrl);
+        	}else{
+        		$('#idNo').show();
+        		$('#lince').show();
+        		$('#idNoImg').attr("src",supplier.idCardUrl);
+        		$('#xmTanImg').attr("src",supplier.licenseUrl);
+        	}
+        }
+    	
         if(supplier.isInternal == 1)
         {
             nui.get("fullName").hide();

@@ -766,6 +766,7 @@ function onPrint(e){
             currCompAddress: currCompAddress,
             currUserName :currUserName,
             currCompTel: currCompTel,
+            currCompLogoPath : currCompLogoPath,
             currSlogan1: currSlogan1,
             currSlogan2: currSlogan2,
     		token : token

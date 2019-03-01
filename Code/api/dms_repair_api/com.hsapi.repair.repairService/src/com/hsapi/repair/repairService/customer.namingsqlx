@@ -157,6 +157,7 @@
 			a.annual_inspection_comp_name annualInspectionCompName,
 			a.annual_inspection_no annualInspectionNo,
 			a.guest_id guestId,
+			a.car_model_full_name carModelFullName,
 			b.full_name guestFullName,
 			b.mobile as guestMobile,
 			a.car_model_id carModelId,

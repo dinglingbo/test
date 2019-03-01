@@ -690,6 +690,7 @@ function onPrint(argument) {
         currOrgName : currOrgName,
         currCompAddress : currCompAddress,
         currCompTel : currCompTel,
+        currCompLogoPath : currCompLogoPath,
         token:token
     };
     nui.open({

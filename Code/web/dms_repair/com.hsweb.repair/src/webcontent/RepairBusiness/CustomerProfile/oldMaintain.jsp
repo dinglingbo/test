@@ -95,7 +95,6 @@
 										结算日期</div>
 									<div field="里程数" headerAlign="center" allowSort="true" width="60px">
 										里程数</div>
-									<div field="备注" renderer="onstatus" headerAlign="center" allowSort="true" width="120px">备注</div>
 									<div field="维修顾问" headerAlign="center" allowSort="true" width="60px">
 										维修顾问</div>
 									<div field="备注" renderer="onstatus" headerAlign="center" allowSort="true" width="120px">备注</div>

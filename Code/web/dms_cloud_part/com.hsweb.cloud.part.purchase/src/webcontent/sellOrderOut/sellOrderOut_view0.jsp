@@ -214,7 +214,7 @@ body .mini-grid-row-selected{
                                 <div field="enterPrice" width="55px" headerAlign="center" allowSort="true">
                                 成本单价
                                 </div>
-                                <div field="serviceId" align="left" width="55px" headerAlign="center" allowSort="true">
+                                <div field="enterCode" align="left" width="55px" headerAlign="center" allowSort="true">
                                 入库单号
                                 </div>
                             </div>

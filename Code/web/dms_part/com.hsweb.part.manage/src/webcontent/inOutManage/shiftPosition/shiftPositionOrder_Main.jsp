@@ -8,7 +8,7 @@
 -->
 <head>
     <title>移仓单主界面</title>
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrderMain.js?v=1.1.21"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/shiftPosition/shiftPositionOrderMain.js?v=1.1.22"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">

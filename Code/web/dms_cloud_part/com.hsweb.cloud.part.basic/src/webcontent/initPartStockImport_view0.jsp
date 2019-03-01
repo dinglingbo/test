@@ -112,6 +112,8 @@
 					数量</div>
 				<div field="单价" width="80px" headerAlign="center" allowSort="true">
 					单价</div>
+			    <div field="销售价" width="80px" headerAlign="center" allowSort="true">
+					销售价</div>
 				<div field="是否含税" width="60px" headerAlign="center" allowSort="true">
 					是否含税</div>
 				<div field="税率" width="60px" headerAlign="center" allowSort="true">

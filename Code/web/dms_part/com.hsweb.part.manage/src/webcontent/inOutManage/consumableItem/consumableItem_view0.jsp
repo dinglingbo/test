@@ -121,6 +121,7 @@ pageEncoding="UTF-8" session="false"%>
                    <div allowSort="true" field="partBrandId" name="partBrandId" width="70" headerAlign="center" header="品牌"></div>
                    <div allowSort="true" field="applyCarModel" name="applyCarModel" width="200" headerAlign="center" header="品牌车型"></div>
                    <div allowSort="true" field="enterUnitId" width="40" headerAlign="center" header="单位"></div>
+                   <div allowSort="true" field="enterCode" width="140" headerAlign="center" header="入库单号"></div>
                    <div allowSort="true" field="auditDate" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" width="150px" header="入库日期" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true"></div>
                    <div allowSort="true" field="guestName" name="guestName" width="280px" headerAlign="center" allowSort="true" header="供应商"></div>  
 

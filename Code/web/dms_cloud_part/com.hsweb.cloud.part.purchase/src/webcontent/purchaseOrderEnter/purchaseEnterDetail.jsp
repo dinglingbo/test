@@ -151,7 +151,7 @@
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到供应商"
                                              url=""  searchField="key"
-                                             width="82%"
+                                             width="78%"
                                              placeholder="请选择供应商"
                                              selectOnFocus="true" />
                                       	<input id="btnEdit1" width="8.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>

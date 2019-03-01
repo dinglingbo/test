@@ -161,7 +161,7 @@ function SetInitData(data) {
 
     
     var form = new nui.Form("#basicInfoForm");
-    $("#xmTanImg").attr("src",data.logoImg);
+    $("#xmTanImg").attr("src",data.logoImg||webPath + contextPath + "/common/images/logo.jpg");
     form.setData(data);  
 
     setInitRegionData(provinceEl, null);

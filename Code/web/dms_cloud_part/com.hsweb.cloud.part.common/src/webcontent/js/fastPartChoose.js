@@ -80,7 +80,7 @@ $(document).ready(function(v)
 
         addSelectPart();
 
-        nui.get("qty").focus();
+        nui.get("storeShelf").focus();
     });
     morePartGrid.on("drawcell",function(e){
         switch (e.field)
@@ -134,7 +134,7 @@ $(document).ready(function(v)
 
         addSelectPart();
 
-        nui.get("qty").focus();
+        nui.get("storeShelf").focus();
         
     });
     enterGrid.on("drawcell",function(e){
@@ -217,7 +217,13 @@ $(document).ready(function(v)
         }
         
     });
-
+    
+    $("#storeShelf").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            var qty = nui.get("qty");
+            qty.focus();
+        }
+    });
     $("#qty").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             var price = nui.get("price");
@@ -498,8 +504,9 @@ function addSelectPart(){
             column = enterGrid.getColumn("stockQty");
             advancedAddWin.show();
             nui.get("storeId").setValue(record.storeId);
+            nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);
-            nui.get("qty").focus();
+            nui.get("storeShelf").focus();
 
             params.partId = record.partId;
             params.guestId = guestId;
@@ -525,8 +532,9 @@ function addSelectPart(){
             column = morePartGrid.getColumn("outableQty");
             advancedAddWin.show();
             nui.get("storeId").setValue(FStoreId);
+            nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);
-            nui.get("qty").focus();
+            nui.get("storeShelf").focus();
             nui.get("storeId").enabled = true;
 
             params.partId = record.id;
@@ -613,6 +621,7 @@ function onAdvancedAddOk(){
         }
     }
     resultData.storeId = data.storeId;
+    resultData.storeShelf=data.storeShelf;
     resultData.qty = data.qty;
     resultData.price = data.price;
     resultData.amt = data.amt;

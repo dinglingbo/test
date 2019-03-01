@@ -110,8 +110,8 @@ function sure() {
 		//alert(data.length);
 		for (var i = 0; i < data.length; i++) {
 			length++;
-			if(length>1000){
-				parent.parent.showMsg("导入不能超过一千条，请重新选择文件！","W");
+			if(length>4000){
+				parent.parent.showMsg("导入不能超过四千条，请重新选择文件！","W");
 				return;
 			}
 			var newRow = {};

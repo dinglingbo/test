@@ -157,7 +157,7 @@
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到供应商"
                                              url=""  searchField="key"
-                                             width="82%"
+                                             width="78%"
                                              placeholder="请选择供应商"
                                              selectOnFocus="true" />
                                       <input id="btnEdit1" width="8.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
@@ -310,7 +310,7 @@
                         </div>  
                         <div field="storeShelf" width="60" headerAlign="center" allowSort="true">
                               仓位<input property="editor" class="nui-textbox"/>
-                              </div>  
+                          </div>  
                       <div field="comOemCode" allowSelect="false" width="60" headerAlign="center" visible="false"  allowSort="true" header="OEM码"></div> 
                       <div field="comSpec" allowSelect="false" width="100" headerAlign="center" visible="false" allowSort="true" header="规格/方向/颜色"></div>
                       <div field="sellUnitPrice" name="sellUnitPrice" allowSelect="false" width="60" headerAlign="center" visible="true" allowSort="true" header="统一售价">

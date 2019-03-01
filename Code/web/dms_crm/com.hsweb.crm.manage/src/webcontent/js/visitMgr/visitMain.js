@@ -53,6 +53,7 @@ $(document).ready(function(){
     initCarBrand("carBrandId",function() {
     	brandList = nui.get("carBrandId").getData();
     	brandList.forEach(function(v) {
+    	
     		brandHash[v.id] = v;
   
     	});

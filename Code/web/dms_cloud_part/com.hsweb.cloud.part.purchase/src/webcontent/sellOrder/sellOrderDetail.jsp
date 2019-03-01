@@ -128,7 +128,7 @@
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到客户"
                                              url=""  searchField="key"
-                                             width="81%"
+                                             width="77%"
                                              placeholder="请选择客户"
                                              selectOnFocus="true" />
                                       	<input id="btnEdit1" width="7.2%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
@@ -283,6 +283,9 @@
                                               onvaluechanged="" emptyText=""  vtype="required"
                                               /> 
                                       </div>  
+                                       <div field="storeShelf" width="60" headerAlign="center" allowSort="true">
+		                              		仓位<input property="editor" class="nui-textbox"/>
+		                              </div>  
                                       <div field="stockOutQty" summaryType="sum" numberFormat="0.00" width="50" headerAlign="center" header="缺货数量">
                                       </div>
                                       <div type="checkboxcolumn" field="isMarkBatch" trueValue="1" falseValue="0" width="40" headerAlign="center" header="批次">

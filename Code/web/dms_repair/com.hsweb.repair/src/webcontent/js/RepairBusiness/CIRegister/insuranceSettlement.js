@@ -137,12 +137,12 @@ function onChanged() {
 			memAmt = (memAmt.split("￥"))[1];
 		}
 	if(deductible>memAmt){
-		nui.alert("储值抵扣不能大于储值余额","提示");
+		showMsg("储值抵扣不能大于储值余额","W");
 
 		return;
 	}
 	if((parseFloat(deductible) + parseFloat(PrefAmt)+ parseFloat(count)).toFixed(2)  > netInAmt){
-		nui.alert("储值抵扣加上优惠金额不能大于应收金额","提示");
+		showMsg("储值抵扣加上优惠金额不能大于应收金额","W");
 
 
 		return;
@@ -180,7 +180,7 @@ function pay(){
 		deductible = nui.get("deductible").getValue()||0;
 		count = (count+deductible).toFixed(2);
 		if(count!=zongAmt){
-			nui.alert("结算金额和应结金额不一致，请重新确认！","提示");
+			showMsg("结算金额和应结金额不一致，请重新确认！","W");
 			return;
 		}
 		var deductible = nui.get("deductible").getValue()||0;
@@ -212,7 +212,7 @@ function pay(){
 	    				if(data.errCode=="S"){
 	    					CloseWindow("ok");
 	    				}else{
-	    					nui.alert(data.errMsg,"提示");
+	    					showMsg(data.errMsg,"W");
 	    				}
 
 	    			},
@@ -284,7 +284,7 @@ function doNoPay(serviceId,allowanceAmt){
 							CloseWindow("onok");
 						}else{
 							nui.unmask(document.body);
-							nui.alert(data.errMsg,"提示");
+							showMsg(data.errMsg,"W");
 						}
 
 					},

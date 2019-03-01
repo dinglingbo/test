@@ -29,7 +29,8 @@
 			a.settle_content settleContent,
 			a.settle_date settleDate,
 			a.settlor settlor,
-			a.status status
+			a.status status,
+			a.record_id recordId
 		FROM
 			sys_feedback_record a
 		WHERE

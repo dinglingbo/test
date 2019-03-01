@@ -8,13 +8,14 @@
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign5</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link9" name="link9" displayName="连接线" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign6</targetNode>
       <process:transitionCondition>
         <process:complexCondition>
-          <process:code>1==1</process:code>
+          <process:code>1==2</process:code>
         </process:complexCondition>
       </process:transitionCondition>
     </sourceConnections>

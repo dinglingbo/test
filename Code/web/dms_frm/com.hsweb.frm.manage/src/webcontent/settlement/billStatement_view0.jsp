@@ -79,8 +79,8 @@
 <!--                 <label style="font-family:Verdana;">配件编码：</label> -->
 <!--                 <input id="partCode" width="100px" emptyText="配件编码" class="nui-textbox"/> -->
                 <!-- <label style="font-family:Verdana;">订单单号：</label> -->
-                 <input id="serviceId" width="160px" emptyText="对账单号" class="nui-textbox"/>
-                 <input id="billServiceId" width="160px" emptyText="业务单号" class="nui-textbox"/>
+                 <input id="serviceId" width="100px" emptyText="对账单号" class="nui-textbox"/>
+                 <input id="billServiceId" width="100px" emptyText="业务单号" class="nui-textbox"/>
                 <!-- <label style="font-family:Verdana;">供应商：</label> -->
                 <input id="searchGuestId" class="nui-buttonedit"
                        emptyText="请选择往来单位..."
@@ -91,7 +91,7 @@
                 <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> --> 
                  <label style="font-family:Verdana;">对账类型：</label>
                  <input class="nui-combobox" id="settleTypeId" emptyText="应付月结" name="settleTypeId" data="[{settleTypeId:'020501',text:'应付现结'},{settleTypeId:'020502',text:'应付月结'}]"
-                          width="100px"  onvaluechanged="onSearch" textField="text" valueField="settleTypeId" value="020502"/>          
+                          width="80px"  onvaluechanged="onSearch" textField="text" valueField="settleTypeId" value="020502"/>          
                       <input name="serviceTypeId"
                                    id="serviceTypeId"
                                    class="nui-combobox width1"
@@ -135,8 +135,9 @@
         <div property="columns"> 
                 <div type="indexcolumn">序号</div>
                 <div type="expandcolumn" width="20" ><span class="fa fa-plus fa-lg"></span></div>
-                <div field="guestName" name="guestName" width="80" headerAlign="center" header="往来单位"></div>
-                <div field="createDate" width="150" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="对账日期"></div>
+                <div field="guestName" name="guestName" width="150" headerAlign="center" header="往来单位"></div>
+                <div field="settleTypeId" name="settleTypeId" width="60" headerAlign="center" header="对账类型"></div>
+                <div field="createDate" width="60px" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="对账日期"></div>
                 <div field="stateMan" name="stateMan" width="60" headerAlign="center" header="对账员"></div><div field="auditSign" width="35" headerAlign="center" header="状态"></div>
                 <div field="serviceId" headerAlign="center" width="150" header="对账单号"></div>
                 <div field="auditor" name="auditor" width="60" headerAlign="center" header="审核人"></div>

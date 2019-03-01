@@ -421,9 +421,9 @@
 	
 	<select id="queryCustomerWithContactListBX" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
 		SELECT
-			b.id as guestId,
+			b.id  guestId,
 			b.full_name guestFullName,
-			b.mobile as guestMobile,
+			b.mobile  guestMobile,
 			b.addr addr,
 			d.name contactName,
 			d.identity identity,

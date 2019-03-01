@@ -11,6 +11,7 @@
 <head>
 <title>成品入库</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="/default/common/js/partUtil.js?v=1.0.13" type="text/javascript"></script>
 </head>
 <style type="text/css">
     html,body
@@ -30,17 +31,41 @@
 <body>
        <div id="form1" >
         	<input name="id" id="id"class="nui-hidden" />
-        	<input name="guestId" id="guestId"class="nui-hidden" />
-        	<input name="billTypeId" id="billTypeId" class="nui-hidden" />
-        	<input name="mainId"  id="mainId" class="nui-hidden" />
+        	<input name="serviceId"  id="serviceId" class="nui-hidden" />
+        	<input name="partCode"  id="partCode" class="nui-hidden" />
+        	<input name="partId"  id="partId" class="nui-hidden" />
+        	<input name="partName"  id="partName" class="nui-hidden" />
+        	<input name="enterUnitId"  id="enterUnitId" class="nui-hidden" />
+        	<input name="fullName"  id="fullName" class="nui-hidden" />
+        	<input name="qty"  id="qty" class="nui-hidden" />
+        	
         <table style="line-height:30px;">
             <tr>
                 <td class="tbtext" >
                     <label >配件名称:</label>
                 </td>
-                <td colspan="3">
-                    <input id="comPartName"  name="comPartName" class="nui-textbox"    enable="false" style="width:calc(100% - 92px)"/>
+                <td >
+                    <input id="partName"  name="partName" class="nui-textbox"    enabled="false" style="width:calc(100% - 92px)"/>
                     <a class="nui-button" plain="false" iconCls="" onclick="addPart()" align="right"><span class="fa fa-plus fa-lg"align="right"></span>&nbsp;选择配件</a>
+                </td>
+                <td style="width:110px" class="tbtext">
+                    <label>仓库:</label>
+                </td>
+                <td>
+                   <input id="storeId"
+                       name="storeId"
+                       class="nui-combobox width1"
+                       textField="name"
+                       valueField="id"
+                       emptyText="请选择仓库"
+                       url=""
+                       dataField="storehouse"
+                       valuefromselect="true"
+                       allowInput="true"
+                       selectOnFocus="true"
+                       showNullItem="false"
+                       nullItemText="请选择..."
+                       />
                 </td>
             </tr>
             <tr>
@@ -48,13 +73,13 @@
                     <label>维修金额(元):</label>
                 </td>
                 <td>
-                    <input id=""  name="" class="nui-textbox"  enable="false"width="100%"/>
+                    <input id="amt"  name="amt" class="nui-textbox"  enable="false"width="100%"/>
                 </td>
                 <td style="width:110px" class="tbtext">
                     <label >销售金额(元):</label>
                 </td>
                  <td>
-                    <input id="orderAmt"  name="orderAmt" class="nui-textbox"  enable="false"width="100%"/>
+                    <input id="sellPrice"  name="sellPrice" class="nui-textbox"  enable="false"width="100%"/>
                 </td>
             </tr>
             <tr>
@@ -78,66 +103,45 @@
     	var enterDetail = {};
     	var partUrl = apiPath + partApi + "/";//window._rootUrl||"http://127.0.0.1:8080/default/";
     	var rightGridUrl = partUrl+ "com.hsapi.part.invoice.svr.queryPjPchsOrderDetailList.biz.ext";
+    	var storehouse = null;
+    	
+    	getStorehouse(function(data){
+	        var storehouse = data.storehouse||[];
+	        nui.get("storeId").setData(storehouse);
+    	});
     	function setData(){
     		getGuestId();
     	}
     	
     	var auditUrl = partUrl + "com.hsapi.part.invoice.crud.auditPjPchsOrder.biz.ext";
     	function save(){ 
-    		var data = {
-    			id : nui.get("id").value,
-    			guestId : nui.get("guestId").value,
-    			billTypeId : nui.get("billTypeId").value
+    		var data = form.getData();
+    		var orderMain = {
+    			serviceId : data.serviceId,
+    			storeId : data.storeId,
+    			storeName : nui.get("storeId").text
     		};
-    		
-    		var pchsOrderDetailAdd = null;
-    		var pchsOrderDetailUpdate = null;
-    		if(nui.get("mainId").value){//已保存
-    			pchsOrderDetailUpdate = enterDetail;
-    			pchsOrderDetailUpdate.orderAmt = nui.get("orderAmt").value;
-    			pchsOrderDetailUpdate.orderPrice = nui.get("orderAmt").value;
-    			pchsOrderDetailUpdate.id = nui.get("mainId").value;
-    			pchsOrderDetailUpdate.remark = nui.get("remark").value;
-    		}else{
-    			pchsOrderDetailAdd = enterDetail;
-    			pchsOrderDetailAdd.orderAmt = nui.get("orderAmt").value;
-    			pchsOrderDetailAdd.orderPrice = nui.get("orderAmt").value;
-    			pchsOrderDetailAdd.id =null;
-    			data.id = null;
-    			pchsOrderDetailAdd.remark = nui.get("remark").value;
+    		var orderDetailAdd = null;
+    		var orderDetailUpdate = null;
+    		if(!data.id){
+    			orderDetailAdd = data;
     		}
-    		data.orderTypeId = 1;
-			nui.ajax({
-					url : auditUrl,
-					type : "post",
-					data : JSON.stringify({
-						pchsOrderMain : data,
-						pchsOrderDetailAdd : pchsOrderDetailAdd,
-						pchsOrderDetailUpdate : pchsOrderDetailUpdate,
-						operateFlag : 1,
-						token: token
-					}),
-					success : function(data) {
-						nui.unmask(document.body);
-						data = data || {};
-						if (data.errCode == "S") {
-							alert("入库成功!","温馨提示");
-							// onLeftGridRowDblClick({});
-							var pjPchsOrderMainList = data.pjPchsOrderMainList;
-							if (pjPchsOrderMainList && pjPchsOrderMainList.length > 0) {
-									var pjPchsOrderMainList = data.pjPchsOrderMainList[0];
-									nui.get("id").setValue(pjPchsOrderMainList.id);
-									searchDetailMsg(pjPchsOrderMainList.id)
-							}
-						} else {
-							showMsg(data.errMsg || ("入库失败!"),"W");
-						}
-					},
-					error : function(jqXHR, textStatus, errorThrown) {
-						// nui.alert(jqXHR.responseText);
-						console.log(jqXHR.responseText);
-					}
-				});
+    		nui.ajax({
+				url : partUrl + "com.hsapi.part.invoice.crud.auditPjProduct.biz.ext",
+				type : "post",
+				data : {
+					orderMain : orderMain,
+					orderDetailAdd : orderDetailAdd,
+					operateFlag : 1,
+					token : token
+				},
+				success : function(text) {
+					console.log(text);
+				},
+				error : function(jqXHR, textStatus, errorThrown) {
+					console.log(jqXHR.responseText);
+				}
+			});
     	}
     	
     	function searchDetailMsg(mainId){
@@ -184,7 +188,7 @@
 							allowResize : false,
 							onload : function() {
 								var iframe = this.getIFrameEl();
-								part.storeId = FStoreId;//nui.get("storeId").getValue();
+								part.storeId = nui.get("storeId").value;//nui.get("storeId").getValue();
 								iframe.contentWindow.setData({
 									part : part,
 									priceType : "pchsIn"
@@ -196,27 +200,18 @@
 									var data = iframe.contentWindow.getData();
 									enterDetail = {};
 									enterDetail.partId = data.id;
-									enterDetail.comPartCode = data.code;
-									enterDetail.comPartName = data.name;
-									enterDetail.comPartBrandId = data.partBrandId;
-									enterDetail.comApplyCarModel = data.applyCarModel;
-									enterDetail.comUnit = data.unit;
-									enterDetail.orderQty = data.qty;
-									enterDetail.orderPrice = data.price;
-									enterDetail.orderAmt = data.amt;
-									enterDetail.remark = data.remark;
-									enterDetail.storeId = data.storeId;
-									enterDetail.comOemCode = data.oemCode;
-									enterDetail.comSpec = data.spec;
 									enterDetail.partCode = data.code;
 									enterDetail.partName = data.name;
-									enterDetail.fullName = data.fullName;
-									enterDetail.systemUnitId = data.unit;
 									enterDetail.enterUnitId = data.unit;
-									var dataAll = form.getData();
-									enterDetail.id = dataAll.id;
-									enterDetail.guestId = dataAll.guestId;
-									enterDetail.billTypeId = dataAll.billTypeId;
+									enterDetail.systemUnitId = data.systemUnitId;
+									enterDetail.fullName = data.unit;
+									enterDetail.qty = 1;
+									enterDetail.amt = data.amt;
+									enterDetail.price = data.price;
+									enterDetail.storeId = data.storeId;
+									enterDetail.remark = data.remark;
+									enterDetail.serviceId = nui.get("serviceId").value;
+									enterDetail.id = nui.get("id").value;
 									form.setData(enterDetail);
 								}
 							}

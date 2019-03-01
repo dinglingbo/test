@@ -11,7 +11,7 @@
 <head>
 <title>Title</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.18"></script>
+    <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.21ian"></script>
 </head>
 <style type="text/css"> 
     body {  

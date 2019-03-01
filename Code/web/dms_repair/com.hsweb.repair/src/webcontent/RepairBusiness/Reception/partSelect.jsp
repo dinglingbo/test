@@ -150,7 +150,7 @@
             <div field="applyCarModel" name="applyCarModel" width="120" headerAlign="center" header="品牌车型"></div>
             <div field="enterUnitId" width="35" headerAlign="center" header="单位"></div>
              
-            <div field="serviceCode" align="left" width="120px" headerAlign="center" align="center" allowSort="true" header="入库单号"></div>
+            <div field="enterCode" align="left" width="120px" headerAlign="center" align="center" allowSort="true" header="入库单号"></div>
             <div field="fullName" name="fullName" width="300" headerAlign="center" header="配件全称"></div> 
             <div field="partId" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件id"></div> 
             <div field="partNameId" headerAlign="center" allowSort="false" visible="false" width="80px" header="配件nameid"></div>         
@@ -309,12 +309,20 @@
     mainGrid.on("drawcell", function(e) { 
         switch (e.field) {
             case "partBrandId":
-            if (brandHash[e.value]) {
-                e.cellHtml = brandHash[e.value].name || "";
-            } else {
-                e.cellHtml = "";
-            }
-            break;
+             if(brandHash[e.value])
+                {
+//                    e.cellHtml = brandHash[e.value].name||"";
+                	if(brandHash[e.value].imageUrl){
+                		
+                		e.cellHtml = "<img src='"+ brandHash[e.value].imageUrl+ "'alt='配件图片' height='25px' width=' '/><br> "+brandHash[e.value].name||"";
+                	}else{
+                		e.cellHtml = brandHash[e.value].name||"";
+                	}
+                }
+                else{
+                    e.cellHtml = "";
+                }
+                break;;
             case "storeId":
             if (storeHash[e.value]) { 
                 e.cellHtml = storeHash[e.value].name || "";

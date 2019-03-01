@@ -44,8 +44,10 @@ function setFeedbackData(row){
 		document.getElementById("settleDate").innerHTML = settleDate;
 	}
 	var updaFree = row;
+	var finish = 0;
 	var json = nui.encode({
 		updaFree:updaFree,
+		finish:finish,
 		token:token
 	});
 	if(row.status == 0 && row.user==0){
@@ -64,7 +66,7 @@ function setFeedbackData(row){
 	 			if (returnJson.errCode == "S") {
 
 	 			} else {
-	 				showMsg("打开页面有误，请重新打开！",E);
+	 				showMsg("打开页面有误，请重新打开！","E");
 	 		    }
 	 		}
 	 	 });
@@ -84,7 +86,10 @@ function changeHide(){
 	$(".max_img").hide();
 }
 function showTab(str,questionContent){
-	var list = str.split(",");
+	var list = [];
+	if(str){
+		var list = str.split(",");
+	}
 	var temp = "";
 	if(list.length >0){
 		for(var i = 0 ;i<list.length;i++){
@@ -103,15 +108,18 @@ function showTab(str,questionContent){
 
 function updFinish(){
 	if(rowData.status == 2){
+		showMsg("反馈已解决","W");
 		return;
 	}
 	var updaFree = rowData;
 	updaFree.status = 2;
+	var finish = 1;
 	//获取回复的值
 	var settleContent = nui.get("settleContent").getValue() || "";
 	updaFree.settleContent = settleContent;
 	var json = nui.encode({
 		updaFree:updaFree,
+		finish:finish,
 		token:token
 	});
 	nui.ajax({

@@ -16,9 +16,9 @@
     
 </head>
 <body>
-
-					<div class="nui-fit">
-						<div id="workOrder" dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" showPager="false" pageSize="20" showPageInfo="true"
+         <div id ="tabs" class="nui-tabs" width="100%" height="100%">
+					<div title="我的消息提醒" >
+						<div id="workOrder"  dataField="list" class="nui-datagrid" style="width: 100%; height: 100%;" showPager="false" pageSize="20" showPageInfo="true"
 						 onDrawCell="onDrawCell" onselectionchanged="selectionChanged" allowSortColumn="false">
 							<div property="columns">
 								<div type="indexcolumn" headerAlign="center" header="序号" width="20px"></div>
@@ -31,8 +31,10 @@
 									发生日期</div>
 							</div>
 						</div>
-					</div>
-
+				</div>
+				<div title="我的反馈记录" url="<%=request.getContextPath() %>/com.hs.common.userFeedbackList.flow">
+		        </div>
+       </div>
 	<script type="text/javascript">
     	nui.parse();
     </script>

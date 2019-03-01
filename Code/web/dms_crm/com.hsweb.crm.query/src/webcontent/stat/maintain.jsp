@@ -11,7 +11,7 @@
   --%>
 <head>
 	<title>首页提醒</title>
-	<script src="<%=request.getContextPath()%>/query/stat/js/maintain.js?v=1.1.5">
+	<script src="<%=request.getContextPath()%>/query/stat/js/maintain.js?v=1.1.6">
 	</script>
 </head>
 
@@ -24,8 +24,8 @@
 					                    <a class="nui-menubutton " menu="#popupMenuStatus" id="menunamestatus">未读</a>
 					                    <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
 					                        <li iconCls="" onclick="quickSearch(0)" id="type0">所有</li>
-					                        <li iconCls="" onclick="quickSearch(1)" id="type0">未读</li>
-					                        <li iconCls="" onclick="quickSearch(2)" id="type0">已读</li>
+					                        <li iconCls="" onclick="quickSearch(2)" id="type0">未读</li>
+					                        <li iconCls="" onclick="quickSearch(1)" id="type0">已读</li>
 					                    </ul>
 <!-- 										<a class="nui-button" iconCls="" plain="true" onclick="clear()" id="saveBtn">
 										<span class="fa fa-envelope-open fa-lg"></span>&nbsp;标记已读</a> -->

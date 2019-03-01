@@ -8,7 +8,7 @@
 -->
 <head>
 <title>采购退货主界面</title>
-<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnMain.js?v=1.0.19"></script>
+<script src="<%=webPath + contextPath%>/manage/js/inOutManage/purchaseOrderRtn/purchaseOrderRtnMain.js?v=1.0.20"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -190,7 +190,7 @@
            <div headerAlign="center" type="indexcolumn" width="30">序号</div>
            <div field="comPartCode" name="comPartCode" width="110" headerAlign="center" header="配件编码"></div>
 	       <div field="comPartName" headerAlign="center" header="配件名称"></div>
-	       <div field="comPartBrandId" id="comPartBrandId" width="60" headerAlign="center" header="品牌"></div>
+	       <div field="comPartBrandId" id="comPartBrandId" width="70" headerAlign="center" header="品牌"></div>
 	       <div field="comUnit" name="comUnit" width="40" headerAlign="center" header="单位"></div>
 	       <div field="orderQty" name="orderQty" summaryType="sum" numberFormat="0.00" width="60" headerAlign="center" header="数量"></div>
 	       <div field="orderPrice" numberFormat="0.0000" width="60" headerAlign="center" header="单价"></div>

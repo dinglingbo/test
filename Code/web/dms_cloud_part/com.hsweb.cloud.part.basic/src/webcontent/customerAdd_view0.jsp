@@ -9,7 +9,12 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.24"></script>
+<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.52"></script>
+<script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
+<script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
+<script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
+<script src="https://cdn.staticfile.org/plupload/2.1.9/moxie.js"></script>
+<script src="https://cdn.staticfile.org/plupload/2.1.9/plupload.dev.js"></script> 
 <style type="text/css">
 .title {
   text-align: right;
@@ -108,11 +113,39 @@
                                           allowInput="false" 
                               			  name="gusetProperty" 
                               			  showNullItem="false"
+                              			  onvaluechanged="onGuestPropertyChange"
                               			  class="nui-combobox" width="100%" 
-                              			  extField="name"
+                              			  textField="name"
                                           valueField="customid"
                               			  emptyText="请选择客户属性...">
                   			  </td>
+                          </tr>
+                          
+                          <tr class="htr" style="display :none;" id="lince">
+                          	  <td class=" right fwidthb required">上传营业执照:</td>
+                      	      <td  colspan="" class="tabwidth" >
+				                <div class="page-header" id="btn-uploader">
+					                	<div class="div1" id="faker" >
+								            <img id="xmTanImg" style="width: 80px;height: 80px" src="/default/common/images/upload.png"/>
+								        </div>
+							        </div>
+							        <input  class="nui-textbox" id="licenseUrl" name="licenseUrl"  style="display:none" >
+							  </td>
+							  <td class=" right fwidtha required">营业执照号:</td>
+                              <td ><input id="licenseCode" name="licenseCode" width="100%" class="nui-textbox" ></td>
+                            </tr>
+                            <tr class="htr" style="display :none;" id="idNo">
+                              <td class=" right fwidtha required" style="">上传身份证:</td>
+                              <td  colspan="" class="tabwidth" >
+				                <div class="page-header" id="idno-uploader">
+					                	<div class="div1" id="up" >
+								            <img id="idNoImg" style="width: 80px;height: 80px" src="/default/common/images/upload.png"/>
+								        </div>
+							        </div>
+							        <input  class="nui-textbox" id="idCardUrl" name="idCardUrl"  style="display:none" >
+							  </td>
+							  <td class=" right fwidtha required">身份证号:</td>
+                              <td ><input id="idCard" name="idCard" width="100%" class="nui-textbox" ></td>
                           </tr>
                           <tr class="htr">
                           	  <td class=" right fwidthb required">客户简称:</td>
@@ -130,7 +163,9 @@
                                          visible="false"/>
                               </td>
                           </tr>
-                          <tr class="htr">
+                          </tr>
+                          
+                          <tr class="htr" >
                               <td class=" right fwidthb required">票据类型:</td>
                               <td >
                                   <input id="billTypeId"

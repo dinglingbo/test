@@ -8,7 +8,7 @@
 -->
 <head>
     <title>盘点单主界面</title>
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheckMain.js?v=1.1.16"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/stockCheck/stockCheckMain.js?v=1.1.17"></script>
         <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">

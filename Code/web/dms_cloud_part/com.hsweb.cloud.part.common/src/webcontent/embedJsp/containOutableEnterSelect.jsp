@@ -109,7 +109,7 @@
 <div field="storeShelf" align="left" width="55px" headerAlign="center" allowSort="true">
             仓位
             </div>
-            <div field="serviceId" align="left" width="55px" headerAlign="center" allowSort="true">
+            <div field="enterCode" align="left" width="55px" headerAlign="center" allowSort="true">
             入库单号
             </div>
             <div field="auditDate" dateFormat="yyyy-MM-dd HH:mm" width="120px" format="yyyy-MM-dd HH:mm" headerAlign="center" allowSort="true">

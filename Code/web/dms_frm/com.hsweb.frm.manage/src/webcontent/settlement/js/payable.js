@@ -52,7 +52,7 @@ function setData(data){
 function onChanged() {
 	var count = scount();
 	if(parseFloat(count) > netInAmt){
-		nui.alert("收款大于应收金额，请重新填写","提示");
+		showMsg("收款大于应收金额，请重新填写","W");
 		return;
 	}
 /*	var amount = parseFloat(netInAmt)-parseFloat(count);
@@ -173,7 +173,7 @@ function settleOK() {
 
 		
 		if(count!=zongAmt){
-			nui.alert("付款金额和应付金额不一致，请重新确认！","提示");
+			showMsg("付款金额和应付金额不一致，请重新确认！","W");
 			return;
 		}
 		
@@ -202,7 +202,7 @@ function settleOK() {
 			    				if(data.errCode=="S"){  					
 			    					CloseWindow("ok");
 			    				}else{
-			    					nui.alert(data.errMsg,"提示");
+			    					showMsg(data.errMsg,"W");
 			    				}
 
 			    			},
@@ -262,7 +262,7 @@ function settleOK() {
 
 			
 			if(netInAmt!=(count)){
-				nui.alert("结算金额与应收金额不一致","提示");
+				showMsg("结算金额与应收金额不一致","W");
 				return;
 			}
 
@@ -377,7 +377,7 @@ function noPay(){
 		    				if(data.errCode=="S"){  					
 		    					CloseWindow("ok");
 		    				}else{
-		    					nui.alert(data.errMsg,"提示");
+		    					showMsg(data.errMsg,"W");
 		    				}
 
 		    			},

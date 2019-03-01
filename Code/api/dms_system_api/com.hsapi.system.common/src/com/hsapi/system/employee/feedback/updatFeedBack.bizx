@@ -55,7 +55,7 @@
       <targetNode>assign9</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -288,9 +288,9 @@
         <process:inputVariable id="3" name="userId" type="query" value="String" valueType="Primitive" pattern="reference">updaFree/recordId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="data" type="query" value="cn.jpush.api.push.PushResult" valueType="Java"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="data" type="query" value="cn.jpush.api.push.PushResult" valueType="Java"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -388,11 +388,11 @@
     <size height="28" width="28"/>
     <nodeLabel>assign23label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">您提交的</process:from>
+      <process:from type="literal" pattern="reference">您</process:from>
       <process:to type="query">contentStr</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">updaFree/funcName</process:from>
+      <process:from type="query" pattern="reference">updaFree/readDate</process:from>
       <process:to type="query">strTemp</process:to>
     </process:copy>
     <process:copy>
@@ -400,7 +400,7 @@
       <process:to type="query">contentStr</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">的反馈已处理</process:from>
+      <process:from type="literal" pattern="reference">提交的反馈已处理</process:from>
       <process:to type="query">strTemp</process:to>
     </process:copy>
     <process:copy>
@@ -468,7 +468,7 @@
       <process:inputVariable id="1" name="dataObject" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">updaFree</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
-      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"></process:outputVariable>
+      <process:outputVariable id="0" name="out0" type="query" value="int" valueType="Java"/>
     </process:outputVariables>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">

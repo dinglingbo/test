@@ -92,7 +92,8 @@
 				B.root_id as rootId,
 				'' as partNameId,
 				'' as pickType,
-				a.service_id as serviceCode
+				a.service_id as serviceCode,
+				A.`code` as enterCode
 				
 		FROM
 			PJ_ENTER_MAIN_CHK A

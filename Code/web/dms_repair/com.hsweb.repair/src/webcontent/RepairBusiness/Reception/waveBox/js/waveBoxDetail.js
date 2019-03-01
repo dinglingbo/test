@@ -120,7 +120,7 @@ $(document).ready(function ()
             //包含字母
             var reg = /[a-z]/i;
             if(reg.test(value)){
-                params.letters = value;
+                params.chis = value;
 
                 data.params = params;
                 e.data =data;

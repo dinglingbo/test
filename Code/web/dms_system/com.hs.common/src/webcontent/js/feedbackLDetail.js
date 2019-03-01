@@ -108,6 +108,7 @@ function showTab(str,questionContent){
 
 function updFinish(){
 	if(rowData.status == 2){
+		showMsg("反馈已解决","W");
 		return;
 	}
 	var updaFree = rowData;

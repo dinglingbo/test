@@ -357,7 +357,7 @@ a {
 		</div>	
 	</div>
 </form>
-<div class="com_text">Copyright © 2014-2018 广州信绘通信息科技有限公司  版权所有: 粤ICP备10036501号-1 </div>
+<div class="com_text">Copyright © 2014-2018 广州尤耐汽车零部件有限公司  版权所有: <a style="color: #FFF;" onClick="jump()">粤ICP备18118602号-3 </a></div>
 </div>
 <script src="jquery-1.9.1.min.js?ver=1.01"></script>
 <script type="text/javascript">
@@ -426,6 +426,9 @@ $(function () {
 	}); 
 });
 
+function jump(){
+	window.open("http://www.miitbeian.gov.cn");
+}
 function changeShow(){
 	$(".max_img").show();
 }

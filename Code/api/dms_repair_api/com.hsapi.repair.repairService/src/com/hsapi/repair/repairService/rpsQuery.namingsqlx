@@ -1132,7 +1132,10 @@
 			d.gross_profit_remark AS grossProfitRemark,
 			d.netin_amt AS netinAmt,
 			d.total_pref_rate AS totalPrefRate,
-
+			a.engine_model as engineModel,
+			a.engine_no as boxNo,
+			a.engine_model as boxModel,
+			a.drive_type as driveType,
 			(select GROUP_CONCAT(name) from wb_repair.rps_service_type e 
 	       inner join rpb_business_type f on e.service_type_id = f.id
 	       where e.service_id = a.id) as serviceTypeName
@@ -1182,6 +1185,12 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="carNo">  
                 (a.car_no like '%$carNo$%')
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="engineNo">  
+                (a.engine_no = #engineNo#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="engineModel">  
+                (a.engine_model = #engineModel#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="serviceCode">  
                 (a.service_code like '%$serviceCode$%')

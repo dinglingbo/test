@@ -95,6 +95,7 @@
 					    <input type="file" name="" id="" onchange="importf(this)">
 					</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
+	                <a class="nui-button" plain="true" href="<%=request.getContextPath() %>/repair/RepairBusiness/template/supplier.xlsx"><span class="fa fa-arrow-down fa-lg"></span>下载模板</a>
 
 				</td>
 	        </tr>
@@ -107,19 +108,19 @@
 			<div property="columns">
 				<div type="indexcolumn">序号</div>
 				<div field="编码" width="50px" summaryType="count" headerAlign="center" allowSort="true">
-					编码<input property="editor" class="nui-textbox"/></div>
+					*编码<input property="editor" class="nui-textbox"/></div>
 				<div field="全称" width="120px" headerAlign="center" allowSort="true">
-					全称<input property="editor" class="nui-textbox"/></div>
+					*全称<input property="editor" class="nui-textbox"/></div>
 				<div field="简称" width="80px" headerAlign="center" allowSort="true">
-					简称<input property="editor" class="nui-textbox"/></div>
+					*简称<input property="editor" class="nui-textbox"/></div>
 				<div field="票据类型" width="80px" headerAlign="center" allowSort="true">
-					票据类型<input property="editor" class="nui-textbox"/></div>
+					*票据类型<input property="editor" class="nui-textbox"/></div>
 				<div field="结算方式" width="60px" headerAlign="center" allowSort="true">
-					结算方式<input property="editor" class="nui-textbox"/></div>
+					*结算方式<input property="editor" class="nui-textbox"/></div>
 				<div field="联系人" width="60px" headerAlign="center" allowSort="true">
-					联系人<input property="editor" class="nui-textbox"/></div>
+					*联系人<input property="editor" class="nui-textbox"/></div>
 				<div field="联系人手机" width="100px" headerAlign="center" allowSort="true">
-					联系人手机<input property="editor" class="nui-textbox"/></div>
+					*联系人手机<input property="editor" class="nui-textbox"/></div>
                 <div field="省份" width="60px" headerAlign="center" allowSort="true">
                     省份<input property="editor" class="nui-textbox"/></div>
                 <div field="城市" width="60px" headerAlign="center" allowSort="true">

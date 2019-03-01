@@ -86,7 +86,7 @@
       <process:transitionCondition>
         <process:simpleCondition operator="GT">
           <process:leftOperand type="query">length</process:leftOperand>
-          <process:rightOperand type="literal">1000</process:rightOperand>
+          <process:rightOperand type="literal">4000</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
@@ -1147,7 +1147,7 @@
       <process:to type="query">errCode</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">导入数据不能超过一千条</process:from>
+      <process:from type="literal" pattern="reference">导入数据不能超过四千条</process:from>
       <process:to type="query">errMsg</process:to>
     </process:copy>
   </nodes>

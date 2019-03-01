@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>工单回访</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=webPath + contextPath%>/manage/js/visitMgr/visitMain.js?v=1.1.9" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/visitMgr/visitMain.js?v=1.1.91" type="text/javascript"></script>
     
     <style type="text/css">
     body { 

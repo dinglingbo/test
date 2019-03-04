@@ -815,6 +815,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="balaAmt" type="query" value="Double" valueType="Primitive">cardBalaAmt</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1395,9 +1396,9 @@
         <process:inputVariable id="3" name="userId" type="query" value="String" valueType="Primitive" pattern="reference">maintain/mtAdvisorId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="2" name="data" type="query" value="cn.jpush.api.push.PushResult" valueType="Java"/>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="2" name="data" type="query" value="cn.jpush.api.push.PushResult" valueType="Java"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1596,8 +1597,8 @@
         <process:inputVariable id="1" name="consumeAmt" type="query" value="Double" valueType="Primitive" pattern="reference">settlement/balaAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1719,7 +1720,7 @@
     <figSize height="17" width="39"/>
     <node>assign26</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign28" name="赋值27" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign28" name="赋值27" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link66" name="link66" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign28</sourceNode>
       <targetNode>transactionbegin0</targetNode>
@@ -1878,7 +1879,7 @@
     <figSize height="17" width="39"/>
     <node>assign27</node>
   </nodes>
-  <nodes xsi:type="process:tAssign" id="assign7" name="赋值7" displayName="赋值" type="assign">
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" description="" id="link3" name="link3" displayName="连接线" isDefault="false" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>assign30</targetNode>
@@ -1959,6 +1960,7 @@
     <process:variable description="其它支出" historyStateLocation="client" isArray="false" name="otherCost" primitiveType="Double"/>
     <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="true" name="rpAdd"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.common.FisRpAccountDType" name="rpAccount"/>
+    <process:variable description="储值卡剩余金额" historyStateLocation="client" isArray="false" name="cardBalaAmt" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

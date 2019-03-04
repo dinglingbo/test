@@ -853,6 +853,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="balaAmt" type="query" value="Double" valueType="Primitive">cardBalaAmt</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1817,6 +1818,7 @@
     <process:variable description="工单金额 " historyStateLocation="client" isArray="false" name="mtAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="tbala" primitiveType="Float"/>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rps.RpsInsuranceMain" name="insuranceMain"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="cardBalaAmt" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

@@ -170,6 +170,8 @@
        SELECT
          a.id id,
          a.guest_id guestId,
+         a.car_no carNo,
+         a.car_id carId,
          a.guest_name guestName,
          c.mobile mobile,
          a.card_id cardId,
@@ -191,6 +193,9 @@
          <dynamic>
          <isNotEmpty prepend="and" property="guestName">  
 	            (a.guest_name like '%$guestName$%')
+	     </isNotEmpty>
+	     <isNotEmpty prepend="and" property="carNo">  
+	            (a.car_no like '%$carNo$%')
 	     </isNotEmpty>
 	      <isNotEmpty prepend="and" property="guestTelephone">  
 	            (c.mobile like '%$guestTelephone$%')

@@ -252,7 +252,8 @@ public class SyncElectronicArchives {
 	public static void main(String args[]) {
 		
 		//Map map = getAccessToken("881812010733001", "abcdefg");
-		//System.out.println(map.get("access_token"));
+		Map map = getAccessToken("431302000062483", "07388971111a");
+		System.out.println(map.get("access_token"));
 		
 		Calendar cal = Calendar.getInstance();
 	    String today = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());

@@ -11,7 +11,7 @@
 <head>
 <title>储值卡消费记录</title>
 <script
-	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.3.8"></script>
+	src="<%=request.getContextPath()%>/manage/settlement/js/consumptionDetails.js?v=1.4.0"></script>
 		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -72,20 +72,22 @@ html,body {
 								allowSort="true">客户名称</div>
 							<div field="mobile" headerAlign="center" align="center"
 								allowSort="true" >电话</div>
+							<div field="carNo" headerAlign="center" align="center"
+								allowSort="true" >车牌号</div>
 							<div field="cardName" name="cardName" headerAlign="center" align="center"
 								allowSort="true">会员卡名称</div>
 							<div field="rechargeAmt" headerAlign="center" align="center"
-								allowSort="true" summaryType="sum">充值金额</div>
+								allowSort="true" summaryType="sum" dataType="float">充值金额</div>
 							<div field="giveAmt" headerAlign="center" align="center"
-								allowSort="true" summaryType="sum">赠送金额</div>
+								allowSort="true" summaryType="sum" dataType="float">赠送金额</div>
 							<div field="totalAmt" headerAlign="center" align="center"
-								allowSort="true" summaryType="sum">总金额</div>
+								allowSort="true" summaryType="sum" dataType="float">总金额</div>
 							<div field="useAmt" headerAlign="center" align="center"
-								allowSort="true" summaryType="sum">已使用金额</div>
+								allowSort="true" summaryType="sum" dataType="float">已使用金额</div>
 							<div field="balaAmt" headerAlign="center" align="center"
-								allowSort="true" summaryType="sum">剩余金额</div>	
+								allowSort="true" summaryType="sum " dataType="float">剩余金额</div>	
 							<div field="refundAmt" headerAlign="center" align="center"
-								allowSort="true" summaryType="sum">已退款金额</div>									
+								allowSort="true" summaryType="sum" dataType="float">已退款金额</div>									
 							<div field="saleMan" name="saleMan" headerAlign="center" align="center"
 								allowSort="true">销售员</div>
 							<div field="recordDate"  align="center"
@@ -100,7 +102,7 @@ html,body {
 		<div showCollapseButton="false">
 			<div class="nui-fit">
 				<div id="datagrid2" dataField="data" class="nui-datagrid" 
-					style="width: 100%; height: 100%;" 
+					style="width: 100%; height: 100%;"  sortMode="client"
 					allowSortColumn="true" showPager="false" allowCellWrap=true>
 					<div property="columns">
 						<div type="indexcolumn" headerAlign="center" width="30">序号</div>
@@ -110,8 +112,8 @@ html,body {
 						<div field="serviceTypeName" name = "serviceTypeName" headerAlign="center" allowSort="true" width="60px">业务类型</div>
 						<div field="mtAdvisor" headerAlign="center" allowSort="true" width="60px">服务顾问</div>
 						<div field="serviceCode" headerAlign="center" allowSort="true" width="120px">工单号</div>
-						<div field="consumeAmt" headerAlign="center" allowSort="true" width="60px">本次消费金额</div>
-						<div field="cardAmt" headerAlign="center" allowSort="true" width="60px">储值卡余额
+						<div field="consumeAmt" headerAlign="center" allowSort="true" width="60px" dataType="float">本次消费金额</div>
+						<div field="cardAmt" headerAlign="center" allowSort="true" width="60px" dataType="float">储值卡余额
 						</div>
 						<div field="recorder" headerAlign="center" allowSort="true" width="80px">操作人
 						</div>

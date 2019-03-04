@@ -34,12 +34,13 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="268" y="225"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hs.timer.SyncElectronicArchives.pushElectricData</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>

@@ -381,7 +381,7 @@ var qiNiuUrl='';
 function getCompanyLogoUrl(){
 
   nui.ajax({
-    url:webPath + sysApi +"/com.hs.common.login.getCompanyLogoUrl.biz.ext",
+    url:webPath + sysDomain +"/com.hs.common.login.getCompanyLogoUrl.biz.ext",
     type:"post",
     data:{},
     async:false,

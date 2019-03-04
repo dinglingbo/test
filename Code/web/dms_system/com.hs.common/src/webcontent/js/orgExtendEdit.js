@@ -51,7 +51,7 @@ $(document).ready(function(v) {
 		    //flash_swf_url: '/static/js/plupload/Moxie.swf',
 		    dragdrop: false,
 		    chunk_size: '4mb',//分块大小
-		    uptoken_url: webPath + sysDomain + "/com.hs.common.login.getQNAccessToken.biz.ext",//设置请求qiniu-token的url
+		    uptoken_url: webPath + sysApi + "/com.hs.common.login.getQNAccessToken.biz.ext",//设置请求qiniu-token的url
 		    //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
 		    // uptoken : '<Your upload token>',
 		    //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
@@ -122,7 +122,7 @@ $(document).ready(function(v) {
 function getCompanyLogoUrl(){
 	  var url="";
     nui.ajax({
-      url:webPath + sysDomain +"/com.hs.common.login.getCompanyLogoUrl.biz.ext",
+      url:webPath + sysApi +"/com.hs.common.login.getCompanyLogoUrl.biz.ext",
       type:"post",
       data:{},
       async:false,

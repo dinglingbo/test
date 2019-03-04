@@ -649,7 +649,7 @@ var qiNiuUrl=null;
 function getQiNuiUrl(){
 
   nui.ajax({
-    url:webPath + sysDomain +"/com.hs.common.login.getCompanyLogoUrl.biz.ext",
+    url:webPath + sysApi +"/com.hs.common.login.getCompanyLogoUrl.biz.ext",
     type:"post",
     data:{},
     async:false,

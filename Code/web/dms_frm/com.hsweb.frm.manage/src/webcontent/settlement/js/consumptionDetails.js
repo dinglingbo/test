@@ -10,7 +10,7 @@ var grid = null;
 var grid2 = null;
 var servieTypeList = [];
 var servieTypeHash = {};
-var statusList = [{id:"0",name:"客户名称"},{id:"1",name:"客户电话"},{id:"2",name:"会员卡名称"}];
+var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"客户名称"},{id:"2",name:"客户电话"},{id:"3",name:"会员卡名称"}];
 $(document).ready(function(v) {
 	grid = nui.get("datagrid1");
 	grid2 = nui.get("datagrid2");
@@ -76,28 +76,26 @@ function search(){
 	    cls : 'mini-mask-loading',
 	    html : '查询中...'
     });
-	var guestName =  null;
-	var guestTelephone = null;
-	var cardName = null;
+
 	var startDate = nui.get("startDate").getFormValue();
 	var endDate = nui.get("endDate").getValue();
 	endDate = addDate(endDate, 1);
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
-    if(type==0){
-    	guestName = typeValue;
-    }else if(type==1){
-    	guestTelephone = typeValue;
-    }else if(type==2){
-    	cardName = typeValue;
-    }
 	var params = {
-			guestName:guestName,
-			guestTelephone:guestTelephone,
-			cardName:cardName,
 			startDate:startDate,
 			endDate:endDate
 	}
+    if(type==0){
+    	params.carNo = typeValue;
+    }else if(type==1){
+    	params.guestName = typeValue;
+    }else if(type==2){
+    	params.guestTelephone = typeValue;
+    }else if(type==3){
+    	params.cardName = typeValue;
+    }
+
 	var json1 = {
 			params:params,
 			token:token

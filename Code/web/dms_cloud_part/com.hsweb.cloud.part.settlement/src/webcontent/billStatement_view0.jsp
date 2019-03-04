@@ -174,7 +174,7 @@
                                              onvaluechanged="onGuestValueChanged"
                                              popupEmptyText="未找到往来单位"
                                              url=""  searchField="key"
-                                             width="90%"
+                                             width="87%"
                                              placeholder="请选择往来单位"
                                              selectOnFocus="true" />
                                       	<input id="btnEdit1" width="8%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>

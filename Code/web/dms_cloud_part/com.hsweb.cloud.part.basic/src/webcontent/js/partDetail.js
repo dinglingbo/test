@@ -305,7 +305,7 @@ function setData(data)
         nui.get("applyCarModel").setValue(value);
         var partCode= nui.get('code').getValue();
         var firstCode=partCode.charCodeAt(0);
-        if(value='奔驰'){
+        if(value=='奔驰'){
         	//判断首字母是否为英文
         	if((firstCode>= 65 && firstCode <= 90) || (firstCode>= 97 && firstCode <= 122)){
         		

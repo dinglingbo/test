@@ -1528,6 +1528,7 @@ function addDetail(row,data,ck)
     enterDetail.orderAmt = data.amt;
     enterDetail.remark = data.remark;
     enterDetail.storeId = data.storeId;
+    enterDetail.storeShelf = data.storeShelf;
     enterDetail.comOemCode = data.oemCode;
     enterDetail.comSpec = data.spec;
     enterDetail.partCode = data.code;
@@ -1979,6 +1980,7 @@ function onPrint(){
 		currUserName : currUserName,
 		currCompAddress : currCompAddress,
 		currCompTel : currCompTel,
+		currCompLogoPath : currCompLogoPath,
 		storeHash : storeHash,
 		brandHash: brandHash
 	};

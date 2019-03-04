@@ -12,7 +12,7 @@ var tcarNo_ctrl = null;
 var memList = [];
 var visitManEl = null;
 var visitIdEl = null;
-var hash = {};
+var hash = {}; 
 
 var statusHash = {
 	"0" : "报价",
@@ -53,8 +53,9 @@ $(document).ready(function(){
     initCarBrand("carBrandId",function() {
     	brandList = nui.get("carBrandId").getData();
     	brandList.forEach(function(v) {
-    		brandHash[v.id].id = v.id;
-    		brandHash[v.id].name = v.name;
+    	
+    		brandHash[v.id] = v;
+  
     	});
     });
     initServiceType("serviceTypeId",function() {
@@ -194,7 +195,7 @@ function openOrderDetail(serviceId){
 function sendInfo(){
 	var row = gridCar.getSelected();
 	if (row == undefined) {
-		showMsg("请选中一条数据","W");
+		showMsg("请选择一条记录","W");
 		return;
     }
     if (!row.guestMobile) {
@@ -216,4 +217,45 @@ function sendInfo(){
         }
     });
 
+}
+
+
+function sendWechatxTestInfo(){//微信文本消息 回访
+	var row = gridCar.getSelected();
+	if(row){
+		// mini.open({
+		// 	url: webPath + contextPath + "/manage/visitMgr/visitMainDetail.jsp?token="+ token,
+		// 	title: "电话回访", 
+		// 	width: 680, height: 330,
+		// 	onload: function () {
+		// 		var iframe = this.getIFrameEl(); 
+		// 		iframe.contentWindow.setData(row);
+		// 	},
+		// 	ondestroy: function (action) {
+		// 		gridCar.reload();
+		// 	}
+		// });
+	}else{
+		showMsg("请选择一条记录","W");
+	}
+}
+
+function sendWechatPicInfo(){//微信图文 回访
+	var row = gridCar.getSelected();
+	if(row){
+		// mini.open({
+		// 	url: webPath + contextPath + "/manage/visitMgr/visitMainDetail.jsp?token="+ token,
+		// 	title: "电话回访", 
+		// 	width: 680, height: 330,
+		// 	onload: function () {
+		// 		var iframe = this.getIFrameEl(); 
+		// 		iframe.contentWindow.setData(row);
+		// 	},
+		// 	ondestroy: function (action) {
+		// 		gridCar.reload();
+		// 	}
+		// });
+	}else{
+		showMsg("请选择一条记录","W");
+	}
 }

@@ -247,7 +247,7 @@ hr {
         		<table id="" width="100%">
 				   <tr>
 	            	<td rowspan="2" style="width: 133px;">
-	                 	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
+	                 	<img id='logImg' alt="" src="" height="60px">
 	                </td>
 	                <td>
 	                    <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;">&nbsp;&nbsp;<span id="currOrgName"></span></div>
@@ -428,6 +428,7 @@ hr {
     		document.getElementById("spstorename").innerHTML = "采购订单";
     		document.getElementById("guestAddr").innerHTML = "地址："+params.currCompAddress;
 	   		document.getElementById("phone").innerHTML ="电话："+params.currCompTel;
+	   		$('#logImg').attr("src",currCompLogoPath);
 	   		$.ajaxSettings.async = false;
 	   		if(params.id){	
 		   		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){

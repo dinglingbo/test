@@ -13,7 +13,7 @@ pageEncoding="UTF-8" session="false" %>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="<%= request.getContextPath() %>/common/nui/nui.js" type="text/javascript"></script>
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/maintainRemMain.js?v=1.0.61" type="text/javascript"></script>
+    <script src="<%= request.getContextPath() %>/manage/js/maintainRemMain/maintainRemMain.js?v=1.0.72" type="text/javascript"></script>
     <style type="text/css">
     body {
         margin: 0; 
@@ -37,7 +37,7 @@ pageEncoding="UTF-8" session="false" %>
         <span class="separator"></span>
                 <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
         <!-- <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-clock-o fa-lg"></span>&nbsp;提醒</a>
@@ -60,17 +60,17 @@ pageEncoding="UTF-8" session="false" %>
             <div type="indexcolumn" width="30">序号</div>
 <!--             <div field="serviceCode" width="120" headerAlign="center" align="center">工单号</div> -->
             <div field="carNo" width="70" headerAlign="center"align="center">车牌号</div>
-            <div field="carModel" width="170" headerAlign="center"align="center">品牌车型</div>
-            <div field="careDueDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center" align="center">保养到期时间</div>
-            <div field="guestName" width="70" headerAlign="center"align="center">客户名称</div>
+            <div field="carModel" width="130" headerAlign="center"align="center">品牌车型</div>
+            <div field="careDueDate" dateFormat="yyyy-MM-dd HH:mm" width="130" headerAlign="center" align="center">保养到期时间</div>
+            <div field="guestName" width="100" headerAlign="center"align="center">客户名称</div>
+            <div field="mobile" width="120" headerAlign="center"align="center">联系电话</div>
             <div field="leaveDays" width="70" headerAlign="center"align="center">离厂天数</div>
-            <div field="careLastDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后提醒时间</div>
+            <div field="careLastDate" dateFormat="yyyy-MM-dd HH:mm" width="130" headerAlign="center"align="center">最后提醒时间</div>
             <div field="chainComeTimes" width="90" headerAlign="center"align="center">连锁来厂次数</div>
-            <div field="lastComeDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后进厂时间</div>
-            <div field="firstComeDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">首次来厂时间</div>
-            <div field="lastLeaveDate" dateFormat="yyyy-MM-dd HH:mm" width="170" headerAlign="center"align="center">最后离厂时间</div>
+            <div field="lastComeDate" dateFormat="yyyy-MM-dd HH:mm" width="130" headerAlign="center"align="center">最后进厂时间</div>
+            <div field="firstComeDate" dateFormat="yyyy-MM-dd HH:mm" width="130" headerAlign="center"align="center">首次来厂时间</div>
+            <div field="lastLeaveDate" dateFormat="yyyy-MM-dd HH:mm" width="130" headerAlign="center"align="center">最后离厂时间</div>
             <div field="preAdvisorName" width="70" headerAlign="center" align="center">营销员</div>
-            <div field="mobile" visible="false" width="70" headerAlign="center" align="center">手机号</div>
             <div field="carBrandId" visible="false" width="70" headerAlign="center" align="center">品牌</div>
             <div field="carBrandId" visible="false" width="70" headerAlign="center" align="center">品牌车型</div>
         </div>

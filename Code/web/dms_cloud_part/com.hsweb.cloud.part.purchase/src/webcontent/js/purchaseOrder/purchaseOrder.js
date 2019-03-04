@@ -2264,6 +2264,7 @@ function onPrint(){
 		currUserName : currUserName,
 		currCompAddress : currCompAddress,
 		currCompTel : currCompTel,
+		currCompLogoPath : currCompLogoPath,
 		storeHash : storeHash,
 		brandHash: brandHash
 	};

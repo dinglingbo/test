@@ -65,7 +65,13 @@
                         repeatDirection="" repeatLayout="table" 
                         textField="text" valueField="id" ></div>
                 </td>      
-            </tr>    
+            </tr> 
+            <tr>
+                <td class="tbtext">打印抬头显示：</td>
+                <td class="tbCtrl" >
+                    <input id="repairSettorderPrintShow" name="repairSettorderPrintShow" class="nui-textbox" >
+                </td>
+            </tr>   
         </table>
     </div>
 	<script type="text/javascript">

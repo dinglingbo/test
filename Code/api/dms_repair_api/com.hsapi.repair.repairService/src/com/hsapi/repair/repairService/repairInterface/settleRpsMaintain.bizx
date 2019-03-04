@@ -14,9 +14,8 @@
     <nodeLabel>start0label</nodeLabel>
   </nodes>
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
-    <targetConnections>link12</targetConnections>
     <targetConnections>link20</targetConnections>
-    <location x="991" y="250"/>
+    <location x="1155" y="251"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -30,7 +29,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="993" y="286"/>
+    <location x="1157" y="287"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -198,6 +197,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="balaAmt" type="query" value="Double" valueType="Primitive">cardBalaAmt</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -372,7 +372,7 @@
   <nodes xsi:type="process:tTransactionCommit" id="transactioncommit0" name="事务提交" displayName="事务提交" type="transactioncommit">
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>transactioncommit0</sourceNode>
-      <targetNode>end0</targetNode>
+      <targetNode>assign9</targetNode>
     </sourceConnections>
     <targetConnections>link22</targetConnections>
     <location x="890" y="251"/>
@@ -533,7 +533,7 @@
       <targetNode>transactioncommit0</targetNode>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
-    <location x="816" y="250"/>
+    <location x="816" y="252"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess2label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
@@ -549,7 +549,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess2label" name="label" nodeType="label">
-    <location x="781" y="285"/>
+    <location x="781" y="287"/>
     <figSize height="17" width="97"/>
     <node>subprocess2</node>
   </nodes>
@@ -771,6 +771,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="balaAmt" type="query" value="Double" valueType="Primitive">cardBalaAmt</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -778,6 +779,80 @@
     <location x="111" y="137"/>
     <figSize height="17" width="164"/>
     <node>subprocess5</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign9" name="赋值10" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link37" name="link37" displayName="link42" isDefault="true" type="transition">
+      <sourceNode>assign9</sourceNode>
+      <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition/>
+    </sourceConnections>
+    <targetConnections>link12</targetConnections>
+    <location x="976" y="251"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign9label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">您的车道系统注册申请已认证通过，</process:from>
+      <process:to type="query">message</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">用户名：</process:from>
+      <process:to type="query">msgt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">message+msgt</process:from>
+      <process:to type="query">message</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">reg/name</process:from>
+      <process:to type="query">msgt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">message+msgt</process:from>
+      <process:to type="query">message</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">，密码：000000</process:from>
+      <process:to type="query">msgt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">message+msgt</process:from>
+      <process:to type="query">message</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">，登录后请修改密码！</process:from>
+      <process:to type="query">msgt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">message+msgt</process:from>
+      <process:to type="query">message</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign9label" name="label" nodeType="label">
+    <location x="971" y="287"/>
+    <figSize height="17" width="39"/>
+    <node>assign9</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo3" name="send" displayName="send" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <targetConnections>link37</targetConnections>
+    <location x="1042" y="251"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo3label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.hs.common.HttpUtils.send</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="phones" type="query" value="java.lang.String" valueType="Java" pattern="reference">reg/mobile</process:inputVariable>
+      <process:inputVariable id="1" name="message" type="query" value="java.lang.String" valueType="Java" pattern="reference">message</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java"/>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo3label" name="label" nodeType="label">
+    <location x="1039" y="287"/>
+    <figSize height="17" width="29"/>
+    <node>invokePojo3</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -817,6 +892,9 @@
     <process:variable description="其它支出" historyStateLocation="client" isArray="false" name="otherCost" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="netInAmt" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="otherAmt" primitiveType="Double"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="message" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="msgt" primitiveType="String"/>
+    <process:variable description="储值卡剩余金额" historyStateLocation="client" isArray="false" name="cardBalaAmt" primitiveType="Double"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

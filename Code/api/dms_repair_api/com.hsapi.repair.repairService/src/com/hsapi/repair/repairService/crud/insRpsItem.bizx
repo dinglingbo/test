@@ -73,7 +73,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link51</targetConnections>
-    <targetConnections>link50</targetConnections>
+    <targetConnections>link22</targetConnections>
     <location x="416" y="144"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -889,11 +889,11 @@
   <nodes xsi:type="process:tAssign" description="" id="assign19" name="赋值19" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign19</sourceNode>
-      <targetNode>assign26</targetNode>
+      <targetNode>assign1</targetNode>
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
-    <location x="268" y="142"/>
+    <location x="296" y="145"/>
     <size height="28" width="28"/>
     <nodeLabel>assign19label</nodeLabel>
     <process:copy>
@@ -944,9 +944,37 @@
       <process:from type="expression" pattern="reference">amt-subtotal</process:from>
       <process:to type="query">discountAmt</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">discountAmt*1.0/amt</process:from>
+      <process:to type="query">rate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">price</process:from>
+      <process:to type="query">insItem/unitPrice</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">amt</process:from>
+      <process:to type="query">insItem/amt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">discountAmt</process:from>
+      <process:to type="query">insItem/discountAmt</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">subtotal</process:from>
+      <process:to type="query">insItem/subtotal</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsCard/rate</process:from>
+      <process:to type="query">itemDiscountRate</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/serviceTypeId</process:from>
+      <process:to type="query">insItem/serviceTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
-    <location x="263" y="178"/>
+    <location x="291" y="181"/>
     <figSize height="17" width="39"/>
     <node>assign19</node>
   </nodes>
@@ -1228,49 +1256,6 @@
     <location x="630" y="225"/>
     <figSize height="17" width="39"/>
     <node>assign16</node>
-  </nodes>
-  <nodes xsi:type="process:tAssign" description="" id="assign26" name="赋值26" displayName="赋值" type="assign">
-    <sourceConnections xsi:type="process:tLink" id="link50" name="link50" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>assign26</sourceNode>
-      <targetNode>assign1</targetNode>
-    </sourceConnections>
-    <targetConnections>link22</targetConnections>
-    <location x="335" y="230"/>
-    <size height="28" width="28"/>
-    <nodeLabel>assign26label</nodeLabel>
-    <process:copy>
-      <process:from type="expression" pattern="reference">discountAmt*1.0/amt</process:from>
-      <process:to type="query">rate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">price</process:from>
-      <process:to type="query">insItem/unitPrice</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">amt</process:from>
-      <process:to type="query">insItem/amt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">discountAmt</process:from>
-      <process:to type="query">insItem/discountAmt</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">subtotal</process:from>
-      <process:to type="query">insItem/subtotal</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">rpsCard/rate</process:from>
-      <process:to type="query">itemDiscountRate</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">main/serviceTypeId</process:from>
-      <process:to type="query">insItem/serviceTypeId</process:to>
-    </process:copy>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="assign26label" name="label" nodeType="label">
-    <location x="330" y="266"/>
-    <figSize height="17" width="39"/>
-    <node>assign26</node>
   </nodes>
   <topRuler/>
   <leftRuler>

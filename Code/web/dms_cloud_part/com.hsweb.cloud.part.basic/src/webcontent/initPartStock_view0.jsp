@@ -9,7 +9,7 @@
 -->
 <head>
 <title>期初库存</title>
-<script src="<%=webPath + contextPath%>/basic/js/initPartStock.js?v=2.0.2"></script>
+<script src="<%=webPath + contextPath%>/basic/js/initPartStock.js?v=2.0.3"></script>
 <style type="text/css">
 .title {
   width: 80px;
@@ -149,6 +149,9 @@
                                   <input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
                                 <div field="enterPrice" numberFormat="0.0000" width="50" headerAlign="center" header="单价">
+                                  <input property="editor" vtype="float" class="nui-textbox"/>
+                                </div>
+                                <div field="sellPrice" numberFormat="0.0000" width="50" headerAlign="center" header="销售价">
                                   <input property="editor" vtype="float" class="nui-textbox"/>
                                 </div>
                                 <div field="enterAmt" summaryType="sum" numberFormat="0.0000" width="60" headerAlign="center" header="金额">

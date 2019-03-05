@@ -397,22 +397,22 @@ function setInitData(params){
                     	document.getElementById("showA").style.display='none';
                     	document.getElementById("showA1").style.display = "";
                     }
-                    $("#guestNameEl").html(ldata.guestName);
+                    $("#guestNameEl").html(guest.fullName);
                     $("#guestCarEl").html(ldata.carNo);
-                    $("#guestTelEl").html(ldata.mobile);
+                    $("#guestTelEl").html(guest.mobile);
                     var sdata = {
                         id:ldata.id,
                         carNo:ldata.carNo,
                         carVin:ldata.carVin,
                         carId:ldata.carId,
-                        guestMobile:ldata.mobile,
+                        guestMobile:guest.mobile,
                         carBrandId : ldata.carBrandId,
                         carModel : ldata.carModel,
                         //contactName:item.contactName,
                         contactorId:ldata.contactorId,
                         guestId:ldata.guestId,
                         enterKilometers:ldata.enterKilometers,
-                        guestFullName:ldata.guestName,
+                        guestFullName:guest.fullName,
                         recordDate:ldata.recordDate,
                         insureCompId:ldata.insureCompId,
                         insureCompName:ldata.insureCompName,

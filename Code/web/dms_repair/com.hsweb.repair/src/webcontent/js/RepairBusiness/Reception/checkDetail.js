@@ -428,6 +428,7 @@ function tprint(){
     var pa={
         baseUrl:baseUrl,
         mainId:mainId,
+        currCompLogoPath: currCompLogoPath,
         token:token
     };
 

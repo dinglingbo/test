@@ -1126,7 +1126,10 @@
 				b.annual_inspection_comp_name as annualInspectionCompName,
 				b.insure_due_date as insureDueDate,
 				b.insure_comp_name as insureCompName,
-				a.remind_status remindStatus
+				a.remind_status remindStatus,
+				b.vin carVin,
+				a.last_come_kilometers lastComeKilometers,
+				a.last_come_date lastComeDate
 			FROM
 				wb_repair.rpb_car_extend a
 			INNER JOIN wb_repair.rpb_car b ON a.car_id = b.id
@@ -1179,10 +1182,15 @@
 				a.license_over_date as licenseOverDate,
 				a.license_status as licenseStatus,
 				a.bir_status as birStatus,
-				b.car_no carNo
+				b.car_no carNo,
+				b.vin carVin,
+				b.id carId,
+				c.last_come_kilometers lastComeKilometers,
+				c.last_come_date lastComeDate
 			FROM
 				wb_repair.rpb_contactor a
 		LEFT JOIN wb_repair.rpb_car b on b.guest_id = a.guest_id
+		LEFT JOIN wb_repair.rpb_car_extend c on c.car_id = b.id
 			WHERE 
 				a.orgid=#orgid#	
           

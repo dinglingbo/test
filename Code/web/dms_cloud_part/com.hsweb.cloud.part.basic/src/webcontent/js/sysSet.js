@@ -89,6 +89,7 @@ function quickComp(comp){
 			if(compInfo){
 				comForm.setData(compInfo);
 				setInitData(provinceEl, null);
+				provinceEl.setValue(compInfo.provinceId);
 				setInitData(cityEl, compInfo.provinceId);
 				setInitData(countyEl, compInfo.cityId);
 			}else{

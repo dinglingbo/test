@@ -8,6 +8,7 @@
     <targetConnections>link4</targetConnections>
     <targetConnections>link14</targetConnections>
     <targetConnections>link8</targetConnections>
+    <targetConnections>link2</targetConnections>
     <location x="675" y="165"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
@@ -165,6 +166,16 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link0" name="link0" displayName="连接线" type="transition">
+      <sourceNode>start0</sourceNode>
+      <targetNode>assign13</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">mobile</process:leftOperand>
+          <process:rightOperand type="literal">10000</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
     <location x="45" y="165"/>
     <size height="28" width="28"/>
     <nodeLabel>start0label</nodeLabel>
@@ -267,6 +278,25 @@
     <location x="148" y="241"/>
     <figSize height="17" width="32"/>
     <node>assign6</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign13" name="赋值13" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign13</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <targetConnections>link0</targetConnections>
+    <location x="328" y="420"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign13label</nodeLabel>
+    <process:copy>
+      <process:from type="literal" pattern="reference">S</process:from>
+      <process:to type="query">errCode</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign13label" name="label" nodeType="label">
+    <location x="323" y="456"/>
+    <figSize height="17" width="39"/>
+    <node>assign13</node>
   </nodes>
   <topRuler/>
   <leftRuler/>

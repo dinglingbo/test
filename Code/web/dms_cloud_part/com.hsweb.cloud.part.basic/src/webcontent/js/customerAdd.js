@@ -367,7 +367,10 @@ function queryCustomer(params){
 	        data = data||{};
 	
 	        supplier =  data.customers[0];
-	        setInitData(supplier);
+	        if(supplier){
+	        	
+	        	setInitData(supplier);
+	        }
         	
 	        
 	    },
@@ -562,7 +565,7 @@ function onOk()
         }
     });
 }
-var saveLogisticsUrl = baseUrl + "com.hsapi.part.baseDataCrud.crud.saveGuestLogistics.biz.ext";
+var saveLogisticsUrl = baseUrl + "com.hsapi.cloud.part.baseDataCrud.crud.saveGuestLogistics.biz.ext";
 function saveLogistics(guestId){
 	var logisticsAdd = logisticsGrid.getChanges("added");
 	var logisticsUpdate = logisticsGrid.getChanges("modified");

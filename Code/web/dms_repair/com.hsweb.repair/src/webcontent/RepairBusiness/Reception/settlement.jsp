@@ -205,7 +205,7 @@
 	            <tbody>
 	                <tr>
 	                	<td rowspan="2" style="width: 133px;">
-	                     	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
+	                     	<img alt="" src="" id="showImg" height="60px" style="display:none">
 	                    </td>
 	                    <td style="width:55%">
 	                        <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
@@ -442,7 +442,16 @@
     		   document.getElementById("cash1").innerHTML = parseFloat(document.getElementById("cash1").innerHTML).toFixed(2);
         	}
         }
+        
+        
+
+        
         function SetData(params){
+            var imgUrl = params.currCompLogoPath || "";
+            if(imgUrl && imgUrl != ""){
+               $('#showImg').show();
+               $("#showImg").attr("src",imgUrl);
+            }
             token1 =  params.token;
             webUrl = params.webUrl;
 	        var date = new Date();

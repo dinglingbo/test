@@ -127,6 +127,7 @@
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="java.util.HashMap" description="" isArray="false" name="p"/>
+    <process:input description="" isArray="false" modelType="com.eos.foundation.PageCond" name="page"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="data"/>

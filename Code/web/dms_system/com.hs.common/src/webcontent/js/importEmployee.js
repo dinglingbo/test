@@ -107,7 +107,13 @@ function sure() {
 	}
 
 	//faddPart(partList);
-	saveEnterPart(partList);
+	  nui.confirm("确定导入吗？", "友情提示",function(action){
+	       if(action == "ok"){
+	    	   saveEnterPart(partList);
+	     }else {
+				return;
+		 }
+		 }); 
 }
 
 function clear(){
@@ -141,12 +147,12 @@ function saveEnterPart(partList){
 	            if (data.errCode == "S") {
 	                var errMsg = data.errMsg;
 	                if(errMsg){
-	                	showMsg(errMsg,"S");
+	                	parent.parent.showMsg(errMsg,"S");
 	                }else{
-	                	showMsg("导入成功!","S");
+	                	parent.parent.showMsg("导入成功!","S");
 	                }
 	            } else {
-	                showMsg(data.errMsg || "导入失败!","W");
+	            	parent.parent.showMsg(data.errMsg || "导入失败!","W");
 	            }
 	        },
 	        error : function(jqXHR, textStatus, errorThrown) {

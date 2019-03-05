@@ -8,7 +8,8 @@ var gridCarUrl = baseUrl+"com.hsapi.repair.repairService.query.queryMainRemind.b
 
 var gridCar = null;
 var tcarNo_ctrl = null;
-var tmobileEl=null;
+var tmobileEl = null;
+var serviceType = 5;//保养提醒
 var hash = {};
 
 $(document).ready(function(){
@@ -61,13 +62,13 @@ $(document).ready(function(){
 function remind() {
     var row = gridCar.getSelected();
     if(row){
-
         SetData(row);
     }
 }
 
 
-function SetData(rowData){
+function SetData(rowData) {
+    rowData.serviceType = serviceType;
     mini.open({
         url: webPath + contextPath + "/manage/maintainRemind/maintainRemMainDetail.jsp?token="+ token,
         title: "提醒信息", 
@@ -212,21 +213,22 @@ function openOrderDetail(serviceId){
 }
 
 function sendInfo(){
-	var row = gridCar.getSelected();
-   if (row == undefined) {
-    showMsg("请选中一条数据","W");
-    return;
-}
-nui.open({
-    url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
-    title: "发送短信", width: 655, height: 280,
-    onload: function () {
-       var iframe = this.getIFrameEl();
-       iframe.contentWindow.setData();
-   },
-   ondestroy: function (action) {
-        	//重新加载
-        	//query(tab);
+    var row = gridCar.getSelected();
+    row.serviceType = serviceType;
+    if (row == undefined) {
+        showMsg("请选中一条数据","W");
+        return;
+    }
+    nui.open({
+        url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
+        title: "发送短信", width: 655, height: 280,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(row);
+    },
+    ondestroy: function (action) {
+            //重新加载
+            //query(tab);
         }
     });
 }
@@ -252,23 +254,24 @@ function addRow() {
 
 
 function sendWcText(){//发送微信消息
-	var row = gridCar.getSelected();
-   if (row == undefined) {
+    var row = gridCar.getSelected();
+    row.serviceType = serviceType;
+    if (row == undefined) {
     showMsg("请选中一条数据","W");
     return;
     }
     // var tit = "发送微信[" + row.guestName + '/' + row.mobile + '/' + row.carModel + ']';
     var tit = "发送微信";
-nui.open({
-    url: webPath + contextPath  + "/com.hsweb.crm.manage.sendWcVisitText.flow?token="+token,
-    title: tit, width: 800, height: 350,
-    onload: function () {
-       var iframe = this.getIFrameEl();
-       iframe.contentWindow.setData(row);
-   },
-   ondestroy: function (action) {
-        	//重新加载 
-        	//query(tab);
+    nui.open({
+        url: webPath + contextPath  + "/com.hsweb.crm.manage.sWcInfoRemind.flow?token="+token,
+        title: tit, width: 800, height: 350,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(row);
+    },
+    ondestroy: function (action) {
+            //重新加载 
+            //query(tab);
         }
     });
 }

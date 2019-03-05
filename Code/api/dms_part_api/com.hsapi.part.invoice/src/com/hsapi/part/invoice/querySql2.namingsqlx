@@ -1129,7 +1129,8 @@
 			a.bala_amt AS balaAmt,
 			a.operator AS operator,
 			a.operate_date as operateDate,
-			a.orgid as orgid
+			a.orgid as orgid,
+			a.store_id as storeId
 		FROM
 			pj_store_invocing a
 		INNER JOIN wb_common.com_guest b ON a.guest_id = b.id

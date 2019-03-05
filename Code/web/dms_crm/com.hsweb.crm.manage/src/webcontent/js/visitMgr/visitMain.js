@@ -110,11 +110,9 @@ function SetData(){
 			}
 		});
 	}else{
-		showMsg("请选择一条记录","W");
+		showMsg("请选中一条数据","W");
 	}
 }
-
-
 
 function quickSearch(e){
 	var  p = {};
@@ -195,7 +193,7 @@ function openOrderDetail(serviceId){
 function sendInfo(){
 	var row = gridCar.getSelected();
 	if (row == undefined) {
-		showMsg("请选择一条记录","W");
+		showMsg("请选中一条数据","W");
 		return;
     }
     if (!row.guestMobile) {
@@ -206,7 +204,7 @@ function sendInfo(){
     row.serviceType = 3;//客户回访
 	nui.open({
 		url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
-		title: "发送短信", width: 655, height: 386,
+		title: "发送短信", width: 655, height: 280,
 		onload: function () {
 			var iframe = this.getIFrameEl();
 			iframe.contentWindow.setData(row);
@@ -220,25 +218,29 @@ function sendInfo(){
 }
 
 
-function sendWechatxTestInfo(){//微信文本消息 回访
-	var row = gridCar.getSelected();
-	if(row){
-		// mini.open({
-		// 	url: webPath + contextPath + "/manage/visitMgr/visitMainDetail.jsp?token="+ token,
-		// 	title: "电话回访", 
-		// 	width: 680, height: 330,
-		// 	onload: function () {
-		// 		var iframe = this.getIFrameEl(); 
-		// 		iframe.contentWindow.setData(row);
-		// 	},
-		// 	ondestroy: function (action) {
-		// 		gridCar.reload();
-		// 	}
-		// });
-	}else{
-		showMsg("请选择一条记录","W");
-	}
+function sendWcText(){//发送微信消息
+    var row = gridCar.getSelected();
+    if (!row) {
+    showMsg("请选中一条数据","W");
+    return;
+    }
+    // var tit = "发送微信[" + row.guestName + '/' + row.mobile + '/' + row.carModel + ']';
+    var tit = "发送微信";
+    nui.open({
+        url: webPath + contextPath  + "/com.hsweb.crm.manage.sWcInfoRemind.flow?token="+token,
+        title: tit, width: 800, height: 350,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(row);
+    },
+    ondestroy: function (action) {
+            //重新加载 
+            // query(tab);
+            change();
+        }
+    });
 }
+
 
 function sendWechatPicInfo(){//微信图文 回访
 	var row = gridCar.getSelected();
@@ -256,6 +258,6 @@ function sendWechatPicInfo(){//微信图文 回访
 		// 	}
 		// });
 	}else{
-		showMsg("请选择一条记录","W");
+		showMsg("请选中一条数据","W");
 	}
 }

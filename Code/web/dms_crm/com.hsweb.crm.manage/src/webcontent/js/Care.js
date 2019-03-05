@@ -14,7 +14,7 @@ function save(){
 	var visitContent = nui.get("visitContent").getValue();
 	var record=[];
 	if(!visitMode){
-		showMsg("清先选择提醒方式","W");
+		showMsg("请先选择提醒方式","W");
 		return;
 	}
 	if(!visitContent){

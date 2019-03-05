@@ -20,9 +20,9 @@
     <link href="<%=request.getContextPath()%>/common/nui/themes/frame3/res/index.css" rel="stylesheet" type="text/css" />
     <link href="<%=webPath + contextPath%>/common/nui/themes/cupertino/skin.css" rel="stylesheet"	type="text/css" />
     <link href="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
-    <link href="<%=request.getContextPath()%>/coframe/auth/login/feedback/feedback.css" rel="stylesheet" type="text/css" />
+    <link href="<%=request.getContextPath()%>/coframe/auth/loginCloud/feedback/feedback.css" rel="stylesheet" type="text/css" />
     <script src="<%=request.getContextPath()%>/common/nui/res/third-party/scrollbar/jquery.mCustomScrollbar.concat.min.js" type="text/javascript"></script>
-    <script src="<%=request.getContextPath()%>/coframe/auth/login/feedback/html2canvas.min.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath()%>/coframe/auth/loginCloud/feedback/html2canvas.min.js" type="text/javascript"></script>
 
     <style type="text/css">
 	a {
@@ -217,7 +217,7 @@
     <input type="hidden" name="orgid" value="" id="orgid">
 </form> 
 
-<script src="<%=request.getContextPath()%>/coframe/auth/login/feedback/drawDom.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/coframe/auth/loginCloud/feedback/drawDom.js" type="text/javascript"></script>
 </body>
 </html>
 

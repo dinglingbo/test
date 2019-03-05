@@ -17,26 +17,30 @@ var billTypeIdHash = {
 		"050201" :"采购退货",
 		"050103" :"盘盈入库",
 		"050203" :"盘亏出库",
-		"050106" : "配件领料",
-		"050206" :"配件归库",
+		"050105" :"期初入库",
+		"050106" : "配件归库",
+		"050206" :"配件领料",
 		"050107" : "耗材入库",
 		"050207" :"耗材归库",
 		"050104" :"移仓入库",
 		"050204" :"移仓出库",
-		"050108" :"退货归库"
+		"050108" :"退货归库",
+	    "050109" :"成品入库"
 	};
 var billTypeIdHashType = [
 	{name:"采购入库",id:"050101"},
 	{name:"采购退货",id:"050201"},
 	{name:"盘盈入库",id:"050103"},
 	{name:"盘亏出库" ,id:"050203"},
-	{name:"配件领料",id:"050106"},
-	{name:"配件归库",id:"050206"},
+	{name:"期初入库" ,id:"050105"},
+	{name:"配件归库",id:"050106"},
+	{name:"配件领料",id:"050206"},
 	{name:"耗材入库",id:"050107"},
 	{name:"耗材归库",id:"050207"},
 	{name:"移仓入库",id:"050104"},
 	{name:"移仓出库",id:"050204"},
-	{name:"退货归库",id:"050108"}
+	{naem:"退货归库",id:"050108"},
+	{naem:"成品入库",id:"050109"}
 ];
 var settTypeIdHash = {};
 var outTypeIdHash = {};
@@ -52,13 +56,7 @@ $(document).ready(function(v)
     	
     });
 
-    orgidsEl = nui.get("orgids");
-    orgidsEl.setData(currOrgList);
-    if(currOrgList.length==1){
-    	orgidsEl.hide();
-    }else{
-    	orgidsEl.setValue(currOrgid);
-    }
+
 
 	getAllPartBrand(function(data) {
 		brandList = data.brand;
@@ -77,6 +75,7 @@ $(document).ready(function(v)
 			storehouse.forEach(function(v) {
 				storeHash[v.id] = v;
 			});
+			quickSearch(4);
 		}
 	});
 	rightGrid.on("drawcell",function(e){
@@ -85,6 +84,13 @@ $(document).ready(function(v)
 			if(billTypeIdHash[e.value]){
 				e.cellHtml = billTypeIdHash[e.value]|| "";
 			}			
+			break;
+		case "direction" :
+			if(e.value==1){
+				e.cellHtml = "入库";
+			}else{
+				e.cellHtml = "出库";
+			}
 			break;
 		case "partBrandId":
 			 if(brandHash[e.value])
@@ -101,14 +107,7 @@ $(document).ready(function(v)
                  e.cellHtml = "";
              }
              break;
-		case  "orgid":
-        	for(var i=0;i<currOrgList.length;i++){
-        		if(currOrgList[i].orgid==e.value){
-        			e.cellHtml = currOrgList[i].shortName || "";
-        		}
-        	}
-        	break; 
-
+		
 		default:
 			break;
 		}
@@ -145,7 +144,7 @@ $(document).ready(function(v)
 	        }
 	    });
 	
-    quickSearch(4);
+    
 
 
 });
@@ -159,12 +158,7 @@ function getSearchParams(){
     params.operator=nui.get("operatorId").getText();
     params.OstartDate=nui.get("OstartDate").getFormValue();
     params.OendDate=addDate(endDateEl.getValue(),1);
-    var orgidsElValue = orgidsEl.getValue();
-    if(orgidsElValue==null||orgidsElValue==""){
-    	 params.orgids =  currOrgs;
-    }else{
-    	params.orgid=orgidsElValue;
-    }
+    
 
     return params;
 }

@@ -187,7 +187,7 @@
 	            <tbody>
 	                <tr>
 	                	<td rowspan="2" style="width: 133px;">
-	                     	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
+	                     	<img alt="" src="" id="showImg" height="60px" style="display:none">
 	                    </td>
 	                    <td style="width:55%">
 	                        <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
@@ -316,6 +316,11 @@
 
         function SetData(data){
             var params = data.p;
+            var imgUrl = params.currCompLogoPath || "";
+            if(imgUrl && imgUrl != ""){
+               $('#showImg').show();
+               $("#showImg").attr("src",imgUrl);
+            } 
             var card = data.row;
             var guestData = data.guestData;
             token1 =  params.token;

@@ -7,7 +7,7 @@
 <link
 	href="<%=webPath + contextPath%>/css/style1/style_form_edit.css?v=1.1"
 	rel="stylesheet" type="text/css" />
-<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.6"
+<script src="<%= request.getContextPath() %>/tenant/js/review_register.js?v=1.9.11"
 	type="text/javascript"></script>
 </head>
 <body>
@@ -21,18 +21,27 @@
 					<input class="nui-combobox" id="provinceId" visible="false" textField="name" url="" valueField="code"/>
 					<input class="nui-combobox" id="cityId" visible="false" textField="name" url="" valueField="code"/>
                 	<label style="font-family: Verdana;" title="点击清空条件"><span>审核状态：</span></label> 
-							<a class="nui-menubutton "  menu="#popupMenu1"  id="assignStatus" name="assignStatus" >所有</a>
-               	 <ul id="popupMenu1" class="nui-menu" style="display:none;">
-                    <li iconCls="" onclick="(this, assignStatus, '')" id="type1">所有</li>
-                    <li iconCls="" onclick="setMenu1(this, assignStatus,0)" id="typeAll">未审</li>
-                    <li iconCls="" onclick="setMenu1(this, assignStatus,1)" id="type0">已审</li>
+							<a class="nui-menubutton "  menu="#popupMenu1"  id="assignStatus" name="assignStatus" >全部</a>
+               	  <ul id="popupMenu1" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="setMenu1(this, assignStatus, '')" id="type1">全部</li>
+                    <li iconCls="" onclick="setMenu1(this, assignStatus,0)" id="typeAll">未审批</li>
+                    <li iconCls="" onclick="setMenu1(this, assignStatus,1)" id="type0">审批通过</li>
                     </ul>	
+                 
+                    <label style="font-family: Verdana;" title="点击清空条件"><span>是否禁用：</span></label> 
+							<a class="nui-menubutton "  menu="#popupMenu2"  id="assignStatus2" name="assignStatus2" >全部</a>
+               	  <ul id="popupMenu2" class="nui-menu" style="display:none;">
+                    <li iconCls="" onclick="setMenu2(this, assignStatus2, '')" id="type2">全部</li>
+                    <li iconCls="" onclick="setMenu2(this, assignStatus2,1)" id="typeAll2">是</li>
+                    <li iconCls="" onclick="setMenu2(this, assignStatus2,0)" id="type2">否</li>
+                    </ul>
                
                		<li class="separator"></li>
                             <label style="font-family:Verdana;">创建日期 从：</label>
                             <input class="nui-datepicker" id="beginDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
                             <label style="font-family:Verdana;">至</label>
                             <input class="nui-datepicker" id="endDate" allowInput="false" width="100px" format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+					
 					<li class="separator"></li>
 					<a class="nui-button"  plain="true" href="javascript:query();" id="query" enabled="true"  onclick="superSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 <!-- 					<a class="nui-button"  plain="true"	 id="sh" enabled="true"  onclick="audit"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a> -->

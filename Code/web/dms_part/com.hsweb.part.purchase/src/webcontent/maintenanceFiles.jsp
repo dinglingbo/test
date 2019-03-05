@@ -141,7 +141,7 @@
                   <div header="客户车辆信息" headerAlign="center">
 	                  <div property="columns" > 
 	                 	  <div field="guestFullName" name="guestFullName" width="100" headerAlign="center" header="客户姓名"></div> 
-		                  <div field="carNo" name="carNO" width="80" headerAlign="center" header="车牌号"></div>
+		                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号"></div>
 		                  <div field="carModel" name="carModel" width="120" headerAlign="center" header="品牌/车型"></div>
 						  <div field="carVin" name="carVin" width="150" headerAlign="center" header="车架号(VIN)"></div>
 		                 

@@ -18,7 +18,7 @@
     <figSize height="17" width="25"/>
     <node>start0</node>
   </nodes>
-  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="queryCardTimesByGuestId" displayName="queryCardTimesByGuestId" type="subprocess">
+  <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="queryCardTimesByGuestId" displayName="queryCardTimesByGuestIdNopage" type="subprocess">
     <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
       <targetNode>assign2</targetNode>
@@ -38,7 +38,7 @@
     <size height="27" width="27"/>
     <nodeLabel>subprocess0label</nodeLabel>
     <process:flow index="0" synchronization="true" transactionType="join" varArgs="false">
-      <process:partner type="literal">com.hsapi.repair.baseData.query.queryCardTimesByGuestId</process:partner>
+      <process:partner type="literal">com.hsapi.repair.baseData.query.queryCardTimesByGuestIdNopage</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="p" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">p</process:inputVariable>
       </process:inputVariables>
@@ -46,7 +46,6 @@
         <process:outputVariable id="0" name="data" type="query" value="com.hsapi.repair.data.rps.RpsCardTimesDetail[]" valueType="DataObject">data</process:outputVariable>
         <process:outputVariable id="1" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="2" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
-        <process:outputVariable id="3" name="page" type="query" value="com.eos.foundation.PageCond" valueType="DataObject"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>

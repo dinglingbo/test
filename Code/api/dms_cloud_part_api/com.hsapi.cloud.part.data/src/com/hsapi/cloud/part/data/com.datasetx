@@ -30970,7 +30970,7 @@
         </fieldEdit>
       </viewField>
     </columnProperty>
-    <columnProperty id="property297" name="creditLimit" displayName="creditLimit" columnName="credit_limit" nullAble="true" defaultValue="0.0000" columnType="DECIMAL" eosDataType="Decimal" length="10" precision="4" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.0000">
+    <columnProperty id="property297" name="creditLimit" displayName="creditLimit" columnName="credit_limit" nullAble="true" defaultValue="0.0000" columnType="DECIMAL" eosDataType="Decimal" length="18" precision="4" dasType="big_decimal" overWriteDefaultColumnType="false" showType="Decimal" update="true" insert="true" default="0.0000">
       <comment>信誉额度</comment>
       <viewField dict="false" dictTypeId="" displayName="creditLimit" entityField="creditLimit" id="creditLimit" label="creditLimit" name="creditLimit" userDefined="true">
         <fieldView showAllAttr="false">
@@ -31054,7 +31054,7 @@
           <attr defaultValue="" name="filter"/>
           <attr name="ignore"/>
         </fieldView>
-        <fieldEdit showAllAttr="false">
+        <fieldEdit name="isDisabled" showAllAttr="false">
           <type name="text"/>
           <attr defaultValue="" name="onvalidation"/>
           <attr defaultValue="" name="borderStyle"/>
@@ -31186,7 +31186,7 @@
           <attr defaultValue="" name="filter"/>
           <attr name="ignore"/>
         </fieldView>
-        <fieldEdit showAllAttr="false">
+        <fieldEdit name="isInternal" showAllAttr="false">
           <type name="text"/>
           <attr defaultValue="" name="onvalidation"/>
           <attr defaultValue="" name="borderStyle"/>
@@ -31252,7 +31252,7 @@
           <attr defaultValue="" name="filter"/>
           <attr name="ignore"/>
         </fieldView>
-        <fieldEdit showAllAttr="false">
+        <fieldEdit name="isInternalId" showAllAttr="false">
           <type name="text"/>
           <attr defaultValue="" name="onvalidation"/>
           <attr defaultValue="" name="borderStyle"/>
@@ -31318,7 +31318,7 @@
           <attr defaultValue="" name="filter"/>
           <attr name="ignore"/>
         </fieldView>
-        <fieldEdit showAllAttr="false">
+        <fieldEdit name="isNeedPack" showAllAttr="false">
           <type name="text"/>
           <attr defaultValue="" name="onvalidation"/>
           <attr defaultValue="" name="borderStyle"/>
@@ -31384,7 +31384,7 @@
           <attr defaultValue="" name="filter"/>
           <attr name="ignore"/>
         </fieldView>
-        <fieldEdit showAllAttr="false">
+        <fieldEdit name="orderIndex" showAllAttr="false">
           <type name="text"/>
           <attr defaultValue="" name="onvalidation"/>
           <attr defaultValue="" name="borderStyle"/>

@@ -4,6 +4,7 @@ var mainData = {};
 var visitContent = null;
 var baseUrl = apiPath + sysApi + "/";
 var sendUrl = baseUrl+"com.hsapi.system.basic.smsPush.testPush.biz.ext";
+var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecord.biz.ext";
 $(document).ready(function (){
 	
   form1 = new nui.Form("#form1");
@@ -88,7 +89,7 @@ function saveRecord(data) {
         visitContent:message||'',
     }
     nui.ajax({
-        url:baseUrl+ "com.hsapi.crm.svr.visit.saveVisitRecord.biz.ext",
+        url:saveUrl,
         type:'post',
         data:{
             params:params

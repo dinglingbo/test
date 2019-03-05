@@ -471,6 +471,7 @@
         <process:outputVariable id="2" name="cardPkgAmt" type="query" value="Double" valueType="Primitive">cardPkgAmt</process:outputVariable>
         <process:outputVariable id="3" name="cardItemAmt" type="query" value="Double" valueType="Primitive">cardItemAmt</process:outputVariable>
         <process:outputVariable id="4" name="cardPartAmt" type="query" value="Double" valueType="Primitive">cardPartAmt</process:outputVariable>
+        <process:outputVariable id="5" name="message" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -895,6 +896,7 @@
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
         <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive">errMsg</process:outputVariable>
+        <process:outputVariable id="2" name="balaAmt" type="query" value="Double" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

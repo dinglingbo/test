@@ -123,6 +123,42 @@
       <process:from type="query" pattern="reference">m:userObject</process:from>
       <process:to type="query">userObject</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/logoImg</process:from>
+      <process:to type="query">m:userObject/attributes/compLogoPath</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/srmCompanyId</process:from>
+      <process:to type="query">m:userObject/attributes/srmCompanyId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/srmUserId</process:from>
+      <process:to type="query">m:userObject/attributes/srmUserId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/srmUserPd</process:from>
+      <process:to type="query">m:userObject/attributes/srmUserPd</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/srmGuestId</process:from>
+      <process:to type="query">m:userObject/attributes/srmGuestId</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/bankName</process:from>
+      <process:to type="query">m:userObject/attributes/bankName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/bankAccountNumber</process:from>
+      <process:to type="query">m:userObject/attributes/bankAccountNumber</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/slogan1</process:from>
+      <process:to type="query">m:userObject/attributes/slogan1</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">comp/slogan2</process:from>
+      <process:to type="query">m:userObject/attributes/slogan2</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
     <location x="557" y="216"/>

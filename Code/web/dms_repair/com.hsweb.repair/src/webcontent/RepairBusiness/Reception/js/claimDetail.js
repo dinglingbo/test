@@ -1058,6 +1058,8 @@ function add(){
     nui.get("ExpenseAccount1").setVisible(false);
     document.getElementById("showA1").style.display = "";
 	document.getElementById("showA").style.display='none';
+	advancedCardTimesWin.hide();
+	advancedMemCardWin.hide();
 }
 function save(){
 	itemF = "S";

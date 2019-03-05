@@ -247,7 +247,7 @@ hr {
        		<table id="" width="100%">
 				   <tr>
 	            	<td rowspan="2" style="width: 133px;">
-	                 	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
+	                 	<img alt="" src="" id="showImg" height="60px" style="display:none">
 	                </td>
 	                <td>
 	                    <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;">&nbsp;&nbsp;<span id="currOrgName"></span></div>
@@ -383,6 +383,11 @@ hr {
             else window.close();
         }
     	function SetData(mainParams,detailParms,formParms){
+    	    var imgUrl = mainParams.currCompLogoPath || "";
+		    if(imgUrl && imgUrl != ""){
+		       $('#showImg').show();
+		       $("#showImg").attr("src",imgUrl);
+		    }
     		document.getElementById("spstorename").innerHTML = "采购退货单";
     		document.getElementById("guestAddr").innerHTML = "地址:"+mainParams.currCompAddress;
 	   		document.getElementById("phone").innerHTML ="电话:"+mainParams.currCompTel;

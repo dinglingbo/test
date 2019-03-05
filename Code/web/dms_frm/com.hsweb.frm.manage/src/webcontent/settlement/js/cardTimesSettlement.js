@@ -403,6 +403,7 @@ function print(){
         currSlogan1: currSlogan1,
         currSlogan2: currSlogan2,
         currUserName : currUserName,
+        currCompLogoPath: currCompLogoPath,
 		token : token
 	};
 	params = {

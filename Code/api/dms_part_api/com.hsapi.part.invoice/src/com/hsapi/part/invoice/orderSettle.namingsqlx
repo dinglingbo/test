@@ -68,13 +68,29 @@
 					main_id = #mainId#					
 			</isNotNull>
 	</update>
-	
+	<!-- 如果入库记录的仓位为空，则按库存的仓位更新入库记录的仓位 -->
 	<update id="updatePchsEnterOriginId" parameterClass="java.util.HashMap" >
-		update pj_enter_detail_chk set origin_id = id 
-		where 1 = 1
+		update pj_enter_detail_chk a
+		inner join pj_part_store_stock b
+		on a.part_id = b.part_id and a.store_id = b.store_id
+		set a.store_shelf = ifnull(a.store_shelf, b.shelf),
+		    a.origin_id = a.id
+		where 1 = 1 
 			<isNotNull prepend = "and" property = "mainId">
-					main_id = #mainId#					
+					a.main_id = #mainId#					
 			</isNotNull>
+	</update>
+	
+	<update id="updatePchsOrderShelf" parameterClass="java.util.HashMap" >
+		update pj_enter_detail_chk 
+			set store_shelf = #shelf#
+			where outable_qty > 0 
+		<isNotNull prepend = "and" property = "partId">
+				part_id = #partId#					
+		</isNotNull>
+		<isNotNull prepend = "and" property = "storeId">
+				store_id = #storeId#					
+		</isNotNull>
 	</update>
 	
 	<update id="updateSellRtnOriginId" parameterClass="java.util.HashMap" >

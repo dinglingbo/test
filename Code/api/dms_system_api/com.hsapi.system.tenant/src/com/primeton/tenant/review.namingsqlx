@@ -16,6 +16,9 @@
 		<isNotNull property="status">
 			AND status = #status#
 		</isNotNull>
+		<isNotNull property="isDisabled">
+			AND is_disabled = #isDisabled#
+		</isNotNull>
 	 </select>
 
 

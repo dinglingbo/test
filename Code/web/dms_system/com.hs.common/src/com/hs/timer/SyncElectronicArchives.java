@@ -3,6 +3,7 @@
  */
 package com.hs.timer;
 
+import java.net.HttpURLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.tuscany.sca.policy.authorization.AuthorizationPolicy.AcessControl;
 
 import com.alibaba.fastjson.JSONArray;
@@ -52,6 +54,8 @@ public class SyncElectronicArchives {
 		Map <String, String> header = new HashMap <String, String>();
 		header.put("date", headerDate);
 		header.put("time", headerTime);
+		/*header.put("date", "20180826");
+		header.put("time", "172522");*/
 		jsonObj.put("header", header);
 		
 		Map <String, String> body = new HashMap <String, String>();
@@ -137,6 +141,8 @@ public class SyncElectronicArchives {
 	    		Map <String, String> header = new HashMap <String, String>();
 	    		header.put("date", headerDate);
 	    		header.put("time", headerTime);
+	    		/*header.put("date", "20180826");
+	    		header.put("time", "172522");*/
 	    		jsonObj.put("header", header);
 	    		
 	    		Map <String, Object> body = new HashMap <String, Object>();
@@ -177,7 +183,7 @@ public class SyncElectronicArchives {
 	    		paramStr = "repairdata="+jsonObj.toString();
 	    		
 	    		String result = HttpUtils.sendGet("http://218.13.12.75:81/api/upRepairInfo.ashx", paramStr);
-	    		
+	    			
 	    		Gson gson = new Gson();
 	            Map<String, String> map = new HashMap<String, String>();
 	            map = gson.fromJson(result, map.getClass());
@@ -202,6 +208,8 @@ public class SyncElectronicArchives {
     	criteria.set("_expr[2]/_op", "notnull");
     	criteria.set("_expr[3]/_property", "eRecordPwd");
     	criteria.set("_expr[3]/_op", "notnull");
+    	criteria.set("_expr[4]/tenantId", 121);
+    	criteria.set("_expr[4]/_op", "=");
     	DataObject[] result = com.eos.foundation.database.DatabaseUtil
     	.queryEntitiesByCriteriaEntity("common", criteria);
     	
@@ -218,10 +226,16 @@ public class SyncElectronicArchives {
 				String compName = compObj.getString("name");
 				String eRecordUser = compObj.getString("eRecordUser");
 				String eRecordPwd = compObj.getString("eRecordPwd");
-				
-				Map<String, String> tokenMap = getAccessToken(eRecordUser, eRecordPwd);
-				String accessToken = tokenMap.get("access_token");
-				if(accessToken != null && accessToken != "") {
+				String accessToken = null;
+				                       
+				if(eRecordUser != null && !"".equals(eRecordUser)){
+					//if(StringUtils.isNotBlank(eRecordUser) && !StringUtils.equals("", eRecordUser))
+					if(eRecordPwd != null  && !"".equals(eRecordPwd)){
+						Map<String, String> tokenMap = getAccessToken(eRecordUser, eRecordPwd);
+						accessToken = tokenMap.get("access_token");
+					}
+				}
+				if(accessToken != null && !"".equals(accessToken)) { 
 					Calendar cal = Calendar.getInstance();
 				    String endDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
 				    cal.add(Calendar.DATE, -30);
@@ -238,7 +252,8 @@ public class SyncElectronicArchives {
 	public static void main(String args[]) {
 		
 		//Map map = getAccessToken("881812010733001", "abcdefg");
-		//System.out.println(map.get("access_token"));
+		Map map = getAccessToken("431302000062483", "07388971111a");
+		System.out.println(map.get("access_token"));
 		
 		Calendar cal = Calendar.getInstance();
 	    String today = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());

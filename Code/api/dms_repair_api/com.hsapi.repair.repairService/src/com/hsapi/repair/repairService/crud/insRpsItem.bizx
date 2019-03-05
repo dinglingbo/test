@@ -72,8 +72,8 @@
         </process:simpleCondition>
       </process:transitionCondition>
     </sourceConnections>
-    <targetConnections>link22</targetConnections>
     <targetConnections>link51</targetConnections>
+    <targetConnections>link22</targetConnections>
     <location x="416" y="144"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
@@ -213,7 +213,7 @@
       <targetNode>assign8</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -890,9 +890,10 @@
     <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign19</sourceNode>
       <targetNode>assign1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
-    <location x="317" y="144"/>
+    <location x="296" y="145"/>
     <size height="28" width="28"/>
     <nodeLabel>assign19label</nodeLabel>
     <process:copy>
@@ -964,16 +965,16 @@
       <process:to type="query">insItem/subtotal</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">main/serviceTypeId</process:from>
-      <process:to type="query">insItem/serviceTypeId</process:to>
-    </process:copy>
-    <process:copy>
       <process:from type="query" pattern="reference">rpsCard/rate</process:from>
       <process:to type="query">itemDiscountRate</process:to>
     </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">main/serviceTypeId</process:from>
+      <process:to type="query">insItem/serviceTypeId</process:to>
+    </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign19label" name="label" nodeType="label">
-    <location x="312" y="180"/>
+    <location x="291" y="181"/>
     <figSize height="17" width="39"/>
     <node>assign19</node>
   </nodes>

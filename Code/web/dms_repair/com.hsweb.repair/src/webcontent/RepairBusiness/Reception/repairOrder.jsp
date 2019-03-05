@@ -380,7 +380,7 @@
 	            <tbody>
 	                <tr>
 	                	<td rowspan="2" style="width: 133px;">
-	                     	<img alt="" src="<%= request.getContextPath() %>/repair/common/log.bmp">
+	                     	<img alt="" src="" id="showImg" height="60px" style="display:none">
 	                    </td>
 	                    <td style="width:55%">
 	                        <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;"><span id="comp"></span></div>
@@ -518,6 +518,11 @@
             else window.close();
         }
 	function SetData(params){
+	     var imgUrl = params.currCompLogoPath || ""
+            if(imgUrl && imgUrl != ""){
+               $('#showImg').show();
+               $("#showImg").attr("src",imgUrl);
+            }
 		document.getElementById("comp").innerHTML = params.comp;
 		document.getElementById("spstorename").innerHTML = "派工单";
 		document.getElementById("date").innerHTML = document.getElementById("date").innerHTML + format(date, "yyyy-MM-dd HH:mm");

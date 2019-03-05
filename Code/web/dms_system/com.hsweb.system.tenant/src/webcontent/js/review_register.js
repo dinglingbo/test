@@ -14,6 +14,7 @@ var provinceHash={};
 var cityList=[];
 var cityHash={};
 var assignStatus;
+var assignStatus2;
 var beginDate;
 var endDate;
 var StatusSignHash = {
@@ -31,6 +32,7 @@ $(document).ready(function(v)
 	queryForm = new nui.Form("#queryForm");
     dgGrid = nui.get("dgGrid");
     assignStatus=nui.get("assignStatus");
+    assignStatus2=nui.get("assignStatus2");
     dgGrid.on("beforeload",function(e){
     	e.data.token = token;
     });
@@ -66,11 +68,13 @@ function init(){
 function query(){
    var data = queryForm.getData();
    var tmpstatus=assignStatus.getValue();
+   var tmpstatus2=assignStatus2.getValue();
    var tmpbeginDate=beginDate.getValue();
    var tmpendDate=endDate.getValue();
    data.status=tmpstatus;
    data.beginDate=tmpbeginDate;
    data.endDate=tmpendDate;
+   data.isDisabled  = tmpstatus2;
    var request = {
     		"params":data
     };
@@ -295,40 +299,48 @@ var auditUrl = baseUrl + "com.hsapi.system.tenant.register.auditRegister.biz.ext
 function auditPart(){
 	var s=dgGrid.getSelected ();
 	if(s){
-        nui.mask({
-            el : document.body,
-            cls : 'mini-mask-loading',
-            html : '认证中...'
-        });
+		 nui.confirm("是否确定认证为汽配商？", "友情提示",function(action){
+		       if(action == "ok"){
+		    	   nui.mask({
+		               el : document.body,
+		               cls : 'mini-mask-loading',
+		               html : '认证中...'
+		           });
 
-        nui.ajax({
-            url : auditUrl,
-            type : "post",
-            data : JSON.stringify({
-                reg: s,
-                type :'PART',
-                token:token
-            }),
-            success : function(data) {
-                nui.unmask(document.body);
-                data = data || {};
-                if (data.errCode == "S") {
-                    nui.alert("认证成功!","",function(e){
-                        dgGrid.reload();
-                    });
-                } else {
-                    nui.alert(data.errMsg || "认证失败！");
-                }
-            },
-            error : function(jqXHR, textStatus, errorThrown) {
-                // nui.alert(jqXHR.responseText);
-                console.log(jqXHR.responseText);
-            }
-        });
-
-	    
+		           nui.ajax({
+		               url : auditUrl,
+		               type : "post",
+		               data : JSON.stringify({
+		                   reg: s,
+		                   type :'PART',
+		                   token:token
+		               }),
+		               success : function(data) {
+		                   nui.unmask(document.body);
+		                   data = data || {};
+		                   if (data.errCode == "S") {
+		                	   showMsg("认证成功!","S");
+		                	   dgGrid.reload();
+		                       /*nui.alert("认证成功!","",function(e){
+		                           dgGrid.reload();
+		                       });*/
+		                   } else {
+		                	   showMsg(data.errMsg || "认证失败！","E");
+		                       //nui.alert(data.errMsg || "认证失败！");
+		                   }
+		               },
+		               error : function(jqXHR, textStatus, errorThrown) {
+		                   // nui.alert(jqXHR.responseText);
+		                   console.log(jqXHR.responseText);
+		               }
+		           });
+		     }else {
+					return;
+			 }
+		});   
 	}else{
-		  nui.alert("请选中一条数据！！");
+		showMsg("请选中一条数据!","W");
+		 // nui.alert("请选中一条数据！！");
 	}
 	
 }
@@ -336,40 +348,49 @@ function auditPart(){
 function auditRepair(){
 	var s=dgGrid.getSelected ();
 	if(s){
-        nui.mask({
-            el : document.body,
-            cls : 'mini-mask-loading',
-            html : '认证中...'
-        });
+		  nui.confirm("是否确定认证为汽修商？", "友情提示",function(action){
+		       if(action == "ok"){
+		    	   nui.mask({
+		               el : document.body,
+		               cls : 'mini-mask-loading',
+		               html : '认证中...'
+		           });
 
-        nui.ajax({
-            url : auditUrl,
-            type : "post",
-            data : JSON.stringify({
-                reg: s,
-                type :'REPAIR',
-                token:token
-            }),
-            success : function(data) {
-                nui.unmask(document.body);
-                data = data || {};
-                if (data.errCode == "S") {
-                    nui.alert("认证成功!","",function(e){
-                        dgGrid.reload();
-                    });
-                } else {
-                    nui.alert(data.errMsg || "认证失败！");
-                }
-            },
-            error : function(jqXHR, textStatus, errorThrown) {
-                // nui.alert(jqXHR.responseText);
-                console.log(jqXHR.responseText);
-            }
-        });
+		           nui.ajax({
+		               url : auditUrl,
+		               type : "post",
+		               data : JSON.stringify({
+		                   reg: s,
+		                   type :'REPAIR',
+		                   token:token
+		               }),
+		               success : function(data) {
+		                   nui.unmask(document.body);
+		                   data = data || {};
+		                   if (data.errCode == "S") {
+		                	   showMsg("认证成功!","S");
+		                	   dgGrid.reload();
+		                      /* nui.alert("认证成功!","",function(e){
+		                           dgGrid.reload();
+		                       });*/
+		                   } else {
+		                	   showMsg(data.errMsg || "认证失败！","E");
+		                       //nui.alert(data.errMsg || "认证失败！");
+		                   }
+		               },
+		               error : function(jqXHR, textStatus, errorThrown) {
+		                   // nui.alert(jqXHR.responseText);
+		                   console.log(jqXHR.responseText);
+		               }
+		           });
 
-	    
+		     }else {
+					return;
+			 }
+			 });     
 	}else{
-		  nui.alert("请选中一条数据！！");
+		showMsg("请选中一条数据!","W");
+		// nui.alert("请选中一条数据！！");
 	}
 	
 }
@@ -381,7 +402,11 @@ function setMenu1(obj, target, value){
     target.setText(obj.getText());   
     query();    
 }
-
+function setMenu2(obj, target, value){
+    target.setValue(value);
+    target.setText(obj.getText());   
+    query();    
+}
 /**
  * 
  * 审核

@@ -9,7 +9,7 @@
 -->
 <head>
     <title>仓库进销存明细</title>
-    <script src="<%=webPath + contextPath%>/manage/js/report/storeInvoingDetail.js?v=1.0.19"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/report/storeInvoingDetail.js?v=1.0.27"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -80,8 +80,6 @@
                  <input class="nui-datepicker" id="OstartDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
  				至:
                 <input class="nui-datepicker" id="OendDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
-                <input name="orgids" id="orgids" class="nui-combobox width1" textField="name" valueField="orgid"
-                        emptyText="公司选择" url=""  allowInput="true" showNullItem="false" width="100" valueFromSelect="true"/>
                 
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         

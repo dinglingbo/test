@@ -24,6 +24,12 @@ pageEncoding="UTF-8" session="false" %>
         overflow: hidden;
         font-family: "微软雅黑";
     }
+    #wechatTag1{
+            color:#ccc;
+    }
+    #wechatTag{
+        color:#62b900;
+    }
 </style> 
 </head>
 <body>
@@ -35,7 +41,7 @@ pageEncoding="UTF-8" session="false" %>
         <input class="nui-textbox" name="tmobile" id="tmobile" style="width: 110px;">
         <a class="nui-button" plain="true" onclick="onSearch()" iconcls="" plain="false"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
         <span class="separator"></span>
-                <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="remind()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>

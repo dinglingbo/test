@@ -871,7 +871,7 @@
         <result column="systemUnitId" javaType="string" property="systemUnitId"/>
         <result column="enterQty" javaType="double" property="enterQty"/>
         <result column="enterPrice" javaType="double" property="enterPrice"/>
-        <result column="sellPrice" javaType="double" property="enterPrice"/>
+        <result column="sellPrice" javaType="double" property="sellPrice"/>
         <result column="enterAmt" javaType="double" property="enterAmt"/>
         <result column="outableQty" javaType="double" property="outableQty"/>
         <result column="taxSign" javaType="int" property="taxSign"/>

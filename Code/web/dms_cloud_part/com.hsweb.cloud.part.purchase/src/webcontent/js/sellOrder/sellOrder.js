@@ -1870,7 +1870,8 @@ function onGuestValueChanged(e)
 
 		var billTypeIdV = data.billTypeId;
 		var settTypeIdV = data.settTypeId;
-
+		var isNeedPack =data.isNeedPack;
+		nui.get("isNeedPack").setValue(isNeedPack);
 		nui.get("billTypeId").setValue(billTypeIdV);
 		nui.get("settleTypeId").setValue(settTypeIdV);
 

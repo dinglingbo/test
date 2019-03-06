@@ -85,7 +85,7 @@ $(document).ready(function(v)
 				e.cellHtml = billTypeIdHash[e.value]|| "";
 			}			
 			break;
-		case "direction" :
+		case "dc" :
 			if(e.value==1){
 				e.cellHtml = "入库";
 			}else{

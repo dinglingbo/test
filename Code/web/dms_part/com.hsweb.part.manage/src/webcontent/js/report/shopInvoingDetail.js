@@ -80,7 +80,7 @@ $(document).ready(function(v)
 			}
 			
 			break;
-		case "direction" :
+		case "dc" :
 			if(e.value==1){
 				e.cellHtml = "入库";
 			}else{

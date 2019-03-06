@@ -247,7 +247,7 @@ hr {
         		<table id="" width="100%">
 				   <tr>
 	            	<td rowspan="2" style="width: 133px;">
-	                 	<img id='logImg' alt="" src="" height="60px" style="display:none">>
+	                 	<img id='logImg' alt="" src="" height="60px" style="display:none">
 	                </td>
 	                <td>
 	                    <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;">&nbsp;&nbsp;<span id="currOrgName"></span></div>

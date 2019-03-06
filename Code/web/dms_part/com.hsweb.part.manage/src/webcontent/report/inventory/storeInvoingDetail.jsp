@@ -112,7 +112,7 @@
                 <div allowSort="false" field="partName" name="partName" width="150" headerAlign="center" header="配件名称"></div>
    				<div allowSort="false" field="partBrandId" width="100" headerAlign="center" header="品牌"></div>
    				<div allowSort="false" field="applyCarModel" name="applyCarModel" width="200" headerAlign="center" header="品牌车型"></div>
-   				<div allowSort="false" field="direction" width="100" headerAlign="center" header="方向"></div>
+   				<div allowSort="false" field="dc" width="100" headerAlign="center" header="方向"></div>
    				<div allowSort="false" field="operateDate" width="150" headerAlign="center" dateFormat ="yyyy-MM-dd HH:mm:ss" format="yyyy-MM-dd HH:mm:ss" header="操作日期"></div>
             </div>
         </div>

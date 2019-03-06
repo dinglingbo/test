@@ -4273,8 +4273,7 @@ function bindWechat(){
         }
     });
 }
-
-
+ 
 
 
 

@@ -93,8 +93,9 @@
 			<isNotEmpty prepend="and" property="name">  
                 (a.code like '%$name$%' or a.name like '%$name$%' or a.short_name like '%$name$%')
             </isNotEmpty>
-
-
+            <isNotEmpty prepend="and" property="orgid">  
+                (a.orgid = #orgid#)
+            </isNotEmpty>
         </dynamic> 			
 		ORDER BY
 			record_date DESC

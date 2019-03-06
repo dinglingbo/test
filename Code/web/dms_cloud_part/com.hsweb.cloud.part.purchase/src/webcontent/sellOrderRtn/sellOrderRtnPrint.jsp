@@ -283,7 +283,7 @@ hr {
 				<hr/>
 				<table id="ybk" width="100%">
 				  <tr>
-				    <td width="33.3%" id="guestFullName">供应商:</td>
+				    <td width="33.3%" id="guestFullName">客户:</td>
 				    <td width="33.3%"id="">联系人:</td>
 				    <td id="">联系方式:</td>
 				  </tr>
@@ -436,7 +436,7 @@ hr {
 	   		if(params.id){
 		   		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
 		   			var formParms =text.pjPchsOrderMainList[0];
-		       		$('#guestFullName').text("供应商:"+formParms.guestFullName);
+		       		$('#guestFullName').text("客户:"+formParms.guestFullName);
 		       		$('#createDate').text("订单日期："+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
 		       		$('#serviceId').text(formParms.serviceId);
 		     		if(billTypeIdHash){

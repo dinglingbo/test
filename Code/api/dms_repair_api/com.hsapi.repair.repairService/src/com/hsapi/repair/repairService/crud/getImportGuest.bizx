@@ -171,7 +171,7 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link28</targetConnections>
-    <location x="1164" y="217"/>
+    <location x="1135" y="217"/>
     <size height="28" width="28"/>
     <nodeLabel>assign11label</nodeLabel>
     <process:copy>
@@ -188,7 +188,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign11label" name="label" nodeType="label">
-    <location x="1159" y="253"/>
+    <location x="1130" y="253"/>
     <figSize height="17" width="39"/>
     <node>assign11</node>
   </nodes>

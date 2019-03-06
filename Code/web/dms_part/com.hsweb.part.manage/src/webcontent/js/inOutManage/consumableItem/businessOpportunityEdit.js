@@ -139,7 +139,7 @@ function openItemWindow(itemName,callback) {
         title: "项目选择", width: 1000, height: 560,
         onload: function () {
         	  var iframe = this.getIFrameEl();
-        	  iframe.contentWindow.setItemName(itemName);
+        	  iframe.contentWindow.setItemName(itemName,1);//调用查询项目，传1代表销售机会
         },
         ondestroy: function (action) {
         	carNoEl.focus();

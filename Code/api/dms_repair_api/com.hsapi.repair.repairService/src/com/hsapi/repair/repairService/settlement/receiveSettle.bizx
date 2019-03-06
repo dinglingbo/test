@@ -1447,6 +1447,7 @@
     </sourceConnections>
     <targetConnections>link99</targetConnections>
     <targetConnections>link100</targetConnections>
+    <targetConnections>link102</targetConnections>
     <location x="1840" y="206"/>
     <size height="28" width="28"/>
     <nodeLabel>assign23label</nodeLabel>
@@ -1590,22 +1591,22 @@
     <node>invokePojo9</node>
   </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess4" name="dfFormat" displayName="dfFormat" collapsed="false" type="subprocess">
-    <sourceConnections xsi:type="process:tLink" description="" id="link60" name="link60" displayName="连接线" isDefault="false" type="transition">
-      <sourceNode>subprocess4</sourceNode>
-      <targetNode>subprocess9</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="NOTNULLANDEMPTY">
-          <process:leftOperand type="query">type</process:leftOperand>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link100" name="link100" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess4</sourceNode>
       <targetNode>assign23</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link101" name="link101" displayName="连接线" type="transition">
+      <sourceNode>subprocess4</sourceNode>
+      <targetNode>assign43</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query">isSendMsg</process:leftOperand>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -2423,7 +2424,7 @@
       <targetNode>assign23</targetNode>
     </sourceConnections>
     <targetConnections>link60</targetConnections>
-    <location x="1667" y="131"/>
+    <location x="1770" y="137"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess9label</nodeLabel>
     <process:flow index="9" synchronization="true" transactionType="join" varArgs="false">
@@ -2440,15 +2441,46 @@
         <process:inputVariable id="8" name="contactorId" type="query" value="String" valueType="Primitive" pattern="reference">maintain/contactorId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess9label" name="label" nodeType="label">
-    <location x="1626" y="166"/>
+    <location x="1729" y="172"/>
     <figSize height="17" width="109"/>
     <node>subprocess9</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign43" name="赋值41" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" description="" id="link60" name="link60" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>assign43</sourceNode>
+      <targetNode>subprocess9</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">type</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link102" name="link102" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign43</sourceNode>
+      <targetNode>assign23</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link101</targetConnections>
+    <location x="1666" y="136"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign43label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign43label" name="label" nodeType="label">
+    <location x="1661" y="172"/>
+    <figSize height="17" width="39"/>
+    <node>assign43</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -2520,6 +2552,7 @@
     <process:input description="020101现金，020102刷卡，020104微信/支付宝" isArray="false" name="payType" primitiveType="String"/>
     <process:input description="" isArray="true" modelType="com.hsapi.repair.data.common.FisRpAccountDType" name="accountTypeList"/>
     <process:input description="" isArray="false" name="remark" primitiveType="String"/>
+    <process:input description="" isArray="false" name="isSendMsg" primitiveType="Int"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

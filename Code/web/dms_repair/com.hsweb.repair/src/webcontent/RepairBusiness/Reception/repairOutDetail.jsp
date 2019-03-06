@@ -404,7 +404,7 @@ allowCellEdit="true"  >
         </tr>
         <tr>
             <td>
-            <a class="nui-button" iconCls="" plain="true" onclick="chooseStock()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;直接领料</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="chooseStock()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;直接出库</a>
             </td>
         </tr>
     </table>

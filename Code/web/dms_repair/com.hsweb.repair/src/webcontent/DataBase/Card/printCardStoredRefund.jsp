@@ -310,12 +310,13 @@
         }
 
         function SetData(data){
-            var imgUrl = data.currCompLogoPath || "";
+            var params = data.p;
+            var imgUrl = params.currCompLogoPath || "";
             if(imgUrl && imgUrl != ""){
                $('#showImg').show();
                $("#showImg").attr("src",imgUrl);
             }
-            var params = data.p;
+            
             var guestData = data.guestData;
             var printGuest = data.printGuest;
             token1 =  params.token;

@@ -314,7 +314,7 @@
       <targetNode>assign0</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="180" y="135"/>
+    <location x="225" y="123"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
     <process:copy>
@@ -323,7 +323,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="178" y="171"/>
+    <location x="223" y="159"/>
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>

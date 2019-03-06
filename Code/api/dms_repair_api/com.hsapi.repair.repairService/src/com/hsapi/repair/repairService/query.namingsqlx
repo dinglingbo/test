@@ -1332,4 +1332,27 @@
 				where to_days(a.predict_come_date) = to_days(now()) and a.orgid = #orgid#
 			
 			</select>
+			
+				<!--获取客户openid-->
+			<select id="getConOpenId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+						select 
+					c.name,c.mobile,c.orgid,a.car_no carNo,a.car_model carModel,a.vin carVin,c.wechat_open_id wechatOpenId
+					FROM rpb_car a 
+					INNER JOIN rpb_car_extend b on a.id=b.car_id
+					LEFT JOIN rpb_contactor c on c.guest_id = a.guest_id
+					WHERE
+					a.orgid = #orgid#
+		            <isNotEmpty prepend="and" property="carNo">
+  							a.car_no = #carNo#
+            		</isNotEmpty>
+		            <isNotEmpty prepend="and" property="carId">
+  							a.id = #carId#
+            		</isNotEmpty>
+            		<isNotEmpty prepend="and" property="mobile">
+  							c.mobile = #mobile#
+            		</isNotEmpty>
+            		<isNotEmpty prepend="and" property="guestId">
+  							c.guest_id = #guestId#
+            		</isNotEmpty>
+			</select>
 </sqlMap>

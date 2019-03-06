@@ -247,7 +247,7 @@ hr {
         		<table id="" width="100%">
 				   <tr>
 	            	<td rowspan="2" style="width: 133px;">
-	                 	<img id='logImg' alt="" src="" height="60px" style="display:none">>
+	                 	<img id='logImg' alt="" src="" height="60px" style="display:none">
 	                </td>
 	                <td>
 	                    <div style="font-size: 18px; font-family: 黑体;padding-top: 5px;padding-left: 10px;">&nbsp;&nbsp;<span id="currOrgName"></span></div>
@@ -282,7 +282,7 @@ hr {
 				<hr/>
 				<table id="ybk" width="100%">
 				  <tr>
-				    <td width="33.3%" id="guestFullName">供应商:</td>
+				    <td width="33.3%" id="guestFullName">客户:</td>
 				    <td width="33.3%"id="">联系人:</td>
 				    <td id="">联系方式:</td>
 				  </tr>
@@ -434,7 +434,7 @@ hr {
 	   		if(params.id){
 		   		$.post(MainUrl+"?params/id="+params.id+"&params/auditSign="+params.auditSign+"&token="+token,{},function(text){
 		   			var formParms =text.pjSellOrderMainList[0];
-		       		$('#guestFullName').text("供应商:"+formParms.guestFullName);
+		       		$('#guestFullName').text("客户:"+formParms.guestFullName);
 		       		$('#createDate').text("订单日期："+format(formParms.createDate,"yyyy-MM-dd HH:mm"));
 		       		$('#serviceId').text(formParms.serviceId);
 		     		if(billTypeIdHash){

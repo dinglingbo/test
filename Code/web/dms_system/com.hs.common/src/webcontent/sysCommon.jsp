@@ -48,7 +48,7 @@
     String currentLanguage = request.getLocale().getLanguage().toLowerCase();
 %>
 <!-- 汽配需要 -->
-<meta http-equiv="refresh"content="13680"/>
+<!--<meta http-equiv="refresh"content="13680"/>-->
 <script src="<%=contextPath%>/common/nui/nui.js?v=1.0.0" type="text/javascript"></script> 
 
 <script src="<%=contextPath%>/common/nui/locale/zh_CN.js" type="text/javascript"></script>
@@ -367,21 +367,22 @@
 		if(window.parent!=window && ("function"==typeof window.parent.backToLogin)){//判断是否有父页面，有则调用父页面的方法		
 			window.parent.backToLogin();
 		}
-//	汽配
-		else{
-		//	debugger;
-			showMsg("登录超时，正在跳转！", "E");
-            window.top.location.href = sysDomain + "/coframe/auth/loginCloud/login.jsp";			
-		}
 		//汽修 
-// 		else{
-// 		//	debugger;
-// 			showMsg("登录超时，正在跳转！", "E");
-//             window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
-// 		}
+		else{
+			debugger;
+ 			showMsg("登录超时，正在跳转！", "E");
+             window.top.location.href = sysDomain + "/coframe/auth/login/login.jsp";			
+ 		}
+//	汽配
+//		 else{
+//			debugger;
+//			showMsg("登录超时，正在跳转！", "E");
+//           window.top.location.href = sysDomain + "/coframe/auth/loginCloud/login.jsp";			
+//		} 
+		
+ 		
 	}
 
-		
 </script>
 <script src="<%=webPath + contextPath%>/common/js/sysCommon.js?v=1.0.4" type="text/javascript"></script>
 <script src="<%=webPath + contextPath%>/common/js/constantDef.js?v=1.1" type="text/javascript"></script>

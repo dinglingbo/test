@@ -102,8 +102,11 @@
 				<span class="separator"></span>
                   <a class="nui-button" iconCls="" plain="true" onclick="onOk">
                       <span class="fa fa-check fa-lg"></span>&nbsp;领料</a>
-                  <a class="nui-button" iconCls="" plain="true" onclick="CloseWindow('cancle')">
-                      <span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+                  <a class="nui-button" iconCls="" plain="true" onclick="positions">
+                      <span class="fa fa-edit fa-lg"></span>&nbsp;修改仓位</a>
+                      
+<!--                   <a class="nui-button" iconCls="" plain="true" onclick="CloseWindow('cancle')">
+                      <span class="fa fa-close fa-lg"></span>&nbsp;取消</a> -->
                   </td>
               </tr>
           </table>
@@ -178,6 +181,12 @@
     var billTypeHash = {};
     var sEnterDateEl=null;
     var eEnterDateEl=null;
+    var par;
+    var type;
+    var id;
+    var mRow;
+    var srow;
+    var pickType;
 	nui.get('remark').focus();
 	$(document).ready(function(v){
 		sEnterDateEl = nui.get('sEnterDate');
@@ -194,6 +203,13 @@
 
     }
     function SetData(par,type,id,mRow,srow,pickType){
+    	//用于修改仓位成功返回刷新
+    	par = par;
+    	type = type;
+    	id = id;
+    	mRow = mRow;
+    	srow = srow;
+    	pickType = pickType;
         //id= 9522; 
         onSearch(par,type);
         mrecordId = id;
@@ -589,6 +605,30 @@ function gridData(){//获取汇总的数据
     function CloseWindow(action) {
         if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
         else window.close();
+    }
+    
+    function positions(){
+    	var row = mainGrid.getSelected();
+    	if(row){
+		    	nui.open({
+				url: webBaseUrl + "com.hsweb.repair.repoart.editPositions.flow?token="+token,
+				title:"快速修改仓位",
+				height:"200px",
+				width:"300px",
+				onload:function(){
+					var iframe = this.getIFrameEl();
+					iframe.contentWindow.setData(row);
+				},
+				ondestroy:function(action){ 
+					if (action == "saveSuccess") {
+							onSearch(row.partId,"Id");
+						}
+		        }
+		
+		    });
+    	}else{
+    		showMsg('请选择一条记录!','W');
+    	}
     }
 </script>
 

@@ -1696,6 +1696,10 @@
       <process:to type="query">message</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="expression" pattern="reference">message==null?&quot;&quot;:message</process:from>
+      <process:to type="query">message</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">总计</process:from>
       <process:to type="query">msgt</process:to>
     </process:copy>
@@ -1788,6 +1792,10 @@
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">message+msgt</process:from>
+      <process:to type="query">message</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">message==null?&quot;&quot;:message</process:from>
       <process:to type="query">message</process:to>
     </process:copy>
     <process:copy>
@@ -1943,6 +1951,10 @@
       <process:to type="query">message</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="expression" pattern="reference">message==null?&quot;&quot;:message</process:from>
+      <process:to type="query">message</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">总计</process:from>
       <process:to type="query">msgt</process:to>
     </process:copy>
@@ -2035,6 +2047,10 @@
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">message+msgt</process:from>
+      <process:to type="query">message</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">message==null?&quot;&quot;:message</process:from>
       <process:to type="query">message</process:to>
     </process:copy>
     <process:copy>
@@ -2190,6 +2206,10 @@
       <process:to type="query">message</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="expression" pattern="reference">message==null?&quot;&quot;:message</process:from>
+      <process:to type="query">message</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">总计</process:from>
       <process:to type="query">msgt</process:to>
     </process:copy>
@@ -2282,6 +2302,10 @@
     </process:copy>
     <process:copy>
       <process:from type="expression" pattern="reference">message+msgt</process:from>
+      <process:to type="query">message</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">message==null?&quot;&quot;:message</process:from>
       <process:to type="query">message</process:to>
     </process:copy>
     <process:copy>

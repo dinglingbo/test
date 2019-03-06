@@ -83,12 +83,8 @@
                        emptyText="请选择供应商..."
                        onbuttonclick="selectSupplier('searchGuestId')" selectOnFocus="true" />
 
-
-                <a class="nui-button" plain="true" onclick="advancedSearch()">更多</a> -->
                 <a class="nui-button" iconCls="" plain="true" onclick="onSearch()"><span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
-                <span class="separator"></span>
-                <a class="nui-button" iconCls="" plain="true" onclick="add()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
-                <a class="nui-button" iconCls="" plain="true" onclick="edit()" id="addBtn"><span class="fa fa-edit fa-lg"></span>&nbsp;修改</a>
+
 
             </td>
         </tr>
@@ -118,12 +114,11 @@
                 <div property="columns">
                 	<div field="billStatusId" width="90" name = "billStatusId" headerAlign="center" header="状态"></div>
                     <div allowSort="true" field="serviceId" width="160" summaryType="count" headerAlign="center" header="订单单号"></div>
-                    <div field="guestFullName" name="guestFullName" width="220" headerAlign="center" header="供应商"></div>
-                    <div field="orderMan" width="90" name = "orderMan" headerAlign="center" header="采购员"></div>
-                    <div allowSort="true" field="billTypeId"  name="billTypeId" width="90" headerAlign="center" header="票据类型"></div>
+                    <div field="guestFullName" name="guestFullName" width="220" headerAlign="center" header="客户"></div>
+                    <div field="orderMan" width="90" name = "orderMan" headerAlign="center" header="发货员"></div>
+                    <div allowSort="true" field="payType"  name="billTypeId" width="90" headerAlign="center" header="付款方式"></div>
                     <div allowSort="true" field="settleTypeId" name="settleTypeId" width="90" headerAlign="center" header="结算方式"></div>
                     <div allowSort="true" field="createDate" width="130" headerAlign="center" header="订货日期" dateFormat="yyyy-MM-dd HH:mm"></div>
-                    <div allowSort="true" name="storeId" field="storeId" width="120" headerAlign="center" header="仓库"></div>
                 </div>
             </div>
 
@@ -137,9 +132,7 @@
     
             <div header="其他" headerAlign="center">
                 <div property="columns">
-                	<!-- <div allowSort="true" datatype="float" summaryType="sum" field="trueEnterQty" width="60" headerAlign="center" header="已入库数量"></div>
-                    <div allowSort="true" datatype="float" summaryType="sum" field="notEnterQty" width="60" headerAlign="center" header="未入库数量"></div>
-                    <div allowSort="true" datatype="float" summaryType="sum" field="adjustQty" width="60" headerAlign="center" header="调整数量"></div> -->
+
                     <div allowSort="true" field="detailRemark" width="80" headerAlign="center" header="备注"></div>
                     <div field="creator" width="90" name="creator" headerAlign="center" header="创建人"></div>
                     <div allowSort="true" field="createDate" width="130" headerAlign="center" header="创建日期" dateFormat="yyyy-MM-dd HH:mm" ></div>

@@ -92,6 +92,17 @@
 				store_id = #storeId#					
 		</isNotNull>
 	</update>
+	<update id="updatePjPartStoreStockShelf" parameterClass="java.util.HashMap" >
+		update pj_part_store_stock 
+			set shelf = #shelf#
+			where outable_qty > 0 
+		<isNotNull prepend = "and" property = "partId">
+				part_id = #partId#					
+		</isNotNull>
+		<isNotNull prepend = "and" property = "storeId">
+				store_id = #storeId#					
+		</isNotNull>
+	</update>
 	
 	<update id="updateSellRtnOriginId" parameterClass="java.util.HashMap" >
 		update pj_enter_detail_chk set origin_id = id 

@@ -410,6 +410,7 @@ function setInitData(params){
                         billForm.setData(data);
                         if(nui.get('partAuditSign').value==0){
                         	nui.get('partAuditSign').setValue("未审核");
+                        	$('#audit').text("配件审核");
                         }
                         else{
                         	nui.get('partAuditSign').setValue("已审核");

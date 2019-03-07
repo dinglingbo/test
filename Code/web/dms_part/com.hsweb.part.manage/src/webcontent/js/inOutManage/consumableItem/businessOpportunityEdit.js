@@ -55,9 +55,9 @@ function selectCustomer() {
         main.carSeriesId = v.carSeriesId;
         main.contactorId = v.contactorId;
         main.guestMobile = v.mobile;
-        var params = {};
-        params.data = main;
-        SetData(params);
+
+
+        SetData(main);
     });
 }
 

@@ -176,6 +176,11 @@ $(document).ready(function(v)
             onSearch();
         }
     });
+    $("#search-spec").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            onSearch();
+        }
+    });
     
 	tempGrid.on("cellclick",function(e){ 
 		var field=e.field;
@@ -263,6 +268,7 @@ function getSearchParams()
     params.name = (params.name||"").replace(/\s+/g, "");
     params.applyCarModel = (params.applyCarModel||"").replace(/\s+/g, "");
     params.namePy = (params.namePy||"").replace(/\s+/g, "");
+    params.spec = (params.spec||"").replace(/\s+/g, "");
     return params;
 }
 function onSearch()

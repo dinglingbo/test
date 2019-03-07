@@ -176,6 +176,11 @@
 
         function sendWeChat() {
             var data = form.getData(true);
+            if(!data.wechatOpenId){
+                showMsg("该用户没有关注车道服务号","E");
+                return;
+            }
+
             var p={
                 first:data.firstContent,
                 keyword1:data.carVin,
@@ -198,7 +203,6 @@
                     saveRecord(mainData);
                 }
             })
-            
         }
 
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="repairAudit.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
   <nodes xsi:type="model:Note" id="node1" name="注释1" displayName="注释" nodeType="note" type="note" content="更新预结算状态bala_audit_sign = 1，" title="Administrator&#x9;18-8-11 下午2:56">
-    <location x="261" y="360"/>
+    <location x="427" y="359"/>
     <size height="100" width="451"/>
   </nodes>
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="草稿是否可以直接完工，还是要施工状态下才可以完工，是否需要全部领料完才可以完工&#xD;&#xA;&#xD;&#xA;确认维修后才可以领工&#xD;&#xA;&#xD;&#xA;完工后，更新套餐对应的工时和配件的业务类型，更新工时对应的配件的业务类型&#xD;&#xA;完工后，如果存在提成来源值为null的，根据业务类型完善通用提成//20181011&#xD;&#xA;不考虑返工后修改业务类型，如果存在业务类型修改，应先删除再添加，这样提成值才不会有问题&#xD;&#xA;&#xD;&#xA;目前其它收入和费用支出只能在完工前登记,完工时汇总other_amt 和 other_cost_amt&#xD;&#xA;转预结算或是直接结算收款时,如果有费用支出,需要生成应付单&#xD;&#xA;&#xD;&#xA;更新未完工的工时为已完工&#xD;&#xA;&#xD;&#xA;20190114  指定业务类型需要判断配件是否审核 part_audit_sign&#xD;&#xA;已完工不能领料，已审核不能领料，已完工不能反审核" title="Administrator&#x9;18-8-7 下午7:47">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="草稿是否可以直接完工，还是要施工状态下才可以完工，是否需要全部领料完才可以完工&#xD;&#xA;&#xD;&#xA;确认维修后才可以领工&#xD;&#xA;&#xD;&#xA;完工后，更新套餐对应的工时和配件的业务类型，更新工时对应的配件的业务类型&#xD;&#xA;完工后，如果存在提成来源值为null的，根据业务类型完善通用提成//20181011&#xD;&#xA;不考虑返工后修改业务类型，如果存在业务类型修改，应先删除再添加，这样提成值才不会有问题&#xD;&#xA;&#xD;&#xA;目前其它收入和费用支出只能在完工前登记,完工时汇总other_amt 和 other_cost_amt&#xD;&#xA;转预结算或是直接结算收款时,如果有费用支出,需要生成应付单&#xD;&#xA;&#xD;&#xA;更新未完工的工时为已完工&#xD;&#xA;&#xD;&#xA;20190114  指定业务类型需要判断配件是否审核 part_audit_sign&#xD;&#xA;已完工不能领料，已审核不能领料，已完工不能反审核&#xD;&#xA;&#xD;&#xA;2019/3/6只要审核过得单据，不领料也能完工" title="Administrator&#x9;18-8-7 下午7:47">
     <location x="-4" y="-255"/>
-    <size height="301" width="571"/>
+    <size height="316" width="571"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link5" name="link5" displayName="连接线" isDefault="true" type="transition">
@@ -28,7 +28,7 @@
     <targetConnections>link22</targetConnections>
     <targetConnections>link30</targetConnections>
     <targetConnections>link36</targetConnections>
-    <location x="13" y="255"/>
+    <location x="11" y="343"/>
     <size height="28" width="28"/>
     <nodeLabel>end1label</nodeLabel>
     <process:returns>
@@ -38,7 +38,7 @@
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end1label" name="label" nodeType="label">
-    <location x="11" y="291"/>
+    <location x="9" y="379"/>
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
@@ -653,6 +653,7 @@
     <sourceConnections xsi:type="process:tLink" id="link28" name="link28" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess5</sourceNode>
       <targetNode>assign9</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link29" name="link29" displayName="连接线" type="transition">
       <sourceNode>subprocess5</sourceNode>
@@ -665,7 +666,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link27</targetConnections>
-    <location x="173" y="191"/>
+    <location x="173" y="222"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess5label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -680,7 +681,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess5label" name="label" nodeType="label">
-    <location x="147" y="226"/>
+    <location x="147" y="257"/>
     <figSize height="17" width="78"/>
     <node>subprocess5</node>
   </nodes>
@@ -690,7 +691,7 @@
       <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link29</targetConnections>
-    <location x="172" y="255"/>
+    <location x="173" y="270"/>
     <size height="28" width="28"/>
     <nodeLabel>assign8label</nodeLabel>
     <process:copy>
@@ -703,7 +704,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign8label" name="label" nodeType="label">
-    <location x="170" y="291"/>
+    <location x="171" y="306"/>
     <figSize height="17" width="32"/>
     <node>assign8</node>
   </nodes>
@@ -782,7 +783,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link37</targetConnections>
-    <location x="269" y="255"/>
+    <location x="270" y="281"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess6label</nodeLabel>
     <process:flow index="2" synchronization="true" transactionType="join" varArgs="false">
@@ -798,7 +799,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess6label" name="label" nodeType="label">
-    <location x="239" y="290"/>
+    <location x="240" y="316"/>
     <figSize height="17" width="87"/>
     <node>subprocess6</node>
   </nodes>
@@ -808,7 +809,7 @@
       <targetNode>end1</targetNode>
     </sourceConnections>
     <targetConnections>link38</targetConnections>
-    <location x="268" y="307"/>
+    <location x="269" y="332"/>
     <size height="28" width="28"/>
     <nodeLabel>assign10label</nodeLabel>
     <process:copy>
@@ -821,7 +822,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign10label" name="label" nodeType="label">
-    <location x="263" y="343"/>
+    <location x="264" y="368"/>
     <figSize height="17" width="39"/>
     <node>assign10</node>
   </nodes>

@@ -9,7 +9,7 @@
 -->
 <head>
 <title>配件管理</title>
-<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.35"></script>
+<script src="<%=webPath + contextPath%>/commonPart/js/partSelect.js?v=1.0.36"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -35,6 +35,8 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
                     <input class="nui-textbox" width="100" id="search-applyCarModel" name="applyCarModel"/>
                     <label style="font-family:Verdana;">拼音：</label>
                     <input class="nui-textbox" width="100" id="search-namePy" name="namePy"/>
+                    <label style="font-family:Verdana;">规格：</label>
+                    <input class="nui-textbox" width="100" id="search-spec" name="spec"/>
                     <label style="font-family:Verdana;">品牌：</label>
                      <input id="partBrandId"
                            name="partBrandId"

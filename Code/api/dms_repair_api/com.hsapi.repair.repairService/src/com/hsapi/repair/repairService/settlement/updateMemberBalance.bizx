@@ -1070,7 +1070,9 @@
     <figSize height="17" width="32"/>
     <node>end1</node>
   </nodes>
-  <topRuler/>
+  <topRuler>
+    <guides position="1297" horizontal="true"/>
+  </topRuler>
   <leftRuler/>
   <process:info author="Administrator" createTime="2018-08-13 00:27:04" date="2018-08-12Z" description="" name="updateMemberBalance" version="7.0.0.0"/>
   <process:variables>

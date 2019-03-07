@@ -336,7 +336,7 @@ allowSortColumn="true" ondrawsummarycell="onDrawSummaryCellItem" allowCellEdit="
 </div>
 
 <div class="pay_list">
-						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">其它收入</span></h2>
+						<h2><span style="font-size: 16;font-weight: bold;    margin-bottom: 10px;">其它费用收入</span></h2>
 						<div class="pay_tcbk zffs" style="padding: 0 0 18px 0;">
 							<div id="dataform">
 								<div class="skbox2" id="div0" name="div0">
@@ -365,7 +365,7 @@ allowSortColumn="true" ondrawsummarycell="onDrawSummaryCellItem" allowCellEdit="
 
 					
 					<div class="pay_list">
-						<h2><span style="font-size: 10;    margin-bottom: 10px;">费用支出</span></h2>
+						<h2><span style="font-size: 10;    margin-bottom: 10px;">其它费用支出</span></h2>
 						<div class="pay_tcbk zffs" style="padding: 0 0 14px 0;">
 							<div id="dataform">
 								<div class="skbox2" id="div0" name="div0">

@@ -153,7 +153,7 @@ function setData(params){
 				}
 				str='<tr>'+str+'</tr>';
 			}else{
-				str='<tr><td align="center" ><spand style="color: #ff7800;">无其他收入</spand></td></tr>';
+				str='<tr><td align="center" ><spand style="color: #ff7800;">无其它费用收入</spand></td></tr>';
 			}
 
 			document.getElementById('paytype0').innerHTML = str;

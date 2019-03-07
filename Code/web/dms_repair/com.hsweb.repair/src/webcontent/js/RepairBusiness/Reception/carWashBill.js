@@ -1142,9 +1142,9 @@ function saveMaintain(callback,unmaskcall){
     if (data.planFinishDate) {
 		data.planFinishDate = format(data.planFinishDate, 'yyyy-MM-dd HH:mm:ss');
 	}
-    if(data.id) {
+    /*if(data.id) {
     	delete data.enterDate;
-    }
+    }*/
     data.billTypeId = 2;
     if(!data.enterKilometers){
     	data.enterKilometers = lastComeKilometers;
@@ -1164,7 +1164,7 @@ svrSaveMaintain(params, function(text){
      	 }*/
     	 fserviceId = main.id||0;
          var status = main.status;
-    	 var oldData = billForm.getData();
+    	 var oldData = billForm.getData(true);
     	 oldData.id = fserviceId;
      	 billForm.setData(oldData);
          var params1 = {
@@ -1231,7 +1231,7 @@ svrSaveMaintain(params, function(text){
     // });
 }
 function unfinish(){
-    var data = billForm.getData();
+    var data = billForm.getData(true);
     if(!data.id){
         showMsg("请先保存工单!","W");
         return;
@@ -1262,7 +1262,7 @@ function unfinish(){
             var errMsg = data.errMsg||"";
             if(errCode == 'S'){
                 var maintain = data.main||{};
-                var olddata = billForm.getData();
+                var olddata = billForm.getData(true);
                 olddata.status = 1;
                 billForm.setData([]);
                 billForm.setData(olddata);
@@ -1298,7 +1298,7 @@ function unfinish(){
 }
 var loadMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function loadMaintain(callback,unmaskcall){
-    var data = billForm.getData();
+    var data = billForm.getData(true);
     for ( var key in requiredField) {
       if (!data[key] || $.trim(data[key]).length == 0) {
         unmaskcall && unmaskcall();
@@ -1335,7 +1335,7 @@ nui.ajax({
     });
 }
 function addPrdt(data){
-    var main = billForm.getData();
+    var main = billForm.getData(true);
     if(!main.id){
        showMsg("请先保存工单!","E");
        return;
@@ -1515,7 +1515,7 @@ function addPrdt(data){
     }
 }
 function checkPrdt(data){
-    var main = billForm.getData();
+    var main = billForm.getData(true);
     if(!main.id){
         showMsg("请先保存工单!","W");
         return;
@@ -4273,8 +4273,7 @@ function bindWechat(){
         }
     });
 }
-
-
+ 
 
 
 

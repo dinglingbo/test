@@ -472,7 +472,7 @@ function order(serviceId){
 				}
 				str='<tr>'+str+'</tr>';
 			}else{
-				str='<tr><td align="center" ><spand style="color: #ff7800;">无其他收入</spand></td></tr>';
+				str='<tr><td align="center" ><spand style="color: #ff7800;">无其它费用收入</spand></td></tr>';
 			}
 			for(var i = 0;i<srnum.length;i++){
 				amt=amt+parseFloat(srnum[i].amt);
@@ -522,7 +522,7 @@ function order(serviceId){
 				}
 				str='<tr>'+str+'</tr>';
 			}else{
-				str='<tr><td align="center" ><spand style="color: #ff7800;">无费用支出</spand></td></tr>';
+				str='<tr><td align="center" ><spand style="color: #ff7800;">无其它费用支出</spand></td></tr>';
 			}
 			
 /*			for(var i = 0;i<srnum.length;i++){

@@ -99,6 +99,9 @@
             <isNotEmpty prepend="and" property="name">  
                 (name like '%$name$%' or full_name like '%$name$%')
             </isNotEmpty>
+    		<isNotEmpty prepend="and" property="spec">  
+                (a.spec like '%$spec$%')
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="applyCarModel">  
                 (apply_car_model like '%$applyCarModel$' or apply_car_model like '$applyCarModel$%')
             </isNotEmpty>

@@ -1355,4 +1355,14 @@
   							c.guest_id = #guestId#
             		</isNotEmpty>
 			</select>
+			
+			
+							<!--获取客户在本店的可用金额  储值卡-->
+			<select id="getGuestStoredCardAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+				SELECT
+						sum(a.bala_amt) as amt
+				FROM
+					rps_stored_record AS a
+					WHERE a.is_settle = 1 and a.guest_id = #guestId# and a.orgid = #orgid#
+			</select>
 </sqlMap>

@@ -1335,7 +1335,7 @@ var requiredField = {
 };
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function saveMaintain(callback,unmaskcall){
-    var data = billForm.getData();
+    var data = billForm.getData(true);
     var status = data.status;
     var serviceId = data.id;
     var desData = describeForm.getData(true);
@@ -1353,9 +1353,9 @@ function saveMaintain(callback,unmaskcall){
 			return;
 		}
     }
-    if(data.id) {
+    /*if(data.id) {
     	delete data.enterDate;
-    }
+    }*/
     data.billTypeId = 0;
     data.lastEnterKilometers = $("#lastComeKilometers").text() || 0;
     var params = {

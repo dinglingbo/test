@@ -120,7 +120,7 @@ $(document).ready(function ()
             //包含字母
             var reg = /[a-z]/i;
             if(reg.test(value)){
-                params.chis = value;
+                params.letters = value;
 
                 data.params = params;
                 e.data =data;
@@ -319,7 +319,7 @@ $(document).ready(function ()
         }
     });
 
-    document.getElementById("search_key$text").setAttribute("placeholder","请输入...(客户名称/手机号)");
+    document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号)");
     // document.onmousedown=function(event){ 
     //     var i = 0;
     // };
@@ -341,7 +341,7 @@ $(document).ready(function ()
     doSearchItem();
 });
 function setGuest(item){
-	//var carNo = item.carNo||"";
+	var carNo = item.carNo||"";
     var tel = item.guestMobile||"";
     var guestName = item.guestFullName||"";
     var carVin = item.vin||"";
@@ -349,7 +349,7 @@ function setGuest(item){
 	 var sk = document.getElementById("search_key");
      sk.style.display = "none";
      searchNameEl.setVisible(true);
-            
+     carNo = carNo + "/";       
     if(tel){
         tel = "/"+tel;
     }else{
@@ -358,7 +358,7 @@ function setGuest(item){
     if(guestName){
         guestName = guestName;
     }
-    var t = guestName  + tel ;
+    var t = carNo + guestName  + tel ;
     searchNameEl.setValue(t);
     //searchNameEl.setEnabled(false);
 
@@ -472,7 +472,7 @@ function doSetMainInfo(car){
     maintain.guestId = car.guestId;
     maintain.carModel = car.carModel;
     maintain.billTypeId = 6;
-    maintain.serviceTypeId = 3;
+    maintain.serviceTypeId = 6;
     maintain.mtAdvisorId = currEmpId;
     maintain.mtAdvisor = currUserName;
     maintain.enterDate = now;
@@ -598,15 +598,16 @@ function setInitData(params){
                         var tel = guest.mobile||"";
                         var guestName = guest.fullName||"";
                         var carVin = data.carVin||"";
+                        carNo = carNo + "/";       
                         if(tel){
                             tel = "/"+tel;
                         }else{
-                        	tel =  "/"+ "未填写号码";
+                            tel =  "/"+ "未填写号码";
                         }
                         if(guestName){
                             guestName = guestName;
                         }
-                        var t = guestName  + tel ;
+                        var t = carNo + guestName  + tel ;
 
                         var sk = document.getElementById("search_key");
                         sk.style.display = "none";
@@ -711,7 +712,7 @@ function add(){
     sellForm.setData(data);
     nui.get("mtAdvisorId").setValue(currEmpId);
     nui.get("mtAdvisor").setValue(currUserName);
-    nui.get("serviceTypeId").setValue(1);
+    nui.get("serviceTypeId").setValue(6);
     nui.get("enterDate").setValue(now);
 
     fguestId = 0;
@@ -845,15 +846,16 @@ function setFrom(data){
                 var tel = guest.mobile||"";
                 var guestName = guest.fullName||"";
                 var carVin = data.carVin||"";
+                carNo = carNo + "/";       
                 if(tel){
                     tel = "/"+tel;
                 }else{
-                	tel =  "/"+"未填写号码";
+                    tel =  "/"+ "未填写号码";
                 }
                 if(guestName){
                     guestName = guestName;
                 }
-                var t = guestName  + tel ;
+                var t = carNo + guestName  + tel ;
                 searchNameEl.setValue(t);
                 searchNameEl.setEnabled(false);
 
@@ -960,19 +962,16 @@ function saveNoshowMsg(callback,type){
                     var tel = guest.mobile||"";
                     var guestName = guest.fullName||"";
                     var carVin = data.carVin||"";
+                    carNo = carNo + "/";       
                     if(tel){
                         tel = "/"+tel;
                     }else{
-                    	tel = "未填写号码";
+                        tel =  "/"+ "未填写号码";
                     }
                     if(guestName){
                         guestName = guestName;
                     }
-                    if(carVin){
-                        carVin = "/"+carVin;
-                    }
-                   // var t = carNo + tel + guestName + carVin;
-                    var t = guestName + tel;
+                    var t = carNo + guestName  + tel ;
                     searchNameEl.setValue(t);
                     searchNameEl.setEnabled(false);
 
@@ -3942,103 +3941,124 @@ function changeBoxService(e){//业务类型切换触发
 }
 
 function warehousing(){
-		nui.get("msg").setValue("3");
-		var data = billForm.getData(true);
-		if(!data.id){
-			save();
-		}else{
-			if(data.status != 2 ){
-	        	 nui.mask({
-	        	        el: document.body,
-	        	        cls: 'mini-mask-loading',
-	        	        html: '数据加载中...'
-	        	 });
-	        	 saveMaintain(function(data){
-		                saveItem(function(){
-		                	setFrom(data);
-		                });
-		            },function(){
-		            	var params = {
-			        	        data:{
-			        	            id:data.id||0,
-			        	            "drawOutReport":""
-			        	        }
-		        	    };
-		        	    svrRepairAudit(params, function(data1){
-		        	        data1 = data1||{};
-		        	        var errCode = data1.errCode||"";
-		        	        var errMsg = data1.errMsg||"操作失败,请重新操作";
-		        	        if(errCode == 'S'){
-		        	        	//成功之后，重新设置表单值*******************
-		                        var olddata = billForm.getData();
-		                        olddata.status = 2;
-		                        billForm.setData([]);
-		                        billForm.setData(olddata);
-		                        changeBoxService(1);
-		                        nui.get("contactorName").setText(olddata.contactorName);
-		                        var status = 2;
-		                        var isSettle = olddata.isSettle||0;
-		                        doSetStyle(status, isSettle);
-		                        //重新加载界面
-		                        var p1 = {
-		                        }
-		                        var p2 = {
-		                            interType: "item",
-		                            data:{
-		                                serviceId: data.id||0
-		                            }
-		                        }
-		                        var p3 = {
-		                            interType: "part",
-		                            data:{
-		                                serviceId: data.id||0
-		                            }
-		                        }
-		                        loadDetail(p1, p2, p3,status);
-		                        settlement(data.id);
-		                        nui.unmask(document.body);
-		        	        }else{
-		        	        	nui.unmask(document.body)
-		        	        	showMsg(errMsg,"E");
-		        	        }
-		        	    }, function(){
-		        	    });
-	            });
-	        }else{
-	        	settlement(data.id);
-	        }
-			 /*var item={};
-		    item.id = "9001";
-		    item.text = "入库单";
-		    item.url = webPath + contextPath + "/com.hsweb.part.manage.purchaseOrderEnter.flow";
-		    item.iconCls = "fa fa-file-text";
-		    //window.parent.activeTab(item);
-		    var params = {};
-		    params.serviceId =formData.id;
-		    window.parent.activeTabAndInit(item,params);*/
-		}
+	if(nui.get("isSettle").value == 1){
+		settlement(1);
+	}else{
+		nui.confirm("是否生成成品入库,订单将会改为结算状态", "温馨提示", function(action) {
+			if(action == "ok"){
+				nui.get("msg").setValue("3");
+				var data = billForm.getData(true);
+				if(!data.id){
+					save();
+				}else{
+					nui.mask({
+		    	        el: document.body,
+		    	        cls: 'mini-mask-loading',
+		    	        html: '数据加载中...'
+		    	   });
+					if(data.status != 2 ){
+			        	 saveMaintain(function(data){
+				                saveItem(function(){
+				                	setFrom(data);
+				                });
+				            },function(){
+				            	var params = {
+					        	        data:{
+					        	            id:data.id||0,
+					        	            "drawOutReport":""
+					        	        }
+				        	    };
+				        	    svrRepairAudit(params, function(data1){
+				        	        data1 = data1||{};
+				        	        var errCode = data1.errCode||"";
+				        	        var errMsg = data1.errMsg||"操作失败,请重新操作";
+				        	        if(errCode == 'S'){
+				        	        	//成功之后，重新设置表单值*******************
+				                        var olddata = billForm.getData();
+				                        olddata.status = 2;
+				                        billForm.setData([]);
+				                        billForm.setData(olddata);
+				                        changeBoxService(1);
+				                        nui.get("contactorName").setText(olddata.contactorName);
+				                        var status = 2;
+				                        var isSettle = olddata.isSettle||0;
+				                        doSetStyle(status, isSettle);
+				                        //重新加载界面
+				                        var p1 = {
+				                        }
+				                        var p2 = {
+				                            interType: "item",
+				                            data:{
+				                                serviceId: data.id||0
+				                            }
+				                        }
+				                        var p3 = {
+				                            interType: "part",
+				                            data:{
+				                                serviceId: data.id||0
+				                            }
+				                        }
+				                        loadDetail(p1, p2, p3,status);
+				                        settlement(data.id);
+				                        nui.unmask(document.body);
+				        	        }else{
+				        	        	showMsg(errMsg,"E");
+				        	        }
+				        	    }, function(){
+				        	    });
+			            });
+			        }else{
+			        	settlement(data.id);
+			        }
+					nui.unmask(document.body)
+				}
+			}
+		});
+	}
 }
 
 function settlement(serviceId){
-	 nui.ajax({
-         url: baseUrl+"com.hsapi.repair.repairService.settlement.receiveSettleBX.biz.ext",
-         type: "post",
-         cache: false,
-         async: false,
-         data: {
-            serviceId : serviceId
-         },
-         success: function(text) {
-         	if(text.errCode == "S"){
-         		showMsg(text.errMsg,"S");
-         		doSetStyle(0,1);
-         	}else{
-         		showMsg(text.errMsg,"W");
-         	}
-         }
-	});
+	if(nui.get("isSettle").value == 1){
+		openWareHousing();
+	}else{
+		nui.ajax({
+	         url: baseUrl+"com.hsapi.repair.repairService.settlement.receiveSettleBX.biz.ext",
+	         type: "post",
+	         cache: false,
+	         async: false,
+	         data: {
+	            serviceId : serviceId
+	         },
+	         success: function(text) {
+	         	if(text.errCode == "S"){
+	         		showMsg(text.errMsg,"S");
+	         		nui.get("isSettle").setValue(1);
+	         		doSetStyle(0,1);
+	         		openWareHousing();
+	         	}else{
+	         		showMsg(text.errMsg,"W");
+	         	}
+	         }
+		});
+	}
 }
 
+function openWareHousing(){
+	nui.open({
+        url: webPath + contextPath+"/com.hsweb.bx.warehousing.flow?token="+token,
+        title: "成品入库",
+        width: 750, height: 570,
+        onload: function () {
+            var iframe = this.getIFrameEl();
+            var formData = billForm.getData();
+            var totalAmt = nui.get("totalAmt").value;
+            var serviceCode = $("#servieIdEl").html();
+           iframe.contentWindow.setData(formData.id,serviceCode,totalAmt);
+        },
+        ondestroy: function (action){
+        }
+    });
+}
 function bxOnPrint(e){
 	var formData = billForm.getData();
 	var print = null;
@@ -4065,7 +4085,7 @@ function bxOnPrint(e){
 		if(e == 4){
 			print = 4;
 			if(formData.boxServiceTypeId != 2){
-				showmsg("业务类型不为厂内翻新，无法进行打印","W");
+				showMsg("业务类型不为厂内翻新，无法进行打印","W");
 				return;
 			}
 		}

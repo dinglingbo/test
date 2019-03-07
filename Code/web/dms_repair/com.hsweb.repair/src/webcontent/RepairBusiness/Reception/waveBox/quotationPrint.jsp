@@ -497,10 +497,10 @@
 					    				tds.replace("[orderIndex]",orderIndex)
 					    				.replace("[prdtName]",prdtName)
 					    				.replace("[qty]",data[i].qty || 1)
-					    				.replace("[uintPrice]", "")
-					    				.replace("[amt]","")
-					    				.replace("[rate]","")
-					    				.replace("[subtotal]",""));
+					    				.replace("[uintPrice]",data[i].amt)
+					    				.replace("[amt]",data[i].amt)
+					    				.replace("[rate]",rate)
+					    				.replace("[subtotal]",data[i].subtotal));
 					    			tBody.append(tr); 
 	    					}
 	    				}

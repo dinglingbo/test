@@ -21,6 +21,7 @@ a.chooseClass:hover{ background:#f00000;color:#fff;text-decoration:none;}
 <body>
     <input class="nui-combobox" visible="false" id="unit"/>
     <input class="nui-combobox" visible="false" id="abcType"/>
+    <input class="nui-combobox" visible="false" id="bxMsg"/>
 <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
 	<input class="nui-textbox" id="state"visible="false"/>
     <div class="form" id="queryForm">

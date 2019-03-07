@@ -197,7 +197,7 @@
 		inner join rps_settlement b on a.id = b.service_id
 		inner join rpb_car c on a.car_id = c.id
 		where a.is_settle = 1 
-		and a.bill_type_id in (0,2,4)
+		and a.bill_type_id in (0,2,4,6)
 		
 		<dynamic>
 			<isNotEmpty prepend="and" property="orgid">

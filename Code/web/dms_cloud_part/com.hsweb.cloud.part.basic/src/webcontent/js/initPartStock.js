@@ -621,12 +621,12 @@ function deletePart(){
         return;
     }
 
-    var part = rightGrid.getSelected();
+    var part = rightGrid.getSelecteds();
     if(!part)
     {
         return;
     }
-    rightGrid.removeRow(part,true);
+    rightGrid.removeRows(part,true);
 }
 function checkRightData()
 {

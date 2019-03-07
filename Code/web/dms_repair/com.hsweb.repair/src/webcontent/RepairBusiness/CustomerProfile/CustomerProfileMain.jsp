@@ -11,7 +11,7 @@
 -->
 <head>
 	<title>客户档案</title>
-	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.6"></script>
+	<script src="<%=webPath + contextPath%>/repair/js/RepairBusiness/CustomerProfile/CustomerProfileMain.js?v=1.5.7"></script>
 	<style type="text/css">
 		table {
 			font-size: 12px;
@@ -49,6 +49,8 @@
 							<input class="nui-textbox" name="carNo" onenter="onSearch()" />
 							<label>手机号码：</label>
 							<input class="nui-textbox" name="mobile" onenter="onSearch()" />
+							<label>车架号(VIN)：</label>
+							<input class="nui-textbox" name="carVin" onenter="onSearch()" style="width:200px"/>
 							<a class="nui-button" iconCls="" plain="true" onclick="onSearch()">
 								<span class="fa fa-search fa-lg"></span>&nbsp;查询</a>
 <!-- 							<a class="nui-button" plain="true" onclick="advancedSearch()">

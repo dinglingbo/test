@@ -142,6 +142,33 @@
         </dynamic>
         order by b.modify_date desc
 	</select>
+	
+	
+	 <select id="wechatQueryCarByMobile" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+		SELECT
+			a.id id,
+			b.orgid orgid,
+			a.car_no carNo,
+			b.id as guestId,
+			a.vin vin,
+			b.full_name guestFullName,
+			a.car_model_id carModelId,
+			a.car_model_id_ly carModelIdLy,
+			a.car_model carModel,
+			a.car_model_full_name as carModelFullName,
+			a.car_brand_id carBrandId,
+			a.car_series_id carSeriesId
+		FROM
+			wb_common.com_guest b
+		LEFT JOIN rpb_car a ON (a.guest_id = b.id)
+		WHERE
+			b.guest_type = '01020103'
+			and b.mobile = #mobile#
+        order by b.modify_date desc
+	</select>
+	
+	
+	
 	<!--
 	
 	-->

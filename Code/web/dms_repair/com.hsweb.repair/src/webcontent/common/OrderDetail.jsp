@@ -10,7 +10,7 @@
 -->   
 <head>
     <title>工单详情</title>
-    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/orderDetail.js?v=1.3.49"></script>
+    <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/orderDetail.js?v=1.3.62"></script>
     <script src="<%=request.getContextPath()%>/repair/RepairBusiness/Reception/js/date.js"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
@@ -401,13 +401,13 @@ allowSortColumn="true" ondrawsummarycell="onDrawSummaryCellItem" allowCellEdit="
     		<tbody>
     			<tr>
     				<td  style='height: 100%'>
-			        <label>总金额：</label>
+			        <label>总金额：&nbsp;&nbsp;&nbsp;&nbsp;</label>
 			            <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalAmt" name="totalAmt"/>
 			        <label>优惠金额：</label>
  			          <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalPrefAmt" name="totalPrefAmt"/>        
  			        <label>小计金额：</label>
  			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalSubtotal" name="totalSubtotal"/>
- 
+
                       <div style='display: none'>
 			          <input class="nui-hidden" enabled="false" id="packageSubtotal" name="packageSubtotal"/>
 			          <input class="nui-hidden" enabled="false" id="packagePrefAmt" name="packagePrefAmt"/>
@@ -417,6 +417,17 @@ allowSortColumn="true" ondrawsummarycell="onDrawSummaryCellItem" allowCellEdit="
 			          <input class="nui-hidden" enabled="false" id="partPrefAmt" name="partPrefAmt"/>
 			          <input class="nui-hidden" enabled="false" id="ycAmt" name="ycAmt"/>
 			        </div>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+	    				<label>其他优惠：</label>
+	 			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="otherPreferential" name="otherPreferential"/>
+	  			        <label>次卡抵扣：</label>
+	 			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="ycAmt" name="ycAmt"/>
+	  			        <label>结算金额：</label>
+	 			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="settlementAmt" name="settlementAmt"/>
+	 
     				</td>
     			</tr>
     		</tbody>

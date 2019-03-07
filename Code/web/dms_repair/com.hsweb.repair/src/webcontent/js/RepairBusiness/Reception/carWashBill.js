@@ -1231,7 +1231,7 @@ svrSaveMaintain(params, function(text){
     // });
 }
 function unfinish(){
-    var data = billForm.getData(true);
+    var data = billForm.getData();
     if(!data.id){
         showMsg("请先保存工单!","W");
         return;
@@ -1262,7 +1262,7 @@ function unfinish(){
             var errMsg = data.errMsg||"";
             if(errCode == 'S'){
                 var maintain = data.main||{};
-                var olddata = billForm.getData(true);
+                var olddata = billForm.getData();
                 olddata.status = 1;
                 billForm.setData([]);
                 billForm.setData(olddata);
@@ -1298,7 +1298,7 @@ function unfinish(){
 }
 var loadMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function loadMaintain(callback,unmaskcall){
-    var data = billForm.getData(true);
+    var data = billForm.getData();
     for ( var key in requiredField) {
       if (!data[key] || $.trim(data[key]).length == 0) {
         unmaskcall && unmaskcall();
@@ -1335,7 +1335,7 @@ nui.ajax({
     });
 }
 function addPrdt(data){
-    var main = billForm.getData(true);
+    var main = billForm.getData();
     if(!main.id){
        showMsg("请先保存工单!","E");
        return;
@@ -1515,7 +1515,7 @@ function addPrdt(data){
     }
 }
 function checkPrdt(data){
-    var main = billForm.getData(true);
+    var main = billForm.getData();
     if(!main.id){
         showMsg("请先保存工单!","W");
         return;

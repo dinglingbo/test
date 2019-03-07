@@ -22,6 +22,7 @@
     <sourceConnections xsi:type="process:tLink" id="link1" name="link1" displayName="link8" isDefault="true" type="transition">
       <sourceNode>assign2</sourceNode>
       <targetNode>assign6</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link23" name="link23" displayName="连接线" type="transition">
       <sourceNode>assign2</sourceNode>

@@ -221,9 +221,11 @@
 </html>
 
 <script>
-
-
+window.onresize = function(){
+	document.getElementById("mainMenu").style.height = (document.documentElement.clientHeight-50) + 'px'
+}
 document.getElementById("mainMenu").style.height = (document.documentElement.clientHeight-50) + 'px'
+
     var defDomin = "<%=request.getContextPath()%>";
     var baseUrl = apiPath + repairApi + "/";
     var mainTabs = mini.get("mainTabs");

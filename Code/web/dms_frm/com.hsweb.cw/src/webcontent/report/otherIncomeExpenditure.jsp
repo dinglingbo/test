@@ -32,15 +32,15 @@
         <input class="nui-datepicker" id="" name="" dateFormat="yyyy-MM-dd" style="width:120px" />
     </div>
     <div align="center">
-        <a class="nui-button" iconcls="" id="" name="" onclick="">其他收入</a>
-        <a class="nui-button" iconcls="" id="" name="" onclick="">其他支出</a>
+        <a class="nui-button" iconcls="" id="" name="" onclick="">其它费用收入</a>
+        <a class="nui-button" iconcls="" id="" name="" onclick="">其它费用支出</a>
     </div>
     <div class="nui-fit">
         <div id="grid" class="nui-datagrid" datafield="" allowcelledit="true" url="" allowcellwrap="true" style="width:100%;height:100%;">
             <div property="columns">
                 <div field="" name="" headeralign="center" align="center">摘<br>要</div>
                 <div field="" id="" name="" headeralign="center" align="center">日期</div>
-                <div header="其他支出" headeralign="center">
+                <div header="其它费用支出" headeralign="center">
                     <div property="columns">
                         <div field="" id="" name="" headeralign="center" align="center">招待费</div>
                         <div field="" id="" name="" headeralign="center" align="center">快递费</div>
@@ -55,7 +55,7 @@
                         <div field="" id="" name="" headeralign="center" align="center">设备费</div>
                         <div field="" id="" name="" headeralign="center" align="center">差旅费</div>
                         <div field="" id="" name="" headeralign="center" align="center">包装费</div>
-                        <div field="" id="" name="" headeralign="center" align="center">其他支出</div>
+                        <div field="" id="" name="" headeralign="center" align="center">其它费用支出</div>
                         <div field="" id="" name="" headeralign="center" align="center">员工福利</div>
                         <div field="" id="" name="" headeralign="center" align="center">人员工资</div>
                         <div field="" id="" name="" headeralign="center" align="center">办公用品</div>

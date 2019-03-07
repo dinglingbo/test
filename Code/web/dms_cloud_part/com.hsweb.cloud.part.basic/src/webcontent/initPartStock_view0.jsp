@@ -9,7 +9,7 @@
 -->
 <head>
 <title>期初库存</title>
-<script src="<%=webPath + contextPath%>/basic/js/initPartStock.js?v=2.0.3"></script>
+<script src="<%=webPath + contextPath%>/basic/js/initPartStock.js?v=2.0.4"></script>
 <style type="text/css">
 .title {
   width: 80px;
@@ -130,11 +130,14 @@
                      oncellcommitedit="onCellCommitEdit"
                      ondrawsummarycell=""
                      showModified="false"
+                      multiSelect="true"
                      url="">
                     <div property="columns">
                         <div type="indexcolumn">序号</div>
                         <div header="配件信息" headerAlign="center">
                             <div property="columns">
+                        	<div type="checkcolumn" width="20" ></div>
+                            
                               <div field="partId" summaryType="count" width="50" headerAlign="center" header="配件ID"></div>
                                 <div field="comPartCode" width="100" headerAlign="center" header="配件编码"></div>
                                 <div field="comPartName" headerAlign="center" header="配件名称"></div>

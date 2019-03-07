@@ -105,6 +105,14 @@ $(document).ready(function () {
 		if(field == "action"){
 			e.cellHtml = ' <a class="optbtn" href="javascript:deleteRow(rpsPackageGrid)">删除</a>';
 		}
+		if(field == "prdtName"){
+			   var cardDetailId = record.cardDetailId||0;
+	           var s = "";
+	           if(cardDetailId>0){
+	               s = "<font color='red'>(预存)</font>";
+	           }
+	           e.cellHtml = e.value + s;
+		}
 	});
 	rpsItemGrid.on("cellendedit",function(e){
 		var row = e.row,
@@ -150,6 +158,14 @@ $(document).ready(function () {
             }else{
             	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
             }
+		}
+		if(field == "prdtName"){
+			   var cardDetailId = record.cardDetailId||0;
+	           var s = "";
+	           if(cardDetailId>0){
+	               s = "<font color='red'>(预存)</font>";
+	           }
+	           e.cellHtml = e.value + s;
 		}
 	});
 });

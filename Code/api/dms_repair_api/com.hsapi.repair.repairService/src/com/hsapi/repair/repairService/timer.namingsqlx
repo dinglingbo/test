@@ -95,9 +95,9 @@
 	
 	<!--客户生日  按月日提醒-->
 	<select id="getGuestBirthday" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-		SELECT last_orgid as orgid, id as guestId, full_name as fullName, DATE_FORMAT(birthday,'%m-%d') as dueDate,
-			   mt_advisor_id as mtAdvisorId, mt_advisor_name as mtAdvisorName
-		from rpb_guest
+				SELECT orgid, guest_id as guestId, name as fullName, DATE_FORMAT(birthday,'%m-%d') as dueDate,
+			   '' as mtAdvisorId, recorder as mtAdvisorName
+		from rpb_contactor
 		where datediff(DATE_ADD(birthday,INTERVAL ceil(TIMESTAMPDIFF(MONTH,NOW(),birthday)/12) YEAR),NOW()) = #ln# 
 	</select>
 	<!--客户生日  按月日提醒-->

@@ -148,11 +148,11 @@
     <script type="text/javascript">
         nui.parse();
         var con8='这是一个提示';
-        var grid1_data=[{vala:"工单销售",valb:"7127.00"},{vala:"其他收入",valb:"6160.00"}];
+        var grid1_data=[{vala:"工单销售",valb:"7127.00"},{vala:"其它费用收入",valb:"6160.00"}];
         var grid2_data=[{vala:'工单成本&nbsp;<span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)" onmouseout="outHide()"></span>',valb:"855.00"},
         {vala:'内部领料成本&nbsp;<span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)" onmouseout="outHide()"></span>',valb:"0.00"},
         {vala:'赠送余额使用&nbsp;<span class="fa fa-question-circle fa-lg iconStyle" style="margin-top: 3px;" onmouseover="overShow(this,con8)" onmouseout="outHide()"></span>',valb:"1400.00"},
-        {vala:"其它支出",valb:"3744.50"}];
+        {vala:"其它费用支出",valb:"3744.50"}];
         var grid3_data=[{}];
         var grid1 = nui.get("grid1");
         var grid2 = nui.get("grid2");

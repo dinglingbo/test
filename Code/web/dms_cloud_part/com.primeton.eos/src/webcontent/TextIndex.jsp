@@ -175,7 +175,7 @@ pageEncoding="UTF-8" session="false" %>
                     <div class="menu_pannel menu_pannel_bg">
                         <a>
                             <i class="fa fa-credit-card fa-4x  fa-inverse"></i>
-                            <p>费用支出</p> 
+                            <p>其它费用支出</p> 
                         </a>
                     </div>
                 </div>

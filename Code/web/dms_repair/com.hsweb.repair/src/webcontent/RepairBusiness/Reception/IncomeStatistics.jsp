@@ -242,7 +242,7 @@
                 legend: {
                     orient: 'vertical',
                     left: 'left',
-                    data: ['工单销售', '其他收入']
+                    data: ['工单销售', '其他费用收入']
                 },
                 series: [{
                     name: '收入类型',
@@ -255,7 +255,7 @@
                         },
                         {
                             value: 310,
-                            name: '其他收入'
+                            name: '其它费用收入'
                         }
                     ],
                     itemStyle: {

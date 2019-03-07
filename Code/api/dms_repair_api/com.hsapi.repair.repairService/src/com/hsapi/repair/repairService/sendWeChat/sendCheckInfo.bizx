@@ -72,6 +72,14 @@
       <process:to type="query">wcText</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="query" pattern="reference">checkMain/enterKilometers</process:from>
+      <process:to type="query">enterKilometers</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">enterKilometers + &quot;公里&quot;</process:from>
+      <process:to type="query">enterKilometers</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">wcText</process:from>
       <process:to type="query">paraMap/first</process:to>
     </process:copy>
@@ -80,12 +88,16 @@
       <process:to type="query">paraMap/keyword1</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">checkMain/enterKilometers</process:from>
+      <process:from type="query" pattern="reference">enterKilometers</process:from>
       <process:to type="query">paraMap/keyword2</process:to>
     </process:copy>
     <process:copy>
       <process:from type="literal" pattern="reference">点击可查看详情</process:from>
       <process:to type="query">paraMap/remark</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">https://www.baidu.com/</process:from>
+      <process:to type="query">turl</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
@@ -171,8 +183,8 @@
       <process:partner type="literal">com.hsapi.repair.repairService.work.sendWeChatInfo</process:partner>
       <process:inputVariables>
         <process:inputVariable id="0" name="openid" type="query" value="String" valueType="Primitive" pattern="reference">pdata/wechatOpenId</process:inputVariable>
-        <process:inputVariable id="1" name="url" type="expression" value="String" valueType="Primitive" pattern="reference"></process:inputVariable>
-        <process:inputVariable id="2" name="templateId" type="literal" value="String" valueType="Primitive" pattern="reference">templatedId</process:inputVariable>
+        <process:inputVariable id="1" name="url" type="query" value="String" valueType="Primitive" pattern="reference">turl</process:inputVariable>
+        <process:inputVariable id="2" name="templateId" type="query" value="String" valueType="Primitive" pattern="reference">templatedId</process:inputVariable>
         <process:inputVariable id="3" name="paraMap" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">paraMap</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
@@ -232,6 +244,7 @@
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-03-06 17:01:15" date="2019-03-06Z" description="" name="sendCheckInfo" version="7.0.0.0"/>
   <process:variables>
+    <process:variable description="消息链接" historyStateLocation="client" isArray="false" name="turl" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="查询参数" historyStateLocation="client" isArray="false" name="p"/>
     <process:variable anyType="commonj.sdo.DataObject" description="客户openid等信息" historyStateLocation="client" isArray="false" name="pdata"/>
     <process:variable description="微信模板id" historyStateLocation="client" isArray="false" name="templatedId" primitiveType="String"/>
@@ -239,6 +252,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="guestName" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="微信内容" historyStateLocation="client" isArray="false" name="paraMap"/>
     <process:variable description="分数" historyStateLocation="client" isArray="false" name="score" primitiveType="String"/>
+    <process:variable description="进厂里程" historyStateLocation="client" isArray="false" name="enterKilometers" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input anyType="commonj.sdo.DataObject" description="" isArray="false" name="checkMain"/>

@@ -61,7 +61,7 @@ a.optbtn {
 				>
 				<div property="columns">
 					<div type="indexcolumn" headerAlign="center" name="index" visible="true" width="15">序号</div>
-					<div header="其它收入">
+					<div header="其它费用收入">
 						<div property="columns">
 							<div field="optBtn" name="optBtn" width="60" headerAlign="center" header="操作" align="center" ></div>
 							<div field="typeId" type="comboboxcolumn" width="100" headerAlign="center" header="收入项目">
@@ -89,7 +89,7 @@ a.optbtn {
 				>
 				<div property="columns">
 					<div type="indexcolumn" headerAlign="center" name="index" visible="true" width="15">序号</div>
-					<div header="费用支出">
+					<div header="其它费用支出">
 						<div property="columns">
 							<div field="optBtn" name="optBtn" width="60" headerAlign="center" header="操作" align="center" ></div>
 							<div field="typeId" type="comboboxcolumn" width="100" headerAlign="center" header="费用科目">

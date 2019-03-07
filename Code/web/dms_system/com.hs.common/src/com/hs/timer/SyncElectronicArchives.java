@@ -128,6 +128,9 @@ public class SyncElectronicArchives {
 	        	String id = d.getString("id");
 	        	String carNo = d.getString("carNo");
 	        	String carVin = d.getString("carVin");
+	        	if(carVin == null || "".equals(carVin)){
+	        		carVin = "无";
+	        	}
 	        	String enterDate = d.getString("enterDate");
 	        	String outDate = d.getString("outDate");
 	        	String faultPhen = d.getString("faultPhen");
@@ -140,7 +143,7 @@ public class SyncElectronicArchives {
 	        	}
 	        	
 	        	JSONObject jsonObj = new JSONObject();
-	        	Map <String, Object> info = new HashMap <String, Object>();
+	        	/*Map <String, Object> info = new HashMap <String, Object>();*/
 	        	jsonObj.put("access_token", accessToken);
 	        	//jsonObj.put("info", info);
 	    		/*Map <String, String> header = new HashMap <String, String>();
@@ -148,10 +151,9 @@ public class SyncElectronicArchives {
 	    		header.put("time", headerTime);
 	    		jsonObj.put("header", header);*/
 	    		
-	    		Map <String, Object> basicInfo = new HashMap <String, Object>();
+	    		Map <String, String> basicInfo = new HashMap <String, String>();
 	    		//车牌号
 	    		basicInfo.put("vehicleplatenumber", carNo);
-	    		//车架号
 	    		basicInfo.put("vehicleplatecolor", "黑");
 	    		//维修企业名称
 	    		basicInfo.put("companyname", orgName);
@@ -166,6 +168,7 @@ public class SyncElectronicArchives {
 	    		basicInfo.put("faultdescription", faultPhen == "" ? "-": faultPhen);
 	    		//结算编号
 	    		basicInfo.put("costlistcode", id);
+	    		getFormatData(basicInfo);
 	    		jsonObj.put("basicInfo", basicInfo);
 	    		
 	    		List<Map<String,String>> tList=new ArrayList<Map<String,String>>();
@@ -174,8 +177,10 @@ public class SyncElectronicArchives {
 		    			Map <String, String> item = new HashMap <String, String>();
 		    			item.put("repairproject", obj.getString("itemName"));
 		    			item.put("workinghours", obj.getString("itemItem"));
+		    			getFormatData(item);
 		    			tList.add(item);
 	    			}
+	    			
 				}
 	    		
 	    		jsonObj.put("repairprojectlist", tList);
@@ -195,7 +200,7 @@ public class SyncElectronicArchives {
 	    		
 	    		paramStr = jsonObj.toString();
 	    		
-	    		String result = HttpUtils.sendPostByJson("https://hunan.qichedangan.cn/restservices/lcipprodatarest/lcipprogetaccesstoken/query", paramStr);
+	    		String result = HttpUtils.sendPostByJson("https://hunan.qichedangan.cn/restservices/lcipprodatarest/lcipprocarfixrecordadd/query", paramStr);
 	    			
 	    		Gson gson = new Gson();
 	            Map<String, String> map = new HashMap<String, String>();
@@ -207,6 +212,23 @@ public class SyncElectronicArchives {
     	
 		return;
 	}
+	
+	private static  Map getFormatData(Map<String, String> map){	
+		 for(String key:map.keySet()){
+			   String value = map.get(key);
+			   if(value==null || "".equals(value)){
+				   if("vehicleplatenumber".equals(key) || "companyname".equals(key) || "vin".equals(key) || "faultdescription".equals(key)
+						   || "partscode".equals(key) || "partsname".equals(key) || "repairproject".equals(key)){
+					   map.put(key, "无");
+				   }
+				   if("repairmileage".equals(key) || "workinghours".equals(key) || "partsquantity".equals(key)){
+					   map.put(key, "0");
+				   }
+			   }
+		}
+		return map;
+	}
+	
 	
 	/*
 	 * 查询需要提交电子档案的公司信息
@@ -221,11 +243,8 @@ public class SyncElectronicArchives {
     	criteria.set("_expr[2]/_op", "notnull");
     	criteria.set("_expr[3]/_property", "eRecordPwd");
     	criteria.set("_expr[3]/_op", "notnull");
-    	criteria.set("_expr[4]/tenantId", 121);
-    	criteria.set("_expr[4]/_op", "=");
     	DataObject[] result = com.eos.foundation.database.DatabaseUtil
     	.queryEntitiesByCriteriaEntity("common", criteria);
-    	
     	return result;
 	}
 	

@@ -160,7 +160,7 @@
 	                  	  <div field="partAmt" name="partAmt" width="70" headerAlign="center" summaryType="sum" header="配件金额"></div>
 	                  	  <div field="partPrefAmt" name="partPrefAmt" width="70" headerAlign="center" summaryType="sum" header="配件优惠"></div>		                  
 		                  <div field="partSubtotal" name="partSubtotal" width="70" headerAlign="center" summaryType="sum" header="配件小计"></div>
-		                  <div field="otherAmt" name="" width="70" headerAlign="center" summaryType="sum" header="其他收入"></div>
+		                  <div field="otherAmt" name="" width="80" headerAlign="center" summaryType="sum" header="其它费用收入"></div>
 		                  <div field="incomeTotal" name="incomeTotal" width="70" headerAlign="center" summaryType="sum" header="收入合计"></div>
 		              </div>
 		           </div>      
@@ -172,7 +172,7 @@
 		                  <div field="salesDeductValue" width="70" headerAlign="center" summaryType="sum" header="销售提成"></div>
 		                  <div field="advisorDeductValue"  width="70" headerAlign="center" summaryType="sum" header="服务顾问提成"></div>
 		                  <div field="techDeductValue"  width="70" headerAlign="center"  summaryType="sum" header="施工员提成"></div>
-		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" summaryType="sum" header="其他支出"></div>
+		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" summaryType="sum" header="其它费用支出"></div>
 		                  <div field="expenditureTotal" name="expenditureTotal" width="70" headerAlign="center" summaryType="sum" header="成本合计"></div>
 		             
             		  </div>

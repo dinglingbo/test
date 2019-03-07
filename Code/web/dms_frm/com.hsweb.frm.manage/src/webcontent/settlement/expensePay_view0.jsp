@@ -9,7 +9,7 @@
 --> 
 <head>
 <title>费用支出单</title>
-<script src="<%=webPath + contextPath%>/manage/settlement/js/expensePay.js?v=2.0.5"></script>
+<script src="<%=webPath + contextPath%>/manage/settlement/js/expensePay.js?v=2.0.7"></script>
 		    <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 <style type="text/css">
@@ -59,7 +59,7 @@
                             <a class="nui-button" plain="true" iconCls="" onclick="deleteGuest()" id="deleteGuestBtn"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="save()" id="saveBtn"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
                             <a class="nui-button" iconCls="" plain="true" onclick="audit()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;审核</a>
-                            <a class="nui-button" iconCls="" plain="true" onclick="doPrint()" id="auditBtn"><span class="fa fa-check fa-lg"></span>&nbsp;打印</a>
+                            <a class="nui-button" iconCls="" plain="true" onclick="doPrint()" id="doPrint"><span class="fa fa-print fa-lg"></span>&nbsp;打印</a>
                         </td>
                     </tr>
                 </table>

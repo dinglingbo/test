@@ -194,6 +194,9 @@
             <isNotEmpty prepend="and" property="tenantId">  
                 (b.tenant_id = #tenantId#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">  
+                (a.id = #carId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="orgId">  
                 (b.orgid = #orgId#)
             </isNotEmpty>

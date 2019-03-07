@@ -743,7 +743,11 @@ function add(){
 }
 function save(){
 	itemF = "S";
-	partF = "S";
+    partF = "S";
+    if(!nui.get("guestId").value){
+        showMsg("请选择客户后再进行开单","W");
+        return;     
+    }
 	var data = billForm.getData(true);
 	if(data.status == 2){
 		showMsg("工单已完工","W");
@@ -755,22 +759,6 @@ function save(){
     }
     if(!data.boxServiceTypeId){
     	showMsg("业务类型不能为空","W");
-    	return;
-    }
-    if(!data.engineModel){
-    	showMsg("变速箱型号不能为空","W");
-    	return;
-    }
-    if(!data.carBrandId){
-    	showMsg("波箱厂牌不能为空","W");
-    	return;
-    }
-    if(!data.engineNo){
-    	showMsg("变速箱号不能为空","W");
-    	return;
-    }
-    if(!data.driveType){
-    	showMsg("驱动形式不能为空","W");
     	return;
     }
     nui.mask({
@@ -1622,13 +1610,41 @@ function addGuest(){
          },
          ondestroy: function (action)
          {
-             if("ok" == action)
-             {
-                 grid.reload();
-             }
+            var iframe = this.getIFrameEl();
+            var data = iframe.contentWindow.getData();
+            var params = {};
+            if(data){
+                params.carId = data;
+                getGuestMsg(params);
+            }
          }
      });
 }
+
+function getGuestMsg(params){
+    nui.ajax({
+        url: guestInfoUrl,
+        type: "post",
+        cache: false,
+        async: false,
+        data: {
+            params: params
+        },
+        success: function (text) {
+            var list = text.list;
+            if (list) {
+                setGuest(list[0]);
+            } else {
+                showMsg("加载客户信息失败", "E");
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.responseText);
+            showMsg("网络出错", "E");
+        }
+    });
+}
+
 function setPkgRate(){
     var main =  billForm.getData();
     if(!main.id){
@@ -3714,20 +3730,8 @@ function selectclick() {
         	showMsg("业务类型不能为空","W");
         	return;
         }
-        if(!main.engineModel){
-        	showMsg("变速箱型号不能为空","W");
-        	return;
-        }
-        if(!main.carBrandId){
-        	showMsg("波箱厂牌不能为空","W");
-        	return;
-        }
-        if(!main.engineNo){
-        	showMsg("变速箱号不能为空","W");
-        	return;
-        }
-        if(!main.driveType){
-        	showMsg("驱动形式不能为空","W");
+        if(!main.guestId){
+        	showMsg("请选择客户后再进行添加项目","W");
         	return;
         }
         var isSettle = main.isSettle||0;

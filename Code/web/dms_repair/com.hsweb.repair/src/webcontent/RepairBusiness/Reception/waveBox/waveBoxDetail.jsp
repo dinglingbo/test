@@ -12,7 +12,7 @@
         <head>
             <title>Title</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.25"></script>
+            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.27"></script>
         </head>
         <style type="text/css">
             body {
@@ -395,7 +395,7 @@
                 <div id="billForm" class="form">
                     <input name="msg" id="msg" class="nui-hidden" />
                     <input name="id" class="nui-hidden" />
-                    <input name="guestId" class="nui-hidden" />
+                    <input name="guestId" class="nui-hidden" id="guestId"/>
                     <input id="mtAdvisor" name="mtAdvisor" class="nui-hidden" />
                     <input class="nui-hidden" name="contactorId" />
                     <input class="nui-hidden" name="carId" />
@@ -413,22 +413,22 @@
                     <input class="nui-hidden" name="faultPhen" id="faultPhen" />
                     <table style="width: 100%;border-spacing: 0px 5px;">
                         <tr>
-                            <td class="title required" style="width:100px">变速箱型号：</td>
+                            <td  align="right"style="width:100px">变速箱型号：</td>
                             <td class="">
                                 <input class="nui-textbox" name="engineModel" id="engineModel" width="100%" />
                             </td>
-                            <td class="title required" style="width:100px">
+                            <td  align="right"style="width:100px">
                                 <label>波箱厂牌：</label>
                             </td>
                             <td class="" colspan="1">
                                 <input class="nui-combobox" name="carBrandId" id="carBrandId" valueField="id" textField="name"
                                     width="100%" />
                             </td>
-                            <td class="title required" style="width:100px">变速箱号：</td>
+                            <td align="right" style="width:100px">变速箱号：</td>
                             <td class="">
                                 <input class="nui-textbox" name="engineNo" id="engineNo" width="100%" />
                             </td>
-                            <td class="title required" style="width:100px">
+                            <td align="right" style="width:100px">
                                 <label>驱动形式：</label>
                             </td>
                             <td class="" colspan="1">

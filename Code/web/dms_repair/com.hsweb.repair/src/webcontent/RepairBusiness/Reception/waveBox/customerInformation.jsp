@@ -254,9 +254,6 @@
 						showMsg("请填写客户手机号码", "W");
 						return;
 					}
-					if (!checkMobile(form.mobile1)) {
-						return;
-					}
 					var contact = $(".sjd li");//获取填写的联系人数据，数组类型
 					var arr = new Array;
 					var index = 0;
@@ -387,6 +384,11 @@
 							showMsg("网络出错", "E");
 						}
 					});
+				}
+
+				function getData(){
+					var carId = nui.get("carId").value;				
+					return carId;	
 				}
 			</script>
 		</body>

@@ -45,10 +45,6 @@
             <td style="white-space:nowrap;">
                 <label style="font-family:Verdana;">快速查询：</label>
 
-<!-- 				<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(12)">草稿</a> -->
-<!-- 				<a class="nui-button" iconCls="" plain="true" onclick="quickSearch(13)">待发货</a> -->
-<!--                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(14)">待收货</a> -->
-<!--                 <a class="nui-button" iconCls="" plain="true" onclick="quickSearch(15)">已入库</a> -->
                 <a class="nui-menubutton " menu="#popupMenuDate" id="menunamedate">本日</a>
 
                 <ul id="popupMenuDate" class="nui-menu" style="display:none;">
@@ -61,18 +57,20 @@
                     <li iconCls="" onclick="quickSearch(4)" id="type4">本月</li>
                     <li iconCls="" onclick="quickSearch(5)" id="type5">上月</li>
                     <li class="separator"></li>
-                    <li iconCls="" onclick="quickSearch(10)" id="type10">本年</li>
-                    <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
+                    <li iconCls="" onclick="quickSearch(6)" id="type10">本年</li>
+                    <li iconCls="" onclick="quickSearch(7)" id="type11">上年</li>
                 </ul>
                 
-				<a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
+                <a class="nui-menubutton " menu="#popupMenuStatus" id="menubillstatus">所有</a>
 
                 <ul id="popupMenuStatus" class="nui-menu" style="display:none;">
-                	<li iconCls="" onclick="quickSearch()" id="type">所有</li>
-                    <li iconCls="" onclick="quickSearch(12)" id="type12">草稿</li>
-                    <li iconCls="" onclick="quickSearch(13)" id="type13">待发货</li>
-                    <li iconCls="" onclick="quickSearch(14)" id="type14">待收货</li>
-                    <li iconCls="" onclick="quickSearch(15)" id="type15">已入库</li>
+                	<li iconCls="" onclick="quickSearch(8)" id="type9">所有</li>
+                    <li iconCls="" onclick="quickSearch(10)" id="type10">已出库</li>
+                    <li iconCls="" onclick="quickSearch(11)" id="type11">已打包</li>
+                    <li iconCls="" onclick="quickSearch(12)" id="type12">已发货</li>
+                    <li iconCls="" onclick="quickSearch(13)" id="type13">已到货</li>
+              
+
                 </ul>
 
 

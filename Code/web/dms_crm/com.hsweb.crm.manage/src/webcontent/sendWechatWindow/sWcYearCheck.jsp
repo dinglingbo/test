@@ -10,7 +10,7 @@
 -->
 
 <head>
-    <title>驾驶证到期-发送微信消息</title>
+    <title>车辆年检-发送微信消息</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
 
@@ -176,7 +176,7 @@
             };
             var params ={
                 openid:data.wechatOpenId,
-                templateId:'g61R_Wd_6nsNtHVhFayiIDuOvGyxpPN4OYpocMih7DE',//模板id  驾驶证到期
+                templateId:'oBMHtz2FOq5gbdBLTrELvVC9QrB6J8rrmOyU81Bg844',//模板id  车辆年检
                 url:'',//消息的yurl 可为空
                 paraMap:p,
                 token:token

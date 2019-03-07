@@ -1115,7 +1115,7 @@
 			d.part_subtotal AS partSubtotal,
 			d.other_amt AS otherAmt,
 			d.package_subtotal+d.item_subtotal+d.part_subtotal+d.other_amt AS incomeTotal,
-			
+			d.allowance_amt as allowanceAmt,
 			d.card_times_amt AS cardTimesAmt,
 			d.total_pref_amt AS totalPrefAmt,
 			d.bala_amt AS balaAmt,		

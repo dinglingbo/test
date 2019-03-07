@@ -229,26 +229,34 @@ function getRow() {
     var tab = tabs.getActiveTab();
     if (tab.title == "商业险到期提醒") {
         sRow = business.getSelected();
-        if(sRow != null)
+        if (sRow != null) {
             sRow.serviceType = 6;
-           
+            sRow.sendWcUrl = "";
+        }
     } else if (tab.title == "交强险到期提醒") {
         sRow = compulsoryInsurance.getSelected();
-        if(sRow != null)
-        sRow.serviceType = 7;
+        if (sRow != null) {
+            sRow.serviceType = 7;
+            sRow.sendWcUrl = "";
+        }
     } else if (tab.title == "驾照年审提醒") {
         sRow = drivingLicense.getSelected();
-        if(sRow != null)
+        if (sRow != null) {
             sRow.serviceType = 8;
             sRow.sendWcUrl = 'manage/sendWechatWindow/sWcInfoLicense.jsp'
+        }
     } else if (tab.title == "车辆年检提醒") {
         sRow = car.getSelected();
-        if(sRow != null)
-        sRow.serviceType = 9;
+        if (sRow != null) {
+            sRow.serviceType = 9;
+            sRow.sendWcUrl = "manage/sendWechatWindow/sWcYearCheck.jsp";
+        }
     } else if (tab.title == "客户生日提醒") {
         sRow = guestBirthday.getSelected();
-        if(sRow != null)
-        sRow.serviceType = 10;
+        if (sRow != null) {
+            sRow.serviceType = 10;
+            sRow.sendWcUrl = "";
+        }
     }
     return sRow||0;
 }

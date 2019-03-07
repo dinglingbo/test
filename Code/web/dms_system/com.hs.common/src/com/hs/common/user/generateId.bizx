@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="generateId.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="用getNextSequence避免未审表和已审表数据的主键冲突" title="Administrator&#x9;19-3-6 下午3:44">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="用getNextSequence避免未审表和已审表数据的主键冲突&#xD;&#xA;&#xD;&#xA;默认情况下，sequence一次可以缓存100个值，超过约定个数才会从数据库重新取值。如果没用到100个且系统发生重启，那么再次调用getSequence方法取值，就会发现取得的sequence值是下一组100个sequence的第一个值" title="Administrator&#x9;19-3-6 下午3:44">
     <location x="49" y="0"/>
-    <size height="100" width="522"/>
+    <size height="100" width="732"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link0" name="link0" displayName="连接线" isDefault="true" type="transition">

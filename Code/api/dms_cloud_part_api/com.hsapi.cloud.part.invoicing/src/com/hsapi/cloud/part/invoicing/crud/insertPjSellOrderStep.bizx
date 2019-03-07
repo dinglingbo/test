@@ -38,6 +38,10 @@
     <size height="28" width="28"/>
     <nodeLabel>assign2label</nodeLabel>
     <process:copy>
+      <process:from type="query" pattern="reference">detailId</process:from>
+      <process:to type="query">sellOrderDetail/id</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="query" pattern="reference">tmp/orderAmt</process:from>
       <process:to type="query">sellOrderDetail/notOutAmt</process:to>
     </process:copy>
@@ -130,35 +134,6 @@
     <figSize height="17" width="64"/>
     <node>invokePojo3</node>
   </nodes>
-  <nodes xsi:type="process:tInvoke" description="" id="invokePojo5" name="明细ID" displayName="getPrimaryKey" grouped="false" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
-    <sourceConnections xsi:type="process:tLink" description="" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
-      <sourceNode>invokePojo5</sourceNode>
-      <targetNode>assign2</targetNode>
-      <process:transitionCondition>
-        <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"/>
-          <process:rightOperand type="literal">1</process:rightOperand>
-        </process:simpleCondition>
-      </process:transitionCondition>
-    </sourceConnections>
-    <targetConnections>link27</targetConnections>
-    <location x="-480" y="80"/>
-    <size height="28" width="22"/>
-    <nodeLabel>invokePojo5label</nodeLabel>
-    <process:pojo methodType="instance" synchronization="true" transactionType="join">
-      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getPrimaryKey</process:partner>
-      <process:instance instanceName=""/>
-    </process:pojo>
-    <process:inputVariables>
-      <process:inputVariable id="0" name="entity" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">sellOrderDetail</process:inputVariable>
-    </process:inputVariables>
-    <process:outputVariables/>
-  </nodes>
-  <nodes xsi:type="model:NodeElementLabel" id="invokePojo5label" name="label" nodeType="label">
-    <location x="-488" y="116"/>
-    <figSize height="17" width="38"/>
-    <node>invokePojo5</node>
-  </nodes>
   <nodes xsi:type="process:tSubprocess" description="" id="subprocess0" name="新增时的可售数量计算" displayName="updateSellQtyTempRecordA" grouped="false" type="subprocess">
     <sourceConnections xsi:type="process:tLink" description="" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>subprocess0</sourceNode>
@@ -216,7 +191,7 @@
   <nodes xsi:type="process:tAssign" description="" id="assign8" name="赋值1" displayName="赋值" collapsed="false" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link27" name="link27" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign8</sourceNode>
-      <targetNode>invokePojo5</targetNode>
+      <targetNode>invokePojo1</targetNode>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link47" name="link47" displayName="连接线" type="transition">
       <sourceNode>assign8</sourceNode>
@@ -679,6 +654,37 @@
     <location x="263" y="-39"/>
     <figSize height="17" width="39"/>
     <node>assign13</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo1" name="getNextSequence" displayName="getNextSequence" type="invoke" index="1" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" description="" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo1</sourceNode>
+      <targetNode>assign2</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"/>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link27</targetConnections>
+    <location x="-480" y="80"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo1label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.database.DatabaseExt.getNextSequence</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="name" type="literal" value="java.lang.String" valueType="Java" pattern="reference">cloudPartPjSellOrderDetail.id</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="long" valueType="Java">detailId</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
+    <location x="-520" y="116"/>
+    <figSize height="17" width="103"/>
+    <node>invokePojo1</node>
   </nodes>
   <topRuler>
     <guides position="552" horizontal="true"/>

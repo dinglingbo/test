@@ -85,6 +85,7 @@ function onSearch()
     var params = getSearchParams();
     params.carNo=document.getElementsByName('carNo')[0].value;
     params.mobile=document.getElementsByName('mobile')[0].value;
+    params.vin=document.getElementsByName('carVin')[0].value;
     doSearch(params);
 }
 

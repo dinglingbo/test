@@ -546,7 +546,7 @@ function saveData(e){
             return false;
         }
     }
-    var data = basicInfoForm.getData();
+    var data = basicInfoForm.getData(true);
     basicInfoForm.validate();
     if(basicInfoForm.isValid()==false){
 		showMsg("本次里程请填写正整数!","W");
@@ -558,9 +558,9 @@ function saveData(e){
 			return false;
 		}
 	}
-    if(data.id){
+    /*if(data.id){
     	delete data.recordDate;
-    }
+    }*/
 //    var data2 = getData2();
     var gridData = detailGrid.getData();
 

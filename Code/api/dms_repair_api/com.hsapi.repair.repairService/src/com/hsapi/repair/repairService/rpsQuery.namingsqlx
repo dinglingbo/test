@@ -1265,7 +1265,8 @@
 			d.bala_amt AS balaAmt,
 			a.enter_kilometers AS enterKilometers,
 			c.name AS companyName,
-			a.out_date AS outDate
+			a.out_date AS outDate,
+			a.service_code serviceCode
 		FROM
 			rps_maintain a
 		  	INNER JOIN wb_common.com_company c on a.orgid = c.orgid

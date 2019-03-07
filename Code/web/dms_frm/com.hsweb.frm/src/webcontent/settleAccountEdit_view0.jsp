@@ -136,7 +136,7 @@
     </div>
     <div class="vpanel_body vwidth">
         <div class="nui-fit">
-            <div id="settleAccountGrid" class="nui-datagrid" style="width:100%;height:80px;"
+            <div id="settleAccountGrid" class="nui-datagrid" style="width:100%;height:150px;"
                  showPager="false"
                  dataField="list"
                  idField="id"

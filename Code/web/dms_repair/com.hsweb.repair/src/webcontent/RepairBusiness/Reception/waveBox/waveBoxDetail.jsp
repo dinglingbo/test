@@ -12,7 +12,7 @@
         <head>
             <title>Title</title>
             <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.27"></script>
+            <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxDetail.js?v=1.28"></script>
         </head>
         <style type="text/css">
             body {
@@ -399,7 +399,7 @@
                     <input id="mtAdvisor" name="mtAdvisor" class="nui-hidden" />
                     <input class="nui-hidden" name="contactorId" />
                     <input class="nui-hidden" name="carId" />
-                    <input class="nui-hidden" name="status" />
+                    <input class="nui-hidden" name="balaAuditSign" />
                     <input class="nui-hidden" name="carVin" />
                     <input class="nui-hidden" name="drawOutReport" />
                     <input class="nui-hidden" name="contactorName" />

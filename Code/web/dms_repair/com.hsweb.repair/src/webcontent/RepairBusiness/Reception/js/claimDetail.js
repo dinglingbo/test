@@ -11,7 +11,9 @@ var memCardGridUrl = baseUrl + "com.hsapi.repair.baseData.query.queryCardByGuest
 var guestInfoUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCustomerWithContactList.biz.ext";
 var getAccountUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryAccount.biz.ext";
 var insuranceInfoUrl = baseUrl + "com.hsapi.repair.baseData.insurance.InsuranceQuery.biz.ext?params/orgid="+currOrgId+"&params/isDisabled=0";
-
+var sellUrl = apiPath + crmApi
++ "/com.hsapi.crm.basic.crmBasic.querySellList.biz.ext";
+var sfData = {};
 var billForm = null;
 var sendGuestForm = null;
 var insuranceForm = null;
@@ -79,6 +81,7 @@ var prdtTypeHash = {
     "2":"项目",
     "3":"配件"
 };
+var hash = new Array("尚未联系", "有兴趣", "意向明确", "成交" ,"输单");
 var insuranceComp = null;
 //document.onmousemove = function(e){
 //
@@ -125,16 +128,16 @@ $(document).ready(function ()
     cardTimesGrid = nui.get("cardTimesGrid");
     cardTimesGrid.setUrl(cardTimesGridUrl);
     carSellPointGrid = nui.get("carSellPointGrid");
-    var data = [{prdtName:'保养到期提醒',amt:'3850',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'保养到期提醒'},
-                {prdtName:'商业险到期提醒',amt:'2600',status:'未联系',creator:'杨超越',doTimes:'2018-12-15',type:'商业险到期提醒'},
-                {prdtName:'交强险到期提醒',amt:'3460',status:'未联系',creator:'杨超越',doTimes:'2018-12-26',type:'交强险到期提醒'},
-                {prdtName:'更换机油',amt:'360',status:'意向明确',creator:'杨超越',doTimes:'2018-12-05',type:'车况检查'},
-                {prdtName:'更换轮胎',amt:'5500',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-08',type:'车况检查'},
-                {prdtName:'储值卡到期',amt:'1000',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'储值卡到期'},
-                {prdtName:'贴膜',amt:'50',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'},
-                {prdtName:'镀金',amt:'330',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'},
-                {prdtName:'更换机油',amt:'35',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'}];
-    carSellPointGrid.setData(data);
+    /*    var data = [{prdtName:'保养到期提醒',amt:'3850',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'保养到期提醒'},
+                    {prdtName:'商业险到期提醒',amt:'2600',status:'未联系',creator:'杨超越',doTimes:'2018-12-15',type:'商业险到期提醒'},
+                    {prdtName:'交强险到期提醒',amt:'3460',status:'未联系',creator:'杨超越',doTimes:'2018-12-26',type:'交强险到期提醒'},
+                    {prdtName:'更换机油',amt:'360',status:'意向明确',creator:'杨超越',doTimes:'2018-12-05',type:'车况检查'},
+                    {prdtName:'更换轮胎',amt:'5500',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-08',type:'车况检查'},
+                    {prdtName:'储值卡到期',amt:'1000',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'储值卡到期'},
+                    {prdtName:'贴膜',amt:'50',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'},
+                    {prdtName:'镀金',amt:'330',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'},
+                    {prdtName:'更换机油',amt:'35',status:'有兴趣',creator:'杨超越',doTimes:'2018-12-05',type:'计次卡到期'}];*/
+        carSellPointGrid.setUrl(sellUrl);
     advancedMemCardWin = nui.get("advancedMemCardWin");
     memCardGrid = nui.get("memCardGrid");
     memCardGrid.setUrl(memCardGridUrl);
@@ -150,6 +153,26 @@ $(document).ready(function ()
     servieIdEl = nui.get("servieIdEl");
     searchKeyEl = nui.get("search_key");
     searchKeyEl.setUrl(guestInfoUrl);
+    carSellPointGrid.on("drawcell", function(e) {
+		switch (e.field) {
+		case "status":
+			e.cellHtml = hash[e.value];
+			break;
+		case "chanceType":
+			for(var i=0;i<sfData.length;i++){
+				if(e.value==sfData[i].customid){
+					e.cellHtml =sfData[i].name;
+					}
+				}
+			break;
+		case "cardTimesOpt":
+			e.cellHtml = '<a class="optbtn" href="javascript:void()" onclick="editSell()">跟进</a>';
+			break;
+		default:
+			break;
+		}
+
+	});
     searchKeyEl.on("beforeload",function(e){
         if(fserviceId){
             e.cancel = true;
@@ -502,12 +525,7 @@ $(document).ready(function ()
             }
         }
     });
-    carSellPointGrid.on("drawcell",function(e)
-    	    {
-    	        if(e.field == 'cardTimesOpt'){
-    	            e.cellHtml = '<a class="optbtn" href="javascript:void()">查看</a>';
-    	        }
-    	    });
+
 
     document.getElementById("search_key$text").setAttribute("placeholder","请输入...(车牌号/客户名称/手机号/VIN码)");
     document.onkeyup=function(event){
@@ -769,7 +787,7 @@ function doSetMainInfo(car){
 
     doSearchCardTimes(fguestId);
     doSearchMemCard(fguestId);
-    
+    doSearchSell(fguestId);
     $("#guestNameEl").html(car.guestFullName);
     $("#showCarInfoEl").html(car.carNo);
     $("#guestTelEl").html(car.guestMobile);
@@ -3306,6 +3324,7 @@ function showCarCheckInfo(){
 
 
 function showSellPoint() {
+	 sfData = nui.get("chanceType").data;
 	showCarSellPointInfo();
 }
 
@@ -3323,7 +3342,24 @@ function showCarSellPointInfo(){
     advancedCardTimesWin.hide();
     carCheckInfo.hide();
     advancedMemCardWin.hide();
-    //SearchCheckMain(changeCheckInfoTab);
+    doSearchSell(fguestId);
+}
+
+function doSearchSell(guestId)
+{
+    memCardGrid.clearRows();
+    if(!guestId) return;
+    var params = {
+    		 guestId:guestId
+    }
+    carSellPointGrid.load({
+    	token:token,
+    	params:params
+    },function(){
+        var data = carSellPointGrid.getData();
+        var len = data.length||0;
+        $("#showSellEl").html("销售机会("+len+")");
+    });
 }
 
 function pay(){
@@ -4978,6 +5014,60 @@ function addOrEdit(item)
         }
     });
 }
+
+function addSell() {
+	
+	nui.open({
+		url : webPath + contextPath
+				+ "/com.hsweb.part.manage.businessOpportunityEdit.flow?token="
+				+ token,
+		title : "添加商机",
+		width : 550,
+		height : 410,
+		onload : function() {
+			var iframe = this.getIFrameEl();
+			//工单页面添加商机信息直接带过去
+			var data = xyguest;
+			//新增页面商机的姓名字段是guestName
+			data.guestName = data.guestFullName;
+			data.type = "add";
+			iframe.contentWindow.setData(data);
+		},
+		ondestroy : function(action) {
+			if (action == "saveSuccess") {
+				grid.reload();
+			}
+		}
+	});
+}
+
+function editSell() {
+		var row = carSellPointGrid.getSelected();
+		if (row) {
+			nui.open({
+				url : webPath + contextPath
+				+ "/com.hsweb.part.manage.businessOpportunityEdit.flow?token="
+				+ token,
+				title : "更新商机",
+				width : 550,
+				height : 410,
+				onload : function() {
+					var iframe = this.getIFrameEl();
+					var data = row;
+					data.type = 'editT';
+					// 直接从页面获取，不用去后台获取
+					iframe.contentWindow.setData(data);
+				},
+				ondestroy : function(action) {
+					if (action == "saveSuccess") {
+						grid.reload();
+					}
+				}
+			});
+		} else {
+			showMsg("请选中一条记录!", "W");
+		}
+	}
 
 var binUrl = webBaseUrl + "repair/RepairBusiness/Reception/bindWechatContactor.jsp";
 function bindWechat(){

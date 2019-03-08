@@ -78,6 +78,9 @@
               <isNotEmpty prepend="and" property="vin">  
                 (a.vin like '%$vin$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestFullName">  
+                (b.full_name like '%$guestFullName$%')
+            </isNotEmpty>
             
              <isNotEmpty prepend="and" property="type">  
              	<!-- 

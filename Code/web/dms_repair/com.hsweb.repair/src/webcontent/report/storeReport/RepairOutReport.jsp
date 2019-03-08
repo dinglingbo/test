@@ -9,7 +9,7 @@
 -->
 <head>
     <title>维修出库明细</title>
-    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.51"></script>
+    <script src="<%=webPath + contextPath%>/repair/js/report/storeReport/repairOutReport.js?v=1.0.54"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -46,9 +46,11 @@
        <li iconCls="" onclick="quickSearch(11)" id="type11">上年</li>
    </ul>
    <span class="separator"></span>
+ 
  	<input class="nui-textbox" width="80px" id="partCode" name="partCode" selectOnFocus="true" enabled="true" emptyText="配件编码"/>
     <input class="nui-textbox" width="80px" id="partName" emptyText="配件名称"  selectOnFocus="true" name="partName"/>
    
+
      <input id="storeId"
         name="storeId"
         class="nui-combobox"
@@ -106,6 +108,7 @@
      <input class="nui-datepicker"width="100px" id="sPickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
  至:
     <input class="nui-datepicker" width="100px"id="ePickDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false"/>
+ 	</br>  
    结算日期 从:
      <input class="nui-datepicker"width="100px" id="sOutDate" allowInput="false"  format="yyyy-MM-dd" showTime="false" showOkButton="false" showClearButton="false" />
  至:
@@ -163,8 +166,8 @@
         <div header="盈利信息" headerAlign="center">
             <div property="columns">
                 <div allowSort="true" summaryType="sum" allowSort="true" field="gross" width="80" headerAlign="center" header="毛利" dataType="float" align="left"></div>
-                <div allowSort="true" summaryType="sum" allowSort="true" field="grossRate" headerAlign="center" header="配件毛利率" dataType="float" align="left"></div>
-                <div allowSort="true" summaryType="sum" allowSort="true" field="costRate" headerAlign="center" header="成本率" dataType="float" align="left"></div>
+                <div allowSort="true"  allowSort="true" field="grossRate" numberFormat="p" headerAlign="center" header="配件毛利率" dataType="float" align="left"></div>
+                <div allowSort="true"  allowSort="true" field="costRate" numberFormat="p" headerAlign="center" header="成本率" dataType="float" align="left"></div>
             </div>
         </div>
         <div header="出库信息" headerAlign="center">

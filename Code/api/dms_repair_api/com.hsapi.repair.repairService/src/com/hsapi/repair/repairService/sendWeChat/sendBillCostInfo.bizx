@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="sendCheckInfo.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查车 完成 通知" title="Administrator&#x9;19-3-8 上午9:58">
-    <location x="7" y="386"/>
-    <size height="100" width="190"/>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="sendBillCostInfo" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content=" 工单  消费提醒" title="Administrator&#x9;19-3-7 上午10:03">
+    <location x="18" y="15"/>
+    <size height="100" width="197"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
       <targetNode>assign0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <location x="102" y="145"/>
     <size height="28" width="28"/>
@@ -39,64 +40,48 @@
       <sourceNode>assign14</sourceNode>
       <targetNode>subprocess4</targetNode>
     </sourceConnections>
-    <targetConnections>link1</targetConnections>
-    <location x="359" y="225"/>
+    <targetConnections>link8</targetConnections>
+    <location x="462" y="285"/>
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">DJ2Zz6y8AEFs5DYap2DGtUlrCLwdwwKx1qgfxWMcAA8</process:from>
+      <process:from type="literal" pattern="reference">3sj6r7rdbkg1ZP2lNG_5ZLFe2Aot98IjCxljgKgozCo</process:from>
       <process:to type="query">templatedId</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">您好：尊敬的</process:from>
+      <process:from type="query" pattern="reference">maintain/serviceCode</process:from>
+      <process:to type="query">serviceCode</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">serviceCode + &quot;结算通知&quot;</process:from>
       <process:to type="query">wcText</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">pdata/name</process:from>
-      <process:to type="query">guestName</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">wcText + guestName</process:from>
-      <process:to type="query">wcText</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">wcText +&quot;先生/女士，您的爱车已完成体检，报告得分为&quot;</process:from>
-      <process:to type="query">wcText</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">checkMain/checkPoint</process:from>
-      <process:to type="query">score</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">wcText + score</process:from>
-      <process:to type="query">wcText</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">wcText + &quot;分&quot;</process:from>
-      <process:to type="query">wcText</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="query" pattern="reference">checkMain/enterKilometers</process:from>
-      <process:to type="query">enterKilometers</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">enterKilometers + &quot;公里&quot;</process:from>
-      <process:to type="query">enterKilometers</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">wcText</process:from>
       <process:to type="query">paraMap/first</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">checkMain/carModel</process:from>
+      <process:from type="query" pattern="reference">maintain/carNo</process:from>
       <process:to type="query">paraMap/keyword1</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">enterKilometers</process:from>
+      <process:from type="query" pattern="reference">strDate</process:from>
       <process:to type="query">paraMap/keyword2</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">点击可查看详情</process:from>
+      <process:from type="expression" pattern="reference">costAmt +&quot;元&quot;</process:from>
+      <process:to type="query">paraMap/keyword3</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userName</process:from>
+      <process:to type="query">paraMap/keyword4</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/attributes/compTel</process:from>
+      <process:to type="query">paraMap/keyword5</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">感谢您光临，您可查看消费详情，并对本次服务进行评价。</process:from>
       <process:to type="query">paraMap/remark</process:to>
     </process:copy>
     <process:copy>
@@ -105,7 +90,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
-    <location x="354" y="261"/>
+    <location x="457" y="321"/>
     <figSize height="17" width="39"/>
     <node>assign14</node>
   </nodes>
@@ -113,6 +98,7 @@
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign12</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
     <location x="449" y="145"/>
@@ -145,7 +131,7 @@
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link1" name="link1" displayName="link27" isDefault="true" type="transition">
       <sourceNode>subprocess3</sourceNode>
-      <targetNode>assign14</targetNode>
+      <targetNode>invokePojo0</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
           <process:leftOperand type="query"/>
@@ -180,7 +166,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="450" y="225"/>
+    <location x="553" y="285"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
     <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
@@ -198,7 +184,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="427" y="260"/>
+    <location x="530" y="320"/>
     <figSize height="17" width="73"/>
     <node>subprocess4</node>
   </nodes>
@@ -212,7 +198,7 @@
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">checkMain/carId</process:from>
+      <process:from type="query" pattern="reference">maintain/carId</process:from>
       <process:to type="query">p/carId</process:to>
     </process:copy>
   </nodes>
@@ -227,7 +213,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="540" y="225"/>
+    <location x="643" y="285"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -240,9 +226,35 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="538" y="261"/>
+    <location x="641" y="321"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tInvoke" description="" id="invokePojo0" name="时间" displayName="format" collapsed="false" type="invoke" index="2" invokeType="invoke_pojo" varArgs="false">
+    <sourceConnections xsi:type="process:tLink" id="link8" name="link8" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>invokePojo0</sourceNode>
+      <targetNode>assign14</targetNode>
+    </sourceConnections>
+    <targetConnections>link1</targetConnections>
+    <location x="385" y="285"/>
+    <size height="28" width="22"/>
+    <nodeLabel>invokePojo0label</nodeLabel>
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
+      <process:partner type="literal">com.eos.foundation.common.utils.DateUtil.format</process:partner>
+      <process:instance instanceName=""/>
+    </process:pojo>
+    <process:inputVariables>
+      <process:inputVariable id="0" name="date" type="expression" value="java.util.Date" valueType="Java" pattern="reference">new Date()</process:inputVariable>
+      <process:inputVariable id="1" name="pattern" type="literal" value="java.lang.String" valueType="Java" pattern="reference">yyyy-MM-dd HH:mm</process:inputVariable>
+    </process:inputVariables>
+    <process:outputVariables>
+      <process:outputVariable id="0" name="out0" type="query" value="java.lang.String" valueType="Java">strDate</process:outputVariable>
+    </process:outputVariables>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="invokePojo0label" name="label" nodeType="label">
+    <location x="384" y="321"/>
+    <figSize height="17" width="25"/>
+    <node>invokePojo0</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -253,13 +265,17 @@
     <process:variable anyType="commonj.sdo.DataObject" description="客户openid等信息" historyStateLocation="client" isArray="false" name="pdata"/>
     <process:variable description="微信模板id" historyStateLocation="client" isArray="false" name="templatedId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="wcText" primitiveType="String"/>
-    <process:variable description="" historyStateLocation="client" isArray="false" name="guestName" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="serviceCode" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="微信内容" historyStateLocation="client" isArray="false" name="paraMap"/>
-    <process:variable description="分数" historyStateLocation="client" isArray="false" name="score" primitiveType="String"/>
+    <process:variable description="分数" historyStateLocation="client" isArray="false" name="cardName" primitiveType="String"/>
     <process:variable description="进厂里程" historyStateLocation="client" isArray="false" name="enterKilometers" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="strDate" primitiveType="String"/>
+    <process:variable anyType="commonj.sdo.DataObject" description="" historyStateLocation="client" isArray="true" name="amtList"/>
+    <process:variable anyType="java.util.HashMap" description="" historyStateLocation="client" isArray="false" name="paramsAmt"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input anyType="commonj.sdo.DataObject" description="" isArray="false" name="checkMain"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>
+    <process:input description="结算金额" isArray="false" name="costAmt" primitiveType="String"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

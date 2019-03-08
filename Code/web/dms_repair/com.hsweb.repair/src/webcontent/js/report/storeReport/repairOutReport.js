@@ -6,6 +6,7 @@ var baseUrl = window._rootUrl || "http://127.0.0.1:8080/default/";
 var rightGridUrl = baseUrl+"com.hsapi.repair.repairService.report.queryRepairOutList.biz.ext";
 var advancedSearchWin = null;
 var advancedSearchForm = null;
+
 var advancedSearchFormData = null;
 var basicInfoForm = null;
 var rightGrid = null;
@@ -138,6 +139,8 @@ $(document).ready(function(v)
 	        		}
 	        	}
 
+
+
 		default:
 			break;
 		}
@@ -188,6 +191,7 @@ function getSearchParams(){
     var params = {};
     params.partCode=nui.get("partCode").getValue();
     params.partName=nui.get("partName").getValue();
+    params.pjBillTypeId="050206";
     params.partBrandId=nui.get("partBrandId").getValue();
     params.partTypeId=nui.get("partTypeId").value;
     params.storeId=nui.get("storeId").getValue();

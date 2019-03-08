@@ -10,7 +10,7 @@
 -->     
 <head>
     <title>工单-洗车单</title>
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.83"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/carWashBill.js?v=1.5.86"></script>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     
     <style type="text/css"> 
@@ -442,7 +442,7 @@ html, body{
                 <td>
                     <div >
                         <span id="carSellInfoEl" >
-                            <a href="javascript:showSellPoint()" class="healthview" >销售机会(9)</a>&nbsp;
+                            <a href="javascript:showSellPoint()" class="healthview" id="showSellEl" href="javascript:showSell()">销售机会(0)</a>&nbsp;
                         </span>
                     </div>
                 </td>
@@ -517,7 +517,7 @@ html, body{
  			          <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalPrefAmt" name="totalPrefAmt"/>        
  			        <label>小计金额：</label>
  			        <input class="nui-textbox" inputStyle="color:red;font-weight:bold;font-size:14px;" enabled="false"  id="totalSubtotal" name="totalSubtotal"/>
- 
+ 					<input class="nui-combobox" name="chanceType" id="chanceType" valueField="customid" textField="name"  visible="false" />
                       <div style='display: none'>
 			          <input class="nui-hidden" enabled="false" id="packageSubtotal" name="packageSubtotal"/>
 			          <input class="nui-hidden" enabled="false" id="packagePrefAmt" name="packagePrefAmt"/>
@@ -720,7 +720,7 @@ allowDrag="false">
         <table style="width:100%;">
             <tr>
                 <td style="width:100%;">
-                <a class="nui-button" iconCls="" plain="true" onclick="showCarSellPointInfo()" id="auditBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增销售机会</a>
+                <a class="nui-button" iconCls="" plain="true" onclick="addSell()" id="auditBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;新增销售机会</a>
                     <a class="nui-button" iconCls="" plain="true" onclick="showCarSellPointInfo()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
                 </td>
             </tr>
@@ -730,19 +730,20 @@ allowDrag="false">
           <div id="carSellPointGrid" class="nui-datagrid" style="width:100%;height:95%;"
                selectOnLoad="true"
                showPager="false"
-               dataField="data"
+               dataField="list"
                idField="id"
                allowCellSelect="true"
                editNextOnEnterKey="true"
                url="">
               <div property="columns">
-                  <div field="prdtName" name="prdtName" width="100" headerAlign="center" header="项目"></div>
-                  <div field="amt" name="amt" width="50" headerAlign="center" header="金额"></div>
+                  <div field="prdtName" name="prdtName" width="80" headerAlign="center" header="项目"></div>
+                  <div field="prdtAmt" name="amt" width="40" headerAlign="center" header="金额"></div>
+                  <div field="chanceType" name="type" width="60" headerAlign="center" header="机会类型"></div>
                   <div field="status" name="status" width="50" headerAlign="center" header="阶段"></div>
-                  <div field="creator" name="creator" width="50" headerAlign="center" header="创建人"></div>
-                  <div field="doTimes" name="doTimes" width="50" headerAlign="center" header="预计成单时间"></div>
-                  <div field="type" name="type" width="50" headerAlign="center" header="机会类型"></div>
-                  <div field="cardTimesOpt" name="cardTimesOpt" width="50" headerAlign="center"  header="操作" align="center"></div>
+                  <div field="chanceMan" name="creator" width="80" headerAlign="center" header="商机所有者"></div>
+                <div field="nextFollowDate" name="nextFollowDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >下次跟进时间</div>
+ 				<div field="planFinishDate" name="planFinishDate" width="100" dateFormat="yyyy-MM-dd " headeralign="center" >预计成单时间</div>
+                  <div field="cardTimesOpt" name="cardTimesOpt" width="80" headerAlign="center"  header="操作" align="center"></div>
               </div>
           </div>
     </div>

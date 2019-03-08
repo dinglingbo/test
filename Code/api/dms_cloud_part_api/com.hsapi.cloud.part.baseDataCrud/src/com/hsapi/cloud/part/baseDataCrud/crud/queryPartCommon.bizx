@@ -362,7 +362,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="a" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">parts</process:inputVariable>
-      <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">epcCommonList</process:inputVariable>
+      <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="value">epcCommonList</process:inputVariable>
       <process:inputVariable id="2" name="compField" type="query" value="java.lang.String" valueType="Java" pattern="reference">value</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>

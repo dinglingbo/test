@@ -324,10 +324,12 @@ a#car{
                 e.cellHtml = "理赔开单";
             }else if(value == 5){
             	e.cellHtml = "退货开单";
+            }else{
+            	e.cellHtml = "波箱开单";
             }
         }
     });
-var headerHash = [{ name: '综合开单', id: '0' }, { name: '检查开单', id: '1' }, {name: '洗美开单' , id: '2' }, { name: '销售开单', id: '3' }, { name: '理赔开单', id: '4' }, { name: '退货开单', id: '5' }];
+var headerHash = [{ name: '综合开单', id: '0' }, { name: '检查开单', id: '1' }, {name: '洗美开单' , id: '2' }, { name: '销售开单', id: '3' }, { name: '理赔开单', id: '4' }, { name: '退货开单', id: '5' }, { name: '波箱开单', id: '6' }];
     function newrepairOut(type) {
         var row = mainGrid.getSelected();
         if(row){ 

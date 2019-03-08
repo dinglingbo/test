@@ -78,6 +78,9 @@
               <isNotEmpty prepend="and" property="vin">  
                 (a.vin like '%$vin$%')
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestFullName">  
+                (b.full_name like '%$guestFullName$%')
+            </isNotEmpty>
             
              <isNotEmpty prepend="and" property="type">  
              	<!-- 
@@ -221,6 +224,12 @@
 		<dynamic>
             <isNotEmpty prepend="and" property="tenantId">  
                 (b.tenant_id = #tenantId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="carId">  
+                (a.id = #carId#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="orgId">  
+                (b.orgid = #orgId#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="guestId">  
                 (b.id = #guestId#)

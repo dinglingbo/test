@@ -9,7 +9,7 @@
 -->
 <head>
 <title>物流订单查询</title>
-<script src="<%=webPath + contextPath%>/purchase/js/packOut/packQuery.js?v=1.0.23"></script>
+<script src="<%=webPath + contextPath%>/purchase/js/packOut/packQuery.js?v=1.0.28"></script>
    
 <style type="text/css">
 .title {
@@ -176,10 +176,10 @@
 	               dataField="pjSellOrderDetailList"
 	               idField="id"
 	               showSummaryRow="true"
-	               ondrawcell=""
+	               ondrawcell="onDetailGridDrawCell"
 	               allowCellSelect="true"
 	               allowCellEdit="true"
-	               ondrawsummarycell="onDetailGridDrawCell"
+	               ondrawsummarycell=""
 	               showModified="false"
 	               editNextOnEnterKey="true"
 	               url="">

@@ -194,7 +194,7 @@
       <targetNode>assign10</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -380,6 +380,7 @@
     <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo1</sourceNode>
       <targetNode>subprocess1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
     <location x="450" y="150"/>
@@ -391,7 +392,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="a" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">tempList</process:inputVariable>
-      <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">pkgList</process:inputVariable>
+      <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="value">pkgList</process:inputVariable>
       <process:inputVariable id="2" name="compField" type="query" value="java.lang.String" valueType="Java" pattern="reference">value</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -419,7 +420,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="a" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">tempList</process:inputVariable>
-      <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">itemList</process:inputVariable>
+      <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="value">itemList</process:inputVariable>
       <process:inputVariable id="2" name="compField" type="query" value="java.lang.String" valueType="Java" pattern="reference">value</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -447,7 +448,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="a" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">tempList</process:inputVariable>
-      <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">partList</process:inputVariable>
+      <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="value">partList</process:inputVariable>
       <process:inputVariable id="2" name="compField" type="query" value="java.lang.String" valueType="Java" pattern="reference">value</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -514,6 +515,7 @@
     <sourceConnections xsi:type="process:tLink" id="link22" name="link22" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo4</sourceNode>
       <targetNode>assign8</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link21</targetConnections>
     <location x="1080" y="150"/>

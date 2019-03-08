@@ -92,6 +92,14 @@
       <process:to type="query">criteria/_expr[3]/_property</process:to>
     </process:copy>
     <process:copy>
+      <process:from type="literal" pattern="reference">outDate</process:from>
+      <process:to type="query">criteria/_orderby[1]/_property</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="literal" pattern="reference">desc</process:from>
+      <process:to type="query">criteria/_orderby[1]/_sort</process:to>
+    </process:copy>
+    <process:copy>
       <process:from type="literal" pattern="reference">S</process:from>
       <process:to type="query">errCode</process:to>
     </process:copy>

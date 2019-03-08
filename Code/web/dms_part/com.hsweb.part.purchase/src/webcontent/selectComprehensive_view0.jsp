@@ -145,7 +145,7 @@
                   <div type="checkcolumn" name="checkcolumn" visible="false"></div>
                   <div header="客户车辆信息" headerAlign="center">
 	                  <div property="columns" > 
-	                 	  <div field="guestFullName" name="guestFullName" width="100" headerAlign="center"  allowsort="true" header="客户姓名" allowsort="ture"></div> 
+	                 	  <div field="guestFullName" name="guestFullName" width="100" headerAlign="center"  allowsort="true" header="客户名称" allowsort="ture"></div> 
 		                  <div field="carNo" name="carNo" width="80" headerAlign="center" header="车牌号" allowsort="true"></div>
 		                  <div field="carModel" name="carModel" width="120" headerAlign="center" allowsort="true" header="品牌/车型"></div>
 						  <div field="carVin" name="carVin" width="150" headerAlign="center" allowsort="true" header="车架号(VIN)"></div>

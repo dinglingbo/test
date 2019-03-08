@@ -11,7 +11,7 @@
 <head>
 <title>成品入库</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="/default/common/js/partUtil.js?v=1.0.13" type="text/javascript"></script>
+     <script src="<%=webPath + contextPath%>/common/js/partUtil.js?v=1.0.13" type="text/javascript"></script>
 </head>
 <style type="text/css">
     html,body
@@ -31,14 +31,15 @@
 <body>
        <div id="form1" >
         	<input name="id" id="id"class="nui-hidden" />
-        	<input name="serviceId"  id="serviceId" class="nui-hidden" />
+        	<input name="code"  id="code" class="nui-hidden" />
+        	<input name="codeId"  id="codeId" class="nui-hidden" />
         	<input name="partCode"  id="partCode" class="nui-hidden" />
         	<input name="partId"  id="partId" class="nui-hidden" />
         	<input name="partName"  id="partName" class="nui-hidden" />
         	<input name="enterUnitId"  id="enterUnitId" class="nui-hidden" />
         	<input name="fullName"  id="fullName" class="nui-hidden" />
         	<input name="qty"  id="qty" class="nui-hidden" />
-        	
+        	<input name="detailId"  id="detailId" class="nui-hidden" />
         <table style="line-height:30px;">
             <tr>
                 <td class="tbtext" >
@@ -73,13 +74,13 @@
                     <label>维修金额(元):</label>
                 </td>
                 <td>
-                    <input id="amt"  name="amt" class="nui-textbox"  enable="false"width="100%"/>
+                    <input id="amt"  name="amt" class="nui-textbox"  enabled="false"width="100%"/>
                 </td>
                 <td style="width:110px" class="tbtext">
                     <label >销售金额(元):</label>
                 </td>
                  <td>
-                    <input id="sellPrice"  name="sellPrice" class="nui-textbox"  enable="false"width="100%"/>
+                    <input id="sellPrice"  name="sellPrice" class="nui-textbox"  enable="false"width="100%" vtype="float" />
                 </td>
             </tr>
             <tr>
@@ -109,23 +110,43 @@
 	        var storehouse = data.storehouse||[];
 	        nui.get("storeId").setData(storehouse);
     	});
-    	function setData(){
-    		getGuestId();
+    	function setData(serviceId,serviceCode,totalAmt){
+    		nui.get("codeId").setValue(serviceId);
+    		nui.get("code").setValue(serviceCode);
+    		nui.get("amt").setValue(totalAmt);
     	}
     	
     	var auditUrl = partUrl + "com.hsapi.part.invoice.crud.auditPjPchsOrder.biz.ext";
     	function save(){ 
+    		if (form.isValid() == false) {
+				  showMsg("销售价格必须为数字","W");
+				  return;		
+    		}
     		var data = form.getData();
+    		if(!data.storeId){
+    			showMsg("仓库不能为空","W");
+				return;	
+    		}
     		var orderMain = {
-    			serviceId : data.serviceId,
+    			id : nui.get("id").value,
+    			codeId : data.codeId,
+    			code : data.code,
     			storeId : data.storeId,
     			storeName : nui.get("storeId").text
     		};
     		var orderDetailAdd = null;
     		var orderDetailUpdate = null;
-    		if(!data.id){
+    		if(!data.detailId){
     			orderDetailAdd = data;
+    		}else{
+    			orderDetailUpdate = data;
+    			orderDetailUpdate.id = data.detailId;
     		}
+    		nui.mask({
+	        	        el: document.body,
+	        	        cls: 'mini-mask-loading',
+	        	        html: '数据加载中...'
+        	 });
     		nui.ajax({
 				url : partUrl + "com.hsapi.part.invoice.crud.auditPjProduct.biz.ext",
 				type : "post",
@@ -136,7 +157,15 @@
 					token : token
 				},
 				success : function(text) {
-					console.log(text);
+					nui.unmask(document.body);
+					if(text.errCode == "S"){
+						showMsg("入库成功","S");
+						if(text.data.length > 0){
+							form.setData(text.data[0]);
+						}
+					}else{
+						showMsg(text.errMsg,"W");
+					}
 				},
 				error : function(jqXHR, textStatus, errorThrown) {
 					console.log(jqXHR.responseText);
@@ -170,55 +199,13 @@
     	
     	function addPart(){//添加配件
     		selectPart(function(data) {
-				var part = data.part;
-				addDetail(part);
+    		
 			}, function(data) {
 					
 			});
     	}
     	
-    	function addDetail(part) {
-				nui.open({
-			//				// targetWindow: window,,
-							url : webPath+contextPath+"/com.hsweb.part.manage.detailQPAPopOperate.flow?token="+token,
-							title : "入库数量金额",
-							width : 430,
-							height : 210,
-							allowDrag : true,
-							allowResize : false,
-							onload : function() {
-								var iframe = this.getIFrameEl();
-								part.storeId = nui.get("storeId").value;//nui.get("storeId").getValue();
-								iframe.contentWindow.setData({
-									part : part,
-									priceType : "pchsIn"
-								});
-							},
-							ondestroy : function(action) {
-								if (action == "ok") {
-									var iframe = this.getIFrameEl();
-									var data = iframe.contentWindow.getData();
-									enterDetail = {};
-									enterDetail.partId = data.id;
-									enterDetail.partCode = data.code;
-									enterDetail.partName = data.name;
-									enterDetail.enterUnitId = data.unit;
-									enterDetail.systemUnitId = data.systemUnitId;
-									enterDetail.fullName = data.unit;
-									enterDetail.qty = 1;
-									enterDetail.amt = data.amt;
-									enterDetail.price = data.price;
-									enterDetail.storeId = data.storeId;
-									enterDetail.remark = data.remark;
-									enterDetail.serviceId = nui.get("serviceId").value;
-									enterDetail.id = nui.get("id").value;
-									form.setData(enterDetail);
-								}
-							}
-						});
-			}
-    	
-    	var guestUrl = partUrl + "com.hsapi.part.common.svr.getGuestByInternalId.biz.ext";
+    	/* var guestUrl = partUrl + "com.hsapi.part.common.svr.getGuestByInternalId.biz.ext";
     	function getGuestId() {
 		    nui.ajax({
 		        url : guestUrl,
@@ -241,7 +228,7 @@
 		            console.log(jqXHR.responseText);
 		        }
 		    });
-		}
+		} */
 		
 		function selectPart(callback, checkcallback) {
 				nui.open({
@@ -254,9 +241,22 @@
 					allowResize : true,
 					onload : function() {
 						var iframe = this.getIFrameEl();
-						iframe.contentWindow.setData({}, callback, checkcallback);
+						iframe.contentWindow.setData({bxMsg : 1}, callback, checkcallback);
 					},
 					ondestroy : function(action) {
+						if (action == "ok") {
+							var iframe = this.getIFrameEl();
+							var row = iframe.contentWindow.BXselectPart();
+							var data = form.getData();
+							data.partId = row.id;
+							data.partCode = row.code;
+							data.partName = row.name;
+							data.enterUnitId = row.unit;
+							data.systemUnitId = row.systemUnitId;
+							data.fullName = row.fullName;
+							data.qty = 1;
+							form.setData(data);
+						}
 					}
 				});
 		}

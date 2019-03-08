@@ -5,7 +5,7 @@ var QD = [{id:1,text:"FWD"},{id:2,text:"RWD"},{id:3,text:"4WD"}];
 var webBaseUrl = webPath + contextPath + "/";
 var baseUrl = apiPath + repairApi + "/";
 var mainGrid = null;
-var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainListBX.biz.ext";
+var mainGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.qyeryMaintainList.biz.ext";
 //var itemGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemQuoteByServiceId.biz.ext";
 //var partGridUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPartByServiceId.biz.ext";
 var getdRpsPackageUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsPackagePItemPPart.biz.ext";
@@ -13,7 +13,7 @@ var getRpsItemUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsItemPPar
 var getRpsPartUrl = baseUrl + "com.hsapi.repair.repairService.svr.getRpsMainPart.biz.ext";
 var beginDateEl = null;
 var endDateEl = null;
-var statusList = [{id:"0",name:"车牌号"},{id:"1",name:"车架号(VIN)"},{id:"2",name:"联系人名称"},{id:"3",name:"手机号"}];
+var statusList = [{id:"0",name:"变速箱号"},{id:"1",name:"变速箱型号"},{id:"2",name:"客户名称"},{id:"3",name:"手机号"}];
 var prebookStatusHash = [{ name: '草稿', id: '0' }, { name: '施工中', id: '1' }, {name: '完工' , id: '2' }];
 var headerHash = [{ name: '未结算', id: '0' }, { name: '预结算', id: '1' }, {name: '未结算' , id: '2' }, {name: '未结算' , id: '3' }];
 var boxServiceTypeId = [{ name: '厂外维修', id: '1' }, { name: '厂内翻新', id: '2' }, {name: '厂外返修' , id: '3' }];
@@ -119,7 +119,7 @@ $(document).ready(function ()
     	var record = e.record;
         if (e.field == "status") {
             e.cellHtml = statusHash[e.value];
-        }else if (e.field == "carBrandId") {
+        }else if (e.field == "boxBrandId") {
             if (brandHash && brandHash[e.value]) {
                 e.cellHtml = brandHash[e.value].name;
             }
@@ -454,9 +454,9 @@ function getSearchParam() {
     var type = nui.get("search-type").getValue();
     var typeValue = nui.get("carNo-search").getValue();
     if(type==0){
-        params.carNo = typeValue;
+        params.engineNo = typeValue;
     }else if(type==1){
-        params.vin = typeValue;
+        params.engineModel = typeValue;
     }else if(type==2){
         params.name = typeValue;
     }else if(type==3){

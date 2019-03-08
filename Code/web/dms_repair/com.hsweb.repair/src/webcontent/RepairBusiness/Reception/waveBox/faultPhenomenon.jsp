@@ -315,12 +315,7 @@
 		}
 		
 		function close(){
-			nui.confirm("确定关闭窗口？", "温馨提示", function(action) {
-                if (action == "ok") {
-                    if (window.CloseOwnerWindow) return window.CloseOwnerWindow('');
-                    else window.close();
-                }
-            });
+			window.CloseOwnerWindow('');
 		}
     </script>
 </body>

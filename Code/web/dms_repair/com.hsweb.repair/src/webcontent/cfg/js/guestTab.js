@@ -11,7 +11,18 @@ var dgGrid;
 $(document).ready(function(v) {
 	dgGrid=nui.get("dgGrid");
 	dgGrid.setUrl(gridUrl);
-	dgGrid.load({dictids:dictids,token:token});
+	var params = {
+			params:{
+				sortField:"record_date",
+				sortOrder:"asc"
+			},
+			orgids:currOrgId,
+			dictids:dictids,
+			fromDb:true,
+			token:token
+		};
+		
+	dgGrid.load(params);
 	
 	dgGrid.on("drawcell",function(e){
         switch (e.field) {
@@ -115,7 +126,18 @@ function save(){
 }
 function doSearch()
 {
-	dgGrid.load({dictids:dictids,token:token});
+	var params = {
+			params:{
+				sortField:"record_date",
+				sortOrder:"asc"
+			},
+			orgids:currOrgId,
+			dictids:dictids,
+			fromDb:true,
+			token:token
+		};
+		
+	dgGrid.load(params);
 }
 
 

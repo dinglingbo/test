@@ -192,4 +192,16 @@
 		ORDER BY
 			record_date DESC
 	</select>
+	
+	<select id="querySelectGuestType" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT
+			id id,
+			name name
+		FROM
+			rpb_guest_type 
+		WHERE orgid = #orgid#
+		ORDER BY
+			modify_date DESC
+	</select>
+	
 </sqlMap>

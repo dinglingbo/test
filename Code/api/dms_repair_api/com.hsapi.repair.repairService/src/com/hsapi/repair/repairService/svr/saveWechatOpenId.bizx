@@ -223,12 +223,12 @@
       <targetNode>assign5</targetNode>
     </sourceConnections>
     <targetConnections>link11</targetConnections>
-    <location x="840" y="225"/>
+    <location x="855" y="220"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="838" y="261"/>
+    <location x="853" y="256"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
   </nodes>
@@ -436,6 +436,7 @@
     <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo6</sourceNode>
       <targetNode>assign6</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
     <location x="793" y="150"/>

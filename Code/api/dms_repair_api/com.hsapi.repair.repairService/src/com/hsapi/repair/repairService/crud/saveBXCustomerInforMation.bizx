@@ -24,6 +24,7 @@
       <process:return id="1" language="String" name="errCode" type="query" valueType="Primitive">errCode</process:return>
       <process:return id="2" language="String" name="errMsg" type="query" valueType="Primitive">errMsg</process:return>
       <process:return id="3" language="com.hsapi.repair.data.rpb.RpbContactor[]" name="rpb" type="query" valueType="DataObject">rpb</process:return>
+      <process:return id="4" language="com.hsapi.repair.data.rpb.RpbCar" name="car" type="query" valueType="DataObject">car</process:return>
     </process:returns>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="start0label" name="label" displayName="label" nodeType="label">
@@ -86,9 +87,9 @@
     <node>loopstart0</node>
   </nodes>
   <nodes xsi:type="process:tLoopEnd" id="loopend0" name="循环结束" displayName="循环结束" grouped="true" type="loopend" matchedName="loopstart0">
-    <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+    <sourceConnections xsi:type="process:tLink" id="link2" name="link2" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>loopend0</sourceNode>
-      <targetNode>assign3</targetNode>
+      <targetNode>assign4</targetNode>
     </sourceConnections>
     <targetConnections>link9</targetConnections>
     <location x="778" y="141"/>
@@ -161,7 +162,7 @@
   </nodes>
   <nodes xsi:type="process:tAssign" description="" id="assign1" name="赋值1" displayName="赋值" type="assign">
     <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
-      <bendPoint heightToEnd="124" heightToStart="-14" widthToEnd="2" widthToStart="598"/>
+      <bendPoint heightToEnd="144" heightToStart="-1" widthToEnd="-1" widthToStart="596"/>
       <sourceNode>assign1</sourceNode>
       <targetNode>end0</targetNode>
       <process:transitionCondition/>
@@ -209,7 +210,8 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
-    <location x="960" y="141"/>
+    <targetConnections>link7</targetConnections>
+    <location x="1035" y="141"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
     <process:flow index="3" synchronization="true" transactionType="join" varArgs="false">
@@ -227,7 +229,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="941" y="176"/>
+    <location x="1016" y="176"/>
     <figSize height="17" width="65"/>
     <node>subprocess4</node>
   </nodes>
@@ -236,12 +238,12 @@
       <sourceNode>assign3</sourceNode>
       <targetNode>subprocess4</targetNode>
     </sourceConnections>
-    <targetConnections>link6</targetConnections>
-    <location x="870" y="141"/>
+    <targetConnections>link5</targetConnections>
+    <location x="945" y="75"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">暂无车牌</process:from>
+      <process:from type="expression" pattern="reference">&quot;暂无车牌&quot; + guestId</process:from>
       <process:to type="query">car/carNo</process:to>
     </process:copy>
     <process:copy>
@@ -250,15 +252,70 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="868" y="177"/>
+    <location x="943" y="111"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" description="" id="link5" name="link5" displayName="连接线" isDefault="false" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign3</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NULLOREMPTY">
+          <process:leftOperand type="query">car/carNo</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="EQ">
+          <process:leftOperand type="query"></process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link2</targetConnections>
+    <location x="866" y="141"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">guest/id</process:from>
+      <process:to type="query">guestId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="864" y="177"/>
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" collapsed="false" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link7" name="link7" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>subprocess4</targetNode>
+    </sourceConnections>
+    <targetConnections>link6</targetConnections>
+    <location x="945" y="141"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">guest/id</process:from>
+      <process:to type="query">car/guestId</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="943" y="177"/>
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
   <process:info author="Administrator" createTime="2019-02-19 19:52:20" date="2019-02-19Z" description="保存修改联系人（波箱）" name="saveBXCustomerInforMation" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="p"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="guestId" primitiveType="Int"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" modelType="com.hsapi.repair.data.common.ComGuest" name="guest"/>
@@ -270,6 +327,7 @@
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>
     <process:output description="" isArray="false" name="errMsg" primitiveType="String"/>
     <process:output description="" isArray="true" modelType="com.hsapi.repair.data.rpb.RpbContactor" name="rpb"/>
+    <process:output description="" isArray="false" modelType="com.hsapi.repair.data.rpb.RpbCar" name="car"/>
   </process:outputs>
   <process:extAttribute1>public</process:extAttribute1>
   <process:transactionType>true</process:transactionType>

@@ -13,7 +13,7 @@ var serviceTypeIdEl = null;
 var servieTypeHash = {};
 var cType = 0;
 var form=null;
-var billTypeHash=[{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"}];
+var billTypeHash=[{name:"综合"},{name:"检查"},{name:"洗美"},{name:"销售"},{name:"理赔"},{name:"退货"},,{name:"波箱"}];
 var orgidsEl = null;
 $(document).ready(function ()
 {

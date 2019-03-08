@@ -194,7 +194,7 @@
       <targetNode>assign10</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -391,7 +391,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="a" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">tempList</process:inputVariable>
-      <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">pkgList</process:inputVariable>
+      <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="value">pkgList</process:inputVariable>
       <process:inputVariable id="2" name="compField" type="query" value="java.lang.String" valueType="Java" pattern="reference">value</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -419,7 +419,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="a" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">tempList</process:inputVariable>
-      <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">itemList</process:inputVariable>
+      <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="value">itemList</process:inputVariable>
       <process:inputVariable id="2" name="compField" type="query" value="java.lang.String" valueType="Java" pattern="reference">value</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -446,7 +446,7 @@
     </process:pojo>
     <process:inputVariables>
       <process:inputVariable id="0" name="a" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">tempList</process:inputVariable>
-      <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">partList</process:inputVariable>
+      <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="value">partList</process:inputVariable>
       <process:inputVariable id="2" name="compField" type="query" value="java.lang.String" valueType="Java" pattern="reference">value</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>

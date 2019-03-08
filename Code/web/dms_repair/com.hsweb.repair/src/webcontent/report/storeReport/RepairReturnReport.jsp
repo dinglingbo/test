@@ -163,8 +163,8 @@
         <div header="盈利信息" headerAlign="center">
             <div property="columns">
                 <div allowSort="true" summaryType="sum" allowSort="true" field="gross" width="80" headerAlign="center" header="毛利" dataType="float" align="left"></div>
-                <div allowSort="true" summaryType="sum" allowSort="true" field="grossRate" headerAlign="center" header="配件毛利率" dataType="float" align="left"></div>
-                <div allowSort="true" summaryType="sum" allowSort="true" field="costRate" headerAlign="center" header="成本率" dataType="float" align="left"></div>
+                <div allowSort="true"  allowSort="true" field="grossRate" numberFormat="p" headerAlign="center" header="配件毛利率" dataType="float" align="left"></div>
+                <div allowSort="true"  allowSort="true" field="costRate" numberFormat="p" headerAlign="center" header="成本率" dataType="float" align="left"></div>
             </div>
         </div>
         <div header="退货信息" headerAlign="center">

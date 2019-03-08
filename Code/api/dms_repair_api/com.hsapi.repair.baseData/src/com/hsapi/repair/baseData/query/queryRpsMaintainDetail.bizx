@@ -754,6 +754,7 @@
     <sourceConnections xsi:type="process:tLink" id="link44" name="link44" displayName="link22" isDefault="true" type="transition">
       <sourceNode>invokePojo7</sourceNode>
       <targetNode>loopend4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link42</targetConnections>
     <location x="1715" y="147"/>
@@ -856,7 +857,9 @@
     <node>end1</node>
   </nodes>
   <topRuler/>
-  <leftRuler/>
+  <leftRuler>
+    <guides position="165" horizontal="true"/>
+  </leftRuler>
   <process:info author="Administrator" createTime="2018-08-11 11:13:00" date="2018-08-11Z" description="" name="queryRpsMaintainDetail" version="7.0.0.0"/>
   <process:variables>
     <process:variable description="" historyStateLocation="client" isArray="true" modelType="com.hsapi.repair.data.rpsRead.RpsPackage" name="pkgList"/>

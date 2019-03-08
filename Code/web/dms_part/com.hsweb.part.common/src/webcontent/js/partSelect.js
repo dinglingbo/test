@@ -341,21 +341,34 @@ var resultData = {};
 var callback = null;
 
 function onOk()
-{
-	if($('#splitDiv').css('display')=='none'){
-		onCommon();
+{	
+	if(nui.get("bxMsg").value){
+		var row = partGrid.getSelected();
+		if(row){
+			CloseWindow("ok");
+		}else{
+			showMsg("暂无选中数据","W");
+			return;
+		}
+	}else{
+		if($('#splitDiv').css('display')=='none'){
+			onCommon();
+		}
+		else if($('#splitDiv').css('display')=='block'){
+			onOrder();
+		}
 	}
-	else if($('#splitDiv').css('display')=='block'){
-		onOrder();
-	}
-
 }
 function getData(){
     return resultData;
 }
 function setData(data,ck)
-{
+{	
+	
 	data = data||{};
+	if(data){
+		nui.get("bxMsg").setValue(data.bxMsg);
+	}
 	list = data.list||[];
     callback = ck;
 }
@@ -557,4 +570,9 @@ function getProToken(){
         }
     });
     return systoken;
+}
+
+function BXselectPart(){
+	var row = partGrid.getSelected();
+	return row;
 }

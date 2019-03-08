@@ -15,10 +15,10 @@
       <link href="<%=request.getContextPath()%>/repair/js/report/storeReport/reportIndex.css" rel="stylesheet" type="text/css" />
 
 </head>
-<body>
+<body style="width:100%;height100%; overflow :auto">
 
 
-                 <div  id="tb"> 
+                 <div  id="tb" > 
 
                  
             </div> 

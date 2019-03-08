@@ -230,6 +230,27 @@
 	        }
 	    });
 	}
+	
+	var getPartByIdUrl = window._rootUrl
+	+ "com.hsapi.cloud.part.baseDataCrud.crud.getPartById.biz.ext";
+	function getPartById(id, callback) {
+		var params = {};
+		params.id = id;
+		nui.ajax({
+			async: false,
+			url : getPartByIdUrl,
+			data : {
+				id: id
+			},
+			success : function(data) {
+				callback && callback(data);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				//  nui.alert(jqXHR.responseText);
+				console.log(jqXHR.responseText);
+			}
+		});
+	}
 	function addDate(date, days) {
         if (days == undefined || days == '') {
             days = 1;
@@ -311,7 +332,8 @@
 
 		return yearMonthList;
 	}
-
+	
+	
 	//用于数据导出成EXCEL
 	var idTmr;
 	function getExplorer() {

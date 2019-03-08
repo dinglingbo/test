@@ -1174,6 +1174,7 @@
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="link2" isDefault="true" type="transition">
       <sourceNode>assign16</sourceNode>
       <targetNode>invokePojo9</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
     <location x="1010" y="168"/>

@@ -11,7 +11,7 @@
 <head>
 <title>Title</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxMain.js?v=1.06"></script>
+    <script src="<%=webPath + contextPath%>/repair/RepairBusiness/Reception/waveBox/js/waveBoxMain.js?v=1.09"></script>
 <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
 </head>
@@ -108,8 +108,8 @@
                   <div field="boxNo" name="boxNo" width="80px" headerAlign="center" header="变速箱号"></div>
                   <div field="enterDate" name="enterDate" width="110px" headerAlign="center" dateFormat="  yyyy-MM-dd HH:mm" header="进厂时间"></div>
                   <div field="boxServiceTypeId" name="boxServiceTypeId" width="140px" headerAlign="center" header="业务类型"></div>
-                  <div field="engineModel" name="engineModel" width="100px" headerAlign="center"  header="变速箱型号"></div>
-                  <div field="carBrandId" name="carBrandId" width="100px" headerAlign="center"  header="波箱厂牌"></div>
+                  <div field="boxModel" name="engineModel" width="100px" headerAlign="center"  header="变速箱型号"></div>
+                  <div field="boxBrandId" name="boxBrandId" width="100px" headerAlign="center"  header="波箱厂牌"></div>
                    <div field="driveType" name="driveType" width="100px" headerAlign="center"  header="驱动形式"></div>
                   <div field="carVin" name="carVin" width="130px" headerAlign="center" header="车架号(VIN)"></div>
                   <div field="mtAdvisor" name="mtAdvisor" width="90px" headerAlign="center" header="服务顾问"></div>

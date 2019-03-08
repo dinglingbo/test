@@ -12,7 +12,7 @@
 <head>
 <title>商机添加</title>
 <script
-	src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/businessOpportunityEdit.js?v=1.1.6"></script>
+	src="<%=request.getContextPath()%>/manage/js/inOutManage/consumableItem/businessOpportunityEdit.js?v=1.1.7"></script>
 </head>
 <body>
 		     <div class="nui-toolbar" style="padding:0px;border-bottom:0;">

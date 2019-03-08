@@ -1804,15 +1804,28 @@
 				a.auditor_id as auditorId,
 				a.auditor as auditor,
 				a.audit_date as auditDate,
-				a.remark as remark,
 				a.creator_id as creatorId,
 				a.creator as creator,
 				a.create_date as createDate,
 				a.operator_id as operatorId,
 				a.operator as operator,
-				a.operate_date as operateDate
+				a.operate_date as operateDate,
+				b.id as detailId,
+				b.sell_price as sellPrice,
+				b.remark as remark,
+				b.amt as amt,
+				b.part_id as partId,
+				b.part_code as partCode,
+				b.part_name as partName,
+				b.full_name as fullName,
+				b.enter_unit_id as enterUnitId,
+				b.qty as qty,
+				a.code_id as codeId,
+				a.code as code
 			FROM
 				pj_product_enter_main AS a
+					inner join pj_product_enter_detail as b
+						on a.id = b.main_id
 			where 1=1
             <dynamic>
             	<isNotEmpty prepend="and" property="orgid"> 

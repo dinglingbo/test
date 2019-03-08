@@ -19,6 +19,7 @@
 			a.engine_no as boxNo,
 			a.engine_model as boxModel,
 			a.drive_type as driveType,
+			a.car_brand_id as boxBrandId,
 			a.car_id as carId,
 			a.car_vin AS carVin,
 			a.car_no AS carNo,
@@ -104,6 +105,12 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="mtAuditor">
                 (a.mt_advisor = #mtAuditor#)
+            </isNotEmpty> 
+            <isNotEmpty prepend="and" property="engineNo">  
+                (a.engine_no = #engineNo#)
+            </isNotEmpty>
+             <isNotEmpty prepend="and" property="engineModel">  
+                (a.engine_model = #engineModel#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="status">  
                 (a.status = #status#)
@@ -1265,7 +1272,8 @@
 			d.bala_amt AS balaAmt,
 			a.enter_kilometers AS enterKilometers,
 			c.name AS companyName,
-			a.out_date AS outDate
+			a.out_date AS outDate,
+			a.service_code serviceCode
 		FROM
 			rps_maintain a
 		  	INNER JOIN wb_common.com_company c on a.orgid = c.orgid

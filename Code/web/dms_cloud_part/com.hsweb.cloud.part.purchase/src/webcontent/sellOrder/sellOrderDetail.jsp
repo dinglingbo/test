@@ -84,7 +84,7 @@
                      url="">
                     <div property="columns">
                       <div type="indexcolumn">序号</div>
-                        <div field="auditSign" width="55" visable="false" headerAlign="center" header="状态"></div>
+                        <div field="auditSign" width="55" visible="false" headerAlign="center" header="状态"></div>
                         <div field="billStatusId" width="55" headerAlign="center" header="状态"></div>
                         <div field="guestFullName" width="140" headerAlign="center" header="客户"></div>
                         <div field="createDate" width="120" headerAlign="center" dateFormat="yyyy-MM-dd HH:mm" header="订单日期"></div>

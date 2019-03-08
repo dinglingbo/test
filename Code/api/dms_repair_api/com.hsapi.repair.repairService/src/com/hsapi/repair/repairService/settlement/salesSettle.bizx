@@ -1406,9 +1406,9 @@
         <process:inputVariable id="3" name="userId" type="query" value="String" valueType="Primitive" pattern="reference">maintain/mtAdvisorId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="2" name="data" type="query" value="cn.jpush.api.push.PushResult" valueType="Java"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="2" name="data" type="query" value="cn.jpush.api.push.PushResult" valueType="Java"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1608,8 +1608,8 @@
         <process:inputVariable id="1" name="consumeAmt" type="query" value="Double" valueType="Primitive" pattern="reference">settlement/balaAmt</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1939,8 +1939,8 @@
         <process:inputVariable id="8" name="contactorId" type="query" value="String" valueType="Primitive" pattern="reference">maintain/contactorId</process:inputVariable>
       </process:inputVariables>
       <process:outputVariables>
-        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"></process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
+        <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
       </process:outputVariables>
     </process:flow>
   </nodes>

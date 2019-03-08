@@ -15,6 +15,10 @@ var servieIdEl = null;
 var plist = [];
 var rlist = [];
 var amt = 0;//其他收入支出金额
+var tcAmt = 0;
+var gsAmt = 0;
+var allowanceAmt = 0;
+var ycAmt = 0;
 var prdtTypeHash = {
 	    "1":"套餐",
 	    "2":"项目",
@@ -101,6 +105,14 @@ $(document).ready(function () {
 		if(field == "action"){
 			e.cellHtml = ' <a class="optbtn" href="javascript:deleteRow(rpsPackageGrid)">删除</a>';
 		}
+		if(field == "prdtName"){
+			   var cardDetailId = record.cardDetailId||0;
+	           var s = "";
+	           if(cardDetailId>0){
+	               s = "<font color='red'>(预存)</font>";
+	           }
+	           e.cellHtml = e.value + s;
+		}
 	});
 	rpsItemGrid.on("cellendedit",function(e){
 		var row = e.row,
@@ -147,6 +159,14 @@ $(document).ready(function () {
             	e.cellHtml ='<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>' + e.value;
             }
 		}
+		if(field == "prdtName"){
+			   var cardDetailId = record.cardDetailId||0;
+	           var s = "";
+	           if(cardDetailId>0){
+	               s = "<font color='red'>(预存)</font>";
+	           }
+	           e.cellHtml = e.value + s;
+		}
 	});
 });
 
@@ -163,7 +183,8 @@ function setInitData(params){
 			}
 		}
     });
-	order(params.id);	
+	order(params.id);
+	otherPreferential(params.id);
 	 var params = {
 	            data: {
 	                id: params.id
@@ -286,6 +307,9 @@ function onDrawSummaryCellItem(e){
 	  sumPartPrefAmt = 0;
 	  var sumPartAmt = 0;
 	  // || e.field == "amt"
+	  
+
+
 	  if(e.field == "subtotal") 
 	  {   
 		  gsAmt = 0;
@@ -303,7 +327,9 @@ function onDrawSummaryCellItem(e){
 			 }
 			   
 		  }
-		  
+		  ycAmt = parseFloat(tcAmt)+parseFloat(gsAmt);
+		  data.ycAmt = ycAmt;
+		  data.otherPreferential = allowanceAmt;
 		  if( sumItemSubtotal>0 && sumItemAmt>=0  )
 		  {   
 			  sumItemPrefAmt = sumItemAmt - sumItemSubtotal;
@@ -315,8 +341,10 @@ function onDrawSummaryCellItem(e){
 			  var totalPrefAmt = parseFloat(data.packagePrefAmt) + parseFloat(data.itemPrefAmt)+parseFloat(data.partPrefAmt);
 			  data.totalSubtotal = mtAmt.toFixed(2);
 			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
-			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
+			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);			 
 			  data.totalAmt = totalAmt.toFixed(2);
+			  var settlementAmt = parseFloat(data.totalAmt)-parseFloat(data.totalPrefAmt)-parseFloat(allowanceAmt)-parseFloat(ycAmt);
+			  data.settlementAmt =settlementAmt.toFixed(2);
 			  
 			  sellForm.setData(data);
 		  }else{
@@ -327,7 +355,10 @@ function onDrawSummaryCellItem(e){
 			  data.totalSubtotal = mtAmt.toFixed(2);
 			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
 			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
-			  data.totalAmt = totalAmt.toFixed(2);
+			  data.totalAmt = totalAmt.toFixed(2);			  
+			  var settlementAmt = parseFloat(data.totalAmt)-parseFloat(data.totalPrefAmt)-parseFloat(allowanceAmt)-parseFloat(ycAmt);
+			  data.settlementAmt =settlementAmt.toFixed(2);
+			  
 			  sellForm.setData(data);
 		  }
 		  if(sumPartSubtotal>0 && sumPartAmt>=0)
@@ -343,6 +374,9 @@ function onDrawSummaryCellItem(e){
 			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
 			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
 			  data.totalAmt = totalAmt.toFixed(2);
+			  
+			  var settlementAmt = parseFloat(data.totalAmt)-parseFloat(data.totalPrefAmt)-parseFloat(allowanceAmt)-parseFloat(ycAmt);
+			  data.settlementAmt =settlementAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }else{
 			  data.partSubtotal = 0;
@@ -353,6 +387,9 @@ function onDrawSummaryCellItem(e){
 			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
 			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
 			  data.totalAmt = totalAmt.toFixed(2);
+			  
+			  var settlementAmt = parseFloat(data.totalAmt)-parseFloat(data.totalPrefAmt)-parseFloat(allowanceAmt)-parseFloat(ycAmt);
+			  data.settlementAmt =settlementAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }  
 	  }  
@@ -372,6 +409,8 @@ function onDrawSummaryCellPack(e){
 	  sumPkgPrefAmt = 0;
 	  var sumPkgAmt = 0;
 	  //|| e.field == "amt"
+	  
+
 	  if(e.field == "subtotal") 
 	  {   
 		  tcAmt = 0;
@@ -385,7 +424,9 @@ function onDrawSummaryCellPack(e){
 				  sumPkgAmt  += parseFloat(rows[i].amt);
 			  }
 		  }
-		  
+		  ycAmt = parseFloat(tcAmt)+parseFloat(gsAmt);
+		  data.ycAmt = ycAmt;
+		  data.otherPreferential = allowanceAmt;
 		  if(sumPkgAmt>0 && sumPkgSubtotal>=0)
 		  {   sumPkgPrefAmt = sumPkgAmt - sumPkgSubtotal;
 			  sumPkgSubtotal = sumPkgSubtotal.toFixed(2);
@@ -399,6 +440,9 @@ function onDrawSummaryCellPack(e){
 			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
 			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
 			  data.totalAmt = totalAmt.toFixed(2);
+			  
+			  var settlementAmt = parseFloat(data.totalAmt)-parseFloat(data.totalPrefAmt)-parseFloat(allowanceAmt)-parseFloat(ycAmt);
+			  data.settlementAmt =settlementAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }else{
 			  data.packageSubtotal = 0;
@@ -409,6 +453,9 @@ function onDrawSummaryCellPack(e){
 			  data.totalPrefAmt = totalPrefAmt.toFixed(2);
 			  var totalAmt = parseFloat(data.totalSubtotal) + parseFloat(data.totalPrefAmt);
 			  data.totalAmt = totalAmt.toFixed(2);
+			  
+			  var settlementAmt = parseFloat(data.totalAmt)-parseFloat(data.totalPrefAmt)-parseFloat(allowanceAmt)-parseFloat(ycAmt);
+			  data.settlementAmt =settlementAmt.toFixed(2);
 			  sellForm.setData(data);
 		  }
 	  } 
@@ -566,4 +613,26 @@ function svrInComeExpenses(params, callback) {
             console.log(jqXHR.responseText);
         }
     });
+}
+
+function otherPreferential(serviceId){
+	var json1 = {
+			serviceId: serviceId
+	}
+	nui.ajax({
+		url : baseUrl
+		+ "com.hsapi.repair.repairService.query.getSettleDetail.biz.ext" ,
+		type : "post",
+		data : json1,
+		async: false,
+		success : function(rs) {
+			var srnum = rs.data;
+			allowanceAmt = srnum.allowanceAmt||0;
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			// nui.alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
+		}
+	});	
 }

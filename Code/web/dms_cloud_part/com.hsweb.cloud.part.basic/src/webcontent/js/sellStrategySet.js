@@ -26,6 +26,7 @@ $(document).ready(function(v)
         	mainTabs.updateTab(guestInfo, { visible: false });
         	nui.get('saveStraPart').setVisible(false);
         	nui.get('saveUnifyPart').setVisible(true);
+        	nui.get('deleteNode').disable();
         }
     });
     
@@ -173,11 +174,13 @@ function onStraGridClick(e){
     	mainTabs.updateTab(guestInfo, { visible: false });
     	nui.get('saveStraPart').setVisible(false);
     	nui.get('saveUnifyPart').setVisible(true);
+    	nui.get('deleteNode').disable();
     	
     }else{
 		mainTabs.updateTab(guestInfo, { visible: true });
 		nui.get('saveStraPart').setVisible(true);
     	nui.get('saveUnifyPart').setVisible(false);
+    	nui.get('deleteNode').enable();
     	
     }
     var tab = mainTabs.getActiveTab();
@@ -336,6 +339,43 @@ function onSaveNode(){
             console.log(jqXHR.responseText);
         }
     });
+}
+//删除策略价格节点
+var delNodeUrl=baseUrl+"com.hsapi.cloud.part.baseDataCrud.crud.deleteSellStratefy.biz.ext";
+function onDeleteNode(){
+	var data = straGrid.getSelected();
+	if(data._id==1) return;
+	var id=data.id;
+	nui.mask({
+        el : document.body,
+        cls : 'mini-mask-loading',
+        html : '删除中...'
+    });
+	
+	nui.ajax({
+        url : delNodeUrl,
+        type : "post",
+        data : JSON.stringify({
+            id : id,
+            token: token
+        }),
+        success : function(data) {
+            nui.unmask(document.body);
+            data = data || {};
+            if (data.errCode == "S") {
+                showMsg("删除成功!","S");
+                straGrid.reload();
+                
+            } else {
+                showMsg(data.errMsg || "删除失败!","E");
+            }
+        },
+        error : function(jqXHR, textStatus, errorThrown) {
+            // nui.alert(jqXHR.responseText);
+            console.log(jqXHR.responseText);
+        }
+    });
+	
 }
 var supplier = null;
 function selectSupplier(elId) {

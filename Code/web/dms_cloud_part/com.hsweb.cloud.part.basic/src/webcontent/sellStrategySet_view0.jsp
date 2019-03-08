@@ -9,7 +9,7 @@
 -->
 <head>
 <title>销价策略定义</title>
-<script src="<%=webPath + contextPath%>/basic/js/sellStrategySet.js?v=1.0.103"></script>
+<script src="<%=webPath + contextPath%>/basic/js/sellStrategySet.js?v=1.0.109"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -31,7 +31,7 @@
                allowResize="false"
                handlerSize="6"
                style="width:100%;height:100%;">
-              <div size="250" showCollapseButton="false">
+              <div size="260" showCollapseButton="false">
                   <div class="nui-toolbar" style="padding:2px;border-bottom:0;">
                       <table style="width:100%;">
                           <tr>
@@ -39,6 +39,7 @@
                                   <label style="font-family:Verdana;">级别定义:</label>
                                   <a class="nui-button" plain="true" iconCls="" onclick="onAddNode()"><span class="fa fa-plus fa-lg"></span>&nbsp;新增</a>
                                   <a class="nui-button" plain="true" iconCls="" onclick="onSaveNode()"><span class="fa fa-save fa-lg"></span>&nbsp;保存</a>
+                                  <a class="nui-button" plain="true" id="deleteNode" iconCls="" onclick="onDeleteNode()"><span class="fa fa-remove fa-lg"></span>&nbsp;删除</a>
                               </td>
                           </tr>
                       </table>
@@ -171,10 +172,10 @@
                                             <input property="editor" vtype="float"  allowInput="true" class="nui-textbox"/>
                                         </div>
                                         <div field="operator" width="60" headerAlign="center" allowSort="true" header="操作人">
-                                        	<input property="editor"   allowInput="false" class="nui-textbox"/>
+<!--                                         	<input property="editor"   allowInput="false" class="nui-textbox"/> -->
                                         </div>
                                         <div field="operateDate" width="100" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm" header="操作日期">
-                                        	<input property="editor"  allowInput="false" class="nui-textbox"/>
+<!--                                         	<input property="editor"  allowInput="false" class="nui-textbox"/> -->
                                         </div>
                                     </div>
                                 </div>

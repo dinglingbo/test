@@ -1050,7 +1050,19 @@ function deletePart(){
     {
         delete editPartHash[part.detailId];
     }
-    rightGrid.removeRow(part,true);
+    var data = rightGrid.getData();
+    if(data && data.length==1){
+        var row = rightGrid.getSelected();
+        rightGrid.removeRow(row);
+        var newRow = {};
+        rightGrid.addRow(newRow);
+        rightGrid.beginEditCell(newRow, "comPartCode");
+    }else{
+        var row = rightGrid.getSelected();
+        rightGrid.removeRow(row);
+    }
+
+//    rightGrid.removeRow(part,true);
 }
 function checkRightData()
 {
@@ -1174,6 +1186,10 @@ function OnrpMainGridCellBeginEdit(e){
     if(data.auditSign == 1){
         e.cancel = true;
     }
+    if(advancedMorePartWin.visible) {
+		e.cancel = true;
+		morePartGrid.focus();
+	}
 
 }
 function addMorePart(){

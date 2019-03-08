@@ -493,31 +493,31 @@ function doSetMainInfo(car){
     $("#guestNameEl").html(car.guestFullName);
    /*  $("#showCarInfoEl").html(car.carNo); */
     $("#guestTelEl").html(car.guestMobile);
-    if(car.id){
-    	var lastComeKilometersUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCarExtend.biz.ext";
-    	var json = nui.encode({
-    		carId:car.id,
-    		token:token
-    	});
-    	 //查找上次里程
-        nui.ajax({
-    		url : lastComeKilometersUrl,
-    		type : 'POST',
-    		data : json,
-    		cache : false,
-    		contentType : 'text/json',
-    		success : function(text) {
-    			var returnJson = nui.decode(text);
-    			if (returnJson.errCode == "S") {
-    				var data = returnJson.data;
-    				lastComeKilometers = data.lastComeKilometers || 0;
-    				//$("#lastComeKilometers").html(lastComeKilometers);
-    			} else {
-    				showMsg(returnJson.errMsg||"查询上次里程失败","E");
-    		    }
-    		}
-    	 });
-    }
+    // if(car.id){
+    // 	var lastComeKilometersUrl = baseUrl + "com.hsapi.repair.repairService.svr.queryCarExtend.biz.ext";
+    // 	var json = nui.encode({
+    // 		carId:car.id,
+    // 		token:token
+    // 	});
+    // 	 //查找上次里程
+    //     nui.ajax({
+    // 		url : lastComeKilometersUrl,
+    // 		type : 'POST',
+    // 		data : json,
+    // 		cache : false,
+    // 		contentType : 'text/json',
+    // 		success : function(text) {
+    // 			var returnJson = nui.decode(text);
+    // 			if (returnJson.errCode == "S") {
+    // 				var data = returnJson.data;
+    // 				lastComeKilometers = data.lastComeKilometers || 0;
+    // 				//$("#lastComeKilometers").html(lastComeKilometers);
+    // 			} else {
+    // 				showMsg(returnJson.errMsg||"查询上次里程失败","E");
+    // 		    }
+    // 		}
+    // 	 });
+    // }
 }
 function setInitData(params){
     fserviceId = params.id;
@@ -4074,9 +4074,11 @@ function bxOnPrint(e){
 		}else if(e == 2){
 			print = 1;
 		}
-		if(e == 2 && !formData.isSettle){
-			showMsg("工单未结算不能打印","W");
-			return;
+		if(e == 2){
+            if(formData.isSettle != 1 && formData.balaAuditSign != 1){
+                showMsg("工单未结算不能打印","W");
+			    return;
+            }
 		}
 		if(e == 3){
 			if(formData.status == 1){

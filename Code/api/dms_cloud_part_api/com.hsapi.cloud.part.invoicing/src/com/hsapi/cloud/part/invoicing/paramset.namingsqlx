@@ -295,6 +295,7 @@
 			a.id_no as idNo,
 			a.sender_phone as senderPhone,
 			a.sender_address as senderAddress,
+			a.arrive_date as arriveDate,
 			a.bill_status_id as billStatusId,
 			b.bill_service_id as billServiceId
 		FROM

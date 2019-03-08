@@ -270,6 +270,7 @@ function getSearchParam(){
 	params.startDate = startDateEl.getFormValue();
 	params.endDate = endDateEl.getFormValue();
     params.guestName = nui.get("guestName").getValue();
+    params.billServiceId =nui.get("billServiceId").getValue();
     return params;
 }
 

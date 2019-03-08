@@ -2060,6 +2060,10 @@
             <isNotEmpty prepend="and" property="ePlanFinishDate">  
                 (b.plan_finish_date &lt; #ePlanFinishDate#)
             </isNotEmpty>
+            <!--维修出库 -->
+            <isNotEmpty prepend="and" property="pjBillTypeId">  
+                (a.bill_type_id = #pjBillTypeId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="billTypeId">  
                 (b.bill_type_id = #billTypeId#)
             </isNotEmpty>

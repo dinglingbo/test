@@ -44,7 +44,7 @@ public class SyncElectronicArchives {
 	 */
 	@SuppressWarnings("unchecked")
 	@Bizlet("获取access_token")
-	public static Map<String, String> getAccessToken(String companycode, String companypassword) {
+	public static Map<String, String> getAccessToken(String companycode, String companypassword, String eTokenUrl) {
 		/*SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
 		SimpleDateFormat format2 = new SimpleDateFormat("HHmmss");
 		Date date = new Date();
@@ -67,7 +67,7 @@ public class SyncElectronicArchives {
 		body.put("companypassword", companypassword);
 		jsonObj.put("body", body);*/
 		param = jsonObj.toString();
-		String result = HttpUtils.sendPostByJson("https://hunan.qichedangan.cn/restservices/lcipprodatarest/lcipprogetaccesstoken/query", param);
+		String result = HttpUtils.sendPostByJson(eTokenUrl, param);
 		
 		Gson gson = new Gson();
         Map<String, String> map = new HashMap<String, String>();
@@ -88,7 +88,7 @@ public class SyncElectronicArchives {
 	 *                                            {"repairproject": "换皮带","workinghours": "1"}]}}
 	 * 查询时间段内的结算单信息
 	 */
-	private static void pushRepairData(String orgid, String orgName, String startDate, String endDate, String accessToken) {
+	private static void pushRepairData(String orgid, String orgName, String startDate, String endDate, String accessToken,String ePushUrl) {
 		DataObject param = DataObjectUtil
 				.createDataObject("com.primeton.das.datatype.AnyType");
 		param.setString("orgid", orgid);
@@ -128,9 +128,6 @@ public class SyncElectronicArchives {
 	        	String id = d.getString("id");
 	        	String carNo = d.getString("carNo");
 	        	String carVin = d.getString("carVin");
-	        	if(carVin == null || "".equals(carVin)){
-	        		carVin = "无";
-	        	}
 	        	String enterDate = d.getString("enterDate");
 	        	String outDate = d.getString("outDate");
 	        	String faultPhen = d.getString("faultPhen");
@@ -200,7 +197,7 @@ public class SyncElectronicArchives {
 	    		
 	    		paramStr = jsonObj.toString();
 	    		
-	    		String result = HttpUtils.sendPostByJson("https://hunan.qichedangan.cn/restservices/lcipprodatarest/lcipprocarfixrecordadd/query", paramStr);
+	    		String result = HttpUtils.sendPostByJson(ePushUrl, paramStr);
 	    			
 	    		Gson gson = new Gson();
 	            Map<String, String> map = new HashMap<String, String>();
@@ -243,6 +240,8 @@ public class SyncElectronicArchives {
     	criteria.set("_expr[2]/_op", "notnull");
     	criteria.set("_expr[3]/_property", "eRecordPwd");
     	criteria.set("_expr[3]/_op", "notnull");
+    	/*criteria.set("_expr[4]/tenantId", 121);
+    	criteria.set("_expr[4]/_op", "=");*/
     	DataObject[] result = com.eos.foundation.database.DatabaseUtil
     	.queryEntitiesByCriteriaEntity("common", criteria);
     	return result;
@@ -258,13 +257,17 @@ public class SyncElectronicArchives {
 				String compName = compObj.getString("name");
 				String eRecordUser = compObj.getString("eRecordUser");
 				String eRecordPwd = compObj.getString("eRecordPwd");
+				String ePushUrl = compObj.getString("ePushUrl");
+				String eTokenUrl = compObj.getString("eTokenUrl");
 				String accessToken = null;
 				                       
 				if(eRecordUser != null && !"".equals(eRecordUser)){
 					//if(StringUtils.isNotBlank(eRecordUser) && !StringUtils.equals("", eRecordUser))
 					if(eRecordPwd != null  && !"".equals(eRecordPwd)){
-						Map<String, String> tokenMap = getAccessToken(eRecordUser, eRecordPwd);
-						accessToken = tokenMap.get("access_token");
+						if(eTokenUrl != null  && !"".equals(eTokenUrl)){
+							Map<String, String> tokenMap = getAccessToken(eRecordUser, eRecordPwd,eTokenUrl);
+							accessToken = tokenMap.get("access_token");
+						}
 					}
 				}
 				if(accessToken != null && !"".equals(accessToken)) { 
@@ -273,8 +276,10 @@ public class SyncElectronicArchives {
 				    String endDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
 				    cal.add(Calendar.DATE, -30);
 				    String startDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
-				    
-					pushRepairData(orgid, compName, startDate, endDate, accessToken);
+				    if(ePushUrl != null && !"".equals(ePushUrl)){
+				    	pushRepairData(orgid, compName, startDate, endDate, accessToken,ePushUrl);
+				    }
+					
 				}
 			}
 		}
@@ -285,7 +290,7 @@ public class SyncElectronicArchives {
 	public static void main(String args[]) {
 		
 		//Map map = getAccessToken("881812010733001", "abcdefg");
-		Map map = getAccessToken("431302000062483", "07388971111a");
+		Map map = getAccessToken("431302000062483", "07388971111a","https://hunan.qichedangan.cn/restservices/lcipprodatarest/lcipprogetaccesstoken/query");
 		System.out.println(map.get("access_token"));
 		
 		Calendar cal = Calendar.getInstance();

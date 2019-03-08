@@ -27,12 +27,14 @@ var billStatusHash={
 		"1"	 :"已发货",
 		"2"	 :"已到货"
 	};
+var editFormDetail = null;
 
 $(document).ready(function(v){
 	packGrid=nui.get('packGrid');
 	packGrid.setUrl(packGridUrl);
 	innerGrid=nui.get('innerGrid');
 	innerGrid.setUrl(innnerGridUrl);
+	editFormDetail = document.getElementById("editFormDetail");
 	detailGrid =nui.get('detailGrid');
 	detailGrid.setUrl(getDetailUrl);
 	
@@ -45,6 +47,16 @@ $(document).ready(function(v){
     endDateEl.setValue(addDate(getNowEndDate(), 1));
 	
 	var dictDefs ={"billTypeId":"DDT20130703000008", "settleTypeId":"DDT20130703000035","payType":"10221"};
+	
+	document.onkeyup = function(event) {
+		var e = event || window.event;
+		var keyCode = e.keyCode || e.which;// 38向上 40向下
+		
+
+		if ((keyCode == 13)) { // F9
+			onSearch();
+		}
+	}
     initDicts(dictDefs,function()
     {
         var billTypeIdList = billTypeIdEl.getData();

@@ -211,6 +211,7 @@
     <sourceConnections xsi:type="process:tLink" id="link55" name="link55" displayName="link42" isDefault="true" type="transition">
       <sourceNode>assign5</sourceNode>
       <targetNode>invokePojo2</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link61</targetConnections>
     <location x="53" y="157"/>
@@ -269,7 +270,7 @@
     <location x="142" y="39"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
@@ -858,6 +859,7 @@
     <sourceConnections xsi:type="process:tLink" id="link105" name="link105" displayName="link55" isDefault="true" type="transition">
       <sourceNode>assign15</sourceNode>
       <targetNode>invokePojo4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link104</targetConnections>
     <location x="435" y="157"/>

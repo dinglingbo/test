@@ -470,3 +470,26 @@ function onAccountValueChanged(e){
     mainGrid.updateRow(r,newRow);
 
 }
+
+function doPrint(){//打印费用报销单
+    var webBaseUrl = webPath + contextPath + "/";   
+    var arr = mainGrid.getSelecteds();
+    if(arr.length){
+        if(arr[0].auditSign){
+            nui.open({
+                url: webBaseUrl + "com.hsweb.frm.manage.expenseAccount.flow",
+                title: "打印",
+                width: "100%",
+                height: "100%",
+                onload: function () {
+                    var iframe = this.getIFrameEl();
+                   iframe.contentWindow.SetData(arr,IClist);
+                },
+                ondestroy: function (action){
+                }
+            });
+        }
+    }else{
+        showMsg("请选中要打印的数据","W");
+    }
+}

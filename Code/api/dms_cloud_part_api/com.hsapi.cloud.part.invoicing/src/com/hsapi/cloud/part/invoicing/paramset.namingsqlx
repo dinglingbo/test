@@ -295,10 +295,11 @@
 			a.id_no as idNo,
 			a.sender_phone as senderPhone,
 			a.sender_address as senderAddress,
-			a.bill_status_id as billStatusId
+			a.bill_status_id as billStatusId,
+			b.bill_service_id as billServiceId
 		FROM
 			pj_pack_main AS a
-
+			INNER JOIN pj_pack_detail b on b.main_id =a.id
 		WHERE
 			1 = 1
 				
@@ -308,6 +309,10 @@
                 </isNotEmpty>
                 <isNotEmpty prepend="and" property="id"> 
                     (a.id = #id#)
+                </isNotEmpty>
+                
+                <isNotEmpty prepend="and" property="billServiceId"> 
+                    (b.bill_service_id = #billServiceId#)
                 </isNotEmpty>
                 
                 <isNotEmpty prepend="and" property="logisticsNo">  

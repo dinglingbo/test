@@ -307,6 +307,16 @@ position:relative;
 
             </tr>
 
+              <tr>
+                <td class="tbtext">电子档案登录地址<span class="spanwidth"></span></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" name="eTokenUrl" id="eTokenUrl"/></td>
+
+            </tr>
+             <tr>
+                <td class="tbtext">电子档案推送地址<span class="spanwidth"></span></td>
+                <td colspan="5"><input class="nui-textbox tabwidth" name="ePushUrl" id="ePushUrl"/></td>
+
+            </tr>
             <tr>
                 <td class="tbtext">电子档案用户名<span style="color:red"></span></td>
                 <td colspan="5" ><input class="nui-textbox inline " style="" name="eRecordUser" id="eRecordUser"/>

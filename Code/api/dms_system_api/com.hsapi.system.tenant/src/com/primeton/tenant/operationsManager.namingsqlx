@@ -80,6 +80,8 @@
 			e_record_province as eRecordProvince,
 			e_record_repair_no as eRecordRepairNo,
 			e_record_user as eRecordUser,
+			e_token_url as eTokenUrl,
+			e_push_url as ePushUrl,
 			remark as remark,
 			e_record_pwd as eRecordPwd,
 			recorder as recorder,

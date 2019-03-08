@@ -1265,6 +1265,7 @@
     	SELECT
 			a.id AS id,
 			a.orgid As orgid,
+			a.tenant_id As tenantId,
 			a.guest_id AS guestId,
 			a.car_id AS carId,
 			a.car_vin AS carVin,

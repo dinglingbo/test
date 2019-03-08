@@ -880,6 +880,7 @@
     <sourceConnections xsi:type="process:tLink" id="link32" name="link32" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo3</sourceNode>
       <targetNode>loopend3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link31</targetConnections>
     <location x="990" y="142"/>

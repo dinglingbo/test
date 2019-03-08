@@ -10,7 +10,7 @@ pageEncoding="UTF-8" session="false"%>
 -->
 <head>
     <title>耗材出库</title>
-    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.4"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/inOutManage/consumableItem/consuambleItem.js?v=2.0.5"></script>
     <link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
     <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
     <style type="text/css">
@@ -183,6 +183,8 @@ pageEncoding="UTF-8" session="false"%>
 					                  allowInput="true"
 					                  valueFromSelect="false"
 					                  width="100px">
+					                <input class="nui-textbox" width="80px" id="partCode" name="partCode" selectOnFocus="true" enabled="true" onenter="onSearch" emptyText="配件编码"/>
+    								<input class="nui-textbox" width="80px" id="partName" emptyText="配件名称"  selectOnFocus="true" onenter="onSearch" name="partName"/>
 <!--                                <input class="nui-textbox" name="pickMan1"id="pickMan1" allowInput="true" width="" showTime="false" showOkButton="false" showClearButton="false" /> -->
                            </td>
                        </td>

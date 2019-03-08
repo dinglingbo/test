@@ -403,6 +403,8 @@ function getSearchParams() {
 	var params = {};
 	params.returnSign=0;
 	params.billTypeId='050207';
+    params.partCode=nui.get("partCode").getValue();
+    params.partName=nui.get("partName").getValue();
 	params.sCreateDate = sCreateDateEl.getText();
 	params.eCreateDate = addDate(eCreateDateEl.getText(),1);
 	params.pickMan = nui.get('pickMan1').getText();

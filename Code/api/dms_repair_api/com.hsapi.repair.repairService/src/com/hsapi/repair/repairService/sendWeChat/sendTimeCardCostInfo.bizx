@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="sendCheckInfo.bizx" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
-  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="查车 完成 通知" title="Administrator&#x9;19-3-8 上午9:58">
-    <location x="7" y="386"/>
-    <size height="100" width="190"/>
+<process:tBusinessLogic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:model="http://com.primeton.emf.core" xmlns:process="http://primeton.com/emf/core/process" name="sendTimeCardCostInfo" detailDescription="" demonstration="" urls="" gridVisibility="false" rulerVisibility="true" snapToGeometry="true" productVersion="7.0.0.0">
+  <nodes xsi:type="model:Note" id="node0" name="注释" displayName="注释" nodeType="note" type="note" content="计次卡消费通知" title="Administrator&#x9;19-3-7 上午10:03">
+    <location x="18" y="15"/>
+    <size height="100" width="197"/>
   </nodes>
   <nodes xsi:type="process:tStart" id="start0" name="开始" displayName="开始" type="start">
     <sourceConnections xsi:type="process:tLink" id="link3" name="link3" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>start0</sourceNode>
-      <targetNode>assign0</targetNode>
+      <targetNode>assign4</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <location x="102" y="145"/>
     <size height="28" width="28"/>
@@ -16,7 +17,8 @@
   <nodes xsi:type="process:tEnd" id="end0" name="结束" displayName="结束" type="end">
     <targetConnections>link6</targetConnections>
     <targetConnections>link7</targetConnections>
-    <location x="617" y="145"/>
+    <targetConnections>link12</targetConnections>
+    <location x="727" y="145"/>
     <size height="28" width="28"/>
     <nodeLabel>end0label</nodeLabel>
     <process:returns>
@@ -30,7 +32,7 @@
     <node>start0</node>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="end0label" name="label" displayName="label" nodeType="label">
-    <location x="619" y="181"/>
+    <location x="729" y="181"/>
     <figSize height="17" width="25"/>
     <node>end0</node>
   </nodes>
@@ -40,11 +42,11 @@
       <targetNode>subprocess4</targetNode>
     </sourceConnections>
     <targetConnections>link1</targetConnections>
-    <location x="359" y="225"/>
+    <location x="468" y="241"/>
     <size height="28" width="28"/>
     <nodeLabel>assign14label</nodeLabel>
     <process:copy>
-      <process:from type="literal" pattern="reference">DJ2Zz6y8AEFs5DYap2DGtUlrCLwdwwKx1qgfxWMcAA8</process:from>
+      <process:from type="literal" pattern="reference">PJEtP7x8O7BcVkCXuD-vQpGBcx9_YOBemHCId-GYpw4</process:from>
       <process:to type="query">templatedId</process:to>
     </process:copy>
     <process:copy>
@@ -60,43 +62,43 @@
       <process:to type="query">wcText</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">wcText +&quot;先生/女士，您的爱车已完成体检，报告得分为&quot;</process:from>
+      <process:from type="expression" pattern="reference">wcText +&quot;先生/女士，您的[&quot;</process:from>
       <process:to type="query">wcText</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">checkMain/checkPoint</process:from>
-      <process:to type="query">score</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">wcText + score</process:from>
+      <process:from type="expression" pattern="reference">wcText + cardName</process:from>
       <process:to type="query">wcText</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="expression" pattern="reference">wcText + &quot;分&quot;</process:from>
+      <process:from type="expression" pattern="reference">wcText + &quot;]有次数扣减&quot;</process:from>
       <process:to type="query">wcText</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">checkMain/enterKilometers</process:from>
-      <process:to type="query">enterKilometers</process:to>
-    </process:copy>
-    <process:copy>
-      <process:from type="expression" pattern="reference">enterKilometers + &quot;公里&quot;</process:from>
-      <process:to type="query">enterKilometers</process:to>
+      <process:from type="query" pattern="reference">m:userObject/attributes/compTel</process:from>
+      <process:to type="query">orgTel</process:to>
     </process:copy>
     <process:copy>
       <process:from type="query" pattern="reference">wcText</process:from>
       <process:to type="query">paraMap/first</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">checkMain/carModel</process:from>
+      <process:from type="query" pattern="reference">packageName</process:from>
       <process:to type="query">paraMap/keyword1</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="query" pattern="reference">enterKilometers</process:from>
+      <process:from type="literal" pattern="reference">1次</process:from>
       <process:to type="query">paraMap/keyword2</process:to>
     </process:copy>
     <process:copy>
-      <process:from type="literal" pattern="reference">点击可查看详情</process:from>
+      <process:from type="expression" pattern="reference">canUseTime+&quot;次&quot;</process:from>
+      <process:to type="query">paraMap/keyword3</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">m:userObject/userOrgName</process:from>
+      <process:to type="query">paraMap/keyword4</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="expression" pattern="reference">&quot;如有疑问，请联系商家客服（&quot;+orgTel+&quot;）&quot;</process:from>
       <process:to type="query">paraMap/remark</process:to>
     </process:copy>
     <process:copy>
@@ -105,7 +107,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign14label" name="label" nodeType="label">
-    <location x="354" y="261"/>
+    <location x="463" y="277"/>
     <figSize height="17" width="39"/>
     <node>assign14</node>
   </nodes>
@@ -113,9 +115,10 @@
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign12</sourceNode>
       <targetNode>end0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link0</targetConnections>
-    <location x="449" y="145"/>
+    <location x="559" y="145"/>
     <size height="28" width="28"/>
     <nodeLabel>assign12label</nodeLabel>
     <process:copy>
@@ -128,7 +131,7 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign12label" name="label" nodeType="label">
-    <location x="444" y="181"/>
+    <location x="554" y="181"/>
     <figSize height="17" width="39"/>
     <node>assign12</node>
   </nodes>
@@ -154,7 +157,7 @@
       </process:transitionCondition>
     </sourceConnections>
     <targetConnections>link4</targetConnections>
-    <location x="359" y="145"/>
+    <location x="469" y="145"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess3label</nodeLabel>
     <process:flow index="1" synchronization="true" transactionType="join" varArgs="false">
@@ -170,7 +173,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess3label" name="label" nodeType="label">
-    <location x="329" y="180"/>
+    <location x="439" y="180"/>
     <figSize height="17" width="87"/>
     <node>subprocess3</node>
   </nodes>
@@ -180,7 +183,7 @@
       <targetNode>assign1</targetNode>
     </sourceConnections>
     <targetConnections>link2</targetConnections>
-    <location x="450" y="225"/>
+    <location x="559" y="241"/>
     <size height="27" width="27"/>
     <nodeLabel>subprocess4label</nodeLabel>
     <process:flow index="4" synchronization="true" transactionType="join" varArgs="false">
@@ -198,7 +201,7 @@
     </process:flow>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="subprocess4label" name="label" nodeType="label">
-    <location x="427" y="260"/>
+    <location x="536" y="276"/>
     <figSize height="17" width="73"/>
     <node>subprocess4</node>
   </nodes>
@@ -207,17 +210,19 @@
       <sourceNode>assign0</sourceNode>
       <targetNode>subprocess3</targetNode>
     </sourceConnections>
-    <targetConnections>link3</targetConnections>
-    <location x="240" y="145"/>
+    <targetConnections>link16</targetConnections>
+    <targetConnections>link17</targetConnections>
+    <targetConnections>link18</targetConnections>
+    <location x="350" y="145"/>
     <size height="28" width="28"/>
     <nodeLabel>assign0label</nodeLabel>
     <process:copy>
-      <process:from type="query" pattern="reference">checkMain/carId</process:from>
+      <process:from type="query" pattern="reference">maintain/carId</process:from>
       <process:to type="query">p/carId</process:to>
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign0label" name="label" nodeType="label">
-    <location x="242" y="181"/>
+    <location x="352" y="181"/>
     <figSize height="17" width="25"/>
     <node>assign0</node>
   </nodes>
@@ -227,7 +232,7 @@
       <targetNode>end0</targetNode>
     </sourceConnections>
     <targetConnections>link5</targetConnections>
-    <location x="540" y="225"/>
+    <location x="649" y="241"/>
     <size height="28" width="28"/>
     <nodeLabel>assign1label</nodeLabel>
     <process:copy>
@@ -240,9 +245,136 @@
     </process:copy>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign1label" name="label" nodeType="label">
-    <location x="538" y="261"/>
+    <location x="647" y="277"/>
     <figSize height="17" width="32"/>
     <node>assign1</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" id="assign4" name="赋值4" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link12" name="link12" displayName="连接线" isDefault="true" type="transition">
+      <bendPoint heightToEnd="-143" heightToStart="-143" widthToEnd="-269" widthToStart="297"/>
+      <sourceNode>assign4</sourceNode>
+      <targetNode>end0</targetNode>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link13" name="link13" displayName="连接线" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign5</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">pkgTemp</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link14" name="link14" displayName="连接线" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign6</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">itemTemp</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <sourceConnections xsi:type="process:tLink" description="" id="link15" name="link15" displayName="连接线" type="transition">
+      <sourceNode>assign4</sourceNode>
+      <targetNode>assign7</targetNode>
+      <process:transitionCondition>
+        <process:simpleCondition operator="NOTNULLANDEMPTY">
+          <process:leftOperand type="query">partTemp</process:leftOperand>
+          <process:rightOperand type="literal">1</process:rightOperand>
+        </process:simpleCondition>
+      </process:transitionCondition>
+    </sourceConnections>
+    <targetConnections>link3</targetConnections>
+    <location x="161" y="145"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign4label</nodeLabel>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign4label" name="label" nodeType="label">
+    <location x="159" y="181"/>
+    <figSize height="17" width="32"/>
+    <node>assign4</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign5" name="赋值5" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link16" name="link16" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign5</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link13</targetConnections>
+    <location x="250" y="60"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign5label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsCardTimes/cardName</process:from>
+      <process:to type="query">cardName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimesDetailTemp/canUseTimes</process:from>
+      <process:to type="query">canUseTime</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">pkgTemp/packageName</process:from>
+      <process:to type="query">packageName</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign5label" name="label" nodeType="label">
+    <location x="248" y="96"/>
+    <figSize height="17" width="32"/>
+    <node>assign5</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign6" name="赋值6" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link17" name="link17" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign6</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link14</targetConnections>
+    <location x="250" y="145"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign6label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsCardTimes/cardName</process:from>
+      <process:to type="query">cardName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimesDetailTemp/canUseTimes</process:from>
+      <process:to type="query">canUseTime</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">itemTemp/itemName</process:from>
+      <process:to type="query">packageName</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign6label" name="label" nodeType="label">
+    <location x="248" y="181"/>
+    <figSize height="17" width="32"/>
+    <node>assign6</node>
+  </nodes>
+  <nodes xsi:type="process:tAssign" description="" id="assign7" name="赋值7" displayName="赋值" type="assign">
+    <sourceConnections xsi:type="process:tLink" id="link18" name="link18" displayName="连接线" isDefault="true" type="transition">
+      <sourceNode>assign7</sourceNode>
+      <targetNode>assign0</targetNode>
+    </sourceConnections>
+    <targetConnections>link15</targetConnections>
+    <location x="250" y="210"/>
+    <size height="28" width="28"/>
+    <nodeLabel>assign7label</nodeLabel>
+    <process:copy>
+      <process:from type="query" pattern="reference">rpsCardTimes/cardName</process:from>
+      <process:to type="query">cardName</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">cardTimesDetailTemp/canUseTimes</process:from>
+      <process:to type="query">canUseTime</process:to>
+    </process:copy>
+    <process:copy>
+      <process:from type="query" pattern="reference">partTemp/partName</process:from>
+      <process:to type="query">packageName</process:to>
+    </process:copy>
+  </nodes>
+  <nodes xsi:type="model:NodeElementLabel" id="assign7label" name="label" nodeType="label">
+    <location x="248" y="246"/>
+    <figSize height="17" width="32"/>
+    <node>assign7</node>
   </nodes>
   <topRuler/>
   <leftRuler/>
@@ -255,11 +387,18 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="wcText" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="guestName" primitiveType="String"/>
     <process:variable anyType="java.util.HashMap" description="微信内容" historyStateLocation="client" isArray="false" name="paraMap"/>
-    <process:variable description="分数" historyStateLocation="client" isArray="false" name="score" primitiveType="String"/>
-    <process:variable description="进厂里程" historyStateLocation="client" isArray="false" name="enterKilometers" primitiveType="String"/>
+    <process:variable description="卡名称" historyStateLocation="client" isArray="false" name="cardName" primitiveType="String"/>
+    <process:variable description="套餐名称" historyStateLocation="client" isArray="false" name="packageName" primitiveType="String"/>
+    <process:variable description="可使用次数" historyStateLocation="client" isArray="false" name="canUseTime" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="orgTel" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
-    <process:input anyType="commonj.sdo.DataObject" description="" isArray="false" name="checkMain"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPackage" name="pkgTemp"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsItem" name="itemTemp"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsPart" name="partTemp"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsMaintain" name="maintain"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimes" name="rpsCardTimes"/>
+    <process:input description="" isArray="false" modelType="com.hsapi.repair.data.rps.RpsCardTimesDetail" name="cardTimesDetailTemp"/>
   </process:inputs>
   <process:outputs>
     <process:output description="" isArray="false" name="errCode" primitiveType="String"/>

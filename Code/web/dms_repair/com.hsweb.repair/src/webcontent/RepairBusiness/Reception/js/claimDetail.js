@@ -1058,6 +1058,8 @@ function add(){
     nui.get("ExpenseAccount1").setVisible(false);
     document.getElementById("showA1").style.display = "";
 	document.getElementById("showA").style.display='none';
+	advancedCardTimesWin.hide();
+	advancedMemCardWin.hide();
 }
 function save(){
 	itemF = "S";
@@ -1332,7 +1334,7 @@ var requiredField = {
 };
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function saveMaintain(callback,unmaskcall){
-    var data = billForm.getData();
+    var data = billForm.getData(true);
     var desData = describeForm.getData();
     for(var v in desData){
         data[v] = desData[v];
@@ -1347,9 +1349,9 @@ function saveMaintain(callback,unmaskcall){
 			return;
 		}
     }
-    if(data.id) {
+    /*if(data.id) {
     	delete data.enterDate;
-    }
+    }*/
     data.billTypeId = 4;
     data.lastEnterKilometers = $("#lastComeKilometers").text() || 0;
     var params = {

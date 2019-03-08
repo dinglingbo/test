@@ -93,7 +93,7 @@
       </process:inputVariables>
       <process:outputVariables>
         <process:outputVariable id="0" name="errCode" type="query" value="String" valueType="Primitive">errCode</process:outputVariable>
-        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"/>
+        <process:outputVariable id="1" name="errMsg" type="query" value="String" valueType="Primitive"></process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -388,6 +388,7 @@
     <sourceConnections xsi:type="process:tLink" id="link28" name="link28" displayName="link21" isDefault="true" type="transition">
       <sourceNode>assign20</sourceNode>
       <targetNode>assign19</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link39</targetConnections>
     <location x="735" y="165"/>

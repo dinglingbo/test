@@ -388,6 +388,11 @@
         	}
         	
 			 function SetData(serviceId,type){
+			    var imgUrl = currCompLogoPath || "";
+                if(imgUrl && imgUrl != ""){
+                    $('#showImg').show();
+                    $("#showImg").attr("src",imgUrl);
+                 }
 				 if(type){//默认报价单
 					if(type == 4){
 						document.getElementById("spstorename").innerHTML = "波箱厂内翻新单";

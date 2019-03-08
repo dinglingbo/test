@@ -9,7 +9,7 @@
 -->
 <head>
 <title>快速录入</title>
-<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.24"></script>
+<script src="<%=webPath + contextPath%>/common/js/fastPartChoose.js?v=1.0.78"></script>
 <style type="text/css">
 .table-label {
 	text-align: right;
@@ -197,6 +197,12 @@ body .mini-grid-row-selected{
                                         showNullItem="false"
                                         width="100%"
                                         nullItemText="请选择..."/>
+                            </td>
+                            <td class="title required">
+                                <label>仓位：</label>
+                            </td>
+                            <td>
+                                <input id="storeShelf" name="storeShelf" class="nui-textbox"  vtype="" selectOnFocus="true" width="100%" value="1"/>
                             </td>
                         </tr>
                         <tr>

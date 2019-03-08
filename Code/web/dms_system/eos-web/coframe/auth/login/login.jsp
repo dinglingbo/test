@@ -354,11 +354,11 @@ a {
 		</div>
 		<label style="width:100%">
 		<p  class="errorC"><span id="error" style="font-size:15px;color:red"></span></p>
-			<input type="text" id="userId" name="userId" value="" class="accountNo" placeholder="用户名" maxlength="11" />
+			<input type="text" id="userId" name="userId" value="" class="accountNo"  placeholder="用户名" maxlength="50" />
 		</label>
 		<label style="width:100%">
 			
-			<input type="password" id="password" name="password" value="" class="password_val" placeholder="密码" maxlength="20" />
+			<input type="password" id="password" name="password" value="" class="password_val" placeholder="密码" maxlength="50" />
 		</label>
 		<label style="width:100%">
 			

@@ -23,22 +23,22 @@
 <body style="margin:0;width: 98%; height:100%;overflow-x:hidden">	
 	<div class="tips">
 		<span class="fa fa-exclamation-triangle fa-lg"></span>数据导入功能通常只在系统初次使用时使用，导入完成后数据无法撤回，请检查数据正确性，谨慎操作！<br>
-		<span class="fa fa-exclamation-triangle fa-lg"></span>数据导入前请下载我们的导入模板整理文件。<br>
-		<span class="fa fa-exclamation-triangle fa-lg"></span>每次导入最多1000条数据， 如果数量超过1000，请分批导入。<br>
-		<span class="fa fa-exclamation-triangle fa-lg"></span>表头标*为必填项，请按正常数据格式整理文件（如：数量请用数字，勿用中文.日期格式：2018-11-11）。<br>
+		<span class="fa fa-exclamation-triangle fa-lg"></span>数据导入前请下载我们的导入模板整理文件,选中文件时会加载几秒，导入需要大概一分钟，请耐心等待！<br>
+		<span class="fa fa-exclamation-triangle fa-lg"></span>每次导入最多4000条数据， 如果数量超过4000，请分批导入。<br>
+		<span class="fa fa-exclamation-triangle fa-lg"></span>表头标*为必填项，请按正常数据格式整理文件（如：数量请用数字，勿用中文.日期格式：2018-10-24）。<br>
 	</div>
 	<div id ="tabs" class="nui-tabs" width="100%" height="100%">
 		<div title="客户导入" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/importGuest.jsp">
 		</div>
 		<div title="电销客户导入" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/importTelTrackGuest.jsp">
 		</div>
-		<div title="按电话号码导入储值卡" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/importCardByMobile.jsp">
-		</div>
+<%-- 		<div title="按电话号码导入储值卡" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/importCardByMobile.jsp">
+		</div> --%>
 		<div title="按车牌号导入储值卡" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/importCardByCarNo.jsp">
 		</div>
 		<div title="计次卡导入" url="<%=request.getContextPath() %>/repair/RepairBusiness/CustomerProfile/importTimesCard.jsp">
 		</div>
-		<div title="配件导入" url="<%=request.getContextPath() %>/baseDataPart/importPart_view0.jsp">
+		<div title="配件导入" url="<%=request.getContextPath() %>/baseDataPart/importPartCommon.jsp">
 		</div>
 		<div title="供应商导入" url="<%=request.getContextPath() %>/baseDataPart/importSupplier_view0.jsp">
 		

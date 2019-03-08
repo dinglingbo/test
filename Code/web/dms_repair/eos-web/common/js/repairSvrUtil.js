@@ -752,7 +752,8 @@ function doPrint(params){
         currCompTel: currCompTel,
         currSlogan1: currSlogan1,
         currSlogan2: currSlogan2,
-		token : token
+        currCompLogoPath: currCompLogoPath,
+		token : token 
 	};
 	if(source == 1){  //打印报价单
 		sourceUrl = webPath + contextPath + "/com.hsweb.print.settlement.flow?token="+token;

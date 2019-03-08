@@ -356,12 +356,12 @@
     <location x="435" y="290"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="sourceDO" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">rtnTemp</process:inputVariable>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="value">rtnTemp</process:inputVariable>
       <process:inputVariable id="1" name="dos" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">rtnRecord</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -377,17 +377,18 @@
     <sourceConnections xsi:type="process:tLink" id="link6" name="link6" displayName="link10" lineType="inheritance" isDefault="true" type="break">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>loopend0</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link7</targetConnections>
     <location x="470" y="112"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo2label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="sourceDO" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="reference">rtnTemp</process:inputVariable>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="commonj.sdo.DataObject" valueType="Java" pattern="value">rtnTemp</process:inputVariable>
       <process:inputVariable id="1" name="dos" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">rtnRecord</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>

@@ -123,7 +123,7 @@
       <targetNode>loopend0</targetNode>
     </sourceConnections>
     <targetConnections>link12</targetConnections>
-    <location x="360" y="151"/>
+    <location x="386" y="154"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo1label</nodeLabel>
     <process:pojo methodType="instance" synchronization="true" transactionType="join">
@@ -136,7 +136,7 @@
     <process:outputVariables/>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="invokePojo1label" name="label" nodeType="label">
-    <location x="329" y="187"/>
+    <location x="355" y="190"/>
     <figSize height="17" width="85"/>
     <node>invokePojo1</node>
   </nodes>
@@ -252,6 +252,7 @@
     <sourceConnections xsi:type="process:tLink" id="link10" name="link10" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>invokePojo2</sourceNode>
       <targetNode>invokePojo3</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" id="link24" name="link24" displayName="连接线" lineType="note" type="exception">
       <sourceNode>invokePojo2</sourceNode>
@@ -351,12 +352,12 @@
       <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link13</targetConnections>
-    <location x="315" y="75"/>
+    <location x="312" y="90"/>
     <size height="28" width="28"/>
     <nodeLabel>assign3label</nodeLabel>
   </nodes>
   <nodes xsi:type="model:NodeElementLabel" id="assign3label" name="label" nodeType="label">
-    <location x="313" y="111"/>
+    <location x="310" y="126"/>
     <figSize height="17" width="32"/>
     <node>assign3</node>
   </nodes>
@@ -364,6 +365,7 @@
     <sourceConnections xsi:type="process:tLink" id="link15" name="link15" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign4</sourceNode>
       <targetNode>loopstart1</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <sourceConnections xsi:type="process:tLink" description="" id="link20" name="link20" displayName="连接线" type="transition">
       <sourceNode>assign4</sourceNode>
@@ -467,6 +469,7 @@
     <sourceConnections xsi:type="process:tLink" id="link21" name="link21" displayName="连接线" isDefault="true" type="transition">
       <sourceNode>assign7</sourceNode>
       <targetNode>assign8</targetNode>
+      <process:transitionCondition/>
     </sourceConnections>
     <targetConnections>link20</targetConnections>
     <location x="525" y="0"/>

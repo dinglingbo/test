@@ -1012,7 +1012,7 @@
 				b.car_no as carNo,
 				b.car_model as carModel,
 				b.guest_id as guestId,
-				c.full_name as guestName,
+				e.name as guestName,
 				DATEDIFF(now(),a.last_leave_date) as leaveDays,
 				a.care_last_date as careLastDate,
 				a.chain_come_times as chainComeTimes,
@@ -1021,15 +1021,18 @@
 				a.last_leave_date as lastLeaveDate,
 				a.care_due_date as careDueDate,
 				a.prev_advisor_name as preAdvisorName,
-				c.mobile as mobile,
+				a.last_come_kilometers as lastComeKilometers,
+				b.vin as carVin,
+				e.mobile as mobile,
 				b.car_model_id as carModelId,
 				b.car_brand_id as carBrandId,
-				a.remind_status remindStatus
+				a.remind_status remindStatus,
+				e.wechat_open_id wechatOpenId
 			FROM
 				rpb_car_extend a
 			INNER JOIN rpb_car b ON a.car_id = b.id
-			INNER JOIN wb_common.com_guest c on c.id=b.guest_id
-			
+			INNER JOIN rps_maintain d on a.last_service_id = d.id
+			INNER JOIN rpb_contactor e on e.id = d.contactor_id
 			WHERE 1=1
 			<isNotEmpty prepend="and" property="orgid">
   				 b.orgid = #orgid#
@@ -1123,7 +1126,10 @@
 				b.annual_inspection_comp_name as annualInspectionCompName,
 				b.insure_due_date as insureDueDate,
 				b.insure_comp_name as insureCompName,
-				a.remind_status remindStatus
+				a.remind_status remindStatus,
+				b.vin carVin,
+				a.last_come_kilometers lastComeKilometers,
+				a.last_come_date lastComeDate
 			FROM
 				wb_repair.rpb_car_extend a
 			INNER JOIN wb_repair.rpb_car b ON a.car_id = b.id
@@ -1176,10 +1182,15 @@
 				a.license_over_date as licenseOverDate,
 				a.license_status as licenseStatus,
 				a.bir_status as birStatus,
-				b.car_no carNo
+				b.car_no carNo,
+				b.vin carVin,
+				b.id carId,
+				c.last_come_kilometers lastComeKilometers,
+				c.last_come_date lastComeDate
 			FROM
 				wb_repair.rpb_contactor a
 		LEFT JOIN wb_repair.rpb_car b on b.guest_id = a.guest_id
+		LEFT JOIN wb_repair.rpb_car_extend c on c.car_id = b.id
 			WHERE 
 				a.orgid=#orgid#	
           
@@ -1320,5 +1331,38 @@
 				SELECT count(*) as appQuantity from rps_prebook a
 				where to_days(a.predict_come_date) = to_days(now()) and a.orgid = #orgid#
 			
+			</select>
+			
+				<!--获取客户openid-->
+			<select id="getConOpenId" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+						select 
+					c.name,c.mobile,c.orgid,a.car_no carNo,a.car_model carModel,a.vin carVin,c.wechat_open_id wechatOpenId
+					FROM rpb_car a 
+					INNER JOIN rpb_car_extend b on a.id=b.car_id
+					LEFT JOIN rpb_contactor c on c.guest_id = a.guest_id
+					WHERE
+					a.orgid = #orgid#
+		            <isNotEmpty prepend="and" property="carNo">
+  							a.car_no = #carNo#
+            		</isNotEmpty>
+		            <isNotEmpty prepend="and" property="carId">
+  							a.id = #carId#
+            		</isNotEmpty>
+            		<isNotEmpty prepend="and" property="mobile">
+  							c.mobile = #mobile#
+            		</isNotEmpty>
+            		<isNotEmpty prepend="and" property="guestId">
+  							c.guest_id = #guestId#
+            		</isNotEmpty>
+			</select>
+			
+			
+							<!--获取客户在本店的可用金额  储值卡-->
+			<select id="getGuestStoredCardAmt" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+				SELECT
+						sum(a.bala_amt) as amt
+				FROM
+					rps_stored_record AS a
+					WHERE a.is_settle = 1 and a.guest_id = #guestId# and a.orgid = #orgid#
 			</select>
 </sqlMap>

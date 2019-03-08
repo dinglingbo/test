@@ -80,7 +80,7 @@ $(document).ready(function(v)
 
         addSelectPart();
 
-        nui.get("qty").focus();
+        nui.get("storeShelf").focus();
     });
     morePartGrid.on("drawcell",function(e){
         switch (e.field)
@@ -134,7 +134,7 @@ $(document).ready(function(v)
 
         addSelectPart();
 
-        nui.get("qty").focus();
+        nui.get("storeShelf").focus();
         
     });
     enterGrid.on("drawcell",function(e){
@@ -217,7 +217,13 @@ $(document).ready(function(v)
         }
         
     });
-
+    
+    $("#storeShelf").bind("keydown", function (e) {
+        if (e.keyCode == 13) {
+            var qty = nui.get("qty");
+            qty.focus();
+        }
+    });
     $("#qty").bind("keydown", function (e) {
         if (e.keyCode == 13) {
             var price = nui.get("price");
@@ -420,11 +426,11 @@ function setInitData(params, ck, cck){
 }
 function morePartSearch(){
     var params = {}; 
-    params.partCode = morePartCodeEl.getValue();
-    params.partName = morePartNameEl.getValue();
-    params.showStock = showStockEl.getValue();
-    params.serviceId = moreServiceIdEl.getValue();
-    params.partBrandId = nui.get('partBrandId').getValue();
+    params.partCode = morePartCodeEl.getValue().replace(/\s+/g, "");;
+    params.partName = morePartNameEl.getValue().replace(/\s+/g, "");;
+    params.showStock = showStockEl.getValue().replace(/\s+/g, "");;
+    params.serviceId = moreServiceIdEl.getValue().replace(/\s+/g, "");;
+    params.partBrandId = nui.get('partBrandId').getValue().replace(/\s+/g, "");;
     var sortTypeValue = sortTypeEl.getValue();
 
     if(!params.partCode && !params.partName && !params.serviceId && !params.partBrandId){
@@ -498,8 +504,9 @@ function addSelectPart(){
             column = enterGrid.getColumn("stockQty");
             advancedAddWin.show();
             nui.get("storeId").setValue(record.storeId);
+            nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);
-            nui.get("qty").focus();
+            nui.get("storeShelf").focus();
 
             params.partId = record.partId;
             params.guestId = guestId;
@@ -525,8 +532,9 @@ function addSelectPart(){
             column = morePartGrid.getColumn("outableQty");
             advancedAddWin.show();
             nui.get("storeId").setValue(FStoreId);
+            nui.get("storeShelf").setValue(record.storeShelf);
             nui.get("qty").setValue(1);
-            nui.get("qty").focus();
+            nui.get("storeShelf").focus();
             nui.get("storeId").enabled = true;
 
             params.partId = record.id;
@@ -556,12 +564,25 @@ function CloseWindow(action)
 function onMoreTabChanged(e){
     var tab = e.tab;
     var name = tab.name;
-  
+     
+    var params = {}; 
+    params.partCode = morePartCodeEl.getValue().replace(/\s+/g, "");;
+    params.partName = morePartNameEl.getValue().replace(/\s+/g, "");;
+    params.showStock = showStockEl.getValue().replace(/\s+/g, "");;
+    params.serviceId = moreServiceIdEl.getValue().replace(/\s+/g, "");;
+    params.partBrandId = nui.get('partBrandId').getValue().replace(/\s+/g, "");
+
     if(name == "enterTab"){
         //nui.get("showStock").hide();
+    	if(!params.partCode && !params.partName && !params.serviceId && !params.partBrandId){
+            return;
+        }
     	morePartSearch();
         
     }else if(name == "partInfoTab"){
+    	if(!params.partCode && !params.partName && !params.serviceId && !params.partBrandId){
+            return;
+        }
     	morePartSearch();
         //nui.get("showStock").show();
 //        nui.get("showStock").setValue(0);
@@ -613,6 +634,7 @@ function onAdvancedAddOk(){
         }
     }
     resultData.storeId = data.storeId;
+    resultData.storeShelf=data.storeShelf;
     resultData.qty = data.qty;
     resultData.price = data.price;
     resultData.amt = data.amt;

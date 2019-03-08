@@ -192,7 +192,8 @@
 		       sum(b.total_deduct_amt) as totalDeductAmt, sum(b.netin_amt) as netinAmt, sum(b.gross_profit) as grossProfit,
 		       case when sum(b.netin_amt) = 0 then 0 
 		       else (sum(b.netin_amt) - sum(b.tech_deduct_value) - sum(b.part_true_cost) - sum(b.other_cost_amt))*1.0/sum(b.netin_amt)
-		       end as grossProfitRate
+		       end as grossProfitRate,
+		       sum(b.allowance_amt) as allowanceAmt
 		from rps_maintain a
 		inner join rps_settlement b on a.id = b.service_id
 		inner join rpb_car c on a.car_id = c.id

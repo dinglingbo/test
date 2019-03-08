@@ -219,7 +219,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">unifyPrice</process:inputVariable>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="value">unifyPrice</process:inputVariable>
       <process:inputVariable id="1" name="dos" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">price</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -637,7 +637,7 @@
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">unifyPrice</process:inputVariable>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="value">unifyPrice</process:inputVariable>
       <process:inputVariable id="1" name="dos" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">price</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>

@@ -142,10 +142,9 @@
                 <div field="advisorDeductValue" name="salesDeductValue" width="100" headerAlign="center" align="center" summaryType="sum" allowsort="true" dataType="float">服务顾问提成</div>
                 <div field="totalDeductAmt" name="salesDeductValue" width="100" headerAlign="center" align="center" summaryType="sum" allowsort="true" dataType="float">总提成金额</div>
                 <div field="netinAmt" name="netinAmt" width="100" headerAlign="center" align="center" summaryType="sum" allowsort="true" dataType="float">营收金额</div>
-                <div field="grossProfit" name="grossProfit" width="100" headerAlign="center" align="center" summaryType="sum" allowsort="true" dataType="float">毛利&nbsp;
-</div>
-                <div field="grossProfitRate" name="grossProfitRate" width="100" numberFormat="p" headerAlign="center" align="center"  allowsort="true" dataType="float">毛利率&nbsp;
-</div>
+                <div field="grossProfit" name="grossProfit" width="100" headerAlign="center" align="center" summaryType="sum" allowsort="true" dataType="float">毛利&nbsp;</div>
+                <div field="allowanceAmt" name="allowanceAmt" width="70" headerAlign="center" allowsort="true" summaryType="sum" header="其他优惠" dataType="float"></div>
+                <div field="grossProfitRate" name="grossProfitRate" width="100" numberFormat="p" headerAlign="center" align="center"  allowsort="true" dataType="float">毛利率&nbsp;</div>
 
             </div>
         </div>

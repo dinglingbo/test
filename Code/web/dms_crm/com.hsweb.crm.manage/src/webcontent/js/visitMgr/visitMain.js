@@ -12,7 +12,7 @@ var tcarNo_ctrl = null;
 var memList = [];
 var visitManEl = null;
 var visitIdEl = null;
-var hash = {};
+var hash = {}; 
 
 var statusHash = {
 	"0" : "报价",
@@ -53,8 +53,9 @@ $(document).ready(function(){
     initCarBrand("carBrandId",function() {
     	brandList = nui.get("carBrandId").getData();
     	brandList.forEach(function(v) {
-    		brandHash[v.id].id = v.id;
-    		brandHash[v.id].name = v.name;
+    	
+    		brandHash[v.id] = v;
+  
     	});
     });
     initServiceType("serviceTypeId",function() {
@@ -109,11 +110,9 @@ function SetData(){
 			}
 		});
 	}else{
-		showMsg("请选择一条记录","W");
+		showMsg("请选中一条数据","W");
 	}
 }
-
-
 
 function quickSearch(e){
 	var  p = {};
@@ -205,7 +204,7 @@ function sendInfo(){
     row.serviceType = 3;//客户回访
 	nui.open({
 		url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
-		title: "发送短信", width: 655, height: 386,
+		title: "发送短信", width: 655, height: 280,
 		onload: function () {
 			var iframe = this.getIFrameEl();
 			iframe.contentWindow.setData(row);
@@ -216,4 +215,49 @@ function sendInfo(){
         }
     });
 
+}
+
+
+function sendWcText(){//发送微信消息
+    var row = gridCar.getSelected();
+    if (!row) {
+    showMsg("请选中一条数据","W");
+    return;
+    }
+    // var tit = "发送微信[" + row.guestName + '/' + row.mobile + '/' + row.carModel + ']';
+    var tit = "发送微信";
+    nui.open({
+        url: webPath + contextPath  + "/com.hsweb.crm.manage.sWcInfoRemind.flow?token="+token,
+        title: tit, width: 800, height: 350,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(row);
+    },
+    ondestroy: function (action) {
+            //重新加载 
+            // query(tab);
+            change();
+        }
+    });
+}
+
+
+function sendWechatPicInfo(){//微信图文 回访
+	var row = gridCar.getSelected();
+	if(row){
+		// mini.open({
+		// 	url: webPath + contextPath + "/manage/visitMgr/visitMainDetail.jsp?token="+ token,
+		// 	title: "电话回访", 
+		// 	width: 680, height: 330,
+		// 	onload: function () {
+		// 		var iframe = this.getIFrameEl(); 
+		// 		iframe.contentWindow.setData(row);
+		// 	},
+		// 	ondestroy: function (action) {
+		// 		gridCar.reload();
+		// 	}
+		// });
+	}else{
+		showMsg("请选中一条数据","W");
+	}
 }

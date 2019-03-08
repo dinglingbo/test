@@ -75,7 +75,7 @@ function SetData(){
 			}
 		});
 	}else{
-		showMsg("请选择一条记录","W");
+		showMsg("请选中一条数据","W");
 	}
 }
 
@@ -231,4 +231,28 @@ function sendInfo(){
         }
     });
 
+}
+
+
+function sendWcText(){//发送微信消息
+    var row = gridCar.getSelected();
+    if (!row) {
+    showMsg("请选中一条数据","W");
+    return;
+    }
+    // var tit = "发送微信[" + row.guestName + '/' + row.mobile + '/' + row.carModel + ']';
+    var tit = "发送微信";
+    nui.open({
+        url: webPath + contextPath  + "/com.hsweb.crm.manage.sWcInfoRemind.flow?token="+token,
+        title: tit, width: 800, height: 350,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(row);
+    },
+    ondestroy: function (action) {
+            //重新加载 
+            // query(tab);
+            change();
+        }
+    });
 }

@@ -666,7 +666,7 @@ var requiredField = {
 var saveMaintainUrl = baseUrl + "com.hsapi.repair.repairService.crud.saveRpsMaintain.biz.ext";
 function saveMaintain(callback,unmaskcall){
 	
-    var data = billForm.getData();
+    var data = billForm.getData(true);
 	for ( var key in requiredField) {
 		if (!data[key] || $.trim(data[key]).length == 0) {
             unmaskcall && unmaskcall();
@@ -674,9 +674,9 @@ function saveMaintain(callback,unmaskcall){
 			return;
 		}
     }
-	if(data.id) {
+	/*if(data.id) {
     	delete data.recordDate;
-    }
+    }*/
     data.billTypeId = 3;
     data.serviceTypeId = 1 ;
     data.mtAdvisorId = currEmpId;
@@ -1380,8 +1380,8 @@ function saveBatch(){
 		});
 	    
 	}else{		
-		var maintain = billForm.getData();
-	    delete maintain.recordDate;  
+		var maintain = billForm.getData(true);
+	   /* delete maintain.recordDate;*/  
 	    total = null;
 		//var addSellPart = nui.get("rpsPartGrid").getData();
 		//var sellPartAdd = rpsPartGrid.getChanges("added");
@@ -1467,8 +1467,8 @@ function finish(){
 	        cls: 'mini-mask-loading',
 	        html: '审核中...'
 	});
-	var maintain = billForm.getData();
-    delete maintain.recordDate;
+	var maintain = billForm.getData(true);
+    //delete maintain.recordDate;
 	total = null;
 	var sellPartAdd = [];
 	var sellPartUpdate = [];

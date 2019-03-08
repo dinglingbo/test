@@ -668,3 +668,14 @@ function bindWechat(row_uid){
 }
 
 
+function setInitData(params){
+	if(params.viewType=="reminding"){
+		var radiobuttonlist = nui.get("radiobuttonlist");
+		radiobuttonlist.setValue(1);
+		doSearch();
+	}
+}
+
+
+
+

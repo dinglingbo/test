@@ -34,11 +34,11 @@
                         
                     </td>                   
                     <td>
-                        其他收入
+                        其它费用收入
                         <input class="nui-checkbox">
                     </td>
                     <td>
-                        其他支出
+                        其它费用支出
                         <input class="nui-checkbox">
                     </td>
                 </tr>

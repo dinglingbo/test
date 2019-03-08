@@ -12,7 +12,7 @@ pageEncoding="UTF-8" session="false" %>
     <title>工单回访</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <%@include file="/common/commonRepair.jsp"%>
-    <script src="<%=webPath + contextPath%>/manage/js/visitMgr/visitMain.js?v=1.1.9" type="text/javascript"></script>
+    <script src="<%=webPath + contextPath%>/manage/js/visitMgr/visitMain.js?v=1.1.91" type="text/javascript"></script>
     
     <style type="text/css">
     body { 
@@ -22,7 +22,7 @@ pageEncoding="UTF-8" session="false" %>
         width: 100%;
         height: 100%; 
         overflow: hidden;
-        font-family: "微软雅黑";
+        font-family: "微软雅黑"; 
     }
 </style>  
 </head>
@@ -42,8 +42,8 @@ pageEncoding="UTF-8" session="false" %>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a> -->
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="SetData()"><span class="fa fa-phone fa-lg"></span>&nbsp;电话回访</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendInfo()"><span class="fa fa-envelope-o fa-lg"></span>&nbsp;发送短信</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
-        <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWcText()"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信</a>
+        <a class="nui-button" plain="true" iconCls="" plain="false" onclick="sendWechatPicInfo()"><span class="fa fa-weixin fa-lg"></span>&nbsp;发送微信图文</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick=""><span class="fa fa-credit-card fa-lg"></span>&nbsp;发送卡券</a>
         <a class="nui-button" plain="true" iconCls="" plain="false" onclick="WindowrepairHistory()"><span class="fa fa-wrench fa-lg"></span>&nbsp;维修历史</a>
         <!-- <a class="nui-button" plain="true" iconcls="" plain="false" onclick="openOrderDetail()" ><span class="fa fa-search fa-lg"></span>&nbsp;查询工单详情</a> -->

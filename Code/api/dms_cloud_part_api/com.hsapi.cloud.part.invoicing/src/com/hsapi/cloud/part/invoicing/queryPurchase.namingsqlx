@@ -871,6 +871,7 @@
         <result column="systemUnitId" javaType="string" property="systemUnitId"/>
         <result column="enterQty" javaType="double" property="enterQty"/>
         <result column="enterPrice" javaType="double" property="enterPrice"/>
+        <result column="sellPrice" javaType="double" property="sellPrice"/>
         <result column="enterAmt" javaType="double" property="enterAmt"/>
         <result column="outableQty" javaType="double" property="outableQty"/>
         <result column="taxSign" javaType="int" property="taxSign"/>
@@ -925,6 +926,7 @@
 			M.systemUnitId,
 			M.enterQty,
 			M.enterPrice,
+			M.sellPrice,
 			M.enterAmt,
 			M.outableQty,
 			M.taxSign,
@@ -976,6 +978,7 @@
 			A.SYSTEM_UNIT_ID AS systemUnitId,
 			A.ENTER_QTY AS enterQty,
 			A.ENTER_PRICE AS enterPrice,
+			A.SEll_PRICE as sellPrice,
 			A.ENTER_AMT AS enterAmt,
 			A.OUTABLE_QTY AS outableQty,
 			A.TAX_SIGN AS taxSign,
@@ -1038,6 +1041,7 @@
 			A.SYSTEM_UNIT_ID AS systemUnitId,
 			A.ENTER_QTY AS enterQty,
 			A.ENTER_PRICE AS enterPrice,
+			A.SELL_PRICE as sellPrice,
 			A.ENTER_AMT AS enterAmt,
 			A.OUTABLE_QTY AS outableQty,
 			A.TAX_SIGN AS taxSign,

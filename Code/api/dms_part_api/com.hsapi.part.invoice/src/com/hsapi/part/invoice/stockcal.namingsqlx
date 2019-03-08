@@ -117,7 +117,10 @@
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "storeShelf">
-				and b.store_shelf like '%$storeShelf$%'
+				<!--and b.store_shelf like '%$storeShelf$%'-->
+				and exists (select 1 from pj_part_store_stock c
+							where c.orgid = a.orgid and c.store_id = b.store_id 
+							      and c.shelf like '%$storeShelf$%' and b.part_id = c.part_id )
 			</isNotNull>
 			
 			<isNotNull prepend = "" property = "partId">

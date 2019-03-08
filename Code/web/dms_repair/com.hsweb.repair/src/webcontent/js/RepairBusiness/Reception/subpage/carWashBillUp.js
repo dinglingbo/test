@@ -59,7 +59,7 @@ function onChanged() {
 		PrefAmt=0;
 	}
 	if(deductible>data.rechargeBalaAmt){
-		nui.alert("储值抵扣不能大于储值余额","提示");
+		showMsg("储值抵扣不能大于储值余额","W");
 		nui.get("deductible").setValue(0);
 		var deductible = nui.get("deductible").getValue();
 		var PrefAmt = nui.get("PrefAmt").getValue();
@@ -68,7 +68,7 @@ function onChanged() {
 		return;
 	}
 	if(deductible>data.mtAmt){
-		nui.alert("储值抵扣不能大于应收金额","提示");
+		showMsg("储值抵扣不能大于应收金额","W");
 		nui.get("deductible").setValue(0);
 		var deductible = nui.get("deductible").getValue();
 		var PrefAmt = nui.get("PrefAmt").getValue();
@@ -77,7 +77,7 @@ function onChanged() {
 		return;
 	}
 	if(PrefAmt>data.mtAmt){
-		nui.alert("优惠金额不能大于应收金额","提示");
+		showMsg("优惠金额不能大于应收金额","W");
 		nui.get("PrefAmt").setValue(0);
 		var deductible = nui.get("deductible").getValue();
 		var PrefAmt = nui.get("PrefAmt").getValue();
@@ -125,9 +125,9 @@ function pay(){
 	    			success : function(data) {
 	    				nui.unmask(document.body);
 	    				if(data.errCode=="S"){
-	    					nui.alert(data.errMsg,"提示");
+	    					showMsg(data.errMsg,"S");
 	    				}else{
-	    					nui.alert(data.errMsg,"提示");
+	    					showMsg(data.errMsg,"W");
 	    				}
 
 	    			},

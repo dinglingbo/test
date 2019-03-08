@@ -290,10 +290,10 @@ public class MenuUtil {
 		List<DataObject> resIdList = new ArrayList<DataObject>(set);
 		//资源ID对应的详细资源信息
 		List<DataObject> resInfoList = new ArrayList<DataObject>();
+		HashMap ex = new HashMap();
 		for(int j=0; j<resIdList.size(); j++) {
 			DataObject resObj = resIdList.get(j);
 			String funccode = resObj.getString("resId");
-			HashMap ex = new HashMap();
 			if(!ex.containsKey(funccode)) {
 				DataObject[] resInfo = ResauthUtils.getComAppFunctionByFunccode(funccode);
 				if(funccode.equals(resId)) {

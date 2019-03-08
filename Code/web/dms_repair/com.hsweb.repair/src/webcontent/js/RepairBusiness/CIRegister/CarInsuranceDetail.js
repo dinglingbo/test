@@ -397,22 +397,22 @@ function setInitData(params){
                     	document.getElementById("showA").style.display='none';
                     	document.getElementById("showA1").style.display = "";
                     }
-                    $("#guestNameEl").html(ldata.guestName);
+                    $("#guestNameEl").html(guest.fullName);
                     $("#guestCarEl").html(ldata.carNo);
-                    $("#guestTelEl").html(ldata.mobile);
+                    $("#guestTelEl").html(guest.mobile);
                     var sdata = {
                         id:ldata.id,
                         carNo:ldata.carNo,
                         carVin:ldata.carVin,
                         carId:ldata.carId,
-                        guestMobile:ldata.mobile,
+                        guestMobile:guest.mobile,
                         carBrandId : ldata.carBrandId,
                         carModel : ldata.carModel,
                         //contactName:item.contactName,
                         contactorId:ldata.contactorId,
                         guestId:ldata.guestId,
                         enterKilometers:ldata.enterKilometers,
-                        guestFullName:ldata.guestName,
+                        guestFullName:guest.fullName,
                         recordDate:ldata.recordDate,
                         insureCompId:ldata.insureCompId,
                         insureCompName:ldata.insureCompName,
@@ -546,7 +546,7 @@ function saveData(e){
             return false;
         }
     }
-    var data = basicInfoForm.getData();
+    var data = basicInfoForm.getData(true);
     basicInfoForm.validate();
     if(basicInfoForm.isValid()==false){
 		showMsg("本次里程请填写正整数!","W");
@@ -558,9 +558,9 @@ function saveData(e){
 			return false;
 		}
 	}
-    if(data.id){
+    /*if(data.id){
     	delete data.recordDate;
-    }
+    }*/
 //    var data2 = getData2();
     var gridData = detailGrid.getData();
 
@@ -690,6 +690,7 @@ function onPrint(argument) {
         currOrgName : currOrgName,
         currCompAddress : currCompAddress,
         currCompTel : currCompTel,
+        currCompLogoPath : currCompLogoPath,
         token:token
     };
     nui.open({

@@ -449,9 +449,14 @@ function selectionChanged() {
 }
 
 var isCanOrder = null;
-function setItemName(itemName){
+function setItemName(itemName,sell){
 	mini.get("search-name").setValue(itemName);
-	isCanOrder = 1;
+	if(sell && sell==1){
+		//商机调用时查询所有项目
+		isCanOrder = 0;
+	}else{
+		isCanOrder = 1;
+	}
 	isOpenWin = 1;
 	onSearch();
 }

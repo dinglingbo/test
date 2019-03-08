@@ -279,7 +279,12 @@
 		       a.recorder              recorder,
 		       a.record_date           recordDate,
 		       a.modifier              modifier,
-		       a.modify_date           modifyDate
+		       a.modify_date           modifyDate,
+		       a.guset_property        gusetProperty,
+		       a.license_code          licenseCode,
+		       a.id_card               idCard,
+		       a.license_url           licenseUrl,
+		       a.id_card_url           idCardUrl
 		       FROM com_guest a
 		       WHERE a.is_client = 1
     	<dynamic>
@@ -315,6 +320,12 @@
             </isNotEmpty>
             <isNotEmpty prepend="and" property="manager">  
                 (manager like '%$manager$%')
+            </isNotEmpty>  
+            <isNotEmpty prepend="and" property="licenseCode">  
+                (license_code = #licenseCode#)
+            </isNotEmpty>
+            <isNotEmpty prepend="and" property="idCard">  
+                (id_card = #idCard#)
             </isNotEmpty>
             <isNotEmpty prepend="and" property="sortField">  
                 $sortField$ $sortOrder$
@@ -576,7 +587,7 @@
         </dynamic>
     </select>
     
-     <select id="queryGuestList" parameterClass="java.util.HashMap" resultClass="com.hsapi.cloud.part.data.com.ComGuest">
+     <select id="queryGuestList" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
     	SELECT a.orgid,
 			 a.short_name shortName,
 			 a.full_name fullName,
@@ -624,9 +635,9 @@
 			 a.record_date           recordDate,
 			 a.modifier              modifier,
 			 a.modify_date           modifyDate,
-			 a.is_need_pack as isNeedPack,
 		     a.default_logistics_id as defaultLogisticsId,
-		     a.default_logistics as defaultLogistics
+		     a.default_logistics as defaultLogistics,
+		     a.is_need_pack          isNeedPack
 		FROM com_guest a
 		WHERE (a.orgid = #orgid# or a.orgid = 0)
     	<dynamic>

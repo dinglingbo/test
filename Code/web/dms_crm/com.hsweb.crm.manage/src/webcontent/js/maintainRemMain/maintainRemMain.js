@@ -8,7 +8,8 @@ var gridCarUrl = baseUrl+"com.hsapi.repair.repairService.query.queryMainRemind.b
 
 var gridCar = null;
 var tcarNo_ctrl = null;
-var tmobileEl=null;
+var tmobileEl = null;
+var serviceType = 5;//保养提醒
 var hash = {};
 
 $(document).ready(function(){
@@ -24,8 +25,25 @@ $(document).ready(function(){
 	});
 	
     gridCar.on("drawcell", function (e) { 
+    	var uid = e.record._uid;
         if(e.field == "serviceCode"){
             e.cellHtml ='<a href="##" onclick="openOrderDetail('+"'"+e.record.serviceId+"'"+')">'+e.record.serviceCode+'</a>';
+        }else if(e.field == "mobile"){
+            var value = e.value
+            value = "" + value;
+            var reg=/(\d{3})\d{4}(\d{4})/;
+            value = value.replace(reg, "$1****$2");
+            if(e.value){
+                if(e.record.wechatOpenId){
+                     e.cellHtml =  '<a href="javascript:bindWechat(\'' + uid + '\')" id="showA" ><span id="wechatTag" class="fa fa-wechat fa-lg"></span></a>&nbsp;'+value;
+                     /*e.cellHtml = "<span id='wechatTag' class='fa fa-wechat fa-lg'></span>"+value;*/
+                }else{
+                    e.cellHtml =  '<a href="javascript:bindWechat(\'' + uid + '\')" id="showA1" ><span id="wechatTag1" class="fa fa-wechat fa-lg"></span></a>&nbsp;'+value;
+                }
+            }else{
+                e.cellHtml="";
+            }
+            
         }
     });
 
@@ -44,13 +62,13 @@ $(document).ready(function(){
 function remind() {
     var row = gridCar.getSelected();
     if(row){
-
         SetData(row);
     }
 }
 
 
-function SetData(rowData){
+function SetData(rowData) {
+    rowData.serviceType = serviceType;
     mini.open({
         url: webPath + contextPath + "/manage/maintainRemind/maintainRemMainDetail.jsp?token="+ token,
         title: "提醒信息", 
@@ -195,21 +213,22 @@ function openOrderDetail(serviceId){
 }
 
 function sendInfo(){
-	var row = gridCar.getSelected();
-   if (row == undefined) {
-    showMsg("请选中一条数据","W");
-    return;
-}
-nui.open({
-    url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
-    title: "发送短信", width: 655, height: 280,
-    onload: function () {
-       var iframe = this.getIFrameEl();
-       iframe.contentWindow.setData();
-   },
-   ondestroy: function (action) {
-        	//重新加载
-        	//query(tab);
+    var row = gridCar.getSelected();
+    row.serviceType = serviceType;
+    if (row == undefined) {
+        showMsg("请选中一条数据","W");
+        return;
+    }
+    nui.open({
+        url: webPath + contextPath  + "/com.hsweb.crm.manage.sendInfo.flow?token="+token,
+        title: "发送短信", width: 655, height: 280,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(row);
+    },
+    ondestroy: function (action) {
+            //重新加载
+            //query(tab);
         }
     });
 }
@@ -231,4 +250,64 @@ function addRow() {
             dgGrid.reload();
         }
     });
+}
+
+
+function sendWcText(){//发送微信消息
+    var row = gridCar.getSelected();
+    row.serviceType = serviceType;
+    if (row == undefined) {
+    showMsg("请选中一条数据","W");
+    return;
+    }
+    // var tit = "发送微信[" + row.guestName + '/' + row.mobile + '/' + row.carModel + ']';
+    var tit = "发送微信";
+    nui.open({
+        url: webPath + contextPath  + "/com.hsweb.crm.manage.sWcInfoRemind.flow?token="+token,
+        title: tit, width: 800, height: 350,
+        onload: function () {
+        var iframe = this.getIFrameEl();
+        iframe.contentWindow.setData(row);
+    },
+    ondestroy: function (action) {
+            //重新加载 
+            //query(tab);
+        }
+    });
+}
+
+
+function bindWechat(row_uid){
+	// var row = upGrid.getRowByUID(row_uid);
+	// //var guestId = data.guestId;
+	// if(!row.guestId){
+	// 	showMsg("客户为新客户，请新增客户信息!","W");
+	// 	return;
+	// }
+	// nui.open({
+    //     url:binUrl,
+    //     title:"绑定联系人",
+    //     width:750, 
+    //     height:300,
+    //     onload:function(){
+    //     	var iframe = this.getIFrameEl();
+    //         var params = {};	
+    //         params.guestId=row.guestId;
+    //         params.carNo = row.carNo;
+    //         iframe.contentWindow.setData(params);
+    //     },
+    //     ondestroy:function(action)
+    //     {
+    //     	var iframe = this.getIFrameEl();
+    //         var params = {};	
+    //         var params = iframe.contentWindow.getData();
+    //         if(params){
+    //         	if(params.success && params.success==1){
+    //         		document.getElementById("showA").style.display = "";
+    //             	document.getElementById("showA1").style.display='none';
+    //         	}
+    //         }
+        	
+    //     }
+    // });
 }

@@ -495,6 +495,11 @@ function onParseUnderpanNo()
     {
         return;
     }
+    nui.mask({
+        el: document.body,
+        cls: 'mini-mask-loading',
+        html: '车型解析中...'
+    });
     getCarVinModel(vin,function(data)
     {
         data = data||{};
@@ -516,6 +521,10 @@ function onParseUnderpanNo()
             nui.get("carBrandId").setValue("");
             nui.get("carModelId").setValue(carVinModel.id);
             nui.get("carModelIdLy").setValue(carModelId);
+            nui.unmask(document.body);
+        }else{
+        	nui.unmask(document.body);
+        	showMsg("车型解析失败，请手工维护车型信息！","W");
         }
     });
 }

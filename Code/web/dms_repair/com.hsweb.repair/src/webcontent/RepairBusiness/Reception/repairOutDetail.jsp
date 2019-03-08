@@ -12,7 +12,7 @@
 <head> 
     <title>配件出库详情</title> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.1.45"></script>
+    <script src="<%=request.getContextPath()%>/repair/js/RepairBusiness/Reception/repairOutDetail.js?v=1.1.46"></script>
     <style type="text/css">
     body {
         margin: 0;
@@ -404,7 +404,7 @@ allowCellEdit="true"  >
         </tr>
         <tr>
             <td>
-            <a class="nui-button" iconCls="" plain="true" onclick="chooseStock()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;直接领料</a>
+            <a class="nui-button" iconCls="" plain="true" onclick="chooseStock()" id="addBtn"><span class="fa fa-plus fa-lg"></span>&nbsp;直接出库</a>
             </td>
         </tr>
     </table>

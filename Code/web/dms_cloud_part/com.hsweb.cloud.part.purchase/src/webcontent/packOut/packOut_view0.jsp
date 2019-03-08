@@ -171,7 +171,7 @@
 	                                             onvaluechanged="onGuestValueChanged"
 	                                             popupEmptyText="未找到客户"
 	                                             url=""  searchField="key"
-	                                             width="84%"
+	                                             width="80%"
 	                                             placeholder="请选择客户"
 	                                             selectOnFocus="true" />
 	                                      <input id="btnEdit1" width="11%" class="mini-buttonedit"  onbuttonclick="selectSupplier('guestId')"/>
@@ -192,7 +192,7 @@
                                                  placeholder="请选择物流公司..."
                                                  emptyText="请选择物流公司..."
                                                  popupEmptyText="未找到物流公司"
-                                                 width="62%"
+                                                 width="58%"
                                                  placeholder="请选择物流公司"
                                                  selectOnFocus="true" />
                                           <input id="btnEdit1" width="15%" class="mini-buttonedit"  onbuttonclick="selectLogisticsSupplier('logisticsGuestId')"/>
@@ -236,7 +236,7 @@
                                                  placeholder="请选择物流公司..."
                                                  emptyText="请选择物流公司..."
                                                  popupEmptyText="未找到物流公司"
-                                                 width="53%"
+                                                 width="46%"
                                                  placeholder="请选择物流公司"
                                                  selectOnFocus="true" />
                                           <input id="btnEdit1" width="17%" class="mini-buttonedit"  onbuttonclick="selectLogisticsSupplier('transitLogisticsId')"/>

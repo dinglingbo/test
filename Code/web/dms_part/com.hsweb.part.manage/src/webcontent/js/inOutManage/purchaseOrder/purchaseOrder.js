@@ -1697,6 +1697,7 @@ function onPrint(){
 		currRepairSettorderPrintShow :currRepairSettorderPrintShow,
 		currCompAddress :currCompAddress,
 		currCompTel :currCompTel,
+		currCompLogoPath : currCompLogoPath,
 		currOrgName : currOrgName
 	};
 	var detailParams={

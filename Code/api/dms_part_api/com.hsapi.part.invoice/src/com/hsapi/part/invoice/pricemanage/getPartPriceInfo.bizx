@@ -215,12 +215,12 @@
     <location x="1020" y="99"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo3label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">unifyPrice</process:inputVariable>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="value">unifyPrice</process:inputVariable>
       <process:inputVariable id="1" name="dos" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">price</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>
@@ -624,12 +624,12 @@
     <location x="1500" y="278"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo4label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="reference">unifyPrice</process:inputVariable>
+      <process:inputVariable id="0" name="sourceDO" type="query" value="java.util.HashMap" valueType="Java" pattern="value">unifyPrice</process:inputVariable>
       <process:inputVariable id="1" name="dos" type="query" value="java.util.HashMap[]" valueType="Java" pattern="reference">price</process:inputVariable>
     </process:inputVariables>
     <process:outputVariables>

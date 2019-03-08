@@ -1579,6 +1579,7 @@ function addDetail(row,data,ck)
     enterDetail.orderAmt = data.amt;
     enterDetail.remark = data.remark;
     enterDetail.storeId = data.storeId;
+    enterDetail.storeShelf = data.storeShelf;
     enterDetail.comOemCode = data.oemCode;
     enterDetail.comSpec = data.spec;
     enterDetail.partCode = data.code;
@@ -1869,7 +1870,8 @@ function onGuestValueChanged(e)
 
 		var billTypeIdV = data.billTypeId;
 		var settTypeIdV = data.settTypeId;
-
+		var isNeedPack =data.isNeedPack;
+		nui.get("isNeedPack").setValue(isNeedPack);
 		nui.get("billTypeId").setValue(billTypeIdV);
 		nui.get("settleTypeId").setValue(settTypeIdV);
 
@@ -2009,6 +2011,7 @@ function onPrint(){
 		currUserName : currUserName,
 		currCompAddress : currCompAddress,
 		currCompTel : currCompTel,
+		currCompLogoPath : currCompLogoPath,
 		storeHash : storeHash,
 		brandHash: brandHash
 	};

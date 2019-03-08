@@ -130,8 +130,8 @@
 		                  <div field="partSubtotal" name="carBrandId" width="70" headerAlign="center" header="配件小计"></div>
 		                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" header="预存抵扣"></div>
 		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" header="优惠金额"></div>
-		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" header="其他收入"></div>
-		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" header="其他支出"></div>
+		                  <div field="otherAmt" name="guestFullName" width="80" headerAlign="center" header="其它费用收入"></div>
+		                  <div field="otherCostAmt" name="guestMobile" width="80" headerAlign="center" header="其它费用支出"></div>
 		                  <div field="balaAmt" name="contactName" width="70" headerAlign="center" header="结算金额"></div>
 	                  </div>
                   </div>

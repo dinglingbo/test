@@ -876,6 +876,7 @@ function add(){
 	document.getElementById("showA1").style.display = "";
 	document.getElementById("showA").style.display='none';
 	advancedCardTimesWin.hide();
+	advancedMemCardWin.hide();
 }
 function save(){
 	itemF = "S";
@@ -1141,9 +1142,9 @@ function saveMaintain(callback,unmaskcall){
     if (data.planFinishDate) {
 		data.planFinishDate = format(data.planFinishDate, 'yyyy-MM-dd HH:mm:ss');
 	}
-    if(data.id) {
+    /*if(data.id) {
     	delete data.enterDate;
-    }
+    }*/
     data.billTypeId = 2;
     if(!data.enterKilometers){
     	data.enterKilometers = lastComeKilometers;
@@ -1163,7 +1164,7 @@ svrSaveMaintain(params, function(text){
      	 }*/
     	 fserviceId = main.id||0;
          var status = main.status;
-    	 var oldData = billForm.getData();
+    	 var oldData = billForm.getData(true);
     	 oldData.id = fserviceId;
      	 billForm.setData(oldData);
          var params1 = {
@@ -4272,8 +4273,7 @@ function bindWechat(){
         }
     });
 }
-
-
+ 
 
 
 

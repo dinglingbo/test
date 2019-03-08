@@ -339,12 +339,13 @@
 			a.rate as rate,
 			a.is_finish as isFinish,
 			a.recorder as recorder,
-			a.record_date as recordDate
+			a.record_date as recordDate,
+			b.past_date as pastDate
 		FROM
 		rps_card_times_detail AS a
 		inner join rps_card_times as b
 		on a.main_id = b.id
-		where 1 = 1
+		where b.status = 2 and b.is_refund = 0
 		<dynamic>
             <isNotEmpty prepend="and" property="orgid">
                 (b.orgid = #orgid#)

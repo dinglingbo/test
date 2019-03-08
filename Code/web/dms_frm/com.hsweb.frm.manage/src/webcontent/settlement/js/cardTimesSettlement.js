@@ -125,7 +125,7 @@ function setGuest(item){
 function onChanged() {
 	var count = scount();
 	if(parseFloat(count) > netInAmt){
-		nui.alert("收款大于应收金额，请重新填写","提示");
+		showMsg("收款大于应收金额，请重新填写","W");
 		return;
 	}
 
@@ -268,11 +268,11 @@ var payurl=baseUrl+"com.hsapi.repair.repairService.settlement.rechargeReceive.bi
 function settleOK() {
 	var count = scount();
 	if(!guestData.guestId){
-		nui.alert("请选择客户！","提示");
+		showMsg("请选择客户！","W");
 		return;
 	}
 	if(count!=netInAmt){
-		nui.alert("付款金额和应付金额不一致，请重新确认！","提示");
+		showMsg("付款金额和应付金额不一致，请重新确认！","W");
 		return;
 	}	
 	var accountTypeList =[];
@@ -368,7 +368,7 @@ function settleOK() {
 								CloseWindow("ok");
 								print();
 							} else {
-								nui.alert(data.errMsg,"提示");
+								showMsg(data.errMsg,"W");
 							}
 						},
 						error : function(jqXHR, textStatus, errorThrown) {
@@ -403,6 +403,7 @@ function print(){
         currSlogan1: currSlogan1,
         currSlogan2: currSlogan2,
         currUserName : currUserName,
+        currCompLogoPath: currCompLogoPath,
 		token : token
 	};
 	params = {
@@ -494,7 +495,7 @@ function noPayOk(){
 	var payAmt = 0;
 	var json = {};
 	if(!guestData.guestId){
-		nui.alert("请选择客户！","提示");
+		showMsg("请选择客户！","W");
 		return;
 	}
 	if(cardType==1){
@@ -569,7 +570,7 @@ function noPayOk(){
 				        	print();
 				        }
 				        else {
-				            nui.alert("转结算失败:"+returnJson.errMsg, "系统提示");
+				            showMsg("转结算失败:"+returnJson.errMsg, "W");
 				        }
 				   }				        	  
 			  });		

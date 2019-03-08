@@ -357,12 +357,12 @@
     <location x="900" y="15"/>
     <size height="28" width="22"/>
     <nodeLabel>invokePojo0label</nodeLabel>
-    <process:pojo methodType="static" synchronization="true" transactionType="join">
+    <process:pojo methodType="instance" synchronization="true" transactionType="join">
       <process:partner type="literal">com.hs.common.ArrayUtils.add2Array</process:partner>
       <process:instance instanceName=""/>
     </process:pojo>
     <process:inputVariables>
-      <process:inputVariable id="0" name="a" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">parts</process:inputVariable>
+      <process:inputVariable id="0" name="a" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="value">parts</process:inputVariable>
       <process:inputVariable id="1" name="b" type="query" value="commonj.sdo.DataObject[]" valueType="Java" pattern="reference">epcCommonList</process:inputVariable>
       <process:inputVariable id="2" name="compField" type="query" value="java.lang.String" valueType="Java" pattern="reference">value</process:inputVariable>
     </process:inputVariables>

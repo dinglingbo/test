@@ -9,7 +9,7 @@
 -->
 <head>
 <title>供应商资料</title>
-<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.52"></script>
+<script src="<%=webPath + contextPath%>/basic/js/customerAdd.js?v=1.0.70"></script>
 <script src="<%=webPath + contextPath%>/common/js/qiniu.min.js" type="text/javascript"></script>
 <script src="https://cdn.staticfile.org/jquery/2.2.1/jquery.min.js"></script>
 <script src="<%= request.getContextPath() %>/common/qiniu/qiniu1.0.14.js" type="text/javascript"></script>
@@ -81,6 +81,7 @@
 </head>
 <body>
 
+ <input class="nui-combobox" visible="false" id="managerDuty"/>
 <div style="text-align: right;">
     <div id="isInternal" name="isInternal" visible="false" class="nui-checkbox" text="" onvaluechanged="onValueChanged" trueValue="1" falseValue="0"></div>
     <span>客户</span>

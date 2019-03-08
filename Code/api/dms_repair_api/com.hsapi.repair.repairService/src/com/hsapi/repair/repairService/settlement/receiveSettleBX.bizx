@@ -161,7 +161,7 @@
       <targetNode>assign33</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -225,7 +225,7 @@
       <targetNode>assign10</targetNode>
       <process:transitionCondition>
         <process:simpleCondition operator="EQ">
-          <process:leftOperand type="query"></process:leftOperand>
+          <process:leftOperand type="query"/>
           <process:rightOperand type="literal">1</process:rightOperand>
         </process:simpleCondition>
       </process:transitionCondition>
@@ -248,6 +248,7 @@
         <process:outputVariable id="2" name="cardPkgAmt" type="query" value="Double" valueType="Primitive">cardPkgAmt</process:outputVariable>
         <process:outputVariable id="3" name="cardItemAmt" type="query" value="Double" valueType="Primitive">cardItemAmt</process:outputVariable>
         <process:outputVariable id="4" name="cardPartAmt" type="query" value="Double" valueType="Primitive">cardPartAmt</process:outputVariable>
+        <process:outputVariable id="5" name="message" type="query" value="String" valueType="Primitive">timesMsg</process:outputVariable>
       </process:outputVariables>
     </process:flow>
   </nodes>
@@ -1174,6 +1175,7 @@
     <process:variable description="" historyStateLocation="client" isArray="false" name="sum1" primitiveType="Double"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="billTypeId" primitiveType="String"/>
     <process:variable description="" historyStateLocation="client" isArray="false" name="sysDis" primitiveType="String"/>
+    <process:variable description="" historyStateLocation="client" isArray="false" name="timesMsg" primitiveType="String"/>
   </process:variables>
   <process:inputs varArgs="false">
     <process:input description="" isArray="false" name="serviceId" primitiveType="Int"/>

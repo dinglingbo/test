@@ -442,3 +442,16 @@ function query (){
 	});
 }
 
+function bookingMgr(){
+    var part={};
+    part.id = "2081";
+    part.text = "预约管理";
+    part.url = webPath + contextPath + "/com.hsweb.RepairBusiness.BookingManagementList.flow?token="+token;
+    part.iconCls = "fa fa-file-text";
+    var params = {
+        viewType:"reminding"
+    };
+    window.parent.activeTabAndInit(part,params);
+
+}
+

@@ -94,6 +94,9 @@
             <isNotEmpty prepend="and" property="isDisabled">
                 (a.is_disabled = #isDisabled#)
             </isNotEmpty>
+            <isNotEmpty prepend="and" property="guestId">
+                (a.guest_id = #guestId#)
+            </isNotEmpty>
             <isNotEmpty prepend="and" property="carId">
                 (a.car_id = #carId#)
             </isNotEmpty>
@@ -1119,7 +1122,7 @@
 			d.part_subtotal AS partSubtotal,
 			d.other_amt AS otherAmt,
 			d.package_subtotal+d.item_subtotal+d.part_subtotal+d.other_amt AS incomeTotal,
-			
+			d.allowance_amt as allowanceAmt,
 			d.card_times_amt AS cardTimesAmt,
 			d.total_pref_amt AS totalPrefAmt,
 			d.bala_amt AS balaAmt,		
@@ -1256,6 +1259,36 @@
             </isNotEmpty>
         </dynamic> 
         order by a.modify_date desc
+	</select>
+	
+	 <select id="WechatQueryComprehensive" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">
+    	SELECT
+			a.id AS id,
+			a.orgid As orgid,
+			a.guest_id AS guestId,
+			a.car_id AS carId,
+			a.car_vin AS carVin,
+			a.car_no AS carNo,
+			d.bala_amt AS balaAmt,
+			a.enter_kilometers AS enterKilometers,
+			c.name AS companyName,
+			a.out_date AS outDate,
+			a.service_code serviceCode
+		FROM
+			rps_maintain a
+		  	INNER JOIN wb_common.com_company c on a.orgid = c.orgid
+			inner join rps_settlement d on (a.id =  d.service_id)
+		WHERE a.guest_id = #guestId#
+		<isNotEmpty prepend="and" property="billTypeIds">  
+                (a.bill_type_id in ($billTypeIds$))
+        </isNotEmpty>
+        <isNotEmpty prepend="and" property="isSettle">  
+                (a.is_settle = #isSettle#)
+         </isNotEmpty>
+         <isNotEmpty prepend="and" property="isDisabled">
+                (a.is_disabled = #isDisabled#)
+         </isNotEmpty>
+         order by a.out_date desc
 	</select>
 	
 	  <select id="queryWorkShopItem" parameterClass="java.util.HashMap" resultClass="commonj.sdo.DataObject">

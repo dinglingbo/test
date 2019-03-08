@@ -149,8 +149,8 @@
 		                  <div field="total" name="carBrandId" width="70" headerAlign="center" summaryType="sum"  header="合计" allowsort="true" dataType="int"></div>
 	<!-- 	                  <div field="cardTimesAmt" name="cardTimesAmt" width="70" headerAlign="center" summaryType="sum"  header="预存抵扣" allowsort="true"></div>
 		                  <div field="totalPrefAmt" name="carVin" width="70" headerAlign="center" summaryType="sum"  header="优惠金额" allowsort="true"></div>
-		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" summaryType="sum"  header="其他收入" allowsort="true"></div>
-		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" summaryType="sum"  header="其他支出" allowsort="true"></div> -->
+		                  <div field="otherAmt" name="guestFullName" width="70" headerAlign="center" summaryType="sum"  header="其它费用收入" allowsort="true"></div>
+		                  <div field="otherCostAmt" name="guestMobile" width="70" headerAlign="center" summaryType="sum"  header="其它费用支出" allowsort="true"></div> -->
 	                  </div>
                   </div>
                   

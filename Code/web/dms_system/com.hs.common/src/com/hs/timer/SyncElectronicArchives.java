@@ -3,15 +3,18 @@
  */
 package com.hs.timer;
 
+import java.net.HttpURLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.tuscany.sca.policy.authorization.AuthorizationPolicy.AcessControl;
 
 import com.alibaba.fastjson.JSONArray;
@@ -42,25 +45,29 @@ public class SyncElectronicArchives {
 	@SuppressWarnings("unchecked")
 	@Bizlet("获取access_token")
 	public static Map<String, String> getAccessToken(String companycode, String companypassword) {
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
+		/*SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
 		SimpleDateFormat format2 = new SimpleDateFormat("HHmmss");
 		Date date = new Date();
 		String headerDate = format1.format(date);
-		String headerTime = format2.format(date);
+		String headerTime = format2.format(date);*/
 		String param = null;
 		JSONObject jsonObj = new JSONObject();
-		Map <String, String> header = new HashMap <String, String>();
-		header.put("date", headerDate);
-		header.put("time", headerTime);
-		jsonObj.put("header", header);
+		jsonObj.put("companycode", companycode);
+		jsonObj.put("companypassword", companypassword);
 		
-		Map <String, String> body = new HashMap <String, String>();
+		/*Map <String, String> header = new HashMap <String, String>();
+		header.put("date", headerDate);
+		header.put("time", headerTime);*/
+		/*header.put("date", "20180826");
+		header.put("time", "172522");*/
+		//jsonObj.put("header", header);
+		
+		/*Map <String, String> body = new HashMap <String, String>();
 		body.put("companycode", companycode);
 		body.put("companypassword", companypassword);
-		jsonObj.put("body", body);
-		param = "companydata="+jsonObj.toString();
-
-		String result = HttpUtils.sendGet("http://218.13.12.75:81/api/getAccessToken.ashx", param);
+		jsonObj.put("body", body);*/
+		param = jsonObj.toString();
+		String result = HttpUtils.sendPostByJson("https://hunan.qichedangan.cn/restservices/lcipprodatarest/lcipprogetaccesstoken/query", param);
 		
 		Gson gson = new Gson();
         Map<String, String> map = new HashMap<String, String>();
@@ -88,9 +95,9 @@ public class SyncElectronicArchives {
 		param.setString("startDate", startDate);
 		param.setString("endDate", endDate);
 		String paramStr = null;
-		
 		SimpleDateFormat format1 = new SimpleDateFormat("yyyyMMdd");
 		SimpleDateFormat format2 = new SimpleDateFormat("HHmmss");
+		
 		Date date = new Date();
 		String headerDate = format1.format(date);
 		String headerTime = format2.format(date);
@@ -121,6 +128,9 @@ public class SyncElectronicArchives {
 	        	String id = d.getString("id");
 	        	String carNo = d.getString("carNo");
 	        	String carVin = d.getString("carVin");
+	        	if(carVin == null || "".equals(carVin)){
+	        		carVin = "无";
+	        	}
 	        	String enterDate = d.getString("enterDate");
 	        	String outDate = d.getString("outDate");
 	        	String faultPhen = d.getString("faultPhen");
@@ -133,22 +143,33 @@ public class SyncElectronicArchives {
 	        	}
 	        	
 	        	JSONObject jsonObj = new JSONObject();
+	        	/*Map <String, Object> info = new HashMap <String, Object>();*/
 	        	jsonObj.put("access_token", accessToken);
-	    		Map <String, String> header = new HashMap <String, String>();
+	        	//jsonObj.put("info", info);
+	    		/*Map <String, String> header = new HashMap <String, String>();
 	    		header.put("date", headerDate);
 	    		header.put("time", headerTime);
-	    		jsonObj.put("header", header);
+	    		jsonObj.put("header", header);*/
 	    		
-	    		Map <String, Object> body = new HashMap <String, Object>();
-	    		body.put("vehicleplatenumber", carNo);
-	    		body.put("vehicleplatecolor", "黑");
-	    		body.put("companyname", orgName);
-	    		body.put("vin", carVin);
-	    		body.put("repairdate", enterDate);
-	    		body.put("repairmileage", enterKilometers == "" ? "0": enterKilometers);
-	    		body.put("settledate", outDate);
-	    		body.put("faultdescription", faultPhen == "" ? "-": faultPhen);
-	    		body.put("costlistcode", id);
+	    		Map <String, String> basicInfo = new HashMap <String, String>();
+	    		//车牌号
+	    		basicInfo.put("vehicleplatenumber", carNo);
+	    		basicInfo.put("vehicleplatecolor", "黑");
+	    		//维修企业名称
+	    		basicInfo.put("companyname", orgName);
+	    		basicInfo.put("vin", carVin);
+	    		//送修日期
+	    		basicInfo.put("repairdate", enterDate);
+	    		//送修里程
+	    		basicInfo.put("repairmileage", enterKilometers == "" ? "0": enterKilometers);
+	    		//结算日期
+	    		basicInfo.put("settledate", outDate);
+	    		//故障描述
+	    		basicInfo.put("faultdescription", faultPhen == "" ? "-": faultPhen);
+	    		//结算编号
+	    		basicInfo.put("costlistcode", id);
+	    		getFormatData(basicInfo);
+	    		jsonObj.put("basicInfo", basicInfo);
 	    		
 	    		List<Map<String,String>> tList=new ArrayList<Map<String,String>>();
 	    		for (DataObject obj : itemList) {
@@ -156,10 +177,13 @@ public class SyncElectronicArchives {
 		    			Map <String, String> item = new HashMap <String, String>();
 		    			item.put("repairproject", obj.getString("itemName"));
 		    			item.put("workinghours", obj.getString("itemItem"));
+		    			getFormatData(item);
 		    			tList.add(item);
 	    			}
+	    			
 				}
-	    		body.put("repairProjectList", tList);
+	    		
+	    		jsonObj.put("repairprojectlist", tList);
 	    		
 	    		List<Map<String,String>> pList=new ArrayList<Map<String,String>>();
 	    		for (DataObject obj : partList) {
@@ -171,13 +195,13 @@ public class SyncElectronicArchives {
 		    			pList.add(item);
 	    			}
 				}
-	    		body.put("vehiclePartsList", pList);
-	    		jsonObj.put("body", body);
 	    		
-	    		paramStr = "repairdata="+jsonObj.toString();
+	    		jsonObj.put("vehiclepartslist", pList);
 	    		
-	    		String result = HttpUtils.sendGet("http://218.13.12.75:81/api/upRepairInfo.ashx", paramStr);
+	    		paramStr = jsonObj.toString();
 	    		
+	    		String result = HttpUtils.sendPostByJson("https://hunan.qichedangan.cn/restservices/lcipprodatarest/lcipprocarfixrecordadd/query", paramStr);
+	    			
 	    		Gson gson = new Gson();
 	            Map<String, String> map = new HashMap<String, String>();
 	            map = gson.fromJson(result, map.getClass());
@@ -188,6 +212,23 @@ public class SyncElectronicArchives {
     	
 		return;
 	}
+	
+	private static  Map getFormatData(Map<String, String> map){	
+		 for(String key:map.keySet()){
+			   String value = map.get(key);
+			   if(value==null || "".equals(value)){
+				   if("vehicleplatenumber".equals(key) || "companyname".equals(key) || "vin".equals(key) || "faultdescription".equals(key)
+						   || "partscode".equals(key) || "partsname".equals(key) || "repairproject".equals(key)){
+					   map.put(key, "无");
+				   }
+				   if("repairmileage".equals(key) || "workinghours".equals(key) || "partsquantity".equals(key)){
+					   map.put(key, "0");
+				   }
+			   }
+		}
+		return map;
+	}
+	
 	
 	/*
 	 * 查询需要提交电子档案的公司信息
@@ -204,7 +245,6 @@ public class SyncElectronicArchives {
     	criteria.set("_expr[3]/_op", "notnull");
     	DataObject[] result = com.eos.foundation.database.DatabaseUtil
     	.queryEntitiesByCriteriaEntity("common", criteria);
-    	
     	return result;
 	}
 	
@@ -218,11 +258,18 @@ public class SyncElectronicArchives {
 				String compName = compObj.getString("name");
 				String eRecordUser = compObj.getString("eRecordUser");
 				String eRecordPwd = compObj.getString("eRecordPwd");
-				
-				Map<String, String> tokenMap = getAccessToken(eRecordUser, eRecordPwd);
-				String accessToken = tokenMap.get("access_token");
-				if(accessToken != null && accessToken != "") {
+				String accessToken = null;
+				                       
+				if(eRecordUser != null && !"".equals(eRecordUser)){
+					//if(StringUtils.isNotBlank(eRecordUser) && !StringUtils.equals("", eRecordUser))
+					if(eRecordPwd != null  && !"".equals(eRecordPwd)){
+						Map<String, String> tokenMap = getAccessToken(eRecordUser, eRecordPwd);
+						accessToken = tokenMap.get("access_token");
+					}
+				}
+				if(accessToken != null && !"".equals(accessToken)) { 
 					Calendar cal = Calendar.getInstance();
+					cal.add(Calendar.DATE, 1);
 				    String endDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
 				    cal.add(Calendar.DATE, -30);
 				    String startDate = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());
@@ -238,7 +285,8 @@ public class SyncElectronicArchives {
 	public static void main(String args[]) {
 		
 		//Map map = getAccessToken("881812010733001", "abcdefg");
-		//System.out.println(map.get("access_token"));
+		Map map = getAccessToken("431302000062483", "07388971111a");
+		System.out.println(map.get("access_token"));
 		
 		Calendar cal = Calendar.getInstance();
 	    String today = new SimpleDateFormat( "yyyy-MM-dd ").format(cal.getTime());

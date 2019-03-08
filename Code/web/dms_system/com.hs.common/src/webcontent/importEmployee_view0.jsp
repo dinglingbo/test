@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
-<%@include file="/common/commonPart.jsp"%>
+<%@include file="/common/commonRepair.jsp"%>
 <html>
 <!-- 
   - Author(s): Administrator
@@ -11,7 +11,7 @@
 <title>员工导入</title>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <script src="<%=webPath + contextPath%>/common/nui/xlsx.core.min.js?v=2.0.0"></script>
-<script src="<%=webPath + contextPath%>/common/js/importEmployee.js?v=1.0.2"></script>
+<script src="<%=webPath + contextPath%>/common/js/importEmployee.js?v=1.0.5"></script>
 <style type="text/css">
 /*.a-upload {
     padding: 4px 10px;
@@ -90,8 +90,7 @@
 					    <input type="file" name="" id="" onchange="importf(this)">
 					</a>
 	                <a class="nui-button" iconCls="" plain="true" onclick="sure()" id="openBtn"><span class="fa fa-level-down fa-lg"></span>&nbsp;导入</a>
-	                <a class="nui-button" iconCls="" plain="true" onclick="clear()" id="saveBtn"><span class="fa fa-trash fa-lg"></span>&nbsp;清空</a>
-	                <a class="nui-button" iconCls="" plain="true" onclick="close()" id="auditBtn"><span class="fa fa-close fa-lg"></span>&nbsp;取消</a>
+ 					<a class="nui-button" plain="true" href="<%=request.getContextPath() %>/repair/RepairBusiness/template/employee.xls"><span class="fa fa-arrow-down fa-lg"></span>下载模板</a>
 				</td>
 	        </tr>
 	    </table>
@@ -103,13 +102,13 @@
 			<div property="columns">
 				<div type="indexcolumn">序号</div>
 				<div field="姓名" width="50px" summaryType="count" headerAlign="center" allowSort="true">
-					姓名<input property="editor" class="nui-textbox"/></div>
+					*姓名<input property="editor" class="nui-textbox"/></div>
 				<div field="手机号码" width="100px" headerAlign="center" allowSort="true">
-					手机号码<input property="editor" class="nui-textbox"/></div>
+					*手机号码<input property="editor" class="nui-textbox"/></div>
 				<div field="性别" width="50px" headerAlign="center" allowSort="true">
-					性别<input property="editor" class="nui-textbox"/></div>
+					*性别<input property="editor" class="nui-textbox"/></div>
 				<div field="身份证号码" width="100px" headerAlign="center" allowSort="true">
-					身份证号码<input property="editor" class="nui-textbox"/></div>
+					*身份证号码<input property="editor" class="nui-textbox"/></div>
 				<div field="生日" width="100px" headerAlign="center" allowSort="true">
 					生日<input property="editor" class="nui-textbox"/></div>
 				<div field="入职日期" width="100px" headerAlign="center" allowSort="true">

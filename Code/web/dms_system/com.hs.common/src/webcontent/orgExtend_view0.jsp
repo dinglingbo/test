@@ -12,8 +12,8 @@
 	<title>门店管理</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 	<script src="<%=webPath + contextPath%>/common/js/orgExtendQuery.js?v=1.9.8" type="text/javascript"></script>
-	<link href="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.css" rel="stylesheet" type="text/css" />
-    <script src="<%=webPath + contextPath%>/frm/js/finance/HeaderFilter.js" type="text/javascript"></script>
+	<link href="<%=webPath + contextPath%>/common/js/HeaderFilter.css" rel="stylesheet" type="text/css" />
+    <script src="<%=webPath + contextPath%>/common/js/HeaderFilter.js" type="text/javascript"></script>
 	<style type="text/css">
 		body {
 			margin: 0;

@@ -260,7 +260,6 @@ public class SyncElectronicArchives {
 				String ePushUrl = compObj.getString("ePushUrl");
 				String eTokenUrl = compObj.getString("eTokenUrl");
 				String accessToken = null;
-				                       
 				if(eRecordUser != null && !"".equals(eRecordUser)){
 					//if(StringUtils.isNotBlank(eRecordUser) && !StringUtils.equals("", eRecordUser))
 					if(eRecordPwd != null  && !"".equals(eRecordPwd)){

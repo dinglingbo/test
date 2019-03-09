@@ -231,7 +231,7 @@ var licenseCode=null;
 var name=null;
 var registerMoney=null;
 function getLicense(imgPath){
-	var gusetProperty =nui.get('gusetProperty').getValue();
+	var gusetProperty =nui.get('gusetProperty').getValue().replace(/\s+/g, "");
 	nui.mask({
         el : document.body,
     	cls : 'mini-mask-loading',
@@ -280,7 +280,7 @@ function getLicense(imgPath){
 var idCard=null;
 var legalPerson=null;
 function getIdCard(imgPath){
-	var gusetProperty =nui.get('gusetProperty').getValue();
+	var gusetProperty =nui.get('gusetProperty').getValue().replace(/\s+/g, "");
 	nui.mask({
         el : document.body,
     	cls : 'mini-mask-loading',

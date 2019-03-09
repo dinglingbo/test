@@ -524,7 +524,7 @@ function addEnterDetail(part)
         onload: function ()
         {
             var iframe = this.getIFrameEl();
-            part.storeId = nui.get("storeId").getValue();
+            part.storeId = nui.get("storeId").getValue().replace(/\s+/g, "");
             iframe.contentWindow.setData({
                 part:part
             });

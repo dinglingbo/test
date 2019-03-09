@@ -323,9 +323,9 @@ function editPart(){
 	var index = mainTabs.activeIndex;
 	var row = {};
 	if(index==0){
-		row = partGrid.getSelected();
-	}else {
 		row = partLoalGrid.getSelected();
+	}else {
+		row = partGrid.getSelected();
 	}
     if(row && row.orgid == currOrgid)
     {

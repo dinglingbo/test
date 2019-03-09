@@ -134,9 +134,16 @@ function setData(params){
      params:params
   },function(){
 	 var row = contactorGrid.findRow(function(row){
-		 if(!row.wechatOpenId){
-			 contactorGrid.beginEditRow(row);
+		 if(row.wechatServiceId){
+			 var rowData = row;
+			 rowData.wechatServiceId = "已取消关注";
+			 contactorGrid.updateRow(row,rowData);
+		 }else{
+			 if(!row.wechatOpenId){
+				 contactorGrid.beginEditRow(row);
+			 }
 		 }
+		 
 		 
      });
  });

@@ -153,7 +153,7 @@ function getMousePos(event) {
 *通过vin获取车辆信息
 */
 function queryVin(){	
-    vin = vin_input.getValue();
+    vin = vin_input.getValue().replace(/\s+/g, "");
     brand = curr_check;
     if (checkVin()){
         var params = {

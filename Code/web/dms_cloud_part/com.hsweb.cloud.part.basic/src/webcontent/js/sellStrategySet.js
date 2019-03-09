@@ -256,8 +256,8 @@ function onGuestSearch() {
     if(row && row.id){
         var params = {};
         params.strategyId = row.id;
-        params.namePy = nui.get("GuestNamePy").getValue();
-        params.fullName = nui.get("GuestFullName").getValue();
+        params.namePy = nui.get("GuestNamePy").getValue().replace(/\s+/g, "");
+        params.fullName = nui.get("GuestFullName").getValue().replace(/\s+/g, "");
         rightGuestGrid.load({params:params,token:token});
     }
 }
@@ -267,9 +267,9 @@ function onPartSearch() {
     if(row && row.id){
         var params = {};
         params.strategyId = row.id;
-        params.queryCode = nui.get("queryCode").getValue();
-        params.namePy = nui.get("namePy").getValue();
-        params.fullName = nui.get("fullName").getValue();
+        params.queryCode = nui.get("queryCode").getValue().replace(/\s+/g, "");
+        params.namePy = nui.get("namePy").getValue().replace(/\s+/g, "");
+        params.fullName = nui.get("fullName").getValue().replace(/\s+/g, "");
         rightPartGrid.load({params:params,token:token},function(){
 //        	var data=rightPartGrid.getData();
 //			var list=[];
@@ -291,9 +291,9 @@ function onPartSearch() {
 }
 function onUnifySearch() {
     var params = {};
-    params.queryCode = nui.get("queryCode").getValue();
-    params.namePy = nui.get("namePy").getValue();
-    params.fullName = nui.get("fullName").getValue();
+    params.queryCode = nui.get("queryCode").getValue().replace(/\s+/g, "");
+    params.namePy = nui.get("namePy").getValue().replace(/\s+/g, "");
+    params.fullName = nui.get("fullName").getValue().replace(/\s+/g, "");
     rightPartGrid.load({params:params,token:token});
  
 }

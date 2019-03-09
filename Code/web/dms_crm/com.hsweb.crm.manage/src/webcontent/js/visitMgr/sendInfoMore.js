@@ -1,9 +1,9 @@
 var webBaseUrl = webPath + contextPath + "/";
 var form1 = null;
-var mainData = {};
+var mainDatas = [];
 var visitContent = null;
 var baseUrl = apiPath + sysApi + "/";
-var sendUrl = baseUrl+"com.hsapi.system.basic.smsPush.testPush.biz.ext";
+var sendUrl = baseUrl+"com.hsapi.system.basic.smsPushMore.biz.ext";
 var saveUrl = apiPath + repairApi +"/com.hsapi.repair.repairService.crud.saveRemindRecord.biz.ext";
 $(document).ready(function (){
 	
@@ -21,8 +21,8 @@ $(document).ready(function (){
 
 });
    
-function setData(row) {
-    mainData = row;
+function setData(rows) {
+    mainDatas = rows;
 }
 
 
@@ -34,10 +34,7 @@ function save() {
             showMsg("请输入短信内容!","W");
             return ;
         }
-        if(!mainData.mobile){
-            showMsg("手机号不能为空!","W");
-            return ;
-        }
+
          nui.mask({
            el: document.body,
            cls: 'mini-mask-loading',
@@ -45,8 +42,8 @@ function save() {
         });
        
         var json = nui.encode({
-			"phones" : mainData.mobile,
-			"message" : message,
+			"list" : mainDatas,
+			"msg" : message,
 			token : token
         });   
         var params = {
@@ -63,7 +60,7 @@ function save() {
 				if (returnJson.errCode == "S") {
 				    nui.unmask(document.body);
                     showMsg(returnJson.errMsg || "发送成功", "S");
-                    saveRecord(mainData);
+                    //saveRecord(mainData);
 					CloseWindow("ok");
 				} else {
 					nui.unmask(document.body);
